@@ -12,4 +12,8 @@ class safeUITests: XCTestCase {
         XCUIApplication().launch()
     }
 
+    func testExample() {
+        // put your UI test here
+    }
+
 }
