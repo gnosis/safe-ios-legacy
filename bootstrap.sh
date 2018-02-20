@@ -18,7 +18,7 @@ fi
 
 if ! rbenv versions | grep $(cat .ruby-version) > /dev/null; then
   echo "Installing Ruby $(cat .ruby-version)"
-  rbenv install $(cat .ruby-version)
+  rbenv install $(cat .ruby-version)``
   echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
   echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
   source ~/.bash_profile

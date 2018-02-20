@@ -1,9 +1,5 @@
 //
-//  ViewController.swift
-//  safe
-//
-//  Created by Andrey Scherbovich on 20.02.18.
-//  Copyright © 2018 Gnosis Ltd. All rights reserved.
+//  Copyright © 2018 Gnosis. All rights reserved.
 //
 
 import UIKit
@@ -22,4 +18,3 @@ class ViewController: UIViewController {
 
 
 }
-

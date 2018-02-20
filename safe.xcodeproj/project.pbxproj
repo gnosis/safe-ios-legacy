@@ -149,9 +149,10 @@
 			buildConfigurationList = 5540A513203C3054009C9BE3 /* Build configuration list for PBXNativeTarget "safe" */;
 			buildPhases = (
 				5540A4E7203C3054009C9BE3 /* Sources */,
+				55DF6A95203C681A00DF6486 /* SwiftLint */,
 				5540A4E8203C3054009C9BE3 /* Frameworks */,
-				5540A520203C6077009C9BE3 /* Fabric */,
 				5540A4E9203C3054009C9BE3 /* Resources */,
+				5540A520203C6077009C9BE3 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -206,7 +207,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0920;
-				ORGANIZATIONNAME = "Gnosis Ltd.";
+				ORGANIZATIONNAME = Gnosis;
 				TargetAttributes = {
 					5540A4EA203C3054009C9BE3 = {
 						CreatedOnToolsVersion = 9.2;
@@ -285,6 +286,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export $(cat ${SRCROOT}/.env.default)\n./Frameworks/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
+		};
+		55DF6A95203C681A00DF6486 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -380,7 +395,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
