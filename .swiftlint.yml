@@ -143,4 +143,6 @@ file_header:
 
 excluded:
   - Build
+  - xcode-templates
+  - git-hooks
 
