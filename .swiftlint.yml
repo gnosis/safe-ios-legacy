@@ -145,4 +145,5 @@ excluded:
   - Build
   - xcode-templates
   - git-hooks
+  - safe/generated
 

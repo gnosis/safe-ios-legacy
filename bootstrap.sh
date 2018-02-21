@@ -11,6 +11,11 @@ if ! which swiftlint > /dev/null; then
   brew install swiftlint
 fi
 
+if ! which swiftgen > /dev/null; then
+  echo "Installing SwiftGen"
+  brew install swiftgen
+fi
+
 if ! which rbenv > /dev/null; then
   echo "Installing rbenv"
   brew install rbenv

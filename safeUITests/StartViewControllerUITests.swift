@@ -4,7 +4,7 @@
 
 import XCTest
 
-class safeUITests: XCTestCase {
+class StartViewControllerUITests: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -12,8 +12,8 @@ class safeUITests: XCTestCase {
         XCUIApplication().launch()
     }
 
-    func testExample() {
-        // put your UI test here
+    func test_whenStarted_thenItHasStartButton() {
+        XCTAssertTrue(XCUIApplication().buttons["Start"].exists)
     }
 
 }

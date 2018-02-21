@@ -4,7 +4,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class StartViewController: UIViewController {
+
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var startButton: UIButton!
+
+    static func create() -> StartViewController {
+        return StoryboardScene.Main.initialScene.instantiate()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
