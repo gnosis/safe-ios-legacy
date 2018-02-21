@@ -6,4 +6,4 @@ before_install:
   - brew update
   - brew upgrade swiftlint swiftgen
 script:
-  - bundle exec fastlane test || cat /Users/travis/Library/Logs/scan/safe-safe.log
+  - bundle exec fastlane test 

@@ -66,6 +66,7 @@ platform :ios do
     #   message: exception.message,
     #   success: false
     # )
+    puts `cat ~/Library/Logs/scan/safe-safe.log`
   end
 end
 
