@@ -4,4 +4,4 @@ xcode_scheme: safe
 osx_image: xcode9.2
 before_install:
   - brew update
-  - brew install swiftlint swiftgen
+  - brew upgrade swiftlint swiftgen
