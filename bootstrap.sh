@@ -29,6 +29,13 @@ if ! rbenv which bundle > /dev/null; then
   gem install bundler
 fi
 
+TEMPLATES_DIR=~/Library/Developer/Xcode/Templates/Gnosis
+if [ ! -d $TEMPLATES_DIR ]; then
+  echo "Installing Gnosis Xcode templates"
+  mkdir -p $TEMPLATES_DIR
+  cp -R xcode-templates/* $TEMPLATES_DIR/
+fi
+
 echo "Running bundle install"
 bundle install
 
