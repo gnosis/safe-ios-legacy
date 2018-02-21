@@ -5,7 +5,7 @@
 To set up all project dependencies, run from the project directory in terminal:
 
 ```
-$> ./bootstrap.sh
+$> scripts/bootstrap.sh
 ```
 
 ## Xcode Settings
