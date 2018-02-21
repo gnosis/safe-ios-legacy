@@ -19,7 +19,7 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan
+    scan(scheme: "safe", configuration: "Debug")
   end
 
   desc "Build and distribute build to Fabric Beta"
