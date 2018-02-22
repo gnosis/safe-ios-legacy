@@ -36,6 +36,7 @@ platform :ios do
     end
     ENV["FASTLANE_APP_IDENTIFIER"] = ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
+    XCODE_LOG_PATH = "~/Library/Logs/gym/safe-safe.log"
     gym(configuration: "AdHoc", scheme: "safe")
     crashlytics
     #slack(
