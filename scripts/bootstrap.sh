@@ -25,7 +25,7 @@ fi
 PROJECT_RUBY_VERSION=$(cat .ruby-version)
 if ! rbenv versions | grep $PROJECT_RUBY_VERSION > /dev/null; then
   echo "Installing Ruby $PROJECT_RUBY_VERSION"
-  brew upgrade ruby-build
+  brew update && brew upgrade ruby-build
   rbenv install $PROJECT_RUBY_VERSION
   echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
   echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
