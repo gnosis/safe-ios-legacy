@@ -34,8 +34,9 @@ platform :ios do
       setup_travis
       increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"])
     end
+    ENV["FASTLANE_APP_IDENTIFIER"] = ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
-    gym(configuration: "AdHoc", scheme: "safe", app_identifier: ADHOC_APP_ID)
+    gym(configuration: "AdHoc", scheme: "safe")
     crashlytics
     #slack(
     #  message: "Successfully distributed new version to beta :rocket:",
