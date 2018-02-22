@@ -17,6 +17,12 @@ default_platform :ios
 
 platform :ios do
 
+  before_all do
+    XCODE_LOG_PATH = "~/Library/Logs/scan/safe-safe.log"
+    ADHOC_APP_ID = ENV["FASTLANE_APP_IDENTIFIER_ADHOC"]
+    sh "test ! -e #{XCODE_LOG_PATH} || rm #{XCODE_LOG_PATH}"
+  end
+
   desc "Runs all the tests"
   lane :test do
     scan(scheme: "safe", configuration: "Debug", skip_build: true)
@@ -24,13 +30,21 @@ platform :ios do
 
   desc "Build and distribute build to Fabric Beta"
   lane :fabric do
-    ENV["FASTLANE_APP_IDENTIFIER"] = ENV["FASTLANE_APP_IDENTIFIER_ADHOC"]
-    match(type: "adhoc", force_for_new_devices: true)
-    gym(configuration: "AdHoc")
+    if is_ci
+      setup_travis
+      increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"])
+    end
+    match(type: "adhoc", app_identifier: ADHOC_APP_ID)
+    gym(configuration: "AdHoc", scheme: "safe", app_identifier: ADHOC_APP_ID)
     crashlytics
     #slack(
     #  message: "Successfully distributed new version to beta :rocket:",
     #)
+  end
+
+  lane :add_devices do
+    register_devices(devices_file: "../gnosis-ios-certificates/devices.txt")
+    match(type: "adhoc", app_identifier: ADHOC_APP_ID, force_for_new_devices: true)
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
@@ -62,7 +76,7 @@ platform :ios do
     #   message: exception.message,
     #   success: false
     # )
-    puts `cat ~/Library/Logs/scan/safe-safe.log`
+    puts `cat #{XCODE_LOG_PATH}`
   end
 end
 
