@@ -4,6 +4,8 @@ xcode_scheme: safe
 osx_image: xcode9.2
 script:
 - bundle exec fastlane test
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -J "safe"
 env:
   global:
   - secure: Iml2xS0T/O8H0YrywztKipx1uJaKIj9LMYShh17WaqTs6KYz7le8YxVXDORZ6sDhlr2s0fFK0QcoBHuRxwvB5UvvC+Fe7C+9VKoCGyt+i4pADH/B+5oLkz7ZfVmjVI81RUjlVJxagHNrlhjltQhWHjzR/S9JFmWQWKG7UUc+7bCE9My7i9W0e9aahJAtyd/WFZ+cX+qUe6ylQJdU7On43FaTY4XioMXaepdIA5jHcr+++95DAfqzhwdshcgxzNHOPeXmyJl9T6eNN4bcFIe6th2D5swO8zm9hKkarIlvzdufYq1i6UXyVOx/IWb8p7L1coNa77qdP+PpPcfWzgJryeVVWtLYQEQBz0zHpEH3sCUAkSRNFjgj6gi7Q7JgH48vCosm/vyXiTR2nE2MNUbwz+C5wR2+KDeGlDrTwxXxX0ptxMZBW2zrSiBI185VTf/nBPS1MghbZuqv3/gH3h+j0IROJO9JnNPZSRkUPdp2LKS9+9lBDK19ySP/0ig8lcEqhFGAVA8rZQMLavucuMqpsxsErmOPPMEaih3hCScmd5rxsgdi6W00bRoQ5tbMxCDvScgJxIXqKPUo5VbMj0m82IU/BDMsQ/SCkbnXmrONFNQglyyoy6RN0LK2iIvkACasEA0J3TANrY9eLlkrRP/054m3GFJ2xKrNmoAGWMUh7J0=
