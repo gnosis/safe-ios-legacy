@@ -21,9 +21,12 @@ if ! which rbenv > /dev/null; then
   brew install rbenv
 fi
 
-if ! rbenv versions | grep $(cat .ruby-version) > /dev/null; then
-  echo "Installing Ruby $(cat .ruby-version)"
-  rbenv install $(cat .ruby-version)
+# if rbenv versinos does not contain project's ruby version, install project ruby version
+PROJECT_RUBY_VERSION=$(cat .ruby-version)
+if ! rbenv versions | grep $PROJECT_RUBY_VERSION > /dev/null; then
+  echo "Installing Ruby $PROJECT_RUBY_VERSION"
+  brew upgrade ruby-build
+  rbenv install $PROJECT_RUBY_VERSION
   echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
   echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
   source ~/.bash_profile
