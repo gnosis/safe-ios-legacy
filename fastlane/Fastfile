@@ -56,7 +56,7 @@ platform :ios do
   desc "This will also make sure the profile is up to date"
   lane :beta do
     xcversion(version: "~> 9.0")
-    match(type: "appstore") # more information: https://codesigning.guide
+    match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"])
     gym(scheme: "safe", 
         include_symbols: true,
         include_bitcode: true)
