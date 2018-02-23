@@ -26,6 +26,11 @@ Runs all the tests
 fastlane ios fabric
 ```
 Build and distribute build to Fabric Beta
+### ios add_devices
+```
+fastlane ios add_devices
+```
+
 ### ios beta
 ```
 fastlane ios beta

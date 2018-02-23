@@ -1,5 +1,4 @@
 # safe-ios
-==========================
 
 [![Build Status](https://travis-ci.org/sche/safe-ios.svg)](https://travis-ci.org/sche/safe-ios) [![codecov.io](https://codecov.io/gh/sche/safe-ios/branch/master/graphs/badge.svg)](https://codecov.io/gh/sche/safe-ios/branch/master)
 

@@ -230,7 +230,7 @@
 				TargetAttributes = {
 					5540A4EA203C3054009C9BE3 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					5540A4FE203C3054009C9BE3 = {
 						CreatedOnToolsVersion = 9.2;
@@ -304,7 +304,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftgen >/dev/null; then\n    swiftgen config run --config safe/swiftgen.yml\nelse\n    echo \"warning: SwiftGen not installed, download from https://github.com/SwiftGen/SwiftGen\"\nfi";
+			shellScript = "if $CI; then exit 0; fi\nif which swiftgen >/dev/null; then\n    swiftgen config run --config safe/swiftgen.yml\nelse\n    echo \"warning: SwiftGen not installed, download from https://github.com/SwiftGen/SwiftGen\"\nfi";
+			showEnvVarsInLog = 0;
 		};
 		5540A520203C6077009C9BE3 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -318,7 +319,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export $(cat ${SRCROOT}/.env.default)\n./Frameworks/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
+			shellScript = "ENV_VARS=${SRCROOT}/.env.default\nif [ -e ${ENV_VARS} ]; then\n    export $(cat $ENV_VARS)\nfi\n./Frameworks/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
+			showEnvVarsInLog = 0;
 		};
 		55DF6A95203C681A00DF6486 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -333,6 +335,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -511,7 +514,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-${BUNDLE_IDENTIFIER}";
 				BUNDLE_IDENTIFIER = pm.gnosis.safe;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -522,8 +526,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "eae101f8-55fb-4b14-846a-6b124457671e";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development pm.gnosis.safe";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -532,7 +539,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-${BUNDLE_IDENTIFIER}";
 				BUNDLE_IDENTIFIER = pm.gnosis.safe;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -543,8 +552,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c29000b9-f4a7-4101-9abe-92c37dbbf0ca";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore pm.gnosis.safe";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -677,7 +689,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-${BUNDLE_IDENTIFIER}";
 				BUNDLE_IDENTIFIER = pm.gnosis.safe.adhoc;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -688,8 +702,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b6fd39c1-ffea-4d8e-bea0-0863974ca2f8";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc pm.gnosis.safe.adhoc";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = AdHoc;
 		};
