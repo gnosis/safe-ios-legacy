@@ -11,7 +11,7 @@ class StartViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
 
     static func create() -> StartViewController {
-        return StoryboardScene.Main.initialScene.instantiate()
+        return StoryboardScene.Onboarding.startViewController.instantiate()
     }
 
     override func viewDidLoad() {

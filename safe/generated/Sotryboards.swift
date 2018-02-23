@@ -58,10 +58,14 @@ enum StoryboardScene {
 
     static let initialScene = InitialSceneType<UIViewController>(storyboard: LaunchScreen.self)
   }
-  enum Main: StoryboardType {
-    static let storyboardName = "Main"
+  enum Onboarding: StoryboardType {
+    static let storyboardName = "Onboarding"
 
-    static let initialScene = InitialSceneType<safe.StartViewController>(storyboard: Main.self)
+    static let initialScene = InitialSceneType<safe.OnboardingNavigationController>(storyboard: Onboarding.self)
+
+    static let setPasswordViewController = SceneType<safe.SetPasswordViewController>(storyboard: Onboarding.self, identifier: "SetPasswordViewController")
+
+    static let startViewController = SceneType<safe.StartViewController>(storyboard: Onboarding.self, identifier: "StartViewController")
   }
 }
 

@@ -5,6 +5,6 @@ xcassets:
   output: generated/Assets.swift
 storyboards:
   paths:
-    - Base.lproj
+    - .    
   templateName: swift4
   output: generated/Sotryboards.swift
