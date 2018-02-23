@@ -18,14 +18,13 @@ default_platform :ios
 platform :ios do
 
   before_all do
-    XCODE_LOG_PATH = "~/Library/Logs/scan/safe-safe.log"
     ADHOC_APP_ID = ENV["FASTLANE_APP_IDENTIFIER_ADHOC"]
-    sh "test ! -e #{XCODE_LOG_PATH} || rm #{XCODE_LOG_PATH}"
+    BUILD_LOG_PATH = "build_logs"
   end
 
   desc "Runs all the tests"
   lane :test do
-    scan(scheme: "safe", configuration: "Debug", skip_build: true)
+    scan(scheme: "safe", configuration: "Debug", skip_build: true, buildlog_path: BUILD_LOG_PATH)
   end
 
   desc "Build and distribute build to Fabric Beta"
@@ -36,8 +35,7 @@ platform :ios do
     end
     ENV["FASTLANE_APP_IDENTIFIER"] = ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
-    XCODE_LOG_PATH = "~/Library/Logs/gym/safe-safe.log"
-    gym(configuration: "AdHoc", scheme: "safe")
+    gym(configuration: "AdHoc", scheme: "safe", buildlog_path: BUILD_LOG_PATH)
     crashlytics
     #slack(
     #  message: "Successfully distributed new version to beta :rocket:",
@@ -78,7 +76,7 @@ platform :ios do
     #   message: exception.message,
     #   success: false
     # )
-    puts `cat #{XCODE_LOG_PATH}`
+    puts `cat #{BUILD_LOG_PATH/safe-safe.log}`
   end
 end
 

@@ -319,7 +319,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export $(cat ${SRCROOT}/.env.default)\n./Frameworks/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
+			shellScript = "ENV_VARS=${SRCROOT}/.env.default\nif [ -e ${ENV_VARS} ]; then\n    export $(cat $ENV_VARS)\nfi\n./Frameworks/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
 			showEnvVarsInLog = 0;
 		};
 		55DF6A95203C681A00DF6486 /* SwiftLint */ = {

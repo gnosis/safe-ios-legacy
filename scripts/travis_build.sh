@@ -1,5 +1,5 @@
-if [ ${TRAVIS_BRANCH} = "master" ]; then
+#if [ $TRAVIS_PULL_REQUEST ]; then
+#    bundle exec fastlane test
+#else
     bundle exec fastlane fabric
-else
-    bundle exec fastlane test
-fi
+#fi
