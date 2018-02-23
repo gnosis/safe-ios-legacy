@@ -36,7 +36,7 @@ platform :ios do
     ENV["FASTLANE_APP_IDENTIFIER"] = ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
     gym(configuration: "AdHoc", scheme: "safe", buildlog_path: BUILD_LOG_PATH)
-    crashlytics
+    crashlytics(groups: "iOS Beta Testers")
     #slack(
     #  message: "Successfully distributed new version to beta :rocket:",
     #)
