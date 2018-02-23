@@ -22,9 +22,14 @@ platform :ios do
     BUILD_LOG_PATH = "build_logs"
   end
 
-  desc "Runs all the tests"
+  desc "Runs unit tests"
   lane :test do
     scan(scheme: "safe", configuration: "Debug", skip_build: true, buildlog_path: BUILD_LOG_PATH)
+  end
+  
+  desc "Runs UI tests"
+  lane :ui_test do
+    scan(scheme: "safeUITests", configuration: "Debug", skip_build: true, buildlog_path: BUILD_LOG_PATH)
   end
 
   desc "Build and distribute build to Fabric Beta"
