@@ -2,10 +2,14 @@ language: swift
 xcode_project: safe.xcodeproj
 xcode_scheme: safe
 osx_image: xcode9.2
+branches:
+  only:
+    - master
+    - /release\/.*/
 script:
-- scripts/travis_build.sh
+  - scripts/travis_build.sh
 after_success:
-- bash <(curl -s https://codecov.io/bash) -J "safe"
+  - scripts/travis_code_coverage.sh
 env:
   global:
   - secure: r2puVs/dnaRoqY4ORD3MMlVKvVQlMGNCFv76TZpUUZhmtKbbv2ul5VE8MH+X0mtCnou551lVragiwMHLMwrEYSqG6+5gvSIMOF6P4o1LsAzcD5hSmMLTVAm0VdQsUprs1IJGGpzyHNywm1Hr7s2FNUmWUWucIajipzrjiBb+FIKbJaySskzPfrFUWXRYdF3RGnb0Yv30kj2RMSGzjyFGxOUwBHrh1o8miqQ2Wn39u5HVx79r+aCoI1lS03esPYKoWii8doWG0+U9FpUmYrnn7jwgt/vv/HYanMBxuNCey2HGT3FUNcmfv0+FIonrmAHSkPBeJfw4lauyETo0hC6sXHahkXt0Ke8myG8GuOacbiQwQ5us/tdkcuocWdY0MDycP9WJCHkypo4PMQRE5kN7tnFR+Zbd8YH70fnQhos/I5qEdXkit3/Ov9E+BnwThma8SjiuDaO+p7iRcjBRugYVv+nNO/kFDmEAV4Li02+op/rto3Gg0G7RM/FHLaVlsOnElhEhnj+54gxM5LNBCihre8IDXEZNiEp5v5rqkXBq66TST6HCIOFPpoGrDeZiC0TE93QGP9iblJJzGPpzoPiN3EpiqZoIdX5pHFd185jVkkNwvpfqfPQfpK6FqJH06KIVLHgD6S/+iF9JDhpkKcKaPeOs+6Wt5otx+a/xiH0hcXY=
