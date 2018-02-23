@@ -25,10 +25,10 @@ final class RuleLabel: UILabel {
     }
 
     private func stylize() {
-        textColor = color(for: status)
+        textColor = RuleLabel.color(for: status)
     }
 
-    private func color(for status: RuleStatus) -> UIColor {
+    static func color(for status: RuleStatus) -> UIColor {
         switch status {
         case .error:
             return ColorName.red.color

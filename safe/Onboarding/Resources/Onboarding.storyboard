@@ -39,13 +39,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• At least 1 capital letter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBF-F4-vr3">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• At least 1 capital letter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBF-F4-vr3" customClass="RuleLabel" customModule="safe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="30.5" width="335" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• At least 1 digit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6m-0d-zcD">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• At least 1 digit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6m-0d-zcD" customClass="RuleLabel" customModule="safe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="61" width="335" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -70,8 +70,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="3oq-oS-dNH"/>
                     <connections>
+                        <outlet property="capitalLetterRuleLabel" destination="WBF-F4-vr3" id="8t7-DC-Mk2"/>
+                        <outlet property="digitRuleLabel" destination="Y6m-0d-zcD" id="GN5-jS-YRQ"/>
                         <outlet property="headerLabel" destination="TQF-Lg-Ysh" id="FNE-5c-ghW"/>
-                        <outlet property="minimumLengthLabel" destination="qHS-sK-wSa" id="hbb-fw-o8e"/>
+                        <outlet property="minimumLengthRuleLabel" destination="qHS-sK-wSa" id="yYx-1M-HB7"/>
                         <outlet property="passwordTextField" destination="N8j-yb-cIW" id="zeZ-C7-8lv"/>
                     </connections>
                 </viewController>
