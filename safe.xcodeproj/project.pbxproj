@@ -304,7 +304,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftgen >/dev/null; then\n    swiftgen config run --config safe/swiftgen.yml\nelse\n    echo \"warning: SwiftGen not installed, download from https://github.com/SwiftGen/SwiftGen\"\nfi";
+			shellScript = "if $CI; then exit 0; fi\nif which swiftgen >/dev/null; then\n    swiftgen config run --config safe/swiftgen.yml\nelse\n    echo \"warning: SwiftGen not installed, download from https://github.com/SwiftGen/SwiftGen\"\nfi";
+			showEnvVarsInLog = 0;
 		};
 		5540A520203C6077009C9BE3 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -319,6 +320,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export $(cat ${SRCROOT}/.env.default)\n./Frameworks/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
+			showEnvVarsInLog = 0;
 		};
 		55DF6A95203C681A00DF6486 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -333,6 +335,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
