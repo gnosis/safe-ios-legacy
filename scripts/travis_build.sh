@@ -1,5 +1,5 @@
-if [ $TRAVIS_PULL_REQUEST ]; then
-  bundle exec fastlane test
-else
+if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
   bundle exec fastlane fabric
+else
+  bundle exec fastlane test
 fi
