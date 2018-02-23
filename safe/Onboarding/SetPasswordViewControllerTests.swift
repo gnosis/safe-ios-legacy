@@ -46,4 +46,50 @@ class SetPasswordViewControllerTests: XCTestCase {
         XCTAssertTrue(vc.passwordTextField.isFirstResponder)
     }
 
+    func test_whenLastSymbolErased_thenAllRulesBecomeInactive() {
+        vc.passwordTextField.text = "a"
+        _ = vc.textField(vc.passwordTextField,
+                         shouldChangeCharactersIn: NSRange(location: 0, length: 1),
+                         replacementString: "")
+        XCTAssertEqual(vc.minimumLengthRuleLabel.textColor, RuleLabel.color(for: .inactive))
+        XCTAssertEqual(vc.capitalLetterRuleLabel.textColor, RuleLabel.color(for: .inactive))
+        XCTAssertEqual(vc.digitRuleLabel.textColor, RuleLabel.color(for: .inactive))
+    }
+
+    func test_whenFirstLowercaseLetterIsEntered_thenAllRullesAreFailed() {
+        _ = vc.textField(vc.passwordTextField, shouldChangeCharactersIn: NSRange(), replacementString: "a")
+        XCTAssertEqual(vc.minimumLengthRuleLabel.textColor, RuleLabel.color(for: .error))
+        XCTAssertEqual(vc.capitalLetterRuleLabel.textColor, RuleLabel.color(for: .error))
+        XCTAssertEqual(vc.digitRuleLabel.textColor, RuleLabel.color(for: .error))
+    }
+
+    func test_whenAtLeastOneUppercaseLetterIsEntered_thenAllRullesExceptCapitalLetterRuleAreFailed() {
+        _ = vc.textField(vc.passwordTextField, shouldChangeCharactersIn: NSRange(), replacementString: "abCd")
+        XCTAssertEqual(vc.minimumLengthRuleLabel.textColor, RuleLabel.color(for: .error))
+        XCTAssertEqual(vc.capitalLetterRuleLabel.textColor, RuleLabel.color(for: .success))
+        XCTAssertEqual(vc.digitRuleLabel.textColor, RuleLabel.color(for: .error))
+    }
+
+    func test_whenAtLeastOneDigitIsEntered_thenAllRullesExceptDigitRuleAreFailed() {
+        _ = vc.textField(vc.passwordTextField, shouldChangeCharactersIn: NSRange(), replacementString: "a1b")
+        XCTAssertEqual(vc.minimumLengthRuleLabel.textColor, RuleLabel.color(for: .error))
+        XCTAssertEqual(vc.capitalLetterRuleLabel.textColor, RuleLabel.color(for: .error))
+        XCTAssertEqual(vc.digitRuleLabel.textColor, RuleLabel.color(for: .success))
+    }
+
+    func test_whenLessThanMinimumSymbolsAreEntered_thenMinimumLengthRuleIsFailed() {
+        // TODO: const
+        // Min = 6
+        _ = vc.textField(vc.passwordTextField, shouldChangeCharactersIn: NSRange(), replacementString: "abcde")
+        XCTAssertEqual(vc.minimumLengthRuleLabel.textColor, RuleLabel.color(for: .error))
+    }
+
+    func test_whenAtLeastMinimumLowercaseLettersAreEntered_thenAllRullesExceptMinimumLengthRuleAreFailed() {
+        // Min = 6
+        _ = vc.textField(vc.passwordTextField, shouldChangeCharactersIn: NSRange(), replacementString: "abcdef")
+        XCTAssertEqual(vc.minimumLengthRuleLabel.textColor, RuleLabel.color(for: .success))
+        XCTAssertEqual(vc.capitalLetterRuleLabel.textColor, RuleLabel.color(for: .error))
+        XCTAssertEqual(vc.digitRuleLabel.textColor, RuleLabel.color(for: .error))
+    }
+
 }

@@ -18,6 +18,7 @@ final class SetPasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        passwordTextField.delegate = self
         passwordTextField.becomeFirstResponder()
     }
 
@@ -32,5 +33,41 @@ final class SetPasswordViewController: UIViewController {
     func setDigitRuleStatus(_ status: RuleStatus) {
         digitRuleLabel.status = status
     }
+
+}
+
+extension SetPasswordViewController: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        let oldText = (textField.text ?? "") as NSString
+        let newText = oldText.replacingCharacters(in: range, with: string)
+        guard !newText.isEmpty else {
+            setMinimumLengthRuleStatus(.inactive)
+            setCapitalLetterRuleStatus(.inactive)
+            setDigitRuleStatus(.inactive)
+            return true
+        }
+        if newText.containsCapitalizedLetter() {
+            setCapitalLetterRuleStatus(.success)
+        } else {
+            setCapitalLetterRuleStatus(.error)
+        }
+        if newText.containsDigit() {
+            setDigitRuleStatus(.success)
+        } else {
+            setDigitRuleStatus(.error)
+        }
+        // TODO: const
+        if newText.count >= 6 {
+            setMinimumLengthRuleStatus(.success)
+        } else {
+            setMinimumLengthRuleStatus(.error)
+        }
+        return true
+    }
+
+    // TODO: textFieldShouldClear
 
 }

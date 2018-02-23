@@ -19,6 +19,8 @@
 		55147D6220405F6200AD0E1F /* RuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D6120405F6200AD0E1F /* RuleLabel.swift */; };
 		55147D6420405F8400AD0E1F /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D6320405F8400AD0E1F /* Fonts.swift */; };
 		55147D672040601E00AD0E1F /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D662040601E00AD0E1F /* RuleLabelTests.swift */; };
+		55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */; };
+		55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */; };
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
 		5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4F0203C3054009C9BE3 /* StartViewController.swift */; };
 		5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F5203C3054009C9BE3 /* Assets.xcassets */; };
@@ -60,6 +62,8 @@
 		55147D6120405F6200AD0E1F /* RuleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabel.swift; sourceTree = "<group>"; };
 		55147D6320405F8400AD0E1F /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		55147D662040601E00AD0E1F /* RuleLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabelTests.swift; sourceTree = "<group>"; };
+		55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensions.swift; sourceTree = "<group>"; };
+		55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensionsTests.swift; sourceTree = "<group>"; };
 		5540A4EB203C3054009C9BE3 /* safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A4EE203C3054009C9BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5540A4F0203C3054009C9BE3 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 				55147D51204048BC00AD0E1F /* Onboarding */,
 				55147D49203DAE1D00AD0E1F /* generated */,
 				5540A4EE203C3054009C9BE3 /* AppDelegate.swift */,
+				55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */,
+				55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */,
 				55147D6520405FA500AD0E1F /* SafeUIKit */,
 				5540A4F5203C3054009C9BE3 /* Assets.xcassets */,
 				5540A4F7203C3054009C9BE3 /* LaunchScreen.storyboard */,
@@ -400,6 +406,7 @@
 				55147D6020405BBA00AD0E1F /* Colors.swift in Sources */,
 				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
 				55147D592040521800AD0E1F /* OnboardingNavigationController.swift in Sources */,
+				55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */,
 				55147D6420405F8400AD0E1F /* Fonts.swift in Sources */,
 				55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */,
 			);
@@ -412,6 +419,7 @@
 				55147D672040601E00AD0E1F /* RuleLabelTests.swift in Sources */,
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
 				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
+				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

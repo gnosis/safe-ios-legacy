@@ -1,6 +1,7 @@
 //___FILEHEADER___
 
 import XCTest
+@testable import safe
 
 class ___FILEBASENAMEASIDENTIFIER___: ___VARIABLE_testSubclass___ {
 
