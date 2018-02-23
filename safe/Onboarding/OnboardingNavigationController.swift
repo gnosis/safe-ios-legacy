@@ -4,7 +4,7 @@
 
 import UIKit
 
-class OnboardingNavigationController: UINavigationController {
+final class OnboardingNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

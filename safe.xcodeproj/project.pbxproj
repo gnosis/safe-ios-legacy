@@ -14,6 +14,11 @@
 		55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */; };
 		55147D592040521800AD0E1F /* OnboardingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D582040521800AD0E1F /* OnboardingNavigationController.swift */; };
 		55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */; };
+		55147D5E20405AD100AD0E1F /* Colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 55147D5D20405AD100AD0E1F /* Colors.txt */; };
+		55147D6020405BBA00AD0E1F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D5F20405BBA00AD0E1F /* Colors.swift */; };
+		55147D6220405F6200AD0E1F /* RuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D6120405F6200AD0E1F /* RuleLabel.swift */; };
+		55147D6420405F8400AD0E1F /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D6320405F8400AD0E1F /* Fonts.swift */; };
+		55147D672040601E00AD0E1F /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D662040601E00AD0E1F /* RuleLabelTests.swift */; };
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
 		5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4F0203C3054009C9BE3 /* StartViewController.swift */; };
 		5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F5203C3054009C9BE3 /* Assets.xcassets */; };
@@ -50,6 +55,11 @@
 		55147D542040493C00AD0E1F /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		55147D582040521800AD0E1F /* OnboardingNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNavigationController.swift; sourceTree = "<group>"; };
 		55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewControllerTests.swift; sourceTree = "<group>"; };
+		55147D5D20405AD100AD0E1F /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
+		55147D5F20405BBA00AD0E1F /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		55147D6120405F6200AD0E1F /* RuleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabel.swift; sourceTree = "<group>"; };
+		55147D6320405F8400AD0E1F /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		55147D662040601E00AD0E1F /* RuleLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabelTests.swift; sourceTree = "<group>"; };
 		5540A4EB203C3054009C9BE3 /* safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A4EE203C3054009C9BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5540A4F0203C3054009C9BE3 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +105,7 @@
 		55147D49203DAE1D00AD0E1F /* generated */ = {
 			isa = PBXGroup;
 			children = (
+				55147D5F20405BBA00AD0E1F /* Colors.swift */,
 				55147D4A203DAE1D00AD0E1F /* Assets.swift */,
 				55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */,
 			);
@@ -118,8 +129,19 @@
 			isa = PBXGroup;
 			children = (
 				55147D542040493C00AD0E1F /* Onboarding.storyboard */,
+				55147D5D20405AD100AD0E1F /* Colors.txt */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		55147D6520405FA500AD0E1F /* SafeUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				55147D6120405F6200AD0E1F /* RuleLabel.swift */,
+				55147D662040601E00AD0E1F /* RuleLabelTests.swift */,
+				55147D6320405F8400AD0E1F /* Fonts.swift */,
+			);
+			path = SafeUIKit;
 			sourceTree = "<group>";
 		};
 		5540A4E2203C3054009C9BE3 = {
@@ -149,6 +171,7 @@
 				55147D51204048BC00AD0E1F /* Onboarding */,
 				55147D49203DAE1D00AD0E1F /* generated */,
 				5540A4EE203C3054009C9BE3 /* AppDelegate.swift */,
+				55147D6520405FA500AD0E1F /* SafeUIKit */,
 				5540A4F5203C3054009C9BE3 /* Assets.xcassets */,
 				5540A4F7203C3054009C9BE3 /* LaunchScreen.storyboard */,
 				5540A4FA203C3054009C9BE3 /* Info.plist */,
@@ -296,6 +319,7 @@
 			files = (
 				5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
+				55147D5E20405AD100AD0E1F /* Colors.txt in Resources */,
 				55147D552040493C00AD0E1F /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,9 +395,12 @@
 			files = (
 				55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */,
 				5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */,
+				55147D6220405F6200AD0E1F /* RuleLabel.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
+				55147D6020405BBA00AD0E1F /* Colors.swift in Sources */,
 				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
 				55147D592040521800AD0E1F /* OnboardingNavigationController.swift in Sources */,
+				55147D6420405F8400AD0E1F /* Fonts.swift in Sources */,
 				55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,6 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55147D672040601E00AD0E1F /* RuleLabelTests.swift in Sources */,
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
 				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
 			);

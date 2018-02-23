@@ -18,4 +18,11 @@ class SetPasswordViewControllerTests: XCTestCase {
         XCTAssertNotNil(vc.passwordTextField)
     }
 
+    func test_whenPasswordRuleErrors_displaysAsRed() {
+        let vc = SetPasswordViewController.create()
+        vc.loadViewIfNeeded()
+        vc.setMinimumLengthRuleStatus(.error)
+        XCTAssertEqual(vc.minimumLengthLabel.textColor, ColorName.red.color)
+    }
+
 }

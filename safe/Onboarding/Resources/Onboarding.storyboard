@@ -33,7 +33,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="u8B-Xx-3Rv">
                                 <rect key="frame" x="20" y="279" width="335" height="81.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• Minimum 8 symbols" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHS-sK-wSa">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• Minimum 8 symbols" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHS-sK-wSa" customClass="RuleLabel" customModule="safe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -71,6 +71,7 @@
                     <navigationItem key="navigationItem" id="3oq-oS-dNH"/>
                     <connections>
                         <outlet property="headerLabel" destination="TQF-Lg-Ysh" id="FNE-5c-ghW"/>
+                        <outlet property="minimumLengthLabel" destination="qHS-sK-wSa" id="hbb-fw-o8e"/>
                         <outlet property="passwordTextField" destination="N8j-yb-cIW" id="zeZ-C7-8lv"/>
                     </connections>
                 </viewController>

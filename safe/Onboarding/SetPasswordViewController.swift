@@ -8,6 +8,7 @@ final class SetPasswordViewController: UIViewController {
 
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var minimumLengthLabel: RuleLabel!
 
     static func create() -> SetPasswordViewController {
         return StoryboardScene.Onboarding.setPasswordViewController.instantiate()
@@ -15,6 +16,10 @@ final class SetPasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    func setMinimumLengthRuleStatus(_ status: RuleStatus) {
+        minimumLengthLabel.status = status
     }
 
 }
