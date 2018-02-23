@@ -28,7 +28,7 @@
                                 <rect key="frame" x="20" y="220" width="335" height="29"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="u8B-Xx-3Rv">
                                 <rect key="frame" x="20" y="279" width="335" height="81.5"/>
@@ -69,6 +69,10 @@
                         <viewLayoutGuide key="safeArea" id="Uf3-xS-v1S"/>
                     </view>
                     <navigationItem key="navigationItem" id="3oq-oS-dNH"/>
+                    <connections>
+                        <outlet property="headerLabel" destination="TQF-Lg-Ysh" id="FNE-5c-ghW"/>
+                        <outlet property="passwordTextField" destination="N8j-yb-cIW" id="zeZ-C7-8lv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pj4-Jm-NU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
