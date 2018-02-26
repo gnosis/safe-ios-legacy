@@ -49,21 +49,9 @@ extension SetPasswordViewController: UITextFieldDelegate {
             setRulesIntoInitialStatus()
             return true
         }
-        if newText.containsCapitalizedLetter() {
-            setCapitalLetterRuleStatus(.success)
-        } else {
-            setCapitalLetterRuleStatus(.error)
-        }
-        if newText.containsDigit() {
-            setDigitRuleStatus(.success)
-        } else {
-            setDigitRuleStatus(.error)
-        }
-        if newText.count >= minCharsInPassword {
-            setMinimumLengthRuleStatus(.success)
-        } else {
-            setMinimumLengthRuleStatus(.error)
-        }
+        setCapitalLetterRuleStatus(newText.containsCapitalizedLetter() ? .success : .error)
+        setDigitRuleStatus(newText.containsDigit() ? .success : .error)
+        setMinimumLengthRuleStatus(newText.count >= minCharsInPassword ?  .success : .error)
         return true
     }
 
