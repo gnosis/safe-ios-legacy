@@ -12,6 +12,8 @@ final class SetPasswordViewController: UIViewController {
     @IBOutlet weak var capitalLetterRuleLabel: RuleLabel!
     @IBOutlet weak var digitRuleLabel: RuleLabel!
 
+    let minCharsInPassword = 6
+
     static func create() -> SetPasswordViewController {
         return StoryboardScene.Onboarding.setPasswordViewController.instantiate()
     }
@@ -44,9 +46,7 @@ extension SetPasswordViewController: UITextFieldDelegate {
         let oldText = (textField.text ?? "") as NSString
         let newText = oldText.replacingCharacters(in: range, with: string)
         guard !newText.isEmpty else {
-            setMinimumLengthRuleStatus(.inactive)
-            setCapitalLetterRuleStatus(.inactive)
-            setDigitRuleStatus(.inactive)
+            setRulesIntoInitialStatus()
             return true
         }
         if newText.containsCapitalizedLetter() {
@@ -59,8 +59,7 @@ extension SetPasswordViewController: UITextFieldDelegate {
         } else {
             setDigitRuleStatus(.error)
         }
-        // TODO: const
-        if newText.count >= 6 {
+        if newText.count >= minCharsInPassword {
             setMinimumLengthRuleStatus(.success)
         } else {
             setMinimumLengthRuleStatus(.error)
@@ -68,6 +67,15 @@ extension SetPasswordViewController: UITextFieldDelegate {
         return true
     }
 
-    // TODO: textFieldShouldClear
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        setRulesIntoInitialStatus()
+        return true
+    }
+
+    private func setRulesIntoInitialStatus() {
+        setMinimumLengthRuleStatus(.inactive)
+        setCapitalLetterRuleStatus(.inactive)
+        setDigitRuleStatus(.inactive)
+    }
 
 }
