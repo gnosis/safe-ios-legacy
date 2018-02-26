@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		55147D43203DA7F000AD0E1F /* StartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */; };
 		55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4A203DAE1D00AD0E1F /* Assets.swift */; };
 		55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */; };
+		55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D522040492200AD0E1F /* SetPasswordViewController.swift */; };
+		55147D552040493C00AD0E1F /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55147D542040493C00AD0E1F /* Onboarding.storyboard */; };
+		55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */; };
+		55147D592040521800AD0E1F /* OnboardingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D582040521800AD0E1F /* OnboardingNavigationController.swift */; };
+		55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */; };
+		55147D5E20405AD100AD0E1F /* Colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 55147D5D20405AD100AD0E1F /* Colors.txt */; };
+		55147D6020405BBA00AD0E1F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D5F20405BBA00AD0E1F /* Colors.swift */; };
+		55147D6220405F6200AD0E1F /* RuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D6120405F6200AD0E1F /* RuleLabel.swift */; };
+		55147D6420405F8400AD0E1F /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D6320405F8400AD0E1F /* Fonts.swift */; };
+		55147D672040601E00AD0E1F /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D662040601E00AD0E1F /* RuleLabelTests.swift */; };
+		55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */; };
+		55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */; };
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
 		5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4F0203C3054009C9BE3 /* StartViewController.swift */; };
-		5540A4F4203C3054009C9BE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F2203C3054009C9BE3 /* Main.storyboard */; };
 		5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F5203C3054009C9BE3 /* Assets.xcassets */; };
 		5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F7203C3054009C9BE3 /* LaunchScreen.storyboard */; };
 		5540A50F203C3054009C9BE3 /* StartViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A50E203C3054009C9BE3 /* StartViewControllerUITests.swift */; };
@@ -43,10 +53,20 @@
 		55147D4A203DAE1D00AD0E1F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sotryboards.swift; sourceTree = "<group>"; };
 		55147D4E203DAE4F00AD0E1F /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
+		55147D522040492200AD0E1F /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
+		55147D542040493C00AD0E1F /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		55147D582040521800AD0E1F /* OnboardingNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNavigationController.swift; sourceTree = "<group>"; };
+		55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewControllerTests.swift; sourceTree = "<group>"; };
+		55147D5D20405AD100AD0E1F /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
+		55147D5F20405BBA00AD0E1F /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		55147D6120405F6200AD0E1F /* RuleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabel.swift; sourceTree = "<group>"; };
+		55147D6320405F8400AD0E1F /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		55147D662040601E00AD0E1F /* RuleLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabelTests.swift; sourceTree = "<group>"; };
+		55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensions.swift; sourceTree = "<group>"; };
+		55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensionsTests.swift; sourceTree = "<group>"; };
 		5540A4EB203C3054009C9BE3 /* safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A4EE203C3054009C9BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5540A4F0203C3054009C9BE3 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		5540A4F3203C3054009C9BE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5540A4F5203C3054009C9BE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5540A4F8203C3054009C9BE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5540A4FA203C3054009C9BE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,10 +109,43 @@
 		55147D49203DAE1D00AD0E1F /* generated */ = {
 			isa = PBXGroup;
 			children = (
+				55147D5F20405BBA00AD0E1F /* Colors.swift */,
 				55147D4A203DAE1D00AD0E1F /* Assets.swift */,
 				55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */,
 			);
 			path = generated;
+			sourceTree = "<group>";
+		};
+		55147D51204048BC00AD0E1F /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				55147D5A2040522A00AD0E1F /* Resources */,
+				5540A4F0203C3054009C9BE3 /* StartViewController.swift */,
+				55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */,
+				55147D522040492200AD0E1F /* SetPasswordViewController.swift */,
+				55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */,
+				55147D582040521800AD0E1F /* OnboardingNavigationController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		55147D5A2040522A00AD0E1F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				55147D542040493C00AD0E1F /* Onboarding.storyboard */,
+				55147D5D20405AD100AD0E1F /* Colors.txt */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		55147D6520405FA500AD0E1F /* SafeUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				55147D6120405F6200AD0E1F /* RuleLabel.swift */,
+				55147D662040601E00AD0E1F /* RuleLabelTests.swift */,
+				55147D6320405F8400AD0E1F /* Fonts.swift */,
+			);
+			path = SafeUIKit;
 			sourceTree = "<group>";
 		};
 		5540A4E2203C3054009C9BE3 = {
@@ -119,11 +172,12 @@
 		5540A4ED203C3054009C9BE3 /* safe */ = {
 			isa = PBXGroup;
 			children = (
+				55147D51204048BC00AD0E1F /* Onboarding */,
 				55147D49203DAE1D00AD0E1F /* generated */,
 				5540A4EE203C3054009C9BE3 /* AppDelegate.swift */,
-				5540A4F0203C3054009C9BE3 /* StartViewController.swift */,
-				55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */,
-				5540A4F2203C3054009C9BE3 /* Main.storyboard */,
+				55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */,
+				55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */,
+				55147D6520405FA500AD0E1F /* SafeUIKit */,
 				5540A4F5203C3054009C9BE3 /* Assets.xcassets */,
 				5540A4F7203C3054009C9BE3 /* LaunchScreen.storyboard */,
 				5540A4FA203C3054009C9BE3 /* Info.plist */,
@@ -271,7 +325,8 @@
 			files = (
 				5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
-				5540A4F4203C3054009C9BE3 /* Main.storyboard in Resources */,
+				55147D5E20405AD100AD0E1F /* Colors.txt in Resources */,
+				55147D552040493C00AD0E1F /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +359,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if $CI; then exit 0; fi\nif which swiftgen >/dev/null; then\n    swiftgen config run --config safe/swiftgen.yml\nelse\n    echo \"warning: SwiftGen not installed, download from https://github.com/SwiftGen/SwiftGen\"\nfi";
+			shellScript = "if [ \"$CI\" = \"true\" ]; then\n    exit 0;\nelif which swiftgen >/dev/null; then\n    swiftgen config run --config safe/swiftgen.yml\nelse\n    echo \"warning: SwiftGen not installed, download from https://github.com/SwiftGen/SwiftGen\"\nfi";
 			showEnvVarsInLog = 0;
 		};
 		5540A520203C6077009C9BE3 /* Fabric */ = {
@@ -346,8 +401,14 @@
 			files = (
 				55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */,
 				5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */,
+				55147D6220405F6200AD0E1F /* RuleLabel.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
+				55147D6020405BBA00AD0E1F /* Colors.swift in Sources */,
 				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
+				55147D592040521800AD0E1F /* OnboardingNavigationController.swift in Sources */,
+				55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */,
+				55147D6420405F8400AD0E1F /* Fonts.swift in Sources */,
+				55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,7 +416,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55147D43203DA7F000AD0E1F /* StartViewControllerTests.swift in Sources */,
+				55147D672040601E00AD0E1F /* RuleLabelTests.swift in Sources */,
+				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
+				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
+				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,14 +447,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5540A4F2203C3054009C9BE3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5540A4F3203C3054009C9BE3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5540A4F7203C3054009C9BE3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

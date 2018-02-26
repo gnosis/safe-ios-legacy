@@ -4,14 +4,14 @@
 
 import UIKit
 
-class StartViewController: UIViewController {
+final class StartViewController: UIViewController {
 
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
 
     static func create() -> StartViewController {
-        return StoryboardScene.Main.initialScene.instantiate()
+        return StoryboardScene.Onboarding.startViewController.instantiate()
     }
 
     override func viewDidLoad() {
