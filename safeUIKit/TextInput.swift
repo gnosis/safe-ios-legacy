@@ -25,6 +25,12 @@ public final class TextInput: UIView {
         stackView.addArrangedSubview(label)
     }
 
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        textField.delegate = self
+        textField.clearButtonMode = .whileEditing
+    }
+
 }
 
 extension TextInput: UITextFieldDelegate {
