@@ -7,23 +7,54 @@ import XCTest
 
 class RuleLabelTests: XCTestCase {
 
-    let label = RuleLabel()
-
-    override func setUp() {
-        super.setUp()
-        label.awakeFromNib()
-    }
-
-    func test_whenInitialized_thenInactive() {
-        XCTAssertEqual(label.status, .inactive)
-    }
+    var label: RuleLabel!
 
     func test_whenStatusChanged_thenTextColorChanged() {
-        label.status = .inactive
+        label = .alwaysTrue
         let initialColor = label.textColor
-        label.status = .error
+        validate()
         let changedColor = label.textColor
         XCTAssertNotEqual(changedColor, initialColor)
     }
+
+    func test_whenInitWithText_setsText() {
+        XCTAssertEqual(RuleLabel.withText.text, RuleLabel.defaultText)
+    }
+
+    func test_whenRulePasses_statusSuccess() {
+        label = .alwaysTrue
+        validate()
+        XCTAssertEqual(label.status, .success)
+    }
+
+    func test_whenRuleFails_statusError() {
+        label = .alwaysFalse
+        validate()
+        XCTAssertEqual(label.status, .error)
+    }
+
+    func test_whenRuleNotSpecified_alwasyInactive() {
+        label = .withoutRule
+        validate()
+        XCTAssertEqual(label.status, .inactive)
+    }
+
+}
+
+private extension RuleLabelTests {
+
+    func validate() {
+        let dummyString = ""
+        label.validate(dummyString)
+    }
+}
+
+fileprivate extension RuleLabel {
+
+    static let defaultText = "a"
+    static let withoutRule = RuleLabel()
+    static let withText = RuleLabel(text: defaultText)
+    static let alwaysTrue = RuleLabel(text: defaultText) { _ in true }
+    static let alwaysFalse = RuleLabel(text: defaultText) { _ in false }
 
 }

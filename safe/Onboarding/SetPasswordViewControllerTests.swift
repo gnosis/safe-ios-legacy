@@ -55,6 +55,7 @@ class SetPasswordViewControllerTests: XCTestCase {
         assertFieldsState(minimumLength: .inactive, capitalLetter: .inactive, digit: .inactive)
     }
 
+    // TODO: move out to Password Validator
     func test_whenFirstLowercaseLetterIsEntered_thenAllRullesAreFailed() {
         _ = vc.textField(vc.passwordTextField, shouldChangeCharactersIn: NSRange(), replacementString: "a")
         assertFieldsState(minimumLength: .error, capitalLetter: .error, digit: .error)

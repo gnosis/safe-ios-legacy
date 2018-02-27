@@ -23,7 +23,6 @@
 		5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F7203C3054009C9BE3 /* LaunchScreen.storyboard */; };
 		5540A50F203C3054009C9BE3 /* StartViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A50E203C3054009C9BE3 /* StartViewControllerUITests.swift */; };
 		5554D7A320455B7800672DA8 /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5554D79A20455B7700672DA8 /* safeUIKit.framework */; };
-		5554D7AA20455B7800672DA8 /* safeUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5554D7A920455B7800672DA8 /* safeUIKitTests.swift */; };
 		5554D7AC20455B7800672DA8 /* safeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5554D79C20455B7700672DA8 /* safeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5554D7AF20455B7800672DA8 /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5554D79A20455B7700672DA8 /* safeUIKit.framework */; };
 		5554D7B020455B7800672DA8 /* safeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5554D79A20455B7700672DA8 /* safeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -33,6 +32,7 @@
 		55743B61204573C6001D55E8 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D6320405F8400AD0E1F /* Fonts.swift */; };
 		55743B62204573DE001D55E8 /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D662040601E00AD0E1F /* RuleLabelTests.swift */; };
 		55743B672045751F001D55E8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55743B662045751F001D55E8 /* Colors.swift */; };
+		55DD271F204593AB00E0F844 /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55743B6820458F6C001D55E8 /* TextInputTests.swift */; };
 		55DF6A93203C678200DF6486 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DF6A91203C678200DF6486 /* Fabric.framework */; };
 		55DF6A94203C678200DF6486 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DF6A92203C678200DF6486 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
@@ -58,13 +58,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5554D79920455B7700672DA8;
 			remoteInfo = safeUIKit;
-		};
-		5554D7A620455B7800672DA8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5540A4E3203C3054009C9BE3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5540A4EA203C3054009C9BE3;
-			remoteInfo = safe;
 		};
 		5554D7AD20455B7800672DA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -121,10 +114,10 @@
 		5554D79C20455B7700672DA8 /* safeUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = safeUIKit.h; sourceTree = "<group>"; };
 		5554D79D20455B7700672DA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5554D7A220455B7700672DA8 /* safeUIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeUIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5554D7A920455B7800672DA8 /* safeUIKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = safeUIKitTests.swift; sourceTree = "<group>"; };
 		5554D7AB20455B7800672DA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55743B6420457484001D55E8 /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
 		55743B662045751F001D55E8 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		55743B6820458F6C001D55E8 /* TextInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTests.swift; sourceTree = "<group>"; };
 		55AB4FE920454FD3007B2918 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
 		55DF6A91203C678200DF6486 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		55DF6A92203C678200DF6486 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -278,6 +271,7 @@
 				55743B652045751F001D55E8 /* generated */,
 				55743B6420457484001D55E8 /* Colors.txt */,
 				55AB4FE920454FD3007B2918 /* TextInput.swift */,
+				55743B6820458F6C001D55E8 /* TextInputTests.swift */,
 				5554D7932045595F00672DA8 /* TextInput.xib */,
 				55147D6120405F6200AD0E1F /* RuleLabel.swift */,
 				55147D662040601E00AD0E1F /* RuleLabelTests.swift */,
@@ -291,7 +285,6 @@
 		5554D7A820455B7800672DA8 /* safeUIKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				5554D7A920455B7800672DA8 /* safeUIKitTests.swift */,
 				5554D7AB20455B7800672DA8 /* Info.plist */,
 			);
 			path = safeUIKitTests;
@@ -381,7 +374,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5554D7B720455B7800672DA8 /* Build configuration list for PBXNativeTarget "safeUIKit" */;
 			buildPhases = (
+				55DD27212045A25500E0F844 /* SwiftGen */,
 				5554D79520455B7700672DA8 /* Sources */,
+				55DD27202045A23700E0F844 /* SwiftLint */,
 				5554D79620455B7700672DA8 /* Frameworks */,
 				5554D79720455B7700672DA8 /* Headers */,
 				5554D79820455B7700672DA8 /* Resources */,
@@ -407,7 +402,6 @@
 			);
 			dependencies = (
 				5554D7A520455B7800672DA8 /* PBXTargetDependency */,
-				5554D7A720455B7800672DA8 /* PBXTargetDependency */,
 			);
 			name = safeUIKitTests;
 			productName = safeUIKitTests;
@@ -445,7 +439,6 @@
 					5554D7A120455B7700672DA8 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 5540A4EA203C3054009C9BE3;
 					};
 				};
 			};
@@ -526,7 +519,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CI\" = \"true\" ]; then\n    exit 0;\nelif which swiftgen >/dev/null; then\n    swiftgen config run --config safe/swiftgen.yml\nelse\n    echo \"warning: SwiftGen not installed, download from https://github.com/SwiftGen/SwiftGen\"\nfi";
+			shellScript = scripts/run_swiftgen.sh;
 			showEnvVarsInLog = 0;
 		};
 		5540A520203C6077009C9BE3 /* Fabric */ = {
@@ -544,6 +537,36 @@
 			shellScript = "ENV_VARS=${SRCROOT}/.env.default\nif [ -e ${ENV_VARS} ]; then\n    export $(cat $ENV_VARS)\nfi\n./Frameworks/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
 			showEnvVarsInLog = 0;
 		};
+		55DD27202045A23700E0F844 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = scripts/run_swiftlint.sh;
+			showEnvVarsInLog = 0;
+		};
+		55DD27212045A25500E0F844 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = scripts/run_swiftgen.sh;
+			showEnvVarsInLog = 0;
+		};
 		55DF6A95203C681A00DF6486 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -556,7 +579,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = scripts/run_swiftlint.sh;
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -611,7 +634,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55743B62204573DE001D55E8 /* RuleLabelTests.swift in Sources */,
-				5554D7AA20455B7800672DA8 /* safeUIKitTests.swift in Sources */,
+				55DD271F204593AB00E0F844 /* TextInputTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,11 +655,6 @@
 			isa = PBXTargetDependency;
 			target = 5554D79920455B7700672DA8 /* safeUIKit */;
 			targetProxy = 5554D7A420455B7800672DA8 /* PBXContainerItemProxy */;
-		};
-		5554D7A720455B7800672DA8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5540A4EA203C3054009C9BE3 /* safe */;
-			targetProxy = 5554D7A620455B7800672DA8 /* PBXContainerItemProxy */;
 		};
 		5554D7AE20455B7800672DA8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1094,7 +1112,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/safe.app/safe";
 			};
 			name = Debug;
 		};
@@ -1111,7 +1128,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/safe.app/safe";
 			};
 			name = AdHoc;
 		};
@@ -1128,7 +1144,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/safe.app/safe";
 			};
 			name = Release;
 		};

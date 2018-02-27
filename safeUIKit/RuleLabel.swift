@@ -10,25 +10,48 @@ public enum RuleStatus {
     case inactive
 }
 
-public final class RuleLabel: UILabel {
+final class RuleLabel: UILabel {
 
-    public override func awakeFromNib() {
-        super.awakeFromNib()
+    private var rule: ((String) -> Bool)?
+
+    convenience init(text: String, rule: ((String) -> Bool)? = nil) {
+        self.init(frame: .zero)
+        self.text = text
+        self.rule = rule
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        configure()
+    }
+
+    private func configure() {
         font = FontName.body // TODO: 23/02/18 support dynamic type change observing
         status = .inactive
     }
 
-    public var status: RuleStatus = .inactive {
+    private (set) var status: RuleStatus = .inactive {
         didSet {
             stylize()
         }
+    }
+
+    func validate(_ text: String) {
+        guard let isValid = rule?(text) else { return }
+        status = isValid ? .success : .error
     }
 
     private func stylize() {
         textColor = RuleLabel.color(for: status)
     }
 
-    public static func color(for status: RuleStatus) -> UIColor {
+    // TODO: make private
+    static func color(for status: RuleStatus) -> UIColor {
         switch status {
         case .error:
             return ColorName.red.color

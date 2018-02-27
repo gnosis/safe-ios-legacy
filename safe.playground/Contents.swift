@@ -9,8 +9,6 @@ view.backgroundColor = .white
 
 let input = TextInput.create()
 
-
-
 input.translatesAutoresizingMaskIntoConstraints = false
 view.addSubview(input)
 NSLayoutConstraint.activate([
