@@ -4,21 +4,21 @@
 
 import UIKit
 
-enum RuleStatus {
+public enum RuleStatus {
     case error
     case success
     case inactive
 }
 
-final class RuleLabel: UILabel {
+public final class RuleLabel: UILabel {
 
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         font = FontName.body // TODO: 23/02/18 support dynamic type change observing
         status = .inactive
     }
 
-    var status: RuleStatus = .inactive {
+    public var status: RuleStatus = .inactive {
         didSet {
             stylize()
         }
@@ -28,7 +28,7 @@ final class RuleLabel: UILabel {
         textColor = RuleLabel.color(for: status)
     }
 
-    static func color(for status: RuleStatus) -> UIColor {
+    public static func color(for status: RuleStatus) -> UIColor {
         switch status {
         case .error:
             return ColorName.red.color

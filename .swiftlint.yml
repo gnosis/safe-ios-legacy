@@ -147,4 +147,5 @@ included:
   - safeUITests
 excluded:
   - safe/generated
+  - safeUIKit/generated
 

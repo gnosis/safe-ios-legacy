@@ -10,6 +10,6 @@ storyboards:
   output: generated/Sotryboards.swift
 colors:
   paths:
-    - Onboarding/Resources/Colors.txt
+    - ../safeUIKit/Colors.txt
   templateName: swift4
-  output: generated/Colors.swift
+  output: ../safeUIKit/generated/Colors.swift

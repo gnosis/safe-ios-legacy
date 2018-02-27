@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import safeUIKit
 
 final class SetPasswordViewController: UIViewController {
 
