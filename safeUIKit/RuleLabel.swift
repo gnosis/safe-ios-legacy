@@ -46,6 +46,10 @@ final class RuleLabel: UILabel {
         status = isValid ? .success : .error
     }
 
+    func reset() {
+        status = .inactive
+    }
+
     private func stylize() {
         textColor = RuleLabel.color(for: status)
     }
