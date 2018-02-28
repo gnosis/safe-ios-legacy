@@ -7,7 +7,7 @@ import XCTest
 
 class TextInputTests: XCTestCase {
 
-    let input = TextInput.create()
+    let input = TextInput()
 
     func test_whenAddingRule_addsLabel() {
         input.addRule("test") { _ in true }

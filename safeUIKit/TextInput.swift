@@ -13,11 +13,13 @@ public final class TextInput: UIView {
         return stackView.arrangedSubviews.flatMap { $0 as? RuleLabel }
     }
 
-    public static func create() -> TextInput {
-        let bundle = Bundle(for: TextInput.self)
-        let nib = UINib(nibName: "TextInput", bundle: bundle)
-        let contents = nib.instantiate(withOwner: nil)
-        return contents.first as! TextInput
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadContentsFromNib()
     }
 
     public func addRule(_ localizedDescription: String, validation: @escaping (String) -> Bool) {
@@ -27,8 +29,17 @@ public final class TextInput: UIView {
 
     public override func awakeFromNib() {
         super.awakeFromNib()
+        loadContentsFromNib()
         textField.delegate = self
         textField.clearButtonMode = .whileEditing
+    }
+
+    private func loadContentsFromNib() {
+        let bundle = Bundle(for: TextInput.self)
+        let nib = UINib(nibName: "TextInput", bundle: bundle)
+        let contents = nib.instantiate(withOwner: self)
+        contents.flatMap { $0 as? UIView }.forEach { self.addSubview($0) }
+        self.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
     }
 
 }

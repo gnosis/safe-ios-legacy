@@ -17,6 +17,9 @@
 		55147D6020405BBA00AD0E1F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D5F20405BBA00AD0E1F /* Colors.swift */; };
 		55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */; };
 		55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */; };
+		551917E72046B3FD00F6864C /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551917E62046B3FD00F6864C /* TextInputViewController.swift */; };
+		551917E92046BCDE00F6864C /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5554D79A20455B7700672DA8 /* safeUIKit.framework */; };
+		551917EA2046BCDE00F6864C /* safeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5554D79A20455B7700672DA8 /* safeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
 		5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4F0203C3054009C9BE3 /* StartViewController.swift */; };
 		5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F5203C3054009C9BE3 /* Assets.xcassets */; };
@@ -38,12 +41,23 @@
 		55D6C2D42045AA3C0026BC72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D6C2D32045AA3C0026BC72 /* Assets.xcassets */; };
 		55D6C2D72045AA3C0026BC72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D6C2D52045AA3C0026BC72 /* LaunchScreen.storyboard */; };
 		55D6C2E22045AA3C0026BC72 /* safeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2E12045AA3C0026BC72 /* safeUIKitDemoUITests.swift */; };
+		55D6C2F22045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */; };
+		55D6C2F32045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */; };
+		55D6C2F52045C3540026BC72 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */; };
+		55D6C2F62045C3540026BC72 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */; };
 		55DD271F204593AB00E0F844 /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55743B6820458F6C001D55E8 /* TextInputTests.swift */; };
 		55DF6A93203C678200DF6486 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DF6A91203C678200DF6486 /* Fabric.framework */; };
 		55DF6A94203C678200DF6486 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DF6A92203C678200DF6486 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		551917EB2046BCDE00F6864C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5540A4E3203C3054009C9BE3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5554D79920455B7700672DA8;
+			remoteInfo = safeUIKit;
+		};
 		5540A500203C3054009C9BE3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5540A4E3203C3054009C9BE3 /* Project object */;
@@ -89,6 +103,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		551917ED2046BCDE00F6864C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				551917EA2046BCDE00F6864C /* safeUIKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5554D7B820455B7800672DA8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -118,6 +143,7 @@
 		55147D662040601E00AD0E1F /* RuleLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabelTests.swift; sourceTree = "<group>"; };
 		55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensions.swift; sourceTree = "<group>"; };
 		55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensionsTests.swift; sourceTree = "<group>"; };
+		551917E62046B3FD00F6864C /* TextInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
 		5540A4EB203C3054009C9BE3 /* safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A4EE203C3054009C9BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5540A4F0203C3054009C9BE3 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +175,8 @@
 		55D6C2DD2045AA3C0026BC72 /* safeUIKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeUIKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D6C2E12045AA3C0026BC72 /* safeUIKitDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = safeUIKitDemoUITests.swift; sourceTree = "<group>"; };
 		55D6C2E32045AA3C0026BC72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Wait.swift"; sourceTree = "<group>"; };
+		55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
 		55DF6A91203C678200DF6486 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		55DF6A92203C678200DF6486 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,6 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551917E92046BCDE00F6864C /* safeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +277,7 @@
 				5554D7A820455B7800672DA8 /* safeUIKitTests */,
 				55D6C2CB2045AA3C0026BC72 /* safeUIKitDemo */,
 				55D6C2E02045AA3C0026BC72 /* safeUIKitDemoUITests */,
+				55D6C2F72045C38D0026BC72 /* UITestTools */,
 				5540A525203C634B009C9BE3 /* Frameworks */,
 				5540A4ED203C3054009C9BE3 /* safe */,
 				5540A502203C3054009C9BE3 /* safeTests */,
@@ -351,6 +381,7 @@
 			children = (
 				55D6C2CC2045AA3C0026BC72 /* AppDelegate.swift */,
 				55D6C2CE2045AA3C0026BC72 /* ViewController.swift */,
+				551917E62046B3FD00F6864C /* TextInputViewController.swift */,
 				55D6C2D02045AA3C0026BC72 /* Main.storyboard */,
 				55D6C2D32045AA3C0026BC72 /* Assets.xcassets */,
 				55D6C2D52045AA3C0026BC72 /* LaunchScreen.storyboard */,
@@ -366,6 +397,15 @@
 				55D6C2E32045AA3C0026BC72 /* Info.plist */,
 			);
 			path = safeUIKitDemoUITests;
+			sourceTree = "<group>";
+		};
+		55D6C2F72045C38D0026BC72 /* UITestTools */ = {
+			isa = PBXGroup;
+			children = (
+				55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */,
+				55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */,
+			);
+			path = UITestTools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,10 +527,12 @@
 				55D6C2EF2045AADC0026BC72 /* SwiftLint */,
 				55D6C2C72045AA3C0026BC72 /* Frameworks */,
 				55D6C2C82045AA3C0026BC72 /* Resources */,
+				551917ED2046BCDE00F6864C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				551917EC2046BCDE00F6864C /* PBXTargetDependency */,
 			);
 			name = safeUIKitDemo;
 			productName = safeUIKitDemo;
@@ -765,6 +807,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5540A50F203C3054009C9BE3 /* StartViewControllerUITests.swift in Sources */,
+				55D6C2F52045C3540026BC72 /* XCTest+Assert.swift in Sources */,
+				55D6C2F22045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +837,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55D6C2CF2045AA3C0026BC72 /* ViewController.swift in Sources */,
+				551917E72046B3FD00F6864C /* TextInputViewController.swift in Sources */,
 				55D6C2CD2045AA3C0026BC72 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -802,12 +847,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				55D6C2E22045AA3C0026BC72 /* safeUIKitDemoUITests.swift in Sources */,
+				55D6C2F62045C3540026BC72 /* XCTest+Assert.swift in Sources */,
+				55D6C2F32045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		551917EC2046BCDE00F6864C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5554D79920455B7700672DA8 /* safeUIKit */;
+			targetProxy = 551917EB2046BCDE00F6864C /* PBXContainerItemProxy */;
+		};
 		5540A501203C3054009C9BE3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5540A4EA203C3054009C9BE3 /* safe */;
@@ -1370,6 +1422,7 @@
 		55D6C2E52045AA3C0026BC72 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
@@ -1386,6 +1439,7 @@
 		55D6C2E62045AA3C0026BC72 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = safeUIKitDemo/Info.plist;
@@ -1401,6 +1455,7 @@
 		55D6C2E72045AA3C0026BC72 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = safeUIKitDemo/Info.plist;
