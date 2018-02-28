@@ -6,6 +6,7 @@ import UIKit
 
 public final class TextInput: UIView {
 
+    @IBOutlet weak var wrapperView: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var stackView: UIStackView!
 
@@ -40,6 +41,16 @@ public final class TextInput: UIView {
         let contents = nib.instantiate(withOwner: self)
         contents.flatMap { $0 as? UIView }.forEach { self.addSubview($0) }
         self.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
+        wrapperView.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
+        pinWrapperToSelf()
+    }
+
+    private func pinWrapperToSelf() {
+        NSLayoutConstraint.activate([
+            wrapperView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            wrapperView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            wrapperView.topAnchor.constraint(equalTo: topAnchor)])
+        wrapperView.translatesAutoresizingMaskIntoConstraints = false
     }
 
 }

@@ -11,7 +11,7 @@ func wait(_ delay: TimeInterval) {
 let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 480))
 view.backgroundColor = .white
 
-let input = TextInput.create()
+let input = TextInput()
 input.translatesAutoresizingMaskIntoConstraints = false
 view.addSubview(input)
 

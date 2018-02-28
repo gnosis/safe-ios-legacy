@@ -64,25 +64,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ION-2Z-lsU">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ION-2Z-lsU">
                                 <rect key="frame" x="16" y="86" width="342" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SrO-Nc-cjX">
-                                        <rect key="frame" x="0.0" y="0.0" width="118" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="108.5" height="30"/>
                                         <state key="normal" title="Add success rule"/>
                                         <connections>
                                             <action selector="addSuccessRule:" destination="fKi-A2-cTi" eventType="touchUpInside" id="lD7-vm-V68"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCf-Uy-iDs">
-                                        <rect key="frame" x="126" y="0.0" width="103" height="30"/>
+                                        <rect key="frame" x="116.5" y="0.0" width="109" height="30"/>
                                         <state key="normal" title="Add failing rule"/>
                                         <connections>
                                             <action selector="addFailingRule:" destination="fKi-A2-cTi" eventType="touchUpInside" id="LAJ-Kl-huN"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1x-CN-XTo">
-                                        <rect key="frame" x="237" y="0.0" width="105" height="30"/>
+                                        <rect key="frame" x="233.5" y="0.0" width="108.5" height="30"/>
                                         <state key="normal" title="Add empty rule"/>
                                         <connections>
                                             <action selector="addEmptyRule:" destination="fKi-A2-cTi" eventType="touchUpInside" id="fhX-nO-hGU"/>
@@ -98,10 +98,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKC-V8-Mi4" customClass="TextInput" customModule="safeUIKit">
-                                <rect key="frame" x="16" y="157" width="342" height="142"/>
+                                <rect key="frame" x="16" y="157" width="342" height="44"/>
                                 <color key="backgroundColor" red="0.87715891451415617" green="0.87715891451415617" blue="0.87715891451415617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="142" placeholder="YES" id="FKa-YI-RLo"/>
+                                    <constraint firstAttribute="height" constant="44" placeholder="YES" id="FKa-YI-RLo"/>
                                 </constraints>
                             </view>
                         </subviews>
