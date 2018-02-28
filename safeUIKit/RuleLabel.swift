@@ -9,7 +9,7 @@ public enum RuleStatus {
     case success
     case inactive
 
-    // TODO: Localize
+    // TODO: 28/02/18 Localize
     var localizedDescription: String {
         switch self {
         case .error: return "Error"
@@ -61,12 +61,11 @@ final class RuleLabel: UILabel {
     }
 
     private func update() {
-        textColor = RuleLabel.color(for: status)
+        textColor = color(for: status)
         accessibilityValue = [status.localizedDescription, text].flatMap { $0 }.joined(separator: " ")
     }
 
-    // TODO: make private
-    static func color(for status: RuleStatus) -> UIColor {
+    private func color(for status: RuleStatus) -> UIColor {
         switch status {
         case .error:
             return ColorName.red.color

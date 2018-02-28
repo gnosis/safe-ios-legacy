@@ -11,7 +11,6 @@ extension String {
     }
 
     func containsDigit() -> Bool {
-        // TODO: unit test
         return rangeOfCharacter(from: CharacterSet.decimalDigits) != nil
     }
 

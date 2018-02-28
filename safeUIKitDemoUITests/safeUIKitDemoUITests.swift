@@ -46,7 +46,7 @@ class safeUIKitDemoUITests: XCTestCase {
         XCTAssertEqual(labelValue("Empty Rule"), "Inactive Empty Rule")
 
         // Clear text
-        app/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".otherElements[\"testTextInput\"]",".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.buttons["Clear text"].tap()
         XCTAssertEqual(labelValue("Success Rule"), "Inactive Success Rule")
         XCTAssertEqual(labelValue("Failing Rule"), "Inactive Failing Rule")
         XCTAssertEqual(labelValue("Empty Rule"), "Inactive Empty Rule")

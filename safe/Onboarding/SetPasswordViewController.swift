@@ -17,9 +17,10 @@ final class SetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        textInput.addRule("Minimun 6 charachters") { PasswordValidator.validateMinLength($0) }
-        textInput.addRule("Should have a capital letter") { PasswordValidator.validateAtLeastOneCapitalLetter($0) }
-        textInput.addRule("Should have a digit") { PasswordValidator.validateAtLeastOneDigit($0) }
+        // TODO: 28/02/2018 Localize
+        textInput.addRule("• Minimum 6 charachters") { PasswordValidator.validateMinLength($0) }
+        textInput.addRule("• Should have a capital letter") { PasswordValidator.validateAtLeastOneCapitalLetter($0) }
+        textInput.addRule("• Should have a digit") { PasswordValidator.validateAtLeastOneDigit($0) }
         _ = textInput.becomeFirstResponder()
     }
 
