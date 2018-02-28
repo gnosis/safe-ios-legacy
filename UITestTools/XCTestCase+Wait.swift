@@ -6,7 +6,7 @@ import XCTest
 
 extension XCTestCase {
 
-    func waitUntilTrue(_ condition: @autoclosure () -> Bool,
+    func waitUntil(_ condition: @autoclosure () -> Bool,
                        _ timeout: TimeInterval = 1,
                        file: String = #file,
                        line: Int = #line) {
@@ -28,7 +28,7 @@ extension XCTestCase {
                    _ timeout: TimeInterval = 15,
                    _ file: String = #file,
                    _ line: Int = #line,
-                   `is` conditions: Predicate ...) {
+                   _ conditions: Predicate ...) {
         let predicate = NSPredicate(format: conditions.map { $0.rawValue }.joined(separator: " AND "))
         let expectation = self.expectation(for: predicate, evaluatedWith: element, handler: nil)
         let result = XCTWaiter().wait(for: [expectation], timeout: timeout)

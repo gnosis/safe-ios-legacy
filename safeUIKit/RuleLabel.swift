@@ -8,6 +8,15 @@ public enum RuleStatus {
     case error
     case success
     case inactive
+
+    // TODO: Localize
+    var localizedDescription: String {
+        switch self {
+        case .error: return "Error"
+        case .success: return "Success"
+        case .inactive: return "Inactive"
+        }
+    }
 }
 
 final class RuleLabel: UILabel {
@@ -18,6 +27,7 @@ final class RuleLabel: UILabel {
         self.init(frame: .zero)
         self.text = text
         self.rule = rule
+        update()
     }
 
     override init(frame: CGRect) {
@@ -37,7 +47,7 @@ final class RuleLabel: UILabel {
 
     private (set) var status: RuleStatus = .inactive {
         didSet {
-            stylize()
+            update()
         }
     }
 
@@ -50,8 +60,9 @@ final class RuleLabel: UILabel {
         status = .inactive
     }
 
-    private func stylize() {
+    private func update() {
         textColor = RuleLabel.color(for: status)
+        accessibilityValue = [status.localizedDescription, text].flatMap { $0 }.joined(separator: " ")
     }
 
     // TODO: make private

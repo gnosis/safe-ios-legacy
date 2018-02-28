@@ -19,6 +19,13 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(input.ruleLabelCount, 0)
     }
 
+    func test_whenAddingEmptyRule_thenRuleLabelIsAlwaysInactive() {
+        input.addRule("test")
+        XCTAssertEqual(input.ruleLabel(at: 0).status, .inactive)
+        input.type("a")
+        XCTAssertEqual(input.ruleLabel(at: 0).status, .inactive)
+    }
+
     func test_whenNewCharacterTypedIn_thenValidatesAllRules() {
         input.addRule("test") { _ in true }
         input.addRule("test2") { _ in false }
@@ -27,7 +34,7 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(input.ruleLabel(at: 1).status, .error)
     }
 
-    func test_whenLastSymbolErased_thenAllRulesBecomeInactive() {
+    func test_whenLastSymbolErased_thenAllRuleLabelsBecomeInactive() {
         input.addRule("test") { _ in true }
         input.addRule("test2") { _ in false }
         input.type("a")
@@ -36,7 +43,7 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(input.ruleLabel(at: 1).status, .inactive)
     }
 
-    func test_whenTextIsCleared_thenAllRulesAreSetInInactiveState() {
+    func test_whenTextIsCleared_thenAllRuleLabelsAreSetInInactiveState() {
         input.addRule("test") { _ in true }
         input.type("a")
         input.clear()

@@ -23,7 +23,7 @@ public final class TextInput: UIView {
         loadContentsFromNib()
     }
 
-    public func addRule(_ localizedDescription: String, validation: @escaping (String) -> Bool) {
+    public func addRule(_ localizedDescription: String, validation: ((String) -> Bool)? = nil) {
         let label = RuleLabel(text: localizedDescription, rule: validation)
         stackView.addArrangedSubview(label)
     }
