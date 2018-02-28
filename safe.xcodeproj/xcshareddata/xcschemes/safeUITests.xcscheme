@@ -53,6 +53,16 @@
                ReferencedContainer = "container:safe.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "55D6C2DC2045AA3C0026BC72"
+               BuildableName = "safeUIKitUITests.xctest"
+               BlueprintName = "safeUIKitUITests"
+               ReferencedContainer = "container:safe.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -95,6 +105,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5540A509203C3054009C9BE3"
+            BuildableName = "safeUITests.xctest"
+            BlueprintName = "safeUITests"
+            ReferencedContainer = "container:safe.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

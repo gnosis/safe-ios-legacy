@@ -20,6 +20,8 @@
 		551917E72046B3FD00F6864C /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551917E62046B3FD00F6864C /* TextInputViewController.swift */; };
 		551917E92046BCDE00F6864C /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5554D79A20455B7700672DA8 /* safeUIKit.framework */; };
 		551917EA2046BCDE00F6864C /* safeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5554D79A20455B7700672DA8 /* safeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5528C43E20470AF500E79A4D /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5528C43D20470AF500E79A4D /* PasswordValidator.swift */; };
+		5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5528C43F20470B9700E79A4D /* PasswordValidatorTests.swift */; };
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
 		5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4F0203C3054009C9BE3 /* StartViewController.swift */; };
 		5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F5203C3054009C9BE3 /* Assets.xcassets */; };
@@ -144,6 +146,8 @@
 		55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensions.swift; sourceTree = "<group>"; };
 		55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensionsTests.swift; sourceTree = "<group>"; };
 		551917E62046B3FD00F6864C /* TextInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
+		5528C43D20470AF500E79A4D /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
+		5528C43F20470B9700E79A4D /* PasswordValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidatorTests.swift; sourceTree = "<group>"; };
 		5540A4EB203C3054009C9BE3 /* safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A4EE203C3054009C9BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5540A4F0203C3054009C9BE3 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 				55147D522040492200AD0E1F /* SetPasswordViewController.swift */,
 				55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */,
 				55147D582040521800AD0E1F /* OnboardingNavigationController.swift */,
+				5528C43D20470AF500E79A4D /* PasswordValidator.swift */,
+				5528C43F20470B9700E79A4D /* PasswordValidatorTests.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -788,6 +794,7 @@
 				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
 				55147D592040521800AD0E1F /* OnboardingNavigationController.swift in Sources */,
 				55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */,
+				5528C43E20470AF500E79A4D /* PasswordValidator.swift in Sources */,
 				55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -799,6 +806,7 @@
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
 				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
+				5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

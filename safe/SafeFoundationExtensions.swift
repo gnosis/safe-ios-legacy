@@ -6,7 +6,7 @@ import Foundation
 
 extension String {
 
-    func containsCapitalizedLetter() -> Bool {
+    func containsCapitalLetter() -> Bool {
         return rangeOfCharacter(from: CharacterSet.uppercaseLetters) != nil
     }
 

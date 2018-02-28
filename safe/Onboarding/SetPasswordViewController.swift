@@ -8,12 +8,7 @@ import safeUIKit
 final class SetPasswordViewController: UIViewController {
 
     @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var minimumLengthRuleLabel: RuleLabel!
-    @IBOutlet weak var capitalLetterRuleLabel: RuleLabel!
-    @IBOutlet weak var digitRuleLabel: RuleLabel!
-
-    let minCharsInPassword = 6
+    @IBOutlet weak var textInput: TextInput!
 
     static func create() -> SetPasswordViewController {
         return StoryboardScene.Onboarding.setPasswordViewController.instantiate()
@@ -21,50 +16,11 @@ final class SetPasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        passwordTextField.delegate = self
-        passwordTextField.becomeFirstResponder()
-    }
 
-    func setMinimumLengthRuleStatus(_ status: RuleStatus) {
-        minimumLengthRuleLabel.status = status
-    }
-
-    func setCapitalLetterRuleStatus(_ status: RuleStatus) {
-        capitalLetterRuleLabel.status = status
-    }
-
-    func setDigitRuleStatus(_ status: RuleStatus) {
-        digitRuleLabel.status = status
-    }
-
-}
-
-extension SetPasswordViewController: UITextFieldDelegate {
-
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
-        let oldText = (textField.text ?? "") as NSString
-        let newText = oldText.replacingCharacters(in: range, with: string)
-        guard !newText.isEmpty else {
-            setRulesIntoInitialStatus()
-            return true
-        }
-        setCapitalLetterRuleStatus(newText.containsCapitalizedLetter() ? .success : .error)
-        setDigitRuleStatus(newText.containsDigit() ? .success : .error)
-        setMinimumLengthRuleStatus(newText.count >= minCharsInPassword ?  .success : .error)
-        return true
-    }
-
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        setRulesIntoInitialStatus()
-        return true
-    }
-
-    private func setRulesIntoInitialStatus() {
-        setMinimumLengthRuleStatus(.inactive)
-        setCapitalLetterRuleStatus(.inactive)
-        setDigitRuleStatus(.inactive)
+        textInput.addRule("Minimun 6 charachters") { PasswordValidator.validateMinLength($0) }
+        textInput.addRule("Should have a capital letter") { PasswordValidator.validateAtLeastOneCapitalLetter($0) }
+        textInput.addRule("Should have a digit") { PasswordValidator.validateAtLeastOneDigit($0) }
+        _ = textInput.becomeFirstResponder()
     }
 
 }

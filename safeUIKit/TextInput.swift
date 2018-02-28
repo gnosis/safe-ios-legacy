@@ -28,6 +28,11 @@ public final class TextInput: UIView {
         stackView.addArrangedSubview(label)
     }
 
+    public override func becomeFirstResponder() -> Bool {
+        super.becomeFirstResponder()
+        return textField.becomeFirstResponder()
+    }
+
     public override func awakeFromNib() {
         super.awakeFromNib()
         loadContentsFromNib()
