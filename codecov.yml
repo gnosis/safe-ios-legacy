@@ -1,3 +1,5 @@
 ignore:
   - "safe/generated"
+  - "safeUIKit/generated"
+  - "safeUIKitDemo"
   

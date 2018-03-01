@@ -24,57 +24,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type your password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="N8j-yb-cIW">
-                                <rect key="frame" x="20" y="220" width="335" height="29"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
-                            </textField>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="u8B-Xx-3Rv">
-                                <rect key="frame" x="20" y="279" width="335" height="81.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• Minimum 8 symbols" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHS-sK-wSa" customClass="RuleLabel" customModule="safe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• At least 1 capital letter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBF-F4-vr3" customClass="RuleLabel" customModule="safe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="30.5" width="335" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• At least 1 digit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6m-0d-zcD" customClass="RuleLabel" customModule="safe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="61" width="335" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngk-8L-U6i" customClass="TextInput" customModule="safeUIKit">
+                                <rect key="frame" x="20" y="210" width="335" height="150"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" placeholder="YES" id="Uir-Uc-ij1"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TQF-Lg-Ysh" firstAttribute="leading" secondItem="Uf3-xS-v1S" secondAttribute="leading" constant="20" id="3ou-Ku-dEZ"/>
-                            <constraint firstItem="u8B-Xx-3Rv" firstAttribute="trailing" secondItem="N8j-yb-cIW" secondAttribute="trailing" id="EOD-hA-uVt"/>
-                            <constraint firstItem="N8j-yb-cIW" firstAttribute="top" secondItem="TQF-Lg-Ysh" secondAttribute="bottom" constant="30" id="JbF-rA-nw5"/>
-                            <constraint firstItem="N8j-yb-cIW" firstAttribute="leading" secondItem="TQF-Lg-Ysh" secondAttribute="leading" id="LHA-Ed-9rM"/>
-                            <constraint firstItem="u8B-Xx-3Rv" firstAttribute="top" secondItem="N8j-yb-cIW" secondAttribute="bottom" constant="30" id="U9o-Id-h7i"/>
                             <constraint firstItem="TQF-Lg-Ysh" firstAttribute="top" secondItem="Uf3-xS-v1S" secondAttribute="top" constant="40" id="VSj-5D-p4X"/>
-                            <constraint firstItem="u8B-Xx-3Rv" firstAttribute="leading" secondItem="N8j-yb-cIW" secondAttribute="leading" id="mGx-hw-aOD"/>
-                            <constraint firstItem="N8j-yb-cIW" firstAttribute="trailing" secondItem="TQF-Lg-Ysh" secondAttribute="trailing" id="oMA-VF-HeM"/>
+                            <constraint firstItem="Uf3-xS-v1S" firstAttribute="trailing" secondItem="ngk-8L-U6i" secondAttribute="trailing" constant="20" id="bgl-NV-otV"/>
+                            <constraint firstItem="ngk-8L-U6i" firstAttribute="top" secondItem="TQF-Lg-Ysh" secondAttribute="bottom" constant="20" id="rhI-oi-qhX"/>
+                            <constraint firstItem="ngk-8L-U6i" firstAttribute="leading" secondItem="Uf3-xS-v1S" secondAttribute="leading" constant="20" id="ww2-MZ-1TI"/>
                             <constraint firstItem="Uf3-xS-v1S" firstAttribute="trailing" secondItem="TQF-Lg-Ysh" secondAttribute="trailing" constant="20" id="yi5-ii-o7U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Uf3-xS-v1S"/>
                     </view>
                     <navigationItem key="navigationItem" id="3oq-oS-dNH"/>
                     <connections>
-                        <outlet property="capitalLetterRuleLabel" destination="WBF-F4-vr3" id="8t7-DC-Mk2"/>
-                        <outlet property="digitRuleLabel" destination="Y6m-0d-zcD" id="GN5-jS-YRQ"/>
                         <outlet property="headerLabel" destination="TQF-Lg-Ysh" id="FNE-5c-ghW"/>
-                        <outlet property="minimumLengthRuleLabel" destination="qHS-sK-wSa" id="yYx-1M-HB7"/>
-                        <outlet property="passwordTextField" destination="N8j-yb-cIW" id="zeZ-C7-8lv"/>
+                        <outlet property="textInput" destination="ngk-8L-U6i" id="Jf4-Lo-NXN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pj4-Jm-NU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -84,7 +56,6 @@
         <!--Onboarding Navigation Controller-->
         <scene sceneID="lIT-yb-68y">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2eN-PW-lrn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nX2-ce-f0G" customClass="OnboardingNavigationController" customModule="safe" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7cE-hM-LYv">
@@ -96,6 +67,7 @@
                         <segue destination="LFF-7V-cMe" kind="relationship" relationship="rootViewController" id="umU-O4-A4I"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2eN-PW-lrn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1377" y="159"/>
         </scene>

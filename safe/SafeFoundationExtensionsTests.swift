@@ -14,12 +14,27 @@ class SafeFoundationExtensionsTests: XCTestCase {
         let manyContainsOneUppercase = "abC"
         let manyContainsNoneUppercase = "abc"
         let manyContainsManyUppercase = "aBC"
-        XCTAssertFalse(empty.containsCapitalizedLetter())
-        XCTAssertFalse(oneLowercase.containsCapitalizedLetter())
-        XCTAssertTrue(oneUppercase.containsCapitalizedLetter())
-        XCTAssertTrue(manyContainsOneUppercase.containsCapitalizedLetter())
-        XCTAssertFalse(manyContainsNoneUppercase.containsCapitalizedLetter())
-        XCTAssertTrue(manyContainsManyUppercase.containsCapitalizedLetter())
+        XCTAssertFalse(empty.containsCapitalLetter())
+        XCTAssertFalse(oneLowercase.containsCapitalLetter())
+        XCTAssertTrue(oneUppercase.containsCapitalLetter())
+        XCTAssertTrue(manyContainsOneUppercase.containsCapitalLetter())
+        XCTAssertFalse(manyContainsNoneUppercase.containsCapitalLetter())
+        XCTAssertTrue(manyContainsManyUppercase.containsCapitalLetter())
+    }
+
+    func test_containsDigit() {
+        let empty = ""
+        let noDigit = "a"
+        let oneDigit = "1"
+        let manyContainsOneDigit = "ab1"
+        let manyContainsNoneDigit = "abc"
+        let manyContainsManyDigits = "a12"
+        XCTAssertFalse(empty.containsDigit())
+        XCTAssertFalse(noDigit.containsDigit())
+        XCTAssertTrue(oneDigit.containsDigit())
+        XCTAssertTrue(manyContainsOneDigit.containsDigit())
+        XCTAssertFalse(manyContainsNoneDigit.containsDigit())
+        XCTAssertTrue(manyContainsManyDigits.containsDigit())
     }
 
 }
