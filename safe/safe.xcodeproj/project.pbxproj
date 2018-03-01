@@ -10,9 +10,7 @@
 		0AD93E0C204815CF008C38CA /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD93E0B204815CF008C38CA /* safeUIKit.framework */; };
 		0AD93E0D204815CF008C38CA /* safeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD93E0B204815CF008C38CA /* safeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AD93E0F2048160F008C38CA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DF6A92203C678200DF6486 /* Crashlytics.framework */; };
-		0AD93E102048160F008C38CA /* Crashlytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 55DF6A92203C678200DF6486 /* Crashlytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AD93E112048160F008C38CA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DF6A91203C678200DF6486 /* Fabric.framework */; };
-		0AD93E122048160F008C38CA /* Fabric.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 55DF6A91203C678200DF6486 /* Fabric.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4A203DAE1D00AD0E1F /* Assets.swift */; };
 		55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */; };
 		55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D522040492200AD0E1F /* SetPasswordViewController.swift */; };
@@ -58,9 +56,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0AD93E102048160F008C38CA /* Crashlytics.framework in Embed Frameworks */,
 				0AD93E0D204815CF008C38CA /* safeUIKit.framework in Embed Frameworks */,
-				0AD93E122048160F008C38CA /* Fabric.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;

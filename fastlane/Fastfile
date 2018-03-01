@@ -20,6 +20,9 @@ platform :ios do
   before_all do
     ADHOC_APP_ID = ENV["FASTLANE_APP_IDENTIFIER_ADHOC"]
     BUILD_LOG_PATH = "build_logs"
+    workspace = "safe.xcworkspace"
+    ENV["GYM_WORKSPACE"] = workspace
+    ENV["SCAN_WORKSPACE"] = workspace
   end
 
   desc "Runs unit tests"
@@ -29,7 +32,7 @@ platform :ios do
   
   desc "Runs UI tests"
   lane :ui_test do
-    scan(scheme: "safeUITests", configuration: "Debug", skip_build: true, buildlog_path: BUILD_LOG_PATH)
+    scan(scheme: "allUITests", configuration: "Debug", skip_build: true, buildlog_path: BUILD_LOG_PATH)
   end
 
   desc "Build and distribute build to Fabric Beta"
