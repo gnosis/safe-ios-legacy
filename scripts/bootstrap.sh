@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-set -ex
+set -e
 
 if ! which brew > /dev/null; then
   echo "Installing HomeBrew"
@@ -25,7 +25,6 @@ fi
 PROJECT_RUBY_VERSION=$(cat .ruby-version)
 if ! rbenv versions | grep $PROJECT_RUBY_VERSION > /dev/null; then
   echo "Installing Ruby $PROJECT_RUBY_VERSION"
-  brew update && brew upgrade ruby-build
   rbenv install $PROJECT_RUBY_VERSION
   echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
   echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
@@ -43,6 +42,12 @@ if [ ! -d $TEMPLATES_DIR ]; then
   mkdir -p $TEMPLATES_DIR
   cp -R xcode-templates/* $TEMPLATES_DIR/
 fi
+
+if [ ! -d .git/hooks ]; then
+   mkdir -p .git/hooks
+fi
+echo "Installing git hooks"
+cp git-hooks/* .git/hooks/
 
 echo "Running bundle install"
 bundle install

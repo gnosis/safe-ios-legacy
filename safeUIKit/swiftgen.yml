@@ -1,0 +1,6 @@
+# config for safeUIKit.xcodeproj
+colors:
+  paths:
+    - safeUIKit/Colors.txt
+  templateName: swift4
+  output: safeUIKit/generated/Colors.swift

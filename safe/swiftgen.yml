@@ -1,15 +1,11 @@
+# config for safe.xcodeproj
 xcassets:
   paths:
-   - Assets.xcassets
+   - safe/Assets.xcassets
   templateName: swift4
-  output: generated/Assets.swift
+  output: safe/generated/Assets.swift
 storyboards:
   paths:
     - .    
   templateName: swift4
-  output: generated/Sotryboards.swift
-colors:
-  paths:
-    - ../safeUIKit/Colors.txt
-  templateName: swift4
-  output: ../safeUIKit/generated/Colors.swift
+  output: safe/generated/Sotryboards.swift
