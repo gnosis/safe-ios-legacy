@@ -80,6 +80,10 @@ extension TextInput: UITextFieldDelegate {
         return true
     }
 
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return !allRules.contains { $0.status != .success }
+    }
+
     private func resetRules() {
         allRules.forEach { $0.reset() }
     }

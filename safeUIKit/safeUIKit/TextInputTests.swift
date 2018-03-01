@@ -50,12 +50,27 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(input.ruleLabel(at: 0).status, .inactive)
     }
 
+    func test_whenNoRules_thenReturnKeyEnabled() {
+        XCTAssertTrue(input.isReturnKeyEnabled)
+    }
+
+    func test_whenAllTestsPass_thenReturnKeyEnabled() {
+        input.addRule("test1") { _ in true }
+        input.addRule("test2") { _ in true }
+        input.type("a")
+        XCTAssertTrue(input.isReturnKeyEnabled)
+    }
+
 }
 
 fileprivate extension TextInput {
 
     var ruleLabelCount: Int {
         return stackView.arrangedSubviews.count - 1
+    }
+
+    var isReturnKeyEnabled: Bool {
+        return textFieldShouldReturn(textField)
     }
 
     func ruleLabel(at index: Int) -> RuleLabel {

@@ -23,6 +23,7 @@ platform :ios do
     workspace = "safe.xcworkspace"
     ENV["GYM_WORKSPACE"] = workspace
     ENV["SCAN_WORKSPACE"] = workspace
+    PROJECT = "safe/safe.xcodeproj"
   end
 
   desc "Runs unit tests"
@@ -39,15 +40,16 @@ platform :ios do
   lane :fabric do
     if is_ci
       setup_travis
-      increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"])
+      increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"],
+        xcodeproj: PROJECT)
     end
     ENV["FASTLANE_APP_IDENTIFIER"] = ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
     gym(configuration: "AdHoc", scheme: "safe", buildlog_path: BUILD_LOG_PATH)
     crashlytics(groups: "ios-beta-testers", notifications: false)
-    #slack(
-    #  message: "Successfully distributed new version to beta :rocket:",
-    #)
+    slack(
+     message: "Successfully distributed new version to Fabric beta :rocket:",
+    )
   end
 
   lane :add_devices do
@@ -64,9 +66,9 @@ platform :ios do
         include_symbols: true,
         include_bitcode: true)
     pilot(skip_waiting_for_build_processing: true)
-    #slack(
-    #  message: "Successfully distributed new version to TestFlight :rocket:",
-    #)
+    slack(
+     message: "Successfully distributed new version to TestFlight :rocket:",
+    )
   end
 
   lane :certificates do
@@ -76,21 +78,11 @@ platform :ios do
     match(type: "adhoc", app_identifier: ADHOC_APP_ID, readonly: true)
   end
 
-  # You can define as many lanes as you want
-
-  after_all do |lane|
-    # This block is called, only if the executed lane was successful
-
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
-  end
-
   error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+    slack(
+      message: exception.message,
+      success: false
+    )
     puts `cat #{BUILD_LOG_PATH/safe-safe.log}`
   end
 end
