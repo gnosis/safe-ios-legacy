@@ -66,6 +66,13 @@ platform :ios do
     #)
   end
 
+  lane :certificates do
+    match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"], readonly: true)
+    match(type: "development", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"], readonly: true)
+    ENV["FASTLANE_APP_IDENTIFIER"] = ADHOC_APP_ID
+    match(type: "adhoc", app_identifier: ADHOC_APP_ID, readonly: true)
+  end
+
   # You can define as many lanes as you want
 
   after_all do |lane|
