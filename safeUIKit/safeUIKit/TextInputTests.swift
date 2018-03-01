@@ -61,6 +61,20 @@ class TextInputTests: XCTestCase {
         XCTAssertTrue(input.isReturnKeyEnabled)
     }
 
+    func test_whenReturnKeyPressed_thenCallsDelegate() {
+        let delegate = MockTextInputDelegate()
+        input.delegate = delegate
+        input.addRule("test1") { _ in true }
+        input.type("a")
+        input.hitReturn()
+        XCTAssertTrue(delegate.wasCalled)
+    }
+
+    func test_whenTypingText_thenTextInputHasText() {
+        input.textField.text = "a"
+        XCTAssertEqual(input.text, "a")
+    }
+
 }
 
 fileprivate extension TextInput {
@@ -78,11 +92,25 @@ fileprivate extension TextInput {
     }
 
     func type(_ text: String) {
-        _ = self.textField(textField, shouldChangeCharactersIn: NSRange(), replacementString: text)
+        _ = textField(textField, shouldChangeCharactersIn: NSRange(), replacementString: text)
     }
 
     func clear() {
-        _ = self.textFieldShouldClear(textField)
+        _ = textFieldShouldClear(textField)
+    }
+
+    func hitReturn() {
+        _ = textFieldShouldReturn(textField)
+    }
+
+}
+
+class MockTextInputDelegate: TextInputDelegate {
+
+    var wasCalled = false
+
+    func textInputDidReturn() {
+        wasCalled = true
     }
 
 }

@@ -20,4 +20,8 @@ final class PasswordValidator {
         return input.containsDigit()
     }
 
+    static func validate(input: String, equals other: String) -> Bool {
+        return input == other
+    }
+
 }

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0455F120484FD800088B5E /* OnboardingFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455F020484FD800088B5E /* OnboardingFlowCoordinator.swift */; };
+		0A0455F32048505500088B5E /* MasterPasswordFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455F22048505500088B5E /* MasterPasswordFlowCoordinator.swift */; };
+		0A0455F52048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455F42048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift */; };
+		0A0455F7204851B100088B5E /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */; };
+		0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */; };
+		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
 		0AD93E0C204815CF008C38CA /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD93E0B204815CF008C38CA /* safeUIKit.framework */; };
 		0AD93E0D204815CF008C38CA /* safeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD93E0B204815CF008C38CA /* safeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AD93E0F2048160F008C38CA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DF6A92203C678200DF6486 /* Crashlytics.framework */; };
@@ -16,9 +22,9 @@
 		55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4A203DAE1D00AD0E1F /* Assets.swift */; };
 		55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */; };
 		55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D522040492200AD0E1F /* SetPasswordViewController.swift */; };
-		55147D552040493C00AD0E1F /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55147D542040493C00AD0E1F /* Onboarding.storyboard */; };
+		55147D552040493C00AD0E1F /* MasterPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55147D542040493C00AD0E1F /* MasterPassword.storyboard */; };
 		55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */; };
-		55147D592040521800AD0E1F /* OnboardingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D582040521800AD0E1F /* OnboardingNavigationController.swift */; };
+		55147D592040521800AD0E1F /* MasterPasswordNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D582040521800AD0E1F /* MasterPasswordNavigationController.swift */; };
 		55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */; };
 		55147D6020405BBA00AD0E1F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D5F20405BBA00AD0E1F /* Colors.swift */; };
 		55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */; };
@@ -66,6 +72,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A0455F020484FD800088B5E /* OnboardingFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinator.swift; sourceTree = "<group>"; };
+		0A0455F22048505500088B5E /* MasterPasswordFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPasswordFlowCoordinator.swift; sourceTree = "<group>"; };
+		0A0455F42048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPasswordFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
+		0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0AD93E0B204815CF008C38CA /* safeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = safeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD93E182048350D008C38CA /* ConfirmPaswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaswordViewController.swift; sourceTree = "<group>"; };
 		0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaswordViewControllerTests.swift; sourceTree = "<group>"; };
@@ -74,8 +86,8 @@
 		55147D4A203DAE1D00AD0E1F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sotryboards.swift; sourceTree = "<group>"; };
 		55147D522040492200AD0E1F /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
-		55147D542040493C00AD0E1F /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		55147D582040521800AD0E1F /* OnboardingNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNavigationController.swift; sourceTree = "<group>"; };
+		55147D542040493C00AD0E1F /* MasterPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MasterPassword.storyboard; sourceTree = "<group>"; };
+		55147D582040521800AD0E1F /* MasterPasswordNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPasswordNavigationController.swift; sourceTree = "<group>"; };
 		55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewControllerTests.swift; sourceTree = "<group>"; };
 		55147D5F20405BBA00AD0E1F /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensions.swift; sourceTree = "<group>"; };
@@ -127,6 +139,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A0455EF20484FA000088B5E /* MasterPasswordFlow */ = {
+			isa = PBXGroup;
+			children = (
+				0A0455F22048505500088B5E /* MasterPasswordFlowCoordinator.swift */,
+				0A0455F42048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift */,
+				55147D542040493C00AD0E1F /* MasterPassword.storyboard */,
+				55147D582040521800AD0E1F /* MasterPasswordNavigationController.swift */,
+				5540A4F0203C3054009C9BE3 /* StartViewController.swift */,
+				55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */,
+				55147D522040492200AD0E1F /* SetPasswordViewController.swift */,
+				55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */,
+				0AD93E182048350D008C38CA /* ConfirmPaswordViewController.swift */,
+				0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */,
+				5528C43D20470AF500E79A4D /* PasswordValidator.swift */,
+				5528C43F20470B9700E79A4D /* PasswordValidatorTests.swift */,
+			);
+			path = MasterPasswordFlow;
+			sourceTree = "<group>";
+		};
 		55147D49203DAE1D00AD0E1F /* generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,29 +168,14 @@
 			path = generated;
 			sourceTree = "<group>";
 		};
-		55147D51204048BC00AD0E1F /* Onboarding */ = {
+		55147D51204048BC00AD0E1F /* OnboardingFlow */ = {
 			isa = PBXGroup;
 			children = (
-				55147D5A2040522A00AD0E1F /* Resources */,
-				5540A4F0203C3054009C9BE3 /* StartViewController.swift */,
-				55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */,
-				55147D522040492200AD0E1F /* SetPasswordViewController.swift */,
-				55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */,
-				55147D582040521800AD0E1F /* OnboardingNavigationController.swift */,
-				5528C43D20470AF500E79A4D /* PasswordValidator.swift */,
-				5528C43F20470B9700E79A4D /* PasswordValidatorTests.swift */,
-				0AD93E182048350D008C38CA /* ConfirmPaswordViewController.swift */,
-				0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */,
+				0A0455EF20484FA000088B5E /* MasterPasswordFlow */,
+				0A0455F020484FD800088B5E /* OnboardingFlowCoordinator.swift */,
+				0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */,
 			);
-			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		55147D5A2040522A00AD0E1F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				55147D542040493C00AD0E1F /* Onboarding.storyboard */,
-			);
-			path = Resources;
+			path = OnboardingFlow;
 			sourceTree = "<group>";
 		};
 		5540A4E2203C3054009C9BE3 = {
@@ -187,9 +203,11 @@
 		5540A4ED203C3054009C9BE3 /* safe */ = {
 			isa = PBXGroup;
 			children = (
-				55147D51204048BC00AD0E1F /* Onboarding */,
+				55147D51204048BC00AD0E1F /* OnboardingFlow */,
 				55147D49203DAE1D00AD0E1F /* generated */,
 				5540A4EE203C3054009C9BE3 /* AppDelegate.swift */,
+				0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */,
+				0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */,
 				55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */,
 				55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */,
 				5540A4F5203C3054009C9BE3 /* Assets.xcassets */,
@@ -351,7 +369,7 @@
 			files = (
 				5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
-				55147D552040493C00AD0E1F /* Onboarding.storyboard in Resources */,
+				55147D552040493C00AD0E1F /* MasterPassword.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,13 +443,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */,
+				0A0455F7204851B100088B5E /* AppFlowCoordinator.swift in Sources */,
 				5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				55147D6020405BBA00AD0E1F /* Colors.swift in Sources */,
 				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
-				55147D592040521800AD0E1F /* OnboardingNavigationController.swift in Sources */,
+				0A0455F32048505500088B5E /* MasterPasswordFlowCoordinator.swift in Sources */,
+				55147D592040521800AD0E1F /* MasterPasswordNavigationController.swift in Sources */,
 				0AD93E192048350D008C38CA /* ConfirmPaswordViewController.swift in Sources */,
 				55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */,
+				0A0455F120484FD800088B5E /* OnboardingFlowCoordinator.swift in Sources */,
 				5528C43E20470AF500E79A4D /* PasswordValidator.swift in Sources */,
 				55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */,
 			);
@@ -441,11 +462,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */,
+				0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */,
 				0AD93E1B2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift in Sources */,
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
 				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
 				5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */,
+				0A0455F52048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,4 +39,11 @@ class PasswordValidatorTests: XCTestCase {
         XCTAssertTrue(PasswordValidator.validateAtLeastOneDigit("a1"))
     }
 
+    func test_whenInputEqualToReference_thenReturnsTrue() {
+        XCTAssertTrue(PasswordValidator.validate(input: "a", equals: "a"))
+    }
+
+    func test_whenInputNotEqualToReference_thenReturnsFalse() {
+        XCTAssertFalse(PasswordValidator.validate(input: "a", equals: "b"))
+    }
 }
