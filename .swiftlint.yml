@@ -143,13 +143,6 @@ file_header:
 
 included:
   - safe
-  - safeTests
-  - safeUITests
   - safeUIKit
-  - safeUIKitTests
-  - safeUIKitUITests
-  - safeUIKitDemo
 excluded:
-  - safe/generated
-  - safeUIKit/generated
-
+  - "**/generated"

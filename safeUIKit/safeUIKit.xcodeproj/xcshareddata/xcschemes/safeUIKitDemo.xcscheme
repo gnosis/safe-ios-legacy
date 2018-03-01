@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5554D79920455B7700672DA8"
-               BuildableName = "safeUIKit.framework"
-               BlueprintName = "safeUIKit"
-               ReferencedContainer = "container:safe.xcodeproj">
+               BlueprintIdentifier = "0A96707920480C3E00445AC2"
+               BuildableName = "safeUIKitDemo.app"
+               BlueprintName = "safeUIKitDemo"
+               ReferencedContainer = "container:safeUIKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,20 +33,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5554D7A120455B7700672DA8"
-               BuildableName = "safeUIKitTests.xctest"
-               BlueprintName = "safeUIKitTests"
-               ReferencedContainer = "container:safe.xcodeproj">
+               BlueprintIdentifier = "0A96708D20480C3E00445AC2"
+               BuildableName = "safeUIKitDemoUITests.xctest"
+               BlueprintName = "safeUIKitDemoUITests"
+               ReferencedContainer = "container:safeUIKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5554D79920455B7700672DA8"
-            BuildableName = "safeUIKit.framework"
-            BlueprintName = "safeUIKit"
-            ReferencedContainer = "container:safe.xcodeproj">
+            BlueprintIdentifier = "0A96707920480C3E00445AC2"
+            BuildableName = "safeUIKitDemo.app"
+            BlueprintName = "safeUIKitDemo"
+            ReferencedContainer = "container:safeUIKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -63,15 +63,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5554D79920455B7700672DA8"
-            BuildableName = "safeUIKit.framework"
-            BlueprintName = "safeUIKit"
-            ReferencedContainer = "container:safe.xcodeproj">
+            BlueprintIdentifier = "0A96707920480C3E00445AC2"
+            BuildableName = "safeUIKitDemo.app"
+            BlueprintName = "safeUIKitDemo"
+            ReferencedContainer = "container:safeUIKit.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -81,15 +82,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5554D79920455B7700672DA8"
-            BuildableName = "safeUIKit.framework"
-            BlueprintName = "safeUIKit"
-            ReferencedContainer = "container:safe.xcodeproj">
+            BlueprintIdentifier = "0A96707920480C3E00445AC2"
+            BuildableName = "safeUIKitDemo.app"
+            BlueprintName = "safeUIKitDemo"
+            ReferencedContainer = "container:safeUIKit.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

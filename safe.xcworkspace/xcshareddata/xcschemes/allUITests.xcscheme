@@ -20,20 +20,6 @@
                ReferencedContainer = "container:safe.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5554D7A120455B7700672DA8"
-               BuildableName = "safeUIKitTests.xctest"
-               BlueprintName = "safeUIKitTests"
-               ReferencedContainer = "container:safe.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -57,10 +43,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "55D6C2DC2045AA3C0026BC72"
-               BuildableName = "safeUIKitUITests.xctest"
-               BlueprintName = "safeUIKitUITests"
-               ReferencedContainer = "container:safe.xcodeproj">
+               BlueprintIdentifier = "0A96708D20480C3E00445AC2"
+               BuildableName = "safeUIKitDemoUITests.xctest"
+               BlueprintName = "safeUIKitDemoUITests"
+               ReferencedContainer = "container:safeUIKit/safeUIKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -105,15 +91,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5540A509203C3054009C9BE3"
-            BuildableName = "safeUITests.xctest"
-            BlueprintName = "safeUITests"
-            ReferencedContainer = "container:safe.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

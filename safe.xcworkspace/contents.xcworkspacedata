@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:safe.playground">
+      location = "group:safeUIKit/safeUIKit.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:safe.xcodeproj">
+      location = "group:safe/safe.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:safe.playground">
    </FileRef>
 </Workspace>

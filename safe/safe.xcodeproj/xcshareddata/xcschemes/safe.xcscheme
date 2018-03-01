@@ -50,6 +50,26 @@
                ReferencedContainer = "container:safe.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A96708D20480C3E00445AC2"
+               BuildableName = "safeUIKitDemoUITests.xctest"
+               BlueprintName = "safeUIKitDemoUITests"
+               ReferencedContainer = "container:safeUIKit/safeUIKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A9670B920480C5700445AC2"
+               BuildableName = "safeUIKitTests.xctest"
+               BlueprintName = "safeUIKitTests"
+               ReferencedContainer = "container:safeUIKit/safeUIKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

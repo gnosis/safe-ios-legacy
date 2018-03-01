@@ -15,7 +15,7 @@ class safeUIKitDemoUITests: XCTestCase {
     var textField: XCUIElement {
         return textInput.textFields.firstMatch
     }
-        
+
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
