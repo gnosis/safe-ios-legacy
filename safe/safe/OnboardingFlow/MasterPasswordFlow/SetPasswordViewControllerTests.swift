@@ -8,13 +8,14 @@ import safeUIKit
 
 class SetPasswordViewControllerTests: XCTestCase {
 
-    let mockDelegate = MockSetPasswordViewControllerDelegate()
+    // swiftlint:disable weak_delegate
+    let delegate = MockSetPasswordViewControllerDelegate()
     var vc: SetPasswordViewController!
 
     override func setUp() {
         super.setUp()
-        mockDelegate.wasCalled = false
-        vc = SetPasswordViewController.create(delegate: mockDelegate)
+        delegate.wasCalled = false
+        vc = SetPasswordViewController.create(delegate: delegate)
         vc.loadViewIfNeeded()
     }
 
@@ -25,7 +26,7 @@ class SetPasswordViewControllerTests: XCTestCase {
 
     func test_whenPasswordSet_thenDelegateCalled() {
         vc.textInputDidReturn()
-        XCTAssertTrue(mockDelegate.wasCalled)
+        XCTAssertTrue(delegate.wasCalled)
     }
 
 }

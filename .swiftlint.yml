@@ -140,9 +140,10 @@ file_header:
                       \/\/
                       \/\/  Copyright © \d{4} Gnosis\. All rights reserved\.
                       \/\/
-
 included:
   - safe
   - safeUIKit
 excluded:
-  - "**/generated"
+  - safe/safe/generated
+  - safeUIKit/safeUIKit/generated
+  

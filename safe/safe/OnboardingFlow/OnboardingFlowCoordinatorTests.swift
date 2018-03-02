@@ -9,7 +9,9 @@ class OnboardingFlowCoordinatorTests: XCTestCase {
 
     func test_startViewController() {
         let fc = OnboardingFlowCoordinator()
-        XCTAssertTrue(type(of: fc.startViewController()) == type(of: fc.masterPasswordFlowCoordinator.startViewController()))
+        let startVC = fc.startViewController()
+        let masterVC = fc.masterPasswordFlowCoordinator.startViewController()
+        XCTAssertTrue(type(of: startVC) == type(of: masterVC))
     }
 
 }

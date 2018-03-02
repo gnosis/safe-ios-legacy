@@ -7,13 +7,14 @@ import XCTest
 
 class StartViewControllerTests: XCTestCase {
 
-    let mockDelegate = MockStartViewControllerDelegate()
+    // swiftlint:disable weak_delegate
+    let delegate = MockStartViewControllerDelegate()
     var vc: StartViewController!
 
     override func setUp() {
         super.setUp()
-        mockDelegate.wasCalled = false
-        vc = StartViewController.create(delegate: mockDelegate)
+        delegate.wasCalled = false
+        vc = StartViewController.create(delegate: delegate)
         vc.loadViewIfNeeded()
     }
 
@@ -23,7 +24,7 @@ class StartViewControllerTests: XCTestCase {
 
     func test_whenStartActionSent_thenDelegateCalled() {
         vc.start(self)
-        XCTAssertTrue(mockDelegate.wasCalled)
+        XCTAssertTrue(delegate.wasCalled)
     }
 
 }
