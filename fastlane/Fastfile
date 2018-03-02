@@ -28,12 +28,12 @@ platform :ios do
 
   desc "Runs unit tests"
   lane :test do
-    scan(scheme: "safe", configuration: "Debug", skip_build: true, buildlog_path: BUILD_LOG_PATH)
+    scan(scheme: "safe", configuration: "Debug", skip_build: true, buildlog_path: BUILD_LOG_PATH, skip_slack: true)
   end
   
   desc "Runs UI tests"
   lane :ui_test do
-    scan(scheme: "allUITests", configuration: "Debug", skip_build: true, buildlog_path: BUILD_LOG_PATH)
+    scan(scheme: "allUITests", configuration: "Debug", skip_build: true, buildlog_path: BUILD_LOG_PATH, slack_only_on_failure: true)
   end
 
   desc "Build and distribute build to Fabric Beta"

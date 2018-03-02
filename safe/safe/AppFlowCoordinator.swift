@@ -8,10 +8,8 @@ class AppFlowCoordinator {
 
     let onboardingFlowCoordinator = OnboardingFlowCoordinator()
 
-    func createWindow() -> UIWindow {
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = onboardingFlowCoordinator.startViewController()
-        return window
+    func startViewController() -> UIViewController {
+        return onboardingFlowCoordinator.startViewController()
     }
 
 }

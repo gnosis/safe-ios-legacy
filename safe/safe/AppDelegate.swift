@@ -15,9 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
-        window = coordinator.createWindow()
-        window?.makeKeyAndVisible()
+        createWindow()
         return true
+    }
+
+    private func createWindow() {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = coordinator.startViewController()
+        window?.makeKeyAndVisible()
     }
 
 }

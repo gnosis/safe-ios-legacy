@@ -7,13 +7,9 @@ import XCTest
 
 class AppFlowCoordinatorTests: XCTestCase {
 
-    func test_createWindow() {
+    func test_startViewController() {
         let fc = AppFlowCoordinator()
-        let window = fc.createWindow()
-        guard let root = window.rootViewController else {
-            XCTFail()
-            return
-        }
+        let root = fc.startViewController()
         XCTAssertTrue(type(of: root) == type(of: fc.onboardingFlowCoordinator.startViewController()))
     }
 
