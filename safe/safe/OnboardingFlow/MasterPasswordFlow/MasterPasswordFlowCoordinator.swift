@@ -16,8 +16,6 @@ class MasterPasswordFlowCoordinator {
 
 }
 
-// TODO: 01/03/18: tests for delegates
-
 extension MasterPasswordFlowCoordinator: StartViewControllerDelegate {
 
     func didStart() {

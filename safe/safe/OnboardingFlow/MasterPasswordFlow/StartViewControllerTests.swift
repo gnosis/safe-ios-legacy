@@ -30,9 +30,11 @@ class StartViewControllerTests: XCTestCase {
 }
 
 class MockStartViewControllerDelegate: StartViewControllerDelegate {
+
     var wasCalled = false
 
     func didStart() {
         wasCalled = true
     }
+
 }
