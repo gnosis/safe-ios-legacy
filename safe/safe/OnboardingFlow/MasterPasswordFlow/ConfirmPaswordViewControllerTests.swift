@@ -7,7 +7,7 @@ import XCTest
 
 class ConfirmPaswordViewControllerTests: XCTestCase {
 
-    let vc = ConfirmPaswordViewController.create(referencePassword: "a")
+    let vc = ConfirmPaswordViewController.create(referencePassword: "a", delegate: nil)
 
     override func setUp() {
         super.setUp()

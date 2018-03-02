@@ -28,7 +28,16 @@ extension MasterPasswordFlowCoordinator: StartViewControllerDelegate {
 extension MasterPasswordFlowCoordinator: SetPasswordViewControllerDelegate {
 
     func didSetPassword(_ password: String) {
-        let vc = ConfirmPaswordViewController.create(referencePassword: password)
+        let vc = ConfirmPaswordViewController.create(referencePassword: password, delegate: self)
+        masterPasswordNavigationController.show(vc, sender: nil)
+    }
+
+}
+
+extension MasterPasswordFlowCoordinator: ConfirmPasswordViewControllerDelegate {
+
+    func didConfirmPassword(_ password: String) {
+        let vc = PasswordSuccessViewController()
         masterPasswordNavigationController.show(vc, sender: nil)
     }
 

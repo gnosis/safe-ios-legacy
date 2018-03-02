@@ -35,6 +35,12 @@ class MasterPasswordFlowCoordinatorTests: XCTestCase {
         XCTAssertTrue(nav.topViewController is ConfirmPaswordViewController)
     }
 
+    func test_whenDidConfirmPassword_thenPasswordSuccessIsShown() {
+        fc.didConfirmPassword("Password")
+        wait()
+        XCTAssertTrue(nav.topViewController is PasswordSuccessViewController)
+    }
+
 }
 
 extension XCTestCase {
