@@ -4,7 +4,13 @@
 
 import UIKit
 
-final class OnboardingNavigationController: UINavigationController {
+final class MasterPasswordNavigationController: UINavigationController {
+
+    static func create(_ root: UIViewController) -> MasterPasswordNavigationController {
+        let nav = StoryboardScene.MasterPassword.initialScene.instantiate()
+        nav.pushViewController(root, animated: false)
+        return nav
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

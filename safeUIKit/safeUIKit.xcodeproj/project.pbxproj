@@ -245,7 +245,7 @@
 			buildConfigurationList = 0A96709520480C3F00445AC2 /* Build configuration list for PBXNativeTarget "safeUIKitDemo" */;
 			buildPhases = (
 				0A96707620480C3E00445AC2 /* Sources */,
-				0A0974EF20480ECB005753DF /* SwiftLint */,
+				0AEFB0C020494AF60061A1FD /* SwiftLint */,
 				0A96707720480C3E00445AC2 /* Frameworks */,
 				0A96707820480C3E00445AC2 /* Resources */,
 				0A9670AC20480C4A00445AC2 /* Embed Frameworks */,
@@ -284,7 +284,7 @@
 			buildPhases = (
 				0A0974ED20480EA0005753DF /* SwiftGen */,
 				0A9670AD20480C5700445AC2 /* Sources */,
-				0A0974EE20480EB4005753DF /* SwiftLint */,
+				0AEFB0BF20494AB70061A1FD /* SwiftLint */,
 				0A9670AE20480C5700445AC2 /* Frameworks */,
 				0A9670AF20480C5700445AC2 /* Headers */,
 				0A9670B020480C5700445AC2 /* Resources */,
@@ -420,7 +420,7 @@
 			shellScript = ../scripts/run_swiftgen.sh;
 			showEnvVarsInLog = 0;
 		};
-		0A0974EE20480EB4005753DF /* SwiftLint */ = {
+		0AEFB0BF20494AB70061A1FD /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -434,7 +434,7 @@
 			shellPath = /bin/sh;
 			shellScript = ../scripts/run_swiftlint.sh;
 		};
-		0A0974EF20480ECB005753DF /* SwiftLint */ = {
+		0AEFB0C020494AF60061A1FD /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -613,7 +613,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -672,7 +672,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1142,7 +1142,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = AdHoc;

@@ -4,19 +4,17 @@
 
 import XCTest
 @testable import safe
-import safeUIKit
 
-class SetPasswordViewControllerTests: XCTestCase {
+class ConfirmPaswordViewControllerTests: XCTestCase {
 
-    let vc = SetPasswordViewController.create()
+    let vc = ConfirmPaswordViewController.create(referencePassword: "a", delegate: nil)
 
     override func setUp() {
         super.setUp()
         vc.loadViewIfNeeded()
     }
 
-    func test_whenLoaded_thenHasAllElements() {
-        XCTAssertNotNil(vc.headerLabel)
+    func test_whenCreated_hasAllElements() {
         XCTAssertNotNil(vc.textInput)
     }
 

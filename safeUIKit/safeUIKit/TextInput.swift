@@ -4,15 +4,25 @@
 
 import UIKit
 
+public protocol TextInputDelegate: class {
+
+    func textInputDidReturn()
+
+}
+
 public final class TextInput: UIView {
 
     @IBOutlet weak var wrapperView: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var stackView: UIStackView!
 
+    public weak var delegate: TextInputDelegate?
+
     private var allRules: [RuleLabel] {
         return stackView.arrangedSubviews.flatMap { $0 as? RuleLabel }
     }
+
+    public var text: String? { return textField.text }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -78,6 +88,14 @@ extension TextInput: UITextFieldDelegate {
     public func textFieldShouldClear(_ textField: UITextField) -> Bool {
         resetRules()
         return true
+    }
+
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let shouldReturn = !allRules.contains { $0.status != .success }
+        if shouldReturn {
+            delegate?.textInputDidReturn()
+        }
+        return shouldReturn
     }
 
     private func resetRules() {
