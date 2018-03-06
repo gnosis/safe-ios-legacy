@@ -6,7 +6,6 @@ import Foundation
 
 final class Account {
 
-    private var password: String?
     private let userDefaultsService: UserDefaultsService
 
     init(userDefaultsService: UserDefaultsService) {
@@ -14,11 +13,19 @@ final class Account {
     }
 
     var hasMasterPassword: Bool {
-        return password != nil
+        return userDefaultsService.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue) ?? false
     }
 
     func setMasterPassword(_ password: String) {
-        self.password = password
+        userDefaultsService.setBool(true, for: UserDefaultsKey.masterPasswordWasSet.rawValue)
+    }
+
+    func cleanupAllData() {
+        userDefaultsService.deleteKey(UserDefaultsKey.masterPasswordWasSet.rawValue)
+    }
+
+    func checkMasterPassword(_ password: String) -> Bool {
+        return false
     }
 
 }

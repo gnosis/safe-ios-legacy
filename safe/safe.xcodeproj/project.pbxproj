@@ -275,8 +275,8 @@
 		55E670C9204D7AEE00234E5C /* Domain Model Layer */ = {
 			isa = PBXGroup;
 			children = (
-				55E670CA204D7B2500234E5C /* AccountTests.swift */,
 				55E670CC204D7B5300234E5C /* Account.swift */,
+				55E670CA204D7B2500234E5C /* AccountTests.swift */,
 				55E670D1204DAD3000234E5C /* UserDefaultKeys.swift */,
 			);
 			path = "Domain Model Layer";
