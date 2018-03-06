@@ -8,6 +8,8 @@ import Foundation
 protocol AccountProtocol: class {
 
     var hasMasterPassword: Bool { get }
+    func cleanupAllData()
+    func setMasterPassword(_ password: String)
 
 }
 

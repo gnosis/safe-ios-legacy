@@ -7,6 +7,16 @@ import Foundation
 
 class MockAccount: AccountProtocol {
 
-    var hasMasterPassword: Bool = false
+    var hasMasterPassword = false
+    var didSavePassword = false
+    var didCleanData = false
+
+    func cleanupAllData() {
+        didCleanData = true
+    }
+
+    func setMasterPassword(_ password: String) {
+        didSavePassword = true
+    }
 
 }
