@@ -39,7 +39,11 @@ extension MasterPasswordFlowCoordinator: ConfirmPasswordViewControllerDelegate {
 
     func didConfirmPassword(_ password: String) {
         account.cleanupAllData()
-        account.setMasterPassword(password)
+        do {
+            try account.setMasterPassword(password)
+        } catch {
+            // TODO: 06/03/18: handle error
+        }
         let vc = PasswordSuccessViewController()
         masterPasswordNavigationController.show(vc, sender: nil)
     }

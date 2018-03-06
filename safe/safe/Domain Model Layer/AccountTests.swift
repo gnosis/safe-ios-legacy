@@ -9,12 +9,13 @@ class AccountTests: XCTestCase {
 
     var account: Account!
     var mockUserDefaults: UserDefaultsServiceProtocol!
+    var keychain: MockKeychain!
 
     override func setUp() {
         super.setUp()
         mockUserDefaults = InMemoryUserDefaults()
-        account = Account(userDefaultsService: mockUserDefaults)
-        account.cleanupAllData()
+        keychain = MockKeychain()
+        account = Account(userDefaultsService: mockUserDefaults, keychainService: keychain)
     }
 
     // TODO: 05/08/2018 implement
@@ -35,27 +36,44 @@ class AccountTests: XCTestCase {
         XCTAssertFalse(account.hasMasterPassword)
     }
 
+    fileprivate func setPassword() {
+        XCTAssertNoThrow(try account.setMasterPassword("Password"))
+    }
+
     func test_hasMasterPassword_whenPasswordWasSet_thenIsTrue() {
-        account.setMasterPassword("Password")
+        setPassword()
         XCTAssertTrue(account.hasMasterPassword)
     }
 
     func test_hasMasterPassword_whenDealingWithDifferentInstances_thenResultIsTheSame() {
-        account.setMasterPassword("Password")
-        account = Account(userDefaultsService: mockUserDefaults)
+        setPassword()
+        account = Account(userDefaultsService: mockUserDefaults, keychainService: keychain)
         XCTAssertTrue(account.hasMasterPassword)
     }
 
     func test_setMasterPassword_whenWasSet_thenUserDefaultsPropertyIsSet() {
-        account.setMasterPassword("Password")
+        setPassword()
         XCTAssertTrue(mockUserDefaults.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue) ?? false)
     }
 
+    func test_setMasterPassword_whenWasSet_thenStoresPasswordInKeychain() {
+        setPassword()
+        XCTAssertEqual(try! keychain.password(), "Password")
+    }
+
+    func test_setMasterPassword_whenKeychainThrows_thenSettingPasswordThrows() {
+        keychain.throwsOnSavePassword = true
+        XCTAssertThrowsError(try account.setMasterPassword("Password"), "Expected Account Error") { error in
+            XCTAssertEqual(error.localizedDescription, AccountError.settingMasterPasswordFailed.localizedDescription)
+        }
+    }
+
     func test_cleanupAllData_whenCalled_thenAccountDataIsCleaned() {
-        account.setMasterPassword("Password")
+        setPassword()
         account.cleanupAllData()
         XCTAssertFalse(account.hasMasterPassword)
         XCTAssertFalse(mockUserDefaults.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue) ?? false)
+        XCTAssertNil(try! keychain.password())
     }
 
     func test_checkMasterPassword_whenNoPasswordWasSet_thenReturnsFalse() {
@@ -63,7 +81,7 @@ class AccountTests: XCTestCase {
     }
 
     func test_checkMasterPassword_whenPasswordIsWrong_thenReturnsFalse() {
-        account.setMasterPassword("Password")
+        setPassword()
         XCTAssertFalse(account.checkMasterPassword("WrongPassword"))
     }
 
@@ -71,4 +89,20 @@ class AccountTests: XCTestCase {
         XCTAssertNotNil(Account.shared)
     }
 
+}
+
+class MockKeychain: InMemoryKeychain {
+
+    var throwsOnSavePassword = false
+
+    enum Error: Swift.Error {
+        case error
+    }
+
+    override func savePassword(_ password: String) throws {
+        if throwsOnSavePassword {
+            throw MockKeychain.Error.error
+        }
+        try super.savePassword(password)
+    }
 }

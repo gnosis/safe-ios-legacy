@@ -14,6 +14,7 @@
 		0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */; };
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
 		0A7E17AD204E99EB00C9078E /* MockAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E17AC204E99EB00C9078E /* MockAccount.swift */; };
+		0AB0FF51204EA9940066682F /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0FF50204EA9940066682F /* KeychainService.swift */; };
 		0AD93E0C204815CF008C38CA /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD93E0B204815CF008C38CA /* safeUIKit.framework */; };
 		0AD93E0D204815CF008C38CA /* safeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD93E0B204815CF008C38CA /* safeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AD93E0F2048160F008C38CA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DF6A92203C678200DF6486 /* Crashlytics.framework */; };
@@ -86,6 +87,7 @@
 		0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A7E17AC204E99EB00C9078E /* MockAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccount.swift; sourceTree = "<group>"; };
+		0AB0FF50204EA9940066682F /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		0AD93E0B204815CF008C38CA /* safeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = safeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD93E182048350D008C38CA /* ConfirmPaswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaswordViewController.swift; sourceTree = "<group>"; };
 		0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaswordViewControllerTests.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				55E670CF204D92DF00234E5C /* UserDefaultsService.swift */,
+				0AB0FF50204EA9940066682F /* KeychainService.swift */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				55147D6020405BBA00AD0E1F /* Colors.swift in Sources */,
+				0AB0FF51204EA9940066682F /* KeychainService.swift in Sources */,
 				55E670CD204D7B5300234E5C /* Account.swift in Sources */,
 				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
 				0A0455F32048505500088B5E /* MasterPasswordFlowCoordinator.swift in Sources */,
