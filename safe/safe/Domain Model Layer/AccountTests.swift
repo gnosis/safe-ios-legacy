@@ -12,7 +12,7 @@ class AccountTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        mockUserDefaults = MockUserDefaults()
+        mockUserDefaults = InMemoryUserDefaults()
         account = Account(userDefaultsService: mockUserDefaults)
         account.cleanupAllData()
     }
@@ -67,22 +67,8 @@ class AccountTests: XCTestCase {
         XCTAssertFalse(account.checkMasterPassword("WrongPassword"))
     }
 
-}
-
-class MockUserDefaults: UserDefaultsService {
-
-    var dict = [String: Bool]()
-
-    func bool(for key: String) -> Bool? {
-        return dict[key]
-    }
-
-    func setBool(_ value: Bool, for key: String) {
-        dict[key] = value
-    }
-
-    func deleteKey(_ key: String) {
-        dict.removeValue(forKey: key)
+    func test_shared_exists() {
+        XCTAssertNotNil(Account.shared)
     }
 
 }
