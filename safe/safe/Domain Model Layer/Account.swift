@@ -4,7 +4,6 @@
 
 import Foundation
 
-// TODO: 06/03/18 add docs about protocol naming + rename existing
 protocol AccountProtocol: class {
 
     var hasMasterPassword: Bool { get }
@@ -16,9 +15,9 @@ protocol AccountProtocol: class {
 final class Account: AccountProtocol {
 
     static let shared = Account(userDefaultsService: InMemoryUserDefaults())
-    private let userDefaultsService: UserDefaultsService
+    private let userDefaultsService: UserDefaultsServiceProtocol
 
-    init(userDefaultsService: UserDefaultsService) {
+    init(userDefaultsService: UserDefaultsServiceProtocol) {
         self.userDefaultsService = userDefaultsService
     }
 

@@ -4,13 +4,13 @@
 
 import Foundation
 
-protocol UserDefaultsService {
+protocol UserDefaultsServiceProtocol {
     func bool(for key: String) -> Bool?
     func setBool(_ value: Bool, for key: String)
     func deleteKey(_ key: String)
 }
 
-class InMemoryUserDefaults: UserDefaultsService {
+class InMemoryUserDefaults: UserDefaultsServiceProtocol {
 
     var dict = [String: Bool]()
 

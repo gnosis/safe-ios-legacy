@@ -8,7 +8,7 @@ import XCTest
 class AccountTests: XCTestCase {
 
     var account: Account!
-    var mockUserDefaults: UserDefaultsService!
+    var mockUserDefaults: UserDefaultsServiceProtocol!
 
     override func setUp() {
         super.setUp()
