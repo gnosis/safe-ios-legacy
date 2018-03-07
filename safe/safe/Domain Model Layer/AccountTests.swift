@@ -15,7 +15,9 @@ class AccountTests: XCTestCase {
         super.setUp()
         mockUserDefaults = InMemoryUserDefaults()
         keychain = MockKeychain()
-        account = Account(userDefaultsService: mockUserDefaults, keychainService: keychain)
+        account = Account(userDefaultsService: mockUserDefaults,
+                          keychainService: keychain,
+                          biometricAuthService: FakeBiometricService())
     }
 
     // TODO: 05/08/2018 implement
@@ -47,7 +49,9 @@ class AccountTests: XCTestCase {
 
     func test_hasMasterPassword_whenDealingWithDifferentInstances_thenResultIsTheSame() {
         setPassword()
-        account = Account(userDefaultsService: mockUserDefaults, keychainService: keychain)
+        account = Account(userDefaultsService: mockUserDefaults,
+                          keychainService: keychain,
+                          biometricAuthService: FakeBiometricService())
         XCTAssertTrue(account.hasMasterPassword)
     }
 

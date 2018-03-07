@@ -8,12 +8,10 @@ import XCTest
 class MasterPasswordFlowCoordinatorTests: XCTestCase {
 
     let flowCoordinator = MasterPasswordFlowCoordinator()
-    let account = MockAccount()
     var nav: UINavigationController!
 
     override func setUp() {
         super.setUp()
-        flowCoordinator.account = account
         guard let nav = flowCoordinator.startViewController() as? UINavigationController else {
             XCTFail()
             return
@@ -38,15 +36,9 @@ class MasterPasswordFlowCoordinatorTests: XCTestCase {
     }
 
     func test_whenDidConfirmPassword_thenPasswordSuccessIsShown() {
-        flowCoordinator.didConfirmPassword("Password")
+        flowCoordinator.didConfirmPassword()
         wait()
         XCTAssertTrue(nav.topViewController is PasswordSuccessViewController)
-    }
-
-    func test_whenDidConfirmPassword_thenPasswordIsSaved() {
-        flowCoordinator.didConfirmPassword("Password")
-        XCTAssertTrue(account.didSavePassword)
-        XCTAssertTrue(account.didCleanData)
     }
 
 }

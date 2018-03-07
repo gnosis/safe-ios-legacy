@@ -6,7 +6,6 @@ import UIKit
 
 class MasterPasswordFlowCoordinator {
 
-    var account: AccountProtocol = Account.shared
     private var masterPasswordNavigationController: MasterPasswordNavigationController!
 
     func startViewController() -> UIViewController {
@@ -29,7 +28,9 @@ extension MasterPasswordFlowCoordinator: StartViewControllerDelegate {
 extension MasterPasswordFlowCoordinator: SetPasswordViewControllerDelegate {
 
     func didSetPassword(_ password: String) {
-        let vc = ConfirmPaswordViewController.create(referencePassword: password, delegate: self)
+        let vc = ConfirmPaswordViewController.create(account: Account.shared,
+                                                     referencePassword: password,
+                                                     delegate: self)
         masterPasswordNavigationController.show(vc, sender: nil)
     }
 
@@ -37,13 +38,7 @@ extension MasterPasswordFlowCoordinator: SetPasswordViewControllerDelegate {
 
 extension MasterPasswordFlowCoordinator: ConfirmPasswordViewControllerDelegate {
 
-    func didConfirmPassword(_ password: String) {
-        account.cleanupAllData()
-        do {
-            try account.setMasterPassword(password)
-        } catch {
-            // TODO: 06/03/18: handle error
-        }
+    func didConfirmPassword() {
         let vc = PasswordSuccessViewController()
         masterPasswordNavigationController.show(vc, sender: nil)
     }
