@@ -10,6 +10,7 @@ class AccountTests: XCTestCase {
     var account: Account!
     var mockUserDefaults: UserDefaultsServiceProtocol!
     var keychain: MockKeychain!
+    var biometricService = MockBiometricService()
 
     override func setUp() {
         super.setUp()
@@ -17,7 +18,7 @@ class AccountTests: XCTestCase {
         keychain = MockKeychain()
         account = Account(userDefaultsService: mockUserDefaults,
                           keychainService: keychain,
-                          biometricAuthService: FakeBiometricService())
+                          biometricAuthService: biometricService)
     }
 
     // TODO: 05/08/2018 implement
@@ -42,6 +43,10 @@ class AccountTests: XCTestCase {
         XCTAssertNoThrow(try account.setMasterPassword("Password"))
     }
 
+    func test_shared_exists() {
+        XCTAssertNotNil(Account.shared)
+    }
+
     func test_hasMasterPassword_whenPasswordWasSet_thenIsTrue() {
         setPassword()
         XCTAssertTrue(account.hasMasterPassword)
@@ -51,7 +56,7 @@ class AccountTests: XCTestCase {
         setPassword()
         account = Account(userDefaultsService: mockUserDefaults,
                           keychainService: keychain,
-                          biometricAuthService: FakeBiometricService())
+                          biometricAuthService: biometricService)
         XCTAssertTrue(account.hasMasterPassword)
     }
 
@@ -89,8 +94,16 @@ class AccountTests: XCTestCase {
         XCTAssertFalse(account.checkMasterPassword("WrongPassword"))
     }
 
-    func test_shared_exists() {
-        XCTAssertNotNil(Account.shared)
+    func test_activateBiometricAuthentication_whenInvoked_thenCallsAccountCompletionAfterBiometricActivation() {
+        var completionCalled = false
+        biometricService.shouldActivateImmediately = false
+        account.activateBiometricAuthentication {
+            completionCalled = true
+        }
+        wait()
+        XCTAssertFalse(completionCalled)
+        biometricService.completeActivation()
+        XCTAssertTrue(completionCalled)
     }
 
 }
@@ -109,4 +122,23 @@ class MockKeychain: InMemoryKeychain {
         }
         try super.savePassword(password)
     }
+}
+
+class MockBiometricService: BiometricAuthenticationServiceProtocol {
+
+    var savedCompletion: (() -> Void)?
+    var shouldActivateImmediately = false
+
+    func activate(completion: @escaping () -> Void) {
+        if shouldActivateImmediately {
+            completion()
+        } else {
+            savedCompletion = completion
+        }
+    }
+
+    func completeActivation() {
+        savedCompletion?()
+    }
+
 }

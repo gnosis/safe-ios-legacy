@@ -6,12 +6,14 @@ import Foundation
 
 protocol BiometricAuthenticationServiceProtocol {
 
-    var isAvailable: Bool { get }
+    func activate(completion: @escaping () -> Void)
 
 }
 
 class FakeBiometricService: BiometricAuthenticationServiceProtocol {
 
-    var isAvailable: Bool = false
+    func activate(completion: @escaping () -> Void) {
+        completion()
+    }
 
 }

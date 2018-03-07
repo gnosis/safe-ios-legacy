@@ -64,7 +64,7 @@ final class Account: AccountProtocol {
     }
 
     func activateBiometricAuthentication(completion: @escaping () -> Void) {
-
+        biometricAuthService.activate(completion: completion)
     }
 
 }
