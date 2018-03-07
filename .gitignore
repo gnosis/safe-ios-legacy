@@ -9,7 +9,7 @@ build/
 DerivedData/
 ModuleCache/
 Logs/
-build_logs/
+build_logs
 
 ## Various settings
 *.pbxuser
