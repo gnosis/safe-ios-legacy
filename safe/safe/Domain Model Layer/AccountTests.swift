@@ -8,32 +8,16 @@ import XCTest
 class AccountTests: XCTestCase {
 
     var account: Account!
-    var mockUserDefaults: UserDefaultsServiceProtocol!
-    var keychain: MockKeychain!
-    var biometricService = MockBiometricService()
+    let mockUserDefaults = InMemoryUserDefaults()
+    let keychain = MockKeychain()
+    let biometricService = MockBiometricService()
 
     override func setUp() {
         super.setUp()
-        mockUserDefaults = InMemoryUserDefaults()
-        keychain = MockKeychain()
         account = Account(userDefaultsService: mockUserDefaults,
                           keychainService: keychain,
                           biometricAuthService: biometricService)
     }
-
-    // TODO: 05/08/2018 implement
-
-    // checkPassword -> Bool
-
-    // hasBiometricAuthentication
-    // authenticate(withBiometricData)
-    // authenticate(withMasterPassword)
-    // unlockingTime -> Time?
-    // isLoggedIn - Session service
-    //
-    // -- unsuccessfulTries
-    // -- blockedUntilDate
-    // -- sessionService
 
     func test_hasMasterPassword_whenNoPassword_thenIsFalse() {
         XCTAssertFalse(account.hasMasterPassword)
@@ -108,20 +92,30 @@ class AccountTests: XCTestCase {
 
 }
 
-class MockKeychain: InMemoryKeychain {
+class MockKeychain: KeychainServiceProtocol {
 
+    private var storedPassword: String?
     var throwsOnSavePassword = false
 
     enum Error: Swift.Error {
         case error
     }
 
-    override func savePassword(_ password: String) throws {
+    func password() throws -> String? {
+        return storedPassword
+    }
+
+    func savePassword(_ password: String) throws {
         if throwsOnSavePassword {
             throw MockKeychain.Error.error
         }
-        try super.savePassword(password)
+        storedPassword = password
     }
+
+    func removePassword() throws {
+        storedPassword = nil
+    }
+
 }
 
 class MockBiometricService: BiometricAuthenticationServiceProtocol {
