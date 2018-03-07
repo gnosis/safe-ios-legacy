@@ -22,12 +22,14 @@ class BiometricService: BiometricAuthenticationServiceProtocol {
     func activate(completion: @escaping () -> Void) {
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
             // TODO: 07/03/2018 Localize
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Unlock your master password with \(biometryType())", reply: { _, error in
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Enable unlocking your master password with \(biometryType())", reply: { _, error in
                 // TODO: 07/03/2018 Log Error
                 if let error = error {
                     print("Error in evaluatePolicy: \(error)")
                 }
-                completion()
+                DispatchQueue.main.async {
+                    completion()
+                }
             })
         } else {
             completion()
