@@ -15,7 +15,6 @@
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
 		0A05A761204FE1EB0089327D /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */; };
 		0A05A7632050004C0089327D /* BiometricAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A7622050004C0089327D /* BiometricAuthenticationService.swift */; };
-		0A05A765205000670089327D /* BiometricAuthenticationServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A764205000670089327D /* BiometricAuthenticationServiceIntegrationTests.swift */; };
 		0A7E17AD204E99EB00C9078E /* MockAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E17AC204E99EB00C9078E /* MockAccount.swift */; };
 		0AB0FF51204EA9940066682F /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0FF50204EA9940066682F /* KeychainService.swift */; };
 		0AB0FF62204EF85B0066682F /* UserDefaultsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0FF61204EF85B0066682F /* UserDefaultsIntegrationTests.swift */; };
@@ -50,6 +49,7 @@
 		55E670CD204D7B5300234E5C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E670CC204D7B5300234E5C /* Account.swift */; };
 		55E670D0204D92DF00234E5C /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E670CF204D92DF00234E5C /* UserDefaultsService.swift */; };
 		55E670D2204DAD3000234E5C /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E670D1204DAD3000234E5C /* UserDefaultKeys.swift */; };
+		55E670D320502B6100234E5C /* BiometricAuthenticationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A764205000670089327D /* BiometricAuthenticationServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +99,7 @@
 		0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceIntegrationTests.swift; sourceTree = "<group>"; };
 		0A05A7622050004C0089327D /* BiometricAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationService.swift; sourceTree = "<group>"; };
-		0A05A764205000670089327D /* BiometricAuthenticationServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		0A05A764205000670089327D /* BiometricAuthenticationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationServiceTests.swift; sourceTree = "<group>"; };
 		0A7E17AC204E99EB00C9078E /* MockAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccount.swift; sourceTree = "<group>"; };
 		0AB0FF50204EA9940066682F /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		0AB0FF56204EF81C0066682F /* safeIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -329,7 +329,7 @@
 				0AB0FF50204EA9940066682F /* KeychainService.swift */,
 				0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */,
 				0A05A7622050004C0089327D /* BiometricAuthenticationService.swift */,
-				0A05A764205000670089327D /* BiometricAuthenticationServiceIntegrationTests.swift */,
+				0A05A764205000670089327D /* BiometricAuthenticationServiceTests.swift */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -554,7 +554,6 @@
 			files = (
 				0A05A761204FE1EB0089327D /* KeychainServiceIntegrationTests.swift in Sources */,
 				0AB0FF62204EF85B0066682F /* UserDefaultsIntegrationTests.swift in Sources */,
-				0A05A765205000670089327D /* BiometricAuthenticationServiceIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +597,7 @@
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
 				5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */,
 				0A0455F52048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
+				55E670D320502B6100234E5C /* BiometricAuthenticationServiceTests.swift in Sources */,
 				55E670CB204D7B2500234E5C /* AccountTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,7 +21,7 @@ final class Account: AccountProtocol {
 
     static let shared = Account(userDefaultsService: UserDefaultsService(),
                                 keychainService: KeychainService(),
-                                biometricAuthService: FakeBiometricService())
+                                biometricAuthService: BiometricService())
     private let userDefaultsService: UserDefaultsServiceProtocol
     private let keychainService: KeychainServiceProtocol
     private let biometricAuthService: BiometricAuthenticationServiceProtocol
