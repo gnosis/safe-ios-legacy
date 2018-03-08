@@ -7,10 +7,24 @@ import XCTest
 
 class AppFlowCoordinatorTests: XCTestCase {
 
-    func test_startViewController() {
-        let fc = AppFlowCoordinator()
-        let root = fc.startViewController()
-        XCTAssertTrue(type(of: root) == type(of: fc.onboardingFlowCoordinator.startViewController()))
+    let flowCoordinator = AppFlowCoordinator()
+    let account = MockAccount()
+
+    override func setUp() {
+        super.setUp()
+        flowCoordinator.account = account
+    }
+
+    func test_startViewController_whenPasswordWasNotSet_thenPresentingOnboarding() {
+        account.hasMasterPassword = false
+        let root = flowCoordinator.startViewController()
+        XCTAssertTrue(type(of: root) == type(of: flowCoordinator.onboardingFlowCoordinator.startViewController()))
+    }
+
+    func test_startViewController_whenPasswordWasSet_thenNotPresentingOnboarding() {
+        account.hasMasterPassword = true
+        let root = flowCoordinator.startViewController()
+        XCTAssertTrue(type(of: root) != type(of: flowCoordinator.onboardingFlowCoordinator.startViewController()))
     }
 
 }

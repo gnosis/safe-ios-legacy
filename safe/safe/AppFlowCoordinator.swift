@@ -8,8 +8,14 @@ class AppFlowCoordinator {
 
     let onboardingFlowCoordinator = OnboardingFlowCoordinator()
 
+    var account: AccountProtocol = Account.shared
+
     func startViewController() -> UIViewController {
-        return onboardingFlowCoordinator.startViewController()
+        return account.hasMasterPassword ? unlockController() : onboardingFlowCoordinator.startViewController()
+    }
+
+    func unlockController() -> UIViewController {
+        return UIViewController()
     }
 
 }

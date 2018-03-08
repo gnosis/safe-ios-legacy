@@ -19,7 +19,10 @@ platform :ios do
 
   before_all do
     ADHOC_APP_ID = ENV["FASTLANE_APP_IDENTIFIER_ADHOC"]
-    BUILD_LOG_PATH = "build_logs"
+    BUILD_LOG_PATH = "Build/build_logs"
+    DERIVED_DATA_PATH = "Build/DerivedData"
+    BUILD_PATH = "Build"
+    ARCHIVE_PATH = "Build/Archive"
     workspace = "safe.xcworkspace"
     ENV["GYM_WORKSPACE"] = workspace
     ENV["SCAN_WORKSPACE"] = workspace
@@ -28,12 +31,22 @@ platform :ios do
 
   desc "Runs unit tests"
   lane :test do
-    scan(scheme: "safe", configuration: "Debug", skip_build: true, buildlog_path: BUILD_LOG_PATH, skip_slack: true)
+    run_tests(scheme: "safe", 
+      configuration: "Debug", 
+      skip_build: true, 
+      buildlog_path: BUILD_LOG_PATH,
+      skip_slack: true, 
+      derived_data_path: DERIVED_DATA_PATH)
   end
   
   desc "Runs UI tests"
   lane :ui_test do
-    scan(scheme: "allUITests", configuration: "Debug", skip_build: true, buildlog_path: BUILD_LOG_PATH, slack_only_on_failure: true)
+    run_tests(scheme: "allUITests", 
+      configuration: "Debug", 
+      skip_build: true, 
+      buildlog_path: BUILD_LOG_PATH, 
+      slack_only_on_failure: true, 
+      derived_data_path: DERIVED_DATA_PATH)
   end
 
   desc "Build and distribute build to Fabric Beta"
@@ -45,7 +58,13 @@ platform :ios do
     end
     ENV["FASTLANE_APP_IDENTIFIER"] = ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
-    gym(configuration: "AdHoc", scheme: "safe", buildlog_path: BUILD_LOG_PATH)
+    gym(configuration: 
+      "AdHoc", 
+      scheme: "safe", 
+      buildlog_path: BUILD_LOG_PATH,
+      derived_data_path: DERIVED_DATA_PATH,
+      build_path: BUILD_PATH,
+      archive_path: ARCHIVE_PATH)
     crashlytics(groups: "ios-beta-testers", notifications: false)
     slack(
      message: "Successfully distributed new version to Fabric beta :rocket:",
@@ -63,8 +82,12 @@ platform :ios do
     xcversion(version: "~> 9.0")
     match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"])
     gym(scheme: "safe", 
-        include_symbols: true,
-        include_bitcode: true)
+      include_symbols: true,
+      include_bitcode: true,
+      buildlog_path: BUILD_LOG_PATH,
+      derived_data_path: DERIVED_DATA_PATH,
+      build_path: BUILD_PATH,
+      archive_path: ARCHIVE_PATH)
     pilot(skip_waiting_for_build_processing: true)
     slack(
      message: "Successfully distributed new version to TestFlight :rocket:",
