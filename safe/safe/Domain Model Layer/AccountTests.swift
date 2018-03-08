@@ -90,10 +90,29 @@ class AccountTests: XCTestCase {
         XCTAssertTrue(completionCalled)
     }
 
+    func test_isLoggedIn_whenNoMasterPassword_AlwaysFalse() {
+        setPassword()
+        account.cleanupAllData()
+        XCTAssertFalse(account.isLoggedIn)
+    }
+
     func test_isLoggedIn_whenPasswordIsSet_thenIsTrue() {
         XCTAssertFalse(account.isLoggedIn)
         setPassword()
         XCTAssertTrue(account.isLoggedIn)
+    }
+
+    func test_isLoggedIn_whenSessionIsInactive_thenIsFalse() {
+        let sessionDuration: TimeInterval = 10
+        let mockClockService = MockClockService()
+        account = Account(userDefaultsService: mockUserDefaults,
+                          keychainService: keychain,
+                          biometricAuthService: biometricService,
+                          systemClock: mockClockService,
+                          sessionDuration: sessionDuration)
+        setPassword()
+        mockClockService.currentTime += sessionDuration
+        XCTAssertFalse(account.isLoggedIn)
     }
 
 }
