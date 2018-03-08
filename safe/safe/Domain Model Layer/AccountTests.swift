@@ -90,6 +90,12 @@ class AccountTests: XCTestCase {
         XCTAssertTrue(completionCalled)
     }
 
+    func test_isLoggedIn_whenPasswordIsSet_thenIsTrue() {
+        XCTAssertFalse(account.isLoggedIn)
+        setPassword()
+        XCTAssertTrue(account.isLoggedIn)
+    }
+
 }
 
 class InMemoryUserDefaults: UserDefaultsServiceProtocol {

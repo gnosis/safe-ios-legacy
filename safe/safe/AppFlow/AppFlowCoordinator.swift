@@ -15,7 +15,6 @@ final class AppFlowCoordinator {
     }
 
     func startViewController() -> UIViewController {
-        // Check ACCOUNT SESSION        
         return account.hasMasterPassword ? unlockController() : onboardingFlowCoordinator.startViewController()
     }
 

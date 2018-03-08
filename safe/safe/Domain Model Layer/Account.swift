@@ -7,6 +7,8 @@ import Foundation
 protocol AccountProtocol: class {
 
     var hasMasterPassword: Bool { get }
+    var isLoggedIn: Bool { get }
+
     func cleanupAllData()
     func setMasterPassword(_ password: String) throws
     func activateBiometricAuthentication(completion: @escaping () -> Void)
@@ -36,6 +38,10 @@ final class Account: AccountProtocol {
 
     var hasMasterPassword: Bool {
         return userDefaultsService.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue) ?? false
+    }
+
+    var isLoggedIn: Bool {
+        return hasMasterPassword
     }
 
     func setMasterPassword(_ password: String) throws {
