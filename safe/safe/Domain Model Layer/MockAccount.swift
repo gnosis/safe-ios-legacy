@@ -8,6 +8,8 @@ import Foundation
 class MockAccount: AccountProtocol {
 
     var hasMasterPassword = false
+    var isLoggedIn = false
+
     var didSavePassword = false
     var didCleanData = false
     var didRequestBiometricActivation = false

@@ -5,7 +5,7 @@
 import UIKit
 import safeUIKit
 
-class TextInputViewController: UIViewController {
+final class TextInputViewController: UIViewController {
 
     @IBOutlet weak var textInput: TextInput!
 

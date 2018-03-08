@@ -18,7 +18,7 @@ enum KeychainError: Error {
     case unhandledError(status: OSStatus)
 }
 
-class KeychainService: KeychainServiceProtocol {
+final class KeychainService: KeychainServiceProtocol {
 
     private static let defaultServiceName = "pm.gnosis.safe"
     private let serviceName: String

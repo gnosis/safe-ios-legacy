@@ -90,6 +90,49 @@ class AccountTests: XCTestCase {
         XCTAssertTrue(completionCalled)
     }
 
+    func test_isLoggedIn_whenNoMasterPassword_AlwaysFalse() {
+        setPassword()
+        account.cleanupAllData()
+        XCTAssertFalse(account.isLoggedIn)
+    }
+
+    func test_isLoggedIn_whenPasswordIsSet_thenIsTrue() {
+        XCTAssertFalse(account.isLoggedIn)
+        setPassword()
+        XCTAssertTrue(account.isLoggedIn)
+    }
+
+    func test_isLoggedIn_whenSessionIsInactive_thenIsFalse() {
+        let sessionDuration: TimeInterval = 10
+        let mockClockService = MockClockService()
+        account = Account(userDefaultsService: mockUserDefaults,
+                          keychainService: keychain,
+                          biometricAuthService: biometricService,
+                          systemClock: mockClockService,
+                          sessionDuration: sessionDuration)
+        setPassword()
+        mockClockService.currentTime += sessionDuration
+        XCTAssertFalse(account.isLoggedIn)
+    }
+
+}
+
+class InMemoryUserDefaults: UserDefaultsServiceProtocol {
+
+    var dict = [String: Bool]()
+
+    func bool(for key: String) -> Bool? {
+        return dict[key]
+    }
+
+    func setBool(_ value: Bool, for key: String) {
+        dict[key] = value
+    }
+
+    func deleteKey(_ key: String) {
+        dict.removeValue(forKey: key)
+    }
+
 }
 
 class MockKeychain: KeychainServiceProtocol {

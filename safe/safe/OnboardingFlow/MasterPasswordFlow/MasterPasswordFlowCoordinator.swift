@@ -4,7 +4,7 @@
 
 import UIKit
 
-class MasterPasswordFlowCoordinator {
+final class MasterPasswordFlowCoordinator {
 
     private var masterPasswordNavigationController: MasterPasswordNavigationController!
 

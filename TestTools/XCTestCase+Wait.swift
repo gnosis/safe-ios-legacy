@@ -40,6 +40,11 @@ extension XCTestCase {
                 inFile: file, atLine: line, expected: true)
         }
     }
+
+    func wait(for delay: TimeInterval = 0.1) {
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: delay))
+    }
+    
 }
 
 enum Predicate: String {
