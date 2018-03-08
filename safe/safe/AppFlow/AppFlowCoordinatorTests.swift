@@ -7,12 +7,12 @@ import XCTest
 
 class AppFlowCoordinatorTests: XCTestCase {
 
-    let flowCoordinator = AppFlowCoordinator()
+    var flowCoordinator: AppFlowCoordinator!
     let account = MockAccount()
 
     override func setUp() {
         super.setUp()
-        flowCoordinator.account = account
+        flowCoordinator = AppFlowCoordinator(account: account)
     }
 
     func test_startViewController_whenPasswordWasNotSet_thenPresentingOnboarding() {
