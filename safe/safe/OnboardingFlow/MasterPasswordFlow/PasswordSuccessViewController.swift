@@ -4,4 +4,4 @@
 
 import UIKit
 
-class PasswordSuccessViewController: UIViewController {}
+final class PasswordSuccessViewController: UIViewController {}

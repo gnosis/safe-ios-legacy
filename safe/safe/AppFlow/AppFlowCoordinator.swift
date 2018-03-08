@@ -4,7 +4,7 @@
 
 import UIKit
 
-class AppFlowCoordinator {
+final class AppFlowCoordinator {
 
     private let account: AccountProtocol
     let onboardingFlowCoordinator: OnboardingFlowCoordinator

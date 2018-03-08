@@ -11,7 +11,7 @@ protocol BiometricAuthenticationServiceProtocol {
 
 }
 
-class BiometricService: BiometricAuthenticationServiceProtocol {
+final class BiometricService: BiometricAuthenticationServiceProtocol {
 
     private let context: LAContext
 
