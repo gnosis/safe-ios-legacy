@@ -70,15 +70,12 @@ final class Account: AccountProtocol {
         }
     }
 
-    func checkMasterPassword(_ password: String) -> Bool {
-        return false
-    }
-
     func activateBiometricAuthentication(completion: @escaping () -> Void) {
         biometricAuthService.activate(completion: completion)
     }
 
     func authenticateWithBiometry(completion: @escaping (Bool) -> Void) {
+        biometricAuthService.authenticate(completion: completion)
     }
 
     func authenticateWithPassword(_ password: String) -> Bool {

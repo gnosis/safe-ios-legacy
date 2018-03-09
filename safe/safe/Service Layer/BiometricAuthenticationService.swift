@@ -8,6 +8,7 @@ import LocalAuthentication
 protocol BiometricAuthenticationServiceProtocol {
 
     func activate(completion: @escaping () -> Void)
+    func authenticate(completion: @escaping (Bool) -> Void)
 
 }
 
@@ -34,6 +35,10 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
         } else {
             completion()
         }
+    }
+
+    func authenticate(completion: @escaping (Bool) -> Void) {
+        completion(false)
     }
 
     private func biometryType() -> String {

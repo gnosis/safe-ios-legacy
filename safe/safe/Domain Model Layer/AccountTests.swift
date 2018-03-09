@@ -69,15 +69,6 @@ class AccountTests: XCTestCase {
         XCTAssertNil(try! keychain.password())
     }
 
-    func test_checkMasterPassword_whenNoPasswordWasSet_thenReturnsFalse() {
-        XCTAssertFalse(account.checkMasterPassword("Password"))
-    }
-
-    func test_checkMasterPassword_whenPasswordIsWrong_thenReturnsFalse() {
-        setPassword()
-        XCTAssertFalse(account.checkMasterPassword("WrongPassword"))
-    }
-
     func test_activateBiometricAuthentication_whenInvoked_thenCallsAccountCompletionAfterBiometricActivation() {
         var completionCalled = false
         biometricService.shouldActivateImmediately = false
@@ -113,6 +104,27 @@ class AccountTests: XCTestCase {
         setPassword()
         mockClockService.currentTime += sessionDuration
         XCTAssertFalse(account.isLoggedIn)
+    }
+
+    func test_authenticateWithPassword_whenNoPasswordWasSet_thenReturnsFalse() {
+        XCTAssertFalse(account.authenticateWithPassword("Password"))
+    }
+
+    func test_authenticateWithPassword_whenPasswordIsWrong_thenReturnsFalse() {
+        setPassword()
+        XCTAssertFalse(account.authenticateWithPassword("WrongPassword"))
+    }
+
+    func test_authenticateWithBiometry_whenInvoked_thenCallsCompletionOnBiometrySuccess() {
+        var completionCalled = false
+        biometricService.shouldAuthenticateImmediately = false
+        account.authenticateWithBiometry { _ in
+            completionCalled = true
+        }
+        wait()
+        XCTAssertFalse(completionCalled)
+        biometricService.completeAuthentication(result: true)
+        XCTAssertTrue(completionCalled)
     }
 
 }
@@ -163,19 +175,34 @@ class MockKeychain: KeychainServiceProtocol {
 
 class MockBiometricService: BiometricAuthenticationServiceProtocol {
 
-    var savedCompletion: (() -> Void)?
+    private var savedActivationCompletion: (() -> Void)?
     var shouldActivateImmediately = false
+
+    private var savedAuthenticationCompletion: ((Bool) -> Void)?
+    var shouldAuthenticateImmediately = false
 
     func activate(completion: @escaping () -> Void) {
         if shouldActivateImmediately {
             completion()
         } else {
-            savedCompletion = completion
+            savedActivationCompletion = completion
         }
     }
 
     func completeActivation() {
-        savedCompletion?()
+        savedActivationCompletion?()
+    }
+
+    func authenticate(completion: @escaping (Bool) -> Void) {
+        if shouldAuthenticateImmediately {
+            completion(true)
+        } else {
+            savedAuthenticationCompletion = completion
+        }
+    }
+
+    func completeAuthentication(result: Bool) {
+        savedAuthenticationCompletion?(result)
     }
 
 }
