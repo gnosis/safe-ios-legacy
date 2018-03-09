@@ -16,6 +16,10 @@ class MockAccount: AccountProtocol {
     var setMasterPasswordThrows = false
     private var biometricActivationCompletion: (() -> Void)?
 
+    var didRequestBiometricAuthentication = false
+    var shouldAuthenticateImmediately = true
+    private var biometricAuthenticationCompletion: ((Bool) -> Void)?
+
     enum Error: Swift.Error {
         case error
     }
@@ -38,6 +42,19 @@ class MockAccount: AccountProtocol {
 
     func finishBiometricActivation() {
         biometricActivationCompletion?()
+    }
+
+    func authenticateWithBiometry(completion: @escaping (Bool) -> Void) {
+        didRequestBiometricAuthentication = true
+        if shouldAuthenticateImmediately {
+            completion(true)
+        } else {
+            biometricAuthenticationCompletion = completion
+        }
+    }
+
+    func completeBiometryAuthentication(success: Bool) {
+        biometricAuthenticationCompletion?(success)
     }
 
 }
