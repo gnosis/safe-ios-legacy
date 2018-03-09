@@ -7,7 +7,10 @@ import LocalAuthentication
 
 protocol BiometricAuthenticationServiceProtocol {
 
+    var isAuthenticationAvailable: Bool { get }
+    var isBiometryFaceID: Bool { get }
     func activate(completion: @escaping () -> Void)
+    func authenticate(completion: @escaping (Bool) -> Void)
 
 }
 
@@ -19,20 +22,43 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
         context = localAuthenticationContext
     }
 
+    var isAuthenticationAvailable: Bool {
+        return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+    }
+
+    var isBiometryFaceID: Bool {
+        if #available(iOS 11.0, *) {
+            // iOS specifics: pre-run policy evaluation to query biometry type
+            _ = isAuthenticationAvailable
+            return context.biometryType == .faceID
+        } else {
+            return false
+        }
+    }
+
     func activate(completion: @escaping () -> Void) {
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
-            // TODO: 07/03/2018 Localize
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Enable unlocking your master password with \(biometryType())", reply: { _, error in
+        // TODO: 07/03/2018 Localize
+        requestBiometry(reason: "Enable unlocking your master password with \(biometryType())") { _ in
+            completion()
+        }
+    }
+
+    func authenticate(completion: @escaping (Bool) -> Void) {
+        // TODO: 09/03/2018 Localize
+        requestBiometry(reason: "Unlock your master password with \(biometryType())", completion: completion)
+    }
+
+    private func requestBiometry(reason: String, completion: @escaping (Bool) -> Void) {
+        if isAuthenticationAvailable {
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { result, error in
                 // TODO: 07/03/2018 Log Error
                 if let error = error {
                     print("Error in evaluatePolicy: \(error)")
                 }
-                DispatchQueue.main.async {
-                    completion()
-                }
-            })
+                completion(result)
+            }
         } else {
-            completion()
+            completion(false)
         }
     }
 

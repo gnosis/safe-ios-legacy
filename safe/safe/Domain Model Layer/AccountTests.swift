@@ -11,6 +11,8 @@ class AccountTests: XCTestCase {
     let mockUserDefaults = InMemoryUserDefaults()
     let keychain = MockKeychain()
     let biometricService = MockBiometricService()
+    let correctPassword = "Password"
+    let wrongPassword = "WrongPassword"
 
     override func setUp() {
         super.setUp()
@@ -19,16 +21,14 @@ class AccountTests: XCTestCase {
                           biometricAuthService: biometricService)
     }
 
-    func test_hasMasterPassword_whenNoPassword_thenIsFalse() {
-        XCTAssertFalse(account.hasMasterPassword)
-    }
-
-    fileprivate func setPassword() {
-        XCTAssertNoThrow(try account.setMasterPassword("Password"))
-    }
-
     func test_shared_exists() {
         XCTAssertNotNil(Account.shared)
+    }
+
+    // MARK: - hasMasterPassword
+
+    func test_hasMasterPassword_whenNoPassword_thenIsFalse() {
+        XCTAssertFalse(account.hasMasterPassword)
     }
 
     func test_hasMasterPassword_whenPasswordWasSet_thenIsTrue() {
@@ -44,6 +44,8 @@ class AccountTests: XCTestCase {
         XCTAssertTrue(account.hasMasterPassword)
     }
 
+    // MARK: - setMasterPassword
+
     func test_setMasterPassword_whenWasSet_thenUserDefaultsPropertyIsSet() {
         setPassword()
         XCTAssertTrue(mockUserDefaults.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue) ?? false)
@@ -51,15 +53,17 @@ class AccountTests: XCTestCase {
 
     func test_setMasterPassword_whenWasSet_thenStoresPasswordInKeychain() {
         setPassword()
-        XCTAssertEqual(try! keychain.password(), "Password")
+        XCTAssertEqual(try! keychain.password(), correctPassword)
     }
 
     func test_setMasterPassword_whenKeychainThrows_thenSettingPasswordThrows() {
         keychain.throwsOnSavePassword = true
-        XCTAssertThrowsError(try account.setMasterPassword("Password"), "Expected Account Error") { error in
+        XCTAssertThrowsError(try account.setMasterPassword(correctPassword), "Expected Account Error") { error in
             XCTAssertEqual(error.localizedDescription, AccountError.settingMasterPasswordFailed.localizedDescription)
         }
     }
+
+    // MARK: - cleanupAllData
 
     func test_cleanupAllData_whenCalled_thenAccountDataIsCleaned() {
         setPassword()
@@ -69,14 +73,7 @@ class AccountTests: XCTestCase {
         XCTAssertNil(try! keychain.password())
     }
 
-    func test_checkMasterPassword_whenNoPasswordWasSet_thenReturnsFalse() {
-        XCTAssertFalse(account.checkMasterPassword("Password"))
-    }
-
-    func test_checkMasterPassword_whenPasswordIsWrong_thenReturnsFalse() {
-        setPassword()
-        XCTAssertFalse(account.checkMasterPassword("WrongPassword"))
-    }
+    // MARK: - activateBiometricAuthentication
 
     func test_activateBiometricAuthentication_whenInvoked_thenCallsAccountCompletionAfterBiometricActivation() {
         var completionCalled = false
@@ -89,6 +86,8 @@ class AccountTests: XCTestCase {
         biometricService.completeActivation()
         XCTAssertTrue(completionCalled)
     }
+
+    // MARK: - isLoggedIn
 
     func test_isLoggedIn_whenNoMasterPassword_AlwaysFalse() {
         setPassword()
@@ -103,6 +102,93 @@ class AccountTests: XCTestCase {
     }
 
     func test_isLoggedIn_whenSessionIsInactive_thenIsFalse() {
+        setupExpiredSession()
+        XCTAssertFalse(account.isLoggedIn)
+    }
+
+    // MARK: - authenticateWithPassword
+
+    func test_authenticateWithPassword_whenNoPasswordWasSet_thenReturnsFalse() {
+        XCTAssertFalse(account.authenticateWithPassword(correctPassword))
+    }
+
+    func test_authenticateWithPassword_whenPasswordIsWrong_thenReturnsFalse() {
+        setPassword()
+        XCTAssertFalse(account.authenticateWithPassword(wrongPassword))
+    }
+
+    func test_authenticateWithPassword_whenPasswordCorrect_thenSuccess() {
+        setPassword()
+        XCTAssertTrue(account.authenticateWithPassword(correctPassword))
+    }
+
+    func test_authenticateWithPassword_whenKeychainThrows_thenFailure() {
+        keychain.throwsOnGetPassword = true
+        XCTAssertFalse(account.authenticateWithPassword(correctPassword))
+    }
+
+    func test_authenticateWithPassword_whenSuccess_thenStartsSession() {
+        setupExpiredSession()
+        _ = account.authenticateWithPassword(correctPassword)
+        XCTAssertTrue(account.isLoggedIn)
+    }
+
+    func test_authenticateWithPassword_whenFails_thenStaysLoggedOut() {
+        setupExpiredSession()
+        _ = account.authenticateWithPassword(wrongPassword)
+        XCTAssertFalse(account.isLoggedIn)
+    }
+
+    // MARK: - authenticateWithBiometry
+
+    func test_authenticateWithBiometry_whenInvoked_thenCallsCompletion() {
+        var completionCalled = false
+        biometricService.shouldAuthenticateImmediately = false
+        account.authenticateWithBiometry { _ in
+            completionCalled = true
+        }
+        wait()
+        XCTAssertFalse(completionCalled)
+        let anyResult = true
+        biometricService.completeAuthentication(result: anyResult)
+        XCTAssertTrue(completionCalled)
+    }
+
+    func test_authenticateWithBiometry_whenFails_thenLoggedOut() {
+        setupExpiredSession()
+        biometricService.shouldAuthenticateImmediately = true
+        biometricService.biometryAuthenticationResult = false
+        account.authenticateWithBiometry { _ in }
+        XCTAssertFalse(account.isLoggedIn)
+    }
+
+    func test_authenticateWithBiometry_whenSuccess_thenStartsSession() {
+        setupExpiredSession()
+        biometricService.shouldAuthenticateImmediately = true
+        biometricService.biometryAuthenticationResult = true
+        account.authenticateWithBiometry { _ in }
+        XCTAssertTrue(account.isLoggedIn)
+    }
+
+    // MARK: - isBiometryAuthenticationAvailable
+
+    func test_isBiometryAuthenticationAvailable_whenAvailable_thenTrue() {
+        biometricService.isAuthenticationAvailable = true
+        XCTAssertTrue(account.isBiometryAuthenticationAvailable)
+    }
+
+    func test_isBiometryFaceID_whenAvailable_thenTrue() {
+        biometricService.isBiometryFaceID = true
+        XCTAssertTrue(account.isBiometryFaceID)
+    }
+
+}
+
+// MARK: - Helpers
+
+extension AccountTests {
+
+    func setupExpiredSession() {
         let sessionDuration: TimeInterval = 10
         let mockClockService = MockClockService()
         account = Account(userDefaultsService: mockUserDefaults,
@@ -112,7 +198,10 @@ class AccountTests: XCTestCase {
                           sessionDuration: sessionDuration)
         setPassword()
         mockClockService.currentTime += sessionDuration
-        XCTAssertFalse(account.isLoggedIn)
+    }
+
+    func setPassword() {
+        XCTAssertNoThrow(try account.setMasterPassword(correctPassword))
     }
 
 }
@@ -139,12 +228,16 @@ class MockKeychain: KeychainServiceProtocol {
 
     private var storedPassword: String?
     var throwsOnSavePassword = false
+    var throwsOnGetPassword = false
 
     enum Error: Swift.Error {
         case error
     }
 
     func password() throws -> String? {
+        if throwsOnGetPassword {
+            throw MockKeychain.Error.error
+        }
         return storedPassword
     }
 
@@ -163,19 +256,37 @@ class MockKeychain: KeychainServiceProtocol {
 
 class MockBiometricService: BiometricAuthenticationServiceProtocol {
 
-    var savedCompletion: (() -> Void)?
+    private var savedActivationCompletion: (() -> Void)?
     var shouldActivateImmediately = false
+    var biometryAuthenticationResult = true
+    var isAuthenticationAvailable = false
+    var isBiometryFaceID = false
+
+    private var savedAuthenticationCompletion: ((Bool) -> Void)?
+    var shouldAuthenticateImmediately = false
 
     func activate(completion: @escaping () -> Void) {
         if shouldActivateImmediately {
             completion()
         } else {
-            savedCompletion = completion
+            savedActivationCompletion = completion
         }
     }
 
     func completeActivation() {
-        savedCompletion?()
+        savedActivationCompletion?()
+    }
+
+    func authenticate(completion: @escaping (Bool) -> Void) {
+        if shouldAuthenticateImmediately {
+            completion(biometryAuthenticationResult)
+        } else {
+            savedAuthenticationCompletion = completion
+        }
+    }
+
+    func completeAuthentication(result: Bool) {
+        savedAuthenticationCompletion?(result)
     }
 
 }

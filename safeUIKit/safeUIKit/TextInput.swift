@@ -17,6 +17,8 @@ public final class TextInput: UIView {
     @IBOutlet weak var stackView: UIStackView!
 
     public weak var delegate: TextInputDelegate?
+    /// Indicates whether the view has user input focus
+    public var isActive: Bool = false
 
     private var allRules: [RuleLabel] {
         return stackView.arrangedSubviews.flatMap { $0 as? RuleLabel }
@@ -30,7 +32,7 @@ public final class TextInput: UIView {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        loadContentsFromNib()
+        configure()
     }
 
     public func addRule(_ localizedDescription: String, validation: ((String) -> Bool)? = nil) {
@@ -40,11 +42,16 @@ public final class TextInput: UIView {
 
     public override func becomeFirstResponder() -> Bool {
         super.becomeFirstResponder()
-        return textField.becomeFirstResponder()
+        isActive = textField.becomeFirstResponder()
+        return isActive
     }
 
     public override func awakeFromNib() {
         super.awakeFromNib()
+        configure()
+    }
+
+    private func configure() {
         loadContentsFromNib()
         textField.delegate = self
         textField.clearButtonMode = .whileEditing

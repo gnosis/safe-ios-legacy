@@ -8,10 +8,14 @@ protocol AccountProtocol: class {
 
     var hasMasterPassword: Bool { get }
     var isLoggedIn: Bool { get }
+    var isBiometryAuthenticationAvailable: Bool { get }
+    var isBiometryFaceID: Bool { get }
 
     func cleanupAllData()
     func setMasterPassword(_ password: String) throws
     func activateBiometricAuthentication(completion: @escaping () -> Void)
+    func authenticateWithBiometry(completion: @escaping (Bool) -> Void)
+    func authenticateWithPassword(_ password: String) -> Bool
 
 }
 
@@ -46,6 +50,14 @@ final class Account: AccountProtocol {
         return hasMasterPassword && session.isActive
     }
 
+    var isBiometryAuthenticationAvailable: Bool {
+        return biometricAuthService.isAuthenticationAvailable
+    }
+
+    var isBiometryFaceID: Bool {
+        return biometricAuthService.isBiometryFaceID
+    }
+
     func setMasterPassword(_ password: String) throws {
         do {
             try keychainService.savePassword(password)
@@ -68,12 +80,31 @@ final class Account: AccountProtocol {
         }
     }
 
-    func checkMasterPassword(_ password: String) -> Bool {
-        return false
-    }
-
     func activateBiometricAuthentication(completion: @escaping () -> Void) {
         biometricAuthService.activate(completion: completion)
+    }
+
+    func authenticateWithBiometry(completion: @escaping (Bool) -> Void) {
+        biometricAuthService.authenticate { [unowned self] success in
+            completion(self.authenticationResult(success))
+        }
+    }
+
+    func authenticateWithPassword(_ password: String) -> Bool {
+        do {
+            return authenticationResult(try keychainService.password() == password)
+        } catch let e {
+            // TODO: 09/03/18: log error
+            print("Password fetch failed: \(e)")
+            return false
+        }
+    }
+
+    private func authenticationResult(_ success: Bool) -> Bool {
+        if success {
+            session.start()
+        }
+        return success
     }
 
 }

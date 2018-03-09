@@ -30,7 +30,7 @@ class MasterPasswordFlowCoordinatorTests: XCTestCase {
     }
 
     func test_whenDidSetPassword_thenConfirmPasswordIsShown() {
-        flowCoordinator.didSetPassword("Password")
+        flowCoordinator.didSetPassword("Any")
         wait()
         XCTAssertTrue(nav.topViewController is ConfirmPaswordViewController)
     }
