@@ -1,3 +1,4 @@
 red: #e74c3c
 gray: #8e8e8e
 green: #72ae60
+black: #000000

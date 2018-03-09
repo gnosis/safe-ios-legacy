@@ -17,6 +17,7 @@
 		0A0974E420480D47005753DF /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E220480D47005753DF /* XCTest+Assert.swift */; };
 		0A0974EA20480E11005753DF /* safeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* safeUIKitDemoUITests.swift */; };
 		0A0974EC20480E45005753DF /* safeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* safeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8BE205284180044D5DD /* H1Label.swift */; };
 		0A9670BB20480C5700445AC2 /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* safeUIKit.framework */; };
 		0A9670C720480C5700445AC2 /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* safeUIKit.framework */; };
 		0A9670C820480C5700445AC2 /* safeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* safeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -86,6 +87,7 @@
 		0A0974E220480D47005753DF /* XCTest+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
 		0A0974E920480E11005753DF /* safeUIKitDemoUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = safeUIKitDemoUITests.swift; sourceTree = "<group>"; };
 		0A0974EB20480E45005753DF /* safeUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safeUIKit.h; sourceTree = "<group>"; };
+		0A7AE8BE205284180044D5DD /* H1Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H1Label.swift; sourceTree = "<group>"; };
 		0A96707A20480C3E00445AC2 /* safeUIKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safeUIKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A96708E20480C3E00445AC2 /* safeUIKitDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeUIKitDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A96709420480C3F00445AC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				0A9670D220480C7B00445AC2 /* Fonts.swift */,
 				0A9670B520480C5700445AC2 /* Info.plist */,
 				0A0974EB20480E45005753DF /* safeUIKit.h */,
+				0A7AE8BE205284180044D5DD /* H1Label.swift */,
 			);
 			path = safeUIKit;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */,
 				0A9670DB20480C7B00445AC2 /* Fonts.swift in Sources */,
 				0AD93E0920481461008C38CA /* Colors.swift in Sources */,
 				0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */,
