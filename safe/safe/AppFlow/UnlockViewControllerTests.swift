@@ -30,10 +30,52 @@ class UnlockViewControllerTests: XCTestCase {
     }
 
     func test_whenBiometrySuccess_thenCallsDelegate() {
-        account.shouldAuthenticateImmediately = false
-        vc.viewDidAppear(false)
-        account.completeBiometryAuthentication(success: true)
+        authenticateWithBiometryResult(true)
         XCTAssertTrue(delegate.didLogInWasCalled)
+    }
+
+    func test_whenBiometryFails_thenNotLoggedIn() {
+        authenticateWithBiometryResult(false)
+        XCTAssertFalse(delegate.didLogInWasCalled)
+    }
+
+    func test_whenBiometryFails_thenFocusesOnPasswordField() {
+        guard let window = UIApplication.shared.keyWindow else {
+            XCTFail("Must have window")
+            return
+        }
+        window.rootViewController = vc
+        window.makeKeyAndVisible()
+        authenticateWithBiometryResult(false)
+        XCTAssertTrue(vc.textInput.isActive)
+    }
+
+    func test_whenBiometryButtonTapped_thenAuthenticatesWithBiometry() {
+        vc.loginWithBiometry(self)
+        wait()
+        XCTAssertTrue(delegate.didLogInWasCalled)
+    }
+
+    func test_whenTextInputEntered_thenRequestsPasswordAuthentication() {
+        vc.textInputDidReturn()
+        XCTAssertTrue(account.didRequestPasswordAuthentication)
+    }
+
+    func test_whenPasswordPasses_thenDelegateCalled() {
+        account.shouldAuthenticateWithPassword = true
+        vc.textInputDidReturn()
+        XCTAssertTrue(delegate.didLogInWasCalled)
+    }
+
+}
+
+extension UnlockViewControllerTests {
+
+    func authenticateWithBiometryResult(_ result: Bool) {
+        account.shouldCallBiometricCompletionImmediately = false
+        vc.viewDidAppear(false)
+        account.completeBiometryAuthentication(success: result)
+        wait()
     }
 
 }

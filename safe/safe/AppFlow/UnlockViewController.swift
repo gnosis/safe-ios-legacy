@@ -24,10 +24,40 @@ final class UnlockViewController: UIViewController {
         return vc
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        textInput.delegate = self
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        auhtenticateWithBiometry()
+    }
+
+    @IBAction func loginWithBiometry(_ sender: Any) {
+        auhtenticateWithBiometry()
+    }
+
+    private func auhtenticateWithBiometry() {
         account.authenticateWithBiometry { [unowned self] success in
-            self.delegate?.didLogIn()
+            DispatchQueue.main.async {
+                if success {
+                    self.delegate?.didLogIn()
+                } else {
+                    _ = self.textInput.becomeFirstResponder()
+                }
+            }
+        }
+    }
+
+}
+
+extension UnlockViewController: TextInputDelegate {
+
+    func textInputDidReturn() {
+        let success = account.authenticateWithPassword(textInput.text!)
+        if success {
+            delegate?.didLogIn()
         }
     }
 

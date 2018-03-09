@@ -75,6 +75,16 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(input.text, "a")
     }
 
+    func test_whenBecomesFirstResponder_thenIsFocused() {
+        guard let window = UIApplication.shared.keyWindow else {
+            XCTFail("Must have active window")
+            return
+        }
+        window.addSubview(input)
+        _ = input.becomeFirstResponder()
+        XCTAssertTrue(input.isActive)
+    }
+
 }
 
 fileprivate extension TextInput {

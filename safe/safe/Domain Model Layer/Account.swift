@@ -13,6 +13,7 @@ protocol AccountProtocol: class {
     func setMasterPassword(_ password: String) throws
     func activateBiometricAuthentication(completion: @escaping () -> Void)
     func authenticateWithBiometry(completion: @escaping (Bool) -> Void)
+    func authenticateWithPassword(_ password: String) -> Bool
 
 }
 
@@ -78,7 +79,10 @@ final class Account: AccountProtocol {
     }
 
     func authenticateWithBiometry(completion: @escaping (Bool) -> Void) {
+    }
 
+    func authenticateWithPassword(_ password: String) -> Bool {
+        return false
     }
 
 }
