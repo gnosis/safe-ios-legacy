@@ -67,6 +67,20 @@ class UnlockViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.didLogInWasCalled)
     }
 
+    func test_whenCannotAuthenticateWithBiometry_thenHidesBiometryButton() {
+        account.isBiometryAuthenticationAvailable = false
+        vc = UnlockViewController.create(account: account, delegate: delegate)
+        vc.loadViewIfNeeded()
+        XCTAssertTrue(vc.loginWithBiometryButton.isHidden)
+    }
+
+    func test_whenBiometryBecomesUnavailableAfterFailedAuthentication_thenHidesBiometryButton() {
+        account.isBiometryAuthenticationAvailable = false
+        account.shouldBiometryAuthenticationSuccess = false
+        vc.loginWithBiometry(self)
+        wait()
+        XCTAssertTrue(vc.loginWithBiometryButton.isHidden)
+    }
 }
 
 extension UnlockViewControllerTests {

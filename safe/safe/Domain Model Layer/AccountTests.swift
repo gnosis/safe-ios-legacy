@@ -170,6 +170,13 @@ class AccountTests: XCTestCase {
         XCTAssertTrue(account.isLoggedIn)
     }
 
+    // MARK: - isBiometryAuthenticationAvailable
+
+    func test_isBiometryAuthenticationAvailable_whenAvailable_thenTrue() {
+        biometricService.isAuthenticationAvailable = true
+        XCTAssertTrue(account.isBiometryAuthenticationAvailable)
+    }
+
 }
 
 // MARK: - Helpers
@@ -247,7 +254,7 @@ class MockBiometricService: BiometricAuthenticationServiceProtocol {
     private var savedActivationCompletion: (() -> Void)?
     var shouldActivateImmediately = false
     var biometryAuthenticationResult = true
-
+    var isAuthenticationAvailable = false
 
     private var savedAuthenticationCompletion: ((Bool) -> Void)?
     var shouldAuthenticateImmediately = false

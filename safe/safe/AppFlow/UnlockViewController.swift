@@ -27,6 +27,11 @@ final class UnlockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         textInput.delegate = self
+        updateBiometryButtonVisibility()
+    }
+
+    private func updateBiometryButtonVisibility() {
+        loginWithBiometryButton.isHidden = !account.isBiometryAuthenticationAvailable
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +50,7 @@ final class UnlockViewController: UIViewController {
                     self.delegate?.didLogIn()
                 } else {
                     _ = self.textInput.becomeFirstResponder()
+                    self.updateBiometryButtonVisibility()
                 }
             }
         }

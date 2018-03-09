@@ -7,6 +7,7 @@ import LocalAuthentication
 
 protocol BiometricAuthenticationServiceProtocol {
 
+    var isAuthenticationAvailable: Bool { get }
     func activate(completion: @escaping () -> Void)
     func authenticate(completion: @escaping (Bool) -> Void)
 
@@ -18,6 +19,10 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
 
     init(localAuthenticationContext: LAContext = LAContext()) {
         context = localAuthenticationContext
+    }
+
+    var isAuthenticationAvailable: Bool {
+        return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
     }
 
     func activate(completion: @escaping () -> Void) {
@@ -33,7 +38,7 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
     }
 
     private func requestBiometry(reason: String, completion: @escaping (Bool) -> Void) {
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
+        if isAuthenticationAvailable {
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { result, error in
                 // TODO: 07/03/2018 Log Error
                 if let error = error {

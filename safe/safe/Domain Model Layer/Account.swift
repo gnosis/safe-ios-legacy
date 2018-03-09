@@ -8,6 +8,7 @@ protocol AccountProtocol: class {
 
     var hasMasterPassword: Bool { get }
     var isLoggedIn: Bool { get }
+    var isBiometryAuthenticationAvailable: Bool { get }
 
     func cleanupAllData()
     func setMasterPassword(_ password: String) throws
@@ -46,6 +47,10 @@ final class Account: AccountProtocol {
 
     var isLoggedIn: Bool {
         return hasMasterPassword && session.isActive
+    }
+
+    var isBiometryAuthenticationAvailable: Bool {
+        return biometricAuthService.isAuthenticationAvailable
     }
 
     func setMasterPassword(_ password: String) throws {

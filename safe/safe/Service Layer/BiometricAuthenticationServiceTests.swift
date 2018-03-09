@@ -50,6 +50,11 @@ class BiometricAuthenticationServiceTests: XCTestCase {
         XCTAssertFalse(authenticate())
     }
 
+    func test_isAuthenticationAvailable_whenCanEvaluatePolicy_thenTrue() {
+        context.canEvaluatePolicy = true
+        XCTAssertTrue(biometricService.isAuthenticationAvailable)
+    }
+
 }
 
 extension BiometricAuthenticationServiceTests {

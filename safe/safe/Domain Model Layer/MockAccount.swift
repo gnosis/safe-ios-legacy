@@ -18,10 +18,13 @@ class MockAccount: AccountProtocol {
 
     var didRequestBiometricAuthentication = false
     var shouldCallBiometricCompletionImmediately = true
+    var shouldBiometryAuthenticationSuccess = true
     private var biometricAuthenticationCompletion: ((Bool) -> Void)?
 
     var didRequestPasswordAuthentication = false
     var shouldAuthenticateWithPassword = false
+
+    var isBiometryAuthenticationAvailable = true
 
     enum Error: Swift.Error {
         case error
@@ -50,7 +53,7 @@ class MockAccount: AccountProtocol {
     func authenticateWithBiometry(completion: @escaping (Bool) -> Void) {
         didRequestBiometricAuthentication = true
         if shouldCallBiometricCompletionImmediately {
-            completion(true)
+            completion(shouldBiometryAuthenticationSuccess)
         } else {
             biometricAuthenticationCompletion = completion
         }
