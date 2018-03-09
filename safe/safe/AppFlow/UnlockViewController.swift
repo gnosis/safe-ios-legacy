@@ -23,6 +23,8 @@ final class UnlockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         textInput.delegate = self
+        let biometryIcon: UIImage = account.isBiometryFaceID ? Asset.faceIdIcon.image : Asset.touchIdIcon.image
+        loginWithBiometryButton.setImage(biometryIcon, for: .normal)
         updateBiometryButtonVisibility()
     }
 

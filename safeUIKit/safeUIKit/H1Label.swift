@@ -5,19 +5,19 @@
 import UIKit
 
 @IBDesignable
-class H1Label: UILabel {
+public final class H1Label: UILabel {
 
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         configure()
     }
 
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         configure()
     }
@@ -28,9 +28,8 @@ class H1Label: UILabel {
         textColor = ColorName.black.color
     }
 
-    override func prepareForInterfaceBuilder() {
+    public override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        text = "H1 Label"
         configure()
     }
 

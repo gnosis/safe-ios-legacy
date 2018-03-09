@@ -8,6 +8,7 @@ import LocalAuthentication
 protocol BiometricAuthenticationServiceProtocol {
 
     var isAuthenticationAvailable: Bool { get }
+    var isBiometryFaceID: Bool { get }
     func activate(completion: @escaping () -> Void)
     func authenticate(completion: @escaping (Bool) -> Void)
 
@@ -23,6 +24,16 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
 
     var isAuthenticationAvailable: Bool {
         return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+    }
+
+    var isBiometryFaceID: Bool {
+        if #available(iOS 11.0, *) {
+            // iOS specifics: pre-run policy evaluation to query biometry type
+            _ = isAuthenticationAvailable
+            return context.biometryType == .faceID
+        } else {
+            return false
+        }
     }
 
     func activate(completion: @escaping () -> Void) {

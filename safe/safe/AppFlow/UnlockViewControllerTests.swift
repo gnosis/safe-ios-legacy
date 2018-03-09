@@ -82,6 +82,13 @@ class UnlockViewControllerTests: XCTestCase {
         wait()
         XCTAssertTrue(vc.loginWithBiometryButton.isHidden)
     }
+
+    func test_whenBiometryFaceID_thenUsesMatchingIcon() {
+        account.isBiometryFaceID = true
+        vc = UnlockViewController.create(account: account) {}
+        vc.loadViewIfNeeded()
+        XCTAssertEqual(vc.loginWithBiometryButton.image(for: .normal), Asset.faceIdIcon.image)
+    }
 }
 
 extension UnlockViewControllerTests {

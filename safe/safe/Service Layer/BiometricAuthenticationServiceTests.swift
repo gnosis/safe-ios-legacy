@@ -55,6 +55,11 @@ class BiometricAuthenticationServiceTests: XCTestCase {
         XCTAssertTrue(biometricService.isAuthenticationAvailable)
     }
 
+    func test_biometryFaceID() {
+        context.hasFaceID = true
+        XCTAssertTrue(biometricService.isBiometryFaceID)
+    }
+    
 }
 
 extension BiometricAuthenticationServiceTests {
@@ -87,6 +92,12 @@ class MockLAContext: LAContext {
     var canEvaluatePolicy = true
     var evaluatePolicyInvoked = false
     var policyShouldSucceed = true
+    var hasFaceID = false
+
+    @available(iOS 11.0, *)
+    override var biometryType: LABiometryType {
+        return hasFaceID ? .faceID : .touchID
+    }
 
     override func canEvaluatePolicy(_ policy: LAPolicy, error: NSErrorPointer) -> Bool {
         return canEvaluatePolicy

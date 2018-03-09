@@ -25,6 +25,7 @@ class MockAccount: AccountProtocol {
     var shouldAuthenticateWithPassword = false
 
     var isBiometryAuthenticationAvailable = true
+    var isBiometryFaceID = false
 
     enum Error: Swift.Error {
         case error
