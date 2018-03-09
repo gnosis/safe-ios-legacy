@@ -47,7 +47,9 @@ extension ConfirmPaswordViewController: TextInputDelegate {
         do {
             try account.setMasterPassword(password)
             account.activateBiometricAuthentication { [weak self] in
-                self?.delegate?.didConfirmPassword()
+                DispatchQueue.main.async {
+                    self?.delegate?.didConfirmPassword()
+                }
             }
         } catch let e {
             // TODO: 06/03/18: handle error, show alert to user with error description

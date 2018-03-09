@@ -21,16 +21,14 @@ class AccountTests: XCTestCase {
                           biometricAuthService: biometricService)
     }
 
-    func test_hasMasterPassword_whenNoPassword_thenIsFalse() {
-        XCTAssertFalse(account.hasMasterPassword)
-    }
-
-    fileprivate func setPassword() {
-        XCTAssertNoThrow(try account.setMasterPassword(correctPassword))
-    }
-
     func test_shared_exists() {
         XCTAssertNotNil(Account.shared)
+    }
+
+    // MARK: - hasMasterPassword
+
+    func test_hasMasterPassword_whenNoPassword_thenIsFalse() {
+        XCTAssertFalse(account.hasMasterPassword)
     }
 
     func test_hasMasterPassword_whenPasswordWasSet_thenIsTrue() {
@@ -45,6 +43,8 @@ class AccountTests: XCTestCase {
                           biometricAuthService: biometricService)
         XCTAssertTrue(account.hasMasterPassword)
     }
+
+    // MARK: - setMasterPassword
 
     func test_setMasterPassword_whenWasSet_thenUserDefaultsPropertyIsSet() {
         setPassword()
@@ -63,6 +63,8 @@ class AccountTests: XCTestCase {
         }
     }
 
+    // MARK: - cleanupAllData
+
     func test_cleanupAllData_whenCalled_thenAccountDataIsCleaned() {
         setPassword()
         account.cleanupAllData()
@@ -70,6 +72,8 @@ class AccountTests: XCTestCase {
         XCTAssertFalse(mockUserDefaults.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue) ?? false)
         XCTAssertNil(try! keychain.password())
     }
+
+    // MARK: - activateBiometricAuthentication
 
     func test_activateBiometricAuthentication_whenInvoked_thenCallsAccountCompletionAfterBiometricActivation() {
         var completionCalled = false
@@ -82,6 +86,8 @@ class AccountTests: XCTestCase {
         biometricService.completeActivation()
         XCTAssertTrue(completionCalled)
     }
+
+    // MARK: - isLoggedIn
 
     func test_isLoggedIn_whenNoMasterPassword_AlwaysFalse() {
         setPassword()
@@ -96,17 +102,11 @@ class AccountTests: XCTestCase {
     }
 
     func test_isLoggedIn_whenSessionIsInactive_thenIsFalse() {
-        let sessionDuration: TimeInterval = 10
-        let mockClockService = MockClockService()
-        account = Account(userDefaultsService: mockUserDefaults,
-                          keychainService: keychain,
-                          biometricAuthService: biometricService,
-                          systemClock: mockClockService,
-                          sessionDuration: sessionDuration)
-        setPassword()
-        mockClockService.currentTime += sessionDuration
+        setupExpiredSession()
         XCTAssertFalse(account.isLoggedIn)
     }
+
+    // MARK: - authenticateWithPassword
 
     func test_authenticateWithPassword_whenNoPasswordWasSet_thenReturnsFalse() {
         XCTAssertFalse(account.authenticateWithPassword(correctPassword))
@@ -127,7 +127,21 @@ class AccountTests: XCTestCase {
         XCTAssertFalse(account.authenticateWithPassword(correctPassword))
     }
 
-    func test_authenticateWithBiometry_whenInvoked_thenCallsCompletionOnBiometrySuccess() {
+    func test_authenticateWithPassword_whenSuccess_thenStartsSession() {
+        setupExpiredSession()
+        _ = account.authenticateWithPassword(correctPassword)
+        XCTAssertTrue(account.isLoggedIn)
+    }
+
+    func test_authenticateWithPassword_whenFails_thenStaysLoggedOut() {
+        setupExpiredSession()
+        _ = account.authenticateWithPassword(wrongPassword)
+        XCTAssertFalse(account.isLoggedIn)
+    }
+
+    // MARK: - authenticateWithBiometry
+
+    func test_authenticateWithBiometry_whenInvoked_thenCallsCompletion() {
         var completionCalled = false
         biometricService.shouldAuthenticateImmediately = false
         account.authenticateWithBiometry { _ in
@@ -135,8 +149,47 @@ class AccountTests: XCTestCase {
         }
         wait()
         XCTAssertFalse(completionCalled)
-        biometricService.completeAuthentication(result: true)
+        let anyResult = true
+        biometricService.completeAuthentication(result: anyResult)
         XCTAssertTrue(completionCalled)
+    }
+
+    func test_authenticateWithBiometry_whenFails_thenLoggedOut() {
+        setupExpiredSession()
+        biometricService.shouldAuthenticateImmediately = true
+        biometricService.biometryAuthenticationResult = false
+        account.authenticateWithBiometry { _ in }
+        XCTAssertFalse(account.isLoggedIn)
+    }
+
+    func test_authenticateWithBiometry_whenSuccess_thenStartsSession() {
+        setupExpiredSession()
+        biometricService.shouldAuthenticateImmediately = true
+        biometricService.biometryAuthenticationResult = true
+        account.authenticateWithBiometry { _ in }
+        XCTAssertTrue(account.isLoggedIn)
+    }
+
+}
+
+// MARK: - Helpers
+
+extension AccountTests {
+
+    func setupExpiredSession() {
+        let sessionDuration: TimeInterval = 10
+        let mockClockService = MockClockService()
+        account = Account(userDefaultsService: mockUserDefaults,
+                          keychainService: keychain,
+                          biometricAuthService: biometricService,
+                          systemClock: mockClockService,
+                          sessionDuration: sessionDuration)
+        setPassword()
+        mockClockService.currentTime += sessionDuration
+    }
+
+    func setPassword() {
+        XCTAssertNoThrow(try account.setMasterPassword(correctPassword))
     }
 
 }
@@ -193,6 +246,8 @@ class MockBiometricService: BiometricAuthenticationServiceProtocol {
 
     private var savedActivationCompletion: (() -> Void)?
     var shouldActivateImmediately = false
+    var biometryAuthenticationResult = true
+
 
     private var savedAuthenticationCompletion: ((Bool) -> Void)?
     var shouldAuthenticateImmediately = false
@@ -211,7 +266,7 @@ class MockBiometricService: BiometricAuthenticationServiceProtocol {
 
     func authenticate(completion: @escaping (Bool) -> Void) {
         if shouldAuthenticateImmediately {
-            completion(true)
+            completion(biometryAuthenticationResult)
         } else {
             savedAuthenticationCompletion = completion
         }

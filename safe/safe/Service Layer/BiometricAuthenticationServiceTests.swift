@@ -22,24 +22,57 @@ class BiometricAuthenticationServiceTests: XCTestCase {
 
     func test_activate_whenBiometricIsNotAvailable_thenIsNotActivated() {
         context.canEvaluatePolicy = false
-        context.evaluatePolicyInvoked = false
-        let expectation = self.expectation(description: "Activate")
-        biometricService.activate {
-            expectation.fulfill()
-        }
-        waitForExpectations(timeout: 0.1)
+        activate()
         XCTAssertFalse(context.evaluatePolicyInvoked)
     }
 
     func test_activate_whenBiometricIsAvailable_thenIsActivated() {
         context.canEvaluatePolicy = true
+        activate()
+        XCTAssertTrue(context.evaluatePolicyInvoked)
+    }
+
+    func test_authenticate_whenAvailableAndSuccess_thenAuthenticated() {
+        context.canEvaluatePolicy = true
+        XCTAssertTrue(authenticate())
+        XCTAssertTrue(context.evaluatePolicyInvoked)
+    }
+
+    func test_authenticate_whenNotAvailable_thenNotAuthenticated() {
+        context.canEvaluatePolicy = false
+        XCTAssertFalse(authenticate())
+        XCTAssertFalse(context.evaluatePolicyInvoked)
+    }
+
+    func test_authenticate_whenAvailableAndFails_thenNotAuthenticated() {
+        context.canEvaluatePolicy = true
+        context.policyShouldSucceed = false
+        XCTAssertFalse(authenticate())
+    }
+
+}
+
+extension BiometricAuthenticationServiceTests {
+
+    func authenticate() -> Bool {
+        var success = false
+        context.evaluatePolicyInvoked = false
+        let expectation = self.expectation(description: "Activate")
+        biometricService.authenticate { result in
+            success = result
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 0.1)
+        return success
+    }
+
+    func activate() {
         context.evaluatePolicyInvoked = false
         let expectation = self.expectation(description: "Activate")
         biometricService.activate {
             expectation.fulfill()
         }
         waitForExpectations(timeout: 0.1)
-        XCTAssertTrue(context.evaluatePolicyInvoked)
     }
 
 }
@@ -48,6 +81,7 @@ class MockLAContext: LAContext {
 
     var canEvaluatePolicy = true
     var evaluatePolicyInvoked = false
+    var policyShouldSucceed = true
 
     override func canEvaluatePolicy(_ policy: LAPolicy, error: NSErrorPointer) -> Bool {
         return canEvaluatePolicy
@@ -55,7 +89,7 @@ class MockLAContext: LAContext {
 
     override func evaluatePolicy(_ policy: LAPolicy, localizedReason: String, reply: @escaping (Bool, Error?) -> Void) {
         evaluatePolicyInvoked = true
-        reply(true, nil)
+        reply(policyShouldSucceed, nil)
     }
 
 }

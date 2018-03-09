@@ -75,17 +75,26 @@ final class Account: AccountProtocol {
     }
 
     func authenticateWithBiometry(completion: @escaping (Bool) -> Void) {
-        biometricAuthService.authenticate(completion: completion)
+        biometricAuthService.authenticate { [unowned self] success in
+            completion(self.authenticationResult(success))
+        }
     }
 
     func authenticateWithPassword(_ password: String) -> Bool {
         do {
-            return try keychainService.password() == password
+            return authenticationResult(try keychainService.password() == password)
         } catch let e {
             // TODO: 09/03/18: log error
             print("Password fetch failed: \(e)")
             return false
         }
+    }
+
+    private func authenticationResult(_ success: Bool) -> Bool {
+        if success {
+            session.start()
+        }
+        return success
     }
 
 }
