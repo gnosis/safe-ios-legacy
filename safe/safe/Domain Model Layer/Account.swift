@@ -79,7 +79,13 @@ final class Account: AccountProtocol {
     }
 
     func authenticateWithPassword(_ password: String) -> Bool {
-        return false
+        do {
+            return try keychainService.password() == password
+        } catch let e {
+            // TODO: 09/03/18: log error
+            print("Password fetch failed: \(e)")
+            return false
+        }
     }
 
 }

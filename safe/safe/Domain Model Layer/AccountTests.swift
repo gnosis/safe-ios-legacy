@@ -11,6 +11,8 @@ class AccountTests: XCTestCase {
     let mockUserDefaults = InMemoryUserDefaults()
     let keychain = MockKeychain()
     let biometricService = MockBiometricService()
+    let correctPassword = "Password"
+    let wrongPassword = "WrongPassword"
 
     override func setUp() {
         super.setUp()
@@ -24,7 +26,7 @@ class AccountTests: XCTestCase {
     }
 
     fileprivate func setPassword() {
-        XCTAssertNoThrow(try account.setMasterPassword("Password"))
+        XCTAssertNoThrow(try account.setMasterPassword(correctPassword))
     }
 
     func test_shared_exists() {
@@ -51,12 +53,12 @@ class AccountTests: XCTestCase {
 
     func test_setMasterPassword_whenWasSet_thenStoresPasswordInKeychain() {
         setPassword()
-        XCTAssertEqual(try! keychain.password(), "Password")
+        XCTAssertEqual(try! keychain.password(), correctPassword)
     }
 
     func test_setMasterPassword_whenKeychainThrows_thenSettingPasswordThrows() {
         keychain.throwsOnSavePassword = true
-        XCTAssertThrowsError(try account.setMasterPassword("Password"), "Expected Account Error") { error in
+        XCTAssertThrowsError(try account.setMasterPassword(correctPassword), "Expected Account Error") { error in
             XCTAssertEqual(error.localizedDescription, AccountError.settingMasterPasswordFailed.localizedDescription)
         }
     }
@@ -107,12 +109,22 @@ class AccountTests: XCTestCase {
     }
 
     func test_authenticateWithPassword_whenNoPasswordWasSet_thenReturnsFalse() {
-        XCTAssertFalse(account.authenticateWithPassword("Password"))
+        XCTAssertFalse(account.authenticateWithPassword(correctPassword))
     }
 
     func test_authenticateWithPassword_whenPasswordIsWrong_thenReturnsFalse() {
         setPassword()
-        XCTAssertFalse(account.authenticateWithPassword("WrongPassword"))
+        XCTAssertFalse(account.authenticateWithPassword(wrongPassword))
+    }
+
+    func test_authenticateWithPassword_whenPasswordCorrect_thenSuccess() {
+        setPassword()
+        XCTAssertTrue(account.authenticateWithPassword(correctPassword))
+    }
+
+    func test_authenticateWithPassword_whenKeychainThrows_thenFailure() {
+        keychain.throwsOnGetPassword = true
+        XCTAssertFalse(account.authenticateWithPassword(correctPassword))
     }
 
     func test_authenticateWithBiometry_whenInvoked_thenCallsCompletionOnBiometrySuccess() {
@@ -151,12 +163,16 @@ class MockKeychain: KeychainServiceProtocol {
 
     private var storedPassword: String?
     var throwsOnSavePassword = false
+    var throwsOnGetPassword = false
 
     enum Error: Swift.Error {
         case error
     }
 
     func password() throws -> String? {
+        if throwsOnGetPassword {
+            throw MockKeychain.Error.error
+        }
         return storedPassword
     }
 
