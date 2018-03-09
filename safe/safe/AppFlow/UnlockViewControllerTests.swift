@@ -30,7 +30,7 @@ class UnlockViewControllerTests: XCTestCase {
         XCTAssertTrue(account.didRequestBiometricAuthentication)
     }
 
-    func test_whenBiometrySuccess_thenCallsDelegate() {
+    func test_whenBiometrySuccess_thenCallsCompletion() {
         authenticateWithBiometryResult(true)
         XCTAssertTrue(didLogIn)
     }
@@ -62,7 +62,7 @@ class UnlockViewControllerTests: XCTestCase {
         XCTAssertTrue(account.didRequestPasswordAuthentication)
     }
 
-    func test_whenPasswordPasses_thenDelegateCalled() {
+    func test_whenPasswordPasses_thenCompletionCalled() {
         account.shouldAuthenticateWithPassword = true
         vc.textInputDidReturn()
         XCTAssertTrue(didLogIn)
