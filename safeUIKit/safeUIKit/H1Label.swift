@@ -4,6 +4,7 @@
 
 import UIKit
 
+@IBDesignable
 class H1Label: UILabel {
 
     override init(frame: CGRect) {
@@ -16,10 +17,21 @@ class H1Label: UILabel {
         configure()
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        configure()
+    }
+
     private func configure() {
         font = UIFont.systemFont(ofSize: 36)
         numberOfLines = 0
         textColor = ColorName.black.color
+    }
+
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        text = "H1 Label"
+        configure()
     }
 
 }

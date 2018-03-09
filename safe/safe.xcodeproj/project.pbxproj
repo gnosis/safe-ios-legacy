@@ -15,6 +15,7 @@
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
 		0A05A761204FE1EB0089327D /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */; };
 		0A05A7632050004C0089327D /* BiometricAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A7622050004C0089327D /* BiometricAuthenticationService.swift */; };
+		0A7AE8C1205285D00044D5DD /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */; };
 		0A7E17AD204E99EB00C9078E /* MockAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E17AC204E99EB00C9078E /* MockAccount.swift */; };
 		0AB0FF51204EA9940066682F /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0FF50204EA9940066682F /* KeychainService.swift */; };
 		0AB0FF62204EF85B0066682F /* UserDefaultsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0FF61204EF85B0066682F /* UserDefaultsIntegrationTests.swift */; };
@@ -112,6 +113,7 @@
 		0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceIntegrationTests.swift; sourceTree = "<group>"; };
 		0A05A7622050004C0089327D /* BiometricAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationService.swift; sourceTree = "<group>"; };
 		0A05A764205000670089327D /* BiometricAuthenticationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationServiceTests.swift; sourceTree = "<group>"; };
+		0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppFlow.storyboard; sourceTree = "<group>"; };
 		0A7E17AC204E99EB00C9078E /* MockAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccount.swift; sourceTree = "<group>"; };
 		0AB0FF50204EA9940066682F /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		0AB0FF56204EF81C0066682F /* safeIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -336,6 +338,7 @@
 				0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */,
 				555DD6D6205148D100D1178A /* UnlockViewController.swift */,
 				555DD6D82051497700D1178A /* UnlockViewControllerTests.swift */,
+				0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 			files = (
 				5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
+				0A7AE8C1205285D00044D5DD /* AppFlow.storyboard in Resources */,
 				55147D552040493C00AD0E1F /* MasterPassword.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

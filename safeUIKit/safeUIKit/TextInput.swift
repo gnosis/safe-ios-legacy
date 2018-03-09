@@ -30,7 +30,7 @@ public final class TextInput: UIView {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        loadContentsFromNib()
+        configure()
     }
 
     public func addRule(_ localizedDescription: String, validation: ((String) -> Bool)? = nil) {
@@ -45,6 +45,10 @@ public final class TextInput: UIView {
 
     public override func awakeFromNib() {
         super.awakeFromNib()
+        configure()
+    }
+
+    private func configure() {
         loadContentsFromNib()
         textField.delegate = self
         textField.clearButtonMode = .whileEditing

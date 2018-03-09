@@ -7,8 +7,12 @@ import XCTest
 
 class UnlockViewControllerTests: XCTestCase {
 
-    func test_canCreate() {
-        XCTAssertNotNil(UnlockViewController())
+    func test_whenCreated_hasAllElements() {
+        let vc = UnlockViewController.create()
+        vc.loadViewIfNeeded()
+        XCTAssertNotNil(vc.textInput)
+        XCTAssertNotNil(vc.loginWithBiometryButton)
+        XCTAssertNotNil(vc.headerLabel)
     }
 
 }
