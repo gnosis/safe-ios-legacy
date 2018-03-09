@@ -5,22 +5,18 @@
 import UIKit
 import safeUIKit
 
-protocol UnlockViewControllerDelegate: class {
-    func didLogIn()
-}
-
 final class UnlockViewController: UIViewController {
 
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var textInput: TextInput!
     @IBOutlet weak var loginWithBiometryButton: UIButton!
-    private weak var delegate: UnlockViewControllerDelegate?
+    private var unlockCompletion: (() -> Void)!
     private var account: AccountProtocol!
 
-    static func create(account: AccountProtocol, delegate: UnlockViewControllerDelegate?) -> UnlockViewController {
+    static func create(account: AccountProtocol, completion: @escaping () -> Void) -> UnlockViewController {
         let vc = StoryboardScene.AppFlow.unlockViewController.instantiate()
         vc.account = account
-        vc.delegate = delegate
+        vc.unlockCompletion = completion
         return vc
     }
 
@@ -47,7 +43,7 @@ final class UnlockViewController: UIViewController {
         account.authenticateWithBiometry { [unowned self] success in
             DispatchQueue.main.async {
                 if success {
-                    self.delegate?.didLogIn()
+                    self.unlockCompletion()
                 } else {
                     _ = self.textInput.becomeFirstResponder()
                     self.updateBiometryButtonVisibility()
@@ -63,7 +59,7 @@ extension UnlockViewController: TextInputDelegate {
     func textInputDidReturn() {
         let success = account.authenticateWithPassword(textInput.text!)
         if success {
-            delegate?.didLogIn()
+            unlockCompletion()
         }
     }
 

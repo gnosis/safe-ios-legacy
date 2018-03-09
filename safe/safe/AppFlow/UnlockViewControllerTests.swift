@@ -9,12 +9,13 @@ class UnlockViewControllerTests: XCTestCase {
 
     var vc: UnlockViewController!
     let account = MockAccount()
-    // swiftlint:disable weak_delegate
-    let delegate = MockUnlockViewControllerDelegate()
+    var didLogIn = false
 
     override func setUp() {
         super.setUp()
-        vc = UnlockViewController.create(account: account, delegate: delegate)
+        vc = UnlockViewController.create(account: account) { [unowned self] in
+            self.didLogIn = true
+        }
         vc.loadViewIfNeeded()
     }
 
@@ -31,12 +32,12 @@ class UnlockViewControllerTests: XCTestCase {
 
     func test_whenBiometrySuccess_thenCallsDelegate() {
         authenticateWithBiometryResult(true)
-        XCTAssertTrue(delegate.didLogInWasCalled)
+        XCTAssertTrue(didLogIn)
     }
 
     func test_whenBiometryFails_thenNotLoggedIn() {
         authenticateWithBiometryResult(false)
-        XCTAssertFalse(delegate.didLogInWasCalled)
+        XCTAssertFalse(didLogIn)
     }
 
     func test_whenBiometryFails_thenFocusesOnPasswordField() {
@@ -53,7 +54,7 @@ class UnlockViewControllerTests: XCTestCase {
     func test_whenBiometryButtonTapped_thenAuthenticatesWithBiometry() {
         vc.loginWithBiometry(self)
         wait()
-        XCTAssertTrue(delegate.didLogInWasCalled)
+        XCTAssertTrue(didLogIn)
     }
 
     func test_whenTextInputEntered_thenRequestsPasswordAuthentication() {
@@ -64,12 +65,12 @@ class UnlockViewControllerTests: XCTestCase {
     func test_whenPasswordPasses_thenDelegateCalled() {
         account.shouldAuthenticateWithPassword = true
         vc.textInputDidReturn()
-        XCTAssertTrue(delegate.didLogInWasCalled)
+        XCTAssertTrue(didLogIn)
     }
 
     func test_whenCannotAuthenticateWithBiometry_thenHidesBiometryButton() {
         account.isBiometryAuthenticationAvailable = false
-        vc = UnlockViewController.create(account: account, delegate: delegate)
+        vc = UnlockViewController.create(account: account) {}
         vc.loadViewIfNeeded()
         XCTAssertTrue(vc.loginWithBiometryButton.isHidden)
     }
@@ -90,16 +91,6 @@ extension UnlockViewControllerTests {
         vc.viewDidAppear(false)
         account.completeBiometryAuthentication(success: result)
         wait()
-    }
-
-}
-
-class MockUnlockViewControllerDelegate: UnlockViewControllerDelegate {
-
-    var didLogInWasCalled = false
-
-    func didLogIn() {
-        didLogInWasCalled = true
     }
 
 }
