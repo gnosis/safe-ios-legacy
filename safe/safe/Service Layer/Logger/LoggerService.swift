@@ -30,6 +30,17 @@ enum LogLevel: Int {
     case error
     case info
     case debug
+
+    var string: String {
+        switch self {
+        case .off: return "OFF"
+        case .fatal: return "FATAL"
+        case .error: return "ERROR"
+        case .info: return "INFO"
+        case .debug: return "DEBUG"
+        }
+    }
+
 }
 
 final class LoggerService: LoggerServiceProtocol {
