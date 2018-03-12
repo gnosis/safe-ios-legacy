@@ -56,6 +56,8 @@
 		555DD6E520516DF700D1178A /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */; };
 		5580367A20569212004E7452 /* LoggerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5580367920569212004E7452 /* LoggerServiceTests.swift */; };
 		5580367C20569240004E7452 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5580367B20569240004E7452 /* LoggerService.swift */; };
+		5580367E2056BDF4004E7452 /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5580367D2056BDF4004E7452 /* ConsoleLogger.swift */; };
+		558036802056BE0C004E7452 /* ConsoleLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5580367F2056BE0C004E7452 /* ConsoleLoggerTests.swift */; };
 		55D6C2F22045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */; };
 		55D6C2F52045C3540026BC72 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */; };
 		55D97D7C20496A0E0004AEDD /* PasswordSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D97D7B20496A0E0004AEDD /* PasswordSuccessViewController.swift */; };
@@ -158,6 +160,8 @@
 		555DD6E020516CB800D1178A /* SystemClockServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemClockServiceIntegrationTests.swift; sourceTree = "<group>"; };
 		5580367920569212004E7452 /* LoggerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerServiceTests.swift; sourceTree = "<group>"; };
 		5580367B20569240004E7452 /* LoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
+		5580367D2056BDF4004E7452 /* ConsoleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
+		5580367F2056BE0C004E7452 /* ConsoleLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLoggerTests.swift; sourceTree = "<group>"; };
 		55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Wait.swift"; sourceTree = "<group>"; };
 		55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
 		55D97D7B20496A0E0004AEDD /* PasswordSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSuccessViewController.swift; sourceTree = "<group>"; };
@@ -347,6 +351,17 @@
 			path = AppFlow;
 			sourceTree = "<group>";
 		};
+		558036812056CC50004E7452 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				5580367B20569240004E7452 /* LoggerService.swift */,
+				5580367920569212004E7452 /* LoggerServiceTests.swift */,
+				5580367D2056BDF4004E7452 /* ConsoleLogger.swift */,
+				5580367F2056BE0C004E7452 /* ConsoleLoggerTests.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
 		55D6C2F72045C38D0026BC72 /* TestTools */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +388,7 @@
 		55E670CE204D91D100234E5C /* Service Layer */ = {
 			isa = PBXGroup;
 			children = (
+				558036812056CC50004E7452 /* Logger */,
 				55E670CF204D92DF00234E5C /* UserDefaultsService.swift */,
 				0AB0FF61204EF85B0066682F /* UserDefaultsIntegrationTests.swift */,
 				0AB0FF50204EA9940066682F /* KeychainService.swift */,
@@ -381,8 +397,6 @@
 				0A05A764205000670089327D /* BiometricAuthenticationServiceTests.swift */,
 				555DD6DE205167D000D1178A /* SystemClockService.swift */,
 				555DD6E020516CB800D1178A /* SystemClockServiceIntegrationTests.swift */,
-				5580367B20569240004E7452 /* LoggerService.swift */,
-				5580367920569212004E7452 /* LoggerServiceTests.swift */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -631,6 +645,7 @@
 				0A0455F32048505500088B5E /* MasterPasswordFlowCoordinator.swift in Sources */,
 				0A05A7632050004C0089327D /* BiometricAuthenticationService.swift in Sources */,
 				55147D592040521800AD0E1F /* MasterPasswordNavigationController.swift in Sources */,
+				5580367E2056BDF4004E7452 /* ConsoleLogger.swift in Sources */,
 				0AD93E192048350D008C38CA /* ConfirmPaswordViewController.swift in Sources */,
 				55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */,
 				55E670D2204DAD3000234E5C /* UserDefaultKeys.swift in Sources */,
@@ -659,6 +674,7 @@
 				555DD6E320516DF300D1178A /* XCTestCase+Wait.swift in Sources */,
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
 				555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */,
+				558036802056BE0C004E7452 /* ConsoleLoggerTests.swift in Sources */,
 				555DD6E420516DF700D1178A /* XCTest+Assert.swift in Sources */,
 				555DD6DD2051583200D1178A /* SessionTests.swift in Sources */,
 				5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */,
