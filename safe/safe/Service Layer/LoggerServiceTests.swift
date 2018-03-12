@@ -7,37 +7,47 @@ import XCTest
 
 class LoggerServiceTests: XCTestCase {
 
-    let mockLog = MockLogger()
-    var logger: LoggerService!
-
-    override func setUp() {
-        super.setUp()
+    func test_logLevels() {
+        assert(.off, allowsOnly: "")
+        assert(.fatal, allowsOnly: "fatal")
+        assert(.error, allowsOnly: "fatal error")
+        assert(.info, allowsOnly: "fatal error info")
+        assert(.debug, allowsOnly: "fatal error info debug")
     }
 
-    func test_fatal_whenOffLevelIsSet_thenNothingIsLogged() {
-        logger = logger(level: .off)
-        mockLog.hasLogged = false
-        logger.fatal("Fatal Error")
-        XCTAssertFalse(mockLog.hasLogged)
+    func test_whenLoggerServiceCalled_thenAllLoggersAreTriggered() {
+        let logger = LoggerService(level: .error)
+        let mockLog1 = MockLogger()
+        let mockLog2 = MockLogger()
+        logger.add([mockLog1, mockLog2])
+        logger.error("error")
+        XCTAssertEqual(mockLog1.loggedMessages, "error")
+        XCTAssertEqual(mockLog2.loggedMessages, "error")
     }
 
 }
 
 extension LoggerServiceTests {
 
-    private func logger(level: LogLevel) -> LoggerService {
-        let logger = LoggerService(level: .off)
+    private func assert(_ level: LogLevel, allowsOnly expectedLog: String) {
+        let logger = LoggerService(level: level)
+        let mockLog = MockLogger()
         logger.add(mockLog)
-        return logger
+        logger.fatal("fatal")
+        logger.error("error")
+        logger.info("info")
+        logger.debug("debug")
+        XCTAssertEqual(mockLog.loggedMessages, expectedLog)
     }
-
 }
 
 class MockLogger: Logger {
 
-    var hasLogged = false
+    var loggedMessages: String { return log.joined(separator: " ") }
+    private var log = [String]()
 
-    func log() {
-        hasLogged = true
+    func log(_ message: String) {
+        log.append(message)
     }
+
 }
