@@ -54,6 +54,8 @@
 		555DD6E320516DF300D1178A /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */; };
 		555DD6E420516DF700D1178A /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */; };
 		555DD6E520516DF700D1178A /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */; };
+		5580367A20569212004E7452 /* LoggerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5580367920569212004E7452 /* LoggerServiceTests.swift */; };
+		5580367C20569240004E7452 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5580367B20569240004E7452 /* LoggerService.swift */; };
 		55D6C2F22045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */; };
 		55D6C2F52045C3540026BC72 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */; };
 		55D97D7C20496A0E0004AEDD /* PasswordSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D97D7B20496A0E0004AEDD /* PasswordSuccessViewController.swift */; };
@@ -154,6 +156,8 @@
 		555DD6DC2051583200D1178A /* SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		555DD6DE205167D000D1178A /* SystemClockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemClockService.swift; sourceTree = "<group>"; };
 		555DD6E020516CB800D1178A /* SystemClockServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemClockServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		5580367920569212004E7452 /* LoggerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerServiceTests.swift; sourceTree = "<group>"; };
+		5580367B20569240004E7452 /* LoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
 		55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Wait.swift"; sourceTree = "<group>"; };
 		55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
 		55D97D7B20496A0E0004AEDD /* PasswordSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSuccessViewController.swift; sourceTree = "<group>"; };
@@ -377,6 +381,8 @@
 				0A05A764205000670089327D /* BiometricAuthenticationServiceTests.swift */,
 				555DD6DE205167D000D1178A /* SystemClockService.swift */,
 				555DD6E020516CB800D1178A /* SystemClockServiceIntegrationTests.swift */,
+				5580367B20569240004E7452 /* LoggerService.swift */,
+				5580367920569212004E7452 /* LoggerServiceTests.swift */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -635,6 +641,7 @@
 				555DD6D2205144C900D1178A /* SetupSafeFlowCoordinator.swift in Sources */,
 				5528C43E20470AF500E79A4D /* PasswordValidator.swift in Sources */,
 				55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */,
+				5580367C20569240004E7452 /* LoggerService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,6 +664,7 @@
 				5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */,
 				0A0455F52048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
 				55E670D320502B6100234E5C /* BiometricAuthenticationServiceTests.swift in Sources */,
+				5580367A20569212004E7452 /* LoggerServiceTests.swift in Sources */,
 				55E670CB204D7B2500234E5C /* AccountTests.swift in Sources */,
 				555DD6D4205144EB00D1178A /* SetupSafeFlowCoordinatorTests.swift in Sources */,
 			);
