@@ -5,14 +5,14 @@
 import Foundation
 
 protocol LoggerServiceProtocol {
-    func fatal(_ message: String)
-    func error(_ message: String)
-    func info(_ message: String)
-    func debug(_ message: String)
+    func fatal(_ message: String, file: StaticString, line: UInt, function: StaticString)
+    func error(_ message: String, file: StaticString, line: UInt, function: StaticString)
+    func info(_ message: String, file: StaticString, line: UInt, function: StaticString)
+    func debug(_ message: String, file: StaticString, line: UInt, function: StaticString)
 }
 
 protocol Logger {
-    func log(_ message: String)
+    func log(_ message: String, file: StaticString, line: UInt, function: StaticString)
 }
 
 /**
@@ -41,25 +41,41 @@ final class LoggerService: LoggerServiceProtocol {
         self.level = level
     }
 
-    func fatal(_ message: String) {
-        log(.fatal, message: message)
+    func fatal(_ message: String,
+               file: StaticString = #file,
+               line: UInt = #line,
+               function: StaticString = #function) {
+        log(.fatal, message: message, file: file, line: line, function: function)
     }
 
-    func error(_ message: String) {
-        log(.error, message: message)
+    func error(_ message: String,
+               file: StaticString = #file,
+               line: UInt = #line,
+               function: StaticString = #function) {
+        log(.error, message: message, file: file, line: line, function: function)
     }
 
-    func info(_ message: String) {
-        log(.info, message: message)
+    func info(_ message: String,
+              file: StaticString = #file,
+              line: UInt = #line,
+              function: StaticString = #function) {
+        log(.info, message: message, file: file, line: line, function: function)
     }
 
-    func debug(_ message: String) {
-        log(.debug, message: message)
+    func debug(_ message: String,
+               file: StaticString = #file,
+               line: UInt = #line,
+               function: StaticString = #function) {
+        log(.debug, message: message, file: file, line: line, function: function)
     }
 
-    private func log(_ level: LogLevel, message: String) {
+    private func log(_ level: LogLevel,
+                     message: String,
+                     file: StaticString,
+                     line: UInt,
+                     function: StaticString) {
         guard self.level.rawValue >= level.rawValue else { return }
-        loggers.forEach { $0.log(message) }
+        loggers.forEach { $0.log(message, file: file, line: line, function: function) }
     }
 
     func add(_ logger: Logger) {
