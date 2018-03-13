@@ -7,12 +7,10 @@ import XCTest
 
 class ConsoleLoggerTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-    }
+    let logger = ConsoleLogger()
 
-    func test_canCreate() {
-        let logger = ConsoleLogger()
+    func test_canLog() {
+        logger.log("Test Log", level: .info, file: #file, line: #line, function: #function)
     }
 
 }

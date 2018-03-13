@@ -12,7 +12,7 @@ protocol LoggerServiceProtocol {
 }
 
 protocol Logger {
-    func log(_ message: String, file: StaticString, line: UInt, function: StaticString)
+    func log(_ message: String, level: LogLevel, file: StaticString, line: UInt, function: StaticString)
 }
 
 /**
@@ -86,7 +86,7 @@ final class LoggerService: LoggerServiceProtocol {
                      line: UInt,
                      function: StaticString) {
         guard self.level.rawValue >= level.rawValue else { return }
-        loggers.forEach { $0.log(message, file: file, line: line, function: function) }
+        loggers.forEach { $0.log(message, level: level, file: file, line: line, function: function) }
     }
 
     func add(_ logger: Logger) {

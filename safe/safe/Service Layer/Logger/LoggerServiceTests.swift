@@ -37,10 +37,10 @@ class LoggerServiceTests: XCTestCase {
         logger.info("info")
         logger.debug("debug")
         let expectedResult = [
-            "fatal \(file) \(line) \(function)",
-            "error \(file) \(line + 1) \(function)",
-            "info \(file) \(line + 2) \(function)",
-            "debug \(file) \(line + 3) \(function)"
+            "fatal \(LogLevel.fatal.string) \(file) \(line) \(function)",
+            "error \(LogLevel.error.string) \(file) \(line + 1) \(function)",
+            "info \(LogLevel.info.string) \(file) \(line + 2) \(function)",
+            "debug \(LogLevel.debug.string) \(file) \(line + 3) \(function)"
         ]
         XCTAssertEqual(mockLog.loggedMessages, expectedResult.joined(separator: " "))
     }
@@ -75,9 +75,9 @@ class MockLogger: Logger {
     var loggedMessages: String { return log.joined(separator: " ") }
     private var log = [String]()
 
-    func log(_ message: String, file: StaticString, line: UInt, function: StaticString) {
+    func log(_ message: String, level: LogLevel, file: StaticString, line: UInt, function: StaticString) {
         if detailed {
-            log.append("\(message) \(file) \(line) \(function)")
+            log.append("\(message) \(level.string) \(file) \(line) \(function)")
         } else {
             log.append(message)
         }

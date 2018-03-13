@@ -6,8 +6,16 @@ import Foundation
 
 final class ConsoleLogger: Logger {
 
-    func log(_ message: String, file: StaticString, line: UInt, function: StaticString) {
-        
+    private let formatter = LogFormatter()
+
+    func log(_ message: String, level: LogLevel, file: StaticString, line: UInt, function: StaticString) {
+        let str = formatter.string(from: message,
+                                   logLevel: level,
+                                   filename: String(describing: file),
+                                   method: String(describing: function),
+                                   line: line,
+                                   timestamp: Date())
+        print(str)
     }
 
 }
