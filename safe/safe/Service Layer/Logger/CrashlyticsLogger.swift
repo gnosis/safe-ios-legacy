@@ -23,10 +23,16 @@ final class CrashlyticsLogger: Logger {
              file: StaticString,
              line: UInt,
              function: StaticString) {
-        guard let error = error as NSError? else { return }
-        var userInfo = error.userInfo
+        guard let error = error else { return }
+        let nsError: NSError
+        if let loggable = error as? LoggableError {
+            nsError = loggable.nsError()
+        } else {
+            nsError = error as NSError
+        }
+        var userInfo = nsError.userInfo
         userInfo["message"] = message
-        crashlytics.recordError(NSError(domain: error.domain, code: error.code, userInfo: userInfo))
+        crashlytics.recordError(NSError(domain: nsError.domain, code: nsError.code, userInfo: userInfo))
     }
 
 }

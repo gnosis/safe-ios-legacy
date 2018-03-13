@@ -22,19 +22,25 @@ class CrashlyticsLoggerTests: XCTestCase {
     }
 
     func test_whenLoggingWithError_thenLogged() {
-        logger.log(testMessage, level: .error, error: TestError.error, file: "", line: 0, function: "")
+        logger.log(testMessage, level: .error, error: TestLoggableError.error, file: "", line: 0, function: "")
         XCTAssertEqual(mockCrashlytics.loggedError?.localizedDescription, TestError.error.localizedDescription)
     }
 
     func test_whenLoggingWithError_thenUserInfoHasMessage() {
-        logger.log(testMessage, level: .error, error: TestError.error, file: "", line: 0, function: "")
+        logger.log(testMessage, level: .error, error: TestLoggableError.error, file: "", line: 0, function: "")
         XCTAssertEqual((mockCrashlytics.loggedError as NSError?)?.userInfo.count, 1)
         XCTAssertEqual((mockCrashlytics.loggedError as NSError?)?.userInfo["message"] as? String, testMessage)
     }
 
+    func test_whenLoggingLoggableError_thenUserInfoHasLoggableKeys() {
+        logger.log(testMessage, level: .error, error: TestLoggableError.error, file: "", line: 0, function: "")
+        XCTAssertEqual((mockCrashlytics.loggedError as NSError?)?.userInfo[LoggableErrorDescriptionKey] as? String,
+                       "error")
+    }
+
 }
 
-enum TestLogError: LoggableError {
+enum TestLoggableError: LoggableError {
     case error
 }
 

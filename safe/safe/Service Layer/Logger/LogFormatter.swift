@@ -16,7 +16,7 @@ import Foundation
 final class LogFormatter {
 
     static let defaultDateFormat = "yyyy-MM-dd hh:mm:ss.SSSSSS"
-    static let defaultMessageFormat = "%t [%l] %f:%n %m: %s\n"
+    static let defaultMessageFormat = "%t [%l] %f:%n %m: %s"
 
     private let dateFormatter = DateFormatter()
     var dateFormat = defaultDateFormat
@@ -36,7 +36,7 @@ final class LogFormatter {
         let errorStr = error != nil ? String(describing: error!) : ""
         result = result.replacingOccurrences(of: "%e", with: errorStr)
         if let filename = filename {
-            result = result.replacingOccurrences(of: "%f", with: filename)
+            result = result.replacingOccurrences(of: "%f", with: URL(fileURLWithPath: "\(filename)").lastPathComponent)
         }
         if let method = method {
             result = result.replacingOccurrences(of: "%m", with: method)

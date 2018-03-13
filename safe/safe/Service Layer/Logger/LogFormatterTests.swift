@@ -44,6 +44,11 @@ class LogFormatterTests: XCTestCase {
         XCTAssertEqual(formatter.string(from: testMsg, filename: "test.swift"), "Test test.swift parameter.")
     }
 
+    func test_filename_whenFullPathSpecified_takesFilenameOnly() {
+        formatter.format = "Test %f parameter."
+        XCTAssertEqual(formatter.string(from: testMsg, filename: "/home/test/test.swift"), "Test test.swift parameter.")
+    }
+
     func test_lineFormat() {
         formatter.format = "Test %n parameter."
         XCTAssertEqual(formatter.string(from: testMsg, line: 50), "Test 50 parameter.")

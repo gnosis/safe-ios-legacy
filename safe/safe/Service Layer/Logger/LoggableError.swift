@@ -16,7 +16,7 @@ extension LoggableError {
         var userInfo: [String: Any] = [NSLocalizedDescriptionKey: localizedDescription,
                                        LoggableErrorDescriptionKey: String(describing: self)]
         if let error = underlyingError {
-            userInfo[NSUnderlyingErrorKey] = error
+            userInfo[NSUnderlyingErrorKey] = error as NSError
         }
         return NSError(domain: String(describing: type(of: self)),
                        code: (self as NSError).code,

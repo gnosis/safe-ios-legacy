@@ -17,6 +17,7 @@ class LoggableErrorTests: XCTestCase {
 
     func test_loggableErrorPreservesReason() {
         let nsError = TestLogError.error.nsError(causedBy: TestLogError.error)
+        XCTAssertTrue(nsError.userInfo[NSUnderlyingErrorKey] is NSError)
         XCTAssertEqual((nsError.userInfo[NSUnderlyingErrorKey] as? NSError)?.localizedDescription,
                        TestLogError.error.localizedDescription)
     }
