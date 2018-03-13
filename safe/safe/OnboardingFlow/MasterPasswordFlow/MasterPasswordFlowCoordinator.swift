@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 final class MasterPasswordFlowCoordinator {
 
@@ -42,6 +43,10 @@ extension MasterPasswordFlowCoordinator: ConfirmPasswordViewControllerDelegate {
         let vc = PasswordSuccessViewController()
         vc.view.backgroundColor = ColorName.gray.color
         masterPasswordNavigationController.show(vc, sender: nil)
+    }
+
+    func terminate() {
+        Crashlytics.sharedInstance().crash()
     }
 
 }

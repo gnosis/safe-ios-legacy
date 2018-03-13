@@ -52,14 +52,38 @@ class ConfirmPaswordViewControllerTests: XCTestCase {
         XCTAssertFalse(delegate.didConfirm)
     }
 
+    func test_whenSetMasterPasswordThrows_thenAlertIsShown() {
+        guard let window = UIApplication.shared.keyWindow else {
+            XCTFail("Must have window")
+            return
+        }
+        window.rootViewController = vc
+        window.makeKeyAndVisible()
+        account.setMasterPasswordThrows = true
+        vc.textInputDidReturn()
+        wait()
+        XCTAssertNotNil(vc.presentedViewController)
+        XCTAssertTrue(vc.presentedViewController is UIAlertController)
+    }
+
+    func test_whenTerminated_thenCallsDelegate() {
+        vc.terminate()
+        XCTAssertTrue(delegate.didTerminate)
+    }
+
 }
 
 class MockConfirmPasswordViewControllerDelegate: ConfirmPasswordViewControllerDelegate {
 
     var didConfirm = false
+    var didTerminate = false
 
     func didConfirmPassword() {
         didConfirm = true
+    }
+
+    func terminate() {
+        didTerminate = true
     }
 
 }

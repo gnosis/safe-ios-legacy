@@ -67,7 +67,7 @@ class AccountTests: XCTestCase {
 
     func test_cleanupAllData_whenCalled_thenAccountDataIsCleaned() {
         setPassword()
-        account.cleanupAllData()
+        cleanupAllData()
         XCTAssertFalse(account.hasMasterPassword)
         XCTAssertFalse(mockUserDefaults.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue) ?? false)
         XCTAssertNil(try! keychain.password())
@@ -91,7 +91,7 @@ class AccountTests: XCTestCase {
 
     func test_isLoggedIn_whenNoMasterPassword_AlwaysFalse() {
         setPassword()
-        account.cleanupAllData()
+        cleanupAllData()
         XCTAssertFalse(account.isLoggedIn)
     }
 
@@ -188,7 +188,7 @@ class AccountTests: XCTestCase {
 
 extension AccountTests {
 
-    func setupExpiredSession() {
+    private func setupExpiredSession() {
         let sessionDuration: TimeInterval = 10
         let mockClockService = MockClockService()
         account = Account(userDefaultsService: mockUserDefaults,
@@ -200,8 +200,12 @@ extension AccountTests {
         mockClockService.currentTime += sessionDuration
     }
 
-    func setPassword() {
+    private func setPassword() {
         XCTAssertNoThrow(try account.setMasterPassword(correctPassword))
+    }
+
+    private func cleanupAllData() {
+        XCTAssertNoThrow(try account.cleanupAllData())
     }
 
 }

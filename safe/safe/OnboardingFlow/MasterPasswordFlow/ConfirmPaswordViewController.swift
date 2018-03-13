@@ -7,6 +7,7 @@ import safeUIKit
 
 protocol ConfirmPasswordViewControllerDelegate: class {
     func didConfirmPassword()
+    func terminate()
 }
 
 final class ConfirmPaswordViewController: UIViewController {
@@ -36,6 +37,20 @@ final class ConfirmPaswordViewController: UIViewController {
         _ = textInput.becomeFirstResponder()
     }
 
+    func terminate() {
+        delegate?.terminate()
+    }
+
+    private func showFatalError() {
+        // TODO: 13/03/18: Localize
+        let message = "Failed to set master password. The app will be closed."
+        let alert = UIAlertController(title: "Fatal error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
+            self?.terminate()
+        })
+        show(alert, sender: nil)
+    }
+
 }
 
 
@@ -43,8 +58,8 @@ extension ConfirmPaswordViewController: TextInputDelegate {
 
     func textInputDidReturn() {
         let password = textInput.text!
-        account.cleanupAllData()
         do {
+            try account.cleanupAllData()
             try account.setMasterPassword(password)
             account.activateBiometricAuthentication { [weak self] in
                 DispatchQueue.main.async {
@@ -52,8 +67,8 @@ extension ConfirmPaswordViewController: TextInputDelegate {
                 }
             }
         } catch let e {
-            // TODO: 06/03/18: handle error, show alert to user with error description
-            print("Failed setMasterPassword: \(e)")
+            LogService.shared.fatal("Failed to set master password", error: e)
+            showFatalError()
         }
     }
 

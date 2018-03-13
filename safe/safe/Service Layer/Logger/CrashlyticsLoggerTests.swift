@@ -32,17 +32,9 @@ class CrashlyticsLoggerTests: XCTestCase {
         XCTAssertEqual((mockCrashlytics.loggedError as NSError?)?.userInfo["message"] as? String, testMessage)
     }
 
-    func test_loggableError() {
-        let nsError = TestLogError.error.nsError()
-        XCTAssertEqual(nsError.domain, "TestLogError")
-        XCTAssertEqual(nsError.code, TestLogError.error.rawValue)
-        XCTAssertEqual(nsError.userInfo[NSLocalizedDescriptionKey] as? String, TestLogError.error.localizedDescription)
-        XCTAssertEqual(nsError.userInfo[LoggableErrorDescriptionKey] as? String, "\(TestLogError.error)")
-    }
-
 }
 
-enum TestLogError: Int, LoggableError {
+enum TestLogError: LoggableError {
     case error
 }
 

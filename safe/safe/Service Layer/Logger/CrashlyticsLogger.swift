@@ -9,24 +9,6 @@ protocol CrashlyticsProtocol {
     func recordError(_ error: Error)
 }
 
-let LoggableErrorDescriptionKey = "LoggableErrorDescriptionKey"
-
-protocol LoggableError: Error {
-    var rawValue: Int { get }
-    func nsError() -> NSError
-}
-
-extension LoggableError {
-
-    func nsError() -> NSError {
-        return NSError(domain: String(describing: type(of: self)),
-                       code: rawValue,
-                       userInfo: [NSLocalizedDescriptionKey: localizedDescription,
-                                  LoggableErrorDescriptionKey: String(describing: self)])
-    }
-
-}
-
 final class CrashlyticsLogger: Logger {
 
     private let crashlytics: CrashlyticsProtocol
