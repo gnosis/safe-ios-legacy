@@ -59,7 +59,7 @@ class BiometricAuthenticationServiceTests: XCTestCase {
         context.hasFaceID = true
         XCTAssertTrue(biometricService.isBiometryFaceID)
     }
-    
+
 }
 
 extension BiometricAuthenticationServiceTests {

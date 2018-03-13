@@ -11,7 +11,7 @@ protocol AccountProtocol: class {
     var isBiometryAuthenticationAvailable: Bool { get }
     var isBiometryFaceID: Bool { get }
 
-    func cleanupAllData()
+    func cleanupAllData() throws
     func setMasterPassword(_ password: String) throws
     func activateBiometricAuthentication(completion: @escaping () -> Void)
     func authenticateWithBiometry(completion: @escaping (Bool) -> Void)
@@ -19,8 +19,9 @@ protocol AccountProtocol: class {
 
 }
 
-enum AccountError: Error {
+enum AccountError: LoggableError {
     case settingMasterPasswordFailed
+    case cleanUpAllDataFailed
 }
 
 final class Account: AccountProtocol {
@@ -64,19 +65,16 @@ final class Account: AccountProtocol {
             userDefaultsService.setBool(true, for: UserDefaultsKey.masterPasswordWasSet.rawValue)
             session.start()
         } catch let e {
-            // TODO: 06/03/18 log keychain error
-            print("Failed to set master password: \(e)")
-            throw AccountError.settingMasterPasswordFailed
+            throw AccountError.settingMasterPasswordFailed.nsError(causedBy: e)
         }
     }
 
-    func cleanupAllData() {
+    func cleanupAllData() throws {
         do {
             try keychainService.removePassword()
             userDefaultsService.deleteKey(UserDefaultsKey.masterPasswordWasSet.rawValue)
         } catch let e {
-            // TODO: 06/03/18: notify user about fatal error in keychain and close the app.
-            print("Failed to cleanup all data: \(e)")
+            throw AccountError.cleanUpAllDataFailed.nsError(causedBy: e)
         }
     }
 
@@ -94,8 +92,7 @@ final class Account: AccountProtocol {
         do {
             return authenticationResult(try keychainService.password() == password)
         } catch let e {
-            // TODO: 09/03/18: log error
-            print("Password fetch failed: \(e)")
+            LogService.shared.error("Keychain password fetch failed", error: e)
             return false
         }
     }

@@ -19,6 +19,8 @@
 		0A7E17AD204E99EB00C9078E /* MockAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E17AC204E99EB00C9078E /* MockAccount.swift */; };
 		0AB0FF51204EA9940066682F /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0FF50204EA9940066682F /* KeychainService.swift */; };
 		0AB0FF62204EF85B0066682F /* UserDefaultsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0FF61204EF85B0066682F /* UserDefaultsIntegrationTests.swift */; };
+		0ACF315E2058265300E8A6C3 /* LoggableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF315D2058265300E8A6C3 /* LoggableError.swift */; };
+		0ACF31602058267C00E8A6C3 /* LoggableErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF315F2058267C00E8A6C3 /* LoggableErrorTests.swift */; };
 		0AD93E0C204815CF008C38CA /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD93E0B204815CF008C38CA /* safeUIKit.framework */; };
 		0AD93E0D204815CF008C38CA /* safeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD93E0B204815CF008C38CA /* safeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AD93E0F2048160F008C38CA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DF6A92203C678200DF6486 /* Crashlytics.framework */; };
@@ -54,6 +56,18 @@
 		555DD6E320516DF300D1178A /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */; };
 		555DD6E420516DF700D1178A /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */; };
 		555DD6E520516DF700D1178A /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */; };
+		5580367A20569212004E7452 /* LogServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5580367920569212004E7452 /* LogServiceTests.swift */; };
+		5580367C20569240004E7452 /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5580367B20569240004E7452 /* LogService.swift */; };
+		5580367E2056BDF4004E7452 /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5580367D2056BDF4004E7452 /* ConsoleLogger.swift */; };
+		558036802056BE0C004E7452 /* ConsoleLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5580367F2056BE0C004E7452 /* ConsoleLoggerTests.swift */; };
+		558036832056D98C004E7452 /* LogFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558036822056D98C004E7452 /* LogFormatterTests.swift */; };
+		558036852056D9BE004E7452 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558036842056D9BE004E7452 /* LogFormatter.swift */; };
+		558036872057CD76004E7452 /* CrashlyticsLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558036862057CD76004E7452 /* CrashlyticsLoggerTests.swift */; };
+		558036892057CD99004E7452 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558036882057CD99004E7452 /* CrashlyticsLogger.swift */; };
+		558690A32057D6D1003BF728 /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558690A22057D6D1003BF728 /* TestError.swift */; };
+		558690A42057D6D1003BF728 /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558690A22057D6D1003BF728 /* TestError.swift */; };
+		558690A52057D6D1003BF728 /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558690A22057D6D1003BF728 /* TestError.swift */; };
+		55CF4C9E2057EF8500F1B4BB /* SetupSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C9D2057EF8500F1B4BB /* SetupSafeViewController.swift */; };
 		55D6C2F22045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */; };
 		55D6C2F52045C3540026BC72 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */; };
 		55D97D7C20496A0E0004AEDD /* PasswordSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D97D7B20496A0E0004AEDD /* PasswordSuccessViewController.swift */; };
@@ -119,6 +133,8 @@
 		0AB0FF56204EF81C0066682F /* safeIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AB0FF5A204EF81C0066682F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AB0FF61204EF85B0066682F /* UserDefaultsIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsIntegrationTests.swift; sourceTree = "<group>"; };
+		0ACF315D2058265300E8A6C3 /* LoggableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggableError.swift; sourceTree = "<group>"; };
+		0ACF315F2058267C00E8A6C3 /* LoggableErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggableErrorTests.swift; sourceTree = "<group>"; };
 		0AD93E0B204815CF008C38CA /* safeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = safeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD93E182048350D008C38CA /* ConfirmPaswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaswordViewController.swift; sourceTree = "<group>"; };
 		0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaswordViewControllerTests.swift; sourceTree = "<group>"; };
@@ -154,6 +170,16 @@
 		555DD6DC2051583200D1178A /* SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		555DD6DE205167D000D1178A /* SystemClockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemClockService.swift; sourceTree = "<group>"; };
 		555DD6E020516CB800D1178A /* SystemClockServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemClockServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		5580367920569212004E7452 /* LogServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogServiceTests.swift; sourceTree = "<group>"; };
+		5580367B20569240004E7452 /* LogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
+		5580367D2056BDF4004E7452 /* ConsoleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
+		5580367F2056BE0C004E7452 /* ConsoleLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLoggerTests.swift; sourceTree = "<group>"; };
+		558036822056D98C004E7452 /* LogFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatterTests.swift; sourceTree = "<group>"; };
+		558036842056D9BE004E7452 /* LogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
+		558036862057CD76004E7452 /* CrashlyticsLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsLoggerTests.swift; sourceTree = "<group>"; };
+		558036882057CD99004E7452 /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogger.swift; sourceTree = "<group>"; };
+		558690A22057D6D1003BF728 /* TestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestError.swift; sourceTree = "<group>"; };
+		55CF4C9D2057EF8500F1B4BB /* SetupSafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeViewController.swift; sourceTree = "<group>"; };
 		55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Wait.swift"; sourceTree = "<group>"; };
 		55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
 		55D97D7B20496A0E0004AEDD /* PasswordSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSuccessViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +353,7 @@
 			children = (
 				555DD6D1205144C900D1178A /* SetupSafeFlowCoordinator.swift */,
 				555DD6D3205144EB00D1178A /* SetupSafeFlowCoordinatorTests.swift */,
+				55CF4C9D2057EF8500F1B4BB /* SetupSafeViewController.swift */,
 			);
 			path = SetupSafeFlow;
 			sourceTree = "<group>";
@@ -343,11 +370,29 @@
 			path = AppFlow;
 			sourceTree = "<group>";
 		};
+		558036812056CC50004E7452 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				5580367B20569240004E7452 /* LogService.swift */,
+				5580367920569212004E7452 /* LogServiceTests.swift */,
+				5580367D2056BDF4004E7452 /* ConsoleLogger.swift */,
+				5580367F2056BE0C004E7452 /* ConsoleLoggerTests.swift */,
+				0ACF315D2058265300E8A6C3 /* LoggableError.swift */,
+				0ACF315F2058267C00E8A6C3 /* LoggableErrorTests.swift */,
+				558036882057CD99004E7452 /* CrashlyticsLogger.swift */,
+				558036862057CD76004E7452 /* CrashlyticsLoggerTests.swift */,
+				558036842056D9BE004E7452 /* LogFormatter.swift */,
+				558036822056D98C004E7452 /* LogFormatterTests.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
 		55D6C2F72045C38D0026BC72 /* TestTools */ = {
 			isa = PBXGroup;
 			children = (
 				55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */,
 				55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */,
+				558690A22057D6D1003BF728 /* TestError.swift */,
 			);
 			name = TestTools;
 			path = ../TestTools;
@@ -369,6 +414,7 @@
 		55E670CE204D91D100234E5C /* Service Layer */ = {
 			isa = PBXGroup;
 			children = (
+				558036812056CC50004E7452 /* Logger */,
 				55E670CF204D92DF00234E5C /* UserDefaultsService.swift */,
 				0AB0FF61204EF85B0066682F /* UserDefaultsIntegrationTests.swift */,
 				0AB0FF50204EA9940066682F /* KeychainService.swift */,
@@ -600,6 +646,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558690A52057D6D1003BF728 /* TestError.swift in Sources */,
 				555DD6E520516DF700D1178A /* XCTest+Assert.swift in Sources */,
 				0A05A761204FE1EB0089327D /* KeychainServiceIntegrationTests.swift in Sources */,
 				555DD6E120516CB800D1178A /* SystemClockServiceIntegrationTests.swift in Sources */,
@@ -619,22 +666,28 @@
 				555DD6DF205167D000D1178A /* SystemClockService.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				55147D6020405BBA00AD0E1F /* Colors.swift in Sources */,
+				558036852056D9BE004E7452 /* LogFormatter.swift in Sources */,
 				0AB0FF51204EA9940066682F /* KeychainService.swift in Sources */,
 				55E670CD204D7B5300234E5C /* Account.swift in Sources */,
 				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
 				0A0455F32048505500088B5E /* MasterPasswordFlowCoordinator.swift in Sources */,
 				0A05A7632050004C0089327D /* BiometricAuthenticationService.swift in Sources */,
 				55147D592040521800AD0E1F /* MasterPasswordNavigationController.swift in Sources */,
+				5580367E2056BDF4004E7452 /* ConsoleLogger.swift in Sources */,
+				558036892057CD99004E7452 /* CrashlyticsLogger.swift in Sources */,
 				0AD93E192048350D008C38CA /* ConfirmPaswordViewController.swift in Sources */,
 				55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */,
 				55E670D2204DAD3000234E5C /* UserDefaultKeys.swift in Sources */,
 				0A0455F120484FD800088B5E /* OnboardingFlowCoordinator.swift in Sources */,
+				0ACF315E2058265300E8A6C3 /* LoggableError.swift in Sources */,
 				55E670D0204D92DF00234E5C /* UserDefaultsService.swift in Sources */,
 				55D97D7C20496A0E0004AEDD /* PasswordSuccessViewController.swift in Sources */,
 				555DD6DB2051567400D1178A /* Session.swift in Sources */,
 				555DD6D2205144C900D1178A /* SetupSafeFlowCoordinator.swift in Sources */,
 				5528C43E20470AF500E79A4D /* PasswordValidator.swift in Sources */,
 				55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */,
+				5580367C20569240004E7452 /* LogService.swift in Sources */,
+				55CF4C9E2057EF8500F1B4BB /* SetupSafeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,19 +699,25 @@
 				55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */,
 				0A7E17AD204E99EB00C9078E /* MockAccount.swift in Sources */,
 				0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */,
+				558690A32057D6D1003BF728 /* TestError.swift in Sources */,
 				0AD93E1B2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift in Sources */,
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
 				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
+				0ACF31602058267C00E8A6C3 /* LoggableErrorTests.swift in Sources */,
 				555DD6E320516DF300D1178A /* XCTestCase+Wait.swift in Sources */,
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
 				555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */,
+				558036802056BE0C004E7452 /* ConsoleLoggerTests.swift in Sources */,
 				555DD6E420516DF700D1178A /* XCTest+Assert.swift in Sources */,
 				555DD6DD2051583200D1178A /* SessionTests.swift in Sources */,
 				5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */,
 				0A0455F52048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
+				558036872057CD76004E7452 /* CrashlyticsLoggerTests.swift in Sources */,
 				55E670D320502B6100234E5C /* BiometricAuthenticationServiceTests.swift in Sources */,
+				5580367A20569212004E7452 /* LogServiceTests.swift in Sources */,
 				55E670CB204D7B2500234E5C /* AccountTests.swift in Sources */,
 				555DD6D4205144EB00D1178A /* SetupSafeFlowCoordinatorTests.swift in Sources */,
+				558036832056D98C004E7452 /* LogFormatterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,6 +725,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558690A42057D6D1003BF728 /* TestError.swift in Sources */,
 				5540A50F203C3054009C9BE3 /* StartViewControllerUITests.swift in Sources */,
 				55D6C2F52045C3540026BC72 /* XCTest+Assert.swift in Sources */,
 				55D6C2F22045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */,
@@ -888,6 +948,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "eae101f8-55fb-4b14-846a-6b124457671e";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development pm.gnosis.safe";
+				SAFE_ENABLED_LOGGERS = console;
+				SAFE_LOG_LEVEL = DEBUG;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -914,6 +976,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c29000b9-f4a7-4101-9abe-92c37dbbf0ca";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore pm.gnosis.safe";
+				SAFE_ENABLED_LOGGERS = "console,crashlytics";
+				SAFE_LOG_LEVEL = ERROR;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1072,6 +1136,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b6fd39c1-ffea-4d8e-bea0-0863974ca2f8";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc pm.gnosis.safe.adhoc";
+				SAFE_ENABLED_LOGGERS = "console,crashlytics";
+				SAFE_LOG_LEVEL = DEBUG;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";

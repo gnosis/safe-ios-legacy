@@ -14,6 +14,10 @@ protocol BiometricAuthenticationServiceProtocol {
 
 }
 
+enum BiometricServiceError: LoggableError {
+    case unexpectedBiometryType
+}
+
 final class BiometricService: BiometricAuthenticationServiceProtocol {
 
     private let context: LAContext
@@ -51,9 +55,8 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
     private func requestBiometry(reason: String, completion: @escaping (Bool) -> Void) {
         if isAuthenticationAvailable {
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { result, error in
-                // TODO: 07/03/2018 Log Error
                 if let error = error {
-                    print("Error in evaluatePolicy: \(error)")
+                    LogService.shared.error("Failed to evaluate authentication policy", error: error)
                 }
                 completion(result)
             }
@@ -69,7 +72,8 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
             case .touchID: return "Touch ID"
             case .faceID: return "Face ID"
             case .none:
-                // TODO: 07/03/2018 Log. Should not happen
+                LogService.shared.error("Received unexpected biometry type: none",
+                                        error: BiometricServiceError.unexpectedBiometryType)
                 return "None"
             }
         } else {
