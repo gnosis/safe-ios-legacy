@@ -45,6 +45,16 @@ class LoggerServiceTests: XCTestCase {
         XCTAssertEqual(mockLog.loggedMessages, expectedResult.joined(separator: " "))
     }
 
+    func test_hasSharedInstance() {
+        XCTAssertNotNil(LoggerService.shared)
+    }
+
+    func test_constructorWithBundle() {
+        let bundle = TestBundle()
+        let logger = LoggerService(bundle: bundle)
+        XCTAssertEqual(logger.level, .off)
+    }
+
 }
 
 extension LoggerServiceTests {
@@ -79,6 +89,16 @@ class MockLogger: Logger {
         } else {
             log.append(message)
         }
+    }
+
+}
+
+class TestBundle: Bundle {
+
+    var logLevel: LogLevel?
+
+    override func object(forInfoDictionaryKey key: String) -> Any? {
+        return logLevel?.string
     }
 
 }
