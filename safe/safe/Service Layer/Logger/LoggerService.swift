@@ -45,11 +45,18 @@ enum LogLevel: Int {
 
 final class LoggerService: LoggerServiceProtocol {
 
+    static let shared = LoggerService()
+
     let level: LogLevel
     private var loggers = [Logger]()
 
     init(level: LogLevel) {
         self.level = level
+    }
+
+    init(bundle: Bundle = Bundle.main) {
+        // TODO: Check Info.plist
+        level = .off
     }
 
     func fatal(_ message: String,
