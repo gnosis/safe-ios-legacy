@@ -940,6 +940,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "eae101f8-55fb-4b14-846a-6b124457671e";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development pm.gnosis.safe";
+				SAFE_ENABLED_LOGGERS = console;
+				SAFE_LOG_LEVEL = DEBUG;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -966,6 +968,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c29000b9-f4a7-4101-9abe-92c37dbbf0ca";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore pm.gnosis.safe";
+				SAFE_ENABLED_LOGGERS = "console,crashlytics";
+				SAFE_LOG_LEVEL = ERROR;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1124,6 +1128,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b6fd39c1-ffea-4d8e-bea0-0863974ca2f8";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc pm.gnosis.safe.adhoc";
+				SAFE_ENABLED_LOGGERS = "console,crashlytics";
+				SAFE_LOG_LEVEL = DEBUG;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
