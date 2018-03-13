@@ -17,6 +17,7 @@ final class LogFormatter {
     static let defaultDateFormat = "yyyy-MM-dd hh:mm:ss.SSSSSS"
     static let defaultMessageFormat = "%t [%l] %f:%n %m: %s\n"
 
+    private let dateFormatter = DateFormatter()
     var dateFormat = defaultDateFormat
     var format = defaultMessageFormat
 
@@ -39,8 +40,15 @@ final class LogFormatter {
         if let line = line {
             result = result.replacingOccurrences(of: "%n", with: String(describing: line))
         }
-
+        if let timestamp = timestamp {
+            result = result.replacingOccurrences(of: "%t", with: dateString(timestamp))
+        }
         return result.replacingOccurrences(of: "%s", with: message)
+    }
+
+    private func dateString(_ date: Date) -> String {
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.string(from: date)
     }
 
 }

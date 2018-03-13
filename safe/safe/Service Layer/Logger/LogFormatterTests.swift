@@ -48,6 +48,15 @@ class LogFormatterTests: XCTestCase {
         XCTAssertEqual(formatter.string(from: testMsg, method: "test()"), "Test test() parameter.")
     }
 
+    func test_timestampFormat() {
+        formatter.format = "Test %t parameter."
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = formatter.dateFormat
+        XCTAssertEqual(formatter.string(from: testMsg, timestamp: date),
+                       "Test \(dateFormatter.string(from: date)) parameter.")
+    }
+
     func test_allTogetherParameters() {
         formatter.format = "Test %l %f %n %m %s %t parameters."
         XCTAssertEqual(formatter.string(from: testMsg, logLevel: .off),
