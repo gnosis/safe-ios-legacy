@@ -50,9 +50,27 @@ class LoggerServiceTests: XCTestCase {
     }
 
     func test_constructorWithBundle() {
-        let bundle = TestBundle()
-        let logger = LoggerService(bundle: bundle)
-        XCTAssertEqual(logger.level, .off)
+        assert(bundle: [:], .off)
+        assert(bundle: [LoggerServiceLogLevelKey: ""], .off)
+        assert(bundle: [LoggerServiceLogLevelKey: "fatal"], .fatal)
+        assert(bundle: [LoggerServiceLogLevelKey: "Fatal"], .fatal)
+
+        let levels: [LogLevel] = [.fatal, .error, .info, .debug]
+        levels.forEach { assert(bundle: [LoggerServiceLogLevelKey: $0.string], $0) }
+    }
+
+    func test_whenBundleSpecifiesLogger_thenAddsTheLogger() {
+        let validNames = "console, CraSHlytics"
+        let logger = LoggerService(bundle: TestBundle(values: [LoggerServiceEnabledLoggersKey: validNames]))
+        XCTAssertTrue(logger.loggers.first is ConsoleLogger)
+        XCTAssertTrue(logger.loggers.last is CrashlyticsLogger)
+    }
+
+    func test_whenBundleSpecifiesInvalidLogger_thenNotAdded() {
+        let invalidNameAndSeparator = "cAnsole; craSHlytics"
+        let logger = LoggerService(bundle:
+            TestBundle(values: [LoggerServiceEnabledLoggersKey: invalidNameAndSeparator]))
+        XCTAssertTrue(logger.loggers.isEmpty)
     }
 
 }
@@ -69,6 +87,12 @@ extension LoggerServiceTests {
         logger.debug("debug")
         XCTAssertEqual(mockLog.loggedMessages, expectedLog)
     }
+
+    private func assert(bundle: [String: Any], _ logLevel: LogLevel) {
+        let logger = LoggerService(bundle: TestBundle(values: bundle))
+        XCTAssertEqual(logger.level, logLevel)
+    }
+
 }
 
 class MockLogger: Logger {
@@ -93,12 +117,16 @@ class MockLogger: Logger {
 
 }
 
-class TestBundle: Bundle {
+class TestBundle: BundleProtocol {
 
-    var logLevel: LogLevel?
+    private let values: [String: Any]
 
-    override func object(forInfoDictionaryKey key: String) -> Any? {
-        return logLevel?.string
+    init(values: [String: Any]) {
+        self.values = values
+    }
+
+    func object(forInfoDictionaryKey key: String) -> Any? {
+        return values[key]
     }
 
 }

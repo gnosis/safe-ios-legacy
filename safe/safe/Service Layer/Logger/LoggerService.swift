@@ -41,22 +41,64 @@ enum LogLevel: Int {
         }
     }
 
+    private static let values: [String: LogLevel] = {
+        var result = [String: LogLevel]()
+        let all: [LogLevel] = [.off, .fatal, .error, .info, .debug]
+        all.forEach { result[$0.string] = $0 }
+        return result
+    }()
+
+    init(string: String) {
+        self = LogLevel.values[string.uppercased()]  ?? .off
+    }
+
 }
+
+/// Must be a string value. Valid values: LogLevel names
+let LoggerServiceLogLevelKey = "SafeLoggerServiceLogLevelKey"
+/// Must be comma-separated string of loggers. Valid loggers: crashlytics, console - case-insensitive
+let LoggerServiceEnabledLoggersKey = "SafeLoggerServiceEnabledLoggersKey"
+let LoggerServiceConsoleLoggerIdentifier = "console"
+let LoggerServiceCrashlyticsLoggerIdentifier = "crashlytics"
+
+protocol BundleProtocol {
+
+    func object(forInfoDictionaryKey key: String) -> Any?
+
+}
+
+extension Bundle: BundleProtocol {}
 
 final class LoggerService: LoggerServiceProtocol {
 
     static let shared = LoggerService()
 
     let level: LogLevel
-    private var loggers = [Logger]()
+    private (set) var loggers = [Logger]()
 
     init(level: LogLevel) {
         self.level = level
     }
 
-    init(bundle: Bundle = Bundle.main) {
-        // TODO: Check Info.plist
-        level = .off
+    init(bundle: BundleProtocol = Bundle.main) {
+        let string = bundle.object(forInfoDictionaryKey: LoggerServiceLogLevelKey) as? String ?? ""
+        level = LogLevel(string: string)
+        addLoggers(from: bundle)
+    }
+
+    private func addLoggers(from bundle: BundleProtocol) {
+        guard let enabledLoggers = bundle.object(forInfoDictionaryKey: LoggerServiceEnabledLoggersKey) as? String else {
+            return
+        }
+        let normalizedEnabledLoggers = enabledLoggers.split(separator: ",").map {
+            $0.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        if normalizedEnabledLoggers.contains(LoggerServiceConsoleLoggerIdentifier) {
+            add(ConsoleLogger())
+        }
+        if normalizedEnabledLoggers.contains(LoggerServiceCrashlyticsLoggerIdentifier) {
+            add(CrashlyticsLogger())
+        }
     }
 
     func fatal(_ message: String,
