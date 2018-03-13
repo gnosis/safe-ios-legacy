@@ -33,6 +33,12 @@ class LogFormatterTests: XCTestCase {
         XCTAssertEqual(formatter.string(from: testMsg, logLevel: .debug), "Test DEBUG parameter.")
     }
 
+    func test_errorFormat() {
+        formatter.format = "Test %e parameter."
+        XCTAssertEqual(formatter.string(from: testMsg, error: TestError.error), "Test error parameter.")
+        XCTAssertEqual(formatter.string(from: testMsg, error: nil), "Test  parameter.")
+    }
+
     func test_filenameFormat() {
         formatter.format = "Test %f parameter."
         XCTAssertEqual(formatter.string(from: testMsg, filename: "test.swift"), "Test test.swift parameter.")

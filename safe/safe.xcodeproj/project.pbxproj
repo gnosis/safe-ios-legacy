@@ -60,6 +60,11 @@
 		558036802056BE0C004E7452 /* ConsoleLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5580367F2056BE0C004E7452 /* ConsoleLoggerTests.swift */; };
 		558036832056D98C004E7452 /* LogFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558036822056D98C004E7452 /* LogFormatterTests.swift */; };
 		558036852056D9BE004E7452 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558036842056D9BE004E7452 /* LogFormatter.swift */; };
+		558036872057CD76004E7452 /* CrashlyticsLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558036862057CD76004E7452 /* CrashlyticsLoggerTests.swift */; };
+		558036892057CD99004E7452 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558036882057CD99004E7452 /* CrashlyticsLogger.swift */; };
+		558690A32057D6D1003BF728 /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558690A22057D6D1003BF728 /* TestError.swift */; };
+		558690A42057D6D1003BF728 /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558690A22057D6D1003BF728 /* TestError.swift */; };
+		558690A52057D6D1003BF728 /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558690A22057D6D1003BF728 /* TestError.swift */; };
 		55D6C2F22045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */; };
 		55D6C2F52045C3540026BC72 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */; };
 		55D97D7C20496A0E0004AEDD /* PasswordSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D97D7B20496A0E0004AEDD /* PasswordSuccessViewController.swift */; };
@@ -166,6 +171,9 @@
 		5580367F2056BE0C004E7452 /* ConsoleLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLoggerTests.swift; sourceTree = "<group>"; };
 		558036822056D98C004E7452 /* LogFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatterTests.swift; sourceTree = "<group>"; };
 		558036842056D9BE004E7452 /* LogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
+		558036862057CD76004E7452 /* CrashlyticsLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsLoggerTests.swift; sourceTree = "<group>"; };
+		558036882057CD99004E7452 /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogger.swift; sourceTree = "<group>"; };
+		558690A22057D6D1003BF728 /* TestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestError.swift; sourceTree = "<group>"; };
 		55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Wait.swift"; sourceTree = "<group>"; };
 		55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
 		55D97D7B20496A0E0004AEDD /* PasswordSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSuccessViewController.swift; sourceTree = "<group>"; };
@@ -362,8 +370,10 @@
 				5580367920569212004E7452 /* LoggerServiceTests.swift */,
 				5580367D2056BDF4004E7452 /* ConsoleLogger.swift */,
 				5580367F2056BE0C004E7452 /* ConsoleLoggerTests.swift */,
-				558036822056D98C004E7452 /* LogFormatterTests.swift */,
+				558036882057CD99004E7452 /* CrashlyticsLogger.swift */,
+				558036862057CD76004E7452 /* CrashlyticsLoggerTests.swift */,
 				558036842056D9BE004E7452 /* LogFormatter.swift */,
+				558036822056D98C004E7452 /* LogFormatterTests.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -373,6 +383,7 @@
 			children = (
 				55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */,
 				55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */,
+				558690A22057D6D1003BF728 /* TestError.swift */,
 			);
 			name = TestTools;
 			path = ../TestTools;
@@ -626,6 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558690A52057D6D1003BF728 /* TestError.swift in Sources */,
 				555DD6E520516DF700D1178A /* XCTest+Assert.swift in Sources */,
 				0A05A761204FE1EB0089327D /* KeychainServiceIntegrationTests.swift in Sources */,
 				555DD6E120516CB800D1178A /* SystemClockServiceIntegrationTests.swift in Sources */,
@@ -653,6 +665,7 @@
 				0A05A7632050004C0089327D /* BiometricAuthenticationService.swift in Sources */,
 				55147D592040521800AD0E1F /* MasterPasswordNavigationController.swift in Sources */,
 				5580367E2056BDF4004E7452 /* ConsoleLogger.swift in Sources */,
+				558036892057CD99004E7452 /* CrashlyticsLogger.swift in Sources */,
 				0AD93E192048350D008C38CA /* ConfirmPaswordViewController.swift in Sources */,
 				55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */,
 				55E670D2204DAD3000234E5C /* UserDefaultKeys.swift in Sources */,
@@ -675,6 +688,7 @@
 				55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */,
 				0A7E17AD204E99EB00C9078E /* MockAccount.swift in Sources */,
 				0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */,
+				558690A32057D6D1003BF728 /* TestError.swift in Sources */,
 				0AD93E1B2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift in Sources */,
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
 				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
@@ -686,6 +700,7 @@
 				555DD6DD2051583200D1178A /* SessionTests.swift in Sources */,
 				5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */,
 				0A0455F52048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
+				558036872057CD76004E7452 /* CrashlyticsLoggerTests.swift in Sources */,
 				55E670D320502B6100234E5C /* BiometricAuthenticationServiceTests.swift in Sources */,
 				5580367A20569212004E7452 /* LoggerServiceTests.swift in Sources */,
 				55E670CB204D7B2500234E5C /* AccountTests.swift in Sources */,
@@ -698,6 +713,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558690A42057D6D1003BF728 /* TestError.swift in Sources */,
 				5540A50F203C3054009C9BE3 /* StartViewControllerUITests.swift in Sources */,
 				55D6C2F52045C3540026BC72 /* XCTest+Assert.swift in Sources */,
 				55D6C2F22045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */,

@@ -11,6 +11,7 @@ import Foundation
  %m - Method name
  %s - Message
  %t - Timestamp
+ %e - Error
  */
 final class LogFormatter {
 
@@ -23,6 +24,7 @@ final class LogFormatter {
 
     func string(from message: String,
                 logLevel: LogLevel? = nil,
+                error: Error? = nil,
                 filename: String? = nil,
                 method: String? = nil,
                 line: UInt? = nil,
@@ -31,6 +33,8 @@ final class LogFormatter {
         if let logLevel = logLevel {
             result = result.replacingOccurrences(of: "%l", with: logLevel.string)
         }
+        let errorStr = error != nil ? String(describing: error!) : ""
+        result = result.replacingOccurrences(of: "%e", with: errorStr)
         if let filename = filename {
             result = result.replacingOccurrences(of: "%f", with: filename)
         }

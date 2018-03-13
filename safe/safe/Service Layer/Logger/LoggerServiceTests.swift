@@ -32,15 +32,15 @@ class LoggerServiceTests: XCTestCase {
         let mockLog = MockLogger()
         mockLog.detailed = true
         logger.add(mockLog)
-        logger.fatal("fatal"); let line = #line
-        logger.error("error")
+        logger.fatal("fatal", error: TestError.error); let line = #line
+        logger.error("error", error: TestError.error)
         logger.info("info")
         logger.debug("debug")
         let expectedResult = [
-            "fatal \(LogLevel.fatal.string) \(file) \(line) \(function)",
-            "error \(LogLevel.error.string) \(file) \(line + 1) \(function)",
-            "info \(LogLevel.info.string) \(file) \(line + 2) \(function)",
-            "debug \(LogLevel.debug.string) \(file) \(line + 3) \(function)"
+            "fatal \(LogLevel.fatal.string) error \(file) \(line) \(function)",
+            "error \(LogLevel.error.string) error \(file) \(line + 1) \(function)",
+            "info \(LogLevel.info.string) emptyError \(file) \(line + 2) \(function)",
+            "debug \(LogLevel.debug.string) emptyError \(file) \(line + 3) \(function)"
         ]
         XCTAssertEqual(mockLog.loggedMessages, expectedResult.joined(separator: " "))
     }
@@ -59,14 +59,6 @@ extension LoggerServiceTests {
         logger.debug("debug")
         XCTAssertEqual(mockLog.loggedMessages, expectedLog)
     }
-
-    private func detailedLogger(_ level: LogLevel) -> LoggerService {
-        let logger = LoggerService(level: level)
-        let mockLog = MockLogger()
-        mockLog.detailed = true
-        logger.add(mockLog)
-        return logger
-    }
 }
 
 class MockLogger: Logger {
@@ -75,9 +67,15 @@ class MockLogger: Logger {
     var loggedMessages: String { return log.joined(separator: " ") }
     private var log = [String]()
 
-    func log(_ message: String, level: LogLevel, file: StaticString, line: UInt, function: StaticString) {
+    func log(_ message: String,
+             level: LogLevel,
+             error: Error?,
+             file: StaticString,
+             line: UInt,
+             function: StaticString) {
         if detailed {
-            log.append("\(message) \(level.string) \(file) \(line) \(function)")
+            let errorStr = error != nil ? String(describing: error!) : "emptyError"
+            log.append("\(message) \(level.string) \(errorStr) \(file) \(line) \(function)")
         } else {
             log.append(message)
         }
