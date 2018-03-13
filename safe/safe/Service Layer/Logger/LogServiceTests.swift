@@ -5,7 +5,7 @@
 import XCTest
 @testable import safe
 
-class LoggerServiceTests: XCTestCase {
+class LogServiceTests: XCTestCase {
 
     func test_logLevels() {
         assert(.off, allowsOnly: "")
@@ -15,8 +15,8 @@ class LoggerServiceTests: XCTestCase {
         assert(.debug, allowsOnly: "fatal error info debug")
     }
 
-    func test_whenLoggerServiceCalled_thenAllLoggersAreTriggered() {
-        let logger = LoggerService(level: .error)
+    func test_whenLogServiceCalled_thenAllLoggersAreTriggered() {
+        let logger = LogService(level: .error)
         let mockLog1 = MockLogger()
         let mockLog2 = MockLogger()
         logger.add([mockLog1, mockLog2])
@@ -28,7 +28,7 @@ class LoggerServiceTests: XCTestCase {
     func test_defaultLoggingParameters() {
         let file = #file
         let function = #function
-        let logger = LoggerService(level: .debug)
+        let logger = LogService(level: .debug)
         let mockLog = MockLogger()
         mockLog.detailed = true
         logger.add(mockLog)
@@ -46,44 +46,44 @@ class LoggerServiceTests: XCTestCase {
     }
 
     func test_hasSharedInstance() {
-        XCTAssertNotNil(LoggerService.shared)
+        XCTAssertNotNil(LogService.shared)
     }
 
     func test_constructorWithBundle() {
         assert(bundle: [:], .off)
-        assert(bundle: [LoggerServiceLogLevelKey: ""], .off)
-        assert(bundle: [LoggerServiceLogLevelKey: "fatal"], .fatal)
-        assert(bundle: [LoggerServiceLogLevelKey: "Fatal"], .fatal)
+        assert(bundle: [LogServiceLogLevelKey: ""], .off)
+        assert(bundle: [LogServiceLogLevelKey: "fatal"], .fatal)
+        assert(bundle: [LogServiceLogLevelKey: "Fatal"], .fatal)
 
         let levels: [LogLevel] = [.fatal, .error, .info, .debug]
-        levels.forEach { assert(bundle: [LoggerServiceLogLevelKey: $0.string], $0) }
+        levels.forEach { assert(bundle: [LogServiceLogLevelKey: $0.string], $0) }
     }
 
     func test_whenBundleSpecifiesLogger_thenAddsTheLogger() {
         let validNames = "console, CraSHlytics"
-        let logger = LoggerService(bundle: TestBundle(values: [LoggerServiceEnabledLoggersKey: validNames]))
+        let logger = LogService(bundle: TestBundle(values: [LogServiceEnabledLoggersKey: validNames]))
         XCTAssertTrue(logger.loggers.first is ConsoleLogger)
         XCTAssertTrue(logger.loggers.last is CrashlyticsLogger)
     }
 
     func test_whenBundleSpecifiesInvalidLogger_thenNotAdded() {
         let invalidNameAndSeparator = "cAnsole; craSHlytics"
-        let logger = LoggerService(bundle:
-            TestBundle(values: [LoggerServiceEnabledLoggersKey: invalidNameAndSeparator]))
+        let logger = LogService(bundle:
+            TestBundle(values: [LogServiceEnabledLoggersKey: invalidNameAndSeparator]))
         XCTAssertTrue(logger.loggers.isEmpty)
     }
 
     func test_mainBundleContainsLoggerKeys() {
-        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: LoggerServiceLogLevelKey))
-        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: LoggerServiceEnabledLoggersKey))
+        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: LogServiceLogLevelKey))
+        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: LogServiceEnabledLoggersKey))
     }
 
 }
 
-extension LoggerServiceTests {
+extension LogServiceTests {
 
     private func assert(_ level: LogLevel, allowsOnly expectedLog: String) {
-        let logger = LoggerService(level: level)
+        let logger = LogService(level: level)
         let mockLog = MockLogger()
         logger.add(mockLog)
         logger.fatal("fatal")
@@ -94,7 +94,7 @@ extension LoggerServiceTests {
     }
 
     private func assert(bundle: [String: Any], _ logLevel: LogLevel) {
-        let logger = LoggerService(bundle: TestBundle(values: bundle))
+        let logger = LogService(bundle: TestBundle(values: bundle))
         XCTAssertEqual(logger.level, logLevel)
     }
 

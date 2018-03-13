@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol LoggerServiceProtocol {
+protocol LogServiceProtocol {
     func fatal(_ message: String, error: Error?, file: StaticString, line: UInt, function: StaticString)
     func error(_ message: String, error: Error?, file: StaticString, line: UInt, function: StaticString)
     func info(_ message: String, error: Error?, file: StaticString, line: UInt, function: StaticString)
@@ -55,11 +55,11 @@ enum LogLevel: Int {
 }
 
 /// Must be a string value. Valid values: LogLevel names
-let LoggerServiceLogLevelKey = "SafeLoggerServiceLogLevelKey"
+let LogServiceLogLevelKey = "SafeLogServiceLogLevelKey"
 /// Must be comma-separated string of loggers. Valid loggers: crashlytics, console - case-insensitive
-let LoggerServiceEnabledLoggersKey = "SafeLoggerServiceEnabledLoggersKey"
-let LoggerServiceConsoleLoggerIdentifier = "console"
-let LoggerServiceCrashlyticsLoggerIdentifier = "crashlytics"
+let LogServiceEnabledLoggersKey = "SafeLogServiceEnabledLoggersKey"
+let LogServiceConsoleLoggerIdentifier = "console"
+let LogServiceCrashlyticsLoggerIdentifier = "crashlytics"
 
 protocol BundleProtocol {
 
@@ -69,9 +69,9 @@ protocol BundleProtocol {
 
 extension Bundle: BundleProtocol {}
 
-final class LoggerService: LoggerServiceProtocol {
+final class LogService: LogServiceProtocol {
 
-    static let shared = LoggerService()
+    static let shared = LogService()
 
     let level: LogLevel
     private (set) var loggers = [Logger]()
@@ -81,22 +81,22 @@ final class LoggerService: LoggerServiceProtocol {
     }
 
     init(bundle: BundleProtocol = Bundle.main) {
-        let string = bundle.object(forInfoDictionaryKey: LoggerServiceLogLevelKey) as? String ?? ""
+        let string = bundle.object(forInfoDictionaryKey: LogServiceLogLevelKey) as? String ?? ""
         level = LogLevel(string: string)
         addLoggers(from: bundle)
     }
 
     private func addLoggers(from bundle: BundleProtocol) {
-        guard let enabledLoggers = bundle.object(forInfoDictionaryKey: LoggerServiceEnabledLoggersKey) as? String else {
+        guard let enabledLoggers = bundle.object(forInfoDictionaryKey: LogServiceEnabledLoggersKey) as? String else {
             return
         }
         let normalizedEnabledLoggers = enabledLoggers.split(separator: ",").map {
             $0.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         }
-        if normalizedEnabledLoggers.contains(LoggerServiceConsoleLoggerIdentifier) {
+        if normalizedEnabledLoggers.contains(LogServiceConsoleLoggerIdentifier) {
             add(ConsoleLogger())
         }
-        if normalizedEnabledLoggers.contains(LoggerServiceCrashlyticsLoggerIdentifier) {
+        if normalizedEnabledLoggers.contains(LogServiceCrashlyticsLoggerIdentifier) {
             add(CrashlyticsLogger())
         }
     }

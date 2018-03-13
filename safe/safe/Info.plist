@@ -36,9 +36,9 @@
 	<true/>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Use Face ID to type your master password.</string>
-	<key>SafeLoggerServiceEnabledLoggersKey</key>
+	<key>SafeLogServiceEnabledLoggersKey</key>
 	<string>$(SAFE_ENABLED_LOGGERS)</string>
-	<key>SafeLoggerServiceLogLevelKey</key>
+	<key>SafeLogServiceLogLevelKey</key>
 	<string>$(SAFE_LOG_LEVEL)</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
