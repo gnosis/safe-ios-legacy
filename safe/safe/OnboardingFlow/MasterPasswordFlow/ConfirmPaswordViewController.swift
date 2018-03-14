@@ -12,12 +12,15 @@ protocol ConfirmPasswordViewControllerDelegate: class {
 
 final class ConfirmPaswordViewController: UIViewController {
 
+    @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var textInput: TextInput!
     private var referencePassword: String!
     private weak var delegate: ConfirmPasswordViewControllerDelegate?
     private var account: AccountProtocol!
 
     struct LocalizedString {
+        static let header = NSLocalizedString("onboarding.confirm_password.header",
+                                              "Confirm password screen header")
         static let matchPassword = NSLocalizedString("onboarding.confirm_password.match",
                                                      "Password confirmation must match set password rule")
         struct FatalAlert {

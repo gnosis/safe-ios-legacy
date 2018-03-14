@@ -16,6 +16,7 @@ final class SetPasswordViewController: UIViewController {
     private weak var delegate: SetPasswordViewControllerDelegate?
 
     struct LocalizedStrings {
+        static let header = NSLocalizedString("onboarding.set_password.header", "Set password screen header label")
         static let length = NSLocalizedString("onboarding.set_password.length",
                                               "Minimum length rule for password field")
         static let capital = NSLocalizedString("onboarding.set_password.capital",
@@ -32,6 +33,7 @@ final class SetPasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerLabel.text = LocalizedStrings.header
         textInput.delegate = self
         textInput.addRule(LocalizedStrings.length) { PasswordValidator.validateMinLength($0) }
         textInput.addRule(LocalizedStrings.capital) { PasswordValidator.validateAtLeastOneCapitalLetter($0) }
