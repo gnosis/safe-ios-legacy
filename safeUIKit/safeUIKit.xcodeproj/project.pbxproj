@@ -16,6 +16,7 @@
 		0A0974EA20480E11005753DF /* safeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* safeUIKitDemoUITests.swift */; };
 		0A0974EC20480E45005753DF /* safeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* safeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A53AD5320598B5000D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD5520598B5000D713AD /* Localizable.strings */; };
+		0A53AD59205990B600D713AD /* NSLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53AD58205990B600D713AD /* NSLocalizedString.swift */; };
 		0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8BE205284180044D5DD /* H1Label.swift */; };
 		0A7AE8C72052C2120044D5DD /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Wait.swift */; };
 		0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
@@ -90,6 +91,7 @@
 		0A0974EB20480E45005753DF /* safeUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safeUIKit.h; sourceTree = "<group>"; };
 		0A53AD5420598B5000D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD5620598B5E00D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A53AD58205990B600D713AD /* NSLocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLocalizedString.swift; sourceTree = "<group>"; };
 		0A7AE8BE205284180044D5DD /* H1Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H1Label.swift; sourceTree = "<group>"; };
 		0A7AE8C32052C20A0044D5DD /* XCTestCase+Wait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Wait.swift"; sourceTree = "<group>"; };
 		0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				0A9670D020480C7A00445AC2 /* TextInput.xib */,
 				0A9670D320480C7B00445AC2 /* RuleLabel.swift */,
 				0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */,
+				0A53AD58205990B600D713AD /* NSLocalizedString.swift */,
 				0A9670D220480C7B00445AC2 /* Fonts.swift */,
 				0A9670B520480C5700445AC2 /* Info.plist */,
 				0A0974EB20480E45005753DF /* safeUIKit.h */,
@@ -254,7 +257,6 @@
 			buildConfigurationList = 0A96709520480C3F00445AC2 /* Build configuration list for PBXNativeTarget "safeUIKitDemo" */;
 			buildPhases = (
 				0A96707620480C3E00445AC2 /* Sources */,
-				0AEFB0C020494AF60061A1FD /* SwiftLint */,
 				0A96707720480C3E00445AC2 /* Frameworks */,
 				0A96707820480C3E00445AC2 /* Resources */,
 				0A9670AC20480C4A00445AC2 /* Embed Frameworks */,
@@ -293,7 +295,6 @@
 			buildPhases = (
 				0A0974ED20480EA0005753DF /* SwiftGen */,
 				0A9670AD20480C5700445AC2 /* Sources */,
-				0AEFB0BF20494AB70061A1FD /* SwiftLint */,
 				0A9670AE20480C5700445AC2 /* Frameworks */,
 				0A9670AF20480C5700445AC2 /* Headers */,
 				0A53AD5720598B6F00D713AD /* Localize */,
@@ -446,34 +447,6 @@
 			shellScript = ../scripts/localize.sh;
 			showEnvVarsInLog = 0;
 		};
-		0AEFB0BF20494AB70061A1FD /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = ../scripts/run_swiftlint.sh;
-		};
-		0AEFB0C020494AF60061A1FD /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = ../scripts/run_swiftlint.sh;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -502,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */,
+				0A53AD59205990B600D713AD /* NSLocalizedString.swift in Sources */,
 				0A9670DB20480C7B00445AC2 /* Fonts.swift in Sources */,
 				0AD93E0920481461008C38CA /* Colors.swift in Sources */,
 				0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */,

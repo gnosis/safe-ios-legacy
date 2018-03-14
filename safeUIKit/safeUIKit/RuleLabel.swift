@@ -9,12 +9,11 @@ public enum RuleStatus {
     case success
     case inactive
 
-    // TODO: 28/02/18 Localize
     var localizedDescription: String {
         switch self {
-        case .error: return "Error"
-        case .success: return "Success"
-        case .inactive: return "Inactive"
+        case .error: return NSLocalizedString("rule.error", "Error status of a rule")
+        case .success: return NSLocalizedString("rule.success", "Success status of a rule")
+        case .inactive: return NSLocalizedString("rule.inactive", "Inactive status of a rule")
         }
     }
 }

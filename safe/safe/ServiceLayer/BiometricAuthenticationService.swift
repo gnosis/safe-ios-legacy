@@ -22,6 +22,14 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
 
     private let context: LAContext
 
+    struct LocalizedString {
+        static let activate = NSLocalizedString("biometry.activation.reason", "Reason to activate Touch ID or Face ID.")
+        static let unlock = NSLocalizedString("biometry.authentication.reason", "Description of unlock with Touch ID.")
+        static let touchID = NSLocalizedString("biometry.touchID", "Touch ID name")
+        static let faceID = NSLocalizedString("biometry.faceID", "Face ID name")
+        static let unrecognized = NSLocalizedString("biometry.none", "Unrecognized biometry type")
+    }
+
     init(localAuthenticationContext: LAContext = LAContext()) {
         context = localAuthenticationContext
     }
@@ -41,15 +49,13 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
     }
 
     func activate(completion: @escaping () -> Void) {
-        // TODO: 07/03/2018 Localize
-        requestBiometry(reason: "Enable unlocking your master password with \(biometryType())") { _ in
+        requestBiometry(reason: String(format: LocalizedString.activate, biometryType())) { _ in
             completion()
         }
     }
 
     func authenticate(completion: @escaping (Bool) -> Void) {
-        // TODO: 09/03/2018 Localize
-        requestBiometry(reason: "Unlock your master password with \(biometryType())", completion: completion)
+        requestBiometry(reason: String(format: LocalizedString.unlock, biometryType()), completion: completion)
     }
 
     private func requestBiometry(reason: String, completion: @escaping (Bool) -> Void) {
@@ -66,18 +72,17 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
     }
 
     private func biometryType() -> String {
-        // TODO: 07/03/2018 Localize
         if #available(iOS 11.0, *) {
             switch context.biometryType {
-            case .touchID: return "Touch ID"
-            case .faceID: return "Face ID"
+            case .touchID: return LocalizedString.touchID
+            case .faceID: return LocalizedString.faceID
             case .none:
                 LogService.shared.error("Received unexpected biometry type: none",
                                         error: BiometricServiceError.unexpectedBiometryType)
-                return "None"
+                return LocalizedString.unrecognized
             }
         } else {
-            return "Touch ID"
+            return LocalizedString.touchID
         }
     }
 

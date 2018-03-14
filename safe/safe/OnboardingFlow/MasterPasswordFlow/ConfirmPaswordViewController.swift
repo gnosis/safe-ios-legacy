@@ -17,6 +17,16 @@ final class ConfirmPaswordViewController: UIViewController {
     private weak var delegate: ConfirmPasswordViewControllerDelegate?
     private var account: AccountProtocol!
 
+    struct LocalizedString {
+        static let matchPassword = NSLocalizedString("onboarding.confirm_password.match",
+                                                     "Password confirmation must match set password rule")
+        struct FatalAlert {
+            static let title = NSLocalizedString("onboarding.fatal.title", "Fatal error alert's title")
+            static let ok = NSLocalizedString("onboarding.fatal.ok", "Fatal error alert's Ok button title")
+            static let message = NSLocalizedString("onboarding.fatal.message", "Fatal error alert's message")
+        }
+    }
+
     static func create(account: AccountProtocol,
                        referencePassword: String,
                        delegate: ConfirmPasswordViewControllerDelegate?) -> ConfirmPaswordViewController {
@@ -30,8 +40,7 @@ final class ConfirmPaswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         textInput.delegate = self
-        // TODO: 01/03/18: Localize rule
-        textInput.addRule("• Passwords must match") { [unowned self] input in
+        textInput.addRule(LocalizedString.matchPassword) { [unowned self] input in
             PasswordValidator.validate(input: input, equals: self.referencePassword)
         }
         _ = textInput.becomeFirstResponder()
@@ -42,10 +51,9 @@ final class ConfirmPaswordViewController: UIViewController {
     }
 
     private func showFatalError() {
-        // TODO: 13/03/18: Localize
-        let message = "Failed to set master password. The app will be closed."
-        let alert = UIAlertController(title: "Fatal error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
+        let message = LocalizedString.FatalAlert.message
+        let alert = UIAlertController(title: LocalizedString.FatalAlert.title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: LocalizedString.FatalAlert.ok, style: .default) { [weak self] _ in
             self?.terminate()
         })
         show(alert, sender: nil)

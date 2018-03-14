@@ -1,5 +1,6 @@
 # Naming Conventions
 1. When naming protocols, use `..Protocol` suffix (unless it's a delegate protocol).
+2. Folders and groups MUST NOT contain whitespace symbols.
 
 # Localization
 We use standard `NSLocalizedString` function to wrap user-facing strings. You must provide meaningful comment with each string.
