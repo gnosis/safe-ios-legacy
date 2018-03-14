@@ -1,11 +1,11 @@
 # Naming Conventions
 1. When naming protocols, use `..Protocol` suffix (unless it's a delegate protocol).
-2. Folders and groups MUST NOT contain whitespace symbols.
+2. Folders and groups MUST NOT contain whitespace symbols (because genstrings ignores paths with whitespaces).
 
 # Localization
-We use standard `NSLocalizedString` function to wrap user-facing strings. You must provide meaningful comment with each string.
+We use `NSLocalizedString` function to wrap user-facing strings. You must provide meaningful comment with each string.
 
-    NSLocalizedString("onboarding.start.header", comment: "Header label for Start screen")
+    NSLocalizedString("onboarding.start.header", "Header label for Start screen")
 
 Never localize storyboards or xibs but put all localization keys in the source code.
 

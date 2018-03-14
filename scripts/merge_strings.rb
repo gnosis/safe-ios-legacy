@@ -6,7 +6,7 @@ class StringLoclaization
 end
 
 def localizations(file)
-    contents = File.open(file, 'rb:UTF-16LE') { |f| f.read.encode('UTF-8') }
+    contents = File.open(file, 'rb:UTF-8') { |f| f.read }
     contents.scan(/\/\* (.*?) \*\/\n"(.*?)" = "(.*?)";/m).map { |comment, key, value|
         localization = StringLoclaization.new
         localization.comment = comment
@@ -48,10 +48,8 @@ while leftIdx < base.count
     leftIdx += 1
 end
 
-File.open(ARGV[1], 'w:UTF-16LE') { |f|
+File.open(ARGV[1], 'w:UTF-8') { |f|
     f.truncate(0)
-    bom_marker = "\uFEFF"
-    f.write bom_marker
     merged.each do |localization|
         f.puts "/* #{localization.comment} */"
         f.puts "\"#{localization.key}\" = \"#{localization.value}\";"
