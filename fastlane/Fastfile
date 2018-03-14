@@ -101,6 +101,10 @@ platform :ios do
     match(type: "adhoc", app_identifier: ADHOC_APP_ID, readonly: true)
   end
 
+  lane :localize do
+    sh 'cd ..; find  safe -name "*.swift" -and -not -name "NSLocalizedString.swift" -print0 | xargs -0 -I SWIFT_FILE genstrings -o safe/safe/Base.lproj SWIFT_FILE'
+  end
+
   error do |lane, exception|
     slack(
       message: exception.message,
