@@ -16,9 +16,12 @@ final class SetPasswordViewController: UIViewController {
     private weak var delegate: SetPasswordViewControllerDelegate?
 
     struct LocalizedStrings {
-        static let length = NSLocalizedString("onboarding.set_password.length","• Minimum 6 charachters")
-        static let capital = NSLocalizedString("onboarding.set_password.capital", "• Should have a capital letter")
-        static let digit = NSLocalizedString("onboarding.set_password.digit", "• Should have a digit")
+        static let length = NSLocalizedString("onboarding.set_password.length",
+                                              "Minimum length rule for password field")
+        static let capital = NSLocalizedString("onboarding.set_password.capital",
+                                               "At least one capital letter rule for password field")
+        static let digit = NSLocalizedString("onboarding.set_password.digit",
+                                             "At least one digit rule for password field")
     }
 
     static func create(delegate: SetPasswordViewControllerDelegate?) -> SetPasswordViewController {

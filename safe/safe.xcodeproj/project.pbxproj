@@ -463,6 +463,7 @@
 				5540A4E7203C3054009C9BE3 /* Sources */,
 				55DF6A95203C681A00DF6486 /* SwiftLint */,
 				5540A4E8203C3054009C9BE3 /* Frameworks */,
+				0A53AD5020598A0600D713AD /* Localize */,
 				5540A4E9203C3054009C9BE3 /* Resources */,
 				5540A520203C6077009C9BE3 /* Fabric */,
 				5554D7B820455B7800672DA8 /* Embed Frameworks */,
@@ -602,6 +603,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0A53AD5020598A0600D713AD /* Localize */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Localize;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ../scripts/localize.sh;
+			showEnvVarsInLog = 0;
+		};
 		55147D50203DAE5900AD0E1F /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
