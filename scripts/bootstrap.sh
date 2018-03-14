@@ -48,7 +48,6 @@ if [ ! -d .git/hooks ]; then
 fi
 echo "Installing git configuration"
 cp git/hooks/* .git/hooks/
-cat git/config >> .git/config
 
 echo "Running bundle install"
 bundle install
