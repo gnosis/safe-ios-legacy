@@ -15,6 +15,16 @@ final class SetPasswordViewController: UIViewController {
     @IBOutlet weak var textInput: TextInput!
     private weak var delegate: SetPasswordViewControllerDelegate?
 
+    struct LocalizedStrings {
+        static let header = NSLocalizedString("onboarding.set_password.header", "Set password screen header label")
+        static let length = NSLocalizedString("onboarding.set_password.length",
+                                              "Minimum length rule for password field")
+        static let capital = NSLocalizedString("onboarding.set_password.capital",
+                                               "At least one capital letter rule for password field")
+        static let digit = NSLocalizedString("onboarding.set_password.digit",
+                                             "At least one digit rule for password field")
+    }
+
     static func create(delegate: SetPasswordViewControllerDelegate?) -> SetPasswordViewController {
         let vc = StoryboardScene.MasterPassword.setPasswordViewController.instantiate()
         vc.delegate = delegate
@@ -23,11 +33,11 @@ final class SetPasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerLabel.text = LocalizedStrings.header
         textInput.delegate = self
-        // TODO: 28/02/2018 Localize
-        textInput.addRule("• Minimum 6 charachters") { PasswordValidator.validateMinLength($0) }
-        textInput.addRule("• Should have a capital letter") { PasswordValidator.validateAtLeastOneCapitalLetter($0) }
-        textInput.addRule("• Should have a digit") { PasswordValidator.validateAtLeastOneDigit($0) }
+        textInput.addRule(LocalizedStrings.length) { PasswordValidator.validateMinLength($0) }
+        textInput.addRule(LocalizedStrings.capital) { PasswordValidator.validateAtLeastOneCapitalLetter($0) }
+        textInput.addRule(LocalizedStrings.digit) { PasswordValidator.validateAtLeastOneDigit($0) }
         _ = textInput.becomeFirstResponder()
     }
 

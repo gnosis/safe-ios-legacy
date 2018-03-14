@@ -1,0 +1,54 @@
+/* Unlock screen header */
+"app.unlock.header" = "app.unlock.header";
+
+/* Reason to activate Touch ID or Face ID. */
+"biometry.activation.reason" = "biometry.activation.reason";
+
+/* Description of unlock with Touch ID. */
+"biometry.authentication.reason" = "biometry.authentication.reason";
+
+/* Face ID name */
+"biometry.faceID" = "biometry.faceID";
+
+/* Unrecognized biometry type */
+"biometry.none" = "biometry.none";
+
+/* Touch ID name */
+"biometry.touchID" = "biometry.touchID";
+
+/* Confirm password screen header */
+"onboarding.confirm_password.header" = "onboarding.confirm_password.header";
+
+/* Password confirmation must match set password rule */
+"onboarding.confirm_password.match" = "onboarding.confirm_password.match";
+
+/* Fatal error alert's message */
+"onboarding.fatal.message" = "onboarding.fatal.message";
+
+/* Fatal error alert's Ok button title */
+"onboarding.fatal.ok" = "onboarding.fatal.ok";
+
+/* Fatal error alert's title */
+"onboarding.fatal.title" = "onboarding.fatal.title";
+
+/* At least one capital letter rule for password field */
+"onboarding.set_password.capital" = "onboarding.set_password.capital";
+
+/* At least one digit rule for password field */
+"onboarding.set_password.digit" = "onboarding.set_password.digit";
+
+/* Set password screen header label */
+"onboarding.set_password.header" = "onboarding.set_password.header";
+
+/* Minimum length rule for password field */
+"onboarding.set_password.length" = "onboarding.set_password.length";
+
+/* App slogan */
+"onboarding.start.description" = "onboarding.start.description";
+
+/* App name */
+"onboarding.start.header" = "onboarding.start.header";
+
+/* Start button title */
+"onboarding.start.start" = "onboarding.start.start";
+

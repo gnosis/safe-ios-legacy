@@ -1,0 +1,54 @@
+/* Unlock screen header */
+"app.unlock.header" = "Unlock with your master password";
+
+/* Reason to activate Touch ID or Face ID. */
+"biometry.activation.reason" = "Enable unlocking your master password with %@";
+
+/* Description of unlock with Touch ID. */
+"biometry.authentication.reason" = "Unlock your master password with %@";
+
+/* Face ID name */
+"biometry.faceID" = "Face ID";
+
+/* Unrecognized biometry type */
+"biometry.none" = "None";
+
+/* Touch ID name */
+"biometry.touchID" = "Touch ID";
+
+/* Confirm password screen header */
+"onboarding.confirm_password.header" = "Repeat your master password";
+
+/* Password confirmation must match set password rule */
+"onboarding.confirm_password.match" = "• Passwords must match";
+
+/* Fatal error alert's message */
+"onboarding.fatal.message" = "Failed to set master password. The app will be closed.";
+
+/* Fatal error alert's Ok button title */
+"onboarding.fatal.ok" = "Ok";
+
+/* Fatal error alert's title */
+"onboarding.fatal.title" = "Fatal error";
+
+/* At least one capital letter rule for password field */
+"onboarding.set_password.capital" = "• Should have a capital letter";
+
+/* At least one digit rule for password field */
+"onboarding.set_password.digit" = "• Should have a digit";
+
+/* Set password screen header label */
+"onboarding.set_password.header" = "Set your master password";
+
+/* Minimum length rule for password field */
+"onboarding.set_password.length" = "• Minimum 6 charachters";
+
+/* App slogan */
+"onboarding.start.description" = "Your secure crypto wallet with 2-factor authentication.";
+
+/* App name */
+"onboarding.start.header" = "Gnosis Safe";
+
+/* Start button title */
+"onboarding.start.start" = "Start";
+

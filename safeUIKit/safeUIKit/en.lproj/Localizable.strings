@@ -1,0 +1,9 @@
+/* Error status of a rule */
+"rule.error" = "rule.error";
+
+/* Inactive status of a rule */
+"rule.inactive" = "rule.inactive";
+
+/* Success status of a rule */
+"rule.success" = "rule.success";
+

@@ -13,6 +13,10 @@ final class UnlockViewController: UIViewController {
     private var unlockCompletion: (() -> Void)!
     private var account: AccountProtocol!
 
+    struct LocalizedString {
+        static let header = NSLocalizedString("app.unlock.header", "Unlock screen header")
+    }
+
     static func create(account: AccountProtocol, completion: @escaping () -> Void) -> UnlockViewController {
         let vc = StoryboardScene.AppFlow.unlockViewController.instantiate()
         vc.account = account
@@ -22,6 +26,7 @@ final class UnlockViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerLabel.text = LocalizedString.header
         textInput.delegate = self
         let biometryIcon: UIImage = account.isBiometryFaceID ? Asset.faceIdIcon.image : Asset.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)

@@ -46,8 +46,8 @@ fi
 if [ ! -d .git/hooks ]; then
    mkdir -p .git/hooks
 fi
-echo "Installing git hooks"
-cp git-hooks/* .git/hooks/
+echo "Installing git configuration"
+cp git/hooks/* .git/hooks/
 
 echo "Running bundle install"
 bundle install
