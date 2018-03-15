@@ -6,4 +6,5 @@ import Foundation
 
 enum UserDefaultsKey: String {
     case masterPasswordWasSet
+    case passwordAttemptCount
 }

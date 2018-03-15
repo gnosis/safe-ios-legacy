@@ -30,6 +30,12 @@ class UserDefaultsIntegrationTests: XCTestCase {
         XCTAssertEqual(service.bool(for: testKey), true)
     }
 
+    func test_setInt_whenNotSet_setsValue() {
+        XCTAssertNil(service.int(for: testKey))
+        service.setInt(1, for: testKey)
+        XCTAssertEqual(service.int(for: testKey), 1)
+    }
+
     func test_deleteKey_whenSetKey_thenRemovesIt() {
         service.setBool(true, for: testKey)
         service.deleteKey(testKey)

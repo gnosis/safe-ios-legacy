@@ -16,9 +16,7 @@ class AccountTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        account = Account(userDefaultsService: mockUserDefaults,
-                          keychainService: keychain,
-                          biometricAuthService: biometricService)
+        createAccount()
     }
 
     func test_shared_exists() {
@@ -139,6 +137,20 @@ class AccountTests: XCTestCase {
         XCTAssertFalse(account.isLoggedIn)
     }
 
+    func test_authenticateWithPassword_whenFails_thenIncreasesStoredAttemptCount() {
+        mockUserDefaults.setInt(0, for: UserDefaultsKey.passwordAttemptCount.rawValue)
+        setupExpiredSession(maxPasswordAttempts: 1)
+        _ = account.authenticateWithPassword(wrongPassword)
+        XCTAssertEqual(mockUserDefaults.int(for: UserDefaultsKey.passwordAttemptCount.rawValue), 1)
+    }
+
+    func test_authenticateWithPassword_whenSuccess_thenResetsStoredAttemptCount() {
+        mockUserDefaults.setInt(1, for: UserDefaultsKey.passwordAttemptCount.rawValue)
+        setupExpiredSession(maxPasswordAttempts: 1)
+        _ = account.authenticateWithPassword(correctPassword)
+        XCTAssertEqual(mockUserDefaults.int(for: UserDefaultsKey.passwordAttemptCount.rawValue), 0)
+    }
+
     // MARK: - authenticateWithBiometry
 
     func test_authenticateWithBiometry_whenInvoked_thenCallsCompletion() {
@@ -182,20 +194,58 @@ class AccountTests: XCTestCase {
         XCTAssertTrue(account.isBiometryFaceID)
     }
 
+    // MARK: - isBlocked
+
+    func test_isBlocked_whenMaxAttemptsReached_thenTrue() {
+        createAccount(maxPasswordAttempts: 1)
+        setPassword()
+        _ = account.authenticateWithPassword(wrongPassword)
+        XCTAssertTrue(account.isBlocked)
+    }
+
+    func test_isBlocked_whenCreatedAndUserDefaultsReachedMaxAttempts_thenTrue() {
+        mockUserDefaults.setInt(1, for: UserDefaultsKey.passwordAttemptCount.rawValue)
+        createAccount(maxPasswordAttempts: 1)
+        XCTAssertTrue(account.isBlocked)
+    }
+
+    func test_isBlocked_whenNotReachedMaxAttempts_thenFalse() {
+        createAccount(maxPasswordAttempts: 2)
+        setPassword()
+        _ = account.authenticateWithPassword(wrongPassword)
+        XCTAssertFalse(account.isBlocked)
+    }
+
+    func test_isBlocked_whenBecameBlocked_thenStaysBlockedInAnotherInstance() {
+        createAccount(maxPasswordAttempts: 1)
+        setPassword()
+        _ = account.authenticateWithPassword(wrongPassword)
+        createAccount(maxPasswordAttempts: 1)
+        XCTAssertTrue(account.isBlocked)
+    }
+
 }
 
 // MARK: - Helpers
 
 extension AccountTests {
 
-    private func setupExpiredSession() {
+    private func createAccount(maxPasswordAttempts: Int = 1) {
+        account = Account(userDefaultsService: mockUserDefaults,
+                          keychainService: keychain,
+                          biometricAuthService: biometricService,
+                          maxPasswordAttempts: maxPasswordAttempts)
+    }
+
+    private func setupExpiredSession(maxPasswordAttempts: Int = 1) {
         let sessionDuration: TimeInterval = 10
         let mockClockService = MockClockService()
         account = Account(userDefaultsService: mockUserDefaults,
                           keychainService: keychain,
                           biometricAuthService: biometricService,
                           systemClock: mockClockService,
-                          sessionDuration: sessionDuration)
+                          sessionDuration: sessionDuration,
+                          maxPasswordAttempts: maxPasswordAttempts)
         setPassword()
         mockClockService.currentTime += sessionDuration
     }
@@ -212,13 +262,21 @@ extension AccountTests {
 
 class InMemoryUserDefaults: UserDefaultsServiceProtocol {
 
-    var dict = [String: Bool]()
+    var dict = [String: Any]()
 
     func bool(for key: String) -> Bool? {
-        return dict[key]
+        return dict[key] as? Bool
     }
 
     func setBool(_ value: Bool, for key: String) {
+        dict[key] = value
+    }
+
+    func int(for key: String) -> Int? {
+        return dict[key] as? Int
+    }
+
+    func setInt(_ value: Int, for key: String) {
         dict[key] = value
     }
 

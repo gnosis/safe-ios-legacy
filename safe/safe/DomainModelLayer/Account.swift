@@ -29,7 +29,11 @@ final class Account: AccountProtocol {
 
     static let shared = Account()
 
-    var isBlocked: Bool = false
+    private(set) var isBlocked = false
+    private var passwordAttemptCount: Int {
+        get { return self.userDefaultsService.int(for: UserDefaultsKey.passwordAttemptCount.rawValue) ?? 0 }
+        set { self.userDefaultsService.setInt(newValue, for: UserDefaultsKey.passwordAttemptCount.rawValue) }
+    }
 
     var hasMasterPassword: Bool {
         return userDefaultsService.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue) ?? false
@@ -51,16 +55,20 @@ final class Account: AccountProtocol {
     private let keychainService: KeychainServiceProtocol
     private let biometricAuthService: BiometricAuthenticationServiceProtocol
     private var session: Session
+    private let maxPasswordAttempts: Int
 
     init(userDefaultsService: UserDefaultsServiceProtocol = UserDefaultsService(),
          keychainService: KeychainServiceProtocol = KeychainService(),
          biometricAuthService: BiometricAuthenticationServiceProtocol = BiometricService(),
          systemClock: SystemClockServiceProtocol = SystemClockService(),
-         sessionDuration: TimeInterval = 60 * 5) {
+         sessionDuration: TimeInterval = 60 * 5,
+         maxPasswordAttempts: Int = 10) {
         self.userDefaultsService = userDefaultsService
         self.keychainService = keychainService
         self.biometricAuthService = biometricAuthService
         self.session = Session(duration: sessionDuration, clockService: systemClock)
+        self.maxPasswordAttempts = maxPasswordAttempts
+        self.isBlocked = passwordAttemptCount >= maxPasswordAttempts
     }
 
     func setMasterPassword(_ password: String) throws {
@@ -103,7 +111,13 @@ final class Account: AccountProtocol {
 
     private func authenticationResult(_ success: Bool) -> Bool {
         if success {
+            passwordAttemptCount = 0
             session.start()
+        } else {
+            passwordAttemptCount += 1
+            if passwordAttemptCount >= maxPasswordAttempts {
+                isBlocked = true
+            }
         }
         return success
     }
