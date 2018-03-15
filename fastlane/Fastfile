@@ -55,6 +55,7 @@ platform :ios do
       setup_travis
       increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"],
         xcodeproj: PROJECT)
+      test
     end
     ENV["FASTLANE_APP_IDENTIFIER"] = ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
