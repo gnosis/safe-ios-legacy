@@ -52,7 +52,7 @@ final class UnlockViewController: UIViewController {
         updateBiometryButtonVisibility()
         clockService.countdown(from: blockPeriod) { [weak self] remainingTime in
             guard let `self` = self else { return }
-            self.countdownLabel.text = "00:\(Int(remainingTime))"
+            self.countdownLabel.text = String(format: "00:%02.0f", remainingTime)
             if remainingTime == 0 {
                 self.countdownLabel.isHidden = true
                 self.textInput.isEnabled = true
@@ -67,7 +67,9 @@ final class UnlockViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        auhtenticateWithBiometry()
+        if !account.isBlocked {
+            auhtenticateWithBiometry()
+        }
     }
 
     @IBAction func loginWithBiometry(_ sender: Any) {

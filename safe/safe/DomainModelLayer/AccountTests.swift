@@ -197,8 +197,13 @@ class AccountTests: XCTestCase {
     // MARK: - isBlocked
 
     func test_isBlocked_whenMaxAttemptsReached_thenTrue() {
-        createAccount(maxPasswordAttempts: 1)
+        createAccount(maxPasswordAttempts: 3)
         setPassword()
+        XCTAssertFalse(account.isBlocked)
+        _ = account.authenticateWithPassword(wrongPassword)
+        XCTAssertFalse(account.isBlocked)
+        _ = account.authenticateWithPassword(wrongPassword)
+        XCTAssertFalse(account.isBlocked)
         _ = account.authenticateWithPassword(wrongPassword)
         XCTAssertTrue(account.isBlocked)
     }

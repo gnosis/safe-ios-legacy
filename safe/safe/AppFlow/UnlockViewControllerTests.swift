@@ -121,11 +121,24 @@ class UnlockViewControllerTests: XCTestCase {
         XCTAssertTrue(vc.textInput.isActive)
     }
 
+    func test_whenOneDigitTime_thenPrependsZero() {
+        account.isBlocked = true
+        createVC()
+        clock.countdownTickBlock!(1)
+        XCTAssertEqual(vc.countdownLabel.text, "00:01")
+    }
+
     func test_whenAfterEnteringPasswordAccountIsBlocked_thenBlocksPasswordEntry() {
         account.shouldAuthenticateWithPassword = false
         account.isBlocked = true
         vc.textInputDidReturn()
         assertShowsCountdown()
+    }
+
+    func test_whenAccountBlocked_thenMustNotRequestBiometricAuthentication() {
+        account.isBlocked = true
+        vc.viewDidAppear(false)
+        XCTAssertFalse(account.didRequestBiometricAuthentication)
     }
 
 }

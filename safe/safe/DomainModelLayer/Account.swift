@@ -29,7 +29,10 @@ final class Account: AccountProtocol {
 
     static let shared = Account()
 
-    private(set) var isBlocked = false
+    var isBlocked: Bool {
+        return passwordAttemptCount >= maxPasswordAttempts
+    }
+
     private var passwordAttemptCount: Int {
         get { return self.userDefaultsService.int(for: UserDefaultsKey.passwordAttemptCount.rawValue) ?? 0 }
         set { self.userDefaultsService.setInt(newValue, for: UserDefaultsKey.passwordAttemptCount.rawValue) }
@@ -62,13 +65,12 @@ final class Account: AccountProtocol {
          biometricAuthService: BiometricAuthenticationServiceProtocol = BiometricService(),
          systemClock: SystemClockServiceProtocol = SystemClockService(),
          sessionDuration: TimeInterval = 60 * 5,
-         maxPasswordAttempts: Int = 10) {
+         maxPasswordAttempts: Int = 5) {
         self.userDefaultsService = userDefaultsService
         self.keychainService = keychainService
         self.biometricAuthService = biometricAuthService
         self.session = Session(duration: sessionDuration, clockService: systemClock)
         self.maxPasswordAttempts = maxPasswordAttempts
-        self.isBlocked = passwordAttemptCount >= maxPasswordAttempts
     }
 
     func setMasterPassword(_ password: String) throws {
@@ -115,9 +117,6 @@ final class Account: AccountProtocol {
             session.start()
         } else {
             passwordAttemptCount += 1
-            if passwordAttemptCount >= maxPasswordAttempts {
-                isBlocked = true
-            }
         }
         return success
     }
