@@ -13,8 +13,8 @@ final class UnlockViewController: UIViewController {
     private var unlockCompletion: (() -> Void)!
     private var account: AccountProtocol!
 
-    struct LocalizedString {
-        static let header = NSLocalizedString("app.unlock.header", "Unlock screen header")
+    private struct LocalizedString {
+        static let header = NSLocalizedString("app.unlock.header", comment: "Unlock screen header")
     }
 
     static func create(account: AccountProtocol, completion: @escaping () -> Void) -> UnlockViewController {

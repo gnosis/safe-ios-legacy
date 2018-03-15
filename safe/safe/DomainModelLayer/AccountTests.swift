@@ -178,7 +178,7 @@ class AccountTests: XCTestCase {
     }
 
     func test_isBiometryFaceID_whenAvailable_thenTrue() {
-        biometricService.isBiometryFaceID = true
+        biometricService.biometryType = .faceID
         XCTAssertTrue(account.isBiometryFaceID)
     }
 
@@ -260,11 +260,11 @@ class MockKeychain: KeychainServiceProtocol {
 
 class MockBiometricService: BiometricAuthenticationServiceProtocol {
 
+    var biometryType: BiometryType = .none
     private var savedActivationCompletion: (() -> Void)?
     var shouldActivateImmediately = false
     var biometryAuthenticationResult = true
     var isAuthenticationAvailable = false
-    var isBiometryFaceID = false
 
     private var savedAuthenticationCompletion: ((Bool) -> Void)?
     var shouldAuthenticateImmediately = false

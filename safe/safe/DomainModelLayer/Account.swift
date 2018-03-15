@@ -56,7 +56,7 @@ final class Account: AccountProtocol {
     }
 
     var isBiometryFaceID: Bool {
-        return biometricAuthService.isBiometryFaceID
+        return biometricAuthService.biometryType == .faceID
     }
 
     func setMasterPassword(_ password: String) throws {

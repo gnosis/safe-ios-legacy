@@ -8,6 +8,12 @@ class safeUIKitDemoUITests: XCTestCase {
 
     let app = XCUIApplication()
 
+    struct Status {
+        static let inactive = XCLocalizedString("rule.inactive")
+        static let error = XCLocalizedString("rule.error")
+        static let success = XCLocalizedString("rule.success")
+    }
+
     var textInput: XCUIElement {
         return app.otherElements["testTextInput"]
     }
@@ -34,22 +40,22 @@ class safeUIKitDemoUITests: XCTestCase {
         app.buttons["Add success rule"].tap()
         app.buttons["Add failing rule"].tap()
         app.buttons["Add empty rule"].tap()
-        XCTAssertEqual(labelValue("Success Rule"), "Inactive Success Rule")
-        XCTAssertEqual(labelValue("Failing Rule"), "Inactive Failing Rule")
-        XCTAssertEqual(labelValue("Empty Rule"), "Inactive Empty Rule")
+        XCTAssertEqual(labelValue("Success Rule"), "\(Status.inactive) Success Rule")
+        XCTAssertEqual(labelValue("Failing Rule"), "\(Status.inactive) Failing Rule")
+        XCTAssertEqual(labelValue("Empty Rule"), "\(Status.inactive) Empty Rule")
 
         // Type some text
         textField.tap()
         textField.typeText("qweQWE")
-        XCTAssertEqual(labelValue("Success Rule"), "Success Success Rule")
-        XCTAssertEqual(labelValue("Failing Rule"), "Error Failing Rule")
-        XCTAssertEqual(labelValue("Empty Rule"), "Inactive Empty Rule")
+        XCTAssertEqual(labelValue("Success Rule"), "\(Status.success) Success Rule")
+        XCTAssertEqual(labelValue("Failing Rule"), "\(Status.error) Failing Rule")
+        XCTAssertEqual(labelValue("Empty Rule"), "\(Status.inactive) Empty Rule")
 
         // Clear text
         app.buttons["Clear text"].tap()
-        XCTAssertEqual(labelValue("Success Rule"), "Inactive Success Rule")
-        XCTAssertEqual(labelValue("Failing Rule"), "Inactive Failing Rule")
-        XCTAssertEqual(labelValue("Empty Rule"), "Inactive Empty Rule")
+        XCTAssertEqual(labelValue("Success Rule"), "\(Status.inactive) Success Rule")
+        XCTAssertEqual(labelValue("Failing Rule"), "\(Status.inactive) Failing Rule")
+        XCTAssertEqual(labelValue("Empty Rule"), "\(Status.inactive) Empty Rule")
     }
 
     private func labelValue(_ name: String) -> String? {

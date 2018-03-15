@@ -18,15 +18,15 @@ final class ConfirmPaswordViewController: UIViewController {
     private weak var delegate: ConfirmPasswordViewControllerDelegate?
     private var account: AccountProtocol!
 
-    struct LocalizedString {
+    private struct LocalizedString {
         static let header = NSLocalizedString("onboarding.confirm_password.header",
-                                              "Confirm password screen header")
+                                              comment: "Confirm password screen header")
         static let matchPassword = NSLocalizedString("onboarding.confirm_password.match",
-                                                     "Password confirmation must match set password rule")
+                                                     comment: "Password confirmation must match set password rule")
         struct FatalAlert {
-            static let title = NSLocalizedString("onboarding.fatal.title", "Fatal error alert's title")
-            static let ok = NSLocalizedString("onboarding.fatal.ok", "Fatal error alert's Ok button title")
-            static let message = NSLocalizedString("onboarding.fatal.message", "Fatal error alert's message")
+            static let title = NSLocalizedString("onboarding.fatal.title", comment: "Fatal error alert's title")
+            static let ok = NSLocalizedString("onboarding.fatal.ok", comment: "Fatal error alert's Ok button title")
+            static let message = NSLocalizedString("onboarding.fatal.message", comment: "Fatal error alert's message")
         }
     }
 
