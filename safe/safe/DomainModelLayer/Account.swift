@@ -10,6 +10,7 @@ protocol AccountProtocol: class {
     var isLoggedIn: Bool { get }
     var isBiometryAuthenticationAvailable: Bool { get }
     var isBiometryFaceID: Bool { get }
+    var isBlocked: Bool { get }
 
     func cleanupAllData() throws
     func setMasterPassword(_ password: String) throws
@@ -27,21 +28,8 @@ enum AccountError: LoggableError {
 final class Account: AccountProtocol {
 
     static let shared = Account()
-    private let userDefaultsService: UserDefaultsServiceProtocol
-    private let keychainService: KeychainServiceProtocol
-    private let biometricAuthService: BiometricAuthenticationServiceProtocol
-    private var session: Session
 
-    init(userDefaultsService: UserDefaultsServiceProtocol = UserDefaultsService(),
-         keychainService: KeychainServiceProtocol = KeychainService(),
-         biometricAuthService: BiometricAuthenticationServiceProtocol = BiometricService(),
-         systemClock: SystemClockServiceProtocol = SystemClockService(),
-         sessionDuration: TimeInterval = 60 * 5) {
-        self.userDefaultsService = userDefaultsService
-        self.keychainService = keychainService
-        self.biometricAuthService = biometricAuthService
-        self.session = Session(duration: sessionDuration, clockService: systemClock)
-    }
+    var isBlocked: Bool = false
 
     var hasMasterPassword: Bool {
         return userDefaultsService.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue) ?? false
@@ -57,6 +45,22 @@ final class Account: AccountProtocol {
 
     var isBiometryFaceID: Bool {
         return biometricAuthService.biometryType == .faceID
+    }
+
+    private let userDefaultsService: UserDefaultsServiceProtocol
+    private let keychainService: KeychainServiceProtocol
+    private let biometricAuthService: BiometricAuthenticationServiceProtocol
+    private var session: Session
+
+    init(userDefaultsService: UserDefaultsServiceProtocol = UserDefaultsService(),
+         keychainService: KeychainServiceProtocol = KeychainService(),
+         biometricAuthService: BiometricAuthenticationServiceProtocol = BiometricService(),
+         systemClock: SystemClockServiceProtocol = SystemClockService(),
+         sessionDuration: TimeInterval = 60 * 5) {
+        self.userDefaultsService = userDefaultsService
+        self.keychainService = keychainService
+        self.biometricAuthService = biometricAuthService
+        self.session = Session(duration: sessionDuration, clockService: systemClock)
     }
 
     func setMasterPassword(_ password: String) throws {

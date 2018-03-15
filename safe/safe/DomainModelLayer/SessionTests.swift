@@ -31,7 +31,3 @@ class SessionTests: XCTestCase {
     }
 
 }
-
-class MockClockService: SystemClockServiceProtocol {
-    var currentTime = Date()
-}

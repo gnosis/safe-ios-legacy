@@ -9,14 +9,12 @@ class UnlockViewControllerTests: XCTestCase {
 
     var vc: UnlockViewController!
     let account = MockAccount()
+    let clock = MockClockService()
     var didLogIn = false
 
     override func setUp() {
         super.setUp()
-        vc = UnlockViewController.create(account: account) { [unowned self] in
-            self.didLogIn = true
-        }
-        vc.loadViewIfNeeded()
+        createVC()
     }
 
     func test_whenCreated_hasAllElements() {
@@ -89,15 +87,71 @@ class UnlockViewControllerTests: XCTestCase {
         vc.loadViewIfNeeded()
         XCTAssertEqual(vc.loginWithBiometryButton.image(for: .normal), Asset.faceIdIcon.image)
     }
+
+    func test_whenAccountIsBlocked_thenCountdownIsStarted() {
+        account.isBlocked = true
+        createVC()
+        assertShowsCountdown()
+    }
+
+    func test_countdownLabelIsHiddenByDefault() {
+        XCTAssertTrue(vc.countdownLabel.isHidden)
+    }
+
+    func test_whenAccountIsBlocked_thenCountdownLabelDisplaysRemainingBlockTime() {
+        account.isBlocked = true
+        createVC()
+        clock.countdownTickBlock!(15)
+        XCTAssertEqual(vc.countdownLabel.text, "00:15")
+    }
+
+    func test_whenCountdownReachesZero_thenPasswordEntryFocused() {
+        clock.currentTime = Date()
+        account.isBlocked = true
+        createVC()
+        guard let window = UIApplication.shared.keyWindow else {
+            XCTFail("Must have window")
+            return
+        }
+        window.rootViewController = vc
+        clock.countdownTickBlock!(0)
+        wait()
+        XCTAssertTrue(vc.countdownLabel.isHidden)
+        XCTAssertTrue(vc.textInput.isEnabled)
+        XCTAssertTrue(vc.textInput.isActive)
+    }
+
+    func test_whenAfterEnteringPasswordAccountIsBlocked_thenBlocksPasswordEntry() {
+        account.shouldAuthenticateWithPassword = false
+        account.isBlocked = true
+        vc.textInputDidReturn()
+        assertShowsCountdown()
+    }
+
 }
 
 extension UnlockViewControllerTests {
 
-    func authenticateWithBiometryResult(_ result: Bool) {
+    private func createVC(blockPeriod: TimeInterval = 15) {
+        vc = UnlockViewController.create(account: account,
+                                         clockService: clock,
+                                         blockPeriod: blockPeriod) { [unowned self] in
+                                            self.didLogIn = true
+        }
+        vc.loadViewIfNeeded()
+    }
+
+    private func authenticateWithBiometryResult(_ result: Bool) {
         account.shouldCallBiometricCompletionImmediately = false
         vc.viewDidAppear(false)
         account.completeBiometryAuthentication(success: result)
         wait()
+    }
+
+    private func assertShowsCountdown() {
+        XCTAssertNotNil(vc.countdownLabel)
+        XCTAssertTrue(vc.loginWithBiometryButton.isHidden)
+        XCTAssertFalse(vc.textInput.isEnabled)
     }
 
 }

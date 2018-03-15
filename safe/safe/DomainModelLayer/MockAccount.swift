@@ -9,11 +9,13 @@ class MockAccount: AccountProtocol {
 
     var hasMasterPassword = false
     var isLoggedIn = false
+    var isBlocked = false
 
     var didSavePassword = false
     var didCleanData = false
     var didRequestBiometricActivation = false
     var setMasterPasswordThrows = false
+
     private var biometricActivationCompletion: (() -> Void)?
 
     var didRequestBiometricAuthentication = false

@@ -45,21 +45,31 @@
                                     <action selector="loginWithBiometry:" destination="rVK-CN-jIO" eventType="touchUpInside" id="kRe-Fo-hk5"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-AZ-zil">
+                                <rect key="frame" x="20" y="368" width="335" height="32.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nj1-ul-eXr" firstAttribute="top" secondItem="9bk-4K-dHx" secondAttribute="bottom" constant="60" id="3Iq-9g-JZo"/>
                             <constraint firstItem="nj1-ul-eXr" firstAttribute="trailing" secondItem="9bk-4K-dHx" secondAttribute="trailing" id="BoW-b6-KOL"/>
                             <constraint firstItem="9bk-4K-dHx" firstAttribute="leading" secondItem="gwt-tb-99E" secondAttribute="leading" constant="20" id="OSx-fd-2p6"/>
+                            <constraint firstItem="gwt-tb-99E" firstAttribute="trailing" secondItem="k6Y-AZ-zil" secondAttribute="trailing" constant="20" id="QJM-PE-SQL"/>
                             <constraint firstItem="h1G-7q-Z9o" firstAttribute="centerX" secondItem="TWI-OQ-quH" secondAttribute="centerX" id="S6c-ux-asZ"/>
                             <constraint firstItem="nj1-ul-eXr" firstAttribute="leading" secondItem="9bk-4K-dHx" secondAttribute="leading" id="UZY-h4-GO0"/>
                             <constraint firstItem="gwt-tb-99E" firstAttribute="bottom" secondItem="h1G-7q-Z9o" secondAttribute="bottom" constant="90" id="VNj-NE-zab"/>
+                            <constraint firstItem="k6Y-AZ-zil" firstAttribute="top" secondItem="nj1-ul-eXr" secondAttribute="bottom" constant="40" id="WPt-vJ-AMS"/>
                             <constraint firstItem="9bk-4K-dHx" firstAttribute="top" secondItem="gwt-tb-99E" secondAttribute="top" constant="40" id="i66-jZ-NY1"/>
+                            <constraint firstItem="k6Y-AZ-zil" firstAttribute="leading" secondItem="gwt-tb-99E" secondAttribute="leading" constant="20" id="ush-iX-6bo"/>
                             <constraint firstItem="gwt-tb-99E" firstAttribute="trailing" secondItem="9bk-4K-dHx" secondAttribute="trailing" constant="20" id="x2l-gb-Qr5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gwt-tb-99E"/>
                     </view>
                     <connections>
+                        <outlet property="countdownLabel" destination="k6Y-AZ-zil" id="0UI-I6-JvS"/>
                         <outlet property="headerLabel" destination="9bk-4K-dHx" id="dVf-dr-wUm"/>
                         <outlet property="loginWithBiometryButton" destination="h1G-7q-Z9o" id="n6X-7D-Iau"/>
                         <outlet property="textInput" destination="nj1-ul-eXr" id="zEF-xN-NcA"/>

@@ -18,13 +18,18 @@ public final class TextInput: UIView {
 
     public weak var delegate: TextInputDelegate?
     /// Indicates whether the view has user input focus
-    public var isActive: Bool = false
+    public private(set) var isActive: Bool = false
 
     private var allRules: [RuleLabel] {
         return stackView.arrangedSubviews.flatMap { $0 as? RuleLabel }
     }
 
     public var text: String? { return textField.text }
+
+    public var isEnabled: Bool {
+        get { return textField.isEnabled }
+        set { textField.isEnabled = newValue }
+    }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
