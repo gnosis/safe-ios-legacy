@@ -13,7 +13,7 @@
 /* Unrecognized biometry type */
 "biometry.none" = "biometry.none";
 
-/* Touch ID name */
+/* Touch ID */
 "biometry.touchID" = "biometry.touchID";
 
 /* Confirm password screen header */

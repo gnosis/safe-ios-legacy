@@ -11,9 +11,9 @@ enum BiometryType {
 
     var localizedDescription: String {
         switch self {
-        case .touchID: return NSLocalizedString("biometry.touchID", "Touch ID name")
-        case .faceID: return NSLocalizedString("biometry.faceID", "Face ID name")
-        case .none: return NSLocalizedString("biometry.none", "Unrecognized biometry type")
+        case .touchID: return NSLocalizedString("biometry.touchID", comment: "Touch ID")
+        case .faceID: return NSLocalizedString("biometry.faceID", comment: "Face ID name")
+        case .none: return NSLocalizedString("biometry.none", comment: "Unrecognized biometry type")
         }
     }
 
@@ -37,8 +37,10 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
     private let context: LAContext
 
     private struct LocalizedString {
-        static let activate = NSLocalizedString("biometry.activation.reason", "Reason to activate Touch ID or Face ID.")
-        static let unlock = NSLocalizedString("biometry.authentication.reason", "Description of unlock with Touch ID.")
+        static let activate = NSLocalizedString("biometry.activation.reason",
+                                                comment: "Reason to activate Touch ID or Face ID.")
+        static let unlock = NSLocalizedString("biometry.authentication.reason",
+                                              comment: "Description of unlock with Touch ID.")
     }
 
     init(localAuthenticationContext: LAContext = LAContext()) {
