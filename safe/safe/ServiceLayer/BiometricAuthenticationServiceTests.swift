@@ -55,9 +55,45 @@ class BiometricAuthenticationServiceTests: XCTestCase {
         XCTAssertTrue(biometricService.isAuthenticationAvailable)
     }
 
-    func test_biometryFaceID() {
-        context.hasFaceID = true
-        XCTAssertTrue(biometricService.isBiometryFaceID)
+    @available(iOS 10.0, *)
+    func test_iOS_10_0_biometryType_whenNotAvailable_thenNone() {
+        context.canEvaluatePolicy = false
+        XCTAssertEqual(biometricService.biometryType, .none)
+    }
+
+    @available(iOS 10.0, *)
+    func test_iOS_10_0_biometryType_whenAvailable_thenTouchID() {
+        context.canEvaluatePolicy = true
+        XCTAssertEqual(biometricService.biometryType, .touchID)
+    }
+
+    @available(iOS 11.0, *)
+    func test_iOS_11_0_biometryType_whenNotAvailable_thenNone() {
+        context.canEvaluatePolicy = false
+        XCTAssertEqual(biometricService.biometryType, .none)
+    }
+
+    @available(iOS 11.0, *)
+    func test_iOS_11_0_biometryType_whenAvailableAndBiometryFaceID_thenFaceID() {
+        context.canEvaluatePolicy = true
+        context.isBiometryTypeFaceID = true
+        XCTAssertEqual(biometricService.biometryType, .faceID)
+    }
+
+    @available(iOS 11.0, *)
+    func test_iOS_11_0_biometryType_whenAvailableAndBiometryTouchID_thenFaceID() {
+        context.canEvaluatePolicy = true
+        context.isBiometryTypeFaceID = false
+        context.isBiometryTypeNone = false
+        XCTAssertEqual(biometricService.biometryType, .touchID)
+    }
+
+    @available(iOS 11.0, *)
+    func test_iOS_11_0_biometryType_whenAvailableAndBiometryNone_thenNone() {
+        context.canEvaluatePolicy = true
+        context.isBiometryTypeFaceID = false
+        context.isBiometryTypeNone = true
+        XCTAssertEqual(biometricService.biometryType, .none)
     }
 
 }
@@ -92,11 +128,16 @@ class MockLAContext: LAContext {
     var canEvaluatePolicy = true
     var evaluatePolicyInvoked = false
     var policyShouldSucceed = true
-    var hasFaceID = false
+    var isBiometryTypeFaceID = false
+    var isBiometryTypeNone = false
 
     @available(iOS 11.0, *)
     override var biometryType: LABiometryType {
-        return hasFaceID ? .faceID : .touchID
+        if #available(iOS 11.2, *) {
+            return isBiometryTypeFaceID ? .faceID : (isBiometryTypeNone ? .none : .touchID)
+        } else {
+            return isBiometryTypeFaceID ? .faceID : (isBiometryTypeNone ? LABiometryType.LABiometryNone : .touchID)
+        }
     }
 
     override func canEvaluatePolicy(_ policy: LAPolicy, error: NSErrorPointer) -> Bool {

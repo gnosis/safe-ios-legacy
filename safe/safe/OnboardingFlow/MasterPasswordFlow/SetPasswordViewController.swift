@@ -15,7 +15,7 @@ final class SetPasswordViewController: UIViewController {
     @IBOutlet weak var textInput: TextInput!
     private weak var delegate: SetPasswordViewControllerDelegate?
 
-    struct LocalizedStrings {
+    private struct LocalizedStrings {
         static let header = NSLocalizedString("onboarding.set_password.header", "Set password screen header label")
         static let length = NSLocalizedString("onboarding.set_password.length",
                                               "Minimum length rule for password field")

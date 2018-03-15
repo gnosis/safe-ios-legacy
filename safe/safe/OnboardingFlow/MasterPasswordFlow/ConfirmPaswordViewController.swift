@@ -18,7 +18,7 @@ final class ConfirmPaswordViewController: UIViewController {
     private weak var delegate: ConfirmPasswordViewControllerDelegate?
     private var account: AccountProtocol!
 
-    struct LocalizedString {
+    private struct LocalizedString {
         static let header = NSLocalizedString("onboarding.confirm_password.header",
                                               "Confirm password screen header")
         static let matchPassword = NSLocalizedString("onboarding.confirm_password.match",

@@ -5,10 +5,24 @@
 import Foundation
 import LocalAuthentication
 
+enum BiometryType {
+
+    case none, touchID, faceID
+
+    var localizedDescription: String {
+        switch self {
+        case .touchID: return NSLocalizedString("biometry.touchID", "Touch ID name")
+        case .faceID: return NSLocalizedString("biometry.faceID", "Face ID name")
+        case .none: return NSLocalizedString("biometry.none", "Unrecognized biometry type")
+        }
+    }
+
+}
+
 protocol BiometricAuthenticationServiceProtocol {
 
     var isAuthenticationAvailable: Bool { get }
-    var isBiometryFaceID: Bool { get }
+    var biometryType: BiometryType { get }
     func activate(completion: @escaping () -> Void)
     func authenticate(completion: @escaping (Bool) -> Void)
 
@@ -22,12 +36,9 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
 
     private let context: LAContext
 
-    struct LocalizedString {
+    private struct LocalizedString {
         static let activate = NSLocalizedString("biometry.activation.reason", "Reason to activate Touch ID or Face ID.")
         static let unlock = NSLocalizedString("biometry.authentication.reason", "Description of unlock with Touch ID.")
-        static let touchID = NSLocalizedString("biometry.touchID", "Touch ID name")
-        static let faceID = NSLocalizedString("biometry.faceID", "Face ID name")
-        static let unrecognized = NSLocalizedString("biometry.none", "Unrecognized biometry type")
     }
 
     init(localAuthenticationContext: LAContext = LAContext()) {
@@ -38,24 +49,32 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
         return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
     }
 
-    var isBiometryFaceID: Bool {
-        if #available(iOS 11.0, *) {
-            // iOS specifics: pre-run policy evaluation to query biometry type
-            _ = isAuthenticationAvailable
-            return context.biometryType == .faceID
-        } else {
-            return false
+    var biometryType: BiometryType {
+       if #available(iOS 11.0, *) {
+            guard isAuthenticationAvailable else { return .none }
+            // biometryType available from iOS 11.0
+            switch context.biometryType {
+            case .faceID: return .faceID
+            case .touchID: return .touchID
+            case .none:
+                LogService.shared.error("Received unexpected biometry type: none",
+                                        error: BiometricServiceError.unexpectedBiometryType)
+                return .none
+            }
+       } else {
+            return isAuthenticationAvailable ? .touchID : .none
         }
     }
 
     func activate(completion: @escaping () -> Void) {
-        requestBiometry(reason: String(format: LocalizedString.activate, biometryType())) { _ in
+        requestBiometry(reason: String(format: LocalizedString.activate, biometryType.localizedDescription)) { _ in
             completion()
         }
     }
 
     func authenticate(completion: @escaping (Bool) -> Void) {
-        requestBiometry(reason: String(format: LocalizedString.unlock, biometryType()), completion: completion)
+        requestBiometry(reason: String(format: LocalizedString.unlock, biometryType.localizedDescription),
+                        completion: completion)
     }
 
     private func requestBiometry(reason: String, completion: @escaping (Bool) -> Void) {
@@ -68,21 +87,6 @@ final class BiometricService: BiometricAuthenticationServiceProtocol {
             }
         } else {
             completion(false)
-        }
-    }
-
-    private func biometryType() -> String {
-        if #available(iOS 11.0, *) {
-            switch context.biometryType {
-            case .touchID: return LocalizedString.touchID
-            case .faceID: return LocalizedString.faceID
-            case .none:
-                LogService.shared.error("Received unexpected biometry type: none",
-                                        error: BiometricServiceError.unexpectedBiometryType)
-                return LocalizedString.unrecognized
-            }
-        } else {
-            return LocalizedString.touchID
         }
     }
 
