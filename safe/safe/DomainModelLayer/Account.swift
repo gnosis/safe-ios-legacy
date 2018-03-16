@@ -104,7 +104,9 @@ final class Account: AccountProtocol {
 
     func authenticateWithPassword(_ password: String) -> Bool {
         do {
-            return authenticationResult(try keychainService.password() == password)
+            let isAuthenticated = authenticationResult(try keychainService.password() == password)
+            passwordAttemptCount = isAuthenticated ? 0 : (passwordAttemptCount + 1)
+            return isAuthenticated
         } catch let e {
             LogService.shared.error("Keychain password fetch failed", error: e)
             return false
@@ -113,10 +115,7 @@ final class Account: AccountProtocol {
 
     private func authenticationResult(_ success: Bool) -> Bool {
         if success {
-            passwordAttemptCount = 0
             session.start()
-        } else {
-            passwordAttemptCount += 1
         }
         return success
     }

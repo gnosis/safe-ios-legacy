@@ -7,7 +7,7 @@ import safeUIKit
 
 final class UnlockViewController: UIViewController {
 
-    @IBOutlet weak var countdownLabel: UILabel!
+    @IBOutlet weak var countdownLabel: CountdownLabel!
     @IBOutlet weak var headerLabel: H1Label!
     @IBOutlet weak var textInput: TextInput!
     @IBOutlet weak var loginWithBiometryButton: UIButton!
@@ -27,8 +27,8 @@ final class UnlockViewController: UIViewController {
         let vc = StoryboardScene.AppFlow.unlockViewController.instantiate()
         vc.account = account
         vc.clockService = clockService
-        vc.unlockCompletion = completion
         vc.blockPeriod = blockPeriod
+        vc.unlockCompletion = completion
         return vc
     }
 
@@ -39,25 +39,18 @@ final class UnlockViewController: UIViewController {
         let biometryIcon: UIImage = account.isBiometryFaceID ? Asset.faceIdIcon.image : Asset.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
         updateBiometryButtonVisibility()
-        if account.isBlocked {
-            startCountdown()
-        } else {
-            countdownLabel.isHidden = true
-        }
+        countdownLabel.setup(time: blockPeriod, clock: clockService)
+        startCountdownIfNeeded()
     }
 
-    private func startCountdown() {
-        countdownLabel.isHidden = false
+    private func startCountdownIfNeeded() {
+        guard account.isBlocked else { return }
         textInput.isEnabled = false
         updateBiometryButtonVisibility()
-        clockService.countdown(from: blockPeriod) { [weak self] remainingTime in
+        countdownLabel.start { [weak self] in
             guard let `self` = self else { return }
-            self.countdownLabel.text = String(format: "00:%02.0f", remainingTime)
-            if remainingTime == 0 {
-                self.countdownLabel.isHidden = true
-                self.textInput.isEnabled = true
-                _ = self.textInput.becomeFirstResponder()
-            }
+            self.textInput.isEnabled = true
+            _ = self.textInput.becomeFirstResponder()
         }
     }
 
@@ -67,9 +60,7 @@ final class UnlockViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !account.isBlocked {
-            auhtenticateWithBiometry()
-        }
+        auhtenticateWithBiometry()
     }
 
     @IBAction func loginWithBiometry(_ sender: Any) {
@@ -77,6 +68,7 @@ final class UnlockViewController: UIViewController {
     }
 
     private func auhtenticateWithBiometry() {
+        guard !account.isBlocked else { return }
         account.authenticateWithBiometry { [unowned self] success in
             DispatchQueue.main.async {
                 if success {
@@ -97,8 +89,9 @@ extension UnlockViewController: TextInputDelegate {
         let success = account.authenticateWithPassword(textInput.text!)
         if success {
             unlockCompletion()
-        } else if account.isBlocked {
-            startCountdown()
+        } else {
+            // TODO: 16/03/18 show error to user
+            startCountdownIfNeeded()
         }
     }
 

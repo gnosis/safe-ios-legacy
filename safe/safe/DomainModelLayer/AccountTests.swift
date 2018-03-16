@@ -229,6 +229,18 @@ class AccountTests: XCTestCase {
         XCTAssertTrue(account.isBlocked)
     }
 
+    func test_isBlocked_whenBiometryFails_thenItIsNotCountedTowardsPasswordAttempts() {
+        createAccount(maxPasswordAttempts: 1)
+        setPassword()
+        setupExpiredSession()
+        biometricService.shouldAuthenticateImmediately = true
+        biometricService.biometryAuthenticationResult = false
+        account.authenticateWithBiometry { _ in }
+        XCTAssertFalse(account.isBlocked)
+        _ = account.authenticateWithPassword(wrongPassword)
+        XCTAssertTrue(account.isBlocked)
+    }
+
 }
 
 // MARK: - Helpers
