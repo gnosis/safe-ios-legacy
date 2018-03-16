@@ -125,6 +125,12 @@ class UnlockViewControllerTests: XCTestCase {
         XCTAssertFalse(account.didRequestBiometricAuthentication)
     }
 
+    func test_whenPasswordFails_thenInputShakes() {
+        account.shouldAuthenticateWithPassword = false
+        vc.textInputDidReturn()
+        XCTAssertTrue(vc.textInput.isShaking)
+    }
+
 }
 
 extension UnlockViewControllerTests {

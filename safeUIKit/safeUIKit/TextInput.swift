@@ -19,12 +19,16 @@ public final class TextInput: UIView {
     public weak var delegate: TextInputDelegate?
     /// Indicates whether the view has user input focus
     public private(set) var isActive: Bool = false
+    private static let shakeAnimationKey = "shake"
 
     private var allRules: [RuleLabel] {
         return stackView.arrangedSubviews.flatMap { $0 as? RuleLabel }
     }
 
-    public var text: String? { return textField.text }
+    public var text: String? {
+        get { return textField.text }
+        set { textField.text = newValue }
+    }
 
     public var isEnabled: Bool {
         get { return textField.isEnabled }
@@ -34,6 +38,10 @@ public final class TextInput: UIView {
     public var isSecure: Bool {
         get { return textField.isSecureTextEntry }
         set { textField.isSecureTextEntry = newValue }
+    }
+
+    public var isShaking: Bool {
+        return layer.animation(forKey: TextInput.shakeAnimationKey) != nil
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -83,6 +91,10 @@ public final class TextInput: UIView {
             wrapperView.trailingAnchor.constraint(equalTo: trailingAnchor),
             wrapperView.topAnchor.constraint(equalTo: topAnchor)])
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    public func shake() {
+        layer.add(CABasicAnimation.shake(center: center), forKey: TextInput.shakeAnimationKey)
     }
 
 }

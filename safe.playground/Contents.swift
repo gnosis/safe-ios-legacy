@@ -12,19 +12,22 @@ let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 480))
 view.backgroundColor = .white
 
 let input = TextInput()
+input.isSecure = true
+input.text = "Secret"
 input.translatesAutoresizingMaskIntoConstraints = false
 view.addSubview(input)
 
 NSLayoutConstraint.activate([
-    input.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-    input.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+    input.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+    input.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
     input.topAnchor.constraint(equalTo: view.topAnchor, constant: 180)])
 
 
 func execute(_ timer: Timer) {
-    input.addRule("Right right right") { _ in true }
-    wait(1)
-    input.addRule("Wrong wrong wrong") { _ in false }
+//    input.addRule("Right right right") { _ in true }
+    input.shake()
+//    wait(1)
+//    input.addRule("Wrong wrong wrong") { _ in false }
 }
 
 // we want to test that input resizes according to its contents

@@ -91,7 +91,7 @@ extension UnlockViewController: TextInputDelegate {
         if success {
             unlockCompletion()
         } else {
-            // TODO: 16/03/18 show error to user
+            textInput.shake()
             startCountdownIfNeeded()
         }
     }

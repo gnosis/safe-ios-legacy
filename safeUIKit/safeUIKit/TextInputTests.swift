@@ -98,6 +98,16 @@ class TextInputTests: XCTestCase {
         XCTAssertFalse(input.textField.isEnabled)
     }
 
+    func test_shake_whenCalled_thenAddsShakeAnimation() {
+        input.shake()
+        XCTAssertTrue(input.isShaking)
+    }
+
+    func test_setText() {
+        input.text = "my text"
+        XCTAssertEqual(input.text, "my text")
+    }
+
 }
 
 fileprivate extension TextInput {
