@@ -18,6 +18,7 @@
 		0A2972C6205A89A100CEC7D4 /* XCLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2972C4205A899C00CEC7D4 /* XCLocalizedString.swift */; };
 		0A362504205ABE9B00B21545 /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A362502205ABE9700B21545 /* MockClockService.swift */; };
 		0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527324205BCCF4004A5F9A /* CountdownLabel.swift */; };
+		0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527326205BD364004A5F9A /* CountdownLabelTests.swift */; };
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
 		0A7AE8C1205285D00044D5DD /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */; };
 		0A7E17AD204E99EB00C9078E /* MockAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E17AC204E99EB00C9078E /* MockAccount.swift */; };
@@ -134,6 +135,7 @@
 		0A2972C4205A899C00CEC7D4 /* XCLocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCLocalizedString.swift; sourceTree = "<group>"; };
 		0A362502205ABE9700B21545 /* MockClockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClockService.swift; sourceTree = "<group>"; };
 		0A527324205BCCF4004A5F9A /* CountdownLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
+		0A527326205BD364004A5F9A /* CountdownLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabelTests.swift; sourceTree = "<group>"; };
 		0A53AD3820595C2300D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD3A20595C2800D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppFlow.storyboard; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				555DD6D6205148D100D1178A /* UnlockViewController.swift */,
 				555DD6D82051497700D1178A /* UnlockViewControllerTests.swift */,
 				0A527324205BCCF4004A5F9A /* CountdownLabel.swift */,
+				0A527326205BD364004A5F9A /* CountdownLabelTests.swift */,
 				0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */,
 			);
 			path = AppFlow;
@@ -740,6 +743,7 @@
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
 				555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */,
 				558036802056BE0C004E7452 /* ConsoleLoggerTests.swift in Sources */,
+				0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */,
 				555DD6E420516DF700D1178A /* XCTest+Assert.swift in Sources */,
 				555DD6DD2051583200D1178A /* SessionTests.swift in Sources */,
 				5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */,

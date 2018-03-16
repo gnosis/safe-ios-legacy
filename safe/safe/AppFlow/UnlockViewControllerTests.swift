@@ -88,25 +88,13 @@ class UnlockViewControllerTests: XCTestCase {
         XCTAssertEqual(vc.loginWithBiometryButton.image(for: .normal), Asset.faceIdIcon.image)
     }
 
-    func test_whenAccountIsBlocked_thenCountdownIsStarted() {
+    func test_whenAccountIsBlocked_thenShowsCountdown() {
         account.isBlocked = true
         createVC()
         assertShowsCountdown()
     }
 
-    func test_countdownLabelIsHiddenByDefault() {
-        XCTAssertTrue(vc.countdownLabel.isHidden)
-    }
-
-    func test_whenAccountIsBlocked_thenCountdownLabelDisplaysRemainingBlockTime() {
-        account.isBlocked = true
-        createVC()
-        clock.countdownTickBlock!(15)
-        XCTAssertEqual(vc.countdownLabel.text, "00:15")
-    }
-
     func test_whenCountdownReachesZero_thenPasswordEntryFocused() {
-        clock.currentTime = Date()
         account.isBlocked = true
         createVC()
         guard let window = UIApplication.shared.keyWindow else {
@@ -116,16 +104,8 @@ class UnlockViewControllerTests: XCTestCase {
         window.rootViewController = vc
         clock.countdownTickBlock!(0)
         wait()
-        XCTAssertTrue(vc.countdownLabel.isHidden)
         XCTAssertTrue(vc.textInput.isEnabled)
         XCTAssertTrue(vc.textInput.isActive)
-    }
-
-    func test_whenOneDigitTime_thenPrependsZero() {
-        account.isBlocked = true
-        createVC()
-        clock.countdownTickBlock!(1)
-        XCTAssertEqual(vc.countdownLabel.text, "00:01")
     }
 
     func test_whenAfterEnteringPasswordAccountIsBlocked_thenBlocksPasswordEntry() {

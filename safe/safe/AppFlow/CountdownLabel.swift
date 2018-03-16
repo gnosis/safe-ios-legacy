@@ -9,8 +9,17 @@ final class CountdownLabel: UILabel {
     private var time: TimeInterval = 0
     private var clockService: SystemClockServiceProtocol?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+
+    private func commonInit() {
         isHidden = true
     }
 
