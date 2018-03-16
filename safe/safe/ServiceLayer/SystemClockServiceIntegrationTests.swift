@@ -20,4 +20,18 @@ class SystemClockServiceIntegrationTests: XCTestCase {
         wait()
     }
 
+    func test_countdownTimer() {
+        let maxTime: TimeInterval = 3
+        var timeLeft: TimeInterval = maxTime
+        let exp = expectation(description: "Timer")
+        systemClock.countdown(from: maxTime) { remainingSeconds in
+            XCTAssertEqual(remainingSeconds, timeLeft)
+            timeLeft -= 1
+            if remainingSeconds == 0 {
+                exp.fulfill()
+            }
+        }
+        waitForExpectations(timeout: maxTime + 1, handler: nil)
+    }
+
 }

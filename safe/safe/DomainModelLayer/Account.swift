@@ -10,6 +10,7 @@ protocol AccountProtocol: class {
     var isLoggedIn: Bool { get }
     var isBiometryAuthenticationAvailable: Bool { get }
     var isBiometryFaceID: Bool { get }
+    var isBlocked: Bool { get }
 
     func cleanupAllData() throws
     func setMasterPassword(_ password: String) throws
@@ -27,20 +28,14 @@ enum AccountError: LoggableError {
 final class Account: AccountProtocol {
 
     static let shared = Account()
-    private let userDefaultsService: UserDefaultsServiceProtocol
-    private let keychainService: KeychainServiceProtocol
-    private let biometricAuthService: BiometricAuthenticationServiceProtocol
-    private var session: Session
 
-    init(userDefaultsService: UserDefaultsServiceProtocol = UserDefaultsService(),
-         keychainService: KeychainServiceProtocol = KeychainService(),
-         biometricAuthService: BiometricAuthenticationServiceProtocol = BiometricService(),
-         systemClock: SystemClockServiceProtocol = SystemClockService(),
-         sessionDuration: TimeInterval = 60 * 5) {
-        self.userDefaultsService = userDefaultsService
-        self.keychainService = keychainService
-        self.biometricAuthService = biometricAuthService
-        self.session = Session(duration: sessionDuration, clockService: systemClock)
+    var isBlocked: Bool {
+        return passwordAttemptCount >= maxPasswordAttempts
+    }
+
+    private var passwordAttemptCount: Int {
+        get { return self.userDefaultsService.int(for: UserDefaultsKey.passwordAttemptCount.rawValue) ?? 0 }
+        set { self.userDefaultsService.setInt(newValue, for: UserDefaultsKey.passwordAttemptCount.rawValue) }
     }
 
     var hasMasterPassword: Bool {
@@ -57,6 +52,25 @@ final class Account: AccountProtocol {
 
     var isBiometryFaceID: Bool {
         return biometricAuthService.biometryType == .faceID
+    }
+
+    private let userDefaultsService: UserDefaultsServiceProtocol
+    private let keychainService: KeychainServiceProtocol
+    private let biometricAuthService: BiometricAuthenticationServiceProtocol
+    private var session: Session
+    private let maxPasswordAttempts: Int
+
+    init(userDefaultsService: UserDefaultsServiceProtocol = UserDefaultsService(),
+         keychainService: KeychainServiceProtocol = KeychainService(),
+         biometricAuthService: BiometricAuthenticationServiceProtocol = BiometricService(),
+         systemClock: SystemClockServiceProtocol = SystemClockService(),
+         sessionDuration: TimeInterval = 60 * 5,
+         maxPasswordAttempts: Int = 5) {
+        self.userDefaultsService = userDefaultsService
+        self.keychainService = keychainService
+        self.biometricAuthService = biometricAuthService
+        self.session = Session(duration: sessionDuration, clockService: systemClock)
+        self.maxPasswordAttempts = maxPasswordAttempts
     }
 
     func setMasterPassword(_ password: String) throws {
@@ -90,7 +104,9 @@ final class Account: AccountProtocol {
 
     func authenticateWithPassword(_ password: String) -> Bool {
         do {
-            return authenticationResult(try keychainService.password() == password)
+            let isAuthenticated = authenticationResult(try keychainService.password() == password)
+            passwordAttemptCount = isAuthenticated ? 0 : (passwordAttemptCount + 1)
+            return isAuthenticated
         } catch let e {
             LogService.shared.error("Keychain password fetch failed", error: e)
             return false

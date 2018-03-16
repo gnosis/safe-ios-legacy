@@ -12,7 +12,7 @@ protocol ConfirmPasswordViewControllerDelegate: class {
 
 final class ConfirmPaswordViewController: UIViewController {
 
-    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var headerLabel: H1Label!
     @IBOutlet weak var textInput: TextInput!
     private var referencePassword: String!
     private weak var delegate: ConfirmPasswordViewControllerDelegate?

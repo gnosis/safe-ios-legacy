@@ -85,6 +85,11 @@ class TextInputTests: XCTestCase {
         XCTAssertTrue(input.isActive)
     }
 
+    func test_whenIsEnabledFalse_thenInputFieldDisabled() {
+        input.isEnabled = false
+        XCTAssertFalse(input.textField.isEnabled)
+    }
+
 }
 
 fileprivate extension TextInput {

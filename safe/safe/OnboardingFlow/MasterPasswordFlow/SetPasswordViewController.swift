@@ -11,7 +11,7 @@ protocol SetPasswordViewControllerDelegate: class {
 
 final class SetPasswordViewController: UIViewController {
 
-    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var headerLabel: H1Label!
     @IBOutlet weak var textInput: TextInput!
     private weak var delegate: SetPasswordViewControllerDelegate?
 
