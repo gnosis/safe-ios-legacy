@@ -23,6 +23,10 @@ class UnlockViewControllerTests: XCTestCase {
         XCTAssertNotNil(vc.headerLabel)
     }
 
+    func test_whenCreated_thenTextInputIsSecure() {
+        XCTAssertTrue(vc.textInput.isSecure)
+    }
+
     func test_whenAppeared_thenRequestsBiometricAuthentication() {
         vc.viewDidAppear(false)
         XCTAssertTrue(account.didRequestBiometricAuthentication)
@@ -119,6 +123,12 @@ class UnlockViewControllerTests: XCTestCase {
         account.isBlocked = true
         vc.viewDidAppear(false)
         XCTAssertFalse(account.didRequestBiometricAuthentication)
+    }
+
+    func test_whenPasswordFails_thenInputShakes() {
+        account.shouldAuthenticateWithPassword = false
+        vc.textInputDidReturn()
+        XCTAssertTrue(vc.textInput.isShaking)
     }
 
 }

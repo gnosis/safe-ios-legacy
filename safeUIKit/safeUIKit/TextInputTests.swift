@@ -19,6 +19,14 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(input.ruleLabelCount, 0)
     }
 
+    func test_isSecure_whenModified_thenValueIsStored() {
+        XCTAssertFalse(input.isSecure)
+        input.isSecure = true
+        XCTAssertTrue(input.isSecure)
+        input.isSecure = false
+        XCTAssertFalse(input.isSecure)
+    }
+
     func test_whenAddingEmptyRule_thenRuleLabelIsAlwaysInactive() {
         input.addRule("test")
         XCTAssertEqual(input.ruleLabel(at: 0).status, .inactive)
@@ -88,6 +96,16 @@ class TextInputTests: XCTestCase {
     func test_whenIsEnabledFalse_thenInputFieldDisabled() {
         input.isEnabled = false
         XCTAssertFalse(input.textField.isEnabled)
+    }
+
+    func test_shake_whenCalled_thenAddsShakeAnimation() {
+        input.shake()
+        XCTAssertTrue(input.isShaking)
+    }
+
+    func test_setText() {
+        input.text = "my text"
+        XCTAssertEqual(input.text, "my text")
     }
 
 }

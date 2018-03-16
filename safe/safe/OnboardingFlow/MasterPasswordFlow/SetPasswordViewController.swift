@@ -36,6 +36,7 @@ final class SetPasswordViewController: UIViewController {
         super.viewDidLoad()
         headerLabel.text = LocalizedStrings.header
         textInput.delegate = self
+        textInput.isSecure = true
         textInput.addRule(LocalizedStrings.length) { PasswordValidator.validateMinLength($0) }
         textInput.addRule(LocalizedStrings.capital) { PasswordValidator.validateAtLeastOneCapitalLetter($0) }
         textInput.addRule(LocalizedStrings.digit) { PasswordValidator.validateAtLeastOneDigit($0) }
