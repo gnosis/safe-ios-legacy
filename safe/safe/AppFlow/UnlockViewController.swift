@@ -36,6 +36,7 @@ final class UnlockViewController: UIViewController {
         super.viewDidLoad()
         headerLabel.text = LocalizedString.header
         textInput.delegate = self
+        textInput.isSecure = true
         let biometryIcon: UIImage = account.isBiometryFaceID ? Asset.faceIdIcon.image : Asset.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
         updateBiometryButtonVisibility()

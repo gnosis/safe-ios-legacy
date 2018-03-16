@@ -31,6 +31,11 @@ public final class TextInput: UIView {
         set { textField.isEnabled = newValue }
     }
 
+    public var isSecure: Bool {
+        get { return textField.isSecureTextEntry }
+        set { textField.isSecureTextEntry = newValue }
+    }
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

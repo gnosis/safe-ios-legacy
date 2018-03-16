@@ -22,6 +22,10 @@ class ConfirmPaswordViewControllerTests: XCTestCase {
         XCTAssertNotNil(vc.textInput)
     }
 
+    func test_whenCreated_thenTextInputIsSecure() {
+        XCTAssertTrue(vc.textInput.isSecure)
+    }
+
     func test_whenDidConfirmPassword_thenPasswordIsSaved() {
         account.didCleanData = false
         account.didSavePassword = false

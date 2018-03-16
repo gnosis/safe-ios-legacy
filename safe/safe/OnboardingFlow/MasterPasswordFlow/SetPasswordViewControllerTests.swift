@@ -24,6 +24,10 @@ class SetPasswordViewControllerTests: XCTestCase {
         XCTAssertNotNil(vc.textInput)
     }
 
+    func test_whenLoaded_thenTextInputIsSecure() {
+        XCTAssertTrue(vc.textInput.isSecure)
+    }
+
     func test_whenPasswordSet_thenDelegateCalled() {
         vc.textInputDidReturn()
         XCTAssertTrue(delegate.wasCalled)

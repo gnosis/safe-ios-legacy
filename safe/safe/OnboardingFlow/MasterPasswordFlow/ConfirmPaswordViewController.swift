@@ -43,6 +43,7 @@ final class ConfirmPaswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         textInput.delegate = self
+        textInput.isSecure = true
         textInput.addRule(LocalizedString.matchPassword) { [unowned self] input in
             PasswordValidator.validate(input: input, equals: self.referencePassword)
         }
