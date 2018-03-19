@@ -39,6 +39,7 @@
 		0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */; };
 		0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */; };
 		0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */; };
+		0ACA9C41205FFEDF005EC186 /* SetPasswordScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */; };
 		0ACF315E2058265300E8A6C3 /* LoggableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF315D2058265300E8A6C3 /* LoggableError.swift */; };
 		0ACF31602058267C00E8A6C3 /* LoggableErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF315F2058267C00E8A6C3 /* LoggableErrorTests.swift */; };
 		0AD93E0C204815CF008C38CA /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD93E0B204815CF008C38CA /* safeUIKit.framework */; };
@@ -171,6 +172,7 @@
 		0AB0FF61204EF85B0066682F /* UserDefaultsIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsIntegrationTests.swift; sourceTree = "<group>"; };
 		0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationArguments.swift; sourceTree = "<group>"; };
 		0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenUITests.swift; sourceTree = "<group>"; };
+		0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordScreenUITests.swift; sourceTree = "<group>"; };
 		0ACF315D2058265300E8A6C3 /* LoggableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggableError.swift; sourceTree = "<group>"; };
 		0ACF315F2058267C00E8A6C3 /* LoggableErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggableErrorTests.swift; sourceTree = "<group>"; };
 		0AD93E0B204815CF008C38CA /* safeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = safeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -410,6 +412,7 @@
 			children = (
 				0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */,
 				0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */,
+				0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */,
 				0ACA9C3A205FDA92005EC186 /* screens */,
 				5540A510203C3054009C9BE3 /* Info.plist */,
 			);
@@ -844,6 +847,7 @@
 				0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */,
 				0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
 				0A2972C6205A89A100CEC7D4 /* XCLocalizedString.swift in Sources */,
+				0ACA9C41205FFEDF005EC186 /* SetPasswordScreenUITests.swift in Sources */,
 				0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */,
 				0AA2783B205FC6B700EBB9D1 /* PasswordSuccessScreen.swift in Sources */,
 				0AA27837205FC63800EBB9D1 /* SetPasswordScreen.swift in Sources */,
