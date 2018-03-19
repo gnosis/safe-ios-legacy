@@ -38,7 +38,7 @@ class TestSupportTests: XCTestCase {
         XCTAssertEqual(account.masterPassword, "a")
     }
 
-    func test_setUp_whenSetPasswordWithoutNewPasSWORD_thenDoesNothing() {
+    func test_setUp_whenSetPasswordWithoutNewPassword_thenDoesNothing() {
         let account = MockAccount()
         let support = TestSupport(account: account)
         account.masterPassword = "some"
