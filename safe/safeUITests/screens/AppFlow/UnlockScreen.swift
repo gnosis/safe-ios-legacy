@@ -7,7 +7,7 @@ import Foundation
 final class UnlockScreen {
 
     func enterPassword(_ text: String) {
-        TestUtils.enterText(text)
+        TestUtils.enterTextToSecureTextField(text)
     }
 
 }

@@ -9,7 +9,7 @@ final class TestUtils {
 
     private init() {}
 
-    static func enterText(_ text: String) {
+    static func enterTextToSecureTextField(_ text: String) {
         XCUIApplication().secureTextFields.firstMatch.typeText(text + "\n")
     }
 

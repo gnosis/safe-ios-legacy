@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import XCTest
 
 final class PasswordSuccessScreen {
 
