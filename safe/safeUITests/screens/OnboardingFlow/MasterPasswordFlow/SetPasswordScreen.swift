@@ -56,8 +56,8 @@ final class SetPasswordScreen {
         return title.exists
     }
 
-    func enterPassword(_ text: String) {
-        TestUtils.enterTextToSecureTextField(text)
+    func enterPassword(_ text: String, hittingEnter: Bool = true) {
+        TestUtils.enterTextToSecureTextField(text, hittingEnter: hittingEnter)
     }
 
 }
