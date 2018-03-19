@@ -5,16 +5,11 @@
 import Foundation
 import XCTest
 
-final class ConfirmPasswordScreen {
+final class ConfirmPasswordScreen: SecureTextfieldScreen {
 
-    let title = XCUIApplication().staticTexts[XCLocalizedString("onboarding.confirm_password.header")]
-
-    var isDisplayed: Bool {
-        return title.exists
+    override var title: XCUIElement {
+        return XCUIApplication().staticTexts[XCLocalizedString("onboarding.confirm_password.header")]
     }
-
-    func enterPassword(_ text: String) {
-        TestUtils.enterTextToSecureTextField(text)
-    }
+    let passwordMatchRule = Rule(key: "onboarding.confirm_password.match")
 
 }
