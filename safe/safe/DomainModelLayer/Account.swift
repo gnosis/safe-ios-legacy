@@ -87,6 +87,7 @@ final class Account: AccountProtocol {
         do {
             try keychainService.removePassword()
             userDefaultsService.deleteKey(UserDefaultsKey.masterPasswordWasSet.rawValue)
+            userDefaultsService.deleteKey(UserDefaultsKey.passwordAttemptCount.rawValue)
         } catch let e {
             throw AccountError.cleanUpAllDataFailed.nsError(causedBy: e)
         }
@@ -118,6 +119,14 @@ final class Account: AccountProtocol {
             session.start()
         }
         return success
+    }
+
+}
+
+extension Account: Resettable {
+
+    func resetAll() {
+        try? cleanupAllData()
     }
 
 }

@@ -31,6 +31,9 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
 
+/* Password success label */
+"onboarding.passsword_success.status" = "Your password is set.";
+
 /* At least one capital letter rule for password field */
 "onboarding.set_password.capital" = "• Should have a capital letter";
 
@@ -42,6 +45,9 @@
 
 /* Minimum length rule for password field */
 "onboarding.set_password.length" = "• Minimum 6 charachters";
+
+/* Setup safe info label */
+"onboarding.setup_safe.info" = "Your safe is unlocked.";
 
 /* App slogan */
 "onboarding.start.description" = "Your secure crypto wallet with 2-factor authentication.";
