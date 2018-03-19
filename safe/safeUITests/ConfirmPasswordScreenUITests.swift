@@ -9,6 +9,7 @@ class ConfirmPasswordScreenUITests: XCTestCase {
     let application = Application()
     let screen = ConfirmPasswordScreen()
     let validPassword = "abcdeF1"
+    let invalidPassword = "a"
 
     override func setUp() {
         super.setUp()
@@ -43,6 +44,24 @@ class ConfirmPasswordScreenUITests: XCTestCase {
         application.terminate()
         application.start()
         XCTAssertTrue(StartScreen().isDisplayed)
+    }
+
+    func test_whenEnteredDifferentPassword_thenRuleError() {
+        start()
+        screen.enterPassword(invalidPassword)
+        XCTAssertEqual(screen.passwordMatchRule.state, .error)
+    }
+
+    func test_whenEnteredMatchingPassword_thenRuleSuccess() {
+        start()
+        screen.enterPassword(validPassword, hittingEnter: false)
+        XCTAssertEqual(screen.passwordMatchRule.state, .success)
+    }
+
+    func test_whenEnteredMatchingPasswordAndHitEnter_thenSuccessScreenDisplayed() {
+        start()
+        screen.enterPassword(validPassword)
+        XCTAssertTrue(PasswordSuccessScreen().isDisplayed)
     }
 
 }
