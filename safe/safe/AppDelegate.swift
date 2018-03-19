@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
+        #if DEBUG
+            TestSupport.shared.addResettable(Account.shared)
+            TestSupport.shared.setUp()
+        #endif
         createWindow()
         return true
     }

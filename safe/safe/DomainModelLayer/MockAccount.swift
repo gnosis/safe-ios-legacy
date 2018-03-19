@@ -15,6 +15,7 @@ class MockAccount: AccountProtocol {
     var didCleanData = false
     var didRequestBiometricActivation = false
     var setMasterPasswordThrows = false
+    var masterPassword: String?
 
     private var biometricActivationCompletion: (() -> Void)?
 
@@ -41,6 +42,7 @@ class MockAccount: AccountProtocol {
         if setMasterPasswordThrows {
             throw Error.error
         }
+        masterPassword = password
         didSavePassword = true
     }
 

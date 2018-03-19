@@ -241,6 +241,22 @@ class AccountTests: XCTestCase {
         XCTAssertTrue(account.isBlocked)
     }
 
+    // MARK: - resetAll
+
+    func test_resetAll_resetsUserDefaults() {
+        mockUserDefaults.setInt(1, for: UserDefaultsKey.passwordAttemptCount.rawValue)
+        mockUserDefaults.setBool(true, for: UserDefaultsKey.masterPasswordWasSet.rawValue)
+        account.resetAll()
+        XCTAssertNil(mockUserDefaults.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue))
+        XCTAssertNil(mockUserDefaults.int(for: UserDefaultsKey.passwordAttemptCount.rawValue))
+    }
+
+    func test_resetAll_resetsKeychain() {
+        setPassword()
+        account.resetAll()
+        XCTAssertNil(try! keychain.password())
+    }
+
 }
 
 // MARK: - Helpers
