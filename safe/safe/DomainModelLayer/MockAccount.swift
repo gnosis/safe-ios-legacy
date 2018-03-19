@@ -7,6 +7,7 @@ import Foundation
 
 class MockAccount: AccountProtocol {
 
+    var sessionDuration: TimeInterval = 0
     var hasMasterPassword = false
     var isLoggedIn = false
     var isBlocked = false

@@ -32,6 +32,11 @@ final class TestSupport {
                 if let password = iterator.next() {
                     try? account.setMasterPassword(password)
                 }
+            case ApplicationArguments.setSessionDuration:
+                if let durationStr = iterator.next(),
+                    let duration = TimeInterval(durationStr) {
+                    account.sessionDuration = duration
+                }
             default: break
             }
         }

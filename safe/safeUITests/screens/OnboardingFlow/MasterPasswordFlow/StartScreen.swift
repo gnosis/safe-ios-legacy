@@ -11,6 +11,10 @@ final class StartScreen {
     let description = XCUIApplication().staticTexts[XCLocalizedString("onboarding.start.description")]
     let startButton = XCUIApplication().buttons[XCLocalizedString("onboarding.start.start")]
 
+    var isDisplayed: Bool {
+        return title.exists
+    }
+
     func start() {
         startButton.tap()
     }

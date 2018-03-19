@@ -7,15 +7,18 @@ import XCTest
 
 class TestSupportTests: XCTestCase {
 
+    let account = MockAccount()
+    var support: TestSupport!
+
     override func setUp() {
         super.setUp()
+        support = TestSupport(account: account)
     }
 
     func test_setUp_whenResetFlagIsSet_thenResetsAllAddedObjects() {
         let mockResettable = MockResettable()
         let otherResettable = MockResettable()
         let arguments = [ApplicationArguments.resetAllContentAndSettings]
-        let support = TestSupport()
         support.addResettable(mockResettable)
         support.addResettable(otherResettable)
         support.setUp(arguments)
@@ -25,25 +28,31 @@ class TestSupportTests: XCTestCase {
 
     func test_setUp_whenNoResetFlagProvided_thenDoesNotReset() {
         let mockResettable = MockResettable()
-        let support = TestSupport()
         support.addResettable(mockResettable)
         support.setUp([])
         XCTAssertFalse(mockResettable.didReset)
     }
 
     func test_setUp_whenSetPasswordFlagIsSet_thenSetsPassword() {
-        let account = MockAccount()
-        let support = TestSupport(account: account)
         support.setUp([ApplicationArguments.setPassword, "a"])
         XCTAssertEqual(account.masterPassword, "a")
     }
 
     func test_setUp_whenSetPasswordWithoutNewPassword_thenDoesNothing() {
-        let account = MockAccount()
-        let support = TestSupport(account: account)
         account.masterPassword = "some"
         support.setUp([ApplicationArguments.setPassword])
         XCTAssertEqual(account.masterPassword, "some")
+    }
+
+    func test_setUp_whenSessionDurationProvided_thenSetsSessionDuration() {
+        support.setUp([ApplicationArguments.setSessionDuration, "1.0"])
+        XCTAssertEqual(account.sessionDuration, 1)
+    }
+
+    func test_setUp_whenSessionDurationWithoutValue_thenDoesNothing() {
+        account.sessionDuration = 1
+        support.setUp([ApplicationArguments.setSessionDuration, "invalid"])
+        XCTAssertEqual(account.sessionDuration, 1)
     }
 
 }

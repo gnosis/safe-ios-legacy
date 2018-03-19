@@ -257,6 +257,13 @@ class AccountTests: XCTestCase {
         XCTAssertNil(try! keychain.password())
     }
 
+    // MARK: - sessionDuration
+
+    func test_sessionDuration_whenChanged_thenChanged() {
+        account.sessionDuration = 1.0
+        XCTAssertEqual(account.session.duration, 1.0)
+    }
+
 }
 
 // MARK: - Helpers

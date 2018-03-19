@@ -8,5 +8,6 @@ struct ApplicationArguments {
 
     static let resetAllContentAndSettings = "-resetAllContentAndSettings"
     static let setPassword = "-setPassword"
+    static let setSessionDuration = "-setSessionDuration"
 
 }

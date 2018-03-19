@@ -11,6 +11,7 @@ protocol AccountProtocol: class {
     var isBiometryAuthenticationAvailable: Bool { get }
     var isBiometryFaceID: Bool { get }
     var isBlocked: Bool { get }
+    var sessionDuration: TimeInterval { get set }
 
     func cleanupAllData() throws
     func setMasterPassword(_ password: String) throws
@@ -54,10 +55,16 @@ final class Account: AccountProtocol {
         return biometricAuthService.biometryType == .faceID
     }
 
+    var sessionDuration: TimeInterval {
+        get { return session.duration }
+        set { session = Session(duration: newValue, clockService: systemClock) }
+    }
+
     private let userDefaultsService: UserDefaultsServiceProtocol
     private let keychainService: KeychainServiceProtocol
     private let biometricAuthService: BiometricAuthenticationServiceProtocol
-    private var session: Session
+    private let systemClock: SystemClockServiceProtocol
+    private (set) var session: Session
     private let maxPasswordAttempts: Int
 
     init(userDefaultsService: UserDefaultsServiceProtocol = UserDefaultsService(),
@@ -69,6 +76,7 @@ final class Account: AccountProtocol {
         self.userDefaultsService = userDefaultsService
         self.keychainService = keychainService
         self.biometricAuthService = biometricAuthService
+        self.systemClock = systemClock
         self.session = Session(duration: sessionDuration, clockService: systemClock)
         self.maxPasswordAttempts = maxPasswordAttempts
     }
