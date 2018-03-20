@@ -38,6 +38,12 @@
 		0AB0FF62204EF85B0066682F /* UserDefaultsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0FF61204EF85B0066682F /* UserDefaultsIntegrationTests.swift */; };
 		0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */; };
 		0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */; };
+		0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */; };
+		0ACA9C41205FFEDF005EC186 /* SetPasswordScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */; };
+		0ACA9C43206017C6005EC186 /* ConfirmPasswordScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C42206017C6005EC186 /* ConfirmPasswordScreenUITests.swift */; };
+		0ACA9C4520601877005EC186 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C4420601877005EC186 /* Rule.swift */; };
+		0ACA9C47206018C3005EC186 /* SecureTextfieldScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C46206018C3005EC186 /* SecureTextfieldScreen.swift */; };
+		0ACA9C49206021E8005EC186 /* UnlockScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C48206021E8005EC186 /* UnlockScreenUITests.swift */; };
 		0ACF315E2058265300E8A6C3 /* LoggableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF315D2058265300E8A6C3 /* LoggableError.swift */; };
 		0ACF31602058267C00E8A6C3 /* LoggableErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF315F2058267C00E8A6C3 /* LoggableErrorTests.swift */; };
 		0AD93E0C204815CF008C38CA /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD93E0B204815CF008C38CA /* safeUIKit.framework */; };
@@ -46,6 +52,8 @@
 		0AD93E112048160F008C38CA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DF6A91203C678200DF6486 /* Fabric.framework */; };
 		0AD93E192048350D008C38CA /* ConfirmPaswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD93E182048350D008C38CA /* ConfirmPaswordViewController.swift */; };
 		0AD93E1B2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */; };
+		0AE75CD82061134B002D5E2D /* SafeUIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE75CD72061134B002D5E2D /* SafeUIKitExtensions.swift */; };
+		0AE75CDA20611359002D5E2D /* SafeUIKitExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE75CD920611359002D5E2D /* SafeUIKitExtensionsTests.swift */; };
 		55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4A203DAE1D00AD0E1F /* Assets.swift */; };
 		55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */; };
 		55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D522040492200AD0E1F /* SetPasswordViewController.swift */; };
@@ -169,11 +177,19 @@
 		0AB0FF5A204EF81C0066682F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AB0FF61204EF85B0066682F /* UserDefaultsIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsIntegrationTests.swift; sourceTree = "<group>"; };
 		0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationArguments.swift; sourceTree = "<group>"; };
+		0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenUITests.swift; sourceTree = "<group>"; };
+		0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordScreenUITests.swift; sourceTree = "<group>"; };
+		0ACA9C42206017C6005EC186 /* ConfirmPasswordScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPasswordScreenUITests.swift; sourceTree = "<group>"; };
+		0ACA9C4420601877005EC186 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		0ACA9C46206018C3005EC186 /* SecureTextfieldScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextfieldScreen.swift; sourceTree = "<group>"; };
+		0ACA9C48206021E8005EC186 /* UnlockScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockScreenUITests.swift; sourceTree = "<group>"; };
 		0ACF315D2058265300E8A6C3 /* LoggableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggableError.swift; sourceTree = "<group>"; };
 		0ACF315F2058267C00E8A6C3 /* LoggableErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggableErrorTests.swift; sourceTree = "<group>"; };
 		0AD93E0B204815CF008C38CA /* safeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = safeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD93E182048350D008C38CA /* ConfirmPaswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaswordViewController.swift; sourceTree = "<group>"; };
 		0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaswordViewControllerTests.swift; sourceTree = "<group>"; };
+		0AE75CD72061134B002D5E2D /* SafeUIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeUIKitExtensions.swift; sourceTree = "<group>"; };
+		0AE75CD920611359002D5E2D /* SafeUIKitExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeUIKitExtensionsTests.swift; sourceTree = "<group>"; };
 		55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerTests.swift; sourceTree = "<group>"; };
 		55147D46203DA8C800AD0E1F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		55147D4A203DAE1D00AD0E1F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
@@ -306,6 +322,8 @@
 			children = (
 				0AA27833205FC5A700EBB9D1 /* StartScreen.swift */,
 				0AA27836205FC63800EBB9D1 /* SetPasswordScreen.swift */,
+				0ACA9C46206018C3005EC186 /* SecureTextfieldScreen.swift */,
+				0ACA9C4420601877005EC186 /* Rule.swift */,
 				0AA27838205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift */,
 				0AA2783A205FC6B700EBB9D1 /* PasswordSuccessScreen.swift */,
 			);
@@ -385,6 +403,8 @@
 				5540A4EE203C3054009C9BE3 /* AppDelegate.swift */,
 				55D97D7D20496E390004AEDD /* AppDelegateTests.swift */,
 				55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */,
+				0AE75CD72061134B002D5E2D /* SafeUIKitExtensions.swift */,
+				0AE75CD920611359002D5E2D /* SafeUIKitExtensionsTests.swift */,
 				55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */,
 				5540A4F5203C3054009C9BE3 /* Assets.xcassets */,
 				5540A4F7203C3054009C9BE3 /* LaunchScreen.storyboard */,
@@ -407,6 +427,10 @@
 			isa = PBXGroup;
 			children = (
 				0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */,
+				0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */,
+				0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */,
+				0ACA9C42206017C6005EC186 /* ConfirmPasswordScreenUITests.swift */,
+				0ACA9C48206021E8005EC186 /* UnlockScreenUITests.swift */,
 				0ACA9C3A205FDA92005EC186 /* screens */,
 				5540A510203C3054009C9BE3 /* Info.plist */,
 			);
@@ -765,6 +789,7 @@
 				5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */,
 				555DD6D7205148D100D1178A /* UnlockViewController.swift in Sources */,
 				0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */,
+				0AE75CD82061134B002D5E2D /* SafeUIKitExtensions.swift in Sources */,
 				555DD6DF205167D000D1178A /* SystemClockService.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				55147D6020405BBA00AD0E1F /* Colors.swift in Sources */,
@@ -804,6 +829,7 @@
 				0A7E17AD204E99EB00C9078E /* MockAccount.swift in Sources */,
 				0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */,
 				558690A32057D6D1003BF728 /* TestError.swift in Sources */,
+				0AE75CDA20611359002D5E2D /* SafeUIKitExtensionsTests.swift in Sources */,
 				0AD93E1B2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift in Sources */,
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
 				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
@@ -832,18 +858,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ACA9C47206018C3005EC186 /* SecureTextfieldScreen.swift in Sources */,
 				558690A42057D6D1003BF728 /* TestError.swift in Sources */,
 				0AA2783D205FCC1800EBB9D1 /* UnlockScreen.swift in Sources */,
 				0AA27832205FC4E600EBB9D1 /* Application.swift in Sources */,
+				0ACA9C4520601877005EC186 /* Rule.swift in Sources */,
+				0ACA9C49206021E8005EC186 /* UnlockScreenUITests.swift in Sources */,
 				0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */,
 				0AA2783F205FCC6300EBB9D1 /* SetupSafeScreen.swift in Sources */,
 				0AA27839205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift in Sources */,
 				0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */,
 				0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
 				0A2972C6205A89A100CEC7D4 /* XCLocalizedString.swift in Sources */,
+				0ACA9C41205FFEDF005EC186 /* SetPasswordScreenUITests.swift in Sources */,
+				0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */,
 				0AA2783B205FC6B700EBB9D1 /* PasswordSuccessScreen.swift in Sources */,
 				0AA27837205FC63800EBB9D1 /* SetPasswordScreen.swift in Sources */,
 				0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */,
+				0ACA9C43206017C6005EC186 /* ConfirmPasswordScreenUITests.swift in Sources */,
 				55D6C2F52045C3540026BC72 /* XCTest+Assert.swift in Sources */,
 				55D6C2F22045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */,
 			);

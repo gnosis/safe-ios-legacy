@@ -7,9 +7,9 @@ import XCTest
 extension XCTestCase {
 
     func waitUntil(_ condition: @autoclosure () -> Bool,
-                       _ timeout: TimeInterval = 1,
-                       file: String = #file,
-                       line: Int = #line) {
+                   timeout: TimeInterval = 1,
+                   file: String = #file,
+                   line: Int = #line) {
         var time: TimeInterval = 0
         let step: TimeInterval = 0.1
         let loop = RunLoop.current
@@ -25,9 +25,9 @@ extension XCTestCase {
     }
 
     func waitUntil(_ element: XCUIElement,
-                   _ timeout: TimeInterval = 15,
-                   _ file: String = #file,
-                   _ line: Int = #line,
+                   timeout: TimeInterval = 15,
+                   file: String = #file,
+                   line: Int = #line,
                    _ conditions: Predicate ...) {
         let predicate = NSPredicate(format: conditions.map { $0.rawValue }.joined(separator: " AND "))
         let expectation = self.expectation(for: predicate, evaluatedWith: element, handler: nil)
@@ -41,10 +41,10 @@ extension XCTestCase {
         }
     }
 
-    func wait(for delay: TimeInterval = 0.1) {
-        RunLoop.current.run(until: Date(timeIntervalSinceNow: delay))
-    }
-    
+}
+
+func delay(_ delay: TimeInterval = 0.1) {
+    RunLoop.current.run(until: Date(timeIntervalSinceNow: delay))
 }
 
 enum Predicate: String {

@@ -8,6 +8,7 @@ import XCTest
 final class Application {
 
     private var arguments = [String]()
+    private let app = XCUIApplication()
 
     func resetAllContentAndSettings() {
         arguments.append(ApplicationArguments.resetAllContentAndSettings)
@@ -18,10 +19,37 @@ final class Application {
         arguments.append(password)
     }
 
+    func setSessionDuration(seconds duration: TimeInterval) {
+        arguments.append(ApplicationArguments.setSessionDuration)
+        arguments.append(String(duration))
+    }
+
+    func setMaxPasswordAttempts(_ attemptCount: Int) {
+        arguments.append(ApplicationArguments.setMaxPasswordAttempts)
+        arguments.append(String(attemptCount))
+    }
+
+    func setAccountBlockedPeriodDuration(_ time: TimeInterval) {
+        arguments.append(ApplicationArguments.setAccountBlockedPeriodDuration)
+        arguments.append(String(time))
+    }
+
     func start() {
-        let app = XCUIApplication()
         app.launchArguments = arguments
         app.launch()
     }
 
+    func minimize() {
+        XCUIDevice.shared.press(.home)
+    }
+
+    func maximize() {
+        app.activate()
+    }
+
+    func terminate() {
+        // give some time to save data
+        delay(0.5)
+        app.terminate()
+    }
 }

@@ -3,11 +3,25 @@
 //
 
 import Foundation
+import XCTest
 
-final class SetPasswordScreen {
+final class SetPasswordScreen: SecureTextfieldScreen {
 
-    func enterPassword(_ text: String) {
-        TestUtils.enterTextToSecureTextField(text)
+    struct Rules {
+
+        let minimumLength = Rule(key: "onboarding.set_password.length")
+        let capitalLetter = Rule(key: "onboarding.set_password.capital")
+        let digit = Rule(key: "onboarding.set_password.digit")
+
+        var all: [Rule] {
+            return [minimumLength, capitalLetter, digit]
+        }
+
     }
+
+    override var title: XCUIElement {
+        return XCUIApplication().staticTexts[XCLocalizedString("onboarding.set_password.header")]
+    }
+    var rules = Rules()
 
 }

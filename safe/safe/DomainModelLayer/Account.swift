@@ -11,6 +11,10 @@ protocol AccountProtocol: class {
     var isBiometryAuthenticationAvailable: Bool { get }
     var isBiometryFaceID: Bool { get }
     var isBlocked: Bool { get }
+    var blockedPeriodDuration: TimeInterval { get set }
+    var sessionDuration: TimeInterval { get set }
+    var maxPasswordAttempts: Int { get set }
+    var isSessionActive: Bool { get }
 
     func cleanupAllData() throws
     func setMasterPassword(_ password: String) throws
@@ -30,12 +34,18 @@ final class Account: AccountProtocol {
     static let shared = Account()
 
     var isBlocked: Bool {
-        return passwordAttemptCount >= maxPasswordAttempts
+        let result = passwordAttemptCount >= maxPasswordAttempts
+        LogService.shared.debug("Blocked? \(result ? "YES" : "NO")")
+        return result
     }
 
     private var passwordAttemptCount: Int {
-        get { return self.userDefaultsService.int(for: UserDefaultsKey.passwordAttemptCount.rawValue) ?? 0 }
-        set { self.userDefaultsService.setInt(newValue, for: UserDefaultsKey.passwordAttemptCount.rawValue) }
+        get {
+            return self.userDefaultsService.int(for: UserDefaultsKey.passwordAttemptCount.rawValue) ?? 0
+        }
+        set {
+            self.userDefaultsService.setInt(newValue, for: UserDefaultsKey.passwordAttemptCount.rawValue)
+        }
     }
 
     var hasMasterPassword: Bool {
@@ -54,23 +64,37 @@ final class Account: AccountProtocol {
         return biometricAuthService.biometryType == .faceID
     }
 
+    var sessionDuration: TimeInterval {
+        get { return session.duration }
+        set { session = Session(duration: newValue, clockService: systemClock) }
+    }
+
+    var isSessionActive: Bool {
+        return session.isActive
+    }
+
     private let userDefaultsService: UserDefaultsServiceProtocol
     private let keychainService: KeychainServiceProtocol
     private let biometricAuthService: BiometricAuthenticationServiceProtocol
-    private var session: Session
-    private let maxPasswordAttempts: Int
+    private let systemClock: SystemClockServiceProtocol
+    private (set) var session: Session
+    var maxPasswordAttempts: Int
+    var blockedPeriodDuration: TimeInterval
 
     init(userDefaultsService: UserDefaultsServiceProtocol = UserDefaultsService(),
          keychainService: KeychainServiceProtocol = KeychainService(),
          biometricAuthService: BiometricAuthenticationServiceProtocol = BiometricService(),
          systemClock: SystemClockServiceProtocol = SystemClockService(),
          sessionDuration: TimeInterval = 60 * 5,
+         blockedPeriodDuration: TimeInterval = 15,
          maxPasswordAttempts: Int = 5) {
         self.userDefaultsService = userDefaultsService
         self.keychainService = keychainService
         self.biometricAuthService = biometricAuthService
+        self.systemClock = systemClock
         self.session = Session(duration: sessionDuration, clockService: systemClock)
         self.maxPasswordAttempts = maxPasswordAttempts
+        self.blockedPeriodDuration = blockedPeriodDuration
     }
 
     func setMasterPassword(_ password: String) throws {

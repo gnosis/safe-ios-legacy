@@ -3,11 +3,17 @@
 //
 
 import Foundation
+import XCTest
 
-final class UnlockScreen {
+final class UnlockScreen: SecureTextfieldScreen {
 
-    func enterPassword(_ text: String) {
-        TestUtils.enterTextToSecureTextField(text)
+    override var title: XCUIElement {
+        return XCUIApplication().staticTexts[XCLocalizedString("app.unlock.header")]
+    }
+    let countdown = XCUIApplication().staticTexts["countdown"]
+
+    func string(from time: TimeInterval) -> String {
+        return String(format: "00:%02.0f", time)
     }
 
 }

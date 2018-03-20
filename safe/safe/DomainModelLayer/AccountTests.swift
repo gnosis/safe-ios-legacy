@@ -71,6 +71,12 @@ class AccountTests: XCTestCase {
         XCTAssertNil(try! keychain.password())
     }
 
+    func test_cleanupAllData_whenKeychainThrows_thenThrows() {
+        setPassword()
+        keychain.throwsOnRemovePassword = true
+        XCTAssertThrowsError(try account.cleanupAllData())
+    }
+
     // MARK: - activateBiometricAuthentication
 
     func test_activateBiometricAuthentication_whenInvoked_thenCallsAccountCompletionAfterBiometricActivation() {
@@ -79,7 +85,7 @@ class AccountTests: XCTestCase {
         account.activateBiometricAuthentication {
             completionCalled = true
         }
-        wait()
+        delay()
         XCTAssertFalse(completionCalled)
         biometricService.completeActivation()
         XCTAssertTrue(completionCalled)
@@ -151,6 +157,12 @@ class AccountTests: XCTestCase {
         XCTAssertEqual(mockUserDefaults.int(for: UserDefaultsKey.passwordAttemptCount.rawValue), 0)
     }
 
+    func test_authenticateWithPassword_whenKeychainThrows_thenReturnsFalse() {
+        keychain.throwsOnGetPassword = true
+        setupExpiredSession()
+        XCTAssertFalse(account.authenticateWithPassword(correctPassword))
+    }
+
     // MARK: - authenticateWithBiometry
 
     func test_authenticateWithBiometry_whenInvoked_thenCallsCompletion() {
@@ -159,7 +171,7 @@ class AccountTests: XCTestCase {
         account.authenticateWithBiometry { _ in
             completionCalled = true
         }
-        wait()
+        delay()
         XCTAssertFalse(completionCalled)
         let anyResult = true
         biometricService.completeAuthentication(result: anyResult)
@@ -257,6 +269,35 @@ class AccountTests: XCTestCase {
         XCTAssertNil(try! keychain.password())
     }
 
+    // MARK: - sessionDuration
+
+    func test_sessionDuration_whenChanged_thenChanged() {
+        account.sessionDuration = 1.0
+        XCTAssertEqual(account.session.duration, 1.0)
+        XCTAssertEqual(account.sessionDuration, 1.0)
+    }
+
+    // MARK: - maxPasswordAttempts
+
+    func test_maxPasswordAttempts_whenChanged_thenChanged() {
+        account.maxPasswordAttempts = 1
+        XCTAssertEqual(account.maxPasswordAttempts, 1)
+    }
+
+    // MARK: - blockedPeriodDuration
+
+    func test_blockedPeriodDuration() {
+        account.blockedPeriodDuration = 1
+        XCTAssertEqual(account.blockedPeriodDuration, 1)
+    }
+
+    // MARK: - isSessionActive
+
+    func test_whenSessionExpired_thenNotActive() {
+        setupExpiredSession()
+        XCTAssertFalse(account.isSessionActive)
+    }
+
 }
 
 // MARK: - Helpers
@@ -324,6 +365,7 @@ class MockKeychain: KeychainServiceProtocol {
     private var storedPassword: String?
     var throwsOnSavePassword = false
     var throwsOnGetPassword = false
+    var throwsOnRemovePassword = false
 
     enum Error: Swift.Error {
         case error
@@ -344,6 +386,9 @@ class MockKeychain: KeychainServiceProtocol {
     }
 
     func removePassword() throws {
+        if throwsOnRemovePassword {
+            throw MockKeychain.Error.error
+        }
         storedPassword = nil
     }
 

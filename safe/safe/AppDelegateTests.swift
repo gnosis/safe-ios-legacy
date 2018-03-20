@@ -15,4 +15,26 @@ class AppDelegateTests: XCTestCase {
         XCTAssertTrue(appDelegate.window?.isKeyWindow ?? false)
     }
 
+    func test_whenAppBecomesActive_thenCallsCoordinator() {
+        let coordinator = MockCoordinator()
+        let appDelegate = AppDelegate()
+        appDelegate.coordinator = coordinator
+        appDelegate.applicationWillEnterForeground(UIApplication.shared)
+        XCTAssertTrue(coordinator.didBecomeActive)
+    }
+
+}
+
+class MockCoordinator: AppFlowCoordinatorProtocol {
+
+    var didBecomeActive = false
+
+    func appEntersForeground() {
+        didBecomeActive = true
+    }
+
+    func startViewController() -> UIViewController {
+        return UIViewController()
+    }
+
 }

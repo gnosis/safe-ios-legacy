@@ -22,12 +22,11 @@ final class UnlockViewController: UIViewController {
 
     static func create(account: AccountProtocol,
                        clockService: SystemClockServiceProtocol = SystemClockService(),
-                       blockPeriod: TimeInterval = 15,
                        completion: @escaping () -> Void) -> UnlockViewController {
         let vc = StoryboardScene.AppFlow.unlockViewController.instantiate()
         vc.account = account
         vc.clockService = clockService
-        vc.blockPeriod = blockPeriod
+        vc.blockPeriod = account.blockedPeriodDuration
         vc.unlockCompletion = completion
         return vc
     }
@@ -41,6 +40,7 @@ final class UnlockViewController: UIViewController {
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
         updateBiometryButtonVisibility()
         countdownLabel.setup(time: blockPeriod, clock: clockService)
+        countdownLabel.accessibilityIdentifier = "countdown"
         startCountdownIfNeeded()
     }
 
