@@ -24,6 +24,16 @@ final class Application {
         arguments.append(String(duration))
     }
 
+    func setMaxPasswordAttempts(_ attemptCount: Int) {
+        arguments.append(ApplicationArguments.setMaxPasswordAttempts)
+        arguments.append(String(attemptCount))
+    }
+
+    func setAccountBlockedPeriodDuration(_ time: TimeInterval) {
+        arguments.append(ApplicationArguments.setAccountBlockedPeriodDuration)
+        arguments.append(String(time))
+    }
+
     func start() {
         app.launchArguments = arguments
         app.launch()

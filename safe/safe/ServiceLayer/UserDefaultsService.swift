@@ -10,6 +10,7 @@ protocol UserDefaultsServiceProtocol {
     func int(for key: String) -> Int?
     func setInt(_ value: Int, for key: String)
     func deleteKey(_ key: String)
+    func save()
 }
 
 final class UserDefaultsService: UserDefaultsServiceProtocol {
@@ -38,6 +39,10 @@ final class UserDefaultsService: UserDefaultsServiceProtocol {
 
     func deleteKey(_ key: String) {
         UserDefaults.standard.removeObject(forKey: key)
+    }
+
+    func save() {
+        UserDefaults.standard.synchronize()
     }
 
 }

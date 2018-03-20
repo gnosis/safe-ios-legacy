@@ -11,7 +11,9 @@ protocol AccountProtocol: class {
     var isBiometryAuthenticationAvailable: Bool { get }
     var isBiometryFaceID: Bool { get }
     var isBlocked: Bool { get }
+    var blockedPeriodDuration: TimeInterval { get set }
     var sessionDuration: TimeInterval { get set }
+    var maxPasswordAttempts: Int { get set }
 
     func cleanupAllData() throws
     func setMasterPassword(_ password: String) throws
@@ -36,7 +38,11 @@ final class Account: AccountProtocol {
 
     private var passwordAttemptCount: Int {
         get { return self.userDefaultsService.int(for: UserDefaultsKey.passwordAttemptCount.rawValue) ?? 0 }
-        set { self.userDefaultsService.setInt(newValue, for: UserDefaultsKey.passwordAttemptCount.rawValue) }
+        set {
+            self.userDefaultsService.setInt(newValue, for: UserDefaultsKey.passwordAttemptCount.rawValue)
+            // saving explicitly because when SIGKILL received then the app doesn't save the defaults
+            self.userDefaultsService.save()
+        }
     }
 
     var hasMasterPassword: Bool {
@@ -65,13 +71,15 @@ final class Account: AccountProtocol {
     private let biometricAuthService: BiometricAuthenticationServiceProtocol
     private let systemClock: SystemClockServiceProtocol
     private (set) var session: Session
-    private let maxPasswordAttempts: Int
+    var maxPasswordAttempts: Int
+    var blockedPeriodDuration: TimeInterval
 
     init(userDefaultsService: UserDefaultsServiceProtocol = UserDefaultsService(),
          keychainService: KeychainServiceProtocol = KeychainService(),
          biometricAuthService: BiometricAuthenticationServiceProtocol = BiometricService(),
          systemClock: SystemClockServiceProtocol = SystemClockService(),
          sessionDuration: TimeInterval = 60 * 5,
+         blockedPeriodDuration: TimeInterval = 15,
          maxPasswordAttempts: Int = 5) {
         self.userDefaultsService = userDefaultsService
         self.keychainService = keychainService
@@ -79,6 +87,7 @@ final class Account: AccountProtocol {
         self.systemClock = systemClock
         self.session = Session(duration: sessionDuration, clockService: systemClock)
         self.maxPasswordAttempts = maxPasswordAttempts
+        self.blockedPeriodDuration = blockedPeriodDuration
     }
 
     func setMasterPassword(_ password: String) throws {

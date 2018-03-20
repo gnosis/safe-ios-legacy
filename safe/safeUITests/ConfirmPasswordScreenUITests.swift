@@ -28,7 +28,7 @@ class ConfirmPasswordScreenUITests: XCTestCase {
     }
 
     func test_whenSessionInvalidatedAndAppRestoredToForeground_confirmScreenIsDisplayed() {
-        let sessionDurationInSeconds: TimeInterval = 3
+        let sessionDurationInSeconds: TimeInterval = 1
         application.setSessionDuration(seconds: sessionDurationInSeconds)
         start()
 

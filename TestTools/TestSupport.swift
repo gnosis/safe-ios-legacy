@@ -33,13 +33,29 @@ final class TestSupport {
                     try? account.setMasterPassword(password)
                 }
             case ApplicationArguments.setSessionDuration:
-                if let durationStr = iterator.next(),
-                    let duration = TimeInterval(durationStr) {
+                if let duration = timeInterval(&iterator) {
                     account.sessionDuration = duration
+                }
+            case ApplicationArguments.setMaxPasswordAttempts:
+                if let attemptCountStr = iterator.next(),
+                    let attemptCount = Int(attemptCountStr) {
+                    account.maxPasswordAttempts = attemptCount
+                }
+            case ApplicationArguments.setAccountBlockedPeriodDuration:
+                if let blockingTime = timeInterval(&iterator) {
+                    account.blockedPeriodDuration = blockingTime
                 }
             default: break
             }
         }
+    }
+
+    private func timeInterval(_ iterator: inout IndexingIterator<[String]>) -> TimeInterval? {
+        if let string = iterator.next(),
+            let time = TimeInterval(string) {
+            return time
+        }
+        return nil
     }
 
 }

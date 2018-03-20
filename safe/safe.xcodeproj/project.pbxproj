@@ -43,6 +43,7 @@
 		0ACA9C43206017C6005EC186 /* ConfirmPasswordScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C42206017C6005EC186 /* ConfirmPasswordScreenUITests.swift */; };
 		0ACA9C4520601877005EC186 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C4420601877005EC186 /* Rule.swift */; };
 		0ACA9C47206018C3005EC186 /* SecureTextfieldScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C46206018C3005EC186 /* SecureTextfieldScreen.swift */; };
+		0ACA9C49206021E8005EC186 /* UnlockScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C48206021E8005EC186 /* UnlockScreenUITests.swift */; };
 		0ACF315E2058265300E8A6C3 /* LoggableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF315D2058265300E8A6C3 /* LoggableError.swift */; };
 		0ACF31602058267C00E8A6C3 /* LoggableErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF315F2058267C00E8A6C3 /* LoggableErrorTests.swift */; };
 		0AD93E0C204815CF008C38CA /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD93E0B204815CF008C38CA /* safeUIKit.framework */; };
@@ -179,6 +180,7 @@
 		0ACA9C42206017C6005EC186 /* ConfirmPasswordScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPasswordScreenUITests.swift; sourceTree = "<group>"; };
 		0ACA9C4420601877005EC186 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		0ACA9C46206018C3005EC186 /* SecureTextfieldScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextfieldScreen.swift; sourceTree = "<group>"; };
+		0ACA9C48206021E8005EC186 /* UnlockScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockScreenUITests.swift; sourceTree = "<group>"; };
 		0ACF315D2058265300E8A6C3 /* LoggableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggableError.swift; sourceTree = "<group>"; };
 		0ACF315F2058267C00E8A6C3 /* LoggableErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggableErrorTests.swift; sourceTree = "<group>"; };
 		0AD93E0B204815CF008C38CA /* safeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = safeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -422,6 +424,7 @@
 				0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */,
 				0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */,
 				0ACA9C42206017C6005EC186 /* ConfirmPasswordScreenUITests.swift */,
+				0ACA9C48206021E8005EC186 /* UnlockScreenUITests.swift */,
 				0ACA9C3A205FDA92005EC186 /* screens */,
 				5540A510203C3054009C9BE3 /* Info.plist */,
 			);
@@ -852,6 +855,7 @@
 				0AA2783D205FCC1800EBB9D1 /* UnlockScreen.swift in Sources */,
 				0AA27832205FC4E600EBB9D1 /* Application.swift in Sources */,
 				0ACA9C4520601877005EC186 /* Rule.swift in Sources */,
+				0ACA9C49206021E8005EC186 /* UnlockScreenUITests.swift in Sources */,
 				0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */,
 				0AA2783F205FCC6300EBB9D1 /* SetupSafeScreen.swift in Sources */,
 				0AA27839205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift in Sources */,

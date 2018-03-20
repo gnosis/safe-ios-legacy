@@ -151,6 +151,12 @@ class AccountTests: XCTestCase {
         XCTAssertEqual(mockUserDefaults.int(for: UserDefaultsKey.passwordAttemptCount.rawValue), 0)
     }
 
+    func test_authenticateWithPassword_whenSuccess_thenSavesDefaults() {
+        setupExpiredSession()
+        _ = account.authenticateWithPassword(wrongPassword)
+        XCTAssertTrue(mockUserDefaults.didSave)
+    }
+
     // MARK: - authenticateWithBiometry
 
     func test_authenticateWithBiometry_whenInvoked_thenCallsCompletion() {
@@ -264,6 +270,20 @@ class AccountTests: XCTestCase {
         XCTAssertEqual(account.session.duration, 1.0)
     }
 
+    // MARK: - maxPasswordAttempts
+
+    func test_maxPasswordAttempts_whenChanged_thenChanged() {
+        account.maxPasswordAttempts = 1
+        XCTAssertEqual(account.maxPasswordAttempts, 1)
+    }
+
+    // MARK: - blockedPeriodDuration
+
+    func test_blockedPeriodDuration() {
+        account.blockedPeriodDuration = 1
+        XCTAssertEqual(account.blockedPeriodDuration, 1)
+    }
+
 }
 
 // MARK: - Helpers
@@ -303,6 +323,7 @@ extension AccountTests {
 class InMemoryUserDefaults: UserDefaultsServiceProtocol {
 
     var dict = [String: Any]()
+    var didSave = false
 
     func bool(for key: String) -> Bool? {
         return dict[key] as? Bool
@@ -322,6 +343,10 @@ class InMemoryUserDefaults: UserDefaultsServiceProtocol {
 
     func deleteKey(_ key: String) {
         dict.removeValue(forKey: key)
+    }
+
+    func save() {
+        didSave = true
     }
 
 }

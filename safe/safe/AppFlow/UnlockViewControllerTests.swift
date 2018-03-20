@@ -136,9 +136,9 @@ class UnlockViewControllerTests: XCTestCase {
 extension UnlockViewControllerTests {
 
     private func createVC(blockPeriod: TimeInterval = 15) {
+        account.blockedPeriodDuration = blockPeriod
         vc = UnlockViewController.create(account: account,
-                                         clockService: clock,
-                                         blockPeriod: blockPeriod) { [unowned self] in
+                                         clockService: clock) { [unowned self] in
                                             self.didLogIn = true
         }
         vc.loadViewIfNeeded()

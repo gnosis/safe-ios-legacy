@@ -55,6 +55,30 @@ class TestSupportTests: XCTestCase {
         XCTAssertEqual(account.sessionDuration, 1)
     }
 
+    func test_setUp_whenSetMaxPasswordAttemptsProvided_thenSetsMaxAttempts() {
+        account.maxPasswordAttempts = 0
+        support.setUp([ApplicationArguments.setMaxPasswordAttempts, "1"])
+        XCTAssertEqual(account.maxPasswordAttempts, 1)
+    }
+
+    func test_setUp_whenSetMaxPasswordAttemptsInvalid_thenDoesNothing() {
+        account.maxPasswordAttempts = 3
+        support.setUp([ApplicationArguments.setMaxPasswordAttempts, "invalid"])
+        XCTAssertEqual(account.maxPasswordAttempts, 3)
+    }
+
+    func test_setUp_whenBlockedPeriodDurationSet_thenAccountChanged() {
+        account.blockedPeriodDuration = 1
+        support.setUp([ApplicationArguments.setAccountBlockedPeriodDuration, "10.1"])
+        XCTAssertEqual(account.blockedPeriodDuration, 10.1)
+    }
+
+    func test_setUp_whenBlockedPeriodDurationInvalid_thenDoesNothing() {
+        account.blockedPeriodDuration = 3
+        support.setUp([ApplicationArguments.setAccountBlockedPeriodDuration, "invalid"])
+        XCTAssertEqual(account.blockedPeriodDuration, 3)
+    }
+
 }
 
 final class MockResettable: Resettable {
