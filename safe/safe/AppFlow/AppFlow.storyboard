@@ -27,43 +27,47 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nj1-ul-eXr" customClass="TextInput" customModule="safeUIKit">
-                                <rect key="frame" x="20" y="200" width="335" height="128"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fz4-D4-HVk">
+                                <rect key="frame" x="20" y="180" width="335" height="166.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nj1-ul-eXr" customClass="TextInput" customModule="safeUIKit">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" placeholder="YES" id="LFV-D8-WyK"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-AZ-zil" customClass="CountdownLabel" customModule="safe" customModuleProvider="target">
+                                        <rect key="frame" x="135.5" y="64" width="64" height="32.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1G-7q-Z9o">
+                                        <rect key="frame" x="142.5" y="116.5" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Eyx-45-2Yj"/>
+                                            <constraint firstAttribute="width" constant="50" id="Zfl-mx-bnT"/>
+                                        </constraints>
+                                        <state key="normal" image="touch-id-icon"/>
+                                        <connections>
+                                            <action selector="loginWithBiometry:" destination="rVK-CN-jIO" eventType="touchUpInside" id="kRe-Fo-hk5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" placeholder="YES" id="LFV-D8-WyK"/>
+                                    <constraint firstItem="nj1-ul-eXr" firstAttribute="leading" secondItem="fz4-D4-HVk" secondAttribute="leading" id="Ggy-XR-tay"/>
+                                    <constraint firstAttribute="trailing" secondItem="nj1-ul-eXr" secondAttribute="trailing" id="hw0-iD-ONc"/>
                                 </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1G-7q-Z9o">
-                                <rect key="frame" x="162.5" y="527" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Eyx-45-2Yj"/>
-                                    <constraint firstAttribute="width" constant="50" id="Zfl-mx-bnT"/>
-                                </constraints>
-                                <state key="normal" image="touch-id-icon"/>
-                                <connections>
-                                    <action selector="loginWithBiometry:" destination="rVK-CN-jIO" eventType="touchUpInside" id="kRe-Fo-hk5"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-AZ-zil" customClass="CountdownLabel" customModule="safe" customModuleProvider="target">
-                                <rect key="frame" x="20" y="368" width="335" height="32.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="nj1-ul-eXr" firstAttribute="top" secondItem="9bk-4K-dHx" secondAttribute="bottom" constant="60" id="3Iq-9g-JZo"/>
-                            <constraint firstItem="nj1-ul-eXr" firstAttribute="trailing" secondItem="9bk-4K-dHx" secondAttribute="trailing" id="BoW-b6-KOL"/>
                             <constraint firstItem="9bk-4K-dHx" firstAttribute="leading" secondItem="gwt-tb-99E" secondAttribute="leading" constant="20" id="OSx-fd-2p6"/>
-                            <constraint firstItem="gwt-tb-99E" firstAttribute="trailing" secondItem="k6Y-AZ-zil" secondAttribute="trailing" constant="20" id="QJM-PE-SQL"/>
-                            <constraint firstItem="h1G-7q-Z9o" firstAttribute="centerX" secondItem="TWI-OQ-quH" secondAttribute="centerX" id="S6c-ux-asZ"/>
-                            <constraint firstItem="nj1-ul-eXr" firstAttribute="leading" secondItem="9bk-4K-dHx" secondAttribute="leading" id="UZY-h4-GO0"/>
-                            <constraint firstItem="gwt-tb-99E" firstAttribute="bottom" secondItem="h1G-7q-Z9o" secondAttribute="bottom" constant="90" id="VNj-NE-zab"/>
-                            <constraint firstItem="k6Y-AZ-zil" firstAttribute="top" secondItem="nj1-ul-eXr" secondAttribute="bottom" constant="40" id="WPt-vJ-AMS"/>
+                            <constraint firstItem="gwt-tb-99E" firstAttribute="trailing" secondItem="fz4-D4-HVk" secondAttribute="trailing" constant="20" id="f0N-JP-ECg"/>
+                            <constraint firstItem="fz4-D4-HVk" firstAttribute="top" secondItem="9bk-4K-dHx" secondAttribute="bottom" constant="40" id="fa8-Al-Qd4"/>
                             <constraint firstItem="9bk-4K-dHx" firstAttribute="top" secondItem="gwt-tb-99E" secondAttribute="top" constant="40" id="i66-jZ-NY1"/>
-                            <constraint firstItem="k6Y-AZ-zil" firstAttribute="leading" secondItem="gwt-tb-99E" secondAttribute="leading" constant="20" id="ush-iX-6bo"/>
+                            <constraint firstItem="fz4-D4-HVk" firstAttribute="leading" secondItem="gwt-tb-99E" secondAttribute="leading" constant="20" id="p9M-dA-lTX"/>
                             <constraint firstItem="gwt-tb-99E" firstAttribute="trailing" secondItem="9bk-4K-dHx" secondAttribute="trailing" constant="20" id="x2l-gb-Qr5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gwt-tb-99E"/>

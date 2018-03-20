@@ -463,11 +463,11 @@
 			children = (
 				0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */,
 				0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */,
+				0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */,
 				555DD6D6205148D100D1178A /* UnlockViewController.swift */,
 				555DD6D82051497700D1178A /* UnlockViewControllerTests.swift */,
 				0A527324205BCCF4004A5F9A /* CountdownLabel.swift */,
 				0A527326205BD364004A5F9A /* CountdownLabelTests.swift */,
-				0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
