@@ -45,7 +45,7 @@ class ConfirmPaswordViewControllerTests: XCTestCase {
         vc.textInputDidReturn()
         XCTAssertFalse(delegate.didConfirm)
         account.finishBiometricActivation()
-        wait()
+        delay()
         XCTAssertTrue(delegate.didConfirm)
     }
 
@@ -65,7 +65,7 @@ class ConfirmPaswordViewControllerTests: XCTestCase {
         window.makeKeyAndVisible()
         account.setMasterPasswordThrows = true
         vc.textInputDidReturn()
-        wait()
+        delay()
         XCTAssertNotNil(vc.presentedViewController)
         XCTAssertTrue(vc.presentedViewController is UIAlertController)
     }

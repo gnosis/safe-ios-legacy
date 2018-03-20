@@ -79,7 +79,7 @@ class AccountTests: XCTestCase {
         account.activateBiometricAuthentication {
             completionCalled = true
         }
-        wait()
+        delay()
         XCTAssertFalse(completionCalled)
         biometricService.completeActivation()
         XCTAssertTrue(completionCalled)
@@ -151,12 +151,6 @@ class AccountTests: XCTestCase {
         XCTAssertEqual(mockUserDefaults.int(for: UserDefaultsKey.passwordAttemptCount.rawValue), 0)
     }
 
-    func test_authenticateWithPassword_whenSuccess_thenSavesDefaults() {
-        setupExpiredSession()
-        _ = account.authenticateWithPassword(wrongPassword)
-        XCTAssertTrue(mockUserDefaults.didSave)
-    }
-
     // MARK: - authenticateWithBiometry
 
     func test_authenticateWithBiometry_whenInvoked_thenCallsCompletion() {
@@ -165,7 +159,7 @@ class AccountTests: XCTestCase {
         account.authenticateWithBiometry { _ in
             completionCalled = true
         }
-        wait()
+        delay()
         XCTAssertFalse(completionCalled)
         let anyResult = true
         biometricService.completeAuthentication(result: anyResult)
@@ -284,6 +278,13 @@ class AccountTests: XCTestCase {
         XCTAssertEqual(account.blockedPeriodDuration, 1)
     }
 
+    // MARK: - isSessionActive
+
+    func test_whenSessionExpired_thenNotActive() {
+        setupExpiredSession()
+        XCTAssertFalse(account.isSessionActive)
+    }
+
 }
 
 // MARK: - Helpers
@@ -323,7 +324,6 @@ extension AccountTests {
 class InMemoryUserDefaults: UserDefaultsServiceProtocol {
 
     var dict = [String: Any]()
-    var didSave = false
 
     func bool(for key: String) -> Bool? {
         return dict[key] as? Bool
@@ -343,10 +343,6 @@ class InMemoryUserDefaults: UserDefaultsServiceProtocol {
 
     func deleteKey(_ key: String) {
         dict.removeValue(forKey: key)
-    }
-
-    func save() {
-        didSave = true
     }
 
 }

@@ -19,7 +19,6 @@ class ConfirmPasswordScreenUITests: XCTestCase {
 
     func test_contents() {
         start()
-
         XCTAssertExist(screen.title)
         XCTAssertExist(screen.passwordField)
         XCTAssertTrue(screen.isKeyboardActive)
@@ -33,7 +32,7 @@ class ConfirmPasswordScreenUITests: XCTestCase {
         start()
 
         application.minimize()
-        wait(for: sessionDurationInSeconds + 1)
+        delay(sessionDurationInSeconds + 1)
 
         application.maximize()
         XCTAssertTrue(screen.isDisplayed)

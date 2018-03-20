@@ -17,7 +17,7 @@ class SystemClockServiceIntegrationTests: XCTestCase {
     }
 
     private func increaseEntropy() {
-        wait()
+        delay()
     }
 
     func test_countdownTimer() {

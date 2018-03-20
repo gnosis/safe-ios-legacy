@@ -55,7 +55,7 @@ class UnlockViewControllerTests: XCTestCase {
 
     func test_whenBiometryButtonTapped_thenAuthenticatesWithBiometry() {
         vc.loginWithBiometry(self)
-        wait()
+        delay()
         XCTAssertTrue(didLogIn)
     }
 
@@ -81,7 +81,7 @@ class UnlockViewControllerTests: XCTestCase {
         account.isBiometryAuthenticationAvailable = false
         account.shouldBiometryAuthenticationSuccess = false
         vc.loginWithBiometry(self)
-        wait()
+        delay()
         XCTAssertTrue(vc.loginWithBiometryButton.isHidden)
     }
 
@@ -107,7 +107,7 @@ class UnlockViewControllerTests: XCTestCase {
         }
         window.rootViewController = vc
         clock.countdownTickBlock!(0)
-        wait()
+        delay()
         XCTAssertTrue(vc.textInput.isEnabled)
         XCTAssertTrue(vc.textInput.isActive)
     }
@@ -148,7 +148,7 @@ extension UnlockViewControllerTests {
         account.shouldCallBiometricCompletionImmediately = false
         vc.viewDidAppear(false)
         account.completeBiometryAuthentication(success: result)
-        wait()
+        delay()
     }
 
     private func assertShowsCountdown() {

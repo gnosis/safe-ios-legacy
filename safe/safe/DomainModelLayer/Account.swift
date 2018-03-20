@@ -14,6 +14,7 @@ protocol AccountProtocol: class {
     var blockedPeriodDuration: TimeInterval { get set }
     var sessionDuration: TimeInterval { get set }
     var maxPasswordAttempts: Int { get set }
+    var isSessionActive: Bool { get }
 
     func cleanupAllData() throws
     func setMasterPassword(_ password: String) throws
@@ -33,15 +34,17 @@ final class Account: AccountProtocol {
     static let shared = Account()
 
     var isBlocked: Bool {
-        return passwordAttemptCount >= maxPasswordAttempts
+        let result = passwordAttemptCount >= maxPasswordAttempts
+        LogService.shared.debug("Blocked? \(result ? "YES" : "NO")")
+        return result
     }
 
     private var passwordAttemptCount: Int {
-        get { return self.userDefaultsService.int(for: UserDefaultsKey.passwordAttemptCount.rawValue) ?? 0 }
+        get {
+            return self.userDefaultsService.int(for: UserDefaultsKey.passwordAttemptCount.rawValue) ?? 0
+        }
         set {
             self.userDefaultsService.setInt(newValue, for: UserDefaultsKey.passwordAttemptCount.rawValue)
-            // saving explicitly because when SIGKILL received then the app doesn't save the defaults
-            self.userDefaultsService.save()
         }
     }
 
@@ -64,6 +67,10 @@ final class Account: AccountProtocol {
     var sessionDuration: TimeInterval {
         get { return session.duration }
         set { session = Session(duration: newValue, clockService: systemClock) }
+    }
+
+    var isSessionActive: Bool {
+        return session.isActive
     }
 
     private let userDefaultsService: UserDefaultsServiceProtocol

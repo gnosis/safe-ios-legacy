@@ -41,10 +41,10 @@ extension XCTestCase {
         }
     }
 
-    func wait(for delay: TimeInterval = 0.1) {
-        RunLoop.current.run(until: Date(timeIntervalSinceNow: delay))
-    }
-    
+}
+
+func delay(_ delay: TimeInterval = 0.1) {
+    RunLoop.current.run(until: Date(timeIntervalSinceNow: delay))
 }
 
 enum Predicate: String {

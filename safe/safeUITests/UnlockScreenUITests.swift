@@ -24,17 +24,17 @@ class UnlockScreenUITests: XCTestCase {
         application.setSessionDuration(seconds: sessionDuration)
         start()
         application.minimize()
-        wait(for: sessionDuration - 1)
+        delay(sessionDuration - 1)
         application.maximize()
         XCTAssertTrue(securedScreen.isDisplayed)
     }
 
     func test_whenSetPasswordFinishedAndSessionExpired_thenUnlockIsDisplayed() {
-        let sessionDuration: TimeInterval = 1
+        let sessionDuration: TimeInterval = 2
         application.setSessionDuration(seconds: sessionDuration)
         start()
         application.minimize()
-        wait(for: sessionDuration + 1)
+        delay(sessionDuration * 2)
         application.maximize()
         guard screen.isDisplayed else {
             XCTFail("Expected to see Unlock screen")
@@ -62,7 +62,7 @@ class UnlockScreenUITests: XCTestCase {
         blockTime = 1
         block(attempts: 2)
         XCTAssertExist(screen.countdown)
-        wait(for: blockTime)
+        delay(blockTime)
         XCTAssertNotExist(screen.countdown)
         screen.enterPassword(invalidPassword)
         XCTAssertExist(screen.countdown)
@@ -71,7 +71,7 @@ class UnlockScreenUITests: XCTestCase {
     func test_whenAccountBlockedAndAppRestarted_thenUnlockingIsBlocked() {
         block()
         application.terminate()
-        wait(for: blockTime)
+        delay(blockTime)
         restart()
         XCTAssertExist(screen.countdown)
     }
@@ -79,7 +79,7 @@ class UnlockScreenUITests: XCTestCase {
     func test_whenAccountBlockAndAppMaximized_thenTimerContinuesFromLastValue() {
         block()
         application.minimize()
-        wait(for: blockTime)
+        delay(blockTime)
         application.maximize()
         XCTAssertEqual(screen.countdown.label, screen.string(from: blockTime - 1))
     }

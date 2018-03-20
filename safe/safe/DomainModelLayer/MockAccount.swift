@@ -13,6 +13,7 @@ class MockAccount: AccountProtocol {
     var hasMasterPassword = false
     var isLoggedIn = false
     var isBlocked = false
+    var isSessionActive = true
 
     var didSavePassword = false
     var didCleanData = false

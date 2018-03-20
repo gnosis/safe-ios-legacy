@@ -21,22 +21,80 @@ class AppFlowCoordinatorTests: XCTestCase {
         XCTAssertTrue(type(of: root) == type(of: flowCoordinator.onboardingFlowCoordinator.startViewController()))
     }
 
-    func test_whenUnlocked_thenShowsLockedController() {
+    func test_whenStartingAppAndHasPassword_thenIgnoresSessionStateAndShowsLockedController() {
         account.hasMasterPassword = true
-        guard let unlockVC = flowCoordinator.startViewController() as? UnlockViewController else {
-            XCTFail("Expecting unlock view controller")
-            return
-        }
-        unlockVC.loadViewIfNeeded()
-        account.shouldBiometryAuthenticationSuccess = true
-        let anySender: Any = self
-        unlockVC.loginWithBiometry(anySender)
-        wait()
-        guard let rootVC = UIApplication.shared.keyWindow?.rootViewController else {
-            XCTFail("Root view controller not found")
-            return
-        }
+        account.isSessionActive = true
+        guard let rootVC = rootViewControlleOnAppStartrAfterUnlocking() else { return }
         XCTAssertTrue(type(of: rootVC) == type(of: flowCoordinator.onboardingFlowCoordinator.startViewController()))
     }
 
+    func test_whenSessionExpires_thenLocks() {
+        account.isSessionActive = false
+        account.hasMasterPassword = true
+        XCTAssertTrue(flowCoordinator.startViewController() is UnlockViewController)
+    }
+
+    func test_whenAppBecomesActiveAndSessionExpires_thenLocks() {
+        account.hasMasterPassword = true
+        account.isSessionActive = false
+        let securedVC = UIViewController()
+        UIApplication.rootViewController = securedVC
+        flowCoordinator.appBecomesActive()
+        guard let rootVC = UIApplication.rootViewController else {
+            XCTFail("Expected to have root view controller")
+            return
+        }
+        XCTAssertFalse(rootVC === securedVC)
+        XCTAssertTrue(rootVC is UnlockViewController)
+    }
+
+    func test_whenAppIsLockedAndBecomesActive_thenDoesntLockTwice() {
+        account.hasMasterPassword = true
+        account.isSessionActive = false
+        XCTAssertFalse(rootViewControlleOnAppStartrAfterUnlocking() is UnlockViewController)
+    }
+
+    func test_whenAppBecomesActiveAndSessionIsActive_thenDoesntLock() {
+        account.hasMasterPassword = true
+        account.isSessionActive = true
+        assertThatUnlockedAfterBecomingActive()
+    }
+
+    func test_whenAppBecomesActiveButNoMasterPasswordSet_thenDoesNotLock() {
+        account.hasMasterPassword = false
+        account.isSessionActive = false
+        assertThatUnlockedAfterBecomingActive()
+    }
+
+}
+
+extension AppFlowCoordinatorTests {
+
+    private func rootViewControlleOnAppStartrAfterUnlocking() -> UIViewController? {
+        guard let unlockVC = flowCoordinator.startViewController() as? UnlockViewController else {
+            XCTFail("Expecting unlock view controller")
+            return nil
+        }
+        UIApplication.rootViewController = unlockVC
+        account.shouldBiometryAuthenticationSuccess = true
+        let anySender: Any = self
+        unlockVC.loginWithBiometry(anySender)
+        delay()
+        guard let rootVC = UIApplication.rootViewController else {
+            XCTFail("Root view controller not found")
+            return nil
+        }
+        return rootVC
+    }
+
+    private func assertThatUnlockedAfterBecomingActive() {
+        let securedVC = UIViewController()
+        UIApplication.rootViewController = securedVC
+        flowCoordinator.appBecomesActive()
+        guard let rootVC = UIApplication.rootViewController else {
+            XCTFail("Expected to have root view controller")
+            return
+        }
+        XCTAssertTrue(rootVC === securedVC)
+    }
 }
