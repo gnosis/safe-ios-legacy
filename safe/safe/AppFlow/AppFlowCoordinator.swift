@@ -7,7 +7,7 @@ import UIKit
 protocol AppFlowCoordinatorProtocol: class {
 
     func startViewController() -> UIViewController
-    func appBecomesActive()
+    func appEntersForeground()
 
 }
 
@@ -43,7 +43,7 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
         return UnlockViewController.create(account: account, completion: completion)
     }
 
-    func appBecomesActive() {
+    func appEntersForeground() {
         guard let rootVC = self.rootViewController, !(rootVC is UnlockViewController) && shouldLockWhenAppActive else {
             return
         }

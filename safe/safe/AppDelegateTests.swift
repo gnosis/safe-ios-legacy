@@ -29,7 +29,7 @@ class MockCoordinator: AppFlowCoordinatorProtocol {
 
     var didBecomeActive = false
 
-    func appBecomesActive() {
+    func appEntersForeground() {
         didBecomeActive = true
     }
 

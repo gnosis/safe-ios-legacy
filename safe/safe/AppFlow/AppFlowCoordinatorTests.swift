@@ -39,13 +39,17 @@ class AppFlowCoordinatorTests: XCTestCase {
         account.isSessionActive = false
         let securedVC = UIViewController()
         UIApplication.rootViewController = securedVC
-        flowCoordinator.appBecomesActive()
+        flowCoordinator.appEntersForeground()
         guard let rootVC = UIApplication.rootViewController else {
             XCTFail("Expected to have root view controller")
             return
         }
         XCTAssertFalse(rootVC === securedVC)
         XCTAssertTrue(rootVC is UnlockViewController)
+        let anySender: Any = self
+        (rootVC as? UnlockViewController)?.loginWithBiometry(anySender)
+        delay()
+        XCTAssertTrue(UIApplication.rootViewController === securedVC)
     }
 
     func test_whenAppIsLockedAndBecomesActive_thenDoesntLockTwice() {
@@ -90,7 +94,7 @@ extension AppFlowCoordinatorTests {
     private func assertThatUnlockedAfterBecomingActive() {
         let securedVC = UIViewController()
         UIApplication.rootViewController = securedVC
-        flowCoordinator.appBecomesActive()
+        flowCoordinator.appEntersForeground()
         guard let rootVC = UIApplication.rootViewController else {
             XCTFail("Expected to have root view controller")
             return
