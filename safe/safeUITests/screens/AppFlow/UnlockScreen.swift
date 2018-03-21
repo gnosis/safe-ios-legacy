@@ -12,8 +12,4 @@ final class UnlockScreen: SecureTextfieldScreen {
     }
     let countdown = XCUIApplication().staticTexts["countdown"]
 
-    func string(from time: TimeInterval) -> String {
-        return String(format: "00:%02.0f", time)
-    }
-
 }
