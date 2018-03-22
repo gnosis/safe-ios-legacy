@@ -49,7 +49,7 @@ final class Application {
 
     func terminate() {
         // give some time to save data
-        delay(0.5)
+        delay(1)
         app.terminate()
     }
 }
