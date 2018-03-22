@@ -69,6 +69,7 @@ class UnlockScreenUITests: XCTestCase {
     }
 
     func test_whenAccountBlockedAndAppRestarted_thenUnlockingIsBlocked() {
+        blockTime = 5
         block()
         application.terminate()
         delay(blockTime)
