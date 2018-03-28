@@ -24,9 +24,27 @@ extension EthereumAddress: Equatable {
 
 }
 
-struct Mnemonic {}
+struct Mnemonic {
 
-struct PrivateKey {}
+    var words: [String]
+
+    init() {
+        self.words = []
+    }
+
+    init(_ words: [String]) {
+        self.words = words
+    }
+
+}
+
+struct PrivateKey {
+
+    var data: Data
+
+    init() { data = Data() }
+    init(data: Data) { self.data = data }
+}
 
 extension PrivateKey: Equatable {
 

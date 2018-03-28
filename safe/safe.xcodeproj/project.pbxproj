@@ -18,6 +18,19 @@
 		0A0FEB14206B9048006F1B88 /* EthereumAccountFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB13206B9048006F1B88 /* EthereumAccountFactory.swift */; };
 		0A0FEB16206B928B006F1B88 /* EthereumAccountFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB15206B928B006F1B88 /* EthereumAccountFactoryTests.swift */; };
 		0A0FEB18206B9775006F1B88 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB17206B9775006F1B88 /* EncryptionService.swift */; };
+		0A0FEB1A206B9878006F1B88 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB19206B9878006F1B88 /* EncryptionServiceTests.swift */; };
+		0A0FEB1F206BA47F006F1B88 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1B206BA47E006F1B88 /* CryptoSwift.framework */; };
+		0A0FEB20206BA47F006F1B88 /* EthereumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1C206BA47F006F1B88 /* EthereumKit.framework */; };
+		0A0FEB21206BA47F006F1B88 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1D206BA47F006F1B88 /* APIKit.framework */; };
+		0A0FEB22206BA47F006F1B88 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1E206BA47F006F1B88 /* Result.framework */; };
+		0A0FEB23206BA49B006F1B88 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1D206BA47F006F1B88 /* APIKit.framework */; };
+		0A0FEB24206BA49B006F1B88 /* APIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1D206BA47F006F1B88 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A0FEB25206BA49B006F1B88 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1B206BA47E006F1B88 /* CryptoSwift.framework */; };
+		0A0FEB26206BA49B006F1B88 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1B206BA47E006F1B88 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A0FEB27206BA49B006F1B88 /* EthereumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1C206BA47F006F1B88 /* EthereumKit.framework */; };
+		0A0FEB28206BA49B006F1B88 /* EthereumKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1C206BA47F006F1B88 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A0FEB29206BA49B006F1B88 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1E206BA47F006F1B88 /* Result.framework */; };
+		0A0FEB2A206BA49B006F1B88 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1E206BA47F006F1B88 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A2972C6205A89A100CEC7D4 /* XCLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2972C4205A899C00CEC7D4 /* XCLocalizedString.swift */; };
 		0A362504205ABE9B00B21545 /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A362502205ABE9700B21545 /* MockClockService.swift */; };
 		0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527324205BCCF4004A5F9A /* CountdownLabel.swift */; };
@@ -139,6 +152,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0A0FEB28206BA49B006F1B88 /* EthereumKit.framework in Embed Frameworks */,
+				0A0FEB26206BA49B006F1B88 /* CryptoSwift.framework in Embed Frameworks */,
+				0A0FEB2A206BA49B006F1B88 /* Result.framework in Embed Frameworks */,
+				0A0FEB24206BA49B006F1B88 /* APIKit.framework in Embed Frameworks */,
 				0AD93E0D204815CF008C38CA /* safeUIKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -159,6 +176,11 @@
 		0A0FEB13206B9048006F1B88 /* EthereumAccountFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAccountFactory.swift; sourceTree = "<group>"; };
 		0A0FEB15206B928B006F1B88 /* EthereumAccountFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAccountFactoryTests.swift; sourceTree = "<group>"; };
 		0A0FEB17206B9775006F1B88 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
+		0A0FEB19206B9878006F1B88 /* EncryptionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionServiceTests.swift; sourceTree = "<group>"; };
+		0A0FEB1B206BA47E006F1B88 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
+		0A0FEB1C206BA47F006F1B88 /* EthereumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EthereumKit.framework; sourceTree = "<group>"; };
+		0A0FEB1D206BA47F006F1B88 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = APIKit.framework; sourceTree = "<group>"; };
+		0A0FEB1E206BA47F006F1B88 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = "<group>"; };
 		0A2972C4205A899C00CEC7D4 /* XCLocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCLocalizedString.swift; sourceTree = "<group>"; };
 		0A362502205ABE9700B21545 /* MockClockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClockService.swift; sourceTree = "<group>"; };
 		0A527324205BCCF4004A5F9A /* CountdownLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
@@ -261,9 +283,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0FEB21206BA47F006F1B88 /* APIKit.framework in Frameworks */,
+				0A0FEB29206BA49B006F1B88 /* Result.framework in Frameworks */,
+				0A0FEB22206BA47F006F1B88 /* Result.framework in Frameworks */,
+				0A0FEB27206BA49B006F1B88 /* EthereumKit.framework in Frameworks */,
 				0AD93E0F2048160F008C38CA /* Crashlytics.framework in Frameworks */,
+				0A0FEB25206BA49B006F1B88 /* CryptoSwift.framework in Frameworks */,
 				0AD93E0C204815CF008C38CA /* safeUIKit.framework in Frameworks */,
+				0A0FEB20206BA47F006F1B88 /* EthereumKit.framework in Frameworks */,
 				0AD93E112048160F008C38CA /* Fabric.framework in Frameworks */,
+				0A0FEB23206BA49B006F1B88 /* APIKit.framework in Frameworks */,
+				0A0FEB1F206BA47F006F1B88 /* CryptoSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +476,10 @@
 		5540A525203C634B009C9BE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A0FEB1D206BA47F006F1B88 /* APIKit.framework */,
+				0A0FEB1B206BA47E006F1B88 /* CryptoSwift.framework */,
+				0A0FEB1C206BA47F006F1B88 /* EthereumKit.framework */,
+				0A0FEB1E206BA47F006F1B88 /* Result.framework */,
 				0AD93E0B204815CF008C38CA /* safeUIKit.framework */,
 				55DF6A92203C678200DF6486 /* Crashlytics.framework */,
 				55DF6A91203C678200DF6486 /* Fabric.framework */,
@@ -539,6 +573,7 @@
 				0A0FEB13206B9048006F1B88 /* EthereumAccountFactory.swift */,
 				0A0FEB15206B928B006F1B88 /* EthereumAccountFactoryTests.swift */,
 				0A0FEB17206B9775006F1B88 /* EncryptionService.swift */,
+				0A0FEB19206B9878006F1B88 /* EncryptionServiceTests.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -851,6 +886,7 @@
 				555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */,
 				558036802056BE0C004E7452 /* ConsoleLoggerTests.swift in Sources */,
 				0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */,
+				0A0FEB1A206B9878006F1B88 /* EncryptionServiceTests.swift in Sources */,
 				555DD6E420516DF700D1178A /* XCTest+Assert.swift in Sources */,
 				555DD6DD2051583200D1178A /* SessionTests.swift in Sources */,
 				0AA27843205FCE2800EBB9D1 /* TestSupportTests.swift in Sources */,
