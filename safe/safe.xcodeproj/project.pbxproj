@@ -15,6 +15,9 @@
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
 		0A05A761204FE1EB0089327D /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */; };
 		0A05A7632050004C0089327D /* BiometricAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A7622050004C0089327D /* BiometricAuthenticationService.swift */; };
+		0A0FEB14206B9048006F1B88 /* EthereumAccountFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB13206B9048006F1B88 /* EthereumAccountFactory.swift */; };
+		0A0FEB16206B928B006F1B88 /* EthereumAccountFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB15206B928B006F1B88 /* EthereumAccountFactoryTests.swift */; };
+		0A0FEB18206B9775006F1B88 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB17206B9775006F1B88 /* EncryptionService.swift */; };
 		0A2972C6205A89A100CEC7D4 /* XCLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2972C4205A899C00CEC7D4 /* XCLocalizedString.swift */; };
 		0A362504205ABE9B00B21545 /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A362502205ABE9700B21545 /* MockClockService.swift */; };
 		0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527324205BCCF4004A5F9A /* CountdownLabel.swift */; };
@@ -153,6 +156,9 @@
 		0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceIntegrationTests.swift; sourceTree = "<group>"; };
 		0A05A7622050004C0089327D /* BiometricAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationService.swift; sourceTree = "<group>"; };
 		0A05A764205000670089327D /* BiometricAuthenticationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationServiceTests.swift; sourceTree = "<group>"; };
+		0A0FEB13206B9048006F1B88 /* EthereumAccountFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAccountFactory.swift; sourceTree = "<group>"; };
+		0A0FEB15206B928B006F1B88 /* EthereumAccountFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAccountFactoryTests.swift; sourceTree = "<group>"; };
+		0A0FEB17206B9775006F1B88 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
 		0A2972C4205A899C00CEC7D4 /* XCLocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCLocalizedString.swift; sourceTree = "<group>"; };
 		0A362502205ABE9700B21545 /* MockClockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClockService.swift; sourceTree = "<group>"; };
 		0A527324205BCCF4004A5F9A /* CountdownLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
@@ -530,6 +536,9 @@
 				555DD6DE205167D000D1178A /* SystemClockService.swift */,
 				555DD6E020516CB800D1178A /* SystemClockServiceIntegrationTests.swift */,
 				0A362502205ABE9700B21545 /* MockClockService.swift */,
+				0A0FEB13206B9048006F1B88 /* EthereumAccountFactory.swift */,
+				0A0FEB15206B928B006F1B88 /* EthereumAccountFactoryTests.swift */,
+				0A0FEB17206B9775006F1B88 /* EncryptionService.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -787,6 +796,7 @@
 				55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */,
 				0A0455F7204851B100088B5E /* AppFlowCoordinator.swift in Sources */,
 				5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */,
+				0A0FEB14206B9048006F1B88 /* EthereumAccountFactory.swift in Sources */,
 				555DD6D7205148D100D1178A /* UnlockViewController.swift in Sources */,
 				0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */,
 				0AE75CD82061134B002D5E2D /* SafeUIKitExtensions.swift in Sources */,
@@ -798,6 +808,7 @@
 				55E670CD204D7B5300234E5C /* Account.swift in Sources */,
 				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
 				0A0455F32048505500088B5E /* MasterPasswordFlowCoordinator.swift in Sources */,
+				0A0FEB18206B9775006F1B88 /* EncryptionService.swift in Sources */,
 				0A05A7632050004C0089327D /* BiometricAuthenticationService.swift in Sources */,
 				55147D592040521800AD0E1F /* MasterPasswordNavigationController.swift in Sources */,
 				5580367E2056BDF4004E7452 /* ConsoleLogger.swift in Sources */,
@@ -849,6 +860,7 @@
 				55E670D320502B6100234E5C /* BiometricAuthenticationServiceTests.swift in Sources */,
 				5580367A20569212004E7452 /* LogServiceTests.swift in Sources */,
 				55E670CB204D7B2500234E5C /* AccountTests.swift in Sources */,
+				0A0FEB16206B928B006F1B88 /* EthereumAccountFactoryTests.swift in Sources */,
 				555DD6D4205144EB00D1178A /* SetupSafeFlowCoordinatorTests.swift in Sources */,
 				558036832056D98C004E7452 /* LogFormatterTests.swift in Sources */,
 			);
