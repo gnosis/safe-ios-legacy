@@ -18,6 +18,7 @@
 		0A2972C3205A898A00CEC7D4 /* XCLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2972C1205A891400CEC7D4 /* XCLocalizedString.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
 		0A53AD5320598B5000D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD5520598B5000D713AD /* Localizable.strings */; };
+		0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */; };
 		0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */; };
 		0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEC205A8D63003619EF /* LocalizedString.swift */; };
 		0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8BE205284180044D5DD /* H1Label.swift */; };
@@ -31,7 +32,6 @@
 		0A9670DB20480C7B00445AC2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D220480C7B00445AC2 /* Fonts.swift */; };
 		0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D420480C7B00445AC2 /* TextInput.swift */; };
 		0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D320480C7B00445AC2 /* RuleLabel.swift */; };
-		0AD93E072048143D008C38CA /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */; };
 		0AD93E0820481442008C38CA /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D520480C7B00445AC2 /* TextInputTests.swift */; };
 		0AD93E0920481461008C38CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D820480C7B00445AC2 /* Colors.swift */; };
 		0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9670D020480C7A00445AC2 /* TextInput.xib */; };
@@ -507,9 +507,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AD93E072048143D008C38CA /* RuleLabelTests.swift in Sources */,
 				0AD93E0820481442008C38CA /* TextInputTests.swift in Sources */,
 				0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */,
+				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
 				0A7AE8C72052C2120044D5DD /* XCTestCase+Wait.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
 			);

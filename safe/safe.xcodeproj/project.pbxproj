@@ -15,8 +15,9 @@
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
 		0A05A761204FE1EB0089327D /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */; };
 		0A05A7632050004C0089327D /* BiometricAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A7622050004C0089327D /* BiometricAuthenticationService.swift */; };
-		0A0FEB14206B9048006F1B88 /* EthereumAccountFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB13206B9048006F1B88 /* EthereumAccountFactory.swift */; };
-		0A0FEB16206B928B006F1B88 /* EthereumAccountFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB15206B928B006F1B88 /* EthereumAccountFactoryTests.swift */; };
+		0A0A89FE206D1492004DFD31 /* EthereumAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0A89FD206D1492004DFD31 /* EthereumAccount.swift */; };
+		0A0A8A02206D14ED004DFD31 /* EncryptionServiceValueObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0A8A01206D14ED004DFD31 /* EncryptionServiceValueObjects.swift */; };
+		0A0FEB16206B928B006F1B88 /* EthereumAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB15206B928B006F1B88 /* EthereumAccountTests.swift */; };
 		0A0FEB18206B9775006F1B88 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB17206B9775006F1B88 /* EncryptionService.swift */; };
 		0A0FEB1A206B9878006F1B88 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB19206B9878006F1B88 /* EncryptionServiceTests.swift */; };
 		0A0FEB1F206BA47F006F1B88 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0FEB1B206BA47E006F1B88 /* CryptoSwift.framework */; };
@@ -173,8 +174,9 @@
 		0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceIntegrationTests.swift; sourceTree = "<group>"; };
 		0A05A7622050004C0089327D /* BiometricAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationService.swift; sourceTree = "<group>"; };
 		0A05A764205000670089327D /* BiometricAuthenticationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationServiceTests.swift; sourceTree = "<group>"; };
-		0A0FEB13206B9048006F1B88 /* EthereumAccountFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAccountFactory.swift; sourceTree = "<group>"; };
-		0A0FEB15206B928B006F1B88 /* EthereumAccountFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAccountFactoryTests.swift; sourceTree = "<group>"; };
+		0A0A89FD206D1492004DFD31 /* EthereumAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAccount.swift; sourceTree = "<group>"; };
+		0A0A8A01206D14ED004DFD31 /* EncryptionServiceValueObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionServiceValueObjects.swift; sourceTree = "<group>"; };
+		0A0FEB15206B928B006F1B88 /* EthereumAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAccountTests.swift; sourceTree = "<group>"; };
 		0A0FEB17206B9775006F1B88 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
 		0A0FEB19206B9878006F1B88 /* EncryptionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionServiceTests.swift; sourceTree = "<group>"; };
 		0A0FEB1B206BA47E006F1B88 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
@@ -553,6 +555,8 @@
 				55E670D1204DAD3000234E5C /* UserDefaultKeys.swift */,
 				555DD6DA2051567400D1178A /* Session.swift */,
 				555DD6DC2051583200D1178A /* SessionTests.swift */,
+				0A0A89FD206D1492004DFD31 /* EthereumAccount.swift */,
+				0A0FEB15206B928B006F1B88 /* EthereumAccountTests.swift */,
 			);
 			path = DomainModelLayer;
 			sourceTree = "<group>";
@@ -570,8 +574,7 @@
 				555DD6DE205167D000D1178A /* SystemClockService.swift */,
 				555DD6E020516CB800D1178A /* SystemClockServiceIntegrationTests.swift */,
 				0A362502205ABE9700B21545 /* MockClockService.swift */,
-				0A0FEB13206B9048006F1B88 /* EthereumAccountFactory.swift */,
-				0A0FEB15206B928B006F1B88 /* EthereumAccountFactoryTests.swift */,
+				0A0A8A01206D14ED004DFD31 /* EncryptionServiceValueObjects.swift */,
 				0A0FEB17206B9775006F1B88 /* EncryptionService.swift */,
 				0A0FEB19206B9878006F1B88 /* EncryptionServiceTests.swift */,
 			);
@@ -831,11 +834,12 @@
 				55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */,
 				0A0455F7204851B100088B5E /* AppFlowCoordinator.swift in Sources */,
 				5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */,
-				0A0FEB14206B9048006F1B88 /* EthereumAccountFactory.swift in Sources */,
+				0A0A89FE206D1492004DFD31 /* EthereumAccount.swift in Sources */,
 				555DD6D7205148D100D1178A /* UnlockViewController.swift in Sources */,
 				0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */,
 				0AE75CD82061134B002D5E2D /* SafeUIKitExtensions.swift in Sources */,
 				555DD6DF205167D000D1178A /* SystemClockService.swift in Sources */,
+				0A0A8A02206D14ED004DFD31 /* EncryptionServiceValueObjects.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				55147D6020405BBA00AD0E1F /* Colors.swift in Sources */,
 				558036852056D9BE004E7452 /* LogFormatter.swift in Sources */,
@@ -896,7 +900,7 @@
 				55E670D320502B6100234E5C /* BiometricAuthenticationServiceTests.swift in Sources */,
 				5580367A20569212004E7452 /* LogServiceTests.swift in Sources */,
 				55E670CB204D7B2500234E5C /* AccountTests.swift in Sources */,
-				0A0FEB16206B928B006F1B88 /* EthereumAccountFactoryTests.swift in Sources */,
+				0A0FEB16206B928B006F1B88 /* EthereumAccountTests.swift in Sources */,
 				555DD6D4205144EB00D1178A /* SetupSafeFlowCoordinatorTests.swift in Sources */,
 				558036832056D98C004E7452 /* LogFormatterTests.swift in Sources */,
 			);
