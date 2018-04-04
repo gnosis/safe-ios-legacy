@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Ethereum/Ethereum.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:MultiSigWallet/MultiSigWallet.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:IdentityAccess/IdentityAccess.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:safeUIKit/safeUIKit.xcodeproj">
    </FileRef>
    <FileRef
