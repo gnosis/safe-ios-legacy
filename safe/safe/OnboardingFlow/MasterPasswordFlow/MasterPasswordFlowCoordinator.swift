@@ -5,14 +5,14 @@
 import UIKit
 import Crashlytics
 
-final class MasterPasswordFlowCoordinator {
+typealias MasterPasswordFlowCompletion = () -> Void
 
-    private var masterPasswordNavigationController: MasterPasswordNavigationController!
+final class MasterPasswordFlowCoordinator: FlowCoordinator {
 
-    func startViewController() -> UIViewController {
-        let startVC = StartViewController.create(delegate: self)
-        masterPasswordNavigationController = MasterPasswordNavigationController.create(startVC)
-        return masterPasswordNavigationController
+    var completion: MasterPasswordFlowCompletion?
+
+    override func flowStartController() -> UIViewController {
+        return StartViewController.create(delegate: self)
     }
 
 }
@@ -21,7 +21,8 @@ extension MasterPasswordFlowCoordinator: StartViewControllerDelegate {
 
     func didStart() {
         let vc = SetPasswordViewController.create(delegate: self)
-        masterPasswordNavigationController.show(vc, sender: nil)
+        print(rootVC)
+        rootVC.show(vc, sender: nil)
     }
 
 }
@@ -32,7 +33,7 @@ extension MasterPasswordFlowCoordinator: SetPasswordViewControllerDelegate {
         let vc = ConfirmPaswordViewController.create(account: Account.shared,
                                                      referencePassword: password,
                                                      delegate: self)
-        masterPasswordNavigationController.show(vc, sender: nil)
+        rootVC.show(vc, sender: nil)
     }
 
 }
@@ -40,9 +41,10 @@ extension MasterPasswordFlowCoordinator: SetPasswordViewControllerDelegate {
 extension MasterPasswordFlowCoordinator: ConfirmPasswordViewControllerDelegate {
 
     func didConfirmPassword() {
+        completion?()
         let vc = PasswordSuccessViewController.create()
         vc.view.backgroundColor = ColorName.gray.color
-        masterPasswordNavigationController.show(vc, sender: nil)
+        rootVC.show(vc, sender: nil)
     }
 
     func terminate() {

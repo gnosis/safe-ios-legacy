@@ -17,16 +17,17 @@ class OnboardingFlowCoordinatorTests: XCTestCase {
 
     func test_startViewController_whenNoMasterPassword_thenMasterPasswordFlowStarted() {
         account.hasMasterPassword = false
-        let startVC = flowCoordinator.startViewController()
+        _ = flowCoordinator.startViewController()
         let masterPasswordVC = flowCoordinator.masterPasswordFlowCoordinator.startViewController()
-        XCTAssertTrue(type(of: startVC) == type(of: masterPasswordVC))
+        XCTAssertTrue(type(of: flowCoordinator.rootVC.childViewControllers[0]) ==
+                type(of: masterPasswordVC.childViewControllers[0]))
     }
 
     func test_startViewController_whenMasterPasswordIsSet_thenNewSafeFlowStarted() {
         account.hasMasterPassword = true
-        let startVC = flowCoordinator.startViewController()
+        _ = flowCoordinator.startViewController()
         let setupSafeVC = flowCoordinator.setupSafeFlowCoordinator.startViewController()
-        XCTAssertTrue(type(of: startVC) == type(of: setupSafeVC))
+        XCTAssertTrue(type(of: flowCoordinator.rootVC.childViewControllers[0]) == type(of: setupSafeVC))
     }
 
 }
