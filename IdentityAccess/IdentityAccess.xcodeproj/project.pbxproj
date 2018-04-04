@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A8BD00E2074CB5600BCD78D /* libIdentityAccessPortAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8BCFD72074CB1600BCD78D /* libIdentityAccessPortAdapter.a */; };
 		0AF281D42074C21B00D3843D /* libIdentityAccessApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF281D22074C1D300D3843D /* libIdentityAccessApplication.a */; };
 		0AF281D52074C21B00D3843D /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF281B92074C1AC00D3843D /* libIdentityAccessDomainModel.a */; };
 		0AF281D92074C25300D3843D /* IdentityAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF281D82074C25300D3843D /* IdentityAccess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0A8BCFD62074CB1600BCD78D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A8BCFC62074CB1500BCD78D;
+			remoteInfo = IdentityAccessPortAdapter;
+		};
 		0AF281B82074C1AC00D3843D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0AF281B42074C1AB00D3843D /* IdentityAccessDomainModel.xcodeproj */;
@@ -42,6 +50,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccessPortAdapter.xcodeproj; path = IdentityAccessPortAdapter/IdentityAccessPortAdapter.xcodeproj; sourceTree = "<group>"; };
 		0AF281972074C18B00D3843D /* libIdentityAccess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccess.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF281B42074C1AB00D3843D /* IdentityAccessDomainModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccessDomainModel.xcodeproj; path = IdentityAccessDomainModel/IdentityAccessDomainModel.xcodeproj; sourceTree = "<group>"; };
 		0AF281CD2074C1D200D3843D /* IdentityAccessApplication.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccessApplication.xcodeproj; path = IdentityAccessApplication/IdentityAccessApplication.xcodeproj; sourceTree = "<group>"; };
@@ -53,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A8BD00E2074CB5600BCD78D /* libIdentityAccessPortAdapter.a in Frameworks */,
 				0AF281D42074C21B00D3843D /* libIdentityAccessApplication.a in Frameworks */,
 				0AF281D52074C21B00D3843D /* libIdentityAccessDomainModel.a in Frameworks */,
 			);
@@ -61,6 +71,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A8BCFD12074CB1500BCD78D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BCFD72074CB1600BCD78D /* libIdentityAccessPortAdapter.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0AF2818E2074C18B00D3843D = {
 			isa = PBXGroup;
 			children = (
@@ -81,9 +99,10 @@
 		0AF281992074C18B00D3843D /* IdentityAccess */ = {
 			isa = PBXGroup;
 			children = (
+				0AF281D82074C25300D3843D /* IdentityAccess.swift */,
 				0AF281CD2074C1D200D3843D /* IdentityAccessApplication.xcodeproj */,
 				0AF281B42074C1AB00D3843D /* IdentityAccessDomainModel.xcodeproj */,
-				0AF281D82074C25300D3843D /* IdentityAccess.swift */,
+				0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */,
 			);
 			path = IdentityAccess;
 			sourceTree = "<group>";
@@ -167,6 +186,10 @@
 					ProductGroup = 0AF281B52074C1AB00D3843D /* Products */;
 					ProjectRef = 0AF281B42074C1AB00D3843D /* IdentityAccessDomainModel.xcodeproj */;
 				},
+				{
+					ProductGroup = 0A8BCFD12074CB1500BCD78D /* Products */;
+					ProjectRef = 0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -176,6 +199,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0A8BCFD72074CB1600BCD78D /* libIdentityAccessPortAdapter.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libIdentityAccessPortAdapter.a;
+			remoteRef = 0A8BCFD62074CB1600BCD78D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0AF281B92074C1AC00D3843D /* libIdentityAccessDomainModel.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0A3EEBEF2074C40B00BFA9E0 /* MultiSigWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EEBEE2074C40B00BFA9E0 /* MultiSigWallet.swift */; };
+		0A8BD0102074CB6100BCD78D /* libMultiSigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3EEC262074C43400BFA9E0 /* libMultiSigWalletApplication.a */; };
+		0A8BD0112074CB6100BCD78D /* libMultiSigWalletDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3EEC0D2074C42100BFA9E0 /* libMultiSigWalletDomainModel.a */; };
+		0A8BD0122074CB6100BCD78D /* libMultiSigWalletPortAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8BCFF22074CB3300BCD78D /* libMultiSigWalletPortAdapter.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,6 +27,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 0A3EEC172074C43300BFA9E0;
 			remoteInfo = MultiSigWalletApplication;
+		};
+		0A8BCFF12074CB3300BCD78D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A8BCFEB2074CB3200BCD78D /* MultiSigWalletPortAdapter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A8BCFE12074CB3200BCD78D;
+			remoteInfo = MultiSigWalletPortAdapter;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -44,6 +54,7 @@
 		0A3EEBEE2074C40B00BFA9E0 /* MultiSigWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSigWallet.swift; sourceTree = "<group>"; };
 		0A3EEC082074C42100BFA9E0 /* MultiSigWalletDomainModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MultiSigWalletDomainModel.xcodeproj; path = MultiSigWalletDomainModel/MultiSigWalletDomainModel.xcodeproj; sourceTree = "<group>"; };
 		0A3EEC212074C43300BFA9E0 /* MultiSigWalletApplication.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MultiSigWalletApplication.xcodeproj; path = MultiSigWalletApplication/MultiSigWalletApplication.xcodeproj; sourceTree = "<group>"; };
+		0A8BCFEB2074CB3200BCD78D /* MultiSigWalletPortAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MultiSigWalletPortAdapter.xcodeproj; path = MultiSigWalletPortAdapter/MultiSigWalletPortAdapter.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +62,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A8BD0102074CB6100BCD78D /* libMultiSigWalletApplication.a in Frameworks */,
+				0A8BD0112074CB6100BCD78D /* libMultiSigWalletDomainModel.a in Frameworks */,
+				0A8BD0122074CB6100BCD78D /* libMultiSigWalletPortAdapter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +76,7 @@
 			children = (
 				0A3EEBED2074C40B00BFA9E0 /* MultiSigWallet */,
 				0A3EEBEC2074C40B00BFA9E0 /* Products */,
+				0A8BD00F2074CB6100BCD78D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,9 +91,10 @@
 		0A3EEBED2074C40B00BFA9E0 /* MultiSigWallet */ = {
 			isa = PBXGroup;
 			children = (
+				0A3EEBEE2074C40B00BFA9E0 /* MultiSigWallet.swift */,
 				0A3EEC212074C43300BFA9E0 /* MultiSigWalletApplication.xcodeproj */,
 				0A3EEC082074C42100BFA9E0 /* MultiSigWalletDomainModel.xcodeproj */,
-				0A3EEBEE2074C40B00BFA9E0 /* MultiSigWallet.swift */,
+				0A8BCFEB2074CB3200BCD78D /* MultiSigWalletPortAdapter.xcodeproj */,
 			);
 			path = MultiSigWallet;
 			sourceTree = "<group>";
@@ -97,6 +113,21 @@
 				0A3EEC262074C43400BFA9E0 /* libMultiSigWalletApplication.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0A8BCFEC2074CB3200BCD78D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BCFF22074CB3300BCD78D /* libMultiSigWalletPortAdapter.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A8BD00F2074CB6100BCD78D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +185,10 @@
 					ProductGroup = 0A3EEC092074C42100BFA9E0 /* Products */;
 					ProjectRef = 0A3EEC082074C42100BFA9E0 /* MultiSigWalletDomainModel.xcodeproj */;
 				},
+				{
+					ProductGroup = 0A8BCFEC2074CB3200BCD78D /* Products */;
+					ProjectRef = 0A8BCFEB2074CB3200BCD78D /* MultiSigWalletPortAdapter.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -175,6 +210,13 @@
 			fileType = archive.ar;
 			path = libMultiSigWalletApplication.a;
 			remoteRef = 0A3EEC252074C43400BFA9E0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A8BCFF22074CB3300BCD78D /* libMultiSigWalletPortAdapter.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMultiSigWalletPortAdapter.a;
+			remoteRef = 0A8BCFF12074CB3300BCD78D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

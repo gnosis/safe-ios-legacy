@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0A3EEC342074C6C900BFA9E0 /* Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EEC332074C6C900BFA9E0 /* Ethereum.swift */; };
+		0A8BD0142074CB6B00BCD78D /* libEthereumApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3EEC6B2074C6EA00BFA9E0 /* libEthereumApplication.a */; };
+		0A8BD0152074CB6B00BCD78D /* libEthereumDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3EEC522074C6D900BFA9E0 /* libEthereumDomainModel.a */; };
+		0A8BD0162074CB6B00BCD78D /* libEthereumPortAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8BD00D2074CB4500BCD78D /* libEthereumPortAdapter.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,6 +27,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 0A3EEC5C2074C6E900BFA9E0;
 			remoteInfo = EthereumApplication;
+		};
+		0A8BD00C2074CB4500BCD78D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A8BD0062074CB4400BCD78D /* EthereumPortAdapter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A8BCFFC2074CB4400BCD78D;
+			remoteInfo = EthereumPortAdapter;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -44,6 +54,7 @@
 		0A3EEC332074C6C900BFA9E0 /* Ethereum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ethereum.swift; sourceTree = "<group>"; };
 		0A3EEC4D2074C6D800BFA9E0 /* EthereumDomainModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EthereumDomainModel.xcodeproj; path = EthereumDomainModel/EthereumDomainModel.xcodeproj; sourceTree = "<group>"; };
 		0A3EEC662074C6E900BFA9E0 /* EthereumApplication.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EthereumApplication.xcodeproj; path = EthereumApplication/EthereumApplication.xcodeproj; sourceTree = "<group>"; };
+		0A8BD0062074CB4400BCD78D /* EthereumPortAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EthereumPortAdapter.xcodeproj; path = EthereumPortAdapter/EthereumPortAdapter.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +62,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A8BD0142074CB6B00BCD78D /* libEthereumApplication.a in Frameworks */,
+				0A8BD0152074CB6B00BCD78D /* libEthereumDomainModel.a in Frameworks */,
+				0A8BD0162074CB6B00BCD78D /* libEthereumPortAdapter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +76,7 @@
 			children = (
 				0A3EEC322074C6C900BFA9E0 /* Ethereum */,
 				0A3EEC312074C6C900BFA9E0 /* Products */,
+				0A8BD0132074CB6B00BCD78D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,9 +91,10 @@
 		0A3EEC322074C6C900BFA9E0 /* Ethereum */ = {
 			isa = PBXGroup;
 			children = (
+				0A3EEC332074C6C900BFA9E0 /* Ethereum.swift */,
 				0A3EEC662074C6E900BFA9E0 /* EthereumApplication.xcodeproj */,
 				0A3EEC4D2074C6D800BFA9E0 /* EthereumDomainModel.xcodeproj */,
-				0A3EEC332074C6C900BFA9E0 /* Ethereum.swift */,
+				0A8BD0062074CB4400BCD78D /* EthereumPortAdapter.xcodeproj */,
 			);
 			path = Ethereum;
 			sourceTree = "<group>";
@@ -97,6 +113,21 @@
 				0A3EEC6B2074C6EA00BFA9E0 /* libEthereumApplication.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0A8BD0072074CB4400BCD78D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BD00D2074CB4500BCD78D /* libEthereumPortAdapter.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A8BD0132074CB6B00BCD78D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +185,10 @@
 					ProductGroup = 0A3EEC4E2074C6D800BFA9E0 /* Products */;
 					ProjectRef = 0A3EEC4D2074C6D800BFA9E0 /* EthereumDomainModel.xcodeproj */;
 				},
+				{
+					ProductGroup = 0A8BD0072074CB4400BCD78D /* Products */;
+					ProjectRef = 0A8BD0062074CB4400BCD78D /* EthereumPortAdapter.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -175,6 +210,13 @@
 			fileType = archive.ar;
 			path = libEthereumApplication.a;
 			remoteRef = 0A3EEC6A2074C6EA00BFA9E0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A8BD00D2074CB4500BCD78D /* libEthereumPortAdapter.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEthereumPortAdapter.a;
+			remoteRef = 0A8BD00C2074CB4500BCD78D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
