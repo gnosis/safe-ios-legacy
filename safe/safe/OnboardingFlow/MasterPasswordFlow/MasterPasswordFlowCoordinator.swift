@@ -42,9 +42,6 @@ extension MasterPasswordFlowCoordinator: ConfirmPasswordViewControllerDelegate {
 
     func didConfirmPassword() {
         completion?()
-        let vc = PasswordSuccessViewController.create()
-        vc.view.backgroundColor = ColorName.gray.color
-        rootVC.show(vc, sender: nil)
     }
 
     func terminate() {

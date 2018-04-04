@@ -9,7 +9,7 @@ class FlowCoordinator {
     var rootVC: UINavigationController!
 
     func startViewController(parent: UINavigationController? = nil) -> UIViewController {
-        // we need to have rootVC before caling flowStartController
+        // rootVC should be set before caling flowStartController
         rootVC = parent != nil ? parent : TransparentNavigationController()
         let startVC = flowStartController()
         if parent == nil {

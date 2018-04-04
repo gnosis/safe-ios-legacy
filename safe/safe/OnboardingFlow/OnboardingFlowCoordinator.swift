@@ -18,7 +18,9 @@ final class OnboardingFlowCoordinator: FlowCoordinator {
     }
 
     private func masterPasswordCompletion() {
-        print("Master Password Completion")
+        let vc = PasswordSuccessViewController.create()
+        vc.view.backgroundColor = ColorName.gray.color
+        rootVC.show(vc, sender: nil)
     }
 
     override func flowStartController() -> UIViewController {
