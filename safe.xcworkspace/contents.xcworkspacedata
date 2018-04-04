@@ -17,6 +17,6 @@
       location = "group:safe/safe.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:safe.playground">
+      location = "group:safePlayground-ios.playground">
    </FileRef>
 </Workspace>
