@@ -106,6 +106,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A3EEC372074C6C900BFA9E0 /* Build configuration list for PBXNativeTarget "Ethereum" */;
 			buildPhases = (
+				0A3EEC712074C8E900BFA9E0 /* Lint */,
 				0A3EEC2C2074C6C900BFA9E0 /* Sources */,
 				0A3EEC2D2074C6C900BFA9E0 /* Frameworks */,
 				0A3EEC2E2074C6C900BFA9E0 /* CopyFiles */,
@@ -177,6 +178,23 @@
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A3EEC712074C8E900BFA9E0 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0A3EEC2C2074C6C900BFA9E0 /* Sources */ = {

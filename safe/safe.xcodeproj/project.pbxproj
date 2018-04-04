@@ -612,8 +612,8 @@
 			buildConfigurationList = 5540A513203C3054009C9BE3 /* Build configuration list for PBXNativeTarget "safe" */;
 			buildPhases = (
 				55147D50203DAE5900AD0E1F /* SwiftGen */,
+				55DF6A95203C681A00DF6486 /* Lint */,
 				5540A4E7203C3054009C9BE3 /* Sources */,
-				55DF6A95203C681A00DF6486 /* SwiftLint */,
 				5540A4E8203C3054009C9BE3 /* Frameworks */,
 				0A53AD5020598A0600D713AD /* Localize */,
 				5540A4E9203C3054009C9BE3 /* Resources */,
@@ -801,19 +801,19 @@
 			shellScript = "ENV_VARS=${SRCROOT}/../.env.default\nif [ -e ${ENV_VARS} ]; then\n    export $(cat $ENV_VARS)\nfi\n${SRCROOT}/../lib/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
 			showEnvVarsInLog = 0;
 		};
-		55DF6A95203C681A00DF6486 /* SwiftLint */ = {
+		55DF6A95203C681A00DF6486 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = SwiftLint;
+			name = Lint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ../scripts/run_swiftlint.sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

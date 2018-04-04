@@ -118,6 +118,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AF2819E2074C18B00D3843D /* Build configuration list for PBXNativeTarget "IdentityAccess" */;
 			buildPhases = (
+				0A3EEC6F2074C8CC00BFA9E0 /* Lint */,
 				0AF281932074C18B00D3843D /* Sources */,
 				0AF281942074C18B00D3843D /* Frameworks */,
 				0AF281952074C18B00D3843D /* CopyFiles */,
@@ -190,6 +191,23 @@
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A3EEC6F2074C8CC00BFA9E0 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0AF281932074C18B00D3843D /* Sources */ = {
