@@ -7,12 +7,13 @@ import XCTest
 
 class FlowCoordinatorTests: XCTestCase {
 
-    let flowCoordinator = MockFlowCoordinator()
+    private let flowCoordinator = MockFlowCoordinator()
 
     func test_flowStartController_whenCalled_rootViewControllerAlreadySet() {
         _ = flowCoordinator.startViewController()
         XCTAssertTrue(flowCoordinator.rootViewControllerIsSet)
         XCTAssertTrue(flowCoordinator.rootVC is TransparentNavigationController)
+        XCTAssertTrue(flowCoordinator.rootVC.childViewControllers[0] is TestVC)
     }
 
     func test_startViewController_setsRootIfParentPassed() {
@@ -23,13 +24,15 @@ class FlowCoordinatorTests: XCTestCase {
 
 }
 
-class MockFlowCoordinator: FlowCoordinator {
-    
+private class TestVC: UIViewController {}
+
+private class MockFlowCoordinator: FlowCoordinator {
+
     var rootViewControllerIsSet = false
 
     override func flowStartController() -> UIViewController {
         if rootVC != nil { rootViewControllerIsSet = true }
-        return UIViewController()
+        return TestVC()
     }
 
 }
