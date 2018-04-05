@@ -13,7 +13,7 @@ final class UnlockViewController: UIViewController {
     @IBOutlet weak var loginWithBiometryButton: UIButton!
     private var unlockCompletion: (() -> Void)!
     private var clockService: SystemClockServiceProtocol!
-    private var accessService: AccessApplicationService!
+    private var identityService: IdentityApplicationService!
 
     private struct LocalizedString {
         static let header = NSLocalizedString("app.unlock.header", comment: "Unlock screen header")
@@ -23,7 +23,7 @@ final class UnlockViewController: UIViewController {
                        clockService: SystemClockServiceProtocol = SystemClockService(),
                        completion: @escaping () -> Void) -> UnlockViewController {
         let vc = StoryboardScene.AppFlow.unlockViewController.instantiate()
-        vc.accessService = AccessApplicationService(account: account)
+        vc.identityService = IdentityApplicationService(account: account)
         vc.clockService = clockService
         vc.unlockCompletion = completion
         return vc
@@ -35,18 +35,18 @@ final class UnlockViewController: UIViewController {
         textInput.delegate = self
         textInput.isSecure = true
 
-        let biometryIcon = accessService.hasAuthenticationMethod(.faceID) ?
+        let biometryIcon = identityService.hasAuthenticationMethod(.faceID) ?
             Asset.faceIdIcon.image :
             Asset.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
         updateBiometryButtonVisibility()
-        countdownLabel.setup(time: accessService.blockedPeriodDuration, clock: clockService)
+        countdownLabel.setup(time: identityService.blockedPeriodDuration, clock: clockService)
         countdownLabel.accessibilityIdentifier = "countdown"
         startCountdownIfNeeded()
     }
 
     private func startCountdownIfNeeded() {
-        guard accessService.isBlocked() else { return }
+        guard identityService.isBlocked() else { return }
         textInput.isEnabled = false
         updateBiometryButtonVisibility()
         countdownLabel.start { [weak self] in
@@ -57,7 +57,7 @@ final class UnlockViewController: UIViewController {
     }
 
     private func updateBiometryButtonVisibility() {
-        loginWithBiometryButton.isHidden = !accessService.isBiometricAuthenticationPossible()
+        loginWithBiometryButton.isHidden = !identityService.isBiometricAuthenticationPossible()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -70,7 +70,7 @@ final class UnlockViewController: UIViewController {
     }
 
     private func auhtenticateWithBiometry() {
-        accessService.authenticateUser(.withBiometry {  [unowned self] success in
+        identityService.authenticateUser(.withBiometry {  [unowned self] success in
             DispatchQueue.main.async {
                 if success {
                     self.unlockCompletion()
@@ -87,7 +87,7 @@ final class UnlockViewController: UIViewController {
 extension UnlockViewController: TextInputDelegate {
 
     func textInputDidReturn() {
-        accessService.authenticateUser(.withPassword(textInput.text!) { [unowned self] success in
+        identityService.authenticateUser(.withPassword(textInput.text!) { [unowned self] success in
             DispatchQueue.main.async {
                 if success {
                     self.unlockCompletion()

@@ -32,7 +32,7 @@ struct AuthenticateUserCommand {
     }
 }
 
-class AccessApplicationService {
+class IdentityApplicationService {
 
     let account: AccountProtocol
 

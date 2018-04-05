@@ -27,7 +27,7 @@
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
 		0A7AE8C1205285D00044D5DD /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */; };
 		0A7E17AD204E99EB00C9078E /* MockAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E17AC204E99EB00C9078E /* MockAccount.swift */; };
-		0A92370F207618A000EDB1D8 /* AccessApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92370E207618A000EDB1D8 /* AccessApplicationService.swift */; };
+		0A92370F207618A000EDB1D8 /* IdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92370E207618A000EDB1D8 /* IdentityApplicationService.swift */; };
 		0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */; };
 		0AA27832205FC4E600EBB9D1 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27831205FC4E600EBB9D1 /* Application.swift */; };
 		0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27833205FC5A700EBB9D1 /* StartScreen.swift */; };
@@ -185,7 +185,7 @@
 		0A53AD3A20595C2800D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppFlow.storyboard; sourceTree = "<group>"; };
 		0A7E17AC204E99EB00C9078E /* MockAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccount.swift; sourceTree = "<group>"; };
-		0A92370E207618A000EDB1D8 /* AccessApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessApplicationService.swift; sourceTree = "<group>"; };
+		0A92370E207618A000EDB1D8 /* IdentityApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityApplicationService.swift; sourceTree = "<group>"; };
 		0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeUITests.swift; sourceTree = "<group>"; };
 		0AA27831205FC4E600EBB9D1 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		0AA27833205FC5A700EBB9D1 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
@@ -511,7 +511,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */,
-				0A92370E207618A000EDB1D8 /* AccessApplicationService.swift */,
+				0A92370E207618A000EDB1D8 /* IdentityApplicationService.swift */,
 				0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */,
 				0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */,
 				555DD6D6205148D100D1178A /* UnlockViewController.swift */,
@@ -861,7 +861,7 @@
 				5580367E2056BDF4004E7452 /* ConsoleLogger.swift in Sources */,
 				558036892057CD99004E7452 /* CrashlyticsLogger.swift in Sources */,
 				0AD93E192048350D008C38CA /* ConfirmPaswordViewController.swift in Sources */,
-				0A92370F207618A000EDB1D8 /* AccessApplicationService.swift in Sources */,
+				0A92370F207618A000EDB1D8 /* IdentityApplicationService.swift in Sources */,
 				55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */,
 				55E670D2204DAD3000234E5C /* UserDefaultKeys.swift in Sources */,
 				0A0455F120484FD800088B5E /* OnboardingFlowCoordinator.swift in Sources */,

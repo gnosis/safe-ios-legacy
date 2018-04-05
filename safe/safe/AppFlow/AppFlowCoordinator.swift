@@ -15,23 +15,23 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
 
     let onboardingFlowCoordinator: OnboardingFlowCoordinator
     private var lockedViewController: UIViewController!
-    private let accessService: AccessApplicationService
+    private let identityService: IdentityApplicationService
 
     private var rootViewController: UIViewController? {
         get { return UIApplication.shared.keyWindow?.rootViewController }
         set { UIApplication.shared.keyWindow?.rootViewController = newValue }
     }
 
-    private var shouldLockWhenAppActive: Bool { return accessService.hasAccess() }
+    private var shouldLockWhenAppActive: Bool { return identityService.hasAccess() }
 
     init(account: AccountProtocol = Account.shared) {
-        accessService = AccessApplicationService(account: account)
+        identityService = IdentityApplicationService(account: account)
         onboardingFlowCoordinator = OnboardingFlowCoordinator(account: account)
     }
 
     func startViewController() -> UIViewController {
         lockedViewController = onboardingFlowCoordinator.startViewController()
-        if accessService.hasPrimaryUser() {
+        if identityService.hasPrimaryUser() {
             return unlockController { [unowned self] in
                 self.rootViewController = self.lockedViewController
             }
@@ -40,7 +40,7 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
     }
 
     func unlockController(completion: @escaping () -> Void) -> UIViewController {
-        return UnlockViewController.create(account: accessService.account, completion: completion)
+        return UnlockViewController.create(account: identityService.account, completion: completion)
     }
 
     func appEntersForeground() {
