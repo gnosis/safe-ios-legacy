@@ -58,7 +58,7 @@ class IdentityApplicationService {
         return account.hasMasterPassword && !account.isSessionActive
     }
 
-    func hasPrimaryUser() -> Bool {
+    func hasRegisteredUser() -> Bool {
         return account.hasMasterPassword
     }
 

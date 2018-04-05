@@ -15,7 +15,7 @@ final class OnboardingFlowCoordinator {
     }
 
     func startViewController() -> UIViewController {
-        return identityService.hasPrimaryUser() ? setupSafeFlowCoordinator.startViewController() :
+        return identityService.hasRegisteredUser() ? setupSafeFlowCoordinator.startViewController() :
             masterPasswordFlowCoordinator.startViewController()
     }
 

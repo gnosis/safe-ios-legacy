@@ -31,7 +31,7 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
 
     func startViewController() -> UIViewController {
         lockedViewController = onboardingFlowCoordinator.startViewController()
-        if identityService.hasPrimaryUser() {
+        if identityService.hasRegisteredUser() {
             return unlockController { [unowned self] in
                 self.rootViewController = self.lockedViewController
             }
