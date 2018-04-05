@@ -7,7 +7,7 @@ import UIKit
 final class SetupSafeFlowCoordinator: FlowCoordinator {
 
     override func flowStartController() -> UIViewController {
-        return SetupSafeOptionsViewController.create(delegate: self)        
+        return SetupSafeOptionsViewController.create(delegate: self)
     }
 
 }

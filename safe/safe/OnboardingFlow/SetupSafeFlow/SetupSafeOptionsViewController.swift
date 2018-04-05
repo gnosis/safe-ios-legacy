@@ -29,6 +29,7 @@ class SetupSafeOptionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerLabel.text = NSLocalizedString("onboarding.setup_safe.info", comment: "Set up safe screen title")
     }
 
 }

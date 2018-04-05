@@ -19,7 +19,7 @@ class SetupSafeFlowCoordinatorTests: XCTestCase {
         _ = setupSafeFlowCoordinator.startViewController()
         setupSafeFlowCoordinator.didSelectNewSafe()
         delay()
-        let newSafeStartVC = newSafeFlowCoordinator.startViewController().childViewControllers[0]        
+        let newSafeStartVC = newSafeFlowCoordinator.startViewController().childViewControllers[0]
         XCTAssertTrue(type(of: setupSafeFlowCoordinator.rootVC.topViewController!) == type(of: newSafeStartVC))
     }
 

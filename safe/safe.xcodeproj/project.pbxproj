@@ -34,7 +34,6 @@
 		0AA27837205FC63800EBB9D1 /* SetPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27836205FC63800EBB9D1 /* SetPasswordScreen.swift */; };
 		0AA27839205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27838205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift */; };
 		0AA2783D205FCC1800EBB9D1 /* UnlockScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2783C205FCC1800EBB9D1 /* UnlockScreen.swift */; };
-		0AA2783F205FCC6300EBB9D1 /* SetupSafeOptionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2783E205FCC6300EBB9D1 /* SetupSafeOptionsScreen.swift */; };
 		0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27840205FCDFA00EBB9D1 /* TestSupport.swift */; };
 		0AA27843205FCE2800EBB9D1 /* TestSupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27842205FCE2800EBB9D1 /* TestSupportTests.swift */; };
 		0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27847205FD97600EBB9D1 /* TestUtils.swift */; };
@@ -109,6 +108,7 @@
 		558FD80F20766BCD004F070E /* NewSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80E20766BCD004F070E /* NewSafeFlowCoordinator.swift */; };
 		558FD81120767277004F070E /* PairWithChromeExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81020767277004F070E /* PairWithChromeExtensionViewController.swift */; };
 		558FD813207672A3004F070E /* PairWithChromeExtensionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD812207672A3004F070E /* PairWithChromeExtensionViewControllerTests.swift */; };
+		558FD81520767F18004F070E /* SafeSetupOptionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81420767F18004F070E /* SafeSetupOptionsScreen.swift */; };
 		55ACFD9B2074E0BA000F54CC /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ACFD9A2074E0BA000F54CC /* FlowCoordinator.swift */; };
 		55ACFD9D2075092E000F54CC /* FlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ACFD9C2075092E000F54CC /* FlowCoordinatorTests.swift */; };
 		55CF4C9E2057EF8500F1B4BB /* SetupSafeOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C9D2057EF8500F1B4BB /* SetupSafeOptionsViewController.swift */; };
@@ -193,7 +193,6 @@
 		0AA27836205FC63800EBB9D1 /* SetPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordScreen.swift; sourceTree = "<group>"; };
 		0AA27838205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPasswordScreen.swift; sourceTree = "<group>"; };
 		0AA2783C205FCC1800EBB9D1 /* UnlockScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockScreen.swift; sourceTree = "<group>"; };
-		0AA2783E205FCC6300EBB9D1 /* SetupSafeOptionsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsScreen.swift; sourceTree = "<group>"; };
 		0AA27840205FCDFA00EBB9D1 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
 		0AA27842205FCE2800EBB9D1 /* TestSupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupportTests.swift; sourceTree = "<group>"; };
 		0AA27847205FD97600EBB9D1 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
@@ -266,6 +265,7 @@
 		558FD80E20766BCD004F070E /* NewSafeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeFlowCoordinator.swift; sourceTree = "<group>"; };
 		558FD81020767277004F070E /* PairWithChromeExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithChromeExtensionViewController.swift; sourceTree = "<group>"; };
 		558FD812207672A3004F070E /* PairWithChromeExtensionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithChromeExtensionViewControllerTests.swift; sourceTree = "<group>"; };
+		558FD81420767F18004F070E /* SafeSetupOptionsScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeSetupOptionsScreen.swift; sourceTree = "<group>"; };
 		55ACFD9A2074E0BA000F54CC /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
 		55ACFD9C2075092E000F54CC /* FlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55CF4C9D2057EF8500F1B4BB /* SetupSafeOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsViewController.swift; sourceTree = "<group>"; };
@@ -383,8 +383,8 @@
 		0ACA9C3C205FDADE005EC186 /* AppFlow */ = {
 			isa = PBXGroup;
 			children = (
+				558FD81420767F18004F070E /* SafeSetupOptionsScreen.swift */,
 				0AA2783C205FCC1800EBB9D1 /* UnlockScreen.swift */,
-				0AA2783E205FCC6300EBB9D1 /* SetupSafeOptionsScreen.swift */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
@@ -943,7 +943,6 @@
 				0ACA9C4520601877005EC186 /* Rule.swift in Sources */,
 				0ACA9C49206021E8005EC186 /* UnlockScreenUITests.swift in Sources */,
 				0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */,
-				0AA2783F205FCC6300EBB9D1 /* SetupSafeOptionsScreen.swift in Sources */,
 				0AA27839205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift in Sources */,
 				0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */,
 				0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
@@ -952,6 +951,7 @@
 				0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */,
 				0AA27837205FC63800EBB9D1 /* SetPasswordScreen.swift in Sources */,
 				0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */,
+				558FD81520767F18004F070E /* SafeSetupOptionsScreen.swift in Sources */,
 				0ACA9C43206017C6005EC186 /* ConfirmPasswordScreenUITests.swift in Sources */,
 				55D6C2F52045C3540026BC72 /* XCTest+Assert.swift in Sources */,
 				55D6C2F22045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */,
