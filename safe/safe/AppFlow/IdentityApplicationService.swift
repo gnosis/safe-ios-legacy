@@ -95,4 +95,18 @@ class IdentityApplicationService {
         try account.setMasterPassword(command.password)
         account.activateBiometricAuthentication(completion: command.completion)
     }
+
+    func configureSession(_ duration: TimeInterval) {
+        account.sessionDuration = duration
+    }
+
+    func configureMaxPasswordAttempts(_ count: Int) {
+        account.maxPasswordAttempts = count
+    }
+
+    func configureBlockDuration(_ duration: TimeInterval) {
+        account.blockedPeriodDuration = duration
+    }
+
+    
 }
