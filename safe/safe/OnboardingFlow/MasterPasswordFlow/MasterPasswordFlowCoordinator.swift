@@ -21,7 +21,6 @@ extension MasterPasswordFlowCoordinator: StartViewControllerDelegate {
 
     func didStart() {
         let vc = SetPasswordViewController.create(delegate: self)
-        print(rootVC)
         rootVC.show(vc, sender: nil)
     }
 

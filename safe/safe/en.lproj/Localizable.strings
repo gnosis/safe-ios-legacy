@@ -31,9 +31,6 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
 
-/* Password success label */
-"onboarding.passsword_success.status" = "Your password is set.";
-
 /* At least one capital letter rule for password field */
 "onboarding.set_password.capital" = "• Should have a capital letter";
 

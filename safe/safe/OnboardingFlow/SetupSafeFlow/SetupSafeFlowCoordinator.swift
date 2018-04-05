@@ -4,9 +4,9 @@
 
 import UIKit
 
-final class SetupSafeFlowCoordinator {
+final class SetupSafeFlowCoordinator: FlowCoordinator {
 
-    func startViewController() -> UIViewController {
+    override func flowStartController() -> UIViewController {
         let vc = SetupSafeViewController()
         vc.view.backgroundColor = ColorName.green.color
         return vc

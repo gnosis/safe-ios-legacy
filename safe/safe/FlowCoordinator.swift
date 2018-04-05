@@ -13,7 +13,7 @@ class FlowCoordinator {
         rootVC = parent != nil ? parent : TransparentNavigationController()
         let startVC = flowStartController()
         if parent == nil {
-            rootVC.pushViewController(startVC, animated: false)
+            rootVC.setViewControllers([startVC], animated: false)
             return rootVC
         }
         return startVC

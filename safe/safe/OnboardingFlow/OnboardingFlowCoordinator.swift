@@ -18,13 +18,12 @@ final class OnboardingFlowCoordinator: FlowCoordinator {
     }
 
     private func masterPasswordCompletion() {
-        let vc = PasswordSuccessViewController.create()
-        vc.view.backgroundColor = ColorName.gray.color
-        rootVC.show(vc, sender: nil)
+        let vc = setupSafeFlowCoordinator.startViewController(parent: rootVC)
+        rootVC.setViewControllers([vc], animated: true)
     }
 
     override func flowStartController() -> UIViewController {
-        return account.hasMasterPassword ? setupSafeFlowCoordinator.startViewController() :
+        return account.hasMasterPassword ? setupSafeFlowCoordinator.startViewController(parent: rootVC) :
             masterPasswordFlowCoordinator.startViewController(parent: rootVC)
     }
 
