@@ -349,6 +349,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0A92371220762F7500EDB1D8 /* ApplicationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				0A92370E207618A000EDB1D8 /* IdentityApplicationService.swift */,
+			);
+			path = ApplicationLayer;
+			sourceTree = "<group>";
+		};
 		0AB0FF57204EF81C0066682F /* safeIntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,6 +465,7 @@
 			children = (
 				55E670C9204D7AEE00234E5C /* DomainModelLayer */,
 				55E670CE204D91D100234E5C /* ServiceLayer */,
+				0A92371220762F7500EDB1D8 /* ApplicationLayer */,
 				555DD6D52051488F00D1178A /* AppFlow */,
 				55147D51204048BC00AD0E1F /* OnboardingFlow */,
 				55147D49203DAE1D00AD0E1F /* generated */,
@@ -511,7 +520,6 @@
 			isa = PBXGroup;
 			children = (
 				0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */,
-				0A92370E207618A000EDB1D8 /* IdentityApplicationService.swift */,
 				0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */,
 				0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */,
 				555DD6D6205148D100D1178A /* UnlockViewController.swift */,
