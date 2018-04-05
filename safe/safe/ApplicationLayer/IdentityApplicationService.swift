@@ -10,40 +10,6 @@ enum AuthenticationMethod {
     case faceID
 }
 
-struct AuthenticateUserCommand {
-
-    var password: String!
-    var isBiometric: Bool { return password == nil }
-    typealias AuthenticationCompletion = (Bool) -> Void
-    var completion: AuthenticationCompletion
-
-    private init(password: String?, completion: @escaping AuthenticationCompletion) {
-        self.password = password
-        self.completion = completion
-    }
-
-    static func withPassword(_ password: String,
-                             completion: @escaping AuthenticationCompletion) -> AuthenticateUserCommand {
-        return AuthenticateUserCommand(password: password, completion: completion)
-    }
-
-    static func withBiometry(completion: @escaping AuthenticationCompletion) -> AuthenticateUserCommand {
-        return AuthenticateUserCommand(password: nil, completion: completion)
-    }
-}
-
-struct RegisterUserCommand {
-
-    var password: String
-    var completion: RegisterCompletion
-    typealias RegisterCompletion = () -> Void
-
-    init(_ password: String, completion: @escaping RegisterCompletion) {
-        self.password = password
-        self.completion = completion
-    }
-}
-
 class IdentityApplicationService {
 
     let account: AccountProtocol
@@ -78,22 +44,24 @@ class IdentityApplicationService {
         return !isBlocked() && account.isBiometryAuthenticationAvailable
     }
 
-    func authenticateUser(_ command: AuthenticateUserCommand) {
+    func authenticateUser(password: String? = nil, completion: @escaping (Bool) -> Void) {
         if isBlocked() {
-            command.completion(false)
+            completion(false)
             return
         }
-        if command.isBiometric {
-            account.authenticateWithBiometry(completion: command.completion)
+        if let password = password {
+            completion(account.authenticateWithPassword(password))
         } else {
-            command.completion(account.authenticateWithPassword(command.password))
+            account.authenticateWithBiometry(completion: completion)
         }
     }
 
-    func registerUser(_ command: RegisterUserCommand) throws {
+    func registerUser(password: String, completion: (() -> Void)? = nil) throws {
         try account.cleanupAllData()
-        try account.setMasterPassword(command.password)
-        account.activateBiometricAuthentication(completion: command.completion)
+        try account.setMasterPassword(password)
+        account.activateBiometricAuthentication {
+            completion?()
+        }
     }
 
     func configureSession(_ duration: TimeInterval) {
@@ -108,5 +76,4 @@ class IdentityApplicationService {
         account.blockedPeriodDuration = duration
     }
 
-    
 }

@@ -30,7 +30,7 @@ final class TestSupport {
                 resettableObjects.forEach { $0.resetAll() }
             case ApplicationArguments.setPassword:
                 if let password = iterator.next() {
-                    try? identityService.registerUser(RegisterUserCommand(password){})
+                    try? identityService.registerUser(password: password)
                 }
             case ApplicationArguments.setSessionDuration:
                 if let duration = timeInterval(&iterator) {

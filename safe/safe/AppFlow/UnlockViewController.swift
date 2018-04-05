@@ -70,7 +70,7 @@ final class UnlockViewController: UIViewController {
     }
 
     private func auhtenticateWithBiometry() {
-        identityService.authenticateUser(.withBiometry {  [unowned self] success in
+        identityService.authenticateUser {  [unowned self] success in
             DispatchQueue.main.async {
                 if success {
                     self.unlockCompletion()
@@ -79,7 +79,7 @@ final class UnlockViewController: UIViewController {
                     self.updateBiometryButtonVisibility()
                 }
             }
-        })
+        }
     }
 
 }
@@ -87,7 +87,8 @@ final class UnlockViewController: UIViewController {
 extension UnlockViewController: TextInputDelegate {
 
     func textInputDidReturn() {
-        identityService.authenticateUser(.withPassword(textInput.text!) { [unowned self] success in
+        identityService.authenticateUser(password: textInput.text!) {
+            [unowned self] success in
             DispatchQueue.main.async {
                 if success {
                     self.unlockCompletion()
@@ -96,7 +97,7 @@ extension UnlockViewController: TextInputDelegate {
                     self.startCountdownIfNeeded()
                 }
             }
-        })
+        }
     }
 
 }
