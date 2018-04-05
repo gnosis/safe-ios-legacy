@@ -32,6 +32,18 @@ struct AuthenticateUserCommand {
     }
 }
 
+struct RegisterUserCommand {
+
+    var password: String
+    var completion: RegisterCompletion
+    typealias RegisterCompletion = () -> Void
+
+    init(_ password: String, completion: @escaping RegisterCompletion) {
+        self.password = password
+        self.completion = completion
+    }
+}
+
 class IdentityApplicationService {
 
     let account: AccountProtocol
@@ -76,5 +88,11 @@ class IdentityApplicationService {
         } else {
             command.completion(account.authenticateWithPassword(command.password))
         }
+    }
+
+    func registerUser(_ command: RegisterUserCommand) throws {
+        try account.cleanupAllData()
+        try account.setMasterPassword(command.password)
+        account.activateBiometricAuthentication(completion: command.completion)
     }
 }

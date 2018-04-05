@@ -16,7 +16,7 @@ final class ConfirmPaswordViewController: UIViewController {
     @IBOutlet weak var textInput: TextInput!
     private var referencePassword: String!
     private weak var delegate: ConfirmPasswordViewControllerDelegate?
-    private var account: AccountProtocol!
+    private var identityService: IdentityApplicationService!
 
     private struct LocalizedString {
         static let header = NSLocalizedString("onboarding.confirm_password.header",
@@ -36,7 +36,7 @@ final class ConfirmPaswordViewController: UIViewController {
         let vc = StoryboardScene.MasterPassword.confirmPaswordViewController.instantiate()
         vc.referencePassword = referencePassword
         vc.delegate = delegate
-        vc.account = account
+        vc.identityService = IdentityApplicationService(account: account)
         return vc
     }
 
@@ -71,13 +71,11 @@ extension ConfirmPaswordViewController: TextInputDelegate {
     func textInputDidReturn() {
         let password = textInput.text!
         do {
-            try account.cleanupAllData()
-            try account.setMasterPassword(password)
-            account.activateBiometricAuthentication { [weak self] in
+            try identityService.registerUser(.init(password) { [weak self] in
                 DispatchQueue.main.async {
                     self?.delegate?.didConfirmPassword()
                 }
-            }
+            })
         } catch let e {
             LogService.shared.fatal("Failed to set master password", error: e)
             showFatalError()
