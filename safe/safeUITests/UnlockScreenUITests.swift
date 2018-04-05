@@ -74,6 +74,7 @@ class UnlockScreenUITests: XCTestCase {
         application.terminate()
         delay(3)
         restart()
+        delay(2)
         XCTAssertExist(screen.countdown)
     }
 
