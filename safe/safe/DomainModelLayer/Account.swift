@@ -10,6 +10,7 @@ protocol AccountProtocol: class {
     var isLoggedIn: Bool { get }
     var isBiometryAuthenticationAvailable: Bool { get }
     var isBiometryFaceID: Bool { get }
+    var isBiometryTouchID: Bool { get }
     var isBlocked: Bool { get }
     var blockedPeriodDuration: TimeInterval { get set }
     var sessionDuration: TimeInterval { get set }
@@ -62,6 +63,10 @@ final class Account: AccountProtocol {
 
     var isBiometryFaceID: Bool {
         return biometricAuthService.biometryType == .faceID
+    }
+
+    var isBiometryTouchID: Bool {
+        return biometricAuthService.biometryType == .touchID
     }
 
     var sessionDuration: TimeInterval {
