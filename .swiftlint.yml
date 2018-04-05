@@ -6,6 +6,7 @@ disabled_rules:
   - closure_end_indentation
   - compiler_protocol_init
   - class_delegate_protocol
+  - closure_parameter_position
   - conditional_returns_on_newline
   - custom_rules
   - discarded_notification_center_observer

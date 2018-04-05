@@ -59,7 +59,7 @@ class UnlockScreenUITests: XCTestCase {
     }
 
     func test_whenEntersWrongPasswordTooManyTimes_thenBlocksUnlocking() {
-        blockTime = 1
+        blockTime = 5
         block(attempts: 2)
         XCTAssertExist(screen.countdown)
         delay(blockTime)
@@ -69,11 +69,12 @@ class UnlockScreenUITests: XCTestCase {
     }
 
     func test_whenAccountBlockedAndAppRestarted_thenUnlockingIsBlocked() {
-        blockTime = 5
+        blockTime = 30
         block()
         application.terminate()
-        delay(blockTime)
+        delay(3)
         restart()
+        delay(2)
         XCTAssertExist(screen.countdown)
     }
 

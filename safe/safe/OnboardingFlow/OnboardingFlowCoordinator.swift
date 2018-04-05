@@ -6,16 +6,16 @@ import UIKit
 
 final class OnboardingFlowCoordinator {
 
-    private let account: AccountProtocol
+    private let authenticationService: AuthenticationApplicationService
     let masterPasswordFlowCoordinator = MasterPasswordFlowCoordinator()
     let setupSafeFlowCoordinator = SetupSafeFlowCoordinator()
 
     init(account: AccountProtocol) {
-        self.account = account
+        authenticationService = AuthenticationApplicationService(account: account)
     }
 
     func startViewController() -> UIViewController {
-        return account.hasMasterPassword ? setupSafeFlowCoordinator.startViewController() :
+        return authenticationService.isUserRegistered() ? setupSafeFlowCoordinator.startViewController() :
             masterPasswordFlowCoordinator.startViewController()
     }
 

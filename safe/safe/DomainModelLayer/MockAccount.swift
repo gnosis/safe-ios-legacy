@@ -7,6 +7,7 @@ import Foundation
 
 class MockAccount: AccountProtocol {
 
+    var isBiometryTouchID: Bool = false
     var sessionDuration: TimeInterval = 0
     var maxPasswordAttempts = 0
     var blockedPeriodDuration: TimeInterval = 0

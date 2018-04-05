@@ -60,13 +60,13 @@ class UnlockViewControllerTests: XCTestCase {
     }
 
     func test_whenTextInputEntered_thenRequestsPasswordAuthentication() {
-        vc.textInputDidReturn()
+        hitReturn()
         XCTAssertTrue(account.didRequestPasswordAuthentication)
     }
 
     func test_whenPasswordPasses_thenCompletionCalled() {
         account.shouldAuthenticateWithPassword = true
-        vc.textInputDidReturn()
+        hitReturn()
         XCTAssertTrue(didLogIn)
     }
 
@@ -112,10 +112,15 @@ class UnlockViewControllerTests: XCTestCase {
         XCTAssertTrue(vc.textInput.isActive)
     }
 
+    fileprivate func hitReturn() {
+        vc.textInputDidReturn()
+        delay()
+    }
+
     func test_whenAfterEnteringPasswordAccountIsBlocked_thenBlocksPasswordEntry() {
         account.shouldAuthenticateWithPassword = false
         account.isBlocked = true
-        vc.textInputDidReturn()
+        hitReturn()
         assertShowsCountdown()
     }
 
@@ -127,7 +132,7 @@ class UnlockViewControllerTests: XCTestCase {
 
     func test_whenPasswordFails_thenInputShakes() {
         account.shouldAuthenticateWithPassword = false
-        vc.textInputDidReturn()
+        hitReturn()
         XCTAssertTrue(vc.textInput.isShaking)
     }
 
@@ -141,7 +146,7 @@ extension UnlockViewControllerTests {
                                          clockService: clock) { [unowned self] in
                                             self.didLogIn = true
         }
-        vc.loadViewIfNeeded()
+        UIApplication.shared.keyWindow?.rootViewController = vc
     }
 
     private func authenticateWithBiometryResult(_ result: Bool) {
@@ -151,10 +156,10 @@ extension UnlockViewControllerTests {
         delay()
     }
 
-    private func assertShowsCountdown() {
-        XCTAssertNotNil(vc.countdownLabel)
-        XCTAssertTrue(vc.loginWithBiometryButton.isHidden)
-        XCTAssertFalse(vc.textInput.isEnabled)
+    private func assertShowsCountdown(line: UInt = #line) {
+        XCTAssertNotNil(vc.countdownLabel, line: line)
+        XCTAssertTrue(vc.loginWithBiometryButton.isHidden, line: line)
+        XCTAssertFalse(vc.textInput.isEnabled, line: line)
     }
 
 }
