@@ -14,7 +14,7 @@ final class UnlockViewController: UIViewController {
     private var unlockCompletion: (() -> Void)!
     private var account: AccountProtocol!
     private var clockService: SystemClockServiceProtocol!
-    private var blockPeriod: TimeInterval!
+    private var accessService: AccessApplicationService!
 
     private struct LocalizedString {
         static let header = NSLocalizedString("app.unlock.header", comment: "Unlock screen header")
@@ -24,9 +24,9 @@ final class UnlockViewController: UIViewController {
                        clockService: SystemClockServiceProtocol = SystemClockService(),
                        completion: @escaping () -> Void) -> UnlockViewController {
         let vc = StoryboardScene.AppFlow.unlockViewController.instantiate()
+        vc.accessService = AccessApplicationService(account: account)
         vc.account = account
         vc.clockService = clockService
-        vc.blockPeriod = account.blockedPeriodDuration
         vc.unlockCompletion = completion
         return vc
     }
@@ -39,7 +39,7 @@ final class UnlockViewController: UIViewController {
         let biometryIcon: UIImage = account.isBiometryFaceID ? Asset.faceIdIcon.image : Asset.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
         updateBiometryButtonVisibility()
-        countdownLabel.setup(time: blockPeriod, clock: clockService)
+        countdownLabel.setup(time: accessService.blockedPeriodDuration, clock: clockService)
         countdownLabel.accessibilityIdentifier = "countdown"
         startCountdownIfNeeded()
     }
