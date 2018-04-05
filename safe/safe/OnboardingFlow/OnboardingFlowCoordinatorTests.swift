@@ -35,7 +35,7 @@ class OnboardingFlowCoordinatorTests: XCTestCase {
         _ = flowCoordinator.startViewController()
         flowCoordinator.masterPasswordFlowCoordinator.didConfirmPassword()
         delay()
-        XCTAssertTrue(flowCoordinator.rootVC.topViewController is SetupSafeViewController)
+        XCTAssertTrue(flowCoordinator.rootVC.topViewController is SafeSetupOptionsViewController)
         XCTAssertEqual(flowCoordinator.rootVC.viewControllers.count, 1)
     }
 

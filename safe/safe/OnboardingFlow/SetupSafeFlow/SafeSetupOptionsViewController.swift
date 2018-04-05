@@ -4,7 +4,7 @@
 
 import UIKit
 
-class SetupSafeViewController: UIViewController {
+class SafeSetupOptionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

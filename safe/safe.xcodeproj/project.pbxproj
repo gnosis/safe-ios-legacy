@@ -35,7 +35,7 @@
 		0AA27839205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27838205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift */; };
 		0AA2783B205FC6B700EBB9D1 /* PasswordSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2783A205FC6B700EBB9D1 /* PasswordSuccessScreen.swift */; };
 		0AA2783D205FCC1800EBB9D1 /* UnlockScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2783C205FCC1800EBB9D1 /* UnlockScreen.swift */; };
-		0AA2783F205FCC6300EBB9D1 /* SetupSafeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2783E205FCC6300EBB9D1 /* SetupSafeScreen.swift */; };
+		0AA2783F205FCC6300EBB9D1 /* SafeSetupOptionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2783E205FCC6300EBB9D1 /* SafeSetupOptionsScreen.swift */; };
 		0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27840205FCDFA00EBB9D1 /* TestSupport.swift */; };
 		0AA27843205FCE2800EBB9D1 /* TestSupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27842205FCE2800EBB9D1 /* TestSupportTests.swift */; };
 		0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27847205FD97600EBB9D1 /* TestUtils.swift */; };
@@ -107,7 +107,7 @@
 		558690A52057D6D1003BF728 /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558690A22057D6D1003BF728 /* TestError.swift */; };
 		55ACFD9B2074E0BA000F54CC /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ACFD9A2074E0BA000F54CC /* FlowCoordinator.swift */; };
 		55ACFD9D2075092E000F54CC /* FlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ACFD9C2075092E000F54CC /* FlowCoordinatorTests.swift */; };
-		55CF4C9E2057EF8500F1B4BB /* SetupSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C9D2057EF8500F1B4BB /* SetupSafeViewController.swift */; };
+		55CF4C9E2057EF8500F1B4BB /* SafeSetupOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C9D2057EF8500F1B4BB /* SafeSetupOptionsViewController.swift */; };
 		55D6C2F22045C32C0026BC72 /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */; };
 		55D6C2F52045C3540026BC72 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */; };
 		55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D97D7D20496E390004AEDD /* AppDelegateTests.swift */; };
@@ -190,7 +190,7 @@
 		0AA27838205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPasswordScreen.swift; sourceTree = "<group>"; };
 		0AA2783A205FC6B700EBB9D1 /* PasswordSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSuccessScreen.swift; sourceTree = "<group>"; };
 		0AA2783C205FCC1800EBB9D1 /* UnlockScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockScreen.swift; sourceTree = "<group>"; };
-		0AA2783E205FCC6300EBB9D1 /* SetupSafeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeScreen.swift; sourceTree = "<group>"; };
+		0AA2783E205FCC6300EBB9D1 /* SafeSetupOptionsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeSetupOptionsScreen.swift; sourceTree = "<group>"; };
 		0AA27840205FCDFA00EBB9D1 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
 		0AA27842205FCE2800EBB9D1 /* TestSupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupportTests.swift; sourceTree = "<group>"; };
 		0AA27847205FD97600EBB9D1 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 		558690A22057D6D1003BF728 /* TestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestError.swift; sourceTree = "<group>"; };
 		55ACFD9A2074E0BA000F54CC /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
 		55ACFD9C2075092E000F54CC /* FlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		55CF4C9D2057EF8500F1B4BB /* SetupSafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeViewController.swift; sourceTree = "<group>"; };
+		55CF4C9D2057EF8500F1B4BB /* SafeSetupOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeSetupOptionsViewController.swift; sourceTree = "<group>"; };
 		55D6C2F12045C32C0026BC72 /* XCTestCase+Wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Wait.swift"; sourceTree = "<group>"; };
 		55D6C2F42045C3540026BC72 /* XCTest+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
 		55D97D7D20496E390004AEDD /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
@@ -377,7 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				0AA2783C205FCC1800EBB9D1 /* UnlockScreen.swift */,
-				0AA2783E205FCC6300EBB9D1 /* SetupSafeScreen.swift */,
+				0AA2783E205FCC6300EBB9D1 /* SafeSetupOptionsScreen.swift */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
@@ -496,7 +496,7 @@
 			children = (
 				555DD6D1205144C900D1178A /* SetupSafeFlowCoordinator.swift */,
 				555DD6D3205144EB00D1178A /* SetupSafeFlowCoordinatorTests.swift */,
-				55CF4C9D2057EF8500F1B4BB /* SetupSafeViewController.swift */,
+				55CF4C9D2057EF8500F1B4BB /* SafeSetupOptionsViewController.swift */,
 			);
 			path = SetupSafeFlow;
 			sourceTree = "<group>";
@@ -865,7 +865,7 @@
 				5528C43E20470AF500E79A4D /* PasswordValidator.swift in Sources */,
 				55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */,
 				5580367C20569240004E7452 /* LogService.swift in Sources */,
-				55CF4C9E2057EF8500F1B4BB /* SetupSafeViewController.swift in Sources */,
+				55CF4C9E2057EF8500F1B4BB /* SafeSetupOptionsViewController.swift in Sources */,
 				0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -918,7 +918,7 @@
 				0ACA9C4520601877005EC186 /* Rule.swift in Sources */,
 				0ACA9C49206021E8005EC186 /* UnlockScreenUITests.swift in Sources */,
 				0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */,
-				0AA2783F205FCC6300EBB9D1 /* SetupSafeScreen.swift in Sources */,
+				0AA2783F205FCC6300EBB9D1 /* SafeSetupOptionsScreen.swift in Sources */,
 				0AA27839205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift in Sources */,
 				0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */,
 				0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
