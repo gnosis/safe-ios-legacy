@@ -20,15 +20,15 @@ class AuthenticationApplicationService {
         self.account = account
     }
 
-    func hasAccess() -> Bool {
+    func isUserAuthenticated() -> Bool {
         return account.hasMasterPassword && !account.isSessionActive
     }
 
-    func hasRegisteredUser() -> Bool {
+    func isUserRegistered() -> Bool {
         return account.hasMasterPassword
     }
 
-    func hasAuthenticationMethod(_ method: AuthenticationMethod) -> Bool {
+    func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
         switch method {
         case .faceID: return account.isBiometryFaceID
         case .touchID: return account.isBiometryTouchID
@@ -36,16 +36,16 @@ class AuthenticationApplicationService {
         }
     }
 
-    func isBlocked() -> Bool {
+    func isAuthenticationBlocked() -> Bool {
         return account.isBlocked
     }
 
     func isBiometricAuthenticationPossible() -> Bool {
-        return !isBlocked() && account.isBiometryAuthenticationAvailable
+        return !isAuthenticationBlocked() && account.isBiometryAuthenticationAvailable
     }
 
     func authenticateUser(password: String? = nil, completion: @escaping (Bool) -> Void) {
-        if isBlocked() {
+        if isAuthenticationBlocked() {
             completion(false)
             return
         }

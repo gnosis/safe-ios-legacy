@@ -22,7 +22,7 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
         set { UIApplication.shared.keyWindow?.rootViewController = newValue }
     }
 
-    private var shouldLockWhenAppActive: Bool { return authenticationService.hasAccess() }
+    private var shouldLockWhenAppActive: Bool { return authenticationService.isUserAuthenticated() }
 
     init(account: AccountProtocol = Account.shared) {
         authenticationService = AuthenticationApplicationService(account: account)
@@ -31,7 +31,7 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
 
     func startViewController() -> UIViewController {
         lockedViewController = onboardingFlowCoordinator.startViewController()
-        if authenticationService.hasRegisteredUser() {
+        if authenticationService.isUserRegistered() {
             return unlockController { [unowned self] in
                 self.rootViewController = self.lockedViewController
             }
