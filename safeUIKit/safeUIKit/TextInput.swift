@@ -22,7 +22,7 @@ public final class TextInput: UIView {
     private static let shakeAnimationKey = "shake"
 
     private var allRules: [RuleLabel] {
-        return stackView.arrangedSubviews.flatMap { $0 as? RuleLabel }
+        return stackView.arrangedSubviews.compactMap { $0 as? RuleLabel }
     }
 
     public var text: String? {
@@ -79,7 +79,7 @@ public final class TextInput: UIView {
         let bundle = Bundle(for: TextInput.self)
         let nib = UINib(nibName: "TextInput", bundle: bundle)
         let contents = nib.instantiate(withOwner: self)
-        contents.flatMap { $0 as? UIView }.forEach { self.addSubview($0) }
+        contents.compactMap { $0 as? UIView }.forEach { self.addSubview($0) }
         self.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
         wrapperView.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
         pinWrapperToSelf()

@@ -61,7 +61,7 @@ final class RuleLabel: UILabel {
 
     private func update() {
         textColor = color(for: status)
-        accessibilityValue = [status.localizedDescription, text].flatMap { $0 }.joined(separator: " ")
+        accessibilityValue = [status.localizedDescription, text].compactMap { $0 }.joined(separator: " ")
     }
 
     private func color(for status: RuleStatus) -> UIColor {
