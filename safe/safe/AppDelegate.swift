@@ -5,6 +5,7 @@
 import Crashlytics
 import Fabric
 import UIKit
+import IdentityAccessApplication
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

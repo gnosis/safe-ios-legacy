@@ -313,6 +313,7 @@
 			buildConfigurationList = 0A9670C920480C5700445AC2 /* Build configuration list for PBXNativeTarget "safeUIKit" */;
 			buildPhases = (
 				0A0974ED20480EA0005753DF /* SwiftGen */,
+				0A3EEC6E2074C8AF00BFA9E0 /* Lint */,
 				0A9670AD20480C5700445AC2 /* Sources */,
 				0A9670AE20480C5700445AC2 /* Frameworks */,
 				0A9670AF20480C5700445AC2 /* Headers */,
@@ -451,6 +452,20 @@
 			shellPath = /bin/sh;
 			shellScript = ../scripts/run_swiftgen.sh;
 			showEnvVarsInLog = 0;
+		};
+		0A3EEC6E2074C8AF00BFA9E0 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
 		};
 		0A53AD5720598B6F00D713AD /* Localize */ = {
 			isa = PBXShellScriptBuildPhase;
