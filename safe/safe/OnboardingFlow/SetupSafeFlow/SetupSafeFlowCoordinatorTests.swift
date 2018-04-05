@@ -11,7 +11,7 @@ class SetupSafeFlowCoordinatorTests: XCTestCase {
 
     func test_startViewController() {
         let startVC = setupSafeFlowCoordinator.startViewController()
-        XCTAssertTrue(startVC.childViewControllers[0] is SafeSetupOptionsViewController)
+        XCTAssertTrue(startVC.childViewControllers[0] is SetupSafeOptionsViewController)
     }
 
 }

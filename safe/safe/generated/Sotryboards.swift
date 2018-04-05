@@ -72,6 +72,11 @@ enum StoryboardScene {
 
     static let startViewController = SceneType<safe.StartViewController>(storyboard: MasterPassword.self, identifier: "StartViewController")
   }
+  enum SetupSafe: StoryboardType {
+    static let storyboardName = "SetupSafe"
+
+    static let setupSafeOptionsViewController = SceneType<safe.SetupSafeOptionsViewController>(storyboard: SetupSafe.self, identifier: "SetupSafeOptionsViewController")
+  }
 }
 
 enum StoryboardSegue {

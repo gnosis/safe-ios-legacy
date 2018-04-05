@@ -8,7 +8,7 @@ class UnlockScreenUITests: XCTestCase {
 
     var application = Application()
     let screen = UnlockScreen()
-    let securedScreen = SafeSetupOptionsScreen()
+    let securedScreen = SetupSafeOptionsScreen()
     let validPassword = "abcdeF1"
     let invalidPassword = "a"
     var blockTime: TimeInterval = 3

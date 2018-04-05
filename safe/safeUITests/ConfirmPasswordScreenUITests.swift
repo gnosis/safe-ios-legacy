@@ -60,7 +60,7 @@ class ConfirmPasswordScreenUITests: XCTestCase {
     func test_whenEnteredMatchingPasswordAndHitEnter_thenSafeSetupOptionsScreenDisplayed() {
         start()
         screen.enterPassword(validPassword)
-        XCTAssertTrue(SafeSetupOptionsScreen().isDisplayed)
+        XCTAssertTrue(SetupSafeOptionsScreen().isDisplayed)
     }
 
 }

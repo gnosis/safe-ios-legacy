@@ -43,9 +43,6 @@
 /* Minimum length rule for password field */
 "onboarding.set_password.length" = "onboarding.set_password.length";
 
-/* Setup safe info label */
-"onboarding.setup_safe.info" = "onboarding.setup_safe.info";
-
 /* App slogan */
 "onboarding.start.description" = "onboarding.start.description";
 

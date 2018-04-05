@@ -43,9 +43,6 @@
 /* Minimum length rule for password field */
 "onboarding.set_password.length" = "• Minimum 6 charachters";
 
-/* Setup safe info label */
-"onboarding.setup_safe.info" = "Your safe is unlocked.";
-
 /* App slogan */
 "onboarding.start.description" = "Your secure crypto wallet with 2-factor authentication.";
 
