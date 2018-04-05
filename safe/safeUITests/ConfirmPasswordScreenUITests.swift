@@ -57,10 +57,10 @@ class ConfirmPasswordScreenUITests: XCTestCase {
         XCTAssertEqual(screen.passwordMatchRule.state, .success)
     }
 
-    func test_whenEnteredMatchingPasswordAndHitEnter_thenSuccessScreenDisplayed() {
+    func test_whenEnteredMatchingPasswordAndHitEnter_thenSafeSetupOptionsScreenDisplayed() {
         start()
         screen.enterPassword(validPassword)
-        XCTAssertTrue(PasswordSuccessScreen().isDisplayed)
+        XCTAssertTrue(SetupSafeOptionsScreen().isDisplayed)
     }
 
 }

@@ -4,12 +4,20 @@
 
 import UIKit
 
-final class SetupSafeFlowCoordinator {
+final class SetupSafeFlowCoordinator: FlowCoordinator {
 
-    func startViewController() -> UIViewController {
-        let vc = SetupSafeViewController()
-        vc.view.backgroundColor = ColorName.green.color
-        return vc
+    override func flowStartController() -> UIViewController {
+        return SetupSafeOptionsViewController.create(delegate: self)
+    }
+
+}
+
+extension SetupSafeFlowCoordinator: SetupSafeOptionsDelegate {
+
+    func didSelectNewSafe() {
+        let newSafeFlowCoordinator = NewSafeFlowCoordinator()
+        let pairVC = newSafeFlowCoordinator.startViewController(parent: rootVC)
+        rootVC.pushViewController(pairVC, animated: true)
     }
 
 }

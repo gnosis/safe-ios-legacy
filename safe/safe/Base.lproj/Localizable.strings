@@ -31,9 +31,6 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "onboarding.fatal.title";
 
-/* Password success label */
-"onboarding.passsword_success.status" = "onboarding.passsword_success.status";
-
 /* At least one capital letter rule for password field */
 "onboarding.set_password.capital" = "onboarding.set_password.capital";
 
@@ -46,7 +43,7 @@
 /* Minimum length rule for password field */
 "onboarding.set_password.length" = "onboarding.set_password.length";
 
-/* Setup safe info label */
+/* Set up safe screen title */
 "onboarding.setup_safe.info" = "onboarding.setup_safe.info";
 
 /* App slogan */

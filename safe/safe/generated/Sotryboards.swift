@@ -66,15 +66,16 @@ enum StoryboardScene {
   enum MasterPassword: StoryboardType {
     static let storyboardName = "MasterPassword"
 
-    static let initialScene = InitialSceneType<safe.MasterPasswordNavigationController>(storyboard: MasterPassword.self)
-
     static let confirmPaswordViewController = SceneType<safe.ConfirmPaswordViewController>(storyboard: MasterPassword.self, identifier: "ConfirmPaswordViewController")
-
-    static let passwordSuccessViewController = SceneType<safe.PasswordSuccessViewController>(storyboard: MasterPassword.self, identifier: "PasswordSuccessViewController")
 
     static let setPasswordViewController = SceneType<safe.SetPasswordViewController>(storyboard: MasterPassword.self, identifier: "SetPasswordViewController")
 
     static let startViewController = SceneType<safe.StartViewController>(storyboard: MasterPassword.self, identifier: "StartViewController")
+  }
+  enum SetupSafe: StoryboardType {
+    static let storyboardName = "SetupSafe"
+
+    static let setupSafeOptionsViewController = SceneType<safe.SetupSafeOptionsViewController>(storyboard: SetupSafe.self, identifier: "SetupSafeOptionsViewController")
   }
 }
 
