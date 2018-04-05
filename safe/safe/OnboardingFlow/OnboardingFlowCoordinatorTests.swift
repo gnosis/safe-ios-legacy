@@ -26,8 +26,8 @@ class OnboardingFlowCoordinatorTests: XCTestCase {
     func test_startViewController_whenMasterPasswordIsSet_thenNewSafeFlowStarted() {
         account.hasMasterPassword = true
         _ = flowCoordinator.startViewController()
-        let setupSafeVC = flowCoordinator.setupSafeFlowCoordinator.startViewController()
-        XCTAssertTrue(type(of: flowCoordinator.rootVC.childViewControllers[0]) == type(of: setupSafeVC.childViewControllers[0]))
+        let setupSafeVC = flowCoordinator.setupSafeFlowCoordinator.startViewController().childViewControllers[0]
+        XCTAssertTrue(type(of: flowCoordinator.rootVC.childViewControllers[0]) == type(of: setupSafeVC))
     }
 
     func test_whenDidConfirmPassword_thenSetupSafeIsShown() {

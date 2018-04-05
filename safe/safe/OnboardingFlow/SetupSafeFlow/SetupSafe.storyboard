@@ -31,6 +31,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="New Safe"/>
+                                        <connections>
+                                            <action selector="createNewSafe:" destination="Dc2-0P-PlK" eventType="touchUpInside" id="bAl-fZ-vB1"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2id-NF-b7D" customClass="BigButton" customModule="safeUIKit">
                                         <rect key="frame" x="0.0" y="64" width="335" height="44"/>
