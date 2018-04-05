@@ -16,7 +16,7 @@ final class ConfirmPaswordViewController: UIViewController {
     @IBOutlet weak var textInput: TextInput!
     private var referencePassword: String!
     private weak var delegate: ConfirmPasswordViewControllerDelegate?
-    private var identityService: IdentityApplicationService!
+    private var authenticationService: AuthenticationApplicationService!
 
     private struct LocalizedString {
         static let header = NSLocalizedString("onboarding.confirm_password.header",
@@ -36,7 +36,7 @@ final class ConfirmPaswordViewController: UIViewController {
         let vc = StoryboardScene.MasterPassword.confirmPaswordViewController.instantiate()
         vc.referencePassword = referencePassword
         vc.delegate = delegate
-        vc.identityService = IdentityApplicationService(account: account)
+        vc.authenticationService = AuthenticationApplicationService(account: account)
         return vc
     }
 
@@ -71,7 +71,7 @@ extension ConfirmPaswordViewController: TextInputDelegate {
     func textInputDidReturn() {
         let password = textInput.text!
         do {
-            try identityService.registerUser(password: password) { [weak self] in
+            try authenticationService.registerUser(password: password) { [weak self] in
                 DispatchQueue.main.async {
                     self?.delegate?.didConfirmPassword()
                 }

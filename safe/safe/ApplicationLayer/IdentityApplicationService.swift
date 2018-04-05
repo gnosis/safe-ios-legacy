@@ -10,7 +10,7 @@ enum AuthenticationMethod {
     case faceID
 }
 
-class IdentityApplicationService {
+class AuthenticationApplicationService {
 
     let account: AccountProtocol
 
