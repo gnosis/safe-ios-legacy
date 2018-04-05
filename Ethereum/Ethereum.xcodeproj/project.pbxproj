@@ -1,0 +1,417 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A3EEC342074C6C900BFA9E0 /* Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EEC332074C6C900BFA9E0 /* Ethereum.swift */; };
+		0A8BD0142074CB6B00BCD78D /* libEthereumApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3EEC6B2074C6EA00BFA9E0 /* libEthereumApplication.a */; };
+		0A8BD0152074CB6B00BCD78D /* libEthereumDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3EEC522074C6D900BFA9E0 /* libEthereumDomainModel.a */; };
+		0A8BD0162074CB6B00BCD78D /* libEthereumPortAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8BD00D2074CB4500BCD78D /* libEthereumPortAdapter.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0A3EEC512074C6D900BFA9E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A3EEC4D2074C6D800BFA9E0 /* EthereumDomainModel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A3EEC432074C6D800BFA9E0;
+			remoteInfo = EthereumDomainModel;
+		};
+		0A3EEC6A2074C6EA00BFA9E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A3EEC662074C6E900BFA9E0 /* EthereumApplication.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A3EEC5C2074C6E900BFA9E0;
+			remoteInfo = EthereumApplication;
+		};
+		0A8BD00C2074CB4500BCD78D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A8BD0062074CB4400BCD78D /* EthereumPortAdapter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A8BCFFC2074CB4400BCD78D;
+			remoteInfo = EthereumPortAdapter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0A3EEC2E2074C6C900BFA9E0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0A3EEC302074C6C900BFA9E0 /* libEthereum.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEthereum.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A3EEC332074C6C900BFA9E0 /* Ethereum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ethereum.swift; sourceTree = "<group>"; };
+		0A3EEC4D2074C6D800BFA9E0 /* EthereumDomainModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EthereumDomainModel.xcodeproj; path = EthereumDomainModel/EthereumDomainModel.xcodeproj; sourceTree = "<group>"; };
+		0A3EEC662074C6E900BFA9E0 /* EthereumApplication.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EthereumApplication.xcodeproj; path = EthereumApplication/EthereumApplication.xcodeproj; sourceTree = "<group>"; };
+		0A8BD0062074CB4400BCD78D /* EthereumPortAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EthereumPortAdapter.xcodeproj; path = EthereumPortAdapter/EthereumPortAdapter.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0A3EEC2D2074C6C900BFA9E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A8BD0142074CB6B00BCD78D /* libEthereumApplication.a in Frameworks */,
+				0A8BD0152074CB6B00BCD78D /* libEthereumDomainModel.a in Frameworks */,
+				0A8BD0162074CB6B00BCD78D /* libEthereumPortAdapter.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A3EEC272074C6C900BFA9E0 = {
+			isa = PBXGroup;
+			children = (
+				0A3EEC322074C6C900BFA9E0 /* Ethereum */,
+				0A3EEC312074C6C900BFA9E0 /* Products */,
+				0A8BD0132074CB6B00BCD78D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0A3EEC312074C6C900BFA9E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A3EEC302074C6C900BFA9E0 /* libEthereum.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A3EEC322074C6C900BFA9E0 /* Ethereum */ = {
+			isa = PBXGroup;
+			children = (
+				0A3EEC332074C6C900BFA9E0 /* Ethereum.swift */,
+				0A3EEC662074C6E900BFA9E0 /* EthereumApplication.xcodeproj */,
+				0A3EEC4D2074C6D800BFA9E0 /* EthereumDomainModel.xcodeproj */,
+				0A8BD0062074CB4400BCD78D /* EthereumPortAdapter.xcodeproj */,
+			);
+			path = Ethereum;
+			sourceTree = "<group>";
+		};
+		0A3EEC4E2074C6D800BFA9E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A3EEC522074C6D900BFA9E0 /* libEthereumDomainModel.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A3EEC672074C6E900BFA9E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A3EEC6B2074C6EA00BFA9E0 /* libEthereumApplication.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A8BD0072074CB4400BCD78D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BD00D2074CB4500BCD78D /* libEthereumPortAdapter.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A8BD0132074CB6B00BCD78D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0A3EEC2F2074C6C900BFA9E0 /* Ethereum */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A3EEC372074C6C900BFA9E0 /* Build configuration list for PBXNativeTarget "Ethereum" */;
+			buildPhases = (
+				0A3EEC712074C8E900BFA9E0 /* Lint */,
+				0A3EEC2C2074C6C900BFA9E0 /* Sources */,
+				0A3EEC2D2074C6C900BFA9E0 /* Frameworks */,
+				0A3EEC2E2074C6C900BFA9E0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ethereum;
+			productName = Ethereum;
+			productReference = 0A3EEC302074C6C900BFA9E0 /* libEthereum.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0A3EEC282074C6C900BFA9E0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Dmitry Bespalov";
+				TargetAttributes = {
+					0A3EEC2F2074C6C900BFA9E0 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = 0A3EEC2B2074C6C900BFA9E0 /* Build configuration list for PBXProject "Ethereum" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0A3EEC272074C6C900BFA9E0;
+			productRefGroup = 0A3EEC312074C6C900BFA9E0 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0A3EEC672074C6E900BFA9E0 /* Products */;
+					ProjectRef = 0A3EEC662074C6E900BFA9E0 /* EthereumApplication.xcodeproj */;
+				},
+				{
+					ProductGroup = 0A3EEC4E2074C6D800BFA9E0 /* Products */;
+					ProjectRef = 0A3EEC4D2074C6D800BFA9E0 /* EthereumDomainModel.xcodeproj */;
+				},
+				{
+					ProductGroup = 0A8BD0072074CB4400BCD78D /* Products */;
+					ProjectRef = 0A8BD0062074CB4400BCD78D /* EthereumPortAdapter.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				0A3EEC2F2074C6C900BFA9E0 /* Ethereum */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		0A3EEC522074C6D900BFA9E0 /* libEthereumDomainModel.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEthereumDomainModel.a;
+			remoteRef = 0A3EEC512074C6D900BFA9E0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A3EEC6B2074C6EA00BFA9E0 /* libEthereumApplication.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEthereumApplication.a;
+			remoteRef = 0A3EEC6A2074C6EA00BFA9E0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A8BD00D2074CB4500BCD78D /* libEthereumPortAdapter.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEthereumPortAdapter.a;
+			remoteRef = 0A8BD00C2074CB4500BCD78D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A3EEC712074C8E900BFA9E0 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0A3EEC2C2074C6C900BFA9E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A3EEC342074C6C900BFA9E0 /* Ethereum.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0A3EEC352074C6C900BFA9E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0A3EEC362074C6C900BFA9E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0A3EEC382074C6C900BFA9E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0A3EEC392074C6C900BFA9E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0A3EEC2B2074C6C900BFA9E0 /* Build configuration list for PBXProject "Ethereum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A3EEC352074C6C900BFA9E0 /* Debug */,
+				0A3EEC362074C6C900BFA9E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A3EEC372074C6C900BFA9E0 /* Build configuration list for PBXNativeTarget "Ethereum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A3EEC382074C6C900BFA9E0 /* Debug */,
+				0A3EEC392074C6C900BFA9E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0A3EEC282074C6C900BFA9E0 /* Project object */;
+}

@@ -1,5 +1,5 @@
 //: A UIKit based Playground for presenting user interface
-  
+
 import UIKit
 import PlaygroundSupport
 import safeUIKit
@@ -24,10 +24,10 @@ NSLayoutConstraint.activate([
 
 
 func execute(_ timer: Timer) {
-//    input.addRule("Right right right") { _ in true }
+    //    input.addRule("Right right right") { _ in true }
     input.shake()
-//    wait(1)
-//    input.addRule("Wrong wrong wrong") { _ in false }
+    //    wait(1)
+    //    input.addRule("Wrong wrong wrong") { _ in false }
 }
 
 // we want to test that input resizes according to its contents

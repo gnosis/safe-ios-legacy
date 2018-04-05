@@ -63,6 +63,7 @@
 		0AD93E1B2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */; };
 		0AE75CD82061134B002D5E2D /* SafeUIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE75CD72061134B002D5E2D /* SafeUIKitExtensions.swift */; };
 		0AE75CDA20611359002D5E2D /* SafeUIKitExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE75CD920611359002D5E2D /* SafeUIKitExtensionsTests.swift */; };
+		0AF281D72074C23400D3843D /* libIdentityAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF281D62074C23400D3843D /* libIdentityAccess.a */; };
 		0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */; };
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
 		0AFEDEB22073C7BC002F5924 /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */; };
@@ -215,6 +216,7 @@
 		0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaswordViewControllerTests.swift; sourceTree = "<group>"; };
 		0AE75CD72061134B002D5E2D /* SafeUIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeUIKitExtensions.swift; sourceTree = "<group>"; };
 		0AE75CD920611359002D5E2D /* SafeUIKitExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeUIKitExtensionsTests.swift; sourceTree = "<group>"; };
+		0AF281D62074C23400D3843D /* libIdentityAccess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccess.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../lib/Crashlytics.framework; sourceTree = "<group>"; };
 		0AFEDEAE2073C79C002F5924 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../lib/Fabric.framework; sourceTree = "<group>"; };
 		0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = safeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -282,6 +284,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AF281D72074C23400D3843D /* libIdentityAccess.a in Frameworks */,
 				0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */,
 				0ABBDC052073CADD006D0A48 /* Result.framework in Frameworks */,
 				0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */,
@@ -332,6 +335,7 @@
 		0A53306B2073C73E00DE55F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AF281D62074C23400D3843D /* libIdentityAccess.a */,
 				0ABBDBF72073CACD006D0A48 /* APIKit.framework */,
 				0ABBDBF82073CACD006D0A48 /* CryptoSwift.framework */,
 				0ABBDBFA2073CACD006D0A48 /* EthereumKit.framework */,
@@ -608,8 +612,8 @@
 			buildConfigurationList = 5540A513203C3054009C9BE3 /* Build configuration list for PBXNativeTarget "safe" */;
 			buildPhases = (
 				55147D50203DAE5900AD0E1F /* SwiftGen */,
+				55DF6A95203C681A00DF6486 /* Lint */,
 				5540A4E7203C3054009C9BE3 /* Sources */,
-				55DF6A95203C681A00DF6486 /* SwiftLint */,
 				5540A4E8203C3054009C9BE3 /* Frameworks */,
 				0A53AD5020598A0600D713AD /* Localize */,
 				5540A4E9203C3054009C9BE3 /* Resources */,
@@ -797,19 +801,19 @@
 			shellScript = "ENV_VARS=${SRCROOT}/../.env.default\nif [ -e ${ENV_VARS} ]; then\n    export $(cat $ENV_VARS)\nfi\n${SRCROOT}/../lib/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
 			showEnvVarsInLog = 0;
 		};
-		55DF6A95203C681A00DF6486 /* SwiftLint */ = {
+		55DF6A95203C681A00DF6486 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = SwiftLint;
+			name = Lint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ../scripts/run_swiftlint.sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
