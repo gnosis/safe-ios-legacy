@@ -32,6 +32,7 @@
 		0A923725207678E600EDB1D8 /* ApplicationServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A923724207678E600EDB1D8 /* ApplicationServiceRegistry.swift */; };
 		0A92372720767C3800EDB1D8 /* AbstractRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92372620767C3800EDB1D8 /* AbstractRegistryTests.swift */; };
 		0A92372920767C4000EDB1D8 /* AbstractRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92372820767C4000EDB1D8 /* AbstractRegistry.swift */; };
+		0A92372B2076824900EDB1D8 /* AbstractAppTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92372A2076824900EDB1D8 /* AbstractAppTestCase.swift */; };
 		0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */; };
 		0AA27832205FC4E600EBB9D1 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27831205FC4E600EBB9D1 /* Application.swift */; };
 		0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27833205FC5A700EBB9D1 /* StartScreen.swift */; };
@@ -194,6 +195,7 @@
 		0A923724207678E600EDB1D8 /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
 		0A92372620767C3800EDB1D8 /* AbstractRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractRegistryTests.swift; sourceTree = "<group>"; };
 		0A92372820767C4000EDB1D8 /* AbstractRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractRegistry.swift; sourceTree = "<group>"; };
+		0A92372A2076824900EDB1D8 /* AbstractAppTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractAppTestCase.swift; sourceTree = "<group>"; };
 		0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeUITests.swift; sourceTree = "<group>"; };
 		0AA27831205FC4E600EBB9D1 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		0AA27833205FC5A700EBB9D1 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
@@ -569,6 +571,7 @@
 				0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */,
 				0AA27840205FCDFA00EBB9D1 /* TestSupport.swift */,
 				0AA27842205FCE2800EBB9D1 /* TestSupportTests.swift */,
+				0A92372A2076824900EDB1D8 /* AbstractAppTestCase.swift */,
 			);
 			name = TestTools;
 			path = ../TestTools;
@@ -914,6 +917,7 @@
 				0AE75CDA20611359002D5E2D /* SafeUIKitExtensionsTests.swift in Sources */,
 				0AD93E1B2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift in Sources */,
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
+				0A92372B2076824900EDB1D8 /* AbstractAppTestCase.swift in Sources */,
 				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
 				0A362504205ABE9B00B21545 /* MockClockService.swift in Sources */,
 				0ACF31602058267C00E8A6C3 /* LoggableErrorTests.swift in Sources */,

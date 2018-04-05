@@ -13,25 +13,21 @@ protocol AppFlowCoordinatorProtocol: class {
 
 final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
 
-    let onboardingFlowCoordinator: OnboardingFlowCoordinator
+    let onboardingFlowCoordinator = OnboardingFlowCoordinator()
     private var lockedViewController: UIViewController!
-    private let authenticationService: AuthenticationApplicationService
 
     private var rootViewController: UIViewController? {
         get { return UIApplication.shared.keyWindow?.rootViewController }
         set { UIApplication.shared.keyWindow?.rootViewController = newValue }
     }
 
-    private var shouldLockWhenAppActive: Bool { return authenticationService.isUserAuthenticated() }
-
-    init(account: AccountProtocol = Account.shared) {
-        authenticationService = AuthenticationApplicationService(account: account)
-        onboardingFlowCoordinator = OnboardingFlowCoordinator(account: account)
+    private var shouldLockWhenAppActive: Bool {
+        return ApplicationServiceRegistry.authenticationService().isUserAuthenticated()
     }
 
     func startViewController() -> UIViewController {
         lockedViewController = onboardingFlowCoordinator.startViewController()
-        if authenticationService.isUserRegistered() {
+        if ApplicationServiceRegistry.authenticationService().isUserRegistered() {
             return unlockController { [unowned self] in
                 self.rootViewController = self.lockedViewController
             }
@@ -40,7 +36,7 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
     }
 
     func unlockController(completion: @escaping () -> Void) -> UIViewController {
-        return UnlockViewController.create(account: authenticationService.account, completion: completion)
+        return UnlockViewController.create(completion: completion)
     }
 
     func appEntersForeground() {

@@ -5,10 +5,9 @@
 import XCTest
 @testable import safe
 
-class UnlockViewControllerTests: XCTestCase {
+class UnlockViewControllerTests: AbstractAppTestCase {
 
     var vc: UnlockViewController!
-    let account = MockAccount()
     let clock = MockClockService()
     var didLogIn = false
 
@@ -72,7 +71,7 @@ class UnlockViewControllerTests: XCTestCase {
 
     func test_whenCannotAuthenticateWithBiometry_thenHidesBiometryButton() {
         account.isBiometryAuthenticationAvailable = false
-        vc = UnlockViewController.create(account: account) {}
+        vc = UnlockViewController.create()
         vc.loadViewIfNeeded()
         XCTAssertTrue(vc.loginWithBiometryButton.isHidden)
     }
@@ -87,7 +86,7 @@ class UnlockViewControllerTests: XCTestCase {
 
     func test_whenBiometryFaceID_thenUsesMatchingIcon() {
         account.isBiometryFaceID = true
-        vc = UnlockViewController.create(account: account) {}
+        vc = UnlockViewController.create()
         vc.loadViewIfNeeded()
         XCTAssertEqual(vc.loginWithBiometryButton.image(for: .normal), Asset.faceIdIcon.image)
     }
@@ -142,9 +141,8 @@ extension UnlockViewControllerTests {
 
     private func createVC(blockPeriod: TimeInterval = 15) {
         account.blockedPeriodDuration = blockPeriod
-        vc = UnlockViewController.create(account: account,
-                                         clockService: clock) { [unowned self] in
-                                            self.didLogIn = true
+        vc = UnlockViewController.create(clockService: clock) { [unowned self] in
+            self.didLogIn = true
         }
         UIApplication.shared.keyWindow?.rootViewController = vc
     }

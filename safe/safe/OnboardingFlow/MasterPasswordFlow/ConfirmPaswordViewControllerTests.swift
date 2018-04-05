@@ -5,16 +5,15 @@
 import XCTest
 @testable import safe
 
-class ConfirmPaswordViewControllerTests: XCTestCase {
+class ConfirmPaswordViewControllerTests: AbstractAppTestCase {
 
-    let account = MockAccount()
     // swiftlint:disable weak_delegate
     let delegate = MockConfirmPasswordViewControllerDelegate()
     var vc: ConfirmPaswordViewController!
 
     override func setUp() {
         super.setUp()
-        vc = ConfirmPaswordViewController.create(account: account, referencePassword: "a", delegate: delegate)
+        vc = ConfirmPaswordViewController.create(referencePassword: "a", delegate: delegate)
         vc.loadViewIfNeeded()
     }
 
