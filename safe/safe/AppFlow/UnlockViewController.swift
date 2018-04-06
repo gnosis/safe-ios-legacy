@@ -32,12 +32,13 @@ final class UnlockViewController: UIViewController {
         textInput.delegate = self
         textInput.isSecure = true
 
-        let biometryIcon = ApplicationServiceRegistry.authenticationService().isAuthenticationMethodSupported(.faceID) ?
-            Asset.faceIdIcon.image :
-            Asset.touchIdIcon.image
+        let biometryIcon = ApplicationServiceRegistry
+            .authenticationService()
+            .isAuthenticationMethodSupported(.faceID) ? Asset.faceIdIcon.image : Asset.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
         updateBiometryButtonVisibility()
-        countdownLabel.setup(time: ApplicationServiceRegistry.authenticationService().blockedPeriodDuration, clock: clockService)
+        countdownLabel.setup(time: ApplicationServiceRegistry.authenticationService().blockedPeriodDuration,
+                             clock: clockService)
         countdownLabel.accessibilityIdentifier = "countdown"
         startCountdownIfNeeded()
     }
@@ -54,7 +55,9 @@ final class UnlockViewController: UIViewController {
     }
 
     private func updateBiometryButtonVisibility() {
-        loginWithBiometryButton.isHidden = !ApplicationServiceRegistry.authenticationService().isBiometricAuthenticationPossible()
+        loginWithBiometryButton.isHidden = !ApplicationServiceRegistry
+            .authenticationService()
+            .isBiometricAuthenticationPossible()
     }
 
     override func viewDidAppear(_ animated: Bool) {
