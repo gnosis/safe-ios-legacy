@@ -12,11 +12,10 @@ struct Session {
     }
     let duration: TimeInterval
     private var startTime: Date?
-    private let clockService: Clock
+    private var clockService: Clock { return DomainRegistry.clock }
 
-    init(duration: TimeInterval, clockService: Clock = SystemClockService()) {
+    init(duration: TimeInterval) {
         self.duration = duration
-        self.clockService = clockService
     }
 
     mutating func start() {

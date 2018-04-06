@@ -5,14 +5,13 @@
 import XCTest
 @testable import safe
 
-class SessionTests: XCTestCase {
+class SessionTests: DomainTestCase {
 
-    let mockClockService = MockClockService()
     var session: Session!
 
     override func setUp() {
         super.setUp()
-        session = Session(duration: 0.1, clockService: mockClockService)
+        session = Session(duration: 0.1)
     }
 
     func test_whenCreated_thenInactive() {
