@@ -377,6 +377,18 @@ class MockKeychain: SecureStore {
         storedPassword = nil
     }
 
+    func privateKey() throws -> PrivateKey? { return nil }
+
+    func savePrivateKey(_ privateKey: PrivateKey) throws {}
+
+    func removePrivateKey() throws {}
+
+    func mnemonic() throws -> Mnemonic? { return nil }
+
+    func saveMnemonic(_ mnemonic: Mnemonic) throws {}
+
+    func removeMnemonic() throws {}
+
 }
 
 class MockBiometricService: BiometricAuthenticationService {
