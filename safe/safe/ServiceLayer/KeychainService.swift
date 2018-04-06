@@ -9,6 +9,9 @@ protocol KeychainServiceProtocol {
     func password() throws -> String?
     func savePassword(_ password: String) throws
     func removePassword() throws
+    func privateKey() throws -> PrivateKey?
+    func savePrivateKey(_ privateKey: PrivateKey) throws
+    func removePrivateKey() throws
 
 }
 
@@ -26,6 +29,8 @@ final class KeychainService: KeychainServiceProtocol {
     init(identifier: String = KeychainService.defaultServiceName) {
         serviceName = identifier
     }
+
+    // MARK: - Password
 
     func password() throws -> String? {
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
@@ -64,6 +69,41 @@ final class KeychainService: KeychainServiceProtocol {
     func removePassword() throws {
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                     kSecAttrService as String: serviceName]
+        let status = SecItemDelete(query as CFDictionary)
+        guard status == errSecSuccess || status == errSecItemNotFound else {
+            throw KeychainError.unhandledError(status: status)
+        }
+    }
+
+    // MARK: - Private Key
+
+    func privateKey() throws -> PrivateKey? {
+        let query: [String: Any] = [kSecClass as String: kSecClassKey,
+                                    kSecMatchLimit as String: kSecMatchLimitOne,
+                                    kSecReturnAttributes as String: true,
+                                    kSecReturnData as String: true]
+        var item: CFTypeRef?
+        let status = SecItemCopyMatching(query as CFDictionary, &item)
+        guard status != errSecItemNotFound else { return nil }
+        guard status == errSecSuccess else {
+            throw KeychainError.unhandledError(status: status)
+        }
+        guard let existingItem = item as? [String: Any],
+            let data = existingItem[kSecValueData as String] as? Data else { return nil }
+        return PrivateKey(data: data)
+    }
+
+    func savePrivateKey(_ privateKey: PrivateKey) throws {
+        let query: [String: Any] = [kSecClass as String: kSecClassKey,
+                                    kSecValueData as String: privateKey.data]
+        let status = SecItemAdd(query as CFDictionary, nil)
+        guard status == errSecSuccess else {
+            throw KeychainError.unhandledError(status: status)
+        }
+    }
+
+    func removePrivateKey() throws {
+        let query: [String: Any] = [kSecClass as String: kSecClassKey]
         let status = SecItemDelete(query as CFDictionary)
         guard status == errSecSuccess || status == errSecItemNotFound else {
             throw KeychainError.unhandledError(status: status)

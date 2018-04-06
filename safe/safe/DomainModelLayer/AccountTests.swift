@@ -392,6 +392,12 @@ class MockKeychain: KeychainServiceProtocol {
         storedPassword = nil
     }
 
+    func privateKey() throws -> PrivateKey? { return nil }
+
+    func savePrivateKey(_ privateKey: PrivateKey) throws {}
+
+    func removePrivateKey() throws {}
+
 }
 
 class MockBiometricService: BiometricAuthenticationServiceProtocol {
