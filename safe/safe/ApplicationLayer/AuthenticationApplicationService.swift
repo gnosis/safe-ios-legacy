@@ -12,7 +12,7 @@ enum AuthenticationMethod {
 
 class AuthenticationApplicationService {
 
-    let account: AccountProtocol
+    private let account: AccountProtocol = Account.shared
 
     var blockedPeriodDuration: TimeInterval {
         return account.blockedPeriodDuration
@@ -22,10 +22,6 @@ class AuthenticationApplicationService {
     }
     var sessionDuration: TimeInterval {
         return account.sessionDuration
-    }
-
-    init(account: AccountProtocol) {
-        self.account = account
     }
 
     func isUserAuthenticated() -> Bool {
@@ -65,7 +61,7 @@ class AuthenticationApplicationService {
     }
 
     func registerUser(password: String, completion: (() -> Void)? = nil) throws {
-        try account.cleanupAllData()
+        try reset()
         try account.setMasterPassword(password)
         account.activateBiometricAuthentication {
             completion?()
@@ -82,6 +78,10 @@ class AuthenticationApplicationService {
 
     func configureBlockDuration(_ duration: TimeInterval) {
         account.blockedPeriodDuration = duration
+    }
+
+    func reset() throws {
+        try account.cleanupAllData()
     }
 
 }

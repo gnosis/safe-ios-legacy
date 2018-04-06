@@ -145,11 +145,3 @@ final class Account: AccountProtocol {
     }
 
 }
-
-extension Account: Resettable {
-
-    func resetAll() {
-        try? cleanupAllData()
-    }
-
-}

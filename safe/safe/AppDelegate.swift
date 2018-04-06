@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         configureDependencyInjection()
         #if DEBUG
-            TestSupport.shared.addResettable(Account.shared)
+            TestSupport.shared.addResettable(ApplicationServiceRegistry.authenticationService)
             TestSupport.shared.setUp()
         #endif
         createWindow()
@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func configureDependencyInjection() {
-        ApplicationServiceRegistry.put(service: AuthenticationApplicationService(account: Account.shared),
+        ApplicationServiceRegistry.put(service: AuthenticationApplicationService(),
                                        for: AuthenticationApplicationService.self)
         ApplicationServiceRegistry.put(service: SystemClockService(), for: Clock.self)
 
@@ -45,6 +45,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         coordinator.appEntersForeground()
+    }
+
+}
+
+extension AuthenticationApplicationService: Resettable {
+
+    func resetAll() {
+        try? reset()
     }
 
 }

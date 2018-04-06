@@ -5,14 +5,6 @@
 import XCTest
 @testable import safe
 
-// user registered when password is set on account
-// authentication sets session to active // or creates active session
-// when session expires, authentication invalidates
-//precondition(authenticationService.isUserRegistered() || !authenticationService.isUserAuthenticated(),
-//             "User cannot be unregistered and authenticated at the same time")
-// when registering, clean ups data
-// when registering, activates biometric
-
 class MockAuthenticationService: AuthenticationApplicationService {
 
     private var userRegistered = false
@@ -25,10 +17,6 @@ class MockAuthenticationService: AuthenticationApplicationService {
     private var biometricAuthenticationPossible = true
     private var enabledAuthenticationMethods = Set<AuthenticationMethod>([AuthenticationMethod.password])
     private var authenticationBlocked = false
-
-    init() {
-        super.init(account: MockAccount())
-    }
 
     func unregisterUser() {
         userRegistered = false
