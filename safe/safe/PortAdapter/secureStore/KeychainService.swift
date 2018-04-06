@@ -4,18 +4,6 @@
 
 import Foundation
 
-protocol KeychainServiceProtocol {
-    func password() throws -> String?
-    func savePassword(_ password: String) throws
-    func removePassword() throws
-    func privateKey() throws -> PrivateKey?
-    func savePrivateKey(_ privateKey: PrivateKey) throws
-    func removePrivateKey() throws
-    func mnemonic() throws -> Mnemonic?
-    func saveMnemonic(_ mnemonic: Mnemonic) throws
-    func removeMnemonic() throws
-}
-
 enum KeychainError: Error {
     case unexpectedPasswordData
     case unexpectedMnemonicData
@@ -23,7 +11,7 @@ enum KeychainError: Error {
     case unhandledError(status: OSStatus)
 }
 
-final class KeychainService: KeychainServiceProtocol {
+final class KeychainService: SecureStore {
 
     private static let defaultServiceName = "pm.gnosis.safe"
     private let passwordServiceName: String

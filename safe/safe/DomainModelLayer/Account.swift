@@ -58,46 +58,40 @@ final class Account: AccountProtocol {
     }
 
     var isBiometryAuthenticationAvailable: Bool {
-        return biometricAuthService.isAuthenticationAvailable
+        return biometricService.isAuthenticationAvailable
     }
 
     var isBiometryFaceID: Bool {
-        return biometricAuthService.biometryType == .faceID
+        return biometricService.biometryType == .faceID
     }
 
     var isBiometryTouchID: Bool {
-        return biometricAuthService.biometryType == .touchID
+        return biometricService.biometryType == .touchID
     }
 
     var sessionDuration: TimeInterval {
         get { return session.duration }
-        set { session = Session(duration: newValue, clockService: systemClock) }
+        set { session = Session(duration: newValue) }
     }
 
     var isSessionActive: Bool {
         return session.isActive
     }
 
-    private let userDefaultsService: UserDefaultsServiceProtocol
-    private let keychainService: KeychainServiceProtocol
-    private let biometricAuthService: BiometricAuthenticationServiceProtocol
-    private let systemClock: SystemClockServiceProtocol
+    private var userDefaultsService: KeyValueStore { return DomainRegistry.keyValueStore }
+    private var keychainService: SecureStore { return DomainRegistry.secureStore }
+    private var biometricService: BiometricAuthenticationService {
+        return DomainRegistry.biometricAuthenticationService
+    }
+    private var systemClock: Clock { return DomainRegistry.clock }
     private (set) var session: Session
     var maxPasswordAttempts: Int
     var blockedPeriodDuration: TimeInterval
 
-    init(userDefaultsService: UserDefaultsServiceProtocol = UserDefaultsService(),
-         keychainService: KeychainServiceProtocol = KeychainService(),
-         biometricAuthService: BiometricAuthenticationServiceProtocol = BiometricService(),
-         systemClock: SystemClockServiceProtocol = SystemClockService(),
-         sessionDuration: TimeInterval = 60 * 5,
+    init(sessionDuration: TimeInterval = 60 * 5,
          blockedPeriodDuration: TimeInterval = 15,
          maxPasswordAttempts: Int = 5) {
-        self.userDefaultsService = userDefaultsService
-        self.keychainService = keychainService
-        self.biometricAuthService = biometricAuthService
-        self.systemClock = systemClock
-        self.session = Session(duration: sessionDuration, clockService: systemClock)
+        self.session = Session(duration: sessionDuration)
         self.maxPasswordAttempts = maxPasswordAttempts
         self.blockedPeriodDuration = blockedPeriodDuration
     }
@@ -123,11 +117,11 @@ final class Account: AccountProtocol {
     }
 
     func activateBiometricAuthentication(completion: @escaping () -> Void) {
-        biometricAuthService.activate(completion: completion)
+        biometricService.activate(completion: completion)
     }
 
     func authenticateWithBiometry(completion: @escaping (Bool) -> Void) {
-        biometricAuthService.authenticate { [unowned self] success in
+        biometricService.authenticate { [unowned self] success in
             completion(self.authenticationResult(success))
         }
     }

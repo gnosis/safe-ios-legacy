@@ -26,8 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func configureDependencyInjection() {
-        let service = AuthenticationApplicationService(account: Account.shared)
-        ApplicationServiceRegistry.put(service: service, for: AuthenticationApplicationService.self)
+        ApplicationServiceRegistry.put(service: AuthenticationApplicationService(account: Account.shared),
+                                       for: AuthenticationApplicationService.self)
+
+        DomainRegistry.put(service: UserDefaultsService(), for: KeyValueStore.self)
+        DomainRegistry.put(service: KeychainService(), for: SecureStore.self)
+        DomainRegistry.put(service: BiometricService(), for: BiometricAuthenticationService.self)
+        DomainRegistry.put(service: SystemClockService(), for: Clock.self)
+        DomainRegistry.put(service: LogService.shared, for: Logger.self)
     }
 
     private func createWindow() {

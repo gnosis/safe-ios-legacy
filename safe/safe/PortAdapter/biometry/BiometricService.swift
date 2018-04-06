@@ -5,9 +5,7 @@
 import Foundation
 import LocalAuthentication
 
-enum BiometryType {
-
-    case none, touchID, faceID
+extension BiometryType {
 
     var localizedDescription: String {
         switch self {
@@ -19,20 +17,11 @@ enum BiometryType {
 
 }
 
-protocol BiometricAuthenticationServiceProtocol {
-
-    var isAuthenticationAvailable: Bool { get }
-    var biometryType: BiometryType { get }
-    func activate(completion: @escaping () -> Void)
-    func authenticate(completion: @escaping (Bool) -> Void)
-
-}
-
 enum BiometricServiceError: LoggableError {
     case unexpectedBiometryType
 }
 
-final class BiometricService: BiometricAuthenticationServiceProtocol {
+final class BiometricService: BiometricAuthenticationService {
 
     private let context: LAContext
 
