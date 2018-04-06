@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func configureDependencyInjection() {
         ApplicationServiceRegistry.put(service: AuthenticationApplicationService(account: Account.shared),
                                        for: AuthenticationApplicationService.self)
+        ApplicationServiceRegistry.put(service: SystemClockService(), for: Clock.self)
 
         DomainRegistry.put(service: UserDefaultsService(), for: KeyValueStore.self)
         DomainRegistry.put(service: KeychainService(), for: SecureStore.self)

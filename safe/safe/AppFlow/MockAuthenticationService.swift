@@ -16,6 +16,11 @@ class MockAuthenticationService: AuthenticationApplicationService {
     private var userRegistered = false
     private var userAuthenticated = false
     private var authenticationAllowed = false
+    private(set) var didRequestBiometricAuthentication = false
+    private(set) var didRequestPasswordAuthentication = false
+    private var biometricAuthenticationPossible = true
+    private var enabledAuthenticationMethods = Set<AuthenticationMethod>([AuthenticationMethod.password])
+    private var authenticationBlocked = false
 
     init() {
         super.init(account: MockAccount())
@@ -44,11 +49,38 @@ class MockAuthenticationService: AuthenticationApplicationService {
     }
 
     override func isUserAuthenticated() -> Bool {
-        return userAuthenticated
+        return isUserRegistered() && userAuthenticated && !isAuthenticationBlocked()
     }
 
     override func authenticateUser(password: String?, completion: ((Bool) -> Void)? = nil) {
-        userAuthenticated = authenticationAllowed
-        completion?(authenticationAllowed)
+        didRequestBiometricAuthentication = password == nil
+        didRequestPasswordAuthentication = !didRequestBiometricAuthentication
+        userAuthenticated = authenticationAllowed && !authenticationBlocked
+        completion?(userAuthenticated)
+    }
+
+    func makeBiometricAuthenticationImpossible() {
+        biometricAuthenticationPossible = false
+    }
+
+    override func isBiometricAuthenticationPossible() -> Bool {
+        return biometricAuthenticationPossible
+    }
+
+    func enableFaceIDSupport() {
+        enabledAuthenticationMethods.insert(.faceID)
+    }
+
+    override func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
+        return enabledAuthenticationMethods.contains(method)
+    }
+
+    func blockAuthentication() {
+        authenticationBlocked = true
+        makeBiometricAuthenticationImpossible()
+    }
+
+    override func isAuthenticationBlocked() -> Bool {
+        return authenticationBlocked
     }
 }

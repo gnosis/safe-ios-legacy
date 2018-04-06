@@ -10,4 +10,8 @@ class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: AuthenticationApplicationService.self)
     }
 
+    static var clock: Clock {
+        return service(for: Clock.self)
+    }
+
 }
