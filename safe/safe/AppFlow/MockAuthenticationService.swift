@@ -10,10 +10,13 @@ import XCTest
 // when session expires, authentication invalidates
 //precondition(authenticationService.isUserRegistered() || !authenticationService.isUserAuthenticated(),
 //             "User cannot be unregistered and authenticated at the same time")
+// when registering, clean ups data
+// when registering, activates biometric
 
 class MockAuthenticationService: AuthenticationApplicationService {
 
     private var userRegistered = false
+    private var shouldThrowDuringRegistration = false
     private var userAuthenticated = false
     private var authenticationAllowed = false
     private(set) var didRequestBiometricAuthentication = false
@@ -30,11 +33,18 @@ class MockAuthenticationService: AuthenticationApplicationService {
         userRegistered = false
     }
 
+    func prepareToThrowWhenRegisteringUser() {
+        shouldThrowDuringRegistration = true
+    }
+
     override func isUserRegistered() -> Bool {
         return userRegistered
     }
 
     override func registerUser(password: String, completion: (() -> Void)? = nil) throws {
+        if shouldThrowDuringRegistration {
+            throw MockAccount.Error.error
+        }
         userRegistered = true
         completion?()
     }

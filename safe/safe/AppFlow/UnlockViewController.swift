@@ -70,6 +70,7 @@ final class UnlockViewController: UIViewController {
     }
 
     private func auhtenticateWithBiometry() {
+        guard !authenticationService.isAuthenticationBlocked() else { return }
         authenticationService.authenticateUser {  [unowned self] success in
             DispatchQueue.main.async {
                 if success {

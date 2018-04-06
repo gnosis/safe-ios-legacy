@@ -13,6 +13,10 @@ class ConfirmPaswordViewControllerTests: AbstractAppTestCase {
 
     override func setUp() {
         super.setUp()
+        // TODO: pull up
+        ApplicationServiceRegistry.put(service: authenticationService,
+                                       for: AuthenticationApplicationService.self)
+
         vc = ConfirmPaswordViewController.create(referencePassword: "a", delegate: delegate)
         vc.loadViewIfNeeded()
     }
@@ -25,44 +29,33 @@ class ConfirmPaswordViewControllerTests: AbstractAppTestCase {
         XCTAssertTrue(vc.textInput.isSecure)
     }
 
-    func test_whenDidConfirmPassword_thenPasswordIsSaved() {
-        account.didCleanData = false
-        account.didSavePassword = false
+    func test_whenDidConfirmPassword_thenUserRegistered() {
         vc.textInputDidReturn()
-        XCTAssertTrue(account.didCleanData)
-        XCTAssertTrue(account.didSavePassword)
+        XCTAssertTrue(authenticationService.isUserRegistered())
     }
 
-    func test_whenTextInputDidReturn_thenBiometricActivationRequested() {
-        account.didRequestBiometricActivation = false
-        vc.textInputDidReturn()
-        XCTAssertTrue(account.didRequestBiometricActivation)
-    }
-
-    func test_whenBiometricActivationCompleted_thenCallsDelegate() {
+    func test_whenRegistrationCompleted_thenCallsDelegate() {
         delegate.didConfirm = false
         vc.textInputDidReturn()
-        XCTAssertFalse(delegate.didConfirm)
-        account.finishBiometricActivation()
         delay()
         XCTAssertTrue(delegate.didConfirm)
     }
 
-    func test_whenSetMasterPasswordThrows_thenDelegateNotCalled() {
+    func test_whenRegistrationThrows_thenDelegateNotCalled() {
         delegate.didConfirm = false
-        account.setMasterPasswordThrows = true
+        authenticationService.prepareToThrowWhenRegisteringUser()
         vc.textInputDidReturn()
         XCTAssertFalse(delegate.didConfirm)
     }
 
-    func test_whenSetMasterPasswordThrows_thenAlertIsShown() {
+    func test_whenRegistrationThrows_thenAlertIsShown() {
         guard let window = UIApplication.shared.keyWindow else {
             XCTFail("Must have window")
             return
         }
         window.rootViewController = vc
         window.makeKeyAndVisible()
-        account.setMasterPasswordThrows = true
+        authenticationService.prepareToThrowWhenRegisteringUser()
         vc.textInputDidReturn()
         delay()
         XCTAssertNotNil(vc.presentedViewController)

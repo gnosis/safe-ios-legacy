@@ -63,6 +63,7 @@ class UnlockViewControllerTests: AbstractAppTestCase {
     }
 
     func test_whenTextInputEntered_thenRequestsPasswordAuthentication() {
+        delay()
         hitReturn()
         XCTAssertTrue(authenticationService.didRequestPasswordAuthentication)
     }
@@ -124,7 +125,7 @@ class UnlockViewControllerTests: AbstractAppTestCase {
     func test_whenAccountBlocked_thenMustNotRequestBiometricAuthentication() {
         authenticationService.blockAuthentication()
         vc.viewDidAppear(false)
-        XCTAssertFalse(account.didRequestBiometricAuthentication)
+        XCTAssertFalse(authenticationService.didRequestBiometricAuthentication)
     }
 
     func test_whenPasswordFails_thenInputShakes() {
@@ -148,7 +149,6 @@ extension UnlockViewControllerTests {
             self.didLogIn = true
         }
         UIApplication.shared.keyWindow?.rootViewController = vc
-        delay()
     }
 
     private func authenticateWithBiometryResult(_ result: Bool) {
@@ -158,6 +158,7 @@ extension UnlockViewControllerTests {
             authenticationService.invalidateAuthentication()
         }
         vc.viewDidAppear(false)
+        delay()
     }
 
     private func assertShowsCountdown(line: UInt = #line) {
