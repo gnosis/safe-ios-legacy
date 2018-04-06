@@ -17,8 +17,8 @@ class LogServiceTests: XCTestCase {
 
     func test_whenLogServiceCalled_thenAllLoggersAreTriggered() {
         let logger = LogService(level: .error)
-        let mockLog1 = MockLogger()
-        let mockLog2 = MockLogger()
+        let mockLog1 = MockLogWriter()
+        let mockLog2 = MockLogWriter()
         logger.add([mockLog1, mockLog2])
         logger.error("error")
         XCTAssertEqual(mockLog1.loggedMessages, "error")
@@ -29,7 +29,7 @@ class LogServiceTests: XCTestCase {
         let file = #file
         let function = #function
         let logger = LogService(level: .debug)
-        let mockLog = MockLogger()
+        let mockLog = MockLogWriter()
         mockLog.detailed = true
         logger.add(mockLog)
         logger.fatal("fatal", error: TestError.error); let line = #line
@@ -84,7 +84,7 @@ extension LogServiceTests {
 
     private func assert(_ level: LogLevel, allowsOnly expectedLog: String) {
         let logger = LogService(level: level)
-        let mockLog = MockLogger()
+        let mockLog = MockLogWriter()
         logger.add(mockLog)
         logger.fatal("fatal")
         logger.error("error")
@@ -100,7 +100,7 @@ extension LogServiceTests {
 
 }
 
-class MockLogger: Logger {
+class MockLogWriter: LogWriter {
 
     var detailed = false
     var loggedMessages: String { return log.joined(separator: " ") }

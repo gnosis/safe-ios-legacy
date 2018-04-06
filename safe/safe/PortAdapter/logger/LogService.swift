@@ -4,14 +4,7 @@
 
 import Foundation
 
-protocol LogServiceProtocol {
-    func fatal(_ message: String, error: Error?, file: StaticString, line: UInt, function: StaticString)
-    func error(_ message: String, error: Error?, file: StaticString, line: UInt, function: StaticString)
-    func info(_ message: String, error: Error?, file: StaticString, line: UInt, function: StaticString)
-    func debug(_ message: String, error: Error?, file: StaticString, line: UInt, function: StaticString)
-}
-
-protocol Logger {
+protocol LogWriter {
     func log(_ message: String, level: LogLevel, error: Error?, file: StaticString, line: UInt, function: StaticString)
 }
 
@@ -69,12 +62,12 @@ protocol BundleProtocol {
 
 extension Bundle: BundleProtocol {}
 
-final class LogService: LogServiceProtocol {
+final class LogService: Logger {
 
     static let shared = LogService()
 
     let level: LogLevel
-    private (set) var loggers = [Logger]()
+    private (set) var loggers = [LogWriter]()
 
     init(level: LogLevel) {
         self.level = level
@@ -143,11 +136,11 @@ final class LogService: LogServiceProtocol {
         loggers.forEach { $0.log(message, level: level, error: error, file: file, line: line, function: function) }
     }
 
-    func add(_ logger: Logger) {
+    func add(_ logger: LogWriter) {
         loggers.append(logger)
     }
 
-    func add(_ loggers: [Logger]) {
+    func add(_ loggers: [LogWriter]) {
         self.loggers.append(contentsOf: loggers)
     }
 

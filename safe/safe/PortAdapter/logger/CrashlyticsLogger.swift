@@ -9,7 +9,7 @@ protocol CrashlyticsProtocol {
     func recordError(_ error: Error)
 }
 
-final class CrashlyticsLogger: Logger {
+final class CrashlyticsLogger: LogWriter {
 
     private let crashlytics: CrashlyticsProtocol
 

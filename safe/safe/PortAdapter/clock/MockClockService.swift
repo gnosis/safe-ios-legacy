@@ -5,7 +5,7 @@
 import Foundation
 @testable import safe
 
-class MockClockService: SystemClockServiceProtocol {
+class MockClockService: Clock {
 
     var currentTime = Date()
 

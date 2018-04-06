@@ -5,12 +5,9 @@
 import XCTest
 @testable import safe
 
-class AccountTests: XCTestCase {
+class AccountTests: DomainTestCase {
 
     var account: Account!
-    let mockUserDefaults = InMemoryUserDefaults()
-    let keychain = MockKeychain()
-    let biometricService = MockBiometricService()
     let correctPassword = "Password"
     let wrongPassword = "WrongPassword"
 
@@ -36,9 +33,7 @@ class AccountTests: XCTestCase {
 
     func test_hasMasterPassword_whenDealingWithDifferentInstances_thenResultIsTheSame() {
         setPassword()
-        account = Account(userDefaultsService: mockUserDefaults,
-                          keychainService: keychain,
-                          biometricAuthService: biometricService)
+        account = Account()
         XCTAssertTrue(account.hasMasterPassword)
     }
 
@@ -305,20 +300,12 @@ class AccountTests: XCTestCase {
 extension AccountTests {
 
     private func createAccount(maxPasswordAttempts: Int = 1) {
-        account = Account(userDefaultsService: mockUserDefaults,
-                          keychainService: keychain,
-                          biometricAuthService: biometricService,
-                          maxPasswordAttempts: maxPasswordAttempts)
+        account = Account(maxPasswordAttempts: maxPasswordAttempts)
     }
 
     private func setupExpiredSession(maxPasswordAttempts: Int = 1) {
         let sessionDuration: TimeInterval = 10
-        let mockClockService = MockClockService()
-        account = Account(userDefaultsService: mockUserDefaults,
-                          keychainService: keychain,
-                          biometricAuthService: biometricService,
-                          systemClock: mockClockService,
-                          sessionDuration: sessionDuration,
+        account = Account(sessionDuration: sessionDuration,
                           maxPasswordAttempts: maxPasswordAttempts)
         setPassword()
         mockClockService.currentTime += sessionDuration
@@ -334,7 +321,7 @@ extension AccountTests {
 
 }
 
-class InMemoryUserDefaults: UserDefaultsServiceProtocol {
+class InMemoryUserDefaults: KeyValueStore {
 
     var dict = [String: Any]()
 
@@ -360,7 +347,7 @@ class InMemoryUserDefaults: UserDefaultsServiceProtocol {
 
 }
 
-class MockKeychain: KeychainServiceProtocol {
+class MockKeychain: SecureStore {
 
     private var storedPassword: String?
     var throwsOnSavePassword = false
@@ -394,7 +381,7 @@ class MockKeychain: KeychainServiceProtocol {
 
 }
 
-class MockBiometricService: BiometricAuthenticationServiceProtocol {
+class MockBiometricService: BiometricAuthenticationService {
 
     var biometryType: BiometryType = .none
     private var savedActivationCompletion: (() -> Void)?

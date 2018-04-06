@@ -4,21 +4,13 @@
 
 import Foundation
 
-protocol KeychainServiceProtocol {
-
-    func password() throws -> String?
-    func savePassword(_ password: String) throws
-    func removePassword() throws
-
-}
-
 enum KeychainError: Error {
     case unexpectedPasswordData
     // https://www.osstatus.com
     case unhandledError(status: OSStatus)
 }
 
-final class KeychainService: KeychainServiceProtocol {
+final class KeychainService: SecureStore {
 
     private static let defaultServiceName = "pm.gnosis.safe"
     private let serviceName: String

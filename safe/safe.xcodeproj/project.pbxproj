@@ -14,7 +14,7 @@
 		0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */; };
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
 		0A05A761204FE1EB0089327D /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */; };
-		0A05A7632050004C0089327D /* BiometricAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A7622050004C0089327D /* BiometricAuthenticationService.swift */; };
+		0A05A7632050004C0089327D /* BiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A7622050004C0089327D /* BiometricService.swift */; };
 		0A0A89FE206D1492004DFD31 /* EthereumAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0A89FD206D1492004DFD31 /* EthereumAccount.swift */; };
 		0A0A8A02206D14ED004DFD31 /* EncryptionServiceValueObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0A8A01206D14ED004DFD31 /* EncryptionServiceValueObjects.swift */; };
 		0A0FEB16206B928B006F1B88 /* EthereumAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FEB15206B928B006F1B88 /* EthereumAccountTests.swift */; };
@@ -33,6 +33,14 @@
 		0A92372720767C3800EDB1D8 /* AbstractRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92372620767C3800EDB1D8 /* AbstractRegistryTests.swift */; };
 		0A92372920767C4000EDB1D8 /* AbstractRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92372820767C4000EDB1D8 /* AbstractRegistry.swift */; };
 		0A92372B2076824900EDB1D8 /* AbstractAppTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92372A2076824900EDB1D8 /* AbstractAppTestCase.swift */; };
+		0A9A13A0207774AC00E197A1 /* KeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A139F207774AC00E197A1 /* KeyValueStore.swift */; };
+		0A9A13A22077751700E197A1 /* SecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13A12077751700E197A1 /* SecureStore.swift */; };
+		0A9A13A42077758100E197A1 /* BiometricAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13A32077758100E197A1 /* BiometricAuthenticationService.swift */; };
+		0A9A13A6207775DF00E197A1 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13A5207775DF00E197A1 /* Clock.swift */; };
+		0A9A13A8207776E300E197A1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13A7207776E300E197A1 /* Logger.swift */; };
+		0A9A13AA2077778300E197A1 /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13A92077778300E197A1 /* DomainRegistry.swift */; };
+		0A9A13AC2077778E00E197A1 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13AB2077778E00E197A1 /* DomainRegistryTests.swift */; };
+		0A9A13AE20777C7000E197A1 /* DomainTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13AD20777C7000E197A1 /* DomainTestCase.swift */; };
 		0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */; };
 		0AA27832205FC4E600EBB9D1 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27831205FC4E600EBB9D1 /* Application.swift */; };
 		0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27833205FC5A700EBB9D1 /* StartScreen.swift */; };
@@ -126,7 +134,7 @@
 		55E670CD204D7B5300234E5C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E670CC204D7B5300234E5C /* Account.swift */; };
 		55E670D0204D92DF00234E5C /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E670CF204D92DF00234E5C /* UserDefaultsService.swift */; };
 		55E670D2204DAD3000234E5C /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E670D1204DAD3000234E5C /* UserDefaultKeys.swift */; };
-		55E670D320502B6100234E5C /* BiometricAuthenticationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A764205000670089327D /* BiometricAuthenticationServiceTests.swift */; };
+		55E670D320502B6100234E5C /* BiometricServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05A764205000670089327D /* BiometricServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,8 +187,8 @@
 		0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceIntegrationTests.swift; sourceTree = "<group>"; };
-		0A05A7622050004C0089327D /* BiometricAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationService.swift; sourceTree = "<group>"; };
-		0A05A764205000670089327D /* BiometricAuthenticationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationServiceTests.swift; sourceTree = "<group>"; };
+		0A05A7622050004C0089327D /* BiometricService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricService.swift; sourceTree = "<group>"; };
+		0A05A764205000670089327D /* BiometricServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricServiceTests.swift; sourceTree = "<group>"; };
 		0A0A89FD206D1492004DFD31 /* EthereumAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAccount.swift; sourceTree = "<group>"; };
 		0A0A8A01206D14ED004DFD31 /* EncryptionServiceValueObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionServiceValueObjects.swift; sourceTree = "<group>"; };
 		0A0FEB15206B928B006F1B88 /* EthereumAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAccountTests.swift; sourceTree = "<group>"; };
@@ -200,6 +208,14 @@
 		0A92372620767C3800EDB1D8 /* AbstractRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractRegistryTests.swift; sourceTree = "<group>"; };
 		0A92372820767C4000EDB1D8 /* AbstractRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractRegistry.swift; sourceTree = "<group>"; };
 		0A92372A2076824900EDB1D8 /* AbstractAppTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractAppTestCase.swift; sourceTree = "<group>"; };
+		0A9A139F207774AC00E197A1 /* KeyValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueStore.swift; sourceTree = "<group>"; };
+		0A9A13A12077751700E197A1 /* SecureStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStore.swift; sourceTree = "<group>"; };
+		0A9A13A32077758100E197A1 /* BiometricAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationService.swift; sourceTree = "<group>"; };
+		0A9A13A5207775DF00E197A1 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		0A9A13A7207776E300E197A1 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		0A9A13A92077778300E197A1 /* DomainRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistry.swift; sourceTree = "<group>"; };
+		0A9A13AB2077778E00E197A1 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
+		0A9A13AD20777C7000E197A1 /* DomainTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainTestCase.swift; sourceTree = "<group>"; };
 		0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeUITests.swift; sourceTree = "<group>"; };
 		0AA27831205FC4E600EBB9D1 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		0AA27833205FC5A700EBB9D1 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
@@ -369,12 +385,66 @@
 			isa = PBXGroup;
 			children = (
 				0A92370E207618A000EDB1D8 /* AuthenticationApplicationService.swift */,
-				0A92372820767C4000EDB1D8 /* AbstractRegistry.swift */,
-				0A92372620767C3800EDB1D8 /* AbstractRegistryTests.swift */,
 				0A923724207678E600EDB1D8 /* ApplicationServiceRegistry.swift */,
 				0A923722207678BE00EDB1D8 /* ApplicationServiceRegistryTests.swift */,
 			);
 			path = ApplicationLayer;
+			sourceTree = "<group>";
+		};
+		0A9A139E207773FE00E197A1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0A92372820767C4000EDB1D8 /* AbstractRegistry.swift */,
+				0A92372620767C3800EDB1D8 /* AbstractRegistryTests.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0A9A13AF20777ED900E197A1 /* keyValueStore */ = {
+			isa = PBXGroup;
+			children = (
+				55E670CF204D92DF00234E5C /* UserDefaultsService.swift */,
+				0AB0FF61204EF85B0066682F /* UserDefaultsIntegrationTests.swift */,
+			);
+			path = keyValueStore;
+			sourceTree = "<group>";
+		};
+		0A9A13B020777EE800E197A1 /* secureStore */ = {
+			isa = PBXGroup;
+			children = (
+				0AB0FF50204EA9940066682F /* KeychainService.swift */,
+				0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */,
+			);
+			path = secureStore;
+			sourceTree = "<group>";
+		};
+		0A9A13B120777EF000E197A1 /* biometry */ = {
+			isa = PBXGroup;
+			children = (
+				0A05A7622050004C0089327D /* BiometricService.swift */,
+				0A05A764205000670089327D /* BiometricServiceTests.swift */,
+			);
+			path = biometry;
+			sourceTree = "<group>";
+		};
+		0A9A13B220777EFF00E197A1 /* clock */ = {
+			isa = PBXGroup;
+			children = (
+				555DD6DE205167D000D1178A /* SystemClockService.swift */,
+				555DD6E020516CB800D1178A /* SystemClockServiceIntegrationTests.swift */,
+				0A362502205ABE9700B21545 /* MockClockService.swift */,
+			);
+			path = clock;
+			sourceTree = "<group>";
+		};
+		0A9A13B320777F0B00E197A1 /* ethereum */ = {
+			isa = PBXGroup;
+			children = (
+				0A0A8A01206D14ED004DFD31 /* EncryptionServiceValueObjects.swift */,
+				0A0FEB17206B9775006F1B88 /* EncryptionService.swift */,
+				0A0FEB19206B9878006F1B88 /* EncryptionServiceTests.swift */,
+			);
+			path = ethereum;
 			sourceTree = "<group>";
 		};
 		0AB0FF57204EF81C0066682F /* safeIntegrationTests */ = {
@@ -483,9 +553,10 @@
 		5540A4ED203C3054009C9BE3 /* safe */ = {
 			isa = PBXGroup;
 			children = (
-				55E670C9204D7AEE00234E5C /* DomainModelLayer */,
-				55E670CE204D91D100234E5C /* ServiceLayer */,
+				0A9A139E207773FE00E197A1 /* Common */,
 				0A92371220762F7500EDB1D8 /* ApplicationLayer */,
+				55E670C9204D7AEE00234E5C /* DomainModelLayer */,
+				55E670CE204D91D100234E5C /* PortAdapter */,
 				555DD6D52051488F00D1178A /* AppFlow */,
 				55147D51204048BC00AD0E1F /* OnboardingFlow */,
 				55147D49203DAE1D00AD0E1F /* generated */,
@@ -554,7 +625,7 @@
 			path = AppFlow;
 			sourceTree = "<group>";
 		};
-		558036812056CC50004E7452 /* Logger */ = {
+		558036812056CC50004E7452 /* logger */ = {
 			isa = PBXGroup;
 			children = (
 				5580367B20569240004E7452 /* LogService.swift */,
@@ -568,7 +639,7 @@
 				558036842056D9BE004E7452 /* LogFormatter.swift */,
 				558036822056D98C004E7452 /* LogFormatterTests.swift */,
 			);
-			path = Logger;
+			path = logger;
 			sourceTree = "<group>";
 		};
 		558FD80D20766BA0004F070E /* NewSafeFlow */ = {
@@ -608,28 +679,29 @@
 				555DD6DC2051583200D1178A /* SessionTests.swift */,
 				0A0A89FD206D1492004DFD31 /* EthereumAccount.swift */,
 				0A0FEB15206B928B006F1B88 /* EthereumAccountTests.swift */,
+				0A9A139F207774AC00E197A1 /* KeyValueStore.swift */,
+				0A9A13A12077751700E197A1 /* SecureStore.swift */,
+				0A9A13A32077758100E197A1 /* BiometricAuthenticationService.swift */,
+				0A9A13A5207775DF00E197A1 /* Clock.swift */,
+				0A9A13A7207776E300E197A1 /* Logger.swift */,
+				0A9A13A92077778300E197A1 /* DomainRegistry.swift */,
+				0A9A13AB2077778E00E197A1 /* DomainRegistryTests.swift */,
+				0A9A13AD20777C7000E197A1 /* DomainTestCase.swift */,
 			);
 			path = DomainModelLayer;
 			sourceTree = "<group>";
 		};
-		55E670CE204D91D100234E5C /* ServiceLayer */ = {
+		55E670CE204D91D100234E5C /* PortAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				558036812056CC50004E7452 /* Logger */,
-				55E670CF204D92DF00234E5C /* UserDefaultsService.swift */,
-				0AB0FF61204EF85B0066682F /* UserDefaultsIntegrationTests.swift */,
-				0AB0FF50204EA9940066682F /* KeychainService.swift */,
-				0A05A760204FE1EB0089327D /* KeychainServiceIntegrationTests.swift */,
-				0A05A7622050004C0089327D /* BiometricAuthenticationService.swift */,
-				0A05A764205000670089327D /* BiometricAuthenticationServiceTests.swift */,
-				555DD6DE205167D000D1178A /* SystemClockService.swift */,
-				555DD6E020516CB800D1178A /* SystemClockServiceIntegrationTests.swift */,
-				0A362502205ABE9700B21545 /* MockClockService.swift */,
-				0A0A8A01206D14ED004DFD31 /* EncryptionServiceValueObjects.swift */,
-				0A0FEB17206B9775006F1B88 /* EncryptionService.swift */,
-				0A0FEB19206B9878006F1B88 /* EncryptionServiceTests.swift */,
+				558036812056CC50004E7452 /* logger */,
+				0A9A13AF20777ED900E197A1 /* keyValueStore */,
+				0A9A13B020777EE800E197A1 /* secureStore */,
+				0A9A13B120777EF000E197A1 /* biometry */,
+				0A9A13B220777EFF00E197A1 /* clock */,
+				0A9A13B320777F0B00E197A1 /* ethereum */,
 			);
-			path = ServiceLayer;
+			path = PortAdapter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -893,19 +965,24 @@
 				555DD6DF205167D000D1178A /* SystemClockService.swift in Sources */,
 				0A0A8A02206D14ED004DFD31 /* EncryptionServiceValueObjects.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
+				0A9A13A6207775DF00E197A1 /* Clock.swift in Sources */,
 				55147D6020405BBA00AD0E1F /* Colors.swift in Sources */,
+				0A9A13AA2077778300E197A1 /* DomainRegistry.swift in Sources */,
 				558036852056D9BE004E7452 /* LogFormatter.swift in Sources */,
 				0AB0FF51204EA9940066682F /* KeychainService.swift in Sources */,
 				55E670CD204D7B5300234E5C /* Account.swift in Sources */,
 				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
 				0A0455F32048505500088B5E /* MasterPasswordFlowCoordinator.swift in Sources */,
 				0A0FEB18206B9775006F1B88 /* EncryptionService.swift in Sources */,
-				0A05A7632050004C0089327D /* BiometricAuthenticationService.swift in Sources */,
+				0A05A7632050004C0089327D /* BiometricService.swift in Sources */,
+				0A9A13A42077758100E197A1 /* BiometricAuthenticationService.swift in Sources */,
 				5580367E2056BDF4004E7452 /* ConsoleLogger.swift in Sources */,
 				558036892057CD99004E7452 /* CrashlyticsLogger.swift in Sources */,
+				0A9A13A22077751700E197A1 /* SecureStore.swift in Sources */,
 				0AD93E192048350D008C38CA /* ConfirmPaswordViewController.swift in Sources */,
 				0A92370F207618A000EDB1D8 /* AuthenticationApplicationService.swift in Sources */,
 				55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */,
+				0A9A13A0207774AC00E197A1 /* KeyValueStore.swift in Sources */,
 				55E670D2204DAD3000234E5C /* UserDefaultKeys.swift in Sources */,
 				0A0455F120484FD800088B5E /* OnboardingFlowCoordinator.swift in Sources */,
 				558FD80F20766BCD004F070E /* NewSafeFlowCoordinator.swift in Sources */,
@@ -919,6 +996,7 @@
 				5528C43E20470AF500E79A4D /* PasswordValidator.swift in Sources */,
 				55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */,
 				0A923725207678E600EDB1D8 /* ApplicationServiceRegistry.swift in Sources */,
+				0A9A13A8207776E300E197A1 /* Logger.swift in Sources */,
 				5580367C20569240004E7452 /* LogService.swift in Sources */,
 				558FD81120767277004F070E /* PairWithChromeExtensionViewController.swift in Sources */,
 				55CF4C9E2057EF8500F1B4BB /* SetupSafeOptionsViewController.swift in Sources */,
@@ -934,6 +1012,7 @@
 				0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */,
 				0A923723207678BE00EDB1D8 /* ApplicationServiceRegistryTests.swift in Sources */,
 				55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */,
+				0A9A13AC2077778E00E197A1 /* DomainRegistryTests.swift in Sources */,
 				0A7E17AD204E99EB00C9078E /* MockAccount.swift in Sources */,
 				0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */,
 				558690A32057D6D1003BF728 /* TestError.swift in Sources */,
@@ -949,6 +1028,7 @@
 				558FD806207652E3004F070E /* SetupSafeOptionsViewControllerTests.swift in Sources */,
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
 				555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */,
+				0A9A13AE20777C7000E197A1 /* DomainTestCase.swift in Sources */,
 				558036802056BE0C004E7452 /* ConsoleLoggerTests.swift in Sources */,
 				0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */,
 				0A0FEB1A206B9878006F1B88 /* EncryptionServiceTests.swift in Sources */,
@@ -958,7 +1038,7 @@
 				5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */,
 				0A0455F52048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
 				558036872057CD76004E7452 /* CrashlyticsLoggerTests.swift in Sources */,
-				55E670D320502B6100234E5C /* BiometricAuthenticationServiceTests.swift in Sources */,
+				55E670D320502B6100234E5C /* BiometricServiceTests.swift in Sources */,
 				5580367A20569212004E7452 /* LogServiceTests.swift in Sources */,
 				55E670CB204D7B2500234E5C /* AccountTests.swift in Sources */,
 				0A0FEB16206B928B006F1B88 /* EthereumAccountTests.swift in Sources */,
