@@ -58,6 +58,23 @@ struct Mnemonic {
         self.words = words
     }
 
+    init(_ string: String) {
+        self.words = string.components(separatedBy: " ")
+    }
+
+    func string() -> String {
+        return words.joined(separator: " ")
+    }
+
+}
+
+extension Mnemonic: Equatable {
+
+    // swiftlint:disable operator_whitespace
+    static func ==(lhs: Mnemonic, rhs: Mnemonic) -> Bool {
+        return lhs.words == rhs.words
+    }
+
 }
 
 struct EthereumAddress {
