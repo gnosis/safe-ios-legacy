@@ -4,7 +4,7 @@
 
 import Foundation
 
-final class ConsoleLogger: Logger {
+final class ConsoleLogger: LogWriter {
 
     private let formatter = LogFormatter()
 

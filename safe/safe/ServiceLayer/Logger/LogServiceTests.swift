@@ -100,7 +100,7 @@ extension LogServiceTests {
 
 }
 
-class MockLogger: Logger {
+class MockLogger: LogWriter {
 
     var detailed = false
     var loggedMessages: String { return log.joined(separator: " ") }

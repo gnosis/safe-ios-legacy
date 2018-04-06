@@ -37,6 +37,7 @@
 		0A9A13A22077751700E197A1 /* SecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13A12077751700E197A1 /* SecureStore.swift */; };
 		0A9A13A42077758100E197A1 /* BiometricAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13A32077758100E197A1 /* BiometricAuthenticationService.swift */; };
 		0A9A13A6207775DF00E197A1 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13A5207775DF00E197A1 /* Clock.swift */; };
+		0A9A13A8207776E300E197A1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13A7207776E300E197A1 /* Logger.swift */; };
 		0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */; };
 		0AA27832205FC4E600EBB9D1 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27831205FC4E600EBB9D1 /* Application.swift */; };
 		0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27833205FC5A700EBB9D1 /* StartScreen.swift */; };
@@ -208,6 +209,7 @@
 		0A9A13A12077751700E197A1 /* SecureStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStore.swift; sourceTree = "<group>"; };
 		0A9A13A32077758100E197A1 /* BiometricAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationService.swift; sourceTree = "<group>"; };
 		0A9A13A5207775DF00E197A1 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		0A9A13A7207776E300E197A1 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeUITests.swift; sourceTree = "<group>"; };
 		0AA27831205FC4E600EBB9D1 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		0AA27833205FC5A700EBB9D1 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
@@ -628,6 +630,7 @@
 				0A9A13A12077751700E197A1 /* SecureStore.swift */,
 				0A9A13A32077758100E197A1 /* BiometricAuthenticationService.swift */,
 				0A9A13A5207775DF00E197A1 /* Clock.swift */,
+				0A9A13A7207776E300E197A1 /* Logger.swift */,
 			);
 			path = DomainModelLayer;
 			sourceTree = "<group>";
@@ -943,6 +946,7 @@
 				5528C43E20470AF500E79A4D /* PasswordValidator.swift in Sources */,
 				55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */,
 				0A923725207678E600EDB1D8 /* ApplicationServiceRegistry.swift in Sources */,
+				0A9A13A8207776E300E197A1 /* Logger.swift in Sources */,
 				5580367C20569240004E7452 /* LogService.swift in Sources */,
 				558FD81120767277004F070E /* PairWithChromeExtensionViewController.swift in Sources */,
 				55CF4C9E2057EF8500F1B4BB /* SetupSafeOptionsViewController.swift in Sources */,
