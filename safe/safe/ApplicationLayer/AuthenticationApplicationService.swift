@@ -44,15 +44,15 @@ class AuthenticationApplicationService {
         return !isAuthenticationBlocked() && account.isBiometryAuthenticationAvailable
     }
 
-    func authenticateUser(password: String? = nil, completion: @escaping (Bool) -> Void) {
+    func authenticateUser(password: String? = nil, completion: ((Bool) -> Void)? = nil) {
         if isAuthenticationBlocked() {
-            completion(false)
+            completion?(false)
             return
         }
         if let password = password {
-            completion(account.authenticateWithPassword(password))
+            completion?(account.authenticateWithPassword(password))
         } else {
-            account.authenticateWithBiometry(completion: completion)
+            account.authenticateWithBiometry { completion?($0) }
         }
     }
 

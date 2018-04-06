@@ -8,29 +8,38 @@ import XCTest
 class AppFlowCoordinatorTests: AbstractAppTestCase {
 
     var flowCoordinator = AppFlowCoordinator()
+    let password = "MyPassword"
 
-    func test_startViewController_whenPasswordWasNotSet_thenPresentingOnboarding() {
-        account.hasMasterPassword = false
+    override func setUp() {
+        super.setUp()
+        // TODO: pull up
+        ApplicationServiceRegistry.put(service: authenticationService,
+                                       for: AuthenticationApplicationService.self)
+
+        try? authenticationService.registerUser(password: password)
+    }
+
+    func test_startViewController_whenUserNotRegistered_thenPresentingOnboarding() {
+        authenticationService.unregisterUser()
         let root = flowCoordinator.startViewController()
         XCTAssertTrue(type(of: root) == type(of: flowCoordinator.onboardingFlowCoordinator.startViewController()))
     }
 
-    func test_whenStartingAppAndHasPassword_thenIgnoresSessionStateAndShowsLockedController() {
-        account.hasMasterPassword = true
-        account.isSessionActive = true
+    func test_whenStartingAppAndAlreadyRegistered_thenIgnoresSessionStateAndShowsLockedController() {
+        authenticationService.authenticateUser(password: password)
         guard let rootVC = rootViewControlleOnAppStartrAfterUnlocking() else { return }
         XCTAssertTrue(type(of: rootVC) == type(of: flowCoordinator.onboardingFlowCoordinator.startViewController()))
     }
 
-    func test_whenSessionExpires_thenLocks() {
-        account.isSessionActive = false
-        account.hasMasterPassword = true
+    func test_whenAuthenticationInvalidated_thenLocks() {
+        authenticationService.invalidateAuthentication()
+
         XCTAssertTrue(flowCoordinator.startViewController() is UnlockViewController)
     }
 
-    func test_whenAppBecomesActiveAndSessionExpires_thenLocks() {
-        account.hasMasterPassword = true
-        account.isSessionActive = false
+    func test_whenAppBecomesActiveAndNotAuthenticated_thenLocks() {
+        authenticationService.invalidateAuthentication()
+
         let securedVC = UIViewController()
         UIApplication.rootViewController = securedVC
         flowCoordinator.appEntersForeground()
@@ -40,6 +49,8 @@ class AppFlowCoordinatorTests: AbstractAppTestCase {
         }
         XCTAssertFalse(rootVC === securedVC)
         XCTAssertTrue(rootVC is UnlockViewController)
+
+        authenticationService.allowAuthentication()
         let anySender: Any = self
         (rootVC as? UnlockViewController)?.loginWithBiometry(anySender)
         delay()
@@ -47,21 +58,19 @@ class AppFlowCoordinatorTests: AbstractAppTestCase {
     }
 
     func test_whenAppIsLockedAndBecomesActive_thenDoesntLockTwice() {
-        account.hasMasterPassword = true
-        account.isSessionActive = false
+        authenticationService.invalidateAuthentication()
         XCTAssertFalse(rootViewControlleOnAppStartrAfterUnlocking() is UnlockViewController)
     }
 
-    func test_whenAppBecomesActiveAndSessionIsActive_thenDoesntLock() {
-        account.hasMasterPassword = true
-        account.isSessionActive = true
-        assertThatUnlockedAfterBecomingActive()
+    func test_whenAppBecomesActiveAndAlreadyAuthenticated_thenDoesntLock() {
+        authenticationService.allowAuthentication()
+        authenticationService.authenticateUser(password: password)
+        XCTAssertTrue(isUnlockedAfterBecomingActive())
     }
 
-    func test_whenAppBecomesActiveButNoMasterPasswordSet_thenDoesNotLock() {
-        account.hasMasterPassword = false
-        account.isSessionActive = false
-        assertThatUnlockedAfterBecomingActive()
+    func test_whenAppBecomesActiveButNotRegistered_thenDoesNotLock() {
+        authenticationService.unregisterUser()
+        XCTAssertTrue(isUnlockedAfterBecomingActive())
     }
 
 }
@@ -74,7 +83,7 @@ extension AppFlowCoordinatorTests {
             return nil
         }
         UIApplication.rootViewController = unlockVC
-        account.shouldBiometryAuthenticationSuccess = true
+        authenticationService.allowAuthentication()
         let anySender: Any = self
         unlockVC.loginWithBiometry(anySender)
         delay()
@@ -85,14 +94,14 @@ extension AppFlowCoordinatorTests {
         return rootVC
     }
 
-    private func assertThatUnlockedAfterBecomingActive() {
+    private func isUnlockedAfterBecomingActive() -> Bool {
         let securedVC = UIViewController()
         UIApplication.rootViewController = securedVC
         flowCoordinator.appEntersForeground()
         guard let rootVC = UIApplication.rootViewController else {
             XCTFail("Expected to have root view controller")
-            return
+            return false
         }
-        XCTAssertTrue(rootVC === securedVC)
+         return rootVC === securedVC
     }
 }

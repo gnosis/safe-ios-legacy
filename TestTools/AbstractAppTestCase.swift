@@ -8,6 +8,7 @@ import XCTest
 class AbstractAppTestCase: XCTestCase {
 
     var account = MockAccount()
+    let authenticationService = MockAuthenticationService()
 
     override func setUp() {
         super.setUp()

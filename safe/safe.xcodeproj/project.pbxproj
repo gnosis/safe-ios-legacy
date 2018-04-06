@@ -41,6 +41,7 @@
 		0A9A13AA2077778300E197A1 /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13A92077778300E197A1 /* DomainRegistry.swift */; };
 		0A9A13AC2077778E00E197A1 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13AB2077778E00E197A1 /* DomainRegistryTests.swift */; };
 		0A9A13AE20777C7000E197A1 /* DomainTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13AD20777C7000E197A1 /* DomainTestCase.swift */; };
+		0A9A13B52077AAA800E197A1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */; };
 		0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */; };
 		0AA27832205FC4E600EBB9D1 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27831205FC4E600EBB9D1 /* Application.swift */; };
 		0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27833205FC5A700EBB9D1 /* StartScreen.swift */; };
@@ -216,6 +217,7 @@
 		0A9A13A92077778300E197A1 /* DomainRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistry.swift; sourceTree = "<group>"; };
 		0A9A13AB2077778E00E197A1 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
 		0A9A13AD20777C7000E197A1 /* DomainTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainTestCase.swift; sourceTree = "<group>"; };
+		0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeUITests.swift; sourceTree = "<group>"; };
 		0AA27831205FC4E600EBB9D1 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		0AA27833205FC5A700EBB9D1 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 				0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */,
 				0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */,
 				0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */,
+				0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */,
 				555DD6D6205148D100D1178A /* UnlockViewController.swift */,
 				555DD6D82051497700D1178A /* UnlockViewControllerTests.swift */,
 				0A527324205BCCF4004A5F9A /* CountdownLabel.swift */,
@@ -1017,6 +1020,7 @@
 				0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */,
 				558690A32057D6D1003BF728 /* TestError.swift in Sources */,
 				0AE75CDA20611359002D5E2D /* SafeUIKitExtensionsTests.swift in Sources */,
+				0A9A13B52077AAA800E197A1 /* MockAuthenticationService.swift in Sources */,
 				55ACFD9D2075092E000F54CC /* FlowCoordinatorTests.swift in Sources */,
 				0AD93E1B2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift in Sources */,
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,

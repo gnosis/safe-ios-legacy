@@ -25,7 +25,7 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
     }
 
     private var shouldLockWhenAppActive: Bool {
-        return authenticationService.isUserAuthenticated()
+        return authenticationService.isUserRegistered() && !authenticationService.isUserAuthenticated()
     }
 
     func startViewController() -> UIViewController {
@@ -43,7 +43,8 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
     }
 
     func appEntersForeground() {
-        guard let rootVC = self.rootViewController, !(rootVC is UnlockViewController) && shouldLockWhenAppActive else {
+        guard let rootVC = self.rootViewController,
+            !(rootVC is UnlockViewController) && shouldLockWhenAppActive else {
             return
         }
         lockedViewController = rootVC

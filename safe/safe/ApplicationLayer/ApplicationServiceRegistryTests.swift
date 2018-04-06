@@ -12,11 +12,3 @@ class ApplicationServiceRegistryTests: XCTestCase {
     }
 
 }
-
-class MockAuthenticationService: AuthenticationApplicationService {
-
-    init() {
-        super.init(account: MockAccount())
-    }
-
-}
