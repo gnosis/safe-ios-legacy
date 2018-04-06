@@ -9,14 +9,7 @@ class ApplicationServiceRegistryTests: XCTestCase {
 
     func test_authenticationService_exists() {
         XCTAssertNotNil(ApplicationServiceRegistry.authenticationService)
-    }
-
-}
-
-class MockAuthenticationService: AuthenticationApplicationService {
-
-    init() {
-        super.init(account: MockAccount())
+        XCTAssertNotNil(ApplicationServiceRegistry.clock)
     }
 
 }

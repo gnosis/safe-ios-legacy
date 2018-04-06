@@ -8,7 +8,6 @@ import XCTest
 class UnlockViewControllerTests: AbstractAppTestCase {
 
     var vc: UnlockViewController!
-    let clock = MockClockService()
     var didLogIn = false
 
     override func setUp() {
@@ -28,7 +27,7 @@ class UnlockViewControllerTests: AbstractAppTestCase {
 
     func test_whenAppeared_thenRequestsBiometricAuthentication() {
         vc.viewDidAppear(false)
-        XCTAssertTrue(account.didRequestBiometricAuthentication)
+        XCTAssertTrue(authenticationService.didRequestBiometricAuthentication)
     }
 
     func test_whenBiometrySuccess_thenCallsCompletion() {
@@ -53,52 +52,54 @@ class UnlockViewControllerTests: AbstractAppTestCase {
     }
 
     func test_whenBiometryButtonTapped_thenAuthenticatesWithBiometry() {
+        authenticationService.allowAuthentication()
         vc.loginWithBiometry(self)
         delay()
         XCTAssertTrue(didLogIn)
     }
 
     func test_whenTextInputEntered_thenRequestsPasswordAuthentication() {
+        delay()
         hitReturn()
-        XCTAssertTrue(account.didRequestPasswordAuthentication)
+        XCTAssertTrue(authenticationService.didRequestPasswordAuthentication)
     }
 
     func test_whenPasswordPasses_thenCompletionCalled() {
-        account.shouldAuthenticateWithPassword = true
+        authenticationService.allowAuthentication()
         hitReturn()
         XCTAssertTrue(didLogIn)
     }
 
     func test_whenCannotAuthenticateWithBiometry_thenHidesBiometryButton() {
-        account.isBiometryAuthenticationAvailable = false
+        authenticationService.makeBiometricAuthenticationImpossible()
         vc = UnlockViewController.create()
         vc.loadViewIfNeeded()
         XCTAssertTrue(vc.loginWithBiometryButton.isHidden)
     }
 
     func test_whenBiometryBecomesUnavailableAfterFailedAuthentication_thenHidesBiometryButton() {
-        account.isBiometryAuthenticationAvailable = false
-        account.shouldBiometryAuthenticationSuccess = false
+        authenticationService.makeBiometricAuthenticationImpossible()
+        authenticationService.invalidateAuthentication()
         vc.loginWithBiometry(self)
         delay()
         XCTAssertTrue(vc.loginWithBiometryButton.isHidden)
     }
 
     func test_whenBiometryFaceID_thenUsesMatchingIcon() {
-        account.isBiometryFaceID = true
+        authenticationService.enableFaceIDSupport()
         vc = UnlockViewController.create()
         vc.loadViewIfNeeded()
         XCTAssertEqual(vc.loginWithBiometryButton.image(for: .normal), Asset.faceIdIcon.image)
     }
 
     func test_whenAccountIsBlocked_thenShowsCountdown() {
-        account.isBlocked = true
+        authenticationService.blockAuthentication()
         createVC()
         assertShowsCountdown()
     }
 
     func test_whenCountdownReachesZero_thenPasswordEntryFocused() {
-        account.isBlocked = true
+        authenticationService.blockAuthentication()
         createVC()
         guard let window = UIApplication.shared.keyWindow else {
             XCTFail("Must have window")
@@ -111,26 +112,20 @@ class UnlockViewControllerTests: AbstractAppTestCase {
         XCTAssertTrue(vc.textInput.isActive)
     }
 
-    fileprivate func hitReturn() {
-        vc.textInputDidReturn()
-        delay()
-    }
-
-    func test_whenAfterEnteringPasswordAccountIsBlocked_thenBlocksPasswordEntry() {
-        account.shouldAuthenticateWithPassword = false
-        account.isBlocked = true
+    func test_whenWasBlockedBeforeEnteringPassword_thenBlocksPasswordEntry() {
+        authenticationService.blockAuthentication()
         hitReturn()
         assertShowsCountdown()
     }
 
     func test_whenAccountBlocked_thenMustNotRequestBiometricAuthentication() {
-        account.isBlocked = true
+        authenticationService.blockAuthentication()
         vc.viewDidAppear(false)
-        XCTAssertFalse(account.didRequestBiometricAuthentication)
+        XCTAssertFalse(authenticationService.didRequestBiometricAuthentication)
     }
 
     func test_whenPasswordFails_thenInputShakes() {
-        account.shouldAuthenticateWithPassword = false
+        authenticationService.invalidateAuthentication()
         hitReturn()
         XCTAssertTrue(vc.textInput.isShaking)
     }
@@ -139,18 +134,26 @@ class UnlockViewControllerTests: AbstractAppTestCase {
 
 extension UnlockViewControllerTests {
 
+    private func hitReturn() {
+        vc.textInputDidReturn()
+        delay()
+    }
+
     private func createVC(blockPeriod: TimeInterval = 15) {
-        account.blockedPeriodDuration = blockPeriod
-        vc = UnlockViewController.create(clockService: clock) { [unowned self] in
+        authenticationService.configureBlockDuration(blockPeriod)
+        vc = UnlockViewController.create { [unowned self] in
             self.didLogIn = true
         }
         UIApplication.shared.keyWindow?.rootViewController = vc
     }
 
     private func authenticateWithBiometryResult(_ result: Bool) {
-        account.shouldCallBiometricCompletionImmediately = false
+        if result {
+            authenticationService.allowAuthentication()
+        } else {
+            authenticationService.invalidateAuthentication()
+        }
         vc.viewDidAppear(false)
-        account.completeBiometryAuthentication(success: result)
         delay()
     }
 

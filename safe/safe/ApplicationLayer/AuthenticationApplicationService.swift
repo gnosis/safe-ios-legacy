@@ -12,12 +12,16 @@ enum AuthenticationMethod {
 
 class AuthenticationApplicationService {
 
-    let account: AccountProtocol
+    private let account: AccountProtocol = Account.shared
 
-    var blockedPeriodDuration: TimeInterval { return account.blockedPeriodDuration }
-
-    init(account: AccountProtocol) {
-        self.account = account
+    var blockedPeriodDuration: TimeInterval {
+        return account.blockedPeriodDuration
+    }
+    var maxPasswordAttempts: Int {
+        return account.maxPasswordAttempts
+    }
+    var sessionDuration: TimeInterval {
+        return account.sessionDuration
     }
 
     func isUserAuthenticated() -> Bool {
@@ -44,20 +48,20 @@ class AuthenticationApplicationService {
         return !isAuthenticationBlocked() && account.isBiometryAuthenticationAvailable
     }
 
-    func authenticateUser(password: String? = nil, completion: @escaping (Bool) -> Void) {
+    func authenticateUser(password: String? = nil, completion: ((Bool) -> Void)? = nil) {
         if isAuthenticationBlocked() {
-            completion(false)
+            completion?(false)
             return
         }
         if let password = password {
-            completion(account.authenticateWithPassword(password))
+            completion?(account.authenticateWithPassword(password))
         } else {
-            account.authenticateWithBiometry(completion: completion)
+            account.authenticateWithBiometry { completion?($0) }
         }
     }
 
     func registerUser(password: String, completion: (() -> Void)? = nil) throws {
-        try account.cleanupAllData()
+        try reset()
         try account.setMasterPassword(password)
         account.activateBiometricAuthentication {
             completion?()
@@ -74,6 +78,10 @@ class AuthenticationApplicationService {
 
     func configureBlockDuration(_ duration: TimeInterval) {
         account.blockedPeriodDuration = duration
+    }
+
+    func reset() throws {
+        try account.cleanupAllData()
     }
 
 }

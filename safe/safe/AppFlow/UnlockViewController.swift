@@ -12,7 +12,7 @@ final class UnlockViewController: UIViewController {
     @IBOutlet weak var textInput: TextInput!
     @IBOutlet weak var loginWithBiometryButton: UIButton!
     private var unlockCompletion: (() -> Void)!
-    private var clockService: Clock!
+    private var clockService: Clock { return ApplicationServiceRegistry.clock }
     private var authenticationService: AuthenticationApplicationService {
         return ApplicationServiceRegistry.authenticationService
     }
@@ -21,10 +21,8 @@ final class UnlockViewController: UIViewController {
         static let header = NSLocalizedString("app.unlock.header", comment: "Unlock screen header")
     }
 
-    static func create(clockService: Clock = SystemClockService(),
-                       completion: (() -> Void)? = nil) -> UnlockViewController {
+    static func create(completion: (() -> Void)? = nil) -> UnlockViewController {
         let vc = StoryboardScene.AppFlow.unlockViewController.instantiate()
-        vc.clockService = clockService
         vc.unlockCompletion = completion ?? {}
         return vc
     }
@@ -72,6 +70,7 @@ final class UnlockViewController: UIViewController {
     }
 
     private func auhtenticateWithBiometry() {
+        guard !authenticationService.isAuthenticationBlocked() else { return }
         authenticationService.authenticateUser {  [unowned self] success in
             DispatchQueue.main.async {
                 if success {

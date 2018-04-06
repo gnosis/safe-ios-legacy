@@ -72,6 +72,20 @@ class AccountTests: DomainTestCase {
         XCTAssertThrowsError(try account.cleanupAllData())
     }
 
+    func test_cleanupAllData_resetsUserDefaults() {
+        mockUserDefaults.setInt(1, for: UserDefaultsKey.passwordAttemptCount.rawValue)
+        mockUserDefaults.setBool(true, for: UserDefaultsKey.masterPasswordWasSet.rawValue)
+        cleanupAllData()
+        XCTAssertNil(mockUserDefaults.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue))
+        XCTAssertNil(mockUserDefaults.int(for: UserDefaultsKey.passwordAttemptCount.rawValue))
+    }
+
+    func test_cleanupAllData_resetsKeychain() {
+        setPassword()
+        cleanupAllData()
+        XCTAssertNil(try! keychain.password())
+    }
+
     // MARK: - activateBiometricAuthentication
 
     func test_activateBiometricAuthentication_whenInvoked_thenCallsAccountCompletionAfterBiometricActivation() {
@@ -246,22 +260,6 @@ class AccountTests: DomainTestCase {
         XCTAssertFalse(account.isBlocked)
         _ = account.authenticateWithPassword(wrongPassword)
         XCTAssertTrue(account.isBlocked)
-    }
-
-    // MARK: - resetAll
-
-    func test_resetAll_resetsUserDefaults() {
-        mockUserDefaults.setInt(1, for: UserDefaultsKey.passwordAttemptCount.rawValue)
-        mockUserDefaults.setBool(true, for: UserDefaultsKey.masterPasswordWasSet.rawValue)
-        account.resetAll()
-        XCTAssertNil(mockUserDefaults.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue))
-        XCTAssertNil(mockUserDefaults.int(for: UserDefaultsKey.passwordAttemptCount.rawValue))
-    }
-
-    func test_resetAll_resetsKeychain() {
-        setPassword()
-        account.resetAll()
-        XCTAssertNil(try! keychain.password())
     }
 
     // MARK: - sessionDuration

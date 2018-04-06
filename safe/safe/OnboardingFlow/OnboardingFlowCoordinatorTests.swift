@@ -10,7 +10,7 @@ class OnboardingFlowCoordinatorTests: AbstractAppTestCase {
     var flowCoordinator = OnboardingFlowCoordinator()
 
     func test_startViewController_whenNoMasterPassword_thenMasterPasswordFlowStarted() {
-        account.hasMasterPassword = false
+        authenticationService.unregisterUser()
         _ = flowCoordinator.startViewController()
         let masterPasswordVC = flowCoordinator.masterPasswordFlowCoordinator.startViewController()
         XCTAssertTrue(type(of: flowCoordinator.rootVC.childViewControllers[0]) ==
@@ -18,14 +18,14 @@ class OnboardingFlowCoordinatorTests: AbstractAppTestCase {
     }
 
     func test_startViewController_whenMasterPasswordIsSet_thenNewSafeFlowStarted() {
-        account.hasMasterPassword = true
+        try? authenticationService.registerUser(password: "password")
         _ = flowCoordinator.startViewController()
         let setupSafeVC = flowCoordinator.setupSafeFlowCoordinator.startViewController().childViewControllers[0]
         XCTAssertTrue(type(of: flowCoordinator.rootVC.childViewControllers[0]) == type(of: setupSafeVC))
     }
 
     func test_whenDidConfirmPassword_thenSetupSafeIsShown() {
-        account.hasMasterPassword = false
+        authenticationService.unregisterUser()
         _ = flowCoordinator.startViewController()
         flowCoordinator.masterPasswordFlowCoordinator.didConfirmPassword()
         delay()

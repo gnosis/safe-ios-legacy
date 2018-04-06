@@ -29,48 +29,47 @@ class TestSupportTests: AbstractAppTestCase {
 
     func test_setUp_whenSetPasswordFlagIsSet_thenSetsPassword() {
         support.setUp([ApplicationArguments.setPassword, "a"])
-        XCTAssertEqual(account.masterPassword, "a")
+        XCTAssertTrue(authenticationService.didRequestUserRegistration)
     }
 
     func test_setUp_whenSetPasswordWithoutNewPassword_thenDoesNothing() {
-        account.masterPassword = "some"
         support.setUp([ApplicationArguments.setPassword])
-        XCTAssertEqual(account.masterPassword, "some")
+        XCTAssertFalse(authenticationService.didRequestUserRegistration)
     }
 
     func test_setUp_whenSessionDurationProvided_thenSetsSessionDuration() {
         support.setUp([ApplicationArguments.setSessionDuration, "1.0"])
-        XCTAssertEqual(account.sessionDuration, 1)
+        XCTAssertEqual(authenticationService.sessionDuration, 1)
     }
 
     func test_setUp_whenSessionDurationWithoutValue_thenDoesNothing() {
-        account.sessionDuration = 1
+        authenticationService.configureSession(1)
         support.setUp([ApplicationArguments.setSessionDuration, "invalid"])
-        XCTAssertEqual(account.sessionDuration, 1)
+        XCTAssertEqual(authenticationService.sessionDuration, 1)
     }
 
     func test_setUp_whenSetMaxPasswordAttemptsProvided_thenSetsMaxAttempts() {
-        account.maxPasswordAttempts = 0
+        authenticationService.configureMaxPasswordAttempts(0)
         support.setUp([ApplicationArguments.setMaxPasswordAttempts, "1"])
-        XCTAssertEqual(account.maxPasswordAttempts, 1)
+        XCTAssertEqual(authenticationService.maxPasswordAttempts, 1)
     }
 
     func test_setUp_whenSetMaxPasswordAttemptsInvalid_thenDoesNothing() {
-        account.maxPasswordAttempts = 3
+        authenticationService.configureMaxPasswordAttempts(3)
         support.setUp([ApplicationArguments.setMaxPasswordAttempts, "invalid"])
-        XCTAssertEqual(account.maxPasswordAttempts, 3)
+        XCTAssertEqual(authenticationService.maxPasswordAttempts, 3)
     }
 
     func test_setUp_whenBlockedPeriodDurationSet_thenAccountChanged() {
-        account.blockedPeriodDuration = 1
+        authenticationService.configureBlockDuration(1)
         support.setUp([ApplicationArguments.setAccountBlockedPeriodDuration, "10.1"])
-        XCTAssertEqual(account.blockedPeriodDuration, 10.1)
+        XCTAssertEqual(authenticationService.blockedPeriodDuration, 10.1)
     }
 
     func test_setUp_whenBlockedPeriodDurationInvalid_thenDoesNothing() {
-        account.blockedPeriodDuration = 3
+        authenticationService.configureBlockDuration(3)
         support.setUp([ApplicationArguments.setAccountBlockedPeriodDuration, "invalid"])
-        XCTAssertEqual(account.blockedPeriodDuration, 3)
+        XCTAssertEqual(authenticationService.blockedPeriodDuration, 3)
     }
 
 }
