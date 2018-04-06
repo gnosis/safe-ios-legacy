@@ -37,6 +37,7 @@
 		0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9670D020480C7A00445AC2 /* TextInput.xib */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
+		558FD80A20765C53004F070E /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* BigButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		0A9670D820480C7B00445AC2 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
+		558FD80920765C53004F070E /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,13 +228,14 @@
 				556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */,
 				0A9670D020480C7A00445AC2 /* TextInput.xib */,
 				0A9670D320480C7B00445AC2 /* RuleLabel.swift */,
+				0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */,
 				0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */,
 				0A638BEC205A8D63003619EF /* LocalizedString.swift */,
-				0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */,
 				0A9670D220480C7B00445AC2 /* Fonts.swift */,
 				0A9670B520480C5700445AC2 /* Info.plist */,
 				0A0974EB20480E45005753DF /* safeUIKit.h */,
 				0A7AE8BE205284180044D5DD /* H1Label.swift */,
+				558FD80920765C53004F070E /* BigButton.swift */,
 				0A53AD5520598B5000D713AD /* Localizable.strings */,
 			);
 			path = safeUIKit;
@@ -515,6 +518,7 @@
 				0AD93E0920481461008C38CA /* Colors.swift in Sources */,
 				0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */,
 				0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */,
+				558FD80A20765C53004F070E /* BigButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

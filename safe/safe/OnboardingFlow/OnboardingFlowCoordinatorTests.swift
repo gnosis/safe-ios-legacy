@@ -11,16 +11,26 @@ class OnboardingFlowCoordinatorTests: AbstractAppTestCase {
 
     func test_startViewController_whenNoMasterPassword_thenMasterPasswordFlowStarted() {
         account.hasMasterPassword = false
-        let startVC = flowCoordinator.startViewController()
+        _ = flowCoordinator.startViewController()
         let masterPasswordVC = flowCoordinator.masterPasswordFlowCoordinator.startViewController()
-        XCTAssertTrue(type(of: startVC) == type(of: masterPasswordVC))
+        XCTAssertTrue(type(of: flowCoordinator.rootVC.childViewControllers[0]) ==
+                type(of: masterPasswordVC.childViewControllers[0]))
     }
 
     func test_startViewController_whenMasterPasswordIsSet_thenNewSafeFlowStarted() {
         account.hasMasterPassword = true
-        let startVC = flowCoordinator.startViewController()
-        let setupSafeVC = flowCoordinator.setupSafeFlowCoordinator.startViewController()
-        XCTAssertTrue(type(of: startVC) == type(of: setupSafeVC))
+        _ = flowCoordinator.startViewController()
+        let setupSafeVC = flowCoordinator.setupSafeFlowCoordinator.startViewController().childViewControllers[0]
+        XCTAssertTrue(type(of: flowCoordinator.rootVC.childViewControllers[0]) == type(of: setupSafeVC))
+    }
+
+    func test_whenDidConfirmPassword_thenSetupSafeIsShown() {
+        account.hasMasterPassword = false
+        _ = flowCoordinator.startViewController()
+        flowCoordinator.masterPasswordFlowCoordinator.didConfirmPassword()
+        delay()
+        XCTAssertTrue(flowCoordinator.rootVC.topViewController is SetupSafeOptionsViewController)
+        XCTAssertEqual(flowCoordinator.rootVC.viewControllers.count, 1)
     }
 
 }

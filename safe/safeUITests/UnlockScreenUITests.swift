@@ -8,7 +8,7 @@ class UnlockScreenUITests: XCTestCase {
 
     var application = Application()
     let screen = UnlockScreen()
-    let securedScreen = PasswordSuccessScreen()
+    let securedScreen = SetupSafeOptionsScreen()
     let validPassword = "abcdeF1"
     let invalidPassword = "a"
     var blockTime: TimeInterval = 3
@@ -19,7 +19,7 @@ class UnlockScreenUITests: XCTestCase {
         application.resetAllContentAndSettings()
     }
 
-    func test_whenSetPasswordFinishedAndSessionNotExpired_thenSuccessIsDisplayed() {
+    func test_whenSetPasswordFinishedAndSessionNotExpired_thenSafeSetupOptionsScreenIsDisplayed() {
         let sessionDuration: TimeInterval = 2
         application.setSessionDuration(seconds: sessionDuration)
         start()
@@ -45,7 +45,6 @@ class UnlockScreenUITests: XCTestCase {
     }
 
     func test_whenAppRestarted_thenUnlockShown() {
-        let securedScreen = SetupSafeScreen()
         application.start()
         application.terminate()
         application.setPassword(validPassword)
