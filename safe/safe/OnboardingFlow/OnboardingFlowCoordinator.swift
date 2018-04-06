@@ -20,7 +20,7 @@ final class OnboardingFlowCoordinator: FlowCoordinator {
     }
 
     override func flowStartController() -> UIViewController {
-        return ApplicationServiceRegistry.authenticationService().isUserRegistered() ?
+        return ApplicationServiceRegistry.authenticationService.isUserRegistered() ?
             setupSafeFlowCoordinator.startViewController(parent: rootVC) :
             masterPasswordFlowCoordinator.startViewController(parent: rootVC)
     }

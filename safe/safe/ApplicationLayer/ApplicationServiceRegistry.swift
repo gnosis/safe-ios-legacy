@@ -6,7 +6,7 @@ import Foundation
 
 class ApplicationServiceRegistry: AbstractRegistry {
 
-    class func authenticationService() -> AuthenticationApplicationService {
+    static var authenticationService: AuthenticationApplicationService {
         return service(for: AuthenticationApplicationService.self)
     }
 

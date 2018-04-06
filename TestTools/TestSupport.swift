@@ -25,20 +25,20 @@ final class TestSupport {
                 resettableObjects.forEach { $0.resetAll() }
             case ApplicationArguments.setPassword:
                 if let password = iterator.next() {
-                    try? ApplicationServiceRegistry.authenticationService().registerUser(password: password)
+                    try? ApplicationServiceRegistry.authenticationService.registerUser(password: password)
                 }
             case ApplicationArguments.setSessionDuration:
                 if let duration = timeInterval(&iterator) {
-                    ApplicationServiceRegistry.authenticationService().configureSession(duration)
+                    ApplicationServiceRegistry.authenticationService.configureSession(duration)
                 }
             case ApplicationArguments.setMaxPasswordAttempts:
                 if let attemptCountStr = iterator.next(),
                     let attemptCount = Int(attemptCountStr) {
-                    ApplicationServiceRegistry.authenticationService().configureMaxPasswordAttempts(attemptCount)
+                    ApplicationServiceRegistry.authenticationService.configureMaxPasswordAttempts(attemptCount)
                 }
             case ApplicationArguments.setAccountBlockedPeriodDuration:
                 if let blockingTime = timeInterval(&iterator) {
-                    ApplicationServiceRegistry.authenticationService().configureBlockDuration(blockingTime)
+                    ApplicationServiceRegistry.authenticationService.configureBlockDuration(blockingTime)
                 }
             default: break
             }

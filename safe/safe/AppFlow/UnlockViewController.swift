@@ -33,18 +33,18 @@ final class UnlockViewController: UIViewController {
         textInput.isSecure = true
 
         let biometryIcon = ApplicationServiceRegistry
-            .authenticationService()
+            .authenticationService
             .isAuthenticationMethodSupported(.faceID) ? Asset.faceIdIcon.image : Asset.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
         updateBiometryButtonVisibility()
-        countdownLabel.setup(time: ApplicationServiceRegistry.authenticationService().blockedPeriodDuration,
+        countdownLabel.setup(time: ApplicationServiceRegistry.authenticationService.blockedPeriodDuration,
                              clock: clockService)
         countdownLabel.accessibilityIdentifier = "countdown"
         startCountdownIfNeeded()
     }
 
     private func startCountdownIfNeeded() {
-        guard ApplicationServiceRegistry.authenticationService().isAuthenticationBlocked() else { return }
+        guard ApplicationServiceRegistry.authenticationService.isAuthenticationBlocked() else { return }
         textInput.isEnabled = false
         updateBiometryButtonVisibility()
         countdownLabel.start { [weak self] in
@@ -56,7 +56,7 @@ final class UnlockViewController: UIViewController {
 
     private func updateBiometryButtonVisibility() {
         loginWithBiometryButton.isHidden = !ApplicationServiceRegistry
-            .authenticationService()
+            .authenticationService
             .isBiometricAuthenticationPossible()
     }
 
@@ -70,7 +70,7 @@ final class UnlockViewController: UIViewController {
     }
 
     private func auhtenticateWithBiometry() {
-        ApplicationServiceRegistry.authenticationService().authenticateUser {  [unowned self] success in
+        ApplicationServiceRegistry.authenticationService.authenticateUser {  [unowned self] success in
             DispatchQueue.main.async {
                 if success {
                     self.unlockCompletion()
@@ -87,7 +87,7 @@ final class UnlockViewController: UIViewController {
 extension UnlockViewController: TextInputDelegate {
 
     func textInputDidReturn() {
-        ApplicationServiceRegistry.authenticationService().authenticateUser(password: textInput.text!) {
+        ApplicationServiceRegistry.authenticationService.authenticateUser(password: textInput.text!) {
             [unowned self] success in
             DispatchQueue.main.async {
                 if success {

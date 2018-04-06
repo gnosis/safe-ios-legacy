@@ -22,12 +22,12 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
     }
 
     private var shouldLockWhenAppActive: Bool {
-        return ApplicationServiceRegistry.authenticationService().isUserAuthenticated()
+        return ApplicationServiceRegistry.authenticationService.isUserAuthenticated()
     }
 
     func startViewController() -> UIViewController {
         lockedViewController = onboardingFlowCoordinator.startViewController()
-        if ApplicationServiceRegistry.authenticationService().isUserRegistered() {
+        if ApplicationServiceRegistry.authenticationService.isUserRegistered() {
             return unlockController { [unowned self] in
                 self.rootViewController = self.lockedViewController
             }
