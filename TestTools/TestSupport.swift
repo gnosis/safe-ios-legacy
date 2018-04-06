@@ -12,11 +12,6 @@ final class TestSupport {
 
     static let shared = TestSupport()
     private var resettableObjects = [Resettable]()
-    private let authenticationService: AuthenticationApplicationService
-
-    init(account: AccountProtocol = Account.shared) {
-        authenticationService = AuthenticationApplicationService(account: account)
-    }
 
     func addResettable(_ object: Resettable) {
         resettableObjects.append(object)
@@ -30,20 +25,20 @@ final class TestSupport {
                 resettableObjects.forEach { $0.resetAll() }
             case ApplicationArguments.setPassword:
                 if let password = iterator.next() {
-                    try? authenticationService.registerUser(password: password)
+                    try? ApplicationServiceRegistry.authenticationService.registerUser(password: password)
                 }
             case ApplicationArguments.setSessionDuration:
                 if let duration = timeInterval(&iterator) {
-                    authenticationService.configureSession(duration)
+                    ApplicationServiceRegistry.authenticationService.configureSession(duration)
                 }
             case ApplicationArguments.setMaxPasswordAttempts:
                 if let attemptCountStr = iterator.next(),
                     let attemptCount = Int(attemptCountStr) {
-                    authenticationService.configureMaxPasswordAttempts(attemptCount)
+                    ApplicationServiceRegistry.authenticationService.configureMaxPasswordAttempts(attemptCount)
                 }
             case ApplicationArguments.setAccountBlockedPeriodDuration:
                 if let blockingTime = timeInterval(&iterator) {
-                    authenticationService.configureBlockDuration(blockingTime)
+                    ApplicationServiceRegistry.authenticationService.configureBlockDuration(blockingTime)
                 }
             default: break
             }

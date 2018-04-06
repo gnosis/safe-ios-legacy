@@ -6,12 +6,10 @@ import UIKit
 
 final class OnboardingFlowCoordinator: FlowCoordinator {
 
-    private let authenticationService: AuthenticationApplicationService
     let masterPasswordFlowCoordinator = MasterPasswordFlowCoordinator()
     let setupSafeFlowCoordinator = SetupSafeFlowCoordinator()
 
-    init(account: AccountProtocol) {
-        authenticationService = AuthenticationApplicationService(account: account)
+    override init() {
         super.init()
         masterPasswordFlowCoordinator.completion = masterPasswordCompletion
     }
@@ -22,7 +20,8 @@ final class OnboardingFlowCoordinator: FlowCoordinator {
     }
 
     override func flowStartController() -> UIViewController {
-        return authenticationService.isUserRegistered() ? setupSafeFlowCoordinator.startViewController(parent: rootVC) :
+        return ApplicationServiceRegistry.authenticationService.isUserRegistered() ?
+            setupSafeFlowCoordinator.startViewController(parent: rootVC) :
             masterPasswordFlowCoordinator.startViewController(parent: rootVC)
     }
 

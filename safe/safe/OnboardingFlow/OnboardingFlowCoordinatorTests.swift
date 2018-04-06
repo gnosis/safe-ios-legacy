@@ -5,15 +5,9 @@
 import XCTest
 @testable import safe
 
-class OnboardingFlowCoordinatorTests: XCTestCase {
+class OnboardingFlowCoordinatorTests: AbstractAppTestCase {
 
-    let account = MockAccount()
-    var flowCoordinator: OnboardingFlowCoordinator!
-
-    override func setUp() {
-        super.setUp()
-        flowCoordinator = OnboardingFlowCoordinator(account: account)
-    }
+    var flowCoordinator = OnboardingFlowCoordinator()
 
     func test_startViewController_whenNoMasterPassword_thenMasterPasswordFlowStarted() {
         account.hasMasterPassword = false
