@@ -29,7 +29,6 @@ class AppFlowCoordinatorTests: AbstractAppTestCase {
 
     func test_whenAuthenticationInvalidated_thenLocks() {
         authenticationService.invalidateAuthentication()
-
         XCTAssertTrue(flowCoordinator.startViewController() is UnlockViewController)
     }
 
