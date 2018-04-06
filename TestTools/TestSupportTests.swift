@@ -5,15 +5,9 @@
 import XCTest
 @testable import safe
 
-class TestSupportTests: XCTestCase {
+class TestSupportTests: AbstractAppTestCase {
 
-    let account = MockAccount()
-    var support: TestSupport!
-
-    override func setUp() {
-        super.setUp()
-        support = TestSupport(account: account)
-    }
+    let support = TestSupport()
 
     func test_setUp_whenResetFlagIsSet_thenResetsAllAddedObjects() {
         let mockResettable = MockResettable()
