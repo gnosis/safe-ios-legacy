@@ -398,6 +398,12 @@ class MockKeychain: KeychainServiceProtocol {
 
     func removePrivateKey() throws {}
 
+    func mnemonic() throws -> Mnemonic? { return nil }
+
+    func saveMnemonic(_ mnemonic: Mnemonic) throws {}
+
+    func removeMnemonic() throws {}
+
 }
 
 class MockBiometricService: BiometricAuthenticationServiceProtocol {
