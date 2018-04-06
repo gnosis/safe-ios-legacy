@@ -98,6 +98,6 @@ extension AppFlowCoordinatorTests {
             XCTFail("Expected to have root view controller")
             return false
         }
-         return rootVC === securedVC
+        return rootVC === securedVC
     }
 }
