@@ -9,13 +9,6 @@ class TestSupportTests: AbstractAppTestCase {
 
     let support = TestSupport()
 
-    override func setUp() {
-        super.setUp()
-        // TODO: pull up
-        ApplicationServiceRegistry.put(service: authenticationService,
-                                       for: AuthenticationApplicationService.self)
-    }
-
     func test_setUp_whenResetFlagIsSet_thenResetsAllAddedObjects() {
         let mockResettable = MockResettable()
         let otherResettable = MockResettable()

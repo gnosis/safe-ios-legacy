@@ -12,10 +12,6 @@ class UnlockViewControllerTests: AbstractAppTestCase {
 
     override func setUp() {
         super.setUp()
-        // TODO: pull up
-        ApplicationServiceRegistry.put(service: authenticationService,
-                                       for: AuthenticationApplicationService.self)
-
         createVC()
     }
 

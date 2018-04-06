@@ -12,10 +12,6 @@ class AppFlowCoordinatorTests: AbstractAppTestCase {
 
     override func setUp() {
         super.setUp()
-        // TODO: pull up
-        ApplicationServiceRegistry.put(service: authenticationService,
-                                       for: AuthenticationApplicationService.self)
-
         try? authenticationService.registerUser(password: password)
     }
 

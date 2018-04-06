@@ -13,10 +13,6 @@ class ConfirmPaswordViewControllerTests: AbstractAppTestCase {
 
     override func setUp() {
         super.setUp()
-        // TODO: pull up
-        ApplicationServiceRegistry.put(service: authenticationService,
-                                       for: AuthenticationApplicationService.self)
-
         vc = ConfirmPaswordViewController.create(referencePassword: "a", delegate: delegate)
         vc.loadViewIfNeeded()
     }

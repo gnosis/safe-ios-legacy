@@ -9,13 +9,6 @@ class OnboardingFlowCoordinatorTests: AbstractAppTestCase {
 
     var flowCoordinator = OnboardingFlowCoordinator()
 
-    override func setUp() {
-        super.setUp()
-        // TODO: pull up
-        ApplicationServiceRegistry.put(service: authenticationService,
-                                       for: AuthenticationApplicationService.self)
-    }
-
     func test_startViewController_whenNoMasterPassword_thenMasterPasswordFlowStarted() {
         authenticationService.unregisterUser()
         _ = flowCoordinator.startViewController()
