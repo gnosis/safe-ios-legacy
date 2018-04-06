@@ -12,9 +12,9 @@ struct Session {
     }
     let duration: TimeInterval
     private var startTime: Date?
-    private let clockService: SystemClockServiceProtocol
+    private let clockService: Clock
 
-    init(duration: TimeInterval, clockService: SystemClockServiceProtocol = SystemClockService()) {
+    init(duration: TimeInterval, clockService: Clock = SystemClockService()) {
         self.duration = duration
         self.clockService = clockService
     }

@@ -8,7 +8,7 @@ import LocalAuthentication
 
 class BiometricAuthenticationServiceTests: XCTestCase {
 
-    var biometricService: BiometricAuthenticationServiceProtocol!
+    var biometricService: BiometricAuthenticationService!
     let context = MockLAContext()
 
     override func setUp() {

@@ -4,15 +4,7 @@
 
 import Foundation
 
-protocol UserDefaultsServiceProtocol {
-    func bool(for key: String) -> Bool?
-    func setBool(_ value: Bool, for key: String)
-    func int(for key: String) -> Int?
-    func setInt(_ value: Int, for key: String)
-    func deleteKey(_ key: String)
-}
-
-final class UserDefaultsService: UserDefaultsServiceProtocol {
+final class UserDefaultsService: KeyValueStore {
 
     func bool(for key: String) -> Bool? {
         if UserDefaults.standard.value(forKey: key) == nil {

@@ -7,7 +7,7 @@ import UIKit
 final class CountdownLabel: UILabel {
 
     private var time: TimeInterval = 0
-    private var clockService: SystemClockServiceProtocol?
+    private var clockService: Clock?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,7 +23,7 @@ final class CountdownLabel: UILabel {
         isHidden = true
     }
 
-    func setup(time: TimeInterval, clock: SystemClockServiceProtocol) {
+    func setup(time: TimeInterval, clock: Clock) {
         self.time = time
         self.clockService = clock
     }

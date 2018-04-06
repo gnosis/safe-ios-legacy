@@ -12,13 +12,13 @@ final class UnlockViewController: UIViewController {
     @IBOutlet weak var textInput: TextInput!
     @IBOutlet weak var loginWithBiometryButton: UIButton!
     private var unlockCompletion: (() -> Void)!
-    private var clockService: SystemClockServiceProtocol!
+    private var clockService: Clock!
 
     private struct LocalizedString {
         static let header = NSLocalizedString("app.unlock.header", comment: "Unlock screen header")
     }
 
-    static func create(clockService: SystemClockServiceProtocol = SystemClockService(),
+    static func create(clockService: Clock = SystemClockService(),
                        completion: (() -> Void)? = nil) -> UnlockViewController {
         let vc = StoryboardScene.AppFlow.unlockViewController.instantiate()
         vc.clockService = clockService

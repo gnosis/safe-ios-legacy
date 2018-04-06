@@ -334,7 +334,7 @@ extension AccountTests {
 
 }
 
-class InMemoryUserDefaults: UserDefaultsServiceProtocol {
+class InMemoryUserDefaults: KeyValueStore {
 
     var dict = [String: Any]()
 
@@ -360,7 +360,7 @@ class InMemoryUserDefaults: UserDefaultsServiceProtocol {
 
 }
 
-class MockKeychain: KeychainServiceProtocol {
+class MockKeychain: SecureStore {
 
     private var storedPassword: String?
     var throwsOnSavePassword = false
@@ -394,7 +394,7 @@ class MockKeychain: KeychainServiceProtocol {
 
 }
 
-class MockBiometricService: BiometricAuthenticationServiceProtocol {
+class MockBiometricService: BiometricAuthenticationService {
 
     var biometryType: BiometryType = .none
     private var savedActivationCompletion: (() -> Void)?

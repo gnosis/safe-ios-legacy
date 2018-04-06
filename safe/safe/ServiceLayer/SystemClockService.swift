@@ -4,12 +4,7 @@
 
 import Foundation
 
-protocol SystemClockServiceProtocol: class {
-    var currentTime: Date { get }
-    func countdown(from period: TimeInterval, tick: @escaping (TimeInterval) -> Void)
-}
-
-final class SystemClockService: SystemClockServiceProtocol {
+final class SystemClockService: Clock {
 
     var currentTime: Date {
         return Date()

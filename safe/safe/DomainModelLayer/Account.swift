@@ -78,18 +78,18 @@ final class Account: AccountProtocol {
         return session.isActive
     }
 
-    private let userDefaultsService: UserDefaultsServiceProtocol
-    private let keychainService: KeychainServiceProtocol
-    private let biometricAuthService: BiometricAuthenticationServiceProtocol
-    private let systemClock: SystemClockServiceProtocol
+    private let userDefaultsService: KeyValueStore
+    private let keychainService: SecureStore
+    private let biometricAuthService: BiometricAuthenticationService
+    private let systemClock: Clock
     private (set) var session: Session
     var maxPasswordAttempts: Int
     var blockedPeriodDuration: TimeInterval
 
-    init(userDefaultsService: UserDefaultsServiceProtocol = UserDefaultsService(),
-         keychainService: KeychainServiceProtocol = KeychainService(),
-         biometricAuthService: BiometricAuthenticationServiceProtocol = BiometricService(),
-         systemClock: SystemClockServiceProtocol = SystemClockService(),
+    init(userDefaultsService: KeyValueStore = UserDefaultsService(),
+         keychainService: SecureStore = KeychainService(),
+         biometricAuthService: BiometricAuthenticationService = BiometricService(),
+         systemClock: Clock = SystemClockService(),
          sessionDuration: TimeInterval = 60 * 5,
          blockedPeriodDuration: TimeInterval = 15,
          maxPasswordAttempts: Int = 5) {
