@@ -17,6 +17,7 @@ class MockAuthenticationService: AuthenticationApplicationService {
 
     private var userRegistered = false
     private var shouldThrowDuringRegistration = false
+    private(set) var didRequestUserRegistration = false
     private var userAuthenticated = false
     private var authenticationAllowed = false
     private(set) var didRequestBiometricAuthentication = false
@@ -42,6 +43,7 @@ class MockAuthenticationService: AuthenticationApplicationService {
     }
 
     override func registerUser(password: String, completion: (() -> Void)? = nil) throws {
+        didRequestUserRegistration = true
         if shouldThrowDuringRegistration {
             throw MockAccount.Error.error
         }

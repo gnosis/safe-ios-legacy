@@ -14,7 +14,15 @@ class AuthenticationApplicationService {
 
     let account: AccountProtocol
 
-    var blockedPeriodDuration: TimeInterval { return account.blockedPeriodDuration }
+    var blockedPeriodDuration: TimeInterval {
+        return account.blockedPeriodDuration
+    }
+    var maxPasswordAttempts: Int {
+        return account.maxPasswordAttempts
+    }
+    var sessionDuration: TimeInterval {
+        return account.sessionDuration
+    }
 
     init(account: AccountProtocol) {
         self.account = account
