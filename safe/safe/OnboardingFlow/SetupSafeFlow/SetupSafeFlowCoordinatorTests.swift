@@ -5,7 +5,7 @@
 import XCTest
 @testable import safe
 
-class SetupSafeFlowCoordinatorTests: XCTestCase {
+class SetupSafeFlowCoordinatorTests: SafeTestCase {
 
     let setupSafeFlowCoordinator = SetupSafeFlowCoordinator()
     let newSafeFlowCoordinator = NewSafeFlowCoordinator()
@@ -21,6 +21,13 @@ class SetupSafeFlowCoordinatorTests: XCTestCase {
         delay()
         let newSafeStartVC = newSafeFlowCoordinator.startViewController().childViewControllers[0]
         XCTAssertTrue(type(of: setupSafeFlowCoordinator.rootVC.topViewController!) == type(of: newSafeStartVC))
+    }
+
+    func test_didSelectNewSafe_shouldCreateEOA() {
+        XCTAssertNil(try! identityService.getEOA())
+        _ = setupSafeFlowCoordinator.startViewController()
+        setupSafeFlowCoordinator.didSelectNewSafe()
+        XCTAssertNotNil(try! identityService.getEOA())
     }
 
 }
