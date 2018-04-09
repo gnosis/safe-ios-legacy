@@ -89,6 +89,16 @@
                ReferencedContainer = "container:../IdentityAccess/IdentityAccess/IdentityAccessPortAdapter/IdentityAccessPortAdapter.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A34BC8B207B8D2C00636560"
+               BuildableName = "IdentityAccessPortAdapterIntegrationTests.xctest"
+               BlueprintName = "IdentityAccessPortAdapterIntegrationTests"
+               ReferencedContainer = "container:../IdentityAccess/IdentityAccess/IdentityAccessPortAdapter/IdentityAccessPortAdapter.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

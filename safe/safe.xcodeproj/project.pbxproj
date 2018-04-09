@@ -13,6 +13,7 @@
 		0A0455F7204851B100088B5E /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */; };
 		0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */; };
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
+		0A34BC60207B808800636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC5F207B808800636560 /* libCommonTestSupport.a */; };
 		0A3FAEAB207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */; };
 		0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527324205BCCF4004A5F9A /* CountdownLabel.swift */; };
 		0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527326205BD364004A5F9A /* CountdownLabelTests.swift */; };
@@ -137,6 +138,7 @@
 		0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A34BC5F207B808800636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapterTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A527324205BCCF4004A5F9A /* CountdownLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
 		0A527326205BD364004A5F9A /* CountdownLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabelTests.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A34BC60207B808800636560 /* libCommonTestSupport.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +282,7 @@
 		0A53306B2073C73E00DE55F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A34BC5F207B808800636560 /* libCommonTestSupport.a */,
 				0AA0C857207B74B10019E282 /* XCTest.framework */,
 				0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */,
 				0AC17574207B719A0016320A /* libIdentityAccessApplication.a */,

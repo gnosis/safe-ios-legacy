@@ -24,7 +24,7 @@ public final class KeychainService: SecureStore {
         self.init(identifier: KeychainService.defaultServiceName)
     }
 
-    init(identifier: String = KeychainService.defaultServiceName) {
+    public init(identifier: String) {
         passwordServiceName = identifier + ".password"
         mnemonicServiceName = identifier + ".mnemonic"
     }

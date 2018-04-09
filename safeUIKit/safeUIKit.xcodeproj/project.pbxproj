@@ -15,8 +15,8 @@
 		0A0974DD20480D03005753DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974DA20480D03005753DF /* LaunchScreen.storyboard */; };
 		0A0974EA20480E11005753DF /* safeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* safeUIKitDemoUITests.swift */; };
 		0A0974EC20480E45005753DF /* safeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* safeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0A2972C3205A898A00CEC7D4 /* XCLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2972C1205A891400CEC7D4 /* XCLocalizedString.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
+		0A34BC63207B80A700636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC62207B80A700636560 /* libCommonTestSupport.a */; };
 		0A53AD5320598B5000D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD5520598B5000D713AD /* Localizable.strings */; };
 		0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */; };
 		0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */; };
@@ -95,9 +95,9 @@
 		0A0974DB20480D03005753DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A0974E920480E11005753DF /* safeUIKitDemoUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = safeUIKitDemoUITests.swift; sourceTree = "<group>"; };
 		0A0974EB20480E45005753DF /* safeUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safeUIKit.h; sourceTree = "<group>"; };
-		0A2972C1205A891400CEC7D4 /* XCLocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCLocalizedString.swift; sourceTree = "<group>"; };
 		0A2972C8205A89C500CEC7D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = safeUIKit/Base.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../safeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A34BC62207B80A700636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A53AD5420598B5000D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD5620598B5E00D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+SafeUIKit.swift"; sourceTree = "<group>"; };
@@ -138,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A34BC63207B80A700636560 /* libCommonTestSupport.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,12 +160,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A34BC61207B80A700636560 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0A34BC62207B80A700636560 /* libCommonTestSupport.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0A7AE8C22052C20A0044D5DD /* TestTools */ = {
 			isa = PBXGroup;
 			children = (
 				0A7AE8C32052C20A0044D5DD /* XCTestCase+Wait.swift */,
 				0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */,
-				0A2972C1205A891400CEC7D4 /* XCLocalizedString.swift */,
 			);
 			name = TestTools;
 			path = ../TestTools;
@@ -179,6 +187,7 @@
 				0A9670B320480C5700445AC2 /* safeUIKit */,
 				0A9670C020480C5700445AC2 /* safeUIKitTests */,
 				0A96707B20480C3E00445AC2 /* Products */,
+				0A34BC61207B80A700636560 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -502,7 +511,6 @@
 				0A0974EA20480E11005753DF /* safeUIKitDemoUITests.swift in Sources */,
 				0A7AE8CA2052C2120044D5DD /* XCTest+Assert.swift in Sources */,
 				0A7AE8C92052C2120044D5DD /* XCTestCase+Wait.swift in Sources */,
-				0A2972C3205A898A00CEC7D4 /* XCLocalizedString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

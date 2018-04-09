@@ -130,11 +130,7 @@ class MockLAContext: LAContext {
 
     @available(iOS 11.0, *)
     override var biometryType: LABiometryType {
-        if #available(iOS 11.2, *) {
-            return isBiometryTypeFaceID ? .faceID : (isBiometryTypeNone ? .none : .touchID)
-        } else {
-            return isBiometryTypeFaceID ? .faceID : (isBiometryTypeNone ? LABiometryType.LABiometryNone : .touchID)
-        }
+        return isBiometryTypeFaceID ? .faceID : (isBiometryTypeNone ? .none : .touchID)
     }
 
     override func canEvaluatePolicy(_ policy: LAPolicy, error: NSErrorPointer) -> Bool {

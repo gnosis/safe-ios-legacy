@@ -8,6 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		0A2A2337207B594600EB61DD /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2A2336207B594600EB61DD /* libIdentityAccessDomainModel.a */; };
+		0A34BC79207B8D0000636560 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34BC78207B8D0000636560 /* AppDelegate.swift */; };
+		0A34BC7B207B8D0000636560 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34BC7A207B8D0000636560 /* ViewController.swift */; };
+		0A34BC7E207B8D0000636560 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A34BC7C207B8D0000636560 /* Main.storyboard */; };
+		0A34BC80207B8D0100636560 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A34BC7F207B8D0100636560 /* Assets.xcassets */; };
+		0A34BC83207B8D0100636560 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A34BC81207B8D0100636560 /* LaunchScreen.storyboard */; };
+		0A34BC96207B8D4B00636560 /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE4E207B515900F0D214 /* KeychainServiceIntegrationTests.swift */; };
+		0A34BC98207B8DA900636560 /* libIdentityAccessApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC97207B8DA900636560 /* libIdentityAccessApplication.a */; };
+		0A34BC9A207B8DA900636560 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC99207B8DA900636560 /* libIdentityAccessDomainModel.a */; };
+		0A34BC9B207B8DA900636560 /* libIdentityAccessPortAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8BCFC62074CB1500BCD78D /* libIdentityAccessPortAdapter.a */; };
+		0A34BC9D207B8E2A00636560 /* libIdentityAccessApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC9C207B8E2A00636560 /* libIdentityAccessApplication.a */; };
+		0A34BC9F207B8E2A00636560 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC9E207B8E2A00636560 /* libIdentityAccessDomainModel.a */; };
+		0A34BCA0207B8E2A00636560 /* libIdentityAccessPortAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8BCFC62074CB1500BCD78D /* libIdentityAccessPortAdapter.a */; };
+		0A34BCA1207B8E3500636560 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1F0207B7A85001C4169 /* APIKit.framework */; };
+		0A34BCA2207B8E3500636560 /* APIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1F0207B7A85001C4169 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A34BCA3207B8E3500636560 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1ED207B7A84001C4169 /* CryptoSwift.framework */; };
+		0A34BCA4207B8E3500636560 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1ED207B7A84001C4169 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A34BCA5207B8E3500636560 /* EthereumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1EE207B7A85001C4169 /* EthereumKit.framework */; };
+		0A34BCA6207B8E3500636560 /* EthereumKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1EE207B7A85001C4169 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A34BCA7207B8E3500636560 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1EF207B7A85001C4169 /* Result.framework */; };
+		0A34BCA8207B8E3500636560 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1EF207B7A85001C4169 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A3FAE72207B51CB00F0D214 /* libIdentityAccessPortAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8BCFC62074CB1500BCD78D /* libIdentityAccessPortAdapter.a */; };
 		0A3FAE78207B51DA00F0D214 /* LogServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE38207B515800F0D214 /* LogServiceTests.swift */; };
 		0A3FAE79207B51DA00F0D214 /* ConsoleLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE3A207B515800F0D214 /* ConsoleLoggerTests.swift */; };
@@ -41,6 +61,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0A34BC91207B8D2C00636560 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A8BCFBE2074CB1500BCD78D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A34BC75207B8D0000636560;
+			remoteInfo = IdentityAccessPortAdapterDemo;
+		};
 		0A3FAE73207B51CB00F0D214 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A8BCFBE2074CB1500BCD78D /* Project object */;
@@ -51,6 +78,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		0A34BCA9207B8E3600636560 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0A34BCA2207B8E3500636560 /* APIKit.framework in Embed Frameworks */,
+				0A34BCA4207B8E3500636560 /* CryptoSwift.framework in Embed Frameworks */,
+				0A34BCA6207B8E3500636560 /* EthereumKit.framework in Embed Frameworks */,
+				0A34BCA8207B8E3500636560 /* Result.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0A3FAE9B207B535D00F0D214 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -87,6 +128,20 @@
 /* Begin PBXFileReference section */
 		0A2A232D207B583C00EB61DD /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = ../Config.xcconfig; sourceTree = "<group>"; };
 		0A2A2336207B594600EB61DD /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A34BC6A207B845100636560 /* IdentityAccessPortAdapter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityAccessPortAdapter-Bridging-Header.h"; sourceTree = "<group>"; };
+		0A34BC76207B8D0000636560 /* IdentityAccessPortAdapterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdentityAccessPortAdapterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A34BC78207B8D0000636560 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0A34BC7A207B8D0000636560 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0A34BC7D207B8D0000636560 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0A34BC7F207B8D0100636560 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A34BC82207B8D0100636560 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0A34BC84207B8D0100636560 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A34BC8C207B8D2C00636560 /* IdentityAccessPortAdapterIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessPortAdapterIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A34BC90207B8D2C00636560 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A34BC97207B8DA900636560 /* libIdentityAccessApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A34BC99207B8DA900636560 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A34BC9C207B8E2A00636560 /* libIdentityAccessApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A34BC9E207B8E2A00636560 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3FAE37207B515800F0D214 /* LogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
 		0A3FAE38207B515800F0D214 /* LogServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogServiceTests.swift; sourceTree = "<group>"; };
 		0A3FAE39207B515800F0D214 /* ConsoleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
@@ -124,6 +179,30 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0A34BC73207B8D0000636560 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A34BCA0207B8E2A00636560 /* libIdentityAccessPortAdapter.a in Frameworks */,
+				0A34BCA7207B8E3500636560 /* Result.framework in Frameworks */,
+				0A34BC9D207B8E2A00636560 /* libIdentityAccessApplication.a in Frameworks */,
+				0A34BCA5207B8E3500636560 /* EthereumKit.framework in Frameworks */,
+				0A34BCA1207B8E3500636560 /* APIKit.framework in Frameworks */,
+				0A34BCA3207B8E3500636560 /* CryptoSwift.framework in Frameworks */,
+				0A34BC9F207B8E2A00636560 /* libIdentityAccessDomainModel.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A34BC89207B8D2C00636560 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A34BC9B207B8DA900636560 /* libIdentityAccessPortAdapter.a in Frameworks */,
+				0A34BC98207B8DA900636560 /* libIdentityAccessApplication.a in Frameworks */,
+				0A34BC9A207B8DA900636560 /* libIdentityAccessDomainModel.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0A3FAE6A207B51CB00F0D214 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -155,6 +234,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A34BC77207B8D0000636560 /* IdentityAccessPortAdapterDemo */ = {
+			isa = PBXGroup;
+			children = (
+				0A34BC78207B8D0000636560 /* AppDelegate.swift */,
+				0A34BC7A207B8D0000636560 /* ViewController.swift */,
+				0A34BC7C207B8D0000636560 /* Main.storyboard */,
+				0A34BC7F207B8D0100636560 /* Assets.xcassets */,
+				0A34BC81207B8D0100636560 /* LaunchScreen.storyboard */,
+				0A34BC84207B8D0100636560 /* Info.plist */,
+			);
+			path = IdentityAccessPortAdapterDemo;
+			sourceTree = "<group>";
+		};
+		0A34BC8D207B8D2C00636560 /* IdentityAccessPortAdapterIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A34BC90207B8D2C00636560 /* Info.plist */,
+			);
+			path = IdentityAccessPortAdapterIntegrationTests;
+			sourceTree = "<group>";
+		};
 		0A3FAE41207B515800F0D214 /* logger */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +328,10 @@
 		0A3FAE91207B529000F0D214 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A34BC9C207B8E2A00636560 /* libIdentityAccessApplication.a */,
+				0A34BC9E207B8E2A00636560 /* libIdentityAccessDomainModel.a */,
+				0A34BC97207B8DA900636560 /* libIdentityAccessApplication.a */,
+				0A34BC99207B8DA900636560 /* libIdentityAccessDomainModel.a */,
 				0AA0C875207B763E0019E282 /* libCommonTestSupport.a */,
 				0AA0C887207B78380019E282 /* Crashlytics.framework */,
 				0A2A2336207B594600EB61DD /* libIdentityAccessDomainModel.a */,
@@ -257,6 +361,8 @@
 				0A8BCFC82074CB1500BCD78D /* IdentityAccessPortAdapter */,
 				0A3FAE6E207B51CB00F0D214 /* IdentityAccessPortAdapterTests */,
 				0A3FAE9E207B535D00F0D214 /* IdentityAccessPortAdapterTestSupport */,
+				0A34BC77207B8D0000636560 /* IdentityAccessPortAdapterDemo */,
+				0A34BC8D207B8D2C00636560 /* IdentityAccessPortAdapterIntegrationTests */,
 				0A8BCFC72074CB1500BCD78D /* Products */,
 				0A3FAE91207B529000F0D214 /* Frameworks */,
 			);
@@ -268,6 +374,8 @@
 				0A8BCFC62074CB1500BCD78D /* libIdentityAccessPortAdapter.a */,
 				0A3FAE6D207B51CB00F0D214 /* IdentityAccessPortAdapterTests.xctest */,
 				0A3FAE9D207B535D00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */,
+				0A34BC76207B8D0000636560 /* IdentityAccessPortAdapterDemo.app */,
+				0A34BC8C207B8D2C00636560 /* IdentityAccessPortAdapterIntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -281,6 +389,7 @@
 				0A3FAE44207B515800F0D214 /* biometry */,
 				0A3FAE48207B515900F0D214 /* clock */,
 				0A3FAE4C207B515900F0D214 /* ethereum */,
+				0A34BC6A207B845100636560 /* IdentityAccessPortAdapter-Bridging-Header.h */,
 			);
 			path = IdentityAccessPortAdapter;
 			sourceTree = "<group>";
@@ -288,6 +397,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0A34BC75207B8D0000636560 /* IdentityAccessPortAdapterDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A34BC85207B8D0100636560 /* Build configuration list for PBXNativeTarget "IdentityAccessPortAdapterDemo" */;
+			buildPhases = (
+				0A34BC72207B8D0000636560 /* Sources */,
+				0A34BC73207B8D0000636560 /* Frameworks */,
+				0A34BC74207B8D0000636560 /* Resources */,
+				0A34BCA9207B8E3600636560 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IdentityAccessPortAdapterDemo;
+			productName = IdentityAccessPortAdapterDemo;
+			productReference = 0A34BC76207B8D0000636560 /* IdentityAccessPortAdapterDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0A34BC8B207B8D2C00636560 /* IdentityAccessPortAdapterIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A34BC93207B8D2C00636560 /* Build configuration list for PBXNativeTarget "IdentityAccessPortAdapterIntegrationTests" */;
+			buildPhases = (
+				0A34BC88207B8D2C00636560 /* Sources */,
+				0A34BC89207B8D2C00636560 /* Frameworks */,
+				0A34BC8A207B8D2C00636560 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A34BC92207B8D2C00636560 /* PBXTargetDependency */,
+			);
+			name = IdentityAccessPortAdapterIntegrationTests;
+			productName = IdentityAccessPortAdapterIntegrationTests;
+			productReference = 0A34BC8C207B8D2C00636560 /* IdentityAccessPortAdapterIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		0A3FAE6C207B51CB00F0D214 /* IdentityAccessPortAdapterTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A3FAE75207B51CB00F0D214 /* Build configuration list for PBXNativeTarget "IdentityAccessPortAdapterTests" */;
@@ -351,6 +496,13 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Dmitry Bespalov";
 				TargetAttributes = {
+					0A34BC75207B8D0000636560 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+					0A34BC8B207B8D2C00636560 = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = 0A34BC75207B8D0000636560;
+					};
 					0A3FAE6C207B51CB00F0D214 = {
 						CreatedOnToolsVersion = 9.3;
 					};
@@ -359,6 +511,7 @@
 					};
 					0A8BCFC52074CB1500BCD78D = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 					};
 				};
 			};
@@ -368,6 +521,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 0A8BCFBD2074CB1500BCD78D;
 			productRefGroup = 0A8BCFC72074CB1500BCD78D /* Products */;
@@ -377,11 +531,30 @@
 				0A8BCFC52074CB1500BCD78D /* IdentityAccessPortAdapter */,
 				0A3FAE6C207B51CB00F0D214 /* IdentityAccessPortAdapterTests */,
 				0A3FAE9C207B535D00F0D214 /* IdentityAccessPortAdapterTestSupport */,
+				0A34BC75207B8D0000636560 /* IdentityAccessPortAdapterDemo */,
+				0A34BC8B207B8D2C00636560 /* IdentityAccessPortAdapterIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0A34BC74207B8D0000636560 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A34BC83207B8D0100636560 /* LaunchScreen.storyboard in Resources */,
+				0A34BC80207B8D0100636560 /* Assets.xcassets in Resources */,
+				0A34BC7E207B8D0000636560 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A34BC8A207B8D2C00636560 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0A3FAE6B207B51CB00F0D214 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -392,6 +565,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0A34BC72207B8D0000636560 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A34BC7B207B8D0000636560 /* ViewController.swift in Sources */,
+				0A34BC79207B8D0000636560 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A34BC88207B8D2C00636560 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A34BC96207B8D4B00636560 /* KeychainServiceIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0A3FAE69207B51CB00F0D214 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,6 +626,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0A34BC92207B8D2C00636560 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A34BC75207B8D0000636560 /* IdentityAccessPortAdapterDemo */;
+			targetProxy = 0A34BC91207B8D2C00636560 /* PBXContainerItemProxy */;
+		};
 		0A3FAE74207B51CB00F0D214 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0A8BCFC52074CB1500BCD78D /* IdentityAccessPortAdapter */;
@@ -443,7 +638,114 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		0A34BC7C207B8D0000636560 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A34BC7D207B8D0000636560 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0A34BC81207B8D0100636560 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A34BC82207B8D0100636560 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		0A34BC86207B8D0100636560 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = IdentityAccessPortAdapterDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessPortAdapterDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0A34BC87207B8D0100636560 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = IdentityAccessPortAdapterDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessPortAdapterDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0A34BC94207B8D2C00636560 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = IdentityAccessPortAdapterIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessPortAdapterIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IdentityAccessPortAdapterDemo.app/IdentityAccessPortAdapterDemo";
+			};
+			name = Debug;
+		};
+		0A34BC95207B8D2C00636560 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = IdentityAccessPortAdapterIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessPortAdapterIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IdentityAccessPortAdapterDemo.app/IdentityAccessPortAdapterDemo";
+			};
+			name = Release;
+		};
 		0A3FAE76207B51CB00F0D214 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -580,6 +882,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -635,14 +938,21 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};
 		0A8BCFCE2074CB1500BCD78D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
@@ -652,6 +962,8 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessPortAdapter/IdentityAccessPortAdapter-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -660,8 +972,14 @@
 		0A8BCFCF2074CB1500BCD78D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
@@ -671,6 +989,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessPortAdapter/IdentityAccessPortAdapter-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -679,6 +998,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0A34BC85207B8D0100636560 /* Build configuration list for PBXNativeTarget "IdentityAccessPortAdapterDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A34BC86207B8D0100636560 /* Debug */,
+				0A34BC87207B8D0100636560 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A34BC93207B8D2C00636560 /* Build configuration list for PBXNativeTarget "IdentityAccessPortAdapterIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A34BC94207B8D2C00636560 /* Debug */,
+				0A34BC95207B8D2C00636560 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0A3FAE75207B51CB00F0D214 /* Build configuration list for PBXNativeTarget "IdentityAccessPortAdapterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

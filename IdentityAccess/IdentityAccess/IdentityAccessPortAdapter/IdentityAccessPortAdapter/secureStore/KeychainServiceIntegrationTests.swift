@@ -3,10 +3,9 @@
 //
 
 import XCTest
-@testable import IdentityAccessPortAdapter
+import IdentityAccessPortAdapter
 import IdentityAccessDomainModel
 
-// FIXME: failing tests. Excluded for now
 class KeychainServiceIntegrationTests: XCTestCase {
 
     let keychainService = KeychainService(identifier: "KeychainIntegrationTest")

@@ -12,6 +12,8 @@ public final class EncryptionService: EncryptionServiceProtocol {
     public typealias PublicKey = IdentityAccessDomainModel.PublicKey
     public typealias Mnemonic = IdentityAccessDomainModel.Mnemonic
 
+    public init() {}
+
     public func sign(_ data: Data, _ key: PrivateKey) -> Signature {
         let sig = try! EthereumKit.Crypto.sign(hash(data), privateKey: key.data)
         return Signature(data: sig)
