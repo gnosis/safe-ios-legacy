@@ -7,8 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3FAE0B207B509600F0D214 /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FADFB207B509300F0D214 /* DomainRegistry.swift */; };
+		0A3FAE0C207B509600F0D214 /* KeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FADFC207B509300F0D214 /* KeyValueStore.swift */; };
+		0A3FAE0D207B509600F0D214 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FADFD207B509400F0D214 /* Account.swift */; };
+		0A3FAE0F207B509600F0D214 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FADFF207B509400F0D214 /* Session.swift */; };
+		0A3FAE10207B509600F0D214 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE00207B509400F0D214 /* UserDefaultKeys.swift */; };
+		0A3FAE11207B509600F0D214 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE01207B509400F0D214 /* Clock.swift */; };
+		0A3FAE14207B509600F0D214 /* SecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE04207B509500F0D214 /* SecureStore.swift */; };
+		0A3FAE16207B509600F0D214 /* EthereumAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE06207B509500F0D214 /* EthereumAccount.swift */; };
+		0A3FAE17207B509600F0D214 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE07207B509600F0D214 /* Logger.swift */; };
+		0A3FAE18207B509600F0D214 /* BiometricAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE08207B509600F0D214 /* BiometricAuthenticationService.swift */; };
+		0A3FAE20207B50B300F0D214 /* IdentityAccessDomainModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE1F207B50B300F0D214 /* IdentityAccessDomainModelTests.swift */; };
+		0A3FAE22207B50B300F0D214 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF281AA2074C1AB00D3843D /* libIdentityAccessDomainModel.a */; };
+		0A3FAE31207B50D500F0D214 /* MockAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE02207B509500F0D214 /* MockAccount.swift */; };
+		0A3FAE32207B50D500F0D214 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FADFE207B509400F0D214 /* AccountTests.swift */; };
+		0A3FAE33207B50D500F0D214 /* EthereumAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FADFA207B509300F0D214 /* EthereumAccountTests.swift */; };
+		0A3FAE34207B50D500F0D214 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE05207B509500F0D214 /* DomainRegistryTests.swift */; };
+		0A3FAE35207B50D500F0D214 /* DomainTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE03207B509500F0D214 /* DomainTestCase.swift */; };
+		0A3FAE36207B50EB00F0D214 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FADF9207B509300F0D214 /* SessionTests.swift */; };
 		0AF281AE2074C1AB00D3843D /* IdentityAccessDomainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF281AD2074C1AB00D3843D /* IdentityAccessDomainModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0A3FAE23207B50B300F0D214 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF281A22074C1AB00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0AF281A92074C1AB00D3843D;
+			remoteInfo = IdentityAccessDomainModel;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		0AF281A82074C1AB00D3843D /* CopyFiles */ = {
@@ -23,11 +51,38 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A3FADF9207B509300F0D214 /* SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
+		0A3FADFA207B509300F0D214 /* EthereumAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAccountTests.swift; sourceTree = "<group>"; };
+		0A3FADFB207B509300F0D214 /* DomainRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistry.swift; sourceTree = "<group>"; };
+		0A3FADFC207B509300F0D214 /* KeyValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueStore.swift; sourceTree = "<group>"; };
+		0A3FADFD207B509400F0D214 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		0A3FADFE207B509400F0D214 /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
+		0A3FADFF207B509400F0D214 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		0A3FAE00207B509400F0D214 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
+		0A3FAE01207B509400F0D214 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		0A3FAE02207B509500F0D214 /* MockAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccount.swift; sourceTree = "<group>"; };
+		0A3FAE03207B509500F0D214 /* DomainTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainTestCase.swift; sourceTree = "<group>"; };
+		0A3FAE04207B509500F0D214 /* SecureStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStore.swift; sourceTree = "<group>"; };
+		0A3FAE05207B509500F0D214 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
+		0A3FAE06207B509500F0D214 /* EthereumAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAccount.swift; sourceTree = "<group>"; };
+		0A3FAE07207B509600F0D214 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		0A3FAE08207B509600F0D214 /* BiometricAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationService.swift; sourceTree = "<group>"; };
+		0A3FAE1D207B50B300F0D214 /* IdentityAccessDomainModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessDomainModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A3FAE1F207B50B300F0D214 /* IdentityAccessDomainModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityAccessDomainModelTests.swift; sourceTree = "<group>"; };
+		0A3FAE21207B50B300F0D214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AF281AA2074C1AB00D3843D /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF281AD2074C1AB00D3843D /* IdentityAccessDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityAccessDomainModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0A3FAE1A207B50B300F0D214 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A3FAE22207B50B300F0D214 /* libIdentityAccessDomainModel.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0AF281A72074C1AB00D3843D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -38,10 +93,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A3FAE1E207B50B300F0D214 /* IdentityAccessDomainModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A3FAE1F207B50B300F0D214 /* IdentityAccessDomainModelTests.swift */,
+				0A3FAE21207B50B300F0D214 /* Info.plist */,
+			);
+			path = IdentityAccessDomainModelTests;
+			sourceTree = "<group>";
+		};
 		0AF281A12074C1AB00D3843D = {
 			isa = PBXGroup;
 			children = (
 				0AF281AC2074C1AB00D3843D /* IdentityAccessDomainModel */,
+				0A3FAE1E207B50B300F0D214 /* IdentityAccessDomainModelTests */,
 				0AF281AB2074C1AB00D3843D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				0AF281AA2074C1AB00D3843D /* libIdentityAccessDomainModel.a */,
+				0A3FAE1D207B50B300F0D214 /* IdentityAccessDomainModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,6 +124,22 @@
 			isa = PBXGroup;
 			children = (
 				0AF281AD2074C1AB00D3843D /* IdentityAccessDomainModel.swift */,
+				0A3FADFD207B509400F0D214 /* Account.swift */,
+				0A3FAE02207B509500F0D214 /* MockAccount.swift */,
+				0A3FADFE207B509400F0D214 /* AccountTests.swift */,
+				0A3FAE00207B509400F0D214 /* UserDefaultKeys.swift */,
+				0A3FADFF207B509400F0D214 /* Session.swift */,
+				0A3FADF9207B509300F0D214 /* SessionTests.swift */,
+				0A3FAE06207B509500F0D214 /* EthereumAccount.swift */,
+				0A3FADFA207B509300F0D214 /* EthereumAccountTests.swift */,
+				0A3FADFC207B509300F0D214 /* KeyValueStore.swift */,
+				0A3FAE04207B509500F0D214 /* SecureStore.swift */,
+				0A3FAE08207B509600F0D214 /* BiometricAuthenticationService.swift */,
+				0A3FAE01207B509400F0D214 /* Clock.swift */,
+				0A3FAE07207B509600F0D214 /* Logger.swift */,
+				0A3FADFB207B509300F0D214 /* DomainRegistry.swift */,
+				0A3FAE05207B509500F0D214 /* DomainRegistryTests.swift */,
+				0A3FAE03207B509500F0D214 /* DomainTestCase.swift */,
 			);
 			path = IdentityAccessDomainModel;
 			sourceTree = "<group>";
@@ -65,6 +147,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0A3FAE1C207B50B300F0D214 /* IdentityAccessDomainModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A3FAE25207B50B300F0D214 /* Build configuration list for PBXNativeTarget "IdentityAccessDomainModelTests" */;
+			buildPhases = (
+				0A3FAE19207B50B300F0D214 /* Sources */,
+				0A3FAE1A207B50B300F0D214 /* Frameworks */,
+				0A3FAE1B207B50B300F0D214 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A3FAE24207B50B300F0D214 /* PBXTargetDependency */,
+			);
+			name = IdentityAccessDomainModelTests;
+			productName = IdentityAccessDomainModelTests;
+			productReference = 0A3FAE1D207B50B300F0D214 /* IdentityAccessDomainModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		0AF281A92074C1AB00D3843D /* IdentityAccessDomainModel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AF281B12074C1AB00D3843D /* Build configuration list for PBXNativeTarget "IdentityAccessDomainModel" */;
@@ -92,6 +192,9 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Dmitry Bespalov";
 				TargetAttributes = {
+					0A3FAE1C207B50B300F0D214 = {
+						CreatedOnToolsVersion = 9.3;
+					};
 					0AF281A92074C1AB00D3843D = {
 						CreatedOnToolsVersion = 9.3;
 					};
@@ -110,22 +213,103 @@
 			projectRoot = "";
 			targets = (
 				0AF281A92074C1AB00D3843D /* IdentityAccessDomainModel */,
+				0A3FAE1C207B50B300F0D214 /* IdentityAccessDomainModelTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		0A3FAE1B207B50B300F0D214 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		0A3FAE19207B50B300F0D214 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A3FAE33207B50D500F0D214 /* EthereumAccountTests.swift in Sources */,
+				0A3FAE35207B50D500F0D214 /* DomainTestCase.swift in Sources */,
+				0A3FAE36207B50EB00F0D214 /* SessionTests.swift in Sources */,
+				0A3FAE20207B50B300F0D214 /* IdentityAccessDomainModelTests.swift in Sources */,
+				0A3FAE34207B50D500F0D214 /* DomainRegistryTests.swift in Sources */,
+				0A3FAE32207B50D500F0D214 /* AccountTests.swift in Sources */,
+				0A3FAE31207B50D500F0D214 /* MockAccount.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0AF281A62074C1AB00D3843D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3FAE0C207B509600F0D214 /* KeyValueStore.swift in Sources */,
+				0A3FAE16207B509600F0D214 /* EthereumAccount.swift in Sources */,
+				0A3FAE0B207B509600F0D214 /* DomainRegistry.swift in Sources */,
+				0A3FAE17207B509600F0D214 /* Logger.swift in Sources */,
+				0A3FAE11207B509600F0D214 /* Clock.swift in Sources */,
+				0A3FAE0F207B509600F0D214 /* Session.swift in Sources */,
+				0A3FAE18207B509600F0D214 /* BiometricAuthenticationService.swift in Sources */,
 				0AF281AE2074C1AB00D3843D /* IdentityAccessDomainModel.swift in Sources */,
+				0A3FAE0D207B509600F0D214 /* Account.swift in Sources */,
+				0A3FAE10207B509600F0D214 /* UserDefaultKeys.swift in Sources */,
+				0A3FAE14207B509600F0D214 /* SecureStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0A3FAE24207B50B300F0D214 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0AF281A92074C1AB00D3843D /* IdentityAccessDomainModel */;
+			targetProxy = 0A3FAE23207B50B300F0D214 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0A3FAE26207B50B300F0D214 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = IdentityAccessDomainModelTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessDomainModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0A3FAE27207B50B300F0D214 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = IdentityAccessDomainModelTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessDomainModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		0AF281AF2074C1AB00D3843D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -269,6 +453,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0A3FAE25207B50B300F0D214 /* Build configuration list for PBXNativeTarget "IdentityAccessDomainModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A3FAE26207B50B300F0D214 /* Debug */,
+				0A3FAE27207B50B300F0D214 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0AF281A52074C1AB00D3843D /* Build configuration list for PBXProject "IdentityAccessDomainModel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -7,8 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3FAE70207B51CB00F0D214 /* IdentityAccessPortAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE6F207B51CB00F0D214 /* IdentityAccessPortAdapterTests.swift */; };
+		0A3FAE72207B51CB00F0D214 /* libIdentityAccessPortAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8BCFC62074CB1500BCD78D /* libIdentityAccessPortAdapter.a */; };
+		0A3FAE78207B51DA00F0D214 /* LogServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE38207B515800F0D214 /* LogServiceTests.swift */; };
+		0A3FAE79207B51DA00F0D214 /* ConsoleLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE3A207B515800F0D214 /* ConsoleLoggerTests.swift */; };
+		0A3FAE7A207B51DA00F0D214 /* LoggableErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE3C207B515800F0D214 /* LoggableErrorTests.swift */; };
+		0A3FAE7B207B51DA00F0D214 /* CrashlyticsLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE3E207B515800F0D214 /* CrashlyticsLoggerTests.swift */; };
+		0A3FAE7C207B51DA00F0D214 /* LogFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE40207B515800F0D214 /* LogFormatterTests.swift */; };
+		0A3FAE7F207B51DA00F0D214 /* BiometricServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE43207B515800F0D214 /* BiometricServiceTests.swift */; };
+		0A3FAE81207B51DA00F0D214 /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE47207B515900F0D214 /* MockClockService.swift */; };
+		0A3FAE82207B51DA00F0D214 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE4B207B515900F0D214 /* EncryptionServiceTests.swift */; };
+		0A3FAE83207B51EE00F0D214 /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE37207B515800F0D214 /* LogService.swift */; };
+		0A3FAE84207B51EE00F0D214 /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE39207B515800F0D214 /* ConsoleLogger.swift */; };
+		0A3FAE85207B51EE00F0D214 /* LoggableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE3B207B515800F0D214 /* LoggableError.swift */; };
+		0A3FAE86207B51EE00F0D214 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE3D207B515800F0D214 /* CrashlyticsLogger.swift */; };
+		0A3FAE87207B51EE00F0D214 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE3F207B515800F0D214 /* LogFormatter.swift */; };
+		0A3FAE88207B51EE00F0D214 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE50207B515900F0D214 /* UserDefaultsService.swift */; };
+		0A3FAE89207B51EE00F0D214 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE4D207B515900F0D214 /* KeychainService.swift */; };
+		0A3FAE8A207B51EE00F0D214 /* BiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE42207B515800F0D214 /* BiometricService.swift */; };
+		0A3FAE8B207B51EE00F0D214 /* SystemClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE45207B515900F0D214 /* SystemClockService.swift */; };
+		0A3FAE8C207B51EE00F0D214 /* EncryptionServiceValueObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE49207B515900F0D214 /* EncryptionServiceValueObjects.swift */; };
+		0A3FAE8D207B51EE00F0D214 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE4A207B515900F0D214 /* EncryptionService.swift */; };
+		0A3FAE8E207B526200F0D214 /* UserDefaultsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE51207B515900F0D214 /* UserDefaultsIntegrationTests.swift */; };
+		0A3FAE8F207B526200F0D214 /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE4E207B515900F0D214 /* KeychainServiceIntegrationTests.swift */; };
+		0A3FAE90207B526200F0D214 /* SystemClockServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE46207B515900F0D214 /* SystemClockServiceIntegrationTests.swift */; };
 		0A8BCFCA2074CB1500BCD78D /* IdentityAccessPortAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BCFC92074CB1500BCD78D /* IdentityAccessPortAdapter.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0A3FAE73207B51CB00F0D214 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A8BCFBE2074CB1500BCD78D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A8BCFC52074CB1500BCD78D;
+			remoteInfo = IdentityAccessPortAdapter;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		0A8BCFC42074CB1500BCD78D /* CopyFiles */ = {
@@ -23,11 +57,44 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A3FAE37207B515800F0D214 /* LogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
+		0A3FAE38207B515800F0D214 /* LogServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogServiceTests.swift; sourceTree = "<group>"; };
+		0A3FAE39207B515800F0D214 /* ConsoleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
+		0A3FAE3A207B515800F0D214 /* ConsoleLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLoggerTests.swift; sourceTree = "<group>"; };
+		0A3FAE3B207B515800F0D214 /* LoggableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggableError.swift; sourceTree = "<group>"; };
+		0A3FAE3C207B515800F0D214 /* LoggableErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggableErrorTests.swift; sourceTree = "<group>"; };
+		0A3FAE3D207B515800F0D214 /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogger.swift; sourceTree = "<group>"; };
+		0A3FAE3E207B515800F0D214 /* CrashlyticsLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsLoggerTests.swift; sourceTree = "<group>"; };
+		0A3FAE3F207B515800F0D214 /* LogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
+		0A3FAE40207B515800F0D214 /* LogFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatterTests.swift; sourceTree = "<group>"; };
+		0A3FAE42207B515800F0D214 /* BiometricService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricService.swift; sourceTree = "<group>"; };
+		0A3FAE43207B515800F0D214 /* BiometricServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricServiceTests.swift; sourceTree = "<group>"; };
+		0A3FAE45207B515900F0D214 /* SystemClockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemClockService.swift; sourceTree = "<group>"; };
+		0A3FAE46207B515900F0D214 /* SystemClockServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemClockServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		0A3FAE47207B515900F0D214 /* MockClockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClockService.swift; sourceTree = "<group>"; };
+		0A3FAE49207B515900F0D214 /* EncryptionServiceValueObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionServiceValueObjects.swift; sourceTree = "<group>"; };
+		0A3FAE4A207B515900F0D214 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
+		0A3FAE4B207B515900F0D214 /* EncryptionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionServiceTests.swift; sourceTree = "<group>"; };
+		0A3FAE4D207B515900F0D214 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		0A3FAE4E207B515900F0D214 /* KeychainServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		0A3FAE50207B515900F0D214 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		0A3FAE51207B515900F0D214 /* UserDefaultsIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsIntegrationTests.swift; sourceTree = "<group>"; };
+		0A3FAE6D207B51CB00F0D214 /* IdentityAccessPortAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessPortAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A3FAE6F207B51CB00F0D214 /* IdentityAccessPortAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityAccessPortAdapterTests.swift; sourceTree = "<group>"; };
+		0A3FAE71207B51CB00F0D214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A8BCFC62074CB1500BCD78D /* libIdentityAccessPortAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessPortAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8BCFC92074CB1500BCD78D /* IdentityAccessPortAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityAccessPortAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0A3FAE6A207B51CB00F0D214 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A3FAE72207B51CB00F0D214 /* libIdentityAccessPortAdapter.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0A8BCFC32074CB1500BCD78D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -38,10 +105,84 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A3FAE41207B515800F0D214 /* logger */ = {
+			isa = PBXGroup;
+			children = (
+				0A3FAE37207B515800F0D214 /* LogService.swift */,
+				0A3FAE38207B515800F0D214 /* LogServiceTests.swift */,
+				0A3FAE39207B515800F0D214 /* ConsoleLogger.swift */,
+				0A3FAE3A207B515800F0D214 /* ConsoleLoggerTests.swift */,
+				0A3FAE3B207B515800F0D214 /* LoggableError.swift */,
+				0A3FAE3C207B515800F0D214 /* LoggableErrorTests.swift */,
+				0A3FAE3D207B515800F0D214 /* CrashlyticsLogger.swift */,
+				0A3FAE3E207B515800F0D214 /* CrashlyticsLoggerTests.swift */,
+				0A3FAE3F207B515800F0D214 /* LogFormatter.swift */,
+				0A3FAE40207B515800F0D214 /* LogFormatterTests.swift */,
+			);
+			path = logger;
+			sourceTree = "<group>";
+		};
+		0A3FAE44207B515800F0D214 /* biometry */ = {
+			isa = PBXGroup;
+			children = (
+				0A3FAE42207B515800F0D214 /* BiometricService.swift */,
+				0A3FAE43207B515800F0D214 /* BiometricServiceTests.swift */,
+			);
+			path = biometry;
+			sourceTree = "<group>";
+		};
+		0A3FAE48207B515900F0D214 /* clock */ = {
+			isa = PBXGroup;
+			children = (
+				0A3FAE45207B515900F0D214 /* SystemClockService.swift */,
+				0A3FAE46207B515900F0D214 /* SystemClockServiceIntegrationTests.swift */,
+				0A3FAE47207B515900F0D214 /* MockClockService.swift */,
+			);
+			path = clock;
+			sourceTree = "<group>";
+		};
+		0A3FAE4C207B515900F0D214 /* ethereum */ = {
+			isa = PBXGroup;
+			children = (
+				0A3FAE49207B515900F0D214 /* EncryptionServiceValueObjects.swift */,
+				0A3FAE4A207B515900F0D214 /* EncryptionService.swift */,
+				0A3FAE4B207B515900F0D214 /* EncryptionServiceTests.swift */,
+			);
+			path = ethereum;
+			sourceTree = "<group>";
+		};
+		0A3FAE4F207B515900F0D214 /* secureStore */ = {
+			isa = PBXGroup;
+			children = (
+				0A3FAE4D207B515900F0D214 /* KeychainService.swift */,
+				0A3FAE4E207B515900F0D214 /* KeychainServiceIntegrationTests.swift */,
+			);
+			path = secureStore;
+			sourceTree = "<group>";
+		};
+		0A3FAE52207B515900F0D214 /* keyValueStore */ = {
+			isa = PBXGroup;
+			children = (
+				0A3FAE50207B515900F0D214 /* UserDefaultsService.swift */,
+				0A3FAE51207B515900F0D214 /* UserDefaultsIntegrationTests.swift */,
+			);
+			path = keyValueStore;
+			sourceTree = "<group>";
+		};
+		0A3FAE6E207B51CB00F0D214 /* IdentityAccessPortAdapterTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A3FAE6F207B51CB00F0D214 /* IdentityAccessPortAdapterTests.swift */,
+				0A3FAE71207B51CB00F0D214 /* Info.plist */,
+			);
+			path = IdentityAccessPortAdapterTests;
+			sourceTree = "<group>";
+		};
 		0A8BCFBD2074CB1500BCD78D = {
 			isa = PBXGroup;
 			children = (
 				0A8BCFC82074CB1500BCD78D /* IdentityAccessPortAdapter */,
+				0A3FAE6E207B51CB00F0D214 /* IdentityAccessPortAdapterTests */,
 				0A8BCFC72074CB1500BCD78D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				0A8BCFC62074CB1500BCD78D /* libIdentityAccessPortAdapter.a */,
+				0A3FAE6D207B51CB00F0D214 /* IdentityAccessPortAdapterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,6 +200,12 @@
 			isa = PBXGroup;
 			children = (
 				0A8BCFC92074CB1500BCD78D /* IdentityAccessPortAdapter.swift */,
+				0A3FAE41207B515800F0D214 /* logger */,
+				0A3FAE52207B515900F0D214 /* keyValueStore */,
+				0A3FAE4F207B515900F0D214 /* secureStore */,
+				0A3FAE44207B515800F0D214 /* biometry */,
+				0A3FAE48207B515900F0D214 /* clock */,
+				0A3FAE4C207B515900F0D214 /* ethereum */,
 			);
 			path = IdentityAccessPortAdapter;
 			sourceTree = "<group>";
@@ -65,6 +213,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0A3FAE6C207B51CB00F0D214 /* IdentityAccessPortAdapterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A3FAE75207B51CB00F0D214 /* Build configuration list for PBXNativeTarget "IdentityAccessPortAdapterTests" */;
+			buildPhases = (
+				0A3FAE69207B51CB00F0D214 /* Sources */,
+				0A3FAE6A207B51CB00F0D214 /* Frameworks */,
+				0A3FAE6B207B51CB00F0D214 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A3FAE74207B51CB00F0D214 /* PBXTargetDependency */,
+			);
+			name = IdentityAccessPortAdapterTests;
+			productName = IdentityAccessPortAdapterTests;
+			productReference = 0A3FAE6D207B51CB00F0D214 /* IdentityAccessPortAdapterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		0A8BCFC52074CB1500BCD78D /* IdentityAccessPortAdapter */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A8BCFCD2074CB1500BCD78D /* Build configuration list for PBXNativeTarget "IdentityAccessPortAdapter" */;
@@ -92,6 +258,9 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Dmitry Bespalov";
 				TargetAttributes = {
+					0A3FAE6C207B51CB00F0D214 = {
+						CreatedOnToolsVersion = 9.3;
+					};
 					0A8BCFC52074CB1500BCD78D = {
 						CreatedOnToolsVersion = 9.3;
 					};
@@ -110,22 +279,109 @@
 			projectRoot = "";
 			targets = (
 				0A8BCFC52074CB1500BCD78D /* IdentityAccessPortAdapter */,
+				0A3FAE6C207B51CB00F0D214 /* IdentityAccessPortAdapterTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		0A3FAE6B207B51CB00F0D214 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		0A3FAE69207B51CB00F0D214 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A3FAE79207B51DA00F0D214 /* ConsoleLoggerTests.swift in Sources */,
+				0A3FAE7C207B51DA00F0D214 /* LogFormatterTests.swift in Sources */,
+				0A3FAE7B207B51DA00F0D214 /* CrashlyticsLoggerTests.swift in Sources */,
+				0A3FAE82207B51DA00F0D214 /* EncryptionServiceTests.swift in Sources */,
+				0A3FAE90207B526200F0D214 /* SystemClockServiceIntegrationTests.swift in Sources */,
+				0A3FAE7A207B51DA00F0D214 /* LoggableErrorTests.swift in Sources */,
+				0A3FAE8F207B526200F0D214 /* KeychainServiceIntegrationTests.swift in Sources */,
+				0A3FAE7F207B51DA00F0D214 /* BiometricServiceTests.swift in Sources */,
+				0A3FAE78207B51DA00F0D214 /* LogServiceTests.swift in Sources */,
+				0A3FAE81207B51DA00F0D214 /* MockClockService.swift in Sources */,
+				0A3FAE70207B51CB00F0D214 /* IdentityAccessPortAdapterTests.swift in Sources */,
+				0A3FAE8E207B526200F0D214 /* UserDefaultsIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0A8BCFC22074CB1500BCD78D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3FAE84207B51EE00F0D214 /* ConsoleLogger.swift in Sources */,
+				0A3FAE88207B51EE00F0D214 /* UserDefaultsService.swift in Sources */,
+				0A3FAE8D207B51EE00F0D214 /* EncryptionService.swift in Sources */,
+				0A3FAE85207B51EE00F0D214 /* LoggableError.swift in Sources */,
+				0A3FAE86207B51EE00F0D214 /* CrashlyticsLogger.swift in Sources */,
+				0A3FAE83207B51EE00F0D214 /* LogService.swift in Sources */,
+				0A3FAE8B207B51EE00F0D214 /* SystemClockService.swift in Sources */,
+				0A3FAE89207B51EE00F0D214 /* KeychainService.swift in Sources */,
 				0A8BCFCA2074CB1500BCD78D /* IdentityAccessPortAdapter.swift in Sources */,
+				0A3FAE87207B51EE00F0D214 /* LogFormatter.swift in Sources */,
+				0A3FAE8A207B51EE00F0D214 /* BiometricService.swift in Sources */,
+				0A3FAE8C207B51EE00F0D214 /* EncryptionServiceValueObjects.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0A3FAE74207B51CB00F0D214 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A8BCFC52074CB1500BCD78D /* IdentityAccessPortAdapter */;
+			targetProxy = 0A3FAE73207B51CB00F0D214 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0A3FAE76207B51CB00F0D214 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = IdentityAccessPortAdapterTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessPortAdapterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0A3FAE77207B51CB00F0D214 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = IdentityAccessPortAdapterTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessPortAdapterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		0A8BCFCB2074CB1500BCD78D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -269,6 +525,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0A3FAE75207B51CB00F0D214 /* Build configuration list for PBXNativeTarget "IdentityAccessPortAdapterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A3FAE76207B51CB00F0D214 /* Debug */,
+				0A3FAE77207B51CB00F0D214 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0A8BCFC12074CB1500BCD78D /* Build configuration list for PBXProject "IdentityAccessPortAdapter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
