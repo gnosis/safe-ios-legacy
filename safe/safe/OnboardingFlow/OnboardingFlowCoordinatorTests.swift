@@ -5,7 +5,7 @@
 import XCTest
 @testable import safe
 
-class OnboardingFlowCoordinatorTests: AbstractAppTestCase {
+class OnboardingFlowCoordinatorTests: SafeTestCase {
 
     var flowCoordinator = OnboardingFlowCoordinator()
 

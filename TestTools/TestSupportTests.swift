@@ -5,7 +5,7 @@
 import XCTest
 @testable import safe
 
-class TestSupportTests: AbstractAppTestCase {
+class TestSupportTests: SafeTestCase {
 
     let support = TestSupport()
 

@@ -5,7 +5,7 @@
 import XCTest
 @testable import safe
 
-class UnlockViewControllerTests: AbstractAppTestCase {
+class UnlockViewControllerTests: SafeTestCase {
 
     var vc: UnlockViewController!
     var didLogIn = false

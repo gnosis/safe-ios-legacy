@@ -5,7 +5,7 @@
 import XCTest
 @testable import safe
 
-class AbstractAppTestCase: XCTestCase {
+class SafeTestCase: XCTestCase {
 
     let authenticationService = MockAuthenticationService()
     let clock = MockClockService()

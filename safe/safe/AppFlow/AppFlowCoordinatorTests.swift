@@ -5,7 +5,7 @@
 import XCTest
 @testable import safe
 
-class AppFlowCoordinatorTests: AbstractAppTestCase {
+class AppFlowCoordinatorTests: SafeTestCase {
 
     var flowCoordinator = AppFlowCoordinator()
     let password = "MyPassword"
