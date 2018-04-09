@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import safe
+import CommonTestSupport
 
 class UnlockViewControllerTests: SafeTestCase {
 

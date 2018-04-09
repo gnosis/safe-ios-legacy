@@ -40,7 +40,7 @@ final class RuleLabel: UILabel {
     }
 
     private func configure() {
-        font = FontName.body // TODO: 23/02/18 support dynamic type change observing
+        font = FontName.body
         status = .inactive
     }
 

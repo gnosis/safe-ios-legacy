@@ -4,6 +4,7 @@
 
 import Foundation
 import XCTest
+import CommonTestSupport
 
 struct Rule {
 

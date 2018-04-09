@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import IdentityAccessApplication
 
 final class SetupSafeFlowCoordinator: FlowCoordinator {
 

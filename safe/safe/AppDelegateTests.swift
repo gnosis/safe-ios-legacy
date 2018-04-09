@@ -4,6 +4,8 @@
 
 import XCTest
 @testable import safe
+import IdentityAccessPortAdapter
+import IdentityAccessDomainModel
 
 class AppDelegateTests: XCTestCase {
 
@@ -21,6 +23,23 @@ class AppDelegateTests: XCTestCase {
         appDelegate.coordinator = coordinator
         appDelegate.applicationWillEnterForeground(UIApplication.shared)
         XCTAssertTrue(coordinator.didBecomeActive)
+    }
+
+    func test_bundleHasRequiredProperties() {
+        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: "NSFaceIDUsageDescription"))
+    }
+
+    func test_mainBundleContainsLoggerKeys() {
+        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: LogServiceLogLevelKey))
+        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: LogServiceEnabledLoggersKey))
+    }
+
+    func test_defaultValues() {
+        XCTAssertNotNil(DomainRegistry.keyValueStore)
+        XCTAssertNotNil(DomainRegistry.secureStore)
+        XCTAssertNotNil(DomainRegistry.biometricAuthenticationService)
+        XCTAssertNotNil(DomainRegistry.clock)
+        XCTAssertNotNil(DomainRegistry.logger)
     }
 
 }

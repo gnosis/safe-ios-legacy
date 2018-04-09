@@ -1,21 +1,6 @@
 /* Unlock screen header */
 "app.unlock.header" = "app.unlock.header";
 
-/* Reason to activate Touch ID or Face ID. */
-"biometry.activation.reason" = "biometry.activation.reason";
-
-/* Description of unlock with Touch ID. */
-"biometry.authentication.reason" = "biometry.authentication.reason";
-
-/* Face ID name */
-"biometry.faceID" = "biometry.faceID";
-
-/* Unrecognized biometry type */
-"biometry.none" = "biometry.none";
-
-/* Touch ID */
-"biometry.touchID" = "biometry.touchID";
-
 /* Confirm password screen header */
 "onboarding.confirm_password.header" = "onboarding.confirm_password.header";
 
