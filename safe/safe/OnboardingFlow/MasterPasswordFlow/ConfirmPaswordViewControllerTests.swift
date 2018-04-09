@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import safe
+import CommonTestSupport
 
 class ConfirmPaswordViewControllerTests: AbstractAppTestCase {
 
@@ -27,7 +28,7 @@ class ConfirmPaswordViewControllerTests: AbstractAppTestCase {
 
     func test_whenDidConfirmPassword_thenUserRegistered() {
         vc.textInputDidReturn()
-        XCTAssertTrue(authenticationService.isUserRegistered())
+        XCTAssertTrue(authenticationService.isUserRegistered)
     }
 
     func test_whenRegistrationCompleted_thenCallsDelegate() {

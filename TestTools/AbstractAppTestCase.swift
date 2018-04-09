@@ -4,6 +4,9 @@
 
 import XCTest
 @testable import safe
+import IdentityAccessApplication
+import IdentityAccessDomainModel
+import IdentityAccessPortAdapterTestSupport
 
 class AbstractAppTestCase: XCTestCase {
 

@@ -3,6 +3,7 @@
 //
 
 import XCTest
+import CommonTestSupport
 
 class ConfirmPasswordScreenUITests: XCTestCase {
 
