@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol KeyValueStore {
+public protocol KeyValueStore {
     func bool(for key: String) -> Bool?
     func setBool(_ value: Bool, for key: String)
     func int(for key: String) -> Int?

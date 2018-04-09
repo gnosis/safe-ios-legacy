@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol SecureStore {
+public protocol SecureStore {
     func password() throws -> String?
     func savePassword(_ password: String) throws
     func removePassword() throws

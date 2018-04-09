@@ -3,14 +3,16 @@
 //
 
 import Foundation
+import Common
+import IdentityAccessDomainModel
 
-class ApplicationServiceRegistry: AbstractRegistry {
+public class ApplicationServiceRegistry: AbstractRegistry {
 
-    static var authenticationService: AuthenticationApplicationService {
+    public static var authenticationService: AuthenticationApplicationService {
         return service(for: AuthenticationApplicationService.self)
     }
 
-    static var clock: Clock {
+    public static var clock: Clock {
         return service(for: Clock.self)
     }
 

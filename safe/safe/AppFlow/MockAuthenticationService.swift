@@ -26,7 +26,7 @@ class MockAuthenticationService: AuthenticationApplicationService {
         shouldThrowDuringRegistration = true
     }
 
-    override func isUserRegistered() -> Bool {
+    override var isUserRegistered: Bool {
         return userRegistered
     }
 
@@ -48,8 +48,8 @@ class MockAuthenticationService: AuthenticationApplicationService {
         authenticationAllowed = true
     }
 
-    override func isUserAuthenticated() -> Bool {
-        return isUserRegistered() && userAuthenticated && !isAuthenticationBlocked()
+    override var isUserAuthenticated: Bool {
+        return isUserRegistered && userAuthenticated && !isAuthenticationBlocked
     }
 
     override func authenticateUser(password: String?, completion: ((Bool) -> Void)? = nil) {
@@ -63,7 +63,7 @@ class MockAuthenticationService: AuthenticationApplicationService {
         biometricAuthenticationPossible = false
     }
 
-    override func isBiometricAuthenticationPossible() -> Bool {
+    override var isBiometricAuthenticationPossible: Bool {
         return biometricAuthenticationPossible
     }
 
@@ -80,7 +80,7 @@ class MockAuthenticationService: AuthenticationApplicationService {
         makeBiometricAuthenticationImpossible()
     }
 
-    override func isAuthenticationBlocked() -> Bool {
+    override var isAuthenticationBlocked: Bool {
         return authenticationBlocked
     }
 }

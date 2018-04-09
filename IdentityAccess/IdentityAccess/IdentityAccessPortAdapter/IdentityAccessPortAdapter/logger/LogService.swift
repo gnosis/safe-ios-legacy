@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import IdentityAccessDomainModel
 
 protocol LogWriter {
     func log(_ message: String, level: LogLevel, error: Error?, file: StaticString, line: UInt, function: StaticString)
@@ -10,14 +11,14 @@ protocol LogWriter {
 
 /**
  FATAL: Designates very severe error events that will presumably lead the application to abort.
-
+ 
  ERROR: Designates error events that might still allow the application to continue running.
-
+ 
  INFO: Designates informational messages that highlight the progress of the application at coarse-grained level.
-
+ 
  DEBUG: Designates fine-grained informational events that are most useful to debug an application.
  */
-enum LogLevel: Int {
+public enum LogLevel: Int {
     case off
     case fatal
     case error
@@ -62,11 +63,11 @@ protocol BundleProtocol {
 
 extension Bundle: BundleProtocol {}
 
-final class LogService: Logger {
+public final class LogService: Logger {
 
-    static let shared = LogService()
+    public static let shared = LogService()
 
-    let level: LogLevel
+    public let level: LogLevel
     private (set) var loggers = [LogWriter]()
 
     init(level: LogLevel) {
@@ -94,35 +95,35 @@ final class LogService: Logger {
         }
     }
 
-    func fatal(_ message: String,
-               error: Error? = nil,
-               file: StaticString = #file,
-               line: UInt = #line,
-               function: StaticString = #function) {
+    public func fatal(_ message: String,
+                      error: Error? = nil,
+                      file: StaticString = #file,
+                      line: UInt = #line,
+                      function: StaticString = #function) {
         log(.fatal, message: message, error: error, file: file, line: line, function: function)
     }
 
-    func error(_ message: String,
-               error: Error? = nil,
-               file: StaticString = #file,
-               line: UInt = #line,
-               function: StaticString = #function) {
+    public func error(_ message: String,
+                      error: Error? = nil,
+                      file: StaticString = #file,
+                      line: UInt = #line,
+                      function: StaticString = #function) {
         log(.error, message: message, error: error, file: file, line: line, function: function)
     }
 
-    func info(_ message: String,
-              error: Error? = nil,
-              file: StaticString = #file,
-              line: UInt = #line,
-              function: StaticString = #function) {
+    public func info(_ message: String,
+                     error: Error? = nil,
+                     file: StaticString = #file,
+                     line: UInt = #line,
+                     function: StaticString = #function) {
         log(.info, message: message, error: error, file: file, line: line, function: function)
     }
 
-    func debug(_ message: String,
-               error: Error? = nil,
-               file: StaticString = #file,
-               line: UInt = #line,
-               function: StaticString = #function) {
+    public func debug(_ message: String,
+                      error: Error? = nil,
+                      file: StaticString = #file,
+                      line: UInt = #line,
+                      function: StaticString = #function) {
         log(.debug, message: message, error: error, file: file, line: line, function: function)
     }
 

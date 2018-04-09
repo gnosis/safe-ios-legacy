@@ -4,6 +4,7 @@
 
 import Foundation
 import Crashlytics
+import IdentityAccessDomainModel
 
 protocol CrashlyticsProtocol {
     func recordError(_ error: Error)

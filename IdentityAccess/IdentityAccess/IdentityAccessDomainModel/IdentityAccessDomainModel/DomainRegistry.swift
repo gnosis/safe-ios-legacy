@@ -3,8 +3,9 @@
 //
 
 import Foundation
+import Common
 
-class DomainRegistry: AbstractRegistry {
+public class DomainRegistry: AbstractRegistry {
 
     static var keyValueStore: KeyValueStore {
         return service(for: KeyValueStore.self)

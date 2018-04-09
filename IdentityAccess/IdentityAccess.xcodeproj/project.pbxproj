@@ -14,6 +14,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0A3FAEAF207B543800F0D214 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF281CD2074C1D200D3843D /* IdentityAccessApplication.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A3FAE5D207B517D00F0D214;
+			remoteInfo = IdentityAccessApplicationTests;
+		};
+		0A3FAEB3207B543800F0D214 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF281B42074C1AB00D3843D /* IdentityAccessDomainModel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A3FAE1D207B50B300F0D214;
+			remoteInfo = IdentityAccessDomainModelTests;
+		};
+		0A3FAEB8207B543800F0D214 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A3FAE6D207B51CB00F0D214;
+			remoteInfo = IdentityAccessPortAdapterTests;
+		};
+		0A3FAEBA207B543800F0D214 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A3FAE9D207B535D00F0D214;
+			remoteInfo = IdentityAccessPortAdapterTestSupport;
+		};
 		0A8BCFD62074CB1600BCD78D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */;
@@ -50,6 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A3FAEAC207B543700F0D214 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccessPortAdapter.xcodeproj; path = IdentityAccessPortAdapter/IdentityAccessPortAdapter.xcodeproj; sourceTree = "<group>"; };
 		0AF281972074C18B00D3843D /* libIdentityAccess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccess.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF281B42074C1AB00D3843D /* IdentityAccessDomainModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccessDomainModel.xcodeproj; path = IdentityAccessDomainModel/IdentityAccessDomainModel.xcodeproj; sourceTree = "<group>"; };
@@ -75,6 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				0A8BCFD72074CB1600BCD78D /* libIdentityAccessPortAdapter.a */,
+				0A3FAEB9207B543800F0D214 /* IdentityAccessPortAdapterTests.xctest */,
+				0A3FAEBB207B543800F0D214 /* libIdentityAccessPortAdapterTestSupport.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +134,7 @@
 				0AF281CD2074C1D200D3843D /* IdentityAccessApplication.xcodeproj */,
 				0AF281B42074C1AB00D3843D /* IdentityAccessDomainModel.xcodeproj */,
 				0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */,
+				0A3FAEAC207B543700F0D214 /* Config.xcconfig */,
 			);
 			path = IdentityAccess;
 			sourceTree = "<group>";
@@ -111,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				0AF281B92074C1AC00D3843D /* libIdentityAccessDomainModel.a */,
+				0A3FAEB4207B543800F0D214 /* IdentityAccessDomainModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				0AF281D22074C1D300D3843D /* libIdentityAccessApplication.a */,
+				0A3FAEB0207B543800F0D214 /* IdentityAccessApplicationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,7 +193,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = "Dmitry Bespalov";
+				ORGANIZATIONNAME = Gnosis;
 				TargetAttributes = {
 					0AF281962074C18B00D3843D = {
 						CreatedOnToolsVersion = 9.3;
@@ -199,6 +233,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0A3FAEB0207B543800F0D214 /* IdentityAccessApplicationTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = IdentityAccessApplicationTests.xctest;
+			remoteRef = 0A3FAEAF207B543800F0D214 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A3FAEB4207B543800F0D214 /* IdentityAccessDomainModelTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = IdentityAccessDomainModelTests.xctest;
+			remoteRef = 0A3FAEB3207B543800F0D214 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A3FAEB9207B543800F0D214 /* IdentityAccessPortAdapterTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = IdentityAccessPortAdapterTests.xctest;
+			remoteRef = 0A3FAEB8207B543800F0D214 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A3FAEBB207B543800F0D214 /* libIdentityAccessPortAdapterTestSupport.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libIdentityAccessPortAdapterTestSupport.a;
+			remoteRef = 0A3FAEBA207B543800F0D214 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0A8BCFD72074CB1600BCD78D /* libIdentityAccessPortAdapter.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

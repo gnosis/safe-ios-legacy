@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol AccountProtocol: class {
+public protocol AccountProtocol: class {
 
     var hasMasterPassword: Bool { get }
     var isLoggedIn: Bool { get }
@@ -25,18 +25,19 @@ protocol AccountProtocol: class {
 
 }
 
-enum AccountError: LoggableError {
+public enum AccountError: LoggableError {
     case settingMasterPasswordFailed
     case cleanUpAllDataFailed
 }
 
-final class Account: AccountProtocol {
+public final class Account: AccountProtocol {
 
-    static let shared = Account()
+    public static let shared = Account()
+    // TODO: fetch from registry
+    var logger: Logger!
 
-    var isBlocked: Bool {
+    public var isBlocked: Bool {
         let result = passwordAttemptCount >= maxPasswordAttempts
-        LogService.shared.debug("Blocked? \(result ? "YES" : "NO")")
         return result
     }
 
@@ -49,32 +50,32 @@ final class Account: AccountProtocol {
         }
     }
 
-    var hasMasterPassword: Bool {
+    public var hasMasterPassword: Bool {
         return userDefaultsService.bool(for: UserDefaultsKey.masterPasswordWasSet.rawValue) ?? false
     }
 
-    var isLoggedIn: Bool {
+    public var isLoggedIn: Bool {
         return hasMasterPassword && session.isActive
     }
 
-    var isBiometryAuthenticationAvailable: Bool {
+    public var isBiometryAuthenticationAvailable: Bool {
         return biometricService.isAuthenticationAvailable
     }
 
-    var isBiometryFaceID: Bool {
+    public var isBiometryFaceID: Bool {
         return biometricService.biometryType == .faceID
     }
 
-    var isBiometryTouchID: Bool {
+    public var isBiometryTouchID: Bool {
         return biometricService.biometryType == .touchID
     }
 
-    var sessionDuration: TimeInterval {
+    public var sessionDuration: TimeInterval {
         get { return session.duration }
         set { session = Session(duration: newValue) }
     }
 
-    var isSessionActive: Bool {
+    public var isSessionActive: Bool {
         return session.isActive
     }
 
@@ -85,8 +86,8 @@ final class Account: AccountProtocol {
     }
     private var systemClock: Clock { return DomainRegistry.clock }
     private (set) var session: Session
-    var maxPasswordAttempts: Int
-    var blockedPeriodDuration: TimeInterval
+    public var maxPasswordAttempts: Int
+    public var blockedPeriodDuration: TimeInterval
 
     init(sessionDuration: TimeInterval = 60 * 5,
          blockedPeriodDuration: TimeInterval = 15,
@@ -96,7 +97,7 @@ final class Account: AccountProtocol {
         self.blockedPeriodDuration = blockedPeriodDuration
     }
 
-    func setMasterPassword(_ password: String) throws {
+    public func setMasterPassword(_ password: String) throws {
         do {
             try keychainService.savePassword(password)
             userDefaultsService.setBool(true, for: UserDefaultsKey.masterPasswordWasSet.rawValue)
@@ -106,7 +107,7 @@ final class Account: AccountProtocol {
         }
     }
 
-    func cleanupAllData() throws {
+    public func cleanupAllData() throws {
         do {
             try keychainService.removePassword()
             userDefaultsService.deleteKey(UserDefaultsKey.masterPasswordWasSet.rawValue)
@@ -116,23 +117,23 @@ final class Account: AccountProtocol {
         }
     }
 
-    func activateBiometricAuthentication(completion: @escaping () -> Void) {
+    public func activateBiometricAuthentication(completion: @escaping () -> Void) {
         biometricService.activate(completion: completion)
     }
 
-    func authenticateWithBiometry(completion: @escaping (Bool) -> Void) {
+    public func authenticateWithBiometry(completion: @escaping (Bool) -> Void) {
         biometricService.authenticate { [unowned self] success in
             completion(self.authenticationResult(success))
         }
     }
 
-    func authenticateWithPassword(_ password: String) -> Bool {
+    public func authenticateWithPassword(_ password: String) -> Bool {
         do {
             let isAuthenticated = authenticationResult(try keychainService.password() == password)
             passwordAttemptCount = isAuthenticated ? 0 : (passwordAttemptCount + 1)
             return isAuthenticated
         } catch let e {
-            LogService.shared.error("Keychain password fetch failed", error: e)
+            logger.error("Keychain password fetch failed", error: e, file: #file, line: #line, function: #function)
             return false
         }
     }

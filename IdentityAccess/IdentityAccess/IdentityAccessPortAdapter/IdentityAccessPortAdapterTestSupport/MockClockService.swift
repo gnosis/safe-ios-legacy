@@ -3,7 +3,6 @@
 //
 
 import Foundation
-@testable import IdentityAccessPortAdapter
 import IdentityAccessDomainModel
 
 class MockClockService: Clock {

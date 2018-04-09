@@ -14,6 +14,7 @@
 		0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */; };
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
 		0A2972C6205A89A100CEC7D4 /* XCLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2972C4205A899C00CEC7D4 /* XCLocalizedString.swift */; };
+		0A3FAEAB207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */; };
 		0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527324205BCCF4004A5F9A /* CountdownLabel.swift */; };
 		0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527326205BD364004A5F9A /* CountdownLabelTests.swift */; };
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
@@ -145,6 +146,7 @@
 		0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A2972C4205A899C00CEC7D4 /* XCLocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCLocalizedString.swift; sourceTree = "<group>"; };
+		0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapterTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A527324205BCCF4004A5F9A /* CountdownLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
 		0A527326205BD364004A5F9A /* CountdownLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabelTests.swift; sourceTree = "<group>"; };
 		0A53AD3820595C2300D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3FAEAB207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +288,7 @@
 		0A53306B2073C73E00DE55F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */,
 				0AF281D62074C23400D3843D /* libIdentityAccess.a */,
 				0ABBDBF72073CACD006D0A48 /* APIKit.framework */,
 				0ABBDBF82073CACD006D0A48 /* CryptoSwift.framework */,

@@ -32,7 +32,7 @@ class EthereumAccountFactory: EthereumAccountFactoryProtocol {
 
     private let encryptionService: EncryptionServiceProtocol
 
-    init(service: EncryptionServiceProtocol = EncryptionService()) {
+    init(service: EncryptionServiceProtocol) {
         self.encryptionService = service
     }
 

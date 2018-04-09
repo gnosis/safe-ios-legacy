@@ -33,6 +33,7 @@ disabled_rules:
   - no_grouping_extension
   - notification_center_detachment
   - object_literal
+  - operator_whitespace
   - prefixed_toplevel_constant
   - private_action
   - private_outlet
@@ -90,7 +91,6 @@ opt_in_rules:
   - number_separator
   - opening_brace
   - operator_usage_whitespace
-  - operator_whitespace
   - overridden_super_call
   - override_in_extension
   - pattern_matching_keywords

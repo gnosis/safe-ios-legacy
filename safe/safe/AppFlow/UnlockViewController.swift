@@ -4,6 +4,8 @@
 
 import UIKit
 import safeUIKit
+import IdentityAccessApplication
+import IdentityAccessDomainModel
 
 final class UnlockViewController: UIViewController {
 
@@ -44,7 +46,7 @@ final class UnlockViewController: UIViewController {
     }
 
     private func startCountdownIfNeeded() {
-        guard authenticationService.isAuthenticationBlocked() else { return }
+        guard authenticationService.isAuthenticationBlocked else { return }
         textInput.isEnabled = false
         updateBiometryButtonVisibility()
         countdownLabel.start { [weak self] in
@@ -57,7 +59,7 @@ final class UnlockViewController: UIViewController {
     private func updateBiometryButtonVisibility() {
         loginWithBiometryButton.isHidden = !ApplicationServiceRegistry
             .authenticationService
-            .isBiometricAuthenticationPossible()
+            .isBiometricAuthenticationPossible
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -70,7 +72,7 @@ final class UnlockViewController: UIViewController {
     }
 
     private func auhtenticateWithBiometry() {
-        guard !authenticationService.isAuthenticationBlocked() else { return }
+        guard !authenticationService.isAuthenticationBlocked else { return }
         authenticationService.authenticateUser {  [unowned self] success in
             DispatchQueue.main.async {
                 if success {

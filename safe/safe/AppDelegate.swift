@@ -6,6 +6,8 @@ import Crashlytics
 import Fabric
 import UIKit
 import IdentityAccessApplication
+import IdentityAccessDomainModel
+import IdentityAccessPortAdapter
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

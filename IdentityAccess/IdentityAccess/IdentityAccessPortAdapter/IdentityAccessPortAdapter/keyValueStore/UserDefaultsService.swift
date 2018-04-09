@@ -3,32 +3,35 @@
 //
 
 import Foundation
+import IdentityAccessDomainModel
 
-final class UserDefaultsService: KeyValueStore {
+public final class UserDefaultsService: KeyValueStore {
 
-    func bool(for key: String) -> Bool? {
+    public init() {}
+
+    public func bool(for key: String) -> Bool? {
         if UserDefaults.standard.value(forKey: key) == nil {
             return nil
         }
         return UserDefaults.standard.bool(forKey: key)
     }
 
-    func setBool(_ value: Bool, for key: String) {
+    public func setBool(_ value: Bool, for key: String) {
         UserDefaults.standard.set(value, forKey: key)
     }
 
-    func int(for key: String) -> Int? {
+    public func int(for key: String) -> Int? {
         if UserDefaults.standard.value(forKey: key) == nil {
             return nil
         }
         return UserDefaults.standard.integer(forKey: key)
     }
 
-    func setInt(_ value: Int, for key: String) {
+    public func setInt(_ value: Int, for key: String) {
         UserDefaults.standard.set(value, forKey: key)
     }
 
-    func deleteKey(_ key: String) {
+    public func deleteKey(_ key: String) {
         UserDefaults.standard.removeObject(forKey: key)
     }
 

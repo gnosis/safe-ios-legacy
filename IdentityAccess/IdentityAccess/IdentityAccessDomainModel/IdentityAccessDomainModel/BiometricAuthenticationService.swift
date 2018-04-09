@@ -4,11 +4,11 @@
 
 import Foundation
 
-enum BiometryType {
+public enum BiometryType {
     case none, touchID, faceID
 }
 
-protocol BiometricAuthenticationService {
+public protocol BiometricAuthenticationService {
 
     var isAuthenticationAvailable: Bool { get }
     var biometryType: BiometryType { get }

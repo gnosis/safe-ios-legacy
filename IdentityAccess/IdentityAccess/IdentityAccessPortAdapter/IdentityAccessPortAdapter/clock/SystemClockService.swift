@@ -3,14 +3,17 @@
 //
 
 import Foundation
+import IdentityAccessDomainModel
 
-final class SystemClockService: Clock {
+public final class SystemClockService: Clock {
 
-    var currentTime: Date {
+    public init() {}
+
+    public var currentTime: Date {
         return Date()
     }
 
-    func countdown(from period: TimeInterval, tick: @escaping (TimeInterval) -> Void) {
+    public func countdown(from period: TimeInterval, tick: @escaping (TimeInterval) -> Void) {
         var timeLeft = period
         let step: TimeInterval = 1
         Timer.scheduledTimer(withTimeInterval: step, repeats: true) { timer in

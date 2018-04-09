@@ -4,6 +4,7 @@
 
 import Foundation
 import LocalAuthentication
+import IdentityAccessDomainModel
 
 extension BiometryType {
 
@@ -17,11 +18,11 @@ extension BiometryType {
 
 }
 
-enum BiometricServiceError: LoggableError {
+public enum BiometricServiceError: LoggableError {
     case unexpectedBiometryType
 }
 
-final class BiometricService: BiometricAuthenticationService {
+public final class BiometricService: BiometricAuthenticationService {
 
     private let context: LAContext
 
@@ -32,15 +33,15 @@ final class BiometricService: BiometricAuthenticationService {
                                               comment: "Description of unlock with Touch ID.")
     }
 
-    init(localAuthenticationContext: LAContext = LAContext()) {
+    public init(localAuthenticationContext: LAContext = LAContext()) {
         context = localAuthenticationContext
     }
 
-    var isAuthenticationAvailable: Bool {
+    public var isAuthenticationAvailable: Bool {
         return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
     }
 
-    var biometryType: BiometryType {
+    public var biometryType: BiometryType {
        if #available(iOS 11.0, *) {
             guard isAuthenticationAvailable else { return .none }
             // biometryType available from iOS 11.0
@@ -57,13 +58,13 @@ final class BiometricService: BiometricAuthenticationService {
         }
     }
 
-    func activate(completion: @escaping () -> Void) {
+    public func activate(completion: @escaping () -> Void) {
         requestBiometry(reason: String(format: LocalizedString.activate, biometryType.localizedDescription)) { _ in
             completion()
         }
     }
 
-    func authenticate(completion: @escaping (Bool) -> Void) {
+    public func authenticate(completion: @escaping (Bool) -> Void) {
         requestBiometry(reason: String(format: LocalizedString.unlock, biometryType.localizedDescription),
                         completion: completion)
     }

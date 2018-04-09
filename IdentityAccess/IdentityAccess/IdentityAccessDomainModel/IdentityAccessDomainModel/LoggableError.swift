@@ -6,11 +6,11 @@ import Foundation
 
 let LoggableErrorDescriptionKey = "LoggableErrorDescriptionKey"
 
-protocol LoggableError: Error {
+public protocol LoggableError: Error {
     func nsError(causedBy: Error?) -> NSError
 }
 
-extension LoggableError {
+public extension LoggableError {
 
     func nsError(causedBy underlyingError: Error? = nil) -> NSError {
         var userInfo: [String: Any] = [NSLocalizedDescriptionKey: localizedDescription,

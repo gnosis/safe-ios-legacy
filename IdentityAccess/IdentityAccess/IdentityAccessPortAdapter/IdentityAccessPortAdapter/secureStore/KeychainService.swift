@@ -3,19 +3,24 @@
 //
 
 import Foundation
+import IdentityAccessDomainModel
 
-enum KeychainError: Error {
+public enum KeychainError: Error {
     case unexpectedPasswordData
     case unexpectedMnemonicData
     // https://www.osstatus.com
     case unhandledError(status: OSStatus)
 }
 
-final class KeychainService: SecureStore {
+public final class KeychainService: SecureStore {
 
     private static let defaultServiceName = "pm.gnosis.safe"
     private let passwordServiceName: String
     private let mnemonicServiceName: String
+
+    public convenience init() {
+        self.init(identifier: KeychainService.defaultServiceName)
+    }
 
     init(identifier: String = KeychainService.defaultServiceName) {
         passwordServiceName = identifier + ".password"
@@ -48,7 +53,7 @@ final class KeychainService: SecureStore {
 
     // MARK: - Password
 
-    func password() throws -> String? {
+    public func password() throws -> String? {
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                     kSecAttrService as String: passwordServiceName,
                                     kSecMatchLimit as String: kSecMatchLimitOne,
@@ -65,7 +70,7 @@ final class KeychainService: SecureStore {
         return password
     }
 
-    func savePassword(_ password: String) throws {
+    public func savePassword(_ password: String) throws {
         guard let passwordData = password.data(using: String.Encoding.utf8) else {
             throw KeychainError.unexpectedPasswordData
         }
@@ -75,7 +80,7 @@ final class KeychainService: SecureStore {
         try add(query: query)
     }
 
-    func removePassword() throws {
+    public func removePassword() throws {
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                     kSecAttrService as String: passwordServiceName]
         try remove(query: query)
@@ -83,7 +88,7 @@ final class KeychainService: SecureStore {
 
     // MARK: - Private Key
 
-    func privateKey() throws -> PrivateKey? {
+    public func privateKey() throws -> PrivateKey? {
         let query: [String: Any] = [kSecClass as String: kSecClassKey,
                                     kSecMatchLimit as String: kSecMatchLimitOne,
                                     kSecReturnAttributes as String: true,
@@ -93,20 +98,20 @@ final class KeychainService: SecureStore {
         return PrivateKey(data: data)
     }
 
-    func savePrivateKey(_ privateKey: PrivateKey) throws {
+    public func savePrivateKey(_ privateKey: PrivateKey) throws {
         let query: [String: Any] = [kSecClass as String: kSecClassKey,
                                     kSecValueData as String: privateKey.data]
         try add(query: query)
     }
 
-    func removePrivateKey() throws {
+    public func removePrivateKey() throws {
         let query: [String: Any] = [kSecClass as String: kSecClassKey]
         try remove(query: query)
     }
 
     // MARK: - Mnemonic
 
-    func mnemonic() throws -> Mnemonic? {
+    public func mnemonic() throws -> Mnemonic? {
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                     kSecAttrService as String: mnemonicServiceName,
                                     kSecMatchLimit as String: kSecMatchLimitOne,
@@ -121,7 +126,7 @@ final class KeychainService: SecureStore {
         return Mnemonic(mnemonicString)
     }
 
-    func saveMnemonic(_ mnemonic: Mnemonic) throws {
+    public func saveMnemonic(_ mnemonic: Mnemonic) throws {
         guard let mnemonicData = mnemonic.string().data(using: String.Encoding.utf8) else {
             throw KeychainError.unexpectedMnemonicData
         }
@@ -131,7 +136,7 @@ final class KeychainService: SecureStore {
         try add(query: query)
     }
 
-    func removeMnemonic() throws {
+    public func removeMnemonic() throws {
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                     kSecAttrService as String: mnemonicServiceName]
         try remove(query: query)

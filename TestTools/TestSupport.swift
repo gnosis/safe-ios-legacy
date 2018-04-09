@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import IdentityAccessApplication
 
 protocol Resettable: class {
     func resetAll()

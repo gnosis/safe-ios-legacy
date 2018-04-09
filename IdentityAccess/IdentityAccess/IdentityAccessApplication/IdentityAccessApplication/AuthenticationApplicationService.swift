@@ -3,36 +3,45 @@
 //
 
 import Foundation
+import IdentityAccessDomainModel
 
-enum AuthenticationMethod {
+public enum AuthenticationMethod {
     case password
     case touchID
     case faceID
 }
 
-class AuthenticationApplicationService {
+open class AuthenticationApplicationService {
 
     private let account: AccountProtocol = Account.shared
 
-    var blockedPeriodDuration: TimeInterval {
+    public init() {}
+
+    // MARK: - Queries
+
+    public var blockedPeriodDuration: TimeInterval {
         return account.blockedPeriodDuration
     }
-    var maxPasswordAttempts: Int {
+    public var maxPasswordAttempts: Int {
         return account.maxPasswordAttempts
     }
-    var sessionDuration: TimeInterval {
+    public var sessionDuration: TimeInterval {
         return account.sessionDuration
     }
-
-    func isUserAuthenticated() -> Bool {
+    public var isUserAuthenticated: Bool {
         return account.hasMasterPassword && !account.isSessionActive
     }
-
-    func isUserRegistered() -> Bool {
+    public var isUserRegistered: Bool {
         return account.hasMasterPassword
     }
+    public var isAuthenticationBlocked: Bool {
+        return account.isBlocked
+    }
+    public var isBiometricAuthenticationPossible: Bool {
+        return !isAuthenticationBlocked && account.isBiometryAuthenticationAvailable
+    }
 
-    func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
+    public func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
         switch method {
         case .faceID: return account.isBiometryFaceID
         case .touchID: return account.isBiometryTouchID
@@ -40,16 +49,10 @@ class AuthenticationApplicationService {
         }
     }
 
-    func isAuthenticationBlocked() -> Bool {
-        return account.isBlocked
-    }
+    // MARK: - Commands
 
-    func isBiometricAuthenticationPossible() -> Bool {
-        return !isAuthenticationBlocked() && account.isBiometryAuthenticationAvailable
-    }
-
-    func authenticateUser(password: String? = nil, completion: ((Bool) -> Void)? = nil) {
-        if isAuthenticationBlocked() {
+    public func authenticateUser(password: String? = nil, completion: ((Bool) -> Void)? = nil) {
+        if isAuthenticationBlocked {
             completion?(false)
             return
         }
@@ -60,7 +63,7 @@ class AuthenticationApplicationService {
         }
     }
 
-    func registerUser(password: String, completion: (() -> Void)? = nil) throws {
+    public func registerUser(password: String, completion: (() -> Void)? = nil) throws {
         try reset()
         try account.setMasterPassword(password)
         account.activateBiometricAuthentication {
@@ -68,19 +71,19 @@ class AuthenticationApplicationService {
         }
     }
 
-    func configureSession(_ duration: TimeInterval) {
+    public func configureSession(_ duration: TimeInterval) {
         account.sessionDuration = duration
     }
 
-    func configureMaxPasswordAttempts(_ count: Int) {
+    public func configureMaxPasswordAttempts(_ count: Int) {
         account.maxPasswordAttempts = count
     }
 
-    func configureBlockDuration(_ duration: TimeInterval) {
+    public func configureBlockDuration(_ duration: TimeInterval) {
         account.blockedPeriodDuration = duration
     }
 
-    func reset() throws {
+    public func reset() throws {
         try account.cleanupAllData()
     }
 

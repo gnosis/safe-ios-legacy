@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol Clock: class {
+public protocol Clock: class {
     var currentTime: Date { get }
     func countdown(from period: TimeInterval, tick: @escaping (TimeInterval) -> Void)
 }
