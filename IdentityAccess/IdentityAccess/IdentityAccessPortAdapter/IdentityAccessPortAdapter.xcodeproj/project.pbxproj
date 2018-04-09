@@ -12,13 +12,11 @@
 		0A3FAE78207B51DA00F0D214 /* LogServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE38207B515800F0D214 /* LogServiceTests.swift */; };
 		0A3FAE79207B51DA00F0D214 /* ConsoleLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE3A207B515800F0D214 /* ConsoleLoggerTests.swift */; };
 		0A3FAE7A207B51DA00F0D214 /* LoggableErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE3C207B515800F0D214 /* LoggableErrorTests.swift */; };
-		0A3FAE7B207B51DA00F0D214 /* CrashlyticsLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE3E207B515800F0D214 /* CrashlyticsLoggerTests.swift */; };
 		0A3FAE7C207B51DA00F0D214 /* LogFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE40207B515800F0D214 /* LogFormatterTests.swift */; };
 		0A3FAE7F207B51DA00F0D214 /* BiometricServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE43207B515800F0D214 /* BiometricServiceTests.swift */; };
 		0A3FAE82207B51DA00F0D214 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE4B207B515900F0D214 /* EncryptionServiceTests.swift */; };
 		0A3FAE83207B51EE00F0D214 /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE37207B515800F0D214 /* LogService.swift */; };
 		0A3FAE84207B51EE00F0D214 /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE39207B515800F0D214 /* ConsoleLogger.swift */; };
-		0A3FAE86207B51EE00F0D214 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE3D207B515800F0D214 /* CrashlyticsLogger.swift */; };
 		0A3FAE87207B51EE00F0D214 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE3F207B515800F0D214 /* LogFormatter.swift */; };
 		0A3FAE88207B51EE00F0D214 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE50207B515900F0D214 /* UserDefaultsService.swift */; };
 		0A3FAE89207B51EE00F0D214 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE4D207B515900F0D214 /* KeychainService.swift */; };
@@ -33,6 +31,14 @@
 		0A3FAEA6207B536B00F0D214 /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE47207B515900F0D214 /* MockClockService.swift */; };
 		0A3FAEA7207B537C00F0D214 /* libIdentityAccessPortAdapterTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3FAE9D207B535D00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */; };
 		0A3FAEA9207B539C00F0D214 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3FAEA8207B539C00F0D214 /* libIdentityAccessDomainModel.a */; };
+		0A51A1E7207B78BE001C4169 /* CrashlyticsLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C883207B780A0019E282 /* CrashlyticsLoggerTests.swift */; };
+		0A51A1F1207B7A85001C4169 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A51A1ED207B7A84001C4169 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A51A1F2207B7A85001C4169 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A51A1EE207B7A85001C4169 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A51A1F3207B7A85001C4169 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A51A1EF207B7A85001C4169 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A51A1F4207B7A85001C4169 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A51A1F0207B7A85001C4169 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0AA0C876207B763E0019E282 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C875207B763E0019E282 /* libCommonTestSupport.a */; };
+		0AA0C878207B76970019E282 /* EthereumAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C877207B76970019E282 /* EthereumAccountTests.swift */; };
+		0AA0C886207B780A0019E282 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C884207B780A0019E282 /* CrashlyticsLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +61,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0A51A1EC207B7A64001C4169 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0A51A1F1207B7A85001C4169 /* CryptoSwift.framework in CopyFiles */,
+				0A51A1F2207B7A85001C4169 /* EthereumKit.framework in CopyFiles */,
+				0A51A1F3207B7A85001C4169 /* Result.framework in CopyFiles */,
+				0A51A1F4207B7A85001C4169 /* APIKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0A8BCFC42074CB1500BCD78D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,8 +93,6 @@
 		0A3FAE39207B515800F0D214 /* ConsoleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
 		0A3FAE3A207B515800F0D214 /* ConsoleLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleLoggerTests.swift; sourceTree = "<group>"; };
 		0A3FAE3C207B515800F0D214 /* LoggableErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggableErrorTests.swift; sourceTree = "<group>"; };
-		0A3FAE3D207B515800F0D214 /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogger.swift; sourceTree = "<group>"; };
-		0A3FAE3E207B515800F0D214 /* CrashlyticsLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsLoggerTests.swift; sourceTree = "<group>"; };
 		0A3FAE3F207B515800F0D214 /* LogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
 		0A3FAE40207B515800F0D214 /* LogFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatterTests.swift; sourceTree = "<group>"; };
 		0A3FAE42207B515800F0D214 /* BiometricService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricService.swift; sourceTree = "<group>"; };
@@ -95,7 +112,16 @@
 		0A3FAE9D207B535D00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessPortAdapterTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3FAEA4207B536500F0D214 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0A3FAEA8207B539C00F0D214 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A51A1ED207B7A84001C4169 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
+		0A51A1EE207B7A85001C4169 /* EthereumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EthereumKit.framework; sourceTree = "<group>"; };
+		0A51A1EF207B7A85001C4169 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = "<group>"; };
+		0A51A1F0207B7A85001C4169 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = APIKit.framework; sourceTree = "<group>"; };
 		0A8BCFC62074CB1500BCD78D /* libIdentityAccessPortAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessPortAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AA0C875207B763E0019E282 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AA0C877207B76970019E282 /* EthereumAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EthereumAccountTests.swift; sourceTree = "<group>"; };
+		0AA0C883207B780A0019E282 /* CrashlyticsLoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsLoggerTests.swift; sourceTree = "<group>"; };
+		0AA0C884207B780A0019E282 /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogger.swift; sourceTree = "<group>"; };
+		0AA0C887207B78380019E282 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "/Users/dmitry/projects/gnosis/safe-ios/safe/../lib/Crashlytics.framework"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AA0C876207B763E0019E282 /* libCommonTestSupport.a in Frameworks */,
 				0A3FAEA7207B537C00F0D214 /* libIdentityAccessPortAdapterTestSupport.a in Frameworks */,
 				0A3FAE93207B529000F0D214 /* libIdentityAccessDomainModel.a in Frameworks */,
 				0A3FAE72207B51CB00F0D214 /* libIdentityAccessPortAdapter.a in Frameworks */,
@@ -137,10 +164,10 @@
 				0A3FAE39207B515800F0D214 /* ConsoleLogger.swift */,
 				0A3FAE3A207B515800F0D214 /* ConsoleLoggerTests.swift */,
 				0A3FAE3C207B515800F0D214 /* LoggableErrorTests.swift */,
-				0A3FAE3D207B515800F0D214 /* CrashlyticsLogger.swift */,
-				0A3FAE3E207B515800F0D214 /* CrashlyticsLoggerTests.swift */,
 				0A3FAE3F207B515800F0D214 /* LogFormatter.swift */,
 				0A3FAE40207B515800F0D214 /* LogFormatterTests.swift */,
+				0AA0C884207B780A0019E282 /* CrashlyticsLogger.swift */,
+				0AA0C883207B780A0019E282 /* CrashlyticsLoggerTests.swift */,
 			);
 			path = logger;
 			sourceTree = "<group>";
@@ -168,6 +195,7 @@
 			children = (
 				0A3FAE4A207B515900F0D214 /* EncryptionService.swift */,
 				0A3FAE4B207B515900F0D214 /* EncryptionServiceTests.swift */,
+				0AA0C877207B76970019E282 /* EthereumAccountTests.swift */,
 			);
 			path = ethereum;
 			sourceTree = "<group>";
@@ -201,6 +229,8 @@
 		0A3FAE91207B529000F0D214 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AA0C875207B763E0019E282 /* libCommonTestSupport.a */,
+				0AA0C887207B78380019E282 /* Crashlytics.framework */,
 				0A2A2336207B594600EB61DD /* libIdentityAccessDomainModel.a */,
 				0A3FAEA8207B539C00F0D214 /* libIdentityAccessDomainModel.a */,
 				0A3FAEA4207B536500F0D214 /* XCTest.framework */,
@@ -220,6 +250,10 @@
 		0A8BCFBD2074CB1500BCD78D = {
 			isa = PBXGroup;
 			children = (
+				0A51A1F0207B7A85001C4169 /* APIKit.framework */,
+				0A51A1ED207B7A84001C4169 /* CryptoSwift.framework */,
+				0A51A1EE207B7A85001C4169 /* EthereumKit.framework */,
+				0A51A1EF207B7A85001C4169 /* Result.framework */,
 				0A2A232D207B583C00EB61DD /* Config.xcconfig */,
 				0A8BCFC82074CB1500BCD78D /* IdentityAccessPortAdapter */,
 				0A3FAE6E207B51CB00F0D214 /* IdentityAccessPortAdapterTests */,
@@ -262,6 +296,7 @@
 				0A3FAE69207B51CB00F0D214 /* Sources */,
 				0A3FAE6A207B51CB00F0D214 /* Frameworks */,
 				0A3FAE6B207B51CB00F0D214 /* Resources */,
+				0A51A1EC207B7A64001C4169 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -364,12 +399,13 @@
 			files = (
 				0A3FAE79207B51DA00F0D214 /* ConsoleLoggerTests.swift in Sources */,
 				0A3FAE7C207B51DA00F0D214 /* LogFormatterTests.swift in Sources */,
-				0A3FAE7B207B51DA00F0D214 /* CrashlyticsLoggerTests.swift in Sources */,
 				0A3FAE82207B51DA00F0D214 /* EncryptionServiceTests.swift in Sources */,
 				0A3FAE90207B526200F0D214 /* SystemClockServiceIntegrationTests.swift in Sources */,
+				0AA0C878207B76970019E282 /* EthereumAccountTests.swift in Sources */,
 				0A3FAE7A207B51DA00F0D214 /* LoggableErrorTests.swift in Sources */,
 				0A3FAE8F207B526200F0D214 /* KeychainServiceIntegrationTests.swift in Sources */,
 				0A3FAE7F207B51DA00F0D214 /* BiometricServiceTests.swift in Sources */,
+				0A51A1E7207B78BE001C4169 /* CrashlyticsLoggerTests.swift in Sources */,
 				0A3FAE78207B51DA00F0D214 /* LogServiceTests.swift in Sources */,
 				0A3FAE8E207B526200F0D214 /* UserDefaultsIntegrationTests.swift in Sources */,
 			);
@@ -390,10 +426,10 @@
 				0A3FAE84207B51EE00F0D214 /* ConsoleLogger.swift in Sources */,
 				0A3FAE88207B51EE00F0D214 /* UserDefaultsService.swift in Sources */,
 				0A3FAE8D207B51EE00F0D214 /* EncryptionService.swift in Sources */,
-				0A3FAE86207B51EE00F0D214 /* CrashlyticsLogger.swift in Sources */,
 				0A3FAE83207B51EE00F0D214 /* LogService.swift in Sources */,
 				0A3FAE8B207B51EE00F0D214 /* SystemClockService.swift in Sources */,
 				0A3FAE89207B51EE00F0D214 /* KeychainService.swift in Sources */,
+				0AA0C886207B780A0019E282 /* CrashlyticsLogger.swift in Sources */,
 				0A3FAE87207B51EE00F0D214 /* LogFormatter.swift in Sources */,
 				0A3FAE8A207B51EE00F0D214 /* BiometricService.swift in Sources */,
 			);
@@ -422,6 +458,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Fabric\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessPortAdapterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -441,6 +483,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Fabric\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessPortAdapterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -453,7 +501,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -467,7 +515,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -597,7 +645,13 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Fabric\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -610,7 +664,13 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Fabric\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;

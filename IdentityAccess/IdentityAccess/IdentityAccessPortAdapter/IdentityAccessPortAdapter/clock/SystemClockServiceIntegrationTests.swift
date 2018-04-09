@@ -5,6 +5,7 @@
 import XCTest
 @testable import IdentityAccessPortAdapter
 import IdentityAccessDomainModel
+import CommonTestSupport
 
 class SystemClockServiceIntegrationTests: XCTestCase {
 

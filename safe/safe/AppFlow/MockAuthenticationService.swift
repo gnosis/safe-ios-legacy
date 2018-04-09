@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import safe
+import IdentityAccessApplication
 
 class MockAuthenticationService: AuthenticationApplicationService {
 
@@ -17,6 +18,8 @@ class MockAuthenticationService: AuthenticationApplicationService {
     private var biometricAuthenticationPossible = true
     private var enabledAuthenticationMethods = Set<AuthenticationMethod>([AuthenticationMethod.password])
     private var authenticationBlocked = false
+
+    enum Error: Swift.Error { case error }
 
     func unregisterUser() {
         userRegistered = false
@@ -33,7 +36,7 @@ class MockAuthenticationService: AuthenticationApplicationService {
     override func registerUser(password: String, completion: (() -> Void)? = nil) throws {
         didRequestUserRegistration = true
         if shouldThrowDuringRegistration {
-            throw MockAccount.Error.error
+            throw Error.error
         }
         userRegistered = true
         completion?()

@@ -5,13 +5,14 @@
 import Foundation
 import IdentityAccessDomainModel
 
-class MockClockService: Clock {
+open class MockClockService: Clock {
 
-    var currentTime = Date()
+    open var currentTime = Date()
+    open var countdownTickBlock: ((TimeInterval) -> Void)?
 
-    var countdownTickBlock: ((TimeInterval) -> Void)?
+    public init() {}
 
-    func countdown(from period: TimeInterval, tick: @escaping (TimeInterval) -> Void) {
+    open func countdown(from period: TimeInterval, tick: @escaping (TimeInterval) -> Void) {
         countdownTickBlock = tick
     }
 

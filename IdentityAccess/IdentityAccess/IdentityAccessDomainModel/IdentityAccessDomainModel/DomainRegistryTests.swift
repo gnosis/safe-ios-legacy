@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import IdentityAccessDomainModel
+import IdentityAccessPortAdapterTestSupport
 
 class DomainRegistryTests: XCTestCase {
 

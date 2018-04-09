@@ -13,6 +13,8 @@
 		0A3FAE68207B518300F0D214 /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE55207B516E00F0D214 /* ApplicationServiceRegistryTests.swift */; };
 		0A3FAE96207B52A800F0D214 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3FAE95207B52A800F0D214 /* libIdentityAccessDomainModel.a */; };
 		0A3FAE98207B52AF00F0D214 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3FAE97207B52AF00F0D214 /* libIdentityAccessDomainModel.a */; };
+		0A51A1E9207B795E001C4169 /* ApplicationServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A1E8207B795E001C4169 /* ApplicationServiceTestCase.swift */; };
+		0A51A1EB207B79D9001C4169 /* libIdentityAccessPortAdapterTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1EA207B79D9001C4169 /* libIdentityAccessPortAdapterTestSupport.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		0A3FAE61207B517D00F0D214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A3FAE95207B52A800F0D214 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3FAE97207B52AF00F0D214 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A51A1E8207B795E001C4169 /* ApplicationServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceTestCase.swift; sourceTree = "<group>"; };
+		0A51A1EA207B79D9001C4169 /* libIdentityAccessPortAdapterTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapterTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF281C32074C1D200D3843D /* libIdentityAccessApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A51A1EB207B79D9001C4169 /* libIdentityAccessPortAdapterTestSupport.a in Frameworks */,
 				0A3FAE96207B52A800F0D214 /* libIdentityAccessDomainModel.a in Frameworks */,
 				0A3FAE62207B517D00F0D214 /* libIdentityAccessApplication.a in Frameworks */,
 			);
@@ -81,6 +86,7 @@
 		0A3FAE94207B52A800F0D214 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A51A1EA207B79D9001C4169 /* libIdentityAccessPortAdapterTestSupport.a */,
 				0A3FAE97207B52AF00F0D214 /* libIdentityAccessDomainModel.a */,
 				0A3FAE95207B52A800F0D214 /* libIdentityAccessDomainModel.a */,
 			);
@@ -113,6 +119,7 @@
 				0A3FAE53207B516E00F0D214 /* AuthenticationApplicationService.swift */,
 				0A3FAE54207B516E00F0D214 /* ApplicationServiceRegistry.swift */,
 				0A3FAE55207B516E00F0D214 /* ApplicationServiceRegistryTests.swift */,
+				0A51A1E8207B795E001C4169 /* ApplicationServiceTestCase.swift */,
 			);
 			path = IdentityAccessApplication;
 			sourceTree = "<group>";
@@ -206,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A51A1E9207B795E001C4169 /* ApplicationServiceTestCase.swift in Sources */,
 				0A3FAE68207B518300F0D214 /* ApplicationServiceRegistryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

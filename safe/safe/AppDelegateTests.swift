@@ -23,6 +23,10 @@ class AppDelegateTests: XCTestCase {
         XCTAssertTrue(coordinator.didBecomeActive)
     }
 
+    func test_bundleHasRequiredProperties() {
+        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: "NSFaceIDUsageDescription"))
+    }
+
 }
 
 class MockCoordinator: AppFlowCoordinatorProtocol {

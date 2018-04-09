@@ -17,10 +17,6 @@ class BiometricAuthenticationServiceTests: XCTestCase {
         biometricService = BiometricService(localAuthenticationContext: context)
     }
 
-    func test_bundleHasRequiredProperties() {
-        XCTAssertNotNil(Bundle(for: BiometricService.self).object(forInfoDictionaryKey: "NSFaceIDUsageDescription"))
-    }
-
     func test_activate_whenBiometricIsNotAvailable_thenIsNotActivated() {
         context.canEvaluatePolicy = false
         activate()

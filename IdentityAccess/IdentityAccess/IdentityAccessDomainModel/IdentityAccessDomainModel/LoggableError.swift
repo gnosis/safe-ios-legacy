@@ -4,7 +4,7 @@
 
 import Foundation
 
-let LoggableErrorDescriptionKey = "LoggableErrorDescriptionKey"
+public let LoggableErrorDescriptionKey = "LoggableErrorDescriptionKey"
 
 public protocol LoggableError: Error {
     func nsError(causedBy: Error?) -> NSError

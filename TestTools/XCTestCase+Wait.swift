@@ -43,9 +43,6 @@ extension XCTestCase {
 
 }
 
-func delay(_ delay: TimeInterval = 0.1) {
-    RunLoop.current.run(until: Date(timeIntervalSinceNow: delay))
-}
 
 enum Predicate: String {
     case exists = "exists == true"

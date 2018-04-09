@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol EthereumAccountProtocol {
+public protocol EthereumAccountProtocol {
 
     var address: EthereumAddress { get }
     var mnemonic: Mnemonic { get }
@@ -13,30 +13,30 @@ protocol EthereumAccountProtocol {
 
 }
 
-struct ExternallyOwnedAccount: EthereumAccountProtocol {
+public struct ExternallyOwnedAccount: EthereumAccountProtocol {
 
-    var address: EthereumAddress
-    var mnemonic: Mnemonic
-    var privateKey: PrivateKey
-    var publicKey: PublicKey
+    public var address: EthereumAddress
+    public var mnemonic: Mnemonic
+    public var privateKey: PrivateKey
+    public var publicKey: PublicKey
 
 }
 
-protocol EthereumAccountFactoryProtocol {
+public protocol EthereumAccountFactoryProtocol {
 
     func generateAccount() -> EthereumAccountProtocol
 
 }
 
-class EthereumAccountFactory: EthereumAccountFactoryProtocol {
+public class EthereumAccountFactory: EthereumAccountFactoryProtocol {
 
     private let encryptionService: EncryptionServiceProtocol
 
-    init(service: EncryptionServiceProtocol) {
+    public init(service: EncryptionServiceProtocol) {
         self.encryptionService = service
     }
 
-    func generateAccount() -> EthereumAccountProtocol {
+    public func generateAccount() -> EthereumAccountProtocol {
         let mnemonic = encryptionService.generateMnemonic()
         let privateKey = encryptionService.derivePrivateKey(from: mnemonic)
         let publicKey = encryptionService.derivePublicKey(from: privateKey)
