@@ -33,8 +33,9 @@ public enum AccountError: LoggableError {
 public final class Account: AccountProtocol {
 
     public static let shared = Account()
-    // TODO: fetch from registry
-    var logger: Logger!
+    var logger: Logger {
+        return DomainRegistry.logger
+    }
 
     public var isBlocked: Bool {
         let result = passwordAttemptCount >= maxPasswordAttempts
