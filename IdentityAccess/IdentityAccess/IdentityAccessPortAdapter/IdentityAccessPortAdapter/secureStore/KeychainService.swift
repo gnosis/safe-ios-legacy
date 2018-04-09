@@ -6,10 +6,12 @@ import Foundation
 import IdentityAccessDomainModel
 
 public enum KeychainError: Error {
+
     case unexpectedPasswordData
     case unexpectedMnemonicData
     // https://www.osstatus.com
-    case unhandledError(status: OSStatus)
+    case unhandledError(status: String)
+
 }
 
 public final class KeychainService: SecureStore {
@@ -32,22 +34,31 @@ public final class KeychainService: SecureStore {
         let status = SecItemCopyMatching(query as CFDictionary, &item)
         guard status != errSecItemNotFound else { return nil }
         guard status == errSecSuccess else {
-            throw KeychainError.unhandledError(status: status)
+            throw KeychainError.unhandledError(status: securityError(status))
         }
         return item
+    }
+
+    private func securityError(_ status: OSStatus) -> String {
+        if #available(iOS 11.3, *) {
+            if let str = SecCopyErrorMessageString(status, nil) as String? {
+                return str
+            }
+        }
+        return String(describing: status)
     }
 
     private func add(query: [String: Any]) throws {
         let status = SecItemAdd(query as CFDictionary, nil)
         guard status == errSecSuccess else {
-            throw KeychainError.unhandledError(status: status)
+            throw KeychainError.unhandledError(status: securityError(status))
         }
     }
 
     private func remove(query: [String: Any]) throws {
         let status = SecItemDelete(query as CFDictionary)
         guard status == errSecSuccess || status == errSecItemNotFound else {
-            throw KeychainError.unhandledError(status: status)
+            throw KeychainError.unhandledError(status: securityError(status))
         }
     }
 

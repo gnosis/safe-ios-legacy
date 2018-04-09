@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import safe
+import IdentityAccessPortAdapter
 
 class AppDelegateTests: XCTestCase {
 
@@ -25,6 +26,11 @@ class AppDelegateTests: XCTestCase {
 
     func test_bundleHasRequiredProperties() {
         XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: "NSFaceIDUsageDescription"))
+    }
+
+    func test_mainBundleContainsLoggerKeys() {
+        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: LogServiceLogLevelKey))
+        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: LogServiceEnabledLoggersKey))
     }
 
 }

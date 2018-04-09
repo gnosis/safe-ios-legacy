@@ -75,11 +75,6 @@ class LogServiceTests: XCTestCase {
         XCTAssertTrue(logger.loggers.isEmpty)
     }
 
-    func test_mainBundleContainsLoggerKeys() {
-        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: LogServiceLogLevelKey))
-        XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: LogServiceEnabledLoggersKey))
-    }
-
 }
 
 extension LogServiceTests {

@@ -24,7 +24,6 @@
 		0A3FAE8B207B51EE00F0D214 /* SystemClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE45207B515900F0D214 /* SystemClockService.swift */; };
 		0A3FAE8D207B51EE00F0D214 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE4A207B515900F0D214 /* EncryptionService.swift */; };
 		0A3FAE8E207B526200F0D214 /* UserDefaultsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE51207B515900F0D214 /* UserDefaultsIntegrationTests.swift */; };
-		0A3FAE8F207B526200F0D214 /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE4E207B515900F0D214 /* KeychainServiceIntegrationTests.swift */; };
 		0A3FAE90207B526200F0D214 /* SystemClockServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAE46207B515900F0D214 /* SystemClockServiceIntegrationTests.swift */; };
 		0A3FAE93207B529000F0D214 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3FAE92207B529000F0D214 /* libIdentityAccessDomainModel.a */; };
 		0A3FAEA5207B536500F0D214 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3FAEA4207B536500F0D214 /* XCTest.framework */; };
@@ -403,7 +402,6 @@
 				0A3FAE90207B526200F0D214 /* SystemClockServiceIntegrationTests.swift in Sources */,
 				0AA0C878207B76970019E282 /* EthereumAccountTests.swift in Sources */,
 				0A3FAE7A207B51DA00F0D214 /* LoggableErrorTests.swift in Sources */,
-				0A3FAE8F207B526200F0D214 /* KeychainServiceIntegrationTests.swift in Sources */,
 				0A3FAE7F207B51DA00F0D214 /* BiometricServiceTests.swift in Sources */,
 				0A51A1E7207B78BE001C4169 /* CrashlyticsLoggerTests.swift in Sources */,
 				0A3FAE78207B51DA00F0D214 /* LogServiceTests.swift in Sources */,

@@ -42,6 +42,7 @@ class EncryptionServiceTests: XCTestCase {
         XCTAssertFalse(service.isValid(signature: signature, for: otherData, with: publicKey))
     }
 
+    // FIXME: this test is randomly failing
     func test_deriveEthereumAddress_createsAddress() {
         let key = privateKey()
         let pkey = service.derivePublicKey(from: key)
