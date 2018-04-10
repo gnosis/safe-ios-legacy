@@ -16,7 +16,6 @@
 		0A51A1E9207B795E001C4169 /* ApplicationServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A1E8207B795E001C4169 /* ApplicationServiceTestCase.swift */; };
 		0A51A1EB207B79D9001C4169 /* libIdentityAccessPortAdapterTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1EA207B79D9001C4169 /* libIdentityAccessPortAdapterTestSupport.a */; };
 		55922C55207BB6D200BF968F /* IdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55922C53207BB6D100BF968F /* IdentityApplicationService.swift */; };
-		55922C57207BB6D400BF968F /* IdentityApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55922C54207BB6D200BF968F /* IdentityApplicationServiceTests.swift */; };
 		55922C60207BC3D000BF968F /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55922C5F207BC3D000BF968F /* libCommonTestSupport.a */; };
 /* End PBXBuildFile section */
 
@@ -230,7 +229,6 @@
 			files = (
 				0A51A1E9207B795E001C4169 /* ApplicationServiceTestCase.swift in Sources */,
 				0A3FAE68207B518300F0D214 /* ApplicationServiceRegistryTests.swift in Sources */,
-				55922C57207BB6D400BF968F /* IdentityApplicationServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

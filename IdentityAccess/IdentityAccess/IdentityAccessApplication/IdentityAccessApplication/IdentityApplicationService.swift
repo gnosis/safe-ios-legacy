@@ -9,6 +9,8 @@ open class IdentityApplicationService {
     private var store: SecureStore { return DomainRegistry.secureStore }
     private var encryptionService: EncryptionServiceProtocol { return DomainRegistry.encryptionService }
 
+    public init() {}
+
     public func getEOA() throws -> ExternallyOwnedAccount? {
         guard let mnemonic = try store.mnemonic() else { return nil }
         let account = EthereumAccountFactory(service: encryptionService).account(from: mnemonic)
@@ -20,7 +22,6 @@ open class IdentityApplicationService {
             return eoa
         }
         let account = EthereumAccountFactory(service: encryptionService).generateAccount()
-        // TODO: save account in one call
         try store.saveMnemonic(account.mnemonic)
         try store.savePrivateKey(account.privateKey)
         return account as! ExternallyOwnedAccount

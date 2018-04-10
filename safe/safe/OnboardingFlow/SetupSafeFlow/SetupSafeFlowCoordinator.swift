@@ -18,11 +18,7 @@ final class SetupSafeFlowCoordinator: FlowCoordinator {
 extension SetupSafeFlowCoordinator: SetupSafeOptionsDelegate {
 
     func didSelectNewSafe() {
-        do {
-            try identityService.getOrCreateEOA()
-        } catch let e {
-            // TODO: handle
-        }
+        _ = try? identityService.getOrCreateEOA()
         let newSafeFlowCoordinator = NewSafeFlowCoordinator()
         let pairVC = newSafeFlowCoordinator.startViewController(parent: rootVC)
         rootVC.pushViewController(pairVC, animated: true)

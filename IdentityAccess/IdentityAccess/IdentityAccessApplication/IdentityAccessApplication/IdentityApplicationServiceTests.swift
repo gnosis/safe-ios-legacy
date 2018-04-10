@@ -10,7 +10,6 @@ import IdentityAccessPortAdapterTestSupport
 
 class IdentityApplicationServiceTests: ApplicationServiceTestCase {
 
-    // TODO: rename into InMemory
     let store = MockSecureStore()
 
     override func setUp() {
@@ -50,7 +49,6 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
     func test_getEOA_throws() {
         store.shouldThrow = true
         do {
-            // TODO: refactor
             try _ = identityService.getEOA()
             XCTFail("Should Throw")
         } catch let e {

@@ -90,7 +90,6 @@
 		558FD813207672A3004F070E /* PairWithChromeExtensionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD812207672A3004F070E /* PairWithChromeExtensionViewControllerTests.swift */; };
 		558FD81520767F18004F070E /* SafeSetupOptionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81420767F18004F070E /* SafeSetupOptionsScreen.swift */; };
 		55922C5A207BBF7C00BF968F /* SafeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55922C58207BBF7600BF968F /* SafeTestCase.swift */; };
-		55922C5C207BBFEA00BF968F /* MockIdentityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55922C5B207BBFE900BF968F /* MockIdentityService.swift */; };
 		55ACFD9B2074E0BA000F54CC /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ACFD9A2074E0BA000F54CC /* FlowCoordinator.swift */; };
 		55ACFD9D2075092E000F54CC /* FlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ACFD9C2075092E000F54CC /* FlowCoordinatorTests.swift */; };
 		55CF4C9E2057EF8500F1B4BB /* SetupSafeOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C9D2057EF8500F1B4BB /* SetupSafeOptionsViewController.swift */; };
@@ -216,7 +215,6 @@
 		558FD812207672A3004F070E /* PairWithChromeExtensionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithChromeExtensionViewControllerTests.swift; sourceTree = "<group>"; };
 		558FD81420767F18004F070E /* SafeSetupOptionsScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeSetupOptionsScreen.swift; sourceTree = "<group>"; };
 		55922C58207BBF7600BF968F /* SafeTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeTestCase.swift; sourceTree = "<group>"; };
-		55922C5B207BBFE900BF968F /* MockIdentityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockIdentityService.swift; sourceTree = "<group>"; };
 		55ACFD9A2074E0BA000F54CC /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
 		55ACFD9C2075092E000F54CC /* FlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55CF4C9D2057EF8500F1B4BB /* SetupSafeOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsViewController.swift; sourceTree = "<group>"; };
@@ -462,7 +460,6 @@
 				0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */,
 				555DD6D6205148D100D1178A /* UnlockViewController.swift */,
 				555DD6D82051497700D1178A /* UnlockViewControllerTests.swift */,
-				55922C5B207BBFE900BF968F /* MockIdentityService.swift */,
 				0A527324205BCCF4004A5F9A /* CountdownLabel.swift */,
 				0A527326205BD364004A5F9A /* CountdownLabelTests.swift */,
 			);
@@ -733,7 +730,6 @@
 				55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */,
 				0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */,
 				55922C5A207BBF7C00BF968F /* SafeTestCase.swift in Sources */,
-				55922C5C207BBFEA00BF968F /* MockIdentityService.swift in Sources */,
 				0AE75CDA20611359002D5E2D /* SafeUIKitExtensionsTests.swift in Sources */,
 				0A9A13B52077AAA800E197A1 /* MockAuthenticationService.swift in Sources */,
 				55ACFD9D2075092E000F54CC /* FlowCoordinatorTests.swift in Sources */,
