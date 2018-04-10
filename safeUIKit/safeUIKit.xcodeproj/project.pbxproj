@@ -111,7 +111,7 @@
 		0A9670B220480C5700445AC2 /* safeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = safeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A9670B520480C5700445AC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A9670BA20480C5700445AC2 /* safeUIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeUIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A9670C320480C5700445AC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A9670C320480C5700445AC2 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A9670CF20480C7A00445AC2 /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
 		0A9670D020480C7A00445AC2 /* TextInput.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInput.xib; sourceTree = "<group>"; };
 		0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabelTests.swift; sourceTree = "<group>"; };
@@ -185,7 +185,6 @@
 				0A96707C20480C3E00445AC2 /* safeUIKitDemo */,
 				0A96709120480C3F00445AC2 /* safeUIKitDemoUITests */,
 				0A9670B320480C5700445AC2 /* safeUIKit */,
-				0A9670C020480C5700445AC2 /* safeUIKitTests */,
 				0A96707B20480C3E00445AC2 /* Products */,
 				0A34BC61207B80A700636560 /* Frameworks */,
 			);
@@ -246,16 +245,9 @@
 				0A7AE8BE205284180044D5DD /* H1Label.swift */,
 				558FD80920765C53004F070E /* BigButton.swift */,
 				0A53AD5520598B5000D713AD /* Localizable.strings */,
+				0A9670C320480C5700445AC2 /* Tests-Info.plist */,
 			);
 			path = safeUIKit;
-			sourceTree = "<group>";
-		};
-		0A9670C020480C5700445AC2 /* safeUIKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				0A9670C320480C5700445AC2 /* Info.plist */,
-			);
-			path = safeUIKitTests;
 			sourceTree = "<group>";
 		};
 		0A9670D920480C7B00445AC2 /* generated */ = {
@@ -1120,7 +1112,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = safeUIKitTests/Info.plist;
+				INFOPLIST_FILE = "safeUIKit/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1181,7 +1173,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = safeUIKitTests/Info.plist;
+				INFOPLIST_FILE = "safeUIKit/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1491,7 +1483,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = safeUIKitTests/Info.plist;
+				INFOPLIST_FILE = "safeUIKit/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;

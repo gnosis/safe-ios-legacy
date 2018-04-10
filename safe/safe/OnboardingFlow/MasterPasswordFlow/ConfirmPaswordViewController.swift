@@ -5,7 +5,7 @@
 import UIKit
 import safeUIKit
 import IdentityAccessApplication
-import IdentityAccessPortAdapter
+import IdentityAccessImplementations
 
 protocol ConfirmPasswordViewControllerDelegate: class {
     func didConfirmPassword()

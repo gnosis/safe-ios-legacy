@@ -7,66 +7,153 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A8BD00E2074CB5600BCD78D /* libIdentityAccessPortAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8BCFD72074CB1600BCD78D /* libIdentityAccessPortAdapter.a */; };
-		0AF281D42074C21B00D3843D /* libIdentityAccessApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF281D22074C1D300D3843D /* libIdentityAccessApplication.a */; };
-		0AF281D52074C21B00D3843D /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF281B92074C1AC00D3843D /* libIdentityAccessDomainModel.a */; };
-		0AF281D92074C25300D3843D /* IdentityAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF281D82074C25300D3843D /* IdentityAccess.swift */; };
+		0A537A8F207CE74100921FB9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A7E207CE74000921FB9 /* Account.swift */; };
+		0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */; };
+		0A537A93207CE74100921FB9 /* KeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A82207CE74000921FB9 /* KeyValueStore.swift */; };
+		0A537A94207CE74100921FB9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A83207CE74000921FB9 /* Logger.swift */; };
+		0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A84207CE74000921FB9 /* SecureStore.swift */; };
+		0A537A96207CE74100921FB9 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A85207CE74000921FB9 /* Session.swift */; };
+		0A537A97207CE74100921FB9 /* EthereumAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A86207CE74000921FB9 /* EthereumAccount.swift */; };
+		0A537A98207CE74100921FB9 /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A87207CE74100921FB9 /* DomainRegistry.swift */; };
+		0A537A99207CE74100921FB9 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A88207CE74100921FB9 /* Clock.swift */; };
+		0A537A9A207CE74100921FB9 /* BiometricAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A89207CE74100921FB9 /* BiometricAuthenticationService.swift */; };
+		0A537A9B207CE74100921FB9 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A8A207CE74100921FB9 /* EncryptionService.swift */; };
+		0A537A9E207CE74100921FB9 /* LoggableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A8D207CE74100921FB9 /* LoggableError.swift */; };
+		0A537AAC207CEA0100921FB9 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */; };
+		0A537AB3207CEAC700921FB9 /* MockAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A8B207CE74100921FB9 /* MockAccount.swift */; };
+		0A537AB4207CEAC700921FB9 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A7F207CE74000921FB9 /* AccountTests.swift */; };
+		0A537AB5207CEAC700921FB9 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */; };
+		0A537AB6207CEAC700921FB9 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A7D207CE74000921FB9 /* SessionTests.swift */; };
+		0A537AB7207CEBB100921FB9 /* DomainTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A8C207CE74100921FB9 /* DomainTestCase.swift */; };
+		0A537ADA207CEE1100921FB9 /* InMemoryUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AD7207CEE1100921FB9 /* InMemoryUserDefaults.swift */; };
+		0A537ADB207CEE1100921FB9 /* MockBiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AD8207CEE1100921FB9 /* MockBiometricService.swift */; };
+		0A537ADC207CEE1100921FB9 /* MockKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AD9207CEE1100921FB9 /* MockKeychain.swift */; };
+		0A537AE0207CEE7300921FB9 /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537ADE207CEE7200921FB9 /* MockClockService.swift */; };
+		0A537AE1207CEE7300921FB9 /* MockSecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537ADF207CEE7300921FB9 /* MockSecureStore.swift */; };
+		0A537AE5207CEFED00921FB9 /* InMemoryKeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE4207CEFED00921FB9 /* InMemoryKeyValueStore.swift */; };
+		0A537AE7207CF00D00921FB9 /* MockEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE6207CF00D00921FB9 /* MockEncryptionService.swift */; };
+		0A537AE9207CF02C00921FB9 /* MockLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE8207CF02C00921FB9 /* MockLogger.swift */; };
+		0A537AEB207CF0F900921FB9 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEA207CF0F900921FB9 /* libCommon.a */; };
+		0A537AED207CF10000921FB9 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEC207CF10000921FB9 /* libCommonTestSupport.a */; };
+		0A537AEF207CF18B00921FB9 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */; };
+		0A537AF0207CF1A200921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
+		0A537B0F207CF2D600921FB9 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF6207CF2D600921FB9 /* LogFormatter.swift */; };
+		0A537B11207CF2D600921FB9 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF8207CF2D600921FB9 /* CrashlyticsLogger.swift */; };
+		0A537B12207CF2D600921FB9 /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF9207CF2D600921FB9 /* ConsoleLogger.swift */; };
+		0A537B13207CF2D600921FB9 /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFA207CF2D600921FB9 /* LogService.swift */; };
+		0A537B14207CF2D600921FB9 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFC207CF2D600921FB9 /* KeychainService.swift */; };
+		0A537B16207CF2D600921FB9 /* SystemClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFF207CF2D600921FB9 /* SystemClockService.swift */; };
+		0A537B19207CF2D600921FB9 /* BiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B03207CF2D600921FB9 /* BiometricService.swift */; };
+		0A537B1C207CF2D600921FB9 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B07207CF2D600921FB9 /* EncryptionService.swift */; };
+		0A537B1D207CF2D600921FB9 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B09207CF2D600921FB9 /* UserDefaultsService.swift */; };
+		0A537B33207CF4B000921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
+		0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */; };
+		0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B00207CF2D600921FB9 /* SystemClockServiceIntegrationTests.swift */; };
+		0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B06207CF2D600921FB9 /* EncryptionServiceTests.swift */; };
+		0A537B9F207CF90B00921FB9 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9B207CF90B00921FB9 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA0207CF90C00921FB9 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA1207CF90C00921FB9 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9D207CF90B00921FB9 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA2207CF90C00921FB9 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9E207CF90B00921FB9 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA4207CF91E00921FB9 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9B207CF90B00921FB9 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA5207CF91E00921FB9 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA6207CF91E00921FB9 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9E207CF90B00921FB9 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA7207CF91E00921FB9 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9D207CF90B00921FB9 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA8207CF93F00921FB9 /* EthereumAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B05207CF2D600921FB9 /* EthereumAccountTests.swift */; };
+		0A537BA9207CF94E00921FB9 /* UserDefaultsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B0A207CF2D600921FB9 /* UserDefaultsIntegrationTests.swift */; };
+		0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF7207CF2D600921FB9 /* ConsoleLoggerTests.swift */; };
+		0A537BAB207CF96500921FB9 /* CrashlyticsLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF2207CF2D600921FB9 /* CrashlyticsLoggerTests.swift */; };
+		0A537BAC207CF96B00921FB9 /* LogFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF4207CF2D600921FB9 /* LogFormatterTests.swift */; };
+		0A537BAD207CF96E00921FB9 /* LoggableErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF3207CF2D600921FB9 /* LoggableErrorTests.swift */; };
+		0A537BAE207CF97300921FB9 /* LogServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF5207CF2D600921FB9 /* LogServiceTests.swift */; };
+		0A537BB7207CF9B400921FB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BB6207CF9B400921FB9 /* AppDelegate.swift */; };
+		0A537BB9207CF9B400921FB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BB8207CF9B400921FB9 /* ViewController.swift */; };
+		0A537BBC207CF9B400921FB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBA207CF9B400921FB9 /* Main.storyboard */; };
+		0A537BBE207CF9B600921FB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBD207CF9B600921FB9 /* Assets.xcassets */; };
+		0A537BC1207CF9B600921FB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBF207CF9B600921FB9 /* LaunchScreen.storyboard */; };
+		0A537BD6207CF9EE00921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
+		0A537BD8207CF9FD00921FB9 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9B207CF90B00921FB9 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BD9207CF9FD00921FB9 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BDA207CF9FD00921FB9 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9E207CF90B00921FB9 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BDB207CF9FD00921FB9 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9D207CF90B00921FB9 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BDC207CFA6600921FB9 /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFD207CF2D600921FB9 /* KeychainServiceIntegrationTests.swift */; };
+		0A537BEB207CFAF800921FB9 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537BEA207CFAF800921FB9 /* libCommon.a */; };
+		0A537BF3207CFB1C00921FB9 /* AuthenticationApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BED207CFB1C00921FB9 /* AuthenticationApplicationService.swift */; };
+		0A537BF4207CFB1C00921FB9 /* IdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BEE207CFB1C00921FB9 /* IdentityApplicationService.swift */; };
+		0A537BF5207CFB1C00921FB9 /* ApplicationServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BEF207CFB1C00921FB9 /* ApplicationServiceRegistry.swift */; };
+		0A537C03207CFB9200921FB9 /* libIdentityAccessApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537BE1207CFADE00921FB9 /* libIdentityAccessApplication.a */; };
+		0A537C0A207CFC1C00921FB9 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */; };
+		0A537C0B207CFC1C00921FB9 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */; };
+		0A537C0C207CFC1C00921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
+		0A537C0E207CFC2800921FB9 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9B207CF90B00921FB9 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537C0F207CFC2800921FB9 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537C10207CFC2800921FB9 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9E207CF90B00921FB9 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537C11207CFC2800921FB9 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9D207CF90B00921FB9 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537C12207CFCB000921FB9 /* ApplicationServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BF0207CFB1C00921FB9 /* ApplicationServiceTestCase.swift */; };
+		0A537C13207CFCF600921FB9 /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BF1207CFB1C00921FB9 /* ApplicationServiceRegistryTests.swift */; };
+		0A537C14207CFCFA00921FB9 /* IdentityApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BF2207CFB1C00921FB9 /* IdentityApplicationServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0A3FAEAF207B543800F0D214 /* PBXContainerItemProxy */ = {
+		0A537AAD207CEA0100921FB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0AF281CD2074C1D200D3843D /* IdentityAccessApplication.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A3FAE5D207B517D00F0D214;
-			remoteInfo = IdentityAccessApplicationTests;
-		};
-		0A3FAEB3207B543800F0D214 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0AF281B42074C1AB00D3843D /* IdentityAccessDomainModel.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A3FAE1D207B50B300F0D214;
-			remoteInfo = IdentityAccessDomainModelTests;
-		};
-		0A3FAEB8207B543800F0D214 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A3FAE6D207B51CB00F0D214;
-			remoteInfo = IdentityAccessPortAdapterTests;
-		};
-		0A3FAEBA207B543800F0D214 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A3FAE9D207B535D00F0D214;
-			remoteInfo = IdentityAccessPortAdapterTestSupport;
-		};
-		0A8BCFD62074CB1600BCD78D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A8BCFC62074CB1500BCD78D;
-			remoteInfo = IdentityAccessPortAdapter;
-		};
-		0AF281B82074C1AC00D3843D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0AF281B42074C1AB00D3843D /* IdentityAccessDomainModel.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0AF281AA2074C1AB00D3843D;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A537A63207CE5BC00921FB9;
 			remoteInfo = IdentityAccessDomainModel;
 		};
-		0AF281D12074C1D300D3843D /* PBXContainerItemProxy */ = {
+		0A537AD4207CEDD400921FB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0AF281CD2074C1D200D3843D /* IdentityAccessApplication.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0AF281C32074C1D200D3843D;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A537A63207CE5BC00921FB9;
+			remoteInfo = IdentityAccessDomainModel;
+		};
+		0A537AE2207CEF0D00921FB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A537ACC207CEDAE00921FB9;
+			remoteInfo = IdentityAccessImplementations;
+		};
+		0A537B34207CF4B000921FB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A537ACC207CEDAE00921FB9;
+			remoteInfo = IdentityAccessImplementations;
+		};
+		0A537BCF207CF9CD00921FB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A537BB3207CF9B400921FB9;
+			remoteInfo = IdentityAccessIntegration;
+		};
+		0A537BD4207CF9DE00921FB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A537ACC207CEDAE00921FB9;
+			remoteInfo = IdentityAccessImplementations;
+		};
+		0A537BE8207CFAF300921FB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A537A63207CE5BC00921FB9;
+			remoteInfo = IdentityAccessDomainModel;
+		};
+		0A537C04207CFB9200921FB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A537BE0207CFADE00921FB9;
 			remoteInfo = IdentityAccessApplication;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0AF281952074C18B00D3843D /* CopyFiles */ = {
+		0A537A62207CE5BC00921FB9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -75,45 +162,421 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0A537ACB207CEDAE00921FB9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537B98207CF8AE00921FB9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0A537B9F207CF90B00921FB9 /* APIKit.framework in CopyFiles */,
+				0A537BA0207CF90C00921FB9 /* CryptoSwift.framework in CopyFiles */,
+				0A537BA1207CF90C00921FB9 /* Result.framework in CopyFiles */,
+				0A537BA2207CF90C00921FB9 /* EthereumKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BA3207CF91400921FB9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0A537BA4207CF91E00921FB9 /* APIKit.framework in CopyFiles */,
+				0A537BA5207CF91E00921FB9 /* CryptoSwift.framework in CopyFiles */,
+				0A537BA6207CF91E00921FB9 /* EthereumKit.framework in CopyFiles */,
+				0A537BA7207CF91E00921FB9 /* Result.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BD7207CF9F200921FB9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0A537BD8207CF9FD00921FB9 /* APIKit.framework in CopyFiles */,
+				0A537BD9207CF9FD00921FB9 /* CryptoSwift.framework in CopyFiles */,
+				0A537BDA207CF9FD00921FB9 /* EthereumKit.framework in CopyFiles */,
+				0A537BDB207CF9FD00921FB9 /* Result.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BDF207CFADE00921FB9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537C0D207CFC2000921FB9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0A537C0E207CFC2800921FB9 /* APIKit.framework in CopyFiles */,
+				0A537C0F207CFC2800921FB9 /* CryptoSwift.framework in CopyFiles */,
+				0A537C10207CFC2800921FB9 /* EthereumKit.framework in CopyFiles */,
+				0A537C11207CFC2800921FB9 /* Result.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0A3FAEAC207B543700F0D214 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccessPortAdapter.xcodeproj; path = IdentityAccessPortAdapter/IdentityAccessPortAdapter.xcodeproj; sourceTree = "<group>"; };
-		0AF281972074C18B00D3843D /* libIdentityAccess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccess.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0AF281B42074C1AB00D3843D /* IdentityAccessDomainModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccessDomainModel.xcodeproj; path = IdentityAccessDomainModel/IdentityAccessDomainModel.xcodeproj; sourceTree = "<group>"; };
-		0AF281CD2074C1D200D3843D /* IdentityAccessApplication.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IdentityAccessApplication.xcodeproj; path = IdentityAccessApplication/IdentityAccessApplication.xcodeproj; sourceTree = "<group>"; };
-		0AF281D82074C25300D3843D /* IdentityAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityAccess.swift; sourceTree = "<group>"; };
+		0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537A7C207CE73F00921FB9 /* IdentityAccessDomainModel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityAccessDomainModel-Bridging-Header.h"; sourceTree = "<group>"; };
+		0A537A7D207CE74000921FB9 /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
+		0A537A7E207CE74000921FB9 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		0A537A7F207CE74000921FB9 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
+		0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
+		0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
+		0A537A82207CE74000921FB9 /* KeyValueStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueStore.swift; sourceTree = "<group>"; };
+		0A537A83207CE74000921FB9 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		0A537A84207CE74000921FB9 /* SecureStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureStore.swift; sourceTree = "<group>"; };
+		0A537A85207CE74000921FB9 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		0A537A86207CE74000921FB9 /* EthereumAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EthereumAccount.swift; sourceTree = "<group>"; };
+		0A537A87207CE74100921FB9 /* DomainRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainRegistry.swift; sourceTree = "<group>"; };
+		0A537A88207CE74100921FB9 /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		0A537A89207CE74100921FB9 /* BiometricAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationService.swift; sourceTree = "<group>"; };
+		0A537A8A207CE74100921FB9 /* EncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
+		0A537A8B207CE74100921FB9 /* MockAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAccount.swift; sourceTree = "<group>"; };
+		0A537A8C207CE74100921FB9 /* DomainTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainTestCase.swift; sourceTree = "<group>"; };
+		0A537A8D207CE74100921FB9 /* LoggableError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggableError.swift; sourceTree = "<group>"; };
+		0A537AA7207CEA0100921FB9 /* IdentityAccessDomainModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessDomainModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537AAB207CEA0100921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537AD6207CEE1000921FB9 /* IdentityAccessImplementations-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityAccessImplementations-Bridging-Header.h"; sourceTree = "<group>"; };
+		0A537AD7207CEE1100921FB9 /* InMemoryUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryUserDefaults.swift; sourceTree = "<group>"; };
+		0A537AD8207CEE1100921FB9 /* MockBiometricService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockBiometricService.swift; sourceTree = "<group>"; };
+		0A537AD9207CEE1100921FB9 /* MockKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockKeychain.swift; sourceTree = "<group>"; };
+		0A537ADE207CEE7200921FB9 /* MockClockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockClockService.swift; sourceTree = "<group>"; };
+		0A537ADF207CEE7300921FB9 /* MockSecureStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSecureStore.swift; sourceTree = "<group>"; };
+		0A537AE4207CEFED00921FB9 /* InMemoryKeyValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryKeyValueStore.swift; sourceTree = "<group>"; };
+		0A537AE6207CF00D00921FB9 /* MockEncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEncryptionService.swift; sourceTree = "<group>"; };
+		0A537AE8207CF02C00921FB9 /* MockLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLogger.swift; sourceTree = "<group>"; };
+		0A537AEA207CF0F900921FB9 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537AEC207CF10000921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537AF2207CF2D600921FB9 /* CrashlyticsLoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsLoggerTests.swift; sourceTree = "<group>"; };
+		0A537AF3207CF2D600921FB9 /* LoggableErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggableErrorTests.swift; sourceTree = "<group>"; };
+		0A537AF4207CF2D600921FB9 /* LogFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFormatterTests.swift; sourceTree = "<group>"; };
+		0A537AF5207CF2D600921FB9 /* LogServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogServiceTests.swift; sourceTree = "<group>"; };
+		0A537AF6207CF2D600921FB9 /* LogFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
+		0A537AF7207CF2D600921FB9 /* ConsoleLoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLoggerTests.swift; sourceTree = "<group>"; };
+		0A537AF8207CF2D600921FB9 /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogger.swift; sourceTree = "<group>"; };
+		0A537AF9207CF2D600921FB9 /* ConsoleLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
+		0A537AFA207CF2D600921FB9 /* LogService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
+		0A537AFC207CF2D600921FB9 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		0A537AFD207CF2D600921FB9 /* KeychainServiceIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		0A537AFF207CF2D600921FB9 /* SystemClockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemClockService.swift; sourceTree = "<group>"; };
+		0A537B00207CF2D600921FB9 /* SystemClockServiceIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemClockServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricServiceTests.swift; sourceTree = "<group>"; };
+		0A537B03207CF2D600921FB9 /* BiometricService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricService.swift; sourceTree = "<group>"; };
+		0A537B05207CF2D600921FB9 /* EthereumAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EthereumAccountTests.swift; sourceTree = "<group>"; };
+		0A537B06207CF2D600921FB9 /* EncryptionServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionServiceTests.swift; sourceTree = "<group>"; };
+		0A537B07207CF2D600921FB9 /* EncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
+		0A537B09207CF2D600921FB9 /* UserDefaultsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		0A537B0A207CF2D600921FB9 /* UserDefaultsIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsIntegrationTests.swift; sourceTree = "<group>"; };
+		0A537B2E207CF4B000921FB9 /* IdentityAccessImplementationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessImplementationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537B32207CF4B000921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ImplementationsConfig.xcconfig; sourceTree = "<group>"; };
+		0A537B9B207CF90B00921FB9 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = ../lib/APIKit.framework; sourceTree = "<group>"; };
+		0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = ../lib/CryptoSwift.framework; sourceTree = "<group>"; };
+		0A537B9D207CF90B00921FB9 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../lib/Result.framework; sourceTree = "<group>"; };
+		0A537B9E207CF90B00921FB9 /* EthereumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EthereumKit.framework; path = ../lib/EthereumKit.framework; sourceTree = "<group>"; };
+		0A537BB4207CF9B400921FB9 /* IdentityAccessIntegration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdentityAccessIntegration.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537BB6207CF9B400921FB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0A537BB8207CF9B400921FB9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0A537BBB207CF9B400921FB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0A537BBD207CF9B600921FB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A537BC0207CF9B600921FB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0A537BC2207CF9B600921FB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A537BCA207CF9CD00921FB9 /* IdentityAccessIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537BCE207CF9CD00921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		0A537BE1207CFADE00921FB9 /* libIdentityAccessApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537BEA207CFAF800921FB9 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537BEC207CFB1B00921FB9 /* IdentityAccessApplication-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityAccessApplication-Bridging-Header.h"; sourceTree = "<group>"; };
+		0A537BED207CFB1C00921FB9 /* AuthenticationApplicationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationService.swift; sourceTree = "<group>"; };
+		0A537BEE207CFB1C00921FB9 /* IdentityApplicationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentityApplicationService.swift; sourceTree = "<group>"; };
+		0A537BEF207CFB1C00921FB9 /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
+		0A537BF0207CFB1C00921FB9 /* ApplicationServiceTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationServiceTestCase.swift; sourceTree = "<group>"; };
+		0A537BF1207CFB1C00921FB9 /* ApplicationServiceRegistryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistryTests.swift; sourceTree = "<group>"; };
+		0A537BF2207CFB1C00921FB9 /* IdentityApplicationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentityApplicationServiceTests.swift; sourceTree = "<group>"; };
+		0A537BFE207CFB9200921FB9 /* IdentityAccessApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537C02207CFB9200921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537C15207CFD8300921FB9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0AF281942074C18B00D3843D /* Frameworks */ = {
+		0A537A61207CE5BC00921FB9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A8BD00E2074CB5600BCD78D /* libIdentityAccessPortAdapter.a in Frameworks */,
-				0AF281D42074C21B00D3843D /* libIdentityAccessApplication.a in Frameworks */,
-				0AF281D52074C21B00D3843D /* libIdentityAccessDomainModel.a in Frameworks */,
+				0A537AEB207CF0F900921FB9 /* libCommon.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537AA4207CEA0100921FB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537AF0207CF1A200921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
+				0A537AEF207CF18B00921FB9 /* libCommonTestSupport.a in Frameworks */,
+				0A537AAC207CEA0100921FB9 /* libIdentityAccessDomainModel.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537ACA207CEDAE00921FB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537AED207CF10000921FB9 /* libCommonTestSupport.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537B2B207CF4B000921FB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537B33207CF4B000921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BB1207CF9B400921FB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BC7207CF9CD00921FB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537BD6207CF9EE00921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BDE207CFADE00921FB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537BEB207CFAF800921FB9 /* libCommon.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BFB207CFB9200921FB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537C0B207CFC1C00921FB9 /* libIdentityAccessDomainModel.a in Frameworks */,
+				0A537C0C207CFC1C00921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
+				0A537C0A207CFC1C00921FB9 /* libCommonTestSupport.a in Frameworks */,
+				0A537C03207CFB9200921FB9 /* libIdentityAccessApplication.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A8BCFD12074CB1500BCD78D /* Products */ = {
+		0A537A65207CE5BC00921FB9 /* IdentityAccessDomainModel */ = {
 			isa = PBXGroup;
 			children = (
-				0A8BCFD72074CB1600BCD78D /* libIdentityAccessPortAdapter.a */,
-				0A3FAEB9207B543800F0D214 /* IdentityAccessPortAdapterTests.xctest */,
-				0A3FAEBB207B543800F0D214 /* libIdentityAccessPortAdapterTestSupport.a */,
+				0A537A8C207CE74100921FB9 /* DomainTestCase.swift */,
+				0A537A8B207CE74100921FB9 /* MockAccount.swift */,
+				0A537A7E207CE74000921FB9 /* Account.swift */,
+				0A537A7F207CE74000921FB9 /* AccountTests.swift */,
+				0A537A87207CE74100921FB9 /* DomainRegistry.swift */,
+				0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */,
+				0A537A86207CE74000921FB9 /* EthereumAccount.swift */,
+				0A537A8D207CE74100921FB9 /* LoggableError.swift */,
+				0A537A85207CE74000921FB9 /* Session.swift */,
+				0A537A7D207CE74000921FB9 /* SessionTests.swift */,
+				0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */,
+				0A537AA2207CE95900921FB9 /* Interfaces */,
+				0A537AB2207CEA3900921FB9 /* XcodeBuildSupport */,
 			);
-			name = Products;
+			path = IdentityAccessDomainModel;
+			sourceTree = "<group>";
+		};
+		0A537AA2207CE95900921FB9 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				0A537A89207CE74100921FB9 /* BiometricAuthenticationService.swift */,
+				0A537A88207CE74100921FB9 /* Clock.swift */,
+				0A537A8A207CE74100921FB9 /* EncryptionService.swift */,
+				0A537A82207CE74000921FB9 /* KeyValueStore.swift */,
+				0A537A83207CE74000921FB9 /* Logger.swift */,
+				0A537A84207CE74000921FB9 /* SecureStore.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		0A537AB2207CEA3900921FB9 /* XcodeBuildSupport */ = {
+			isa = PBXGroup;
+			children = (
+				0A537A7C207CE73F00921FB9 /* IdentityAccessDomainModel-Bridging-Header.h */,
+				0A537AAB207CEA0100921FB9 /* Tests-Info.plist */,
+			);
+			path = XcodeBuildSupport;
+			sourceTree = "<group>";
+		};
+		0A537ACE207CEDAE00921FB9 /* IdentityAccessImplementations */ = {
+			isa = PBXGroup;
+			children = (
+				0A537B01207CF2D600921FB9 /* biometry */,
+				0A537AFE207CF2D600921FB9 /* clock */,
+				0A537B04207CF2D600921FB9 /* ethereum */,
+				0A537B08207CF2D600921FB9 /* keyValueStore */,
+				0A537AF1207CF2D600921FB9 /* logger */,
+				0A537AFB207CF2D600921FB9 /* secureStore */,
+				0A537ADD207CEE1600921FB9 /* XcodeBuildSupport */,
+			);
+			path = IdentityAccessImplementations;
+			sourceTree = "<group>";
+		};
+		0A537ADD207CEE1600921FB9 /* XcodeBuildSupport */ = {
+			isa = PBXGroup;
+			children = (
+				0A537AD6207CEE1000921FB9 /* IdentityAccessImplementations-Bridging-Header.h */,
+				0A537B32207CF4B000921FB9 /* Tests-Info.plist */,
+			);
+			path = XcodeBuildSupport;
+			sourceTree = "<group>";
+		};
+		0A537AF1207CF2D600921FB9 /* logger */ = {
+			isa = PBXGroup;
+			children = (
+				0A537AF9207CF2D600921FB9 /* ConsoleLogger.swift */,
+				0A537AF7207CF2D600921FB9 /* ConsoleLoggerTests.swift */,
+				0A537AF8207CF2D600921FB9 /* CrashlyticsLogger.swift */,
+				0A537AF2207CF2D600921FB9 /* CrashlyticsLoggerTests.swift */,
+				0A537AF6207CF2D600921FB9 /* LogFormatter.swift */,
+				0A537AF4207CF2D600921FB9 /* LogFormatterTests.swift */,
+				0A537AF3207CF2D600921FB9 /* LoggableErrorTests.swift */,
+				0A537AFA207CF2D600921FB9 /* LogService.swift */,
+				0A537AF5207CF2D600921FB9 /* LogServiceTests.swift */,
+				0A537AE8207CF02C00921FB9 /* MockLogger.swift */,
+			);
+			path = logger;
+			sourceTree = "<group>";
+		};
+		0A537AFB207CF2D600921FB9 /* secureStore */ = {
+			isa = PBXGroup;
+			children = (
+				0A537AFC207CF2D600921FB9 /* KeychainService.swift */,
+				0A537AFD207CF2D600921FB9 /* KeychainServiceIntegrationTests.swift */,
+				0A537AD9207CEE1100921FB9 /* MockKeychain.swift */,
+				0A537ADF207CEE7300921FB9 /* MockSecureStore.swift */,
+			);
+			path = secureStore;
+			sourceTree = "<group>";
+		};
+		0A537AFE207CF2D600921FB9 /* clock */ = {
+			isa = PBXGroup;
+			children = (
+				0A537AFF207CF2D600921FB9 /* SystemClockService.swift */,
+				0A537B00207CF2D600921FB9 /* SystemClockServiceIntegrationTests.swift */,
+				0A537ADE207CEE7200921FB9 /* MockClockService.swift */,
+			);
+			path = clock;
+			sourceTree = "<group>";
+		};
+		0A537B01207CF2D600921FB9 /* biometry */ = {
+			isa = PBXGroup;
+			children = (
+				0A537B03207CF2D600921FB9 /* BiometricService.swift */,
+				0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */,
+				0A537AD8207CEE1100921FB9 /* MockBiometricService.swift */,
+			);
+			path = biometry;
+			sourceTree = "<group>";
+		};
+		0A537B04207CF2D600921FB9 /* ethereum */ = {
+			isa = PBXGroup;
+			children = (
+				0A537B07207CF2D600921FB9 /* EncryptionService.swift */,
+				0A537B06207CF2D600921FB9 /* EncryptionServiceTests.swift */,
+				0A537B05207CF2D600921FB9 /* EthereumAccountTests.swift */,
+				0A537AE6207CF00D00921FB9 /* MockEncryptionService.swift */,
+			);
+			path = ethereum;
+			sourceTree = "<group>";
+		};
+		0A537B08207CF2D600921FB9 /* keyValueStore */ = {
+			isa = PBXGroup;
+			children = (
+				0A537B09207CF2D600921FB9 /* UserDefaultsService.swift */,
+				0A537B0A207CF2D600921FB9 /* UserDefaultsIntegrationTests.swift */,
+				0A537AD7207CEE1100921FB9 /* InMemoryUserDefaults.swift */,
+				0A537AE4207CEFED00921FB9 /* InMemoryKeyValueStore.swift */,
+			);
+			path = keyValueStore;
+			sourceTree = "<group>";
+		};
+		0A537BB5207CF9B400921FB9 /* IdentityAccessIntegration */ = {
+			isa = PBXGroup;
+			children = (
+				0A537BB6207CF9B400921FB9 /* AppDelegate.swift */,
+				0A537BB8207CF9B400921FB9 /* ViewController.swift */,
+				0A537BBA207CF9B400921FB9 /* Main.storyboard */,
+				0A537BBD207CF9B600921FB9 /* Assets.xcassets */,
+				0A537BBF207CF9B600921FB9 /* LaunchScreen.storyboard */,
+				0A537BC2207CF9B600921FB9 /* Info.plist */,
+				0A537BCE207CF9CD00921FB9 /* Tests-Info.plist */,
+			);
+			path = IdentityAccessIntegration;
+			sourceTree = "<group>";
+		};
+		0A537BE2207CFADE00921FB9 /* IdentityAccessApplication */ = {
+			isa = PBXGroup;
+			children = (
+				0A537BF0207CFB1C00921FB9 /* ApplicationServiceTestCase.swift */,
+				0A537BEF207CFB1C00921FB9 /* ApplicationServiceRegistry.swift */,
+				0A537BF1207CFB1C00921FB9 /* ApplicationServiceRegistryTests.swift */,
+				0A537BED207CFB1C00921FB9 /* AuthenticationApplicationService.swift */,
+				0A537BEE207CFB1C00921FB9 /* IdentityApplicationService.swift */,
+				0A537BF2207CFB1C00921FB9 /* IdentityApplicationServiceTests.swift */,
+				0A537BF9207CFB2300921FB9 /* XcodeBuildSupport */,
+			);
+			path = IdentityAccessApplication;
+			sourceTree = "<group>";
+		};
+		0A537BF9207CFB2300921FB9 /* XcodeBuildSupport */ = {
+			isa = PBXGroup;
+			children = (
+				0A537BEC207CFB1B00921FB9 /* IdentityAccessApplication-Bridging-Header.h */,
+				0A537C02207CFB9200921FB9 /* Tests-Info.plist */,
+			);
+			path = XcodeBuildSupport;
 			sourceTree = "<group>";
 		};
 		0AF2818E2074C18B00D3843D = {
 			isa = PBXGroup;
 			children = (
-				0AF281992074C18B00D3843D /* IdentityAccess */,
+				0A537C15207CFD8300921FB9 /* README.md */,
+				0A537B9B207CF90B00921FB9 /* APIKit.framework */,
+				0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */,
+				0A537B9E207CF90B00921FB9 /* EthereumKit.framework */,
+				0A537B9D207CF90B00921FB9 /* Result.framework */,
+				0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */,
+				0A537BE2207CFADE00921FB9 /* IdentityAccessApplication */,
+				0A537A65207CE5BC00921FB9 /* IdentityAccessDomainModel */,
+				0A537ACE207CEDAE00921FB9 /* IdentityAccessImplementations */,
+				0A537BB5207CF9B400921FB9 /* IdentityAccessIntegration */,
 				0AF281982074C18B00D3843D /* Products */,
 				0AF281D32074C21B00D3843D /* Frameworks */,
 			);
@@ -122,37 +585,14 @@
 		0AF281982074C18B00D3843D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0AF281972074C18B00D3843D /* libIdentityAccess.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		0AF281992074C18B00D3843D /* IdentityAccess */ = {
-			isa = PBXGroup;
-			children = (
-				0AF281D82074C25300D3843D /* IdentityAccess.swift */,
-				0AF281CD2074C1D200D3843D /* IdentityAccessApplication.xcodeproj */,
-				0AF281B42074C1AB00D3843D /* IdentityAccessDomainModel.xcodeproj */,
-				0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */,
-				0A3FAEAC207B543700F0D214 /* Config.xcconfig */,
-			);
-			path = IdentityAccess;
-			sourceTree = "<group>";
-		};
-		0AF281B52074C1AB00D3843D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0AF281B92074C1AC00D3843D /* libIdentityAccessDomainModel.a */,
-				0A3FAEB4207B543800F0D214 /* IdentityAccessDomainModelTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		0AF281CE2074C1D200D3843D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0AF281D22074C1D300D3843D /* libIdentityAccessApplication.a */,
-				0A3FAEB0207B543800F0D214 /* IdentityAccessApplicationTests.xctest */,
+				0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */,
+				0A537AA7207CEA0100921FB9 /* IdentityAccessDomainModelTests.xctest */,
+				0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */,
+				0A537B2E207CF4B000921FB9 /* IdentityAccessImplementationsTests.xctest */,
+				0A537BB4207CF9B400921FB9 /* IdentityAccessIntegration.app */,
+				0A537BCA207CF9CD00921FB9 /* IdentityAccessIntegrationTests.xctest */,
+				0A537BE1207CFADE00921FB9 /* libIdentityAccessApplication.a */,
+				0A537BFE207CFB9200921FB9 /* IdentityAccessApplicationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,6 +600,11 @@
 		0AF281D32074C21B00D3843D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */,
+				0A537BEA207CFAF800921FB9 /* libCommon.a */,
+				0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */,
+				0A537AEC207CF10000921FB9 /* libCommonTestSupport.a */,
+				0A537AEA207CF0F900921FB9 /* libCommon.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -167,23 +612,156 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0AF281962074C18B00D3843D /* IdentityAccess */ = {
+		0A537A63207CE5BC00921FB9 /* IdentityAccessDomainModel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0AF2819E2074C18B00D3843D /* Build configuration list for PBXNativeTarget "IdentityAccess" */;
+			buildConfigurationList = 0A537A77207CE5BC00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessDomainModel" */;
 			buildPhases = (
-				0A3EEC6F2074C8CC00BFA9E0 /* Lint */,
-				0AF281932074C18B00D3843D /* Sources */,
-				0AF281942074C18B00D3843D /* Frameworks */,
-				0AF281952074C18B00D3843D /* CopyFiles */,
+				0A537C21207D04D400921FB9 /* Lint */,
+				0A537A60207CE5BC00921FB9 /* Sources */,
+				0A537A61207CE5BC00921FB9 /* Frameworks */,
+				0A537A62207CE5BC00921FB9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = IdentityAccess;
-			productName = IdentityAccess;
-			productReference = 0AF281972074C18B00D3843D /* libIdentityAccess.a */;
+			name = IdentityAccessDomainModel;
+			productName = IdentityAccessDomainModel;
+			productReference = 0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		0A537AA6207CEA0100921FB9 /* IdentityAccessDomainModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A537AAF207CEA0100921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessDomainModelTests" */;
+			buildPhases = (
+				0A537AA3207CEA0100921FB9 /* Sources */,
+				0A537AA4207CEA0100921FB9 /* Frameworks */,
+				0A537AA5207CEA0100921FB9 /* Resources */,
+				0A537BA3207CF91400921FB9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A537AE3207CEF0D00921FB9 /* PBXTargetDependency */,
+				0A537AAE207CEA0100921FB9 /* PBXTargetDependency */,
+			);
+			name = IdentityAccessDomainModelTests;
+			productName = IdentityAccessDomainModelTests;
+			productReference = 0A537AA7207CEA0100921FB9 /* IdentityAccessDomainModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0A537ACC207CEDAE00921FB9 /* IdentityAccessImplementations */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A537AD1207CEDAE00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessImplementations" */;
+			buildPhases = (
+				0A537C22207D04E300921FB9 /* Lint */,
+				0A537AC9207CEDAE00921FB9 /* Sources */,
+				0A537ACA207CEDAE00921FB9 /* Frameworks */,
+				0A537ACB207CEDAE00921FB9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A537AD5207CEDD400921FB9 /* PBXTargetDependency */,
+			);
+			name = IdentityAccessImplementations;
+			productName = IdentityAccessImplementations;
+			productReference = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		0A537B2D207CF4B000921FB9 /* IdentityAccessImplementationsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A537B36207CF4B000921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessImplementationsTests" */;
+			buildPhases = (
+				0A537B2A207CF4B000921FB9 /* Sources */,
+				0A537B2B207CF4B000921FB9 /* Frameworks */,
+				0A537B2C207CF4B000921FB9 /* Resources */,
+				0A537B98207CF8AE00921FB9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A537B35207CF4B000921FB9 /* PBXTargetDependency */,
+			);
+			name = IdentityAccessImplementationsTests;
+			productName = IdentityAccessImplementationTests;
+			productReference = 0A537B2E207CF4B000921FB9 /* IdentityAccessImplementationsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0A537BB3207CF9B400921FB9 /* IdentityAccessIntegration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A537BC3207CF9B600921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessIntegration" */;
+			buildPhases = (
+				0A537BB0207CF9B400921FB9 /* Sources */,
+				0A537BB1207CF9B400921FB9 /* Frameworks */,
+				0A537BB2207CF9B400921FB9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IdentityAccessIntegration;
+			productName = IdentityAccessIntegration;
+			productReference = 0A537BB4207CF9B400921FB9 /* IdentityAccessIntegration.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0A537BC9207CF9CD00921FB9 /* IdentityAccessIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A537BD1207CF9CD00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessIntegrationTests" */;
+			buildPhases = (
+				0A537BC6207CF9CD00921FB9 /* Sources */,
+				0A537BC7207CF9CD00921FB9 /* Frameworks */,
+				0A537BC8207CF9CD00921FB9 /* Resources */,
+				0A537BD7207CF9F200921FB9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A537BD5207CF9DE00921FB9 /* PBXTargetDependency */,
+				0A537BD0207CF9CD00921FB9 /* PBXTargetDependency */,
+			);
+			name = IdentityAccessIntegrationTests;
+			productName = IdentityAccessIntegrationTests;
+			productReference = 0A537BCA207CF9CD00921FB9 /* IdentityAccessIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0A537BE0207CFADE00921FB9 /* IdentityAccessApplication */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A537BE5207CFADE00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessApplication" */;
+			buildPhases = (
+				0A537C23207D04F200921FB9 /* Lint */,
+				0A537BDD207CFADE00921FB9 /* Sources */,
+				0A537BDE207CFADE00921FB9 /* Frameworks */,
+				0A537BDF207CFADE00921FB9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A537BE9207CFAF300921FB9 /* PBXTargetDependency */,
+			);
+			name = IdentityAccessApplication;
+			productName = IdentityAccessApplication;
+			productReference = 0A537BE1207CFADE00921FB9 /* libIdentityAccessApplication.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		0A537BFD207CFB9200921FB9 /* IdentityAccessApplicationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A537C06207CFB9200921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessApplicationTests" */;
+			buildPhases = (
+				0A537BFA207CFB9200921FB9 /* Sources */,
+				0A537BFB207CFB9200921FB9 /* Frameworks */,
+				0A537BFC207CFB9200921FB9 /* Resources */,
+				0A537C0D207CFC2000921FB9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A537C05207CFB9200921FB9 /* PBXTargetDependency */,
+			);
+			name = IdentityAccessApplicationTests;
+			productName = IdentityAccessApplicationTests;
+			productReference = 0A537BFE207CFB9200921FB9 /* IdentityAccessApplicationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -195,9 +773,33 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Gnosis;
 				TargetAttributes = {
-					0AF281962074C18B00D3843D = {
+					0A537A63207CE5BC00921FB9 = {
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 0930;
+					};
+					0A537AA6207CEA0100921FB9 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+					0A537ACC207CEDAE00921FB9 = {
+						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
+					};
+					0A537B2D207CF4B000921FB9 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+					0A537BB3207CF9B400921FB9 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+					0A537BC9207CF9CD00921FB9 = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = 0A537BB3207CF9B400921FB9;
+					};
+					0A537BE0207CFADE00921FB9 = {
+						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
+					};
+					0A537BFD207CFB9200921FB9 = {
+						CreatedOnToolsVersion = 9.3;
 					};
 				};
 			};
@@ -207,85 +809,96 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 0AF2818E2074C18B00D3843D;
 			productRefGroup = 0AF281982074C18B00D3843D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 0AF281CE2074C1D200D3843D /* Products */;
-					ProjectRef = 0AF281CD2074C1D200D3843D /* IdentityAccessApplication.xcodeproj */;
-				},
-				{
-					ProductGroup = 0AF281B52074C1AB00D3843D /* Products */;
-					ProjectRef = 0AF281B42074C1AB00D3843D /* IdentityAccessDomainModel.xcodeproj */;
-				},
-				{
-					ProductGroup = 0A8BCFD12074CB1500BCD78D /* Products */;
-					ProjectRef = 0A8BCFD02074CB1500BCD78D /* IdentityAccessPortAdapter.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
-				0AF281962074C18B00D3843D /* IdentityAccess */,
+				0A537A63207CE5BC00921FB9 /* IdentityAccessDomainModel */,
+				0A537AA6207CEA0100921FB9 /* IdentityAccessDomainModelTests */,
+				0A537ACC207CEDAE00921FB9 /* IdentityAccessImplementations */,
+				0A537B2D207CF4B000921FB9 /* IdentityAccessImplementationsTests */,
+				0A537BB3207CF9B400921FB9 /* IdentityAccessIntegration */,
+				0A537BC9207CF9CD00921FB9 /* IdentityAccessIntegrationTests */,
+				0A537BE0207CFADE00921FB9 /* IdentityAccessApplication */,
+				0A537BFD207CFB9200921FB9 /* IdentityAccessApplicationTests */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		0A3FAEB0207B543800F0D214 /* IdentityAccessApplicationTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = IdentityAccessApplicationTests.xctest;
-			remoteRef = 0A3FAEAF207B543800F0D214 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
+/* Begin PBXResourcesBuildPhase section */
+		0A537AA5207CEA0100921FB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A3FAEB4207B543800F0D214 /* IdentityAccessDomainModelTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = IdentityAccessDomainModelTests.xctest;
-			remoteRef = 0A3FAEB3207B543800F0D214 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
+		0A537B2C207CF4B000921FB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A3FAEB9207B543800F0D214 /* IdentityAccessPortAdapterTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = IdentityAccessPortAdapterTests.xctest;
-			remoteRef = 0A3FAEB8207B543800F0D214 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
+		0A537BB2207CF9B400921FB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537BC1207CF9B600921FB9 /* LaunchScreen.storyboard in Resources */,
+				0A537BBE207CF9B600921FB9 /* Assets.xcassets in Resources */,
+				0A537BBC207CF9B400921FB9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A3FAEBB207B543800F0D214 /* libIdentityAccessPortAdapterTestSupport.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libIdentityAccessPortAdapterTestSupport.a;
-			remoteRef = 0A3FAEBA207B543800F0D214 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
+		0A537BC8207CF9CD00921FB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A8BCFD72074CB1600BCD78D /* libIdentityAccessPortAdapter.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libIdentityAccessPortAdapter.a;
-			remoteRef = 0A8BCFD62074CB1600BCD78D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
+		0A537BFC207CFB9200921FB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0AF281B92074C1AC00D3843D /* libIdentityAccessDomainModel.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libIdentityAccessDomainModel.a;
-			remoteRef = 0AF281B82074C1AC00D3843D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0AF281D22074C1D300D3843D /* libIdentityAccessApplication.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libIdentityAccessApplication.a;
-			remoteRef = 0AF281D12074C1D300D3843D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A3EEC6F2074C8CC00BFA9E0 /* Lint */ = {
+		0A537C21207D04D400921FB9 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
+		};
+		0A537C22207D04E300921FB9 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
+		};
+		0A537C23207D04F200921FB9 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -302,17 +915,482 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0AF281932074C18B00D3843D /* Sources */ = {
+		0A537A60207CE5BC00921FB9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AF281D92074C25300D3843D /* IdentityAccess.swift in Sources */,
+				0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */,
+				0A537A98207CE74100921FB9 /* DomainRegistry.swift in Sources */,
+				0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */,
+				0A537A99207CE74100921FB9 /* Clock.swift in Sources */,
+				0A537A94207CE74100921FB9 /* Logger.swift in Sources */,
+				0A537A9B207CE74100921FB9 /* EncryptionService.swift in Sources */,
+				0A537A97207CE74100921FB9 /* EthereumAccount.swift in Sources */,
+				0A537A8F207CE74100921FB9 /* Account.swift in Sources */,
+				0A537A9A207CE74100921FB9 /* BiometricAuthenticationService.swift in Sources */,
+				0A537A93207CE74100921FB9 /* KeyValueStore.swift in Sources */,
+				0A537A96207CE74100921FB9 /* Session.swift in Sources */,
+				0A537A9E207CE74100921FB9 /* LoggableError.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537AA3207CEA0100921FB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537AB7207CEBB100921FB9 /* DomainTestCase.swift in Sources */,
+				0A537AB6207CEAC700921FB9 /* SessionTests.swift in Sources */,
+				0A537AB3207CEAC700921FB9 /* MockAccount.swift in Sources */,
+				0A537AB5207CEAC700921FB9 /* DomainRegistryTests.swift in Sources */,
+				0A537AB4207CEAC700921FB9 /* AccountTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537AC9207CEDAE00921FB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537AE0207CEE7300921FB9 /* MockClockService.swift in Sources */,
+				0A537B12207CF2D600921FB9 /* ConsoleLogger.swift in Sources */,
+				0A537B1C207CF2D600921FB9 /* EncryptionService.swift in Sources */,
+				0A537ADB207CEE1100921FB9 /* MockBiometricService.swift in Sources */,
+				0A537AE1207CEE7300921FB9 /* MockSecureStore.swift in Sources */,
+				0A537ADC207CEE1100921FB9 /* MockKeychain.swift in Sources */,
+				0A537B16207CF2D600921FB9 /* SystemClockService.swift in Sources */,
+				0A537B14207CF2D600921FB9 /* KeychainService.swift in Sources */,
+				0A537B13207CF2D600921FB9 /* LogService.swift in Sources */,
+				0A537AE7207CF00D00921FB9 /* MockEncryptionService.swift in Sources */,
+				0A537B1D207CF2D600921FB9 /* UserDefaultsService.swift in Sources */,
+				0A537B0F207CF2D600921FB9 /* LogFormatter.swift in Sources */,
+				0A537AE9207CF02C00921FB9 /* MockLogger.swift in Sources */,
+				0A537B19207CF2D600921FB9 /* BiometricService.swift in Sources */,
+				0A537ADA207CEE1100921FB9 /* InMemoryUserDefaults.swift in Sources */,
+				0A537B11207CF2D600921FB9 /* CrashlyticsLogger.swift in Sources */,
+				0A537AE5207CEFED00921FB9 /* InMemoryKeyValueStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537B2A207CF4B000921FB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537BA8207CF93F00921FB9 /* EthereumAccountTests.swift in Sources */,
+				0A537BAB207CF96500921FB9 /* CrashlyticsLoggerTests.swift in Sources */,
+				0A537BAE207CF97300921FB9 /* LogServiceTests.swift in Sources */,
+				0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */,
+				0A537BAC207CF96B00921FB9 /* LogFormatterTests.swift in Sources */,
+				0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */,
+				0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */,
+				0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */,
+				0A537BA9207CF94E00921FB9 /* UserDefaultsIntegrationTests.swift in Sources */,
+				0A537BAD207CF96E00921FB9 /* LoggableErrorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BB0207CF9B400921FB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537BB9207CF9B400921FB9 /* ViewController.swift in Sources */,
+				0A537BB7207CF9B400921FB9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BC6207CF9CD00921FB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537BDC207CFA6600921FB9 /* KeychainServiceIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BDD207CFADE00921FB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537BF5207CFB1C00921FB9 /* ApplicationServiceRegistry.swift in Sources */,
+				0A537BF4207CFB1C00921FB9 /* IdentityApplicationService.swift in Sources */,
+				0A537BF3207CFB1C00921FB9 /* AuthenticationApplicationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BFA207CFB9200921FB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537C12207CFCB000921FB9 /* ApplicationServiceTestCase.swift in Sources */,
+				0A537C13207CFCF600921FB9 /* ApplicationServiceRegistryTests.swift in Sources */,
+				0A537C14207CFCFA00921FB9 /* IdentityApplicationServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0A537AAE207CEA0100921FB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A537A63207CE5BC00921FB9 /* IdentityAccessDomainModel */;
+			targetProxy = 0A537AAD207CEA0100921FB9 /* PBXContainerItemProxy */;
+		};
+		0A537AD5207CEDD400921FB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A537A63207CE5BC00921FB9 /* IdentityAccessDomainModel */;
+			targetProxy = 0A537AD4207CEDD400921FB9 /* PBXContainerItemProxy */;
+		};
+		0A537AE3207CEF0D00921FB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A537ACC207CEDAE00921FB9 /* IdentityAccessImplementations */;
+			targetProxy = 0A537AE2207CEF0D00921FB9 /* PBXContainerItemProxy */;
+		};
+		0A537B35207CF4B000921FB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A537ACC207CEDAE00921FB9 /* IdentityAccessImplementations */;
+			targetProxy = 0A537B34207CF4B000921FB9 /* PBXContainerItemProxy */;
+		};
+		0A537BD0207CF9CD00921FB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A537BB3207CF9B400921FB9 /* IdentityAccessIntegration */;
+			targetProxy = 0A537BCF207CF9CD00921FB9 /* PBXContainerItemProxy */;
+		};
+		0A537BD5207CF9DE00921FB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A537ACC207CEDAE00921FB9 /* IdentityAccessImplementations */;
+			targetProxy = 0A537BD4207CF9DE00921FB9 /* PBXContainerItemProxy */;
+		};
+		0A537BE9207CFAF300921FB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A537A63207CE5BC00921FB9 /* IdentityAccessDomainModel */;
+			targetProxy = 0A537BE8207CFAF300921FB9 /* PBXContainerItemProxy */;
+		};
+		0A537C05207CFB9200921FB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A537BE0207CFADE00921FB9 /* IdentityAccessApplication */;
+			targetProxy = 0A537C04207CFB9200921FB9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0A537BBA207CF9B400921FB9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A537BBB207CF9B400921FB9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0A537BBF207CF9B600921FB9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A537BC0207CF9B600921FB9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		0A537A68207CE5BC00921FB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessDomainModel/XcodeBuildSupport/IdentityAccessDomainModel-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		0A537A69207CE5BC00921FB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessDomainModel/XcodeBuildSupport/IdentityAccessDomainModel-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		0A537AB0207CEA0100921FB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "IdentityAccessDomainModel/XcodeBuildSupport/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessDomainModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0A537AB1207CEA0100921FB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "IdentityAccessDomainModel/XcodeBuildSupport/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessDomainModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0A537AD2207CEDAE00921FB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessImplementations/XcodeBuildSupport/IdentityAccessImplementations-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		0A537AD3207CEDAE00921FB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessImplementations/XcodeBuildSupport/IdentityAccessImplementations-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		0A537B37207CF4B000921FB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "IdentityAccessImplementations/XcodeBuildSupport/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		0A537B38207CF4B000921FB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "IdentityAccessImplementations/XcodeBuildSupport/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		0A537BC4207CF9B600921FB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0A537BC5207CF9B600921FB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0A537BD2207CF9CD00921FB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = "IdentityAccessIntegration/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IdentityAccessIntegration.app/IdentityAccessIntegration";
+			};
+			name = Debug;
+		};
+		0A537BD3207CF9CD00921FB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = "IdentityAccessIntegration/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IdentityAccessIntegration.app/IdentityAccessIntegration";
+			};
+			name = Release;
+		};
+		0A537BE6207CFADE00921FB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessApplication/XcodeBuildSupport/IdentityAccessApplication-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		0A537BE7207CFADE00921FB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessApplication/XcodeBuildSupport/IdentityAccessApplication-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		0A537C07207CFB9200921FB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "IdentityAccessApplication/XcodeBuildSupport/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessApplicationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		0A537C08207CFB9200921FB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "IdentityAccessApplication/XcodeBuildSupport/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessApplicationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 		0AF2819C2074C18B00D3843D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -370,6 +1448,8 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -423,66 +1503,92 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		0AF2819F2074C18B00D3843D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MBAHRQRF52;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		0AF281A02074C18B00D3843D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MBAHRQRF52;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0A537A77207CE5BC00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessDomainModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A537A68207CE5BC00921FB9 /* Debug */,
+				0A537A69207CE5BC00921FB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A537AAF207CEA0100921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessDomainModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A537AB0207CEA0100921FB9 /* Debug */,
+				0A537AB1207CEA0100921FB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A537AD1207CEDAE00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessImplementations" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A537AD2207CEDAE00921FB9 /* Debug */,
+				0A537AD3207CEDAE00921FB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A537B36207CF4B000921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessImplementationsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A537B37207CF4B000921FB9 /* Debug */,
+				0A537B38207CF4B000921FB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A537BC3207CF9B600921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessIntegration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A537BC4207CF9B600921FB9 /* Debug */,
+				0A537BC5207CF9B600921FB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A537BD1207CF9CD00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A537BD2207CF9CD00921FB9 /* Debug */,
+				0A537BD3207CF9CD00921FB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A537BE5207CFADE00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessApplication" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A537BE6207CFADE00921FB9 /* Debug */,
+				0A537BE7207CFADE00921FB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A537C06207CFB9200921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessApplicationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A537C07207CFB9200921FB9 /* Debug */,
+				0A537C08207CFB9200921FB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0AF281922074C18B00D3843D /* Build configuration list for PBXProject "IdentityAccess" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0AF2819C2074C18B00D3843D /* Debug */,
 				0AF2819D2074C18B00D3843D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0AF2819E2074C18B00D3843D /* Build configuration list for PBXNativeTarget "IdentityAccess" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0AF2819F2074C18B00D3843D /* Debug */,
-				0AF281A02074C18B00D3843D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
