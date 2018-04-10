@@ -4,7 +4,7 @@
 
 import XCTest
 @testable import safe
-import IdentityAccessImplementationsTestSupport
+import IdentityAccessImplementations
 
 class CountdownLabelTests: XCTestCase {
 

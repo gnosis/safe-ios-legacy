@@ -7,7 +7,6 @@ import XCTest
 import IdentityAccessApplication
 import IdentityAccessDomainModel
 import IdentityAccessImplementations
-import IdentityAccessImplementationsTestSupport
 
 class SafeTestCase: XCTestCase {
 

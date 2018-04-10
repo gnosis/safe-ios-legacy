@@ -14,9 +14,12 @@
 		0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */; };
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
 		0A34BC60207B808800636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC5F207B808800636560 /* libCommonTestSupport.a */; };
-		0A3FAEAB207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */; };
 		0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527324205BCCF4004A5F9A /* CountdownLabel.swift */; };
 		0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527326205BD364004A5F9A /* CountdownLabelTests.swift */; };
+		0A537C17207D019800921FB9 /* libIdentityAccessApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C16207D019800921FB9 /* libIdentityAccessApplication.a */; };
+		0A537C19207D019800921FB9 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C18207D019800921FB9 /* libIdentityAccessDomainModel.a */; };
+		0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1A207D019800921FB9 /* libIdentityAccessImplementations.a */; };
+		0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */; };
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
 		0A7AE8C1205285D00044D5DD /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */; };
 		0A9A13B52077AAA800E197A1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */; };
@@ -46,7 +49,6 @@
 		0ABBDC062073CADD006D0A48 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBDBF92073CACD006D0A48 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AC17575207B719A0016320A /* libIdentityAccessApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC17574207B719A0016320A /* libIdentityAccessApplication.a */; };
 		0AC17577207B719A0016320A /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC17576207B719A0016320A /* libIdentityAccessDomainModel.a */; };
-		0AC17579207B719A0016320A /* libIdentityAccessPortAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC17578207B719A0016320A /* libIdentityAccessPortAdapter.a */; };
 		0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */; };
 		0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */; };
 		0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */; };
@@ -59,7 +61,6 @@
 		0AD93E1B2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */; };
 		0AE75CD82061134B002D5E2D /* SafeUIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE75CD72061134B002D5E2D /* SafeUIKitExtensions.swift */; };
 		0AE75CDA20611359002D5E2D /* SafeUIKitExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE75CD920611359002D5E2D /* SafeUIKitExtensionsTests.swift */; };
-		0AF281D72074C23400D3843D /* libIdentityAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF281D62074C23400D3843D /* libIdentityAccess.a */; };
 		0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */; };
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
 		0AFEDEB22073C7BC002F5924 /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */; };
@@ -142,6 +143,10 @@
 		0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapterTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A527324205BCCF4004A5F9A /* CountdownLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
 		0A527326205BD364004A5F9A /* CountdownLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabelTests.swift; sourceTree = "<group>"; };
+		0A537C16207D019800921FB9 /* libIdentityAccessApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537C18207D019800921FB9 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537C1A207D019800921FB9 /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A53AD3820595C2300D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD3A20595C2800D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppFlow.storyboard; sourceTree = "<group>"; };
@@ -226,7 +231,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AF281D72074C23400D3843D /* libIdentityAccess.a in Frameworks */,
+				0A537C17207D019800921FB9 /* libIdentityAccessApplication.a in Frameworks */,
+				0A537C19207D019800921FB9 /* libIdentityAccessDomainModel.a in Frameworks */,
+				0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 				0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */,
 				0ABBDC052073CADD006D0A48 /* Result.framework in Frameworks */,
 				0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */,
@@ -241,12 +248,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 				0AA0C858207B74B10019E282 /* XCTest.framework in Frameworks */,
 				0AA0C856207B74AC0019E282 /* libCommonTestSupport.a in Frameworks */,
 				0AC17575207B719A0016320A /* libIdentityAccessApplication.a in Frameworks */,
 				0AC17577207B719A0016320A /* libIdentityAccessDomainModel.a in Frameworks */,
-				0AC17579207B719A0016320A /* libIdentityAccessPortAdapter.a in Frameworks */,
-				0A3FAEAB207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +288,10 @@
 		0A53306B2073C73E00DE55F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */,
+				0A537C16207D019800921FB9 /* libIdentityAccessApplication.a */,
+				0A537C18207D019800921FB9 /* libIdentityAccessDomainModel.a */,
+				0A537C1A207D019800921FB9 /* libIdentityAccessImplementations.a */,
 				0A34BC5F207B808800636560 /* libCommonTestSupport.a */,
 				0AA0C857207B74B10019E282 /* XCTest.framework */,
 				0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */,
