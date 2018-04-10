@@ -5,12 +5,6 @@
       location = "group:Common/Common.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Ethereum/Ethereum.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:MultiSigWallet/MultiSigWallet.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:IdentityAccess/IdentityAccess.xcodeproj">
    </FileRef>
    <FileRef
