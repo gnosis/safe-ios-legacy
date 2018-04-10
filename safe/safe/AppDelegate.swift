@@ -7,7 +7,7 @@ import Fabric
 import UIKit
 import IdentityAccessApplication
 import IdentityAccessDomainModel
-import IdentityAccessPortAdapter
+import IdentityAccessImplementations
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

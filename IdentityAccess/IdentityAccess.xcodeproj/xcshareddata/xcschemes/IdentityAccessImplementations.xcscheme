@@ -28,7 +28,36 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A537B2D207CF4B000921FB9"
+               BuildableName = "IdentityAccessImplementationsTests.xctest"
+               BlueprintName = "IdentityAccessImplementationsTests"
+               ReferencedContainer = "container:IdentityAccess.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A537BC9207CF9CD00921FB9"
+               BuildableName = "IdentityAccessIntegrationTests.xctest"
+               BlueprintName = "IdentityAccessIntegrationTests"
+               ReferencedContainer = "container:IdentityAccess.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0A537ACC207CEDAE00921FB9"
+            BuildableName = "libIdentityAccessImplementations.a"
+            BlueprintName = "IdentityAccessImplementations"
+            ReferencedContainer = "container:IdentityAccess.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

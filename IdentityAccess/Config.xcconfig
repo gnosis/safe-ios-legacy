@@ -2,7 +2,7 @@
 //  Copyright © 2018 Gnosis. All rights reserved.
 //
 
-WORKSPACE_ROOT=${SRCROOT}/../../..
-FRAMEWORK_SEARCH_PATHS=$(inherited) ${WORKSPACE_ROOT}/lib
-LIBRARY_SEARCH_PATHS=$(inherited) ${WORKSPACE_ROOT}/lib
-HEADER_SEARCH_PATHS=$(inherited) ${WORKSPACE_ROOT}/lib/include
+WORKSPACE_LIB_PATH=${SRCROOT}/../lib
+FRAMEWORK_SEARCH_PATHS=$(inherited) ${WORKSPACE_LIB_PATH}
+LIBRARY_SEARCH_PATHS=$(inherited) ${WORKSPACE_LIB_PATH}
+HEADER_SEARCH_PATHS=$(inherited) ${WORKSPACE_LIB_PATH}/include

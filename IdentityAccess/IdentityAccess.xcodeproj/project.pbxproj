@@ -37,6 +37,45 @@
 		0A537AED207CF10000921FB9 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEC207CF10000921FB9 /* libCommonTestSupport.a */; };
 		0A537AEF207CF18B00921FB9 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */; };
 		0A537AF0207CF1A200921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
+		0A537B0F207CF2D600921FB9 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF6207CF2D600921FB9 /* LogFormatter.swift */; };
+		0A537B11207CF2D600921FB9 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF8207CF2D600921FB9 /* CrashlyticsLogger.swift */; };
+		0A537B12207CF2D600921FB9 /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF9207CF2D600921FB9 /* ConsoleLogger.swift */; };
+		0A537B13207CF2D600921FB9 /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFA207CF2D600921FB9 /* LogService.swift */; };
+		0A537B14207CF2D600921FB9 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFC207CF2D600921FB9 /* KeychainService.swift */; };
+		0A537B16207CF2D600921FB9 /* SystemClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFF207CF2D600921FB9 /* SystemClockService.swift */; };
+		0A537B19207CF2D600921FB9 /* BiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B03207CF2D600921FB9 /* BiometricService.swift */; };
+		0A537B1C207CF2D600921FB9 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B07207CF2D600921FB9 /* EncryptionService.swift */; };
+		0A537B1D207CF2D600921FB9 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B09207CF2D600921FB9 /* UserDefaultsService.swift */; };
+		0A537B33207CF4B000921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
+		0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */; };
+		0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B00207CF2D600921FB9 /* SystemClockServiceIntegrationTests.swift */; };
+		0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B06207CF2D600921FB9 /* EncryptionServiceTests.swift */; };
+		0A537B9F207CF90B00921FB9 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9B207CF90B00921FB9 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA0207CF90C00921FB9 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA1207CF90C00921FB9 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9D207CF90B00921FB9 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA2207CF90C00921FB9 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9E207CF90B00921FB9 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA4207CF91E00921FB9 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9B207CF90B00921FB9 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA5207CF91E00921FB9 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA6207CF91E00921FB9 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9E207CF90B00921FB9 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA7207CF91E00921FB9 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9D207CF90B00921FB9 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BA8207CF93F00921FB9 /* EthereumAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B05207CF2D600921FB9 /* EthereumAccountTests.swift */; };
+		0A537BA9207CF94E00921FB9 /* UserDefaultsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B0A207CF2D600921FB9 /* UserDefaultsIntegrationTests.swift */; };
+		0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF7207CF2D600921FB9 /* ConsoleLoggerTests.swift */; };
+		0A537BAB207CF96500921FB9 /* CrashlyticsLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF2207CF2D600921FB9 /* CrashlyticsLoggerTests.swift */; };
+		0A537BAC207CF96B00921FB9 /* LogFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF4207CF2D600921FB9 /* LogFormatterTests.swift */; };
+		0A537BAD207CF96E00921FB9 /* LoggableErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF3207CF2D600921FB9 /* LoggableErrorTests.swift */; };
+		0A537BAE207CF97300921FB9 /* LogServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF5207CF2D600921FB9 /* LogServiceTests.swift */; };
+		0A537BB7207CF9B400921FB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BB6207CF9B400921FB9 /* AppDelegate.swift */; };
+		0A537BB9207CF9B400921FB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BB8207CF9B400921FB9 /* ViewController.swift */; };
+		0A537BBC207CF9B400921FB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBA207CF9B400921FB9 /* Main.storyboard */; };
+		0A537BBE207CF9B600921FB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBD207CF9B600921FB9 /* Assets.xcassets */; };
+		0A537BC1207CF9B600921FB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBF207CF9B600921FB9 /* LaunchScreen.storyboard */; };
+		0A537BD6207CF9EE00921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
+		0A537BD8207CF9FD00921FB9 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9B207CF90B00921FB9 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BD9207CF9FD00921FB9 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BDA207CF9FD00921FB9 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9E207CF90B00921FB9 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BDB207CF9FD00921FB9 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9D207CF90B00921FB9 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A537BDC207CFA6600921FB9 /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFD207CF2D600921FB9 /* KeychainServiceIntegrationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +100,27 @@
 			remoteGlobalIDString = 0A537ACC207CEDAE00921FB9;
 			remoteInfo = IdentityAccessImplementations;
 		};
+		0A537B34207CF4B000921FB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A537ACC207CEDAE00921FB9;
+			remoteInfo = IdentityAccessImplementations;
+		};
+		0A537BCF207CF9CD00921FB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A537BB3207CF9B400921FB9;
+			remoteInfo = IdentityAccessIntegration;
+		};
+		0A537BD4207CF9DE00921FB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A537ACC207CEDAE00921FB9;
+			remoteInfo = IdentityAccessImplementations;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +139,45 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537B98207CF8AE00921FB9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0A537B9F207CF90B00921FB9 /* APIKit.framework in CopyFiles */,
+				0A537BA0207CF90C00921FB9 /* CryptoSwift.framework in CopyFiles */,
+				0A537BA1207CF90C00921FB9 /* Result.framework in CopyFiles */,
+				0A537BA2207CF90C00921FB9 /* EthereumKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BA3207CF91400921FB9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0A537BA4207CF91E00921FB9 /* APIKit.framework in CopyFiles */,
+				0A537BA5207CF91E00921FB9 /* CryptoSwift.framework in CopyFiles */,
+				0A537BA6207CF91E00921FB9 /* EthereumKit.framework in CopyFiles */,
+				0A537BA7207CF91E00921FB9 /* Result.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BD7207CF9F200921FB9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0A537BD8207CF9FD00921FB9 /* APIKit.framework in CopyFiles */,
+				0A537BD9207CF9FD00921FB9 /* CryptoSwift.framework in CopyFiles */,
+				0A537BDA207CF9FD00921FB9 /* EthereumKit.framework in CopyFiles */,
+				0A537BDB207CF9FD00921FB9 /* Result.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +219,42 @@
 		0A537AEA207CF0F900921FB9 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537AEC207CF10000921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537AF2207CF2D600921FB9 /* CrashlyticsLoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsLoggerTests.swift; sourceTree = "<group>"; };
+		0A537AF3207CF2D600921FB9 /* LoggableErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggableErrorTests.swift; sourceTree = "<group>"; };
+		0A537AF4207CF2D600921FB9 /* LogFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFormatterTests.swift; sourceTree = "<group>"; };
+		0A537AF5207CF2D600921FB9 /* LogServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogServiceTests.swift; sourceTree = "<group>"; };
+		0A537AF6207CF2D600921FB9 /* LogFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
+		0A537AF7207CF2D600921FB9 /* ConsoleLoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLoggerTests.swift; sourceTree = "<group>"; };
+		0A537AF8207CF2D600921FB9 /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogger.swift; sourceTree = "<group>"; };
+		0A537AF9207CF2D600921FB9 /* ConsoleLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
+		0A537AFA207CF2D600921FB9 /* LogService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
+		0A537AFC207CF2D600921FB9 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		0A537AFD207CF2D600921FB9 /* KeychainServiceIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		0A537AFF207CF2D600921FB9 /* SystemClockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemClockService.swift; sourceTree = "<group>"; };
+		0A537B00207CF2D600921FB9 /* SystemClockServiceIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemClockServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricServiceTests.swift; sourceTree = "<group>"; };
+		0A537B03207CF2D600921FB9 /* BiometricService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricService.swift; sourceTree = "<group>"; };
+		0A537B05207CF2D600921FB9 /* EthereumAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EthereumAccountTests.swift; sourceTree = "<group>"; };
+		0A537B06207CF2D600921FB9 /* EncryptionServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionServiceTests.swift; sourceTree = "<group>"; };
+		0A537B07207CF2D600921FB9 /* EncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
+		0A537B09207CF2D600921FB9 /* UserDefaultsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		0A537B0A207CF2D600921FB9 /* UserDefaultsIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsIntegrationTests.swift; sourceTree = "<group>"; };
+		0A537B2E207CF4B000921FB9 /* IdentityAccessImplementationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessImplementationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537B32207CF4B000921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ImplementationsConfig.xcconfig; sourceTree = "<group>"; };
+		0A537B9B207CF90B00921FB9 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = ../lib/APIKit.framework; sourceTree = "<group>"; };
+		0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = ../lib/CryptoSwift.framework; sourceTree = "<group>"; };
+		0A537B9D207CF90B00921FB9 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../lib/Result.framework; sourceTree = "<group>"; };
+		0A537B9E207CF90B00921FB9 /* EthereumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EthereumKit.framework; path = ../lib/EthereumKit.framework; sourceTree = "<group>"; };
+		0A537BB4207CF9B400921FB9 /* IdentityAccessIntegration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdentityAccessIntegration.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537BB6207CF9B400921FB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0A537BB8207CF9B400921FB9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0A537BBB207CF9B400921FB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0A537BBD207CF9B600921FB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A537BC0207CF9B600921FB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0A537BC2207CF9B600921FB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A537BCA207CF9CD00921FB9 /* IdentityAccessIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A537BCE207CF9CD00921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +281,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A537AED207CF10000921FB9 /* libCommonTestSupport.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537B2B207CF4B000921FB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537B33207CF4B000921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BB1207CF9B400921FB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BC7207CF9CD00921FB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537BD6207CF9EE00921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,14 +355,12 @@
 		0A537ACE207CEDAE00921FB9 /* IdentityAccessImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				0A537AD7207CEE1100921FB9 /* InMemoryUserDefaults.swift */,
-				0A537AE4207CEFED00921FB9 /* InMemoryKeyValueStore.swift */,
-				0A537AD8207CEE1100921FB9 /* MockBiometricService.swift */,
-				0A537AD9207CEE1100921FB9 /* MockKeychain.swift */,
-				0A537ADE207CEE7200921FB9 /* MockClockService.swift */,
-				0A537ADF207CEE7300921FB9 /* MockSecureStore.swift */,
-				0A537AE6207CF00D00921FB9 /* MockEncryptionService.swift */,
-				0A537AE8207CF02C00921FB9 /* MockLogger.swift */,
+				0A537B01207CF2D600921FB9 /* biometry */,
+				0A537AFE207CF2D600921FB9 /* clock */,
+				0A537B04207CF2D600921FB9 /* ethereum */,
+				0A537B08207CF2D600921FB9 /* keyValueStore */,
+				0A537AF1207CF2D600921FB9 /* logger */,
+				0A537AFB207CF2D600921FB9 /* secureStore */,
 				0A537ADD207CEE1600921FB9 /* XcodeBuildSupport */,
 			);
 			path = IdentityAccessImplementations;
@@ -214,16 +370,107 @@
 			isa = PBXGroup;
 			children = (
 				0A537AD6207CEE1000921FB9 /* IdentityAccessImplementations-Bridging-Header.h */,
+				0A537B32207CF4B000921FB9 /* Tests-Info.plist */,
 			);
 			path = XcodeBuildSupport;
+			sourceTree = "<group>";
+		};
+		0A537AF1207CF2D600921FB9 /* logger */ = {
+			isa = PBXGroup;
+			children = (
+				0A537AF9207CF2D600921FB9 /* ConsoleLogger.swift */,
+				0A537AF7207CF2D600921FB9 /* ConsoleLoggerTests.swift */,
+				0A537AF8207CF2D600921FB9 /* CrashlyticsLogger.swift */,
+				0A537AF2207CF2D600921FB9 /* CrashlyticsLoggerTests.swift */,
+				0A537AF6207CF2D600921FB9 /* LogFormatter.swift */,
+				0A537AF4207CF2D600921FB9 /* LogFormatterTests.swift */,
+				0A537AF3207CF2D600921FB9 /* LoggableErrorTests.swift */,
+				0A537AFA207CF2D600921FB9 /* LogService.swift */,
+				0A537AF5207CF2D600921FB9 /* LogServiceTests.swift */,
+				0A537AE8207CF02C00921FB9 /* MockLogger.swift */,
+			);
+			path = logger;
+			sourceTree = "<group>";
+		};
+		0A537AFB207CF2D600921FB9 /* secureStore */ = {
+			isa = PBXGroup;
+			children = (
+				0A537AFC207CF2D600921FB9 /* KeychainService.swift */,
+				0A537AFD207CF2D600921FB9 /* KeychainServiceIntegrationTests.swift */,
+				0A537AD9207CEE1100921FB9 /* MockKeychain.swift */,
+				0A537ADF207CEE7300921FB9 /* MockSecureStore.swift */,
+			);
+			path = secureStore;
+			sourceTree = "<group>";
+		};
+		0A537AFE207CF2D600921FB9 /* clock */ = {
+			isa = PBXGroup;
+			children = (
+				0A537AFF207CF2D600921FB9 /* SystemClockService.swift */,
+				0A537B00207CF2D600921FB9 /* SystemClockServiceIntegrationTests.swift */,
+				0A537ADE207CEE7200921FB9 /* MockClockService.swift */,
+			);
+			path = clock;
+			sourceTree = "<group>";
+		};
+		0A537B01207CF2D600921FB9 /* biometry */ = {
+			isa = PBXGroup;
+			children = (
+				0A537B03207CF2D600921FB9 /* BiometricService.swift */,
+				0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */,
+				0A537AD8207CEE1100921FB9 /* MockBiometricService.swift */,
+			);
+			path = biometry;
+			sourceTree = "<group>";
+		};
+		0A537B04207CF2D600921FB9 /* ethereum */ = {
+			isa = PBXGroup;
+			children = (
+				0A537B07207CF2D600921FB9 /* EncryptionService.swift */,
+				0A537B06207CF2D600921FB9 /* EncryptionServiceTests.swift */,
+				0A537B05207CF2D600921FB9 /* EthereumAccountTests.swift */,
+				0A537AE6207CF00D00921FB9 /* MockEncryptionService.swift */,
+			);
+			path = ethereum;
+			sourceTree = "<group>";
+		};
+		0A537B08207CF2D600921FB9 /* keyValueStore */ = {
+			isa = PBXGroup;
+			children = (
+				0A537B09207CF2D600921FB9 /* UserDefaultsService.swift */,
+				0A537B0A207CF2D600921FB9 /* UserDefaultsIntegrationTests.swift */,
+				0A537AD7207CEE1100921FB9 /* InMemoryUserDefaults.swift */,
+				0A537AE4207CEFED00921FB9 /* InMemoryKeyValueStore.swift */,
+			);
+			path = keyValueStore;
+			sourceTree = "<group>";
+		};
+		0A537BB5207CF9B400921FB9 /* IdentityAccessIntegration */ = {
+			isa = PBXGroup;
+			children = (
+				0A537BB6207CF9B400921FB9 /* AppDelegate.swift */,
+				0A537BB8207CF9B400921FB9 /* ViewController.swift */,
+				0A537BBA207CF9B400921FB9 /* Main.storyboard */,
+				0A537BBD207CF9B600921FB9 /* Assets.xcassets */,
+				0A537BBF207CF9B600921FB9 /* LaunchScreen.storyboard */,
+				0A537BC2207CF9B600921FB9 /* Info.plist */,
+				0A537BCE207CF9CD00921FB9 /* Tests-Info.plist */,
+			);
+			path = IdentityAccessIntegration;
 			sourceTree = "<group>";
 		};
 		0AF2818E2074C18B00D3843D = {
 			isa = PBXGroup;
 			children = (
+				0A537B9B207CF90B00921FB9 /* APIKit.framework */,
+				0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */,
+				0A537B9E207CF90B00921FB9 /* EthereumKit.framework */,
+				0A537B9D207CF90B00921FB9 /* Result.framework */,
 				0A3FAEAC207B543700F0D214 /* Config.xcconfig */,
+				0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */,
 				0A537A65207CE5BC00921FB9 /* IdentityAccessDomainModel */,
 				0A537ACE207CEDAE00921FB9 /* IdentityAccessImplementations */,
+				0A537BB5207CF9B400921FB9 /* IdentityAccessIntegration */,
 				0AF281982074C18B00D3843D /* Products */,
 				0AF281D32074C21B00D3843D /* Frameworks */,
 			);
@@ -235,6 +482,9 @@
 				0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */,
 				0A537AA7207CEA0100921FB9 /* IdentityAccessDomainModelTests.xctest */,
 				0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */,
+				0A537B2E207CF4B000921FB9 /* IdentityAccessImplementationsTests.xctest */,
+				0A537BB4207CF9B400921FB9 /* IdentityAccessIntegration.app */,
+				0A537BCA207CF9CD00921FB9 /* IdentityAccessIntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -276,6 +526,7 @@
 				0A537AA3207CEA0100921FB9 /* Sources */,
 				0A537AA4207CEA0100921FB9 /* Frameworks */,
 				0A537AA5207CEA0100921FB9 /* Resources */,
+				0A537BA3207CF91400921FB9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -306,6 +557,62 @@
 			productReference = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		0A537B2D207CF4B000921FB9 /* IdentityAccessImplementationsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A537B36207CF4B000921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessImplementationsTests" */;
+			buildPhases = (
+				0A537B2A207CF4B000921FB9 /* Sources */,
+				0A537B2B207CF4B000921FB9 /* Frameworks */,
+				0A537B2C207CF4B000921FB9 /* Resources */,
+				0A537B98207CF8AE00921FB9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A537B35207CF4B000921FB9 /* PBXTargetDependency */,
+			);
+			name = IdentityAccessImplementationsTests;
+			productName = IdentityAccessImplementationTests;
+			productReference = 0A537B2E207CF4B000921FB9 /* IdentityAccessImplementationsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0A537BB3207CF9B400921FB9 /* IdentityAccessIntegration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A537BC3207CF9B600921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessIntegration" */;
+			buildPhases = (
+				0A537BB0207CF9B400921FB9 /* Sources */,
+				0A537BB1207CF9B400921FB9 /* Frameworks */,
+				0A537BB2207CF9B400921FB9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IdentityAccessIntegration;
+			productName = IdentityAccessIntegration;
+			productReference = 0A537BB4207CF9B400921FB9 /* IdentityAccessIntegration.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0A537BC9207CF9CD00921FB9 /* IdentityAccessIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A537BD1207CF9CD00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessIntegrationTests" */;
+			buildPhases = (
+				0A537BC6207CF9CD00921FB9 /* Sources */,
+				0A537BC7207CF9CD00921FB9 /* Frameworks */,
+				0A537BC8207CF9CD00921FB9 /* Resources */,
+				0A537BD7207CF9F200921FB9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A537BD5207CF9DE00921FB9 /* PBXTargetDependency */,
+				0A537BD0207CF9CD00921FB9 /* PBXTargetDependency */,
+			);
+			name = IdentityAccessIntegrationTests;
+			productName = IdentityAccessIntegrationTests;
+			productReference = 0A537BCA207CF9CD00921FB9 /* IdentityAccessIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -327,6 +634,16 @@
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 0930;
 					};
+					0A537B2D207CF4B000921FB9 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+					0A537BB3207CF9B400921FB9 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+					0A537BC9207CF9CD00921FB9 = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = 0A537BB3207CF9B400921FB9;
+					};
 				};
 			};
 			buildConfigurationList = 0AF281922074C18B00D3843D /* Build configuration list for PBXProject "IdentityAccess" */;
@@ -335,6 +652,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 0AF2818E2074C18B00D3843D;
 			productRefGroup = 0AF281982074C18B00D3843D /* Products */;
@@ -344,12 +662,39 @@
 				0A537A63207CE5BC00921FB9 /* IdentityAccessDomainModel */,
 				0A537AA6207CEA0100921FB9 /* IdentityAccessDomainModelTests */,
 				0A537ACC207CEDAE00921FB9 /* IdentityAccessImplementations */,
+				0A537B2D207CF4B000921FB9 /* IdentityAccessImplementationsTests */,
+				0A537BB3207CF9B400921FB9 /* IdentityAccessIntegration */,
+				0A537BC9207CF9CD00921FB9 /* IdentityAccessIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0A537AA5207CEA0100921FB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537B2C207CF4B000921FB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BB2207CF9B400921FB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537BC1207CF9B600921FB9 /* LaunchScreen.storyboard in Resources */,
+				0A537BBE207CF9B600921FB9 /* Assets.xcassets in Resources */,
+				0A537BBC207CF9B400921FB9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BC8207CF9CD00921FB9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -395,13 +740,56 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A537AE0207CEE7300921FB9 /* MockClockService.swift in Sources */,
+				0A537B12207CF2D600921FB9 /* ConsoleLogger.swift in Sources */,
+				0A537B1C207CF2D600921FB9 /* EncryptionService.swift in Sources */,
 				0A537ADB207CEE1100921FB9 /* MockBiometricService.swift in Sources */,
 				0A537AE1207CEE7300921FB9 /* MockSecureStore.swift in Sources */,
 				0A537ADC207CEE1100921FB9 /* MockKeychain.swift in Sources */,
+				0A537B16207CF2D600921FB9 /* SystemClockService.swift in Sources */,
+				0A537B14207CF2D600921FB9 /* KeychainService.swift in Sources */,
+				0A537B13207CF2D600921FB9 /* LogService.swift in Sources */,
 				0A537AE7207CF00D00921FB9 /* MockEncryptionService.swift in Sources */,
+				0A537B1D207CF2D600921FB9 /* UserDefaultsService.swift in Sources */,
+				0A537B0F207CF2D600921FB9 /* LogFormatter.swift in Sources */,
 				0A537AE9207CF02C00921FB9 /* MockLogger.swift in Sources */,
+				0A537B19207CF2D600921FB9 /* BiometricService.swift in Sources */,
 				0A537ADA207CEE1100921FB9 /* InMemoryUserDefaults.swift in Sources */,
+				0A537B11207CF2D600921FB9 /* CrashlyticsLogger.swift in Sources */,
 				0A537AE5207CEFED00921FB9 /* InMemoryKeyValueStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537B2A207CF4B000921FB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537BA8207CF93F00921FB9 /* EthereumAccountTests.swift in Sources */,
+				0A537BAB207CF96500921FB9 /* CrashlyticsLoggerTests.swift in Sources */,
+				0A537BAE207CF97300921FB9 /* LogServiceTests.swift in Sources */,
+				0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */,
+				0A537BAC207CF96B00921FB9 /* LogFormatterTests.swift in Sources */,
+				0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */,
+				0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */,
+				0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */,
+				0A537BA9207CF94E00921FB9 /* UserDefaultsIntegrationTests.swift in Sources */,
+				0A537BAD207CF96E00921FB9 /* LoggableErrorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BB0207CF9B400921FB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537BB9207CF9B400921FB9 /* ViewController.swift in Sources */,
+				0A537BB7207CF9B400921FB9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A537BC6207CF9CD00921FB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A537BDC207CFA6600921FB9 /* KeychainServiceIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +811,41 @@
 			target = 0A537ACC207CEDAE00921FB9 /* IdentityAccessImplementations */;
 			targetProxy = 0A537AE2207CEF0D00921FB9 /* PBXContainerItemProxy */;
 		};
+		0A537B35207CF4B000921FB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A537ACC207CEDAE00921FB9 /* IdentityAccessImplementations */;
+			targetProxy = 0A537B34207CF4B000921FB9 /* PBXContainerItemProxy */;
+		};
+		0A537BD0207CF9CD00921FB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A537BB3207CF9B400921FB9 /* IdentityAccessIntegration */;
+			targetProxy = 0A537BCF207CF9CD00921FB9 /* PBXContainerItemProxy */;
+		};
+		0A537BD5207CF9DE00921FB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A537ACC207CEDAE00921FB9 /* IdentityAccessImplementations */;
+			targetProxy = 0A537BD4207CF9DE00921FB9 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0A537BBA207CF9B400921FB9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A537BBB207CF9B400921FB9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0A537BBF207CF9B600921FB9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A537BC0207CF9B600921FB9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0A537A68207CE5BC00921FB9 /* Debug */ = {
@@ -465,9 +887,9 @@
 		};
 		0A537AB0207CEA0100921FB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A3FAEAC207B543700F0D214 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 82KYL3H9B6;
 				INFOPLIST_FILE = "IdentityAccessDomainModel/XcodeBuildSupport/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -484,9 +906,9 @@
 		};
 		0A537AB1207CEA0100921FB9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A3FAEAC207B543700F0D214 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 82KYL3H9B6;
 				INFOPLIST_FILE = "IdentityAccessDomainModel/XcodeBuildSupport/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -503,6 +925,7 @@
 		};
 		0A537AD2207CEDAE00921FB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -522,6 +945,7 @@
 		};
 		0A537AD3207CEDAE00921FB9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -535,6 +959,122 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessImplementations/XcodeBuildSupport/IdentityAccessImplementations-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		0A537B37207CF4B000921FB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "IdentityAccessImplementations/XcodeBuildSupport/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		0A537B38207CF4B000921FB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "IdentityAccessImplementations/XcodeBuildSupport/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		0A537BC4207CF9B600921FB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0A537BC5207CF9B600921FB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0A537BD2207CF9CD00921FB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = "IdentityAccessIntegration/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IdentityAccessIntegration.app/IdentityAccessIntegration";
+			};
+			name = Debug;
+		};
+		0A537BD3207CF9CD00921FB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = "IdentityAccessIntegration/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IdentityAccessIntegration.app/IdentityAccessIntegration";
 			};
 			name = Release;
 		};
@@ -682,6 +1222,33 @@
 			buildConfigurations = (
 				0A537AD2207CEDAE00921FB9 /* Debug */,
 				0A537AD3207CEDAE00921FB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A537B36207CF4B000921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessImplementationsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A537B37207CF4B000921FB9 /* Debug */,
+				0A537B38207CF4B000921FB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A537BC3207CF9B600921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessIntegration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A537BC4207CF9B600921FB9 /* Debug */,
+				0A537BC5207CF9B600921FB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A537BD1207CF9CD00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A537BD2207CF9CD00921FB9 /* Debug */,
+				0A537BD3207CF9CD00921FB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -6,8 +6,8 @@ import XCTest
 @testable import safe
 import IdentityAccessApplication
 import IdentityAccessDomainModel
-import IdentityAccessPortAdapter
-import IdentityAccessPortAdapterTestSupport
+import IdentityAccessImplementations
+import IdentityAccessImplementationsTestSupport
 
 class SafeTestCase: XCTestCase {
 
