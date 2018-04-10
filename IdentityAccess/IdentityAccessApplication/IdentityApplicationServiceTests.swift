@@ -3,10 +3,9 @@
 //
 
 import XCTest
-@testable import IdentityAccessApplication
 import IdentityAccessDomainModel
 import CommonTestSupport
-import IdentityAccessPortAdapterTestSupport
+import IdentityAccessImplementations
 
 class IdentityApplicationServiceTests: ApplicationServiceTestCase {
 
