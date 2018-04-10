@@ -4,7 +4,7 @@
 
 import XCTest
 @testable import IdentityAccessDomainModel
-import IdentityAccessPortAdapterTestSupport
+import IdentityAccessImplementations
 
 class DomainTestCase: XCTestCase {
 
@@ -13,6 +13,7 @@ class DomainTestCase: XCTestCase {
     let biometricService = MockBiometricService()
     let mockClockService = MockClockService()
     let logger = MockLogger()
+    let encryptionService = MockEncryptionService()
 
     override func setUp() {
         super.setUp()
@@ -21,6 +22,7 @@ class DomainTestCase: XCTestCase {
         DomainRegistry.put(service: biometricService, for: BiometricAuthenticationService.self)
         DomainRegistry.put(service: mockClockService, for: Clock.self)
         DomainRegistry.put(service: logger, for: Logger.self)
+        DomainRegistry.put(service: encryptionService, for: EncryptionServiceProtocol.self)
     }
 
 }
