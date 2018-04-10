@@ -15,6 +15,8 @@
 		0A3FAE98207B52AF00F0D214 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3FAE97207B52AF00F0D214 /* libIdentityAccessDomainModel.a */; };
 		0A51A1E9207B795E001C4169 /* ApplicationServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A1E8207B795E001C4169 /* ApplicationServiceTestCase.swift */; };
 		0A51A1EB207B79D9001C4169 /* libIdentityAccessPortAdapterTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1EA207B79D9001C4169 /* libIdentityAccessPortAdapterTestSupport.a */; };
+		55922C55207BB6D200BF968F /* IdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55922C53207BB6D100BF968F /* IdentityApplicationService.swift */; };
+		55922C60207BC3D000BF968F /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55922C5F207BC3D000BF968F /* libCommonTestSupport.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,10 @@
 		0A51A1E8207B795E001C4169 /* ApplicationServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceTestCase.swift; sourceTree = "<group>"; };
 		0A51A1EA207B79D9001C4169 /* libIdentityAccessPortAdapterTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapterTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF281C32074C1D200D3843D /* libIdentityAccessApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55922C53207BB6D100BF968F /* IdentityApplicationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentityApplicationService.swift; sourceTree = "<group>"; };
+		55922C54207BB6D200BF968F /* IdentityApplicationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentityApplicationServiceTests.swift; sourceTree = "<group>"; };
+		55922C5F207BC3D000BF968F /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55922C61207BC3EC00BF968F /* libIdentityAccessPortAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55922C60207BC3D000BF968F /* libCommonTestSupport.a in Frameworks */,
 				0A51A1EB207B79D9001C4169 /* libIdentityAccessPortAdapterTestSupport.a in Frameworks */,
 				0A3FAE96207B52A800F0D214 /* libIdentityAccessDomainModel.a in Frameworks */,
 				0A3FAE62207B517D00F0D214 /* libIdentityAccessApplication.a in Frameworks */,
@@ -87,6 +94,8 @@
 		0A3FAE94207B52A800F0D214 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55922C61207BC3EC00BF968F /* libIdentityAccessPortAdapter.a */,
+				55922C5F207BC3D000BF968F /* libCommonTestSupport.a */,
 				0A51A1EA207B79D9001C4169 /* libIdentityAccessPortAdapterTestSupport.a */,
 				0A3FAE97207B52AF00F0D214 /* libIdentityAccessDomainModel.a */,
 				0A3FAE95207B52A800F0D214 /* libIdentityAccessDomainModel.a */,
@@ -121,6 +130,8 @@
 				0A3FAE54207B516E00F0D214 /* ApplicationServiceRegistry.swift */,
 				0A3FAE55207B516E00F0D214 /* ApplicationServiceRegistryTests.swift */,
 				0A51A1E8207B795E001C4169 /* ApplicationServiceTestCase.swift */,
+				55922C53207BB6D100BF968F /* IdentityApplicationService.swift */,
+				55922C54207BB6D200BF968F /* IdentityApplicationServiceTests.swift */,
 				0A34BC6E207B846800636560 /* IdentityAccessApplication-Bridging-Header.h */,
 			);
 			path = IdentityAccessApplication;
@@ -226,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A3FAE57207B516E00F0D214 /* ApplicationServiceRegistry.swift in Sources */,
+				55922C55207BB6D200BF968F /* IdentityApplicationService.swift in Sources */,
 				0A3FAE56207B516E00F0D214 /* AuthenticationApplicationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

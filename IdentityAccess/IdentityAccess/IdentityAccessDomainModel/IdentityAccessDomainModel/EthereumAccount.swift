@@ -22,6 +22,18 @@ public struct ExternallyOwnedAccount: EthereumAccountProtocol {
 
 }
 
+extension ExternallyOwnedAccount: Equatable {
+
+    // swiftlint:disable operator_whitespace
+    public static func ==(lhs: ExternallyOwnedAccount, rhs: ExternallyOwnedAccount) -> Bool {
+        return lhs.address == rhs.address &&
+            lhs.mnemonic == rhs.mnemonic &&
+            lhs.privateKey == rhs.privateKey &&
+            lhs.publicKey == rhs.publicKey
+    }
+
+}
+
 public protocol EthereumAccountFactoryProtocol {
 
     func generateAccount() -> EthereumAccountProtocol
@@ -38,6 +50,10 @@ public class EthereumAccountFactory: EthereumAccountFactoryProtocol {
 
     public func generateAccount() -> EthereumAccountProtocol {
         let mnemonic = encryptionService.generateMnemonic()
+        return account(from: mnemonic)
+    }
+
+    public func account(from mnemonic: Mnemonic) -> EthereumAccountProtocol {
         let privateKey = encryptionService.derivePrivateKey(from: mnemonic)
         let publicKey = encryptionService.derivePublicKey(from: privateKey)
         let address = encryptionService.deriveEthereumAddress(from: publicKey)

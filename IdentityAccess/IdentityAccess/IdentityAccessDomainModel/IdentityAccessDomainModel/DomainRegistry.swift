@@ -7,24 +7,28 @@ import Common
 
 public class DomainRegistry: AbstractRegistry {
 
-    static var keyValueStore: KeyValueStore {
+    public static var keyValueStore: KeyValueStore {
         return service(for: KeyValueStore.self)
     }
 
-    static var secureStore: SecureStore {
+    public static var secureStore: SecureStore {
         return service(for: SecureStore.self)
     }
 
-    static var biometricAuthenticationService: BiometricAuthenticationService {
+    public static var biometricAuthenticationService: BiometricAuthenticationService {
         return service(for: BiometricAuthenticationService.self)
     }
 
-    static var clock: Clock {
+    public static var clock: Clock {
         return service(for: Clock.self)
     }
 
-    static var logger: Logger {
+    public static var logger: Logger {
         return service(for: Logger.self)
+    }
+
+    public static var encryptionService: EncryptionServiceProtocol {
+        return service(for: EncryptionServiceProtocol.self)
     }
 
 }

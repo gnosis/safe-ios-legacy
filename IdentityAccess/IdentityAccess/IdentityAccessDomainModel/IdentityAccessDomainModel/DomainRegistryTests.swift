@@ -14,14 +14,7 @@ class DomainRegistryTests: XCTestCase {
         DomainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
         DomainRegistry.put(service: MockClockService(), for: Clock.self)
         DomainRegistry.put(service: MockLogger(), for: Logger.self)
-        XCTAssertNotNil(DomainRegistry.keyValueStore)
-        XCTAssertNotNil(DomainRegistry.secureStore)
-        XCTAssertNotNil(DomainRegistry.biometricAuthenticationService)
-        XCTAssertNotNil(DomainRegistry.clock)
-        XCTAssertNotNil(DomainRegistry.logger)
-    }
-
-    func test_defaultValues() {
+        DomainRegistry.put(service: MockEncryptionService(), for: EncryptionServiceProtocol.self)
         XCTAssertNotNil(DomainRegistry.keyValueStore)
         XCTAssertNotNil(DomainRegistry.secureStore)
         XCTAssertNotNil(DomainRegistry.biometricAuthenticationService)
@@ -82,5 +75,21 @@ class InMemoryKeyValueStore: KeyValueStore {
     private func set<T>(_ value: T, _ key: String) {
         store[key] = value
     }
+
+}
+
+class MockEncryptionService: EncryptionServiceProtocol {
+
+    func generateMnemonic() -> Mnemonic { return Mnemonic("test") }
+
+    func derivePrivateKey(from mnemonic: Mnemonic) -> PrivateKey { return PrivateKey(data: Data()) }
+
+    func derivePublicKey(from key: PrivateKey) -> PublicKey { return PublicKey(data: Data(), compressed: true) }
+
+    func deriveEthereumAddress(from key: PublicKey) -> EthereumAddress { return EthereumAddress(data: Data()) }
+
+    func sign(_ data: Data, _ key: PrivateKey) -> Signature { return Signature(data: Data()) }
+
+    func isValid(signature: Signature, for data: Data, with key: PublicKey) -> Bool { return true }
 
 }

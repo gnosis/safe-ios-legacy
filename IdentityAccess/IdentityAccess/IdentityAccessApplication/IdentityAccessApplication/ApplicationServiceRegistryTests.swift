@@ -10,6 +10,7 @@ class ApplicationServiceRegistryTests: ApplicationServiceTestCase {
     func test_authenticationService_exists() {
         XCTAssertNotNil(ApplicationServiceRegistry.authenticationService)
         XCTAssertNotNil(ApplicationServiceRegistry.clock)
+        XCTAssertNotNil(ApplicationServiceRegistry.identityService)
     }
 
 }

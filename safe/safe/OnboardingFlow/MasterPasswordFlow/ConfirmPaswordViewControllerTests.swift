@@ -6,7 +6,7 @@ import XCTest
 @testable import safe
 import CommonTestSupport
 
-class ConfirmPaswordViewControllerTests: AbstractAppTestCase {
+class ConfirmPaswordViewControllerTests: SafeTestCase {
 
     // swiftlint:disable weak_delegate
     let delegate = MockConfirmPasswordViewControllerDelegate()

@@ -58,6 +58,7 @@
 		0AA0C876207B763E0019E282 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C875207B763E0019E282 /* libCommonTestSupport.a */; };
 		0AA0C878207B76970019E282 /* EthereumAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C877207B76970019E282 /* EthereumAccountTests.swift */; };
 		0AA0C886207B780A0019E282 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C884207B780A0019E282 /* CrashlyticsLogger.swift */; };
+		55922C5E207BC26100BF968F /* MockSecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55922C5D207BC26100BF968F /* MockSecureStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +177,7 @@
 		0AA0C883207B780A0019E282 /* CrashlyticsLoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsLoggerTests.swift; sourceTree = "<group>"; };
 		0AA0C884207B780A0019E282 /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogger.swift; sourceTree = "<group>"; };
 		0AA0C887207B78380019E282 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "/Users/dmitry/projects/gnosis/safe-ios/safe/../lib/Crashlytics.framework"; sourceTree = "<absolute>"; };
+		55922C5D207BC26100BF968F /* MockSecureStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSecureStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				0A3FAE47207B515900F0D214 /* MockClockService.swift */,
+				55922C5D207BC26100BF968F /* MockSecureStore.swift */,
 			);
 			path = IdentityAccessPortAdapterTestSupport;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55922C5E207BC26100BF968F /* MockSecureStore.swift in Sources */,
 				0A3FAEA6207B536B00F0D214 /* MockClockService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

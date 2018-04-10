@@ -5,6 +5,7 @@
 import XCTest
 @testable import safe
 import IdentityAccessPortAdapter
+import IdentityAccessDomainModel
 
 class AppDelegateTests: XCTestCase {
 
@@ -31,6 +32,14 @@ class AppDelegateTests: XCTestCase {
     func test_mainBundleContainsLoggerKeys() {
         XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: LogServiceLogLevelKey))
         XCTAssertNotNil(Bundle.main.object(forInfoDictionaryKey: LogServiceEnabledLoggersKey))
+    }
+
+    func test_defaultValues() {
+        XCTAssertNotNil(DomainRegistry.keyValueStore)
+        XCTAssertNotNil(DomainRegistry.secureStore)
+        XCTAssertNotNil(DomainRegistry.biometricAuthenticationService)
+        XCTAssertNotNil(DomainRegistry.clock)
+        XCTAssertNotNil(DomainRegistry.logger)
     }
 
 }
