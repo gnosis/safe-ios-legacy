@@ -24,6 +24,3 @@ class DomainRegistryTests: XCTestCase {
     }
 
 }
-
-
-

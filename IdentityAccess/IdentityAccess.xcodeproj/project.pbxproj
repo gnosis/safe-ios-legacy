@@ -616,6 +616,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A537A77207CE5BC00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessDomainModel" */;
 			buildPhases = (
+				0A537C21207D04D400921FB9 /* Lint */,
 				0A537A60207CE5BC00921FB9 /* Sources */,
 				0A537A61207CE5BC00921FB9 /* Frameworks */,
 				0A537A62207CE5BC00921FB9 /* CopyFiles */,
@@ -653,6 +654,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A537AD1207CEDAE00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessImplementations" */;
 			buildPhases = (
+				0A537C22207D04E300921FB9 /* Lint */,
 				0A537AC9207CEDAE00921FB9 /* Sources */,
 				0A537ACA207CEDAE00921FB9 /* Frameworks */,
 				0A537ACB207CEDAE00921FB9 /* CopyFiles */,
@@ -727,6 +729,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A537BE5207CFADE00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessApplication" */;
 			buildPhases = (
+				0A537C23207D04F200921FB9 /* Lint */,
 				0A537BDD207CFADE00921FB9 /* Sources */,
 				0A537BDE207CFADE00921FB9 /* Frameworks */,
 				0A537BDF207CFADE00921FB9 /* CopyFiles */,
@@ -865,6 +868,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A537C21207D04D400921FB9 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
+		};
+		0A537C22207D04E300921FB9 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
+		};
+		0A537C23207D04F200921FB9 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0A537A60207CE5BC00921FB9 /* Sources */ = {
