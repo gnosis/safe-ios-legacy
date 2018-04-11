@@ -50,14 +50,6 @@
 		0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */; };
 		0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B00207CF2D600921FB9 /* SystemClockServiceIntegrationTests.swift */; };
 		0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B06207CF2D600921FB9 /* EncryptionServiceTests.swift */; };
-		0A537B9F207CF90B00921FB9 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9B207CF90B00921FB9 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537BA0207CF90C00921FB9 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537BA1207CF90C00921FB9 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9D207CF90B00921FB9 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537BA2207CF90C00921FB9 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9E207CF90B00921FB9 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537BA4207CF91E00921FB9 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9B207CF90B00921FB9 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537BA5207CF91E00921FB9 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537BA6207CF91E00921FB9 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9E207CF90B00921FB9 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537BA7207CF91E00921FB9 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9D207CF90B00921FB9 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A537BA8207CF93F00921FB9 /* EthereumAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B05207CF2D600921FB9 /* EthereumAccountTests.swift */; };
 		0A537BA9207CF94E00921FB9 /* UserDefaultsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B0A207CF2D600921FB9 /* UserDefaultsIntegrationTests.swift */; };
 		0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF7207CF2D600921FB9 /* ConsoleLoggerTests.swift */; };
@@ -71,10 +63,6 @@
 		0A537BBE207CF9B600921FB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBD207CF9B600921FB9 /* Assets.xcassets */; };
 		0A537BC1207CF9B600921FB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBF207CF9B600921FB9 /* LaunchScreen.storyboard */; };
 		0A537BD6207CF9EE00921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
-		0A537BD8207CF9FD00921FB9 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9B207CF90B00921FB9 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537BD9207CF9FD00921FB9 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537BDA207CF9FD00921FB9 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9E207CF90B00921FB9 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537BDB207CF9FD00921FB9 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9D207CF90B00921FB9 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A537BDC207CFA6600921FB9 /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFD207CF2D600921FB9 /* KeychainServiceIntegrationTests.swift */; };
 		0A537BEB207CFAF800921FB9 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537BEA207CFAF800921FB9 /* libCommon.a */; };
 		0A537BF3207CFB1C00921FB9 /* AuthenticationApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BED207CFB1C00921FB9 /* AuthenticationApplicationService.swift */; };
@@ -84,13 +72,10 @@
 		0A537C0A207CFC1C00921FB9 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */; };
 		0A537C0B207CFC1C00921FB9 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */; };
 		0A537C0C207CFC1C00921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
-		0A537C0E207CFC2800921FB9 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9B207CF90B00921FB9 /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537C0F207CFC2800921FB9 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537C10207CFC2800921FB9 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9E207CF90B00921FB9 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A537C11207CFC2800921FB9 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A537B9D207CF90B00921FB9 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A537C12207CFCB000921FB9 /* ApplicationServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BF0207CFB1C00921FB9 /* ApplicationServiceTestCase.swift */; };
 		0A537C13207CFCF600921FB9 /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BF1207CFB1C00921FB9 /* ApplicationServiceRegistryTests.swift */; };
 		0A537C14207CFCFA00921FB9 /* IdentityApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BF2207CFB1C00921FB9 /* IdentityApplicationServiceTests.swift */; };
+		0A57F6F5207E398800AF407D /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F6F3207E397F00AF407D /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +135,13 @@
 			remoteGlobalIDString = 0A537BE0207CFADE00921FB9;
 			remoteInfo = IdentityAccessApplication;
 		};
+		0A57F6F2207E397F00AF407D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F6E9207E396B00AF407D;
+			remoteInfo = APIKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -171,29 +163,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A537B98207CF8AE00921FB9 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0A537B9F207CF90B00921FB9 /* APIKit.framework in CopyFiles */,
-				0A537BA0207CF90C00921FB9 /* CryptoSwift.framework in CopyFiles */,
-				0A537BA1207CF90C00921FB9 /* Result.framework in CopyFiles */,
-				0A537BA2207CF90C00921FB9 /* EthereumKit.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0A537BA3207CF91400921FB9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0A537BA4207CF91E00921FB9 /* APIKit.framework in CopyFiles */,
-				0A537BA5207CF91E00921FB9 /* CryptoSwift.framework in CopyFiles */,
-				0A537BA6207CF91E00921FB9 /* EthereumKit.framework in CopyFiles */,
-				0A537BA7207CF91E00921FB9 /* Result.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,10 +178,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0A537BD8207CF9FD00921FB9 /* APIKit.framework in CopyFiles */,
-				0A537BD9207CF9FD00921FB9 /* CryptoSwift.framework in CopyFiles */,
-				0A537BDA207CF9FD00921FB9 /* EthereumKit.framework in CopyFiles */,
-				0A537BDB207CF9FD00921FB9 /* Result.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,10 +196,16 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0A537C0E207CFC2800921FB9 /* APIKit.framework in CopyFiles */,
-				0A537C0F207CFC2800921FB9 /* CryptoSwift.framework in CopyFiles */,
-				0A537C10207CFC2800921FB9 /* EthereumKit.framework in CopyFiles */,
-				0A537C11207CFC2800921FB9 /* Result.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A57F6F4207E398400AF407D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				0A57F6F5207E398800AF407D /* APIKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,10 +269,6 @@
 		0A537B2E207CF4B000921FB9 /* IdentityAccessImplementationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessImplementationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537B32207CF4B000921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ImplementationsConfig.xcconfig; sourceTree = "<group>"; };
-		0A537B9B207CF90B00921FB9 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = ../lib/APIKit.framework; sourceTree = "<group>"; };
-		0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = ../lib/CryptoSwift.framework; sourceTree = "<group>"; };
-		0A537B9D207CF90B00921FB9 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../lib/Result.framework; sourceTree = "<group>"; };
-		0A537B9E207CF90B00921FB9 /* EthereumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EthereumKit.framework; path = ../lib/EthereumKit.framework; sourceTree = "<group>"; };
 		0A537BB4207CF9B400921FB9 /* IdentityAccessIntegration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdentityAccessIntegration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537BB6207CF9B400921FB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A537BB8207CF9B400921FB9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -318,6 +291,7 @@
 		0A537C02207CFB9200921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537C15207CFD8300921FB9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0A57F6DD207E38D900AF407D /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -564,14 +538,19 @@
 			path = XcodeBuildSupport;
 			sourceTree = "<group>";
 		};
+		0A57F6DE207E38D900AF407D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A57F6F3207E397F00AF407D /* APIKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0AF2818E2074C18B00D3843D = {
 			isa = PBXGroup;
 			children = (
+				0A57F6DD207E38D900AF407D /* Library.xcodeproj */,
 				0A537C15207CFD8300921FB9 /* README.md */,
-				0A537B9B207CF90B00921FB9 /* APIKit.framework */,
-				0A537B9C207CF90B00921FB9 /* CryptoSwift.framework */,
-				0A537B9E207CF90B00921FB9 /* EthereumKit.framework */,
-				0A537B9D207CF90B00921FB9 /* Result.framework */,
 				0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */,
 				0A537BE2207CFADE00921FB9 /* IdentityAccessApplication */,
 				0A537A65207CE5BC00921FB9 /* IdentityAccessDomainModel */,
@@ -676,7 +655,7 @@
 				0A537B2A207CF4B000921FB9 /* Sources */,
 				0A537B2B207CF4B000921FB9 /* Frameworks */,
 				0A537B2C207CF4B000921FB9 /* Resources */,
-				0A537B98207CF8AE00921FB9 /* CopyFiles */,
+				0A57F6F4207E398400AF407D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -814,6 +793,12 @@
 			mainGroup = 0AF2818E2074C18B00D3843D;
 			productRefGroup = 0AF281982074C18B00D3843D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0A57F6DE207E38D900AF407D /* Products */;
+					ProjectRef = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0A537A63207CE5BC00921FB9 /* IdentityAccessDomainModel */,
@@ -827,6 +812,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		0A57F6F3207E397F00AF407D /* APIKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = APIKit.framework;
+			remoteRef = 0A57F6F2207E397F00AF407D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0A537AA5207CEA0100921FB9 /* Resources */ = {
