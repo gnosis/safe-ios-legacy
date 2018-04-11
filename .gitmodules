@@ -4,3 +4,6 @@
 [submodule "Result"]
 	path = Library/Result/src
 	url = https://github.com/antitypical/Result.git
+[submodule "CryptoSwift"]
+	path = Library/CryptoSwift/src
+	url = https://github.com/krzyzanowskim/CryptoSwift.git
