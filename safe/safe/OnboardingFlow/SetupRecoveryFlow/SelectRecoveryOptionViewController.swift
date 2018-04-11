@@ -31,6 +31,7 @@ class SelectRecoveryOptionViewController: UIViewController {
         super.viewDidLoad()
         titleLabel.text = NSLocalizedString("onboarding.recovery_options.title",
                                             comment: "Title for selecting recovery option screen")
+        otherRecoveryOptionTemporaryButton.isEnabled = false
     }
 
 }
