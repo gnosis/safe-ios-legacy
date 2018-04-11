@@ -48,6 +48,26 @@
                ReferencedContainer = "container:IdentityAccess.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A537BFD207CFB9200921FB9"
+               BuildableName = "IdentityAccessApplicationTests.xctest"
+               BlueprintName = "IdentityAccessApplicationTests"
+               ReferencedContainer = "container:IdentityAccess.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A537AA6207CEA0100921FB9"
+               BuildableName = "IdentityAccessDomainModelTests.xctest"
+               BlueprintName = "IdentityAccessDomainModelTests"
+               ReferencedContainer = "container:IdentityAccess.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

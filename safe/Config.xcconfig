@@ -1,4 +1,5 @@
-FRAMEWORK_SEARCH_PATHS=$(inherited) ${SRCROOT}/../lib
-LIBRARY_SEARCH_PATHS=$(inherited) ${SRCROOT}/../lib
-HEADER_SEARCH_PATHS=$(inherited) ${SRCROOT}/../lib/include
+LIBRARYROOT=${SRCROOT}/../Library/${PLATFORM_NAME}
+FRAMEWORK_SEARCH_PATHS=$(inherited) ${LIBRARYROOT}
+LIBRARY_SEARCH_PATHS=$(inherited) ${LIBRARYROOT}/
+HEADER_SEARCH_PATHS=$(inherited) ${LIBRARYROOT}
 OTHER_LDFLAGS=$(inherited) -lsecp256k1 -lcrypto

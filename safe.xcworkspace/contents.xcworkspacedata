@@ -8,9 +8,6 @@
       location = "group:scripts">
    </FileRef>
    <FileRef
-      location = "group:lib">
-   </FileRef>
-   <FileRef
       location = "group:Common/Common.xcodeproj">
    </FileRef>
    <FileRef

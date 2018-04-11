@@ -75,7 +75,22 @@
 		0A537C12207CFCB000921FB9 /* ApplicationServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BF0207CFB1C00921FB9 /* ApplicationServiceTestCase.swift */; };
 		0A537C13207CFCF600921FB9 /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BF1207CFB1C00921FB9 /* ApplicationServiceRegistryTests.swift */; };
 		0A537C14207CFCFA00921FB9 /* IdentityApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BF2207CFB1C00921FB9 /* IdentityApplicationServiceTests.swift */; };
-		0A57F6F5207E398800AF407D /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F6F3207E397F00AF407D /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A57F6F5207E398800AF407D /* APIKit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F6F3207E397F00AF407D /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A57F708207E3D6900AF407D /* Result.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A57F72B207E4CF900AF407D /* CryptoSwift.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A57F72C207E4CF900AF407D /* EthereumKit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABCA958207E55BE00E2C193 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F6F3207E397F00AF407D /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABCA959207E55BE00E2C193 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABCA95A207E55BE00E2C193 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABCA95B207E55BE00E2C193 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABCA95C207E55C800E2C193 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F6F3207E397F00AF407D /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABCA95D207E55C800E2C193 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABCA95E207E55C800E2C193 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABCA95F207E55C800E2C193 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABCA960207E55CF00E2C193 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F6F3207E397F00AF407D /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABCA961207E55CF00E2C193 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABCA962207E55CF00E2C193 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABCA963207E55CF00E2C193 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +157,27 @@
 			remoteGlobalIDString = 0A57F6E9207E396B00AF407D;
 			remoteInfo = APIKit;
 		};
+		0A57F706207E3D6900AF407D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F6FC207E3D3A00AF407D;
+			remoteInfo = Result;
+		};
+		0A57F727207E4CF900AF407D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F70E207E411F00AF407D;
+			remoteInfo = CryptoSwift;
+		};
+		0A57F729207E4CF900AF407D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F71C207E430F00AF407D;
+			remoteInfo = EthereumKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -169,6 +205,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0ABCA960207E55CF00E2C193 /* APIKit.framework in CopyFiles */,
+				0ABCA961207E55CF00E2C193 /* Result.framework in CopyFiles */,
+				0ABCA962207E55CF00E2C193 /* CryptoSwift.framework in CopyFiles */,
+				0ABCA963207E55CF00E2C193 /* EthereumKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +218,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0ABCA95C207E55C800E2C193 /* APIKit.framework in CopyFiles */,
+				0ABCA95D207E55C800E2C193 /* Result.framework in CopyFiles */,
+				0ABCA95E207E55C800E2C193 /* CryptoSwift.framework in CopyFiles */,
+				0ABCA95F207E55C800E2C193 /* EthereumKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,17 +240,25 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0ABCA958207E55BE00E2C193 /* APIKit.framework in CopyFiles */,
+				0ABCA959207E55BE00E2C193 /* Result.framework in CopyFiles */,
+				0ABCA95A207E55BE00E2C193 /* CryptoSwift.framework in CopyFiles */,
+				0ABCA95B207E55BE00E2C193 /* EthereumKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A57F6F4207E398400AF407D /* CopyFiles */ = {
+		0A57F6F4207E398400AF407D /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 7;
+			dstSubfolderSpec = 10;
 			files = (
-				0A57F6F5207E398800AF407D /* APIKit.framework in CopyFiles */,
+				0A57F72B207E4CF900AF407D /* CryptoSwift.framework in Copy Files */,
+				0A57F72C207E4CF900AF407D /* EthereumKit.framework in Copy Files */,
+				0A57F708207E3D6900AF407D /* Result.framework in Copy Files */,
+				0A57F6F5207E398800AF407D /* APIKit.framework in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -542,6 +594,9 @@
 			isa = PBXGroup;
 			children = (
 				0A57F6F3207E397F00AF407D /* APIKit.framework */,
+				0A57F707207E3D6900AF407D /* Result.framework */,
+				0A57F728207E4CF900AF407D /* CryptoSwift.framework */,
+				0A57F72A207E4CF900AF407D /* EthereumKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -655,7 +710,7 @@
 				0A537B2A207CF4B000921FB9 /* Sources */,
 				0A537B2B207CF4B000921FB9 /* Frameworks */,
 				0A537B2C207CF4B000921FB9 /* Resources */,
-				0A57F6F4207E398400AF407D /* CopyFiles */,
+				0A57F6F4207E398400AF407D /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -819,6 +874,27 @@
 			fileType = wrapper.framework;
 			path = APIKit.framework;
 			remoteRef = 0A57F6F2207E397F00AF407D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A57F707207E3D6900AF407D /* Result.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Result.framework;
+			remoteRef = 0A57F706207E3D6900AF407D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A57F728207E4CF900AF407D /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = 0A57F727207E4CF900AF407D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A57F72A207E4CF900AF407D /* EthereumKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EthereumKit.framework;
+			remoteRef = 0A57F729207E4CF900AF407D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
