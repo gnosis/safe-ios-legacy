@@ -7,3 +7,6 @@
 [submodule "CryptoSwift"]
 	path = Library/CryptoSwift/src
 	url = https://github.com/krzyzanowskim/CryptoSwift.git
+[submodule "EthereumKit"]
+	path = Library/EthereumKit/src
+	url = https://github.com/yuzushioh/EthereumKit.git
