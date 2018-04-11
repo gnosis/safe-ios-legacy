@@ -5,7 +5,7 @@
 import IdentityAccessDomainModel
 import CommonTestSupport
 
-public class MockSecureStore: SecureStore {
+public class InMemorySecureStore: SecureStore {
 
     var storedPassword: String?
     var storedMnemonic: Mnemonic?
