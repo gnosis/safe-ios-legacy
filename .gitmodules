@@ -1,0 +1,3 @@
+[submodule "APIKit"]
+	path = Library/APIKit/src
+	url = https://github.com/ishkawa/APIKit.git
