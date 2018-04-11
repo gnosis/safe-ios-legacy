@@ -8,18 +8,34 @@ import XCTest
 class SelectRecoveryOptionViewControllerTests: XCTestCase {
 
     // swiftlint:disable weak_delegate
-    private var delegate: SetupRecoveryOptionDelegate!
+    private let delegate = MockSetupRecoveryOptionDelegate()
+    private var controller: SelectRecoveryOptionViewController!
 
     override func setUp() {
         super.setUp()
-        delegate = MockSetupRecoveryOptionDelegate()
+        controller = SelectRecoveryOptionViewController.create(delegate: delegate)
+        controller.loadViewIfNeeded()
     }
 
     func test_canCreate() {
-        let controller = SelectRecoveryOptionViewController.create(delegate: delegate)
         XCTAssertNotNil(controller)
+        XCTAssertNotNil(controller.titleLabel)
+        XCTAssertNotNil(controller.mnemonicRecoveryButton)
+    }
+
+    func test_setupMnemonicRecovery_whenCalled_theDelegateCalled() {
+        controller.setupMnemonicRecovery(self)
+        XCTAssertTrue(delegate.hasSelectedMnemonicRecovery)
     }
 
 }
 
-class MockSetupRecoveryOptionDelegate: SetupRecoveryOptionDelegate {}
+class MockSetupRecoveryOptionDelegate: SetupRecoveryOptionDelegate {
+
+    var hasSelectedMnemonicRecovery = false
+
+    func didSelectMnemonicRecovery() {
+        hasSelectedMnemonicRecovery = true
+    }
+
+}

@@ -12,4 +12,8 @@ final class SetupRecoveryFlowCoordinator: FlowCoordinator {
 
 }
 
-extension SetupRecoveryFlowCoordinator: SetupRecoveryOptionDelegate {}
+extension SetupRecoveryFlowCoordinator: SetupRecoveryOptionDelegate {
+
+    func didSelectMnemonicRecovery() {}
+
+}
