@@ -1160,6 +1160,221 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0A46702B207E58B700F55ADE /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
+			};
+			name = AdHoc;
+		};
+		0A46702C207E58B700F55ADE /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessDomainModel/XcodeBuildSupport/IdentityAccessDomainModel-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = AdHoc;
+		};
+		0A46702D207E58B700F55ADE /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "IdentityAccessDomainModel/XcodeBuildSupport/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessDomainModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = AdHoc;
+		};
+		0A46702E207E58B700F55ADE /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessImplementations/XcodeBuildSupport/IdentityAccessImplementations-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = AdHoc;
+		};
+		0A46702F207E58B700F55ADE /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "IdentityAccessImplementations/XcodeBuildSupport/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = AdHoc;
+		};
+		0A467030207E58B700F55ADE /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = AdHoc;
+		};
+		0A467031207E58B700F55ADE /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				INFOPLIST_FILE = "IdentityAccessIntegration/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IdentityAccessIntegration.app/IdentityAccessIntegration";
+			};
+			name = AdHoc;
+		};
+		0A467032207E58B700F55ADE /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MBAHRQRF52;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessApplication/XcodeBuildSupport/IdentityAccessApplication-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = AdHoc;
+		};
+		0A467033207E58B700F55ADE /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "IdentityAccessApplication/XcodeBuildSupport/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessApplicationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = AdHoc;
+		};
 		0A537A68207CE5BC00921FB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1218,6 +1433,7 @@
 		};
 		0A537AB1207CEA0100921FB9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "IdentityAccessDomainModel/XcodeBuildSupport/Tests-Info.plist";
@@ -1587,6 +1803,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A537A68207CE5BC00921FB9 /* Debug */,
+				0A46702C207E58B700F55ADE /* AdHoc */,
 				0A537A69207CE5BC00921FB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1596,6 +1813,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A537AB0207CEA0100921FB9 /* Debug */,
+				0A46702D207E58B700F55ADE /* AdHoc */,
 				0A537AB1207CEA0100921FB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1605,6 +1823,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A537AD2207CEDAE00921FB9 /* Debug */,
+				0A46702E207E58B700F55ADE /* AdHoc */,
 				0A537AD3207CEDAE00921FB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1614,6 +1833,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A537B37207CF4B000921FB9 /* Debug */,
+				0A46702F207E58B700F55ADE /* AdHoc */,
 				0A537B38207CF4B000921FB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1623,6 +1843,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A537BC4207CF9B600921FB9 /* Debug */,
+				0A467030207E58B700F55ADE /* AdHoc */,
 				0A537BC5207CF9B600921FB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1632,6 +1853,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A537BD2207CF9CD00921FB9 /* Debug */,
+				0A467031207E58B700F55ADE /* AdHoc */,
 				0A537BD3207CF9CD00921FB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1641,6 +1863,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A537BE6207CFADE00921FB9 /* Debug */,
+				0A467032207E58B700F55ADE /* AdHoc */,
 				0A537BE7207CFADE00921FB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1650,6 +1873,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A537C07207CFB9200921FB9 /* Debug */,
+				0A467033207E58B700F55ADE /* AdHoc */,
 				0A537C08207CFB9200921FB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1659,6 +1883,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0AF2819C2074C18B00D3843D /* Debug */,
+				0A46702B207E58B700F55ADE /* AdHoc */,
 				0AF2819D2074C18B00D3843D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

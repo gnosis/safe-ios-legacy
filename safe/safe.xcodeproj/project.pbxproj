@@ -98,6 +98,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0A46703A207E596700F55ADE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A57F6E8207E396B00AF407D;
+			remoteInfo = APIKit;
+		};
+		0A46703C207E596700F55ADE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A57F6FB207E3D3A00AF407D;
+			remoteInfo = Result;
+		};
+		0A46703E207E596700F55ADE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A57F70D207E411F00AF407D;
+			remoteInfo = CryptoSwift;
+		};
+		0A467040207E596700F55ADE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A57F71B207E430F00AF407D;
+			remoteInfo = EthereumKit;
+		};
 		0ABCA96B207E560500E2C193 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
@@ -550,6 +578,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				0A46703B207E596700F55ADE /* PBXTargetDependency */,
+				0A46703D207E596700F55ADE /* PBXTargetDependency */,
+				0A46703F207E596700F55ADE /* PBXTargetDependency */,
+				0A467041207E596700F55ADE /* PBXTargetDependency */,
 			);
 			name = safe;
 			productName = safe;
@@ -854,6 +886,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0A46703B207E596700F55ADE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = APIKit;
+			targetProxy = 0A46703A207E596700F55ADE /* PBXContainerItemProxy */;
+		};
+		0A46703D207E596700F55ADE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Result;
+			targetProxy = 0A46703C207E596700F55ADE /* PBXContainerItemProxy */;
+		};
+		0A46703F207E596700F55ADE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CryptoSwift;
+			targetProxy = 0A46703E207E596700F55ADE /* PBXContainerItemProxy */;
+		};
+		0A467041207E596700F55ADE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EthereumKit;
+			targetProxy = 0A467040207E596700F55ADE /* PBXContainerItemProxy */;
+		};
 		5540A501203C3054009C9BE3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5540A4EA203C3054009C9BE3 /* safe */;
