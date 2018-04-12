@@ -26,6 +26,7 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
         XCTAssertNotNil(controller.saveButton)
         XCTAssertNotNil(controller.descriptionLabel)
         XCTAssertNotNil(controller.continueButton)
+        XCTAssertTrue(controller.delegate === delegate)
     }
 
     func test_viewDidLoad_setsCorrectMnemonic() throws {

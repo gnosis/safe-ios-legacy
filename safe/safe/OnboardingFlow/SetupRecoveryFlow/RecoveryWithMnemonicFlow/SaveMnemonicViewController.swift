@@ -10,7 +10,7 @@ protocol SaveMnemonicDelegate: class {
     func didPressContinue()
 }
 
-class SaveMnemonicViewController: UIViewController {
+final class SaveMnemonicViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var mnemonicCopyableLabel: UILabel!
