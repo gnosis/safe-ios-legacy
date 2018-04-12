@@ -63,5 +63,68 @@
             </objects>
             <point key="canvasLocation" x="26" y="-90"/>
         </scene>
+        <!--Save Mnemonic View Controller-->
+        <scene sceneID="oIx-p6-OEI">
+            <objects>
+                <viewController storyboardIdentifier="SaveMnemonicViewController" id="FDt-8A-d9p" customClass="SaveMnemonicViewController" customModule="safe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e6l-fS-GEy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store recovery phrase" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIj-zU-NwX" customClass="H1Label" customModule="safeUIKit">
+                                <rect key="frame" x="20" y="60" width="335" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recovery phrase with some words to be stored and written down" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZs-gJ-26l">
+                                <rect key="frame" x="20" y="143" width="335" height="53"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1u-jM-lGl">
+                                <rect key="frame" x="321" y="208" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLo-Zo-kbB">
+                                <rect key="frame" x="20" y="258" width="335" height="243.5"/>
+                                <string key="text">Each safe has owners that are ethereum accounts. With this recovery phrase you can restore your Safe owner account.
+
+Please store your phrase in a secure place and do not share it with anyone. Gnosis Safe team will never ask you to reveal your recovery phrase.
+
+Only you can recover your account. If you lose your phrase and access to your safe, your Safe will be blocked forever!</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3Y-9f-AIW">
+                                <rect key="frame" x="111" y="521.5" width="154" height="30"/>
+                                <state key="normal" title="I understand, continue"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="b3Y-9f-AIW" firstAttribute="top" secondItem="JLo-Zo-kbB" secondAttribute="bottom" constant="20" id="2N4-qH-KDZ"/>
+                            <constraint firstItem="uIj-zU-NwX" firstAttribute="top" secondItem="rhS-SX-TXK" secondAttribute="top" constant="40" id="6aJ-tW-F5f"/>
+                            <constraint firstItem="JLo-Zo-kbB" firstAttribute="top" secondItem="N1u-jM-lGl" secondAttribute="bottom" constant="20" id="EiL-7n-s9U"/>
+                            <constraint firstItem="pZs-gJ-26l" firstAttribute="top" secondItem="uIj-zU-NwX" secondAttribute="bottom" constant="40" id="Oeh-RE-Zij"/>
+                            <constraint firstItem="JLo-Zo-kbB" firstAttribute="leading" secondItem="pZs-gJ-26l" secondAttribute="leading" id="Pye-fF-a0E"/>
+                            <constraint firstItem="N1u-jM-lGl" firstAttribute="trailing" secondItem="pZs-gJ-26l" secondAttribute="trailing" id="duT-PL-Rcv"/>
+                            <constraint firstItem="N1u-jM-lGl" firstAttribute="top" secondItem="pZs-gJ-26l" secondAttribute="bottom" constant="12" id="fEZ-fI-OOX"/>
+                            <constraint firstItem="JLo-Zo-kbB" firstAttribute="trailing" secondItem="pZs-gJ-26l" secondAttribute="trailing" id="jDe-3d-lQ5"/>
+                            <constraint firstItem="rhS-SX-TXK" firstAttribute="trailing" secondItem="uIj-zU-NwX" secondAttribute="trailing" constant="20" id="kPl-v0-Jq7"/>
+                            <constraint firstItem="b3Y-9f-AIW" firstAttribute="centerX" secondItem="rhS-SX-TXK" secondAttribute="centerX" id="qbu-pg-rX5"/>
+                            <constraint firstItem="uIj-zU-NwX" firstAttribute="leading" secondItem="rhS-SX-TXK" secondAttribute="leading" constant="20" id="s9e-XQ-h9Q"/>
+                            <constraint firstItem="pZs-gJ-26l" firstAttribute="trailing" secondItem="uIj-zU-NwX" secondAttribute="trailing" id="tXg-EX-iyl"/>
+                            <constraint firstItem="pZs-gJ-26l" firstAttribute="leading" secondItem="uIj-zU-NwX" secondAttribute="leading" id="v1n-Ob-ae9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rhS-SX-TXK"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZlE-UG-yVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="816.79999999999995" y="-90.404797601199405"/>
+        </scene>
     </scenes>
 </document>
