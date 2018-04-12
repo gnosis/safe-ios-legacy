@@ -152,6 +152,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Gnosis Ltd";
 				TargetAttributes = {
 					0A57F6E8207E396B00AF407D = {
 						CreatedOnToolsVersion = 9.3;

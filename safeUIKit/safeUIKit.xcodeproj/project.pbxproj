@@ -357,7 +357,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = Gnosis;
+				ORGANIZATIONNAME = "Gnosis Ltd";
 				TargetAttributes = {
 					0A96707920480C3E00445AC2 = {
 						CreatedOnToolsVersion = 9.2;
