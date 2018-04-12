@@ -13,16 +13,9 @@ protocol SetupRecoveryOptionDelegate: class {
 class RecoveryOptionsViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: H1Label!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var mnemonicRecoveryButton: BigButton!
     @IBOutlet weak var otherRecoveryOptionTemporaryButton: BigButton!
-    var nextButton: UIBarButtonItem {
-        return navigationItem.rightBarButtonItem!
-    }
-
-    @IBAction func setupMnemonicRecovery(_ sender: Any) {
-        delegate?.didSelectMnemonicRecovery()
-    }
-
     weak var delegate: SetupRecoveryOptionDelegate?
 
     static func create(delegate: SetupRecoveryOptionDelegate) -> RecoveryOptionsViewController {
@@ -43,6 +36,10 @@ class RecoveryOptionsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         nextButton.isEnabled = ApplicationServiceRegistry.identityService.isRecoverySet
+    }
+
+    @IBAction func setupMnemonicRecovery(_ sender: Any) {
+        delegate?.didSelectMnemonicRecovery()
     }
 
 }

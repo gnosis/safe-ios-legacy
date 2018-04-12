@@ -60,6 +60,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mnemonicRecoveryButton" destination="Yn0-3F-SUf" id="8dz-Wl-kaU"/>
+                        <outlet property="nextButton" destination="aPw-Qg-l8a" id="5Vb-gG-h4G"/>
                         <outlet property="otherRecoveryOptionTemporaryButton" destination="uZP-2s-l1J" id="t09-nA-B2M"/>
                         <outlet property="titleLabel" destination="jT2-Op-oIr" id="IAX-6d-WeA"/>
                     </connections>
