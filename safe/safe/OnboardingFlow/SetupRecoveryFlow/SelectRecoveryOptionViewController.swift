@@ -4,6 +4,7 @@
 
 import UIKit
 import safeUIKit
+import IdentityAccessApplication
 
 protocol SetupRecoveryOptionDelegate: class {
     func didSelectMnemonicRecovery()
@@ -14,6 +15,9 @@ class RecoveryOptionsViewController: UIViewController {
     @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var mnemonicRecoveryButton: BigButton!
     @IBOutlet weak var otherRecoveryOptionTemporaryButton: BigButton!
+    var nextButton: UIBarButtonItem {
+        return navigationItem.rightBarButtonItem!
+    }
 
     @IBAction func setupMnemonicRecovery(_ sender: Any) {
         delegate?.didSelectMnemonicRecovery()
@@ -34,6 +38,11 @@ class RecoveryOptionsViewController: UIViewController {
         otherRecoveryOptionTemporaryButton.isEnabled = false
         mnemonicRecoveryButton.checkmarkStatus = .normal
         otherRecoveryOptionTemporaryButton.checkmarkStatus = .normal
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        nextButton.isEnabled = ApplicationServiceRegistry.identityService.isRecoverySet
     }
 
 }

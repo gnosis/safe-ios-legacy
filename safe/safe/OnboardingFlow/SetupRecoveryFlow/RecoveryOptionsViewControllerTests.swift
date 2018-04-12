@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import safe
+import IdentityAccessApplication
 
 class RecoveryOptionsViewControllerTests: XCTestCase {
 
@@ -28,6 +29,21 @@ class RecoveryOptionsViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.hasSelectedMnemonicRecovery)
     }
 
+    func test_whenRecoveryIsSet_thenNextEnabled() {
+        let identityService = MockIdentityApplicationService()
+        ApplicationServiceRegistry.put(service: identityService, for: IdentityApplicationService.self)
+        identityService.setUpRecovery()
+        viewWillAppear()
+        XCTAssertTrue(controller.nextButton.isEnabled)
+    }
+
+}
+
+extension RecoveryOptionsViewControllerTests {
+
+    private func viewWillAppear() {
+        UIApplication.shared.keyWindow?.rootViewController = controller
+    }
 }
 
 class MockSetupRecoveryOptionDelegate: SetupRecoveryOptionDelegate {
