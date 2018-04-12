@@ -29,7 +29,7 @@ open class AuthenticationApplicationService {
         return account.sessionDuration
     }
     open var isUserAuthenticated: Bool {
-        return account.hasMasterPassword && !account.isSessionActive
+        return account.hasMasterPassword && account.isSessionActive
     }
     open var isUserRegistered: Bool {
         return account.hasMasterPassword

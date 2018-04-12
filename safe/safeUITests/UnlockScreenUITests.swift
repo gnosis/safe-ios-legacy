@@ -68,16 +68,6 @@ class UnlockScreenUITests: XCTestCase {
         XCTAssertExist(screen.countdown)
     }
 
-    func test_whenAccountBlockedAndAppRestarted_thenUnlockingIsBlocked() {
-        blockTime = 30
-        block()
-        application.terminate()
-        delay(3)
-        restart()
-        delay(2)
-        XCTAssertExist(screen.countdown)
-    }
-
     func test_whenAccountBlockAndAppMaximized_thenTimerContinuesFromLastValue() {
         block()
         application.minimize()
