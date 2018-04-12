@@ -6,7 +6,9 @@ import UIKit
 import safeUIKit
 import IdentityAccessApplication
 
-protocol SaveMnemonicDelegate: class {}
+protocol SaveMnemonicDelegate: class {
+    func didPressContinue()
+}
 
 class SaveMnemonicViewController: UIViewController {
 
@@ -26,6 +28,10 @@ class SaveMnemonicViewController: UIViewController {
         return controller
     }
 
+    @IBAction func continuePressed(_ sender: Any) {
+        delegate?.didPressContinue()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let optionalEOA = try? identityService.getEOA(),

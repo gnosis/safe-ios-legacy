@@ -125,6 +125,9 @@ Only you can recover your account. If you lose your phrase and access to your sa
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3Y-9f-AIW">
                                 <rect key="frame" x="111" y="449" width="154" height="30"/>
                                 <state key="normal" title="I understand, continue"/>
+                                <connections>
+                                    <action selector="continuePressed:" destination="FDt-8A-d9p" eventType="touchUpInside" id="h45-6Z-LkY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

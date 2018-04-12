@@ -12,4 +12,11 @@ final class RecoveryWithMnemonicFlowCoordinator: FlowCoordinator {
 
 }
 
-extension RecoveryWithMnemonicFlowCoordinator: SaveMnemonicDelegate {}
+extension RecoveryWithMnemonicFlowCoordinator: SaveMnemonicDelegate {
+
+    func didPressContinue() {
+        let controller = ConfirmMnemonicViewController()
+        rootVC.pushViewController(controller, animated: true)
+    }
+
+}
