@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Select Recovery Option View Controller-->
+        <scene sceneID="d56-LH-0Kc">
+            <objects>
+                <viewController storyboardIdentifier="SelectRecoveryOptionViewController" id="oT1-O9-HET" customClass="SelectRecoveryOptionViewController" customModule="safe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="anf-fD-Q5G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="At least one recovery option should be set" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jT2-Op-oIr" customClass="H1Label" customModule="safeUIKit">
+                                <rect key="frame" x="20" y="60" width="335" height="86"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mv5-vW-qj2">
+                                <rect key="frame" x="36" y="246" width="303" height="108"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn0-3F-SUf" customClass="BigButton" customModule="safeUIKit">
+                                        <rect key="frame" x="0.0" y="0.0" width="303" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Mnemonic phrase recovery"/>
+                                        <connections>
+                                            <action selector="setupMnemonicRecovery:" destination="oT1-O9-HET" eventType="touchUpInside" id="74f-cD-XIB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-2s-l1J" customClass="BigButton" customModule="safeUIKit">
+                                        <rect key="frame" x="0.0" y="64" width="303" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Other recovery option"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mv5-vW-qj2" firstAttribute="top" secondItem="jT2-Op-oIr" secondAttribute="bottom" constant="100" id="5Q6-TM-GDE"/>
+                            <constraint firstItem="jT2-Op-oIr" firstAttribute="top" secondItem="lwB-8g-DNf" secondAttribute="top" constant="40" id="WcV-HF-ymp"/>
+                            <constraint firstItem="mv5-vW-qj2" firstAttribute="centerX" secondItem="jT2-Op-oIr" secondAttribute="centerX" id="WmT-Zh-Adx"/>
+                            <constraint firstAttribute="trailing" secondItem="jT2-Op-oIr" secondAttribute="trailing" constant="20" id="cMQ-7i-uQC"/>
+                            <constraint firstItem="jT2-Op-oIr" firstAttribute="leading" secondItem="lwB-8g-DNf" secondAttribute="leading" constant="20" id="mLD-cj-ply"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lwB-8g-DNf"/>
+                    </view>
+                    <connections>
+                        <outlet property="mnemonicRecoveryButton" destination="Yn0-3F-SUf" id="8dz-Wl-kaU"/>
+                        <outlet property="otherRecoveryOptionTemporaryButton" destination="uZP-2s-l1J" id="t09-nA-B2M"/>
+                        <outlet property="titleLabel" destination="jT2-Op-oIr" id="IAX-6d-WeA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KTb-ej-aOI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="26" y="-90"/>
+        </scene>
+    </scenes>
+</document>
