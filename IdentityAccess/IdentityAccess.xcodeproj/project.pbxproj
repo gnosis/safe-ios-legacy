@@ -342,7 +342,6 @@
 		0A537BFE207CFB9200921FB9 /* IdentityAccessApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537C02207CFB9200921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A537C15207CFD8300921FB9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0A57F6DD207E38D900AF407D /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -605,7 +604,6 @@
 			isa = PBXGroup;
 			children = (
 				0A57F6DD207E38D900AF407D /* Library.xcodeproj */,
-				0A537C15207CFD8300921FB9 /* README.md */,
 				0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */,
 				0A537BE2207CFADE00921FB9 /* IdentityAccessApplication */,
 				0A537A65207CE5BC00921FB9 /* IdentityAccessDomainModel */,
