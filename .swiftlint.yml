@@ -139,7 +139,7 @@ function_parameter_count: 8
 file_header:
   required_pattern: |
                       \/\/
-                      \/\/  Copyright © \d{4} Gnosis\. All rights reserved\.
+                      \/\/  Copyright © \d{4} Gnosis Ltd\. All rights reserved\.
                       \/\/
 excluded:
   - safe/generated
