@@ -16,6 +16,9 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "onboarding.fatal.title";
 
+/* Title for selecting recovery option screen */
+"onboarding.recovery_options.title" = "onboarding.recovery_options.title";
+
 /* At least one capital letter rule for password field */
 "onboarding.set_password.capital" = "onboarding.set_password.capital";
 

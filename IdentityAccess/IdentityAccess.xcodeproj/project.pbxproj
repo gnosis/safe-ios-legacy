@@ -29,7 +29,7 @@
 		0A537ADB207CEE1100921FB9 /* MockBiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AD8207CEE1100921FB9 /* MockBiometricService.swift */; };
 		0A537ADC207CEE1100921FB9 /* MockKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AD9207CEE1100921FB9 /* MockKeychain.swift */; };
 		0A537AE0207CEE7300921FB9 /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537ADE207CEE7200921FB9 /* MockClockService.swift */; };
-		0A537AE1207CEE7300921FB9 /* MockSecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537ADF207CEE7300921FB9 /* MockSecureStore.swift */; };
+		0A537AE1207CEE7300921FB9 /* InMemorySecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537ADF207CEE7300921FB9 /* InMemorySecureStore.swift */; };
 		0A537AE5207CEFED00921FB9 /* InMemoryKeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE4207CEFED00921FB9 /* InMemoryKeyValueStore.swift */; };
 		0A537AE7207CF00D00921FB9 /* MockEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE6207CF00D00921FB9 /* MockEncryptionService.swift */; };
 		0A537AE9207CF02C00921FB9 /* MockLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE8207CF02C00921FB9 /* MockLogger.swift */; };
@@ -291,7 +291,7 @@
 		0A537AD8207CEE1100921FB9 /* MockBiometricService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockBiometricService.swift; sourceTree = "<group>"; };
 		0A537AD9207CEE1100921FB9 /* MockKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockKeychain.swift; sourceTree = "<group>"; };
 		0A537ADE207CEE7200921FB9 /* MockClockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockClockService.swift; sourceTree = "<group>"; };
-		0A537ADF207CEE7300921FB9 /* MockSecureStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSecureStore.swift; sourceTree = "<group>"; };
+		0A537ADF207CEE7300921FB9 /* InMemorySecureStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemorySecureStore.swift; sourceTree = "<group>"; };
 		0A537AE4207CEFED00921FB9 /* InMemoryKeyValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryKeyValueStore.swift; sourceTree = "<group>"; };
 		0A537AE6207CF00D00921FB9 /* MockEncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEncryptionService.swift; sourceTree = "<group>"; };
 		0A537AE8207CF02C00921FB9 /* MockLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLogger.swift; sourceTree = "<group>"; };
@@ -505,7 +505,7 @@
 				0A537AFC207CF2D600921FB9 /* KeychainService.swift */,
 				0A537AFD207CF2D600921FB9 /* KeychainServiceIntegrationTests.swift */,
 				0A537AD9207CEE1100921FB9 /* MockKeychain.swift */,
-				0A537ADF207CEE7300921FB9 /* MockSecureStore.swift */,
+				0A537ADF207CEE7300921FB9 /* InMemorySecureStore.swift */,
 			);
 			path = secureStore;
 			sourceTree = "<group>";
@@ -1023,7 +1023,7 @@
 				0A537B12207CF2D600921FB9 /* ConsoleLogger.swift in Sources */,
 				0A537B1C207CF2D600921FB9 /* EncryptionService.swift in Sources */,
 				0A537ADB207CEE1100921FB9 /* MockBiometricService.swift in Sources */,
-				0A537AE1207CEE7300921FB9 /* MockSecureStore.swift in Sources */,
+				0A537AE1207CEE7300921FB9 /* InMemorySecureStore.swift in Sources */,
 				0A537ADC207CEE1100921FB9 /* MockKeychain.swift in Sources */,
 				0A537B16207CF2D600921FB9 /* SystemClockService.swift in Sources */,
 				0A537B14207CF2D600921FB9 /* KeychainService.swift in Sources */,
