@@ -60,8 +60,7 @@ platform :ios do
     end
     ENV["FASTLANE_APP_IDENTIFIER"] = ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
-    gym(configuration: 
-      "AdHoc", 
+    gym(configuration: "AdHoc", 
       scheme: "safe", 
       buildlog_path: BUILD_LOG_PATH,
       derived_data_path: DERIVED_DATA_PATH,
@@ -81,7 +80,7 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
-    xcversion(version: "~> 9.0")
+    xcversion(version: "9.3")
     match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"])
     gym(scheme: "safe", 
       include_symbols: true,
