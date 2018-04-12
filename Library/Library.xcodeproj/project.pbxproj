@@ -19,8 +19,6 @@
 		0A57F71C207E430F00AF407D /* EthereumKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EthereumKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A57F71E207E430F00AF407D /* EthereumKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EthereumKit.h; sourceTree = "<group>"; };
 		0A57F71F207E430F00AF407D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0ABCA955207E559000E2C193 /* compile.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = compile.rb; sourceTree = "<group>"; };
-		0ABCA956207E559000E2C193 /* Library.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = Library.yml; sourceTree = "<group>"; };
 		0ABCA957207E559000E2C193 /* copy-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "copy-framework.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -28,9 +26,7 @@
 		0A57F6D2207E38B000AF407D = {
 			isa = PBXGroup;
 			children = (
-				0ABCA955207E559000E2C193 /* compile.rb */,
 				0ABCA957207E559000E2C193 /* copy-framework.sh */,
-				0ABCA956207E559000E2C193 /* Library.yml */,
 				0A57F6EB207E396B00AF407D /* APIKit */,
 				0A57F6FD207E3D3A00AF407D /* Result */,
 				0A57F70F207E412000AF407D /* CryptoSwift */,

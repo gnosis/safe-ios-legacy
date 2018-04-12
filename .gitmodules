@@ -1,12 +1,12 @@
 [submodule "APIKit"]
-	path = Library/APIKit/src
+	path = Dependencies/APIKit
 	url = https://github.com/ishkawa/APIKit.git
 [submodule "Result"]
-	path = Library/Result/src
+	path = Dependencies/Result
 	url = https://github.com/antitypical/Result.git
 [submodule "CryptoSwift"]
-	path = Library/CryptoSwift/src
+	path = Dependencies/CryptoSwift
 	url = https://github.com/krzyzanowskim/CryptoSwift.git
 [submodule "EthereumKit"]
-	path = Library/EthereumKit/src
+	path = Dependencies/EthereumKit
 	url = https://github.com/yuzushioh/EthereumKit.git
