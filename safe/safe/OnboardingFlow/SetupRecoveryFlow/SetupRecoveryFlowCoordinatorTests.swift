@@ -17,7 +17,7 @@ class SetupRecoveryFlowCoordinatorTests: XCTestCase {
     }
 
     func test_startViewController() {
-        XCTAssertTrue(nav.topViewController is SelectRecoveryOptionViewController)
+        XCTAssertTrue(nav.topViewController is RecoveryOptionsViewController)
     }
 
 }
