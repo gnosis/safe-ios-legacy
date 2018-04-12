@@ -4,7 +4,8 @@
 
 import Foundation
 
-enum UserDefaultsKey: String {
+public enum UserDefaultsKey: String {
     case masterPasswordWasSet
     case passwordAttemptCount
+    case isRecoveryOptionSet
 }

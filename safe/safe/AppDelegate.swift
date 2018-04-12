@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DomainRegistry.put(service: KeychainService(), for: SecureStore.self)
         DomainRegistry.put(service: BiometricService(), for: BiometricAuthenticationService.self)
         DomainRegistry.put(service: SystemClockService(), for: Clock.self)
+        DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: LogService.shared, for: Logger.self)
     }
 

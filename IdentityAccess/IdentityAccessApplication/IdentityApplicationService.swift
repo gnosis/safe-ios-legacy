@@ -6,13 +6,18 @@ import IdentityAccessDomainModel
 
 open class IdentityApplicationService {
 
-    private var store: SecureStore { return DomainRegistry.secureStore }
+    private var secureStore: SecureStore { return DomainRegistry.secureStore }
+    private var keyValueStore: KeyValueStore { return DomainRegistry.keyValueStore }
     private var encryptionService: EncryptionServiceProtocol { return DomainRegistry.encryptionService }
 
     public init() {}
 
+    public var isRecoverySet: Bool {
+        return keyValueStore.bool(for: UserDefaultsKey.isRecoveryOptionSet.rawValue) ?? false
+    }
+
     public func getEOA() throws -> ExternallyOwnedAccount? {
-        guard let mnemonic = try store.mnemonic() else { return nil }
+        guard let mnemonic = try secureStore.mnemonic() else { return nil }
         let account = EthereumAccountFactory(service: encryptionService).account(from: mnemonic)
         return account as? ExternallyOwnedAccount
     }
@@ -22,8 +27,8 @@ open class IdentityApplicationService {
             return eoa
         }
         let account = EthereumAccountFactory(service: encryptionService).generateAccount()
-        try store.saveMnemonic(account.mnemonic)
-        try store.savePrivateKey(account.privateKey)
+        try secureStore.saveMnemonic(account.mnemonic)
+        try secureStore.savePrivateKey(account.privateKey)
         return account as! ExternallyOwnedAccount
     }
 

@@ -3,11 +3,18 @@
 //
 
 import UIKit
+import IdentityAccessApplication
 
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
+    private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
+    let setupRecoveryFlowCoordinator = SetupRecoveryFlowCoordinator()
+
     override func flowStartController() -> UIViewController {
-        return PairWithChromeExtensionViewController()
+        if identityService.isRecoverySet {
+            return PairWithChromeExtensionViewController()
+        }
+        return setupRecoveryFlowCoordinator.startViewController(parent: rootVC)
     }
 
 }
