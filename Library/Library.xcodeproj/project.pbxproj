@@ -8,17 +8,9 @@
 
 /* Begin PBXFileReference section */
 		0A57F6E9207E396B00AF407D /* APIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A57F6EC207E396B00AF407D /* APIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIKit.h; sourceTree = "<group>"; };
-		0A57F6ED207E396B00AF407D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A57F6FC207E3D3A00AF407D /* Result.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A57F6FE207E3D3A00AF407D /* Result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
-		0A57F6FF207E3D3A00AF407D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A57F70E207E411F00AF407D /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A57F710207E412000AF407D /* CryptoSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptoSwift.h; sourceTree = "<group>"; };
-		0A57F711207E412000AF407D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A57F71C207E430F00AF407D /* EthereumKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EthereumKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A57F71E207E430F00AF407D /* EthereumKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EthereumKit.h; sourceTree = "<group>"; };
-		0A57F71F207E430F00AF407D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ABCA957207E559000E2C193 /* copy-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "copy-framework.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -27,10 +19,6 @@
 			isa = PBXGroup;
 			children = (
 				0ABCA957207E559000E2C193 /* copy-framework.sh */,
-				0A57F6EB207E396B00AF407D /* APIKit */,
-				0A57F6FD207E3D3A00AF407D /* Result */,
-				0A57F70F207E412000AF407D /* CryptoSwift */,
-				0A57F71D207E430F00AF407D /* EthereumKit */,
 				0A57F6EA207E396B00AF407D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,42 +32,6 @@
 				0A57F71C207E430F00AF407D /* EthereumKit.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		0A57F6EB207E396B00AF407D /* APIKit */ = {
-			isa = PBXGroup;
-			children = (
-				0A57F6EC207E396B00AF407D /* APIKit.h */,
-				0A57F6ED207E396B00AF407D /* Info.plist */,
-			);
-			path = APIKit;
-			sourceTree = "<group>";
-		};
-		0A57F6FD207E3D3A00AF407D /* Result */ = {
-			isa = PBXGroup;
-			children = (
-				0A57F6FE207E3D3A00AF407D /* Result.h */,
-				0A57F6FF207E3D3A00AF407D /* Info.plist */,
-			);
-			path = Result;
-			sourceTree = "<group>";
-		};
-		0A57F70F207E412000AF407D /* CryptoSwift */ = {
-			isa = PBXGroup;
-			children = (
-				0A57F710207E412000AF407D /* CryptoSwift.h */,
-				0A57F711207E412000AF407D /* Info.plist */,
-			);
-			path = CryptoSwift;
-			sourceTree = "<group>";
-		};
-		0A57F71D207E430F00AF407D /* EthereumKit */ = {
-			isa = PBXGroup;
-			children = (
-				0A57F71E207E430F00AF407D /* EthereumKit.h */,
-				0A57F71F207E430F00AF407D /* Info.plist */,
-			);
-			path = EthereumKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,7 +273,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = APIKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -395,7 +346,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = APIKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -475,7 +425,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Result/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -549,7 +498,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Result/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -629,7 +577,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = CryptoSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -703,7 +650,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = CryptoSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -783,7 +729,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = EthereumKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -857,7 +802,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = EthereumKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
