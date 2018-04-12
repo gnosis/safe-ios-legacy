@@ -121,6 +121,13 @@ Only you can recover your account. If you lose your phrase and access to your sa
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rhS-SX-TXK"/>
                     </view>
+                    <connections>
+                        <outlet property="continueButton" destination="b3Y-9f-AIW" id="RRh-0Z-Iko"/>
+                        <outlet property="descriptionLabel" destination="JLo-Zo-kbB" id="wVw-vU-QNU"/>
+                        <outlet property="mnemonicCopyableLabel" destination="pZs-gJ-26l" id="BOs-Sy-LMd"/>
+                        <outlet property="saveButton" destination="N1u-jM-lGl" id="X2d-6G-yOg"/>
+                        <outlet property="titleLabel" destination="uIj-zU-NwX" id="dMB-of-1R4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZlE-UG-yVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
