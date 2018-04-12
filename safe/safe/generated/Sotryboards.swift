@@ -77,6 +77,8 @@ enum StoryboardScene {
 
     static let navigationController = SceneType<UINavigationController>(storyboard: SetupRecovery.self, identifier: "NavigationController")
 
+    static let saveMnemonicViewController = SceneType<safe.SaveMnemonicViewController>(storyboard: SetupRecovery.self, identifier: "SaveMnemonicViewController")
+
     static let selectRecoveryOptionViewController = SceneType<safe.RecoveryOptionsViewController>(storyboard: SetupRecovery.self, identifier: "SelectRecoveryOptionViewController")
   }
   enum SetupSafe: StoryboardType {
