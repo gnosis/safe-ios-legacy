@@ -5,15 +5,15 @@
 import XCTest
 @testable import safe
 
-class SelectRecoveryOptionViewControllerTests: XCTestCase {
+class RecoveryOptionsViewControllerTests: XCTestCase {
 
     // swiftlint:disable weak_delegate
     private let delegate = MockSetupRecoveryOptionDelegate()
-    private var controller: SelectRecoveryOptionViewController!
+    private var controller: RecoveryOptionsViewController!
 
     override func setUp() {
         super.setUp()
-        controller = SelectRecoveryOptionViewController.create(delegate: delegate)
+        controller = RecoveryOptionsViewController.create(delegate: delegate)
         controller.loadViewIfNeeded()
     }
 

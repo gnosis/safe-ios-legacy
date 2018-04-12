@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Select Recovery Option View Controller-->
+        <!--Recovery Options View Controller-->
         <scene sceneID="d56-LH-0Kc">
             <objects>
-                <viewController storyboardIdentifier="SelectRecoveryOptionViewController" id="oT1-O9-HET" customClass="SelectRecoveryOptionViewController" customModule="safe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectRecoveryOptionViewController" id="oT1-O9-HET" customClass="RecoveryOptionsViewController" customModule="safe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="anf-fD-Q5G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +27,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mv5-vW-qj2">
                                 <rect key="frame" x="20" y="290" width="335" height="108"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn0-3F-SUf" customClass="BigButton" customModule="safeUIKit">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn0-3F-SUf" customClass="BigButton" customModule="safeUIKit">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Set mnemonic recovery"/>
@@ -35,7 +35,7 @@
                                             <action selector="setupMnemonicRecovery:" destination="oT1-O9-HET" eventType="touchUpInside" id="74f-cD-XIB"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-2s-l1J" customClass="BigButton" customModule="safeUIKit">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-2s-l1J" customClass="BigButton" customModule="safeUIKit">
                                         <rect key="frame" x="0.0" y="64" width="335" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Other recovery option"/>
@@ -71,7 +71,7 @@
         <!--Navigation Controller-->
         <scene sceneID="9VT-mI-AhH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R3s-2R-jnQ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="R3s-2R-jnQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EeD-yl-5Gb">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

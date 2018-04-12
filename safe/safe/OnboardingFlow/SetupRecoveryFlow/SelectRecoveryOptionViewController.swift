@@ -9,7 +9,7 @@ protocol SetupRecoveryOptionDelegate: class {
     func didSelectMnemonicRecovery()
 }
 
-class SelectRecoveryOptionViewController: UIViewController {
+class RecoveryOptionsViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var mnemonicRecoveryButton: BigButton!
@@ -21,7 +21,7 @@ class SelectRecoveryOptionViewController: UIViewController {
 
     weak var delegate: SetupRecoveryOptionDelegate?
 
-    static func create(delegate: SetupRecoveryOptionDelegate) -> SelectRecoveryOptionViewController {
+    static func create(delegate: SetupRecoveryOptionDelegate) -> RecoveryOptionsViewController {
         let controller = StoryboardScene.SetupRecovery.selectRecoveryOptionViewController.instantiate()
         controller.delegate = delegate
         return controller
