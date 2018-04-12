@@ -17,15 +17,25 @@ input.text = "Secret"
 input.translatesAutoresizingMaskIntoConstraints = false
 view.addSubview(input)
 
+let checkButton = BigButton()
+checkButton.setTitle("Hello, World!", for: .normal)
+checkButton.checkmarkStatus = .selected
+checkButton.setTitleColor(.black, for: .normal)
+checkButton.translatesAutoresizingMaskIntoConstraints = false
+view.addSubview(checkButton)
+
 NSLayoutConstraint.activate([
     input.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
     input.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-    input.topAnchor.constraint(equalTo: view.topAnchor, constant: 180)])
+    input.topAnchor.constraint(equalTo: view.topAnchor, constant: 180),
+    checkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+    checkButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+    checkButton.topAnchor.constraint(equalTo: input.bottomAnchor, constant: 150)])
 
 
 func execute(_ timer: Timer) {
     //    input.addRule("Right right right") { _ in true }
-    input.shake()
+//    input.shake()
     //    wait(1)
     //    input.addRule("Wrong wrong wrong") { _ in false }
 }

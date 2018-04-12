@@ -9,7 +9,7 @@ final class SetupRecoveryFlowCoordinator: FlowCoordinator {
     let recoveryWithMnemonicFlowCoordinator = RecoveryWithMnemonicFlowCoordinator()
 
     override func flowStartController() -> UIViewController {
-        return SelectRecoveryOptionViewController.create(delegate: self)
+        return RecoveryOptionsViewController.create(delegate: self)
     }
 
 }

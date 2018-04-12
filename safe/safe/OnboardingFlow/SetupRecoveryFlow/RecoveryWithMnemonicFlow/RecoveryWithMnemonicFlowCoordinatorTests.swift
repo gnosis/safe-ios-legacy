@@ -16,8 +16,10 @@ class RecoveryWithMnemonicFlowCoordinatorTests: XCTestCase {
         nav.pushViewController(startVC, animated: false)
     }
 
-    func test_startViewController() {
+    func test_startViewController_createsCorrectControllerWithDalegate() {
         XCTAssertTrue(nav.topViewController is SaveMnemonicViewController)
+        let controller = nav.topViewController as! SaveMnemonicViewController
+        XCTAssertTrue(controller.delegate === flowCoordinator)
     }
 
 }

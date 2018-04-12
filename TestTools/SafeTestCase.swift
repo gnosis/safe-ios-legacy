@@ -14,10 +14,11 @@ class SafeTestCase: XCTestCase {
     let clock = MockClockService()
     let identityService = IdentityApplicationService()
     let keyValueStore = InMemoryKeyValueStore()
+    let secureStore = InMemorySecureStore()
 
     override func setUp() {
         super.setUp()
-        DomainRegistry.put(service: InMemorySecureStore(), for: SecureStore.self)
+        DomainRegistry.put(service: secureStore, for: SecureStore.self)
         DomainRegistry.put(service: keyValueStore, for: KeyValueStore.self)
         DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
         ApplicationServiceRegistry.put(service: authenticationService,

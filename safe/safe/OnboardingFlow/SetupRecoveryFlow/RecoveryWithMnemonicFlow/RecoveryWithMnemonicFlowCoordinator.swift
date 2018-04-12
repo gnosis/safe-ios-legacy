@@ -7,7 +7,9 @@ import UIKit
 final class RecoveryWithMnemonicFlowCoordinator: FlowCoordinator {
 
     override func flowStartController() -> UIViewController {
-        return SaveMnemonicViewController()
+        return SaveMnemonicViewController.create(delegate: self)
     }
 
 }
+
+extension RecoveryWithMnemonicFlowCoordinator: SaveMnemonicDelegate {}

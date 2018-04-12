@@ -4,24 +4,21 @@
 
 import UIKit
 import safeUIKit
+import IdentityAccessApplication
 
 protocol SetupRecoveryOptionDelegate: class {
     func didSelectMnemonicRecovery()
 }
 
-class SelectRecoveryOptionViewController: UIViewController {
+class RecoveryOptionsViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: H1Label!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var mnemonicRecoveryButton: BigButton!
     @IBOutlet weak var otherRecoveryOptionTemporaryButton: BigButton!
-
-    @IBAction func setupMnemonicRecovery(_ sender: Any) {
-        delegate?.didSelectMnemonicRecovery()
-    }
-
     weak var delegate: SetupRecoveryOptionDelegate?
 
-    static func create(delegate: SetupRecoveryOptionDelegate) -> SelectRecoveryOptionViewController {
+    static func create(delegate: SetupRecoveryOptionDelegate) -> RecoveryOptionsViewController {
         let controller = StoryboardScene.SetupRecovery.selectRecoveryOptionViewController.instantiate()
         controller.delegate = delegate
         return controller
@@ -32,6 +29,17 @@ class SelectRecoveryOptionViewController: UIViewController {
         titleLabel.text = NSLocalizedString("onboarding.recovery_options.title",
                                             comment: "Title for selecting recovery option screen")
         otherRecoveryOptionTemporaryButton.isEnabled = false
+        mnemonicRecoveryButton.checkmarkStatus = .normal
+        otherRecoveryOptionTemporaryButton.checkmarkStatus = .normal
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        nextButton.isEnabled = ApplicationServiceRegistry.identityService.isRecoverySet
+    }
+
+    @IBAction func setupMnemonicRecovery(_ sender: Any) {
+        delegate?.didSelectMnemonicRecovery()
     }
 
 }
