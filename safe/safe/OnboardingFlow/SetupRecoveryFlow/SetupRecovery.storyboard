@@ -180,33 +180,33 @@ Only you can recover your account. If you lose your phrase and access to your sa
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RJ-o3-TZA">
-                                <rect key="frame" x="20" y="214" width="25" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="6RJ-o3-TZA">
+                                <rect key="frame" x="20" y="214" width="30" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="qgq-kB-LTm"/>
+                                    <constraint firstAttribute="width" constant="30" id="qgq-kB-LTm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LkB-30-dua">
-                                <rect key="frame" x="20" y="265" width="25" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="LkB-30-dua">
+                                <rect key="frame" x="20" y="265" width="30" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="laa-B4-8Ji"/>
+                                    <constraint firstAttribute="width" constant="30" id="laa-B4-8Ji"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOk-8C-8Np" customClass="TextInput" customModule="safeUIKit">
-                                <rect key="frame" x="61" y="205" width="294" height="30"/>
+                                <rect key="frame" x="66" y="209.5" width="289" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3KA-mz-73c"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJf-ly-PfB" customClass="TextInput" customModule="safeUIKit">
-                                <rect key="frame" x="61" y="256" width="294" height="30"/>
+                                <rect key="frame" x="66" y="260.5" width="289" height="30"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="rXA-sy-f3b"/>
@@ -218,10 +218,10 @@ Only you can recover your account. If you lose your phrase and access to your sa
                             <constraint firstItem="ZOk-8C-8Np" firstAttribute="trailing" secondItem="ExC-zY-WT9" secondAttribute="trailing" id="7ai-Tz-nKx"/>
                             <constraint firstItem="cJf-ly-PfB" firstAttribute="trailing" secondItem="ZOk-8C-8Np" secondAttribute="trailing" id="8HU-OQ-xge"/>
                             <constraint firstItem="ExC-zY-WT9" firstAttribute="leading" secondItem="2HR-Sn-W86" secondAttribute="leading" id="8wM-Sp-PVx"/>
+                            <constraint firstItem="ZOk-8C-8Np" firstAttribute="centerY" secondItem="6RJ-o3-TZA" secondAttribute="centerY" id="CnJ-An-PNc"/>
                             <constraint firstItem="ExC-zY-WT9" firstAttribute="top" secondItem="2HR-Sn-W86" secondAttribute="bottom" constant="40" id="Cvr-fg-G4D"/>
                             <constraint firstItem="2HR-Sn-W86" firstAttribute="leading" secondItem="5VZ-dU-rzz" secondAttribute="leading" constant="20" id="Dg0-nI-oog"/>
-                            <constraint firstItem="ZOk-8C-8Np" firstAttribute="bottom" secondItem="6RJ-o3-TZA" secondAttribute="bottom" id="NTo-LS-rgP"/>
-                            <constraint firstItem="cJf-ly-PfB" firstAttribute="bottom" secondItem="LkB-30-dua" secondAttribute="bottom" id="Vm7-UL-YSe"/>
+                            <constraint firstItem="cJf-ly-PfB" firstAttribute="centerY" secondItem="LkB-30-dua" secondAttribute="centerY" id="ZQV-oe-hx2"/>
                             <constraint firstItem="6RJ-o3-TZA" firstAttribute="leading" secondItem="ExC-zY-WT9" secondAttribute="leading" id="ar5-FW-xzS"/>
                             <constraint firstItem="LkB-30-dua" firstAttribute="top" secondItem="6RJ-o3-TZA" secondAttribute="bottom" constant="30" id="cfI-lS-RT5"/>
                             <constraint firstItem="2HR-Sn-W86" firstAttribute="top" secondItem="5VZ-dU-rzz" secondAttribute="top" constant="40" id="e77-yL-E1F"/>
