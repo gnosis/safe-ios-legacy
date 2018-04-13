@@ -64,6 +64,10 @@ public final class BiometricService: BiometricAuthenticationService {
         }
     }
 
+    public func activate() throws {
+        self.activate { }
+    }
+
     public func authenticate(completion: @escaping (Bool) -> Void) {
         requestBiometry(reason: String(format: LocalizedString.unlock, biometryType.localizedDescription),
                         completion: completion)

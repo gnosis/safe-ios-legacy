@@ -65,14 +65,20 @@ open class AuthenticationApplicationService {
 
     private var userRepository: UserRepository { return DomainRegistry.userRepository }
 
-    open func registerUser(password: String, completion: (() -> Void)? = nil) throws {
-        try reset()
+    private var biometricService: BiometricAuthenticationService {
+        return DomainRegistry.biometricAuthenticationService
+    }
+
+    @available(*, deprecated, message: "Use registerUser(password:) method")
+    open func registerUser(password: String, completion: (() -> Void)?) throws {
+        try registerUser(password: password)
+        completion?()
+    }
+
+    open func registerUser(password: String) throws {
         let user = try User(id: userRepository.nextId(), password: password)
         try userRepository.save(user)
-        try account.setMasterPassword(password)
-        account.activateBiometricAuthentication {
-            completion?()
-        }
+        try biometricService.activate()
     }
 
     open func configureSession(_ duration: TimeInterval) {

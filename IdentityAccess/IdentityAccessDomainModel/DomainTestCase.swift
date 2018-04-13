@@ -15,7 +15,7 @@ class DomainTestCase: XCTestCase {
     let logger = MockLogger()
     let encryptionService = MockEncryptionService()
     let userRepository: UserRepository = InMemoryUserRepository()
-    
+
     override func setUp() {
         super.setUp()
         DomainRegistry.put(service: mockUserDefaults, for: KeyValueStore.self)

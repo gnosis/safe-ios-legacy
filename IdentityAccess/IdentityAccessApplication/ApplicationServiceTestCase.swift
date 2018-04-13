@@ -12,6 +12,7 @@ class ApplicationServiceTestCase: XCTestCase {
     let authenticationService = AuthenticationApplicationService()
     let identityService = IdentityApplicationService()
     let userRepository: UserRepository = InMemoryUserRepository()
+    let biometricService = MockBiometricService()
 
     override func setUp() {
         super.setUp()
@@ -29,11 +30,11 @@ class ApplicationServiceTestCase: XCTestCase {
         ApplicationServiceRegistry.put(service: authenticationService,
                                        for: AuthenticationApplicationService.self)
         DomainRegistry.put(service: userRepository, for: UserRepository.self)
+        DomainRegistry.put(service: biometricService, for: BiometricAuthenticationService.self)
     }
 
     private func configureAccountDependencies() {
         DomainRegistry.put(service: MockKeychain(), for: SecureStore.self)
-        DomainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
         DomainRegistry.put(service: MockClockService(), for: Clock.self)
         DomainRegistry.put(service: InMemoryKeyValueStore(), for: KeyValueStore.self)
     }

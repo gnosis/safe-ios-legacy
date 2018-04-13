@@ -15,14 +15,21 @@ public class MockBiometricService: BiometricAuthenticationService {
     private var savedAuthenticationCompletion: ((Bool) -> Void)?
     public var shouldAuthenticateImmediately = false
 
+    public var didActivate = false
+
     public init() {}
 
     public func activate(completion: @escaping () -> Void) {
+        try? activate()
         if shouldActivateImmediately {
             completion()
         } else {
             savedActivationCompletion = completion
         }
+    }
+
+    public func activate() throws {
+        didActivate = true
     }
 
     public func completeActivation() {
