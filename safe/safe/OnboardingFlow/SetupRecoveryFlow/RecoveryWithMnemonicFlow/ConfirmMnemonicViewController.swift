@@ -17,16 +17,11 @@ final class ConfirmMnemonicViewController: UIViewController {
     @IBOutlet weak var secondWordNumberLabel: UILabel!
     @IBOutlet weak var firstWordTextInput: TextInput!
     @IBOutlet weak var secondWordTextInput: TextInput!
-    @IBOutlet weak var confirmButton: UIButton!
 
     private(set) weak var delegate: ConfirmMnemonicDelegate?
     private(set) var words: [String]!
     private(set) var firstMnemonicWordToCheck = ""
     private(set) var secondMnemonicWordToCheck = ""
-
-    @IBAction func confirm(_ sender: Any) {
-        delegate?.didConfirm()
-    }
 
     static func create(delegate: ConfirmMnemonicDelegate, words: [String]) -> ConfirmMnemonicViewController {
         let controller = StoryboardScene.SetupRecovery.confirmMnemonicViewController.instantiate()
@@ -42,15 +37,12 @@ final class ConfirmMnemonicViewController: UIViewController {
             return
         }
         (firstMnemonicWordToCheck, secondMnemonicWordToCheck) = twoRandomWords()
-        firstWordNumberLabel.text = "\(words.index(of: firstMnemonicWordToCheck)! + 1)."
-        secondWordNumberLabel.text = "\(words.index(of: secondMnemonicWordToCheck)! + 1)."
+        firstWordNumberLabel.text = "#\(words.index(of: firstMnemonicWordToCheck)! + 1)."
+        secondWordNumberLabel.text = "#\(words.index(of: secondMnemonicWordToCheck)! + 1)."
         titleLabel.text = NSLocalizedString("recovery.confirm_mnemonic.title",
                                             comment: "Title for confirm mnemonic view controller")
         descriptionLabel.text = NSLocalizedString("recovery.confirm_mnemonic.description",
                                                   comment: "Description for confirm mnemonic view controller")
-        confirmButton.setTitle(NSLocalizedString("recovery.confirm_mnemonic.confirm",
-                                                 comment: "Confirm button"), for: .normal)
-        confirmButton.isEnabled = false
         firstWordTextInput.delegate = self
         secondWordTextInput.delegate = self
         _ = firstWordTextInput.becomeFirstResponder()
@@ -71,9 +63,10 @@ final class ConfirmMnemonicViewController: UIViewController {
 extension ConfirmMnemonicViewController: TextInputDelegate {
 
     func textInputDidReturn(_ textInput: TextInput) {
-        confirmButton.isEnabled = (firstWordTextInput.text == firstMnemonicWordToCheck) &&
-            (secondWordTextInput.text == secondMnemonicWordToCheck)
-        if textInput == firstWordTextInput {
+        if firstWordTextInput.text == firstMnemonicWordToCheck &&
+            secondWordTextInput.text == secondMnemonicWordToCheck {
+            delegate?.didConfirm()
+        } else if textInput == firstWordTextInput {
             _ = secondWordTextInput.becomeFirstResponder()
         }
     }

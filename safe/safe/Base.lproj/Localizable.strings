@@ -43,9 +43,6 @@
 /* Start button title */
 "onboarding.start.start" = "onboarding.start.start";
 
-/* Confirm button */
-"recovery.confirm_mnemonic.confirm" = "recovery.confirm_mnemonic.confirm";
-
 /* Description for confirm mnemonic view controller */
 "recovery.confirm_mnemonic.description" = "recovery.confirm_mnemonic.description";
 

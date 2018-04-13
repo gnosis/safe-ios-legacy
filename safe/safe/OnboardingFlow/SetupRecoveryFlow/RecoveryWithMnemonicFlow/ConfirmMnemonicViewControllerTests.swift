@@ -28,7 +28,6 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
         XCTAssertTrue(controller.secondWordTextInput.delegate === controller)
         XCTAssertNotNil(controller.firstWordTextInput)
         XCTAssertNotNil(controller.secondWordTextInput)
-        XCTAssertNotNil(controller.confirmButton)
         XCTAssertTrue(controller.delegate === delegate)
         XCTAssertEqual(words, controller.words)
     }
@@ -59,8 +58,8 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
         controller.viewDidLoad()
         let firstWordIndex = words.index(of: controller.firstMnemonicWordToCheck)!
         let secondWordIndex = words.index(of: controller.secondMnemonicWordToCheck)!
-        XCTAssertEqual("\(firstWordIndex + 1).", controller.firstWordNumberLabel.text)
-        XCTAssertEqual("\(secondWordIndex + 1).", controller.secondWordNumberLabel.text)
+        XCTAssertEqual("#\(firstWordIndex + 1).", controller.firstWordNumberLabel.text)
+        XCTAssertEqual("#\(secondWordIndex + 1).", controller.secondWordNumberLabel.text)
     }
 
     func test_viewDidLoad_setsFirstTextInputAsFirstResponder() {
@@ -69,27 +68,16 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
         XCTAssertTrue(controller.firstWordTextInput.isActive)
     }
 
-    func test_confirm_callsDelegate() {
-        controller.confirm(self)
-        XCTAssertTrue(delegate.confirmed)
-    }
-
-    func test_whenTextInputsHaveNoWords_thenConfirmButtonDisabled() {
-        XCTAssertEqual(controller.firstWordTextInput.text, "")
-        XCTAssertEqual(controller.secondWordTextInput.text, "")
-        XCTAssertFalse(controller.confirmButton.isEnabled)
-    }
-
-    func test_whenTextInputsHaveWrongWords_thenConfirmButtonDisabled() {
+    func test_whenTextInputsHaveWrongWords_thenDelegateIsNotCalled() {
         setTextInputs("wrong", controller.secondMnemonicWordToCheck)
-        XCTAssertFalse(controller.confirmButton.isEnabled)
+        XCTAssertFalse(delegate.confirmed)
         setTextInputs(controller.firstMnemonicWordToCheck, "wrong")
-        XCTAssertFalse(controller.confirmButton.isEnabled)
+        XCTAssertFalse(delegate.confirmed)
     }
 
-    func test_whenTextInputsHaveCorrectWords_thenConfirmButtonEnabled() {
+    func test_whenTextInputsHaveCorrectWords_thenDelegateIsCalled() {
         setTextInputs(controller.firstMnemonicWordToCheck, controller.secondMnemonicWordToCheck)
-        XCTAssertTrue(controller.confirmButton.isEnabled)
+        XCTAssertTrue(delegate.confirmed)
     }
 
     func test_textInputDidReturn_whenTriggeredByFirstInput_thenSetsSecondInputAsFirstResponder() {
