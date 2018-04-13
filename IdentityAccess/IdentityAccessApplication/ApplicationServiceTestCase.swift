@@ -13,6 +13,7 @@ class ApplicationServiceTestCase: XCTestCase {
     let identityService = IdentityApplicationService()
     let userRepository: UserRepository = InMemoryUserRepository()
     let biometricService = MockBiometricService()
+    let encryptionService = MockEncryptionService()
 
     override func setUp() {
         super.setUp()
@@ -31,6 +32,7 @@ class ApplicationServiceTestCase: XCTestCase {
                                        for: AuthenticationApplicationService.self)
         DomainRegistry.put(service: userRepository, for: UserRepository.self)
         DomainRegistry.put(service: biometricService, for: BiometricAuthenticationService.self)
+        DomainRegistry.put(service: encryptionService, for: EncryptionServiceProtocol.self)
     }
 
     private func configureAccountDependencies() {

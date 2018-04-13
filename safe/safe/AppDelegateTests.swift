@@ -41,6 +41,7 @@ class AppDelegateTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.clock)
         XCTAssertNotNil(DomainRegistry.logger)
         XCTAssertNotNil(DomainRegistry.userRepository)
+        XCTAssertNotNil(DomainRegistry.identityService)
     }
 
 }

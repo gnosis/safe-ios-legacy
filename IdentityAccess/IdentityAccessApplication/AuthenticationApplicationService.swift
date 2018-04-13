@@ -11,6 +11,11 @@ public enum AuthenticationMethod {
     case faceID
 }
 
+public struct UserData {
+    public var id: String
+    public init(_ id: String) { self.id = id }
+}
+
 open class AuthenticationApplicationService {
 
     private let account: AccountProtocol = Account.shared
@@ -51,6 +56,14 @@ open class AuthenticationApplicationService {
 
     // MARK: - Commands
 
+    open func authenticateUser(method: AuthenticationMethod, _ password: String? = nil) throws -> UserData? {
+        if let user = userRepository.primaryUser() {
+            return UserData(user.userID.id)
+        }
+        return nil
+    }
+
+    @available(*, deprecated, message: "Use authenticateUser(method:) method")
     open func authenticateUser(password: String? = nil, completion: ((Bool) -> Void)? = nil) {
         if isAuthenticationBlocked {
             completion?(false)
@@ -76,9 +89,9 @@ open class AuthenticationApplicationService {
     }
 
     open func registerUser(password: String) throws {
-        let user = try User(id: userRepository.nextId(), password: password)
-        try userRepository.save(user)
-        try biometricService.activate()
+//        let user = try User(id: userRepository.nextId(), password: password)
+//        try userRepository.save(user)
+//        try biometricService.activate()
     }
 
     open func configureSession(_ duration: TimeInterval) {

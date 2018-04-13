@@ -8,6 +8,7 @@ import Common
 public class User: Equatable, Assertable {
 
     public let userID: UserID
+    public private(set) var password: String = ""
 
     public enum Error: Swift.Error, Hashable {
         case emptyPassword
@@ -17,7 +18,7 @@ public class User: Equatable, Assertable {
         case passwordMissingDigit
     }
 
-    public init(id: UserID, password: String) throws {
+    init(id: UserID, password: String) throws {
         userID = id
         try changePassword(old: "", new: password)
     }
@@ -28,6 +29,7 @@ public class User: Equatable, Assertable {
         try User.assertArgument(password.count <= 100, Error.passwordTooLong)
         try User.assertArgument(password.hasUppercaseLetter, Error.passwordMissingCapitalLetter)
         try User.assertArgument(password.hasDecimalDigit, Error.passwordMissingDigit)
+        self.password = password
     }
 
     public static func ==(lhs: User, rhs: User) -> Bool {

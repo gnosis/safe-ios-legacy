@@ -97,6 +97,8 @@
 		0AFFF40E20808C0B0030200C /* InMemoryUserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */; };
 		0AFFF41020808C160030200C /* InMemoryUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */; };
 		0AFFF41120808D400030200C /* AuthenticationApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */; };
+		0AFFF41C2080BC900030200C /* IdentityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF41B2080BC900030200C /* IdentityService.swift */; };
+		0AFFF41E2080BCB00030200C /* IdentityServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -355,6 +357,8 @@
 		0AFFF40920808AE30030200C /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryUserRepositoryTests.swift; sourceTree = "<group>"; };
 		0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryUserRepository.swift; sourceTree = "<group>"; };
+		0AFFF41B2080BC900030200C /* IdentityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityService.swift; sourceTree = "<group>"; };
+		0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,6 +449,8 @@
 				0AFFF40720808ABD0030200C /* User.swift */,
 				0AFFF40920808AE30030200C /* UserTests.swift */,
 				0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */,
+				0AFFF41B2080BC900030200C /* IdentityService.swift */,
+				0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */,
 				0A537AA2207CE95900921FB9 /* Interfaces */,
 				0A537AB2207CEA3900921FB9 /* XcodeBuildSupport */,
 			);
@@ -1027,6 +1033,7 @@
 				0A537A9A207CE74100921FB9 /* BiometricAuthenticationService.swift in Sources */,
 				0A537A93207CE74100921FB9 /* KeyValueStore.swift in Sources */,
 				0A537A96207CE74100921FB9 /* Session.swift in Sources */,
+				0AFFF41C2080BC900030200C /* IdentityService.swift in Sources */,
 				0A537A9E207CE74100921FB9 /* LoggableError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1037,6 +1044,7 @@
 			files = (
 				0A537AB7207CEBB100921FB9 /* DomainTestCase.swift in Sources */,
 				0A537AB6207CEAC700921FB9 /* SessionTests.swift in Sources */,
+				0AFFF41E2080BCB00030200C /* IdentityServiceTests.swift in Sources */,
 				0AFFF40A20808AE30030200C /* UserTests.swift in Sources */,
 				0A537AB3207CEAC700921FB9 /* MockAccount.swift in Sources */,
 				0A537AB5207CEAC700921FB9 /* DomainRegistryTests.swift in Sources */,

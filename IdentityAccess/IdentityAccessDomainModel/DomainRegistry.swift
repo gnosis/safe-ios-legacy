@@ -35,4 +35,8 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: UserRepository.self)
     }
 
+    public static var identityService: IdentityService {
+        return service(for: IdentityService.self)
+    }
+
 }

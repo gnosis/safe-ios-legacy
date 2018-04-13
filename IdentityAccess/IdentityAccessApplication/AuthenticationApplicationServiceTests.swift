@@ -14,9 +14,13 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
         XCTAssertNotNil(userRepository.primaryUser())
     }
 
-    func test_registerUser_activatesBiometry() throws {
-        try authenticationService.registerUser(password: password)
-        XCTAssertTrue(biometricService.didActivate)
-    }
+//    func test_authenticateUser_whenEmptyThenFails() throws {
+//        let user = try authenticationService.authenticateUser(method: .password, password)
+//        XCTAssertNil(user)
+//    }
+
+    // empty password throws
+    // wrong password nils out or returns null user data object
+    // authenticates with encrypted password - from repository
 
 }

@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: LogService.shared, for: Logger.self)
         DomainRegistry.put(service: InMemoryUserRepository(), for: UserRepository.self)
+        DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
     }
 
     private func createWindow() {

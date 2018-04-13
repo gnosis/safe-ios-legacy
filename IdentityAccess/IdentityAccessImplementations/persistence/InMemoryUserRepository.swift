@@ -46,4 +46,8 @@ public class InMemoryUserRepository: UserRepository {
         }
     }
 
+    public func user(encryptedPassword: String) -> User? {
+        return primaryUser()?.password == encryptedPassword ? primaryUser() : nil
+    }
+
 }

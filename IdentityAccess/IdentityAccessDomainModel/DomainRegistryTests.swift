@@ -16,6 +16,7 @@ class DomainRegistryTests: XCTestCase {
         DomainRegistry.put(service: MockLogger(), for: Logger.self)
         DomainRegistry.put(service: MockEncryptionService(), for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: InMemoryUserRepository(), for: UserRepository.self)
+        DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
         XCTAssertNotNil(DomainRegistry.keyValueStore)
         XCTAssertNotNil(DomainRegistry.secureStore)
         XCTAssertNotNil(DomainRegistry.biometricAuthenticationService)
@@ -23,6 +24,7 @@ class DomainRegistryTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.logger)
         XCTAssertNotNil(DomainRegistry.encryptionService)
         XCTAssertNotNil(DomainRegistry.userRepository)
+        XCTAssertNotNil(DomainRegistry.identityService)
     }
 
 }

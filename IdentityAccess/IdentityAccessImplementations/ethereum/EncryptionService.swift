@@ -50,4 +50,8 @@ public final class EncryptionService: EncryptionServiceProtocol {
         return Mnemonic(EthereumKit.Mnemonic.create())
     }
 
+    public func encrypted(_ plainText: String) -> String {
+        return plainText
+    }
+
 }

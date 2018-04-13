@@ -14,9 +14,15 @@ class InMemoryUserRepositoryTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        DomainRegistry.put(service: MockEncryptionService(), for: EncryptionServiceProtocol.self)
+        DomainRegistry.put(service: repository, for: UserRepository.self)
+        DomainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
+        DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
         do {
-            user = try User(id: repository.nextId(), password: "Mypass123")
-            other = try User(id: repository.nextId(), password: "Otherpass123")
+            user = try DomainRegistry.identityService.registerUser(password: "Mypass123")
+            try repository.remove(user)
+            other = try DomainRegistry.identityService.registerUser(password: "Otherpass123")
+            try repository.remove(other)
         } catch {
             XCTFail("Failed to setUp")
         }
@@ -51,6 +57,16 @@ class InMemoryUserRepositoryTests: XCTestCase {
         XCTAssertThrowsError(try repository.remove(other)) { error in
             XCTAssertEqual(error as? InMemoryUserRepository.Error, .userNotFound)
         }
+    }
+
+    func test_user_whenSearchingWithExactPassword_thenFindsIt() throws {
+        try repository.save(user)
+        XCTAssertEqual(repository.user(encryptedPassword: user.password), user)
+    }
+
+    func test_user_whenSearchingWithWrongPassword_thenNotFound() throws {
+        try repository.save(user)
+        XCTAssertNil(repository.user(encryptedPassword: user.password + "a"))
     }
 
 }
