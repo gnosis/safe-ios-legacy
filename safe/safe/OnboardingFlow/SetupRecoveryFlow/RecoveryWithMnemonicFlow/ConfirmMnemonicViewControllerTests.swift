@@ -4,7 +4,6 @@
 
 import XCTest
 @testable import safe
-import IdentityAccessDomainModel
 import CommonTestSupport
 
 class ConfirmMnemonicViewControllerTests: XCTestCase {
@@ -12,11 +11,11 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
     // swiftlint:disable weak_delegate
     private let delegate = MockConfirmMnemonicDelegate()
     private var controller: ConfirmMnemonicViewController!
-    private let mnemonic = Mnemonic("some mnemonic with several words")
+    private var words = ["some", "random", "words", "from", "a", "mnemonic"]
 
     override func setUp() {
         super.setUp()
-        createController(mnemonic)
+        createController(words: words)
     }
 
     func test_canCreate() {
@@ -29,13 +28,12 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
         XCTAssertNotNil(controller.secondWordTextInput)
         XCTAssertNotNil(controller.confirmButton)
         XCTAssertTrue(controller.delegate === delegate)
-        XCTAssertEqual(mnemonic, controller.mnemonic)
+        XCTAssertEqual(words, controller.words)
     }
 
     func test_viewDidLoad_setsRandomCheckingWords() {
         assertRandomWords()
-        let smallMnemonic = Mnemonic("two words")
-        createController(smallMnemonic)
+        createController(words: ["two", "words"])
         assertRandomWords()
     }
 
@@ -48,8 +46,7 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
     }
 
     func test_viewDidLoad_dismissesIfMnemonicHasLessThanTwoWords() throws {
-        let mnemonic = Mnemonic("word")
-        createController(mnemonic)
+        createController(words: ["word"])
         createWindow(controller)
         controller.viewDidLoad()
         delay(1)
@@ -58,8 +55,8 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
 
     func test_viewDidLoad_setsCorrectWordsLabelText() {
         controller.viewDidLoad()
-        let firstWordIndex = mnemonic.words.index(of: controller.firstMnemonicWordToCheck)!
-        let secondWordIndex = mnemonic.words.index(of: controller.secondMnemonicWordToCheck)!
+        let firstWordIndex = words.index(of: controller.firstMnemonicWordToCheck)!
+        let secondWordIndex = words.index(of: controller.secondMnemonicWordToCheck)!
         XCTAssertEqual("\(firstWordIndex + 1).", controller.firstWordNumberLabel.text)
         XCTAssertEqual("\(secondWordIndex + 1).", controller.secondWordNumberLabel.text)
     }
@@ -68,8 +65,8 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
 
 extension ConfirmMnemonicViewControllerTests {
 
-    private func createController(_ mnemonic: Mnemonic) {
-        controller = ConfirmMnemonicViewController.create(delegate: delegate, mnemonic: mnemonic)
+    private func createController(words: [String]) {
+        controller = ConfirmMnemonicViewController.create(delegate: delegate, words: words)
         controller.loadViewIfNeeded()
     }
 
@@ -87,8 +84,8 @@ extension ConfirmMnemonicViewControllerTests {
         for _ in 0...100 {
             controller.viewDidLoad()
             XCTAssertNotEqual(controller.firstMnemonicWordToCheck, controller.secondMnemonicWordToCheck)
-            XCTAssertTrue(controller.mnemonic.words.contains(controller.firstMnemonicWordToCheck))
-            XCTAssertTrue(controller.mnemonic.words.contains(controller.secondMnemonicWordToCheck))
+            XCTAssertTrue(controller.words.contains(controller.firstMnemonicWordToCheck))
+            XCTAssertTrue(controller.words.contains(controller.secondMnemonicWordToCheck))
         }
     }
 

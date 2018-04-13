@@ -4,7 +4,6 @@
 
 import UIKit
 import safeUIKit
-import IdentityAccessDomainModel
 
 protocol ConfirmMnemonicDelegate: class {
     func didConfirm()
@@ -21,29 +20,29 @@ final class ConfirmMnemonicViewController: UIViewController {
     @IBOutlet weak var confirmButton: UIButton!
 
     private(set) weak var delegate: ConfirmMnemonicDelegate?
-    private(set) var mnemonic: Mnemonic!
+    private(set) var words: [String]!
     private(set) var firstMnemonicWordToCheck = ""
     private(set) var secondMnemonicWordToCheck = ""
 
     @IBAction func confirm(_ sender: Any) {
     }
 
-    static func create(delegate: ConfirmMnemonicDelegate, mnemonic: Mnemonic) -> ConfirmMnemonicViewController {
+    static func create(delegate: ConfirmMnemonicDelegate, words: [String]) -> ConfirmMnemonicViewController {
         let controller = StoryboardScene.SetupRecovery.confirmMnemonicViewController.instantiate()
         controller.delegate = delegate
-        controller.mnemonic = mnemonic
+        controller.words = words
         return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let mnemonic = mnemonic, mnemonic.words.count > 1 else {
+        guard let words = words, words.count > 1 else {
             dismiss(animated: true)
             return
         }
         (firstMnemonicWordToCheck, secondMnemonicWordToCheck) = twoRandomWords()
-        firstWordNumberLabel.text = "\(mnemonic.words.index(of: firstMnemonicWordToCheck)! + 1)."
-        secondWordNumberLabel.text = "\(mnemonic.words.index(of: secondMnemonicWordToCheck)! + 1)."
+        firstWordNumberLabel.text = "\(words.index(of: firstMnemonicWordToCheck)! + 1)."
+        secondWordNumberLabel.text = "\(words.index(of: secondMnemonicWordToCheck)! + 1)."
         titleLabel.text = NSLocalizedString("recovery.confirm_mnemonic.title",
                                             comment: "Title for confirm mnemonic view controller")
         descriptionLabel.text = NSLocalizedString("recovery.confirm_mnemonic.description",
@@ -53,12 +52,12 @@ final class ConfirmMnemonicViewController: UIViewController {
     }
 
     private func twoRandomWords() -> (String, String) {
-        var words = mnemonic.words
-        let firstIndex = Int(arc4random_uniform(UInt32(words.count)))
-        let firstWord = words[firstIndex]
-        words.remove(at: firstIndex)
-        let secondIndex = Int(arc4random_uniform(UInt32(words.count)))
-        let secondWord = words[secondIndex]
+        var wordsCopy = words!
+        let firstIndex = Int(arc4random_uniform(UInt32(wordsCopy.count)))
+        let firstWord = wordsCopy[firstIndex]
+        wordsCopy.remove(at: firstIndex)
+        let secondIndex = Int(arc4random_uniform(UInt32(wordsCopy.count)))
+        let secondWord = wordsCopy[secondIndex]
         return (firstWord, secondWord)
     }
 
