@@ -23,10 +23,14 @@ class RecoveryWithMnemonicFlowCoordinatorTests: XCTestCase {
         XCTAssertTrue(controller.delegate === flowCoordinator)
     }
 
-    func test_didPressContinue_pushesConfirmMnemonicViewController() {
-        flowCoordinator.didPressContinue()
+    func test_didPressContinue_pushesConfirmMnemonicViewControllerWithAllData() {
+        let words = ["test", "words"]
+        flowCoordinator.didPressContinue(mnemonicWords: words)
         delay()
         XCTAssertTrue(nav.topViewController is ConfirmMnemonicViewController)
+        let controller = nav.topViewController as! ConfirmMnemonicViewController
+        XCTAssertTrue(controller.delegate === flowCoordinator)
+        XCTAssertEqual(controller.words, words)
     }
 
 }

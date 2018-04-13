@@ -31,9 +31,11 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
 
     func test_viewDidLoad_setsCorrectMnemonic() throws {
         let mnemonicStr = "test mnemonic"
-        try secureStore.saveMnemonic(Mnemonic(mnemonicStr))
+        let mnemonic = Mnemonic(mnemonicStr)
+        try secureStore.saveMnemonic(mnemonic)
         controller.viewDidLoad()
         XCTAssertEqual(controller.mnemonicCopyableLabel.text, mnemonicStr)
+        XCTAssertEqual(controller.words, mnemonic.words)
     }
 
     func test_viewDidLoad_dismissesIfNoEOAisSet() throws {
@@ -50,19 +52,22 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
         XCTAssertNil(controller.view.window)
     }
 
-    func test_continuePressed_callsDelegate() {
+    func test_continuePressed_callsDelegate() throws {
+        let mnemonicWords = ["test", "mnemonic"]
+        try secureStore.saveMnemonic(Mnemonic(mnemonicWords))
+        controller.viewDidLoad()
         controller.continuePressed(self)
-        XCTAssertTrue(delegate.didContinue)
+        XCTAssertEqual(delegate.mnemonicWords, mnemonicWords)
     }
 
 }
 
 final class MockSaveMnemonicDelegate: SaveMnemonicDelegate {
 
-    var didContinue = false
+    var mnemonicWords: [String] = []
 
-    func didPressContinue() {
-        didContinue = true
+    func didPressContinue(mnemonicWords: [String]) {
+        self.mnemonicWords = mnemonicWords
     }
 
 }
