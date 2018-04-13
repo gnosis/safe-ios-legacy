@@ -40,6 +40,7 @@ class AppDelegateTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.biometricAuthenticationService)
         XCTAssertNotNil(DomainRegistry.clock)
         XCTAssertNotNil(DomainRegistry.logger)
+        XCTAssertNotNil(DomainRegistry.userRepository)
     }
 
 }
