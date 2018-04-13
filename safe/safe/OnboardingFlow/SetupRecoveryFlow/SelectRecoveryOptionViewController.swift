@@ -6,7 +6,7 @@ import UIKit
 import safeUIKit
 import IdentityAccessApplication
 
-protocol SetupRecoveryOptionDelegate: class {
+protocol RecoveryOptionsDelegate: class {
     func didSelectMnemonicRecovery()
 }
 
@@ -16,9 +16,9 @@ class RecoveryOptionsViewController: UIViewController {
     @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var mnemonicRecoveryButton: BigButton!
     @IBOutlet weak var otherRecoveryOptionTemporaryButton: BigButton!
-    weak var delegate: SetupRecoveryOptionDelegate?
+    weak var delegate: RecoveryOptionsDelegate?
 
-    static func create(delegate: SetupRecoveryOptionDelegate) -> RecoveryOptionsViewController {
+    static func create(delegate: RecoveryOptionsDelegate) -> RecoveryOptionsViewController {
         let controller = StoryboardScene.SetupRecovery.selectRecoveryOptionViewController.instantiate()
         controller.delegate = delegate
         return controller
