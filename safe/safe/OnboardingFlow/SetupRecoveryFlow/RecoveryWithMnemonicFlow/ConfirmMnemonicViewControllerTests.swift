@@ -23,7 +23,9 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
         XCTAssertNotNil(controller.titleLabel)
         XCTAssertNotNil(controller.descriptionLabel)
         XCTAssertNotNil(controller.firstWordTextInput)
+        XCTAssertTrue(controller.firstWordTextInput.delegate === controller)
         XCTAssertNotNil(controller.secondWordTextInput)
+        XCTAssertTrue(controller.secondWordTextInput.delegate === controller)
         XCTAssertNotNil(controller.firstWordTextInput)
         XCTAssertNotNil(controller.secondWordTextInput)
         XCTAssertNotNil(controller.confirmButton)
@@ -61,9 +63,38 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
         XCTAssertEqual("\(secondWordIndex + 1).", controller.secondWordNumberLabel.text)
     }
 
+    func test_confirm_callsDelegate() {
+        controller.confirm(self)
+        XCTAssertTrue(delegate.confirmed)
+    }
+
+    func test_whenTextInputsHaveNoWords_thenConfirmButtonDisabled() {
+        XCTAssertEqual(controller.firstWordTextInput.text, "")
+        XCTAssertEqual(controller.secondWordTextInput.text, "")
+        XCTAssertFalse(controller.confirmButton.isEnabled)
+    }
+
+    func test_whenTextInputsHaveWrongWords_thenConfirmButtonDisabled() {
+        setTextInputs("wrong", controller.secondMnemonicWordToCheck)
+        XCTAssertFalse(controller.confirmButton.isEnabled)
+        setTextInputs(controller.firstMnemonicWordToCheck, "wrong")
+        XCTAssertFalse(controller.confirmButton.isEnabled)
+    }
+
+    func test_whenTextInputsHaveCorrectWords_thenConfirmButtonEnabled() {
+        setTextInputs(controller.firstMnemonicWordToCheck, controller.secondMnemonicWordToCheck)
+        XCTAssertTrue(controller.confirmButton.isEnabled)
+    }
+
 }
 
 extension ConfirmMnemonicViewControllerTests {
+
+    private func setTextInputs(_ first: String, _ second: String) {
+        controller.firstWordTextInput.text = first
+        controller.secondWordTextInput.text = second
+        controller.textInputDidReturn()
+    }
 
     private func createController(words: [String]) {
         controller = ConfirmMnemonicViewController.create(delegate: delegate, words: words)
