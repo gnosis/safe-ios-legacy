@@ -14,8 +14,12 @@ class InMemoryUserRepositoryTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        user = User(id: repository.nextId(), password: "pass")
-        other = User(id: repository.nextId(), password: "")
+        do {
+            user = try User(id: repository.nextId(), password: "Mypass123")
+            other = try User(id: repository.nextId(), password: "Otherpass123")
+        } catch {
+            XCTFail("Failed to setUp")
+        }
     }
 
     func test_save_makesPrimaryUser() throws {

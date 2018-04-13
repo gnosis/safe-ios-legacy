@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A537ACC207CEDAE00921FB9"
-               BuildableName = "libIdentityAccessImplementations.a"
-               BlueprintName = "IdentityAccessImplementations"
+               BlueprintIdentifier = "0A537BB3207CF9B400921FB9"
+               BuildableName = "IdentityAccessIntegration.app"
+               BlueprintName = "IdentityAccessIntegration"
                ReferencedContainer = "container:IdentityAccess.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A537BFD207CFB9200921FB9"
+               BuildableName = "IdentityAccessApplicationTests.xctest"
+               BlueprintName = "IdentityAccessApplicationTests"
+               ReferencedContainer = "container:IdentityAccess.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A537AA6207CEA0100921FB9"
+               BuildableName = "IdentityAccessDomainModelTests.xctest"
+               BlueprintName = "IdentityAccessDomainModelTests"
+               ReferencedContainer = "container:IdentityAccess.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -52,9 +72,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0A537ACC207CEDAE00921FB9"
-            BuildableName = "libIdentityAccessImplementations.a"
-            BlueprintName = "IdentityAccessImplementations"
+            BlueprintIdentifier = "0A537BB3207CF9B400921FB9"
+            BuildableName = "IdentityAccessIntegration.app"
+            BlueprintName = "IdentityAccessIntegration"
             ReferencedContainer = "container:IdentityAccess.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -71,15 +91,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0A537ACC207CEDAE00921FB9"
-            BuildableName = "libIdentityAccessImplementations.a"
-            BlueprintName = "IdentityAccessImplementations"
+            BlueprintIdentifier = "0A537BB3207CF9B400921FB9"
+            BuildableName = "IdentityAccessIntegration.app"
+            BlueprintName = "IdentityAccessIntegration"
             ReferencedContainer = "container:IdentityAccess.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -89,15 +110,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0A537ACC207CEDAE00921FB9"
-            BuildableName = "libIdentityAccessImplementations.a"
-            BlueprintName = "IdentityAccessImplementations"
+            BlueprintIdentifier = "0A537BB3207CF9B400921FB9"
+            BuildableName = "IdentityAccessIntegration.app"
+            BlueprintName = "IdentityAccessIntegration"
             ReferencedContainer = "container:IdentityAccess.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

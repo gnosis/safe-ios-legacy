@@ -11,7 +11,6 @@ class ApplicationServiceTestCase: XCTestCase {
 
     let authenticationService = AuthenticationApplicationService()
     let identityService = IdentityApplicationService()
-
     let userRepository = InMemoryUserRepository()
 
     override func setUp() {
