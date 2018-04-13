@@ -33,7 +33,11 @@ public class InMemoryUserRepository: UserRepository {
     }
 
     public func nextId() -> UserID {
-        return UserID(UUID().uuidString)
+        do {
+            return try UserID(UUID().uuidString)
+        } catch let e {
+            preconditionFailure("Failed to generate next user ID: \(e)")
+        }
     }
 
     func assertEmptyOrUserExists(_ user: User, otherwise error: Error) throws {

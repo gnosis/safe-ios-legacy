@@ -15,12 +15,14 @@ class DomainRegistryTests: XCTestCase {
         DomainRegistry.put(service: MockClockService(), for: Clock.self)
         DomainRegistry.put(service: MockLogger(), for: Logger.self)
         DomainRegistry.put(service: MockEncryptionService(), for: EncryptionServiceProtocol.self)
+        DomainRegistry.put(service: InMemoryUserRepository(), for: UserRepository.self)
         XCTAssertNotNil(DomainRegistry.keyValueStore)
         XCTAssertNotNil(DomainRegistry.secureStore)
         XCTAssertNotNil(DomainRegistry.biometricAuthenticationService)
         XCTAssertNotNil(DomainRegistry.clock)
         XCTAssertNotNil(DomainRegistry.logger)
         XCTAssertNotNil(DomainRegistry.encryptionService)
+        XCTAssertNotNil(DomainRegistry.userRepository)
     }
 
 }

@@ -7,7 +7,12 @@ import XCTest
 
 class UserTests: DomainTestCase {
 
-    let id = UserID("ID")
+    var id: UserID!
+
+    override func setUp() {
+        super.setUp()
+        id = userRepository.nextId()
+    }
 
     func test_create_passwordNotEmpty() {
         XCTAssertThrowsError(try create(password: "")) {
@@ -35,6 +40,12 @@ class UserTests: DomainTestCase {
     func test_create_digit() {
         XCTAssertThrowsError(try create(password: "abcabC")) {
             self.assertError($0, .passwordMissingDigit)
+        }
+    }
+
+    func test_create_idLength() {
+        XCTAssertThrowsError(try UserID("ID")) {
+            XCTAssertEqual($0 as? UserID.Error, .invalidID)
         }
     }
 

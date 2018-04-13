@@ -7,23 +7,9 @@ import XCTest
 
 class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
 
-    // register user
-
     func test_registerUser_createsUser() throws {
-//        try authenticationService.registerUser(password: "mypass")
-
+        try authenticationService.registerUser(password: "MyPassword1")
+        XCTAssertNotNil(userRepository.primaryUser())
     }
-
-    // configure authentication
-
-    // authenticate user
-
-    // supported auth methods
-
-    // possible auth methods
-
-    // is blocked
-    // is authenticated
-    // session expiration
 
 }

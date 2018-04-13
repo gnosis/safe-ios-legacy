@@ -14,7 +14,7 @@ class DomainTestCase: XCTestCase {
     let mockClockService = MockClockService()
     let logger = MockLogger()
     let encryptionService = MockEncryptionService()
-
+    let userRepository: UserRepository = InMemoryUserRepository()
     override func setUp() {
         super.setUp()
         DomainRegistry.put(service: mockUserDefaults, for: KeyValueStore.self)
@@ -23,6 +23,7 @@ class DomainTestCase: XCTestCase {
         DomainRegistry.put(service: mockClockService, for: Clock.self)
         DomainRegistry.put(service: logger, for: Logger.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionServiceProtocol.self)
+        DomainRegistry.put(service: userRepository, for: UserRepository.self)
     }
 
 }

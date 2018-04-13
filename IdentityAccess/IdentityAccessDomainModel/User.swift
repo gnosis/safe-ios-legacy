@@ -35,12 +35,17 @@ public class User: Equatable, Assertable {
     }
 }
 
-public struct UserID: Hashable {
+public struct UserID: Hashable, Assertable {
 
     public var id: String
 
-    public init(_ id: String) {
+    public enum Error: Swift.Error {
+        case invalidID
+    }
+
+    public init(_ id: String) throws {
         self.id = id
+        try UserID.assertArgument(id.count == 36, Error.invalidID)
     }
 
 }
