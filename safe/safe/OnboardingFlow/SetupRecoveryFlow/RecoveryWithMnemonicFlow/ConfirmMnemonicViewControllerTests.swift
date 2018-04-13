@@ -63,6 +63,12 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
         XCTAssertEqual("\(secondWordIndex + 1).", controller.secondWordNumberLabel.text)
     }
 
+    func test_viewDidLoad_setsFirstTextInputAsFirstResponder() {
+        createWindow(controller)
+        controller.viewDidLoad()
+        XCTAssertTrue(controller.firstWordTextInput.isActive)
+    }
+
     func test_confirm_callsDelegate() {
         controller.confirm(self)
         XCTAssertTrue(delegate.confirmed)
@@ -86,6 +92,12 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
         XCTAssertTrue(controller.confirmButton.isEnabled)
     }
 
+    func test_textInputDidReturn_whenTriggeredByFirstInput_thenSetsSecondInputAsFirstResponder() {
+        createWindow(controller)
+        controller.textInputDidReturn(controller.firstWordTextInput)
+        XCTAssertTrue(controller.secondWordTextInput.isActive)
+    }
+
 }
 
 extension ConfirmMnemonicViewControllerTests {
@@ -106,6 +118,8 @@ extension ConfirmMnemonicViewControllerTests {
             XCTFail("Must have active window")
             return
         }
+        window.rootViewController = UIViewController()
+        window.makeKeyAndVisible()
         window.rootViewController?.present(controller, animated: false)
         delay()
         XCTAssertNotNil(controller.view.window)
