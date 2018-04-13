@@ -93,7 +93,7 @@ extension ConfirmMnemonicViewControllerTests {
     private func setTextInputs(_ first: String, _ second: String) {
         controller.firstWordTextInput.text = first
         controller.secondWordTextInput.text = second
-        controller.textInputDidReturn()
+        controller.textInputDidReturn(controller.secondWordTextInput)
     }
 
     private func createController(words: [String]) {

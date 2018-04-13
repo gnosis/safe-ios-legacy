@@ -142,7 +142,7 @@ class MockTextInputDelegate: TextInputDelegate {
 
     var wasCalled = false
 
-    func textInputDidReturn() {
+    func textInputDidReturn(_ textInput: TextInput) {
         wasCalled = true
     }
 

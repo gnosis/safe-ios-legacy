@@ -47,7 +47,7 @@ final class SetPasswordViewController: UIViewController {
 
 extension SetPasswordViewController: TextInputDelegate {
 
-    func textInputDidReturn() {
+    func textInputDidReturn(_ textInput: TextInput) {
         delegate?.didSetPassword(textInput.text!)
     }
 

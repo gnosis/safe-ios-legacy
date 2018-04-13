@@ -70,7 +70,7 @@ final class ConfirmMnemonicViewController: UIViewController {
 
 extension ConfirmMnemonicViewController: TextInputDelegate {
 
-    func textInputDidReturn() {
+    func textInputDidReturn(_ textInput: TextInput) {
         confirmButton.isEnabled = (firstWordTextInput.text == firstMnemonicWordToCheck) &&
             (secondWordTextInput.text == secondMnemonicWordToCheck)
     }
