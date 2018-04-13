@@ -19,6 +19,13 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
 
     func test_canCreate() {
         XCTAssertNotNil(controller)
+        XCTAssertNotNil(controller.titleLabel)
+        XCTAssertNotNil(controller.descriptionLabel)
+        XCTAssertNotNil(controller.firstWordTextInput)
+        XCTAssertNotNil(controller.secondWordTextInput)
+        XCTAssertNotNil(controller.firstWordTextInput)
+        XCTAssertNotNil(controller.secondWordTextInput)
+        XCTAssertNotNil(controller.confirmButton)
         XCTAssertTrue(controller.delegate === delegate)
     }
 
