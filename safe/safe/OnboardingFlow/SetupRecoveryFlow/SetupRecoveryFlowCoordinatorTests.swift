@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import safe
+import CommonTestSupport
 
 class SetupRecoveryFlowCoordinatorTests: XCTestCase {
 
@@ -17,7 +18,15 @@ class SetupRecoveryFlowCoordinatorTests: XCTestCase {
     }
 
     func test_startViewController() {
-        XCTAssertTrue(nav.topViewController is SelectRecoveryOptionViewController)
+        XCTAssertTrue(nav.topViewController is RecoveryOptionsViewController)
+    }
+
+    func test_didSelectMnemonicRecovery_showsRecoveryWithMnemonicFlowCoordinatorStartVC() {
+        flowCoordinator.didSelectMnemonicRecovery()
+        delay()
+        let fc = RecoveryWithMnemonicFlowCoordinator()
+        let startVC = fc.startViewController(parent: flowCoordinator.rootVC)
+        XCTAssertTrue(type(of: nav.topViewController!) == type(of: startVC))
     }
 
 }

@@ -6,14 +6,19 @@ import UIKit
 
 final class SetupRecoveryFlowCoordinator: FlowCoordinator {
 
+    let recoveryWithMnemonicFlowCoordinator = RecoveryWithMnemonicFlowCoordinator()
+
     override func flowStartController() -> UIViewController {
-        return SelectRecoveryOptionViewController.create(delegate: self)
+        return RecoveryOptionsViewController.create(delegate: self)
     }
 
 }
 
 extension SetupRecoveryFlowCoordinator: SetupRecoveryOptionDelegate {
 
-    func didSelectMnemonicRecovery() {}
+    func didSelectMnemonicRecovery() {
+        let controller = recoveryWithMnemonicFlowCoordinator.startViewController(parent: rootVC)
+        rootVC.pushViewController(controller, animated: true)
+    }
 
 }

@@ -65,6 +65,7 @@
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
 		0AFEDEB22073C7BC002F5924 /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */; };
 		0AFEDEB32073C7BC002F5924 /* safeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0AFFF3F7207F8AC60030200C /* MockIdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */; };
 		55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4A203DAE1D00AD0E1F /* Assets.swift */; };
 		55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */; };
 		55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D522040492200AD0E1F /* SetPasswordViewController.swift */; };
@@ -98,9 +99,13 @@
 		55FEBFAB207E09BA004099AA /* SetupRecoveryFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFAA207E09BA004099AA /* SetupRecoveryFlowCoordinator.swift */; };
 		55FEBFAD207E0A66004099AA /* SelectRecoveryOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFAC207E0A66004099AA /* SelectRecoveryOptionViewController.swift */; };
 		55FEBFAF207E0AB0004099AA /* SetupRecovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FEBFAE207E0AB0004099AA /* SetupRecovery.storyboard */; };
-		55FEBFB1207E0B67004099AA /* SelectRecoveryOptionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFB0207E0B67004099AA /* SelectRecoveryOptionViewControllerTests.swift */; };
+		55FEBFB1207E0B67004099AA /* RecoveryOptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFB0207E0B67004099AA /* RecoveryOptionsViewControllerTests.swift */; };
 		55FEBFB3207E0E7B004099AA /* SetupRecoveryFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFB2207E0E7B004099AA /* SetupRecoveryFlowCoordinatorTests.swift */; };
 		55FEBFB5207E14E4004099AA /* NewSafeFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFB4207E14E4004099AA /* NewSafeFlowCoordinatorTests.swift */; };
+		55FEBFBA207F6F91004099AA /* RecoveryWithMnemonicFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFB9207F6F91004099AA /* RecoveryWithMnemonicFlowCoordinator.swift */; };
+		55FEBFBC207F6FC9004099AA /* RecoveryWithMnemonicFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFBB207F6FC9004099AA /* RecoveryWithMnemonicFlowCoordinatorTests.swift */; };
+		55FEBFBE207F7041004099AA /* SaveMnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFBD207F7041004099AA /* SaveMnemonicViewController.swift */; };
+		55FEBFC0207F7057004099AA /* SaveMnemonicViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFBF207F7057004099AA /* SaveMnemonicViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,6 +255,7 @@
 		0AFEDEAE2073C79C002F5924 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../lib/Fabric.framework; sourceTree = "<group>"; };
 		0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = safeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEDEB42073C80A002F5924 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIdentityApplicationService.swift; sourceTree = "<group>"; };
 		55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerTests.swift; sourceTree = "<group>"; };
 		55147D4A203DAE1D00AD0E1F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sotryboards.swift; sourceTree = "<group>"; };
@@ -289,9 +295,13 @@
 		55FEBFAA207E09BA004099AA /* SetupRecoveryFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupRecoveryFlowCoordinator.swift; sourceTree = "<group>"; };
 		55FEBFAC207E0A66004099AA /* SelectRecoveryOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRecoveryOptionViewController.swift; sourceTree = "<group>"; };
 		55FEBFAE207E0AB0004099AA /* SetupRecovery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetupRecovery.storyboard; sourceTree = "<group>"; };
-		55FEBFB0207E0B67004099AA /* SelectRecoveryOptionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRecoveryOptionViewControllerTests.swift; sourceTree = "<group>"; };
+		55FEBFB0207E0B67004099AA /* RecoveryOptionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryOptionsViewControllerTests.swift; sourceTree = "<group>"; };
 		55FEBFB2207E0E7B004099AA /* SetupRecoveryFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupRecoveryFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55FEBFB4207E14E4004099AA /* NewSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		55FEBFB9207F6F91004099AA /* RecoveryWithMnemonicFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryWithMnemonicFlowCoordinator.swift; sourceTree = "<group>"; };
+		55FEBFBB207F6FC9004099AA /* RecoveryWithMnemonicFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryWithMnemonicFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		55FEBFBD207F7041004099AA /* SaveMnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMnemonicViewController.swift; sourceTree = "<group>"; };
+		55FEBFBF207F7057004099AA /* SaveMnemonicViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMnemonicViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -576,13 +586,26 @@
 		55FEBFA9207E097D004099AA /* SetupRecoveryFlow */ = {
 			isa = PBXGroup;
 			children = (
+				55FEBFB8207F6CFE004099AA /* RecoveryWithMnemonicFlow */,
 				55FEBFAA207E09BA004099AA /* SetupRecoveryFlowCoordinator.swift */,
 				55FEBFB2207E0E7B004099AA /* SetupRecoveryFlowCoordinatorTests.swift */,
 				55FEBFAC207E0A66004099AA /* SelectRecoveryOptionViewController.swift */,
-				55FEBFB0207E0B67004099AA /* SelectRecoveryOptionViewControllerTests.swift */,
+				55FEBFB0207E0B67004099AA /* RecoveryOptionsViewControllerTests.swift */,
+				0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */,
 				55FEBFAE207E0AB0004099AA /* SetupRecovery.storyboard */,
 			);
 			path = SetupRecoveryFlow;
+			sourceTree = "<group>";
+		};
+		55FEBFB8207F6CFE004099AA /* RecoveryWithMnemonicFlow */ = {
+			isa = PBXGroup;
+			children = (
+				55FEBFB9207F6F91004099AA /* RecoveryWithMnemonicFlowCoordinator.swift */,
+				55FEBFBB207F6FC9004099AA /* RecoveryWithMnemonicFlowCoordinatorTests.swift */,
+				55FEBFBD207F7041004099AA /* SaveMnemonicViewController.swift */,
+				55FEBFBF207F7057004099AA /* SaveMnemonicViewControllerTests.swift */,
+			);
+			path = RecoveryWithMnemonicFlow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -833,6 +856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55FEBFBE207F7041004099AA /* SaveMnemonicViewController.swift in Sources */,
 				55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */,
 				0A0455F7204851B100088B5E /* AppFlowCoordinator.swift in Sources */,
 				55FEBFAD207E0A66004099AA /* SelectRecoveryOptionViewController.swift in Sources */,
@@ -845,6 +869,7 @@
 				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
 				0A0455F32048505500088B5E /* MasterPasswordFlowCoordinator.swift in Sources */,
 				0AD93E192048350D008C38CA /* ConfirmPaswordViewController.swift in Sources */,
+				55FEBFBA207F6F91004099AA /* RecoveryWithMnemonicFlowCoordinator.swift in Sources */,
 				55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */,
 				0A0455F120484FD800088B5E /* OnboardingFlowCoordinator.swift in Sources */,
 				558FD80F20766BCD004F070E /* NewSafeFlowCoordinator.swift in Sources */,
@@ -864,9 +889,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55FEBFB1207E0B67004099AA /* SelectRecoveryOptionViewControllerTests.swift in Sources */,
+				55FEBFB1207E0B67004099AA /* RecoveryOptionsViewControllerTests.swift in Sources */,
 				558FD813207672A3004F070E /* PairWithChromeExtensionViewControllerTests.swift in Sources */,
 				0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */,
+				55FEBFBC207F6FC9004099AA /* RecoveryWithMnemonicFlowCoordinatorTests.swift in Sources */,
 				55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */,
 				55FEBFB5207E14E4004099AA /* NewSafeFlowCoordinatorTests.swift in Sources */,
 				0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */,
@@ -874,9 +900,11 @@
 				55FEBFB3207E0E7B004099AA /* SetupRecoveryFlowCoordinatorTests.swift in Sources */,
 				0AE75CDA20611359002D5E2D /* SafeUIKitExtensionsTests.swift in Sources */,
 				0A9A13B52077AAA800E197A1 /* MockAuthenticationService.swift in Sources */,
+				55FEBFC0207F7057004099AA /* SaveMnemonicViewControllerTests.swift in Sources */,
 				55ACFD9D2075092E000F54CC /* FlowCoordinatorTests.swift in Sources */,
 				0AA0C866207B756C0019E282 /* XCTest+Assert.swift in Sources */,
 				0AD93E1B2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift in Sources */,
+				0AFFF3F7207F8AC60030200C /* MockIdentityApplicationService.swift in Sources */,
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
 				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
 				0AA0C863207B756C0019E282 /* XCTestCase+Wait.swift in Sources */,

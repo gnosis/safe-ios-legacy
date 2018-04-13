@@ -52,18 +52,6 @@ public final class TextInput: UIView {
         super.init(frame: frame)
         configure()
     }
-
-    public func addRule(_ localizedDescription: String, validation: ((String) -> Bool)? = nil) {
-        let label = RuleLabel(text: localizedDescription, rule: validation)
-        stackView.addArrangedSubview(label)
-    }
-
-    public override func becomeFirstResponder() -> Bool {
-        super.becomeFirstResponder()
-        isActive = textField.becomeFirstResponder()
-        return isActive
-    }
-
     public override func awakeFromNib() {
         super.awakeFromNib()
         configure()
@@ -91,6 +79,17 @@ public final class TextInput: UIView {
             wrapperView.trailingAnchor.constraint(equalTo: trailingAnchor),
             wrapperView.topAnchor.constraint(equalTo: topAnchor)])
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    public func addRule(_ localizedDescription: String, validation: ((String) -> Bool)? = nil) {
+        let label = RuleLabel(text: localizedDescription, rule: validation)
+        stackView.addArrangedSubview(label)
+    }
+
+    public override func becomeFirstResponder() -> Bool {
+        super.becomeFirstResponder()
+        isActive = textField.becomeFirstResponder()
+        return isActive
     }
 
     public func shake() {
