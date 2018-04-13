@@ -14,13 +14,15 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
         XCTAssertNotNil(userRepository.primaryUser())
     }
 
-//    func test_authenticateUser_whenEmptyThenFails() throws {
-//        let user = try authenticationService.authenticateUser(method: .password, password)
-//        XCTAssertNil(user)
-//    }
+    func test_authenticateUser_whenNotRegisteredThenFails() throws {
+        let result = try authenticationService.authenticateUser(.password(password))
+        XCTAssertEqual(result.status, .failure)
+    }
 
-    // empty password throws
-    // wrong password nils out or returns null user data object
-    // authenticates with encrypted password - from repository
+    func test_authenticateUser_whenPasswordCorrect_thenSuccess() throws {
+        _ = try authenticationService.registerUser(password: password)
+        let result = try authenticationService.authenticateUser(.password(password))
+        XCTAssertEqual(result.status, .success)
+    }
 
 }

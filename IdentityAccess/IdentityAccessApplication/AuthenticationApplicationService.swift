@@ -5,6 +5,7 @@
 import Foundation
 import IdentityAccessDomainModel
 
+@available(*, deprecated, message: "Will be replaced by option set")
 public enum AuthenticationMethod {
     case password
     case touchID
@@ -14,6 +15,48 @@ public enum AuthenticationMethod {
 public struct UserData {
     public var id: String
     public init(_ id: String) { self.id = id }
+}
+
+struct AuthenticationMethod1: OptionSet {
+    let rawValue: Int
+
+    static let password = AuthenticationMethod1(rawValue: 1 << 0)
+    static let touchID = AuthenticationMethod1(rawValue: 1 << 1)
+    static let faceID = AuthenticationMethod1(rawValue: 1 << 2)
+
+    static let biometry: AuthenticationMethod1 = [.touchID, .faceID]
+}
+
+public struct AuthenticationRequest {
+
+    let method: AuthenticationMethod1
+    var password: String!
+
+    private init(_ method: AuthenticationMethod1, _ password: String? = nil) {
+        precondition(method == .biometry && password == nil ||
+            method == .password && password != nil, "Invalid authentication request")
+        self.method = method
+        self.password = password
+    }
+
+    public static func biometry() -> AuthenticationRequest {
+        return AuthenticationRequest(.biometry)
+    }
+
+    public static func password(_ password: String) -> AuthenticationRequest {
+        return AuthenticationRequest(.password, password)
+    }
+
+}
+
+public enum AuthenticationStatus: Hashable {
+    case success
+    case failure
+    case blocked
+}
+
+public struct AuthenticationResult {
+    var status: AuthenticationStatus
 }
 
 open class AuthenticationApplicationService {
@@ -56,11 +99,13 @@ open class AuthenticationApplicationService {
 
     // MARK: - Commands
 
-    open func authenticateUser(method: AuthenticationMethod, _ password: String? = nil) throws -> UserData? {
-        if let user = userRepository.primaryUser() {
-            return UserData(user.userID.id)
-        }
-        return nil
+    public enum Error: Swift.Error, Hashable {
+        case emptyPassword
+    }
+
+    open func authenticateUser(_ request: AuthenticationRequest) throws -> AuthenticationResult {
+        let user = try DomainRegistry.identityService.authenticateUser(password: request.password)
+        return .init(status: user != nil ? .success : .failure)
     }
 
     @available(*, deprecated, message: "Use authenticateUser(method:) method")
@@ -89,9 +134,7 @@ open class AuthenticationApplicationService {
     }
 
     open func registerUser(password: String) throws {
-//        let user = try User(id: userRepository.nextId(), password: password)
-//        try userRepository.save(user)
-//        try biometricService.activate()
+        _ = try DomainRegistry.identityService.registerUser(password: password)
     }
 
     open func configureSession(_ duration: TimeInterval) {

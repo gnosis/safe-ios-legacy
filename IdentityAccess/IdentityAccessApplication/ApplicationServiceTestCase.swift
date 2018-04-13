@@ -33,6 +33,7 @@ class ApplicationServiceTestCase: XCTestCase {
         DomainRegistry.put(service: userRepository, for: UserRepository.self)
         DomainRegistry.put(service: biometricService, for: BiometricAuthenticationService.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionServiceProtocol.self)
+        DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
     }
 
     private func configureAccountDependencies() {
