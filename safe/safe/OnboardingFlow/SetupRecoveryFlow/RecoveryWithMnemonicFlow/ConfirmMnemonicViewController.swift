@@ -25,6 +25,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     private(set) var secondMnemonicWordToCheck = ""
 
     @IBAction func confirm(_ sender: Any) {
+        delegate?.didConfirm()
     }
 
     static func create(delegate: ConfirmMnemonicDelegate, words: [String]) -> ConfirmMnemonicViewController {
@@ -49,6 +50,10 @@ final class ConfirmMnemonicViewController: UIViewController {
                                                   comment: "Description for confirm mnemonic view controller")
         confirmButton.setTitle(NSLocalizedString("recovery.confirm_mnemonic.confirm",
                                                  comment: "Confirm button"), for: .normal)
+        confirmButton.isEnabled = false
+        firstWordTextInput.delegate = self
+        secondWordTextInput.delegate = self
+        _ = firstWordTextInput.becomeFirstResponder()
     }
 
     private func twoRandomWords() -> (String, String) {
@@ -59,6 +64,15 @@ final class ConfirmMnemonicViewController: UIViewController {
         let secondIndex = Int(arc4random_uniform(UInt32(wordsCopy.count)))
         let secondWord = wordsCopy[secondIndex]
         return (firstWord, secondWord)
+    }
+
+}
+
+extension ConfirmMnemonicViewController: TextInputDelegate {
+
+    func textInputDidReturn() {
+        confirmButton.isEnabled = (firstWordTextInput.text == firstMnemonicWordToCheck) &&
+            (secondWordTextInput.text == secondMnemonicWordToCheck)
     }
 
 }
