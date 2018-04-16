@@ -31,4 +31,8 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: EncryptionServiceProtocol.self)
     }
 
+    public static var userRepository: UserRepository {
+        return service(for: UserRepository.self)
+    }
+
 }

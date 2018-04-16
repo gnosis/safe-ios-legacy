@@ -91,6 +91,12 @@
 		0ABCA961207E55CF00E2C193 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA962207E55CF00E2C193 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA963207E55CF00E2C193 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0AFFF40620808A5D0030200C /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40520808A5D0030200C /* UserRepository.swift */; };
+		0AFFF40820808ABD0030200C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40720808ABD0030200C /* User.swift */; };
+		0AFFF40A20808AE30030200C /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40920808AE30030200C /* UserTests.swift */; };
+		0AFFF40E20808C0B0030200C /* InMemoryUserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */; };
+		0AFFF41020808C160030200C /* InMemoryUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */; };
+		0AFFF41120808D400030200C /* AuthenticationApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -343,6 +349,12 @@
 		0A537C02207CFB9200921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A57F6DD207E38D900AF407D /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
+		0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationServiceTests.swift; sourceTree = "<group>"; };
+		0AFFF40520808A5D0030200C /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		0AFFF40720808ABD0030200C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0AFFF40920808AE30030200C /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryUserRepositoryTests.swift; sourceTree = "<group>"; };
+		0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryUserRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,6 +442,8 @@
 				0A537A8D207CE74100921FB9 /* LoggableError.swift */,
 				0A537A85207CE74000921FB9 /* Session.swift */,
 				0A537A7D207CE74000921FB9 /* SessionTests.swift */,
+				0AFFF40720808ABD0030200C /* User.swift */,
+				0AFFF40920808AE30030200C /* UserTests.swift */,
 				0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */,
 				0A537AA2207CE95900921FB9 /* Interfaces */,
 				0A537AB2207CEA3900921FB9 /* XcodeBuildSupport */,
@@ -446,6 +460,7 @@
 				0A537A82207CE74000921FB9 /* KeyValueStore.swift */,
 				0A537A83207CE74000921FB9 /* Logger.swift */,
 				0A537A84207CE74000921FB9 /* SecureStore.swift */,
+				0AFFF40520808A5D0030200C /* UserRepository.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -462,6 +477,7 @@
 		0A537ACE207CEDAE00921FB9 /* IdentityAccessImplementations */ = {
 			isa = PBXGroup;
 			children = (
+				0AFFF40B20808BEA0030200C /* persistence */,
 				0A537B01207CF2D600921FB9 /* biometry */,
 				0A537AFE207CF2D600921FB9 /* clock */,
 				0A537B04207CF2D600921FB9 /* ethereum */,
@@ -573,6 +589,7 @@
 				0A537BEF207CFB1C00921FB9 /* ApplicationServiceRegistry.swift */,
 				0A537BF1207CFB1C00921FB9 /* ApplicationServiceRegistryTests.swift */,
 				0A537BED207CFB1C00921FB9 /* AuthenticationApplicationService.swift */,
+				0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */,
 				0A537BEE207CFB1C00921FB9 /* IdentityApplicationService.swift */,
 				0A537BF2207CFB1C00921FB9 /* IdentityApplicationServiceTests.swift */,
 				0A537BF9207CFB2300921FB9 /* XcodeBuildSupport */,
@@ -639,6 +656,15 @@
 				0A537AEA207CF0F900921FB9 /* libCommon.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0AFFF40B20808BEA0030200C /* persistence */ = {
+			isa = PBXGroup;
+			children = (
+				0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */,
+				0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */,
+			);
+			path = persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -988,11 +1014,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AFFF40620808A5D0030200C /* UserRepository.swift in Sources */,
 				0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */,
 				0A537A98207CE74100921FB9 /* DomainRegistry.swift in Sources */,
 				0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */,
 				0A537A99207CE74100921FB9 /* Clock.swift in Sources */,
 				0A537A94207CE74100921FB9 /* Logger.swift in Sources */,
+				0AFFF40820808ABD0030200C /* User.swift in Sources */,
 				0A537A9B207CE74100921FB9 /* EncryptionService.swift in Sources */,
 				0A537A97207CE74100921FB9 /* EthereumAccount.swift in Sources */,
 				0A537A8F207CE74100921FB9 /* Account.swift in Sources */,
@@ -1009,6 +1037,7 @@
 			files = (
 				0A537AB7207CEBB100921FB9 /* DomainTestCase.swift in Sources */,
 				0A537AB6207CEAC700921FB9 /* SessionTests.swift in Sources */,
+				0AFFF40A20808AE30030200C /* UserTests.swift in Sources */,
 				0A537AB3207CEAC700921FB9 /* MockAccount.swift in Sources */,
 				0A537AB5207CEAC700921FB9 /* DomainRegistryTests.swift in Sources */,
 				0A537AB4207CEAC700921FB9 /* AccountTests.swift in Sources */,
@@ -1027,6 +1056,7 @@
 				0A537ADC207CEE1100921FB9 /* MockKeychain.swift in Sources */,
 				0A537B16207CF2D600921FB9 /* SystemClockService.swift in Sources */,
 				0A537B14207CF2D600921FB9 /* KeychainService.swift in Sources */,
+				0AFFF41020808C160030200C /* InMemoryUserRepository.swift in Sources */,
 				0A537B13207CF2D600921FB9 /* LogService.swift in Sources */,
 				0A537AE7207CF00D00921FB9 /* MockEncryptionService.swift in Sources */,
 				0A537B1D207CF2D600921FB9 /* UserDefaultsService.swift in Sources */,
@@ -1047,6 +1077,7 @@
 				0A537BAB207CF96500921FB9 /* CrashlyticsLoggerTests.swift in Sources */,
 				0A537BAE207CF97300921FB9 /* LogServiceTests.swift in Sources */,
 				0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */,
+				0AFFF40E20808C0B0030200C /* InMemoryUserRepositoryTests.swift in Sources */,
 				0A537BAC207CF96B00921FB9 /* LogFormatterTests.swift in Sources */,
 				0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */,
 				0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */,
@@ -1089,6 +1120,7 @@
 			files = (
 				0A537C12207CFCB000921FB9 /* ApplicationServiceTestCase.swift in Sources */,
 				0A537C13207CFCF600921FB9 /* ApplicationServiceRegistryTests.swift in Sources */,
+				0AFFF41120808D400030200C /* AuthenticationApplicationServiceTests.swift in Sources */,
 				0A537C14207CFCFA00921FB9 /* IdentityApplicationServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
