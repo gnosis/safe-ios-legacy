@@ -4,16 +4,29 @@
 
 import XCTest
 @testable import safe
-import IdentityAccessDomainModel
+import CommonTestSupport
 
 class NewSafeFlowCoordinatorTests: SafeTestCase {
 
     let newSafeFlowCoordinator = NewSafeFlowCoordinator()
     let nav = UINavigationController()
 
+    override func setUp() {
+        super.setUp()
+        let startVC = newSafeFlowCoordinator.startViewController(parent: nav)
+        nav.pushViewController(startVC, animated: false)
+    }
+
     func test_startViewController_returnsSetupSafeStartVC() {
-        XCTAssertTrue(type(of: newSafeFlowCoordinator.setupRecoveryFlowCoordinator.startViewController(parent: nav)) ==
-            type(of: newSafeFlowCoordinator.startViewController(parent: nav)))
+        XCTAssertTrue(nav.topViewController is RecoveryOptionsViewController)
+    }
+
+    func test_didSelectMnemonicRecovery_showsRecoveryWithMnemonicFlowCoordinatorStartVC() {
+        newSafeFlowCoordinator.didSelectMnemonicRecovery()
+        delay()
+        let fc = RecoveryWithMnemonicFlowCoordinator()
+        let startVC = fc.startViewController(parent: newSafeFlowCoordinator.rootVC)
+        XCTAssertTrue(type(of: nav.topViewController!) == type(of: startVC))
     }
 
 }
