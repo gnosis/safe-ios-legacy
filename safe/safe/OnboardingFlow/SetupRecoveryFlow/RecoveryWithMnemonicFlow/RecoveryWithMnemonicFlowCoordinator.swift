@@ -4,7 +4,11 @@
 
 import UIKit
 
+typealias RecoveryWithMnemonicCompletion = () -> Void
+
 final class RecoveryWithMnemonicFlowCoordinator: FlowCoordinator {
+
+    var completion: RecoveryWithMnemonicCompletion?
 
     override func flowStartController() -> UIViewController {
         return SaveMnemonicViewController.create(delegate: self)
@@ -23,6 +27,8 @@ extension RecoveryWithMnemonicFlowCoordinator: SaveMnemonicDelegate {
 
 extension RecoveryWithMnemonicFlowCoordinator: ConfirmMnemonicDelegate {
 
-    func didConfirm() {}
+    func didConfirm() {
+        completion?()
+    }
 
 }

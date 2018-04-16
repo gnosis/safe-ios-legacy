@@ -33,4 +33,11 @@ class RecoveryWithMnemonicFlowCoordinatorTests: XCTestCase {
         XCTAssertEqual(controller.words, words)
     }
 
+    func test_didConfirm_callsCompletion() {
+        var completionCalled = false
+        flowCoordinator.completion = { completionCalled = true }
+        flowCoordinator.didConfirm()
+        XCTAssertTrue(completionCalled)
+    }
+
 }
