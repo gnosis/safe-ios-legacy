@@ -7,27 +7,27 @@ import IdentityAccessApplication
 
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
-    let recoveryWithMnemonicFlowCoordinator = RecoveryWithMnemonicFlowCoordinator()
+    let paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
 
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
 
     override init() {
         super.init()
-        recoveryWithMnemonicFlowCoordinator.completion = recoveryWithMnemonicCompletion
+        paperWalletFlowCoordinator.completion = paperWalletSetupCompletion
     }
 
     override func flowStartController() -> UIViewController {
-        return RecoveryOptionsViewController.create(delegate: self)
+        return NewSafeViewController.create(delegate: self)
     }
 
-    func recoveryWithMnemonicCompletion() {}
+    func paperWalletSetupCompletion() {}
 
 }
 
-extension NewSafeFlowCoordinator: RecoveryOptionsDelegate {
+extension NewSafeFlowCoordinator: NewSafeDelegate {
 
-    func didSelectMnemonicRecovery() {
-        let controller = recoveryWithMnemonicFlowCoordinator.startViewController(parent: rootVC)
+    func didSelectPaperWalletSetup() {
+        let controller = paperWalletFlowCoordinator.startViewController(parent: rootVC)
         rootVC.pushViewController(controller, animated: true)
     }
 

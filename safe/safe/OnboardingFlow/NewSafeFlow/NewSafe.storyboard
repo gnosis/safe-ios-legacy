@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Recovery Options View Controller-->
+        <!--New Safe View Controller-->
         <scene sceneID="d56-LH-0Kc">
             <objects>
-                <viewController storyboardIdentifier="SelectRecoveryOptionViewController" id="oT1-O9-HET" customClass="RecoveryOptionsViewController" customModule="safe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewSafeViewController" id="oT1-O9-HET" customClass="NewSafeViewController" customModule="safe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="anf-fD-Q5G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,15 +30,15 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn0-3F-SUf" customClass="BigButton" customModule="safeUIKit">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Set mnemonic recovery"/>
+                                        <state key="normal" title="Setup Paper Wallet"/>
                                         <connections>
-                                            <action selector="setupMnemonicRecovery:" destination="oT1-O9-HET" eventType="touchUpInside" id="74f-cD-XIB"/>
+                                            <action selector="setupPaperWallet:" destination="oT1-O9-HET" eventType="touchUpInside" id="74f-cD-XIB"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-2s-l1J" customClass="BigButton" customModule="safeUIKit">
                                         <rect key="frame" x="0.0" y="64" width="335" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Other recovery option"/>
+                                        <state key="normal" title="Setup Chrome Extension"/>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -59,9 +59,9 @@
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" id="aPw-Qg-l8a"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="mnemonicRecoveryButton" destination="Yn0-3F-SUf" id="8dz-Wl-kaU"/>
+                        <outlet property="chromeExtensionButton" destination="uZP-2s-l1J" id="t09-nA-B2M"/>
                         <outlet property="nextButton" destination="aPw-Qg-l8a" id="5Vb-gG-h4G"/>
-                        <outlet property="otherRecoveryOptionTemporaryButton" destination="uZP-2s-l1J" id="t09-nA-B2M"/>
+                        <outlet property="paperWalletButton" destination="Yn0-3F-SUf" id="8dz-Wl-kaU"/>
                         <outlet property="titleLabel" destination="jT2-Op-oIr" id="IAX-6d-WeA"/>
                     </connections>
                 </viewController>
@@ -85,7 +85,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hcu-DC-ce9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="24.800000000000001" y="-90.404797601199405"/>
+            <point key="canvasLocation" x="-135" y="-90"/>
         </scene>
         <!--Save Mnemonic View Controller-->
         <scene sceneID="oIx-p6-OEI">
@@ -158,7 +158,7 @@ Only you can recover your account. If you lose your phrase and access to your sa
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZlE-UG-yVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1702" y="-90"/>
+            <point key="canvasLocation" x="1737" y="-90"/>
         </scene>
         <!--Confirm Mnemonic View Controller-->
         <scene sceneID="Kzm-xP-YJN">
@@ -246,7 +246,7 @@ Only you can recover your account. If you lose your phrase and access to your sa
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYK-nm-fF1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2472.8000000000002" y="-91.304347826086968"/>
+            <point key="canvasLocation" x="2662" y="-91"/>
         </scene>
     </scenes>
 </document>

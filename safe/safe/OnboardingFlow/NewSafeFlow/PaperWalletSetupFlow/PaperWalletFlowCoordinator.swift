@@ -4,11 +4,11 @@
 
 import UIKit
 
-typealias RecoveryWithMnemonicCompletion = () -> Void
+typealias PaperWalletSetupCompletion = () -> Void
 
-final class RecoveryWithMnemonicFlowCoordinator: FlowCoordinator {
+final class PaperWalletFlowCoordinator: FlowCoordinator {
 
-    var completion: RecoveryWithMnemonicCompletion?
+    var completion: PaperWalletSetupCompletion?
 
     override func flowStartController() -> UIViewController {
         return SaveMnemonicViewController.create(delegate: self)
@@ -16,7 +16,7 @@ final class RecoveryWithMnemonicFlowCoordinator: FlowCoordinator {
 
 }
 
-extension RecoveryWithMnemonicFlowCoordinator: SaveMnemonicDelegate {
+extension PaperWalletFlowCoordinator: SaveMnemonicDelegate {
 
     func didPressContinue(mnemonicWords: [String]) {
         let controller = ConfirmMnemonicViewController.create(delegate: self, words: mnemonicWords)
@@ -25,7 +25,7 @@ extension RecoveryWithMnemonicFlowCoordinator: SaveMnemonicDelegate {
 
 }
 
-extension RecoveryWithMnemonicFlowCoordinator: ConfirmMnemonicDelegate {
+extension PaperWalletFlowCoordinator: ConfirmMnemonicDelegate {
 
     func didConfirm() {
         completion?()

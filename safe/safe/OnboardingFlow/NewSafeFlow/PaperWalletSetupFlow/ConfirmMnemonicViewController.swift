@@ -24,7 +24,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     private(set) var secondMnemonicWordToCheck = ""
 
     static func create(delegate: ConfirmMnemonicDelegate, words: [String]) -> ConfirmMnemonicViewController {
-        let controller = StoryboardScene.SetupRecovery.confirmMnemonicViewController.instantiate()
+        let controller = StoryboardScene.NewSafe.confirmMnemonicViewController.instantiate()
         controller.delegate = delegate
         controller.words = words
         return controller

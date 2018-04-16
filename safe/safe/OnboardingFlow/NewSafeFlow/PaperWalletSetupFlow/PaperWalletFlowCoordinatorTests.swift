@@ -6,9 +6,9 @@ import XCTest
 @testable import safe
 import CommonTestSupport
 
-class RecoveryWithMnemonicFlowCoordinatorTests: XCTestCase {
+class PaperWalletFlowCoordinatorTests: XCTestCase {
 
-    let flowCoordinator = RecoveryWithMnemonicFlowCoordinator()
+    let flowCoordinator = PaperWalletFlowCoordinator()
     var nav = UINavigationController()
 
     override func setUp() {

@@ -6,44 +6,44 @@ import XCTest
 @testable import safe
 import IdentityAccessApplication
 
-class RecoveryOptionsViewControllerTests: SafeTestCase {
+class NewSafeViewControllerTests: SafeTestCase {
 
     // swiftlint:disable weak_delegate
     private let delegate = MockSetupRecoveryOptionDelegate()
-    private var controller: RecoveryOptionsViewController!
+    private var controller: NewSafeViewController!
 
     override func setUp() {
         super.setUp()
-        controller = RecoveryOptionsViewController.create(delegate: delegate)
+        controller = NewSafeViewController.create(delegate: delegate)
         controller.loadViewIfNeeded()
     }
 
     func test_canCreate() {
         XCTAssertNotNil(controller)
         XCTAssertNotNil(controller.titleLabel)
-        XCTAssertNotNil(controller.mnemonicRecoveryButton)
+        XCTAssertNotNil(controller.paperWalletButton)
     }
 
     func test_setupMnemonicRecovery_whenCalled_theDelegateCalled() {
-        controller.setupMnemonicRecovery(self)
-        XCTAssertTrue(delegate.hasSelectedMnemonicRecovery)
+        controller.setupPaperWallet(self)
+        XCTAssertTrue(delegate.hasSelectedPaperWallet)
     }
 
 }
 
-extension RecoveryOptionsViewControllerTests {
+extension NewSafeViewControllerTests {
 
     private func viewWillAppear() {
         UIApplication.shared.keyWindow?.rootViewController = controller
     }
 }
 
-class MockSetupRecoveryOptionDelegate: RecoveryOptionsDelegate {
+class MockSetupRecoveryOptionDelegate: NewSafeDelegate {
 
-    var hasSelectedMnemonicRecovery = false
+    var hasSelectedPaperWallet = false
 
-    func didSelectMnemonicRecovery() {
-        hasSelectedMnemonicRecovery = true
+    func didSelectPaperWalletSetup() {
+        hasSelectedPaperWallet = true
     }
 
 }

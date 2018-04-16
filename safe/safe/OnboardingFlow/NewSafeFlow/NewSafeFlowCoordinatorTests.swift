@@ -18,13 +18,13 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_startViewController_returnsSetupSafeStartVC() {
-        XCTAssertTrue(nav.topViewController is RecoveryOptionsViewController)
+        XCTAssertTrue(nav.topViewController is NewSafeViewController)
     }
 
     func test_didSelectMnemonicRecovery_showsRecoveryWithMnemonicFlowCoordinatorStartVC() {
-        newSafeFlowCoordinator.didSelectMnemonicRecovery()
+        newSafeFlowCoordinator.didSelectPaperWalletSetup()
         delay()
-        let fc = RecoveryWithMnemonicFlowCoordinator()
+        let fc = PaperWalletFlowCoordinator()
         let startVC = fc.startViewController(parent: newSafeFlowCoordinator.rootVC)
         XCTAssertTrue(type(of: nav.topViewController!) == type(of: startVC))
     }
