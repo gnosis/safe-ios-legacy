@@ -9,6 +9,8 @@ public class InMemorySessionRepository: SessionRepository {
 
     private var session: XSession?
 
+    public init() {}
+
     public func save(_ session: XSession) throws {
         self.session = session
     }

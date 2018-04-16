@@ -60,6 +60,38 @@ class IdentityServiceTests: DomainTestCase {
         XCTAssertNil(try service.authenticateUserBiometrically())
     }
 
+    func test_authenticateUserWithPassword_startsNewSession() throws {
+        try givenRegisteredUser()
+        try service.authenticateUser(password: password)
+        let session = sessionRepository.latestSession()
+        XCTAssertNotNil(session)
+        XCTAssertTrue(session?.isActiveAt(mockClockService.currentTime) ?? false)
+    }
+
+    func test_authenticateUser_whenNotAuthenticated_thenSessionNotStarted() throws {
+        try givenRegisteredUser()
+        try service.authenticateUser(password: password + password)
+        let session = sessionRepository.latestSession()
+        XCTAssertNil(session)
+    }
+
+    func test_authenticateUserWithBiometry_thenStartsNewSession() throws {
+        try givenRegisteredUser()
+        biometricService.allowAuthentication()
+        try service.authenticateUserBiometrically()
+        let session = sessionRepository.latestSession()
+        XCTAssertNotNil(session)
+        XCTAssertTrue(session?.isActiveAt(mockClockService.currentTime) ?? false)
+    }
+
+    func test_authenticateUserWithBiometry_whenFails_thenDoesNotStartSession() throws {
+        try givenRegisteredUser()
+        biometricService.prohibitAuthentication()
+        try service.authenticateUserBiometrically()
+        let session = sessionRepository.latestSession()
+        XCTAssertNil(session)
+    }
+
 }
 
 extension IdentityServiceTests {

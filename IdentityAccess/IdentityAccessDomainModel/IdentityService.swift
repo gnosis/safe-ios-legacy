@@ -24,6 +24,12 @@ public class IdentityService: Assertable {
     private var biometricService: BiometricAuthenticationService {
         return DomainRegistry.biometricAuthenticationService
     }
+    private var sessionRepository: SessionRepository {
+        return DomainRegistry.sessionRepository
+    }
+    private var clockService: Clock {
+        return DomainRegistry.clock
+    }
 
     public init() {}
 
@@ -49,17 +55,31 @@ public class IdentityService: Assertable {
     // on the client side, when some operation has protected access,
     // the client would ask identity & access context whether the primary user has some role.
 
+    public func configure() {}
+
+    @discardableResult
     public func authenticateUser(password: String) throws -> User? {
         try assertArgument(!password.isEmpty, AuthenticationError.emptyPassword)
         let encryptedPassword = encryptionService.encrypted(password)
-        let user = userRepository.user(encryptedPassword: encryptedPassword)
+        guard let user = userRepository.user(encryptedPassword: encryptedPassword) else {
+            return nil
+        }
+        try startSession()
         return user
     }
 
+    private func startSession() throws {
+        let session = try XSession(id: sessionRepository.nextId(), durationInSeconds: 60)
+        try session.start(clockService.currentTime)
+        try sessionRepository.save(session)
+    }
+
+    @discardableResult
     public func authenticateUserBiometrically() throws -> User? {
         let isSuccess = biometricService.authenticate()
         guard isSuccess else { return nil }
-        let user = userRepository.primaryUser()
+        guard let user = userRepository.primaryUser() else { return nil }
+        try startSession()
         return user
     }
 
