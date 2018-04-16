@@ -59,6 +59,7 @@ public struct AuthenticationResult {
     var status: AuthenticationStatus
 }
 
+// this must be responsible for registration and authentication
 open class AuthenticationApplicationService {
 
     private let account: AccountProtocol = Account.shared

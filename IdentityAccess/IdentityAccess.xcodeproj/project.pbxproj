@@ -99,6 +99,9 @@
 		0AFFF41120808D400030200C /* AuthenticationApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */; };
 		0AFFF41C2080BC900030200C /* IdentityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF41B2080BC900030200C /* IdentityService.swift */; };
 		0AFFF41E2080BCB00030200C /* IdentityServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */; };
+		0AFFF42420849EE10030200C /* XSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42320849EE10030200C /* XSessionTests.swift */; };
+		0AFFF42A20849EEA0030200C /* XSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42920849EE90030200C /* XSession.swift */; };
+		0AFFF42C2084BBA30030200C /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42B2084BBA30030200C /* SessionRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -359,6 +362,9 @@
 		0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryUserRepository.swift; sourceTree = "<group>"; };
 		0AFFF41B2080BC900030200C /* IdentityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityService.swift; sourceTree = "<group>"; };
 		0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityServiceTests.swift; sourceTree = "<group>"; };
+		0AFFF42320849EE10030200C /* XSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSessionTests.swift; sourceTree = "<group>"; };
+		0AFFF42920849EE90030200C /* XSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSession.swift; sourceTree = "<group>"; };
+		0AFFF42B2084BBA30030200C /* SessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -451,6 +457,8 @@
 				0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */,
 				0AFFF41B2080BC900030200C /* IdentityService.swift */,
 				0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */,
+				0AFFF42920849EE90030200C /* XSession.swift */,
+				0AFFF42320849EE10030200C /* XSessionTests.swift */,
 				0A537AA2207CE95900921FB9 /* Interfaces */,
 				0A537AB2207CEA3900921FB9 /* XcodeBuildSupport */,
 			);
@@ -467,6 +475,7 @@
 				0A537A83207CE74000921FB9 /* Logger.swift */,
 				0A537A84207CE74000921FB9 /* SecureStore.swift */,
 				0AFFF40520808A5D0030200C /* UserRepository.swift */,
+				0AFFF42B2084BBA30030200C /* SessionRepository.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -1022,9 +1031,11 @@
 			files = (
 				0AFFF40620808A5D0030200C /* UserRepository.swift in Sources */,
 				0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */,
+				0AFFF42C2084BBA30030200C /* SessionRepository.swift in Sources */,
 				0A537A98207CE74100921FB9 /* DomainRegistry.swift in Sources */,
 				0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */,
 				0A537A99207CE74100921FB9 /* Clock.swift in Sources */,
+				0AFFF42A20849EEA0030200C /* XSession.swift in Sources */,
 				0A537A94207CE74100921FB9 /* Logger.swift in Sources */,
 				0AFFF40820808ABD0030200C /* User.swift in Sources */,
 				0A537A9B207CE74100921FB9 /* EncryptionService.swift in Sources */,
@@ -1047,6 +1058,7 @@
 				0AFFF41E2080BCB00030200C /* IdentityServiceTests.swift in Sources */,
 				0AFFF40A20808AE30030200C /* UserTests.swift in Sources */,
 				0A537AB3207CEAC700921FB9 /* MockAccount.swift in Sources */,
+				0AFFF42420849EE10030200C /* XSessionTests.swift in Sources */,
 				0A537AB5207CEAC700921FB9 /* DomainRegistryTests.swift in Sources */,
 				0A537AB4207CEAC700921FB9 /* AccountTests.swift in Sources */,
 			);

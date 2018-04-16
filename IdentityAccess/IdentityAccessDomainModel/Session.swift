@@ -4,6 +4,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Please don't use the session anymore. It will be replaced by another session")
 struct Session {
 
     var isActive: Bool {
