@@ -104,6 +104,8 @@
 		0AFFF42C2084BBA30030200C /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42B2084BBA30030200C /* SessionRepository.swift */; };
 		0AFFF42E2084BF850030200C /* InMemorySessionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */; };
 		0AFFF4302084C01A0030200C /* InMemorySessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42F2084C01A0030200C /* InMemorySessionRepository.swift */; };
+		0AFFF4322084D4630030200C /* SessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF4312084D4630030200C /* SessionConfiguration.swift */; };
+		0AFFF4342084D4DA0030200C /* SessionConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF4332084D4DA0030200C /* SessionConfigurationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -369,6 +371,8 @@
 		0AFFF42B2084BBA30030200C /* SessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRepository.swift; sourceTree = "<group>"; };
 		0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySessionRepositoryTests.swift; sourceTree = "<group>"; };
 		0AFFF42F2084C01A0030200C /* InMemorySessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySessionRepository.swift; sourceTree = "<group>"; };
+		0AFFF4312084D4630030200C /* SessionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionConfiguration.swift; sourceTree = "<group>"; };
+		0AFFF4332084D4DA0030200C /* SessionConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionConfigurationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,6 +464,8 @@
 				0AFFF40920808AE30030200C /* UserTests.swift */,
 				0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */,
 				0AFFF41B2080BC900030200C /* IdentityService.swift */,
+				0AFFF4312084D4630030200C /* SessionConfiguration.swift */,
+				0AFFF4332084D4DA0030200C /* SessionConfigurationTests.swift */,
 				0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */,
 				0AFFF42920849EE90030200C /* XSession.swift */,
 				0AFFF42320849EE10030200C /* XSessionTests.swift */,
@@ -1042,6 +1048,7 @@
 				0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */,
 				0A537A99207CE74100921FB9 /* Clock.swift in Sources */,
 				0AFFF42A20849EEA0030200C /* XSession.swift in Sources */,
+				0AFFF4322084D4630030200C /* SessionConfiguration.swift in Sources */,
 				0A537A94207CE74100921FB9 /* Logger.swift in Sources */,
 				0AFFF40820808ABD0030200C /* User.swift in Sources */,
 				0A537A9B207CE74100921FB9 /* EncryptionService.swift in Sources */,
@@ -1107,6 +1114,7 @@
 				0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */,
 				0AFFF40E20808C0B0030200C /* InMemoryUserRepositoryTests.swift in Sources */,
 				0A537BAC207CF96B00921FB9 /* LogFormatterTests.swift in Sources */,
+				0AFFF4342084D4DA0030200C /* SessionConfigurationTests.swift in Sources */,
 				0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */,
 				0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */,
 				0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */,

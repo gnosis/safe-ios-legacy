@@ -69,7 +69,8 @@ public class IdentityService: Assertable {
     }
 
     private func startSession() throws {
-        let session = try XSession(id: sessionRepository.nextId(), durationInSeconds: 60)
+        let duration: TimeInterval = sessionRepository.sessionConfiguration()?.duration ?? 60
+        let session = try XSession(id: sessionRepository.nextId(), durationInSeconds: duration)
         try session.start(clockService.currentTime)
         try sessionRepository.save(session)
     }

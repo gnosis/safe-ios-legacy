@@ -92,6 +92,17 @@ class IdentityServiceTests: DomainTestCase {
         XCTAssertNil(session)
     }
 
+    func test_authenticateUser_whenAUthenticated_thenSessionConfiguredFromConfiguration() throws {
+        try sessionRepository.save(SessionConfiguration(duration: 5))
+        try givenRegisteredUser()
+        try service.authenticateUser(password: password)
+        guard let session = sessionRepository.latestSession() else {
+            XCTFail("Expected session to exist")
+            return
+        }
+        XCTAssertFalse(session.isActiveAt(mockClockService.currentTime.addingTimeInterval(6)))
+    }
+
 }
 
 extension IdentityServiceTests {
@@ -106,9 +117,7 @@ extension IdentityServiceTests {
         _ = try identityService.registerUser(password: password)
     }
 
-    // time-based authentication expiration
-
-    // block & unblock, configuration
+    // block & unblock
 
     // reset
 

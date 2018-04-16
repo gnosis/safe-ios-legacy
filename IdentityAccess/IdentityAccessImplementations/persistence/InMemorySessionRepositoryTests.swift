@@ -8,14 +8,25 @@ import IdentityAccessDomainModel
 
 class InMemorySessionRepositoryTests: XCTestCase {
 
-    func test_whenSaved_retrievesSavedSession() throws {
-        DomainRegistry.put(service: InMemorySessionRepository(), for: SessionRepository.self)
-        let repository = DomainRegistry.sessionRepository
+    let repository: SessionRepository = InMemorySessionRepository()
+
+    override func setUp() {
+        super.setUp()
+        DomainRegistry.put(service: repository, for: SessionRepository.self)
+    }
+
+    func test_whenSessionSaved_thenItCanBeFetched() throws {
         let session = try XSession(id: repository.nextId(), durationInSeconds: 30)
         try session.start(Date())
         try repository.save(session)
         let savedSession = repository.latestSession()
         XCTAssertEqual(session, savedSession)
+    }
+
+    func test_whenConfigurationSaved_thenItCanBeFetched() throws {
+        let config = try SessionConfiguration(duration: 5)
+        try repository.save(config)
+        XCTAssertEqual(repository.sessionConfiguration(), config)
     }
 
 }

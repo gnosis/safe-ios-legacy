@@ -8,6 +8,7 @@ import IdentityAccessDomainModel
 public class InMemorySessionRepository: SessionRepository {
 
     private var session: XSession?
+    private var configuration: SessionConfiguration?
 
     public init() {}
 
@@ -25,6 +26,14 @@ public class InMemorySessionRepository: SessionRepository {
         } catch let e {
             preconditionFailure("Failed to create session ID: \(e)")
         }
+    }
+
+    public func save(_ configuration: SessionConfiguration) throws {
+        self.configuration = configuration
+    }
+
+    public func sessionConfiguration() -> SessionConfiguration? {
+        return configuration
     }
 
 }
