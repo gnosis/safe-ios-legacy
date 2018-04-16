@@ -4,10 +4,10 @@
 
 import Foundation
 
-protocol SessionRepository {
+public protocol SessionRepository {
 
     func save(_ session: XSession) throws
-    func activeSession() -> XSession?
+    func latestSession() -> XSession?
     func nextId() -> SessionID
 
 }

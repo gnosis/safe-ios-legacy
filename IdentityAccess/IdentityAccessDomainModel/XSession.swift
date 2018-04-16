@@ -5,24 +5,24 @@
 import Foundation
 import Common
 
-struct SessionID: Hashable, Assertable {
+public struct SessionID: Hashable, Assertable {
 
-    let id: String
+    public let id: String
 
-    enum Error: Swift.Error, Hashable {
+    public enum Error: Swift.Error, Hashable {
         case invalidID
     }
 
-    init(_ id: String) throws {
+    public init(_ id: String) throws {
         self.id = id
         try assertTrue(id.count == 36, Error.invalidID)
     }
 
 }
 
-class XSession: Assertable {
+public class XSession: Assertable, Hashable {
 
-    enum Error: Swift.Error, Hashable {
+    public enum Error: Swift.Error, Hashable {
         case invalidDuration
         case sessionWasActiveAlready
         case sessionIsNotActive
@@ -33,15 +33,23 @@ class XSession: Assertable {
     private var startedAt: Date?
     private var endedAt: Date?
     private var updatedAt: Date?
-    let sessionID: SessionID
+    public let sessionID: SessionID
 
-    init(id: SessionID, durationInSeconds: TimeInterval) throws {
+    public var hashValue: Int {
+        return sessionID.hashValue
+    }
+
+    public static func ==(lhs: XSession, rhs: XSession) -> Bool {
+        return lhs.sessionID == rhs.sessionID
+    }
+
+    public init(id: SessionID, durationInSeconds: TimeInterval) throws {
         sessionID = id
         duration = durationInSeconds
         try assertTrue(durationInSeconds > 0, Error.invalidDuration)
     }
 
-    func isActiveAt(_ time: Date) -> Bool {
+    public func isActiveAt(_ time: Date) -> Bool {
         guard endedAt == nil else { return false }
         guard let startTime = startedAt else { return false }
         let endTime: Date
@@ -54,18 +62,18 @@ class XSession: Assertable {
         return activeTimePeriod.contains(time)
     }
 
-    func start(_ time: Date) throws {
+    public func start(_ time: Date) throws {
         try assertNil(endedAt, Error.sessionWasFinishedAlready)
         try assertFalse(isActiveAt(time), Error.sessionWasActiveAlready)
         startedAt = time
     }
 
-    func finish(_ time: Date) throws {
+    public func finish(_ time: Date) throws {
         try assertTrue(isActiveAt(time), Error.sessionIsNotActive)
         endedAt = time
     }
 
-    func renew(_ time: Date) throws {
+    public func renew(_ time: Date) throws {
         try assertTrue(isActiveAt(time), Error.sessionIsNotActive)
         updatedAt = time
     }

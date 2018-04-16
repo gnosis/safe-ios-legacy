@@ -102,6 +102,8 @@
 		0AFFF42420849EE10030200C /* XSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42320849EE10030200C /* XSessionTests.swift */; };
 		0AFFF42A20849EEA0030200C /* XSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42920849EE90030200C /* XSession.swift */; };
 		0AFFF42C2084BBA30030200C /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42B2084BBA30030200C /* SessionRepository.swift */; };
+		0AFFF42E2084BF850030200C /* InMemorySessionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */; };
+		0AFFF4302084C01A0030200C /* InMemorySessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42F2084C01A0030200C /* InMemorySessionRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,6 +367,8 @@
 		0AFFF42320849EE10030200C /* XSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSessionTests.swift; sourceTree = "<group>"; };
 		0AFFF42920849EE90030200C /* XSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSession.swift; sourceTree = "<group>"; };
 		0AFFF42B2084BBA30030200C /* SessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRepository.swift; sourceTree = "<group>"; };
+		0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySessionRepositoryTests.swift; sourceTree = "<group>"; };
+		0AFFF42F2084C01A0030200C /* InMemorySessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySessionRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -678,6 +682,8 @@
 			children = (
 				0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */,
 				0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */,
+				0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */,
+				0AFFF42F2084C01A0030200C /* InMemorySessionRepository.swift */,
 			);
 			path = persistence;
 			sourceTree = "<group>";
@@ -1083,6 +1089,7 @@
 				0A537B0F207CF2D600921FB9 /* LogFormatter.swift in Sources */,
 				0A537AE9207CF02C00921FB9 /* MockLogger.swift in Sources */,
 				0A537B19207CF2D600921FB9 /* BiometricService.swift in Sources */,
+				0AFFF4302084C01A0030200C /* InMemorySessionRepository.swift in Sources */,
 				0A537ADA207CEE1100921FB9 /* InMemoryUserDefaults.swift in Sources */,
 				0A537B11207CF2D600921FB9 /* CrashlyticsLogger.swift in Sources */,
 				0A537AE5207CEFED00921FB9 /* InMemoryKeyValueStore.swift in Sources */,
@@ -1095,6 +1102,7 @@
 			files = (
 				0A537BA8207CF93F00921FB9 /* EthereumAccountTests.swift in Sources */,
 				0A537BAB207CF96500921FB9 /* CrashlyticsLoggerTests.swift in Sources */,
+				0AFFF42E2084BF850030200C /* InMemorySessionRepositoryTests.swift in Sources */,
 				0A537BAE207CF97300921FB9 /* LogServiceTests.swift in Sources */,
 				0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */,
 				0AFFF40E20808C0B0030200C /* InMemoryUserRepositoryTests.swift in Sources */,
