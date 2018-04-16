@@ -18,11 +18,6 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
         DomainRegistry.put(service: secureStore, for: SecureStore.self)
         DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: keyValueStore, for: KeyValueStore.self)
-        cleanup()
-    }
-
-    private func cleanup() {
-        keyValueStore.deleteKey(UserDefaultsKey.isRecoveryOptionSet.rawValue)
     }
 
     func test_getOrCreateEOA_whenEOAIsThere_returnsExistingEOA() throws {
@@ -61,18 +56,6 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
         } catch let e {
             XCTAssertTrue(e is TestError)
         }
-    }
-
-    func test_isRecoverySet() {
-        XCTAssertFalse(identityService.isRecoverySet)
-        keyValueStore.setBool(true, for: UserDefaultsKey.isRecoveryOptionSet.rawValue)
-        XCTAssertTrue(identityService.isRecoverySet)
-    }
-
-    func test_configuredRecoveryOptions() {
-        XCTAssertEqual(identityService.configuredRecoveryOptions, [])
-        keyValueStore.setBool(true, for: UserDefaultsKey.isMnemonicRecoverySet.rawValue)
-        XCTAssertEqual(identityService.configuredRecoveryOptions, .mnemonic)
     }
 
 }

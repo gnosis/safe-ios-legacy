@@ -6,7 +6,7 @@ import XCTest
 @testable import safe
 import IdentityAccessApplication
 
-class RecoveryOptionsViewControllerTests: XCTestCase {
+class RecoveryOptionsViewControllerTests: SafeTestCase {
 
     // swiftlint:disable weak_delegate
     private let delegate = MockSetupRecoveryOptionDelegate()
@@ -27,14 +27,6 @@ class RecoveryOptionsViewControllerTests: XCTestCase {
     func test_setupMnemonicRecovery_whenCalled_theDelegateCalled() {
         controller.setupMnemonicRecovery(self)
         XCTAssertTrue(delegate.hasSelectedMnemonicRecovery)
-    }
-
-    func test_whenRecoveryIsSet_thenNextEnabled() {
-        let identityService = MockIdentityApplicationService()
-        ApplicationServiceRegistry.put(service: identityService, for: IdentityApplicationService.self)
-        identityService.setUpRecovery()
-        viewWillAppear()
-        XCTAssertTrue(controller.nextButton.isEnabled)
     }
 
 }

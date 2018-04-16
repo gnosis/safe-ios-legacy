@@ -35,7 +35,6 @@ class RecoveryOptionsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        nextButton.isEnabled = ApplicationServiceRegistry.identityService.isRecoverySet
     }
 
     @IBAction func setupMnemonicRecovery(_ sender: Any) {

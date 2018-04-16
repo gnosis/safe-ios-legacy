@@ -11,9 +11,6 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
     let setupRecoveryFlowCoordinator = SetupRecoveryFlowCoordinator()
 
     override func flowStartController() -> UIViewController {
-        if identityService.isRecoverySet {
-            return PairWithChromeExtensionViewController()
-        }
         return setupRecoveryFlowCoordinator.startViewController(parent: rootVC)
     }
 
