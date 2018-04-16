@@ -16,6 +16,15 @@ public class MockBiometricService: BiometricAuthenticationService {
     public var shouldAuthenticateImmediately = false
 
     public var didActivate = false
+    private var shouldAuthenticate = false
+
+    public func allowAuthentication() {
+        shouldAuthenticate = true
+    }
+
+    public func prohibitAuthentication() {
+        shouldAuthenticate = false
+    }
 
     public init() {}
 
@@ -30,6 +39,10 @@ public class MockBiometricService: BiometricAuthenticationService {
 
     public func activate() throws {
         didActivate = true
+    }
+
+    public func authenticate() -> Bool {
+        return shouldAuthenticate
     }
 
     public func completeActivation() {

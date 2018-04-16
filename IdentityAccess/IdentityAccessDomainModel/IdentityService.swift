@@ -7,27 +7,60 @@ import Common
 
 public class IdentityService: Assertable {
 
-    public enum Error: Swift.Error, Hashable {
-        case emptyPassword
+    public enum RegistrationError: Error, Hashable {
         case userAlreadyRegistered
+    }
+
+    public enum AuthenticationError: Error, Hashable {
+        case emptyPassword
+    }
+
+    private var userRepository: UserRepository {
+        return DomainRegistry.userRepository
+    }
+    private var encryptionService: EncryptionServiceProtocol {
+        return DomainRegistry.encryptionService
+    }
+    private var biometricService: BiometricAuthenticationService {
+        return DomainRegistry.biometricAuthenticationService
     }
 
     public init() {}
 
     public func registerUser(password: String) throws -> User {
-        let isRegistered = DomainRegistry.userRepository.primaryUser() != nil
-        try IdentityService.assertArgument(!isRegistered, Error.userAlreadyRegistered)
-        let encryptedPassword = DomainRegistry.encryptionService.encrypted(password)
-        let user = try User(id: DomainRegistry.userRepository.nextId(), password: encryptedPassword)
-        try DomainRegistry.userRepository.save(user)
-        try DomainRegistry.biometricAuthenticationService.activate()
+        let isRegistered = userRepository.primaryUser() != nil
+        try assertArgument(!isRegistered, RegistrationError.userAlreadyRegistered)
+        let encryptedPassword = encryptionService.encrypted(password)
+        let user = try User(id: userRepository.nextId(), password: encryptedPassword)
+        try userRepository.save(user)
+        try biometricService.activate()
         return user
     }
 
+    // when user signs in, they can use their role
+    // after some period of inactivity their authentication expires
+    // activity period is extended when hasRole() checks are performed
+    // some roles would require password to be supplied
+
+    // after registration, the roles could be provisioned by the client and assigned to the user
+    // roles can have authenticated session scope or one-time usage scope.
+    // for 1-time roles, the password must be supplied
+
+    // on the client side, when some operation has protected access,
+    // the client would ask identity & access context whether the primary user has some role.
+
     public func authenticateUser(password: String) throws -> User? {
-        try IdentityService.assertArgument(!password.isEmpty, Error.emptyPassword)
-        let encryptedPassword = DomainRegistry.encryptionService.encrypted(password)
-        return DomainRegistry.userRepository.user(encryptedPassword: encryptedPassword)
+        try assertArgument(!password.isEmpty, AuthenticationError.emptyPassword)
+        let encryptedPassword = encryptionService.encrypted(password)
+        let user = userRepository.user(encryptedPassword: encryptedPassword)
+        return user
+    }
+
+    public func authenticateUserBiometrically() throws -> User? {
+        let isSuccess = biometricService.authenticate()
+        guard isSuccess else { return nil }
+        let user = userRepository.primaryUser()
+        return user
     }
 
 }

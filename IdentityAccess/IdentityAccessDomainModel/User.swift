@@ -24,11 +24,11 @@ public class User: Equatable, Assertable {
     }
 
     func changePassword(old: String, new password: String) throws {
-        try User.assertArgument(!password.isEmpty, Error.emptyPassword)
-        try User.assertArgument(password.count >= 6, Error.passwordTooShort)
-        try User.assertArgument(password.count <= 100, Error.passwordTooLong)
-        try User.assertArgument(password.hasUppercaseLetter, Error.passwordMissingCapitalLetter)
-        try User.assertArgument(password.hasDecimalDigit, Error.passwordMissingDigit)
+        try assertArgument(!password.isEmpty, Error.emptyPassword)
+        try assertArgument(password.count >= 6, Error.passwordTooShort)
+        try assertArgument(password.count <= 100, Error.passwordTooLong)
+        try assertArgument(password.hasUppercaseLetter, Error.passwordMissingCapitalLetter)
+        try assertArgument(password.hasDecimalDigit, Error.passwordMissingDigit)
         self.password = password
     }
 
@@ -47,7 +47,7 @@ public struct UserID: Hashable, Assertable {
 
     public init(_ id: String) throws {
         self.id = id
-        try UserID.assertArgument(id.count == 36, Error.invalidID)
+        try assertArgument(id.count == 36, Error.invalidID)
     }
 
 }

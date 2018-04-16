@@ -15,6 +15,7 @@ public protocol BiometricAuthenticationService {
     @available(*, deprecated, message: "Use activate() method")
     func activate(completion: @escaping () -> Void)
     func activate() throws
+    @available(*, deprecated, message: "Use authenticate() method")
     func authenticate(completion: @escaping (Bool) -> Void)
-
+    func authenticate() -> Bool
 }

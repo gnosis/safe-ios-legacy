@@ -105,7 +105,7 @@ open class AuthenticationApplicationService {
 
     open func authenticateUser(_ request: AuthenticationRequest) throws -> AuthenticationResult {
         let user = try DomainRegistry.identityService.authenticateUser(password: request.password)
-        return .init(status: user != nil ? .success : .failure)
+        return AuthenticationResult(status: user != nil ? .success : .failure)
     }
 
     @available(*, deprecated, message: "Use authenticateUser(method:) method")
