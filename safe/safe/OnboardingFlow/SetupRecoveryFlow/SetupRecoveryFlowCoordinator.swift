@@ -14,7 +14,7 @@ final class SetupRecoveryFlowCoordinator: FlowCoordinator {
 
 }
 
-extension SetupRecoveryFlowCoordinator: SetupRecoveryOptionDelegate {
+extension SetupRecoveryFlowCoordinator: RecoveryOptionsDelegate {
 
     func didSelectMnemonicRecovery() {
         let controller = recoveryWithMnemonicFlowCoordinator.startViewController(parent: rootVC)

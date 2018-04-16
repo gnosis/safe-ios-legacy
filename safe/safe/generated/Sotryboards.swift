@@ -75,6 +75,8 @@ enum StoryboardScene {
   enum SetupRecovery: StoryboardType {
     static let storyboardName = "SetupRecovery"
 
+    static let confirmMnemonicViewController = SceneType<safe.ConfirmMnemonicViewController>(storyboard: SetupRecovery.self, identifier: "ConfirmMnemonicViewController")
+
     static let navigationController = SceneType<UINavigationController>(storyboard: SetupRecovery.self, identifier: "NavigationController")
 
     static let saveMnemonicViewController = SceneType<safe.SaveMnemonicViewController>(storyboard: SetupRecovery.self, identifier: "SaveMnemonicViewController")

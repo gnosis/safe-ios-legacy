@@ -136,7 +136,7 @@ class UnlockViewControllerTests: SafeTestCase {
 extension UnlockViewControllerTests {
 
     private func hitReturn() {
-        vc.textInputDidReturn()
+        vc.textInputDidReturn(vc.textInput)
         delay()
     }
 

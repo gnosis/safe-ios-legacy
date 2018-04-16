@@ -106,6 +106,8 @@
 		55FEBFBC207F6FC9004099AA /* RecoveryWithMnemonicFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFBB207F6FC9004099AA /* RecoveryWithMnemonicFlowCoordinatorTests.swift */; };
 		55FEBFBE207F7041004099AA /* SaveMnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFBD207F7041004099AA /* SaveMnemonicViewController.swift */; };
 		55FEBFC0207F7057004099AA /* SaveMnemonicViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFBF207F7057004099AA /* SaveMnemonicViewControllerTests.swift */; };
+		55FEBFC3207FB2F9004099AA /* ConfirmMnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFC2207FB2F9004099AA /* ConfirmMnemonicViewController.swift */; };
+		55FEBFC5207FB322004099AA /* ConfirmMnemonicViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFC4207FB322004099AA /* ConfirmMnemonicViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -302,6 +304,8 @@
 		55FEBFBB207F6FC9004099AA /* RecoveryWithMnemonicFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryWithMnemonicFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55FEBFBD207F7041004099AA /* SaveMnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMnemonicViewController.swift; sourceTree = "<group>"; };
 		55FEBFBF207F7057004099AA /* SaveMnemonicViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMnemonicViewControllerTests.swift; sourceTree = "<group>"; };
+		55FEBFC2207FB2F9004099AA /* ConfirmMnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicViewController.swift; sourceTree = "<group>"; };
+		55FEBFC4207FB322004099AA /* ConfirmMnemonicViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -604,6 +608,8 @@
 				55FEBFBB207F6FC9004099AA /* RecoveryWithMnemonicFlowCoordinatorTests.swift */,
 				55FEBFBD207F7041004099AA /* SaveMnemonicViewController.swift */,
 				55FEBFBF207F7057004099AA /* SaveMnemonicViewControllerTests.swift */,
+				55FEBFC2207FB2F9004099AA /* ConfirmMnemonicViewController.swift */,
+				55FEBFC4207FB322004099AA /* ConfirmMnemonicViewControllerTests.swift */,
 			);
 			path = RecoveryWithMnemonicFlow;
 			sourceTree = "<group>";
@@ -864,6 +870,7 @@
 				555DD6D7205148D100D1178A /* UnlockViewController.swift in Sources */,
 				0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */,
 				0AE75CD82061134B002D5E2D /* SafeUIKitExtensions.swift in Sources */,
+				55FEBFC3207FB2F9004099AA /* ConfirmMnemonicViewController.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				55147D6020405BBA00AD0E1F /* Colors.swift in Sources */,
 				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
@@ -898,6 +905,7 @@
 				0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */,
 				55922C5A207BBF7C00BF968F /* SafeTestCase.swift in Sources */,
 				55FEBFB3207E0E7B004099AA /* SetupRecoveryFlowCoordinatorTests.swift in Sources */,
+				55FEBFC5207FB322004099AA /* ConfirmMnemonicViewControllerTests.swift in Sources */,
 				0AE75CDA20611359002D5E2D /* SafeUIKitExtensionsTests.swift in Sources */,
 				0A9A13B52077AAA800E197A1 /* MockAuthenticationService.swift in Sources */,
 				55FEBFC0207F7057004099AA /* SaveMnemonicViewControllerTests.swift in Sources */,

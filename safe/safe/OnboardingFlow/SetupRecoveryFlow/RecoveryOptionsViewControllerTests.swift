@@ -46,7 +46,7 @@ extension RecoveryOptionsViewControllerTests {
     }
 }
 
-class MockSetupRecoveryOptionDelegate: SetupRecoveryOptionDelegate {
+class MockSetupRecoveryOptionDelegate: RecoveryOptionsDelegate {
 
     var hasSelectedMnemonicRecovery = false
 

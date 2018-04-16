@@ -125,6 +125,9 @@ Only you can recover your account. If you lose your phrase and access to your sa
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3Y-9f-AIW">
                                 <rect key="frame" x="111" y="449" width="154" height="30"/>
                                 <state key="normal" title="I understand, continue"/>
+                                <connections>
+                                    <action selector="continuePressed:" destination="FDt-8A-d9p" eventType="touchUpInside" id="h45-6Z-LkY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -156,6 +159,94 @@ Only you can recover your account. If you lose your phrase and access to your sa
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZlE-UG-yVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1702" y="-90"/>
+        </scene>
+        <!--Confirm Mnemonic View Controller-->
+        <scene sceneID="Kzm-xP-YJN">
+            <objects>
+                <viewController storyboardIdentifier="ConfirmMnemonicViewController" id="6df-k4-yRy" customClass="ConfirmMnemonicViewController" customModule="safe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OUc-Oi-nY9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirmation" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2HR-Sn-W86" customClass="H1Label" customModule="safeUIKit">
+                                <rect key="frame" x="20" y="60" width="335" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the following words from the mnemonic." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExC-zY-WT9">
+                                <rect key="frame" x="20" y="143" width="335" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="6RJ-o3-TZA">
+                                <rect key="frame" x="20" y="214" width="30" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="qgq-kB-LTm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="LkB-30-dua">
+                                <rect key="frame" x="20" y="265" width="30" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="laa-B4-8Ji"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOk-8C-8Np" customClass="TextInput" customModule="safeUIKit">
+                                <rect key="frame" x="66" y="209.5" width="289" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="3KA-mz-73c"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJf-ly-PfB" customClass="TextInput" customModule="safeUIKit">
+                                <rect key="frame" x="66" y="260.5" width="289" height="30"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="rXA-sy-f3b"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZOk-8C-8Np" firstAttribute="trailing" secondItem="ExC-zY-WT9" secondAttribute="trailing" id="7ai-Tz-nKx"/>
+                            <constraint firstItem="cJf-ly-PfB" firstAttribute="trailing" secondItem="ZOk-8C-8Np" secondAttribute="trailing" id="8HU-OQ-xge"/>
+                            <constraint firstItem="ExC-zY-WT9" firstAttribute="leading" secondItem="2HR-Sn-W86" secondAttribute="leading" id="8wM-Sp-PVx"/>
+                            <constraint firstItem="ZOk-8C-8Np" firstAttribute="centerY" secondItem="6RJ-o3-TZA" secondAttribute="centerY" id="CnJ-An-PNc"/>
+                            <constraint firstItem="ExC-zY-WT9" firstAttribute="top" secondItem="2HR-Sn-W86" secondAttribute="bottom" constant="40" id="Cvr-fg-G4D"/>
+                            <constraint firstItem="2HR-Sn-W86" firstAttribute="leading" secondItem="5VZ-dU-rzz" secondAttribute="leading" constant="20" id="Dg0-nI-oog"/>
+                            <constraint firstItem="cJf-ly-PfB" firstAttribute="centerY" secondItem="LkB-30-dua" secondAttribute="centerY" id="ZQV-oe-hx2"/>
+                            <constraint firstItem="6RJ-o3-TZA" firstAttribute="leading" secondItem="ExC-zY-WT9" secondAttribute="leading" id="ar5-FW-xzS"/>
+                            <constraint firstItem="LkB-30-dua" firstAttribute="top" secondItem="6RJ-o3-TZA" secondAttribute="bottom" constant="30" id="cfI-lS-RT5"/>
+                            <constraint firstItem="2HR-Sn-W86" firstAttribute="top" secondItem="5VZ-dU-rzz" secondAttribute="top" constant="40" id="e77-yL-E1F"/>
+                            <constraint firstItem="ExC-zY-WT9" firstAttribute="trailing" secondItem="2HR-Sn-W86" secondAttribute="trailing" id="en7-HU-Av3"/>
+                            <constraint firstItem="LkB-30-dua" firstAttribute="leading" secondItem="6RJ-o3-TZA" secondAttribute="leading" id="neI-OR-Bcm"/>
+                            <constraint firstItem="cJf-ly-PfB" firstAttribute="height" secondItem="ZOk-8C-8Np" secondAttribute="height" id="rmn-vO-U6G"/>
+                            <constraint firstItem="cJf-ly-PfB" firstAttribute="leading" secondItem="ZOk-8C-8Np" secondAttribute="leading" id="tyH-Vl-jqW"/>
+                            <constraint firstItem="6RJ-o3-TZA" firstAttribute="top" secondItem="ExC-zY-WT9" secondAttribute="bottom" constant="30" id="uAB-tp-71m"/>
+                            <constraint firstItem="5VZ-dU-rzz" firstAttribute="trailing" secondItem="2HR-Sn-W86" secondAttribute="trailing" constant="20" id="vJX-xc-1w0"/>
+                            <constraint firstItem="ZOk-8C-8Np" firstAttribute="leading" secondItem="6RJ-o3-TZA" secondAttribute="trailing" constant="16" id="z8Y-lh-xb6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5VZ-dU-rzz"/>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="ExC-zY-WT9" id="nI8-4W-V6C"/>
+                        <outlet property="firstWordNumberLabel" destination="6RJ-o3-TZA" id="4tl-Ue-NwG"/>
+                        <outlet property="firstWordTextInput" destination="ZOk-8C-8Np" id="HTx-9s-Khz"/>
+                        <outlet property="secondWordNumberLabel" destination="LkB-30-dua" id="p6w-Nj-8Bp"/>
+                        <outlet property="secondWordTextInput" destination="cJf-ly-PfB" id="ww2-nc-RmN"/>
+                        <outlet property="titleLabel" destination="2HR-Sn-W86" id="SAB-zs-KRB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cYK-nm-fF1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2472.8000000000002" y="-91.304347826086968"/>
         </scene>
     </scenes>
 </document>

@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import safe
+import CommonTestSupport
 
 class RecoveryWithMnemonicFlowCoordinatorTests: XCTestCase {
 
@@ -16,10 +17,20 @@ class RecoveryWithMnemonicFlowCoordinatorTests: XCTestCase {
         nav.pushViewController(startVC, animated: false)
     }
 
-    func test_startViewController_createsCorrectControllerWithDalegate() {
+    func test_startViewController_createsSaveMnemonicViewControllerWithDelegate() {
         XCTAssertTrue(nav.topViewController is SaveMnemonicViewController)
         let controller = nav.topViewController as! SaveMnemonicViewController
         XCTAssertTrue(controller.delegate === flowCoordinator)
+    }
+
+    func test_didPressContinue_pushesConfirmMnemonicViewControllerWithAllData() {
+        let words = ["test", "words"]
+        flowCoordinator.didPressContinue(mnemonicWords: words)
+        delay()
+        XCTAssertTrue(nav.topViewController is ConfirmMnemonicViewController)
+        let controller = nav.topViewController as! ConfirmMnemonicViewController
+        XCTAssertTrue(controller.delegate === flowCoordinator)
+        XCTAssertEqual(controller.words, words)
     }
 
 }

@@ -43,6 +43,12 @@
 /* Start button title */
 "onboarding.start.start" = "Start";
 
+/* Description for confirm mnemonic view controller */
+"recovery.confirm_mnemonic.description" = "Please enter the following words from the mnemonic.";
+
+/* Title for confirm mnemonic view controller */
+"recovery.confirm_mnemonic.title" = "Confirmation";
+
 /* Continue button for save mnemonic screen */
 "recovery.save_mnemonic.continue" = "I understand, continue";
 

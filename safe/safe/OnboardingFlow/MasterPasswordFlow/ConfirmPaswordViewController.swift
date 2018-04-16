@@ -67,7 +67,7 @@ final class ConfirmPaswordViewController: UIViewController {
 
 extension ConfirmPaswordViewController: TextInputDelegate {
 
-    func textInputDidReturn() {
+    func textInputDidReturn(_ textInput: TextInput) {
         let password = textInput.text!
         do {
             try ApplicationServiceRegistry.authenticationService.registerUser(password: password) { [weak self] in

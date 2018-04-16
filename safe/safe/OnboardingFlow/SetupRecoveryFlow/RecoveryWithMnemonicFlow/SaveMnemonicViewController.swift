@@ -6,9 +6,11 @@ import UIKit
 import safeUIKit
 import IdentityAccessApplication
 
-protocol SaveMnemonicDelegate: class {}
+protocol SaveMnemonicDelegate: class {
+    func didPressContinue(mnemonicWords: [String])
+}
 
-class SaveMnemonicViewController: UIViewController {
+final class SaveMnemonicViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var mnemonicCopyableLabel: UILabel!
@@ -16,7 +18,8 @@ class SaveMnemonicViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var continueButton: UIButton!
 
-    weak var delegate: SaveMnemonicDelegate?
+    private(set) weak var delegate: SaveMnemonicDelegate?
+    private(set) var words = [String]()
 
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
 
@@ -26,6 +29,10 @@ class SaveMnemonicViewController: UIViewController {
         return controller
     }
 
+    @IBAction func continuePressed(_ sender: Any) {
+        delegate?.didPressContinue(mnemonicWords: words)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let optionalEOA = try? identityService.getEOA(),
@@ -33,6 +40,7 @@ class SaveMnemonicViewController: UIViewController {
             dismiss(animated: true)
             return
         }
+        words = eoa.mnemonic.words
         titleLabel.text = NSLocalizedString("recovery.save_mnemonic.title", comment: "Title for save mnemonic screen")
         mnemonicCopyableLabel.text = eoa.mnemonic.string()
         saveButton.setTitle(NSLocalizedString("recovery.save_mnemonic.save", comment: "Save Button"), for: .normal)

@@ -6,7 +6,7 @@ import UIKit
 
 public protocol TextInputDelegate: class {
 
-    func textInputDidReturn()
+    func textInputDidReturn(_ textInput: TextInput)
 
 }
 
@@ -121,7 +121,7 @@ extension TextInput: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let shouldReturn = !allRules.contains { $0.status != .success }
         if shouldReturn {
-            delegate?.textInputDidReturn()
+            delegate?.textInputDidReturn(self)
         }
         return shouldReturn
     }

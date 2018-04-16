@@ -89,7 +89,7 @@ final class UnlockViewController: UIViewController {
 
 extension UnlockViewController: TextInputDelegate {
 
-    func textInputDidReturn() {
+    func textInputDidReturn(_ textInput: TextInput) {
         authenticationService.authenticateUser(password: textInput.text!) {
             [unowned self] success in
             DispatchQueue.main.async {
