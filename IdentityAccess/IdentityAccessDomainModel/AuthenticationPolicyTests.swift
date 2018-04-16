@@ -8,12 +8,12 @@ import XCTest
 class AuthenticationPolicyTests: XCTestCase {
 
     func test_canCreate() {
-        XCTAssertNotNil(try AuthenticationPolicy(duration: 5))
+        XCTAssertNotNil(try AuthenticationPolicy(sessionDuration: 5))
     }
 
     func test_durationMustBePositive() {
-        XCTAssertThrowsError(try AuthenticationPolicy(duration: 0))
-        XCTAssertThrowsError(try AuthenticationPolicy(duration: -1))
+        XCTAssertThrowsError(try AuthenticationPolicy(sessionDuration: 0))
+        XCTAssertThrowsError(try AuthenticationPolicy(sessionDuration: -1))
     }
 
 }

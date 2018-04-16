@@ -7,15 +7,15 @@ import Common
 
 public struct AuthenticationPolicy: Hashable, Assertable {
 
-    public var duration: TimeInterval
+    public var sessionDuration: TimeInterval
 
     public enum Error: Swift.Error, Hashable {
         case durationIsNotPositive
     }
 
-    public init(duration: TimeInterval) throws {
-        self.duration = duration
-        try assertTrue(duration > 0, Error.durationIsNotPositive)
+    public init(sessionDuration: TimeInterval) throws {
+        self.sessionDuration = sessionDuration
+        try assertTrue(sessionDuration > 0, Error.durationIsNotPositive)
     }
 
 }
