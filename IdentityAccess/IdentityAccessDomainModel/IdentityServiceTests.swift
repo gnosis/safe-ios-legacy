@@ -93,7 +93,7 @@ class IdentityServiceTests: DomainTestCase {
     }
 
     func test_authenticateUser_whenAUthenticated_thenSessionConfiguredFromConfiguration() throws {
-        try sessionRepository.save(SessionConfiguration(duration: 5))
+        try sessionRepository.save(AuthenticationPolicy(duration: 5))
         try givenRegisteredUser()
         try service.authenticateUser(password: password)
         guard let session = sessionRepository.latestSession() else {

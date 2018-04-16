@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public struct SessionConfiguration: Hashable, Assertable {
+public struct AuthenticationPolicy: Hashable, Assertable {
 
     public var duration: TimeInterval
 

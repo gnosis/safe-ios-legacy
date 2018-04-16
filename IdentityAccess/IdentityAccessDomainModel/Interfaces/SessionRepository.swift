@@ -9,7 +9,7 @@ public protocol SessionRepository {
     func save(_ session: XSession) throws
     func latestSession() -> XSession?
     func nextId() -> SessionID
-    func save(_ configuration: SessionConfiguration) throws
-    func sessionConfiguration() -> SessionConfiguration?
+    func save(_ policy: AuthenticationPolicy) throws
+    func authenticationPolicy() -> AuthenticationPolicy?
 
 }

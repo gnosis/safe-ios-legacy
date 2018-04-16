@@ -8,7 +8,7 @@ import IdentityAccessDomainModel
 public class InMemorySessionRepository: SessionRepository {
 
     private var session: XSession?
-    private var configuration: SessionConfiguration?
+    private var policy: AuthenticationPolicy?
 
     public init() {}
 
@@ -28,12 +28,12 @@ public class InMemorySessionRepository: SessionRepository {
         }
     }
 
-    public func save(_ configuration: SessionConfiguration) throws {
-        self.configuration = configuration
+    public func save(_ policy: AuthenticationPolicy) throws {
+        self.policy = policy
     }
 
-    public func sessionConfiguration() -> SessionConfiguration? {
-        return configuration
+    public func authenticationPolicy() -> AuthenticationPolicy? {
+        return policy
     }
 
 }

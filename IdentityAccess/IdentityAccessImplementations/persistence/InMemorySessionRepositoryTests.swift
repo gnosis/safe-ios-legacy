@@ -24,9 +24,9 @@ class InMemorySessionRepositoryTests: XCTestCase {
     }
 
     func test_whenConfigurationSaved_thenItCanBeFetched() throws {
-        let config = try SessionConfiguration(duration: 5)
-        try repository.save(config)
-        XCTAssertEqual(repository.sessionConfiguration(), config)
+        let policy = try AuthenticationPolicy(duration: 5)
+        try repository.save(policy)
+        XCTAssertEqual(repository.authenticationPolicy(), policy)
     }
 
 }
