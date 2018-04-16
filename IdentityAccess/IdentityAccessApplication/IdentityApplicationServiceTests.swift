@@ -6,6 +6,7 @@ import XCTest
 import IdentityAccessDomainModel
 import CommonTestSupport
 import IdentityAccessImplementations
+@testable import IdentityAccessApplication
 
 class IdentityApplicationServiceTests: ApplicationServiceTestCase {
 
@@ -66,6 +67,12 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
         XCTAssertFalse(identityService.isRecoverySet)
         keyValueStore.setBool(true, for: UserDefaultsKey.isRecoveryOptionSet.rawValue)
         XCTAssertTrue(identityService.isRecoverySet)
+    }
+
+    func test_configuredRecoveryOptions() {
+        XCTAssertEqual(identityService.configuredRecoveryOptions, [])
+        keyValueStore.setBool(true, for: UserDefaultsKey.isMnemonicRecoverySet.rawValue)
+        XCTAssertEqual(identityService.configuredRecoveryOptions, .mnemonic)
     }
 
 }
