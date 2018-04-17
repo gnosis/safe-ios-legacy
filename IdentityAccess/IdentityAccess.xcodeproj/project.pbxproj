@@ -190,6 +190,13 @@
 			remoteGlobalIDString = 0A57F71C207E430F00AF407D;
 			remoteInfo = EthereumKit;
 		};
+		0A666D07208654090034FF66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A537BE0207CFADE00921FB9;
+			remoteInfo = IdentityAccessApplication;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -738,6 +745,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0A666D08208654090034FF66 /* PBXTargetDependency */,
 				0A537AD5207CEDD400921FB9 /* PBXTargetDependency */,
 			);
 			name = IdentityAccessImplementations;
@@ -1010,6 +1018,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
+			showEnvVarsInLog = 0;
 		};
 		0A537C23207D04F200921FB9 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1191,6 +1200,11 @@
 			isa = PBXTargetDependency;
 			target = 0A537BE0207CFADE00921FB9 /* IdentityAccessApplication */;
 			targetProxy = 0A537C04207CFB9200921FB9 /* PBXContainerItemProxy */;
+		};
+		0A666D08208654090034FF66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A537BE0207CFADE00921FB9 /* IdentityAccessApplication */;
+			targetProxy = 0A666D07208654090034FF66 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
