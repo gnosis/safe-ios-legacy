@@ -7,7 +7,7 @@ import IdentityAccessApplication
 import CommonTestSupport
 
 class MockIdentityApplicationService: IdentityApplicationService {
-    
+
     var shouldThrow = false
 
     override func getOrCreateDraftSafe() throws -> DraftSafe {

@@ -16,7 +16,7 @@ final class SetupSafeFlowCoordinator: FlowCoordinator {
 
 extension SetupSafeFlowCoordinator: SetupSafeOptionsDelegate {
 
-    func didSelectNewSafe() {        
+    func didSelectNewSafe() {
         let startVC = newSafeFlowCoordinator.startViewController(parent: rootVC)
         rootVC.pushViewController(startVC, animated: true)
     }

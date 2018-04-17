@@ -5,7 +5,7 @@
 import Foundation
 import IdentityAccessDomainModel
 
-class DraftSafe {
+public class DraftSafe {
 
     static var shared: DraftSafe?
 
@@ -24,7 +24,7 @@ class DraftSafe {
 
     var confirmedAddresses: ConfiguredAddresses
 
-    var paperWalletMnemonicWords: [String] { return paperWallet.mnemonic.words }
+    public var paperWalletMnemonicWords: [String] { return paperWallet.mnemonic.words }
 
     private init(currentDeviceAddress: EthereumAddress, paperWallet: EthereumAccountProtocol) {
         self.currentDeviceAddress = currentDeviceAddress

@@ -10,15 +10,14 @@ import IdentityAccessImplementations
 class DraftSafeTests: XCTestCase {
 
     var paperWallet: EthereumAccountProtocol!
-    var currentDeviceAddress: EthereumAddress!
     var draftSafe: DraftSafe!
 
     override func setUp() {
         super.setUp()
         DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
         paperWallet = EthereumAccountFactory(service: DomainRegistry.encryptionService).generateAccount()
-        currentDeviceAddress = EthereumAccountFactory(service: DomainRegistry.encryptionService).generateAccount().address
-        draftSafe = DraftSafe.create(currentDeviceAddress: currentDeviceAddress, paperWallet: paperWallet)
+        let currentDeviceAccount = EthereumAccountFactory(service: DomainRegistry.encryptionService).generateAccount()
+        draftSafe = DraftSafe.create(currentDeviceAddress: currentDeviceAccount.address, paperWallet: paperWallet)
     }
 
     func test_create_createsSharedInstance() {
