@@ -6,6 +6,7 @@ import XCTest
 import IdentityAccessDomainModel
 import CommonTestSupport
 import IdentityAccessImplementations
+@testable import IdentityAccessApplication
 
 class IdentityApplicationServiceTests: ApplicationServiceTestCase {
 
@@ -55,6 +56,14 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
         } catch let e {
             XCTAssertTrue(e is TestError)
         }
+    }
+
+    func test_getOrCreateDraftSafe_returnsExistingDraftSafe() throws {
+        XCTAssertNil(DraftSafe.shared)
+        let ds1 = try identityService.getOrCreateDraftSafe()
+        XCTAssertNotNil(DraftSafe.shared)
+        let ds2 = try identityService.getOrCreateDraftSafe()
+        XCTAssertTrue(ds1 === ds2)
     }
 
 }
