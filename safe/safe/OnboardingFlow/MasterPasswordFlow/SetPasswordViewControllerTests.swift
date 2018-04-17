@@ -29,7 +29,7 @@ class SetPasswordViewControllerTests: XCTestCase {
     }
 
     func test_whenPasswordSet_thenDelegateCalled() {
-        vc.textInputDidReturn()
+        vc.textInputDidReturn(vc.textInput)
         XCTAssertTrue(delegate.wasCalled)
     }
 

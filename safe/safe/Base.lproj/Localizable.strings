@@ -16,8 +16,8 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "onboarding.fatal.title";
 
-/* Title for selecting recovery option screen */
-"onboarding.recovery_options.title" = "onboarding.recovery_options.title";
+/* Title for new safe screen */
+"onboarding.new_safe.title" = "onboarding.new_safe.title";
 
 /* At least one capital letter rule for password field */
 "onboarding.set_password.capital" = "onboarding.set_password.capital";
@@ -42,6 +42,12 @@
 
 /* Start button title */
 "onboarding.start.start" = "onboarding.start.start";
+
+/* Description for confirm mnemonic view controller */
+"recovery.confirm_mnemonic.description" = "recovery.confirm_mnemonic.description";
+
+/* Title for confirm mnemonic view controller */
+"recovery.confirm_mnemonic.title" = "recovery.confirm_mnemonic.title";
 
 /* Continue button for save mnemonic screen */
 "recovery.save_mnemonic.continue" = "recovery.save_mnemonic.continue";

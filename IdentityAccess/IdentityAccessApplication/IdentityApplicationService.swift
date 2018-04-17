@@ -12,10 +12,6 @@ open class IdentityApplicationService {
 
     public init() {}
 
-    open var isRecoverySet: Bool {
-        return keyValueStore.bool(for: UserDefaultsKey.isRecoveryOptionSet.rawValue) ?? false
-    }
-
     open func getEOA() throws -> ExternallyOwnedAccount? {
         guard let mnemonic = try secureStore.mnemonic() else { return nil }
         let account = EthereumAccountFactory(service: encryptionService).account(from: mnemonic)

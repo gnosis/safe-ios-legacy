@@ -121,7 +121,7 @@ final class UnlockViewController: UIViewController {
 
 extension UnlockViewController: TextInputDelegate {
 
-    func textInputDidReturn() {
+    func textInputDidReturn(_ textInput: TextInput) {
         do {
             let result = try Authenticator.instance.authenticate(.password(textInput.text!))
             if result.status == .success {

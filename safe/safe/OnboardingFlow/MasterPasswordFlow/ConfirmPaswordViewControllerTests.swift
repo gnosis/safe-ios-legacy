@@ -27,13 +27,13 @@ class ConfirmPaswordViewControllerTests: SafeTestCase {
     }
 
     func test_whenDidConfirmPassword_thenUserRegistered() {
-        vc.textInputDidReturn()
+        vc.textInputDidReturn(vc.textInput)
         XCTAssertTrue(authenticationService.isUserRegistered)
     }
 
     func test_whenRegistrationCompleted_thenCallsDelegate() {
         delegate.didConfirm = false
-        vc.textInputDidReturn()
+        vc.textInputDidReturn(vc.textInput)
         delay()
         XCTAssertTrue(delegate.didConfirm)
     }
@@ -41,7 +41,7 @@ class ConfirmPaswordViewControllerTests: SafeTestCase {
     func test_whenRegistrationThrows_thenDelegateNotCalled() {
         delegate.didConfirm = false
         authenticationService.prepareToThrowWhenRegisteringUser()
-        vc.textInputDidReturn()
+        vc.textInputDidReturn(vc.textInput)
         XCTAssertFalse(delegate.didConfirm)
     }
 
@@ -53,7 +53,7 @@ class ConfirmPaswordViewControllerTests: SafeTestCase {
         window.rootViewController = vc
         window.makeKeyAndVisible()
         authenticationService.prepareToThrowWhenRegisteringUser()
-        vc.textInputDidReturn()
+        vc.textInputDidReturn(vc.textInput)
         delay()
         XCTAssertNotNil(vc.presentedViewController)
         XCTAssertTrue(vc.presentedViewController is UIAlertController)

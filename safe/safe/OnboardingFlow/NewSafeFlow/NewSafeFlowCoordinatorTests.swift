@@ -4,22 +4,29 @@
 
 import XCTest
 @testable import safe
-import IdentityAccessDomainModel
+import CommonTestSupport
 
 class NewSafeFlowCoordinatorTests: SafeTestCase {
 
     let newSafeFlowCoordinator = NewSafeFlowCoordinator()
     let nav = UINavigationController()
 
-    func test_startViewController_whenRecoveryIsNotSet_thenReturnsSetupSafeStartVC() {
-        keyValueStore.setBool(false, for: UserDefaultsKey.isRecoveryOptionSet.rawValue)
-        XCTAssertTrue(type(of: newSafeFlowCoordinator.setupRecoveryFlowCoordinator.startViewController(parent: nav)) ==
-            type(of: newSafeFlowCoordinator.startViewController(parent: nav)))
+    override func setUp() {
+        super.setUp()
+        let startVC = newSafeFlowCoordinator.startViewController(parent: nav)
+        nav.pushViewController(startVC, animated: false)
     }
 
-    func test_startViewController_whenRecoveryIsSet_thenReturnsPairWithChromeExtensionVC() {
-        keyValueStore.setBool(true, for: UserDefaultsKey.isRecoveryOptionSet.rawValue)
-        XCTAssertTrue(newSafeFlowCoordinator.startViewController(parent: nav) is PairWithChromeExtensionViewController)
+    func test_startViewController_returnsSetupSafeStartVC() {
+        XCTAssertTrue(nav.topViewController is NewSafeViewController)
+    }
+
+    func test_didSelectMnemonicRecovery_showsRecoveryWithMnemonicFlowCoordinatorStartVC() {
+        newSafeFlowCoordinator.didSelectPaperWalletSetup()
+        delay()
+        let fc = PaperWalletFlowCoordinator()
+        let startVC = fc.startViewController(parent: newSafeFlowCoordinator.rootVC)
+        XCTAssertTrue(type(of: nav.topViewController!) == type(of: startVC))
     }
 
 }
