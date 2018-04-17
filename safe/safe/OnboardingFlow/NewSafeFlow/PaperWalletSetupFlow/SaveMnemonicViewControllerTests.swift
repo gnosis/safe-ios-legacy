@@ -12,10 +12,11 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
     // swiftlint:disable weak_delegate
     private let delegate = MockSaveMnemonicDelegate()
     private var controller: SaveMnemonicViewController!
+    private var words = ["test", "mnemonic"]
 
     override func setUp() {
         super.setUp()
-        controller = SaveMnemonicViewController.create(delegate: delegate)
+        controller = SaveMnemonicViewController.create(words: words, delegate: delegate)
         controller.loadViewIfNeeded()
     }
 
@@ -29,17 +30,14 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
         XCTAssertTrue(controller.delegate === delegate)
     }
 
-    func test_viewDidLoad_setsCorrectMnemonic() throws {
-        let mnemonicStr = "test mnemonic"
-        let mnemonic = Mnemonic(mnemonicStr)
-        try secureStore.saveMnemonic(mnemonic)
-        controller.viewDidLoad()
+    func test_viewDidLoad_setsCorrectWords() {
+        let mnemonicStr = words.joined(separator: " ")
+        XCTAssertEqual(controller.words, words)
         XCTAssertEqual(controller.mnemonicCopyableLabel.text, mnemonicStr)
-        XCTAssertEqual(controller.words, mnemonic.words)
     }
 
-    func test_viewDidLoad_dismissesIfNoEOAisSet() throws {
-        try secureStore.removeMnemonic()
+    func test_viewDidLoad_dismissesIfNoWordsProvided() {
+        controller = SaveMnemonicViewController.create(words: [], delegate: delegate)
         guard let window = UIApplication.shared.keyWindow else {
             XCTFail("Must have active window")
             return
@@ -53,11 +51,8 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
     }
 
     func test_continuePressed_callsDelegate() throws {
-        let mnemonicWords = ["test", "mnemonic"]
-        try secureStore.saveMnemonic(Mnemonic(mnemonicWords))
-        controller.viewDidLoad()
         controller.continuePressed(self)
-        XCTAssertEqual(delegate.mnemonicWords, mnemonicWords)
+        XCTAssertEqual(delegate.mnemonicWords, words)
     }
 
 }

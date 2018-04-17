@@ -12,7 +12,7 @@ open class IdentityApplicationService {
 
     public init() {}
 
-    open func getEOA() throws -> ExternallyOwnedAccount? {
+    private func getEOA() throws -> ExternallyOwnedAccount? {
         guard let mnemonic = try secureStore.mnemonic() else { return nil }
         let account = EthereumAccountFactory(service: encryptionService).account(from: mnemonic)
         return account as? ExternallyOwnedAccount

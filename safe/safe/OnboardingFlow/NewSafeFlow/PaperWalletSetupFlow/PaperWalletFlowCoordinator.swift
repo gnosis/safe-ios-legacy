@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import IdentityAccessApplication
 
 typealias PaperWalletSetupCompletion = () -> Void
 
@@ -10,8 +11,16 @@ final class PaperWalletFlowCoordinator: FlowCoordinator {
 
     var completion: PaperWalletSetupCompletion?
 
+    private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
+
     override func flowStartController() -> UIViewController {
-        return SaveMnemonicViewController.create(delegate: self)
+        var words: [String] = []
+        if let eoa = try? identityService.getOrCreateEOA() {
+            words = eoa.mnemonic.words
+        } else {
+            // TODO: log
+        }
+        return SaveMnemonicViewController.create(words: words, delegate: self)
     }
 
 }

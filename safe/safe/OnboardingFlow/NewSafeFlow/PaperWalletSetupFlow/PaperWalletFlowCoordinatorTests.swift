@@ -5,14 +5,18 @@
 import XCTest
 @testable import safe
 import CommonTestSupport
+import IdentityAccessDomainModel
+import IdentityAccessApplication
 
 class PaperWalletFlowCoordinatorTests: XCTestCase {
 
     let flowCoordinator = PaperWalletFlowCoordinator()
     var nav = UINavigationController()
+    let mockIdentotyService = MockIdentityApplicationService()
 
     override func setUp() {
         super.setUp()
+        DomainRegistry.put(service: mockIdentotyService, for: IdentityApplicationService.self)
         let startVC = flowCoordinator.startViewController(parent: nav)
         nav.pushViewController(startVC, animated: false)
     }
@@ -21,6 +25,12 @@ class PaperWalletFlowCoordinatorTests: XCTestCase {
         XCTAssertTrue(nav.topViewController is SaveMnemonicViewController)
         let controller = nav.topViewController as! SaveMnemonicViewController
         XCTAssertTrue(controller.delegate === flowCoordinator)
+    }
+
+    func test_startViewController_whenIdentityServiceThrows_thenWordsAreEmpty() {
+        mockIdentotyService.shouldThrow = true
+        let startVC = flowCoordinator.startViewController(parent: nav) as! SaveMnemonicViewController
+        XCTAssertTrue(startVC.words.isEmpty)
     }
 
     func test_didPressContinue_pushesConfirmMnemonicViewControllerWithAllData() {

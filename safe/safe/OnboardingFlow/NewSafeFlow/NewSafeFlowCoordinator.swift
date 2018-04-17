@@ -9,8 +9,6 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
 
     let paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
 
-    private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
-
     override init() {
         super.init()
         paperWalletFlowCoordinator.completion = paperWalletSetupCompletion

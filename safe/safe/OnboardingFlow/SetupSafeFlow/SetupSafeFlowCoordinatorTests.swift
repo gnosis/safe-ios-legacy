@@ -24,11 +24,4 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(type(of: setupSafeFlowCoordinator.rootVC.topViewController!) == type(of: newSafeStartVC))
     }
 
-    func test_didSelectNewSafe_shouldCreateEOA() {
-        XCTAssertNil(try! identityService.getEOA())
-        _ = setupSafeFlowCoordinator.startViewController()
-        setupSafeFlowCoordinator.didSelectNewSafe()
-        XCTAssertNotNil(try! identityService.getEOA())
-    }
-
 }

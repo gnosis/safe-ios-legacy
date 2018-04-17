@@ -21,10 +21,9 @@ final class SaveMnemonicViewController: UIViewController {
     private(set) weak var delegate: SaveMnemonicDelegate?
     private(set) var words = [String]()
 
-    private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
-
-    static func create(delegate: SaveMnemonicDelegate) -> SaveMnemonicViewController {
+    static func create(words: [String], delegate: SaveMnemonicDelegate) -> SaveMnemonicViewController {
         let controller = StoryboardScene.NewSafe.saveMnemonicViewController.instantiate()
+        controller.words = words
         controller.delegate = delegate
         return controller
     }
@@ -35,15 +34,13 @@ final class SaveMnemonicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let optionalEOA = try? identityService.getEOA(),
-            let eoa = optionalEOA else {
+        guard !words.isEmpty else {
             dismiss(animated: true)
             return
         }
-        words = eoa.mnemonic.words
         titleLabel.text = NSLocalizedString("new_safe.paper_wallet.title",
                                             comment: "Title for store paper wallet screen")
-        mnemonicCopyableLabel.text = eoa.mnemonic.string()
+        mnemonicCopyableLabel.text = words.joined(separator: " ")
         saveButton.setTitle(NSLocalizedString("new_safe.paper_wallet.save", comment: "Save Button"), for: .normal)
         descriptionLabel.text = NSLocalizedString("new_safe.paper_wallet.description",
                                                   comment: "Description for store paper wallet screen")

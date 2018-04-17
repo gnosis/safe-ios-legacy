@@ -26,7 +26,7 @@ class DraftSafe {
 
     var paperWalletMnemonicWords: [String] { return paperWallet.mnemonic.words }
 
-    init(currentDeviceAddress: EthereumAddress, paperWallet: EthereumAccountProtocol) {
+    private init(currentDeviceAddress: EthereumAddress, paperWallet: EthereumAccountProtocol) {
         self.currentDeviceAddress = currentDeviceAddress
         self.paperWallet = paperWallet
         confirmedAddresses = .currentDevice

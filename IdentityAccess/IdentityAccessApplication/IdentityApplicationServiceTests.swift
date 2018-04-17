@@ -15,6 +15,7 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
 
     override func setUp() {
         super.setUp()
+        DraftSafe.shared = nil
         DomainRegistry.put(service: secureStore, for: SecureStore.self)
         DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: keyValueStore, for: KeyValueStore.self)
@@ -35,23 +36,6 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
         secureStore.shouldThrow = true
         do {
             try _ = identityService.getOrCreateEOA()
-            XCTFail("Should Throw")
-        } catch let e {
-            XCTAssertTrue(e is TestError)
-        }
-    }
-
-    func test_getEOA_whenEOAIsThere_returnsExistingEOA() throws {
-        XCTAssertNil(try identityService.getEOA())
-        let eoa1 = try identityService.getOrCreateEOA()
-        let eoa2 = try identityService.getEOA()
-        XCTAssertEqual(eoa1, eoa2)
-    }
-
-    func test_getEOA_throws() {
-        secureStore.shouldThrow = true
-        do {
-            try _ = identityService.getEOA()
             XCTFail("Should Throw")
         } catch let e {
             XCTAssertTrue(e is TestError)
