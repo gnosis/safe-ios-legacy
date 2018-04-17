@@ -5,10 +5,6 @@
 import Foundation
 import IdentityAccessDomainModel
 
-public struct UserData {
-    public var id: String
-    public init(_ id: String) { self.id = id }
-}
 
 public struct AuthenticationMethod: OptionSet {
 
@@ -54,9 +50,9 @@ public enum AuthenticationStatus: Hashable {
 }
 
 public struct AuthenticationResult {
-    var status: AuthenticationStatus
-    var userID: String!
-    var sessionID: String!
+    public var status: AuthenticationStatus
+    public var userID: String!
+    public var sessionID: String!
 }
 
 // this must be responsible for registration and authentication
@@ -86,11 +82,6 @@ open class AuthenticationApplicationService {
     }
     open var isAuthenticationBlocked: Bool {
         return !gatekeeper.isAccessPossible(at: clock.currentTime)
-    }
-
-    @available(*, deprecated, message: "Use isAuthenticationMethodPossible(.biometry) method")
-    open var isBiometricAuthenticationPossible: Bool {
-        return isAuthenticationMethodPossible(.biometry)
     }
 
     open func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
@@ -203,7 +194,6 @@ open class AuthenticationApplicationService {
             gatekeeper.reset()
             try DomainRegistry.gatekeeperRepository.save(gatekeeper)
         }
-        try account.cleanupAllData()
     }
 
 }

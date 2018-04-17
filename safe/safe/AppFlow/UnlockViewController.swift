@@ -59,7 +59,7 @@ final class UnlockViewController: UIViewController {
     private func updateBiometryButtonVisibility() {
         loginWithBiometryButton.isHidden = !ApplicationServiceRegistry
             .authenticationService
-            .isBiometricAuthenticationPossible
+            .isAuthenticationMethodPossible(.biometry)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -73,15 +73,15 @@ final class UnlockViewController: UIViewController {
 
     private func auhtenticateWithBiometry() {
         guard !authenticationService.isAuthenticationBlocked else { return }
-        authenticationService.authenticateUser {  [unowned self] success in
-            DispatchQueue.main.async {
-                if success {
-                    self.unlockCompletion()
-                } else {
-                    _ = self.textInput.becomeFirstResponder()
-                    self.updateBiometryButtonVisibility()
-                }
+        do {
+            let result = try authenticationService.authenticateUser(.biometry())
+            if result.status == .success {
+                self.unlockCompletion()
+            } else {
+                _ = self.textInput.becomeFirstResponder()
+                self.updateBiometryButtonVisibility()
             }
+        } catch let e {
         }
     }
 
@@ -90,16 +90,15 @@ final class UnlockViewController: UIViewController {
 extension UnlockViewController: TextInputDelegate {
 
     func textInputDidReturn() {
-        authenticationService.authenticateUser(password: textInput.text!) {
-            [unowned self] success in
-            DispatchQueue.main.async {
-                if success {
-                    self.unlockCompletion()
-                } else {
-                    self.textInput.shake()
-                    self.startCountdownIfNeeded()
-                }
+        do {
+            let result = try authenticationService.authenticateUser(.password(textInput.text!))
+            if result.status == .success {
+                self.unlockCompletion()
+            } else {
+                self.textInput.shake()
+                self.startCountdownIfNeeded()
             }
+        } catch let e {
         }
     }
 

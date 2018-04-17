@@ -15,8 +15,8 @@ class MockAuthenticationService: AuthenticationApplicationService {
     private var authenticationAllowed = false
     private(set) var didRequestBiometricAuthentication = false
     private(set) var didRequestPasswordAuthentication = false
-    private var biometricAuthenticationPossible = true
     private var enabledAuthenticationMethods = AuthenticationMethod.password
+    private var possibleAuthenticationMethods: AuthenticationMethod = [.password, .touchID, .faceID]
     private var authenticationBlocked = false
 
     enum Error: Swift.Error { case error }
@@ -63,11 +63,7 @@ class MockAuthenticationService: AuthenticationApplicationService {
     }
 
     func makeBiometricAuthenticationImpossible() {
-        biometricAuthenticationPossible = false
-    }
-
-    override var isBiometricAuthenticationPossible: Bool {
-        return biometricAuthenticationPossible
+        possibleAuthenticationMethods = .password
     }
 
     func enableFaceIDSupport() {
@@ -76,6 +72,10 @@ class MockAuthenticationService: AuthenticationApplicationService {
 
     override func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
         return enabledAuthenticationMethods.contains(method)
+    }
+
+    override func isAuthenticationMethodPossible(_ method: AuthenticationMethod) -> Bool {
+        return !method.isDisjoint(with: possibleAuthenticationMethods)
     }
 
     func blockAuthentication() {
