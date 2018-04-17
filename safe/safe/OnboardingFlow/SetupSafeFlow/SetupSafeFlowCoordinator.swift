@@ -3,11 +3,9 @@
 //
 
 import UIKit
-import IdentityAccessApplication
 
 final class SetupSafeFlowCoordinator: FlowCoordinator {
 
-    private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
     private let newSafeFlowCoordinator = NewSafeFlowCoordinator()
 
     override func flowStartController() -> UIViewController {
@@ -18,8 +16,7 @@ final class SetupSafeFlowCoordinator: FlowCoordinator {
 
 extension SetupSafeFlowCoordinator: SetupSafeOptionsDelegate {
 
-    func didSelectNewSafe() {
-        guard (try? identityService.getOrCreateEOA()) != nil else { return }
+    func didSelectNewSafe() {        
         let startVC = newSafeFlowCoordinator.startViewController(parent: rootVC)
         rootVC.pushViewController(startVC, animated: true)
     }

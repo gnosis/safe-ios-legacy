@@ -18,8 +18,8 @@ final class PaperWalletFlowCoordinator: FlowCoordinator {
     override func flowStartController() -> UIViewController {
         var words: [String] = []
         do {
-            let eoa = try identityService.getOrCreateEOA()
-            words = eoa.mnemonic.words
+            let draftSafe = try identityService.getOrCreateDraftSafe()
+            words = draftSafe.paperWalletMnemonicWords
         } catch let e {
             logger.error("Error in getting EOA", error: e, file: #file, line: #line, function: #function)
         }
