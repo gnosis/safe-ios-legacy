@@ -41,6 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DomainRegistry.put(service: LogService.shared, for: Logger.self)
         DomainRegistry.put(service: InMemoryUserRepository(), for: UserRepository.self)
         DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
+        DomainRegistry.put(service: InMemoryGatekeeperRepository(), for: GatekeeperRepository.self)
+
+        do {
+            try ApplicationServiceRegistry.authenticationService
+                .provisionAuthenticationPolicy(sessionDuration: 60,
+                                               maxPasswordAttempts: 3,
+                                               blockedPeriodDuration: 15)
+        } catch let e {}
     }
 
     private func createWindow() {

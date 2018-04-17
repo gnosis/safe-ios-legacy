@@ -19,6 +19,11 @@ public class InMemoryGatekeeperRepository: GatekeeperRepository {
         _gatekeeper = keeper
     }
 
+    public func remove(_ gatekeeper: Gatekeeper) throws {
+        guard gatekeeper == _gatekeeper else { return }
+        _gatekeeper = nil
+    }
+
     public func nextId() -> GatekeeperID {
         do {
             return try GatekeeperID(UUID().uuidString)

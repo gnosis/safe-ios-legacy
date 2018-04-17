@@ -33,9 +33,6 @@ public class IdentityService: Assertable {
     private var gatekeeperRepository: GatekeeperRepository {
         return DomainRegistry.gatekeeperRepository
     }
-    private var clockService: Clock {
-        return DomainRegistry.clock
-    }
 
     public init() {}
 
@@ -63,8 +60,8 @@ public class IdentityService: Assertable {
     }
 
     @discardableResult
-    public func authenticateUser(password: String) throws -> UserDescriptor? {
-        return try authenticateWith {
+    public func authenticateUser(password: String, at time: Date) throws -> UserDescriptor? {
+        return try authenticate(at: time) {
             try assertArgument(!password.isEmpty, AuthenticationError.emptyPassword)
             let encryptedPassword = encryptionService.encrypted(password)
             let user = userRepository.user(encryptedPassword: encryptedPassword)
@@ -72,11 +69,10 @@ public class IdentityService: Assertable {
         }
     }
 
-    private func authenticateWith(_ authenticate: () throws -> User?) throws -> UserDescriptor? {
+    private func authenticate(at time: Date, _ authenticate: () throws -> User?) throws -> UserDescriptor? {
         guard let gatekeeper = gatekeeperRepository.gatekeeper() else {
             throw AuthenticationError.gatekeeperNotFound
         }
-        let time = clockService.currentTime
         guard gatekeeper.isAccessPossible(at: time) else {
             return nil
         }
@@ -91,8 +87,8 @@ public class IdentityService: Assertable {
     }
 
     @discardableResult
-    public func authenticateUserBiometrically() throws -> UserDescriptor? {
-        return try authenticateWith {
+    public func authenticateUserBiometrically(at time: Date) throws -> UserDescriptor? {
+        return try authenticate(at: time) {
             guard biometricService.authenticate() else { return nil }
             return userRepository.primaryUser()
         }

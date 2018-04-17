@@ -23,7 +23,6 @@ class DomainTestCase: XCTestCase {
         DomainRegistry.put(service: mockUserDefaults, for: KeyValueStore.self)
         DomainRegistry.put(service: keychain, for: SecureStore.self)
         DomainRegistry.put(service: biometricService, for: BiometricAuthenticationService.self)
-        DomainRegistry.put(service: mockClockService, for: Clock.self)
         DomainRegistry.put(service: logger, for: Logger.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: userRepository, for: UserRepository.self)

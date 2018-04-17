@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import IdentityAccessDomainModel
+import IdentityAccessApplication
 
 final class CountdownLabel: UILabel {
 

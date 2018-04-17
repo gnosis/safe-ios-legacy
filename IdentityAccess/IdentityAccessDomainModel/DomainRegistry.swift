@@ -19,10 +19,6 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: BiometricAuthenticationService.self)
     }
 
-    public static var clock: Clock {
-        return service(for: Clock.self)
-    }
-
     public static var logger: Logger {
         return service(for: Logger.self)
     }

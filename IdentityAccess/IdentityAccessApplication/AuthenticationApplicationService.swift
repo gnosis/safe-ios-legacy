@@ -119,7 +119,7 @@ open class AuthenticationApplicationService {
 
     private var gatekeeperRepository: GatekeeperRepository { return DomainRegistry.gatekeeperRepository }
     private var gatekeeper: Gatekeeper! { return gatekeeperRepository.gatekeeper() }
-    private var clock: Clock { return DomainRegistry.clock }
+    private var clock: Clock { return ApplicationServiceRegistry.clock }
     private var identityService: IdentityService { return DomainRegistry.identityService }
 
     private var isAccessPossible: Bool {
@@ -127,11 +127,12 @@ open class AuthenticationApplicationService {
     }
 
     open func authenticateUser(_ request: AuthenticationRequest) throws -> AuthenticationResult {
+        let time = clock.currentTime
         let user: UserDescriptor?
         if request.method == .password {
-            user = try identityService.authenticateUser(password: request.password)
+            user = try identityService.authenticateUser(password: request.password, at: time)
         } else if request.method.isSubset(of: .biometry) {
-            user = try identityService.authenticateUserBiometrically()
+            user = try identityService.authenticateUserBiometrically(at: time)
         } else {
             preconditionFailure("Invalid authentication method in request \(request)")
         }
@@ -167,6 +168,14 @@ open class AuthenticationApplicationService {
     open func configureBlockDuration(_ duration: TimeInterval) throws {
         try gatekeeper.changeBlockDuration(duration)
         try gatekeeperRepository.save(gatekeeper)
+    }
+
+    open func provisionAuthenticationPolicy(sessionDuration: TimeInterval,
+                                            maxPasswordAttempts: Int,
+                                            blockedPeriodDuration: TimeInterval) throws {
+        try identityService.provisionGatekeeper(sessionDuration: sessionDuration,
+                                                maxFailedAttempts: maxPasswordAttempts,
+                                                blockDuration: blockedPeriodDuration)
     }
 
     open func reset() throws {

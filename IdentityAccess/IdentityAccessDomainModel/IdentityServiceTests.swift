@@ -48,35 +48,35 @@ class IdentityServiceTests: DomainTestCase {
     }
 
     func test_authenticateUser_whenEmptyPassword_thenThrowsError() {
-        XCTAssertThrowsError(try service.authenticateUser(password: "")) {
+        XCTAssertThrowsError(try authenticateWithWrongPassword("")) {
             XCTAssertEqual($0 as? IdentityService.AuthenticationError, .emptyPassword)
         }
     }
 
     func test_authenticateUser_whenNotRegistered_thenReturnsNil() {
-        XCTAssertNil(try service.authenticateUser(password: "some"))
+        XCTAssertNil(try authenticateWithCorrectPassword())
     }
 
     func test_authenticateUser_whenCorrectPassword_thenSuccess() throws {
         let user = try givenRegisteredUser()
-        XCTAssertEqual(try service.authenticateUser(password: password)?.userID, user.userID)
+        XCTAssertEqual(try authenticateWithBiometry()?.userID, user.userID)
     }
 
     func test_authenticateUser_whenBiometrySuccess_thenSuccess() throws {
         let user = try givenRegisteredUser()
         biometricService.allowAuthentication()
-        XCTAssertEqual(try service.authenticateUserBiometrically()?.userID, user.userID)
+        XCTAssertEqual(try authenticateWithBiometry()?.userID, user.userID)
     }
 
     func test_authenticateUser_whenBiometryFails_thenFails() throws {
         try givenRegisteredUser()
         biometricService.prohibitAuthentication()
-        XCTAssertNil(try service.authenticateUserBiometrically())
+        XCTAssertNil(try authenticateWithBiometry())
     }
 
     func test_whenAuthenticatedWithPassword_thenHasAccess() throws {
         try givenRegisteredUser()
-        guard let user = try service.authenticateUser(password: password) else {
+        guard let user = try authenticateWithCorrectPassword() else {
             XCTFail("Expected to be authenticated")
             return
         }
@@ -85,7 +85,7 @@ class IdentityServiceTests: DomainTestCase {
 
     func test_whenAuthenticationFailed_thenHasNoAccess() throws {
         try givenRegisteredUser()
-        let user = try service.authenticateUser(password: wrongPassword)
+        let user = try authenticateWithWrongPassword()
         gatekeeper = gatekeeperRepository.gatekeeper()
         XCTAssertNil(user)
         XCTAssertTrue(gatekeeper.isAccessPossible(at: mockClockService.currentTime))
@@ -93,17 +93,15 @@ class IdentityServiceTests: DomainTestCase {
 
     func test_whenAccessImpossible_thenNotAuthenticated() throws {
         try givenRegisteredUser()
-        try service.authenticateUser(password: wrongPassword)
-        try service.authenticateUser(password: wrongPassword)
+        try blockAuthentication()
         gatekeeper = gatekeeperRepository.gatekeeper()
         XCTAssertFalse(gatekeeper.isAccessPossible(at: mockClockService.currentTime))
     }
 
     func test_whenAccessBlocked_andAuthenticatesWIthBiometry_thenHasNoAccess() throws {
         try givenRegisteredUser()
-        try service.authenticateUser(password: wrongPassword)
-        try service.authenticateUser(password: wrongPassword)
-        XCTAssertNil(try service.authenticateUserBiometrically())
+        try blockAuthentication()
+        XCTAssertNil(try authenticateWithBiometry())
     }
 
     func test_provisionGatekeeper_createsOne() throws {
@@ -124,6 +122,26 @@ extension IdentityServiceTests {
 
     private func registerAgain() throws {
         _ = try identityService.registerUser(password: password)
+    }
+
+    private func blockAuthentication() throws {
+        try authenticateWithWrongPassword()
+        try authenticateWithWrongPassword()
+    }
+
+    @discardableResult
+    private func authenticateWithWrongPassword(_ pass: String? = nil) throws -> UserDescriptor? {
+        return try service.authenticateUser(password: pass ?? wrongPassword, at: mockClockService.currentTime)
+    }
+
+    @discardableResult
+    private func authenticateWithCorrectPassword() throws -> UserDescriptor? {
+        return try service.authenticateUser(password: password, at: mockClockService.currentTime)
+    }
+
+    @discardableResult
+    private func authenticateWithBiometry() throws -> UserDescriptor? {
+        return try service.authenticateUserBiometrically(at: mockClockService.currentTime)
     }
 
 }

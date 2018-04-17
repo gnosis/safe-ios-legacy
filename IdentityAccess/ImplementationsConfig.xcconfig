@@ -6,4 +6,4 @@ WORKSPACE_LIB_PATH=${SRCROOT}/../Library/${PLATFORM_NAME}
 FRAMEWORK_SEARCH_PATHS=$(inherited) ${WORKSPACE_LIB_PATH}
 LIBRARY_SEARCH_PATHS=$(inherited) ${WORKSPACE_LIB_PATH}
 HEADER_SEARCH_PATHS=$(inherited) ${WORKSPACE_LIB_PATH}/include
-OTHER_LDFLAGS = $(inherited) -framework "Crashlytics" -framework "Fabric" -lIdentityAccessDomainModel -lsecp256k1 -lcrypto
+OTHER_LDFLAGS = $(inherited) -framework "Crashlytics" -framework "Fabric" -lIdentityAccessDomainModel -lsecp256k1 -lcrypto -lIdentityAccessApplication
