@@ -24,8 +24,8 @@ public class IdentityService: Assertable {
     private var biometricService: BiometricAuthenticationService {
         return DomainRegistry.biometricAuthenticationService
     }
-    private var sessionRepository: SessionRepository {
-        return DomainRegistry.sessionRepository
+    private var gatekeeperRepository: GatekeeperRepository {
+        return DomainRegistry.gatekeeperRepository
     }
     private var clockService: Clock {
         return DomainRegistry.clock
@@ -69,10 +69,10 @@ public class IdentityService: Assertable {
     }
 
     private func startSession() throws {
-        let duration: TimeInterval = sessionRepository.authenticationPolicy()?.sessionDuration ?? 60
-        let session = try XSession(id: sessionRepository.nextId(), durationInSeconds: duration)
-        try session.start(clockService.currentTime)
-        try sessionRepository.save(session)
+//        let duration: TimeInterval = gatekeeperRepository.gatekeeper()?.sessionDuration
+//        let session = try XSession(id: sessionRepository.nextId(), durationInSeconds: duration)
+//        try session.start(clockService.currentTime)
+//        try sessionRepository.save(session)
     }
 
     @discardableResult

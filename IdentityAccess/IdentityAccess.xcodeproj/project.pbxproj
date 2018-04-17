@@ -79,6 +79,7 @@
 		0A57F708207E3D6900AF407D /* Result.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A57F72B207E4CF900AF407D /* CryptoSwift.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A57F72C207E4CF900AF407D /* EthereumKit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0AA4FF912085F46900C82CFE /* AuthenticationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */; };
 		0ABCA958207E55BE00E2C193 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F6F3207E397F00AF407D /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA959207E55BE00E2C193 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA95A207E55BE00E2C193 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -101,11 +102,12 @@
 		0AFFF41E2080BCB00030200C /* IdentityServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */; };
 		0AFFF42420849EE10030200C /* XSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42320849EE10030200C /* XSessionTests.swift */; };
 		0AFFF42A20849EEA0030200C /* XSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42920849EE90030200C /* XSession.swift */; };
-		0AFFF42C2084BBA30030200C /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42B2084BBA30030200C /* SessionRepository.swift */; };
+		0AFFF42C2084BBA30030200C /* GatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */; };
 		0AFFF42E2084BF850030200C /* InMemorySessionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */; };
 		0AFFF4302084C01A0030200C /* InMemorySessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42F2084C01A0030200C /* InMemorySessionRepository.swift */; };
-		0AFFF4322084D4630030200C /* AuthenticationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF4312084D4630030200C /* AuthenticationPolicy.swift */; };
+		0AFFF4322084D4630030200C /* Gatekeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF4312084D4630030200C /* Gatekeeper.swift */; };
 		0AFFF4342084D4DA0030200C /* AuthenticationPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF4332084D4DA0030200C /* AuthenticationPolicyTests.swift */; };
+		0AFFF44D2084FE730030200C /* GatekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF44C2084FE730030200C /* GatekeeperTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -358,6 +360,7 @@
 		0A537C02207CFB9200921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A57F6DD207E38D900AF407D /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
+		0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPolicy.swift; sourceTree = "<group>"; };
 		0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0AFFF40520808A5D0030200C /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		0AFFF40720808ABD0030200C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -368,11 +371,12 @@
 		0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityServiceTests.swift; sourceTree = "<group>"; };
 		0AFFF42320849EE10030200C /* XSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSessionTests.swift; sourceTree = "<group>"; };
 		0AFFF42920849EE90030200C /* XSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSession.swift; sourceTree = "<group>"; };
-		0AFFF42B2084BBA30030200C /* SessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRepository.swift; sourceTree = "<group>"; };
+		0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatekeeperRepository.swift; sourceTree = "<group>"; };
 		0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySessionRepositoryTests.swift; sourceTree = "<group>"; };
 		0AFFF42F2084C01A0030200C /* InMemorySessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySessionRepository.swift; sourceTree = "<group>"; };
-		0AFFF4312084D4630030200C /* AuthenticationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPolicy.swift; sourceTree = "<group>"; };
+		0AFFF4312084D4630030200C /* Gatekeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gatekeeper.swift; sourceTree = "<group>"; };
 		0AFFF4332084D4DA0030200C /* AuthenticationPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPolicyTests.swift; sourceTree = "<group>"; };
+		0AFFF44C2084FE730030200C /* GatekeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatekeeperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,10 +469,12 @@
 				0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */,
 				0AFFF41B2080BC900030200C /* IdentityService.swift */,
 				0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */,
-				0AFFF4312084D4630030200C /* AuthenticationPolicy.swift */,
 				0AFFF4332084D4DA0030200C /* AuthenticationPolicyTests.swift */,
 				0AFFF42920849EE90030200C /* XSession.swift */,
 				0AFFF42320849EE10030200C /* XSessionTests.swift */,
+				0AFFF4312084D4630030200C /* Gatekeeper.swift */,
+				0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */,
+				0AFFF44C2084FE730030200C /* GatekeeperTests.swift */,
 				0A537AA2207CE95900921FB9 /* Interfaces */,
 				0A537AB2207CEA3900921FB9 /* XcodeBuildSupport */,
 			);
@@ -485,7 +491,7 @@
 				0A537A83207CE74000921FB9 /* Logger.swift */,
 				0A537A84207CE74000921FB9 /* SecureStore.swift */,
 				0AFFF40520808A5D0030200C /* UserRepository.swift */,
-				0AFFF42B2084BBA30030200C /* SessionRepository.swift */,
+				0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -1043,12 +1049,12 @@
 			files = (
 				0AFFF40620808A5D0030200C /* UserRepository.swift in Sources */,
 				0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */,
-				0AFFF42C2084BBA30030200C /* SessionRepository.swift in Sources */,
+				0AFFF42C2084BBA30030200C /* GatekeeperRepository.swift in Sources */,
 				0A537A98207CE74100921FB9 /* DomainRegistry.swift in Sources */,
 				0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */,
 				0A537A99207CE74100921FB9 /* Clock.swift in Sources */,
 				0AFFF42A20849EEA0030200C /* XSession.swift in Sources */,
-				0AFFF4322084D4630030200C /* AuthenticationPolicy.swift in Sources */,
+				0AFFF4322084D4630030200C /* Gatekeeper.swift in Sources */,
 				0A537A94207CE74100921FB9 /* Logger.swift in Sources */,
 				0AFFF40820808ABD0030200C /* User.swift in Sources */,
 				0A537A9B207CE74100921FB9 /* EncryptionService.swift in Sources */,
@@ -1059,6 +1065,7 @@
 				0A537A96207CE74100921FB9 /* Session.swift in Sources */,
 				0AFFF41C2080BC900030200C /* IdentityService.swift in Sources */,
 				0A537A9E207CE74100921FB9 /* LoggableError.swift in Sources */,
+				0AA4FF912085F46900C82CFE /* AuthenticationPolicy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1074,6 +1081,7 @@
 				0AFFF42420849EE10030200C /* XSessionTests.swift in Sources */,
 				0A537AB5207CEAC700921FB9 /* DomainRegistryTests.swift in Sources */,
 				0A537AB4207CEAC700921FB9 /* AccountTests.swift in Sources */,
+				0AFFF44D2084FE730030200C /* GatekeeperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

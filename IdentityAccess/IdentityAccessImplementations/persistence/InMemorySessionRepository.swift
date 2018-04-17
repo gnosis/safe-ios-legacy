@@ -5,35 +5,26 @@
 import Foundation
 import IdentityAccessDomainModel
 
-public class InMemorySessionRepository: SessionRepository {
+public class InMemorySessionRepository: GatekeeperRepository {
 
-    private var session: XSession?
-    private var policy: AuthenticationPolicy?
+    private var _gatekeeper: Gatekeeper?
 
     public init() {}
 
-    public func save(_ session: XSession) throws {
-        self.session = session
+    public func gatekeeper() -> Gatekeeper? {
+        return _gatekeeper
     }
 
-    public func latestSession() -> XSession? {
-        return session
+    public func save(_ keeper: Gatekeeper) throws {
+        _gatekeeper = keeper
     }
 
-    public func nextId() -> SessionID {
+    public func nextId() -> GatekeeperID {
         do {
-            return try SessionID(String(repeating: "a", count: 36))
+            return try GatekeeperID(UUID().uuidString)
         } catch let e {
             preconditionFailure("Failed to create session ID: \(e)")
         }
-    }
-
-    public func save(_ policy: AuthenticationPolicy) throws {
-        self.policy = policy
-    }
-
-    public func authenticationPolicy() -> AuthenticationPolicy? {
-        return policy
     }
 
 }
