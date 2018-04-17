@@ -5,7 +5,7 @@
 import Foundation
 import IdentityAccessDomainModel
 
-public class InMemorySessionRepository: GatekeeperRepository {
+public class InMemoryGatekeeperRepository: GatekeeperRepository {
 
     private var _gatekeeper: Gatekeeper?
 

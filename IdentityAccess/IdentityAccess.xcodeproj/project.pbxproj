@@ -104,7 +104,7 @@
 		0AFFF42A20849EEA0030200C /* XSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42920849EE90030200C /* XSession.swift */; };
 		0AFFF42C2084BBA30030200C /* GatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */; };
 		0AFFF42E2084BF850030200C /* InMemorySessionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */; };
-		0AFFF4302084C01A0030200C /* InMemorySessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42F2084C01A0030200C /* InMemorySessionRepository.swift */; };
+		0AFFF4302084C01A0030200C /* InMemoryGatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */; };
 		0AFFF4322084D4630030200C /* Gatekeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF4312084D4630030200C /* Gatekeeper.swift */; };
 		0AFFF4342084D4DA0030200C /* AuthenticationPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF4332084D4DA0030200C /* AuthenticationPolicyTests.swift */; };
 		0AFFF44D2084FE730030200C /* GatekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF44C2084FE730030200C /* GatekeeperTests.swift */; };
@@ -373,7 +373,7 @@
 		0AFFF42920849EE90030200C /* XSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSession.swift; sourceTree = "<group>"; };
 		0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatekeeperRepository.swift; sourceTree = "<group>"; };
 		0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySessionRepositoryTests.swift; sourceTree = "<group>"; };
-		0AFFF42F2084C01A0030200C /* InMemorySessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySessionRepository.swift; sourceTree = "<group>"; };
+		0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryGatekeeperRepository.swift; sourceTree = "<group>"; };
 		0AFFF4312084D4630030200C /* Gatekeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gatekeeper.swift; sourceTree = "<group>"; };
 		0AFFF4332084D4DA0030200C /* AuthenticationPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPolicyTests.swift; sourceTree = "<group>"; };
 		0AFFF44C2084FE730030200C /* GatekeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatekeeperTests.swift; sourceTree = "<group>"; };
@@ -695,7 +695,7 @@
 				0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */,
 				0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */,
 				0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */,
-				0AFFF42F2084C01A0030200C /* InMemorySessionRepository.swift */,
+				0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */,
 			);
 			path = persistence;
 			sourceTree = "<group>";
@@ -1104,7 +1104,7 @@
 				0A537B0F207CF2D600921FB9 /* LogFormatter.swift in Sources */,
 				0A537AE9207CF02C00921FB9 /* MockLogger.swift in Sources */,
 				0A537B19207CF2D600921FB9 /* BiometricService.swift in Sources */,
-				0AFFF4302084C01A0030200C /* InMemorySessionRepository.swift in Sources */,
+				0AFFF4302084C01A0030200C /* InMemoryGatekeeperRepository.swift in Sources */,
 				0A537ADA207CEE1100921FB9 /* InMemoryUserDefaults.swift in Sources */,
 				0A537B11207CF2D600921FB9 /* CrashlyticsLogger.swift in Sources */,
 				0A537AE5207CEFED00921FB9 /* InMemoryKeyValueStore.swift in Sources */,

@@ -5,6 +5,11 @@
 import Foundation
 import Common
 
+public struct UserDescriptor {
+    public let userID: UserID
+    public let sessionID: SessionID
+}
+
 public class IdentityService: Assertable {
 
     public enum RegistrationError: Error, Hashable {
@@ -13,6 +18,7 @@ public class IdentityService: Assertable {
 
     public enum AuthenticationError: Error, Hashable {
         case emptyPassword
+        case gatekeeperNotFound
     }
 
     private var userRepository: UserRepository {
@@ -43,45 +49,39 @@ public class IdentityService: Assertable {
         return user
     }
 
-    // when user signs in, they can use their role
-    // after some period of inactivity their authentication expires
-    // activity period is extended when hasRole() checks are performed
-    // some roles would require password to be supplied
-
-    // after registration, the roles could be provisioned by the client and assigned to the user
-    // roles can have authenticated session scope or one-time usage scope.
-    // for 1-time roles, the password must be supplied
-
-    // on the client side, when some operation has protected access,
-    // the client would ask identity & access context whether the primary user has some role.
-
-    public func configure() {}
-
     @discardableResult
-    public func authenticateUser(password: String) throws -> User? {
-        try assertArgument(!password.isEmpty, AuthenticationError.emptyPassword)
-        let encryptedPassword = encryptionService.encrypted(password)
-        guard let user = userRepository.user(encryptedPassword: encryptedPassword) else {
+    public func authenticateUser(password: String) throws -> UserDescriptor? {
+        return try authenticateWith {
+            try assertArgument(!password.isEmpty, AuthenticationError.emptyPassword)
+            let encryptedPassword = encryptionService.encrypted(password)
+            let user = userRepository.user(encryptedPassword: encryptedPassword)
+            return user
+        }
+    }
+
+    private func authenticateWith(_ authenticate: () throws -> User?) throws -> UserDescriptor? {
+        guard let gatekeeper = gatekeeperRepository.gatekeeper() else {
+            throw AuthenticationError.gatekeeperNotFound
+        }
+        guard gatekeeper.isAccessPossible(at: clockService.currentTime) else {
             return nil
         }
-        try startSession()
-        return user
-    }
-
-    private func startSession() throws {
-//        let duration: TimeInterval = gatekeeperRepository.gatekeeper()?.sessionDuration
-//        let session = try XSession(id: sessionRepository.nextId(), durationInSeconds: duration)
-//        try session.start(clockService.currentTime)
-//        try sessionRepository.save(session)
+        guard let user = try authenticate() else {
+            gatekeeper.denyAccess(at: clockService.currentTime)
+            try gatekeeperRepository.save(gatekeeper)
+            return nil
+        }
+        let session = try gatekeeper.allowAccess(at: clockService.currentTime)
+        try gatekeeperRepository.save(gatekeeper)
+        return UserDescriptor(userID: user.userID, sessionID: session)
     }
 
     @discardableResult
-    public func authenticateUserBiometrically() throws -> User? {
-        let isSuccess = biometricService.authenticate()
-        guard isSuccess else { return nil }
-        guard let user = userRepository.primaryUser() else { return nil }
-        try startSession()
-        return user
+    public func authenticateUserBiometrically() throws -> UserDescriptor? {
+        return try authenticateWith {
+            guard biometricService.authenticate() else { return nil }
+            return userRepository.primaryUser()
+        }
     }
 
 }

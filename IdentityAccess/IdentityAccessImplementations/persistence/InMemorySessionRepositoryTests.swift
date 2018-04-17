@@ -8,7 +8,7 @@ import IdentityAccessDomainModel
 
 class InMemorySessionRepositoryTests: XCTestCase {
 
-    let repository: GatekeeperRepository = InMemorySessionRepository()
+    let repository: GatekeeperRepository = InMemoryGatekeeperRepository()
 
     override func setUp() {
         super.setUp()

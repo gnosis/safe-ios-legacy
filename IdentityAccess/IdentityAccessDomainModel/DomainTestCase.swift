@@ -16,7 +16,7 @@ class DomainTestCase: XCTestCase {
     let encryptionService = MockEncryptionService()
     let userRepository: UserRepository = InMemoryUserRepository()
     let identityService = IdentityService()
-    let gatekeeperRepository: GatekeeperRepository = InMemorySessionRepository()
+    let gatekeeperRepository: GatekeeperRepository = InMemoryGatekeeperRepository()
 
     override func setUp() {
         super.setUp()
