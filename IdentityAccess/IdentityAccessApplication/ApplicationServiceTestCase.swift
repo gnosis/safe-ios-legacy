@@ -22,7 +22,6 @@ class ApplicationServiceTestCase: XCTestCase {
         super.setUp()
         configureIdentityServiceDependencies()
         configureAuthenticationServiceDependencies()
-        configureAccountDependencies()
     }
 
     private func configureIdentityServiceDependencies() {
@@ -45,8 +44,4 @@ class ApplicationServiceTestCase: XCTestCase {
                                                                                 blockDuration: 1))
     }
 
-    private func configureAccountDependencies() {
-        DomainRegistry.put(service: MockKeychain(), for: SecureStore.self)
-        DomainRegistry.put(service: InMemoryKeyValueStore(), for: KeyValueStore.self)
-    }
 }

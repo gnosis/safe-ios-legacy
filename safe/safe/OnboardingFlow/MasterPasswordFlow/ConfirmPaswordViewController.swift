@@ -70,11 +70,8 @@ extension ConfirmPaswordViewController: TextInputDelegate {
     func textInputDidReturn() {
         let password = textInput.text!
         do {
-            try ApplicationServiceRegistry.authenticationService.registerUser(password: password) { [weak self] in
-                DispatchQueue.main.async {
-                    self?.delegate?.didConfirmPassword()
-                }
-            }
+            try ApplicationServiceRegistry.authenticationService.registerUser(password: password)
+            self.delegate?.didConfirmPassword()
         } catch let e {
             LogService.shared.fatal("Failed to set master password", error: e)
             showFatalError()

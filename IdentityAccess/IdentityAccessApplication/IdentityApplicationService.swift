@@ -4,7 +4,6 @@
 
 import IdentityAccessDomainModel
 
-// TODO: this must be responsible for changing the user information
 open class IdentityApplicationService {
 
     private var secureStore: SecureStore { return DomainRegistry.secureStore }

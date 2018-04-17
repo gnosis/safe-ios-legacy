@@ -33,13 +33,12 @@ class MockAuthenticationService: AuthenticationApplicationService {
         return userRegistered
     }
 
-    override func registerUser(password: String, completion: (() -> Void)? = nil) throws {
+    override func registerUser(password: String) throws {
         didRequestUserRegistration = true
         if shouldThrowDuringRegistration {
             throw Error.error
         }
         userRegistered = true
-        completion?()
     }
 
     func invalidateAuthentication() {
@@ -55,11 +54,15 @@ class MockAuthenticationService: AuthenticationApplicationService {
         return isUserRegistered && userAuthenticated && !isAuthenticationBlocked
     }
 
-    override func authenticateUser(password: String?, completion: ((Bool) -> Void)? = nil) {
-        didRequestBiometricAuthentication = password == nil
-        didRequestPasswordAuthentication = !didRequestBiometricAuthentication
+    override func authenticateUser(_ request: AuthenticationRequest) throws -> AuthenticationResult {
+        didRequestBiometricAuthentication = !request.method.isDisjoint(with: .biometry)
+        didRequestPasswordAuthentication = request.method.contains(.password)
         userAuthenticated = authenticationAllowed && !authenticationBlocked
-        completion?(userAuthenticated)
+        if authenticationBlocked {
+            return .blocked
+        } else {
+            return userAuthenticated ? .success(userID: "userID", sessionID: "sessionID") : .failure
+        }
     }
 
     func makeBiometricAuthenticationImpossible() {

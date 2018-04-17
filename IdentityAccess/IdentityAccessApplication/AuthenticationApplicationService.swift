@@ -23,8 +23,8 @@ public struct AuthenticationMethod: OptionSet {
 
 public struct AuthenticationRequest {
 
-    let method: AuthenticationMethod
-    var password: String!
+    public let method: AuthenticationMethod
+    public let password: String!
 
     private init(_ method: AuthenticationMethod, _ password: String? = nil) {
         precondition(method == .biometry && password == nil ||
@@ -50,15 +50,19 @@ public enum AuthenticationStatus: Hashable {
 }
 
 public struct AuthenticationResult {
-    public var status: AuthenticationStatus
-    public var userID: String!
-    public var sessionID: String!
+    public let status: AuthenticationStatus
+    public let userID: String!
+    public let sessionID: String!
+
+    public static let blocked = AuthenticationResult(status: .blocked, userID: nil, sessionID: nil)
+    public static let failure = AuthenticationResult(status: .failure, userID: nil, sessionID: nil)
+    public static func success(userID: String, sessionID: String) -> AuthenticationResult {
+        return AuthenticationResult(status: .success, userID: userID, sessionID: sessionID)
+    }
 }
 
 // this must be responsible for registration and authentication
 open class AuthenticationApplicationService {
-
-    private let account: AccountProtocol = Account.shared
 
     public init() {}
 
@@ -131,27 +135,12 @@ open class AuthenticationApplicationService {
         } else {
             preconditionFailure("Invalid authentication method in request \(request)")
         }
-        var status: AuthenticationStatus
-        if user != nil {
-            status = .success
+        if let user = user {
+            return .success(userID: user.userID.id, sessionID: user.sessionID.id)
         } else if isAccessPossible {
-            status = .failure
+            return .failure
         } else {
-            status = .blocked
-        }
-        return AuthenticationResult(status: status, userID: user?.userID.id, sessionID: user?.sessionID.id)
-    }
-
-    @available(*, deprecated, message: "Use authenticateUser(method:) method")
-    open func authenticateUser(password: String? = nil, completion: ((Bool) -> Void)? = nil) {
-        if isAuthenticationBlocked {
-            completion?(false)
-            return
-        }
-        if let password = password {
-            completion?(account.authenticateWithPassword(password))
-        } else {
-            account.authenticateWithBiometry { completion?($0) }
+            return .blocked
         }
     }
 
@@ -159,12 +148,6 @@ open class AuthenticationApplicationService {
 
     private var biometricService: BiometricAuthenticationService {
         return DomainRegistry.biometricAuthenticationService
-    }
-
-    @available(*, deprecated, message: "Use registerUser(password:) method")
-    open func registerUser(password: String, completion: (() -> Void)?) throws {
-        try registerUser(password: password)
-        completion?()
     }
 
     open func registerUser(password: String) throws {

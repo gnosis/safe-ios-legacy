@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A537A8F207CE74100921FB9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A7E207CE74000921FB9 /* Account.swift */; };
 		0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */; };
 		0A537A93207CE74100921FB9 /* KeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A82207CE74000921FB9 /* KeyValueStore.swift */; };
 		0A537A94207CE74100921FB9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A83207CE74000921FB9 /* Logger.swift */; };
 		0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A84207CE74000921FB9 /* SecureStore.swift */; };
-		0A537A96207CE74100921FB9 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A85207CE74000921FB9 /* Session.swift */; };
 		0A537A97207CE74100921FB9 /* EthereumAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A86207CE74000921FB9 /* EthereumAccount.swift */; };
 		0A537A98207CE74100921FB9 /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A87207CE74100921FB9 /* DomainRegistry.swift */; };
 		0A537A99207CE74100921FB9 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A88207CE74100921FB9 /* Clock.swift */; };
@@ -20,10 +18,7 @@
 		0A537A9B207CE74100921FB9 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A8A207CE74100921FB9 /* EncryptionService.swift */; };
 		0A537A9E207CE74100921FB9 /* LoggableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A8D207CE74100921FB9 /* LoggableError.swift */; };
 		0A537AAC207CEA0100921FB9 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */; };
-		0A537AB3207CEAC700921FB9 /* MockAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A8B207CE74100921FB9 /* MockAccount.swift */; };
-		0A537AB4207CEAC700921FB9 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A7F207CE74000921FB9 /* AccountTests.swift */; };
 		0A537AB5207CEAC700921FB9 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */; };
-		0A537AB6207CEAC700921FB9 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A7D207CE74000921FB9 /* SessionTests.swift */; };
 		0A537AB7207CEBB100921FB9 /* DomainTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A8C207CE74100921FB9 /* DomainTestCase.swift */; };
 		0A537ADA207CEE1100921FB9 /* InMemoryUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AD7207CEE1100921FB9 /* InMemoryUserDefaults.swift */; };
 		0A537ADB207CEE1100921FB9 /* MockBiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AD8207CEE1100921FB9 /* MockBiometricService.swift */; };
@@ -283,21 +278,16 @@
 /* Begin PBXFileReference section */
 		0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537A7C207CE73F00921FB9 /* IdentityAccessDomainModel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityAccessDomainModel-Bridging-Header.h"; sourceTree = "<group>"; };
-		0A537A7D207CE74000921FB9 /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
-		0A537A7E207CE74000921FB9 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		0A537A7F207CE74000921FB9 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
 		0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		0A537A82207CE74000921FB9 /* KeyValueStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueStore.swift; sourceTree = "<group>"; };
 		0A537A83207CE74000921FB9 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		0A537A84207CE74000921FB9 /* SecureStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureStore.swift; sourceTree = "<group>"; };
-		0A537A85207CE74000921FB9 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		0A537A86207CE74000921FB9 /* EthereumAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EthereumAccount.swift; sourceTree = "<group>"; };
 		0A537A87207CE74100921FB9 /* DomainRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainRegistry.swift; sourceTree = "<group>"; };
 		0A537A88207CE74100921FB9 /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		0A537A89207CE74100921FB9 /* BiometricAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationService.swift; sourceTree = "<group>"; };
 		0A537A8A207CE74100921FB9 /* EncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
-		0A537A8B207CE74100921FB9 /* MockAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAccount.swift; sourceTree = "<group>"; };
 		0A537A8C207CE74100921FB9 /* DomainTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainTestCase.swift; sourceTree = "<group>"; };
 		0A537A8D207CE74100921FB9 /* LoggableError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggableError.swift; sourceTree = "<group>"; };
 		0A537AA7207CEA0100921FB9 /* IdentityAccessDomainModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessDomainModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -455,15 +445,10 @@
 			isa = PBXGroup;
 			children = (
 				0A537A8C207CE74100921FB9 /* DomainTestCase.swift */,
-				0A537A8B207CE74100921FB9 /* MockAccount.swift */,
-				0A537A7E207CE74000921FB9 /* Account.swift */,
-				0A537A7F207CE74000921FB9 /* AccountTests.swift */,
 				0A537A87207CE74100921FB9 /* DomainRegistry.swift */,
 				0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */,
 				0A537A86207CE74000921FB9 /* EthereumAccount.swift */,
 				0A537A8D207CE74100921FB9 /* LoggableError.swift */,
-				0A537A85207CE74000921FB9 /* Session.swift */,
-				0A537A7D207CE74000921FB9 /* SessionTests.swift */,
 				0AFFF40720808ABD0030200C /* User.swift */,
 				0AFFF40920808AE30030200C /* UserTests.swift */,
 				0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */,
@@ -1059,10 +1044,8 @@
 				0AFFF40820808ABD0030200C /* User.swift in Sources */,
 				0A537A9B207CE74100921FB9 /* EncryptionService.swift in Sources */,
 				0A537A97207CE74100921FB9 /* EthereumAccount.swift in Sources */,
-				0A537A8F207CE74100921FB9 /* Account.swift in Sources */,
 				0A537A9A207CE74100921FB9 /* BiometricAuthenticationService.swift in Sources */,
 				0A537A93207CE74100921FB9 /* KeyValueStore.swift in Sources */,
-				0A537A96207CE74100921FB9 /* Session.swift in Sources */,
 				0AFFF41C2080BC900030200C /* IdentityService.swift in Sources */,
 				0A537A9E207CE74100921FB9 /* LoggableError.swift in Sources */,
 				0AA4FF912085F46900C82CFE /* AuthenticationPolicy.swift in Sources */,
@@ -1074,13 +1057,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A537AB7207CEBB100921FB9 /* DomainTestCase.swift in Sources */,
-				0A537AB6207CEAC700921FB9 /* SessionTests.swift in Sources */,
 				0AFFF41E2080BCB00030200C /* IdentityServiceTests.swift in Sources */,
 				0AFFF40A20808AE30030200C /* UserTests.swift in Sources */,
-				0A537AB3207CEAC700921FB9 /* MockAccount.swift in Sources */,
 				0AFFF42420849EE10030200C /* XSessionTests.swift in Sources */,
 				0A537AB5207CEAC700921FB9 /* DomainRegistryTests.swift in Sources */,
-				0A537AB4207CEAC700921FB9 /* AccountTests.swift in Sources */,
 				0AFFF44D2084FE730030200C /* GatekeeperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
