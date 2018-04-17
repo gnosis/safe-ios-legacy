@@ -19,7 +19,6 @@ class DomainRegistryTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.keyValueStore)
         XCTAssertNotNil(DomainRegistry.secureStore)
         XCTAssertNotNil(DomainRegistry.biometricAuthenticationService)
-        XCTAssertNotNil(DomainRegistry.logger)
         XCTAssertNotNil(DomainRegistry.encryptionService)
         XCTAssertNotNil(DomainRegistry.userRepository)
         XCTAssertNotNil(DomainRegistry.identityService)

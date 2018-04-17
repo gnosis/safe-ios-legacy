@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import IdentityAccessDomainModel
+import IdentityAccessApplication
 
 public class MockLogger: Logger {
 

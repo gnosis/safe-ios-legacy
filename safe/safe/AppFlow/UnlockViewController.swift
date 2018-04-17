@@ -7,13 +7,27 @@ import safeUIKit
 import IdentityAccessApplication
 import IdentityAccessImplementations
 
-class AppSession {
+class Authenticator {
     var session: String?
     var user: String?
 
-    static let instance = AppSession()
+    static let instance = Authenticator()
 
     private init() {}
+
+    public func authenticate(_ request: AuthenticationRequest) throws -> AuthenticationResult {
+        let result = try ApplicationServiceRegistry.authenticationService.authenticateUser(request)
+        if result.status == .success {
+            session = result.sessionID
+            user = result.userID
+        }
+        return result
+    }
+
+    public func registerUser(password: String) throws {
+        try ApplicationServiceRegistry.authenticationService.registerUser(password: password)
+        _ = try authenticate(.password(password))
+    }
 }
 
 final class UnlockViewController: UIViewController {
@@ -82,11 +96,13 @@ final class UnlockViewController: UIViewController {
 
     private func auhtenticateWithBiometry() {
         guard !authenticationService.isAuthenticationBlocked else { return }
+        guard authenticationService.isAuthenticationMethodPossible(.biometry) else {
+            _ = self.textInput.becomeFirstResponder()
+            return
+        }
         do {
-            let result = try authenticationService.authenticateUser(.biometry())
+            let result = try Authenticator.instance.authenticate(.biometry())
             if result.status == .success {
-                AppSession.instance.user = result.userID
-                AppSession.instance.session = result.sessionID
                 self.unlockCompletion()
             } else {
                 _ = self.textInput.becomeFirstResponder()
@@ -103,10 +119,8 @@ extension UnlockViewController: TextInputDelegate {
 
     func textInputDidReturn() {
         do {
-            let result = try authenticationService.authenticateUser(.password(textInput.text!))
+            let result = try Authenticator.instance.authenticate(.password(textInput.text!))
             if result.status == .success {
-                AppSession.instance.user = result.userID
-                AppSession.instance.session = result.sessionID
                 self.unlockCompletion()
             } else {
                 self.textInput.shake()

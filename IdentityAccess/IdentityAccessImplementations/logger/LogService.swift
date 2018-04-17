@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import IdentityAccessDomainModel
+import IdentityAccessApplication
 
 protocol LogWriter {
     func log(_ message: String, level: LogLevel, error: Error?, file: StaticString, line: UInt, function: StaticString)

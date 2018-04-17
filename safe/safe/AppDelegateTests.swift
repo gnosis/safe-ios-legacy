@@ -38,7 +38,6 @@ class AppDelegateTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.keyValueStore)
         XCTAssertNotNil(DomainRegistry.secureStore)
         XCTAssertNotNil(DomainRegistry.biometricAuthenticationService)
-        XCTAssertNotNil(DomainRegistry.logger)
         XCTAssertNotNil(DomainRegistry.userRepository)
         XCTAssertNotNil(DomainRegistry.identityService)
         XCTAssertNotNil(DomainRegistry.gatekeeperRepository)
