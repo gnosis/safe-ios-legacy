@@ -5,34 +5,32 @@
 import Foundation
 import IdentityAccessDomainModel
 
-@available(*, deprecated, message: "Will be replaced by option set")
-public enum AuthenticationMethod {
-    case password
-    case touchID
-    case faceID
-}
-
 public struct UserData {
     public var id: String
     public init(_ id: String) { self.id = id }
 }
 
-struct AuthenticationMethod1: OptionSet {
-    let rawValue: Int
+public struct AuthenticationMethod: OptionSet {
 
-    static let password = AuthenticationMethod1(rawValue: 1 << 0)
-    static let touchID = AuthenticationMethod1(rawValue: 1 << 1)
-    static let faceID = AuthenticationMethod1(rawValue: 1 << 2)
+    public let rawValue: Int
 
-    static let biometry: AuthenticationMethod1 = [.touchID, .faceID]
+    public static let password = AuthenticationMethod(rawValue: 1 << 0)
+    public static let touchID = AuthenticationMethod(rawValue: 1 << 1)
+    public static let faceID = AuthenticationMethod(rawValue: 1 << 2)
+
+    public static let biometry: AuthenticationMethod = [.touchID, .faceID]
+
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
 }
 
 public struct AuthenticationRequest {
 
-    let method: AuthenticationMethod1
+    let method: AuthenticationMethod
     var password: String!
 
-    private init(_ method: AuthenticationMethod1, _ password: String? = nil) {
+    private init(_ method: AuthenticationMethod, _ password: String? = nil) {
         precondition(method == .biometry && password == nil ||
             method == .password && password != nil, "Invalid authentication request")
         self.method = method
@@ -57,6 +55,8 @@ public enum AuthenticationStatus: Hashable {
 
 public struct AuthenticationResult {
     var status: AuthenticationStatus
+    var userID: String!
+    var sessionID: String!
 }
 
 // this must be responsible for registration and authentication
@@ -69,33 +69,51 @@ open class AuthenticationApplicationService {
     // MARK: - Queries
 
     open var blockedPeriodDuration: TimeInterval {
-        return account.blockedPeriodDuration
+        return gatekeeper.policy.blockDuration
     }
     open var maxPasswordAttempts: Int {
-        return account.maxPasswordAttempts
+        return gatekeeper.policy.maxFailedAttempts
     }
     open var sessionDuration: TimeInterval {
-        return account.sessionDuration
+        return gatekeeper.policy.sessionDuration
     }
-    open var isUserAuthenticated: Bool {
-        return account.hasMasterPassword && account.isSessionActive
+    open func isUserAuthenticated(session: String) -> Bool {
+        guard let id = try? SessionID(session) else { return false }
+        return gatekeeper.hasAccess(session: id, at: clock.currentTime)
     }
     open var isUserRegistered: Bool {
-        return account.hasMasterPassword
+        return userRepository.primaryUser() != nil
     }
     open var isAuthenticationBlocked: Bool {
-        return account.isBlocked
+        return !gatekeeper.isAccessPossible(at: clock.currentTime)
     }
+
+    @available(*, deprecated, message: "Use isAuthenticationMethodPossible(.biometry) method")
     open var isBiometricAuthenticationPossible: Bool {
-        return !isAuthenticationBlocked && account.isBiometryAuthenticationAvailable
+        return isAuthenticationMethodPossible(.biometry)
     }
 
     open func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
-        switch method {
-        case .faceID: return account.isBiometryFaceID
-        case .touchID: return account.isBiometryTouchID
-        case .password: return true
+        var supported: AuthenticationMethod = .password
+        if biometricService.biometryType == .touchID {
+            supported.insert(.touchID)
         }
+        if biometricService.biometryType == .faceID {
+            supported.insert(.faceID)
+        }
+        return !method.isDisjoint(with: supported)
+    }
+
+    open func isAuthenticationMethodPossible(_ method: AuthenticationMethod) -> Bool {
+        guard isAccessPossible else { return false }
+        var possible: AuthenticationMethod = .password
+        if isAuthenticationMethodSupported(.faceID) && biometricService.isAuthenticationAvailable {
+            possible.insert(.faceID)
+        }
+        if isAuthenticationMethodSupported(.touchID) && biometricService.isAuthenticationAvailable {
+            possible.insert(.touchID)
+        }
+        return !method.isDisjoint(with: possible)
     }
 
     // MARK: - Commands
@@ -104,9 +122,33 @@ open class AuthenticationApplicationService {
         case emptyPassword
     }
 
+    private var gatekeeperRepository: GatekeeperRepository { return DomainRegistry.gatekeeperRepository }
+    private var gatekeeper: Gatekeeper! { return gatekeeperRepository.gatekeeper() }
+    private var clock: Clock { return DomainRegistry.clock }
+    private var identityService: IdentityService { return DomainRegistry.identityService }
+
+    private var isAccessPossible: Bool {
+        return gatekeeper.isAccessPossible(at: clock.currentTime)
+    }
+
     open func authenticateUser(_ request: AuthenticationRequest) throws -> AuthenticationResult {
-        let user = try DomainRegistry.identityService.authenticateUser(password: request.password)
-        return AuthenticationResult(status: user != nil ? .success : .failure)
+        let user: UserDescriptor?
+        if request.method == .password {
+            user = try identityService.authenticateUser(password: request.password)
+        } else if request.method.isSubset(of: .biometry) {
+            user = try identityService.authenticateUserBiometrically()
+        } else {
+            preconditionFailure("Invalid authentication method in request \(request)")
+        }
+        var status: AuthenticationStatus
+        if user != nil {
+            status = .success
+        } else if isAccessPossible {
+            status = .failure
+        } else {
+            status = .blocked
+        }
+        return AuthenticationResult(status: status, userID: user?.userID.id, sessionID: user?.sessionID.id)
     }
 
     @available(*, deprecated, message: "Use authenticateUser(method:) method")
@@ -138,19 +180,29 @@ open class AuthenticationApplicationService {
         _ = try DomainRegistry.identityService.registerUser(password: password)
     }
 
-    open func configureSession(_ duration: TimeInterval) {
-        account.sessionDuration = duration
+    open func configureSession(_ duration: TimeInterval) throws {
+        try gatekeeper.changeSessionDuration(duration)
+        try gatekeeperRepository.save(gatekeeper)
     }
 
-    open func configureMaxPasswordAttempts(_ count: Int) {
-        account.maxPasswordAttempts = count
+    open func configureMaxPasswordAttempts(_ count: Int) throws {
+        try gatekeeper.changeMaxFailedAttempts(count)
+        try gatekeeperRepository.save(gatekeeper)
     }
 
-    open func configureBlockDuration(_ duration: TimeInterval) {
-        account.blockedPeriodDuration = duration
+    open func configureBlockDuration(_ duration: TimeInterval) throws {
+        try gatekeeper.changeBlockDuration(duration)
+        try gatekeeperRepository.save(gatekeeper)
     }
 
     open func reset() throws {
+        if let user = userRepository.primaryUser() {
+            try userRepository.remove(user)
+        }
+        if let gatekeeper = gatekeeper {
+            gatekeeper.reset()
+            try DomainRegistry.gatekeeperRepository.save(gatekeeper)
+        }
         try account.cleanupAllData()
     }
 

@@ -16,7 +16,7 @@ class MockAuthenticationService: AuthenticationApplicationService {
     private(set) var didRequestBiometricAuthentication = false
     private(set) var didRequestPasswordAuthentication = false
     private var biometricAuthenticationPossible = true
-    private var enabledAuthenticationMethods = Set<AuthenticationMethod>([AuthenticationMethod.password])
+    private var enabledAuthenticationMethods = AuthenticationMethod.password
     private var authenticationBlocked = false
 
     enum Error: Swift.Error { case error }
@@ -51,7 +51,7 @@ class MockAuthenticationService: AuthenticationApplicationService {
         authenticationAllowed = true
     }
 
-    override var isUserAuthenticated: Bool {
+    override func isUserAuthenticated(session: String) -> Bool {
         return isUserRegistered && userAuthenticated && !isAuthenticationBlocked
     }
 

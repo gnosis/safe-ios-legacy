@@ -26,7 +26,8 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
     }
 
     private var shouldLockWhenAppActive: Bool {
-        return authenticationService.isUserRegistered && !authenticationService.isUserAuthenticated
+        // FXIME: authentication
+        return authenticationService.isUserRegistered /* && !authenticationService.isUserAuthenticated */
     }
 
     func startViewController() -> UIViewController {

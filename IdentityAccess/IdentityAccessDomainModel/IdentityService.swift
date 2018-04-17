@@ -39,6 +39,19 @@ public class IdentityService: Assertable {
 
     public init() {}
 
+    @discardableResult
+    public func provisionGatekeeper(sessionDuration: TimeInterval,
+                                    maxFailedAttempts: Int,
+                                    blockDuration: TimeInterval) throws -> Gatekeeper {
+        let policy = try AuthenticationPolicy(sessionDuration: sessionDuration,
+                                              maxFailedAttempts: maxFailedAttempts,
+                                              blockDuration: blockDuration)
+        let gatekeeper = try Gatekeeper(id: gatekeeperRepository.nextId(),
+                                        policy: policy)
+        try gatekeeperRepository.save(gatekeeper)
+        return gatekeeper
+    }
+
     public func registerUser(password: String) throws -> User {
         let isRegistered = userRepository.primaryUser() != nil
         try assertArgument(!isRegistered, RegistrationError.userAlreadyRegistered)
@@ -63,15 +76,16 @@ public class IdentityService: Assertable {
         guard let gatekeeper = gatekeeperRepository.gatekeeper() else {
             throw AuthenticationError.gatekeeperNotFound
         }
-        guard gatekeeper.isAccessPossible(at: clockService.currentTime) else {
+        let time = clockService.currentTime
+        guard gatekeeper.isAccessPossible(at: time) else {
             return nil
         }
         guard let user = try authenticate() else {
-            gatekeeper.denyAccess(at: clockService.currentTime)
+            gatekeeper.denyAccess(at: time)
             try gatekeeperRepository.save(gatekeeper)
             return nil
         }
-        let session = try gatekeeper.allowAccess(at: clockService.currentTime)
+        let session = try gatekeeper.allowAccess(at: time)
         try gatekeeperRepository.save(gatekeeper)
         return UserDescriptor(userID: user.userID, sessionID: session)
     }

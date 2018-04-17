@@ -9,11 +9,9 @@ public class GatekeeperID: BaseID {}
 
 public class Gatekeeper: IdentifiedEntity<GatekeeperID> {
 
-    private var policy: AuthenticationPolicy {
+    public private(set) var policy: AuthenticationPolicy {
         didSet {
-            session = nil
-            failedAttemptCount = 0
-            accessDeniedAt = nil
+            reset()
         }
     }
     private var session: XSession?
@@ -78,6 +76,12 @@ public class Gatekeeper: IdentifiedEntity<GatekeeperID> {
     public func useAccess(at time: Date) throws {
         try assertNotBlocked(at: time)
         try session?.renew(time)
+    }
+
+    public func reset() {
+        session = nil
+        failedAttemptCount = 0
+        accessDeniedAt = nil
     }
 
 }

@@ -106,6 +106,13 @@ class IdentityServiceTests: DomainTestCase {
         XCTAssertNil(try service.authenticateUserBiometrically())
     }
 
+    func test_provisionGatekeeper_createsOne() throws {
+        let gatekeeper = try service.provisionGatekeeper(sessionDuration: 3,
+                                                         maxFailedAttempts: 3,
+                                                         blockDuration: 3)
+        XCTAssertEqual(gatekeeperRepository.gatekeeper(), gatekeeper)
+        XCTAssertEqual(gatekeeperRepository.gatekeeper()?.policy, gatekeeper.policy)
+    }
 }
 
 extension IdentityServiceTests {

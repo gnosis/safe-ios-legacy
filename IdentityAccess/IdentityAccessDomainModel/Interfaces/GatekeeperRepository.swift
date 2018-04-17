@@ -6,7 +6,7 @@ import Foundation
 
 public protocol GatekeeperRepository {
 
-    func save(_ keeper: Gatekeeper) throws
+    func save(_ gatekeeper: Gatekeeper) throws
     func gatekeeper() -> Gatekeeper?
     func nextId() -> GatekeeperID
 

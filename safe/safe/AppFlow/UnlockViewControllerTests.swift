@@ -13,7 +13,7 @@ class UnlockViewControllerTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        createVC()
+        XCTAssertNoThrow(try createVC())
     }
 
     func test_whenCreated_hasAllElements() {
@@ -93,15 +93,15 @@ class UnlockViewControllerTests: SafeTestCase {
         XCTAssertEqual(vc.loginWithBiometryButton.image(for: .normal), Asset.faceIdIcon.image)
     }
 
-    func test_whenAccountIsBlocked_thenShowsCountdown() {
+    func test_whenAccountIsBlocked_thenShowsCountdown() throws {
         authenticationService.blockAuthentication()
-        createVC()
+        try createVC()
         assertShowsCountdown()
     }
 
-    func test_whenCountdownReachesZero_thenPasswordEntryFocused() {
+    func test_whenCountdownReachesZero_thenPasswordEntryFocused() throws {
         authenticationService.blockAuthentication()
-        createVC()
+        try createVC()
         guard let window = UIApplication.shared.keyWindow else {
             XCTFail("Must have window")
             return
@@ -140,8 +140,8 @@ extension UnlockViewControllerTests {
         delay()
     }
 
-    private func createVC(blockPeriod: TimeInterval = 15) {
-        authenticationService.configureBlockDuration(blockPeriod)
+    private func createVC(blockPeriod: TimeInterval = 15) throws {
+        try authenticationService.configureBlockDuration(blockPeriod)
         vc = UnlockViewController.create { [unowned self] in
             self.didLogIn = true
         }
