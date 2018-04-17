@@ -5,7 +5,7 @@
 import XCTest
 @testable import IdentityAccessDomainModel
 
-class XSessionTests: XCTestCase {
+class SessionTests: XCTestCase {
 
     var session: Session!
 
@@ -78,7 +78,7 @@ class XSessionTests: XCTestCase {
 
 }
 
-extension XSessionTests {
+extension SessionTests {
 
     private func createSession(duration: TimeInterval = 1) throws {
         session = try Session(id: try SessionID(UUID().uuidString), durationInSeconds: duration)
