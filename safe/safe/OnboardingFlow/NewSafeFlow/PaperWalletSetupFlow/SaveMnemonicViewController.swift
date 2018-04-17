@@ -41,13 +41,14 @@ final class SaveMnemonicViewController: UIViewController {
             return
         }
         words = eoa.mnemonic.words
-        titleLabel.text = NSLocalizedString("recovery.save_mnemonic.title", comment: "Title for save mnemonic screen")
+        titleLabel.text = NSLocalizedString("new_safe.paper_wallet.title",
+                                            comment: "Title for store paper wallet screen")
         mnemonicCopyableLabel.text = eoa.mnemonic.string()
-        saveButton.setTitle(NSLocalizedString("recovery.save_mnemonic.save", comment: "Save Button"), for: .normal)
-        descriptionLabel.text = NSLocalizedString("recovery.save_mnemonic.description",
-                                                  comment: "Description for save mnemonic screen")
-        continueButton.setTitle(NSLocalizedString("recovery.save_mnemonic.continue",
-                                                  comment: "Continue button for save mnemonic screen"),
+        saveButton.setTitle(NSLocalizedString("new_safe.paper_wallet.save", comment: "Save Button"), for: .normal)
+        descriptionLabel.text = NSLocalizedString("new_safe.paper_wallet.description",
+                                                  comment: "Description for store paper wallet screen")
+        continueButton.setTitle(NSLocalizedString("new_safe.paper_wallet.continue",
+                                                  comment: "Continue button for store paper wallet screen"),
                                 for: .normal)
     }
 

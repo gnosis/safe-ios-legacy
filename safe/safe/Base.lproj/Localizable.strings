@@ -1,6 +1,18 @@
 /* Unlock screen header */
 "app.unlock.header" = "app.unlock.header";
 
+/* Continue button for store paper wallet screen */
+"new_safe.paper_wallet.continue" = "new_safe.paper_wallet.continue";
+
+/* Description for store paper wallet screen */
+"new_safe.paper_wallet.description" = "new_safe.paper_wallet.description";
+
+/* Save Button */
+"new_safe.paper_wallet.save" = "new_safe.paper_wallet.save";
+
+/* Title for store paper wallet screen */
+"new_safe.paper_wallet.title" = "new_safe.paper_wallet.title";
+
 /* Confirm password screen header */
 "onboarding.confirm_password.header" = "onboarding.confirm_password.header";
 
@@ -57,16 +69,4 @@
 
 /* Title for confirm mnemonic view controller */
 "recovery.confirm_mnemonic.title" = "recovery.confirm_mnemonic.title";
-
-/* Continue button for save mnemonic screen */
-"recovery.save_mnemonic.continue" = "recovery.save_mnemonic.continue";
-
-/* Description for save mnemonic screen */
-"recovery.save_mnemonic.description" = "recovery.save_mnemonic.description";
-
-/* Save Button */
-"recovery.save_mnemonic.save" = "recovery.save_mnemonic.save";
-
-/* Title for save mnemonic screen */
-"recovery.save_mnemonic.title" = "recovery.save_mnemonic.title";
 

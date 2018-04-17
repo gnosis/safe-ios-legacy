@@ -1,6 +1,18 @@
 /* Unlock screen header */
 "app.unlock.header" = "Unlock with your master password";
 
+/* Continue button for store paper wallet screen */
+"new_safe.paper_wallet.continue" = "I understand, continue";
+
+/* Description for store paper wallet screen */
+"new_safe.paper_wallet.description" = "This phrase is one of your Safe secret keys.\n\nPlease store it in a secure place and do not share it with anyone. Gnosis Safe team will never ask you to reveal your secret phrase.";
+
+/* Save Button */
+"new_safe.paper_wallet.save" = "Save";
+
+/* Title for store paper wallet screen */
+"new_safe.paper_wallet.title" = "Store paper wallet secret phrase";
+
 /* Confirm password screen header */
 "onboarding.confirm_password.header" = "Repeat your master password";
 
@@ -57,16 +69,4 @@
 
 /* Title for confirm mnemonic view controller */
 "recovery.confirm_mnemonic.title" = "Confirmation";
-
-/* Continue button for save mnemonic screen */
-"recovery.save_mnemonic.continue" = "I understand, continue";
-
-/* Description for save mnemonic screen */
-"recovery.save_mnemonic.description" = "Each safe has owners that are ethereum accounts. With this recovery phrase you can restore your Safe owner account.\n\nPlease store your phrase in a secure place and do not share it with anyone. Gnosis Safe team will never ask you to reveal your recovery phrase.\n\nOnly you can recover your account. If you lose your phrase and access to your safe, your Safe will be blocked forever!";
-
-/* Save Button */
-"recovery.save_mnemonic.save" = "Save";
-
-/* Title for save mnemonic screen */
-"recovery.save_mnemonic.title" = "Store recovery phrase";
 
