@@ -14,7 +14,7 @@ public class Gatekeeper: IdentifiedEntity<GatekeeperID> {
             reset()
         }
     }
-    private var session: XSession?
+    private var session: Session?
     private var failedAttemptCount: Int = 0
     private var accessDeniedAt: Date?
 
@@ -50,7 +50,7 @@ public class Gatekeeper: IdentifiedEntity<GatekeeperID> {
 
     public func allowAccess(at time: Date) throws -> SessionID {
         try assertNotBlocked(at: time)
-        let session = try XSession(id: SessionID(UUID().uuidString), durationInSeconds: policy.sessionDuration)
+        let session = try Session(id: SessionID(UUID().uuidString), durationInSeconds: policy.sessionDuration)
         try session.start(time)
         self.session = session
         failedAttemptCount = 0

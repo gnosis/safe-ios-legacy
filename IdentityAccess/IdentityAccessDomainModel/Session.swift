@@ -20,7 +20,7 @@ public struct SessionID: Hashable, Assertable {
 
 }
 
-public class XSession: Assertable, Hashable {
+public class Session: Assertable, Hashable {
 
     public enum Error: Swift.Error, Hashable {
         case invalidDuration
@@ -39,7 +39,7 @@ public class XSession: Assertable, Hashable {
         return sessionID.hashValue
     }
 
-    public static func ==(lhs: XSession, rhs: XSession) -> Bool {
+    public static func ==(lhs: Session, rhs: Session) -> Bool {
         return lhs.sessionID == rhs.sessionID
     }
 

@@ -7,7 +7,7 @@ import XCTest
 
 class XSessionTests: XCTestCase {
 
-    var session: XSession!
+    var session: Session!
 
     override func setUp() {
         super.setUp()
@@ -81,14 +81,14 @@ class XSessionTests: XCTestCase {
 extension XSessionTests {
 
     private func createSession(duration: TimeInterval = 1) throws {
-        session = try XSession(id: try SessionID(UUID().uuidString), durationInSeconds: duration)
+        session = try Session(id: try SessionID(UUID().uuidString), durationInSeconds: duration)
     }
 
     private func assertThrows<T>(_ expression: @autoclosure () throws -> T,
-                                 _ error: XSession.Error,
+                                 _ error: Session.Error,
                                  line: UInt = #line) {
         XCTAssertThrowsError(try expression()) {
-            XCTAssertEqual($0 as? XSession.Error, error)
+            XCTAssertEqual($0 as? Session.Error, error)
         }
     }
 
