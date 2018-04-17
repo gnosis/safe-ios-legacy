@@ -9,12 +9,16 @@ public class DraftSafe {
 
     static var shared: DraftSafe?
 
-    struct ConfiguredAddresses: OptionSet {
-        let rawValue: Int
+    public struct ConfiguredAddresses: OptionSet {
+        public let rawValue: Int
 
-        static let currentDevice = ConfiguredAddresses(rawValue: 1 << 0)
-        static let chromeExtension = ConfiguredAddresses(rawValue: 1 << 1)
-        static let paperWallet = ConfiguredAddresses(rawValue: 1 << 2)
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+
+        public static let currentDevice = ConfiguredAddresses(rawValue: 1 << 0)
+        public static let chromeExtension = ConfiguredAddresses(rawValue: 1 << 1)
+        public static let paperWallet = ConfiguredAddresses(rawValue: 1 << 2)
     }
 
     private let currentDeviceAddress: EthereumAddress
@@ -22,7 +26,7 @@ public class DraftSafe {
     private var chromeExtensionAddress: EthereumAddress?
     private let threshold = 2
 
-    var confirmedAddresses: ConfiguredAddresses
+    public var confirmedAddresses: ConfiguredAddresses
 
     public var paperWalletMnemonicWords: [String] { return paperWallet.mnemonic.words }
 

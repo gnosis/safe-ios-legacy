@@ -5,6 +5,7 @@
 import UIKit
 import safeUIKit
 import IdentityAccessApplication
+import IdentityAccessDomainModel
 
 protocol NewSafeDelegate: class {
     func didSelectPaperWalletSetup()
@@ -20,15 +21,28 @@ class NewSafeViewController: UIViewController {
     @IBOutlet weak var paperWalletButton: BigButton!
 
     weak var delegate: NewSafeDelegate?
+    private var draftSafe: DraftSafe?
 
-    static func create(delegate: NewSafeDelegate) -> NewSafeViewController {
+    private var logger: Logger { return DomainRegistry.logger }
+
+    static func create(draftSafe: DraftSafe?, delegate: NewSafeDelegate) -> NewSafeViewController {
         let controller = StoryboardScene.NewSafe.newSafeViewController.instantiate()
         controller.delegate = delegate
+        controller.draftSafe = draftSafe
         return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let draftSafe = draftSafe else {
+            dismiss(animated: true)
+            logger.error("DraftSafe is not provided in NewSafeViewController",
+                         error: nil,
+                         file: #file,
+                         line: #line,
+                         function: #function)
+            return
+        }
         titleLabel.text = NSLocalizedString("onboarding.new_safe.title",
                                             comment: "Title for new safe screen")
         thisDeviceButton.setTitle(NSLocalizedString("onboarding.new_safe.this_device",
@@ -39,8 +53,10 @@ class NewSafeViewController: UIViewController {
                                                          comment: "Chrome extension Button"), for: .normal)
         thisDeviceButton.isEnabled = false
         thisDeviceButton.checkmarkStatus = .selected
-        paperWalletButton.checkmarkStatus = .normal
-        chromeExtensionButton.checkmarkStatus = .normal
+        paperWalletButton.checkmarkStatus =
+            draftSafe.confirmedAddresses.contains(.paperWallet) ? .selected : .normal
+        chromeExtensionButton.checkmarkStatus =
+            draftSafe.confirmedAddresses.contains(.chromeExtension) ? .selected : .normal
     }
 
     override func viewWillAppear(_ animated: Bool) {

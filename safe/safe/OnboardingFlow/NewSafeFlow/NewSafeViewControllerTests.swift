@@ -5,6 +5,7 @@
 import XCTest
 @testable import safe
 import IdentityAccessApplication
+import CommonTestSupport
 
 class NewSafeViewControllerTests: SafeTestCase {
 
@@ -14,7 +15,8 @@ class NewSafeViewControllerTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        controller = NewSafeViewController.create(delegate: delegate)
+        let draftSafe = try! identityService.getOrCreateDraftSafe()
+        controller = NewSafeViewController.create(draftSafe: draftSafe, delegate: delegate)
         controller.loadViewIfNeeded()
     }
 
@@ -37,6 +39,15 @@ class NewSafeViewControllerTests: SafeTestCase {
         XCTAssertTrue(delegate.hasSelectedChromeExtensionSetup)
     }
 
+    func test_viewDidLoad_whenNoDraftSafe_thenDismissesAndLogs() {
+        controller = NewSafeViewController.create(draftSafe: nil, delegate: delegate)
+        createWindow(controller)
+        controller.viewDidLoad()
+        delay(1)
+        XCTAssertNil(controller.view.window)
+        XCTAssertTrue(logger.errorLogged)
+    }
+
 }
 
 extension NewSafeViewControllerTests {
@@ -44,6 +55,19 @@ extension NewSafeViewControllerTests {
     private func viewWillAppear() {
         UIApplication.shared.keyWindow?.rootViewController = controller
     }
+
+    private func createWindow(_ controller: UIViewController) {
+        guard let window = UIApplication.shared.keyWindow else {
+            XCTFail("Must have active window")
+            return
+        }
+        window.rootViewController = UIViewController()
+        window.makeKeyAndVisible()
+        window.rootViewController?.present(controller, animated: false)
+        delay()
+        XCTAssertNotNil(controller.view.window)
+    }
+
 }
 
 class MockNewSafeDelegate: NewSafeDelegate {
