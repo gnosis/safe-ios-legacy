@@ -12,7 +12,6 @@ class DomainRegistryTests: XCTestCase {
         DomainRegistry.put(service: InMemoryKeyValueStore(), for: KeyValueStore.self)
         DomainRegistry.put(service: MockKeychain(), for: SecureStore.self)
         DomainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
-        DomainRegistry.put(service: MockLogger(), for: Logger.self)
         DomainRegistry.put(service: MockEncryptionService(), for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: InMemoryUserRepository(), for: UserRepository.self)
         DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
