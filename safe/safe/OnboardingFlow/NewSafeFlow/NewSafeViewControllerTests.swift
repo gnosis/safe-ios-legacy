@@ -9,7 +9,7 @@ import IdentityAccessApplication
 class NewSafeViewControllerTests: SafeTestCase {
 
     // swiftlint:disable weak_delegate
-    private let delegate = MockSetupRecoveryOptionDelegate()
+    private let delegate = MockNewSafeDelegate()
     private var controller: NewSafeViewController!
 
     override func setUp() {
@@ -21,12 +21,20 @@ class NewSafeViewControllerTests: SafeTestCase {
     func test_canCreate() {
         XCTAssertNotNil(controller)
         XCTAssertNotNil(controller.titleLabel)
+        XCTAssertNotNil(controller.thisDeviceButton)
+        XCTAssertNotNil(controller.chromeExtensionButton)
         XCTAssertNotNil(controller.paperWalletButton)
+        XCTAssertFalse(controller.thisDeviceButton.isEnabled)
     }
 
-    func test_setupMnemonicRecovery_whenCalled_theDelegateCalled() {
+    func test_setupPaperWallet_callsDelegate() {
         controller.setupPaperWallet(self)
-        XCTAssertTrue(delegate.hasSelectedPaperWallet)
+        XCTAssertTrue(delegate.hasSelectedPaperWalletSetup)
+    }
+
+    func test_setupChromeExtension_callsDelegate() {
+        controller.setupChromeExtension(self)
+        XCTAssertTrue(delegate.hasSelectedChromeExtensionSetup)
     }
 
 }
@@ -38,12 +46,17 @@ extension NewSafeViewControllerTests {
     }
 }
 
-class MockSetupRecoveryOptionDelegate: NewSafeDelegate {
+class MockNewSafeDelegate: NewSafeDelegate {
 
-    var hasSelectedPaperWallet = false
+    var hasSelectedPaperWalletSetup = false
+    var hasSelectedChromeExtensionSetup = false
 
     func didSelectPaperWalletSetup() {
-        hasSelectedPaperWallet = true
+        hasSelectedPaperWalletSetup = true
+    }
+
+    func didSelectChromeExtensionSetup() {
+        hasSelectedChromeExtensionSetup = true
     }
 
 }

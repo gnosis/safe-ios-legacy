@@ -6,7 +6,6 @@ import XCTest
 import IdentityAccessDomainModel
 import CommonTestSupport
 import IdentityAccessImplementations
-@testable import IdentityAccessApplication
 
 class IdentityApplicationServiceTests: ApplicationServiceTestCase {
 

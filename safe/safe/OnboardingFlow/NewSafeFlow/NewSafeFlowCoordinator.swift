@@ -31,4 +31,9 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
         rootVC.pushViewController(controller, animated: true)
     }
 
+    func didSelectChromeExtensionSetup() {
+        let controller = PairWithChromeExtensionViewController()
+        rootVC.pushViewController(controller, animated: true)
+    }
+
 }

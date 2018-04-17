@@ -18,27 +18,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="At least one recovery option should be set" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jT2-Op-oIr" customClass="H1Label" customModule="safeUIKit">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Configure three Safe owners" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jT2-Op-oIr" customClass="H1Label" customModule="safeUIKit">
                                 <rect key="frame" x="20" y="104" width="335" height="86"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mv5-vW-qj2">
-                                <rect key="frame" x="20" y="290" width="335" height="108"/>
+                                <rect key="frame" x="20" y="290" width="335" height="172"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn0-3F-SUf" customClass="BigButton" customModule="safeUIKit">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUi-Ui-sFY" customClass="BigButton" customModule="safeUIKit">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Setup Paper Wallet"/>
-                                        <connections>
-                                            <action selector="setupPaperWallet:" destination="oT1-O9-HET" eventType="touchUpInside" id="74f-cD-XIB"/>
-                                        </connections>
+                                        <state key="normal" title="This Device"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-2s-l1J" customClass="BigButton" customModule="safeUIKit">
                                         <rect key="frame" x="0.0" y="64" width="335" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Setup Chrome Extension"/>
+                                        <state key="normal" title="Chrome Extension"/>
+                                        <connections>
+                                            <action selector="setupChromeExtension:" destination="oT1-O9-HET" eventType="touchUpInside" id="s1Z-zD-Ocf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn0-3F-SUf" customClass="BigButton" customModule="safeUIKit">
+                                        <rect key="frame" x="0.0" y="128" width="335" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Paper Wallet"/>
+                                        <connections>
+                                            <action selector="setupPaperWallet:" destination="oT1-O9-HET" eventType="touchUpInside" id="74f-cD-XIB"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -62,6 +70,7 @@
                         <outlet property="chromeExtensionButton" destination="uZP-2s-l1J" id="t09-nA-B2M"/>
                         <outlet property="nextButton" destination="aPw-Qg-l8a" id="5Vb-gG-h4G"/>
                         <outlet property="paperWalletButton" destination="Yn0-3F-SUf" id="8dz-Wl-kaU"/>
+                        <outlet property="thisDeviceButton" destination="BUi-Ui-sFY" id="5bU-ji-byK"/>
                         <outlet property="titleLabel" destination="jT2-Op-oIr" id="IAX-6d-WeA"/>
                     </connections>
                 </viewController>

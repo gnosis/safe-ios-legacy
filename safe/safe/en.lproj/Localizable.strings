@@ -16,8 +16,17 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
 
+/* Chrome extension Button */
+"onboarding.new_safe.chrome_extension" = "Chrome Extension";
+
+/* Paper Wallet Button */
+"onboarding.new_safe.paper_wallet" = "Paper Wallet";
+
+/* This device button */
+"onboarding.new_safe.this_device" = "This Device";
+
 /* Title for new safe screen */
-"onboarding.new_safe.title" = "Please setup required Safe owners for two-factor authentication.";
+"onboarding.new_safe.title" = "Configure three Safe owners.";
 
 /* At least one capital letter rule for password field */
 "onboarding.set_password.capital" = "• Should have a capital letter";

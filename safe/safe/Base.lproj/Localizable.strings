@@ -16,6 +16,15 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "onboarding.fatal.title";
 
+/* Chrome extension Button */
+"onboarding.new_safe.chrome_extension" = "onboarding.new_safe.chrome_extension";
+
+/* Paper Wallet Button */
+"onboarding.new_safe.paper_wallet" = "onboarding.new_safe.paper_wallet";
+
+/* This device button */
+"onboarding.new_safe.this_device" = "onboarding.new_safe.this_device";
+
 /* Title for new safe screen */
 "onboarding.new_safe.title" = "onboarding.new_safe.title";
 

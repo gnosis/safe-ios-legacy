@@ -21,12 +21,18 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(nav.topViewController is NewSafeViewController)
     }
 
-    func test_didSelectMnemonicRecovery_showsRecoveryWithMnemonicFlowCoordinatorStartVC() {
+    func test_didSelectPaperWalletSetup_showsPaperWalletFlowCoordinatorStartVC() {
         newSafeFlowCoordinator.didSelectPaperWalletSetup()
         delay()
         let fc = PaperWalletFlowCoordinator()
         let startVC = fc.startViewController(parent: newSafeFlowCoordinator.rootVC)
         XCTAssertTrue(type(of: nav.topViewController!) == type(of: startVC))
+    }
+
+    func test_didSelectChromeExtensionSetup_showsPairWithChromeExtensionVC() {
+        newSafeFlowCoordinator.didSelectChromeExtensionSetup()
+        delay()
+        XCTAssertTrue(type(of: nav.topViewController!) == type(of: PairWithChromeExtensionViewController()))
     }
 
 }
