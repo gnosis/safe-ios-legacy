@@ -59,7 +59,7 @@ class IdentityServiceTests: DomainTestCase {
 
     func test_authenticateUser_whenCorrectPassword_thenSuccess() throws {
         let user = try givenRegisteredUser()
-        XCTAssertEqual(try authenticateWithBiometry()?.userID, user.userID)
+        XCTAssertEqual(try authenticateWithCorrectPassword()?.userID, user.userID)
     }
 
     func test_authenticateUser_whenBiometrySuccess_thenSuccess() throws {

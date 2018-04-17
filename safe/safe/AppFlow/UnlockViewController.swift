@@ -5,7 +5,16 @@
 import UIKit
 import safeUIKit
 import IdentityAccessApplication
-import IdentityAccessDomainModel
+import IdentityAccessImplementations
+
+class AppSession {
+    var session: String?
+    var user: String?
+
+    static let instance = AppSession()
+
+    private init() {}
+}
 
 final class UnlockViewController: UIViewController {
 
@@ -76,12 +85,15 @@ final class UnlockViewController: UIViewController {
         do {
             let result = try authenticationService.authenticateUser(.biometry())
             if result.status == .success {
+                AppSession.instance.user = result.userID
+                AppSession.instance.session = result.sessionID
                 self.unlockCompletion()
             } else {
                 _ = self.textInput.becomeFirstResponder()
                 self.updateBiometryButtonVisibility()
             }
         } catch let e {
+            LogService.shared.fatal("Failed to authenticate with biometry", error: e)
         }
     }
 
@@ -93,12 +105,15 @@ extension UnlockViewController: TextInputDelegate {
         do {
             let result = try authenticationService.authenticateUser(.password(textInput.text!))
             if result.status == .success {
+                AppSession.instance.user = result.userID
+                AppSession.instance.session = result.sessionID
                 self.unlockCompletion()
             } else {
                 self.textInput.shake()
                 self.startCountdownIfNeeded()
             }
         } catch let e {
+            LogService.shared.fatal("Failed to authenticate with password", error: e)
         }
     }
 

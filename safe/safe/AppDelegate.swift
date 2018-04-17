@@ -48,7 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 .provisionAuthenticationPolicy(sessionDuration: 60,
                                                maxPasswordAttempts: 3,
                                                blockedPeriodDuration: 15)
-        } catch let e {}
+        } catch let e {
+            LogService.shared.fatal("Failed to setup authentication policy", error: e)
+        }
     }
 
     private func createWindow() {

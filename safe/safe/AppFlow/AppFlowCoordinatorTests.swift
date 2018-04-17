@@ -60,7 +60,11 @@ class AppFlowCoordinatorTests: SafeTestCase {
 
     func test_whenAppBecomesActiveAndAlreadyAuthenticated_thenDoesntLock() throws {
         authenticationService.allowAuthentication()
-        _ = try authenticationService.authenticateUser(.password(password))
+        let result = try authenticationService.authenticateUser(.password(password))
+        if result.status == .success {
+            AppSession.instance.user = result.userID
+            AppSession.instance.session = result.sessionID
+        }
         XCTAssertTrue(isUnlockedAfterBecomingActive())
     }
 
