@@ -606,8 +606,6 @@
 		0A537BE2207CFADE00921FB9 /* IdentityAccessApplication */ = {
 			isa = PBXGroup;
 			children = (
-				0A666CFF208643A50034FF66 /* Clock.swift */,
-				0A666D052086496D0034FF66 /* Logger.swift */,
 				0A537BF0207CFB1C00921FB9 /* ApplicationServiceTestCase.swift */,
 				0A537BEF207CFB1C00921FB9 /* ApplicationServiceRegistry.swift */,
 				0A537BF1207CFB1C00921FB9 /* ApplicationServiceRegistryTests.swift */,
@@ -615,6 +613,7 @@
 				0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */,
 				0A537BEE207CFB1C00921FB9 /* IdentityApplicationService.swift */,
 				0A537BF2207CFB1C00921FB9 /* IdentityApplicationServiceTests.swift */,
+				0A666D0B2086577D0034FF66 /* Interfaces */,
 				0A537BF9207CFB2300921FB9 /* XcodeBuildSupport */,
 			);
 			path = IdentityAccessApplication;
@@ -638,6 +637,15 @@
 				0A57F72A207E4CF900AF407D /* EthereumKit.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0A666D0B2086577D0034FF66 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				0A666CFF208643A50034FF66 /* Clock.swift */,
+				0A666D052086496D0034FF66 /* Logger.swift */,
+			);
+			path = Interfaces;
 			sourceTree = "<group>";
 		};
 		0AF2818E2074C18B00D3843D = {
