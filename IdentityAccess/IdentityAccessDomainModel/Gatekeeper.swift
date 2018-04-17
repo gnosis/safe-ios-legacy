@@ -55,7 +55,7 @@ public class Gatekeeper: IdentifiedEntity<GatekeeperID> {
         self.session = session
         failedAttemptCount = 0
         accessDeniedAt = nil
-        return session.sessionID
+        return session.id
     }
 
     private func assertNotBlocked(at time: Date) throws {
@@ -69,7 +69,7 @@ public class Gatekeeper: IdentifiedEntity<GatekeeperID> {
     }
 
     public func hasAccess(session id: SessionID, at time: Date) -> Bool {
-        guard let session = session, session.sessionID == id else { return false }
+        guard let session = session, session.id == id else { return false }
         return session.isActiveAt(time)
     }
 

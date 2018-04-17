@@ -5,22 +5,9 @@
 import Foundation
 import Common
 
-public struct SessionID: Hashable, Assertable {
+public class SessionID: BaseID {}
 
-    public let id: String
-
-    public enum Error: Swift.Error, Hashable {
-        case invalidID
-    }
-
-    public init(_ id: String) throws {
-        self.id = id
-        try assertTrue(id.count == 36, Error.invalidID)
-    }
-
-}
-
-public class Session: Assertable, Hashable {
+public class Session: IdentifiedEntity<SessionID> {
 
     public enum Error: Swift.Error, Hashable {
         case invalidDuration
@@ -33,19 +20,10 @@ public class Session: Assertable, Hashable {
     private var startedAt: Date?
     private var endedAt: Date?
     private var updatedAt: Date?
-    public let sessionID: SessionID
-
-    public var hashValue: Int {
-        return sessionID.hashValue
-    }
-
-    public static func ==(lhs: Session, rhs: Session) -> Bool {
-        return lhs.sessionID == rhs.sessionID
-    }
 
     public init(id: SessionID, durationInSeconds: TimeInterval) throws {
-        sessionID = id
         duration = durationInSeconds
+        super.init(id: id)
         try assertTrue(durationInSeconds > 0, Error.invalidDuration)
     }
 

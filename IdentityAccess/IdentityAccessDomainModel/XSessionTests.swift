@@ -15,7 +15,7 @@ class XSessionTests: XCTestCase {
     }
 
     func test_createsID() {
-        XCTAssertNotNil(session.sessionID)
+        XCTAssertNotNil(session.id)
     }
 
     func test_invalidIDThrows() {
