@@ -74,7 +74,7 @@ class MockAuthenticationService: AuthenticationApplicationService {
     }
 
     override func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
-        return enabledAuthenticationMethods.contains(method)
+        return !method.isDisjoint(with: enabledAuthenticationMethods)
     }
 
     override func isAuthenticationMethodPossible(_ method: AuthenticationMethod) -> Bool {

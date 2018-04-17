@@ -75,7 +75,7 @@ final class UnlockViewController: UIViewController {
         countdownLabel.start { [weak self] in
             guard let `self` = self else { return }
             self.textInput.isEnabled = true
-            _ = self.textInput.becomeFirstResponder()
+            self.focusPasswordField()
         }
     }
 
@@ -97,20 +97,24 @@ final class UnlockViewController: UIViewController {
     private func auhtenticateWithBiometry() {
         guard !authenticationService.isAuthenticationBlocked else { return }
         guard authenticationService.isAuthenticationMethodPossible(.biometry) else {
-            _ = self.textInput.becomeFirstResponder()
+            focusPasswordField()
             return
         }
         do {
             let result = try Authenticator.instance.authenticate(.biometry())
             if result.status == .success {
-                self.unlockCompletion()
+                unlockCompletion()
             } else {
-                _ = self.textInput.becomeFirstResponder()
-                self.updateBiometryButtonVisibility()
+                focusPasswordField()
             }
         } catch let e {
             LogService.shared.fatal("Failed to authenticate with biometry", error: e)
         }
+    }
+
+    private func focusPasswordField() {
+        _ = textInput.becomeFirstResponder()
+        updateBiometryButtonVisibility()
     }
 
 }
