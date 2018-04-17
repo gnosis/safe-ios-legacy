@@ -12,7 +12,7 @@ class SafeTestCase: XCTestCase {
 
     let authenticationService = MockAuthenticationService()
     let clock = MockClockService()
-    let identityService = IdentityApplicationService()
+    let identityService = MockIdentityApplicationService()
     let keyValueStore = InMemoryKeyValueStore()
     let secureStore = InMemorySecureStore()
 

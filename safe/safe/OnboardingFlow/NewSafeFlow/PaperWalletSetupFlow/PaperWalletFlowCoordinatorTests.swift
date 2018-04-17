@@ -6,9 +6,9 @@ import XCTest
 @testable import safe
 import CommonTestSupport
 
-class RecoveryWithMnemonicFlowCoordinatorTests: XCTestCase {
+class PaperWalletFlowCoordinatorTests: XCTestCase {
 
-    let flowCoordinator = RecoveryWithMnemonicFlowCoordinator()
+    let flowCoordinator = PaperWalletFlowCoordinator()
     var nav = UINavigationController()
 
     override func setUp() {
@@ -31,6 +31,13 @@ class RecoveryWithMnemonicFlowCoordinatorTests: XCTestCase {
         let controller = nav.topViewController as! ConfirmMnemonicViewController
         XCTAssertTrue(controller.delegate === flowCoordinator)
         XCTAssertEqual(controller.words, words)
+    }
+
+    func test_didConfirm_callsCompletion() {
+        var completionCalled = false
+        flowCoordinator.completion = { completionCalled = true }
+        flowCoordinator.didConfirm()
+        XCTAssertTrue(completionCalled)
     }
 
 }

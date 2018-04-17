@@ -7,14 +7,28 @@ import IdentityAccessApplication
 
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
+    let paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
+
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
-    let setupRecoveryFlowCoordinator = SetupRecoveryFlowCoordinator()
+
+    override init() {
+        super.init()
+        paperWalletFlowCoordinator.completion = paperWalletSetupCompletion
+    }
 
     override func flowStartController() -> UIViewController {
-        if identityService.isRecoverySet {
-            return PairWithChromeExtensionViewController()
-        }
-        return setupRecoveryFlowCoordinator.startViewController(parent: rootVC)
+        return NewSafeViewController.create(delegate: self)
+    }
+
+    func paperWalletSetupCompletion() {}
+
+}
+
+extension NewSafeFlowCoordinator: NewSafeDelegate {
+
+    func didSelectPaperWalletSetup() {
+        let controller = paperWalletFlowCoordinator.startViewController(parent: rootVC)
+        rootVC.pushViewController(controller, animated: true)
     }
 
 }

@@ -24,7 +24,7 @@ final class SaveMnemonicViewController: UIViewController {
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
 
     static func create(delegate: SaveMnemonicDelegate) -> SaveMnemonicViewController {
-        let controller = StoryboardScene.SetupRecovery.saveMnemonicViewController.instantiate()
+        let controller = StoryboardScene.NewSafe.saveMnemonicViewController.instantiate()
         controller.delegate = delegate
         return controller
     }
