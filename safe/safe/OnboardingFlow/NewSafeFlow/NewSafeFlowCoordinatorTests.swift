@@ -25,7 +25,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     func test_didSelectPaperWalletSetup_showsPaperWalletFlowCoordinatorStartVC() {
         newSafeFlowCoordinator.didSelectPaperWalletSetup()
         delay()
-        let fc = PaperWalletFlowCoordinator()
+        let fc = PaperWalletFlowCoordinator(draftSafe: nil)
         let paperWalletStartVC = fc.startViewController(parent: newSafeFlowCoordinator.rootVC)
         XCTAssertTrue(type(of: nav.topViewController!) == type(of: paperWalletStartVC))
     }

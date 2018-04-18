@@ -42,6 +42,14 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
         }
     }
 
+    func test_createDraftSafe_alwaysCreatesNewDraftSafe() throws {
+        let ds1 = try identityService.createDraftSafe()
+        XCTAssertTrue(ds1 === DraftSafe.shared)
+        let ds2 = try identityService.createDraftSafe()
+        XCTAssertTrue(ds2 === DraftSafe.shared)
+        XCTAssertFalse(ds1 === ds2)
+    }
+
     func test_getOrCreateDraftSafe_returnsExistingDraftSafe() throws {
         XCTAssertNil(DraftSafe.shared)
         let ds1 = try identityService.getOrCreateDraftSafe()

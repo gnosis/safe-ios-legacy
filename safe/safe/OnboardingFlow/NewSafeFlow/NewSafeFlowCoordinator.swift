@@ -7,7 +7,7 @@ import IdentityAccessApplication
 
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
-    let paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
+    var paperWalletFlowCoordinator: PaperWalletFlowCoordinator!
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
 
     private var startVC: UIViewController!
@@ -15,8 +15,9 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
 
     override init() {
         super.init()
-        paperWalletFlowCoordinator.completion = paperWalletSetupCompletion
-        paperWalletFlowCoordinator.draftSafe = draftSafe
+        paperWalletFlowCoordinator = PaperWalletFlowCoordinator(
+            draftSafe: draftSafe,
+            completion: paperWalletSetupCompletion)
     }
 
     override func flowStartController() -> UIViewController {

@@ -12,12 +12,17 @@ import IdentityAccessImplementations
 
 class PaperWalletFlowCoordinatorTests: SafeTestCase {
 
-    let flowCoordinator = PaperWalletFlowCoordinator()
+    var flowCoordinator: PaperWalletFlowCoordinator!
     var nav = UINavigationController()
+    var draftSafe: DraftSafe!
+    var completionCalled = false
 
     override func setUp() {
         super.setUp()
-        flowCoordinator.draftSafe = try! identityService.getOrCreateDraftSafe()
+        draftSafe = try! identityService.createDraftSafe()
+        flowCoordinator = PaperWalletFlowCoordinator(draftSafe: draftSafe) { [unowned self] in
+            self.completionCalled = true
+        }
         let startVC = flowCoordinator.startViewController(parent: nav)
         nav.pushViewController(startVC, animated: false)
     }
@@ -29,23 +34,27 @@ class PaperWalletFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_startViewController_whenDraftSafeIsNil_thenWordsAreEmpty() {
-        flowCoordinator.draftSafe = nil
+        flowCoordinator = PaperWalletFlowCoordinator(draftSafe: nil)
         let startVC = flowCoordinator.startViewController(parent: nav) as! SaveMnemonicViewController
         XCTAssertTrue(startVC.words.isEmpty)
     }
 
-    func test_didPressContinue_pushesConfirmMnemonicViewControllerWithAllData() {
+    func test_didPressContinue_whenDraftSafePaperWalletIsNotConfirmed_thenPushesConfirmMnemonicViewController() {
         flowCoordinator.didPressContinue()
         delay()
         XCTAssertTrue(nav.topViewController is ConfirmMnemonicViewController)
         let controller = nav.topViewController as! ConfirmMnemonicViewController
         XCTAssertTrue(controller.delegate === flowCoordinator)
-        XCTAssertEqual(controller.words, flowCoordinator.draftSafe?.paperWalletMnemonicWords)
+        XCTAssertEqual(controller.words, draftSafe.paperWalletMnemonicWords)
+    }
+
+    func test_didPressContinue_whenDraftSafePaperWalletIsConfirmed_thenCallsCompletion() {
+        identityService.confirmPaperWallet(draftSafe: draftSafe)
+        flowCoordinator.didPressContinue()
+        XCTAssertTrue(completionCalled)
     }
 
     func test_didConfirm_callsCompletion() {
-        var completionCalled = false
-        flowCoordinator.completion = { completionCalled = true }
         flowCoordinator.didConfirm()
         XCTAssertTrue(completionCalled)
     }
