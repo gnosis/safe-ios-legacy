@@ -50,4 +50,25 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
         XCTAssertTrue(ds1 === ds2)
     }
 
+    func test_confirmPaperWallet_callsDraftSafeMethod() {
+        let ds = draftSafe()
+        identityService.confirmPaperWallet(draftSafe: ds)
+        XCTAssertEqual(ds.confirmedAddresses, [.currentDevice, .paperWallet])
+    }
+
+    func test_confirmChromeExtension_callsDraftSafeMethod() {
+        let ds = draftSafe()
+        identityService.confirmChromeExtension(draftSafe: ds)
+        XCTAssertEqual(ds.confirmedAddresses, [.currentDevice, .chromeExtension])
+    }
+
+}
+
+extension IdentityApplicationServiceTests {
+
+    private func draftSafe() -> DraftSafe {
+        let ethAddress = EthereumAddress(data: Data())
+        let paperWallet = EthereumAccountFactory(service: DomainRegistry.encryptionService).generateAccount()
+        return DraftSafe.create(currentDeviceAddress: ethAddress, paperWallet: paperWallet)
+    }
 }
