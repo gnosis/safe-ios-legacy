@@ -52,17 +52,17 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
 
     func test_continuePressed_callsDelegate() throws {
         controller.continuePressed(self)
-        XCTAssertEqual(delegate.mnemonicWords, words)
+        XCTAssertTrue(delegate.pressedContinue)
     }
 
 }
 
 final class MockSaveMnemonicDelegate: SaveMnemonicDelegate {
 
-    var mnemonicWords: [String] = []
+    var pressedContinue = false
 
-    func didPressContinue(mnemonicWords: [String]) {
-        self.mnemonicWords = mnemonicWords
+    func didPressContinue() {
+        pressedContinue = true
     }
 
 }

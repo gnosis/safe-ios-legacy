@@ -11,14 +11,15 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
 
     private var startVC: UIViewController!
+    private lazy var draftSafe = try? identityService.getOrCreateDraftSafe()
 
     override init() {
         super.init()
         paperWalletFlowCoordinator.completion = paperWalletSetupCompletion
+        paperWalletFlowCoordinator.draftSafe = draftSafe
     }
 
     override func flowStartController() -> UIViewController {
-        let draftSafe = try? identityService.getOrCreateDraftSafe()
         startVC = NewSafeViewController.create(draftSafe: draftSafe, delegate: self)
         return startVC
     }

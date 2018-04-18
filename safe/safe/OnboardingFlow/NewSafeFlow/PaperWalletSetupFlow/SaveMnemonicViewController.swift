@@ -7,7 +7,7 @@ import safeUIKit
 import IdentityAccessApplication
 
 protocol SaveMnemonicDelegate: class {
-    func didPressContinue(mnemonicWords: [String])
+    func didPressContinue()
 }
 
 final class SaveMnemonicViewController: UIViewController {
@@ -29,7 +29,7 @@ final class SaveMnemonicViewController: UIViewController {
     }
 
     @IBAction func continuePressed(_ sender: Any) {
-        delegate?.didPressContinue(mnemonicWords: words)
+        delegate?.didPressContinue()
     }
 
     override func viewDidLoad() {

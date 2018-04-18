@@ -11,18 +11,11 @@ typealias PaperWalletSetupCompletion = () -> Void
 final class PaperWalletFlowCoordinator: FlowCoordinator {
 
     var completion: PaperWalletSetupCompletion?
-
-    private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
-    private var logger: Logger { return DomainRegistry.logger }
+    var draftSafe: DraftSafe?
 
     override func flowStartController() -> UIViewController {
         var words: [String] = []
-        do {
-            let draftSafe = try identityService.getOrCreateDraftSafe()
-            words = draftSafe.paperWalletMnemonicWords
-        } catch let e {
-            logger.error("Error in getting EOA", error: e, file: #file, line: #line, function: #function)
-        }
+        if let draftSafe = draftSafe { words = draftSafe.paperWalletMnemonicWords }
         return SaveMnemonicViewController.create(words: words, delegate: self)
     }
 
@@ -30,8 +23,8 @@ final class PaperWalletFlowCoordinator: FlowCoordinator {
 
 extension PaperWalletFlowCoordinator: SaveMnemonicDelegate {
 
-    func didPressContinue(mnemonicWords: [String]) {
-        let controller = ConfirmMnemonicViewController.create(delegate: self, words: mnemonicWords)
+    func didPressContinue() {
+        let controller = ConfirmMnemonicViewController.create(delegate: self, words: draftSafe!.paperWalletMnemonicWords)
         rootVC.pushViewController(controller, animated: true)
     }
 
