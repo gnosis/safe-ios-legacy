@@ -26,6 +26,7 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
     }
 
     private func paperWalletSetupCompletion() {
+        identityService.confirmPaperWallet(draftSafe: draftSafe!)
         rootVC.popToViewController(startVC, animated: true)
     }
 

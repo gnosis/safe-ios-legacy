@@ -44,4 +44,10 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(nav.topViewController === startVC)
     }
 
+    func test_paperWalletSetupCompletion_callsConfirmPaperWallet() {
+        newSafeFlowCoordinator.didSelectPaperWalletSetup()
+        newSafeFlowCoordinator.paperWalletFlowCoordinator.didConfirm()
+        XCTAssertTrue(identityService.didCallConfirmPaperWallet)
+    }
+
 }

@@ -16,7 +16,7 @@ class NewSafeViewControllerTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        let draftSafe = try! identityService.getOrCreateDraftSafe()
+        let draftSafe = try! identityService.createDraftSafe()
         controller = NewSafeViewController.create(draftSafe: draftSafe, delegate: delegate)
         controller.loadViewIfNeeded()
     }
