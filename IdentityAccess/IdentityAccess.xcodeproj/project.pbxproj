@@ -74,6 +74,9 @@
 		0A57F72C207E4CF900AF407D /* EthereumKit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A666D04208643A50034FF66 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666CFF208643A50034FF66 /* Clock.swift */; };
 		0A666D062086496E0034FF66 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D052086496D0034FF66 /* Logger.swift */; };
+		0A666D132087A17F0034FF66 /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */; };
+		0A666D192087A1990034FF66 /* AuthenticationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D182087A1990034FF66 /* AuthenticationMethod.swift */; };
+		0A666D1B2087A1A90034FF66 /* AuthenticationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */; };
 		0AA4FF912085F46900C82CFE /* AuthenticationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */; };
 		0ABCA958207E55BE00E2C193 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F6F3207E397F00AF407D /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA959207E55BE00E2C193 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -357,6 +360,9 @@
 		0A57F6DD207E38D900AF407D /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 		0A666CFF208643A50034FF66 /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		0A666D052086496D0034FF66 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
+		0A666D182087A1990034FF66 /* AuthenticationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationMethod.swift; sourceTree = "<group>"; };
+		0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResult.swift; sourceTree = "<group>"; };
 		0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPolicy.swift; sourceTree = "<group>"; };
 		0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0AFFF40520808A5D0030200C /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -611,6 +617,9 @@
 				0A537BF1207CFB1C00921FB9 /* ApplicationServiceRegistryTests.swift */,
 				0A537BED207CFB1C00921FB9 /* AuthenticationApplicationService.swift */,
 				0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */,
+				0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */,
+				0A666D182087A1990034FF66 /* AuthenticationMethod.swift */,
+				0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */,
 				0A537BEE207CFB1C00921FB9 /* IdentityApplicationService.swift */,
 				0A537BF2207CFB1C00921FB9 /* IdentityApplicationServiceTests.swift */,
 				0A666D0B2086577D0034FF66 /* Interfaces */,
@@ -1148,8 +1157,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A666D062086496E0034FF66 /* Logger.swift in Sources */,
+				0A666D132087A17F0034FF66 /* AuthenticationRequest.swift in Sources */,
 				0A537BF5207CFB1C00921FB9 /* ApplicationServiceRegistry.swift in Sources */,
 				0A537BF4207CFB1C00921FB9 /* IdentityApplicationService.swift in Sources */,
+				0A666D1B2087A1A90034FF66 /* AuthenticationResult.swift in Sources */,
+				0A666D192087A1990034FF66 /* AuthenticationMethod.swift in Sources */,
 				0A666D04208643A50034FF66 /* Clock.swift in Sources */,
 				0A537BF3207CFB1C00921FB9 /* AuthenticationApplicationService.swift in Sources */,
 			);

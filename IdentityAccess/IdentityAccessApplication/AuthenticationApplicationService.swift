@@ -5,64 +5,21 @@
 import Foundation
 import IdentityAccessDomainModel
 
-
-public struct AuthenticationMethod: OptionSet {
-
-    public let rawValue: Int
-
-    public static let password = AuthenticationMethod(rawValue: 1 << 0)
-    public static let touchID = AuthenticationMethod(rawValue: 1 << 1)
-    public static let faceID = AuthenticationMethod(rawValue: 1 << 2)
-
-    public static let biometry: AuthenticationMethod = [.touchID, .faceID]
-
-    public init(rawValue: Int) {
-        self.rawValue = rawValue
-    }
-}
-
-public struct AuthenticationRequest {
-
-    public let method: AuthenticationMethod
-    public let password: String!
-
-    private init(_ method: AuthenticationMethod, _ password: String? = nil) {
-        precondition(method == .biometry && password == nil ||
-            method == .password && password != nil, "Invalid authentication request")
-        self.method = method
-        self.password = password
-    }
-
-    public static func biometry() -> AuthenticationRequest {
-        return AuthenticationRequest(.biometry)
-    }
-
-    public static func password(_ password: String) -> AuthenticationRequest {
-        return AuthenticationRequest(.password, password)
-    }
-
-}
-
-public enum AuthenticationStatus: Hashable {
-    case success
-    case failure
-    case blocked
-}
-
-public struct AuthenticationResult {
-    public let status: AuthenticationStatus
-    public let userID: String!
-    public let sessionID: String!
-
-    public static let blocked = AuthenticationResult(status: .blocked, userID: nil, sessionID: nil)
-    public static let failure = AuthenticationResult(status: .failure, userID: nil, sessionID: nil)
-    public static func success(userID: String, sessionID: String) -> AuthenticationResult {
-        return AuthenticationResult(status: .success, userID: userID, sessionID: sessionID)
-    }
-}
-
-// this must be responsible for registration and authentication
 open class AuthenticationApplicationService {
+
+    public enum Error: Swift.Error, Hashable {
+        case emptyPassword
+    }
+
+    private var gatekeeperRepository: GatekeeperRepository { return DomainRegistry.gatekeeperRepository }
+    private var gatekeeper: Gatekeeper! { return gatekeeperRepository.gatekeeper() }
+    private var clock: Clock { return ApplicationServiceRegistry.clock }
+    private var identityService: IdentityService { return DomainRegistry.identityService }
+    private var userRepository: UserRepository { return DomainRegistry.userRepository }
+    private var biometricService: BiometricAuthenticationService {
+        return DomainRegistry.biometricAuthenticationService
+    }
+    private var isAccessPossible: Bool { return gatekeeper.isAccessPossible(at: clock.currentTime) }
 
     public init() {}
 
@@ -113,19 +70,6 @@ open class AuthenticationApplicationService {
 
     // MARK: - Commands
 
-    public enum Error: Swift.Error, Hashable {
-        case emptyPassword
-    }
-
-    private var gatekeeperRepository: GatekeeperRepository { return DomainRegistry.gatekeeperRepository }
-    private var gatekeeper: Gatekeeper! { return gatekeeperRepository.gatekeeper() }
-    private var clock: Clock { return ApplicationServiceRegistry.clock }
-    private var identityService: IdentityService { return DomainRegistry.identityService }
-
-    private var isAccessPossible: Bool {
-        return gatekeeper.isAccessPossible(at: clock.currentTime)
-    }
-
     open func authenticateUser(_ request: AuthenticationRequest) throws -> AuthenticationResult {
         let time = clock.currentTime
         let user: UserDescriptor?
@@ -143,12 +87,6 @@ open class AuthenticationApplicationService {
         } else {
             return .blocked
         }
-    }
-
-    private var userRepository: UserRepository { return DomainRegistry.userRepository }
-
-    private var biometricService: BiometricAuthenticationService {
-        return DomainRegistry.biometricAuthenticationService
     }
 
     open func registerUser(password: String) throws {
