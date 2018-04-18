@@ -7,20 +7,28 @@ import IdentityAccessApplication
 
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
-    let paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
-
+    var paperWalletFlowCoordinator: PaperWalletFlowCoordinator!
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
+
+    private var startVC: UIViewController!
+    private lazy var draftSafe = try? identityService.getOrCreateDraftSafe()
 
     override init() {
         super.init()
-        paperWalletFlowCoordinator.completion = paperWalletSetupCompletion
+        paperWalletFlowCoordinator = PaperWalletFlowCoordinator(
+            draftSafe: draftSafe,
+            completion: paperWalletSetupCompletion)
     }
 
     override func flowStartController() -> UIViewController {
-        return NewSafeViewController.create(delegate: self)
+        startVC = NewSafeViewController.create(draftSafe: draftSafe, delegate: self)
+        return startVC
     }
 
-    func paperWalletSetupCompletion() {}
+    private func paperWalletSetupCompletion() {
+        identityService.confirmPaperWallet(draftSafe: draftSafe!)
+        rootVC.popToViewController(startVC, animated: true)
+    }
 
 }
 
@@ -28,6 +36,11 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
 
     func didSelectPaperWalletSetup() {
         let controller = paperWalletFlowCoordinator.startViewController(parent: rootVC)
+        rootVC.pushViewController(controller, animated: true)
+    }
+
+    func didSelectChromeExtensionSetup() {
+        let controller = PairWithChromeExtensionViewController()
         rootVC.pushViewController(controller, animated: true)
     }
 

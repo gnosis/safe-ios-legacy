@@ -15,6 +15,7 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
 
     override func setUp() {
         super.setUp()
+        DraftSafe.shared = nil
         DomainRegistry.put(service: secureStore, for: SecureStore.self)
         DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: keyValueStore, for: KeyValueStore.self)
@@ -41,21 +42,41 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
         }
     }
 
-    func test_getEOA_whenEOAIsThere_returnsExistingEOA() throws {
-        XCTAssertNil(try identityService.getEOA())
-        let eoa1 = try identityService.getOrCreateEOA()
-        let eoa2 = try identityService.getEOA()
-        XCTAssertEqual(eoa1, eoa2)
+    func test_createDraftSafe_alwaysCreatesNewDraftSafe() throws {
+        let ds1 = try identityService.createDraftSafe()
+        XCTAssertTrue(ds1 === DraftSafe.shared)
+        let ds2 = try identityService.createDraftSafe()
+        XCTAssertTrue(ds2 === DraftSafe.shared)
+        XCTAssertFalse(ds1 === ds2)
     }
 
-    func test_getEOA_throws() {
-        secureStore.shouldThrow = true
-        do {
-            try _ = identityService.getEOA()
-            XCTFail("Should Throw")
-        } catch let e {
-            XCTAssertTrue(e is TestError)
-        }
+    func test_getOrCreateDraftSafe_returnsExistingDraftSafe() throws {
+        XCTAssertNil(DraftSafe.shared)
+        let ds1 = try identityService.getOrCreateDraftSafe()
+        XCTAssertNotNil(DraftSafe.shared)
+        let ds2 = try identityService.getOrCreateDraftSafe()
+        XCTAssertTrue(ds1 === ds2)
     }
 
+    func test_confirmPaperWallet_callsDraftSafeMethod() {
+        let ds = draftSafe()
+        identityService.confirmPaperWallet(draftSafe: ds)
+        XCTAssertEqual(ds.confirmedAddresses, [.currentDevice, .paperWallet])
+    }
+
+    func test_confirmChromeExtension_callsDraftSafeMethod() {
+        let ds = draftSafe()
+        identityService.confirmChromeExtension(draftSafe: ds)
+        XCTAssertEqual(ds.confirmedAddresses, [.currentDevice, .chromeExtension])
+    }
+
+}
+
+extension IdentityApplicationServiceTests {
+
+    private func draftSafe() -> DraftSafe {
+        let ethAddress = EthereumAddress(data: Data())
+        let paperWallet = EthereumAccountFactory(service: DomainRegistry.encryptionService).generateAccount()
+        return DraftSafe.create(currentDeviceAddress: ethAddress, paperWallet: paperWallet)
+    }
 }

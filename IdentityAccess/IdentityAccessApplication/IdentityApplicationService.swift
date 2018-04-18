@@ -12,20 +12,38 @@ open class IdentityApplicationService {
 
     public init() {}
 
-    open func getEOA() throws -> ExternallyOwnedAccount? {
+    private func getEOA() throws -> ExternallyOwnedAccount? {
         guard let mnemonic = try secureStore.mnemonic() else { return nil }
         let account = EthereumAccountFactory(service: encryptionService).account(from: mnemonic)
         return account as? ExternallyOwnedAccount
     }
 
-    open func getOrCreateEOA() throws -> ExternallyOwnedAccount {
-        if let eoa = try getEOA() {
-            return eoa
-        }
+    func getOrCreateEOA() throws -> ExternallyOwnedAccount {
+        if let eoa = try getEOA() { return eoa }
         let account = EthereumAccountFactory(service: encryptionService).generateAccount()
         try secureStore.saveMnemonic(account.mnemonic)
         try secureStore.savePrivateKey(account.privateKey)
         return account as! ExternallyOwnedAccount
+    }
+
+    open func createDraftSafe() throws -> DraftSafe {
+        let eoa = try getOrCreateEOA()
+        let paperWallet = EthereumAccountFactory(service: encryptionService).generateAccount()
+        let draftSafe = DraftSafe.create(currentDeviceAddress: eoa.address, paperWallet: paperWallet)
+        return draftSafe
+    }
+
+    open func getOrCreateDraftSafe() throws -> DraftSafe {
+        if let draftSafe = DraftSafe.shared { return draftSafe }
+        return try createDraftSafe()
+    }
+
+    open func confirmPaperWallet(draftSafe: DraftSafe) {
+        draftSafe.confirmPaperWallet()
+    }
+
+    open func confirmChromeExtension(draftSafe: DraftSafe) {
+        draftSafe.confirmChromeExtension()
     }
 
 }

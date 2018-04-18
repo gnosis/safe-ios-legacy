@@ -7,7 +7,7 @@ import safeUIKit
 import IdentityAccessApplication
 
 protocol SaveMnemonicDelegate: class {
-    func didPressContinue(mnemonicWords: [String])
+    func didPressContinue()
 }
 
 final class SaveMnemonicViewController: UIViewController {
@@ -21,34 +21,38 @@ final class SaveMnemonicViewController: UIViewController {
     private(set) weak var delegate: SaveMnemonicDelegate?
     private(set) var words = [String]()
 
-    private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
+    private struct Strings {
+        static let title = NSLocalizedString("new_safe.paper_wallet.title",
+                                             comment: "Title for store paper wallet screen")
+        static let save = NSLocalizedString("new_safe.paper_wallet.save", comment: "Save Button")
+        static let description = NSLocalizedString("new_safe.paper_wallet.description",
+                                                   comment: "Description for store paper wallet screen")
+        static let `continue` = NSLocalizedString("new_safe.paper_wallet.continue",
+                                                  comment: "Continue button for store paper wallet screen")
+    }
 
-    static func create(delegate: SaveMnemonicDelegate) -> SaveMnemonicViewController {
+    static func create(words: [String], delegate: SaveMnemonicDelegate) -> SaveMnemonicViewController {
         let controller = StoryboardScene.NewSafe.saveMnemonicViewController.instantiate()
+        controller.words = words
         controller.delegate = delegate
         return controller
     }
 
     @IBAction func continuePressed(_ sender: Any) {
-        delegate?.didPressContinue(mnemonicWords: words)
+        delegate?.didPressContinue()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let optionalEOA = try? identityService.getEOA(),
-            let eoa = optionalEOA else {
+        guard !words.isEmpty else {
             dismiss(animated: true)
             return
         }
-        words = eoa.mnemonic.words
-        titleLabel.text = NSLocalizedString("recovery.save_mnemonic.title", comment: "Title for save mnemonic screen")
-        mnemonicCopyableLabel.text = eoa.mnemonic.string()
-        saveButton.setTitle(NSLocalizedString("recovery.save_mnemonic.save", comment: "Save Button"), for: .normal)
-        descriptionLabel.text = NSLocalizedString("recovery.save_mnemonic.description",
-                                                  comment: "Description for save mnemonic screen")
-        continueButton.setTitle(NSLocalizedString("recovery.save_mnemonic.continue",
-                                                  comment: "Continue button for save mnemonic screen"),
-                                for: .normal)
+        titleLabel.text = Strings.title
+        mnemonicCopyableLabel.text = words.joined(separator: " ")
+        saveButton.setTitle(Strings.save, for: .normal)
+        descriptionLabel.text = Strings.description
+        continueButton.setTitle(Strings.continue, for: .normal)
     }
 
 }
