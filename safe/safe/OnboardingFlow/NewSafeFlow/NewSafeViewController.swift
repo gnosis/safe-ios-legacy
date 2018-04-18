@@ -43,11 +43,7 @@ class NewSafeViewController: UIViewController {
         super.viewDidLoad()
         guard draftSafe != nil else {
             dismiss(animated: true)
-            logger.error("DraftSafe is not provided in NewSafeViewController",
-                         error: nil,
-                         file: #file,
-                         line: #line,
-                         function: #function)
+            logger.error("DraftSafe is not provided in NewSafeViewController")
             return
         }
         titleLabel.text = Strings.title
