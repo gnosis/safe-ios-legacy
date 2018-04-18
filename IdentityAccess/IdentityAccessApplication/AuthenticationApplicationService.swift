@@ -16,7 +16,7 @@ open class AuthenticationApplicationService {
     private var gatekeeper: Gatekeeper! { return gatekeeperRepository.gatekeeper() }
     private var clock: Clock { return ApplicationServiceRegistry.clock }
     private var identityService: IdentityService { return DomainRegistry.identityService }
-    private var userRepository: UserRepository { return DomainRegistry.userRepository }
+    private var userRepository: SingleUserRepository { return DomainRegistry.userRepository }
     private var biometricService: BiometricAuthenticationService {
         return DomainRegistry.biometricAuthenticationService
     }

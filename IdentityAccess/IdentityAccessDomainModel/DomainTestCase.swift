@@ -13,7 +13,7 @@ class DomainTestCase: XCTestCase {
     let biometricService = MockBiometricService()
     let mockClockService = MockClockService()
     let encryptionService = MockEncryptionService()
-    let userRepository: UserRepository = InMemoryUserRepository()
+    let userRepository: SingleUserRepository = InMemoryUserRepository()
     let identityService = IdentityService()
     let gatekeeperRepository: GatekeeperRepository = InMemoryGatekeeperRepository()
 
@@ -23,7 +23,7 @@ class DomainTestCase: XCTestCase {
         DomainRegistry.put(service: keychain, for: SecureStore.self)
         DomainRegistry.put(service: biometricService, for: BiometricAuthenticationService.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionServiceProtocol.self)
-        DomainRegistry.put(service: userRepository, for: UserRepository.self)
+        DomainRegistry.put(service: userRepository, for: SingleUserRepository.self)
         DomainRegistry.put(service: identityService, for: IdentityService.self)
         DomainRegistry.put(service: gatekeeperRepository, for: GatekeeperRepository.self)
     }

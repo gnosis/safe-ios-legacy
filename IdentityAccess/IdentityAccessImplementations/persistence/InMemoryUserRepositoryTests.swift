@@ -8,14 +8,14 @@ import IdentityAccessDomainModel
 
 class InMemoryUserRepositoryTests: XCTestCase {
 
-    let repository: UserRepository = InMemoryUserRepository()
+    let repository: SingleUserRepository = InMemoryUserRepository()
     var user: User!
     var other: User!
 
     override func setUp() {
         super.setUp()
         DomainRegistry.put(service: MockEncryptionService(), for: EncryptionServiceProtocol.self)
-        DomainRegistry.put(service: repository, for: UserRepository.self)
+        DomainRegistry.put(service: repository, for: SingleUserRepository.self)
         DomainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
         DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
         do {

@@ -21,7 +21,7 @@ public class IdentityService: Assertable {
         case gatekeeperNotFound
     }
 
-    private var userRepository: UserRepository {
+    private var userRepository: SingleUserRepository {
         return DomainRegistry.userRepository
     }
     private var encryptionService: EncryptionServiceProtocol {

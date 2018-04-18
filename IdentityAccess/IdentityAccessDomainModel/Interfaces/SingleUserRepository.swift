@@ -4,7 +4,7 @@
 
 import Foundation
 
-public protocol UserRepository {
+public protocol SingleUserRepository {
 
     func save(_ user: User) throws
     func remove(_ user: User) throws
