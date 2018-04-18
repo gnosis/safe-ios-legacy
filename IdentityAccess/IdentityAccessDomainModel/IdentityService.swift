@@ -37,9 +37,9 @@ public class IdentityService: Assertable {
     public init() {}
 
     @discardableResult
-    public func provisionGatekeeper(sessionDuration: TimeInterval,
-                                    maxFailedAttempts: Int,
-                                    blockDuration: TimeInterval) throws -> Gatekeeper {
+    public func createGatekeeper(sessionDuration: TimeInterval,
+                                 maxFailedAttempts: Int,
+                                 blockDuration: TimeInterval) throws -> Gatekeeper {
         let policy = try AuthenticationPolicy(sessionDuration: sessionDuration,
                                               maxFailedAttempts: maxFailedAttempts,
                                               blockDuration: blockDuration)

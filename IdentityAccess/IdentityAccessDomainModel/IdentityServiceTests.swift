@@ -104,10 +104,10 @@ class IdentityServiceTests: DomainTestCase {
         XCTAssertNil(try authenticateWithBiometry())
     }
 
-    func test_provisionGatekeeper_createsOne() throws {
-        let gatekeeper = try service.provisionGatekeeper(sessionDuration: 3,
-                                                         maxFailedAttempts: 3,
-                                                         blockDuration: 3)
+    func test_createGatekeeper_createsOne() throws {
+        let gatekeeper = try service.createGatekeeper(sessionDuration: 3,
+                                                      maxFailedAttempts: 3,
+                                                      blockDuration: 3)
         XCTAssertEqual(gatekeeperRepository.gatekeeper(), gatekeeper)
         XCTAssertEqual(gatekeeperRepository.gatekeeper()?.policy, gatekeeper.policy)
     }

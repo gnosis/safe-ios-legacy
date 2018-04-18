@@ -137,13 +137,13 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
         XCTAssertTrue(authenticationService.isAuthenticationMethodPossible(.biometry))
     }
 
-    func test_whenProvisioningGatekeeper_thenChangesRepository() throws {
+    func test_whenCreatingGatekeeper_thenChangesRepository() throws {
         if let gatekeeper = gatekeeperRepository.gatekeeper() {
             try gatekeeperRepository.remove(gatekeeper)
         }
-        try authenticationService.provisionAuthenticationPolicy(sessionDuration: 1,
-                                                                maxPasswordAttempts: 1,
-                                                                blockedPeriodDuration: 1)
+        try authenticationService.createAuthenticationPolicy(sessionDuration: 1,
+                                                             maxPasswordAttempts: 1,
+                                                             blockedPeriodDuration: 1)
         XCTAssertEqual(authenticationService.sessionDuration, 1)
         XCTAssertEqual(authenticationService.maxPasswordAttempts, 1)
         XCTAssertEqual(authenticationService.blockedPeriodDuration, 1)

@@ -9,7 +9,7 @@ public struct AuthenticationRequest {
     public let method: AuthenticationMethod
     public let password: String!
 
-    private init(_ method: AuthenticationMethod, _ password: String? = nil) {
+    private init(with method: AuthenticationMethod, _ password: String? = nil) {
         precondition(method == .biometry && password == nil ||
             method == .password && password != nil, "Invalid authentication request")
         self.method = method
@@ -17,11 +17,11 @@ public struct AuthenticationRequest {
     }
 
     public static func biometry() -> AuthenticationRequest {
-        return AuthenticationRequest(.biometry)
+        return AuthenticationRequest(with: .biometry)
     }
 
     public static func password(_ password: String) -> AuthenticationRequest {
-        return AuthenticationRequest(.password, password)
+        return AuthenticationRequest(with: .password, password)
     }
 
 }

@@ -39,9 +39,9 @@ class ApplicationServiceTestCase: XCTestCase {
         DomainRegistry.put(service: gatekeeperRepository, for: GatekeeperRepository.self)
         DomainRegistry.put(service: clockService, for: Clock.self)
 
-        XCTAssertNoThrow(try DomainRegistry.identityService.provisionGatekeeper(sessionDuration: 2,
-                                                                                maxFailedAttempts: 2,
-                                                                                blockDuration: 1))
+        XCTAssertNoThrow(try DomainRegistry.identityService.createGatekeeper(sessionDuration: 2,
+                                                                             maxFailedAttempts: 2,
+                                                                             blockDuration: 1))
     }
 
 }

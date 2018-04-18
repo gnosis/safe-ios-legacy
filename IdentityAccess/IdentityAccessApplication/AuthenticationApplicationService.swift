@@ -4,6 +4,7 @@
 
 import Foundation
 import IdentityAccessDomainModel
+import Common
 
 open class AuthenticationApplicationService {
 
@@ -46,26 +47,26 @@ open class AuthenticationApplicationService {
     }
 
     open func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
-        var supported: AuthenticationMethod = .password
+        var supportedSet: AuthenticationMethod = .password
         if biometricService.biometryType == .touchID {
-            supported.insert(.touchID)
+            supportedSet.insert(.touchID)
         }
         if biometricService.biometryType == .faceID {
-            supported.insert(.faceID)
+            supportedSet.insert(.faceID)
         }
-        return !method.isDisjoint(with: supported)
+        return supportedSet.intersects(with: method)
     }
 
     open func isAuthenticationMethodPossible(_ method: AuthenticationMethod) -> Bool {
         guard isAccessPossible else { return false }
-        var possible: AuthenticationMethod = .password
+        var possibleSet: AuthenticationMethod = .password
         if isAuthenticationMethodSupported(.faceID) && biometricService.isAuthenticationAvailable {
-            possible.insert(.faceID)
+            possibleSet.insert(.faceID)
         }
         if isAuthenticationMethodSupported(.touchID) && biometricService.isAuthenticationAvailable {
-            possible.insert(.touchID)
+            possibleSet.insert(.touchID)
         }
-        return !method.isDisjoint(with: possible)
+        return possibleSet.intersects(with: method)
     }
 
     // MARK: - Commands
@@ -75,7 +76,7 @@ open class AuthenticationApplicationService {
         let user: UserDescriptor?
         if request.method == .password {
             user = try identityService.authenticateUser(password: request.password, at: time)
-        } else if request.method.isSubset(of: .biometry) {
+        } else if AuthenticationMethod.biometry.contains(request.method) {
             user = try identityService.authenticateUserBiometrically(at: time)
         } else {
             preconditionFailure("Invalid authentication method in request \(request)")
@@ -108,12 +109,12 @@ open class AuthenticationApplicationService {
         try gatekeeperRepository.save(gatekeeper)
     }
 
-    open func provisionAuthenticationPolicy(sessionDuration: TimeInterval,
-                                            maxPasswordAttempts: Int,
-                                            blockedPeriodDuration: TimeInterval) throws {
-        try identityService.provisionGatekeeper(sessionDuration: sessionDuration,
-                                                maxFailedAttempts: maxPasswordAttempts,
-                                                blockDuration: blockedPeriodDuration)
+    open func createAuthenticationPolicy(sessionDuration: TimeInterval,
+                                         maxPasswordAttempts: Int,
+                                         blockedPeriodDuration: TimeInterval) throws {
+        try identityService.createGatekeeper(sessionDuration: sessionDuration,
+                                             maxFailedAttempts: maxPasswordAttempts,
+                                             blockDuration: blockedPeriodDuration)
     }
 
     open func reset() throws {
