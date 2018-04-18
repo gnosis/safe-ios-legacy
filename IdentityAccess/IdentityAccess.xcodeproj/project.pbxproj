@@ -101,7 +101,7 @@
 		0AFFF42420849EE10030200C /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42320849EE10030200C /* SessionTests.swift */; };
 		0AFFF42A20849EEA0030200C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42920849EE90030200C /* Session.swift */; };
 		0AFFF42C2084BBA30030200C /* GatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */; };
-		0AFFF42E2084BF850030200C /* InMemorySessionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */; };
+		0AFFF42E2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */; };
 		0AFFF4302084C01A0030200C /* InMemoryGatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */; };
 		0AFFF4322084D4630030200C /* Gatekeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF4312084D4630030200C /* Gatekeeper.swift */; };
 		0AFFF4342084D4DA0030200C /* AuthenticationPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF4332084D4DA0030200C /* AuthenticationPolicyTests.swift */; };
@@ -375,7 +375,7 @@
 		0AFFF42320849EE10030200C /* SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		0AFFF42920849EE90030200C /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatekeeperRepository.swift; sourceTree = "<group>"; };
-		0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySessionRepositoryTests.swift; sourceTree = "<group>"; };
+		0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryGatekeeperRepositoryTests.swift; sourceTree = "<group>"; };
 		0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryGatekeeperRepository.swift; sourceTree = "<group>"; };
 		0AFFF4312084D4630030200C /* Gatekeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gatekeeper.swift; sourceTree = "<group>"; };
 		0AFFF4332084D4DA0030200C /* AuthenticationPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPolicyTests.swift; sourceTree = "<group>"; };
@@ -703,7 +703,7 @@
 			children = (
 				0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */,
 				0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */,
-				0AFFF42D2084BF850030200C /* InMemorySessionRepositoryTests.swift */,
+				0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */,
 				0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */,
 			);
 			path = persistence;
@@ -1121,7 +1121,7 @@
 			files = (
 				0A537BA8207CF93F00921FB9 /* EthereumAccountTests.swift in Sources */,
 				0A537BAB207CF96500921FB9 /* CrashlyticsLoggerTests.swift in Sources */,
-				0AFFF42E2084BF850030200C /* InMemorySessionRepositoryTests.swift in Sources */,
+				0AFFF42E2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift in Sources */,
 				0A537BAE207CF97300921FB9 /* LogServiceTests.swift in Sources */,
 				0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */,
 				0AFFF40E20808C0B0030200C /* InMemoryUserRepositoryTests.swift in Sources */,
