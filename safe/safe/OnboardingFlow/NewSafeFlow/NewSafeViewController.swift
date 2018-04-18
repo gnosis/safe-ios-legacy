@@ -25,6 +25,14 @@ class NewSafeViewController: UIViewController {
 
     private var logger: Logger { return DomainRegistry.logger }
 
+    private struct Strings {
+        static let title = NSLocalizedString("onboarding.new_safe.title", comment: "Title for new safe screen")
+        static let thisDevice = NSLocalizedString("onboarding.new_safe.this_device", comment: "This device button")
+        static let paperWallet = NSLocalizedString("onboarding.new_safe.paper_wallet", comment: "Paper Wallet Button")
+        static let chromeExtension = NSLocalizedString("onboarding.new_safe.chrome_extension",
+                                                       comment: "Chrome extension Button")
+    }
+
     static func create(draftSafe: DraftSafe?, delegate: NewSafeDelegate) -> NewSafeViewController {
         let controller = StoryboardScene.NewSafe.newSafeViewController.instantiate()
         controller.delegate = delegate
@@ -43,14 +51,10 @@ class NewSafeViewController: UIViewController {
                          function: #function)
             return
         }
-        titleLabel.text = NSLocalizedString("onboarding.new_safe.title",
-                                            comment: "Title for new safe screen")
-        thisDeviceButton.setTitle(NSLocalizedString("onboarding.new_safe.this_device",
-                                                    comment: "This device button"), for: .normal)
-        paperWalletButton.setTitle(NSLocalizedString("onboarding.new_safe.paper_wallet",
-                                                     comment: "Paper Wallet Button"), for: .normal)
-        chromeExtensionButton.setTitle(NSLocalizedString("onboarding.new_safe.chrome_extension",
-                                                         comment: "Chrome extension Button"), for: .normal)
+        titleLabel.text = Strings.title
+        thisDeviceButton.setTitle(Strings.thisDevice, for: .normal)
+        paperWalletButton.setTitle(Strings.paperWallet, for: .normal)
+        chromeExtensionButton.setTitle(Strings.chromeExtension, for: .normal)
         thisDeviceButton.isEnabled = false
         thisDeviceButton.checkmarkStatus = .selected
     }

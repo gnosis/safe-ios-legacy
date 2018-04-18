@@ -21,6 +21,16 @@ final class SaveMnemonicViewController: UIViewController {
     private(set) weak var delegate: SaveMnemonicDelegate?
     private(set) var words = [String]()
 
+    private struct Strings {
+        static let title = NSLocalizedString("new_safe.paper_wallet.title",
+                                             comment: "Title for store paper wallet screen")
+        static let save = NSLocalizedString("new_safe.paper_wallet.save", comment: "Save Button")
+        static let description = NSLocalizedString("new_safe.paper_wallet.description",
+                                                   comment: "Description for store paper wallet screen")
+        static let `continue` = NSLocalizedString("new_safe.paper_wallet.continue",
+                                                  comment: "Continue button for store paper wallet screen")
+    }
+
     static func create(words: [String], delegate: SaveMnemonicDelegate) -> SaveMnemonicViewController {
         let controller = StoryboardScene.NewSafe.saveMnemonicViewController.instantiate()
         controller.words = words
@@ -38,15 +48,11 @@ final class SaveMnemonicViewController: UIViewController {
             dismiss(animated: true)
             return
         }
-        titleLabel.text = NSLocalizedString("new_safe.paper_wallet.title",
-                                            comment: "Title for store paper wallet screen")
+        titleLabel.text = Strings.title
         mnemonicCopyableLabel.text = words.joined(separator: " ")
-        saveButton.setTitle(NSLocalizedString("new_safe.paper_wallet.save", comment: "Save Button"), for: .normal)
-        descriptionLabel.text = NSLocalizedString("new_safe.paper_wallet.description",
-                                                  comment: "Description for store paper wallet screen")
-        continueButton.setTitle(NSLocalizedString("new_safe.paper_wallet.continue",
-                                                  comment: "Continue button for store paper wallet screen"),
-                                for: .normal)
+        saveButton.setTitle(Strings.save, for: .normal)
+        descriptionLabel.text = Strings.description
+        continueButton.setTitle(Strings.continue, for: .normal)
     }
 
 }
