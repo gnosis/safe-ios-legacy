@@ -21,4 +21,7 @@ public class MockEncryptionService: EncryptionServiceProtocol {
 
     public func isValid(signature: Signature, for data: Data, with key: PublicKey) -> Bool { return true }
 
+    public func encrypted(_ plainText: String) -> String {
+        return String(repeating: String(plainText.reversed()), count: 3)
+    }
 }

@@ -42,32 +42,32 @@ class TestSupportTests: SafeTestCase {
         XCTAssertEqual(authenticationService.sessionDuration, 1)
     }
 
-    func test_setUp_whenSessionDurationWithoutValue_thenDoesNothing() {
-        authenticationService.configureSession(1)
+    func test_setUp_whenSessionDurationWithoutValue_thenDoesNothing() throws {
+        try authenticationService.configureSession(1)
         support.setUp([ApplicationArguments.setSessionDuration, "invalid"])
         XCTAssertEqual(authenticationService.sessionDuration, 1)
     }
 
-    func test_setUp_whenSetMaxPasswordAttemptsProvided_thenSetsMaxAttempts() {
-        authenticationService.configureMaxPasswordAttempts(0)
+    func test_setUp_whenSetMaxPasswordAttemptsProvided_thenSetsMaxAttempts() throws {
+        try authenticationService.configureMaxPasswordAttempts(5)
         support.setUp([ApplicationArguments.setMaxPasswordAttempts, "1"])
         XCTAssertEqual(authenticationService.maxPasswordAttempts, 1)
     }
 
-    func test_setUp_whenSetMaxPasswordAttemptsInvalid_thenDoesNothing() {
-        authenticationService.configureMaxPasswordAttempts(3)
+    func test_setUp_whenSetMaxPasswordAttemptsInvalid_thenDoesNothing() throws {
+        try authenticationService.configureMaxPasswordAttempts(3)
         support.setUp([ApplicationArguments.setMaxPasswordAttempts, "invalid"])
         XCTAssertEqual(authenticationService.maxPasswordAttempts, 3)
     }
 
-    func test_setUp_whenBlockedPeriodDurationSet_thenAccountChanged() {
-        authenticationService.configureBlockDuration(1)
+    func test_setUp_whenBlockedPeriodDurationSet_thenAccountChanged() throws {
+        try authenticationService.configureBlockDuration(1)
         support.setUp([ApplicationArguments.setAccountBlockedPeriodDuration, "10.1"])
         XCTAssertEqual(authenticationService.blockedPeriodDuration, 10.1)
     }
 
-    func test_setUp_whenBlockedPeriodDurationInvalid_thenDoesNothing() {
-        authenticationService.configureBlockDuration(3)
+    func test_setUp_whenBlockedPeriodDurationInvalid_thenDoesNothing() throws {
+        try authenticationService.configureBlockDuration(3)
         support.setUp([ApplicationArguments.setAccountBlockedPeriodDuration, "invalid"])
         XCTAssertEqual(authenticationService.blockedPeriodDuration, 3)
     }

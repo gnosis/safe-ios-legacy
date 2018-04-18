@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import IdentityAccessDomainModel
+import IdentityAccessApplication
 
 public final class SystemClockService: Clock {
 

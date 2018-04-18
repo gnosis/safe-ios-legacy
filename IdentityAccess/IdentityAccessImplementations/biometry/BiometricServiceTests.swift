@@ -17,15 +17,15 @@ class BiometricAuthenticationServiceTests: XCTestCase {
         biometricService = BiometricService(localAuthenticationContext: context)
     }
 
-    func test_activate_whenBiometricIsNotAvailable_thenIsNotActivated() {
+    func test_activate_whenBiometricIsNotAvailable_thenIsNotActivated() throws {
         context.canEvaluatePolicy = false
-        activate()
+        try activate()
         XCTAssertFalse(context.evaluatePolicyInvoked)
     }
 
-    func test_activate_whenBiometricIsAvailable_thenIsActivated() {
+    func test_activate_whenBiometricIsAvailable_thenIsActivated() throws {
         context.canEvaluatePolicy = true
-        activate()
+        try activate()
         XCTAssertTrue(context.evaluatePolicyInvoked)
     }
 
@@ -98,24 +98,14 @@ class BiometricAuthenticationServiceTests: XCTestCase {
 extension BiometricAuthenticationServiceTests {
 
     func authenticate() -> Bool {
-        var success = false
         context.evaluatePolicyInvoked = false
-        let expectation = self.expectation(description: "Activate")
-        biometricService.authenticate { result in
-            success = result
-            expectation.fulfill()
-        }
-        waitForExpectations(timeout: 0.1)
+        let success = biometricService.authenticate()
         return success
     }
 
-    func activate() {
+    func activate() throws {
         context.evaluatePolicyInvoked = false
-        let expectation = self.expectation(description: "Activate")
-        biometricService.activate {
-            expectation.fulfill()
-        }
-        waitForExpectations(timeout: 0.1)
+        try biometricService.activate()
     }
 
 }

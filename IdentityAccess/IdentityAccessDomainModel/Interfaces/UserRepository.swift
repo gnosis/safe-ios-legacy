@@ -10,5 +10,6 @@ public protocol UserRepository {
     func remove(_ user: User) throws
     func primaryUser() -> User?
     func nextId() -> UserID
+    func user(encryptedPassword: String) -> User?
 
 }

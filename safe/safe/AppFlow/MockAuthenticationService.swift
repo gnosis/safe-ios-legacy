@@ -15,8 +15,8 @@ class MockAuthenticationService: AuthenticationApplicationService {
     private var authenticationAllowed = false
     private(set) var didRequestBiometricAuthentication = false
     private(set) var didRequestPasswordAuthentication = false
-    private var biometricAuthenticationPossible = true
-    private var enabledAuthenticationMethods = Set<AuthenticationMethod>([AuthenticationMethod.password])
+    private var enabledAuthenticationMethods = AuthenticationMethod.password
+    private var possibleAuthenticationMethods: AuthenticationMethod = [.password, .touchID, .faceID]
     private var authenticationBlocked = false
 
     enum Error: Swift.Error { case error }
@@ -33,13 +33,12 @@ class MockAuthenticationService: AuthenticationApplicationService {
         return userRegistered
     }
 
-    override func registerUser(password: String, completion: (() -> Void)? = nil) throws {
+    override func registerUser(password: String) throws {
         didRequestUserRegistration = true
         if shouldThrowDuringRegistration {
             throw Error.error
         }
         userRegistered = true
-        completion?()
     }
 
     func invalidateAuthentication() {
@@ -51,23 +50,23 @@ class MockAuthenticationService: AuthenticationApplicationService {
         authenticationAllowed = true
     }
 
-    override var isUserAuthenticated: Bool {
+    override func isUserAuthenticated(session: String) -> Bool {
         return isUserRegistered && userAuthenticated && !isAuthenticationBlocked
     }
 
-    override func authenticateUser(password: String?, completion: ((Bool) -> Void)? = nil) {
-        didRequestBiometricAuthentication = password == nil
-        didRequestPasswordAuthentication = !didRequestBiometricAuthentication
+    override func authenticateUser(_ request: AuthenticationRequest) throws -> AuthenticationResult {
+        didRequestBiometricAuthentication = !request.method.isDisjoint(with: .biometry)
+        didRequestPasswordAuthentication = request.method.contains(.password)
         userAuthenticated = authenticationAllowed && !authenticationBlocked
-        completion?(userAuthenticated)
+        if authenticationBlocked {
+            return .blocked
+        } else {
+            return userAuthenticated ? .success(userID: "userID", sessionID: "sessionID") : .failure
+        }
     }
 
     func makeBiometricAuthenticationImpossible() {
-        biometricAuthenticationPossible = false
-    }
-
-    override var isBiometricAuthenticationPossible: Bool {
-        return biometricAuthenticationPossible
+        possibleAuthenticationMethods = .password
     }
 
     func enableFaceIDSupport() {
@@ -75,7 +74,11 @@ class MockAuthenticationService: AuthenticationApplicationService {
     }
 
     override func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
-        return enabledAuthenticationMethods.contains(method)
+        return !method.isDisjoint(with: enabledAuthenticationMethods)
+    }
+
+    override func isAuthenticationMethodPossible(_ method: AuthenticationMethod) -> Bool {
+        return !method.isDisjoint(with: possibleAuthenticationMethods)
     }
 
     func blockAuthentication() {

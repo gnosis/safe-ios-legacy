@@ -32,14 +32,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                        for: AuthenticationApplicationService.self)
         ApplicationServiceRegistry.put(service: IdentityApplicationService(), for: IdentityApplicationService.self)
         ApplicationServiceRegistry.put(service: SystemClockService(), for: Clock.self)
-
+        ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
         DomainRegistry.put(service: UserDefaultsService(), for: KeyValueStore.self)
         DomainRegistry.put(service: KeychainService(), for: SecureStore.self)
         DomainRegistry.put(service: BiometricService(), for: BiometricAuthenticationService.self)
         DomainRegistry.put(service: SystemClockService(), for: Clock.self)
         DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
-        DomainRegistry.put(service: LogService.shared, for: Logger.self)
         DomainRegistry.put(service: InMemoryUserRepository(), for: UserRepository.self)
+        DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
+        DomainRegistry.put(service: InMemoryGatekeeperRepository(), for: GatekeeperRepository.self)
+        do {
+            try ApplicationServiceRegistry.authenticationService
+                .createAuthenticationPolicy(sessionDuration: 60,
+                                            maxPasswordAttempts: 3,
+                                            blockedPeriodDuration: 15)
+        } catch let e {
+            LogService.shared.fatal("Failed to setup authentication policy", error: e)
+        }
     }
 
     private func createWindow() {

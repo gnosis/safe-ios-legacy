@@ -793,7 +793,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ../scripts/localize.sh;
+			shellScript = "${SRCROOT}/../scripts/localize.sh";
 			showEnvVarsInLog = 0;
 		};
 		55147D50203DAE5900AD0E1F /* SwiftGen */ = {

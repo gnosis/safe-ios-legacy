@@ -8,6 +8,7 @@ import XCTest
 class UserTests: DomainTestCase {
 
     var id: UserID!
+    let password = "123456A"
 
     override func setUp() {
         super.setUp()
@@ -15,7 +16,7 @@ class UserTests: DomainTestCase {
     }
 
     func test_create_passwordNotEmpty() {
-        XCTAssertThrowsError(try create(password: "")) {
+        XCTAssertThrowsError(try createUser(password: "")) {
             self.assertError($0, .emptyPassword)
         }
     }
@@ -23,22 +24,22 @@ class UserTests: DomainTestCase {
     func test_create_passwordNSymbols() {
         let short = String(repeating: "1", count: 5)
         let long = String(repeating: "1", count: 101)
-        XCTAssertThrowsError(try create(password: short)) {
+        XCTAssertThrowsError(try createUser(password: short)) {
             self.assertError($0, .passwordTooShort)
         }
-        XCTAssertThrowsError(try create(password: long)) {
+        XCTAssertThrowsError(try createUser(password: long)) {
             self.assertError($0, .passwordTooLong)
         }
     }
 
     func test_create_passwordCapitalLetter() {
-        XCTAssertThrowsError(try create(password: "123456")) {
+        XCTAssertThrowsError(try createUser(password: "123456")) {
             self.assertError($0, .passwordMissingCapitalLetter)
         }
     }
 
     func test_create_digit() {
-        XCTAssertThrowsError(try create(password: "abcabC")) {
+        XCTAssertThrowsError(try createUser(password: "abcabC")) {
             self.assertError($0, .passwordMissingDigit)
         }
     }
@@ -53,7 +54,7 @@ class UserTests: DomainTestCase {
 
 extension UserTests {
 
-    func create(password: String) throws -> User {
+    func createUser(password: String) throws -> User {
         return try User(id: id, password: password)
     }
 

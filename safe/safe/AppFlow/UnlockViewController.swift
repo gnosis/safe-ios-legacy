@@ -5,7 +5,30 @@
 import UIKit
 import safeUIKit
 import IdentityAccessApplication
-import IdentityAccessDomainModel
+import IdentityAccessImplementations
+
+class Authenticator {
+    var session: String?
+    var user: String?
+
+    static let instance = Authenticator()
+
+    private init() {}
+
+    public func authenticate(_ request: AuthenticationRequest) throws -> AuthenticationResult {
+        let result = try ApplicationServiceRegistry.authenticationService.authenticateUser(request)
+        if result.status == .success {
+            session = result.sessionID
+            user = result.userID
+        }
+        return result
+    }
+
+    public func registerUser(password: String) throws {
+        try ApplicationServiceRegistry.authenticationService.registerUser(password: password)
+        _ = try authenticate(.password(password))
+    }
+}
 
 final class UnlockViewController: UIViewController {
 
@@ -52,14 +75,14 @@ final class UnlockViewController: UIViewController {
         countdownLabel.start { [weak self] in
             guard let `self` = self else { return }
             self.textInput.isEnabled = true
-            _ = self.textInput.becomeFirstResponder()
+            self.focusPasswordField()
         }
     }
 
     private func updateBiometryButtonVisibility() {
         loginWithBiometryButton.isHidden = !ApplicationServiceRegistry
             .authenticationService
-            .isBiometricAuthenticationPossible
+            .isAuthenticationMethodPossible(.biometry)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -73,16 +96,25 @@ final class UnlockViewController: UIViewController {
 
     private func auhtenticateWithBiometry() {
         guard !authenticationService.isAuthenticationBlocked else { return }
-        authenticationService.authenticateUser {  [unowned self] success in
-            DispatchQueue.main.async {
-                if success {
-                    self.unlockCompletion()
-                } else {
-                    _ = self.textInput.becomeFirstResponder()
-                    self.updateBiometryButtonVisibility()
-                }
-            }
+        guard authenticationService.isAuthenticationMethodPossible(.biometry) else {
+            focusPasswordField()
+            return
         }
+        do {
+            let result = try Authenticator.instance.authenticate(.biometry())
+            if result.status == .success {
+                unlockCompletion()
+            } else {
+                focusPasswordField()
+            }
+        } catch let e {
+            LogService.shared.fatal("Failed to authenticate with biometry", error: e)
+        }
+    }
+
+    private func focusPasswordField() {
+        _ = textInput.becomeFirstResponder()
+        updateBiometryButtonVisibility()
     }
 
 }
@@ -90,16 +122,16 @@ final class UnlockViewController: UIViewController {
 extension UnlockViewController: TextInputDelegate {
 
     func textInputDidReturn(_ textInput: TextInput) {
-        authenticationService.authenticateUser(password: textInput.text!) {
-            [unowned self] success in
-            DispatchQueue.main.async {
-                if success {
-                    self.unlockCompletion()
-                } else {
-                    self.textInput.shake()
-                    self.startCountdownIfNeeded()
-                }
+        do {
+            let result = try Authenticator.instance.authenticate(.password(textInput.text!))
+            if result.status == .success {
+                self.unlockCompletion()
+            } else {
+                self.textInput.shake()
+                self.startCountdownIfNeeded()
             }
+        } catch let e {
+            LogService.shared.fatal("Failed to authenticate with password", error: e)
         }
     }
 

@@ -12,7 +12,6 @@ public protocol BiometricAuthenticationService {
 
     var isAuthenticationAvailable: Bool { get }
     var biometryType: BiometryType { get }
-    func activate(completion: @escaping () -> Void)
-    func authenticate(completion: @escaping (Bool) -> Void)
-
+    func activate() throws
+    func authenticate() -> Bool
 }

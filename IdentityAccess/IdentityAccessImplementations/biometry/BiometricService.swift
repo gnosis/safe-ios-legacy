@@ -58,28 +58,28 @@ public final class BiometricService: BiometricAuthenticationService {
         }
     }
 
-    public func activate(completion: @escaping () -> Void) {
-        requestBiometry(reason: String(format: LocalizedString.activate, biometryType.localizedDescription)) { _ in
-            completion()
-        }
+    public func activate() throws {
+        requestBiometry(reason: String(format: LocalizedString.activate, biometryType.localizedDescription))
     }
 
-    public func authenticate(completion: @escaping (Bool) -> Void) {
-        requestBiometry(reason: String(format: LocalizedString.unlock, biometryType.localizedDescription),
-                        completion: completion)
+    public func authenticate() -> Bool {
+        return requestBiometry(reason: String(format: LocalizedString.unlock, biometryType.localizedDescription))
     }
 
-    private func requestBiometry(reason: String, completion: @escaping (Bool) -> Void) {
-        if isAuthenticationAvailable {
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { result, error in
-                if let error = error {
-                    LogService.shared.error("Failed to evaluate authentication policy", error: error)
-                }
-                completion(result)
+    @discardableResult
+    private func requestBiometry(reason: String) -> Bool {
+        guard isAuthenticationAvailable else { return false }
+        var success: Bool = false
+        let semaphore = DispatchSemaphore(value: 0)
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { result, error in
+            if let error = error {
+                LogService.shared.error("Failed to evaluate authentication policy", error: error)
             }
-        } else {
-            completion(false)
+            success = result
+            semaphore.signal()
         }
+        semaphore.wait()
+        return success
     }
 
 }

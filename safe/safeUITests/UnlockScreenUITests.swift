@@ -21,11 +21,11 @@ class UnlockScreenUITests: XCTestCase {
     }
 
     func test_whenSetPasswordFinishedAndSessionNotExpired_thenSafeSetupOptionsScreenIsDisplayed() {
-        let sessionDuration: TimeInterval = 2
+        let sessionDuration: TimeInterval = 10
         application.setSessionDuration(seconds: sessionDuration)
         start()
         application.minimize()
-        delay(sessionDuration - 1)
+        delay(1)
         application.maximize()
         XCTAssertTrue(securedScreen.isDisplayed)
     }

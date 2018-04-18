@@ -20,32 +20,36 @@ final class TestSupport {
     func addResettable(_ object: Resettable) {
         resettableObjects.append(object)
     }
-
+    
     func setUp(_ arguments: [String] = ProcessInfo.processInfo.arguments) {
-        var iterator = arguments.makeIterator()
-        while let argument = iterator.next() {
-            switch argument {
-            case ApplicationArguments.resetAllContentAndSettings:
-                resettableObjects.forEach { $0.resetAll() }
-            case ApplicationArguments.setPassword:
-                if let password = iterator.next() {
-                    try? authenticationService.registerUser(password: password)
+        do {
+            var iterator = arguments.makeIterator()
+            while let argument = iterator.next() {
+                switch argument {
+                case ApplicationArguments.resetAllContentAndSettings:
+                    resettableObjects.forEach { $0.resetAll() }
+                case ApplicationArguments.setPassword:
+                    if let password = iterator.next() {
+                        try authenticationService.registerUser(password: password)
+                    }
+                case ApplicationArguments.setSessionDuration:
+                    if let duration = timeInterval(&iterator) {
+                        try authenticationService.configureSession(duration)
+                    }
+                case ApplicationArguments.setMaxPasswordAttempts:
+                    if let attemptCountStr = iterator.next(),
+                        let attemptCount = Int(attemptCountStr) {
+                        try authenticationService.configureMaxPasswordAttempts(attemptCount)
+                    }
+                case ApplicationArguments.setAccountBlockedPeriodDuration:
+                    if let blockingTime = timeInterval(&iterator) {
+                        try authenticationService.configureBlockDuration(blockingTime)
+                    }
+                default: break
                 }
-            case ApplicationArguments.setSessionDuration:
-                if let duration = timeInterval(&iterator) {
-                    authenticationService.configureSession(duration)
-                }
-            case ApplicationArguments.setMaxPasswordAttempts:
-                if let attemptCountStr = iterator.next(),
-                    let attemptCount = Int(attemptCountStr) {
-                    authenticationService.configureMaxPasswordAttempts(attemptCount)
-                }
-            case ApplicationArguments.setAccountBlockedPeriodDuration:
-                if let blockingTime = timeInterval(&iterator) {
-                    authenticationService.configureBlockDuration(blockingTime)
-                }
-            default: break
             }
+        } catch let e {
+            preconditionFailure("Failed to set up test support: \(e)")
         }
     }
 

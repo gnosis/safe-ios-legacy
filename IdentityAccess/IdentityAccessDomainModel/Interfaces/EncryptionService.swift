@@ -13,6 +13,8 @@ public protocol EncryptionServiceProtocol {
     func sign(_ data: Data, _ key: PrivateKey) -> Signature
     func isValid(signature: Signature, for data: Data, with key: PublicKey) -> Bool
 
+    func encrypted(_ plainText: String) -> String
+
 }
 
 public struct PrivateKey: Equatable {
