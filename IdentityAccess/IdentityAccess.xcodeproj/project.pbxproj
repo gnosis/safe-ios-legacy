@@ -100,7 +100,7 @@
 		0AFFF41E2080BCB00030200C /* IdentityServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */; };
 		0AFFF42420849EE10030200C /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42320849EE10030200C /* SessionTests.swift */; };
 		0AFFF42A20849EEA0030200C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42920849EE90030200C /* Session.swift */; };
-		0AFFF42C2084BBA30030200C /* GatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */; };
+		0AFFF42C2084BBA30030200C /* SingleGatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42B2084BBA30030200C /* SingleGatekeeperRepository.swift */; };
 		0AFFF42E2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */; };
 		0AFFF4302084C01A0030200C /* InMemoryGatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */; };
 		0AFFF4322084D4630030200C /* Gatekeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF4312084D4630030200C /* Gatekeeper.swift */; };
@@ -376,7 +376,7 @@
 		0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityServiceTests.swift; sourceTree = "<group>"; };
 		0AFFF42320849EE10030200C /* SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		0AFFF42920849EE90030200C /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatekeeperRepository.swift; sourceTree = "<group>"; };
+		0AFFF42B2084BBA30030200C /* SingleGatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGatekeeperRepository.swift; sourceTree = "<group>"; };
 		0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryGatekeeperRepositoryTests.swift; sourceTree = "<group>"; };
 		0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryGatekeeperRepository.swift; sourceTree = "<group>"; };
 		0AFFF4312084D4630030200C /* Gatekeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gatekeeper.swift; sourceTree = "<group>"; };
@@ -491,7 +491,7 @@
 				0A537A82207CE74000921FB9 /* KeyValueStore.swift */,
 				0A537A84207CE74000921FB9 /* SecureStore.swift */,
 				0AFFF40520808A5D0030200C /* SingleUserRepository.swift */,
-				0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */,
+				0AFFF42B2084BBA30030200C /* SingleGatekeeperRepository.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -1066,7 +1066,7 @@
 			files = (
 				0AFFF40620808A5D0030200C /* SingleUserRepository.swift in Sources */,
 				0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */,
-				0AFFF42C2084BBA30030200C /* GatekeeperRepository.swift in Sources */,
+				0AFFF42C2084BBA30030200C /* SingleGatekeeperRepository.swift in Sources */,
 				0A537A98207CE74100921FB9 /* DomainRegistry.swift in Sources */,
 				0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */,
 				0AFFF42A20849EEA0030200C /* Session.swift in Sources */,

@@ -12,7 +12,7 @@ open class AuthenticationApplicationService {
         case emptyPassword
     }
 
-    private var gatekeeperRepository: GatekeeperRepository { return DomainRegistry.gatekeeperRepository }
+    private var gatekeeperRepository: SingleGatekeeperRepository { return DomainRegistry.gatekeeperRepository }
     private var gatekeeper: Gatekeeper! { return gatekeeperRepository.gatekeeper() }
     private var clock: Clock { return ApplicationServiceRegistry.clock }
     private var identityService: IdentityService { return DomainRegistry.identityService }

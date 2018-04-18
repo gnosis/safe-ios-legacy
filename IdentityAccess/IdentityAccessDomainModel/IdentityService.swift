@@ -30,7 +30,7 @@ public class IdentityService: Assertable {
     private var biometricService: BiometricAuthenticationService {
         return DomainRegistry.biometricAuthenticationService
     }
-    private var gatekeeperRepository: GatekeeperRepository {
+    private var gatekeeperRepository: SingleGatekeeperRepository {
         return DomainRegistry.gatekeeperRepository
     }
 

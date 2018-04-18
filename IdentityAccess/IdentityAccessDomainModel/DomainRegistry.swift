@@ -31,7 +31,7 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: IdentityService.self)
     }
 
-    public static var gatekeeperRepository: GatekeeperRepository {
-        return service(for: GatekeeperRepository.self)
+    public static var gatekeeperRepository: SingleGatekeeperRepository {
+        return service(for: SingleGatekeeperRepository.self)
     }
 }

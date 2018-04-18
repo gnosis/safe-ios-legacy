@@ -36,7 +36,7 @@ class ApplicationServiceTestCase: XCTestCase {
         DomainRegistry.put(service: biometricService, for: BiometricAuthenticationService.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: identityDomainService, for: IdentityService.self)
-        DomainRegistry.put(service: gatekeeperRepository, for: GatekeeperRepository.self)
+        DomainRegistry.put(service: gatekeeperRepository, for: SingleGatekeeperRepository.self)
         DomainRegistry.put(service: clockService, for: Clock.self)
 
         XCTAssertNoThrow(try DomainRegistry.identityService.createGatekeeper(sessionDuration: 2,

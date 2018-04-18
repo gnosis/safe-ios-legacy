@@ -15,7 +15,7 @@ class DomainTestCase: XCTestCase {
     let encryptionService = MockEncryptionService()
     let userRepository: SingleUserRepository = InMemoryUserRepository()
     let identityService = IdentityService()
-    let gatekeeperRepository: GatekeeperRepository = InMemoryGatekeeperRepository()
+    let gatekeeperRepository: SingleGatekeeperRepository = InMemoryGatekeeperRepository()
 
     override func setUp() {
         super.setUp()
@@ -25,7 +25,7 @@ class DomainTestCase: XCTestCase {
         DomainRegistry.put(service: encryptionService, for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: userRepository, for: SingleUserRepository.self)
         DomainRegistry.put(service: identityService, for: IdentityService.self)
-        DomainRegistry.put(service: gatekeeperRepository, for: GatekeeperRepository.self)
+        DomainRegistry.put(service: gatekeeperRepository, for: SingleGatekeeperRepository.self)
     }
 
 }

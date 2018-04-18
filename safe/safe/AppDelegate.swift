@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: InMemoryUserRepository(), for: SingleUserRepository.self)
         DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
-        DomainRegistry.put(service: InMemoryGatekeeperRepository(), for: GatekeeperRepository.self)
+        DomainRegistry.put(service: InMemoryGatekeeperRepository(), for: SingleGatekeeperRepository.self)
         do {
             try ApplicationServiceRegistry.authenticationService
                 .createAuthenticationPolicy(sessionDuration: 60,
