@@ -10,10 +10,11 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
 
     let newSafeFlowCoordinator = NewSafeFlowCoordinator()
     let nav = UINavigationController()
+    var startVC: UIViewController!
 
     override func setUp() {
         super.setUp()
-        let startVC = newSafeFlowCoordinator.startViewController(parent: nav)
+        startVC = newSafeFlowCoordinator.startViewController(parent: nav)
         nav.pushViewController(startVC, animated: false)
     }
 
@@ -25,14 +26,22 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         newSafeFlowCoordinator.didSelectPaperWalletSetup()
         delay()
         let fc = PaperWalletFlowCoordinator()
-        let startVC = fc.startViewController(parent: newSafeFlowCoordinator.rootVC)
-        XCTAssertTrue(type(of: nav.topViewController!) == type(of: startVC))
+        let paperWalletStartVC = fc.startViewController(parent: newSafeFlowCoordinator.rootVC)
+        XCTAssertTrue(type(of: nav.topViewController!) == type(of: paperWalletStartVC))
     }
 
     func test_didSelectChromeExtensionSetup_showsPairWithChromeExtensionVC() {
         newSafeFlowCoordinator.didSelectChromeExtensionSetup()
         delay()
         XCTAssertTrue(type(of: nav.topViewController!) == type(of: PairWithChromeExtensionViewController()))
+    }
+
+    func test_paperWalletSetupCompletion_popsToStartVC() {
+        newSafeFlowCoordinator.didSelectPaperWalletSetup()
+        delay()
+        newSafeFlowCoordinator.paperWalletFlowCoordinator.didConfirm()
+        delay()
+        XCTAssertTrue(nav.topViewController === startVC)
     }
 
 }
