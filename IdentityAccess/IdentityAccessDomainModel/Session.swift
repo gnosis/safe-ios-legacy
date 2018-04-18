@@ -7,7 +7,7 @@ import Common
 
 public class SessionID: BaseID {}
 
-public class Session: IdentifiedEntity<SessionID> {
+public class Session: IdentifiableEntity<SessionID> {
 
     public enum Error: Swift.Error, Hashable {
         case invalidDuration

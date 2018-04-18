@@ -7,7 +7,7 @@ import Common
 
 public class GatekeeperID: BaseID {}
 
-public class Gatekeeper: IdentifiedEntity<GatekeeperID> {
+public class Gatekeeper: IdentifiableEntity<GatekeeperID> {
 
     public private(set) var policy: AuthenticationPolicy {
         didSet {
