@@ -5,7 +5,7 @@
 import UIKit
 import safeUIKit
 import IdentityAccessApplication
-import IdentityAccessDomainModel
+import IdentityAccessImplementations
 
 protocol NewSafeDelegate: class {
     func didSelectPaperWalletSetup()
@@ -23,7 +23,7 @@ class NewSafeViewController: UIViewController {
     weak var delegate: NewSafeDelegate?
     private var draftSafe: DraftSafe?
 
-    private var logger: Logger { return DomainRegistry.logger }
+    private var logger: Logger { return LogService.shared }
 
     private struct Strings {
         static let title = NSLocalizedString("onboarding.new_safe.title", comment: "Title for new safe screen")
