@@ -6,6 +6,7 @@ import XCTest
 @testable import safe
 import IdentityAccessApplication
 import CommonTestSupport
+import safeUIKit
 
 class NewSafeViewControllerTests: SafeTestCase {
 
@@ -48,6 +49,18 @@ class NewSafeViewControllerTests: SafeTestCase {
         XCTAssertTrue(logger.errorLogged)
     }
 
+    func test_viewDidLoad_whenDraftSafeHasConfiguredAddress_thenCheckmarksAreSet() {
+        let draftSafe = try! identityService.getOrCreateDraftSafe()
+        controller.viewDidLoad()
+        assertButtonCheckmarks(.selected, .normal, .normal)
+        identityService.confirmPaperWallet(draftSafe: draftSafe)
+        controller.viewDidLoad()
+        assertButtonCheckmarks(.selected, .selected, .normal)
+        identityService.confirmChromeExtension(draftSafe: draftSafe)
+        controller.viewDidLoad()
+        assertButtonCheckmarks(.selected, .selected, .selected)
+    }
+
 }
 
 extension NewSafeViewControllerTests {
@@ -66,6 +79,14 @@ extension NewSafeViewControllerTests {
         window.rootViewController?.present(controller, animated: false)
         delay()
         XCTAssertNotNil(controller.view.window)
+    }
+
+    private func assertButtonCheckmarks(_ thisDeviceCheckmark: BigButton.CheckmarkStatus,
+                                        _ paperWalletCheckmark: BigButton.CheckmarkStatus,
+                                        _ chromeExtensionCheckmark: BigButton.CheckmarkStatus) {
+        XCTAssertEqual(controller.thisDeviceButton.checkmarkStatus, thisDeviceCheckmark)
+        XCTAssertEqual(controller.paperWalletButton.checkmarkStatus, paperWalletCheckmark)
+        XCTAssertEqual(controller.chromeExtensionButton.checkmarkStatus, chromeExtensionCheckmark)
     }
 
 }
