@@ -34,7 +34,7 @@ class NewSafeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let draftSafe = draftSafe else {
+        guard draftSafe != nil else {
             dismiss(animated: true)
             logger.error("DraftSafe is not provided in NewSafeViewController",
                          error: nil,
@@ -53,14 +53,15 @@ class NewSafeViewController: UIViewController {
                                                          comment: "Chrome extension Button"), for: .normal)
         thisDeviceButton.isEnabled = false
         thisDeviceButton.checkmarkStatus = .selected
-        paperWalletButton.checkmarkStatus =
-            draftSafe.confirmedAddresses.contains(.paperWallet) ? .selected : .normal
-        chromeExtensionButton.checkmarkStatus =
-            draftSafe.confirmedAddresses.contains(.chromeExtension) ? .selected : .normal
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard let draftSafe = draftSafe else { return }
+        paperWalletButton.checkmarkStatus =
+            draftSafe.confirmedAddresses.contains(.paperWallet) ? .selected : .normal
+        chromeExtensionButton.checkmarkStatus =
+            draftSafe.confirmedAddresses.contains(.chromeExtension) ? .selected : .normal
     }
 
     @IBAction func setupPaperWallet(_ sender: Any) {

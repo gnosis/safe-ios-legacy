@@ -49,25 +49,21 @@ class NewSafeViewControllerTests: SafeTestCase {
         XCTAssertTrue(logger.errorLogged)
     }
 
-    func test_viewDidLoad_whenDraftSafeHasConfiguredAddress_thenCheckmarksAreSet() {
+    func test_viewWillAppear_whenDraftSafeHasConfiguredAddress_thenCheckmarksAreSet() {
         let draftSafe = try! identityService.getOrCreateDraftSafe()
-        controller.viewDidLoad()
+        controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .normal, .normal)
         identityService.confirmPaperWallet(draftSafe: draftSafe)
-        controller.viewDidLoad()
+        controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .selected, .normal)
         identityService.confirmChromeExtension(draftSafe: draftSafe)
-        controller.viewDidLoad()
+        controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .selected, .selected)
     }
 
 }
 
 extension NewSafeViewControllerTests {
-
-    private func viewWillAppear() {
-        UIApplication.shared.keyWindow?.rootViewController = controller
-    }
 
     private func createWindow(_ controller: UIViewController) {
         guard let window = UIApplication.shared.keyWindow else {
