@@ -5,6 +5,7 @@
 import Foundation
 import LocalAuthentication
 import IdentityAccessDomainModel
+import IdentityAccessApplication
 
 extension BiometryType {
 
@@ -49,8 +50,8 @@ public final class BiometricService: BiometricAuthenticationService {
             case .faceID: return .faceID
             case .touchID: return .touchID
             case .none:
-                LogService.shared.error("Received unexpected biometry type: none",
-                                        error: BiometricServiceError.unexpectedBiometryType)
+                ApplicationServiceRegistry.logger.error("Received unexpected biometry type: none",
+                                                        error: BiometricServiceError.unexpectedBiometryType)
                 return .none
             }
        } else {
@@ -73,7 +74,7 @@ public final class BiometricService: BiometricAuthenticationService {
         let semaphore = DispatchSemaphore(value: 0)
         context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { result, error in
             if let error = error {
-                LogService.shared.error("Failed to evaluate authentication policy", error: error)
+                ApplicationServiceRegistry.logger.error("Failed to evaluate authentication policy", error: error)
             }
             success = result
             semaphore.signal()

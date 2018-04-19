@@ -73,7 +73,7 @@ extension ConfirmPaswordViewController: TextInputDelegate {
             try Authenticator.instance.registerUser(password: password)
             self.delegate?.didConfirmPassword()
         } catch let e {
-            LogService.shared.fatal("Failed to set master password", error: e)
+            ApplicationServiceRegistry.logger.fatal("Failed to set master password", error: e)
             showFatalError()
         }
     }
