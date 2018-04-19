@@ -20,7 +20,7 @@ class FatalErrorHandler {
         FatalErrorHandler().showFatalError(message: message, log: log, error: error)
     }
 
-    func showFatalError(message: String, log: String, error: Error?) {
+    private func showFatalError(message: String, log: String, error: Error?) {
         ApplicationServiceRegistry.logger.fatal(log, error: error)
         let window = UIWindow(frame: UIScreen.main.bounds)
         let vc = UIViewController()
