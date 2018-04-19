@@ -20,7 +20,6 @@ class FatalErrorHandler {
         FatalErrorHandler().showFatalError(message: message, log: log, error: error)
     }
 
-
     func showFatalError(message: String, log: String, error: Error?) {
         ApplicationServiceRegistry.logger.fatal(log, error: error)
         let window = UIWindow(frame: UIScreen.main.bounds)
@@ -29,13 +28,13 @@ class FatalErrorHandler {
         window.rootViewController = vc
         window.windowLevel = UIWindowLevelAlert + 1
         window.makeKeyAndVisible()
-        vc.show(alertController(message: message), sender: vc)
+        vc.show(alertController(message: message, log: log), sender: vc)
     }
 
-    private func alertController(message: String) -> UIAlertController {
+    private func alertController(message: String, log: String) -> UIAlertController {
         let alert = UIAlertController(title: Strings.title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Strings.ok, style: .destructive) { [weak self] _ in
-            self?.terminate(message: message)
+            self?.terminate(message: log)
         })
         return alert
     }
