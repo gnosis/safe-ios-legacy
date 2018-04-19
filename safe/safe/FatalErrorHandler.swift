@@ -1,0 +1,47 @@
+//
+//  Copyright © 2018 Gnosis Ltd. All rights reserved.
+//
+
+import Foundation
+import UIKit
+import IdentityAccessApplication
+
+class FatalErrorHandler {
+
+    struct Strings {
+        static let title = NSLocalizedString("onboarding.fatal.title", comment: "Fatal error alert's title")
+        static let ok = NSLocalizedString("onboarding.fatal.ok", comment: "Fatal error alert's Ok button title")
+        static let message = NSLocalizedString("onboarding.fatal.message", comment: "Fatal error alert's message")
+    }
+
+    private init() {}
+
+    public static func showFatalError(message: String = Strings.message, log: String, error: Error?) {
+        FatalErrorHandler().showFatalError(message: message, log: log, error: error)
+    }
+
+
+    func showFatalError(message: String, log: String, error: Error?) {
+        ApplicationServiceRegistry.logger.fatal(log, error: error)
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        let vc = UIViewController()
+        vc.view.backgroundColor = .clear
+        window.rootViewController = vc
+        window.windowLevel = UIWindowLevelAlert + 1
+        window.makeKeyAndVisible()
+        vc.show(alertController(message: message), sender: vc)
+    }
+
+    private func alertController(message: String) -> UIAlertController {
+        let alert = UIAlertController(title: Strings.title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Strings.ok, style: .destructive) { [weak self] _ in
+            self?.terminate(message: message)
+        })
+        return alert
+    }
+
+    func terminate(message: String) {
+        fatalError(message)
+    }
+
+}

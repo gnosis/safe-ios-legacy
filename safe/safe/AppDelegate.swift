@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                             maxPasswordAttempts: 3,
                                             blockedPeriodDuration: 15)
         } catch let e {
-            ApplicationServiceRegistry.logger.fatal("Failed to setup authentication policy", error: e)
+            FatalErrorHandler.showFatalError(log: "Failed to setup authentication policy", error: e)
         }
     }
 

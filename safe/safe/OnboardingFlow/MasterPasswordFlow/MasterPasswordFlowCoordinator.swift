@@ -41,8 +41,4 @@ extension MasterPasswordFlowCoordinator: ConfirmPasswordViewControllerDelegate {
         completion?()
     }
 
-    func terminate() {
-        Crashlytics.sharedInstance().crash()
-    }
-
 }
