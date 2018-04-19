@@ -26,11 +26,7 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
     }
 
     private var shouldLockWhenAppActive: Bool {
-        var isAuthenticated = false
-        if let session = Authenticator.instance.session {
-            isAuthenticated = authenticationService.isUserAuthenticated(session: session)
-        }
-        return authenticationService.isUserRegistered  && !isAuthenticated
+        return authenticationService.isUserRegistered  && !authenticationService.isUserAuthenticated
     }
 
     func startViewController() -> UIViewController {

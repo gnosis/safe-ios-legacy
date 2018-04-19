@@ -9,7 +9,6 @@ import IdentityAccessImplementations
 
 protocol ConfirmPasswordViewControllerDelegate: class {
     func didConfirmPassword()
-    func terminate()
 }
 
 final class ConfirmPaswordViewController: UIViewController {
@@ -24,11 +23,6 @@ final class ConfirmPaswordViewController: UIViewController {
                                               comment: "Confirm password screen header")
         static let matchPassword = NSLocalizedString("onboarding.confirm_password.match",
                                                      comment: "Password confirmation must match set password rule")
-        struct FatalAlert {
-            static let title = NSLocalizedString("onboarding.fatal.title", comment: "Fatal error alert's title")
-            static let ok = NSLocalizedString("onboarding.fatal.ok", comment: "Fatal error alert's Ok button title")
-            static let message = NSLocalizedString("onboarding.fatal.message", comment: "Fatal error alert's message")
-        }
     }
 
     static func create(referencePassword: String,
@@ -49,19 +43,6 @@ final class ConfirmPaswordViewController: UIViewController {
         _ = textInput.becomeFirstResponder()
     }
 
-    func terminate() {
-        delegate?.terminate()
-    }
-
-    private func showFatalError() {
-        let message = LocalizedString.FatalAlert.message
-        let alert = UIAlertController(title: LocalizedString.FatalAlert.title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString.FatalAlert.ok, style: .default) { [weak self] _ in
-            self?.terminate()
-        })
-        show(alert, sender: nil)
-    }
-
 }
 
 
@@ -73,8 +54,7 @@ extension ConfirmPaswordViewController: TextInputDelegate {
             try Authenticator.instance.registerUser(password: password)
             self.delegate?.didConfirmPassword()
         } catch let e {
-            LogService.shared.fatal("Failed to set master password", error: e)
-            showFatalError()
+            FatalErrorHandler.showFatalError(log: "Failed to set master password", error: e)
         }
     }
 

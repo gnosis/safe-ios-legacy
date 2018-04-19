@@ -8,7 +8,6 @@ import IdentityAccessApplication
 import IdentityAccessImplementations
 
 class Authenticator {
-    var session: String?
     var user: String?
 
     static let instance = Authenticator()
@@ -17,9 +16,8 @@ class Authenticator {
 
     public func authenticate(_ request: AuthenticationRequest) throws -> AuthenticationResult {
         let result = try ApplicationServiceRegistry.authenticationService.authenticateUser(request)
-        if result.status == .success {
-            session = result.sessionID
-            user = result.userID
+        if case AuthenticationResult.success(userID: let userID) = result {
+            user = userID
         }
         return result
     }
@@ -102,13 +100,13 @@ final class UnlockViewController: UIViewController {
         }
         do {
             let result = try Authenticator.instance.authenticate(.biometry())
-            if result.status == .success {
+            if result.isSuccess {
                 unlockCompletion()
             } else {
                 focusPasswordField()
             }
         } catch let e {
-            LogService.shared.fatal("Failed to authenticate with biometry", error: e)
+            FatalErrorHandler.showFatalError(log: "Failed to authenticate with biometry", error: e)
         }
     }
 
@@ -124,14 +122,14 @@ extension UnlockViewController: TextInputDelegate {
     func textInputDidReturn(_ textInput: TextInput) {
         do {
             let result = try Authenticator.instance.authenticate(.password(textInput.text!))
-            if result.status == .success {
+            if result.isSuccess {
                 self.unlockCompletion()
             } else {
                 self.textInput.shake()
                 self.startCountdownIfNeeded()
             }
         } catch let e {
-            LogService.shared.fatal("Failed to authenticate with password", error: e)
+            FatalErrorHandler.showFatalError(log: "Failed to authenticate with password", error: e)
         }
     }
 

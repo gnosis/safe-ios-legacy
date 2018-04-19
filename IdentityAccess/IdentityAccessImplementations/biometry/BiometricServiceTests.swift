@@ -6,6 +6,7 @@ import XCTest
 import LocalAuthentication
 @testable import IdentityAccessImplementations
 import IdentityAccessDomainModel
+import IdentityAccessApplication
 
 class BiometricAuthenticationServiceTests: XCTestCase {
 
@@ -14,6 +15,7 @@ class BiometricAuthenticationServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
         biometricService = BiometricService(localAuthenticationContext: context)
     }
 

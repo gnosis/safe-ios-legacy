@@ -4,7 +4,7 @@
 
 import Foundation
 
-public protocol GatekeeperRepository {
+public protocol SingleGatekeeperRepository {
 
     func save(_ gatekeeper: Gatekeeper) throws
     func remove(_ gatekeeper: Gatekeeper) throws

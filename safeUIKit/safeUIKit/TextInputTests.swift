@@ -108,6 +108,19 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(input.text, "my text")
     }
 
+    func test_setText_hasMax2Chars() {
+        input.maxLength = 1
+        input.text = "11"
+        XCTAssertEqual(input.text, "1")
+    }
+
+    func test_whenTryingToTypeMoreThanLength_thenTakesFirstNChars() {
+        input.maxLength = 1
+        input.textField.text = "abc"
+        input.textField.sendActions(for: .editingChanged)
+        XCTAssertEqual(input.text, "a")
+    }
+
 }
 
 fileprivate extension TextInput {

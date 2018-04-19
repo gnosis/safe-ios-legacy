@@ -5,10 +5,12 @@
 import Foundation
 import Common
 
-public class User: Equatable, Assertable {
+public class UserID: BaseID {}
 
-    public let userID: UserID
+public class User: IdentifiableEntity<UserID> {
+
     public private(set) var password: String = ""
+    public private(set) var sessionID: SessionID?
 
     public enum Error: Swift.Error, Hashable {
         case emptyPassword
@@ -18,8 +20,12 @@ public class User: Equatable, Assertable {
         case passwordMissingDigit
     }
 
+    public static func ==(lhs: User, rhs: User) -> Bool {
+        return lhs.id == rhs.id
+    }
+
     init(id: UserID, password: String) throws {
-        userID = id
+        super.init(id: id)
         try changePassword(old: "", new: password)
     }
 
@@ -32,22 +38,8 @@ public class User: Equatable, Assertable {
         self.password = password
     }
 
-    public static func ==(lhs: User, rhs: User) -> Bool {
-        return lhs.userID == rhs.userID
-    }
-}
-
-public struct UserID: Hashable, Assertable {
-
-    public var id: String
-
-    public enum Error: Swift.Error {
-        case invalidID
-    }
-
-    public init(_ id: String) throws {
-        self.id = id
-        try assertArgument(id.count == 36, Error.invalidID)
+    func attachSession(id: SessionID) {
+        sessionID = id
     }
 
 }

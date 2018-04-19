@@ -22,7 +22,7 @@ class NewSafeViewController: UIViewController {
     weak var delegate: NewSafeDelegate?
     private var draftSafe: DraftSafe?
 
-    private var logger: Logger { return ApplicationServiceRegistry.service(for: Logger.self) }
+    private var logger: Logger { return ApplicationServiceRegistry.logger }
 
     private struct Strings {
         static let title = NSLocalizedString("onboarding.new_safe.title", comment: "Title for new safe screen")
@@ -43,11 +43,7 @@ class NewSafeViewController: UIViewController {
         super.viewDidLoad()
         guard draftSafe != nil else {
             dismiss(animated: true)
-            logger.error("DraftSafe is not provided in NewSafeViewController",
-                         error: nil,
-                         file: #file,
-                         line: #line,
-                         function: #function)
+            logger.error("DraftSafe is not provided in NewSafeViewController")
             return
         }
         titleLabel.text = Strings.title

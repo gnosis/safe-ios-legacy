@@ -50,6 +50,13 @@ class UserTests: DomainTestCase {
         }
     }
 
+    func test_assignSession_addsSession() throws {
+        let sessionID = try SessionID()
+        let user = try createUser(password: password)
+        user.attachSession(id: sessionID)
+        XCTAssertEqual(user.sessionID, sessionID)
+    }
+
 }
 
 extension UserTests {

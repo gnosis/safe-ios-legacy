@@ -90,24 +90,24 @@
 		0ABCA961207E55CF00E2C193 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA962207E55CF00E2C193 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA963207E55CF00E2C193 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0AFFF40620808A5D0030200C /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40520808A5D0030200C /* UserRepository.swift */; };
+		0AFFF40620808A5D0030200C /* SingleUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40520808A5D0030200C /* SingleUserRepository.swift */; };
 		0AFFF40820808ABD0030200C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40720808ABD0030200C /* User.swift */; };
 		0AFFF40A20808AE30030200C /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40920808AE30030200C /* UserTests.swift */; };
 		0AFFF40E20808C0B0030200C /* InMemoryUserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */; };
 		0AFFF41020808C160030200C /* InMemoryUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */; };
 		0AFFF41120808D400030200C /* AuthenticationApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */; };
-		559F77DD2085F5BC0080A5CF /* DraftSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559F77DC2085F5BC0080A5CF /* DraftSafe.swift */; };
-		559F77E42085F6AC0080A5CF /* DraftSafeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559F77E22085F5CF0080A5CF /* DraftSafeTests.swift */; };
 		0AFFF41C2080BC900030200C /* IdentityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF41B2080BC900030200C /* IdentityService.swift */; };
 		0AFFF41E2080BCB00030200C /* IdentityServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */; };
 		0AFFF42420849EE10030200C /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42320849EE10030200C /* SessionTests.swift */; };
 		0AFFF42A20849EEA0030200C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42920849EE90030200C /* Session.swift */; };
-		0AFFF42C2084BBA30030200C /* GatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */; };
+		0AFFF42C2084BBA30030200C /* SingleGatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42B2084BBA30030200C /* SingleGatekeeperRepository.swift */; };
 		0AFFF42E2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */; };
 		0AFFF4302084C01A0030200C /* InMemoryGatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */; };
 		0AFFF4322084D4630030200C /* Gatekeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF4312084D4630030200C /* Gatekeeper.swift */; };
 		0AFFF4342084D4DA0030200C /* AuthenticationPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF4332084D4DA0030200C /* AuthenticationPolicyTests.swift */; };
 		0AFFF44D2084FE730030200C /* GatekeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF44C2084FE730030200C /* GatekeeperTests.swift */; };
+		559F77DD2085F5BC0080A5CF /* DraftSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559F77DC2085F5BC0080A5CF /* DraftSafe.swift */; };
+		559F77E42085F6AC0080A5CF /* DraftSafeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559F77E22085F5CF0080A5CF /* DraftSafeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -367,23 +367,23 @@
 		0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResult.swift; sourceTree = "<group>"; };
 		0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPolicy.swift; sourceTree = "<group>"; };
 		0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationServiceTests.swift; sourceTree = "<group>"; };
-		0AFFF40520808A5D0030200C /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		0AFFF40520808A5D0030200C /* SingleUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUserRepository.swift; sourceTree = "<group>"; };
 		0AFFF40720808ABD0030200C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0AFFF40920808AE30030200C /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryUserRepositoryTests.swift; sourceTree = "<group>"; };
 		0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryUserRepository.swift; sourceTree = "<group>"; };
-		559F77DC2085F5BC0080A5CF /* DraftSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftSafe.swift; sourceTree = "<group>"; };
-		559F77E22085F5CF0080A5CF /* DraftSafeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftSafeTests.swift; sourceTree = "<group>"; };
 		0AFFF41B2080BC900030200C /* IdentityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityService.swift; sourceTree = "<group>"; };
 		0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityServiceTests.swift; sourceTree = "<group>"; };
 		0AFFF42320849EE10030200C /* SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		0AFFF42920849EE90030200C /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatekeeperRepository.swift; sourceTree = "<group>"; };
+		0AFFF42B2084BBA30030200C /* SingleGatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGatekeeperRepository.swift; sourceTree = "<group>"; };
 		0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryGatekeeperRepositoryTests.swift; sourceTree = "<group>"; };
 		0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryGatekeeperRepository.swift; sourceTree = "<group>"; };
 		0AFFF4312084D4630030200C /* Gatekeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gatekeeper.swift; sourceTree = "<group>"; };
 		0AFFF4332084D4DA0030200C /* AuthenticationPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPolicyTests.swift; sourceTree = "<group>"; };
 		0AFFF44C2084FE730030200C /* GatekeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatekeeperTests.swift; sourceTree = "<group>"; };
+		559F77DC2085F5BC0080A5CF /* DraftSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftSafe.swift; sourceTree = "<group>"; };
+		559F77E22085F5CF0080A5CF /* DraftSafeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftSafeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -490,8 +490,8 @@
 				0A537A8A207CE74100921FB9 /* EncryptionService.swift */,
 				0A537A82207CE74000921FB9 /* KeyValueStore.swift */,
 				0A537A84207CE74000921FB9 /* SecureStore.swift */,
-				0AFFF40520808A5D0030200C /* UserRepository.swift */,
-				0AFFF42B2084BBA30030200C /* GatekeeperRepository.swift */,
+				0AFFF40520808A5D0030200C /* SingleUserRepository.swift */,
+				0AFFF42B2084BBA30030200C /* SingleGatekeeperRepository.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -1064,9 +1064,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AFFF40620808A5D0030200C /* UserRepository.swift in Sources */,
+				0AFFF40620808A5D0030200C /* SingleUserRepository.swift in Sources */,
 				0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */,
-				0AFFF42C2084BBA30030200C /* GatekeeperRepository.swift in Sources */,
+				0AFFF42C2084BBA30030200C /* SingleGatekeeperRepository.swift in Sources */,
 				0A537A98207CE74100921FB9 /* DomainRegistry.swift in Sources */,
 				0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */,
 				0AFFF42A20849EEA0030200C /* Session.swift in Sources */,

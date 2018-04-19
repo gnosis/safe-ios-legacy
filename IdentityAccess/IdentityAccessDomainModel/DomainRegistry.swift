@@ -23,15 +23,15 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: EncryptionServiceProtocol.self)
     }
 
-    public static var userRepository: UserRepository {
-        return service(for: UserRepository.self)
+    public static var userRepository: SingleUserRepository {
+        return service(for: SingleUserRepository.self)
     }
 
     public static var identityService: IdentityService {
         return service(for: IdentityService.self)
     }
 
-    public static var gatekeeperRepository: GatekeeperRepository {
-        return service(for: GatekeeperRepository.self)
+    public static var gatekeeperRepository: SingleGatekeeperRepository {
+        return service(for: SingleGatekeeperRepository.self)
     }
 }

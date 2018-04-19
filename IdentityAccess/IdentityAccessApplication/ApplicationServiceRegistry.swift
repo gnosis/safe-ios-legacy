@@ -20,4 +20,8 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: Clock.self)
     }
 
+    public static var logger: Logger {
+        return service(for: Logger.self)
+    }
+
 }

@@ -25,9 +25,12 @@ public final class TextInput: UIView {
         return stackView.arrangedSubviews.compactMap { $0 as? RuleLabel }
     }
 
+    @IBInspectable
+    public var maxLength: Int = Int.max
+
     public var text: String? {
         get { return textField.text }
-        set { textField.text = newValue }
+        set { textField.text = newValue != nil ? String(newValue!.prefix(maxLength)) : nil }
     }
 
     public var isEnabled: Bool {
@@ -61,6 +64,7 @@ public final class TextInput: UIView {
         loadContentsFromNib()
         textField.delegate = self
         textField.clearButtonMode = .whileEditing
+        textField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
     }
 
     private func loadContentsFromNib() {
@@ -94,6 +98,10 @@ public final class TextInput: UIView {
 
     public func shake() {
         layer.add(CABasicAnimation.shake(center: center), forKey: TextInput.shakeAnimationKey)
+    }
+
+    @objc private func textChanged(_ sender: Any) {
+        text = textField.text // validation
     }
 
 }

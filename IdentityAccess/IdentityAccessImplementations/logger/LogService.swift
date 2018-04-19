@@ -6,7 +6,22 @@ import Foundation
 import IdentityAccessApplication
 
 protocol LogWriter {
+
     func log(_ message: String, level: LogLevel, error: Error?, file: StaticString, line: UInt, function: StaticString)
+
+}
+
+extension LogWriter {
+
+    func log(_ message: String,
+             level: LogLevel,
+             error: Error? = nil,
+             file: StaticString = #file,
+             line: UInt = #line,
+             function: StaticString = #function) {
+        self.log(message, level: level, error: error, file: file, line: line, function: function)
+    }
+
 }
 
 /**

@@ -5,11 +5,6 @@
 import Foundation
 import Common
 
-public struct UserDescriptor {
-    public let userID: UserID
-    public let sessionID: SessionID
-}
-
 public class IdentityService: Assertable {
 
     public enum RegistrationError: Error, Hashable {
@@ -21,7 +16,7 @@ public class IdentityService: Assertable {
         case gatekeeperNotFound
     }
 
-    private var userRepository: UserRepository {
+    private var userRepository: SingleUserRepository {
         return DomainRegistry.userRepository
     }
     private var encryptionService: EncryptionServiceProtocol {
@@ -30,11 +25,17 @@ public class IdentityService: Assertable {
     private var biometricService: BiometricAuthenticationService {
         return DomainRegistry.biometricAuthenticationService
     }
-    private var gatekeeperRepository: GatekeeperRepository {
+    private var gatekeeperRepository: SingleGatekeeperRepository {
         return DomainRegistry.gatekeeperRepository
     }
 
     public init() {}
+
+    public func isUserAuthenticated(at time: Date) -> Bool {
+        guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return false }
+        guard let sessionID = userRepository.primaryUser()?.sessionID else { return false }
+        return gatekeeper.hasAccess(session: sessionID, at: time)
+    }
 
     @discardableResult
     public func createGatekeeper(sessionDuration: TimeInterval,
@@ -49,18 +50,18 @@ public class IdentityService: Assertable {
         return gatekeeper
     }
 
-    public func registerUser(password: String) throws -> User {
+    public func registerUser(password: String) throws -> UserID {
         let isRegistered = userRepository.primaryUser() != nil
         try assertArgument(!isRegistered, RegistrationError.userAlreadyRegistered)
         let encryptedPassword = encryptionService.encrypted(password)
         let user = try User(id: userRepository.nextId(), password: encryptedPassword)
         try userRepository.save(user)
         try biometricService.activate()
-        return user
+        return user.id
     }
 
     @discardableResult
-    public func authenticateUser(password: String, at time: Date) throws -> UserDescriptor? {
+    public func authenticateUser(password: String, at time: Date) throws -> UserID? {
         return try authenticate(at: time) {
             try assertArgument(!password.isEmpty, AuthenticationError.emptyPassword)
             let encryptedPassword = encryptionService.encrypted(password)
@@ -69,7 +70,7 @@ public class IdentityService: Assertable {
         }
     }
 
-    private func authenticate(at time: Date, _ authenticate: () throws -> User?) throws -> UserDescriptor? {
+    private func authenticate(at time: Date, _ authenticate: () throws -> User?) throws -> UserID? {
         guard let gatekeeper = gatekeeperRepository.gatekeeper() else {
             throw AuthenticationError.gatekeeperNotFound
         }
@@ -83,11 +84,13 @@ public class IdentityService: Assertable {
         }
         let session = try gatekeeper.allowAccess(at: time)
         try gatekeeperRepository.save(gatekeeper)
-        return UserDescriptor(userID: user.userID, sessionID: session)
+        user.attachSession(id: session)
+        try userRepository.save(user)
+        return user.id
     }
 
     @discardableResult
-    public func authenticateUserBiometrically(at time: Date) throws -> UserDescriptor? {
+    public func authenticateUserBiometrically(at time: Date) throws -> UserID? {
         return try authenticate(at: time) {
             guard biometricService.authenticate() else { return nil }
             return userRepository.primaryUser()

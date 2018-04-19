@@ -21,6 +21,8 @@
 		0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1A207D019800921FB9 /* libIdentityAccessImplementations.a */; };
 		0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */; };
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
+		0A666D282088944E0034FF66 /* FatalErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D272088944E0034FF66 /* FatalErrorHandler.swift */; };
+		0A666D2A208894680034FF66 /* FatalErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D29208894680034FF66 /* FatalErrorHandlerTests.swift */; };
 		0A7AE8C1205285D00044D5DD /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */; };
 		0A9A13B52077AAA800E197A1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */; };
 		0AA0C856207B74AC0019E282 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */; };
@@ -216,6 +218,8 @@
 		0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A53AD3820595C2300D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD3A20595C2800D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A666D272088944E0034FF66 /* FatalErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorHandler.swift; sourceTree = "<group>"; };
+		0A666D29208894680034FF66 /* FatalErrorHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorHandlerTests.swift; sourceTree = "<group>"; };
 		0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppFlow.storyboard; sourceTree = "<group>"; };
 		0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -501,6 +505,8 @@
 				55147D49203DAE1D00AD0E1F /* generated */,
 				5540A4EE203C3054009C9BE3 /* AppDelegate.swift */,
 				55D97D7D20496E390004AEDD /* AppDelegateTests.swift */,
+				0A666D272088944E0034FF66 /* FatalErrorHandler.swift */,
+				0A666D29208894680034FF66 /* FatalErrorHandlerTests.swift */,
 				55ACFD9A2074E0BA000F54CC /* FlowCoordinator.swift */,
 				55ACFD9C2075092E000F54CC /* FlowCoordinatorTests.swift */,
 				55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */,
@@ -851,6 +857,7 @@
 				55FEBFBE207F7041004099AA /* SaveMnemonicViewController.swift in Sources */,
 				55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */,
 				0A0455F7204851B100088B5E /* AppFlowCoordinator.swift in Sources */,
+				0A666D282088944E0034FF66 /* FatalErrorHandler.swift in Sources */,
 				55FEBFAD207E0A66004099AA /* NewSafeViewController.swift in Sources */,
 				5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */,
 				555DD6D7205148D100D1178A /* UnlockViewController.swift in Sources */,
@@ -899,6 +906,7 @@
 				0AFFF3F7207F8AC60030200C /* MockIdentityApplicationService.swift in Sources */,
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
 				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
+				0A666D2A208894680034FF66 /* FatalErrorHandlerTests.swift in Sources */,
 				0AA0C863207B756C0019E282 /* XCTestCase+Wait.swift in Sources */,
 				558FD806207652E3004F070E /* SetupSafeOptionsViewControllerTests.swift in Sources */,
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,

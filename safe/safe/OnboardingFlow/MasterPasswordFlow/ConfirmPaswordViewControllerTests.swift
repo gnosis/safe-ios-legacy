@@ -55,13 +55,8 @@ class ConfirmPaswordViewControllerTests: SafeTestCase {
         authenticationService.prepareToThrowWhenRegisteringUser()
         vc.textInputDidReturn(vc.textInput)
         delay()
-        XCTAssertNotNil(vc.presentedViewController)
-        XCTAssertTrue(vc.presentedViewController is UIAlertController)
-    }
-
-    func test_whenTerminated_thenCallsDelegate() {
-        vc.terminate()
-        XCTAssertTrue(delegate.didTerminate)
+        XCTAssertNotNil(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController)
+        XCTAssertTrue(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController is UIAlertController)
     }
 
 }
@@ -73,10 +68,6 @@ class MockConfirmPasswordViewControllerDelegate: ConfirmPasswordViewControllerDe
 
     func didConfirmPassword() {
         didConfirm = true
-    }
-
-    func terminate() {
-        didTerminate = true
     }
 
 }

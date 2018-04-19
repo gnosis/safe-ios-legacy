@@ -8,11 +8,11 @@ import IdentityAccessDomainModel
 
 class InMemoryGatekeeperRepositoryTests: XCTestCase {
 
-    let repository: GatekeeperRepository = InMemoryGatekeeperRepository()
+    let repository: SingleGatekeeperRepository = InMemoryGatekeeperRepository()
 
     override func setUp() {
         super.setUp()
-        DomainRegistry.put(service: repository, for: GatekeeperRepository.self)
+        DomainRegistry.put(service: repository, for: SingleGatekeeperRepository.self)
     }
 
     func test_saveFetch() throws {

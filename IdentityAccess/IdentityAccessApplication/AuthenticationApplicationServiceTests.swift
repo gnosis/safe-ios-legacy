@@ -23,18 +23,18 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
     func test_authenticateUser_whenNotRegisteredThenFails() throws {
         try authenticationService.reset()
         let result = try authenticationService.authenticateUser(.password(password))
-        XCTAssertEqual(result.status, .failure)
+        XCTAssertEqual(result, .failure)
     }
 
     func test_authenticateUser_whenPasswordCorrect_thenSuccess() throws {
         let result = try authenticationService.authenticateUser(.password(password))
-        XCTAssertEqual(result.status, .success)
+        XCTAssertTrue(result.isSuccess)
     }
 
     func test_authenticateUser_whenBiometryAllows_thenSuccess() throws {
         biometricService.allowAuthentication()
         let result = try authenticationService.authenticateUser(.biometry())
-        XCTAssertEqual(result.status, .success)
+        XCTAssertTrue(result.isSuccess)
     }
 
     private func blockAuthenticationThroughBiometry() throws {
@@ -46,7 +46,7 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
     func test_authenticateUser_whenBlocked_thenStatusBlocked() throws {
         try blockAuthenticationThroughBiometry()
         let result = try authenticationService.authenticateUser(.biometry())
-        XCTAssertEqual(result.status, .blocked)
+        XCTAssertEqual(result, .blocked)
     }
 
     func test_isAuthenticationMethodSupported() {
@@ -98,27 +98,21 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
     }
 
     func test_isAuthenticated_whenNotRegistered_thenFails() throws {
-        guard let session = try authenticationService.authenticateUser(.password(password)).sessionID else {
-            XCTFail("Expected to authenticate")
-            return
-        }
+        _ = try authenticationService.authenticateUser(.password(password))
         try authenticationService.reset()
-        XCTAssertFalse(authenticationService.isUserAuthenticated(session: session))
+        XCTAssertFalse(authenticationService.isUserAuthenticated)
     }
 
     func test_isAuthenticated_whenNotAuthenticated_thenFails() {
-        XCTAssertFalse(authenticationService.isUserAuthenticated(session: ""))
+        XCTAssertFalse(authenticationService.isUserAuthenticated)
     }
 
     func test_isAuthenticated_whenSessionExpired_thenFails() throws {
         biometricService.allowAuthentication()
-        guard let session = try authenticationService.authenticateUser(.biometry()).sessionID else {
-            XCTFail("Expected to authenticate")
-            return
-        }
+        _ = try authenticationService.authenticateUser(.biometry())
         clockService.currentTime =
             clockService.currentTime.addingTimeInterval(authenticationService.sessionDuration + 1)
-        XCTAssertFalse(authenticationService.isUserAuthenticated(session: session))
+        XCTAssertFalse(authenticationService.isUserAuthenticated)
     }
 
     func test_isBiometryPossible_whenBlocked_thenFails() throws {

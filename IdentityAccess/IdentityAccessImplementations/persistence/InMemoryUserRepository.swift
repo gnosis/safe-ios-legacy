@@ -5,7 +5,7 @@
 import Foundation
 import IdentityAccessDomainModel
 
-public class InMemoryUserRepository: UserRepository {
+public class InMemoryUserRepository: SingleUserRepository {
 
     private var storedUser: User?
 
