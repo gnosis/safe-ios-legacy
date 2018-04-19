@@ -8,7 +8,6 @@ import IdentityAccessApplication
 import IdentityAccessImplementations
 
 class Authenticator {
-    var session: String?
     var user: String?
 
     static let instance = Authenticator()
@@ -18,7 +17,6 @@ class Authenticator {
     public func authenticate(_ request: AuthenticationRequest) throws -> AuthenticationResult {
         let result = try ApplicationServiceRegistry.authenticationService.authenticateUser(request)
         if result.status == .success {
-            session = result.sessionID
             user = result.userID
         }
         return result

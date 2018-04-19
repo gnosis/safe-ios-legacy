@@ -26,7 +26,7 @@ class IdentityServiceTests: DomainTestCase {
 
     func test_registerUser_savesInRepository() throws {
         let user = try givenRegisteredUser()
-        XCTAssertEqual(userRepository.primaryUser(), user)
+        XCTAssertEqual(userRepository.primaryUser()?.id, user)
     }
 
     func test_registerUser_cannotRegisterTwice() throws {
@@ -36,15 +36,15 @@ class IdentityServiceTests: DomainTestCase {
         }
     }
 
-
     func test_registerUser_activatesBiometry() throws {
         try givenRegisteredUser()
         XCTAssertTrue(biometricService.didActivate)
     }
 
     func test_registerUser_storesEncryptedPassword() throws {
-        let user = try givenRegisteredUser()
-        XCTAssertEqual(user.password, encryptionService.encrypted(password))
+        try givenRegisteredUser()
+        let user = userRepository.primaryUser()
+        XCTAssertEqual(user?.password, encryptionService.encrypted(password))
     }
 
     func test_authenticateUser_whenEmptyPassword_thenThrowsError() {
@@ -59,13 +59,13 @@ class IdentityServiceTests: DomainTestCase {
 
     func test_authenticateUser_whenCorrectPassword_thenSuccess() throws {
         let user = try givenRegisteredUser()
-        XCTAssertEqual(try authenticateWithCorrectPassword()?.userID, user.userID)
+        XCTAssertEqual(try authenticateWithCorrectPassword(), user)
     }
 
     func test_authenticateUser_whenBiometrySuccess_thenSuccess() throws {
         let user = try givenRegisteredUser()
         biometricService.allowAuthentication()
-        XCTAssertEqual(try authenticateWithBiometry()?.userID, user.userID)
+        XCTAssertEqual(try authenticateWithBiometry(), user)
     }
 
     func test_authenticateUser_whenBiometryFails_thenFails() throws {
@@ -76,11 +76,22 @@ class IdentityServiceTests: DomainTestCase {
 
     func test_whenAuthenticatedWithPassword_thenHasAccess() throws {
         try givenRegisteredUser()
-        guard let user = try authenticateWithCorrectPassword() else {
-            XCTFail("Expected to be authenticated")
-            return
-        }
-        XCTAssertTrue(gatekeeper.hasAccess(session: user.sessionID, at: mockClockService.currentTime))
+        try authenticateWithCorrectPassword()
+        XCTAssertTrue(identityService.isUserAuthenticated(at: mockClockService.currentTime))
+    }
+
+    func test_whenNotRegistered_thenNotAuthenticated() {
+        XCTAssertFalse(identityService.isUserAuthenticated(at: mockClockService.currentTime))
+    }
+
+    func test_whenNoGatekeeper_thenNotAuthenticated() throws {
+        try gatekeeperRepository.remove(gatekeeper)
+        XCTAssertFalse(identityService.isUserAuthenticated(at: mockClockService.currentTime))
+    }
+
+    func test_whenDidNotAuthenticate_thenNotAuthenticated() throws {
+        try givenRegisteredUser()
+        XCTAssertFalse(identityService.isUserAuthenticated(at: mockClockService.currentTime))
     }
 
     func test_whenAuthenticationFailed_thenHasNoAccess() throws {
@@ -111,12 +122,13 @@ class IdentityServiceTests: DomainTestCase {
         XCTAssertEqual(gatekeeperRepository.gatekeeper(), gatekeeper)
         XCTAssertEqual(gatekeeperRepository.gatekeeper()?.policy, gatekeeper.policy)
     }
+
 }
 
 extension IdentityServiceTests {
 
     @discardableResult
-    private func givenRegisteredUser() throws -> User {
+    private func givenRegisteredUser() throws -> UserID {
         return try service.registerUser(password: password)
     }
 
@@ -130,17 +142,17 @@ extension IdentityServiceTests {
     }
 
     @discardableResult
-    private func authenticateWithWrongPassword(_ pass: String? = nil) throws -> UserDescriptor? {
+    private func authenticateWithWrongPassword(_ pass: String? = nil) throws -> UserID? {
         return try service.authenticateUser(password: pass ?? wrongPassword, at: mockClockService.currentTime)
     }
 
     @discardableResult
-    private func authenticateWithCorrectPassword() throws -> UserDescriptor? {
+    private func authenticateWithCorrectPassword() throws -> UserID? {
         return try service.authenticateUser(password: password, at: mockClockService.currentTime)
     }
 
     @discardableResult
-    private func authenticateWithBiometry() throws -> UserDescriptor? {
+    private func authenticateWithBiometry() throws -> UserID? {
         return try service.authenticateUserBiometrically(at: mockClockService.currentTime)
     }
 

@@ -19,12 +19,20 @@ class InMemoryUserRepositoryTests: XCTestCase {
         DomainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
         DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
         do {
-            user = try DomainRegistry.identityService.registerUser(password: "Mypass123")
-            try repository.remove(user)
-            other = try DomainRegistry.identityService.registerUser(password: "Otherpass123")
-            try repository.remove(other)
+            _ = try DomainRegistry.identityService.registerUser(password: "Mypass123")
+            user = repository.primaryUser()!
+            try removePrimaryUser()
+            _ = try DomainRegistry.identityService.registerUser(password: "Otherpass123")
+            other = repository.primaryUser()
+            try removePrimaryUser()
         } catch {
             XCTFail("Failed to setUp")
+        }
+    }
+
+    private func removePrimaryUser() throws {
+        if let user = repository.primaryUser() {
+            try repository.remove(user)
         }
     }
 

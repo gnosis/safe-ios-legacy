@@ -35,9 +35,8 @@ open class AuthenticationApplicationService {
     open var sessionDuration: TimeInterval {
         return gatekeeper.policy.sessionDuration
     }
-    open func isUserAuthenticated(session: String) -> Bool {
-        guard let id = try? SessionID(session) else { return false }
-        return gatekeeper.hasAccess(session: id, at: clock.currentTime)
+    open var isUserAuthenticated: Bool {
+       return identityService.isUserAuthenticated(at: clock.currentTime)
     }
     open var isUserRegistered: Bool {
         return userRepository.primaryUser() != nil
@@ -73,7 +72,7 @@ open class AuthenticationApplicationService {
 
     open func authenticateUser(_ request: AuthenticationRequest) throws -> AuthenticationResult {
         let time = clock.currentTime
-        let user: UserDescriptor?
+        let user: UserID?
         if request.method == .password {
             user = try identityService.authenticateUser(password: request.password, at: time)
         } else if AuthenticationMethod.biometry.contains(request.method) {
@@ -82,7 +81,7 @@ open class AuthenticationApplicationService {
             preconditionFailure("Invalid authentication method in request \(request)")
         }
         if let user = user {
-            return .success(userID: user.userID.id, sessionID: user.sessionID.id)
+            return .success(userID: user.id)
         } else if isAccessPossible {
             return .failure
         } else {

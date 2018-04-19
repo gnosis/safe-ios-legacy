@@ -13,11 +13,10 @@ public enum AuthenticationStatus: Hashable {
 public struct AuthenticationResult {
     public let status: AuthenticationStatus
     public let userID: String!
-    public let sessionID: String!
 
-    public static let blocked = AuthenticationResult(status: .blocked, userID: nil, sessionID: nil)
-    public static let failure = AuthenticationResult(status: .failure, userID: nil, sessionID: nil)
-    public static func success(userID: String, sessionID: String) -> AuthenticationResult {
-        return AuthenticationResult(status: .success, userID: userID, sessionID: sessionID)
+    public static let blocked = AuthenticationResult(status: .blocked, userID: nil)
+    public static let failure = AuthenticationResult(status: .failure, userID: nil)
+    public static func success(userID: String) -> AuthenticationResult {
+        return AuthenticationResult(status: .success, userID: userID)
     }
 }

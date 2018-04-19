@@ -50,7 +50,7 @@ class MockAuthenticationService: AuthenticationApplicationService {
         authenticationAllowed = true
     }
 
-    override func isUserAuthenticated(session: String) -> Bool {
+    override var isUserAuthenticated: Bool {
         return isUserRegistered && userAuthenticated && !isAuthenticationBlocked
     }
 
@@ -61,7 +61,7 @@ class MockAuthenticationService: AuthenticationApplicationService {
         if authenticationBlocked {
             return .blocked
         } else {
-            return userAuthenticated ? .success(userID: "userID", sessionID: "sessionID") : .failure
+            return userAuthenticated ? .success(userID: "userID") : .failure
         }
     }
 
