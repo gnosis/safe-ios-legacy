@@ -4,19 +4,13 @@
 
 import Foundation
 
-public enum AuthenticationStatus: Hashable {
-    case success
+public enum AuthenticationResult: Hashable {
+    case success(userID: String)
     case failure
     case blocked
-}
 
-public struct AuthenticationResult {
-    public let status: AuthenticationStatus
-    public let userID: String!
-
-    public static let blocked = AuthenticationResult(status: .blocked, userID: nil)
-    public static let failure = AuthenticationResult(status: .failure, userID: nil)
-    public static func success(userID: String) -> AuthenticationResult {
-        return AuthenticationResult(status: .success, userID: userID)
+    public var isSuccess: Bool {
+        if case AuthenticationResult.success = self { return true }
+        return false
     }
 }

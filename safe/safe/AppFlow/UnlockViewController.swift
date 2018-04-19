@@ -16,8 +16,8 @@ class Authenticator {
 
     public func authenticate(_ request: AuthenticationRequest) throws -> AuthenticationResult {
         let result = try ApplicationServiceRegistry.authenticationService.authenticateUser(request)
-        if result.status == .success {
-            user = result.userID
+        if case AuthenticationResult.success(userID: let userID) = result {
+            user = userID
         }
         return result
     }
@@ -100,7 +100,7 @@ final class UnlockViewController: UIViewController {
         }
         do {
             let result = try Authenticator.instance.authenticate(.biometry())
-            if result.status == .success {
+            if result.isSuccess {
                 unlockCompletion()
             } else {
                 focusPasswordField()
@@ -122,7 +122,7 @@ extension UnlockViewController: TextInputDelegate {
     func textInputDidReturn(_ textInput: TextInput) {
         do {
             let result = try Authenticator.instance.authenticate(.password(textInput.text!))
-            if result.status == .success {
+            if result.isSuccess {
                 self.unlockCompletion()
             } else {
                 self.textInput.shake()

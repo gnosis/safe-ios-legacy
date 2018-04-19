@@ -23,18 +23,18 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
     func test_authenticateUser_whenNotRegisteredThenFails() throws {
         try authenticationService.reset()
         let result = try authenticationService.authenticateUser(.password(password))
-        XCTAssertEqual(result.status, .failure)
+        XCTAssertEqual(result, .failure)
     }
 
     func test_authenticateUser_whenPasswordCorrect_thenSuccess() throws {
         let result = try authenticationService.authenticateUser(.password(password))
-        XCTAssertEqual(result.status, .success)
+        XCTAssertTrue(result.isSuccess)
     }
 
     func test_authenticateUser_whenBiometryAllows_thenSuccess() throws {
         biometricService.allowAuthentication()
         let result = try authenticationService.authenticateUser(.biometry())
-        XCTAssertEqual(result.status, .success)
+        XCTAssertTrue(result.isSuccess)
     }
 
     private func blockAuthenticationThroughBiometry() throws {
@@ -46,7 +46,7 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
     func test_authenticateUser_whenBlocked_thenStatusBlocked() throws {
         try blockAuthenticationThroughBiometry()
         let result = try authenticationService.authenticateUser(.biometry())
-        XCTAssertEqual(result.status, .blocked)
+        XCTAssertEqual(result, .blocked)
     }
 
     func test_isAuthenticationMethodSupported() {
