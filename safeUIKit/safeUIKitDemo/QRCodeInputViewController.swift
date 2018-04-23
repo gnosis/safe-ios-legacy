@@ -5,9 +5,9 @@
 import UIKit
 import safeUIKit
 
-class BarcodeInputViewController: UIViewController {
+class QRCodeInputViewController: UIViewController {
 
-    @IBOutlet weak var barcodeInput: BarcodeInput!
+    @IBOutlet weak var barcodeInput: QRCodeInput!
 
     @IBAction func enable(_ sender: Any) {
         barcodeInput.editingMode = .scanAndType
@@ -24,9 +24,9 @@ class BarcodeInputViewController: UIViewController {
 
 }
 
-extension BarcodeInputViewController: BarcodeInputDelegate {
+extension QRCodeInputViewController: QRCodeInputDelegate {
 
-    func presentBarcodeController(_ controller: UIViewController) {
+    func presentScannerController(_ controller: UIViewController) {
         present(controller, animated: true)
     }
 

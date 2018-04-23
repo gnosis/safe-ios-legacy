@@ -5,11 +5,11 @@
 import XCTest
 @testable import safeUIKit
 
-class BarcodeInputTests: XCTestCase {
+class QRCodeInputTests: XCTestCase {
 
     //swiftlint:disable weak_delegate
-    let delegate = MockBarcodeInputDelegate()
-    let barcodeTextField = BarcodeInput()
+    let delegate = MockQRCodeInputDelegate()
+    let barcodeTextField = QRCodeInput()
 
     override func setUp() {
         super.setUp()
@@ -33,9 +33,13 @@ class BarcodeInputTests: XCTestCase {
         XCTAssertTrue(delegate.didPresent)
     }
 
+    func test_openBarcodeSacenner_callsDelegate() {
+
+    }
+
 }
 
-class MockBarcodeInputDelegate: BarcodeInputDelegate {
+class MockQRCodeInputDelegate: QRCodeInputDelegate {
 
     var didPresent = false
 

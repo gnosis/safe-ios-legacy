@@ -46,6 +46,7 @@ struct ColorAsset {
 enum Asset {
   static let checkmarkNormal = ImageAsset(name: "checkmark-normal")
   static let checkmarkSelected = ImageAsset(name: "checkmark-selected")
+  static let closeIcon = ImageAsset(name: "close-icon")
   static let qrCode = ImageAsset(name: "qr-code")
 
   // swiftlint:disable trailing_comma
@@ -54,6 +55,7 @@ enum Asset {
   static let allImages: [ImageAsset] = [
     checkmarkNormal,
     checkmarkSelected,
+    closeIcon,
     qrCode,
   ]
   // swiftlint:enable trailing_comma

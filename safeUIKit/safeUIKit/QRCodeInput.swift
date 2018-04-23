@@ -4,14 +4,14 @@
 
 import UIKit
 
-public protocol BarcodeInputDelegate: class {
-    func presentBarcodeController(_ controller: UIViewController)
+public protocol QRCodeInputDelegate: class {
+    func presentScannerController(_ controller: UIViewController)
 }
 
 @IBDesignable
-public final class BarcodeInput: UITextField {
+public final class QRCodeInput: UITextField {
 
-    public weak var barcodeDelegate: BarcodeInputDelegate?
+    public weak var barcodeDelegate: QRCodeInputDelegate?
 
     public enum EditingMode {
         case scanOnly
@@ -59,25 +59,29 @@ public final class BarcodeInput: UITextField {
     }
 
     @objc private func openBarcodeSacenner() {
-        barcodeDelegate?.presentBarcodeController(barcodeScannerController())
+        barcodeDelegate?.presentScannerController(scannerController())
     }
 
 }
 
-extension BarcodeInput: UITextFieldDelegate {
+extension QRCodeInput: UITextFieldDelegate {
 
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if editingMode == .scanOnly {
-            barcodeDelegate?.presentBarcodeController(barcodeScannerController())
+            barcodeDelegate?.presentScannerController(scannerController())
             return false
         }
         return true
     }
 
-    private func barcodeScannerController() -> UIViewController {
-        let controller = UIViewController()
-        controller.view.backgroundColor = .red
-        return controller
+    private func scannerController() -> UIViewController {
+        return ScannerViewController.create(delegate: self)
     }
+
+}
+
+extension QRCodeInput: ScannerDelegate {
+
+    func didScan(_ code: String) {}
 
 }

@@ -41,12 +41,16 @@
 		5527A7F4208DE8A300AF3A50 /* RSBarcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcode.framework */; };
 		5527A7F5208DE8B700AF3A50 /* RSBarcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcode.framework */; };
 		5527A7F6208DE8B700AF3A50 /* RSBarcode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */; };
+		5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527A806208E357B00AF3A50 /* ScannerViewController.swift */; };
+		5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5527A807208E357B00AF3A50 /* ScannerViewController.xib */; };
+		5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
 		558FD80A20765C53004F070E /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* BigButton.swift */; };
-		55A1E43C2089D0F0000BE191 /* BarcodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* BarcodeInput.swift */; };
-		55E9F557208A293B00889C9F /* BarcodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* BarcodeInputViewController.swift */; };
-		55E9F559208A298200889C9F /* BarcodeInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F558208A298200889C9F /* BarcodeInputTests.swift */; };
+		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
+		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
+		55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F558208A298200889C9F /* QRCodeInputTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,12 +187,16 @@
 		0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButtonTests.swift; sourceTree = "<group>"; };
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		5527A7E0208DE87600AF3A50 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
+		5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewControllerTests.swift; sourceTree = "<group>"; };
+		5527A806208E357B00AF3A50 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		5527A807208E357B00AF3A50 /* ScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
+		5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
-		55A1E43B2089D0F0000BE191 /* BarcodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeInput.swift; sourceTree = "<group>"; };
-		55E9F556208A293B00889C9F /* BarcodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeInputViewController.swift; sourceTree = "<group>"; };
-		55E9F558208A298200889C9F /* BarcodeInputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeInputTests.swift; sourceTree = "<group>"; };
+		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
+		55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputViewController.swift; sourceTree = "<group>"; };
+		55E9F558208A298200889C9F /* QRCodeInputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */,
 				0A9670BB20480C5700445AC2 /* safeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,6 +240,7 @@
 		0A34BC61207B80A700636560 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */,
 				0A34BC62207B80A700636560 /* libCommonTestSupport.a */,
 			);
 			name = Frameworks;
@@ -280,7 +290,7 @@
 				0A0974C720480CEB005753DF /* Info.plist */,
 				0A0974D020480CEB005753DF /* TextInputViewController.swift */,
 				0A0974CF20480CEB005753DF /* ViewController.swift */,
-				55E9F556208A293B00889C9F /* BarcodeInputViewController.swift */,
+				55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */,
 			);
 			path = safeUIKitDemo;
 			sourceTree = "<group>";
@@ -300,8 +310,11 @@
 			children = (
 				0A9670D920480C7B00445AC2 /* generated */,
 				0A9670CF20480C7A00445AC2 /* Colors.txt */,
-				55A1E43B2089D0F0000BE191 /* BarcodeInput.swift */,
-				55E9F558208A298200889C9F /* BarcodeInputTests.swift */,
+				55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */,
+				55E9F558208A298200889C9F /* QRCodeInputTests.swift */,
+				5527A806208E357B00AF3A50 /* ScannerViewController.swift */,
+				5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */,
+				5527A807208E357B00AF3A50 /* ScannerViewController.xib */,
 				0A9670D420480C7B00445AC2 /* TextInput.swift */,
 				0A9670D520480C7B00445AC2 /* TextInputTests.swift */,
 				556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */,
@@ -560,6 +573,7 @@
 				0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */,
 				0A9BA3C7207F69FD001DC22F /* safeUIKitMedia.xcassets in Resources */,
 				0A53AD5320598B5000D713AD /* Localizable.strings in Resources */,
+				5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,7 +638,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55E9F557208A293B00889C9F /* BarcodeInputViewController.swift in Sources */,
+				55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */,
 				0A0974D620480CEB005753DF /* ViewController.swift in Sources */,
 				0A0974D720480CEB005753DF /* TextInputViewController.swift in Sources */,
 				0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */,
@@ -652,10 +666,11 @@
 				556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */,
 				0AD93E0920481461008C38CA /* Colors.swift in Sources */,
 				0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */,
+				5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */,
 				0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */,
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
 				558FD80A20765C53004F070E /* BigButton.swift in Sources */,
-				55A1E43C2089D0F0000BE191 /* BarcodeInput.swift in Sources */,
+				55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,7 +684,8 @@
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
 				0A7AE8C72052C2120044D5DD /* XCTestCase+Wait.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
-				55E9F559208A298200889C9F /* BarcodeInputTests.swift in Sources */,
+				5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */,
+				55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
