@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/i386.swiftmodule</key>
 		<data>
-		LpQphK5J54//+Y+ptTSy0bJX9U0=
+		VmcLJ8diHb26P1RluzHNzOgNei8=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		eM9wSKnPIeUc5QbwsDxN4NFMBkM=
+		jrHGLGKHmbi3LmTL9wRqRTsNnb0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -80,11 +80,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			LpQphK5J54//+Y+ptTSy0bJX9U0=
+			VmcLJ8diHb26P1RluzHNzOgNei8=
 			</data>
 			<key>hash2</key>
 			<data>
-			Job6POJ0uFp7Af/LpbgLn6vX5NEe2nT48hrXjlXwEpI=
+			YbgUdeWvKgUzgws7J3ATGFPLIPgFxws8OnpbUSZdygg=
 			</data>
 		</dict>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftdoc</key>
@@ -102,11 +102,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			eM9wSKnPIeUc5QbwsDxN4NFMBkM=
+			jrHGLGKHmbi3LmTL9wRqRTsNnb0=
 			</data>
 			<key>hash2</key>
 			<data>
-			gmQsf+J+NyRq4Fp+UNPwG2sObAw5DsALITO5IvtqWto=
+			AzrsiCNRaH5PpIlZ+whoCz7Niu3SH8LfBUetNCqjLsA=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

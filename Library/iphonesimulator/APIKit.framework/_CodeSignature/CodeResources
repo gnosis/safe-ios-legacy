@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/APIKit.swiftmodule/i386.swiftmodule</key>
 		<data>
-		Q/HGBWT0ufmXDJSeIQ23K1oa9uM=
+		4F2oMCEAVXYRDUKP1C4yG/SS5/c=
 		</data>
 		<key>Modules/APIKit.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/APIKit.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		olBzJM1UcFpfTubxrzl85rUoPu0=
+		lyUwcDWUv8rgF30J9CXPmcqbtzI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -76,11 +76,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Q/HGBWT0ufmXDJSeIQ23K1oa9uM=
+			4F2oMCEAVXYRDUKP1C4yG/SS5/c=
 			</data>
 			<key>hash2</key>
 			<data>
-			cUMLGUdSOSiGZI3pj91qC62skBsl4vjS15YGUZU+ECY=
+			TXNbyni3IBRtcjX7S6C6UZ7P/6HmnuyXZCR2KocLjzM=
 			</data>
 		</dict>
 		<key>Modules/APIKit.swiftmodule/x86_64.swiftdoc</key>
@@ -98,11 +98,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			olBzJM1UcFpfTubxrzl85rUoPu0=
+			lyUwcDWUv8rgF30J9CXPmcqbtzI=
 			</data>
 			<key>hash2</key>
 			<data>
-			g4wLwvhGEVHtnrlb6k7CHkumr3Qh/vVygsUd3pUpHdQ=
+			7jk4HIYiXZe1lTbwz6aTi+3I3pEvU0foHIjmR+7bhLE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

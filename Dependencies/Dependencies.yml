@@ -1,4 +1,9 @@
+# Format: 
+# - <.xcodeproj name>: <target name>
+# or
+# - <target name> # if it is the same as project name
 - Result: Result-iOS
 - CryptoSwift
 - APIKit
 - EthereumKit
+- RSBarcodes
