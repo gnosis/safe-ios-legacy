@@ -38,6 +38,9 @@
 		0AD93E0820481442008C38CA /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D520480C7B00445AC2 /* TextInputTests.swift */; };
 		0AD93E0920481461008C38CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D820480C7B00445AC2 /* Colors.swift */; };
 		0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9670D020480C7A00445AC2 /* TextInput.xib */; };
+		5527A7F4208DE8A300AF3A50 /* RSBarcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcode.framework */; };
+		5527A7F5208DE8B700AF3A50 /* RSBarcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcode.framework */; };
+		5527A7F6208DE8B700AF3A50 /* RSBarcode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
 		558FD80A20765C53004F070E /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* BigButton.swift */; };
@@ -75,6 +78,55 @@
 			remoteGlobalIDString = 0A9670B120480C5700445AC2;
 			remoteInfo = safeUIKit;
 		};
+		5527A7E8208DE87700AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F6E9207E396B00AF407D;
+			remoteInfo = APIKit;
+		};
+		5527A7EA208DE87700AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F6FC207E3D3A00AF407D;
+			remoteInfo = Result;
+		};
+		5527A7EC208DE87700AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F70E207E411F00AF407D;
+			remoteInfo = CryptoSwift;
+		};
+		5527A7EE208DE87700AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F71C207E430F00AF407D;
+			remoteInfo = EthereumKit;
+		};
+		5527A7F0208DE87700AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B9CF3208DE6B9001F0CB2;
+			remoteInfo = RSBarcode;
+		};
+		5527A7F2208DE89800AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B9CF2208DE6B9001F0CB2;
+			remoteInfo = RSBarcode;
+		};
+		5527A7F7208DE8B700AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B9CF2208DE6B9001F0CB2;
+			remoteInfo = RSBarcode;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -84,6 +136,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5527A7F6208DE8B700AF3A50 /* RSBarcode.framework in Embed Frameworks */,
 				0A9670C820480C5700445AC2 /* safeUIKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -129,6 +182,7 @@
 		0A9BA3C6207F69FD001DC22F /* safeUIKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = safeUIKitMedia.xcassets; sourceTree = "<group>"; };
 		0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButtonTests.swift; sourceTree = "<group>"; };
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		5527A7E0208DE87600AF3A50 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
@@ -142,6 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5527A7F5208DE8B700AF3A50 /* RSBarcode.framework in Frameworks */,
 				0A9670C720480C5700445AC2 /* safeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5527A7F4208DE8A300AF3A50 /* RSBarcode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +249,7 @@
 		0A96706F20480C1200445AC2 = {
 			isa = PBXGroup;
 			children = (
+				5527A7E0208DE87600AF3A50 /* Library.xcodeproj */,
 				0A7AE8C22052C20A0044D5DD /* TestTools */,
 				0A96707C20480C3E00445AC2 /* safeUIKitDemo */,
 				0A96709120480C3F00445AC2 /* safeUIKitDemoUITests */,
@@ -276,6 +333,18 @@
 			path = generated;
 			sourceTree = "<group>";
 		};
+		5527A7E1208DE87600AF3A50 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5527A7E9208DE87700AF3A50 /* APIKit.framework */,
+				5527A7EB208DE87700AF3A50 /* Result.framework */,
+				5527A7ED208DE87700AF3A50 /* CryptoSwift.framework */,
+				5527A7EF208DE87700AF3A50 /* EthereumKit.framework */,
+				5527A7F1208DE87700AF3A50 /* RSBarcode.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -303,6 +372,7 @@
 			);
 			dependencies = (
 				0A9670C620480C5700445AC2 /* PBXTargetDependency */,
+				5527A7F8208DE8B700AF3A50 /* PBXTargetDependency */,
 			);
 			name = safeUIKitDemo;
 			productName = safeUIKitDemo;
@@ -342,6 +412,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5527A7F3208DE89800AF3A50 /* PBXTargetDependency */,
 			);
 			name = safeUIKit;
 			productName = safeUIKit;
@@ -409,6 +480,12 @@
 			mainGroup = 0A96706F20480C1200445AC2;
 			productRefGroup = 0A96707B20480C3E00445AC2 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5527A7E1208DE87600AF3A50 /* Products */;
+					ProjectRef = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0A96707920480C3E00445AC2 /* safeUIKitDemo */,
@@ -418,6 +495,44 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5527A7E9208DE87700AF3A50 /* APIKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = APIKit.framework;
+			remoteRef = 5527A7E8208DE87700AF3A50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5527A7EB208DE87700AF3A50 /* Result.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Result.framework;
+			remoteRef = 5527A7EA208DE87700AF3A50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5527A7ED208DE87700AF3A50 /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = 5527A7EC208DE87700AF3A50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5527A7EF208DE87700AF3A50 /* EthereumKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EthereumKit.framework;
+			remoteRef = 5527A7EE208DE87700AF3A50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5527A7F1208DE87700AF3A50 /* RSBarcode.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RSBarcode.framework;
+			remoteRef = 5527A7F0208DE87700AF3A50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0A96707820480C3E00445AC2 /* Resources */ = {
@@ -580,6 +695,16 @@
 			isa = PBXTargetDependency;
 			target = 0A9670B120480C5700445AC2 /* safeUIKit */;
 			targetProxy = 0A9670C520480C5700445AC2 /* PBXContainerItemProxy */;
+		};
+		5527A7F3208DE89800AF3A50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RSBarcode;
+			targetProxy = 5527A7F2208DE89800AF3A50 /* PBXContainerItemProxy */;
+		};
+		5527A7F8208DE8B700AF3A50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RSBarcode;
+			targetProxy = 5527A7F7208DE8B700AF3A50 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
