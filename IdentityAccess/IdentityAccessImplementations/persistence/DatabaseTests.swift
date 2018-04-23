@@ -136,27 +136,126 @@ class DatabaseTests: XCTestCase {
         assertThrows(try conn.prepare(statement: "some"), Database.Error.connectionIsNotOpened)
     }
 
-    func test_prepareStatement() throws {
+    func test_prepareStatement_passesCorrectArguments() throws {
         try db.create()
         sqlite.open_pointer_result = opaquePointer()
         sqlite.prepare_result = sqlite.SQLITE_OK
         sqlite.prepare_out_ppStmt = opaquePointer()
         sqlite.prepare_out_pzTail = nil
+
         let conn = try db.connection()
         _ = try conn.prepare(statement: "some")
+
         XCTAssertEqual(sqlite.prepare_in_db, sqlite.open_pointer_result)
-        guard let ptr = sqlite.prepare_in_zSql else { XCTFail("Argument missing"); return }
-        XCTAssertEqual(String(cString: ptr), "some")
+        XCTAssertEqual(sqlite.prepare_in_zSql_string, "some")
+
         guard let bytes = sqlite.prepare_in_nByte else { XCTFail("Argument missing"); return }
         XCTAssertEqual(Int(bytes), "some".cString(using: .utf8)!.count)
     }
 
-//    func test_whenClosingConnection_preapredStatementFinalized() {
-//        let conn = Connection(sqlite: sqlite)
-//        try conn.open(url: db.url)
-//        let stmt = try conn.prepare(statement: "some")
-//        try conn.close()
-//    }
+    func test_preapreStatement_whenFailed_thenThrowsError() throws {
+        try db.create()
+        sqlite.open_pointer_result = opaquePointer()
+        sqlite.prepare_out_ppStmt = opaquePointer()
+        sqlite.prepare_out_pzTail = nil
+
+        sqlite.prepare_result = sqlite.SQLITE_ERROR
+
+        let conn = try db.connection()
+        assertThrows(try conn.prepare(statement: "some"), Database.Error.invalidSQLStatement)
+    }
+
+    func test_prepareStatement_whenReceivesNilStatement_thenThrowsError() throws {
+        try db.create()
+        sqlite.open_pointer_result = opaquePointer()
+        sqlite.prepare_result = sqlite.SQLITE_OK
+        sqlite.prepare_out_ppStmt = nil
+        sqlite.prepare_out_pzTail = nil
+
+        let conn = try db.connection()
+        assertThrows(try conn.prepare(statement: "some"), Database.Error.invalidSQLStatement)
+    }
+
+    func test_whenConnectionIsClosed_thenPreparedStatementIsFinalizedAutomatically() throws {
+        try db.create()
+
+        sqlite.open_pointer_result = opaquePointer()
+        let conn = try db.connection()
+
+        sqlite.prepare_result = sqlite.SQLITE_OK
+        sqlite.prepare_out_ppStmt = opaquePointer()
+        sqlite.prepare_out_pzTail = nil
+        _ = try conn.prepare(statement: "my statement")
+
+        sqlite.finalize_result = sqlite.SQLITE_OK
+        try db.close(conn)
+
+        XCTAssertEqual(sqlite.finalize_in_pStmt, sqlite.prepare_out_ppStmt)
+    }
+
+    func test_whenMultipleStatementsCreated_finalizesAll() throws {
+        try db.create()
+
+        sqlite.open_pointer_result = opaquePointer()
+        let conn = try db.connection()
+
+        let stmt1 = opaquePointer()
+        sqlite.prepare_result = sqlite.SQLITE_OK
+        sqlite.prepare_out_ppStmt = stmt1
+        sqlite.prepare_out_pzTail = nil
+        _ = try conn.prepare(statement: "my statement")
+
+        let stmt2 = opaquePointer()
+        sqlite.prepare_result = sqlite.SQLITE_OK
+        sqlite.prepare_out_ppStmt = stmt2
+        sqlite.prepare_out_pzTail = nil
+        _ = try conn.prepare(statement: "my othe statement")
+
+        sqlite.finalize_result = sqlite.SQLITE_OK
+        try db.close(conn)
+
+        XCTAssertEqual(sqlite.finalize_in_pStmt_list, [stmt1, stmt2])
+
+    }
+
+    func test_whenStatementFinalizedAndExecutes_thenThrows() throws {
+        let statement = Statement(stmt: opaquePointer(), sqlite: sqlite)
+        statement.finalize()
+        assertThrows(try statement.execute(), Database.Error.attemptToExecuteFinalizedStatement)
+    }
+
+    func test_whenConnectionWasClosedAndThenOpened_thenThrows() throws {
+        try db.create()
+
+        sqlite.open_pointer_result = opaquePointer()
+        let conn = try db.connection()
+
+        try conn.close()
+
+        assertThrows(try conn.open(url: db.url), Database.Error.connectionIsAlreadyClosed)
+    }
+
+    func test_whenConnectionWasClosedAndThenClosedAgain_thenThrows() throws {
+        try db.create()
+
+        sqlite.open_pointer_result = opaquePointer()
+        let conn = try db.connection()
+
+        try conn.close()
+
+        assertThrows(try conn.close(), Database.Error.connectionIsAlreadyClosed)
+    }
+
+    func test_whenConnectionClosed_thenPrepareThrows() throws {
+        try db.create()
+
+        sqlite.open_pointer_result = opaquePointer()
+        let conn = try db.connection()
+
+        try conn.close()
+        assertThrows(try conn.prepare(statement: "some"), Database.Error.connectionIsAlreadyClosed)
+    }
+
 }
 
 extension DatabaseTests {

@@ -24,6 +24,9 @@ public class Database: Assertable {
         case failedToOpenDatabase
         case databaseBusy
         case connectionIsNotOpened
+        case invalidSQLStatement
+        case attemptToExecuteFinalizedStatement
+        case connectionIsAlreadyClosed
     }
 
     public init(name: String, fileManager: FileManager, sqlite: CSQLite3, bundleId: String) {
@@ -86,17 +89,39 @@ public class Connection: Assertable {
     private var db: OpaquePointer!
     private let sqlite: CSQLite3
     private var isOpened = false
+    private var isClosed = false
+    private var statements = [Statement]()
 
     init(sqlite: CSQLite3) {
         self.sqlite = sqlite
     }
 
     public func prepare(statement: String) throws -> Statement {
+        try assertOpened()
+        guard let cstr = statement.cString(using: .utf8) else {
+            preconditionFailure("Failed to convert String to C String: \(statement)")
+        }
+        var outStmt: OpaquePointer?
+        var outTail: UnsafePointer<Int8>?
+        let status = sqlite.sqlite3_prepare_v2(db, cstr, Int32(cstr.count), &outStmt, &outTail)
+        try assertEqual(status, sqlite.SQLITE_OK, Database.Error.invalidSQLStatement)
+        try assertNotNil(outStmt, Database.Error.invalidSQLStatement)
+        let result = Statement(stmt: outStmt!, sqlite: sqlite)
+        statements.append(result)
+        return result
+    }
+
+    private func assertOpened() throws {
         try assertTrue(isOpened, Database.Error.connectionIsNotOpened)
-        return Statement()
+        try assertFalse(isClosed, Database.Error.connectionIsAlreadyClosed)
+    }
+
+    private func destroyAllStatements() {
+        statements.forEach { $0.finalize() }
     }
 
     func open(url: URL) throws {
+        try assertFalse(isClosed, Database.Error.connectionIsAlreadyClosed)
         var conn: OpaquePointer?
         let status = sqlite.sqlite3_open(url.path.cString(using: .utf8), &conn)
         try assertEqual(status, sqlite.SQLITE_OK, Database.Error.failedToOpenDatabase)
@@ -106,20 +131,35 @@ public class Connection: Assertable {
     }
 
     func close() throws {
-        try assertTrue(isOpened, Database.Error.connectionIsNotOpened)
+        try assertOpened()
+        destroyAllStatements()
         let status = sqlite.sqlite3_close(db)
         try assertEqual(status, sqlite.SQLITE_OK, Database.Error.databaseBusy)
+        isClosed = true
     }
 
 }
 
-public class Statement {
+public class Statement: Assertable {
+
+    private let stmt: OpaquePointer
+    private let sqlite: CSQLite3
+    private var isFinalized: Bool = false
+
+    init(stmt: OpaquePointer, sqlite: CSQLite3) {
+        self.stmt = stmt
+        self.sqlite = sqlite
+    }
 
     public func execute() throws -> ResultSet {
+        try assertFalse(isFinalized, Database.Error.attemptToExecuteFinalizedStatement)
         return ResultSet()
     }
 
-    func finalize() {}
+    func finalize() {
+        _ = sqlite.sqlite3_finalize(stmt)
+        isFinalized = true
+    }
 
 }
 

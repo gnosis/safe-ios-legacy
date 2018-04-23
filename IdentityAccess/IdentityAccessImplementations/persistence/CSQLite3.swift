@@ -136,4 +136,8 @@ open class CSQLite3 {
         return SQLite3.sqlite3_prepare_v2(db, zSql, nByte, ppStmt, pzTail)
     }
 
+    open func sqlite3_finalize(_ pStmt: OpaquePointer!) -> Int32 {
+        return SQLite3.sqlite3_finalize(pStmt)
+    }
+
 }

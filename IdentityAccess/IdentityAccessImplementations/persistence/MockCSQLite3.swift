@@ -53,6 +53,7 @@ class MockCSQLite3: CSQLite3 {
 
     var prepare_in_db: OpaquePointer?
     var prepare_in_zSql: UnsafePointer<Int8>?
+    var prepare_in_zSql_string: String?
     var prepare_in_nByte: Int32?
     var prepare_result: Int32 = 0
     var prepare_out_ppStmt: OpaquePointer?
@@ -63,10 +64,22 @@ class MockCSQLite3: CSQLite3 {
                                      _ ppStmt: UnsafeMutablePointer<OpaquePointer?>!,
                                      _ pzTail: UnsafeMutablePointer<UnsafePointer<Int8>?>!) -> Int32 {
         prepare_in_db = db
-        prepare_in_zSql = zSql
+        if let str = String(cString: zSql, encoding: .utf8) {
+            prepare_in_zSql_string = str
+        } else {
+            prepare_in_zSql = zSql
+        }
         prepare_in_nByte = nByte
         ppStmt.pointee = prepare_out_ppStmt
         pzTail.pointee = prepare_out_pzTail
         return prepare_result
+    }
+
+    var finalize_in_pStmt_list = [OpaquePointer]()
+    var finalize_in_pStmt: OpaquePointer? { return finalize_in_pStmt_list.last }
+    var finalize_result: Int32 = 0
+    override func sqlite3_finalize(_ pStmt: OpaquePointer!) -> Int32 {
+        finalize_in_pStmt_list.append(pStmt)
+        return finalize_result
     }
 }
