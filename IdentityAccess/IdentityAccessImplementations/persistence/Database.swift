@@ -13,8 +13,9 @@ public class Database: Assertable {
     private let fileManager: FileManager
     private let sqlite: CSQLite3
     private let bundleIdentifier: String
+    private var connections = [Connection]()
 
-    public enum Error: Swift.Error, Hashable {
+    public enum Error: String, Hashable, LocalizedError {
         case applicationSupportDirNotFound
         case bundleIdentifierNotFound
         case databaseAlreadyExists
@@ -27,6 +28,14 @@ public class Database: Assertable {
         case invalidSQLStatement
         case attemptToExecuteFinalizedStatement
         case connectionIsAlreadyClosed
+        case statementWasAlreadyExecuted
+        case runtimeError
+        case invalidStatementState
+        case transactionMustBeRolledBack
+
+        public var errorDescription: String? {
+            return rawValue
+        }
     }
 
     public init(name: String, fileManager: FileManager, sqlite: CSQLite3, bundleId: String) {
@@ -54,14 +63,20 @@ public class Database: Assertable {
         try assertEqual(sqlite.sqlite3_libversion_number(), sqlite.SQLITE_VERSION_NUMBER, Error.invalidSQLiteVersion)
         let connection = Connection(sqlite: sqlite)
         try connection.open(url: url)
+        connections.append(connection)
         return connection
     }
 
     public func close(_ connection: Connection) throws {
         try connection.close()
+        if let index = connections.index(where: { $0 === connection }) {
+            connections.remove(at: index)
+        }
     }
 
     public func destroy() throws {
+        try connections.forEach { try $0.close() }
+        connections.removeAll()
         guard let url = url else { return }
         if fileManager.fileExists(atPath: url.path) {
             try fileManager.removeItem(at: url)
@@ -104,9 +119,9 @@ public class Connection: Assertable {
         var outStmt: OpaquePointer?
         var outTail: UnsafePointer<Int8>?
         let status = sqlite.sqlite3_prepare_v2(db, cstr, Int32(cstr.count), &outStmt, &outTail)
-        try assertEqual(status, sqlite.SQLITE_OK, Database.Error.invalidSQLStatement)
+        try assertEqual(status, CSQLite3.SQLITE_OK, Database.Error.invalidSQLStatement)
         try assertNotNil(outStmt, Database.Error.invalidSQLStatement)
-        let result = Statement(stmt: outStmt!, sqlite: sqlite)
+        let result = Statement(sql: statement, db: db, stmt: outStmt!, sqlite: sqlite)
         statements.append(result)
         return result
     }
@@ -124,7 +139,7 @@ public class Connection: Assertable {
         try assertFalse(isClosed, Database.Error.connectionIsAlreadyClosed)
         var conn: OpaquePointer?
         let status = sqlite.sqlite3_open(url.path.cString(using: .utf8), &conn)
-        try assertEqual(status, sqlite.SQLITE_OK, Database.Error.failedToOpenDatabase)
+        try assertEqual(status, CSQLite3.SQLITE_OK, Database.Error.failedToOpenDatabase)
         try assertNotNil(conn, Database.Error.failedToOpenDatabase)
         db = conn
         isOpened = true
@@ -134,7 +149,7 @@ public class Connection: Assertable {
         try assertOpened()
         destroyAllStatements()
         let status = sqlite.sqlite3_close(db)
-        try assertEqual(status, sqlite.SQLITE_OK, Database.Error.databaseBusy)
+        try assertEqual(status, CSQLite3.SQLITE_OK, Database.Error.databaseBusy)
         isClosed = true
     }
 
@@ -142,18 +157,48 @@ public class Connection: Assertable {
 
 public class Statement: Assertable {
 
+    private let sql: String
+    private let db: OpaquePointer
     private let stmt: OpaquePointer
     private let sqlite: CSQLite3
     private var isFinalized: Bool = false
+    private var isExecuted: Bool = false
 
-    init(stmt: OpaquePointer, sqlite: CSQLite3) {
+    init(sql: String, db: OpaquePointer, stmt: OpaquePointer, sqlite: CSQLite3) {
+        self.sql = sql
+        self.db = db
         self.stmt = stmt
         self.sqlite = sqlite
     }
 
-    public func execute() throws -> ResultSet {
+    @discardableResult
+    public func execute() throws -> ResultSet? {
         try assertFalse(isFinalized, Database.Error.attemptToExecuteFinalizedStatement)
-        return ResultSet()
+        try assertFalse(isExecuted, Database.Error.statementWasAlreadyExecuted)
+        let status = sqlite.sqlite3_step(stmt)
+        switch status {
+        case CSQLite3.SQLITE_DONE:
+            isExecuted = true
+            return nil
+        case CSQLite3.SQLITE_ROW:
+            isExecuted = true
+            return ResultSet(db: db, stmt: stmt, sqlite: sqlite)
+        case CSQLite3.SQLITE_BUSY:
+            let isInsideExplicitTransaction = sqlite.sqlite3_get_autocommit(db) == 0
+            let isCommitStatement = sql.localizedCaseInsensitiveContains("commit")
+            if isCommitStatement || !isInsideExplicitTransaction {
+                RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.01))
+                return try execute()
+            } else {
+                throw Database.Error.transactionMustBeRolledBack
+            }
+        case CSQLite3.SQLITE_ERROR:
+            throw Database.Error.runtimeError
+        case CSQLite3.SQLITE_MISUSE:
+            throw Database.Error.invalidStatementState
+        default:
+            preconditionFailure("Unexpected sqlite3_step() status: \(status)")
+        }
     }
 
     func finalize() {
@@ -164,5 +209,63 @@ public class Statement: Assertable {
 }
 
 public class ResultSet {
-    public var isEmpty: Bool { return true }
+
+    public var isColumnsEmpty: Bool { return columnCount == 0 }
+    public var columnCount: Int { return Int(sqlite.sqlite3_column_count(stmt)) }
+    private let stmt: OpaquePointer
+    private let sqlite: CSQLite3
+    private let db: OpaquePointer
+
+    init(db: OpaquePointer, stmt: OpaquePointer, sqlite: CSQLite3) {
+        self.db = db
+        self.stmt = stmt
+        self.sqlite = sqlite
+        let status = sqlite.sqlite3_reset(stmt)
+        precondition(status == CSQLite3.SQLITE_OK)
+    }
+
+    public func string(at index: Int) -> String? {
+        assertIndex(index)
+        guard let cString = sqlite.sqlite3_column_text(stmt, Int32(index)) else {
+            return nil
+        }
+        let bytesCount = sqlite.sqlite3_column_bytes(stmt, Int32(index))
+        return cString.withMemoryRebound(to: CChar.self, capacity: Int(bytesCount)) { ptr -> String? in
+            String(cString: ptr, encoding: .utf8)
+        }
+    }
+
+    private func assertIndex(_ index: Int) {
+        precondition((0..<columnCount).contains(index), "Index out of column count range")
+    }
+
+    public func int(at index: Int) -> Int {
+        assertIndex(index)
+        return Int(sqlite.sqlite3_column_int64(stmt, Int32(index)))
+    }
+
+    public func double(at index: Int) -> Double {
+        assertIndex(index)
+        return sqlite.sqlite3_column_double(stmt, Int32(index))
+    }
+
+    public func advanceToNextRow() throws -> Bool {
+        let status = sqlite.sqlite3_step(stmt)
+        switch status {
+        case CSQLite3.SQLITE_DONE:
+            return false
+        case CSQLite3.SQLITE_ROW:
+            return true
+        case CSQLite3.SQLITE_BUSY:
+            let isOutsideOfExplicitTransaction = sqlite.sqlite3_get_autocommit(db) == 1
+            if isOutsideOfExplicitTransaction {
+                RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.01))
+                return try advanceToNextRow()
+            } else {
+                throw Database.Error.transactionMustBeRolledBack
+            }
+        default:
+            preconditionFailure("Unexpected sqlite3_step() status: \(status)")
+        }
+    }
 }

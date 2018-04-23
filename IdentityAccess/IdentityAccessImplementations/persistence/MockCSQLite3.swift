@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import IdentityAccessImplementations
+import SQLite3
 
 class MockCSQLite3: CSQLite3 {
 
@@ -81,5 +82,61 @@ class MockCSQLite3: CSQLite3 {
     override func sqlite3_finalize(_ pStmt: OpaquePointer!) -> Int32 {
         finalize_in_pStmt_list.append(pStmt)
         return finalize_result
+    }
+
+    var get_autocommit_result: Int32 = 1
+    var get_autocommit_in_db: OpaquePointer?
+    override func sqlite3_get_autocommit(_ db: OpaquePointer!) -> Int32 {
+        get_autocommit_in_db = db
+        return get_autocommit_result
+    }
+
+    var step_results = [CSQLite3.SQLITE_DONE]
+    var step_result_index = 0
+    var step_in_pStmt: OpaquePointer?
+    override func sqlite3_step(_ pStmt: OpaquePointer!) -> Int32 {
+        step_in_pStmt = pStmt
+        let result = step_results[step_result_index]
+        step_result_index += 1
+        return result
+    }
+
+    var column_count_result: Int32 = 0
+    var column_count_in_pStmt: OpaquePointer?
+    override func sqlite3_column_count(_ pStmt: OpaquePointer!) -> Int32 {
+        column_count_in_pStmt = pStmt
+        return column_count_result
+    }
+
+    var column_text_result: String?
+    private var column_text_result_array: [Int8] = []
+    override func sqlite3_column_text(_ pStmt: OpaquePointer!, _ iCol: Int32) -> UnsafePointer<UInt8>! {
+        guard let result = column_text_result else { return nil }
+        column_text_result_array = result.cString(using: .utf8)!
+        return column_text_result_array.withUnsafeBytes { bufferPtr -> UnsafePointer<UInt8> in
+            bufferPtr.baseAddress!.bindMemory(to: UInt8.self, capacity: bufferPtr.count)
+        }
+    }
+
+    var column_bytes_result: Int32 = 0
+    override func sqlite3_column_bytes(_ pStmt: OpaquePointer!, _ iCol: Int32) -> Int32 {
+        return column_bytes_result
+    }
+
+    var column_int64_result: SQLite3.sqlite3_int64 = 0
+    override func sqlite3_column_int64(_ pStmt: OpaquePointer!, _ iCol: Int32) -> SQLite3.sqlite3_int64 {
+        return column_int64_result
+    }
+
+    var column_double_result: Double = 0
+    override func sqlite3_column_double(_ pStmt: OpaquePointer!, _ iCol: Int32) -> Double {
+        return column_double_result
+    }
+
+    var reset_result: Int32 = 0
+    var reset_in_pStmt: OpaquePointer?
+    override func sqlite3_reset(_ pStmt: OpaquePointer!) -> Int32 {
+        reset_in_pStmt = pStmt
+        return reset_result
     }
 }
