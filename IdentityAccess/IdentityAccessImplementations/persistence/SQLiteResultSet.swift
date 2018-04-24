@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public class ResultSet {
+public class SQLiteResultSet {
 
     public var isColumnsEmpty: Bool { return columnCount == 0 }
     public var columnCount: Int { return Int(sqlite.sqlite3_column_count(stmt)) }
@@ -59,7 +59,7 @@ public class ResultSet {
                 RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.01))
                 return try advanceToNextRow()
             } else {
-                throw Database.Error.transactionMustBeRolledBack
+                throw SQLiteDatabase.Error.transactionMustBeRolledBack
             }
         default:
             preconditionFailure("Unexpected sqlite3_step() status: \(status)")

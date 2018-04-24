@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public class Statement: Assertable {
+public class SQLiteStatement: Assertable {
 
     private let sql: String
     private let db: OpaquePointer
@@ -22,9 +22,9 @@ public class Statement: Assertable {
     }
 
     @discardableResult
-    public func execute() throws -> ResultSet? {
-        try assertFalse(isFinalized, Database.Error.attemptToExecuteFinalizedStatement)
-        try assertFalse(isExecuted, Database.Error.statementWasAlreadyExecuted)
+    public func execute() throws -> SQLiteResultSet? {
+        try assertFalse(isFinalized, SQLiteDatabase.Error.attemptToExecuteFinalizedStatement)
+        try assertFalse(isExecuted, SQLiteDatabase.Error.statementWasAlreadyExecuted)
         let status = sqlite.sqlite3_step(stmt)
         switch status {
         case CSQLite3.SQLITE_DONE:
@@ -32,7 +32,7 @@ public class Statement: Assertable {
             return nil
         case CSQLite3.SQLITE_ROW:
             isExecuted = true
-            return ResultSet(db: db, stmt: stmt, sqlite: sqlite)
+            return SQLiteResultSet(db: db, stmt: stmt, sqlite: sqlite)
         case CSQLite3.SQLITE_BUSY:
             let isInsideExplicitTransaction = sqlite.sqlite3_get_autocommit(db) == 0
             let isCommitStatement = sql.localizedCaseInsensitiveContains("commit")
@@ -41,12 +41,12 @@ public class Statement: Assertable {
                 RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.05))
                 return try execute()
             } else {
-                throw Database.Error.transactionMustBeRolledBack
+                throw SQLiteDatabase.Error.transactionMustBeRolledBack
             }
         case CSQLite3.SQLITE_ERROR:
-            throw Database.Error.runtimeError
+            throw SQLiteDatabase.Error.runtimeError
         case CSQLite3.SQLITE_MISUSE:
-            throw Database.Error.invalidStatementState
+            throw SQLiteDatabase.Error.invalidStatementState
         default:
             preconditionFailure("Unexpected sqlite3_step() status: \(status)")
         }
@@ -59,7 +59,7 @@ public class Statement: Assertable {
 
     public func set(_ value: String, at index: Int) throws {
         try assertCanBind()
-        guard let cString = value.cString(using: .utf8) else { throw Database.Error.invalidStringBindingValue }
+        guard let cString = value.cString(using: .utf8) else { throw SQLiteDatabase.Error.invalidStringBindingValue }
         let status = sqlite.sqlite3_bind_text(stmt,
                                               Int32(index),
                                               cString,
@@ -107,17 +107,17 @@ public class Statement: Assertable {
     }
 
     private func assertCanBind() throws {
-        try assertFalse(isExecuted, Database.Error.attemptToBindExecutedStatement)
-        try assertFalse(isFinalized, Database.Error.attemptToBindFinalizedStatement)
+        try assertFalse(isExecuted, SQLiteDatabase.Error.attemptToBindExecutedStatement)
+        try assertFalse(isFinalized, SQLiteDatabase.Error.attemptToBindFinalizedStatement)
     }
 
     private func assertBindSuccess(_ status: Int32) throws {
-        try assertNotEqual(status, CSQLite3.SQLITE_RANGE, Database.Error.statementParameterIndexOutOfRange)
-        try assertEqual(status, CSQLite3.SQLITE_OK, Database.Error.failedToSetStatementParameter)
+        try assertNotEqual(status, CSQLite3.SQLITE_RANGE, SQLiteDatabase.Error.statementParameterIndexOutOfRange)
+        try assertEqual(status, CSQLite3.SQLITE_OK, SQLiteDatabase.Error.failedToSetStatementParameter)
     }
 
     private func parameterIndex(for key: String) throws -> Int {
-        guard let cString = key.cString(using: .utf8) else { throw Database.Error.invalidKeyValue }
+        guard let cString = key.cString(using: .utf8) else { throw SQLiteDatabase.Error.invalidKeyValue }
         let index = sqlite.sqlite3_bind_parameter_index(stmt, cString)
         return Int(index)
     }

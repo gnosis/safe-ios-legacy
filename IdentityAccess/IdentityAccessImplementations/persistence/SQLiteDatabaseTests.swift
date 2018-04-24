@@ -5,14 +5,14 @@
 import XCTest
 @testable import IdentityAccessImplementations
 
-class DatabaseTests: XCTestCase {
+class SQLiteDatabaseTests: XCTestCase {
 
     let fm = MockFileManager()
     let sqlite = MockCSQLite3()
-    var db: Database!
-    var stmt: Statement!
-    var conn: Connection!
-    var rs: ResultSet!
+    var db: SQLiteDatabase!
+    var stmt: SQLiteStatement!
+    var conn: SQLiteConnection!
+    var rs: SQLiteResultSet!
     let bundleId = "my_random_bundle_id"
 
     enum Error: String, LocalizedError, Hashable {
@@ -28,7 +28,7 @@ class DatabaseTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        db = Database(name: "MyTestDb", fileManager: fm, sqlite: sqlite, bundleId: bundleId)
+        db = SQLiteDatabase(name: "MyTestDb", fileManager: fm, sqlite: sqlite, bundleId: bundleId)
     }
 
     override func tearDown() {
@@ -44,7 +44,7 @@ class DatabaseTests: XCTestCase {
         let appDirectory = try fm.appSupportURL()
         fm.notExistingURLs = [appDirectory]
         XCTAssertFalse(fm.fileExists(atPath: appDirectory.path))
-        assertThrows(try db.create(), Database.Error.applicationSupportDirNotFound)
+        assertThrows(try db.create(), SQLiteDatabase.Error.applicationSupportDirNotFound)
     }
 
     func test_whenDatabaseExists_thenThrrows() throws {
@@ -53,7 +53,7 @@ class DatabaseTests: XCTestCase {
             .appendingPathComponent(db.name)
             .appendingPathExtension("db")
         fm.existingURLs = [databaseURL]
-        assertThrows(try db.create(), Database.Error.databaseAlreadyExists)
+        assertThrows(try db.create(), SQLiteDatabase.Error.databaseAlreadyExists)
     }
 
     func test_createsDatabaseFile() throws {
@@ -63,7 +63,7 @@ class DatabaseTests: XCTestCase {
     }
 
     func test_whenConnectingToNonExistingDatabase_thenThrows() throws {
-        assertThrows(try db.connection(), Database.Error.databaseDoesNotExist)
+        assertThrows(try db.connection(), SQLiteDatabase.Error.databaseDoesNotExist)
     }
 
     func test_whenConnecting_thenOpensSqlite() throws {
@@ -75,33 +75,33 @@ class DatabaseTests: XCTestCase {
         sqlite.version = "1"
         sqlite.libversion_result = "2"
         try db.create()
-        assertThrows(try db.connection(), Database.Error.invalidSQLiteVersion)
+        assertThrows(try db.connection(), SQLiteDatabase.Error.invalidSQLiteVersion)
     }
 
     func test_beforeConnecting_whenSourceIDNotMatches_thenThrows() throws {
         sqlite.sourceID = "1"
         sqlite.sourceid_result = "2"
         try db.create()
-        assertThrows(try db.connection(), Database.Error.invalidSQLiteVersion)
+        assertThrows(try db.connection(), SQLiteDatabase.Error.invalidSQLiteVersion)
     }
 
     func test_beforeConnecting_whenVersionNumberNotMatches_thenThrows() throws {
         sqlite.number = 1
         sqlite.libversion_number_result = 2
         try db.create()
-        assertThrows(try db.connection(), Database.Error.invalidSQLiteVersion)
+        assertThrows(try db.connection(), SQLiteDatabase.Error.invalidSQLiteVersion)
     }
 
     func test_whenConnectionReturnsError_thenThrows() throws {
         sqlite.open_result = CSQLite3.SQLITE_IOERR_LOCK
         try db.create()
-        assertThrows(try db.connection(), Database.Error.failedToOpenDatabase)
+        assertThrows(try db.connection(), SQLiteDatabase.Error.failedToOpenDatabase)
     }
 
     func test_whenConnectionReturnsNilPointer_thenThrows() throws {
         sqlite.open_pointer_result = nil
         try db.create()
-        assertThrows(try db.connection(), Database.Error.failedToOpenDatabase)
+        assertThrows(try db.connection(), SQLiteDatabase.Error.failedToOpenDatabase)
     }
 
     func test_connectionClosesSQLiteDatabase() throws {
@@ -114,18 +114,18 @@ class DatabaseTests: XCTestCase {
     func test_whenClosingNotPossible_throwsError() throws {
         try givenConnection()
         sqlite.close_result = CSQLite3.SQLITE_BUSY
-        assertThrows(try db.close(conn), Database.Error.databaseBusy)
+        assertThrows(try db.close(conn), SQLiteDatabase.Error.databaseBusy)
         sqlite.close_result = CSQLite3.SQLITE_OK
     }
 
     func test_whenClosingNotOpenConnection_throwsError() throws {
-        let conn = Connection(sqlite: sqlite)
-        assertThrows(try conn.close(), Database.Error.connectionIsNotOpened)
+        let conn = SQLiteConnection(sqlite: sqlite)
+        assertThrows(try conn.close(), SQLiteDatabase.Error.connectionIsNotOpened)
     }
 
     func test_whenNotOpenedAndPreparingStatement_thenThrows() {
-        let conn = Connection(sqlite: sqlite)
-        assertThrows(try conn.prepare(statement: "some"), Database.Error.connectionIsNotOpened)
+        let conn = SQLiteConnection(sqlite: sqlite)
+        assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.connectionIsNotOpened)
     }
 
     func test_prepareStatement_passesCorrectArguments() throws {
@@ -148,7 +148,7 @@ class DatabaseTests: XCTestCase {
         sqlite.prepare_out_ppStmt = opaquePointer()
         sqlite.prepare_out_pzTail = nil
         sqlite.prepare_result = CSQLite3.SQLITE_ERROR
-        assertThrows(try conn.prepare(statement: "some"), Database.Error.invalidSQLStatement)
+        assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.invalidSQLStatement)
     }
 
     func test_prepareStatement_whenReceivesNilStatement_thenThrowsError() throws {
@@ -156,7 +156,7 @@ class DatabaseTests: XCTestCase {
         sqlite.prepare_result = CSQLite3.SQLITE_OK
         sqlite.prepare_out_ppStmt = nil
         sqlite.prepare_out_pzTail = nil
-        assertThrows(try conn.prepare(statement: "some"), Database.Error.invalidSQLStatement)
+        assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.invalidSQLStatement)
     }
 
     func test_whenConnectionIsClosed_thenPreparedStatementIsFinalizedAutomatically() throws {
@@ -195,31 +195,31 @@ class DatabaseTests: XCTestCase {
     }
 
     func test_whenStatementFinalizedAndExecutes_thenThrows() throws {
-        let statement = Statement(sql: "some", db: opaquePointer(), stmt: opaquePointer(), sqlite: sqlite)
+        let statement = SQLiteStatement(sql: "some", db: opaquePointer(), stmt: opaquePointer(), sqlite: sqlite)
         statement.finalize()
-        assertThrows(try statement.execute(), Database.Error.attemptToExecuteFinalizedStatement)
+        assertThrows(try statement.execute(), SQLiteDatabase.Error.attemptToExecuteFinalizedStatement)
     }
 
     func test_whenConnectionWasClosedAndThenOpened_thenThrows() throws {
         try givenClosedConnection()
-        assertThrows(try conn.open(url: db.url), Database.Error.connectionIsAlreadyClosed)
+        assertThrows(try conn.open(url: db.url), SQLiteDatabase.Error.connectionIsAlreadyClosed)
     }
 
     func test_whenConnectionWasClosedAndThenClosedAgain_thenThrows() throws {
         try givenClosedConnection()
-        assertThrows(try db.close(conn), Database.Error.connectionIsAlreadyClosed)
+        assertThrows(try db.close(conn), SQLiteDatabase.Error.connectionIsAlreadyClosed)
     }
 
 
     func test_whenConnectionClosed_thenPrepareThrows() throws {
         try givenClosedConnection()
-        assertThrows(try conn.prepare(statement: "some"), Database.Error.connectionIsAlreadyClosed)
+        assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.connectionIsAlreadyClosed)
     }
 
     func test_whenDatabaseDeinit_thenConnectionsAreClosed() throws {
         try givenConnection()
         try db.destroy()
-        assertThrows(try conn.prepare(statement: "some"), Database.Error.connectionIsAlreadyClosed)
+        assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.connectionIsAlreadyClosed)
     }
 
     func test_canCreateAfterDestroy() throws {
@@ -238,19 +238,19 @@ class DatabaseTests: XCTestCase {
     func test_whenExecutedAndExecutesAgain_thenThrows() throws {
         try givenPreparedStatement()
         try stmt.execute()
-        assertThrows(try stmt.execute(), Database.Error.statementWasAlreadyExecuted)
+        assertThrows(try stmt.execute(), SQLiteDatabase.Error.statementWasAlreadyExecuted)
     }
 
     func test_whenExecuteError_thenThrows() throws {
         try givenPreparedStatement()
         sqlite.step_results = [CSQLite3.SQLITE_ERROR]
-        assertThrows(try stmt.execute(), Database.Error.runtimeError)
+        assertThrows(try stmt.execute(), SQLiteDatabase.Error.runtimeError)
     }
 
     func test_whenExecuteMisuse_thenTrows() throws {
         try givenPreparedStatement()
         sqlite.step_results = [CSQLite3.SQLITE_MISUSE]
-        assertThrows(try stmt.execute(), Database.Error.invalidStatementState)
+        assertThrows(try stmt.execute(), SQLiteDatabase.Error.invalidStatementState)
     }
 
     func test_whenStatementIsNotCommitAndOccursInsideExplicitTransaction_thenThrows() throws {
@@ -258,7 +258,7 @@ class DatabaseTests: XCTestCase {
         sqlite.step_results = [CSQLite3.SQLITE_BUSY]
         // 0 means False - autocommit is disabled - inside BEGIN...COMMIT
         sqlite.get_autocommit_result = 0
-        assertThrows(try stmt.execute(), Database.Error.transactionMustBeRolledBack)
+        assertThrows(try stmt.execute(), SQLiteDatabase.Error.transactionMustBeRolledBack)
     }
 
     func test_whenStatementIsCommitAndBusy_thenRetries() throws {
@@ -349,10 +349,10 @@ class DatabaseTests: XCTestCase {
         XCTAssertNotNil(sqlite.bind_text_in_destructor)
 
         sqlite.bind_text_result = CSQLite3.SQLITE_MISUSE
-        assertThrows(try stmt.set("text", at: 1), Database.Error.failedToSetStatementParameter)
+        assertThrows(try stmt.set("text", at: 1), SQLiteDatabase.Error.failedToSetStatementParameter)
 
         sqlite.bind_text_result = CSQLite3.SQLITE_RANGE
-        assertThrows(try stmt.set("text", at: 2), Database.Error.statementParameterIndexOutOfRange)
+        assertThrows(try stmt.set("text", at: 2), SQLiteDatabase.Error.statementParameterIndexOutOfRange)
 
         sqlite.bind_int64_result = CSQLite3.SQLITE_OK
         try stmt.set(1, at: 1)
@@ -387,14 +387,14 @@ class DatabaseTests: XCTestCase {
 
     func test_whenStatementExecuted_thenBindingThrows() throws {
         try givenSuccessfullyExecutedStatement()
-        assertThrows(try stmt.set(0, at: 1), Database.Error.attemptToBindExecutedStatement)
-        assertThrows(try stmt.set(1.1, at: 1), Database.Error.attemptToBindExecutedStatement)
-        assertThrows(try stmt.set("text", at: 1), Database.Error.attemptToBindExecutedStatement)
-        assertThrows(try stmt.setNil(at: 1), Database.Error.attemptToBindExecutedStatement)
-        assertThrows(try stmt.set(0, forKey: "key"), Database.Error.attemptToBindExecutedStatement)
-        assertThrows(try stmt.set(1.1, forKey: "key"), Database.Error.attemptToBindExecutedStatement)
-        assertThrows(try stmt.set("text", forKey: "key"), Database.Error.attemptToBindExecutedStatement)
-        assertThrows(try stmt.setNil(forKey: "key"), Database.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set(0, at: 1), SQLiteDatabase.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set(1.1, at: 1), SQLiteDatabase.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set("text", at: 1), SQLiteDatabase.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.setNil(at: 1), SQLiteDatabase.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set(0, forKey: "key"), SQLiteDatabase.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set(1.1, forKey: "key"), SQLiteDatabase.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set("text", forKey: "key"), SQLiteDatabase.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.setNil(forKey: "key"), SQLiteDatabase.Error.attemptToBindExecutedStatement)
     }
 
     fileprivate func givenNotExecutedFinalizedStatement() throws {
@@ -408,19 +408,19 @@ class DatabaseTests: XCTestCase {
 
     func test_whenStatementFinalized_thenBindingThrows() throws {
         try givenNotExecutedFinalizedStatement()
-        assertThrows(try stmt.set(0, at: 1), Database.Error.attemptToBindFinalizedStatement)
-        assertThrows(try stmt.set(1.1, at: 1), Database.Error.attemptToBindFinalizedStatement)
-        assertThrows(try stmt.set("text", at: 1), Database.Error.attemptToBindFinalizedStatement)
-        assertThrows(try stmt.setNil(at: 1), Database.Error.attemptToBindFinalizedStatement)
-        assertThrows(try stmt.set(0, forKey: "key"), Database.Error.attemptToBindFinalizedStatement)
-        assertThrows(try stmt.set(1.1, forKey: "key"), Database.Error.attemptToBindFinalizedStatement)
-        assertThrows(try stmt.set("text", forKey: "key"), Database.Error.attemptToBindFinalizedStatement)
-        assertThrows(try stmt.setNil(forKey: "key"), Database.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set(0, at: 1), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set(1.1, at: 1), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set("text", at: 1), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.setNil(at: 1), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set(0, forKey: "key"), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set(1.1, forKey: "key"), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set("text", forKey: "key"), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.setNil(forKey: "key"), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
     }
 
 }
 
-extension DatabaseTests {
+extension SQLiteDatabaseTests {
     fileprivate func givenSuccessfullyExecutedStatement() throws {
         try db.create()
         sqlite.open_pointer_result = opaquePointer()

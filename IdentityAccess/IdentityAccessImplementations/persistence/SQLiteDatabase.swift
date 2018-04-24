@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public class Database: Assertable {
+public class SQLiteDatabase: Assertable {
 
     public let name: String
     public var exists: Bool { return false }
@@ -13,7 +13,7 @@ public class Database: Assertable {
     private let fileManager: FileManager
     private let sqlite: CSQLite3
     private let bundleIdentifier: String
-    private var connections = [Connection]()
+    private var connections = [SQLiteConnection]()
 
     public enum Error: String, Hashable, LocalizedError {
         case applicationSupportDirNotFound
@@ -61,19 +61,19 @@ public class Database: Assertable {
         }
     }
 
-    public func connection() throws -> Connection {
+    public func connection() throws -> SQLiteConnection {
         try buildURL()
         try assertTrue(fileManager.fileExists(atPath: url.path), Error.databaseDoesNotExist)
         try assertEqual(String(cString: sqlite.sqlite3_libversion()), sqlite.SQLITE_VERSION, Error.invalidSQLiteVersion)
         try assertEqual(String(cString: sqlite.sqlite3_sourceid()), sqlite.SQLITE_SOURCE_ID, Error.invalidSQLiteVersion)
         try assertEqual(sqlite.sqlite3_libversion_number(), sqlite.SQLITE_VERSION_NUMBER, Error.invalidSQLiteVersion)
-        let connection = Connection(sqlite: sqlite)
+        let connection = SQLiteConnection(sqlite: sqlite)
         try connection.open(url: url)
         connections.append(connection)
         return connection
     }
 
-    public func close(_ connection: Connection) throws {
+    public func close(_ connection: SQLiteConnection) throws {
         try connection.close()
         if let index = connections.index(where: { $0 === connection }) {
             connections.remove(at: index)
