@@ -408,6 +408,12 @@ class SQLiteDatabaseTests: XCTestCase {
         assertThrows(try stmt.setNil(forKey: "key"), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
     }
 
+    func test_lastErrorMessage() throws {
+        try givenConnection()
+        sqlite.errmsg_result = "ERROR"
+        XCTAssertEqual(conn.lastErrorMessage(), "ERROR")
+    }
+
 }
 
 extension SQLiteDatabaseTests {

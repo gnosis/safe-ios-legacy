@@ -32,6 +32,11 @@ public class SQLiteConnection: Connection, Assertable {
         return result
     }
 
+    public func lastErrorMessage() -> String? {
+        guard let cString = sqlite.sqlite3_errmsg(db) else { return nil }
+        return String(cString: cString, encoding: .utf8)
+    }
+
     private func assertOpened() throws {
         try assertTrue(isOpened, SQLiteDatabase.Error.connectionIsNotOpened)
         try assertFalse(isClosed, SQLiteDatabase.Error.connectionIsAlreadyClosed)

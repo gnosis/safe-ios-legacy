@@ -87,6 +87,7 @@ public class SQLiteDatabase: Database, Assertable {
     public func destroy() throws {
         try connections.forEach { try $0.close() }
         connections.removeAll()
+        try? buildURL()
         guard let url = url else { return }
         if fileManager.fileExists(atPath: url.path) {
             try fileManager.removeItem(at: url)

@@ -202,4 +202,16 @@ class MockCSQLite3: CSQLite3 {
         }
         return bind_parameter_index_result
     }
+
+    var errmsg_result: String?
+    private var errmsg_result_array = [CChar]()
+    var errmsg_in_db: OpaquePointer?
+    override func sqlite3_errmsg(_ db: OpaquePointer!) -> UnsafePointer<Int8>! {
+        errmsg_in_db = db
+        guard let result = errmsg_result else { return nil }
+        errmsg_result_array = result.cString(using: .utf8)!
+        return errmsg_result_array.withUnsafeBytes { bufferPtr -> UnsafePointer<Int8> in
+            bufferPtr.baseAddress!.bindMemory(to: Int8.self, capacity: bufferPtr.count)
+        }
+    }
 }

@@ -99,6 +99,7 @@
 		0AD85995208F39CE0084C0B9 /* SQLiteStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD85994208F39CE0084C0B9 /* SQLiteStatement.swift */; };
 		0AD85997208F39E70084C0B9 /* SQLiteResultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */; };
 		0AD8599F208F3B9B0084C0B9 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8599E208F3B9B0084C0B9 /* Database.swift */; };
+		0AD859A1208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD859A0208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift */; };
 		0AFFF40620808A5D0030200C /* SingleUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40520808A5D0030200C /* SingleUserRepository.swift */; };
 		0AFFF40820808ABD0030200C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40720808ABD0030200C /* User.swift */; };
 		0AFFF40A20808AE30030200C /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40920808AE30030200C /* UserTests.swift */; };
@@ -384,6 +385,7 @@
 		0AD85994208F39CE0084C0B9 /* SQLiteStatement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteStatement.swift; sourceTree = "<group>"; };
 		0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteResultSet.swift; sourceTree = "<group>"; };
 		0AD8599E208F3B9B0084C0B9 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		0AD859A0208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabaseIntegrationTests.swift; sourceTree = "<group>"; };
 		0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0AFFF40520808A5D0030200C /* SingleUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUserRepository.swift; sourceTree = "<group>"; };
 		0AFFF40720808ABD0030200C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -735,6 +737,7 @@
 				0AD85994208F39CE0084C0B9 /* SQLiteStatement.swift */,
 				0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */,
 				0A666D3F208A07C90034FF66 /* SQLiteDatabaseTests.swift */,
+				0AD859A0208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift */,
 				0AD8598C208F39830084C0B9 /* MockFileManager.swift */,
 				0A665986208A3EA700A4C8CE /* MockCSQLite3.swift */,
 				0A666D42208A0E0A0034FF66 /* CSQLite3.swift */,
@@ -1172,6 +1175,7 @@
 				0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */,
 				0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */,
 				0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */,
+				0AD859A1208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift in Sources */,
 				0A537BA9207CF94E00921FB9 /* UserDefaultsIntegrationTests.swift in Sources */,
 				0A537BAD207CF96E00921FB9 /* LoggableErrorTests.swift in Sources */,
 			);

@@ -197,4 +197,8 @@ open class CSQLite3 {
         return SQLite3.sqlite3_bind_parameter_index(pStmt, zName)
     }
 
+    open func sqlite3_errmsg(_ db: OpaquePointer!) -> UnsafePointer<Int8>! {
+        return SQLite3.sqlite3_errmsg(db)
+    }
+
 }

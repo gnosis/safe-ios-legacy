@@ -16,6 +16,7 @@ public protocol Database {
 public protocol Connection {
 
     func prepare(statement: String) throws -> Statement
+    func lastErrorMessage() -> String?
 
 }
 
