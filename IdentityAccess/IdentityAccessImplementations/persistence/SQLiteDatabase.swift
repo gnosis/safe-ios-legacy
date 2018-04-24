@@ -36,7 +36,7 @@ public class SQLiteDatabase: Database, Assertable {
         case invalidStringBindingValue
         case failedToSetStatementParameter
         case statementParameterIndexOutOfRange
-        case invalidKeyValue
+        case invalidStatementKeyValue
         case attemptToBindExecutedStatement
         case attemptToBindFinalizedStatement
 

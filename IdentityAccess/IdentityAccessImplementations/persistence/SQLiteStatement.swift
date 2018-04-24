@@ -117,7 +117,7 @@ public class SQLiteStatement: Statement, Assertable {
     }
 
     private func parameterIndex(for key: String) throws -> Int {
-        guard let cString = key.cString(using: .utf8) else { throw SQLiteDatabase.Error.invalidKeyValue }
+        guard let cString = key.cString(using: .utf8) else { throw SQLiteDatabase.Error.invalidStatementKeyValue }
         let index = sqlite.sqlite3_bind_parameter_index(stmt, cString)
         return Int(index)
     }
