@@ -65,18 +65,6 @@ class NewSafeViewControllerTests: SafeTestCase {
 
 extension NewSafeViewControllerTests {
 
-    private func createWindow(_ controller: UIViewController) {
-        guard let window = UIApplication.shared.keyWindow else {
-            XCTFail("Must have active window")
-            return
-        }
-        window.rootViewController = UIViewController()
-        window.makeKeyAndVisible()
-        window.rootViewController?.present(controller, animated: false)
-        delay()
-        XCTAssertNotNil(controller.view.window)
-    }
-
     private func assertButtonCheckmarks(_ thisDeviceCheckmark: BigButton.CheckmarkStatus,
                                         _ paperWalletCheckmark: BigButton.CheckmarkStatus,
                                         _ chromeExtensionCheckmark: BigButton.CheckmarkStatus) {
