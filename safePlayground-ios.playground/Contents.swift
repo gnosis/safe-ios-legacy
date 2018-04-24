@@ -24,9 +24,9 @@ checkButton.setTitleColor(.black, for: .normal)
 checkButton.translatesAutoresizingMaskIntoConstraints = false
 view.addSubview(checkButton)
 
-let barcodeInput = BarcodeInput()
-barcodeInput.translatesAutoresizingMaskIntoConstraints = false
-view.addSubview(barcodeInput)
+let qrCodeInput = QRCodeInput()
+qrCodeInput.translatesAutoresizingMaskIntoConstraints = false
+view.addSubview(qrCodeInput)
 
 NSLayoutConstraint.activate([
     input.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -35,9 +35,9 @@ NSLayoutConstraint.activate([
     checkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
     checkButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
     checkButton.topAnchor.constraint(equalTo: input.bottomAnchor, constant: 100),
-    barcodeInput.leadingAnchor.constraint(equalTo: input.leadingAnchor),
-    barcodeInput.trailingAnchor.constraint(equalTo: input.trailingAnchor),
-    barcodeInput.topAnchor.constraint(equalTo: checkButton.bottomAnchor, constant: 30)])
+    qrCodeInput.leadingAnchor.constraint(equalTo: input.leadingAnchor),
+    qrCodeInput.trailingAnchor.constraint(equalTo: input.trailingAnchor),
+    qrCodeInput.topAnchor.constraint(equalTo: checkButton.bottomAnchor, constant: 30)])
 
 
 func execute(_ timer: Timer) {
