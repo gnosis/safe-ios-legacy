@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public class SQLiteDatabase: Assertable {
+public class SQLiteDatabase: Database, Assertable {
 
     public let name: String
     public var exists: Bool { return false }
@@ -28,6 +28,7 @@ public class SQLiteDatabase: Assertable {
         case invalidSQLStatement
         case attemptToExecuteFinalizedStatement
         case connectionIsAlreadyClosed
+        case invalidConnection
         case statementWasAlreadyExecuted
         case runtimeError
         case invalidStatementState
@@ -61,7 +62,7 @@ public class SQLiteDatabase: Assertable {
         }
     }
 
-    public func connection() throws -> SQLiteConnection {
+    public func connection() throws -> Connection {
         try buildURL()
         try assertTrue(fileManager.fileExists(atPath: url.path), Error.databaseDoesNotExist)
         try assertEqual(String(cString: sqlite.sqlite3_libversion()), sqlite.SQLITE_VERSION, Error.invalidSQLiteVersion)
@@ -73,7 +74,10 @@ public class SQLiteDatabase: Assertable {
         return connection
     }
 
-    public func close(_ connection: SQLiteConnection) throws {
+    public func close(_ connection: Connection) throws {
+        guard let connection = connection as? SQLiteConnection else {
+            throw SQLiteDatabase.Error.invalidConnection
+        }
         try connection.close()
         if let index = connections.index(where: { $0 === connection }) {
             connections.remove(at: index)

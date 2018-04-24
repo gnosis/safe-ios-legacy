@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public class SQLiteConnection: Assertable {
+public class SQLiteConnection: Connection, Assertable {
 
     private var db: OpaquePointer!
     private let sqlite: CSQLite3
@@ -17,7 +17,7 @@ public class SQLiteConnection: Assertable {
         self.sqlite = sqlite
     }
 
-    public func prepare(statement: String) throws -> SQLiteStatement {
+    public func prepare(statement: String) throws -> Statement {
         try assertOpened()
         guard let cstr = statement.cString(using: .utf8) else {
             preconditionFailure("Failed to convert String to C String: \(statement)")

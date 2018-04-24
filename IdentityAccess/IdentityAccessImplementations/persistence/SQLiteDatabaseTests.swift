@@ -20,6 +20,8 @@ class SQLiteDatabaseTests: XCTestCase {
         case bundleIdentifierNotFound
         case databaseURLNotFound
         case resultSetMissing
+        case unexpectedStatement
+        case unexpectedConnection
 
         var errorDescription: String? {
             return rawValue
@@ -210,7 +212,6 @@ class SQLiteDatabaseTests: XCTestCase {
         assertThrows(try db.close(conn), SQLiteDatabase.Error.connectionIsAlreadyClosed)
     }
 
-
     func test_whenConnectionClosed_thenPrepareThrows() throws {
         try givenClosedConnection()
         assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.connectionIsAlreadyClosed)
@@ -289,7 +290,6 @@ class SQLiteDatabaseTests: XCTestCase {
         sqlite.column_count_result = 15
         XCTAssertEqual(rs.columnCount, 15)
     }
-
 
     func test_resultSet_columnValues() throws {
         try givenResultSet()
@@ -384,7 +384,6 @@ class SQLiteDatabaseTests: XCTestCase {
         XCTAssertEqual(sqlite.bind_parameter_index_in_zName, "key")
     }
 
-
     func test_whenStatementExecuted_thenBindingThrows() throws {
         try givenSuccessfullyExecutedStatement()
         assertThrows(try stmt.set(0, at: 1), SQLiteDatabase.Error.attemptToBindExecutedStatement)
@@ -395,15 +394,6 @@ class SQLiteDatabaseTests: XCTestCase {
         assertThrows(try stmt.set(1.1, forKey: "key"), SQLiteDatabase.Error.attemptToBindExecutedStatement)
         assertThrows(try stmt.set("text", forKey: "key"), SQLiteDatabase.Error.attemptToBindExecutedStatement)
         assertThrows(try stmt.setNil(forKey: "key"), SQLiteDatabase.Error.attemptToBindExecutedStatement)
-    }
-
-    fileprivate func givenNotExecutedFinalizedStatement() throws {
-        try db.create()
-        sqlite.open_pointer_result = opaquePointer()
-        conn = try db.connection()
-        sqlite.prepare_out_ppStmt = opaquePointer()
-        stmt = try conn.prepare(statement: "some")
-        stmt.finalize()
     }
 
     func test_whenStatementFinalized_thenBindingThrows() throws {
@@ -421,43 +411,45 @@ class SQLiteDatabaseTests: XCTestCase {
 }
 
 extension SQLiteDatabaseTests {
-    fileprivate func givenSuccessfullyExecutedStatement() throws {
-        try db.create()
-        sqlite.open_pointer_result = opaquePointer()
-        conn = try db.connection()
-        sqlite.prepare_out_ppStmt = opaquePointer()
-        stmt = try conn.prepare(statement: "some")
+
+    private func givenNotExecutedFinalizedStatement() throws {
+        try givenPreparedStatement()
+        stmt.finalize()
+    }
+
+    private func givenSuccessfullyExecutedStatement() throws {
+        try givenPreparedStatement()
         sqlite.step_results = [CSQLite3.SQLITE_DONE]
         _ = try stmt.execute()
     }
 
-    fileprivate func givenPreparedStatement(_ sql: String = "some") throws {
-        try db.create()
-        sqlite.open_pointer_result = opaquePointer()
-        conn = try db.connection()
+    private func givenPreparedStatement(_ sql: String = "some") throws {
+        try givenConnection()
         sqlite.prepare_out_ppStmt = opaquePointer()
-        stmt = try conn.prepare(statement: sql)
+        guard let stmt = try conn.prepare(statement: sql) as? SQLiteStatement else {
+            throw Error.unexpectedStatement
+        }
+        self.stmt = stmt
     }
 
-    fileprivate func givenClosedConnection() throws {
+    private func givenClosedConnection() throws {
         try givenConnection()
         try db.close(conn)
     }
 
-    fileprivate func givenConnection() throws {
+    private func givenConnection() throws {
         try db.create()
         sqlite.open_pointer_result = opaquePointer()
-        conn = try db.connection()
+        guard let conn = try db.connection() as? SQLiteConnection else {
+            throw Error.unexpectedConnection
+        }
+        self.conn = conn
     }
 
-    fileprivate func givenResultSet() throws {
-        try db.create()
-        sqlite.open_pointer_result = opaquePointer()
-        conn = try db.connection()
-        sqlite.prepare_out_ppStmt = opaquePointer()
-        stmt = try conn.prepare(statement: "some")
+    private func givenResultSet() throws {
+        try givenPreparedStatement()
         sqlite.step_results = [CSQLite3.SQLITE_ROW]
-        guard let rs = try stmt.execute() else { throw Error.resultSetMissing }
+        guard let rs = try stmt.execute() as? SQLiteResultSet else { throw Error.resultSetMissing }
         self.rs = rs
     }
 
@@ -476,4 +468,5 @@ extension SQLiteDatabaseTests {
             XCTAssertEqual($0 as? E, error, file: file, line: line)
         }
     }
+
 }

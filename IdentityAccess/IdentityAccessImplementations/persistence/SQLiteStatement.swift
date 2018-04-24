@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public class SQLiteStatement: Assertable {
+public class SQLiteStatement: Statement, Assertable {
 
     private let sql: String
     private let db: OpaquePointer
@@ -22,7 +22,7 @@ public class SQLiteStatement: Assertable {
     }
 
     @discardableResult
-    public func execute() throws -> SQLiteResultSet? {
+    public func execute() throws -> ResultSet? {
         try assertFalse(isFinalized, SQLiteDatabase.Error.attemptToExecuteFinalizedStatement)
         try assertFalse(isExecuted, SQLiteDatabase.Error.statementWasAlreadyExecuted)
         let status = sqlite.sqlite3_step(stmt)

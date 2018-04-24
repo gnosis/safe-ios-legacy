@@ -98,6 +98,7 @@
 		0AD85993208F39C00084C0B9 /* SQLiteConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD85992208F39C00084C0B9 /* SQLiteConnection.swift */; };
 		0AD85995208F39CE0084C0B9 /* SQLiteStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD85994208F39CE0084C0B9 /* SQLiteStatement.swift */; };
 		0AD85997208F39E70084C0B9 /* SQLiteResultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */; };
+		0AD8599F208F3B9B0084C0B9 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8599E208F3B9B0084C0B9 /* Database.swift */; };
 		0AFFF40620808A5D0030200C /* SingleUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40520808A5D0030200C /* SingleUserRepository.swift */; };
 		0AFFF40820808ABD0030200C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40720808ABD0030200C /* User.swift */; };
 		0AFFF40A20808AE30030200C /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40920808AE30030200C /* UserTests.swift */; };
@@ -382,6 +383,7 @@
 		0AD85992208F39C00084C0B9 /* SQLiteConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteConnection.swift; sourceTree = "<group>"; };
 		0AD85994208F39CE0084C0B9 /* SQLiteStatement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteStatement.swift; sourceTree = "<group>"; };
 		0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteResultSet.swift; sourceTree = "<group>"; };
+		0AD8599E208F3B9B0084C0B9 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0AFFF40520808A5D0030200C /* SingleUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUserRepository.swift; sourceTree = "<group>"; };
 		0AFFF40720808ABD0030200C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -727,10 +729,11 @@
 				0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */,
 				0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */,
 				0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */,
+				0AD8599E208F3B9B0084C0B9 /* Database.swift */,
 				0A666D3B208A07A90034FF66 /* SQLiteDatabase.swift */,
+				0AD85992208F39C00084C0B9 /* SQLiteConnection.swift */,
 				0AD85994208F39CE0084C0B9 /* SQLiteStatement.swift */,
 				0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */,
-				0AD85992208F39C00084C0B9 /* SQLiteConnection.swift */,
 				0A666D3F208A07C90034FF66 /* SQLiteDatabaseTests.swift */,
 				0AD8598C208F39830084C0B9 /* MockFileManager.swift */,
 				0A665986208A3EA700A4C8CE /* MockCSQLite3.swift */,
@@ -1147,6 +1150,7 @@
 				0A537ADA207CEE1100921FB9 /* InMemoryUserDefaults.swift in Sources */,
 				0A537B11207CF2D600921FB9 /* CrashlyticsLogger.swift in Sources */,
 				0A666D3C208A07AA0034FF66 /* SQLiteDatabase.swift in Sources */,
+				0AD8599F208F3B9B0084C0B9 /* Database.swift in Sources */,
 				0A537AE5207CEFED00921FB9 /* InMemoryKeyValueStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

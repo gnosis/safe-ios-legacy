@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public class SQLiteResultSet {
+public class SQLiteResultSet: ResultSet {
 
     public var isColumnsEmpty: Bool { return columnCount == 0 }
     public var columnCount: Int { return Int(sqlite.sqlite3_column_count(stmt)) }
