@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A44F9A9208F6F4500BB7101 /* CSQLite3ErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9A8208F6F4500BB7101 /* CSQLite3ErrorTests.swift */; };
 		0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */; };
 		0A537A93207CE74100921FB9 /* KeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A82207CE74000921FB9 /* KeyValueStore.swift */; };
 		0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A84207CE74000921FB9 /* SecureStore.swift */; };
@@ -298,6 +299,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A44F9A8208F6F4500BB7101 /* CSQLite3ErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSQLite3ErrorTests.swift; sourceTree = "<group>"; };
 		0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537A7C207CE73F00921FB9 /* IdentityAccessDomainModel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityAccessDomainModel-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
@@ -741,6 +743,7 @@
 				0AD8598C208F39830084C0B9 /* MockFileManager.swift */,
 				0A665986208A3EA700A4C8CE /* MockCSQLite3.swift */,
 				0A666D42208A0E0A0034FF66 /* CSQLite3.swift */,
+				0A44F9A8208F6F4500BB7101 /* CSQLite3ErrorTests.swift */,
 			);
 			path = persistence;
 			sourceTree = "<group>";
@@ -1172,6 +1175,7 @@
 				0A537BAC207CF96B00921FB9 /* LogFormatterTests.swift in Sources */,
 				0A665987208A3EA700A4C8CE /* MockCSQLite3.swift in Sources */,
 				0AFFF4342084D4DA0030200C /* AuthenticationPolicyTests.swift in Sources */,
+				0A44F9A9208F6F4500BB7101 /* CSQLite3ErrorTests.swift in Sources */,
 				0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */,
 				0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */,
 				0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */,

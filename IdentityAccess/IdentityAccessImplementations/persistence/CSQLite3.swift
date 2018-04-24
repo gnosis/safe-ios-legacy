@@ -158,9 +158,11 @@ open class CSQLite3 {
     open func sqlite3_column_bytes(_ pStmt: OpaquePointer!, _ iCol: Int32) -> Int32 {
         return SQLite3.sqlite3_column_bytes(pStmt, iCol)
     }
+
     open func sqlite3_column_double(_ pStmt: OpaquePointer!, _ iCol: Int32) -> Double {
         return SQLite3.sqlite3_column_double(pStmt, iCol)
     }
+
     open func sqlite3_column_int64(_ pStmt: OpaquePointer!, _ iCol: Int32) -> sqlite3_int64 {
         return SQLite3.sqlite3_column_int64(pStmt, iCol)
     }
@@ -199,6 +201,10 @@ open class CSQLite3 {
 
     open func sqlite3_errmsg(_ db: OpaquePointer!) -> UnsafePointer<Int8>! {
         return SQLite3.sqlite3_errmsg(db)
+    }
+
+    open func sqlite3_errstr(_ code: Int32) -> UnsafePointer<Int8>! {
+        return SQLite3.sqlite3_errstr(code)
     }
 
 }
