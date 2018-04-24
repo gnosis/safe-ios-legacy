@@ -108,6 +108,9 @@ open class CSQLite3 {
     public static var SQLITE_AUTH_USER: Int32 { return (SQLITE_AUTH | (1 << 8)) }
     public static var SQLITE_OK_LOAD_PERMANENTLY: Int32 { return (SQLITE_OK | (1 << 8)) }
 
+    public static var SQLITE_TRANSIENT = unsafeBitCast(-1, to: SQLite3.sqlite3_destructor_type.self)
+    public static var SQLITE_STATIC = unsafeBitCast(0, to: SQLite3.sqlite3_destructor_type.self)
+
     open func sqlite3_open(_ filename: UnsafePointer<Int8>!, _ ppDb: UnsafeMutablePointer<OpaquePointer?>!) -> Int32 {
         return SQLite3.sqlite3_open(filename, ppDb)
     }
@@ -169,4 +172,29 @@ open class CSQLite3 {
     open func sqlite3_reset(_ pStmt: OpaquePointer!) -> Int32 {
         return SQLite3.sqlite3_reset(pStmt)
     }
+
+    open func sqlite3_bind_double(_ pStmt: OpaquePointer!, _ index: Int32, _ zValue: Double) -> Int32 {
+        return SQLite3.sqlite3_bind_double(pStmt, index, zValue)
+    }
+
+    open func sqlite3_bind_int64(_ pStmt: OpaquePointer!, _ index: Int32, _ zValue: sqlite3_int64) -> Int32 {
+        return SQLite3.sqlite3_bind_int64(pStmt, index, zValue)
+    }
+
+    open func sqlite3_bind_null(_ pStmt: OpaquePointer!, _ index: Int32) -> Int32 {
+        return SQLite3.sqlite3_bind_null(pStmt, index)
+    }
+
+    open func sqlite3_bind_text(_ pStmt: OpaquePointer!,
+                                _ index: Int32,
+                                _ zValue: UnsafePointer<Int8>!,
+                                _ nByte: Int32,
+                                _ destructor: (@convention(c) (UnsafeMutableRawPointer?) -> Swift.Void)!) -> Int32 {
+        return SQLite3.sqlite3_bind_text(pStmt, index, zValue, nByte, destructor)
+    }
+
+    open func sqlite3_bind_parameter_index(_ pStmt: OpaquePointer!, _ zName: UnsafePointer<Int8>!) -> Int32 {
+        return SQLite3.sqlite3_bind_parameter_index(pStmt, zName)
+    }
+
 }

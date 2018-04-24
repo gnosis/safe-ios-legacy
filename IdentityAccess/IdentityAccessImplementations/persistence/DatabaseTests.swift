@@ -455,9 +455,89 @@ class DatabaseTests: XCTestCase {
         XCTAssertFalse(try rs.advanceToNextRow())
     }
 
-}
+    func test_statementSetText() throws {
+        try db.create()
+        sqlite.open_pointer_result = opaquePointer()
+        let conn = try db.connection()
+        sqlite.prepare_out_ppStmt = opaquePointer()
+        let stmt = try conn.prepare(statement: "some")
+        sqlite.bind_text_result = CSQLite3.SQLITE_OK
+        try stmt.set("text", at: 1)
+        XCTAssertEqual(sqlite.bind_text_in_zValue, "text")
+        XCTAssertNotNil(sqlite.bind_text_in_destructor)
 
-// connection can go through all its statements
+        sqlite.bind_text_result = CSQLite3.SQLITE_MISUSE
+        assertThrows(try stmt.set("text", at: 1), Database.Error.failedToSetStatementParameter)
+
+        sqlite.bind_text_result = CSQLite3.SQLITE_RANGE
+        assertThrows(try stmt.set("text", at: 2), Database.Error.statementParameterIndexOutOfRange)
+
+        sqlite.bind_int64_result = CSQLite3.SQLITE_OK
+        try stmt.set(1, at: 1)
+        XCTAssertEqual(sqlite.bind_int64_in_zValue, 1)
+
+        sqlite.bind_double_result = CSQLite3.SQLITE_OK
+        try stmt.set(1.2, at: 2)
+        XCTAssertEqual(sqlite.bind_double_in_zValue, 1.2)
+
+        sqlite.bind_null_result = CSQLite3.SQLITE_OK
+        try stmt.setNil(at: 3)
+        XCTAssertEqual(sqlite.bind_null_in_index, 3)
+
+        sqlite.bind_text_result = CSQLite3.SQLITE_OK
+        sqlite.bind_parameter_index_in_zName = nil
+        try stmt.set("text", forKey: "key")
+        XCTAssertEqual(sqlite.bind_parameter_index_in_zName, "key")
+
+        sqlite.bind_parameter_index_in_zName = nil
+        try stmt.set(1, forKey: "key")
+        XCTAssertEqual(sqlite.bind_parameter_index_in_zName, "key")
+
+        sqlite.bind_parameter_index_in_zName = nil
+        try stmt.set(1.2, forKey: "key")
+        XCTAssertEqual(sqlite.bind_parameter_index_in_zName, "key")
+
+        sqlite.bind_parameter_index_in_zName = nil
+        try stmt.setNil(forKey: "key")
+        XCTAssertEqual(sqlite.bind_parameter_index_in_zName, "key")
+    }
+
+    func test_whenStatementExecuted_thenBindingThrows() throws {
+        try db.create()
+        sqlite.open_pointer_result = opaquePointer()
+        let conn = try db.connection()
+        sqlite.prepare_out_ppStmt = opaquePointer()
+        let stmt = try conn.prepare(statement: "some")
+        sqlite.step_results = [CSQLite3.SQLITE_DONE]
+        _ = try stmt.execute()
+        assertThrows(try stmt.set(0, at: 1), Database.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set(1.1, at: 1), Database.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set("text", at: 1), Database.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.setNil(at: 1), Database.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set(0, forKey: "key"), Database.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set(1.1, forKey: "key"), Database.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set("text", forKey: "key"), Database.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.setNil(forKey: "key"), Database.Error.attemptToBindExecutedStatement)
+    }
+
+    func test_whenStatementFinalized_thenBindingThrows() throws {
+        try db.create()
+        sqlite.open_pointer_result = opaquePointer()
+        let conn = try db.connection()
+        sqlite.prepare_out_ppStmt = opaquePointer()
+        let stmt = try conn.prepare(statement: "some")
+        stmt.finalize()
+        assertThrows(try stmt.set(0, at: 1), Database.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set(1.1, at: 1), Database.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set("text", at: 1), Database.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.setNil(at: 1), Database.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set(0, forKey: "key"), Database.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set(1.1, forKey: "key"), Database.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set("text", forKey: "key"), Database.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.setNil(forKey: "key"), Database.Error.attemptToBindFinalizedStatement)
+    }
+
+}
 
 extension DatabaseTests {
 

@@ -32,6 +32,12 @@ public class Database: Assertable {
         case runtimeError
         case invalidStatementState
         case transactionMustBeRolledBack
+        case invalidStringBindingValue
+        case failedToSetStatementParameter
+        case statementParameterIndexOutOfRange
+        case invalidKeyValue
+        case attemptToBindExecutedStatement
+        case attemptToBindFinalizedStatement
 
         public var errorDescription: String? {
             return rawValue
@@ -204,6 +210,71 @@ public class Statement: Assertable {
     func finalize() {
         _ = sqlite.sqlite3_finalize(stmt)
         isFinalized = true
+    }
+
+    public func set(_ value: String, at index: Int) throws {
+        try assertCanBind()
+        guard let cString = value.cString(using: .utf8) else { throw Database.Error.invalidStringBindingValue }
+        let status = sqlite.sqlite3_bind_text(stmt,
+                                              Int32(index),
+                                              cString,
+                                              Int32(cString.count),
+                                              CSQLite3.SQLITE_TRANSIENT)
+        try assertBindSuccess(status)
+    }
+
+    public func set(_ value: Int, at index: Int) throws {
+        try assertCanBind()
+        let status = sqlite.sqlite3_bind_int64(stmt, Int32(index), Int64(value))
+        try assertBindSuccess(status)
+    }
+
+    public func set(_ value: Double, at index: Int) throws {
+        try assertCanBind()
+        let status = sqlite.sqlite3_bind_double(stmt, Int32(index), value)
+        try assertBindSuccess(status)
+    }
+
+    public func setNil(at index: Int) throws {
+        try assertCanBind()
+        let status = sqlite.sqlite3_bind_null(stmt, Int32(index))
+        try assertBindSuccess(status)
+    }
+
+    public func set(_ value: String, forKey key: String) throws {
+        let index = try parameterIndex(for: key)
+        try set(value, at: index)
+    }
+
+    public func set(_ value: Int, forKey key: String) throws {
+        let index = try parameterIndex(for: key)
+        try set(value, at: index)
+    }
+
+    public func set(_ value: Double, forKey key: String) throws {
+        let index = try parameterIndex(for: key)
+        try set(value, at: index)
+    }
+
+    public func setNil(forKey key: String) throws {
+        let index = try parameterIndex(for: key)
+        try setNil(at: index)
+    }
+
+    private func assertCanBind() throws {
+        try assertFalse(isExecuted, Database.Error.attemptToBindExecutedStatement)
+        try assertFalse(isFinalized, Database.Error.attemptToBindFinalizedStatement)
+    }
+
+    private func assertBindSuccess(_ status: Int32) throws {
+        try assertNotEqual(status, CSQLite3.SQLITE_RANGE, Database.Error.statementParameterIndexOutOfRange)
+        try assertEqual(status, CSQLite3.SQLITE_OK, Database.Error.failedToSetStatementParameter)
+    }
+
+    private func parameterIndex(for key: String) throws -> Int {
+        guard let cString = key.cString(using: .utf8) else { throw Database.Error.invalidKeyValue }
+        let index = sqlite.sqlite3_bind_parameter_index(stmt, cString)
+        return Int(index)
     }
 
 }

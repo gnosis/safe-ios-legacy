@@ -139,4 +139,67 @@ class MockCSQLite3: CSQLite3 {
         reset_in_pStmt = pStmt
         return reset_result
     }
+
+    var bind_text_result: Int32 = 0
+    var bind_text_in_pStmt: OpaquePointer?
+    var bind_text_in_index: Int32?
+    var bind_text_in_zValue: String?
+    var bind_text_in_nByte: Int32?
+    var bind_text_in_destructor: ((UnsafeMutableRawPointer?) -> Void)?
+    override func sqlite3_bind_text(_ pStmt: OpaquePointer!,
+                                    _ index: Int32,
+                                    _ zValue: UnsafePointer<Int8>!,
+                                    _ nByte: Int32,
+                                    _ destructor: (@convention(c) (UnsafeMutableRawPointer?) -> Void)!) -> Int32 {
+        bind_text_in_pStmt = pStmt
+        bind_text_in_index = index
+        if let str = String(cString: zValue, encoding: .utf8) {
+            bind_text_in_zValue = str
+        }
+        bind_text_in_nByte = nByte
+        bind_text_in_destructor = destructor
+        return bind_text_result
+    }
+
+    var bind_double_result: Int32 = 0
+    var bind_double_in_pStmt: OpaquePointer?
+    var bind_double_in_index: Int32?
+    var bind_double_in_zValue: Double?
+    override func sqlite3_bind_double(_ pStmt: OpaquePointer!, _ index: Int32, _ zValue: Double) -> Int32 {
+        bind_double_in_pStmt = pStmt
+        bind_double_in_index = index
+        bind_double_in_zValue = zValue
+        return bind_double_result
+    }
+
+    var bind_int64_result: Int32 = 0
+    var bind_int64_in_pStmt: OpaquePointer?
+    var bind_int64_in_index: Int32?
+    var bind_int64_in_zValue: Int64?
+    override func sqlite3_bind_int64(_ pStmt: OpaquePointer!, _ index: Int32, _ zValue: sqlite3_int64) -> Int32 {
+        bind_int64_in_pStmt = pStmt
+        bind_int64_in_index = index
+        bind_int64_in_zValue = zValue
+        return bind_int64_result
+    }
+
+    var bind_null_result: Int32 = 0
+    var bind_null_in_pStmt: OpaquePointer?
+    var bind_null_in_index: Int32?
+    override func sqlite3_bind_null(_ pStmt: OpaquePointer!, _ index: Int32) -> Int32 {
+        bind_null_in_pStmt = pStmt
+        bind_null_in_index = index
+        return bind_null_result
+    }
+
+    var bind_parameter_index_result: Int32 = 0
+    var bind_parameter_index_in_pStmt: OpaquePointer?
+    var bind_parameter_index_in_zName: String?
+    override func sqlite3_bind_parameter_index(_ pStmt: OpaquePointer!, _ zName: UnsafePointer<Int8>!) -> Int32 {
+        bind_parameter_index_in_pStmt = pStmt
+        if let str = String(cString: zName, encoding: .utf8) {
+            bind_parameter_index_in_zName = str
+        }
+        return bind_parameter_index_result
+    }
 }
