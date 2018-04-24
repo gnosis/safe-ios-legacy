@@ -19,12 +19,14 @@ class QRCodeInputViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        barcodeInput.barcodeDelegate = self
+        barcodeInput.qrCodeDelegate = self
     }
 
 }
 
 extension QRCodeInputViewController: QRCodeInputDelegate {
+
+    func didScanValidCode() {}
 
     func presentScannerController(_ controller: UIViewController) {
         present(controller, animated: true)

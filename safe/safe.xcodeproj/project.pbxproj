@@ -27,8 +27,8 @@
 		0A9A13B52077AAA800E197A1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */; };
 		0AA0C856207B74AC0019E282 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */; };
 		0AA0C858207B74B10019E282 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C857207B74B10019E282 /* XCTest.framework */; };
-		0AA0C863207B756C0019E282 /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C861207B756C0019E282 /* XCTestCase+Wait.swift */; };
-		0AA0C864207B756C0019E282 /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C861207B756C0019E282 /* XCTestCase+Wait.swift */; };
+		0AA0C863207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */; };
+		0AA0C864207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */; };
 		0AA0C866207B756C0019E282 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C862207B756C0019E282 /* XCTest+Assert.swift */; };
 		0AA0C867207B756C0019E282 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C862207B756C0019E282 /* XCTest+Assert.swift */; };
 		0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */; };
@@ -241,7 +241,7 @@
 		0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AA0C857207B74B10019E282 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		0AA0C861207B756C0019E282 /* XCTestCase+Wait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Wait.swift"; sourceTree = "<group>"; };
+		0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		0AA0C862207B756C0019E282 /* XCTest+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
 		0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeUITests.swift; sourceTree = "<group>"; };
 		0AA27831205FC4E600EBB9D1 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
@@ -606,7 +606,7 @@
 				0AA27842205FCE2800EBB9D1 /* TestSupportTests.swift */,
 				55922C58207BBF7600BF968F /* SafeTestCase.swift */,
 				0AA0C862207B756C0019E282 /* XCTest+Assert.swift */,
-				0AA0C861207B756C0019E282 /* XCTestCase+Wait.swift */,
+				0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */,
 			);
 			name = TestTools;
 			path = ../TestTools;
@@ -934,7 +934,7 @@
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
 				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
 				0A666D2A208894680034FF66 /* FatalErrorHandlerTests.swift in Sources */,
-				0AA0C863207B756C0019E282 /* XCTestCase+Wait.swift in Sources */,
+				0AA0C863207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */,
 				558FD806207652E3004F070E /* SetupSafeOptionsViewControllerTests.swift in Sources */,
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
 				555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */,
@@ -957,7 +957,7 @@
 				0ACA9C49206021E8005EC186 /* UnlockScreenUITests.swift in Sources */,
 				0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */,
 				0AA27839205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift in Sources */,
-				0AA0C864207B756C0019E282 /* XCTestCase+Wait.swift in Sources */,
+				0AA0C864207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */,
 				0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */,
 				0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
 				0AA0C867207B756C0019E282 /* XCTest+Assert.swift in Sources */,

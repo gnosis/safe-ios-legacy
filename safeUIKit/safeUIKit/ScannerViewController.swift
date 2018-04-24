@@ -43,6 +43,10 @@ final class ScannerViewController: UIViewController {
         codeReaderVC.didMove(toParentViewController: self)
     }
 
-    private func barcodesHandler(_ barcodes: [AVMetadataMachineReadableCodeObject]) {}
+    private func barcodesHandler(_ barcodes: [AVMetadataMachineReadableCodeObject]) {
+        for barcode in barcodes.filter({ $0.type == .qr && $0.stringValue != nil }) {
+            delegate?.didScan(barcode.stringValue!)
+        }
+    }
 
 }

@@ -6,12 +6,16 @@ import UIKit
 
 public protocol QRCodeInputDelegate: class {
     func presentScannerController(_ controller: UIViewController)
+    func didScanValidCode()
 }
+
+public typealias QRCodeConverter = (String) -> String?
 
 @IBDesignable
 public final class QRCodeInput: UITextField {
 
-    public weak var barcodeDelegate: QRCodeInputDelegate?
+    public weak var qrCodeDelegate: QRCodeInputDelegate?
+    public var qrCodeConverter: QRCodeConverter?
 
     public enum EditingMode {
         case scanOnly
@@ -59,7 +63,7 @@ public final class QRCodeInput: UITextField {
     }
 
     @objc private func openBarcodeSacenner() {
-        barcodeDelegate?.presentScannerController(scannerController())
+        qrCodeDelegate?.presentScannerController(scannerController())
     }
 
 }
@@ -68,7 +72,7 @@ extension QRCodeInput: UITextFieldDelegate {
 
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if editingMode == .scanOnly {
-            barcodeDelegate?.presentScannerController(scannerController())
+            qrCodeDelegate?.presentScannerController(scannerController())
             return false
         }
         return true
@@ -82,6 +86,11 @@ extension QRCodeInput: UITextFieldDelegate {
 
 extension QRCodeInput: ScannerDelegate {
 
-    func didScan(_ code: String) {}
+    func didScan(_ code: String) {
+        if let result = qrCodeConverter?(code) {
+            text = result
+            qrCodeDelegate?.didScanValidCode()
+        }
+    }
 
 }
