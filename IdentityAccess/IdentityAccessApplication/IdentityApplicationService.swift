@@ -46,4 +46,9 @@ open class IdentityApplicationService {
         draftSafe.confirmBrowserExtension()
     }
 
+    open func convertBrowserExtensionCodeIntoEthereumAddress(_ code: String) -> String {
+        // TODO: implement
+        return "0xa06a215ca4a54189e7f951c59f0431e33d0f38a0"
+    }
+
 }
