@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A44F9A9208F6F4500BB7101 /* CSQLite3ErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9A8208F6F4500BB7101 /* CSQLite3ErrorTests.swift */; };
+		0A44F9C520908BBD00BB7101 /* DBSingleUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */; };
+		0A44F9CB20908BE400BB7101 /* DBSingleUserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */; };
 		0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */; };
 		0A537A93207CE74100921FB9 /* KeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A82207CE74000921FB9 /* KeyValueStore.swift */; };
 		0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A84207CE74000921FB9 /* SecureStore.swift */; };
@@ -300,6 +302,8 @@
 
 /* Begin PBXFileReference section */
 		0A44F9A8208F6F4500BB7101 /* CSQLite3ErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSQLite3ErrorTests.swift; sourceTree = "<group>"; };
+		0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepository.swift; sourceTree = "<group>"; };
+		0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepositoryTests.swift; sourceTree = "<group>"; };
 		0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537A7C207CE73F00921FB9 /* IdentityAccessDomainModel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityAccessDomainModel-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
@@ -731,6 +735,8 @@
 			children = (
 				0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */,
 				0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */,
+				0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */,
+				0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */,
 				0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */,
 				0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */,
 				0AD8599E208F3B9B0084C0B9 /* Database.swift */,
@@ -1136,6 +1142,7 @@
 				0A666D43208A0E0A0034FF66 /* CSQLite3.swift in Sources */,
 				0A537B12207CF2D600921FB9 /* ConsoleLogger.swift in Sources */,
 				0AD85993208F39C00084C0B9 /* SQLiteConnection.swift in Sources */,
+				0A44F9C520908BBD00BB7101 /* DBSingleUserRepository.swift in Sources */,
 				0A537B1C207CF2D600921FB9 /* EncryptionService.swift in Sources */,
 				0A537ADB207CEE1100921FB9 /* MockBiometricService.swift in Sources */,
 				0A537AE1207CEE7300921FB9 /* InMemorySecureStore.swift in Sources */,
@@ -1167,6 +1174,7 @@
 			files = (
 				0A537BA8207CF93F00921FB9 /* EthereumAccountTests.swift in Sources */,
 				0A66598B208A403500A4C8CE /* SQLiteDatabaseTests.swift in Sources */,
+				0A44F9CB20908BE400BB7101 /* DBSingleUserRepositoryTests.swift in Sources */,
 				0A537BAB207CF96500921FB9 /* CrashlyticsLoggerTests.swift in Sources */,
 				0AFFF42E2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift in Sources */,
 				0A537BAE207CF97300921FB9 /* LogServiceTests.swift in Sources */,
