@@ -64,10 +64,10 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
         XCTAssertEqual(ds.confirmedAddresses, [.currentDevice, .paperWallet])
     }
 
-    func test_confirmChromeExtension_callsDraftSafeMethod() {
+    func test_confirmBrowserExtension_callsDraftSafeMethod() {
         let ds = draftSafe()
-        identityService.confirmChromeExtension(draftSafe: ds)
-        XCTAssertEqual(ds.confirmedAddresses, [.currentDevice, .chromeExtension])
+        identityService.confirmBrowserExtension(draftSafe: ds)
+        XCTAssertEqual(ds.confirmedAddresses, [.currentDevice, .browserExtension])
     }
 
 }

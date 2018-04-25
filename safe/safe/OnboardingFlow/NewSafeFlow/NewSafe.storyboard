@@ -35,9 +35,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-2s-l1J" customClass="BigButton" customModule="safeUIKit">
                                         <rect key="frame" x="0.0" y="64" width="335" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Chrome Extension"/>
+                                        <state key="normal" title="Browser Extension"/>
                                         <connections>
-                                            <action selector="setupChromeExtension:" destination="oT1-O9-HET" eventType="touchUpInside" id="s1Z-zD-Ocf"/>
+                                            <action selector="setupBrowserExtension:" destination="oT1-O9-HET" eventType="touchUpInside" id="3Fn-Qy-SEp"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn0-3F-SUf" customClass="BigButton" customModule="safeUIKit">
@@ -67,7 +67,7 @@
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" id="aPw-Qg-l8a"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="chromeExtensionButton" destination="uZP-2s-l1J" id="t09-nA-B2M"/>
+                        <outlet property="browserExtensionButton" destination="uZP-2s-l1J" id="t09-nA-B2M"/>
                         <outlet property="nextButton" destination="aPw-Qg-l8a" id="5Vb-gG-h4G"/>
                         <outlet property="paperWalletButton" destination="Yn0-3F-SUf" id="8dz-Wl-kaU"/>
                         <outlet property="thisDeviceButton" destination="BUi-Ui-sFY" id="5bU-ji-byK"/>

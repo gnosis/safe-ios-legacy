@@ -42,8 +42,8 @@ open class IdentityApplicationService {
         draftSafe.confirmPaperWallet()
     }
 
-    open func confirmChromeExtension(draftSafe: DraftSafe) {
-        draftSafe.confirmChromeExtension()
+    open func confirmBrowserExtension(draftSafe: DraftSafe) {
+        draftSafe.confirmBrowserExtension()
     }
 
 }

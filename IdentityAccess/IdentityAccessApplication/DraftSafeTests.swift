@@ -39,17 +39,17 @@ class DraftSafeTests: XCTestCase {
         XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .paperWallet])
     }
 
-    func test_confirmChromeExtension() {
-        draftSafe.confirmChromeExtension()
-        XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .chromeExtension])
-        draftSafe.confirmChromeExtension()
-        XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .chromeExtension])
+    func test_confirmBrowserExtension() {
+        draftSafe.confirmBrowserExtension()
+        XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .browserExtension])
+        draftSafe.confirmBrowserExtension()
+        XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .browserExtension])
     }
 
     func test_confirmedAddresses_whenAllConfirmationsAreThere_thenReturnsAll() {
         draftSafe.confirmPaperWallet()
-        draftSafe.confirmChromeExtension()
-        XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .chromeExtension, .paperWallet])
+        draftSafe.confirmBrowserExtension()
+        XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .browserExtension, .paperWallet])
     }
 
 }
