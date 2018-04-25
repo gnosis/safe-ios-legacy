@@ -42,12 +42,7 @@ class UnlockViewControllerTests: SafeTestCase {
     }
 
     func test_whenBiometryFails_thenFocusesOnPasswordField() {
-        guard let window = UIApplication.shared.keyWindow else {
-            XCTFail("Must have window")
-            return
-        }
-        window.rootViewController = vc
-        window.makeKeyAndVisible()
+        createWindow(vc)
         authenticateWithBiometryResult(false)
         XCTAssertTrue(vc.textInput.isActive)
     }
@@ -102,11 +97,7 @@ class UnlockViewControllerTests: SafeTestCase {
     func test_whenCountdownReachesZero_thenPasswordEntryFocused() throws {
         authenticationService.blockAuthentication()
         try createVC()
-        guard let window = UIApplication.shared.keyWindow else {
-            XCTFail("Must have window")
-            return
-        }
-        window.rootViewController = vc
+        createWindow(vc)
         clock.countdownTickBlock!(0)
         delay()
         XCTAssertTrue(vc.textInput.isEnabled)

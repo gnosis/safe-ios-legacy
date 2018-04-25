@@ -38,13 +38,7 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
 
     func test_viewDidLoad_dismissesIfNoWordsProvided() {
         controller = SaveMnemonicViewController.create(words: [], delegate: delegate)
-        guard let window = UIApplication.shared.keyWindow else {
-            XCTFail("Must have active window")
-            return
-        }
-        window.rootViewController?.present(controller, animated: false)
-        delay()
-        XCTAssertNotNil(controller.view.window)
+        createWindow(controller)
         controller.viewDidLoad()
         delay(1)
         XCTAssertNil(controller.view.window)

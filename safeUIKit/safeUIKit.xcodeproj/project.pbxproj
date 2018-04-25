@@ -22,9 +22,9 @@
 		0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */; };
 		0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEC205A8D63003619EF /* LocalizedString.swift */; };
 		0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8BE205284180044D5DD /* H1Label.swift */; };
-		0A7AE8C72052C2120044D5DD /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Wait.swift */; };
+		0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */; };
 		0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
-		0A7AE8C92052C2120044D5DD /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Wait.swift */; };
+		0A7AE8C92052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */; };
 		0A7AE8CA2052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
 		0A9670BB20480C5700445AC2 /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* safeUIKit.framework */; };
 		0A9670C720480C5700445AC2 /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* safeUIKit.framework */; };
@@ -38,9 +38,19 @@
 		0AD93E0820481442008C38CA /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D520480C7B00445AC2 /* TextInputTests.swift */; };
 		0AD93E0920481461008C38CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D820480C7B00445AC2 /* Colors.swift */; };
 		0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9670D020480C7A00445AC2 /* TextInput.xib */; };
+		5527A7F4208DE8A300AF3A50 /* RSBarcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcode.framework */; };
+		5527A7F5208DE8B700AF3A50 /* RSBarcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcode.framework */; };
+		5527A7F6208DE8B700AF3A50 /* RSBarcode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */; };
+		5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527A806208E357B00AF3A50 /* ScannerViewController.swift */; };
+		5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5527A807208E357B00AF3A50 /* ScannerViewController.xib */; };
+		5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
 		558FD80A20765C53004F070E /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* BigButton.swift */; };
+		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
+		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
+		55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F558208A298200889C9F /* QRCodeInputTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +82,55 @@
 			remoteGlobalIDString = 0A9670B120480C5700445AC2;
 			remoteInfo = safeUIKit;
 		};
+		5527A7E8208DE87700AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F6E9207E396B00AF407D;
+			remoteInfo = APIKit;
+		};
+		5527A7EA208DE87700AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F6FC207E3D3A00AF407D;
+			remoteInfo = Result;
+		};
+		5527A7EC208DE87700AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F70E207E411F00AF407D;
+			remoteInfo = CryptoSwift;
+		};
+		5527A7EE208DE87700AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F71C207E430F00AF407D;
+			remoteInfo = EthereumKit;
+		};
+		5527A7F0208DE87700AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B9CF3208DE6B9001F0CB2;
+			remoteInfo = RSBarcode;
+		};
+		5527A7F2208DE89800AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B9CF2208DE6B9001F0CB2;
+			remoteInfo = RSBarcode;
+		};
+		5527A7F7208DE8B700AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B9CF2208DE6B9001F0CB2;
+			remoteInfo = RSBarcode;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,6 +140,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5527A7F6208DE8B700AF3A50 /* RSBarcode.framework in Embed Frameworks */,
 				0A9670C820480C5700445AC2 /* safeUIKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -106,7 +166,7 @@
 		0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+SafeUIKit.swift"; sourceTree = "<group>"; };
 		0A638BEC205A8D63003619EF /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		0A7AE8BE205284180044D5DD /* H1Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H1Label.swift; sourceTree = "<group>"; };
-		0A7AE8C32052C20A0044D5DD /* XCTestCase+Wait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Wait.swift"; sourceTree = "<group>"; };
+		0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
 		0A96707A20480C3E00445AC2 /* safeUIKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safeUIKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A96708E20480C3E00445AC2 /* safeUIKitDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeUIKitDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,9 +186,17 @@
 		0A9BA3C6207F69FD001DC22F /* safeUIKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = safeUIKitMedia.xcassets; sourceTree = "<group>"; };
 		0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButtonTests.swift; sourceTree = "<group>"; };
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		5527A7E0208DE87600AF3A50 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
+		5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewControllerTests.swift; sourceTree = "<group>"; };
+		5527A806208E357B00AF3A50 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		5527A807208E357B00AF3A50 /* ScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
+		5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
+		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
+		55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputViewController.swift; sourceTree = "<group>"; };
+		55E9F558208A298200889C9F /* QRCodeInputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +204,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5527A7F5208DE8B700AF3A50 /* RSBarcode.framework in Frameworks */,
 				0A9670C720480C5700445AC2 /* safeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5527A7F4208DE8A300AF3A50 /* RSBarcode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */,
 				0A9670BB20480C5700445AC2 /* safeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,6 +240,7 @@
 		0A34BC61207B80A700636560 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */,
 				0A34BC62207B80A700636560 /* libCommonTestSupport.a */,
 			);
 			name = Frameworks;
@@ -177,7 +249,7 @@
 		0A7AE8C22052C20A0044D5DD /* TestTools */ = {
 			isa = PBXGroup;
 			children = (
-				0A7AE8C32052C20A0044D5DD /* XCTestCase+Wait.swift */,
+				0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */,
 				0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */,
 			);
 			name = TestTools;
@@ -187,6 +259,7 @@
 		0A96706F20480C1200445AC2 = {
 			isa = PBXGroup;
 			children = (
+				5527A7E0208DE87600AF3A50 /* Library.xcodeproj */,
 				0A7AE8C22052C20A0044D5DD /* TestTools */,
 				0A96707C20480C3E00445AC2 /* safeUIKitDemo */,
 				0A96709120480C3F00445AC2 /* safeUIKitDemoUITests */,
@@ -217,6 +290,7 @@
 				0A0974C720480CEB005753DF /* Info.plist */,
 				0A0974D020480CEB005753DF /* TextInputViewController.swift */,
 				0A0974CF20480CEB005753DF /* ViewController.swift */,
+				55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */,
 			);
 			path = safeUIKitDemo;
 			sourceTree = "<group>";
@@ -236,6 +310,11 @@
 			children = (
 				0A9670D920480C7B00445AC2 /* generated */,
 				0A9670CF20480C7A00445AC2 /* Colors.txt */,
+				55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */,
+				55E9F558208A298200889C9F /* QRCodeInputTests.swift */,
+				5527A806208E357B00AF3A50 /* ScannerViewController.swift */,
+				5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */,
+				5527A807208E357B00AF3A50 /* ScannerViewController.xib */,
 				0A9670D420480C7B00445AC2 /* TextInput.swift */,
 				0A9670D520480C7B00445AC2 /* TextInputTests.swift */,
 				556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */,
@@ -267,6 +346,18 @@
 			path = generated;
 			sourceTree = "<group>";
 		};
+		5527A7E1208DE87600AF3A50 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5527A7E9208DE87700AF3A50 /* APIKit.framework */,
+				5527A7EB208DE87700AF3A50 /* Result.framework */,
+				5527A7ED208DE87700AF3A50 /* CryptoSwift.framework */,
+				5527A7EF208DE87700AF3A50 /* EthereumKit.framework */,
+				5527A7F1208DE87700AF3A50 /* RSBarcode.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -294,6 +385,7 @@
 			);
 			dependencies = (
 				0A9670C620480C5700445AC2 /* PBXTargetDependency */,
+				5527A7F8208DE8B700AF3A50 /* PBXTargetDependency */,
 			);
 			name = safeUIKitDemo;
 			productName = safeUIKitDemo;
@@ -333,6 +425,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5527A7F3208DE89800AF3A50 /* PBXTargetDependency */,
 			);
 			name = safeUIKit;
 			productName = safeUIKit;
@@ -400,6 +493,12 @@
 			mainGroup = 0A96706F20480C1200445AC2;
 			productRefGroup = 0A96707B20480C3E00445AC2 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5527A7E1208DE87600AF3A50 /* Products */;
+					ProjectRef = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0A96707920480C3E00445AC2 /* safeUIKitDemo */,
@@ -409,6 +508,44 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5527A7E9208DE87700AF3A50 /* APIKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = APIKit.framework;
+			remoteRef = 5527A7E8208DE87700AF3A50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5527A7EB208DE87700AF3A50 /* Result.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Result.framework;
+			remoteRef = 5527A7EA208DE87700AF3A50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5527A7ED208DE87700AF3A50 /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = 5527A7EC208DE87700AF3A50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5527A7EF208DE87700AF3A50 /* EthereumKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EthereumKit.framework;
+			remoteRef = 5527A7EE208DE87700AF3A50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5527A7F1208DE87700AF3A50 /* RSBarcode.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RSBarcode.framework;
+			remoteRef = 5527A7F0208DE87700AF3A50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0A96707820480C3E00445AC2 /* Resources */ = {
@@ -436,6 +573,7 @@
 				0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */,
 				0A9BA3C7207F69FD001DC22F /* safeUIKitMedia.xcassets in Resources */,
 				0A53AD5320598B5000D713AD /* Localizable.strings in Resources */,
+				5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +638,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */,
 				0A0974D620480CEB005753DF /* ViewController.swift in Sources */,
 				0A0974D720480CEB005753DF /* TextInputViewController.swift in Sources */,
 				0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */,
@@ -512,7 +651,7 @@
 			files = (
 				0A0974EA20480E11005753DF /* safeUIKitDemoUITests.swift in Sources */,
 				0A7AE8CA2052C2120044D5DD /* XCTest+Assert.swift in Sources */,
-				0A7AE8C92052C2120044D5DD /* XCTestCase+Wait.swift in Sources */,
+				0A7AE8C92052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,9 +666,11 @@
 				556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */,
 				0AD93E0920481461008C38CA /* Colors.swift in Sources */,
 				0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */,
+				5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */,
 				0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */,
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
 				558FD80A20765C53004F070E /* BigButton.swift in Sources */,
+				55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,8 +682,10 @@
 				0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */,
 				0A9BA3C9207F6B6A001DC22F /* BigButtonTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
-				0A7AE8C72052C2120044D5DD /* XCTestCase+Wait.swift in Sources */,
+				0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
+				5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */,
+				55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +711,16 @@
 			isa = PBXTargetDependency;
 			target = 0A9670B120480C5700445AC2 /* safeUIKit */;
 			targetProxy = 0A9670C520480C5700445AC2 /* PBXContainerItemProxy */;
+		};
+		5527A7F3208DE89800AF3A50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RSBarcode;
+			targetProxy = 5527A7F2208DE89800AF3A50 /* PBXContainerItemProxy */;
+		};
+		5527A7F8208DE8B700AF3A50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RSBarcode;
+			targetProxy = 5527A7F7208DE8B700AF3A50 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -708,8 +861,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -733,6 +889,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safeUIKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -772,8 +929,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -790,6 +950,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safeUIKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
@@ -1241,8 +1402,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1266,6 +1430,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safeUIKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

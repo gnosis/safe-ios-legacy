@@ -3,6 +3,27 @@
 //
 
 import XCTest
+import CommonTestSupport
+
+// MARK: - Window Extensions
+
+extension XCTestCase {
+
+    func createWindow(_ controller: UIViewController) {
+        guard let window = UIApplication.shared.keyWindow else {
+            XCTFail("Must have active window")
+            return
+        }
+        window.rootViewController = UIViewController()
+        window.makeKeyAndVisible()
+        window.rootViewController?.present(controller, animated: false)
+        delay()
+        XCTAssertNotNil(controller.view.window)
+    }
+
+}
+
+// MARK: - Wait Extensions
 
 extension XCTestCase {
 

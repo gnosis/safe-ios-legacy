@@ -101,18 +101,6 @@ extension ConfirmMnemonicViewControllerTests {
         controller.loadViewIfNeeded()
     }
 
-    private func createWindow(_ controller: UIViewController) {
-        guard let window = UIApplication.shared.keyWindow else {
-            XCTFail("Must have active window")
-            return
-        }
-        window.rootViewController = UIViewController()
-        window.makeKeyAndVisible()
-        window.rootViewController?.present(controller, animated: false)
-        delay()
-        XCTAssertNotNil(controller.view.window)
-    }
-
     private func assertRandomWords() {
         for _ in 0...100 {
             controller.viewDidLoad()

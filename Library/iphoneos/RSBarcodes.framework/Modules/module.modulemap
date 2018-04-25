@@ -1,0 +1,4 @@
+framework module RSBarcodes {
+    header "RSBarcodes-Swift.h"
+    requires objc
+}

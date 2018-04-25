@@ -46,12 +46,7 @@ class ConfirmPaswordViewControllerTests: SafeTestCase {
     }
 
     func test_whenRegistrationThrows_thenAlertIsShown() {
-        guard let window = UIApplication.shared.keyWindow else {
-            XCTFail("Must have window")
-            return
-        }
-        window.rootViewController = vc
-        window.makeKeyAndVisible()
+        createWindow(vc)
         authenticationService.prepareToThrowWhenRegisteringUser()
         vc.textInputDidReturn(vc.textInput)
         delay()

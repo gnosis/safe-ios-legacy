@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/CryptoSwift.swiftmodule/i386.swiftmodule</key>
 		<data>
-		kPNw2Sw8WZPub1dTfl0ugpVAu6E=
+		7fap/A/NBlZHZXX1ApmDP4YlxCY=
 		</data>
 		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		AAuvLTJa5QCCfVUExG0Ec0sWk+Q=
+		hsiFUaGdA75YIcObaacby3/CqLw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -76,11 +76,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			kPNw2Sw8WZPub1dTfl0ugpVAu6E=
+			7fap/A/NBlZHZXX1ApmDP4YlxCY=
 			</data>
 			<key>hash2</key>
 			<data>
-			dqZt+0QECt3WHhjJzPWOg5ozxgf0StK8MJPlU91l6bo=
+			OhLuTuNvxBvMjlxelGssG/hT0VXdSEmCIS4strH15sY=
 			</data>
 		</dict>
 		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftdoc</key>
@@ -98,11 +98,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			AAuvLTJa5QCCfVUExG0Ec0sWk+Q=
+			hsiFUaGdA75YIcObaacby3/CqLw=
 			</data>
 			<key>hash2</key>
 			<data>
-			gNFnh/tRgE0Y6ukNV4ht1nFXncNhBnt5BBiesIqN87o=
+			P3BtwIlPRwmzxXkgScWa8OduwhkzDBKfWJTVUyznhK8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

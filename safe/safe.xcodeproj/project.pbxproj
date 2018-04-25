@@ -27,8 +27,8 @@
 		0A9A13B52077AAA800E197A1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */; };
 		0AA0C856207B74AC0019E282 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */; };
 		0AA0C858207B74B10019E282 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C857207B74B10019E282 /* XCTest.framework */; };
-		0AA0C863207B756C0019E282 /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C861207B756C0019E282 /* XCTestCase+Wait.swift */; };
-		0AA0C864207B756C0019E282 /* XCTestCase+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C861207B756C0019E282 /* XCTestCase+Wait.swift */; };
+		0AA0C863207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */; };
+		0AA0C864207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */; };
 		0AA0C866207B756C0019E282 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C862207B756C0019E282 /* XCTest+Assert.swift */; };
 		0AA0C867207B756C0019E282 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C862207B756C0019E282 /* XCTest+Assert.swift */; };
 		0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */; };
@@ -77,6 +77,8 @@
 		55147D6020405BBA00AD0E1F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D5F20405BBA00AD0E1F /* Colors.swift */; };
 		55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */; };
 		55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */; };
+		5527A7FC208DE9D500AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; };
+		5527A7FD208DE9D500AF3A50 /* RSBarcodes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5528C43E20470AF500E79A4D /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5528C43D20470AF500E79A4D /* PasswordValidator.swift */; };
 		5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5528C43F20470B9700E79A4D /* PasswordValidatorTests.swift */; };
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
@@ -167,6 +169,20 @@
 			remoteGlobalIDString = 0A57F71C207E430F00AF407D;
 			remoteInfo = EthereumKit;
 		};
+		5527A7FA208DE9D500AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B9CF3208DE6B9001F0CB2;
+			remoteInfo = RSBarcodes;
+		};
+		5527A7FE208DE9D500AF3A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B9CF2208DE6B9001F0CB2;
+			remoteInfo = RSBarcodes;
+		};
 		5540A500203C3054009C9BE3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5540A4E3203C3054009C9BE3 /* Project object */;
@@ -192,6 +208,7 @@
 			files = (
 				0ABCA973207E560B00E2C193 /* APIKit.framework in Embed Frameworks */,
 				0ABCA974207E560B00E2C193 /* Result.framework in Embed Frameworks */,
+				5527A7FD208DE9D500AF3A50 /* RSBarcodes.framework in Embed Frameworks */,
 				0ABCA975207E560B00E2C193 /* CryptoSwift.framework in Embed Frameworks */,
 				0ABCA976207E560B00E2C193 /* EthereumKit.framework in Embed Frameworks */,
 				0AFEDEB32073C7BC002F5924 /* safeUIKit.framework in Embed Frameworks */,
@@ -224,7 +241,7 @@
 		0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AA0C857207B74B10019E282 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		0AA0C861207B756C0019E282 /* XCTestCase+Wait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Wait.swift"; sourceTree = "<group>"; };
+		0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		0AA0C862207B756C0019E282 /* XCTest+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
 		0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeUITests.swift; sourceTree = "<group>"; };
 		0AA27831205FC4E600EBB9D1 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
@@ -318,6 +335,7 @@
 				0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 				0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */,
 				0ABBDC052073CADD006D0A48 /* Result.framework in Frameworks */,
+				5527A7FC208DE9D500AF3A50 /* RSBarcodes.framework in Frameworks */,
 				0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */,
 				0ABBDC032073CADD006D0A48 /* EthereumKit.framework in Frameworks */,
 				0ABBDBFF2073CADD006D0A48 /* APIKit.framework in Frameworks */,
@@ -400,6 +418,7 @@
 				0ABCA96E207E560500E2C193 /* Result.framework */,
 				0ABCA970207E560500E2C193 /* CryptoSwift.framework */,
 				0ABCA972207E560500E2C193 /* EthereumKit.framework */,
+				5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -587,7 +606,7 @@
 				0AA27842205FCE2800EBB9D1 /* TestSupportTests.swift */,
 				55922C58207BBF7600BF968F /* SafeTestCase.swift */,
 				0AA0C862207B756C0019E282 /* XCTest+Assert.swift */,
-				0AA0C861207B756C0019E282 /* XCTestCase+Wait.swift */,
+				0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */,
 			);
 			name = TestTools;
 			path = ../TestTools;
@@ -629,6 +648,7 @@
 				0A46703D207E596700F55ADE /* PBXTargetDependency */,
 				0A46703F207E596700F55ADE /* PBXTargetDependency */,
 				0A467041207E596700F55ADE /* PBXTargetDependency */,
+				5527A7FF208DE9D500AF3A50 /* PBXTargetDependency */,
 			);
 			name = safe;
 			productName = safe;
@@ -750,6 +770,13 @@
 			fileType = wrapper.framework;
 			path = EthereumKit.framework;
 			remoteRef = 0ABCA971207E560500E2C193 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RSBarcodes.framework;
+			remoteRef = 5527A7FA208DE9D500AF3A50 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -907,7 +934,7 @@
 				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
 				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
 				0A666D2A208894680034FF66 /* FatalErrorHandlerTests.swift in Sources */,
-				0AA0C863207B756C0019E282 /* XCTestCase+Wait.swift in Sources */,
+				0AA0C863207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */,
 				558FD806207652E3004F070E /* SetupSafeOptionsViewControllerTests.swift in Sources */,
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
 				555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */,
@@ -930,7 +957,7 @@
 				0ACA9C49206021E8005EC186 /* UnlockScreenUITests.swift in Sources */,
 				0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */,
 				0AA27839205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift in Sources */,
-				0AA0C864207B756C0019E282 /* XCTestCase+Wait.swift in Sources */,
+				0AA0C864207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */,
 				0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */,
 				0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
 				0AA0C867207B756C0019E282 /* XCTest+Assert.swift in Sources */,
@@ -965,6 +992,11 @@
 			isa = PBXTargetDependency;
 			name = EthereumKit;
 			targetProxy = 0A467040207E596700F55ADE /* PBXContainerItemProxy */;
+		};
+		5527A7FF208DE9D500AF3A50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RSBarcodes;
+			targetProxy = 5527A7FE208DE9D500AF3A50 /* PBXContainerItemProxy */;
 		};
 		5540A501203C3054009C9BE3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

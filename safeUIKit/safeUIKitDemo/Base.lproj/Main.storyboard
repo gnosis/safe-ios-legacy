@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1SC-eE-rFU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1SC-eE-rFU">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -40,6 +40,26 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="fKi-A2-cTi" kind="show" id="QGp-Ic-K51"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TextInput" textLabel="xwi-ZV-2sD" style="IBUITableViewCellStyleDefault" id="Oip-c1-d0d">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oip-c1-d0d" id="7uu-5X-l3R">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="QRCodeInput" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xwi-ZV-2sD">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="R2l-o7-LoB" kind="show" id="dZB-bx-OVV"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -137,6 +157,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oRr-ge-pRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1965.5999999999999" y="31.934032983508249"/>
+        </scene>
+        <!--Code Input View Controller-->
+        <scene sceneID="bpq-FF-WHS">
+            <objects>
+                <viewController id="R2l-o7-LoB" customClass="QRCodeInputViewController" customModule="safeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kXF-tP-SdX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sRs-bF-G4P">
+                                <rect key="frame" x="40" y="104" width="295" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEu-9j-uuZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="147.5" height="30"/>
+                                        <state key="normal" title="Enable"/>
+                                        <connections>
+                                            <action selector="enable:" destination="R2l-o7-LoB" eventType="touchUpInside" id="Ykl-kJ-XKy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyw-gv-oGQ">
+                                        <rect key="frame" x="147.5" y="0.0" width="147.5" height="30"/>
+                                        <state key="normal" title="Disable"/>
+                                        <connections>
+                                            <action selector="disable:" destination="R2l-o7-LoB" eventType="touchUpInside" id="IYV-tf-p6F"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qwC-ik-yxe" customClass="QRCodeInput" customModule="safeUIKit">
+                                <rect key="frame" x="40" y="174" width="295" height="34"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qwC-ik-yxe" firstAttribute="trailing" secondItem="sRs-bF-G4P" secondAttribute="trailing" id="BL3-Sl-9VE"/>
+                            <constraint firstItem="qwC-ik-yxe" firstAttribute="leading" secondItem="sRs-bF-G4P" secondAttribute="leading" id="GAg-NI-zxd"/>
+                            <constraint firstItem="sRs-bF-G4P" firstAttribute="leading" secondItem="kg9-fc-eke" secondAttribute="leading" constant="40" id="Inw-SR-GJM"/>
+                            <constraint firstItem="qwC-ik-yxe" firstAttribute="top" secondItem="sRs-bF-G4P" secondAttribute="bottom" constant="40" id="li0-cd-Ojl"/>
+                            <constraint firstItem="sRs-bF-G4P" firstAttribute="top" secondItem="kg9-fc-eke" secondAttribute="top" constant="40" id="qGe-eo-Qxc"/>
+                            <constraint firstItem="kg9-fc-eke" firstAttribute="trailing" secondItem="sRs-bF-G4P" secondAttribute="trailing" constant="40" id="tuJ-xY-0eA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kg9-fc-eke"/>
+                    </view>
+                    <connections>
+                        <outlet property="barcodeInput" destination="qwC-ik-yxe" id="6aX-BO-JMO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hy9-Nk-nb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1966" y="801"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KwY-5H-yHZ">
