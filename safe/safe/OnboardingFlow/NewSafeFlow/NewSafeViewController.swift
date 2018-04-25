@@ -29,7 +29,7 @@ class NewSafeViewController: UIViewController {
         static let thisDevice = NSLocalizedString("onboarding.new_safe.this_device", comment: "This device button")
         static let paperWallet = NSLocalizedString("onboarding.new_safe.paper_wallet", comment: "Paper Wallet Button")
         static let browserExtension = NSLocalizedString("onboarding.new_safe.browser_extension",
-                                                       comment: "Browser extension Button")
+                                                        comment: "Browser extension Button")
     }
 
     static func create(draftSafe: DraftSafe?, delegate: NewSafeDelegate) -> NewSafeViewController {

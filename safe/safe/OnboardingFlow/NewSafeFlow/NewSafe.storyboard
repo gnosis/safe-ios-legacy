@@ -167,6 +167,21 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
             </objects>
             <point key="canvasLocation" x="1737" y="-90"/>
         </scene>
+        <!--Pair With Browser Extension View Controller-->
+        <scene sceneID="0Nc-YZ-cpQ">
+            <objects>
+                <viewController storyboardIdentifier="PairWithBrowserExtensionViewController" id="OM1-mc-Hz2" customClass="PairWithBrowserExtensionViewController" customModule="safe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9dL-ax-Jdt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="NEY-tF-2Rh"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iGD-DF-nnw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="809" y="676"/>
+        </scene>
         <!--Confirm Mnemonic View Controller-->
         <scene sceneID="Kzm-xP-YJN">
             <objects>

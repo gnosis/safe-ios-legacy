@@ -22,8 +22,10 @@ class PairWithBrowserExtensionFlowCoordinatorTests: XCTestCase {
         nav.pushViewController(startVC, animated: false)
     }
 
-    func test_startViewController_returnsPairWithBrowserExtensionVC() {
+    func test_startViewController_returnsPairWithChromeExtensionVC() {
         XCTAssertTrue(nav.topViewController is PairWithBrowserExtensionViewController)
+        let controller = nav.topViewController as! PairWithBrowserExtensionViewController
+        XCTAssertTrue(controller.delegate === flowCoordinator)
     }
 
 }
