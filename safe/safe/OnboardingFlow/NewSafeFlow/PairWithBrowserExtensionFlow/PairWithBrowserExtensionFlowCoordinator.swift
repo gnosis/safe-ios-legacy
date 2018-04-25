@@ -12,8 +12,8 @@ final class PairWithBrowserExtensionFlowCoordinator: FlowCoordinator {
     private let completion: PairWithBrowserExtensionCompletion
 
     init(address: String?, completion: @escaping PairWithBrowserExtensionCompletion) {
-        self.completion = completion
         self.address = address
+        self.completion = completion
     }
 
     override func flowStartController() -> UIViewController {

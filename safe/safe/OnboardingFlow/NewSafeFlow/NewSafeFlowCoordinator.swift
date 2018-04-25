@@ -8,10 +8,7 @@ import IdentityAccessApplication
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator: PaperWalletFlowCoordinator!
-    var pairWithBrowserExtensionFlowCoordinator: PairWithBrowserExtensionFlowCoordinator {
-        return PairWithBrowserExtensionFlowCoordinator(address: draftSafe?.browserExtensionAddressString,
-                                                       completion: pairWithBrowserExtensionCompletion)
-    }
+    var pairWithBrowserExtensionFlowCoordinator: PairWithBrowserExtensionFlowCoordinator!
 
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
     private var startVC: UIViewController!
@@ -49,6 +46,9 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     }
 
     func didSelectBrowserExtensionSetup() {
+        pairWithBrowserExtensionFlowCoordinator = PairWithBrowserExtensionFlowCoordinator(
+            address: draftSafe?.browserExtensionAddressString,
+            completion: pairWithBrowserExtensionCompletion)
         let controller = pairWithBrowserExtensionFlowCoordinator.startViewController(parent: rootVC)
         rootVC.pushViewController(controller, animated: true)
     }
