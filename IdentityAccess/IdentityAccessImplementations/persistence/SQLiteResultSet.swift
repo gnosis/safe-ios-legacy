@@ -54,7 +54,7 @@ public class SQLiteResultSet: ResultSet {
         case CSQLite3.SQLITE_ROW:
             return true
         case CSQLite3.SQLITE_BUSY:
-            let isOutsideOfExplicitTransaction = sqlite.sqlite3_get_autocommit(db) == 1
+            let isOutsideOfExplicitTransaction = sqlite.sqlite3_get_autocommit(db) != 0
             if isOutsideOfExplicitTransaction {
                 RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.01))
                 return try advanceToNextRow()
