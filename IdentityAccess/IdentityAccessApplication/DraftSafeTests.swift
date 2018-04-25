@@ -11,7 +11,7 @@ class DraftSafeTests: XCTestCase {
 
     var paperWallet: EthereumAccountProtocol!
     var draftSafe: DraftSafe!
-    let ethAddress = EthereumAddress(data: Data())
+    let ethAddress = EthereumAddress(data: "test_address".data(using: .utf8)!)
 
     override func setUp() {
         super.setUp()
@@ -25,12 +25,18 @@ class DraftSafeTests: XCTestCase {
         XCTAssertTrue(draftSafe === DraftSafe.shared)
     }
 
-    func test_paperWalletMnemonic_returnsCorrectMnemonic() {
+    func test_paperWalletMnemonicWords() {
         XCTAssertEqual(draftSafe.paperWalletMnemonicWords, paperWallet.mnemonic.words)
     }
 
     func test_configuredAddresses_returnsOnlyCurrentDeviceAddressByDeafult() {
         XCTAssertEqual(draftSafe.confirmedAddresses, .currentDevice)
+    }
+
+    func test_browserExtensionAddressString() {
+        XCTAssertEqual(draftSafe.browserExtensionAddressString, nil)
+        draftSafe.confirmBrowserExtension(address: ethAddress)
+        XCTAssertEqual(draftSafe.browserExtensionAddressString, String(data: ethAddress.data, encoding: .utf8))
     }
 
     func test_confirmPaperWallet() {

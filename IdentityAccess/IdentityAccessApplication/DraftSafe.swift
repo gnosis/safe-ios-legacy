@@ -21,14 +21,17 @@ public class DraftSafe {
         public static let paperWallet = ConfiguredAddresses(rawValue: 1 << 2)
     }
 
+    public var confirmedAddresses: ConfiguredAddresses
+    public var paperWalletMnemonicWords: [String] { return paperWallet.mnemonic.words }
+    public var browserExtensionAddressString: String? {
+        guard let addressData = browserExtensionAddress?.data else { return nil }
+        return String(data: addressData, encoding: .utf8)
+    }
+
     let currentDeviceAddress: EthereumAddress
     let paperWallet: EthereumAccountProtocol
     private(set) var browserExtensionAddress: EthereumAddress?
     let threshold = 2
-
-    public var confirmedAddresses: ConfiguredAddresses
-
-    public var paperWalletMnemonicWords: [String] { return paperWallet.mnemonic.words }
 
     private init(currentDeviceAddress: EthereumAddress, paperWallet: EthereumAccountProtocol) {
         self.currentDeviceAddress = currentDeviceAddress
