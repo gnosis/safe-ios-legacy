@@ -174,13 +174,49 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
                     <view key="view" contentMode="scaleToFill" id="9dL-ax-Jdt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Browser Extension Owner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9O-S6-MKV" customClass="H1Label" customModule="safeUIKit">
+                                <rect key="frame" x="20" y="60" width="335" height="86"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NTc-Ch-rJw" customClass="QRCodeInput" customModule="safeUIKit">
+                                <rect key="frame" x="20" y="186" width="335" height="34"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59r-7j-b9i">
+                                <rect key="frame" x="167" y="537" width="41" height="30"/>
+                                <state key="normal" title="Finish"/>
+                                <connections>
+                                    <action selector="finish:" destination="OM1-mc-Hz2" eventType="touchUpInside" id="xlP-Cf-Oqi"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="X9O-S6-MKV" firstAttribute="top" secondItem="NEY-tF-2Rh" secondAttribute="top" constant="40" id="3eo-9n-DHc"/>
+                            <constraint firstItem="NTc-Ch-rJw" firstAttribute="top" secondItem="X9O-S6-MKV" secondAttribute="bottom" constant="40" id="6tF-aB-kGT"/>
+                            <constraint firstItem="59r-7j-b9i" firstAttribute="centerX" secondItem="9dL-ax-Jdt" secondAttribute="centerX" id="J5O-Ks-N7o"/>
+                            <constraint firstItem="NTc-Ch-rJw" firstAttribute="trailing" secondItem="X9O-S6-MKV" secondAttribute="trailing" id="M3N-CF-mUy"/>
+                            <constraint firstItem="NTc-Ch-rJw" firstAttribute="leading" secondItem="X9O-S6-MKV" secondAttribute="leading" id="MZZ-Qq-OUN"/>
+                            <constraint firstItem="X9O-S6-MKV" firstAttribute="leading" secondItem="NEY-tF-2Rh" secondAttribute="leading" constant="20" id="hgP-7q-evy"/>
+                            <constraint firstItem="NEY-tF-2Rh" firstAttribute="bottom" secondItem="59r-7j-b9i" secondAttribute="bottom" constant="100" id="jkh-9L-zpk"/>
+                            <constraint firstItem="NEY-tF-2Rh" firstAttribute="trailing" secondItem="X9O-S6-MKV" secondAttribute="trailing" constant="20" id="zA5-gb-poE"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="NEY-tF-2Rh"/>
                     </view>
+                    <connections>
+                        <outlet property="extensionAddressInput" destination="NTc-Ch-rJw" id="py2-WJ-ikW"/>
+                        <outlet property="finishButton" destination="59r-7j-b9i" id="V4F-bV-Mox"/>
+                        <outlet property="titleLabel" destination="X9O-S6-MKV" id="xR5-uf-jsI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGD-DF-nnw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809" y="676"/>
+            <point key="canvasLocation" x="808.79999999999995" y="675.11244377811101"/>
         </scene>
         <!--Confirm Mnemonic View Controller-->
         <scene sceneID="Kzm-xP-YJN">

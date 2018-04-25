@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import safeUIKit
 import IdentityAccessApplication
 
 protocol PairWithBrowserDelegate: class {
@@ -11,9 +12,16 @@ protocol PairWithBrowserDelegate: class {
 
 final class PairWithBrowserExtensionViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: H1Label!
+    @IBOutlet weak var extensionAddressInput: QRCodeInput!
+    @IBOutlet weak var finishButton: UIButton!
+
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
     public private(set) weak var delegate: PairWithBrowserDelegate?
 
+    @IBAction func finish(_ sender: Any) {
+    }
+    
     static func create(delegate: PairWithBrowserDelegate,
                        extensionAddress: String? = nil) -> PairWithBrowserExtensionViewController {
         let controller = StoryboardScene.NewSafe.pairWithBrowserExtensionViewController.instantiate()
