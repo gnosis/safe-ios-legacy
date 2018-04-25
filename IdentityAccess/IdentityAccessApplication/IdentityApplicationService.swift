@@ -42,8 +42,9 @@ open class IdentityApplicationService {
         draftSafe.confirmPaperWallet()
     }
 
-    open func confirmBrowserExtension(draftSafe: DraftSafe) {
-        draftSafe.confirmBrowserExtension()
+    open func confirmBrowserExtension(draftSafe: DraftSafe, address: String) {
+        let ethereumAddress = EthereumAddress(data: address.data(using: .utf8)!)
+        draftSafe.confirmBrowserExtension(address: ethereumAddress)
     }
 
     open func convertBrowserExtensionCodeIntoEthereumAddress(_ code: String) -> String {

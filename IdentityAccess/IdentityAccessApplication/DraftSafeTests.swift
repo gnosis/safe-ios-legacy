@@ -11,6 +11,7 @@ class DraftSafeTests: XCTestCase {
 
     var paperWallet: EthereumAccountProtocol!
     var draftSafe: DraftSafe!
+    let ethAddress = EthereumAddress(data: Data())
 
     override func setUp() {
         super.setUp()
@@ -40,15 +41,16 @@ class DraftSafeTests: XCTestCase {
     }
 
     func test_confirmBrowserExtension() {
-        draftSafe.confirmBrowserExtension()
+        draftSafe.confirmBrowserExtension(address: ethAddress)
+        XCTAssertEqual(draftSafe.browserExtensionAddress, ethAddress)
         XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .browserExtension])
-        draftSafe.confirmBrowserExtension()
+        draftSafe.confirmBrowserExtension(address: ethAddress)
         XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .browserExtension])
     }
 
     func test_confirmedAddresses_whenAllConfirmationsAreThere_thenReturnsAll() {
         draftSafe.confirmPaperWallet()
-        draftSafe.confirmBrowserExtension()
+        draftSafe.confirmBrowserExtension(address: ethAddress)
         XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .browserExtension, .paperWallet])
     }
 

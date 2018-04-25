@@ -21,10 +21,10 @@ public class DraftSafe {
         public static let paperWallet = ConfiguredAddresses(rawValue: 1 << 2)
     }
 
-    private let currentDeviceAddress: EthereumAddress
-    private let paperWallet: EthereumAccountProtocol
-    private var browserExtensionAddress: EthereumAddress?
-    private let threshold = 2
+    let currentDeviceAddress: EthereumAddress
+    let paperWallet: EthereumAccountProtocol
+    private(set) var browserExtensionAddress: EthereumAddress?
+    let threshold = 2
 
     public var confirmedAddresses: ConfiguredAddresses
 
@@ -46,7 +46,8 @@ public class DraftSafe {
         confirmedAddresses.insert(.paperWallet)
     }
 
-    func confirmBrowserExtension() {
+    func confirmBrowserExtension(address: EthereumAddress) {
+        browserExtensionAddress = address
         confirmedAddresses.insert(.browserExtension)
     }
 

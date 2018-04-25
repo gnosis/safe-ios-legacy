@@ -66,8 +66,10 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
 
     func test_confirmBrowserExtension_callsDraftSafeMethod() {
         let ds = draftSafe()
-        identityService.confirmBrowserExtension(draftSafe: ds)
+        let address = "test_address"
+        identityService.confirmBrowserExtension(draftSafe: ds, address: address)
         XCTAssertEqual(ds.confirmedAddresses, [.currentDevice, .browserExtension])
+        XCTAssertEqual(ds.browserExtensionAddress, EthereumAddress(data: address.data(using: .utf8)!))
     }
 
 }
