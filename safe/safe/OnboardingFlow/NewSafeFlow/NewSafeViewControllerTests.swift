@@ -56,7 +56,7 @@ class NewSafeViewControllerTests: SafeTestCase {
         identityService.confirmPaperWallet(draftSafe: draftSafe)
         controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .selected, .normal)
-        identityService.confirmBrowserExtension(draftSafe: draftSafe)
+        identityService.confirmBrowserExtension(draftSafe: draftSafe, address: "test_address")
         controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .selected, .selected)
     }

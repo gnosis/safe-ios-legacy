@@ -8,16 +8,19 @@ import IdentityAccessApplication
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator: PaperWalletFlowCoordinator!
-    private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
+    var pairWithBrowserExtensionFlowCoordinator: PairWithBrowserExtensionFlowCoordinator!
 
+    private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
     private var startVC: UIViewController!
-    private lazy var draftSafe = try? identityService.getOrCreateDraftSafe()
+    private(set) lazy var draftSafe = try? identityService.getOrCreateDraftSafe()
 
     override init() {
         super.init()
         paperWalletFlowCoordinator = PaperWalletFlowCoordinator(
             draftSafe: draftSafe,
             completion: paperWalletSetupCompletion)
+        pairWithBrowserExtensionFlowCoordinator = PairWithBrowserExtensionFlowCoordinator(
+            completion: pairWithBrowserExtensionCompletion)
     }
 
     override func flowStartController() -> UIViewController {
@@ -27,6 +30,11 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
 
     private func paperWalletSetupCompletion() {
         identityService.confirmPaperWallet(draftSafe: draftSafe!)
+        rootVC.popToViewController(startVC, animated: true)
+    }
+
+    private func pairWithBrowserExtensionCompletion(extensionAddress: String) {
+        identityService.confirmBrowserExtension(draftSafe: draftSafe!, address: extensionAddress)
         rootVC.popToViewController(startVC, animated: true)
     }
 
@@ -40,7 +48,7 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     }
 
     func didSelectBrowserExtensionSetup() {
-        let controller = PairWithBrowserExtensionViewController()
+        let controller = pairWithBrowserExtensionFlowCoordinator.startViewController(parent: rootVC)
         rootVC.pushViewController(controller, animated: true)
     }
 
