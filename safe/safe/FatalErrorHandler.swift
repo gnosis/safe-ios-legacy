@@ -13,11 +13,12 @@ class FatalErrorHandler {
         static let ok = NSLocalizedString("onboarding.fatal.ok", comment: "Fatal error alert's Ok button title")
         static let message = NSLocalizedString("onboarding.fatal.message", comment: "Fatal error alert's message")
     }
+    private static let instance = FatalErrorHandler()
 
     private init() {}
 
     public static func showFatalError(message: String = Strings.message, log: String, error: Error?) {
-        FatalErrorHandler().showFatalError(message: message, log: log, error: error)
+        instance.showFatalError(message: message, log: log, error: error)
     }
 
     private func showFatalError(message: String, log: String, error: Error?) {

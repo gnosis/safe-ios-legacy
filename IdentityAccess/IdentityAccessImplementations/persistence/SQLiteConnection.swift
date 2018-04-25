@@ -25,8 +25,12 @@ public class SQLiteConnection: Connection, Assertable {
         var outStmt: OpaquePointer?
         var outTail: UnsafePointer<Int8>?
         let status = sqlite.sqlite3_prepare_v2(db, cstr, Int32(cstr.count), &outStmt, &outTail)
-        try assertEqual(status, CSQLite3.SQLITE_OK, SQLiteDatabase.Error.invalidSQLStatement)
-        try assertNotNil(outStmt, SQLiteDatabase.Error.invalidSQLStatement)
+        let errorMessage = String(cString: sqlite.sqlite3_errmsg(db), encoding: .utf8) ?? "unknown error"
+        try assertEqual(status,
+                        CSQLite3.SQLITE_OK,
+                        SQLiteDatabase.Error.invalidSQLStatement("\(errorMessage): \(statement)"))
+        try assertNotNil(outStmt,
+                         SQLiteDatabase.Error.invalidSQLStatement("\(errorMessage): \(statement)"))
         let result = SQLiteStatement(sql: statement, db: db, stmt: outStmt!, sqlite: sqlite)
         statements.append(result)
         return result

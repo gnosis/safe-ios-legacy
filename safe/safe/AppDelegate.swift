@@ -38,10 +38,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DomainRegistry.put(service: BiometricService(), for: BiometricAuthenticationService.self)
         DomainRegistry.put(service: SystemClockService(), for: Clock.self)
         DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
-        DomainRegistry.put(service: InMemoryUserRepository(), for: SingleUserRepository.self)
         DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
         DomainRegistry.put(service: InMemoryGatekeeperRepository(), for: SingleGatekeeperRepository.self)
         do {
+            let db = SQLiteDatabase(name: "IdentityAccess",
+                                    fileManager: FileManager.default,
+                                    sqlite: CSQLite3(),
+                                    bundleId: Bundle.main.bundleIdentifier ?? "pm.gnosis.safe")
+            let userRepo = DBSingleUserRepository(db: db)
+
+            if !db.exists {
+                try db.create()
+                try userRepo.setUp()
+            }
+            DomainRegistry.put(service: userRepo, for: SingleUserRepository.self)
+
             try ApplicationServiceRegistry.authenticationService
                 .createAuthenticationPolicy(sessionDuration: 60,
                                             maxPasswordAttempts: 3,

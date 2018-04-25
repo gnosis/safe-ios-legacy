@@ -165,7 +165,8 @@ class SQLiteDatabaseTests: XCTestCase {
         sqlite.prepare_out_ppStmt = opaquePointer()
         sqlite.prepare_out_pzTail = nil
         sqlite.prepare_result = CSQLite3.SQLITE_ERROR
-        assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.invalidSQLStatement)
+        sqlite.errmsg_result = "error"
+        assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.invalidSQLStatement("error"))
     }
 
     func test_prepareStatement_whenReceivesNilStatement_thenThrowsError() throws {
@@ -173,7 +174,8 @@ class SQLiteDatabaseTests: XCTestCase {
         sqlite.prepare_result = CSQLite3.SQLITE_OK
         sqlite.prepare_out_ppStmt = nil
         sqlite.prepare_out_pzTail = nil
-        assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.invalidSQLStatement)
+        sqlite.errmsg_result = "error"
+        assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.invalidSQLStatement("error"))
     }
 
     func test_whenConnectionIsClosed_thenPreparedStatementIsFinalizedAutomatically() throws {

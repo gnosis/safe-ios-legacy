@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS tbl_user (
     password TEXT(100) NOT NULL
 );
 """
-        static let insertUser = "INSERT OR REPLACE tbl_user VALUES (?, ?);"
+        static let insertUser = "INSERT OR REPLACE INTO tbl_user VALUES (?, ?);"
         static let deleteUser = "DELETE FROM tbl_user WHERE user_id = ?;"
         static let findPrimaryUser = "SELECT user_id, password FROM tbl_user LIMIT 1;"
         static let findUserByPassword = "SELECT user_id, password FROM tbl_user WHERE password = ? LIMIT 1;"
