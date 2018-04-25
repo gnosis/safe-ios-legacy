@@ -3,17 +3,14 @@
 //
 
 import UIKit
-import IdentityAccessApplication
 
-typealias PairWithBrowserExtensionCompletion = () -> Void
+typealias PairWithBrowserExtensionCompletion = (_ extensionAddress: String) -> Void
 
 final class PairWithBrowserExtensionFlowCoordinator: FlowCoordinator {
 
-    private let completion: PairWithBrowserExtensionCompletion?
-    private let draftSafe: DraftSafe?
+    private let completion: PairWithBrowserExtensionCompletion
 
-    init(draftSafe: DraftSafe?, completion: PairWithBrowserExtensionCompletion? = nil) {
-        self.draftSafe = draftSafe
+    init(completion: @escaping PairWithBrowserExtensionCompletion) {
         self.completion = completion
     }
 
@@ -25,6 +22,8 @@ final class PairWithBrowserExtensionFlowCoordinator: FlowCoordinator {
 
 extension PairWithBrowserExtensionFlowCoordinator: PairWithBrowserDelegate {
 
-    func didPair(_ extensionAddress: String) {}
+    func didPair(_ extensionAddress: String) {
+        completion(extensionAddress)
+    }
 
 }

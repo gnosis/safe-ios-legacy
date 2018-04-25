@@ -4,19 +4,18 @@
 
 import XCTest
 @testable import safe
-import IdentityAccessApplication
 
 class PairWithBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
     var flowCoordinator: PairWithBrowserExtensionFlowCoordinator!
     var nav = UINavigationController()
-    var draftSafe: DraftSafe!
-    var completionCalled = false
+    var extensionAddressFromCompletion = ""
 
     override func setUp() {
         super.setUp()
-        flowCoordinator = PairWithBrowserExtensionFlowCoordinator(draftSafe: draftSafe) { [unowned self] in
-            self.completionCalled = true
+        flowCoordinator = PairWithBrowserExtensionFlowCoordinator {
+            [unowned self] extensionAddress in
+            self.extensionAddressFromCompletion = extensionAddress
         }
         let startVC = flowCoordinator.startViewController(parent: nav)
         nav.pushViewController(startVC, animated: false)
@@ -26,6 +25,12 @@ class PairWithBrowserExtensionFlowCoordinatorTests: XCTestCase {
         XCTAssertTrue(nav.topViewController is PairWithBrowserExtensionViewController)
         let controller = nav.topViewController as! PairWithBrowserExtensionViewController
         XCTAssertTrue(controller.delegate === flowCoordinator)
+    }
+
+    func test_didPair_callsCompletion() {
+        let testAddress = "test_address"
+        flowCoordinator.didPair(testAddress)
+        XCTAssertEqual(extensionAddressFromCompletion, testAddress)
     }
 
 }
