@@ -30,10 +30,10 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(type(of: nav.topViewController!) == type(of: paperWalletStartVC))
     }
 
-    func test_didSelectChromeExtensionSetup_showsPairWithChromeExtensionVC() {
-        newSafeFlowCoordinator.didSelectChromeExtensionSetup()
+    func test_didSelectBrowserExtensionSetup_showsPairWithChromeExtensionVC() {
+        newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
         delay()
-        XCTAssertTrue(type(of: nav.topViewController!) == type(of: PairWithChromeExtensionViewController()))
+        XCTAssertTrue(type(of: nav.topViewController!) == type(of: PairWithBrowserExtensionViewController()))
     }
 
     func test_paperWalletSetupCompletion_popsToStartVC() {

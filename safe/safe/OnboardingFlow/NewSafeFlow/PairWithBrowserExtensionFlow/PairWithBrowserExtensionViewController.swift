@@ -4,4 +4,4 @@
 
 import UIKit
 
-final class PairWithChromeExtensionViewController: UIViewController {}
+final class PairWithBrowserExtensionViewController: UIViewController {}

@@ -5,10 +5,10 @@
 import XCTest
 @testable import safe
 
-class PairWithChromeExtensionViewControllerTests: XCTestCase {
+class PairWithBrowserExtensionViewControllerTests: XCTestCase {
 
     func test_canCreate() {
-        XCTAssertNotNil(PairWithChromeExtensionViewController())
+        XCTAssertNotNil(PairWithBrowserExtensionViewController())
     }
 
 }

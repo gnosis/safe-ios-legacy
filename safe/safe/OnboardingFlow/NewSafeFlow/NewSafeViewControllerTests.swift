@@ -84,7 +84,7 @@ class MockNewSafeDelegate: NewSafeDelegate {
         hasSelectedPaperWalletSetup = true
     }
 
-    func didSelectChromeExtensionSetup() {
+    func didSelectBrowserExtensionSetup() {
         hasSelectedChromeExtensionSetup = true
     }
 

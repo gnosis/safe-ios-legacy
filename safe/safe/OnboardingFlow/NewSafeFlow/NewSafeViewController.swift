@@ -8,7 +8,7 @@ import IdentityAccessApplication
 
 protocol NewSafeDelegate: class {
     func didSelectPaperWalletSetup()
-    func didSelectChromeExtensionSetup()
+    func didSelectBrowserExtensionSetup()
 }
 
 class NewSafeViewController: UIViewController {
@@ -68,7 +68,7 @@ class NewSafeViewController: UIViewController {
     }
 
     @IBAction func setupChromeExtension(_ sender: Any) {
-        delegate?.didSelectChromeExtensionSetup()
+        delegate?.didSelectBrowserExtensionSetup()
     }
 
 }
