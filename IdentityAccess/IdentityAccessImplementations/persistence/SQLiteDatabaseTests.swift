@@ -166,7 +166,7 @@ class SQLiteDatabaseTests: XCTestCase {
         sqlite.prepare_out_pzTail = nil
         sqlite.prepare_result = CSQLite3.SQLITE_ERROR
         sqlite.errmsg_result = "error"
-        assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.invalidSQLStatement("error"))
+        assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.invalidSQLStatement("error: some"))
     }
 
     func test_prepareStatement_whenReceivesNilStatement_thenThrowsError() throws {
@@ -174,8 +174,8 @@ class SQLiteDatabaseTests: XCTestCase {
         sqlite.prepare_result = CSQLite3.SQLITE_OK
         sqlite.prepare_out_ppStmt = nil
         sqlite.prepare_out_pzTail = nil
-        sqlite.errmsg_result = "error"
-        assertThrows(try conn.prepare(statement: "some"), SQLiteDatabase.Error.invalidSQLStatement("error"))
+        assertThrows(try conn.prepare(statement: "some"),
+                     SQLiteDatabase.Error.invalidSQLStatement("unknown error: some"))
     }
 
     func test_whenConnectionIsClosed_thenPreparedStatementIsFinalizedAutomatically() throws {
