@@ -51,11 +51,23 @@ public extension Database {
 
     typealias CreateStatementClosure = (Connection) throws -> Statement
 
+    func executeUpdate(_ sql: String) throws {
+        try executeUpdate { conn in
+            try conn.prepare(statement: sql)
+        }
+    }
+
     func executeUpdate(_ createStatement: CreateStatementClosure) throws {
         let conn = try connection()
         let stmt = try createStatement(conn)
         try stmt.execute()
         try close(conn)
+    }
+
+    func executeQuery<T>(_ mapping: (ResultSet) throws -> T?, _ sql: String) -> T? {
+        return executeQuery(mapping) { conn in
+            try conn.prepare(statement: sql)
+        }
     }
 
     func executeQuery<T>(_ mapping: (ResultSet) throws -> T?, _ createStatement: CreateStatementClosure) -> T? {

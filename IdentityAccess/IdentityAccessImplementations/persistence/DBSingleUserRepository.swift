@@ -7,6 +7,19 @@ import IdentityAccessDomainModel
 
 public class DBSingleUserRepository: SingleUserRepository {
 
+    struct SQL {
+        static let createTable = """
+CREATE TABLE IF NOT EXISTS tbl_user (
+    user_id TEXT NOT NULL PRIMARY KEY,
+    password TEXT(100) NOT NULL
+);
+"""
+        static let insertUser = "INSERT OR REPLACE tbl_user VALUES (?, ?);"
+        static let deleteUser = "DELETE FROM tbl_user WHERE user_id = ?;"
+        static let findPrimaryUser = "SELECT user_id, password FROM tbl_user LIMIT 1;"
+        static let findUserByPassword = "SELECT user_id, password FROM tbl_user WHERE password = ? LIMIT 1;"
+    }
+
     private let db: Database
 
     public init(db: Database) {
@@ -17,9 +30,13 @@ public class DBSingleUserRepository: SingleUserRepository {
         return try! UserID()
     }
 
+    public func setUp() throws {
+        try db.executeUpdate(SQL.createTable)
+    }
+
     public func save(_ user: User) throws {
         return try db.executeUpdate { conn in
-            let stmt = try conn.prepare(statement: "INSERT OR REPLACE tbl_user VALUES (?, ?);")
+            let stmt = try conn.prepare(statement: SQL.insertUser)
             try stmt.set(user.id.id, at: 1)
             try stmt.set(user.password, at: 2)
             return stmt
@@ -28,21 +45,19 @@ public class DBSingleUserRepository: SingleUserRepository {
 
     public func remove(_ user: User) throws {
         return try db.executeUpdate { conn in
-            let stmt = try conn.prepare(statement: "DELETE FROM tbl_user WHERE user_id = ?;")
+            let stmt = try conn.prepare(statement: SQL.deleteUser)
             try stmt.set(user.id.id, at: 1)
             return stmt
         }
     }
 
     public func primaryUser() -> User? {
-        return db.executeQuery(mapUser) { conn in
-            try conn.prepare(statement: "SELECT user_id, password FROM tbl_user LIMIT 1;")
-        }
+        return db.executeQuery(mapUser, SQL.findPrimaryUser)
     }
 
     public func user(encryptedPassword: String) -> User? {
         return db.executeQuery(mapUser) { conn in
-            let stmt = try conn.prepare(statement: "SELECT user_id, password FROM tbl_user WHERE password = ? LIMIT 1;")
+            let stmt = try conn.prepare(statement: SQL.findUserByPassword)
             try stmt.set(encryptedPassword, at: 1)
             return stmt
         }

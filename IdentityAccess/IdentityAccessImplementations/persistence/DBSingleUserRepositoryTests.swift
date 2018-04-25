@@ -22,11 +22,22 @@ class DBSingleUserRepositoryTests: XCTestCase {
         repository = DBSingleUserRepository(db: db)
     }
 
+    func test_setUp() throws {
+        db.exists = false
+        try repository.setUp()
+        let expectedCalls = [
+            "db.connection()",
+            "conn.prepare(\(DBSingleUserRepository.SQL.createTable))",
+            "stmt.execute()",
+            "db.close()"]
+        XCTAssertEqual(trace.log, expectedCalls, trace.diff(expectedCalls))
+    }
+
     func test_save() throws {
         try repository.save(user)
         let expectedCalls = [
             "db.connection()",
-            "conn.prepare(INSERT OR REPLACE tbl_user VALUES (?, ?);)",
+            "conn.prepare(\(DBSingleUserRepository.SQL.insertUser))",
             "stmt.set(\(userID.id), 1)",
             "stmt.set(\(user.password), 2)",
             "stmt.execute()",
@@ -38,7 +49,7 @@ class DBSingleUserRepositoryTests: XCTestCase {
         try repository.remove(user)
         let expectedCalls = [
             "db.connection()",
-            "conn.prepare(DELETE FROM tbl_user WHERE user_id = ?;)",
+            "conn.prepare(\(DBSingleUserRepository.SQL.deleteUser))",
             "stmt.set(\(userID.id), 1)",
             "stmt.execute()",
             "db.close()"]
@@ -50,7 +61,7 @@ class DBSingleUserRepositoryTests: XCTestCase {
         _ = repository.primaryUser()
         let expectedCalls = [
             "db.connection()",
-            "conn.prepare(SELECT user_id, password FROM tbl_user LIMIT 1;)",
+            "conn.prepare(\(DBSingleUserRepository.SQL.findPrimaryUser))",
             "stmt.execute()",
             "rs.advanceToNextRow()",
             "rs.string(0)",
@@ -87,7 +98,7 @@ class DBSingleUserRepositoryTests: XCTestCase {
         _ = repository.user(encryptedPassword: user.password)
         let expectedCalls = [
             "db.connection()",
-            "conn.prepare(SELECT user_id, password FROM tbl_user WHERE password = ? LIMIT 1;)",
+            "conn.prepare(\(DBSingleUserRepository.SQL.findUserByPassword))",
             "stmt.set(\(user.password), 1)",
             "stmt.execute()",
             "rs.advanceToNextRow()",
