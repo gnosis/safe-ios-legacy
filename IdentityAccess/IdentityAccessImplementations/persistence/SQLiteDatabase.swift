@@ -8,7 +8,12 @@ import Common
 public class SQLiteDatabase: Database, Assertable {
 
     public let name: String
-    public var exists: Bool { return false }
+    public var exists: Bool {
+        try? buildURL()
+        guard let url = self.url else { return false }
+        return fileManager.fileExists(atPath: url.path)
+    }
+
     public var url: URL!
     private let fileManager: FileManager
     private let sqlite: CSQLite3

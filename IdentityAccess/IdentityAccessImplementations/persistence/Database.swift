@@ -6,6 +6,7 @@ import Foundation
 
 public protocol Database {
 
+    var exists: Bool { get }
     func create() throws
     func destroy() throws
     func connection() throws -> Connection

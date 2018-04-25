@@ -64,6 +64,21 @@ class SQLiteDatabaseTests: XCTestCase {
         XCTAssertTrue(fm.fileExists(atPath: url.path))
     }
 
+    func test_whenCreated_thenExists() throws {
+        try db.create()
+        XCTAssertTrue(db.exists)
+    }
+
+    func test_whenDestroyed_thenNotExists() throws {
+        try db.create()
+        try db.destroy()
+        XCTAssertFalse(db.exists)
+    }
+
+    func test_whenNotCreated_thenNotExists() throws {
+        XCTAssertFalse(db.exists)
+    }
+
     func test_whenConnectingToNonExistingDatabase_thenThrows() throws {
         assertThrows(try db.connection(), SQLiteDatabase.Error.databaseDoesNotExist)
     }

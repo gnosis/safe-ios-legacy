@@ -38,7 +38,6 @@ class MockCSQLite3: CSQLite3 {
 
     override func sqlite3_libversion() -> UnsafePointer<Int8>! {
         return libversion_result.withCString { ptr -> UnsafePointer<Int8> in ptr }
-
     }
 
     override func sqlite3_sourceid() -> UnsafePointer<Int8>! {
