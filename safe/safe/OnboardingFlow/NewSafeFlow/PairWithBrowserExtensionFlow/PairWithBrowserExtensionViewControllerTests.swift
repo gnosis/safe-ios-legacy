@@ -5,6 +5,7 @@
 import XCTest
 @testable import safe
 import IdentityAccessApplication
+import CommonTestSupport
 
 class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
 
@@ -26,7 +27,19 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
     func test_viewDidLoad() {
         controller.viewDidLoad()
         XCTAssertTrue(controller.extensionAddressInput.qrCodeDelegate === controller)
+        XCTAssertEqual(controller.extensionAddressInput.editingMode, .scanOnly)
+    }
+
+    func test_viewDidLoad_whenNoInitialAddress_thenFinishButtonIsDisabled() {
+        controller.viewDidLoad()
         XCTAssertFalse(controller.finishButton.isEnabled)
+    }
+
+    func test_viewDidLoad_whenInitialAddressProvided_thenFinishButtonIsEnabled() {
+        controller = PairWithBrowserExtensionViewController.create(delegate: delegate, extensionAddress: "test")
+        controller.loadViewIfNeeded()
+        controller.viewDidLoad()
+        XCTAssertTrue(controller.finishButton.isEnabled)
     }
 
     func test_presentScannerController() {
@@ -40,6 +53,16 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
         controller.viewDidLoad()
         controller.didScanValidCode()
         XCTAssertTrue(controller.finishButton.isEnabled)
+    }
+
+    func test_didScanValidCode_dismissesScannerController() {
+        createWindow(controller)
+        let presentedController = UIViewController()
+        controller.presentScannerController(presentedController)
+        delay(1)
+        controller.didScanValidCode()
+        delay(1)
+        XCTAssertFalse(controller.presentedViewController === presentedController)
     }
 
     func test_finish_whenNoAddress_thenLogsError() {

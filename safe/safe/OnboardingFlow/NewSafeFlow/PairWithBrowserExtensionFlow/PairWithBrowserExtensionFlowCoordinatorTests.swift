@@ -13,7 +13,7 @@ class PairWithBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        flowCoordinator = PairWithBrowserExtensionFlowCoordinator {
+        flowCoordinator = PairWithBrowserExtensionFlowCoordinator(address: nil) {
             [unowned self] extensionAddress in
             self.extensionAddressFromCompletion = extensionAddress
         }

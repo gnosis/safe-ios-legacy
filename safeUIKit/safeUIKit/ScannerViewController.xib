@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScannerViewController" customModule="safeUIKit" customModuleProvider="target">
             <connections>
+                <outlet property="debugButtonsStackView" destination="yRE-kA-A0c" id="9j4-1m-CVN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,11 +32,41 @@
                         <action selector="close:" destination="-1" eventType="touchUpInside" id="3KQ-RH-rfb"/>
                     </connections>
                 </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yRE-kA-A0c">
+                    <rect key="frame" x="20" y="280.5" width="335" height="106"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKO-WK-yOT">
+                            <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                            <state key="normal" title="Scan Valid Code"/>
+                            <connections>
+                                <action selector="debugScanValidCode:" destination="-1" eventType="touchUpInside" id="z0c-Du-jHf"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUa-GW-2fC">
+                            <rect key="frame" x="0.0" y="38" width="335" height="30"/>
+                            <state key="normal" title="Scan Invalid Code"/>
+                            <connections>
+                                <action selector="debugScanInvalidCode:" destination="-1" eventType="touchUpInside" id="Mei-hY-SGc"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2I-6H-qLn">
+                            <rect key="frame" x="0.0" y="76" width="335" height="30"/>
+                            <state key="normal" title="Scan Two Valid Codes"/>
+                            <connections>
+                                <action selector="debugScanTwoValidCodes:" destination="-1" eventType="touchUpInside" id="JBv-SU-HYw"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="yRE-kA-A0c" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="OuU-ur-K9o"/>
                 <constraint firstItem="FvK-9y-Li8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="a1A-Uy-oQj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yRE-kA-A0c" secondAttribute="trailing" constant="20" id="bPP-vT-nlD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FvK-9y-Li8" secondAttribute="bottom" constant="20" id="gGX-GG-uQv"/>
+                <constraint firstItem="yRE-kA-A0c" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="oyt-Fy-pHq"/>
+                <constraint firstItem="yRE-kA-A0c" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="qBD-LB-qQe"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

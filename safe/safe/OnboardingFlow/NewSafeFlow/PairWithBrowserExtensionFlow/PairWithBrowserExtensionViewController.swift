@@ -17,8 +17,11 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     @IBOutlet weak var finishButton: UIButton!
 
     private(set) weak var delegate: PairWithBrowserDelegate?
+    private var initialExtensionAddress: String?
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
     private var logger: Logger { return ApplicationServiceRegistry.logger }
+
+    private var scannerController: UIViewController?
 
     @IBAction func finish(_ sender: Any) {
         guard let text = extensionAddressInput.text, !text.isEmpty else {
@@ -32,16 +35,19 @@ final class PairWithBrowserExtensionViewController: UIViewController {
                        extensionAddress: String? = nil) -> PairWithBrowserExtensionViewController {
         let controller = StoryboardScene.NewSafe.pairWithBrowserExtensionViewController.instantiate()
         controller.delegate = delegate
+        controller.initialExtensionAddress = extensionAddress
         return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        extensionAddressInput.text = initialExtensionAddress
+        extensionAddressInput.editingMode = .scanOnly
         extensionAddressInput.qrCodeDelegate = self
         extensionAddressInput.qrCodeConverter = { [unowned self] code in
             return self.identityService.convertBrowserExtensionCodeIntoEthereumAddress(code)
         }
-        finishButton.isEnabled = false
+        finishButton.isEnabled = initialExtensionAddress != nil
     }
 
 }
@@ -49,10 +55,12 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 extension PairWithBrowserExtensionViewController: QRCodeInputDelegate {
 
     func presentScannerController(_ controller: UIViewController) {
+        scannerController = controller
         present(controller, animated: true)
     }
 
     func didScanValidCode() {
+        scannerController?.dismiss(animated: true)
         finishButton.isEnabled = true
     }
 

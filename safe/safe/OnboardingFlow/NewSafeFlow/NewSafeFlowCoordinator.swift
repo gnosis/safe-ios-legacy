@@ -8,7 +8,10 @@ import IdentityAccessApplication
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator: PaperWalletFlowCoordinator!
-    var pairWithBrowserExtensionFlowCoordinator: PairWithBrowserExtensionFlowCoordinator!
+    var pairWithBrowserExtensionFlowCoordinator: PairWithBrowserExtensionFlowCoordinator {
+        return PairWithBrowserExtensionFlowCoordinator(address: draftSafe?.browserExtensionAddressString,
+                                                       completion: pairWithBrowserExtensionCompletion)
+    }
 
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
     private var startVC: UIViewController!
@@ -19,8 +22,6 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
         paperWalletFlowCoordinator = PaperWalletFlowCoordinator(
             draftSafe: draftSafe,
             completion: paperWalletSetupCompletion)
-        pairWithBrowserExtensionFlowCoordinator = PairWithBrowserExtensionFlowCoordinator(
-            completion: pairWithBrowserExtensionCompletion)
     }
 
     override func flowStartController() -> UIViewController {

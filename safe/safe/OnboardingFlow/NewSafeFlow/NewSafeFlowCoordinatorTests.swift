@@ -34,7 +34,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     func test_didSelectBrowserExtensionSetup_showsPairWithBrowserExtensionFlowCoordinatorStartVC() {
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
         delay()
-        let fc = PairWithBrowserExtensionFlowCoordinator { _ in }
+        let fc = PairWithBrowserExtensionFlowCoordinator(address: nil) { _ in }
         let pairVC = fc.startViewController(parent: newSafeFlowCoordinator.rootVC)
         XCTAssertTrue(type(of: nav.topViewController!) == type(of: pairVC))
     }
@@ -66,6 +66,5 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         newSafeFlowCoordinator.pairWithBrowserExtensionFlowCoordinator.didPair(address)
         XCTAssertEqual(identityService.confirmedBrowserExtensionAddress, address)
     }
-
 
 }

@@ -8,14 +8,16 @@ typealias PairWithBrowserExtensionCompletion = (_ extensionAddress: String) -> V
 
 final class PairWithBrowserExtensionFlowCoordinator: FlowCoordinator {
 
+    private let address: String?
     private let completion: PairWithBrowserExtensionCompletion
 
-    init(completion: @escaping PairWithBrowserExtensionCompletion) {
+    init(address: String?, completion: @escaping PairWithBrowserExtensionCompletion) {
         self.completion = completion
+        self.address = address
     }
 
     override func flowStartController() -> UIViewController {
-        return PairWithBrowserExtensionViewController.create(delegate: self)
+        return PairWithBrowserExtensionViewController.create(delegate: self, extensionAddress: address)
     }
 
 }
