@@ -51,7 +51,7 @@ public extension Database {
 
     typealias CreateStatementClosure = (Connection) throws -> Statement
 
-    func executeUpdate(_ sql: String) throws {
+    func executeUpdate(sql: String) throws {
         try executeUpdate { conn in
             try conn.prepare(statement: sql)
         }
@@ -64,18 +64,18 @@ public extension Database {
         try close(conn)
     }
 
-    func executeQuery<T>(_ mapping: (ResultSet) throws -> T?, _ sql: String) -> T? {
-        return executeQuery(mapping) { conn in
+    func executeQuery<T>(sql: String, resultMap: (ResultSet) throws -> T?) -> T? {
+        return executeQuery(resultMap: resultMap) { conn in
             try conn.prepare(statement: sql)
         }
     }
 
-    func executeQuery<T>(_ mapping: (ResultSet) throws -> T?, _ createStatement: CreateStatementClosure) -> T? {
+    func executeQuery<T>(resultMap: (ResultSet) throws -> T?, _ createStatement: CreateStatementClosure) -> T? {
         do {
             let conn = try connection()
             defer { try? close(conn) }
             let stmt = try createStatement(conn)
-            if let rs = try stmt.execute(), let value = try mapping(rs) {
+            if let rs = try stmt.execute(), let value = try resultMap(rs) {
                 return value
             }
         } catch let e {

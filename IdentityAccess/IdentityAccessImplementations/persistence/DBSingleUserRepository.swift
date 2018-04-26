@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS tbl_user (
     }
 
     public func setUp() throws {
-        try db.executeUpdate(SQL.createTable)
+        try db.executeUpdate(sql: SQL.createTable)
     }
 
     public func save(_ user: User) throws {
@@ -52,18 +52,18 @@ CREATE TABLE IF NOT EXISTS tbl_user (
     }
 
     public func primaryUser() -> User? {
-        return db.executeQuery(mapUser, SQL.findPrimaryUser)
+        return db.executeQuery(sql: SQL.findPrimaryUser, resultMap: userFromResultSet)
     }
 
     public func user(encryptedPassword: String) -> User? {
-        return db.executeQuery(mapUser) { conn in
+        return db.executeQuery(resultMap: userFromResultSet) { conn in
             let stmt = try conn.prepare(statement: SQL.findUserByPassword)
             try stmt.set(encryptedPassword, at: 1)
             return stmt
         }
     }
 
-    private func mapUser(_ rs: ResultSet) throws -> User? {
+    private func userFromResultSet(_ rs: ResultSet) throws -> User? {
         guard try rs.advanceToNextRow(),
             let id = rs.string(at: 0),
             let password = rs.string(at: 1) else {
