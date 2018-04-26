@@ -14,6 +14,8 @@ final class ScannerViewController: UIViewController {
 
     private weak var delegate: ScannerDelegate?
 
+    @IBOutlet weak var debugButtonsStackView: UIStackView!
+
     static func create(delegate: ScannerDelegate) -> ScannerViewController {
         let bundle = Bundle(for: ScannerViewController.self)
         let controller = ScannerViewController(nibName: "ScannerViewController", bundle: bundle)
@@ -33,6 +35,7 @@ final class ScannerViewController: UIViewController {
             codeReaderVC = UIViewController()
             codeReaderVC.view.backgroundColor = .green
         #else
+            debugButtonsStackView.removeFromSuperview()
             codeReaderVC = RSCodeReaderViewController()
             codeReaderVC.barcodesHandler = barcodesHandler
         #endif
@@ -47,6 +50,32 @@ final class ScannerViewController: UIViewController {
         for barcode in barcodes.filter({ $0.type == .qr && $0.stringValue != nil }) {
             delegate?.didScan(barcode.stringValue!)
         }
+    }
+
+    // MARK: - Debug Buttons
+
+    private let validCode = """
+        {
+            "expirationDate" : "2018-06-18T14:46:09+00:00",
+            "signature": {
+            "v" : 27,
+            "r" : "15823297914388465068645274956031579191506355248080856511104898257696315269079",
+            "s" : "38724157826109967392954642570806414877371763764993427831319914375642632707148"
+            }
+        }
+        """
+
+    @IBAction func debugScanValidCode(_ sender: Any) {
+        delegate?.didScan(validCode)
+    }
+
+    @IBAction func debugScanInvalidCode(_ sender: Any) {
+        delegate?.didScan("invalid_code")
+    }
+
+    @IBAction func debugScanTwoValidCodes(_ sender: Any) {
+        delegate?.didScan(validCode)
+        delegate?.didScan(validCode)
     }
 
 }

@@ -28,8 +28,8 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
 
-/* Chrome extension Button */
-"onboarding.new_safe.chrome_extension" = "Chrome Extension";
+/* Browser extension Button */
+"onboarding.new_safe.browser_extension" = "Browser Extension";
 
 /* Paper Wallet Button */
 "onboarding.new_safe.paper_wallet" = "Paper Wallet";

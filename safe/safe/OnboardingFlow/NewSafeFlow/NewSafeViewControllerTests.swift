@@ -25,7 +25,7 @@ class NewSafeViewControllerTests: SafeTestCase {
         XCTAssertNotNil(controller)
         XCTAssertNotNil(controller.titleLabel)
         XCTAssertNotNil(controller.thisDeviceButton)
-        XCTAssertNotNil(controller.chromeExtensionButton)
+        XCTAssertNotNil(controller.browserExtensionButton)
         XCTAssertNotNil(controller.paperWalletButton)
         XCTAssertFalse(controller.thisDeviceButton.isEnabled)
     }
@@ -35,9 +35,9 @@ class NewSafeViewControllerTests: SafeTestCase {
         XCTAssertTrue(delegate.hasSelectedPaperWalletSetup)
     }
 
-    func test_setupChromeExtension_callsDelegate() {
-        controller.setupChromeExtension(self)
-        XCTAssertTrue(delegate.hasSelectedChromeExtensionSetup)
+    func test_setupBrowserExtension_callsDelegate() {
+        controller.setupBrowserExtension(self)
+        XCTAssertTrue(delegate.hasSelectedBrowserExtensionSetup)
     }
 
     func test_viewDidLoad_whenNoDraftSafe_thenDismissesAndLogs() {
@@ -56,7 +56,7 @@ class NewSafeViewControllerTests: SafeTestCase {
         identityService.confirmPaperWallet(draftSafe: draftSafe)
         controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .selected, .normal)
-        identityService.confirmChromeExtension(draftSafe: draftSafe)
+        identityService.confirmBrowserExtension(draftSafe: draftSafe, address: "test_address")
         controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .selected, .selected)
     }
@@ -67,10 +67,10 @@ extension NewSafeViewControllerTests {
 
     private func assertButtonCheckmarks(_ thisDeviceCheckmark: BigButton.CheckmarkStatus,
                                         _ paperWalletCheckmark: BigButton.CheckmarkStatus,
-                                        _ chromeExtensionCheckmark: BigButton.CheckmarkStatus) {
+                                        _ browserExtensionCheckmark: BigButton.CheckmarkStatus) {
         XCTAssertEqual(controller.thisDeviceButton.checkmarkStatus, thisDeviceCheckmark)
         XCTAssertEqual(controller.paperWalletButton.checkmarkStatus, paperWalletCheckmark)
-        XCTAssertEqual(controller.chromeExtensionButton.checkmarkStatus, chromeExtensionCheckmark)
+        XCTAssertEqual(controller.browserExtensionButton.checkmarkStatus, browserExtensionCheckmark)
     }
 
 }
@@ -78,14 +78,14 @@ extension NewSafeViewControllerTests {
 class MockNewSafeDelegate: NewSafeDelegate {
 
     var hasSelectedPaperWalletSetup = false
-    var hasSelectedChromeExtensionSetup = false
+    var hasSelectedBrowserExtensionSetup = false
 
     func didSelectPaperWalletSetup() {
         hasSelectedPaperWalletSetup = true
     }
 
-    func didSelectChromeExtensionSetup() {
-        hasSelectedChromeExtensionSetup = true
+    func didSelectBrowserExtensionSetup() {
+        hasSelectedBrowserExtensionSetup = true
     }
 
 }

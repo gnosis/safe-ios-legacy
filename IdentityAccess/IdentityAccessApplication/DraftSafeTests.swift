@@ -11,6 +11,7 @@ class DraftSafeTests: XCTestCase {
 
     var paperWallet: EthereumAccountProtocol!
     var draftSafe: DraftSafe!
+    let ethAddress = EthereumAddress(data: "test_address".data(using: .utf8)!)
 
     override func setUp() {
         super.setUp()
@@ -24,12 +25,18 @@ class DraftSafeTests: XCTestCase {
         XCTAssertTrue(draftSafe === DraftSafe.shared)
     }
 
-    func test_paperWalletMnemonic_returnsCorrectMnemonic() {
+    func test_paperWalletMnemonicWords() {
         XCTAssertEqual(draftSafe.paperWalletMnemonicWords, paperWallet.mnemonic.words)
     }
 
     func test_configuredAddresses_returnsOnlyCurrentDeviceAddressByDeafult() {
         XCTAssertEqual(draftSafe.confirmedAddresses, .currentDevice)
+    }
+
+    func test_browserExtensionAddressString() {
+        XCTAssertEqual(draftSafe.browserExtensionAddressString, nil)
+        draftSafe.confirmBrowserExtension(address: ethAddress)
+        XCTAssertEqual(draftSafe.browserExtensionAddressString, String(data: ethAddress.data, encoding: .utf8))
     }
 
     func test_confirmPaperWallet() {
@@ -39,17 +46,18 @@ class DraftSafeTests: XCTestCase {
         XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .paperWallet])
     }
 
-    func test_confirmChromeExtension() {
-        draftSafe.confirmChromeExtension()
-        XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .chromeExtension])
-        draftSafe.confirmChromeExtension()
-        XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .chromeExtension])
+    func test_confirmBrowserExtension() {
+        draftSafe.confirmBrowserExtension(address: ethAddress)
+        XCTAssertEqual(draftSafe.browserExtensionAddress, ethAddress)
+        XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .browserExtension])
+        draftSafe.confirmBrowserExtension(address: ethAddress)
+        XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .browserExtension])
     }
 
     func test_confirmedAddresses_whenAllConfirmationsAreThere_thenReturnsAll() {
         draftSafe.confirmPaperWallet()
-        draftSafe.confirmChromeExtension()
-        XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .chromeExtension, .paperWallet])
+        draftSafe.confirmBrowserExtension(address: ethAddress)
+        XCTAssertEqual(draftSafe.confirmedAddresses, [.currentDevice, .browserExtension, .paperWallet])
     }
 
 }

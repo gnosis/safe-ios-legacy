@@ -17,18 +17,21 @@ public class DraftSafe {
         }
 
         public static let currentDevice = ConfiguredAddresses(rawValue: 1 << 0)
-        public static let chromeExtension = ConfiguredAddresses(rawValue: 1 << 1)
+        public static let browserExtension = ConfiguredAddresses(rawValue: 1 << 1)
         public static let paperWallet = ConfiguredAddresses(rawValue: 1 << 2)
     }
 
-    private let currentDeviceAddress: EthereumAddress
-    private let paperWallet: EthereumAccountProtocol
-    private var chromeExtensionAddress: EthereumAddress?
-    private let threshold = 2
-
     public var confirmedAddresses: ConfiguredAddresses
-
     public var paperWalletMnemonicWords: [String] { return paperWallet.mnemonic.words }
+    public var browserExtensionAddressString: String? {
+        guard let addressData = browserExtensionAddress?.data else { return nil }
+        return String(data: addressData, encoding: .utf8)
+    }
+
+    let currentDeviceAddress: EthereumAddress
+    let paperWallet: EthereumAccountProtocol
+    private(set) var browserExtensionAddress: EthereumAddress?
+    let threshold = 2
 
     private init(currentDeviceAddress: EthereumAddress, paperWallet: EthereumAccountProtocol) {
         self.currentDeviceAddress = currentDeviceAddress
@@ -46,8 +49,9 @@ public class DraftSafe {
         confirmedAddresses.insert(.paperWallet)
     }
 
-    func confirmChromeExtension() {
-        confirmedAddresses.insert(.chromeExtension)
+    func confirmBrowserExtension(address: EthereumAddress) {
+        browserExtensionAddress = address
+        confirmedAddresses.insert(.browserExtension)
     }
 
 }

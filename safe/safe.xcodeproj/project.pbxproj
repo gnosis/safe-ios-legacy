@@ -89,11 +89,13 @@
 		555DD6D4205144EB00D1178A /* SetupSafeFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555DD6D3205144EB00D1178A /* SetupSafeFlowCoordinatorTests.swift */; };
 		555DD6D7205148D100D1178A /* UnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555DD6D6205148D100D1178A /* UnlockViewController.swift */; };
 		555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555DD6D82051497700D1178A /* UnlockViewControllerTests.swift */; };
+		5575BD4E2090839A009CC020 /* PairWithBrowserExtensionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5575BD4D2090839A009CC020 /* PairWithBrowserExtensionFlowCoordinator.swift */; };
+		5575BD50209083CC009CC020 /* PairWithBrowserExtensionFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5575BD4F209083CC009CC020 /* PairWithBrowserExtensionFlowCoordinatorTests.swift */; };
 		558FD806207652E3004F070E /* SetupSafeOptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD805207652E3004F070E /* SetupSafeOptionsViewControllerTests.swift */; };
 		558FD8082076549F004F070E /* SetupSafe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 558FD8072076549F004F070E /* SetupSafe.storyboard */; };
 		558FD80F20766BCD004F070E /* NewSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80E20766BCD004F070E /* NewSafeFlowCoordinator.swift */; };
-		558FD81120767277004F070E /* PairWithChromeExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81020767277004F070E /* PairWithChromeExtensionViewController.swift */; };
-		558FD813207672A3004F070E /* PairWithChromeExtensionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD812207672A3004F070E /* PairWithChromeExtensionViewControllerTests.swift */; };
+		558FD81120767277004F070E /* PairWithBrowserExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81020767277004F070E /* PairWithBrowserExtensionViewController.swift */; };
+		558FD813207672A3004F070E /* PairWithBrowserExtensionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD812207672A3004F070E /* PairWithBrowserExtensionViewControllerTests.swift */; };
 		558FD81520767F18004F070E /* SafeSetupOptionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81420767F18004F070E /* SafeSetupOptionsScreen.swift */; };
 		55922C5A207BBF7C00BF968F /* SafeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55922C58207BBF7600BF968F /* SafeTestCase.swift */; };
 		55ACFD9B2074E0BA000F54CC /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ACFD9A2074E0BA000F54CC /* FlowCoordinator.swift */; };
@@ -302,11 +304,13 @@
 		555DD6D3205144EB00D1178A /* SetupSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		555DD6D6205148D100D1178A /* UnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewController.swift; sourceTree = "<group>"; };
 		555DD6D82051497700D1178A /* UnlockViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewControllerTests.swift; sourceTree = "<group>"; };
+		5575BD4D2090839A009CC020 /* PairWithBrowserExtensionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionFlowCoordinator.swift; sourceTree = "<group>"; };
+		5575BD4F209083CC009CC020 /* PairWithBrowserExtensionFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		558FD805207652E3004F070E /* SetupSafeOptionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsViewControllerTests.swift; sourceTree = "<group>"; };
 		558FD8072076549F004F070E /* SetupSafe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetupSafe.storyboard; sourceTree = "<group>"; };
 		558FD80E20766BCD004F070E /* NewSafeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeFlowCoordinator.swift; sourceTree = "<group>"; };
-		558FD81020767277004F070E /* PairWithChromeExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithChromeExtensionViewController.swift; sourceTree = "<group>"; };
-		558FD812207672A3004F070E /* PairWithChromeExtensionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithChromeExtensionViewControllerTests.swift; sourceTree = "<group>"; };
+		558FD81020767277004F070E /* PairWithBrowserExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionViewController.swift; sourceTree = "<group>"; };
+		558FD812207672A3004F070E /* PairWithBrowserExtensionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionViewControllerTests.swift; sourceTree = "<group>"; };
 		558FD81420767F18004F070E /* SafeSetupOptionsScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeSetupOptionsScreen.swift; sourceTree = "<group>"; };
 		55922C58207BBF7600BF968F /* SafeTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeTestCase.swift; sourceTree = "<group>"; };
 		55ACFD9A2074E0BA000F54CC /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
@@ -582,16 +586,26 @@
 			path = AppFlow;
 			sourceTree = "<group>";
 		};
+		5575BD4C20908374009CC020 /* PairWithBrowserExtensionFlow */ = {
+			isa = PBXGroup;
+			children = (
+				5575BD4D2090839A009CC020 /* PairWithBrowserExtensionFlowCoordinator.swift */,
+				5575BD4F209083CC009CC020 /* PairWithBrowserExtensionFlowCoordinatorTests.swift */,
+				558FD81020767277004F070E /* PairWithBrowserExtensionViewController.swift */,
+				558FD812207672A3004F070E /* PairWithBrowserExtensionViewControllerTests.swift */,
+			);
+			path = PairWithBrowserExtensionFlow;
+			sourceTree = "<group>";
+		};
 		558FD80D20766BA0004F070E /* NewSafeFlow */ = {
 			isa = PBXGroup;
 			children = (
+				5575BD4C20908374009CC020 /* PairWithBrowserExtensionFlow */,
 				55FEBFB8207F6CFE004099AA /* PaperWalletSetupFlow */,
 				558FD80E20766BCD004F070E /* NewSafeFlowCoordinator.swift */,
 				55FEBFB4207E14E4004099AA /* NewSafeFlowCoordinatorTests.swift */,
 				55FEBFAC207E0A66004099AA /* NewSafeViewController.swift */,
 				55FEBFB0207E0B67004099AA /* NewSafeViewControllerTests.swift */,
-				558FD81020767277004F070E /* PairWithChromeExtensionViewController.swift */,
-				558FD812207672A3004F070E /* PairWithChromeExtensionViewControllerTests.swift */,
 				0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */,
 				55FEBFAE207E0AB0004099AA /* NewSafe.storyboard */,
 			);
@@ -903,9 +917,10 @@
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,
 				55ACFD9B2074E0BA000F54CC /* FlowCoordinator.swift in Sources */,
 				555DD6D2205144C900D1178A /* SetupSafeFlowCoordinator.swift in Sources */,
+				5575BD4E2090839A009CC020 /* PairWithBrowserExtensionFlowCoordinator.swift in Sources */,
 				5528C43E20470AF500E79A4D /* PasswordValidator.swift in Sources */,
 				55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */,
-				558FD81120767277004F070E /* PairWithChromeExtensionViewController.swift in Sources */,
+				558FD81120767277004F070E /* PairWithBrowserExtensionViewController.swift in Sources */,
 				55CF4C9E2057EF8500F1B4BB /* SetupSafeOptionsViewController.swift in Sources */,
 				0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
 			);
@@ -916,7 +931,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55FEBFB1207E0B67004099AA /* NewSafeViewControllerTests.swift in Sources */,
-				558FD813207672A3004F070E /* PairWithChromeExtensionViewControllerTests.swift in Sources */,
+				558FD813207672A3004F070E /* PairWithBrowserExtensionViewControllerTests.swift in Sources */,
 				0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */,
 				55FEBFBC207F6FC9004099AA /* PaperWalletFlowCoordinatorTests.swift in Sources */,
 				55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */,
@@ -936,6 +951,7 @@
 				0A666D2A208894680034FF66 /* FatalErrorHandlerTests.swift in Sources */,
 				0AA0C863207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */,
 				558FD806207652E3004F070E /* SetupSafeOptionsViewControllerTests.swift in Sources */,
+				5575BD50209083CC009CC020 /* PairWithBrowserExtensionFlowCoordinatorTests.swift in Sources */,
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
 				555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */,
 				0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */,

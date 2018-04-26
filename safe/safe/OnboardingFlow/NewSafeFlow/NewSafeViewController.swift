@@ -8,7 +8,7 @@ import IdentityAccessApplication
 
 protocol NewSafeDelegate: class {
     func didSelectPaperWalletSetup()
-    func didSelectChromeExtensionSetup()
+    func didSelectBrowserExtensionSetup()
 }
 
 class NewSafeViewController: UIViewController {
@@ -16,7 +16,7 @@ class NewSafeViewController: UIViewController {
     @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var thisDeviceButton: BigButton!
-    @IBOutlet weak var chromeExtensionButton: BigButton!
+    @IBOutlet weak var browserExtensionButton: BigButton!
     @IBOutlet weak var paperWalletButton: BigButton!
 
     weak var delegate: NewSafeDelegate?
@@ -28,8 +28,8 @@ class NewSafeViewController: UIViewController {
         static let title = NSLocalizedString("onboarding.new_safe.title", comment: "Title for new safe screen")
         static let thisDevice = NSLocalizedString("onboarding.new_safe.this_device", comment: "This device button")
         static let paperWallet = NSLocalizedString("onboarding.new_safe.paper_wallet", comment: "Paper Wallet Button")
-        static let chromeExtension = NSLocalizedString("onboarding.new_safe.chrome_extension",
-                                                       comment: "Chrome extension Button")
+        static let browserExtension = NSLocalizedString("onboarding.new_safe.browser_extension",
+                                                        comment: "Browser extension Button")
     }
 
     static func create(draftSafe: DraftSafe?, delegate: NewSafeDelegate) -> NewSafeViewController {
@@ -49,7 +49,7 @@ class NewSafeViewController: UIViewController {
         titleLabel.text = Strings.title
         thisDeviceButton.setTitle(Strings.thisDevice, for: .normal)
         paperWalletButton.setTitle(Strings.paperWallet, for: .normal)
-        chromeExtensionButton.setTitle(Strings.chromeExtension, for: .normal)
+        browserExtensionButton.setTitle(Strings.browserExtension, for: .normal)
         thisDeviceButton.isEnabled = false
         thisDeviceButton.checkmarkStatus = .selected
     }
@@ -59,16 +59,16 @@ class NewSafeViewController: UIViewController {
         guard let draftSafe = draftSafe else { return }
         paperWalletButton.checkmarkStatus =
             draftSafe.confirmedAddresses.contains(.paperWallet) ? .selected : .normal
-        chromeExtensionButton.checkmarkStatus =
-            draftSafe.confirmedAddresses.contains(.chromeExtension) ? .selected : .normal
+        browserExtensionButton.checkmarkStatus =
+            draftSafe.confirmedAddresses.contains(.browserExtension) ? .selected : .normal
     }
 
     @IBAction func setupPaperWallet(_ sender: Any) {
         delegate?.didSelectPaperWalletSetup()
     }
 
-    @IBAction func setupChromeExtension(_ sender: Any) {
-        delegate?.didSelectChromeExtensionSetup()
+    @IBAction func setupBrowserExtension(_ sender: Any) {
+        delegate?.didSelectBrowserExtensionSetup()
     }
 
 }
