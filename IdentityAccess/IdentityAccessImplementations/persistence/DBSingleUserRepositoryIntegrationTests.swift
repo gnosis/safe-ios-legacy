@@ -13,7 +13,7 @@ class DBSingleUserRepositoryIntegrationTests: XCTestCase {
                                 fileManager: FileManager.default,
                                 sqlite: CSQLite3(),
                                 bundleId: "IdentityAccessImplementationsTests")
-        try? db.destroy()
+        try? db.destroy() // protects from corrupted state
         try db.create()
         defer { try? db.destroy() }
         let repo = DBSingleUserRepository(db: db)
@@ -23,6 +23,7 @@ class DBSingleUserRepositoryIntegrationTests: XCTestCase {
         XCTAssertEqual(repo.primaryUser(), user)
         XCTAssertEqual(repo.user(encryptedPassword: "MyPassword1"), user)
         try repo.remove(user)
+        XCTAssertNil(repo.primaryUser())
     }
 
 }

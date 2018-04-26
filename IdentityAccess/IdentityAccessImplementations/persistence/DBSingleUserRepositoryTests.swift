@@ -133,6 +133,7 @@ class FunctionCallTrace {
 }
 
 typealias MockRawResultSet = [[Any?]]
+
 class MockDatabase: Database {
 
     var exists: Bool = true
@@ -144,13 +145,9 @@ class MockDatabase: Database {
         self.trace = trace
     }
 
-    func create() throws {
+    func create() throws {}
 
-    }
-
-    func destroy() throws {
-
-    }
+    func destroy() throws {}
 
     func connection() throws -> Connection {
         trace.append("db.connection()")
@@ -176,7 +173,6 @@ class MockConnection: Connection {
         self.trace = trace
         self.resultSet = resultSet
     }
-
 
     func prepare(statement: String) throws -> Statement {
         trace.append("conn.prepare(\(statement))")
