@@ -5,6 +5,7 @@
 import XCTest
 @testable import IdentityAccessImplementations
 
+// swiftlint:disable file_length
 class SQLiteDatabaseTests: XCTestCase {
 
     let fm = MockFileManager()
@@ -311,16 +312,31 @@ class SQLiteDatabaseTests: XCTestCase {
     func test_resultSet_columnValues() throws {
         try givenResultSet()
 
+        sqlite.column_type_result = CSQLite3.SQLITE_TEXT
         sqlite.column_count_result = 3
         sqlite.column_text_result = "some"
         sqlite.column_bytes_result = Int32("some".cString(using: .utf8)!.count)
         XCTAssertEqual(rs.string(at: 2), "some")
 
+        sqlite.column_type_result = CSQLite3.SQLITE_NULL
+        XCTAssertNil(rs.string(at: 2))
+        XCTAssertNil(rs.int(at: 2))
+        XCTAssertNil(rs.double(at: 2))
+        XCTAssertNil(rs.data(at: 2))
+
+        sqlite.column_type_result = CSQLite3.SQLITE_INTEGER
         sqlite.column_int64_result = Int64(1)
         XCTAssertEqual(rs.int(at: 1), 1)
 
+        sqlite.column_type_result = CSQLite3.SQLITE_FLOAT
         sqlite.column_double_result = 5.3
-        XCTAssertEqual(rs.double(at: 0), 5.3, accuracy: 0.001)
+        XCTAssertEqual(rs.double(at: 0) ?? -1, 5.3, accuracy: 0.001)
+
+        let data = Data(repeating: 3, count: 64)
+        sqlite.column_type_result = CSQLite3.SQLITE_BLOB
+        sqlite.column_blob_result = data
+        sqlite.column_bytes_result = Int32(data.count)
+        XCTAssertEqual(rs.data(at: 0), data)
     }
 
     func test_whenReturnsRow_thenResetsQuery() throws {
@@ -371,6 +387,12 @@ class SQLiteDatabaseTests: XCTestCase {
         sqlite.bind_text_result = CSQLite3.SQLITE_RANGE
         assertThrows(try stmt.set("text", at: 2), SQLiteDatabase.Error.statementParameterIndexOutOfRange)
 
+        sqlite.bind_blob_result = CSQLite3.SQLITE_OK
+        let data = Data(repeating: 1, count: 32)
+        try stmt.set(data, at: 1)
+        XCTAssertEqual(sqlite.bind_blob_in_zValue, data)
+        XCTAssertNotNil(sqlite.bind_blob_in_destructor)
+
         sqlite.bind_int64_result = CSQLite3.SQLITE_OK
         try stmt.set(1, at: 1)
         XCTAssertEqual(sqlite.bind_int64_in_zValue, 1)
@@ -386,6 +408,11 @@ class SQLiteDatabaseTests: XCTestCase {
         sqlite.bind_text_result = CSQLite3.SQLITE_OK
         sqlite.bind_parameter_index_in_zName = nil
         try stmt.set("text", forKey: "key")
+        XCTAssertEqual(sqlite.bind_parameter_index_in_zName, "key")
+
+        sqlite.bind_blob_result = CSQLite3.SQLITE_OK
+        sqlite.bind_parameter_index_in_zName = nil
+        try stmt.set(data, forKey: "key")
         XCTAssertEqual(sqlite.bind_parameter_index_in_zName, "key")
 
         sqlite.bind_parameter_index_in_zName = nil
@@ -404,10 +431,12 @@ class SQLiteDatabaseTests: XCTestCase {
     func test_whenStatementExecuted_thenBindingThrows() throws {
         try givenSuccessfullyExecutedStatement()
         assertThrows(try stmt.set(0, at: 1), SQLiteDatabase.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set(Data(), at: 1), SQLiteDatabase.Error.attemptToBindExecutedStatement)
         assertThrows(try stmt.set(1.1, at: 1), SQLiteDatabase.Error.attemptToBindExecutedStatement)
         assertThrows(try stmt.set("text", at: 1), SQLiteDatabase.Error.attemptToBindExecutedStatement)
         assertThrows(try stmt.setNil(at: 1), SQLiteDatabase.Error.attemptToBindExecutedStatement)
         assertThrows(try stmt.set(0, forKey: "key"), SQLiteDatabase.Error.attemptToBindExecutedStatement)
+        assertThrows(try stmt.set(Data(), forKey: "key"), SQLiteDatabase.Error.attemptToBindExecutedStatement)
         assertThrows(try stmt.set(1.1, forKey: "key"), SQLiteDatabase.Error.attemptToBindExecutedStatement)
         assertThrows(try stmt.set("text", forKey: "key"), SQLiteDatabase.Error.attemptToBindExecutedStatement)
         assertThrows(try stmt.setNil(forKey: "key"), SQLiteDatabase.Error.attemptToBindExecutedStatement)
@@ -416,10 +445,12 @@ class SQLiteDatabaseTests: XCTestCase {
     func test_whenStatementFinalized_thenBindingThrows() throws {
         try givenNotExecutedFinalizedStatement()
         assertThrows(try stmt.set(0, at: 1), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set(Data(), at: 1), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
         assertThrows(try stmt.set(1.1, at: 1), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
         assertThrows(try stmt.set("text", at: 1), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
         assertThrows(try stmt.setNil(at: 1), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
         assertThrows(try stmt.set(0, forKey: "key"), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
+        assertThrows(try stmt.set(Data(), forKey: "key"), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
         assertThrows(try stmt.set(1.1, forKey: "key"), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
         assertThrows(try stmt.set("text", forKey: "key"), SQLiteDatabase.Error.attemptToBindFinalizedStatement)
         assertThrows(try stmt.setNil(forKey: "key"), SQLiteDatabase.Error.attemptToBindFinalizedStatement)

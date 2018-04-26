@@ -68,11 +68,26 @@ public class SQLiteStatement: Statement, Assertable {
         try assertBindSuccess(status)
     }
 
+    public func set(_ value: Data, at index: Int) throws {
+        try assertCanBind()
+        let byteCount = value.count
+        let status = value.withUnsafeBytes { ptr -> Int32 in
+            sqlite.sqlite3_bind_blob(stmt,
+                                     Int32(index),
+                                     UnsafeRawPointer(ptr),
+                                     Int32(byteCount),
+                                     CSQLite3.SQLITE_TRANSIENT)
+        }
+        try assertBindSuccess(status)
+    }
+
     public func set(_ value: Int, at index: Int) throws {
         try assertCanBind()
         let status = sqlite.sqlite3_bind_int64(stmt, Int32(index), Int64(value))
         try assertBindSuccess(status)
     }
+
+
 
     public func set(_ value: Double, at index: Int) throws {
         try assertCanBind()
@@ -87,6 +102,11 @@ public class SQLiteStatement: Statement, Assertable {
     }
 
     public func set(_ value: String, forKey key: String) throws {
+        let index = try parameterIndex(for: key)
+        try set(value, at: index)
+    }
+
+    public func set(_ value: Data, forKey key: String) throws {
         let index = try parameterIndex(for: key)
         try set(value, at: index)
     }

@@ -9,15 +9,16 @@ open class CSQLite3 {
 
     public init() {}
 
-    open var SQLITE_VERSION: String {
-        return SQLite3.SQLITE_VERSION
-    }
-    open var SQLITE_VERSION_NUMBER: Int32 {
-        return SQLite3.SQLITE_VERSION_NUMBER
-    }
-    open var SQLITE_SOURCE_ID: String {
-        return SQLite3.SQLITE_SOURCE_ID
-    }
+    open var SQLITE_VERSION: String { return SQLite3.SQLITE_VERSION }
+    open var SQLITE_VERSION_NUMBER: Int32 { return SQLite3.SQLITE_VERSION_NUMBER }
+    open var SQLITE_SOURCE_ID: String { return SQLite3.SQLITE_SOURCE_ID }
+
+    public static var SQLITE_INTEGER: Int32 { return SQLite3.SQLITE_INTEGER }
+    public static var SQLITE_FLOAT: Int32 { return SQLite3.SQLITE_FLOAT }
+    public static var SQLITE_TEXT: Int32 { return SQLite3.SQLITE_TEXT }
+    public static var SQLITE_BLOB: Int32 { return SQLite3.SQLITE_BLOB }
+    public static var SQLITE_NULL: Int32 { return SQLite3.SQLITE_NULL }
+
     public static var SQLITE_OK: Int32 { return SQLite3.SQLITE_OK }
     public static var SQLITE_ERROR: Int32 { return SQLite3.SQLITE_ERROR }
     public static var SQLITE_INTERNAL: Int32 { return SQLite3.SQLITE_INTERNAL }
@@ -155,6 +156,10 @@ open class CSQLite3 {
         return SQLite3.sqlite3_column_count(pStmt)
     }
 
+    open func sqlite3_column_type(_ pStmt: OpaquePointer!, _ iCol: Int32) -> Int32 {
+        return SQLite3.sqlite3_column_type(pStmt, iCol)
+    }
+
     open func sqlite3_column_bytes(_ pStmt: OpaquePointer!, _ iCol: Int32) -> Int32 {
         return SQLite3.sqlite3_column_bytes(pStmt, iCol)
     }
@@ -169,6 +174,10 @@ open class CSQLite3 {
 
     open func sqlite3_column_text(_ pStmt: OpaquePointer!, _ iCol: Int32) -> UnsafePointer<UInt8>! {
         return SQLite3.sqlite3_column_text(pStmt, iCol)
+    }
+
+    open func sqlite3_column_blob(_ pStmt: OpaquePointer!, _ iCol: Int32) -> UnsafeRawPointer! {
+        return SQLite3.sqlite3_column_blob(pStmt, iCol)
     }
 
     open func sqlite3_reset(_ pStmt: OpaquePointer!) -> Int32 {
@@ -193,6 +202,14 @@ open class CSQLite3 {
                                 _ nByte: Int32,
                                 _ destructor: (@convention(c) (UnsafeMutableRawPointer?) -> Swift.Void)!) -> Int32 {
         return SQLite3.sqlite3_bind_text(pStmt, index, zValue, nByte, destructor)
+    }
+
+    open func sqlite3_bind_blob(_ pStmt: OpaquePointer!,
+                                _ index: Int32,
+                                _ zValue: UnsafeRawPointer!,
+                                _ nByte: Int32,
+                                _ destructor: (@convention(c) (UnsafeMutableRawPointer?) -> Swift.Void)!) -> Int32 {
+        return SQLite3.sqlite3_bind_blob(pStmt, index, zValue, nByte, destructor)
     }
 
     open func sqlite3_bind_parameter_index(_ pStmt: OpaquePointer!, _ zName: UnsafePointer<Int8>!) -> Int32 {

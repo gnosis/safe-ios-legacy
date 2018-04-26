@@ -229,6 +229,14 @@ class MockStatement: Statement {
         trace.append("stmt.setNil(\(key))")
     }
 
+    func set(_ value: Data, at index: Int) throws {
+        trace.append("stmt.set(\(value), \(index))")
+    }
+
+    func set(_ value: Data, forKey key: String) throws {
+        trace.append("stmt.set(\(value), \(index))")
+    }
+
     func execute() throws -> ResultSet? {
         trace.append("stmt.execute()")
         if let rs = resultSet {
@@ -262,14 +270,19 @@ class MockResultSet: ResultSet {
         return resultSet[currentRow][index] as? String
     }
 
-    func int(at index: Int) -> Int {
-        trace.append("rs.int(\(index))")
-        return resultSet[currentRow][index] as? Int ?? 0
+    public func data(at index: Int) -> Data? {
+        trace.append("rs.data(\(index))")
+        return resultSet[currentRow][index] as? Data
     }
 
-    func double(at index: Int) -> Double {
+    func int(at index: Int) -> Int? {
+        trace.append("rs.int(\(index))")
+        return resultSet[currentRow][index] as? Int
+    }
+
+    func double(at index: Int) -> Double? {
         trace.append("rs.double(\(index))")
-        return resultSet[currentRow][index] as? Double ?? 0
+        return resultSet[currentRow][index] as? Double
     }
 
 }

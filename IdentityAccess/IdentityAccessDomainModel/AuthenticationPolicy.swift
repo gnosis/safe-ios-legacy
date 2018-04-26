@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public struct AuthenticationPolicy: Hashable, Assertable {
+public struct AuthenticationPolicy: Hashable, Assertable, Codable {
 
     public enum Error: Swift.Error, Hashable {
         case sessionDurationMustBePositive

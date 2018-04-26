@@ -9,6 +9,19 @@ public class GatekeeperID: BaseID {}
 
 public class Gatekeeper: IdentifiableEntity<GatekeeperID> {
 
+    public enum Error: Swift.Error, Hashable {
+        case durationIsNotPositive
+        case accessBlocked
+    }
+
+    private struct State: Codable {
+        fileprivate let id: String
+        fileprivate let session: Data?
+        fileprivate let policy: AuthenticationPolicy
+        fileprivate let failedAttemptCount: Int
+        fileprivate let accessDeniedAt: Date?
+    }
+
     public private(set) var policy: AuthenticationPolicy {
         didSet {
             reset()
@@ -18,14 +31,31 @@ public class Gatekeeper: IdentifiableEntity<GatekeeperID> {
     private var failedAttemptCount: Int = 0
     private var accessDeniedAt: Date?
 
-    public enum Error: Swift.Error, Hashable {
-        case durationIsNotPositive
-        case accessBlocked
-    }
-
     public init(id: GatekeeperID, policy: AuthenticationPolicy) throws {
         self.policy = policy
         super.init(id: id)
+    }
+
+    public convenience init(data: Data) throws {
+        let decoder = PropertyListDecoder()
+        let state = try decoder.decode(State.self, from: data)
+        try self.init(id: try GatekeeperID(state.id), policy: state.policy)
+        if let data = state.session {
+            session = try Session(data: data)
+        }
+        failedAttemptCount = state.failedAttemptCount
+        accessDeniedAt = state.accessDeniedAt
+    }
+
+    public func data() throws -> Data {
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .binary
+        let state = State(id: id.id,
+                          session: try session?.data(),
+                          policy: policy,
+                          failedAttemptCount: failedAttemptCount,
+                          accessDeniedAt: accessDeniedAt)
+        return try encoder.encode(state)
     }
 
     public func changeSessionDuration(_ newValue: TimeInterval) throws {
