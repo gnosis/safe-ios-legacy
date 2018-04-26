@@ -48,7 +48,6 @@ open class IdentityApplicationService {
     }
 
     open func convertBrowserExtensionCodeIntoEthereumAddress(_ code: String) -> String? {
-        // TODO: implement
         if code == "invalid_code" { return nil }
         return "0xa06a215ca4a54189e7f951c59f0431e33d0f38a0"
     }
