@@ -39,24 +39,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DomainRegistry.put(service: SystemClockService(), for: Clock.self)
         DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
-        DomainRegistry.put(service: InMemoryGatekeeperRepository(), for: SingleGatekeeperRepository.self)
         do {
             let db = SQLiteDatabase(name: "IdentityAccess",
                                     fileManager: FileManager.default,
                                     sqlite: CSQLite3(),
                                     bundleId: Bundle.main.bundleIdentifier ?? "pm.gnosis.safe")
             let userRepo = DBSingleUserRepository(db: db)
+            let gatekeeperRepo = DBSingleGatekeeperRepository(db: db)
+            DomainRegistry.put(service: userRepo, for: SingleUserRepository.self)
+            DomainRegistry.put(service: gatekeeperRepo, for: SingleGatekeeperRepository.self)
 
             if !db.exists {
                 try db.create()
                 try userRepo.setUp()
-            }
-            DomainRegistry.put(service: userRepo, for: SingleUserRepository.self)
+                try gatekeeperRepo.setUp()
 
-            try ApplicationServiceRegistry.authenticationService
-                .createAuthenticationPolicy(sessionDuration: 60,
-                                            maxPasswordAttempts: 3,
-                                            blockedPeriodDuration: 15)
+                try ApplicationServiceRegistry.authenticationService
+                    .createAuthenticationPolicy(sessionDuration: 60,
+                                                maxPasswordAttempts: 3,
+                                                blockedPeriodDuration: 15)
+            }
         } catch let e {
             FatalErrorHandler.showFatalError(log: "Failed to setup authentication policy", error: e)
         }
