@@ -24,11 +24,13 @@ public protocol Connection {
 public protocol Statement {
 
     func set(_ value: String, at index: Int) throws
+    func set(_ value: Data, at index: Int) throws
     func set(_ value: Int, at index: Int) throws
     func set(_ value: Double, at index: Int) throws
     func setNil(at index: Int) throws
 
     func set(_ value: String, forKey key: String) throws
+    func set(_ value: Data, forKey key: String) throws
     func set(_ value: Int, forKey key: String) throws
     func set(_ value: Double, forKey key: String) throws
     func setNil(forKey key: String) throws
@@ -42,8 +44,9 @@ public protocol ResultSet {
 
     func advanceToNextRow() throws -> Bool
     func string(at index: Int) -> String?
-    func int(at index: Int) -> Int
-    func double(at index: Int) -> Double
+    func int(at index: Int) -> Int?
+    func double(at index: Int) -> Double?
+    func data(at index: Int) -> Data?
 
 }
 

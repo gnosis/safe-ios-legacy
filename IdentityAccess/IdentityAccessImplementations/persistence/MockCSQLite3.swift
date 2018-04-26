@@ -107,6 +107,13 @@ class MockCSQLite3: CSQLite3 {
         return column_count_result
     }
 
+    var column_type_result: Int32 = 0
+    var column_type_in_pStmt: OpaquePointer?
+    override func sqlite3_column_type(_ pStmt: OpaquePointer!, _ iCol: Int32) -> Int32 {
+        column_type_in_pStmt = pStmt
+        return column_type_result
+    }
+
     var column_text_result: String?
     private var column_text_result_array: [Int8] = []
     override func sqlite3_column_text(_ pStmt: OpaquePointer!, _ iCol: Int32) -> UnsafePointer<UInt8>! {
@@ -114,6 +121,16 @@ class MockCSQLite3: CSQLite3 {
         column_text_result_array = result.cString(using: .utf8)!
         return column_text_result_array.withUnsafeBytes { bufferPtr -> UnsafePointer<UInt8> in
             bufferPtr.baseAddress!.bindMemory(to: UInt8.self, capacity: bufferPtr.count)
+        }
+    }
+
+    var column_blob_result: Data?
+    private var column_blob_result_data = Data()
+    override func sqlite3_column_blob(_ pStmt: OpaquePointer!, _ iCol: Int32) -> UnsafeRawPointer! {
+        guard let result = column_blob_result else { return nil }
+        column_blob_result_data = result
+        return column_blob_result_data.withUnsafeBytes { ptr -> UnsafeRawPointer in
+            UnsafeRawPointer(ptr)
         }
     }
 
@@ -158,6 +175,25 @@ class MockCSQLite3: CSQLite3 {
         bind_text_in_nByte = nByte
         bind_text_in_destructor = destructor
         return bind_text_result
+    }
+
+    var bind_blob_result: Int32 = 0
+    var bind_blob_in_pStmt: OpaquePointer?
+    var bind_blob_in_index: Int32?
+    var bind_blob_in_zValue: Data?
+    var bind_blob_in_nByte: Int32?
+    var bind_blob_in_destructor: ((UnsafeMutableRawPointer?) -> Void)?
+    override func sqlite3_bind_blob(_ pStmt: OpaquePointer!,
+                                    _ index: Int32,
+                                    _ zValue: UnsafeRawPointer!,
+                                    _ nByte: Int32,
+                                    _ destructor: (@convention(c) (UnsafeMutableRawPointer?) -> Swift.Void)!) -> Int32 {
+        bind_blob_in_pStmt = pStmt
+        bind_blob_in_index = index
+        bind_blob_in_zValue = Data(bytes: zValue, count: Int(nByte))
+        bind_blob_in_nByte = nByte
+        bind_blob_in_destructor = destructor
+        return bind_blob_result
     }
 
     var bind_double_result: Int32 = 0

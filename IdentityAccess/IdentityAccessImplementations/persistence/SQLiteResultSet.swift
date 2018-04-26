@@ -23,6 +23,7 @@ public class SQLiteResultSet: ResultSet {
 
     public func string(at index: Int) -> String? {
         assertIndex(index)
+        guard sqlite.sqlite3_column_type(stmt, Int32(index)) != CSQLite3.SQLITE_NULL else { return nil }
         guard let cString = sqlite.sqlite3_column_text(stmt, Int32(index)) else {
             return nil
         }
@@ -32,17 +33,27 @@ public class SQLiteResultSet: ResultSet {
         }
     }
 
+    public func data(at index: Int) -> Data? {
+        assertIndex(index)
+        guard sqlite.sqlite3_column_type(stmt, Int32(index)) != CSQLite3.SQLITE_NULL else { return nil }
+        guard let ptr = sqlite.sqlite3_column_blob(stmt, Int32(index)) else { return nil }
+        let bytesCount = sqlite.sqlite3_column_bytes(stmt, Int32(index))
+        return Data(bytes: ptr, count: Int(bytesCount))
+    }
+
     private func assertIndex(_ index: Int) {
         precondition((0..<columnCount).contains(index), "Index out of column count range")
     }
 
-    public func int(at index: Int) -> Int {
+    public func int(at index: Int) -> Int? {
         assertIndex(index)
+        guard sqlite.sqlite3_column_type(stmt, Int32(index)) != CSQLite3.SQLITE_NULL else { return nil }
         return Int(sqlite.sqlite3_column_int64(stmt, Int32(index)))
     }
 
-    public func double(at index: Int) -> Double {
+    public func double(at index: Int) -> Double? {
         assertIndex(index)
+        guard sqlite.sqlite3_column_type(stmt, Int32(index)) != CSQLite3.SQLITE_NULL else { return nil }
         return sqlite.sqlite3_column_double(stmt, Int32(index))
     }
 

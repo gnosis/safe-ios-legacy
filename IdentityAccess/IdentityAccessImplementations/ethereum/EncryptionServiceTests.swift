@@ -49,6 +49,10 @@ class EncryptionServiceTests: XCTestCase {
         XCTAssertNotNil(address.data)
         XCTAssertEqual(address.data.count, 20)
     }
+
+    func test_encryption() {
+        XCTAssertNotEqual(service.encrypted("text"), "text")
+    }
 }
 
 extension EncryptionServiceTests {

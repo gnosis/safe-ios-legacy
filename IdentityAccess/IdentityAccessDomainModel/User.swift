@@ -38,7 +38,7 @@ public class User: IdentifiableEntity<UserID> {
         self.password = password
     }
 
-    func attachSession(id: SessionID) {
+    public func attachSession(id: SessionID) {
         sessionID = id
     }
 

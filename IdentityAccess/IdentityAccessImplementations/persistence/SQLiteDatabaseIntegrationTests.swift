@@ -71,7 +71,7 @@ class SQLiteDatabaseIntegrationTests: XCTestCase {
         if let rs = try stmt2.execute() {
             var results = [Test]()
             while try rs.advanceToNextRow() {
-                results.append(Test(id: rs.int(at: 0), val: rs.string(at: 1) ?? "NULL"))
+                results.append(Test(id: rs.int(at: 0) ?? -1, val: rs.string(at: 1) ?? "NULL"))
             }
             XCTAssertEqual(results, [Test(id: 1, val: "test")])
         } else {

@@ -40,6 +40,7 @@ class DBSingleUserRepositoryTests: XCTestCase {
             "conn.prepare(\(DBSingleUserRepository.SQL.insertUser))",
             "stmt.set(\(userID.id), 1)",
             "stmt.set(\(user.password), 2)",
+            "stmt.setNil(3)",
             "stmt.execute()",
             "db.close()"]
         XCTAssertEqual(trace.log, expectedCalls, trace.diff(expectedCalls))
@@ -57,7 +58,7 @@ class DBSingleUserRepositoryTests: XCTestCase {
     }
 
     func test_primaryUser_databaseInteraction() {
-        db.resultSet = [[user.id.id, user.password]]
+        db.resultSet = [[user.id.id, user.password, nil]]
         _ = repository.primaryUser()
         let expectedCalls = [
             "db.connection()",
@@ -66,15 +67,19 @@ class DBSingleUserRepositoryTests: XCTestCase {
             "rs.advanceToNextRow()",
             "rs.string(0)",
             "rs.string(1)",
+            "rs.string(2)",
             "db.close()"]
         XCTAssertEqual(trace.log, expectedCalls, trace.diff(expectedCalls))
     }
 
-    func test_primaryUser_extractingValues() {
-        db.resultSet = [[user.id.id, user.password]]
+    func test_primaryUser_extractingValues() throws {
+        let sessionID = try SessionID()
+        user.attachSession(id: sessionID)
+        db.resultSet = [[user.id.id, user.password, user.sessionID?.id]]
         let primaryUser = repository.primaryUser()
         XCTAssertEqual(primaryUser, user)
         XCTAssertEqual(primaryUser?.password, user.password)
+        XCTAssertEqual(primaryUser?.sessionID, sessionID)
 
         db.resultSet = []
         XCTAssertNil(repository.primaryUser())
@@ -94,7 +99,7 @@ class DBSingleUserRepositoryTests: XCTestCase {
     }
 
     func test_findByPassword_databaseInteraction() {
-        db.resultSet = [[user.id.id, user.password]]
+        db.resultSet = [[user.id.id, user.password, nil]]
         _ = repository.user(encryptedPassword: user.password)
         let expectedCalls = [
             "db.connection()",
@@ -104,6 +109,7 @@ class DBSingleUserRepositoryTests: XCTestCase {
             "rs.advanceToNextRow()",
             "rs.string(0)",
             "rs.string(1)",
+            "rs.string(2)",
             "db.close()"]
         XCTAssertEqual(trace.log, expectedCalls, trace.diff(expectedCalls))
     }
@@ -229,6 +235,14 @@ class MockStatement: Statement {
         trace.append("stmt.setNil(\(key))")
     }
 
+    func set(_ value: Data, at index: Int) throws {
+        trace.append("stmt.set(\(value), \(index))")
+    }
+
+    func set(_ value: Data, forKey key: String) throws {
+        trace.append("stmt.set(\(value), \(index))")
+    }
+
     func execute() throws -> ResultSet? {
         trace.append("stmt.execute()")
         if let rs = resultSet {
@@ -262,14 +276,19 @@ class MockResultSet: ResultSet {
         return resultSet[currentRow][index] as? String
     }
 
-    func int(at index: Int) -> Int {
-        trace.append("rs.int(\(index))")
-        return resultSet[currentRow][index] as? Int ?? 0
+    public func data(at index: Int) -> Data? {
+        trace.append("rs.data(\(index))")
+        return resultSet[currentRow][index] as? Data
     }
 
-    func double(at index: Int) -> Double {
+    func int(at index: Int) -> Int? {
+        trace.append("rs.int(\(index))")
+        return resultSet[currentRow][index] as? Int
+    }
+
+    func double(at index: Int) -> Double? {
         trace.append("rs.double(\(index))")
-        return resultSet[currentRow][index] as? Double ?? 0
+        return resultSet[currentRow][index] as? Double
     }
 
 }

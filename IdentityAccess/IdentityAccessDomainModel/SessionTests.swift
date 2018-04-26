@@ -76,6 +76,12 @@ class SessionTests: XCTestCase {
         XCTAssertTrue(session.isActiveAt(Date(timeIntervalSinceNow: 2)))
     }
 
+    func test_codable() throws {
+        let data = try session.data()
+        let other = try Session(data: data)
+        XCTAssertEqual(other, session)
+    }
+
 }
 
 extension SessionTests {

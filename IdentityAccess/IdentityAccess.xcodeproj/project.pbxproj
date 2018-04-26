@@ -11,6 +11,9 @@
 		0A44F9C520908BBD00BB7101 /* DBSingleUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */; };
 		0A44F9CB20908BE400BB7101 /* DBSingleUserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */; };
 		0A44F9CD2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9CC2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift */; };
+		0A48A0722092003C00B704AD /* DBSingleGatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48A0712092003C00B704AD /* DBSingleGatekeeperRepository.swift */; };
+		0A48A0792092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48A0782092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift */; };
+		0A48A07B2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48A07A2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift */; };
 		0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */; };
 		0A537A93207CE74100921FB9 /* KeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A82207CE74000921FB9 /* KeyValueStore.swift */; };
 		0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A84207CE74000921FB9 /* SecureStore.swift */; };
@@ -313,6 +316,9 @@
 		0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepository.swift; sourceTree = "<group>"; };
 		0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepositoryTests.swift; sourceTree = "<group>"; };
 		0A44F9CC2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
+		0A48A0712092003C00B704AD /* DBSingleGatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleGatekeeperRepository.swift; sourceTree = "<group>"; };
+		0A48A0782092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleGatekeeperRepositoryTests.swift; sourceTree = "<group>"; };
+		0A48A07A2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleGatekeeperRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
 		0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537A7C207CE73F00921FB9 /* IdentityAccessDomainModel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityAccessDomainModel-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
@@ -750,6 +756,9 @@
 				0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */,
 				0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */,
 				0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */,
+				0A48A0712092003C00B704AD /* DBSingleGatekeeperRepository.swift */,
+				0A48A0782092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift */,
+				0A48A07A2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift */,
 				0AD8599E208F3B9B0084C0B9 /* Database.swift */,
 				0A666D3B208A07A90034FF66 /* SQLiteDatabase.swift */,
 				0AD85992208F39C00084C0B9 /* SQLiteConnection.swift */,
@@ -1174,6 +1183,7 @@
 				0A537B0F207CF2D600921FB9 /* LogFormatter.swift in Sources */,
 				0AD85995208F39CE0084C0B9 /* SQLiteStatement.swift in Sources */,
 				0AD85997208F39E70084C0B9 /* SQLiteResultSet.swift in Sources */,
+				0A48A0722092003C00B704AD /* DBSingleGatekeeperRepository.swift in Sources */,
 				0A537AE9207CF02C00921FB9 /* MockLogger.swift in Sources */,
 				0AD8598D208F39830084C0B9 /* MockFileManager.swift in Sources */,
 				0A537B19207CF2D600921FB9 /* BiometricService.swift in Sources */,
@@ -1191,6 +1201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A537BA8207CF93F00921FB9 /* EthereumAccountTests.swift in Sources */,
+				0A48A07B2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift in Sources */,
 				0A66598B208A403500A4C8CE /* SQLiteDatabaseTests.swift in Sources */,
 				0A44F9CB20908BE400BB7101 /* DBSingleUserRepositoryTests.swift in Sources */,
 				0A537BAB207CF96500921FB9 /* CrashlyticsLoggerTests.swift in Sources */,
@@ -1204,6 +1215,7 @@
 				0A44F9A9208F6F4500BB7101 /* CSQLite3ErrorTests.swift in Sources */,
 				0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */,
 				0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */,
+				0A48A0792092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift in Sources */,
 				0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */,
 				0AD859A1208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift in Sources */,
 				0A44F9CD2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift in Sources */,
