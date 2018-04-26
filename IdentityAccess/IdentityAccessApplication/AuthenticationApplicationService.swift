@@ -13,26 +13,31 @@ open class AuthenticationApplicationService {
     }
 
     private var gatekeeperRepository: SingleGatekeeperRepository { return DomainRegistry.gatekeeperRepository }
-    private var gatekeeper: Gatekeeper! { return gatekeeperRepository.gatekeeper() }
     private var clock: Clock { return ApplicationServiceRegistry.clock }
     private var identityService: IdentityService { return DomainRegistry.identityService }
     private var userRepository: SingleUserRepository { return DomainRegistry.userRepository }
     private var biometricService: BiometricAuthenticationService {
         return DomainRegistry.biometricAuthenticationService
     }
-    private var isAccessPossible: Bool { return gatekeeper.isAccessPossible(at: clock.currentTime) }
+    private var isAccessPossible: Bool {
+        guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return false }
+        return gatekeeper.isAccessPossible(at: clock.currentTime)
+    }
 
     public init() {}
 
     // MARK: - Queries
 
     open var blockedPeriodDuration: TimeInterval {
+        guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return 15 }
         return gatekeeper.policy.blockDuration
     }
     open var maxPasswordAttempts: Int {
+        guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return 5 }
         return gatekeeper.policy.maxFailedAttempts
     }
     open var sessionDuration: TimeInterval {
+        guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return 60 }
         return gatekeeper.policy.sessionDuration
     }
     open var isUserAuthenticated: Bool {
@@ -42,6 +47,7 @@ open class AuthenticationApplicationService {
         return userRepository.primaryUser() != nil
     }
     open var isAuthenticationBlocked: Bool {
+        guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return false }
         return !gatekeeper.isAccessPossible(at: clock.currentTime)
     }
 
@@ -94,16 +100,19 @@ open class AuthenticationApplicationService {
     }
 
     open func configureSession(_ duration: TimeInterval) throws {
+        guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return }
         try gatekeeper.changeSessionDuration(duration)
         try gatekeeperRepository.save(gatekeeper)
     }
 
     open func configureMaxPasswordAttempts(_ count: Int) throws {
+        guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return }
         try gatekeeper.changeMaxFailedAttempts(count)
         try gatekeeperRepository.save(gatekeeper)
     }
 
     open func configureBlockDuration(_ duration: TimeInterval) throws {
+        guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return }
         try gatekeeper.changeBlockDuration(duration)
         try gatekeeperRepository.save(gatekeeper)
     }
@@ -120,7 +129,7 @@ open class AuthenticationApplicationService {
         if let user = userRepository.primaryUser() {
             try userRepository.remove(user)
         }
-        if let gatekeeper = gatekeeper {
+        if let gatekeeper = gatekeeperRepository.gatekeeper() {
             gatekeeper.reset()
             try DomainRegistry.gatekeeperRepository.save(gatekeeper)
         }

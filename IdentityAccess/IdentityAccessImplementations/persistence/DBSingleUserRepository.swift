@@ -11,13 +11,14 @@ public class DBSingleUserRepository: SingleUserRepository {
         static let createTable = """
 CREATE TABLE IF NOT EXISTS tbl_user (
     user_id TEXT NOT NULL PRIMARY KEY,
-    password TEXT(100) NOT NULL
+    password TEXT(100) NOT NULL,
+    session_id TEXT
 );
 """
-        static let insertUser = "INSERT OR REPLACE INTO tbl_user VALUES (?, ?);"
+        static let insertUser = "INSERT OR REPLACE INTO tbl_user VALUES (?, ?, ?);"
         static let deleteUser = "DELETE FROM tbl_user WHERE user_id = ?;"
-        static let findPrimaryUser = "SELECT user_id, password FROM tbl_user LIMIT 1;"
-        static let findUserByPassword = "SELECT user_id, password FROM tbl_user WHERE password = ? LIMIT 1;"
+        static let findPrimaryUser = "SELECT user_id, password, session_id FROM tbl_user LIMIT 1;"
+        static let findUserByPassword = "SELECT user_id, password, session_id FROM tbl_user WHERE password = ? LIMIT 1;"
     }
 
     private let db: Database
@@ -39,6 +40,11 @@ CREATE TABLE IF NOT EXISTS tbl_user (
             let stmt = try conn.prepare(statement: SQL.insertUser)
             try stmt.set(user.id.id, at: 1)
             try stmt.set(user.password, at: 2)
+            if let id = user.sessionID {
+                try stmt.set(id.id, at: 3)
+            } else {
+                try stmt.setNil(at: 3)
+            }
             return stmt
         }
     }
@@ -69,7 +75,11 @@ CREATE TABLE IF NOT EXISTS tbl_user (
             let password = rs.string(at: 1) else {
                 return nil
         }
-        return try User(id: try UserID(id), password: password)
+        let user = try User(id: try UserID(id), password: password)
+        if let sessionID = rs.string(at: 2) {
+            user.attachSession(id: try SessionID(sessionID))
+        }
+        return user
     }
 
 }
