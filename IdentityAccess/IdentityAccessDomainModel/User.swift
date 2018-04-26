@@ -24,7 +24,7 @@ public class User: IdentifiableEntity<UserID> {
         return lhs.id == rhs.id
     }
 
-    init(id: UserID, password: String) throws {
+    public init(id: UserID, password: String) throws {
         super.init(id: id)
         try changePassword(old: "", new: password)
     }

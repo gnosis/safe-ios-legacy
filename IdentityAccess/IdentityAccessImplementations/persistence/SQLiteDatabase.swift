@@ -20,7 +20,7 @@ public class SQLiteDatabase: Database, Assertable {
     private let bundleIdentifier: String
     private var connections = [SQLiteConnection]()
 
-    public enum Error: String, Hashable, LocalizedError {
+    public enum Error: Hashable, LocalizedError {
         case applicationSupportDirNotFound
         case bundleIdentifierNotFound
         case databaseAlreadyExists
@@ -30,7 +30,7 @@ public class SQLiteDatabase: Database, Assertable {
         case failedToOpenDatabase
         case databaseBusy
         case connectionIsNotOpened
-        case invalidSQLStatement
+        case invalidSQLStatement(String)
         case attemptToExecuteFinalizedStatement
         case connectionIsAlreadyClosed
         case invalidConnection
@@ -44,10 +44,6 @@ public class SQLiteDatabase: Database, Assertable {
         case invalidStatementKeyValue
         case attemptToBindExecutedStatement
         case attemptToBindFinalizedStatement
-
-        public var errorDescription: String? {
-            return rawValue
-        }
     }
 
     public init(name: String, fileManager: FileManager, sqlite: CSQLite3, bundleId: String) {

@@ -46,3 +46,42 @@ public protocol ResultSet {
     func double(at index: Int) -> Double
 
 }
+
+public extension Database {
+
+    typealias CreateStatementClosure = (Connection) throws -> Statement
+
+    func executeUpdate(sql: String) throws {
+        try executeUpdate { conn in
+            try conn.prepare(statement: sql)
+        }
+    }
+
+    func executeUpdate(_ createStatement: CreateStatementClosure) throws {
+        let conn = try connection()
+        let stmt = try createStatement(conn)
+        try stmt.execute()
+        try close(conn)
+    }
+
+    func executeQuery<T>(sql: String, resultMap: (ResultSet) throws -> T?) -> T? {
+        return executeQuery(resultMap: resultMap) { conn in
+            try conn.prepare(statement: sql)
+        }
+    }
+
+    func executeQuery<T>(resultMap: (ResultSet) throws -> T?, _ createStatement: CreateStatementClosure) -> T? {
+        do {
+            let conn = try connection()
+            defer { try? close(conn) }
+            let stmt = try createStatement(conn)
+            if let rs = try stmt.execute(), let value = try resultMap(rs) {
+                return value
+            }
+        } catch let e {
+            preconditionFailure("Unexpected error: \(e)")
+        }
+        return nil
+    }
+
+}
