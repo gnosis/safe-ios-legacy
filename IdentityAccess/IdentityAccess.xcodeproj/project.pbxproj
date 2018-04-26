@@ -125,6 +125,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0A48A06D2091CBCA00B704AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B9CF3208DE6B9001F0CB2;
+			remoteInfo = RSBarcodes;
+		};
 		0A537AAD207CEA0100921FB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
@@ -678,6 +685,7 @@
 				0A57F707207E3D6900AF407D /* Result.framework */,
 				0A57F728207E4CF900AF407D /* CryptoSwift.framework */,
 				0A57F72A207E4CF900AF407D /* EthereumKit.framework */,
+				0A48A06E2091CBCA00B704AD /* RSBarcodes.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -984,6 +992,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0A48A06E2091CBCA00B704AD /* RSBarcodes.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RSBarcodes.framework;
+			remoteRef = 0A48A06D2091CBCA00B704AD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0A57F6F3207E397F00AF407D /* APIKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1366,7 +1381,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
