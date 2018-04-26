@@ -68,6 +68,8 @@
 		0AFEDEB22073C7BC002F5924 /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */; };
 		0AFEDEB32073C7BC002F5924 /* safeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AFFF3F7207F8AC60030200C /* MockIdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */; };
+		55071BBF209224FB00297D1C /* ReviewSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BBE209224FB00297D1C /* ReviewSafeViewController.swift */; };
+		55071BC12092251100297D1C /* ReviewSafeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BC02092251100297D1C /* ReviewSafeViewControllerTests.swift */; };
 		55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4A203DAE1D00AD0E1F /* Assets.swift */; };
 		55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */; };
 		55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D522040492200AD0E1F /* SetPasswordViewController.swift */; };
@@ -279,6 +281,8 @@
 		0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = safeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEDEB42073C80A002F5924 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIdentityApplicationService.swift; sourceTree = "<group>"; };
+		55071BBE209224FB00297D1C /* ReviewSafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSafeViewController.swift; sourceTree = "<group>"; };
+		55071BC02092251100297D1C /* ReviewSafeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSafeViewControllerTests.swift; sourceTree = "<group>"; };
 		55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerTests.swift; sourceTree = "<group>"; };
 		55147D4A203DAE1D00AD0E1F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sotryboards.swift; sourceTree = "<group>"; };
@@ -606,6 +610,8 @@
 				55FEBFB4207E14E4004099AA /* NewSafeFlowCoordinatorTests.swift */,
 				55FEBFAC207E0A66004099AA /* NewSafeViewController.swift */,
 				55FEBFB0207E0B67004099AA /* NewSafeViewControllerTests.swift */,
+				55071BBE209224FB00297D1C /* ReviewSafeViewController.swift */,
+				55071BC02092251100297D1C /* ReviewSafeViewControllerTests.swift */,
 				0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */,
 				55FEBFAE207E0AB0004099AA /* NewSafe.storyboard */,
 			);
@@ -915,6 +921,7 @@
 				0A0455F120484FD800088B5E /* OnboardingFlowCoordinator.swift in Sources */,
 				558FD80F20766BCD004F070E /* NewSafeFlowCoordinator.swift in Sources */,
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,
+				55071BBF209224FB00297D1C /* ReviewSafeViewController.swift in Sources */,
 				55ACFD9B2074E0BA000F54CC /* FlowCoordinator.swift in Sources */,
 				555DD6D2205144C900D1178A /* SetupSafeFlowCoordinator.swift in Sources */,
 				5575BD4E2090839A009CC020 /* PairWithBrowserExtensionFlowCoordinator.swift in Sources */,
@@ -953,6 +960,7 @@
 				558FD806207652E3004F070E /* SetupSafeOptionsViewControllerTests.swift in Sources */,
 				5575BD50209083CC009CC020 /* PairWithBrowserExtensionFlowCoordinatorTests.swift in Sources */,
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
+				55071BC12092251100297D1C /* ReviewSafeViewControllerTests.swift in Sources */,
 				555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */,
 				0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */,
 				0AA27843205FCE2800EBB9D1 /* TestSupportTests.swift in Sources */,

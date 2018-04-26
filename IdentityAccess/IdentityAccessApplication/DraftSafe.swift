@@ -19,6 +19,8 @@ public class DraftSafe {
         public static let currentDevice = ConfiguredAddresses(rawValue: 1 << 0)
         public static let browserExtension = ConfiguredAddresses(rawValue: 1 << 1)
         public static let paperWallet = ConfiguredAddresses(rawValue: 1 << 2)
+
+        public static let all: ConfiguredAddresses = [.currentDevice, .browserExtension, .paperWallet]
     }
 
     public var confirmedAddresses: ConfiguredAddresses
