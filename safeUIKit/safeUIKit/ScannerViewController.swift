@@ -43,7 +43,6 @@ final class ScannerViewController: UIViewController {
             (codeReaderVC as! RSCodeReaderViewController).barcodesHandler = barcodesHandler
         }
 
-        codeReaderVC.willMove(toParentViewController: self)
         addChildViewController(codeReaderVC)
         view.insertSubview(codeReaderVC.view, at: 0)
         codeReaderVC.didMove(toParentViewController: self)
@@ -73,7 +72,7 @@ final class ScannerViewController: UIViewController {
     }
 
     @IBAction func scanEnotherValidCode(_ sender: Any) {
-        // TODO: use enother valid code
+        // TODO: use enother valid code. Better to generate it each time.
         delegate?.didScan(validCode)
     }
 

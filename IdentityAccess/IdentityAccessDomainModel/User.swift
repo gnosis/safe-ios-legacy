@@ -30,11 +30,12 @@ public class User: IdentifiableEntity<UserID> {
     }
 
     func changePassword(old: String, new password: String) throws {
-        try assertArgument(!password.isEmpty, Error.emptyPassword)
-        try assertArgument(password.count >= 6, Error.passwordTooShort)
-        try assertArgument(password.count <= 100, Error.passwordTooLong)
-        try assertArgument(password.hasUppercaseLetter, Error.passwordMissingCapitalLetter)
-        try assertArgument(password.hasDecimalDigit, Error.passwordMissingDigit)
+        // FIXME: password is encrypted
+//        try assertArgument(!password.isEmpty, Error.emptyPassword)
+//        try assertArgument(password.count >= 6, Error.passwordTooShort)
+//        try assertArgument(password.count <= 100, Error.passwordTooLong)
+//        try assertArgument(password.hasUppercaseLetter, Error.passwordMissingCapitalLetter)
+//        try assertArgument(password.hasDecimalDigit, Error.passwordMissingDigit)
         self.password = password
     }
 
