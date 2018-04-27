@@ -33,7 +33,7 @@
                     </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yRE-kA-A0c">
-                    <rect key="frame" x="20" y="280.5" width="335" height="106"/>
+                    <rect key="frame" x="20" y="261.5" width="335" height="144"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKO-WK-yOT">
                             <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
@@ -42,15 +42,23 @@
                                 <action selector="debugScanValidCode:" destination="-1" eventType="touchUpInside" id="z0c-Du-jHf"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUa-GW-2fC">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fl-OC-60p">
                             <rect key="frame" x="0.0" y="38" width="335" height="30"/>
+                            <state key="normal" title="Scan Enother Valid Code"/>
+                            <connections>
+                                <action selector="debugScanValidCode:" destination="-1" eventType="touchUpInside" id="NZN-8F-I3Z"/>
+                                <action selector="scanEnotherValidCode:" destination="-1" eventType="touchUpInside" id="fTS-7k-e6G"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUa-GW-2fC">
+                            <rect key="frame" x="0.0" y="76" width="335" height="30"/>
                             <state key="normal" title="Scan Invalid Code"/>
                             <connections>
                                 <action selector="debugScanInvalidCode:" destination="-1" eventType="touchUpInside" id="Mei-hY-SGc"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2I-6H-qLn">
-                            <rect key="frame" x="0.0" y="76" width="335" height="30"/>
+                            <rect key="frame" x="0.0" y="114" width="335" height="30"/>
                             <state key="normal" title="Scan Two Valid Codes"/>
                             <connections>
                                 <action selector="debugScanTwoValidCodes:" destination="-1" eventType="touchUpInside" id="JBv-SU-HYw"/>

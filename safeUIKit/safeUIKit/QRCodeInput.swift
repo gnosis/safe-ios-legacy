@@ -86,10 +86,14 @@ extension QRCodeInput: UITextFieldDelegate {
 
 extension QRCodeInput: ScannerDelegate {
 
+    // function called from background thread
     func didScan(_ code: String) {
         if let result = qrCodeConverter?(code) {
-            text = result
-            qrCodeDelegate?.didScanValidCode()
+            DispatchQueue.main.async {
+                self.text = result
+                self.qrCodeDelegate?.didScanValidCode()
+            }
+
         }
     }
 
