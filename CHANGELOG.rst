@@ -2,8 +2,8 @@
 Changelog
 =========
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on `Keep a Changelog`_ 
+and this project adheres to `Semantic Versioning`_.
 
 Unreleased
 ==========
@@ -24,7 +24,7 @@ Changed
 - Dependency configuration is now done through Dependencies folder with git submodules and Library subproject.
 - PortAdapter changed to Implementations.
 
-0.1.0_ - 2018-04-05
+`0.1.0`_ - 2018-04-05
 ==================
 Added
 -----
@@ -32,3 +32,5 @@ Added
 - Unlocking app
 
 .. _0.1.0: https://github.com/gnosis/safe-ios/tree/0.1.0
+.. _Keep a Changelog: https://keepachangelog.com/en/1.0.0/
+.. _Semantic Versioning: https://semver.org/spec/v2.0.0.html
