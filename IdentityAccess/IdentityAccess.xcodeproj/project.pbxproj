@@ -14,7 +14,6 @@
 		0A48A0722092003C00B704AD /* DBSingleGatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48A0712092003C00B704AD /* DBSingleGatekeeperRepository.swift */; };
 		0A48A0792092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48A0782092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift */; };
 		0A48A07B2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48A07A2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift */; };
-		0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */; };
 		0A537A93207CE74100921FB9 /* KeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A82207CE74000921FB9 /* KeyValueStore.swift */; };
 		0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A84207CE74000921FB9 /* SecureStore.swift */; };
 		0A537A97207CE74100921FB9 /* EthereumAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A86207CE74000921FB9 /* EthereumAccount.swift */; };
@@ -322,7 +321,6 @@
 		0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537A7C207CE73F00921FB9 /* IdentityAccessDomainModel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityAccessDomainModel-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
-		0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		0A537A82207CE74000921FB9 /* KeyValueStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueStore.swift; sourceTree = "<group>"; };
 		0A537A84207CE74000921FB9 /* SecureStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureStore.swift; sourceTree = "<group>"; };
 		0A537A86207CE74000921FB9 /* EthereumAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EthereumAccount.swift; sourceTree = "<group>"; };
@@ -499,42 +497,106 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A537A65207CE5BC00921FB9 /* IdentityAccessDomainModel */ = {
+		0A48A07E20935A7E00B704AD /* User */ = {
 			isa = PBXGroup;
 			children = (
-				0A537A8C207CE74100921FB9 /* DomainTestCase.swift */,
-				0A537A87207CE74100921FB9 /* DomainRegistry.swift */,
-				0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */,
-				0A537A86207CE74000921FB9 /* EthereumAccount.swift */,
-				0A537A8D207CE74100921FB9 /* LoggableError.swift */,
+				0AFFF40520808A5D0030200C /* SingleUserRepository.swift */,
 				0AFFF40720808ABD0030200C /* User.swift */,
 				0AFFF40920808AE30030200C /* UserTests.swift */,
-				0A537A81207CE74000921FB9 /* UserDefaultKeys.swift */,
-				0AFFF41B2080BC900030200C /* IdentityService.swift */,
-				0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */,
-				0AFFF42920849EE90030200C /* Session.swift */,
-				0AFFF42320849EE10030200C /* SessionTests.swift */,
-				0AFFF4312084D4630030200C /* Gatekeeper.swift */,
-				0AFFF44C2084FE730030200C /* GatekeeperTests.swift */,
-				0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */,
-				0AFFF4332084D4DA0030200C /* AuthenticationPolicyTests.swift */,
-				0A537AA2207CE95900921FB9 /* Interfaces */,
-				0A537AB2207CEA3900921FB9 /* XcodeBuildSupport */,
 			);
-			path = IdentityAccessDomainModel;
+			path = User;
 			sourceTree = "<group>";
 		};
-		0A537AA2207CE95900921FB9 /* Interfaces */ = {
+		0A48A08420935A9000B704AD /* Gatekeeper */ = {
+			isa = PBXGroup;
+			children = (
+				0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */,
+				0AFFF4332084D4DA0030200C /* AuthenticationPolicyTests.swift */,
+				0AFFF4312084D4630030200C /* Gatekeeper.swift */,
+				0AFFF44C2084FE730030200C /* GatekeeperTests.swift */,
+				0AFFF42920849EE90030200C /* Session.swift */,
+				0AFFF42320849EE10030200C /* SessionTests.swift */,
+				0AFFF42B2084BBA30030200C /* SingleGatekeeperRepository.swift */,
+			);
+			path = Gatekeeper;
+			sourceTree = "<group>";
+		};
+		0A48A08520935ABC00B704AD /* IdentityService */ = {
 			isa = PBXGroup;
 			children = (
 				0A537A89207CE74100921FB9 /* BiometricAuthenticationService.swift */,
-				0A537A8A207CE74100921FB9 /* EncryptionService.swift */,
+				0AFFF41B2080BC900030200C /* IdentityService.swift */,
+				0AFFF41D2080BCB00030200C /* IdentityServiceTests.swift */,
+			);
+			path = IdentityService;
+			sourceTree = "<group>";
+		};
+		0A48A08620935AFE00B704AD /* Ethereum */ = {
+			isa = PBXGroup;
+			children = (
 				0A537A82207CE74000921FB9 /* KeyValueStore.swift */,
 				0A537A84207CE74000921FB9 /* SecureStore.swift */,
-				0AFFF40520808A5D0030200C /* SingleUserRepository.swift */,
-				0AFFF42B2084BBA30030200C /* SingleGatekeeperRepository.swift */,
+				0A537A86207CE74000921FB9 /* EthereumAccount.swift */,
+				0A537A8A207CE74100921FB9 /* EncryptionService.swift */,
 			);
-			path = Interfaces;
+			path = Ethereum;
+			sourceTree = "<group>";
+		};
+		0A48A08720935BA000B704AD /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				0A666D42208A0E0A0034FF66 /* CSQLite3.swift */,
+				0A44F9A8208F6F4500BB7101 /* CSQLite3ErrorTests.swift */,
+				0A666D3B208A07A90034FF66 /* SQLiteDatabase.swift */,
+				0AD85992208F39C00084C0B9 /* SQLiteConnection.swift */,
+				0AD85994208F39CE0084C0B9 /* SQLiteStatement.swift */,
+				0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */,
+				0A666D3F208A07C90034FF66 /* SQLiteDatabaseTests.swift */,
+				0AD859A0208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift */,
+				0AD8598C208F39830084C0B9 /* MockFileManager.swift */,
+				0A665986208A3EA700A4C8CE /* MockCSQLite3.swift */,
+			);
+			path = SQLite;
+			sourceTree = "<group>";
+		};
+		0A48A08820935BBC00B704AD /* SingleGatekeeperRepository */ = {
+			isa = PBXGroup;
+			children = (
+				0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */,
+				0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */,
+				0A48A0712092003C00B704AD /* DBSingleGatekeeperRepository.swift */,
+				0A48A0782092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift */,
+				0A48A07A2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift */,
+			);
+			path = SingleGatekeeperRepository;
+			sourceTree = "<group>";
+		};
+		0A48A08920935BC900B704AD /* SingleUserRepository */ = {
+			isa = PBXGroup;
+			children = (
+				0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */,
+				0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */,
+				0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */,
+				0A44F9CC2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift */,
+				0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */,
+			);
+			path = SingleUserRepository;
+			sourceTree = "<group>";
+		};
+		0A537A65207CE5BC00921FB9 /* IdentityAccessDomainModel */ = {
+			isa = PBXGroup;
+			children = (
+				0A537A87207CE74100921FB9 /* DomainRegistry.swift */,
+				0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */,
+				0A537A8C207CE74100921FB9 /* DomainTestCase.swift */,
+				0A537A8D207CE74100921FB9 /* LoggableError.swift */,
+				0A48A08620935AFE00B704AD /* Ethereum */,
+				0A48A08420935A9000B704AD /* Gatekeeper */,
+				0A48A08520935ABC00B704AD /* IdentityService */,
+				0A48A07E20935A7E00B704AD /* User */,
+				0A537AB2207CEA3900921FB9 /* XcodeBuildSupport */,
+			);
+			path = IdentityAccessDomainModel;
 			sourceTree = "<group>";
 		};
 		0A537AB2207CEA3900921FB9 /* XcodeBuildSupport */ = {
@@ -749,27 +811,10 @@
 		0AFFF40B20808BEA0030200C /* persistence */ = {
 			isa = PBXGroup;
 			children = (
-				0AFFF40F20808C160030200C /* InMemoryUserRepository.swift */,
-				0AFFF40C20808C040030200C /* InMemoryUserRepositoryTests.swift */,
-				0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */,
-				0A44F9CC2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift */,
-				0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */,
-				0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */,
-				0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */,
-				0A48A0712092003C00B704AD /* DBSingleGatekeeperRepository.swift */,
-				0A48A0782092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift */,
-				0A48A07A2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift */,
+				0A48A08920935BC900B704AD /* SingleUserRepository */,
+				0A48A08820935BBC00B704AD /* SingleGatekeeperRepository */,
 				0AD8599E208F3B9B0084C0B9 /* Database.swift */,
-				0A666D3B208A07A90034FF66 /* SQLiteDatabase.swift */,
-				0AD85992208F39C00084C0B9 /* SQLiteConnection.swift */,
-				0AD85994208F39CE0084C0B9 /* SQLiteStatement.swift */,
-				0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */,
-				0A666D3F208A07C90034FF66 /* SQLiteDatabaseTests.swift */,
-				0AD859A0208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift */,
-				0AD8598C208F39830084C0B9 /* MockFileManager.swift */,
-				0A665986208A3EA700A4C8CE /* MockCSQLite3.swift */,
-				0A666D42208A0E0A0034FF66 /* CSQLite3.swift */,
-				0A44F9A8208F6F4500BB7101 /* CSQLite3ErrorTests.swift */,
+				0A48A08720935BA000B704AD /* SQLite */,
 			);
 			path = persistence;
 			sourceTree = "<group>";
@@ -1134,7 +1179,6 @@
 				0A537A95207CE74100921FB9 /* SecureStore.swift in Sources */,
 				0AFFF42C2084BBA30030200C /* SingleGatekeeperRepository.swift in Sources */,
 				0A537A98207CE74100921FB9 /* DomainRegistry.swift in Sources */,
-				0A537A92207CE74100921FB9 /* UserDefaultKeys.swift in Sources */,
 				0AFFF42A20849EEA0030200C /* Session.swift in Sources */,
 				0AFFF4322084D4630030200C /* Gatekeeper.swift in Sources */,
 				0AFFF40820808ABD0030200C /* User.swift in Sources */,
