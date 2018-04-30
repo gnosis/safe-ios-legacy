@@ -34,11 +34,11 @@ Repositories provide access to collections of domain objects.
 
 From high-level perspective, a subdomain implementation woudl involve the following modules (libraries and frameworks):
 
-.. image:: png/Typical Architecture_High_Level.png
+.. image:: png/TypicalArchitecture_High_Level.png
 
 The more detailed class diagram below shows typical classes used in the architecture.
 
-.. image:: png/Model__Typical Architecture Parts_4.png
+.. image:: png/Model__TypicalArchitectureParts_4.png
 
 Current Architecture
 --------------------
