@@ -72,7 +72,6 @@ final class ScannerViewController: UIViewController {
     }
 
     @IBAction func scanEnotherValidCode(_ sender: Any) {
-        // TODO: use enother valid code. Better to generate it each time.
         delegate?.didScan(validCode)
     }
 
