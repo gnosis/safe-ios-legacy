@@ -32,7 +32,40 @@ Value Objects are types that hold value but not identity, they are replacable wi
 Domain Services are used to implement complex operations involving many entities or complex busines processes; they are stateless.
 Repositories provide access to collections of domain objects.
 
+From high-level perspective, a subdomain implementation woudl involve the following modules (libraries and frameworks):
+
+.. image:: png/Typical Architecture_High_Level.png
+
+The more detailed class diagram below shows typical classes used in the architecture.
+
+.. image:: png/Model__Typical Architecture Parts_4.png
+
+Current Architecture
+--------------------
+
 The figure below shows safe's current archtiecture. Libraries, frameworks and iOS app are shown in hexagons. Further lines detail important class relationships.
 
 .. image:: png/CurrentArchitecture.png
-   :width: 800
+
+The app's module dependency graph looks like this:
+
+.. image:: png/Model__Dependencies_1.png
+
+The testing targets also depend on various modules. Here's the graph for IdentityAccess project tests:
+
+.. image:: png/Model__IdentityAccessTests_3.png
+
+And the one for safe and safeUIKit tests:
+
+.. image:: png/Model__SafeTests_2.png
+
+Future Architecture
+-------------------
+
+In the following release we will add 2 more contexts for 2 subomains: Ethereum and MultisigWallet. Ethereum would be responsible for all the tasks related to blockchain, while MultisigWallet will be responsible for wallet application logic.
+
+The figure below shows future components.
+
+.. image:: png/FutureArchitecture.png
+
+
