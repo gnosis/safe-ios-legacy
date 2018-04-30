@@ -8,13 +8,13 @@ The architecture follows a hexagonal high-level architecture pattern. Currently,
 * safeUIKit - components used in the app.
 * IdentityAccess - user and authentication related components.
 
-    - IdentityAccessApplications - implementations of use-cases using domain model objects
-    - IdentityAccessDomainModel - domain model objects. All business logic lives here.
-    - IdentityAccessImplementations - implementations of external services and repositories of domain model and application modules.
+  - IdentityAccessApplications - implementations of use-cases using domain model objects
+  - IdentityAccessDomainModel - domain model objects. All business logic lives here.
+  - IdentityAccessImplementations - implementations of external services and repositories of domain model and application modules.
 
 * Common - common code.
 
-    - CommonTestSupport - common code used in tests.
+  - CommonTestSupport - common code used in tests.
 
 Architectural Types
 -------------------
@@ -34,5 +34,5 @@ Repositories provide access to collections of domain objects.
 
 The figure below shows safe's current archtiecture. Libraries, frameworks and iOS app are shown in hexagons. Further lines detail important class relationships.
 
-.. image:: png/Current Architecture.png
+.. image:: png/CurrentArchitecture.png
    :width: 800
