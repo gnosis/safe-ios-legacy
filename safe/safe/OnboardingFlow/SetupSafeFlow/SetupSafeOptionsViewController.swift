@@ -11,6 +11,12 @@ protocol SetupSafeOptionsDelegate: class {
 
 class SetupSafeOptionsViewController: UIViewController {
 
+    struct Strings {
+        static let header = NSLocalizedString("onboarding.setup_safe.info", comment: "Set up safe options screen title")
+        static let newSafe = NSLocalizedString("onboarding.setup_safe.new_safe", comment: "New safe button")
+        static let restoreSafe = NSLocalizedString("onboarding.setup_safe.restore", comment: "Restore safe button")
+    }
+
     @IBOutlet weak var headerLabel: H1Label!
     @IBOutlet weak var newSafeButton: BigButton!
     @IBOutlet weak var restoreSafeButton: BigButton!
@@ -29,7 +35,9 @@ class SetupSafeOptionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerLabel.text = NSLocalizedString("onboarding.setup_safe.info", comment: "Set up safe screen title")
+        headerLabel.text = Strings.header
+        newSafeButton.setTitle(Strings.newSafe, for: .normal)
+        restoreSafeButton.setTitle(Strings.restoreSafe, for: .normal)
     }
 
 }
