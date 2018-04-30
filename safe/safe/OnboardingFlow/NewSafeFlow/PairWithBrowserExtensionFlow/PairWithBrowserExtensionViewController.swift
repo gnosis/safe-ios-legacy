@@ -59,7 +59,6 @@ extension PairWithBrowserExtensionViewController: QRCodeInputDelegate {
         present(controller, animated: true)
     }
 
-    // TODO: Test
     func presentCameraRequiredAlert(_ alert: UIAlertController) {
         present(alert, animated: true)
     }

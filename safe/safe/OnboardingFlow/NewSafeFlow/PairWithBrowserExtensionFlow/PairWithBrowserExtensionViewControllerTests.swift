@@ -65,6 +65,13 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
         XCTAssertFalse(controller.presentedViewController === presentedController)
     }
 
+    func test_invalidCode_presentsAlert() {
+        createWindow(controller)
+        let presentedController = UIAlertController(title: "some", message: "ok", preferredStyle: .alert)
+        controller.presentCameraRequiredAlert(presentedController)
+        XCTAssertTrue(controller.presentedViewController === presentedController)
+    }
+
     func test_finish_whenNoAddress_thenLogsError() {
         controller.finish(self)
         XCTAssertFalse(delegate.paired)
