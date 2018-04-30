@@ -12,7 +12,8 @@ end
 
 # parses .strings file and returns array of StringLocalizations
 def localizations(file)
-    contents = File.open(file, 'rb:UTF-8') { |f| f.read }
+    puts "Parsing file #{file}"
+    contents = File.read(file, encoding: 'UTF-8')
     contents.scan(/\/\* (.*?) \*\/\n"(.*?)" = "(.*?)";/m).map { |comment, key, value|
         localization = StringLoclaization.new
         localization.comment = comment

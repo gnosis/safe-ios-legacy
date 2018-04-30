@@ -28,6 +28,7 @@ class NewSafeViewControllerTests: SafeTestCase {
         XCTAssertNotNil(controller.browserExtensionButton)
         XCTAssertNotNil(controller.paperWalletButton)
         XCTAssertFalse(controller.thisDeviceButton.isEnabled)
+        XCTAssertFalse(controller.nextButton.isEnabled)
     }
 
     func test_setupPaperWallet_callsDelegate() {
@@ -61,6 +62,21 @@ class NewSafeViewControllerTests: SafeTestCase {
         assertButtonCheckmarks(.selected, .selected, .selected)
     }
 
+    func test_viewWillAppear_whenAllDraftSafeConfirmationsAreSet_thenNextButtonIsEnabled() {
+        let draftSafe = try! identityService.getOrCreateDraftSafe()
+        controller.viewWillAppear(false)
+        XCTAssertFalse(controller.nextButton.isEnabled)
+        identityService.confirmPaperWallet(draftSafe: draftSafe)
+        identityService.confirmBrowserExtension(draftSafe: draftSafe, address: "test_address")
+        controller.viewWillAppear(false)
+        XCTAssertTrue(controller.nextButton.isEnabled)
+    }
+
+    func test_navigateNext_callsDelegate() {
+        controller.navigateNext(self)
+        XCTAssertTrue(delegate.nextSelected)
+    }
+
 }
 
 extension NewSafeViewControllerTests {
@@ -79,6 +95,7 @@ class MockNewSafeDelegate: NewSafeDelegate {
 
     var hasSelectedPaperWalletSetup = false
     var hasSelectedBrowserExtensionSetup = false
+    var nextSelected = false
 
     func didSelectPaperWalletSetup() {
         hasSelectedPaperWalletSetup = true
@@ -86,6 +103,10 @@ class MockNewSafeDelegate: NewSafeDelegate {
 
     func didSelectBrowserExtensionSetup() {
         hasSelectedBrowserExtensionSetup = true
+    }
+
+    func didSelectNext() {
+        nextSelected = true
     }
 
 }

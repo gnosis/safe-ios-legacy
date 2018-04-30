@@ -64,7 +64,11 @@
                         <viewLayoutGuide key="safeArea" id="lwB-8g-DNf"/>
                     </view>
                     <navigationItem key="navigationItem" id="icv-Tu-4T5">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" id="aPw-Qg-l8a"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" id="aPw-Qg-l8a">
+                            <connections>
+                                <action selector="navigateNext:" destination="oT1-O9-HET" id="Lt5-M7-ZO6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="browserExtensionButton" destination="uZP-2s-l1J" id="t09-nA-B2M"/>

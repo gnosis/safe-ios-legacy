@@ -11,9 +11,9 @@ extension BiometryType {
 
     var localizedDescription: String {
         switch self {
-        case .touchID: return NSLocalizedString("biometry.touchID", comment: "Touch ID")
-        case .faceID: return NSLocalizedString("biometry.faceID", comment: "Face ID name")
-        case .none: return NSLocalizedString("biometry.none", comment: "Unrecognized biometry type")
+        case .touchID: return LocalizedString("biometry.touchID", comment: "Touch ID")
+        case .faceID: return LocalizedString("biometry.faceID", comment: "Face ID name")
+        case .none: return LocalizedString("biometry.none", comment: "Unrecognized biometry type")
         }
     }
 
@@ -27,11 +27,11 @@ public final class BiometricService: BiometricAuthenticationService {
 
     private let context: LAContext
 
-    private struct LocalizedString {
-        static let activate = NSLocalizedString("biometry.activation.reason",
-                                                comment: "Reason to activate Touch ID or Face ID.")
-        static let unlock = NSLocalizedString("biometry.authentication.reason",
-                                              comment: "Description of unlock with Touch ID.")
+    private struct Strings {
+        static let activate = LocalizedString("biometry.activation.reason",
+                                              comment: "Reason to activate Touch ID or Face ID.")
+        static let unlock = LocalizedString("biometry.authentication.reason",
+                                            comment: "Description of unlock with Touch ID.")
     }
 
     public init(localAuthenticationContext: LAContext = LAContext()) {
@@ -43,7 +43,7 @@ public final class BiometricService: BiometricAuthenticationService {
     }
 
     public var biometryType: BiometryType {
-       if #available(iOS 11.0, *) {
+        if #available(iOS 11.0, *) {
             guard isAuthenticationAvailable else { return .none }
             // biometryType available from iOS 11.0
             switch context.biometryType {
@@ -54,17 +54,17 @@ public final class BiometricService: BiometricAuthenticationService {
                                                         error: BiometricServiceError.unexpectedBiometryType)
                 return .none
             }
-       } else {
+        } else {
             return isAuthenticationAvailable ? .touchID : .none
         }
     }
 
     public func activate() throws {
-        requestBiometry(reason: String(format: LocalizedString.activate, biometryType.localizedDescription))
+        requestBiometry(reason: String(format: Strings.activate, biometryType.localizedDescription))
     }
 
     public func authenticate() -> Bool {
-        return requestBiometry(reason: String(format: LocalizedString.unlock, biometryType.localizedDescription))
+        return requestBiometry(reason: String(format: Strings.unlock, biometryType.localizedDescription))
     }
 
     @discardableResult

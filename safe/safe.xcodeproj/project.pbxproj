@@ -13,6 +13,9 @@
 		0A0455F7204851B100088B5E /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */; };
 		0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */; };
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
+		0A0C86FE2097461700471885 /* safeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* safeUIKit.strings */; };
+		0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
+		0A0C873F209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A34BC60207B808800636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC5F207B808800636560 /* libCommonTestSupport.a */; };
 		0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527324205BCCF4004A5F9A /* CountdownLabel.swift */; };
 		0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527326205BD364004A5F9A /* CountdownLabelTests.swift */; };
@@ -68,6 +71,8 @@
 		0AFEDEB22073C7BC002F5924 /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */; };
 		0AFEDEB32073C7BC002F5924 /* safeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AFFF3F7207F8AC60030200C /* MockIdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */; };
+		55071BBF209224FB00297D1C /* ReviewSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BBE209224FB00297D1C /* ReviewSafeViewController.swift */; };
+		55071BC12092251100297D1C /* ReviewSafeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BC02092251100297D1C /* ReviewSafeViewControllerTests.swift */; };
 		55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4A203DAE1D00AD0E1F /* Assets.swift */; };
 		55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */; };
 		55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D522040492200AD0E1F /* SetPasswordViewController.swift */; };
@@ -227,6 +232,8 @@
 		0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A0C86FD2097461700471885 /* safeUIKit.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = safeUIKit.strings; sourceTree = "<group>"; };
+		0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IdentityAccessImplementationsResources.bundle; sourceTree = "<group>"; };
 		0A34BC5F207B808800636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapterTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A527324205BCCF4004A5F9A /* CountdownLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
@@ -279,6 +286,8 @@
 		0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = safeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEDEB42073C80A002F5924 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIdentityApplicationService.swift; sourceTree = "<group>"; };
+		55071BBE209224FB00297D1C /* ReviewSafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSafeViewController.swift; sourceTree = "<group>"; };
+		55071BC02092251100297D1C /* ReviewSafeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSafeViewControllerTests.swift; sourceTree = "<group>"; };
 		55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerTests.swift; sourceTree = "<group>"; };
 		55147D4A203DAE1D00AD0E1F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sotryboards.swift; sourceTree = "<group>"; };
@@ -500,6 +509,7 @@
 		5540A4E2203C3054009C9BE3 = {
 			isa = PBXGroup;
 			children = (
+				0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */,
 				0ABCA964207E560500E2C193 /* Library.xcodeproj */,
 				0AFEDEB62073C846002F5924 /* config */,
 				55D6C2F72045C38D0026BC72 /* TestTools */,
@@ -548,6 +558,7 @@
 		5540A50D203C3054009C9BE3 /* safeUITests */ = {
 			isa = PBXGroup;
 			children = (
+				0A0C86FD2097461700471885 /* safeUIKit.strings */,
 				0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */,
 				0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */,
 				0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */,
@@ -606,6 +617,8 @@
 				55FEBFB4207E14E4004099AA /* NewSafeFlowCoordinatorTests.swift */,
 				55FEBFAC207E0A66004099AA /* NewSafeViewController.swift */,
 				55FEBFB0207E0B67004099AA /* NewSafeViewControllerTests.swift */,
+				55071BBE209224FB00297D1C /* ReviewSafeViewController.swift */,
+				55071BC02092251100297D1C /* ReviewSafeViewControllerTests.swift */,
 				0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */,
 				55FEBFAE207E0AB0004099AA /* NewSafe.storyboard */,
 			);
@@ -651,6 +664,7 @@
 				5540A4E7203C3054009C9BE3 /* Sources */,
 				5540A4E8203C3054009C9BE3 /* Frameworks */,
 				0A53AD5020598A0600D713AD /* Localize */,
+				0A0C873C2097526C00471885 /* Copy IdentityAccessImplementationsResources */,
 				5540A4E9203C3054009C9BE3 /* Resources */,
 				5554D7B820455B7800672DA8 /* Embed Frameworks */,
 				5540A520203C6077009C9BE3 /* Fabric */,
@@ -693,6 +707,7 @@
 			buildPhases = (
 				5540A506203C3054009C9BE3 /* Sources */,
 				5540A507203C3054009C9BE3 /* Frameworks */,
+				0A0C86FC2097455F00471885 /* Copy safeUIKit Localizations */,
 				5540A508203C3054009C9BE3 /* Resources */,
 			);
 			buildRules = (
@@ -805,6 +820,7 @@
 				5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
 				0A7AE8C1205285D00044D5DD /* AppFlow.storyboard in Resources */,
+				0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,
 				55147D552040493C00AD0E1F /* MasterPassword.storyboard in Resources */,
 				55FEBFAF207E0AB0004099AA /* NewSafe.storyboard in Resources */,
 			);
@@ -821,6 +837,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0C873F209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,
+				0A0C86FE2097461700471885 /* safeUIKit.strings in Resources */,
 				0AA27835205FC60100EBB9D1 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -828,6 +846,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0A0C86FC2097455F00471885 /* Copy safeUIKit Localizations */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../safeUIKit/safeUIKit/en.lproj/Localizable.strings",
+			);
+			name = "Copy safeUIKit Localizations";
+			outputPaths = (
+				"$(SRCROOT)/$(PRODUCT_NAME)/safeUIKit.strings",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp ${SCRIPT_INPUT_FILE_0} ${SCRIPT_OUTPUT_FILE_0}";
+			showEnvVarsInLog = 0;
+		};
+		0A0C873C2097526C00471885 /* Copy IdentityAccessImplementationsResources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/IdentityAccessImplementationsResources.bundle",
+			);
+			name = "Copy IdentityAccessImplementationsResources";
+			outputPaths = (
+				"$(SRCROOT)/IdentityAccessImplementationsResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -ex\nrsync -r ${SCRIPT_INPUT_FILE_0}/ ${SCRIPT_OUTPUT_FILE_0}\n";
+			showEnvVarsInLog = 0;
+		};
 		0A53AD5020598A0600D713AD /* Localize */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -915,6 +967,7 @@
 				0A0455F120484FD800088B5E /* OnboardingFlowCoordinator.swift in Sources */,
 				558FD80F20766BCD004F070E /* NewSafeFlowCoordinator.swift in Sources */,
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,
+				55071BBF209224FB00297D1C /* ReviewSafeViewController.swift in Sources */,
 				55ACFD9B2074E0BA000F54CC /* FlowCoordinator.swift in Sources */,
 				555DD6D2205144C900D1178A /* SetupSafeFlowCoordinator.swift in Sources */,
 				5575BD4E2090839A009CC020 /* PairWithBrowserExtensionFlowCoordinator.swift in Sources */,
@@ -953,6 +1006,7 @@
 				558FD806207652E3004F070E /* SetupSafeOptionsViewControllerTests.swift in Sources */,
 				5575BD50209083CC009CC020 /* PairWithBrowserExtensionFlowCoordinatorTests.swift in Sources */,
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
+				55071BC12092251100297D1C /* ReviewSafeViewControllerTests.swift in Sources */,
 				555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */,
 				0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */,
 				0AA27843205FCE2800EBB9D1 /* TestSupportTests.swift in Sources */,

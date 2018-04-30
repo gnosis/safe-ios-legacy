@@ -9,6 +9,7 @@ import IdentityAccessApplication
 protocol NewSafeDelegate: class {
     func didSelectPaperWalletSetup()
     func didSelectBrowserExtensionSetup()
+    func didSelectNext()
 }
 
 class NewSafeViewController: UIViewController {
@@ -39,6 +40,10 @@ class NewSafeViewController: UIViewController {
         return controller
     }
 
+    @IBAction func navigateNext(_ sender: Any) {
+        delegate?.didSelectNext()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         guard draftSafe != nil else {
@@ -61,6 +66,7 @@ class NewSafeViewController: UIViewController {
             draftSafe.confirmedAddresses.contains(.paperWallet) ? .selected : .normal
         browserExtensionButton.checkmarkStatus =
             draftSafe.confirmedAddresses.contains(.browserExtension) ? .selected : .normal
+        nextButton.isEnabled = draftSafe.confirmedAddresses == .all
     }
 
     @IBAction func setupPaperWallet(_ sender: Any) {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0C87112097488300471885 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C87132097488300471885 /* Localizable.strings */; };
+		0A0C871920974B6900471885 /* LocalizedString.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0C871820974B6900471885 /* LocalizedString.swift.swift */; };
 		0A44F9A9208F6F4500BB7101 /* CSQLite3ErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9A8208F6F4500BB7101 /* CSQLite3ErrorTests.swift */; };
 		0A44F9C520908BBD00BB7101 /* DBSingleUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */; };
 		0A44F9CB20908BE400BB7101 /* DBSingleUserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */; };
@@ -127,6 +129,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0A0C871620974B1B00471885 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A0C8702209747E100471885;
+			remoteInfo = IdentityAccessImplementationsResources;
+		};
 		0A48A06D2091CBCA00B704AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
@@ -237,15 +246,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A537ACB207CEDAE00921FB9 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0A537BA3207CF91400921FB9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -311,6 +311,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A0C8703209747E100471885 /* IdentityAccessImplementationsResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessImplementationsResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A0C8705209747E200471885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A0C87122097488300471885 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A0C871820974B6900471885 /* LocalizedString.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift.swift; sourceTree = "<group>"; };
 		0A44F9A8208F6F4500BB7101 /* CSQLite3ErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSQLite3ErrorTests.swift; sourceTree = "<group>"; };
 		0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepository.swift; sourceTree = "<group>"; };
 		0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepositoryTests.swift; sourceTree = "<group>"; };
@@ -497,6 +501,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A0C8704209747E200471885 /* IdentityAccessImplementationsResources */ = {
+			isa = PBXGroup;
+			children = (
+				0A0C8705209747E200471885 /* Info.plist */,
+			);
+			path = IdentityAccessImplementationsResources;
+			sourceTree = "<group>";
+		};
 		0A48A07E20935A7E00B704AD /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +631,7 @@
 				0A537AF1207CF2D600921FB9 /* logger */,
 				0A537AFB207CF2D600921FB9 /* secureStore */,
 				0A537ADD207CEE1600921FB9 /* XcodeBuildSupport */,
+				0A0C87132097488300471885 /* Localizable.strings */,
 			);
 			path = IdentityAccessImplementations;
 			sourceTree = "<group>";
@@ -674,6 +687,7 @@
 			isa = PBXGroup;
 			children = (
 				0A537B03207CF2D600921FB9 /* BiometricService.swift */,
+				0A0C871820974B6900471885 /* LocalizedString.swift.swift */,
 				0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */,
 				0A537AD8207CEE1100921FB9 /* MockBiometricService.swift */,
 			);
@@ -776,6 +790,7 @@
 				0A537A65207CE5BC00921FB9 /* IdentityAccessDomainModel */,
 				0A537ACE207CEDAE00921FB9 /* IdentityAccessImplementations */,
 				0A537BB5207CF9B400921FB9 /* IdentityAccessIntegration */,
+				0A0C8704209747E200471885 /* IdentityAccessImplementationsResources */,
 				0AF281982074C18B00D3843D /* Products */,
 				0AF281D32074C21B00D3843D /* Frameworks */,
 			);
@@ -792,6 +807,7 @@
 				0A537BCA207CF9CD00921FB9 /* IdentityAccessIntegrationTests.xctest */,
 				0A537BE1207CFADE00921FB9 /* libIdentityAccessApplication.a */,
 				0A537BFE207CFB9200921FB9 /* IdentityAccessApplicationTests.xctest */,
+				0A0C8703209747E100471885 /* IdentityAccessImplementationsResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -822,6 +838,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0A0C8702209747E100471885 /* IdentityAccessImplementationsResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A0C870E209747E200471885 /* Build configuration list for PBXNativeTarget "IdentityAccessImplementationsResources" */;
+			buildPhases = (
+				0A0C8701209747E100471885 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IdentityAccessImplementationsResources;
+			productName = IdentityAccessImplementationsResources;
+			productReference = 0A0C8703209747E100471885 /* IdentityAccessImplementationsResources.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		0A537A63207CE5BC00921FB9 /* IdentityAccessDomainModel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A537A77207CE5BC00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessDomainModel" */;
@@ -865,13 +896,14 @@
 			buildConfigurationList = 0A537AD1207CEDAE00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessImplementations" */;
 			buildPhases = (
 				0A537C22207D04E300921FB9 /* Lint */,
+				0A0C8714209748CD00471885 /* Localize */,
 				0A537AC9207CEDAE00921FB9 /* Sources */,
 				0A537ACA207CEDAE00921FB9 /* Frameworks */,
-				0A537ACB207CEDAE00921FB9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0A0C871720974B1B00471885 /* PBXTargetDependency */,
 				0A666D08208654090034FF66 /* PBXTargetDependency */,
 				0A537AD5207CEDD400921FB9 /* PBXTargetDependency */,
 			);
@@ -984,6 +1016,9 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Gnosis Ltd";
 				TargetAttributes = {
+					0A0C8702209747E100471885 = {
+						CreatedOnToolsVersion = 9.3;
+					};
 					0A537A63207CE5BC00921FB9 = {
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 0930;
@@ -1041,6 +1076,7 @@
 				0A537BC9207CF9CD00921FB9 /* IdentityAccessIntegrationTests */,
 				0A537BE0207CFADE00921FB9 /* IdentityAccessApplication */,
 				0A537BFD207CFB9200921FB9 /* IdentityAccessApplicationTests */,
+				0A0C8702209747E100471885 /* IdentityAccessImplementationsResources */,
 			);
 		};
 /* End PBXProject section */
@@ -1084,6 +1120,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0A0C8701209747E100471885 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A0C87112097488300471885 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0A537AA5207CEA0100921FB9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1125,6 +1169,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0A0C8714209748CD00471885 /* Localize */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Localize;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/localize.sh LocalizedString";
+			showEnvVarsInLog = 0;
+		};
 		0A537C21207D04D400921FB9 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1213,6 +1272,7 @@
 				0A666D43208A0E0A0034FF66 /* CSQLite3.swift in Sources */,
 				0A537B12207CF2D600921FB9 /* ConsoleLogger.swift in Sources */,
 				0AD85993208F39C00084C0B9 /* SQLiteConnection.swift in Sources */,
+				0A0C871920974B6900471885 /* LocalizedString.swift.swift in Sources */,
 				0A44F9C520908BBD00BB7101 /* DBSingleUserRepository.swift in Sources */,
 				0A537B1C207CF2D600921FB9 /* EncryptionService.swift in Sources */,
 				0A537ADB207CEE1100921FB9 /* MockBiometricService.swift in Sources */,
@@ -1316,6 +1376,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0A0C871720974B1B00471885 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A0C8702209747E100471885 /* IdentityAccessImplementationsResources */;
+			targetProxy = 0A0C871620974B1B00471885 /* PBXContainerItemProxy */;
+		};
 		0A537AAE207CEA0100921FB9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0A537A63207CE5BC00921FB9 /* IdentityAccessDomainModel */;
@@ -1364,6 +1429,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0A0C87132097488300471885 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A0C87122097488300471885 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		0A537BBA207CF9B400921FB9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1383,6 +1456,51 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0A0C8706209747E200471885 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = IdentityAccessImplementationsResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationsResources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		0A0C8707209747E200471885 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = IdentityAccessImplementationsResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationsResources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = AdHoc;
+		};
+		0A0C8708209747E200471885 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = IdentityAccessImplementationsResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationsResources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		0A46702B207E58B700F55ADE /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1991,6 +2109,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0A0C870E209747E200471885 /* Build configuration list for PBXNativeTarget "IdentityAccessImplementationsResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A0C8706209747E200471885 /* Debug */,
+				0A0C8707209747E200471885 /* AdHoc */,
+				0A0C8708209747E200471885 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0A537A77207CE5BC00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessDomainModel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

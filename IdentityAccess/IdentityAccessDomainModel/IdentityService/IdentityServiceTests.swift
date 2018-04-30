@@ -7,7 +7,6 @@ import XCTest
 
 class IdentityServiceTests: DomainTestCase {
 
-    let service = IdentityService()
     let password = "MyPassword1"
     let wrongPassword = "WrongPass"
     var gatekeeper: Gatekeeper!
@@ -116,20 +115,57 @@ class IdentityServiceTests: DomainTestCase {
     }
 
     func test_createGatekeeper_createsOne() throws {
-        let gatekeeper = try service.createGatekeeper(sessionDuration: 3,
-                                                      maxFailedAttempts: 3,
-                                                      blockDuration: 3)
+        let gatekeeper = try identityService.createGatekeeper(sessionDuration: 3,
+                                                              maxFailedAttempts: 3,
+                                                              blockDuration: 3)
         XCTAssertEqual(gatekeeperRepository.gatekeeper(), gatekeeper)
         XCTAssertEqual(gatekeeperRepository.gatekeeper()?.policy, gatekeeper.policy)
+    }
+
+    func test_create_passwordNotEmpty() {
+        XCTAssertThrowsError(try createUser(password: "")) {
+            self.assertError($0, .emptyPassword)
+        }
+    }
+
+    func test_create_passwordNSymbols() {
+        let short = String(repeating: "1", count: 5)
+        let long = String(repeating: "1", count: 101)
+        XCTAssertThrowsError(try createUser(password: short)) {
+            self.assertError($0, .passwordTooShort)
+        }
+        XCTAssertThrowsError(try createUser(password: long)) {
+            self.assertError($0, .passwordTooLong)
+        }
+    }
+
+    func test_create_passwordCapitalLetter() {
+        XCTAssertThrowsError(try createUser(password: "123456")) {
+            self.assertError($0, .passwordMissingCapitalLetter)
+        }
+    }
+
+    func test_create_digit() {
+        XCTAssertThrowsError(try createUser(password: "abcabC")) {
+            self.assertError($0, .passwordMissingDigit)
+        }
     }
 
 }
 
 extension IdentityServiceTests {
 
+    private func createUser(password: String) throws {
+        _ = try identityService.registerUser(password: password)
+    }
+
+    private func assertError(_ error: Error, _ expected: IdentityService.RegistrationError) {
+        XCTAssertEqual(error as? IdentityService.RegistrationError, expected)
+    }
+
     @discardableResult
     private func givenRegisteredUser() throws -> UserID {
-        return try service.registerUser(password: password)
+        return try identityService.registerUser(password: password)
     }
 
     private func registerAgain() throws {
@@ -143,17 +179,17 @@ extension IdentityServiceTests {
 
     @discardableResult
     private func authenticateWithWrongPassword(_ pass: String? = nil) throws -> UserID? {
-        return try service.authenticateUser(password: pass ?? wrongPassword, at: mockClockService.currentTime)
+        return try identityService.authenticateUser(password: pass ?? wrongPassword, at: mockClockService.currentTime)
     }
 
     @discardableResult
     private func authenticateWithCorrectPassword() throws -> UserID? {
-        return try service.authenticateUser(password: password, at: mockClockService.currentTime)
+        return try identityService.authenticateUser(password: password, at: mockClockService.currentTime)
     }
 
     @discardableResult
     private func authenticateWithBiometry() throws -> UserID? {
-        return try service.authenticateUserBiometrically(at: mockClockService.currentTime)
+        return try identityService.authenticateUserBiometrically(at: mockClockService.currentTime)
     }
 
 }

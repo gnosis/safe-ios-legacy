@@ -30,17 +30,19 @@ final class ScannerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var codeReaderVC: UIViewController
-        #if DEBUG
-            codeReaderVC = UIViewController()
-            codeReaderVC.view.backgroundColor = .green
-        #else
+        #if !DEBUG
             debugButtonsStackView.removeFromSuperview()
-            codeReaderVC = RSCodeReaderViewController()
-            codeReaderVC.barcodesHandler = barcodesHandler
         #endif
 
-        codeReaderVC.willMove(toParentViewController: self)
+        var codeReaderVC: UIViewController
+        if UIDevice.current.isSimulator {
+            codeReaderVC = UIViewController()
+            codeReaderVC.view.backgroundColor = .green
+        } else {
+            codeReaderVC = RSCodeReaderViewController()
+            (codeReaderVC as! RSCodeReaderViewController).barcodesHandler = barcodesHandler
+        }
+
         addChildViewController(codeReaderVC)
         view.insertSubview(codeReaderVC.view, at: 0)
         codeReaderVC.didMove(toParentViewController: self)
@@ -66,6 +68,10 @@ final class ScannerViewController: UIViewController {
         """
 
     @IBAction func debugScanValidCode(_ sender: Any) {
+        delegate?.didScan(validCode)
+    }
+
+    @IBAction func scanEnotherValidCode(_ sender: Any) {
         delegate?.didScan(validCode)
     }
 
