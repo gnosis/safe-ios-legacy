@@ -17,13 +17,16 @@ struct Rule {
     }
     var state: State? {
         guard let value = element.value as? String else {
-            return nil
+            preconditionFailure("Accessibilty value is missing in Rule element")
         }
+        let inactiveValue = "\(XCLocalizedString("rule.inactive", table: "safeUIKit")) \(element.label)"
+        let errorValue = "\(XCLocalizedString("rule.error", table: "safeUIKit")) \(element.label)"
+        let successValue = "\(XCLocalizedString("rule.success", table: "safeUIKit")) \(element.label)"
         switch value {
-        case "rule.inactive \(element.label)": return .inactive
-        case "rule.error \(element.label)": return .error
-        case "rule.success \(element.label)": return .success
-        default: return nil
+        case inactiveValue: return .inactive
+        case errorValue: return .error
+        case successValue: return .success
+        default: preconditionFailure("Failed to recognize rule status")
         }
     }
 

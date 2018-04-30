@@ -13,6 +13,8 @@
 		0A0455F7204851B100088B5E /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */; };
 		0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */; };
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
+		0A0C86FE2097461700471885 /* safeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* safeUIKit.strings */; };
+		0A0C873A20974E5500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873920974E5500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A34BC60207B808800636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC5F207B808800636560 /* libCommonTestSupport.a */; };
 		0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527324205BCCF4004A5F9A /* CountdownLabel.swift */; };
 		0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527326205BD364004A5F9A /* CountdownLabelTests.swift */; };
@@ -229,6 +231,8 @@
 		0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A0C86FD2097461700471885 /* safeUIKit.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = safeUIKit.strings; sourceTree = "<group>"; };
+		0A0C873920974E5500471885 /* IdentityAccessImplementationsResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = IdentityAccessImplementationsResources.bundle; path = "../Build/Products/Debug-iphonesimulator/IdentityAccessImplementationsResources.bundle"; sourceTree = "<group>"; };
 		0A34BC5F207B808800636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapterTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A527324205BCCF4004A5F9A /* CountdownLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
@@ -504,6 +508,7 @@
 		5540A4E2203C3054009C9BE3 = {
 			isa = PBXGroup;
 			children = (
+				0A0C873920974E5500471885 /* IdentityAccessImplementationsResources.bundle */,
 				0ABCA964207E560500E2C193 /* Library.xcodeproj */,
 				0AFEDEB62073C846002F5924 /* config */,
 				55D6C2F72045C38D0026BC72 /* TestTools */,
@@ -552,6 +557,7 @@
 		5540A50D203C3054009C9BE3 /* safeUITests */ = {
 			isa = PBXGroup;
 			children = (
+				0A0C86FD2097461700471885 /* safeUIKit.strings */,
 				0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */,
 				0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */,
 				0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */,
@@ -699,6 +705,7 @@
 			buildPhases = (
 				5540A506203C3054009C9BE3 /* Sources */,
 				5540A507203C3054009C9BE3 /* Frameworks */,
+				0A0C86FC2097455F00471885 /* Copy safeUIKit Localizations */,
 				5540A508203C3054009C9BE3 /* Resources */,
 			);
 			buildRules = (
@@ -813,6 +820,7 @@
 				0A7AE8C1205285D00044D5DD /* AppFlow.storyboard in Resources */,
 				55147D552040493C00AD0E1F /* MasterPassword.storyboard in Resources */,
 				55FEBFAF207E0AB0004099AA /* NewSafe.storyboard in Resources */,
+				0A0C873A20974E5500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -827,6 +835,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0C86FE2097461700471885 /* safeUIKit.strings in Resources */,
 				0AA27835205FC60100EBB9D1 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -834,6 +843,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0A0C86FC2097455F00471885 /* Copy safeUIKit Localizations */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../safeUIKit/safeUIKit/en.lproj/Localizable.strings",
+			);
+			name = "Copy safeUIKit Localizations";
+			outputPaths = (
+				"$(SRCROOT)/$(PRODUCT_NAME)/safeUIKit.strings",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp ${SCRIPT_INPUT_FILE_0} ${SCRIPT_OUTPUT_FILE_0}";
+			showEnvVarsInLog = 0;
+		};
 		0A53AD5020598A0600D713AD /* Localize */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
