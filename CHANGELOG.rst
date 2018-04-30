@@ -9,11 +9,11 @@ Unreleased
 ==========
 Added
 -----
-- Implementation of IdentityAccess logic with User, Gatekeeper, AuthenticationApplicationService and others.
-- SQLite database implementation of repositories.
 - New safe flow with setting up mnemonic and QR code detection for chrome browser extension integration.
 - Added RSBarcodes dependency
 - Added CHANGELOG.rst (this file)
+- Implementation of IdentityAccess logic with User, Gatekeeper, AuthenticationApplicationService and others.
+- SQLite database implementation of repositories.
 
 Removed
 -------
