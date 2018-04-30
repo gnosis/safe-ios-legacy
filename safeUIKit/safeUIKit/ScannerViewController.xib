@@ -44,10 +44,10 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fl-OC-60p">
                             <rect key="frame" x="0.0" y="38" width="335" height="30"/>
-                            <state key="normal" title="Scan Enother Valid Code"/>
+                            <state key="normal" title="Scan Another Valid Code"/>
                             <connections>
                                 <action selector="debugScanValidCode:" destination="-1" eventType="touchUpInside" id="NZN-8F-I3Z"/>
-                                <action selector="scanEnotherValidCode:" destination="-1" eventType="touchUpInside" id="fTS-7k-e6G"/>
+                                <action selector="scanAnotherValidCode:" destination="-1" eventType="touchUpInside" id="fTS-7k-e6G"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUa-GW-2fC">
