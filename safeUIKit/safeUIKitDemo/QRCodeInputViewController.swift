@@ -38,4 +38,8 @@ extension QRCodeInputViewController: QRCodeInputDelegate {
         present(controller, animated: true)
     }
 
+    func presentCameraRequiredAlert(_ alert: UIAlertController) {
+        present(alert, animated: true)
+    }
+
 }

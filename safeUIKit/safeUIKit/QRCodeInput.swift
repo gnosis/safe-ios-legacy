@@ -3,9 +3,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 public protocol QRCodeInputDelegate: class {
     func presentScannerController(_ controller: UIViewController)
+    func presentCameraRequiredAlert(_ alert: UIAlertController)
     func didScanValidCode()
 }
 
@@ -13,6 +15,18 @@ public typealias QRCodeConverter = (String) -> String?
 
 @IBDesignable
 public final class QRCodeInput: UITextField {
+
+    typealias CameraAvailabilityCompletion = (_ available: Bool) -> Void
+
+    private struct Strings {
+        static let cameraAlertTitle = LocalizedString("scanner.camera_access_required.title",
+                                                      comment: "Title for alert if camera is not accessable.")
+        static let cameraAlertMessage = LocalizedString("scanner.camera_access_required.message",
+                                                        comment: "Message for alert if camera is not accessable.")
+        static let cameraAlertCancel = LocalizedString("cancel", comment: "Cancel button title")
+        static let cameraAlertAllow = LocalizedString("scanner.camera_access_required.allow",
+                                                      comment: "Button name to allow camera access")
+    }
 
     public weak var qrCodeDelegate: QRCodeInputDelegate?
     public var qrCodeConverter: QRCodeConverter?
@@ -62,17 +76,57 @@ public final class QRCodeInput: UITextField {
         delegate = self
     }
 
+    // TODO: test all cases
     @objc private func openBarcodeSacenner() {
-        qrCodeDelegate?.presentScannerController(scannerController())
+        checkCameraAvailability { [unowned self] success in
+            DispatchQueue.main.async {
+                if success {
+                    self.qrCodeDelegate?.presentScannerController(self.scannerController())
+                } else {
+                    self.qrCodeDelegate?.presentCameraRequiredAlert(self.cameraRequiredAlert())
+                }
+            }
+        }
+    }
+
+    private func checkCameraAvailability(_ completion: @escaping CameraAvailabilityCompletion) {
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        switch cameraAuthorizationStatus {
+        case .authorized:
+            completion(true)
+        case .denied, .restricted:
+            completion(false)
+        case .notDetermined:
+            askForCameraAccess(completion)
+        }
+    }
+
+    private func askForCameraAccess(_ completion: @escaping CameraAvailabilityCompletion) {
+        AVCaptureDevice.requestAccess(for: .video, completionHandler: completion)
+    }
+
+    private func cameraRequiredAlert() -> UIAlertController {
+        let settingsAppURL = URL(string: UIApplicationOpenSettingsURLString)!
+        let alert = UIAlertController(
+            title: Strings.cameraAlertTitle,
+            message: Strings.cameraAlertMessage,
+            preferredStyle: UIAlertControllerStyle.alert
+        )
+        alert.addAction(UIAlertAction(title: Strings.cameraAlertAllow, style: .cancel) { _ in
+            UIApplication.shared.open(settingsAppURL, options: [:], completionHandler: nil)
+        })
+        alert.addAction(UIAlertAction(title: Strings.cameraAlertCancel, style: .default))
+        return alert
     }
 
 }
 
 extension QRCodeInput: UITextFieldDelegate {
 
+    // TODO: test. Was bug here.
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if editingMode == .scanOnly {
-            qrCodeDelegate?.presentScannerController(scannerController())
+            openBarcodeSacenner()
             return false
         }
         return true
@@ -86,14 +140,12 @@ extension QRCodeInput: UITextFieldDelegate {
 
 extension QRCodeInput: ScannerDelegate {
 
-    // function called from background thread
     func didScan(_ code: String) {
         if let result = qrCodeConverter?(code) {
             DispatchQueue.main.async {
                 self.text = result
                 self.qrCodeDelegate?.didScanValidCode()
             }
-
         }
     }
 

@@ -79,6 +79,8 @@ class MockQRCodeInputDelegate: QRCodeInputDelegate {
         didPresent = true
     }
 
+    func presentCameraRequiredAlert(_ alert: UIAlertController) {}
+
     func didScanValidCode() {
         didScan = true
     }
