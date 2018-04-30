@@ -51,7 +51,8 @@ public final class EncryptionService: EncryptionServiceProtocol {
     }
 
     public func encrypted(_ plainText: String) -> String {
-        return plainText
+        guard let data = plainText.data(using: .utf8) else { return plainText }
+        return hash(data).base64EncodedString()
     }
 
 }
