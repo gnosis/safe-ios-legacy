@@ -38,9 +38,10 @@
 		0AD93E0820481442008C38CA /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D520480C7B00445AC2 /* TextInputTests.swift */; };
 		0AD93E0920481461008C38CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D820480C7B00445AC2 /* Colors.swift */; };
 		0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9670D020480C7A00445AC2 /* TextInput.xib */; };
-		5527A7F4208DE8A300AF3A50 /* RSBarcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcode.framework */; };
-		5527A7F5208DE8B700AF3A50 /* RSBarcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcode.framework */; };
-		5527A7F6208DE8B700AF3A50 /* RSBarcode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BC2209313F800297D1C /* UIDevice+Extensions.swift */; };
+		5527A7F4208DE8A300AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
+		5527A7F5208DE8B700AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
+		5527A7F6208DE8B700AF3A50 /* RSBarcodes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */; };
 		5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527A806208E357B00AF3A50 /* ScannerViewController.swift */; };
 		5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5527A807208E357B00AF3A50 /* ScannerViewController.xib */; };
@@ -140,7 +141,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5527A7F6208DE8B700AF3A50 /* RSBarcode.framework in Embed Frameworks */,
+				5527A7F6208DE8B700AF3A50 /* RSBarcodes.framework in Embed Frameworks */,
 				0A9670C820480C5700445AC2 /* safeUIKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -186,6 +187,7 @@
 		0A9BA3C6207F69FD001DC22F /* safeUIKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = safeUIKitMedia.xcassets; sourceTree = "<group>"; };
 		0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButtonTests.swift; sourceTree = "<group>"; };
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		55071BC2209313F800297D1C /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		5527A7E0208DE87600AF3A50 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 		5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewControllerTests.swift; sourceTree = "<group>"; };
 		5527A806208E357B00AF3A50 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -204,7 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5527A7F5208DE8B700AF3A50 /* RSBarcode.framework in Frameworks */,
+				5527A7F5208DE8B700AF3A50 /* RSBarcodes.framework in Frameworks */,
 				0A9670C720480C5700445AC2 /* safeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,7 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5527A7F4208DE8A300AF3A50 /* RSBarcode.framework in Frameworks */,
+				5527A7F4208DE8A300AF3A50 /* RSBarcodes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +332,7 @@
 				0A7AE8BE205284180044D5DD /* H1Label.swift */,
 				558FD80920765C53004F070E /* BigButton.swift */,
 				0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */,
+				55071BC2209313F800297D1C /* UIDevice+Extensions.swift */,
 				0A53AD5520598B5000D713AD /* Localizable.strings */,
 				0A9670C320480C5700445AC2 /* Tests-Info.plist */,
 				0A9BA3C6207F69FD001DC22F /* safeUIKitMedia.xcassets */,
@@ -353,7 +356,7 @@
 				5527A7EB208DE87700AF3A50 /* Result.framework */,
 				5527A7ED208DE87700AF3A50 /* CryptoSwift.framework */,
 				5527A7EF208DE87700AF3A50 /* EthereumKit.framework */,
-				5527A7F1208DE87700AF3A50 /* RSBarcode.framework */,
+				5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -538,10 +541,10 @@
 			remoteRef = 5527A7EE208DE87700AF3A50 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		5527A7F1208DE87700AF3A50 /* RSBarcode.framework */ = {
+		5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = RSBarcode.framework;
+			path = RSBarcodes.framework;
 			remoteRef = 5527A7F0208DE87700AF3A50 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -665,6 +668,7 @@
 				0A9670DB20480C7B00445AC2 /* Fonts.swift in Sources */,
 				556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */,
 				0AD93E0920481461008C38CA /* Colors.swift in Sources */,
+				55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */,
 				0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */,
 				5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */,
 				0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */,

@@ -1,0 +1,15 @@
+/* Reason to activate Touch ID or Face ID. */
+"biometry.activation.reason" = "Enable unlocking your master password with %@";
+
+/* Description of unlock with Touch ID. */
+"biometry.authentication.reason" = "Unlock your master password with %@";
+
+/* Face ID name */
+"biometry.faceID" = "Face ID";
+
+/* Unrecognized biometry type */
+"biometry.none" = "None";
+
+/* Touch ID */
+"biometry.touchID" = "Touch ID";
+

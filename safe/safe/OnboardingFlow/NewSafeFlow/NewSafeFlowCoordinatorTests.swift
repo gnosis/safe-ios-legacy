@@ -39,6 +39,12 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(type(of: nav.topViewController!) == type(of: pairVC))
     }
 
+    func test_didSelectNext_presentsReviewSafeViewController() {
+        newSafeFlowCoordinator.didSelectNext()
+        delay()
+        XCTAssertTrue(nav.topViewController! is ReviewSafeViewController)
+    }
+
     func test_paperWalletSetupCompletion_popsToStartVC() {
         newSafeFlowCoordinator.didSelectPaperWalletSetup()
         delay()

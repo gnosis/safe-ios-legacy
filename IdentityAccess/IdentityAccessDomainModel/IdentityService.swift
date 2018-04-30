@@ -9,6 +9,11 @@ public class IdentityService: Assertable {
 
     public enum RegistrationError: Error, Hashable {
         case userAlreadyRegistered
+        case emptyPassword
+        case passwordTooShort
+        case passwordTooLong
+        case passwordMissingCapitalLetter
+        case passwordMissingDigit
     }
 
     public enum AuthenticationError: Error, Hashable {
@@ -53,11 +58,20 @@ public class IdentityService: Assertable {
     public func registerUser(password: String) throws -> UserID {
         let isRegistered = userRepository.primaryUser() != nil
         try assertArgument(!isRegistered, RegistrationError.userAlreadyRegistered)
+        try validatePlaintextPassword(password)
         let encryptedPassword = encryptionService.encrypted(password)
         let user = try User(id: userRepository.nextId(), password: encryptedPassword)
         try userRepository.save(user)
         try biometricService.activate()
         return user.id
+    }
+
+    private func validatePlaintextPassword(_ password: String) throws {
+        try assertArgument(!password.isEmpty, RegistrationError.emptyPassword)
+        try assertArgument(password.count >= 6, RegistrationError.passwordTooShort)
+        try assertArgument(password.count <= 100, RegistrationError.passwordTooLong)
+        try assertArgument(password.hasUppercaseLetter, RegistrationError.passwordMissingCapitalLetter)
+        try assertArgument(password.hasDecimalDigit, RegistrationError.passwordMissingDigit)
     }
 
     @discardableResult
