@@ -30,6 +30,7 @@ public final class QRCodeInput: UITextField {
 
     public weak var qrCodeDelegate: QRCodeInputDelegate?
     public var qrCodeConverter: QRCodeConverter?
+    public var captureDevice: AVCaptureDevice.Type = AVCaptureDevice.self
 
     public enum EditingMode {
         case scanOnly
@@ -76,7 +77,6 @@ public final class QRCodeInput: UITextField {
         delegate = self
     }
 
-    // TODO: test all cases
     @objc private func openBarcodeSacenner() {
         checkCameraAvailability { [unowned self] success in
             DispatchQueue.main.async {
@@ -90,7 +90,7 @@ public final class QRCodeInput: UITextField {
     }
 
     private func checkCameraAvailability(_ completion: @escaping CameraAvailabilityCompletion) {
-        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        let cameraAuthorizationStatus = captureDevice.authorizationStatus(for: .video)
         switch cameraAuthorizationStatus {
         case .authorized:
             completion(true)
@@ -102,7 +102,7 @@ public final class QRCodeInput: UITextField {
     }
 
     private func askForCameraAccess(_ completion: @escaping CameraAvailabilityCompletion) {
-        AVCaptureDevice.requestAccess(for: .video, completionHandler: completion)
+        captureDevice.requestAccess(for: .video, completionHandler: completion)
     }
 
     private func cameraRequiredAlert() -> UIAlertController {
@@ -123,7 +123,6 @@ public final class QRCodeInput: UITextField {
 
 extension QRCodeInput: UITextFieldDelegate {
 
-    // TODO: test. Was bug here.
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if editingMode == .scanOnly {
             openBarcodeSacenner()
