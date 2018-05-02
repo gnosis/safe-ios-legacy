@@ -13,6 +13,8 @@
 		0A0455F7204851B100088B5E /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */; };
 		0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */; };
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
+		0A0660842099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */; };
+		0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */; };
 		0A0C86FE2097461700471885 /* safeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* safeUIKit.strings */; };
 		0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A0C873F209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
@@ -234,6 +236,11 @@
 		0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreenUITests.swift; sourceTree = "<group>"; };
+		0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreen.swift; sourceTree = "<group>"; };
+		0A0660872099B4870048FBD3 /* safeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "safeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		0A06608B2099B4FF0048FBD3 /* XCUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCUIElement.h; sourceTree = "<group>"; };
+		0A06608C2099B4FF0048FBD3 /* XCUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCUIApplication.h; sourceTree = "<group>"; };
 		0A0C86FD2097461700471885 /* safeUIKit.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = safeUIKit.strings; sourceTree = "<group>"; };
 		0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IdentityAccessImplementationsResources.bundle; sourceTree = "<group>"; };
 		0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeScreenUITests.swift; sourceTree = "<group>"; };
@@ -477,6 +484,7 @@
 				558FD81420767F18004F070E /* SafeSetupOptionsScreen.swift */,
 				0ACA9C3B205FDAC5005EC186 /* MasterPasswordFlow */,
 				0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */,
+				0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */,
 			);
 			path = OnboardingFlow;
 			sourceTree = "<group>";
@@ -570,8 +578,12 @@
 				0ACA9C42206017C6005EC186 /* ConfirmPasswordScreenUITests.swift */,
 				0ACA9C48206021E8005EC186 /* UnlockScreenUITests.swift */,
 				0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */,
+				0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */,
 				0ACA9C3A205FDA92005EC186 /* screens */,
 				5540A510203C3054009C9BE3 /* Info.plist */,
+				0A06608C2099B4FF0048FBD3 /* XCUIApplication.h */,
+				0A06608B2099B4FF0048FBD3 /* XCUIElement.h */,
+				0A0660872099B4870048FBD3 /* safeUITests-Bridging-Header.h */,
 			);
 			path = safeUITests;
 			sourceTree = "<group>";
@@ -747,6 +759,7 @@
 					};
 					5540A509203C3054009C9BE3 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 5540A4EA203C3054009C9BE3;
 					};
@@ -1034,6 +1047,7 @@
 				0A0C874920976D3A00471885 /* NewSafeScreenUITests.swift in Sources */,
 				0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */,
 				0A4B004520977266006343EB /* SetupSafeOptionsScreen.swift in Sources */,
+				0A0660842099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift in Sources */,
 				0AA27839205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift in Sources */,
 				0AA0C864207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */,
 				0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */,
@@ -1043,6 +1057,7 @@
 				0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */,
 				0AA27837205FC63800EBB9D1 /* SetPasswordScreen.swift in Sources */,
 				0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */,
+				0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */,
 				558FD81520767F18004F070E /* SafeSetupOptionsScreen.swift in Sources */,
 				0ACA9C43206017C6005EC186 /* ConfirmPasswordScreenUITests.swift in Sources */,
 			);
@@ -1314,6 +1329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
@@ -1322,6 +1338,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "safeUITests/safeUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = safe;
@@ -1332,6 +1350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
@@ -1340,6 +1359,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "safeUITests/safeUITests-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = safe;
@@ -1456,6 +1476,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
@@ -1464,6 +1485,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "safeUITests/safeUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = safe;

@@ -1,6 +1,9 @@
 /* Unlock screen header */
 "app.unlock.header" = "Unlock with your master password";
 
+/* Finish button title in extension setup screen */
+"new_safe.extension.finish" = "new_safe.extension.finish";
+
 /* Continue button for store paper wallet screen */
 "new_safe.paper_wallet.continue" = "I understand, continue";
 
