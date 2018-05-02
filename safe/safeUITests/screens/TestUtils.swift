@@ -13,4 +13,8 @@ final class TestUtils {
         XCUIApplication().secureTextFields.firstMatch.typeText(text + (hittingEnter ? "\n" : ""))
     }
 
+    static func navigateBack() {
+        XCUIApplication().navigationBars.buttons["Back"].tap()
+    }
+
 }

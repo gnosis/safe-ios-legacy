@@ -75,7 +75,7 @@ final class ScannerViewController: UIViewController {
     }
 
     @IBAction func scanAnotherValidCode(_ sender: Any) {
-        delegate?.didScan(validCode)
+        delegate?.didScan("another_code")
     }
 
     @IBAction func debugScanInvalidCode(_ sender: Any) {

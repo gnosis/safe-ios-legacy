@@ -53,6 +53,49 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
         closeCamera()
     }
 
+    func test_scanValidCodeButDoNotFinishSetup() {
+        givenCameraOpened()
+        cameraScreen.scanValidCodeButton.tap()
+        XCTAssertFalse((screen.qrCodeInput.value as? String)?.isEmpty ?? true)
+        TestUtils.navigateBack()
+        let newSafe = NewSafeScreen()
+        XCTAssertFalse(newSafe.browserExtension.isChecked)
+        newSafe.browserExtension.element.tap()
+        XCTAssertTrue((screen.qrCodeInput.value as? String)?.isEmpty ?? false)
+    }
+
+    func test_scanTwoValidCodes() {
+        givenCameraOpened()
+        cameraScreen.scanTwoValidCodes.tap()
+        XCTAssertFalse((screen.qrCodeInput.value as? String)?.isEmpty ?? true)
+        XCTAssertTrue(screen.finishButton.isEnabled)
+        screen.finishButton.tap()
+        let newSafe = NewSafeScreen()
+        XCTAssertTrue(newSafe.browserExtension.isChecked)
+    }
+
+    func test_rescanInvalidOnTopOfValid() {
+        givenCameraOpened()
+        cameraScreen.scanValidCodeButton.tap()
+        let value = screen.qrCodeInput.value
+        screen.qrCodeInput.tap()
+        cameraScreen.scanInvalidCodeButton.tap()
+        cameraScreen.closeButton.tap()
+        XCTAssertEqual(screen.qrCodeInput.value as? String, value as? String)
+        screen.finishButton.tap()
+        let newSafe = NewSafeScreen()
+        XCTAssertTrue(newSafe.browserExtension.isChecked)
+    }
+
+    func test_rescanValidCodeOnTopOfValidCode() {
+        givenCameraOpened()
+        cameraScreen.scanValidCodeButton.tap()
+        let value = screen.qrCodeInput.value
+        screen.qrCodeInput.tap()
+        cameraScreen.scanAnotherValidCodeButton.tap()
+        XCTAssertNotEqual(screen.qrCodeInput.value as? String, value as? String)
+    }
+
 }
 
 extension PairWithBrowserExtensionScreenUITests {
