@@ -10,6 +10,13 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
     let screen = PairWithBrowserExtensionScreen()
     var cameraPermissionHandler: NSObjectProtocol!
     var cameraSuggestionHandler: NSObjectProtocol!
+    let cameraScreen = CameraScreen()
+
+    override func setUp() {
+        super.setUp()
+        Springboard.deleteSafeApp()
+        givenBrowserExtensionSetup()
+    }
 
     override func tearDown() {
         if let handler = cameraPermissionHandler {
@@ -22,36 +29,28 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
     }
 
     func test_contents() {
-        givenBrowserExtensionSetup()
         XCTAssertExist(screen.qrCodeInput)
         XCTAssertExist(screen.finishButton)
         XCTAssertFalse(screen.finishButton.isEnabled)
     }
 
-    func test_requiresAppReinstalled_denyCameraAccess() {
-        Springboard.deleteSafeApp()
-        givenBrowserExtensionSetup()
+    func test_denyCameraAccess() {
         handleCameraPermissionByDenying()
         handleSuggestionAlertByCancelling(with: expectation(description: "Alerts handled"))
         screen.qrCodeInput.tap()
-        delay(1)
-        XCUIApplication().tap() // required for alert handlers firing
-        waitForExpectations(timeout: 5)
+        handleAlerts()
     }
 
-    func test_requiresAppReinstalled_allowCameraAccess() {
-        Springboard.deleteSafeApp()
-        givenBrowserExtensionSetup()
-        handleCameraPermsissionByAllowing(with: expectation(description: "Alerts handled"))
-
-        screen.qrCodeInput.tap()
-        delay(1)
-        XCUIApplication().tap() // required for alert handlers firing
-        waitForExpectations(timeout: 5)
-
+    func test_allowCameraAccess() {
+        givenCameraOpened()
         closeCamera()
+    }
 
-        XCTAssertExist(screen.qrCodeInput)
+    func test_scanInvalidCode() {
+        givenCameraOpened()
+        cameraScreen.scanInvalidCodeButton.tap()
+        XCTAssertTrue(cameraScreen.isDisplayed)
+        closeCamera()
     }
 
 }
@@ -90,9 +89,21 @@ extension PairWithBrowserExtensionScreenUITests {
     }
 
     private func closeCamera() {
-        let cameraScreen = CameraScreen()
         XCTAssertTrue(cameraScreen.isDisplayed)
         cameraScreen.closeButton.tap()
+        XCTAssertExist(screen.qrCodeInput)
+    }
+
+    private func handleAlerts() {
+        delay(1)
+        XCUIApplication().tap() // required for alert handlers firing
+        waitForExpectations(timeout: 5)
+    }
+
+    private func givenCameraOpened() {
+        handleCameraPermsissionByAllowing(with: expectation(description: "Alert"))
+        screen.qrCodeInput.tap()
+        handleAlerts()
     }
 
 }
