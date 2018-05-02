@@ -12,6 +12,13 @@ protocol PairWithBrowserDelegate: class {
 
 final class PairWithBrowserExtensionViewController: UIViewController {
 
+    enum Strings {
+
+        static let finish = NSLocalizedString("new_safe.extension.finish",
+                                              comment: "Finish button title in extension setup screen")
+
+    }
+
     @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var extensionAddressInput: QRCodeInput!
     @IBOutlet weak var finishButton: UIButton!
@@ -48,6 +55,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             return self.identityService.convertBrowserExtensionCodeIntoEthereumAddress(code)
         }
         finishButton.isEnabled = initialExtensionAddress != nil
+        finishButton.setTitle(Strings.finish, for: .normal)
     }
 
 }

@@ -47,6 +47,15 @@ public final class BigButton: UIButton {
 
     private func updateCheckmark() {
         setImage(checkmarkImage(), for: .normal)
+        accessibilityValue = localizedValue()
+    }
+
+    private func localizedValue() -> String? {
+        switch checkmarkStatus {
+        case .selected: return LocalizedString("button.checked", comment: "Checkmark is checked")
+        case .normal: return LocalizedString("button.unchecked", comment: "Checkmark is not checked")
+        case .disabled: return nil
+        }
     }
 
     private func checkmarkImage() -> UIImage? {

@@ -1,3 +1,9 @@
+/* Checkmark is checked */
+"button.checked" = "button.checked";
+
+/* Checkmark is not checked */
+"button.unchecked" = "button.unchecked";
+
 /* Cancel button title */
 "cancel" = "Cancel";
 
