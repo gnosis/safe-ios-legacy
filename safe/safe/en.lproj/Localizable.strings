@@ -1,8 +1,14 @@
 /* Unlock screen header */
 "app.unlock.header" = "Unlock with your master password";
 
+/* Browser extension Button */
+"new_safe.browser_extension" = "Browser Extension";
+
 /* Finish button title in extension setup screen */
 "new_safe.extension.finish" = "Finish";
+
+/* Paper Wallet Button */
+"new_safe.paper_wallet" = "Paper Wallet";
 
 /* Continue button for store paper wallet screen */
 "new_safe.paper_wallet.continue" = "I understand, continue";
@@ -15,6 +21,12 @@
 
 /* Title for store paper wallet screen */
 "new_safe.paper_wallet.title" = "Store paper wallet secret phrase";
+
+/* This device button */
+"new_safe.this_device" = "This Device";
+
+/* Title for new safe screen */
+"new_safe.title" = "Configure three Safe owners.";
 
 /* Confirm password screen header */
 "onboarding.confirm_password.header" = "Repeat your master password";
@@ -30,18 +42,6 @@
 
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
-
-/* Browser extension Button */
-"onboarding.new_safe.browser_extension" = "Browser Extension";
-
-/* Paper Wallet Button */
-"onboarding.new_safe.paper_wallet" = "Paper Wallet";
-
-/* This device button */
-"onboarding.new_safe.this_device" = "This Device";
-
-/* Title for new safe screen */
-"onboarding.new_safe.title" = "Configure three Safe owners.";
 
 /* At least one capital letter rule for password field */
 "onboarding.set_password.capital" = "• Should have a capital letter";

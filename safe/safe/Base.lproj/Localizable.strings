@@ -1,8 +1,14 @@
 /* Unlock screen header */
 "app.unlock.header" = "app.unlock.header";
 
+/* Browser extension Button */
+"new_safe.browser_extension" = "new_safe.browser_extension";
+
 /* Finish button title in extension setup screen */
 "new_safe.extension.finish" = "new_safe.extension.finish";
+
+/* Paper Wallet Button */
+"new_safe.paper_wallet" = "new_safe.paper_wallet";
 
 /* Continue button for store paper wallet screen */
 "new_safe.paper_wallet.continue" = "new_safe.paper_wallet.continue";
@@ -15,6 +21,12 @@
 
 /* Title for store paper wallet screen */
 "new_safe.paper_wallet.title" = "new_safe.paper_wallet.title";
+
+/* This device button */
+"new_safe.this_device" = "new_safe.this_device";
+
+/* Title for new safe screen */
+"new_safe.title" = "new_safe.title";
 
 /* Confirm password screen header */
 "onboarding.confirm_password.header" = "onboarding.confirm_password.header";
@@ -30,18 +42,6 @@
 
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "onboarding.fatal.title";
-
-/* Browser extension Button */
-"onboarding.new_safe.browser_extension" = "onboarding.new_safe.browser_extension";
-
-/* Paper Wallet Button */
-"onboarding.new_safe.paper_wallet" = "onboarding.new_safe.paper_wallet";
-
-/* This device button */
-"onboarding.new_safe.this_device" = "onboarding.new_safe.this_device";
-
-/* Title for new safe screen */
-"onboarding.new_safe.title" = "onboarding.new_safe.title";
 
 /* At least one capital letter rule for password field */
 "onboarding.set_password.capital" = "onboarding.set_password.capital";

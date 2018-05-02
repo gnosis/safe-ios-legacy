@@ -26,10 +26,10 @@ class NewSafeViewController: UIViewController {
     private var logger: Logger { return ApplicationServiceRegistry.logger }
 
     private struct Strings {
-        static let title = NSLocalizedString("onboarding.new_safe.title", comment: "Title for new safe screen")
-        static let thisDevice = NSLocalizedString("onboarding.new_safe.this_device", comment: "This device button")
-        static let paperWallet = NSLocalizedString("onboarding.new_safe.paper_wallet", comment: "Paper Wallet Button")
-        static let browserExtension = NSLocalizedString("onboarding.new_safe.browser_extension",
+        static let title = NSLocalizedString("new_safe.title", comment: "Title for new safe screen")
+        static let thisDevice = NSLocalizedString("new_safe.this_device", comment: "This device button")
+        static let paperWallet = NSLocalizedString("new_safe.paper_wallet", comment: "Paper Wallet Button")
+        static let browserExtension = NSLocalizedString("new_safe.browser_extension",
                                                         comment: "Browser extension Button")
     }
 
