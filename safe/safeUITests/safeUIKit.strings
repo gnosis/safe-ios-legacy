@@ -4,6 +4,9 @@
 /* Checkmark is not checked */
 "button.unchecked" = "button.unchecked";
 
+/* Close button on camera */
+"camera.close" = "camera.close";
+
 /* Cancel button title */
 "cancel" = "Cancel";
 

@@ -1,8 +1,11 @@
 /* Checkmark is checked */
-"button.checked" = "button.checked";
+"button.checked" = "Checked";
 
 /* Checkmark is not checked */
-"button.unchecked" = "button.unchecked";
+"button.unchecked" = "Unchecked";
+
+/* Close button on camera */
+"camera.close" = "Close";
 
 /* Cancel button title */
 "cancel" = "Cancel";

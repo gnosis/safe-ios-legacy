@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScannerViewController" customModule="safeUIKit" customModuleProvider="target">
             <connections>
+                <outlet property="closeButton" destination="FvK-9y-Li8" id="NK2-0F-NIk"/>
                 <outlet property="debugButtonsStackView" destination="yRE-kA-A0c" id="9j4-1m-CVN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
