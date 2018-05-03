@@ -8,7 +8,6 @@ class UITestCase: XCTestCase {
 
     let application = Application()
     let password = "11111A"
-    let newSafe = NewSafeScreen()
 
     override func setUp() {
         super.setUp()
@@ -31,12 +30,17 @@ class UITestCase: XCTestCase {
 
     func givenBrowserExtensionSetup() {
         givenNewSafeSetup()
-        newSafe.browserExtension.element.tap()
+        NewSafeScreen().browserExtension.element.tap()
     }
 
-    func givenPaperWalletSetup() {
+    func givenSaveMnemonicSetup() {
         givenNewSafeSetup()
-        newSafe.paperWallet.element.tap()
+        NewSafeScreen().paperWallet.element.tap()
+    }
+
+    func givenConfirmMnemonicSetup() {
+        givenSaveMnemonicSetup()
+        SaveMnemonicScreen().continueButton.tap()
     }
 
 }

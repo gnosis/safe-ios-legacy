@@ -44,7 +44,9 @@ final class ConfirmMnemonicViewController: UIViewController {
         descriptionLabel.text = NSLocalizedString("recovery.confirm_mnemonic.description",
                                                   comment: "Description for confirm mnemonic view controller")
         firstWordTextInput.delegate = self
+        firstWordTextInput.accessibilityIdentifier = "firstInput"
         secondWordTextInput.delegate = self
+        secondWordTextInput.accessibilityIdentifier = "secondInput"
         _ = firstWordTextInput.becomeFirstResponder()
     }
 

@@ -5,13 +5,13 @@
 import XCTest
 import CommonTestSupport
 
- class PaperWalletUITests: UITestCase {
+final class SaveMnemonicUITests: UITestCase {
 
     let saveMnemonicScreen = SaveMnemonicScreen()
 
     override func setUp() {
         super.setUp()
-        givenPaperWalletSetup()
+        givenSaveMnemonicSetup()
     }
 
     func test_contents() {
