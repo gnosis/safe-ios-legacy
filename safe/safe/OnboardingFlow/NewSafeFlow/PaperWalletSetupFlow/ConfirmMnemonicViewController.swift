@@ -38,7 +38,9 @@ final class ConfirmMnemonicViewController: UIViewController {
         }
         (firstMnemonicWordToCheck, secondMnemonicWordToCheck) = twoRandomWords()
         firstWordNumberLabel.text = "#\(words.index(of: firstMnemonicWordToCheck)! + 1)."
+        firstWordNumberLabel.accessibilityIdentifier = "firstWordNumberLabel"
         secondWordNumberLabel.text = "#\(words.index(of: secondMnemonicWordToCheck)! + 1)."
+        secondWordNumberLabel.accessibilityIdentifier = "secondWordNumberLabel"
         titleLabel.text = NSLocalizedString("recovery.confirm_mnemonic.title",
                                             comment: "Title for confirm mnemonic view controller")
         descriptionLabel.text = NSLocalizedString("recovery.confirm_mnemonic.description",

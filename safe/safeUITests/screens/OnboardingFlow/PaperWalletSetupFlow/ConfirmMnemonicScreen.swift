@@ -16,5 +16,11 @@ final class ConfirmMnemonicScreen {
     let description = XCUIApplication().staticTexts[XCLocalizedString("recovery.confirm_mnemonic.description")]
     let firstInput = XCUIApplication().otherElements["firstInput"].textFields.firstMatch
     let secondInput = XCUIApplication().otherElements["secondInput"].textFields.firstMatch
+    let firstWordNumberLabel = XCUIApplication().staticTexts["firstWordNumberLabel"]
+    let secondWordNumberLabel = XCUIApplication().staticTexts["secondWordNumberLabel"]
+
+    func navigateBack() {
+        XCUIApplication().navigationBars.buttons.firstMatch.tap()
+    }
 
 }
