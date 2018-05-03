@@ -27,7 +27,7 @@ class SmokeUITests: XCTestCase {
         let confirmPasswordScreen = ConfirmPasswordScreen()
         confirmPasswordScreen.enterPassword(password)
 
-        let safeSetupOptionsScreen = NewSafeScreen()
+        let safeSetupOptionsScreen = SetupSafeOptionsScreen()
         XCTAssertTrue(safeSetupOptionsScreen.isDisplayed)
     }
 
@@ -38,7 +38,7 @@ class SmokeUITests: XCTestCase {
         let unlockScreen = UnlockScreen()
         unlockScreen.enterPassword(password)
 
-        let safeSetupOptionsScreen = NewSafeScreen()
+        let safeSetupOptionsScreen = SetupSafeOptionsScreen()
         XCTAssertTrue(safeSetupOptionsScreen.isDisplayed)
     }
 
