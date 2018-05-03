@@ -12,6 +12,10 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
     var cameraSuggestionHandler: NSObjectProtocol!
     let cameraScreen = CameraScreen()
 
+    enum CameraOpenOption {
+        case input, button
+    }
+
     override func setUp() {
         super.setUp()
         Springboard.deleteSafeApp()
@@ -47,7 +51,7 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
     }
 
     func test_scanInvalidCode() {
-        givenCameraOpened()
+        givenCameraOpened(with: .input)
         cameraScreen.scanInvalidCodeButton.tap()
         XCTAssertTrue(cameraScreen.isDisplayed)
         closeCamera()
@@ -77,13 +81,15 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
     func test_rescanInvalidOnTopOfValid() {
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
+        screen.finishButton.tap()
+        let newSafe = NewSafeScreen()
+        newSafe.browserExtension.element.tap()
         let value = screen.qrCodeInput.value
         screen.qrCodeInput.tap()
         cameraScreen.scanInvalidCodeButton.tap()
         cameraScreen.closeButton.tap()
         XCTAssertEqual(screen.qrCodeInput.value as? String, value as? String)
-        screen.finishButton.tap()
-        let newSafe = NewSafeScreen()
+        TestUtils.navigateBack()
         XCTAssertTrue(newSafe.browserExtension.isChecked)
     }
 
@@ -143,9 +149,14 @@ extension PairWithBrowserExtensionScreenUITests {
         waitForExpectations(timeout: 5)
     }
 
-    private func givenCameraOpened() {
+    private func givenCameraOpened(with option: CameraOpenOption = .button) {
         handleCameraPermsissionByAllowing(with: expectation(description: "Alert"))
-        screen.qrCodeInput.tap()
+        switch option {
+        case .input:
+            screen.qrCodeInput.tap()
+        case .button:
+            screen.qrCodeButton.tap()
+        }
         handleAlerts()
     }
 

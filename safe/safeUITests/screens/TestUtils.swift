@@ -18,3 +18,9 @@ final class TestUtils {
     }
 
 }
+
+extension XCUIElement {
+
+    var hasFocus: Bool { return value(forKey: "hasKeyboardFocus") as? Bool ?? false }
+
+}

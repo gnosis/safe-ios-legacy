@@ -30,4 +30,5 @@ final class NewSafeScreen {
             element = XCUIApplication().buttons[identifier]
         }
     }
+
 }

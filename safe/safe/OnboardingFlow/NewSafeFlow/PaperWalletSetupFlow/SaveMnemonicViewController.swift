@@ -50,8 +50,10 @@ final class SaveMnemonicViewController: UIViewController {
         }
         titleLabel.text = Strings.title
         mnemonicCopyableLabel.text = words.joined(separator: " ")
+        mnemonicCopyableLabel.accessibilityIdentifier = "mnemonic"
         saveButton.setTitle(Strings.save, for: .normal)
         descriptionLabel.text = Strings.description
+        descriptionLabel.accessibilityIdentifier = "description"
         continueButton.setTitle(Strings.continue, for: .normal)
     }
 
