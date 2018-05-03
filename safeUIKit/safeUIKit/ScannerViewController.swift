@@ -15,6 +15,7 @@ final class ScannerViewController: UIViewController {
     private weak var delegate: ScannerDelegate?
 
     @IBOutlet weak var debugButtonsStackView: UIStackView!
+    @IBOutlet weak var closeButton: UIButton!
 
     static func create(delegate: ScannerDelegate) -> ScannerViewController {
         let bundle = Bundle(for: ScannerViewController.self)
@@ -46,6 +47,8 @@ final class ScannerViewController: UIViewController {
         addChildViewController(codeReaderVC)
         view.insertSubview(codeReaderVC.view, at: 0)
         codeReaderVC.didMove(toParentViewController: self)
+
+        closeButton.accessibilityLabel = LocalizedString("camera.close", comment: "Close button on camera")
     }
 
     private func barcodesHandler(_ barcodes: [AVMetadataMachineReadableCodeObject]) {
@@ -72,7 +75,7 @@ final class ScannerViewController: UIViewController {
     }
 
     @IBAction func scanAnotherValidCode(_ sender: Any) {
-        delegate?.didScan(validCode)
+        delegate?.didScan("another_code")
     }
 
     @IBAction func debugScanInvalidCode(_ sender: Any) {
