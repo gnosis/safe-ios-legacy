@@ -38,23 +38,14 @@ final class ConfirmMnemonicUITests: UITestCase {
         XCTAssertFalse(firstWordNumber == newFirstWordNumber && secondWordNumber == newSecondWordNumber)
     }
 
-    func test_whenValidWordsAreEntered_thenNewSafeScreenAppearsWithCheckedPaperWalletAndNoFurtherValidationRequired() {
-        // Enter valid words
-        confirmPaperWallet()
-
-        // Try to re-validate
-        newSafeScreen.paperWallet.element.tap()
-        saveMnemonicScreen.continueButton.tap()
-        assertPaperWalletIsSet()
-
-        // Try to play with navigation without restarting the app
-        TestUtils.navigateBack()
-        setupSafeOptionsScreen.newSafe.tap()
-        assertPaperWalletIsSet()
+    func test_whenPaperWalletRevalidated_thenItIsStillConfigured() {
+        confirmPaperWalletWithValidWords()
+        reValidate()
+        navidateBackAndForward()
     }
 
     func test_restartingAppInvalidatesConfiguredPaperWallet() {
-        confirmPaperWallet()
+        confirmPaperWalletWithValidWords()
         Application().terminate()
         givenNewSafeSetup(withAppReset: false)
         XCTAssertTrue(newSafeScreen.isDisplayed)
@@ -68,7 +59,7 @@ final class ConfirmMnemonicUITests: UITestCase {
         return Int(result)!
     }
 
-    private func confirmPaperWallet() {
+    private func confirmPaperWalletWithValidWords() {
         TestUtils.navigateBack()
         let mnemonicWords = saveMnemonicScreen.mnemonic.label.components(separatedBy: " ")
         saveMnemonicScreen.continueButton.tap()
@@ -79,6 +70,18 @@ final class ConfirmMnemonicUITests: UITestCase {
         XCTAssertTrue(confirmMnemonicScreen.secondInput.hasFocus)
         confirmMnemonicScreen.secondInput.typeText(mnemonicWords[secondWordNumber - 1])
         confirmMnemonicScreen.secondInput.typeText("\n")
+        assertPaperWalletIsSet()
+    }
+
+    private func reValidate() {
+        newSafeScreen.paperWallet.element.tap()
+        saveMnemonicScreen.continueButton.tap()
+        assertPaperWalletIsSet()
+    }
+
+    private func navidateBackAndForward() {
+        TestUtils.navigateBack()
+        setupSafeOptionsScreen.newSafe.tap()
         assertPaperWalletIsSet()
     }
 
