@@ -72,6 +72,7 @@ public final class QRCodeInput: UITextField {
         overlayButton.setImage(UIImage(asset: Asset.qrCode), for: .normal)
         overlayButton.addTarget(self, action: #selector(openBarcodeSacenner), for: .touchUpInside)
         overlayButton.frame = CGRect(x: 0, y: 0, width: Constants.inputHeight, height: Constants.inputHeight)
+        overlayButton.accessibilityIdentifier = "QRCodeButton"
         rightView = overlayButton
         rightViewMode = .always
         delegate = self

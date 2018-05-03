@@ -14,16 +14,17 @@ class UITestCase: XCTestCase {
         continueAfterFailure = false
     }
 
-    func givenUnlockedAppSetup() {
-        application.resetAllContentAndSettings()
-        application.setPassword(password)
+    func givenUnlockedAppSetup(withAppReset: Bool = true) {
+        if withAppReset {
+            application.resetAllContentAndSettings()
+            application.setPassword(password)
+        }
         application.start()
-        let unlock = UnlockScreen()
-        unlock.enterPassword(password)
+        UnlockScreen().enterPassword(password)
     }
 
-    func givenNewSafeSetup() {
-        givenUnlockedAppSetup()
+    func givenNewSafeSetup(withAppReset: Bool = true) {
+        givenUnlockedAppSetup(withAppReset: withAppReset)
         let setupOptions = SetupSafeOptionsScreen()
         setupOptions.newSafe.tap()
     }

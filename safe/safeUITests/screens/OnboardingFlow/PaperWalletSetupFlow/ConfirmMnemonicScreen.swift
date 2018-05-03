@@ -19,8 +19,4 @@ final class ConfirmMnemonicScreen {
     let firstWordNumberLabel = XCUIApplication().staticTexts["firstWordNumberLabel"]
     let secondWordNumberLabel = XCUIApplication().staticTexts["secondWordNumberLabel"]
 
-    func navigateBack() {
-        XCUIApplication().navigationBars.buttons.firstMatch.tap()
-    }
-
 }
