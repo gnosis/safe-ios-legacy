@@ -5,6 +5,7 @@
 import Crashlytics
 import Fabric
 import UIKit
+import SafeAppUI
 import IdentityAccessApplication
 import IdentityAccessDomainModel
 import IdentityAccessImplementations

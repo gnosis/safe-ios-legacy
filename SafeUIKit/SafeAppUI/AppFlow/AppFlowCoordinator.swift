@@ -5,14 +5,14 @@
 import UIKit
 import IdentityAccessApplication
 
-protocol AppFlowCoordinatorProtocol: class {
+public protocol AppFlowCoordinatorProtocol: class {
 
     func startViewController() -> UIViewController
     func appEntersForeground()
 
 }
 
-final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
+public final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
 
     let onboardingFlowCoordinator = OnboardingFlowCoordinator()
     private var lockedViewController: UIViewController!
@@ -29,7 +29,9 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
         return authenticationService.isUserRegistered  && !authenticationService.isUserAuthenticated
     }
 
-    func startViewController() -> UIViewController {
+    public init() {}
+
+    public func startViewController() -> UIViewController {
         lockedViewController = onboardingFlowCoordinator.startViewController()
         if authenticationService.isUserRegistered {
             return unlockController { [unowned self] in
@@ -43,7 +45,7 @@ final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
         return UnlockViewController.create(completion: completion)
     }
 
-    func appEntersForeground() {
+    public func appEntersForeground() {
         guard let rootVC = self.rootViewController,
             !(rootVC is UnlockViewController) && shouldLockWhenAppActive else {
             return

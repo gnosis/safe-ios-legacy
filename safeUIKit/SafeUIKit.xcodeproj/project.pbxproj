@@ -68,8 +68,6 @@
 		0A334E61209C8E6800ABC6AE /* ConfirmPaswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E18209C8E3800ABC6AE /* ConfirmPaswordViewControllerTests.swift */; };
 		0A334E62209C8E6800ABC6AE /* StartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E19209C8E3800ABC6AE /* StartViewControllerTests.swift */; };
 		0A334E64209C8ED300ABC6AE /* libIdentityAccessApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334E63209C8ED300ABC6AE /* libIdentityAccessApplication.a */; };
-		0A334E65209C8EDE00ABC6AE /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E23209C8E3800ABC6AE /* MockAuthenticationService.swift */; };
-		0A334E66209C8F2000ABC6AE /* MockIdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E01209C8E3800ABC6AE /* MockIdentityApplicationService.swift */; };
 		0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E67209C8F4700ABC6AE /* Assets.swift */; };
 		0A334E6C209C8F8500ABC6AE /* FatalErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E6A209C8F8500ABC6AE /* FatalErrorHandler.swift */; };
 		0A334E6D209C8F8800ABC6AE /* FatalErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E69209C8F8500ABC6AE /* FatalErrorHandlerTests.swift */; };
@@ -78,6 +76,7 @@
 		0A53AD5320598B5000D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD5520598B5000D713AD /* Localizable.strings */; };
 		0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */; };
 		0A5DC575209C9AB600BA7A06 /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */; };
+		0A5DC577209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5DC576209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift */; };
 		0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */; };
 		0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEC205A8D63003619EF /* LocalizedString.swift */; };
 		0A72D42C209C92700082C0A3 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */; };
@@ -293,7 +292,6 @@
 		0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeViewControllerTests.swift; sourceTree = "<group>"; };
 		0A334DFF209C8E3800ABC6AE /* ReviewSafeViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSafeViewControllerTests.swift; sourceTree = "<group>"; };
 		0A334E00209C8E3800ABC6AE /* NewSafe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewSafe.storyboard; sourceTree = "<group>"; };
-		0A334E01209C8E3800ABC6AE /* MockIdentityApplicationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockIdentityApplicationService.swift; sourceTree = "<group>"; };
 		0A334E03209C8E3800ABC6AE /* SaveMnemonicViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicViewControllerTests.swift; sourceTree = "<group>"; };
 		0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperWalletFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A334E05209C8E3800ABC6AE /* ConfirmMnemonicViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicViewControllerTests.swift; sourceTree = "<group>"; };
@@ -319,7 +317,6 @@
 		0A334E1B209C8E3800ABC6AE /* ConfirmPaswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPaswordViewController.swift; sourceTree = "<group>"; };
 		0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockViewControllerTests.swift; sourceTree = "<group>"; };
-		0A334E23209C8E3800ABC6AE /* MockAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
 		0A334E26209C8E3800ABC6AE /* AppFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AppFlow.storyboard; sourceTree = "<group>"; };
@@ -335,6 +332,7 @@
 		0A53AD5420598B5000D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD5620598B5E00D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A5DC574209C9A8600BA7A06 /* TestConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TestConfig.xcconfig; sourceTree = "<group>"; };
+		0A5DC576209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensionsTests.swift; sourceTree = "<group>"; };
 		0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+SafeUIKit.swift"; sourceTree = "<group>"; };
 		0A638BEC205A8D63003619EF /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		0A72D436209C92A20082C0A3 /* TestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
@@ -477,7 +475,6 @@
 				0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */,
 				0A334DFF209C8E3800ABC6AE /* ReviewSafeViewControllerTests.swift */,
 				0A334E00209C8E3800ABC6AE /* NewSafe.storyboard */,
-				0A334E01209C8E3800ABC6AE /* MockIdentityApplicationService.swift */,
 				0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */,
 				0A334E09209C8E3800ABC6AE /* ReviewSafeViewController.swift */,
 				0A334E0A209C8E3800ABC6AE /* NewSafeFlowCoordinatorTests.swift */,
@@ -533,7 +530,6 @@
 			children = (
 				0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */,
 				0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */,
-				0A334E23209C8E3800ABC6AE /* MockAuthenticationService.swift */,
 				0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */,
 				0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */,
 				0A334E26209C8E3800ABC6AE /* AppFlow.storyboard */,
@@ -678,6 +674,7 @@
 				0AF33D37209C6BF800527D25 /* SafeAppUI.h */,
 				0A334E6A209C8F8500ABC6AE /* FatalErrorHandler.swift */,
 				0A334E6E209C8FB100ABC6AE /* SafeFoundationExtensions.swift */,
+				0A5DC576209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift */,
 				0A334E69209C8F8500ABC6AE /* FatalErrorHandlerTests.swift */,
 				0A72D436209C92A20082C0A3 /* TestExtensions.swift */,
 				0A72D437209C92A20082C0A3 /* TestExtensionsTests.swift */,
@@ -1209,8 +1206,8 @@
 				0A334E62209C8E6800ABC6AE /* StartViewControllerTests.swift in Sources */,
 				0A334E55209C8E6800ABC6AE /* OnboardingFlowCoordinatorTests.swift in Sources */,
 				0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */,
+				0A5DC577209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
-				0A334E65209C8EDE00ABC6AE /* MockAuthenticationService.swift in Sources */,
 				0A334E56209C8E6800ABC6AE /* NewSafeViewControllerTests.swift in Sources */,
 				0A72D42C209C92700082C0A3 /* XCTestCase+Extensions.swift in Sources */,
 				0A72D431209C92740082C0A3 /* XCTest+Assert.swift in Sources */,
@@ -1219,7 +1216,6 @@
 				0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */,
 				0A72D439209C92A20082C0A3 /* TestExtensionsTests.swift in Sources */,
 				0A334E6D209C8F8800ABC6AE /* FatalErrorHandlerTests.swift in Sources */,
-				0A334E66209C8F2000ABC6AE /* MockIdentityApplicationService.swift in Sources */,
 				0A334E5F209C8E6800ABC6AE /* SetPasswordViewControllerTests.swift in Sources */,
 				0A334E5D209C8E6800ABC6AE /* PairWithBrowserExtensionViewControllerTests.swift in Sources */,
 				0A334E61209C8E6800ABC6AE /* ConfirmPaswordViewControllerTests.swift in Sources */,

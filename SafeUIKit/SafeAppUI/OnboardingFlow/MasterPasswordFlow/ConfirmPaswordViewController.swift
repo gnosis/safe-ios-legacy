@@ -17,11 +17,11 @@ final class ConfirmPaswordViewController: UIViewController {
     private var referencePassword: String!
     private weak var delegate: ConfirmPasswordViewControllerDelegate?
 
-    private struct LocalizedString {
-        static let header = NSLocalizedString("onboarding.confirm_password.header",
-                                              comment: "Confirm password screen header")
-        static let matchPassword = NSLocalizedString("onboarding.confirm_password.match",
-                                                     comment: "Password confirmation must match set password rule")
+    private struct Strings {
+        static let header = LocalizedString("onboarding.confirm_password.header",
+                                            comment: "Confirm password screen header")
+        static let matchPassword = LocalizedString("onboarding.confirm_password.match",
+                                                   comment: "Password confirmation must match set password rule")
     }
 
     static func create(referencePassword: String,
@@ -36,7 +36,7 @@ final class ConfirmPaswordViewController: UIViewController {
         super.viewDidLoad()
         textInput.delegate = self
         textInput.isSecure = true
-        textInput.addRule(LocalizedString.matchPassword) { [unowned self] input in
+        textInput.addRule(Strings.matchPassword) { [unowned self] input in
             PasswordValidator.validate(input: input, equals: self.referencePassword)
         }
         _ = textInput.becomeFirstResponder()

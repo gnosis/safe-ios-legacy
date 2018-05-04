@@ -2,38 +2,36 @@
 //  Copyright © 2018 Gnosis Ltd. All rights reserved.
 //
 
-import XCTest
-@testable import SafeAppUI
-import IdentityAccessApplication
+import Foundation
 
-class MockAuthenticationService: AuthenticationApplicationService {
+public class MockAuthenticationService: AuthenticationApplicationService {
 
     private var userRegistered = false
     private var shouldThrowDuringRegistration = false
-    private(set) var didRequestUserRegistration = false
+    public private(set) var didRequestUserRegistration = false
     private var userAuthenticated = false
     private var authenticationAllowed = false
-    private(set) var didRequestBiometricAuthentication = false
-    private(set) var didRequestPasswordAuthentication = false
+    public private(set) var didRequestBiometricAuthentication = false
+    public private(set) var didRequestPasswordAuthentication = false
     private var enabledAuthenticationMethods = AuthenticationMethod.password
     private var possibleAuthenticationMethods: AuthenticationMethod = [.password, .touchID, .faceID]
     private var authenticationBlocked = false
 
-    enum Error: Swift.Error { case error }
+    public enum Error: Swift.Error { case error }
 
-    func unregisterUser() {
+    public func unregisterUser() {
         userRegistered = false
     }
 
-    func prepareToThrowWhenRegisteringUser() {
+    public func prepareToThrowWhenRegisteringUser() {
         shouldThrowDuringRegistration = true
     }
 
-    override var isUserRegistered: Bool {
+    public override var isUserRegistered: Bool {
         return userRegistered
     }
 
-    override func registerUser(password: String) throws {
+    public override func registerUser(password: String) throws {
         didRequestUserRegistration = true
         if shouldThrowDuringRegistration {
             throw Error.error
@@ -41,20 +39,20 @@ class MockAuthenticationService: AuthenticationApplicationService {
         userRegistered = true
     }
 
-    func invalidateAuthentication() {
+    public func invalidateAuthentication() {
         authenticationAllowed = false
         userAuthenticated = false
     }
 
-    func allowAuthentication() {
+    public func allowAuthentication() {
         authenticationAllowed = true
     }
 
-    override var isUserAuthenticated: Bool {
+    public override var isUserAuthenticated: Bool {
         return isUserRegistered && userAuthenticated && !isAuthenticationBlocked
     }
 
-    override func authenticateUser(_ request: AuthenticationRequest) throws -> AuthenticationResult {
+    public override func authenticateUser(_ request: AuthenticationRequest) throws -> AuthenticationResult {
         didRequestBiometricAuthentication = !request.method.isDisjoint(with: .biometry)
         didRequestPasswordAuthentication = request.method.contains(.password)
         userAuthenticated = authenticationAllowed && !authenticationBlocked
@@ -65,28 +63,28 @@ class MockAuthenticationService: AuthenticationApplicationService {
         }
     }
 
-    func makeBiometricAuthenticationImpossible() {
+    public func makeBiometricAuthenticationImpossible() {
         possibleAuthenticationMethods = .password
     }
 
-    func enableFaceIDSupport() {
+    public func enableFaceIDSupport() {
         enabledAuthenticationMethods.insert(.faceID)
     }
 
-    override func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
+    public override func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
         return !method.isDisjoint(with: enabledAuthenticationMethods)
     }
 
-    override func isAuthenticationMethodPossible(_ method: AuthenticationMethod) -> Bool {
+    public override func isAuthenticationMethodPossible(_ method: AuthenticationMethod) -> Bool {
         return !method.isDisjoint(with: possibleAuthenticationMethods)
     }
 
-    func blockAuthentication() {
+    public func blockAuthentication() {
         authenticationBlocked = true
         makeBiometricAuthenticationImpossible()
     }
 
-    override var isAuthenticationBlocked: Bool {
+    public override var isAuthenticationBlocked: Bool {
         return authenticationBlocked
     }
 }

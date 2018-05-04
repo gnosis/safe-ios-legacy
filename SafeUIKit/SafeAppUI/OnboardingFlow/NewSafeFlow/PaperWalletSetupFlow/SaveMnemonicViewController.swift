@@ -22,13 +22,13 @@ final class SaveMnemonicViewController: UIViewController {
     private(set) var words = [String]()
 
     private struct Strings {
-        static let title = NSLocalizedString("new_safe.paper_wallet.title",
-                                             comment: "Title for store paper wallet screen")
-        static let save = NSLocalizedString("new_safe.paper_wallet.save", comment: "Save Button")
-        static let description = NSLocalizedString("new_safe.paper_wallet.description",
-                                                   comment: "Description for store paper wallet screen")
-        static let `continue` = NSLocalizedString("new_safe.paper_wallet.continue",
-                                                  comment: "Continue button for store paper wallet screen")
+        static let title = LocalizedString("new_safe.paper_wallet.title",
+                                           comment: "Title for store paper wallet screen")
+        static let save = LocalizedString("new_safe.paper_wallet.save", comment: "Save Button")
+        static let description = LocalizedString("new_safe.paper_wallet.description",
+                                                 comment: "Description for store paper wallet screen")
+        static let `continue` = LocalizedString("new_safe.paper_wallet.continue",
+                                                comment: "Continue button for store paper wallet screen")
     }
 
     static func create(words: [String], delegate: SaveMnemonicDelegate) -> SaveMnemonicViewController {

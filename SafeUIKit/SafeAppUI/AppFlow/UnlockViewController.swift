@@ -39,8 +39,8 @@ final class UnlockViewController: UIViewController {
         return ApplicationServiceRegistry.authenticationService
     }
 
-    private struct LocalizedString {
-        static let header = NSLocalizedString("app.unlock.header", comment: "Unlock screen header")
+    private struct Strings {
+        static let header = LocalizedString("app.unlock.header", comment: "Unlock screen header")
     }
 
     static func create(completion: (() -> Void)? = nil) -> UnlockViewController {
@@ -51,7 +51,7 @@ final class UnlockViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerLabel.text = LocalizedString.header
+        headerLabel.text = Strings.header
         textInput.delegate = self
         textInput.isSecure = true
 

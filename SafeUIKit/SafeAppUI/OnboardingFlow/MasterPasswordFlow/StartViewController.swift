@@ -15,10 +15,10 @@ final class StartViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     private weak var delegate: StartViewControllerDelegate?
 
-    private struct LocalizedString {
-        static let header = NSLocalizedString("onboarding.start.header", comment: "App name")
-        static let description = NSLocalizedString("onboarding.start.description", comment: "App slogan")
-        static let start = NSLocalizedString("onboarding.start.start", comment: "Start button title")
+    private struct Strings {
+        static let header = LocalizedString("onboarding.start.header", comment: "App name")
+        static let description = LocalizedString("onboarding.start.description", comment: "App slogan")
+        static let start = LocalizedString("onboarding.start.start", comment: "Start button title")
     }
 
     static func create(delegate: StartViewControllerDelegate) -> StartViewController {
@@ -29,9 +29,9 @@ final class StartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerLabel.text = LocalizedString.header
-        descriptionLabel.text = LocalizedString.description
-        startButton.setTitle(LocalizedString.start, for: .normal)
+        headerLabel.text = Strings.header
+        descriptionLabel.text = Strings.description
+        startButton.setTitle(Strings.start, for: .normal)
     }
 
     @IBAction func start(_ sender: Any) {

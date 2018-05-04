@@ -14,8 +14,8 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     enum Strings {
 
-        static let finish = NSLocalizedString("new_safe.extension.finish",
-                                              comment: "Finish button title in extension setup screen")
+        static let finish = LocalizedString("new_safe.extension.finish",
+                                            comment: "Finish button title in extension setup screen")
 
     }
 

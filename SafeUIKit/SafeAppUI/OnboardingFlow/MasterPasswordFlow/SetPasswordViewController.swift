@@ -16,14 +16,14 @@ final class SetPasswordViewController: UIViewController {
     private weak var delegate: SetPasswordViewControllerDelegate?
 
     private struct LocalizedStrings {
-        static let header = NSLocalizedString("onboarding.set_password.header",
-                                              comment: "Set password screen header label")
-        static let length = NSLocalizedString("onboarding.set_password.length",
-                                              comment: "Minimum length rule for password field")
-        static let capital = NSLocalizedString("onboarding.set_password.capital",
-                                               comment: "At least one capital letter rule for password field")
-        static let digit = NSLocalizedString("onboarding.set_password.digit",
-                                             comment: "At least one digit rule for password field")
+        static let header = LocalizedString("onboarding.set_password.header",
+                                            comment: "Set password screen header label")
+        static let length = LocalizedString("onboarding.set_password.length",
+                                            comment: "Minimum length rule for password field")
+        static let capital = LocalizedString("onboarding.set_password.capital",
+                                             comment: "At least one capital letter rule for password field")
+        static let digit = LocalizedString("onboarding.set_password.digit",
+                                           comment: "At least one digit rule for password field")
     }
 
     static func create(delegate: SetPasswordViewControllerDelegate?) -> SetPasswordViewController {

@@ -34,7 +34,6 @@
 		0A537AE5207CEFED00921FB9 /* InMemoryKeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE4207CEFED00921FB9 /* InMemoryKeyValueStore.swift */; };
 		0A537AE7207CF00D00921FB9 /* MockEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE6207CF00D00921FB9 /* MockEncryptionService.swift */; };
 		0A537AE9207CF02C00921FB9 /* MockLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE8207CF02C00921FB9 /* MockLogger.swift */; };
-		0A537AEB207CF0F900921FB9 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEA207CF0F900921FB9 /* libCommon.a */; };
 		0A537AED207CF10000921FB9 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEC207CF10000921FB9 /* libCommonTestSupport.a */; };
 		0A537AEF207CF18B00921FB9 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */; };
 		0A537AF0207CF1A200921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
@@ -65,7 +64,6 @@
 		0A537BC1207CF9B600921FB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBF207CF9B600921FB9 /* LaunchScreen.storyboard */; };
 		0A537BD6207CF9EE00921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
 		0A537BDC207CFA6600921FB9 /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFD207CF2D600921FB9 /* KeychainServiceIntegrationTests.swift */; };
-		0A537BEB207CFAF800921FB9 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537BEA207CFAF800921FB9 /* libCommon.a */; };
 		0A537BF3207CFB1C00921FB9 /* AuthenticationApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BED207CFB1C00921FB9 /* AuthenticationApplicationService.swift */; };
 		0A537BF4207CFB1C00921FB9 /* IdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BEE207CFB1C00921FB9 /* IdentityApplicationService.swift */; };
 		0A537BF5207CFB1C00921FB9 /* ApplicationServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BEF207CFB1C00921FB9 /* ApplicationServiceRegistry.swift */; };
@@ -80,6 +78,12 @@
 		0A57F708207E3D6900AF407D /* Result.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A57F72B207E4CF900AF407D /* CryptoSwift.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A57F72C207E4CF900AF407D /* EthereumKit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A5DC57E209C9EBE00BA7A06 /* MockIdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5DC578209C9EBE00BA7A06 /* MockIdentityApplicationService.swift */; };
+		0A5DC580209C9F4300BA7A06 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5DC57F209C9F4300BA7A06 /* MockAuthenticationService.swift */; };
+		0A5DC583209CA23F00BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC582209CA23F00BA7A06 /* libCommon.a */; };
+		0A5DC585209CA24600BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC584209CA24600BA7A06 /* libCommon.a */; };
+		0A5DC587209CA24C00BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC586209CA24C00BA7A06 /* libCommon.a */; };
+		0A5DC589209CA25200BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC588209CA25200BA7A06 /* libCommon.a */; };
 		0A665987208A3EA700A4C8CE /* MockCSQLite3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A665986208A3EA700A4C8CE /* MockCSQLite3.swift */; };
 		0A66598B208A403500A4C8CE /* SQLiteDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D3F208A07C90034FF66 /* SQLiteDatabaseTests.swift */; };
 		0A666D04208643A50034FF66 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666CFF208643A50034FF66 /* Clock.swift */; };
@@ -393,6 +397,13 @@
 		0A537C02207CFB9200921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A57F6DD207E38D900AF407D /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
+		0A5DC578209C9EBE00BA7A06 /* MockIdentityApplicationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockIdentityApplicationService.swift; sourceTree = "<group>"; };
+		0A5DC57F209C9F4300BA7A06 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
+		0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CommonConfig.xcconfig; sourceTree = "<group>"; };
+		0A5DC582209CA23F00BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A5DC584209CA24600BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A5DC586209CA24C00BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A5DC588209CA25200BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A665986208A3EA700A4C8CE /* MockCSQLite3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCSQLite3.swift; sourceTree = "<group>"; };
 		0A666CFF208643A50034FF66 /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		0A666D052086496D0034FF66 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -434,7 +445,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A537AEB207CF0F900921FB9 /* libCommon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +452,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A5DC583209CA23F00BA7A06 /* libCommon.a in Frameworks */,
 				0A537AF0207CF1A200921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 				0A537AEF207CF18B00921FB9 /* libCommonTestSupport.a in Frameworks */,
 				0A537AAC207CEA0100921FB9 /* libIdentityAccessDomainModel.a in Frameworks */,
@@ -460,6 +471,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A5DC585209CA24600BA7A06 /* libCommon.a in Frameworks */,
 				0A537B33207CF4B000921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +487,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A5DC587209CA24C00BA7A06 /* libCommon.a in Frameworks */,
 				0A537BD6207CF9EE00921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,7 +496,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A537BEB207CFAF800921FB9 /* libCommon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +503,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A5DC589209CA25200BA7A06 /* libCommon.a in Frameworks */,
 				0A537C0B207CFC1C00921FB9 /* libIdentityAccessDomainModel.a in Frameworks */,
 				0A537C0C207CFC1C00921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 				0A537C0A207CFC1C00921FB9 /* libCommonTestSupport.a in Frameworks */,
@@ -738,11 +751,13 @@
 				0A537BF1207CFB1C00921FB9 /* ApplicationServiceRegistryTests.swift */,
 				0A537BED207CFB1C00921FB9 /* AuthenticationApplicationService.swift */,
 				0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */,
+				0A5DC57F209C9F4300BA7A06 /* MockAuthenticationService.swift */,
 				0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */,
 				0A666D182087A1990034FF66 /* AuthenticationMethod.swift */,
 				0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */,
 				0A537BEE207CFB1C00921FB9 /* IdentityApplicationService.swift */,
 				0A537BF2207CFB1C00921FB9 /* IdentityApplicationServiceTests.swift */,
+				0A5DC578209C9EBE00BA7A06 /* MockIdentityApplicationService.swift */,
 				559F77DC2085F5BC0080A5CF /* DraftSafe.swift */,
 				559F77E22085F5CF0080A5CF /* DraftSafeTests.swift */,
 				0A666D0B2086577D0034FF66 /* Interfaces */,
@@ -784,6 +799,7 @@
 		0AF2818E2074C18B00D3843D = {
 			isa = PBXGroup;
 			children = (
+				0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */,
 				0A57F6DD207E38D900AF407D /* Library.xcodeproj */,
 				0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */,
 				0A537BE2207CFADE00921FB9 /* IdentityAccessApplication */,
@@ -815,6 +831,10 @@
 		0AF281D32074C21B00D3843D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A5DC588209CA25200BA7A06 /* libCommon.a */,
+				0A5DC586209CA24C00BA7A06 /* libCommon.a */,
+				0A5DC584209CA24600BA7A06 /* libCommon.a */,
+				0A5DC582209CA23F00BA7A06 /* libCommon.a */,
 				0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */,
 				0A537BEA207CFAF800921FB9 /* libCommon.a */,
 				0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */,
@@ -1354,9 +1374,11 @@
 				0A537BF5207CFB1C00921FB9 /* ApplicationServiceRegistry.swift in Sources */,
 				0A537BF4207CFB1C00921FB9 /* IdentityApplicationService.swift in Sources */,
 				559F77DD2085F5BC0080A5CF /* DraftSafe.swift in Sources */,
+				0A5DC580209C9F4300BA7A06 /* MockAuthenticationService.swift in Sources */,
 				0A666D1B2087A1A90034FF66 /* AuthenticationResult.swift in Sources */,
 				0A666D192087A1990034FF66 /* AuthenticationMethod.swift in Sources */,
 				0A666D04208643A50034FF66 /* Clock.swift in Sources */,
+				0A5DC57E209C9EBE00BA7A06 /* MockIdentityApplicationService.swift in Sources */,
 				0A537BF3207CFB1C00921FB9 /* AuthenticationApplicationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1503,6 +1525,7 @@
 		};
 		0A46702B207E58B700F55ADE /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1565,6 +1588,7 @@
 		};
 		0A46702C207E58B700F55ADE /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1673,6 +1697,7 @@
 		};
 		0A467032207E58B700F55ADE /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1707,6 +1732,7 @@
 		};
 		0A537A68207CE5BC00921FB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1725,6 +1751,7 @@
 		};
 		0A537A69207CE5BC00921FB9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1921,6 +1948,7 @@
 		};
 		0A537BE6207CFADE00921FB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1939,6 +1967,7 @@
 		};
 		0A537BE7207CFADE00921FB9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

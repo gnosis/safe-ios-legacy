@@ -4,9 +4,9 @@
 
 import Foundation
 
-private class BundleMarker {}
+fileprivate class BundleMarker {}
 
-extension Bundle {
+fileprivate extension Bundle {
     static let SafeAppUI = Bundle(for: BundleMarker.self)
 }
 

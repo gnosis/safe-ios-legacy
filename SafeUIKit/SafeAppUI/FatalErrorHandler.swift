@@ -6,12 +6,12 @@ import Foundation
 import UIKit
 import IdentityAccessApplication
 
-class FatalErrorHandler {
+public class FatalErrorHandler {
 
-    struct Strings {
-        static let title = NSLocalizedString("onboarding.fatal.title", comment: "Fatal error alert's title")
-        static let ok = NSLocalizedString("onboarding.fatal.ok", comment: "Fatal error alert's Ok button title")
-        static let message = NSLocalizedString("onboarding.fatal.message", comment: "Fatal error alert's message")
+    public struct Strings {
+        public static let title = LocalizedString("onboarding.fatal.title", comment: "Fatal error alert's title")
+        public static let ok = LocalizedString("onboarding.fatal.ok", comment: "Fatal error alert's Ok button title")
+        public static let message = LocalizedString("onboarding.fatal.message", comment: "Fatal error alert's message")
     }
     private static let instance = FatalErrorHandler()
 
