@@ -1,3 +1,60 @@
+/* Unlock screen header */
+"app.unlock.header" = "app.unlock.header";
+
+/* Browser extension Button */
+"new_safe.browser_extension" = "new_safe.browser_extension";
+
+/* Finish button title in extension setup screen */
+"new_safe.extension.finish" = "new_safe.extension.finish";
+
+/* Paper Wallet Button */
+"new_safe.paper_wallet" = "new_safe.paper_wallet";
+
+/* Continue button for store paper wallet screen */
+"new_safe.paper_wallet.continue" = "new_safe.paper_wallet.continue";
+
+/* Description for store paper wallet screen */
+"new_safe.paper_wallet.description" = "new_safe.paper_wallet.description";
+
+/* Save Button */
+"new_safe.paper_wallet.save" = "new_safe.paper_wallet.save";
+
+/* Title for store paper wallet screen */
+"new_safe.paper_wallet.title" = "new_safe.paper_wallet.title";
+
+/* This device button */
+"new_safe.this_device" = "new_safe.this_device";
+
+/* Title for new safe screen */
+"new_safe.title" = "new_safe.title";
+
+/* Confirm password screen header */
+"onboarding.confirm_password.header" = "onboarding.confirm_password.header";
+
+/* Password confirmation must match set password rule */
+"onboarding.confirm_password.match" = "onboarding.confirm_password.match";
+
+/* Fatal error alert's message */
+"onboarding.fatal.message" = "onboarding.fatal.message";
+
+/* Fatal error alert's Ok button title */
+"onboarding.fatal.ok" = "onboarding.fatal.ok";
+
+/* Fatal error alert's title */
+"onboarding.fatal.title" = "onboarding.fatal.title";
+
+/* At least one capital letter rule for password field */
+"onboarding.set_password.capital" = "onboarding.set_password.capital";
+
+/* At least one digit rule for password field */
+"onboarding.set_password.digit" = "onboarding.set_password.digit";
+
+/* Set password screen header label */
+"onboarding.set_password.header" = "onboarding.set_password.header";
+
+/* Minimum length rule for password field */
+"onboarding.set_password.length" = "onboarding.set_password.length";
+
 /* Set up safe options screen title */
 "onboarding.setup_safe.info" = "onboarding.setup_safe.info";
 
@@ -6,4 +63,19 @@
 
 /* Restore safe button */
 "onboarding.setup_safe.restore" = "onboarding.setup_safe.restore";
+
+/* App slogan */
+"onboarding.start.description" = "onboarding.start.description";
+
+/* App name */
+"onboarding.start.header" = "onboarding.start.header";
+
+/* Start button title */
+"onboarding.start.start" = "onboarding.start.start";
+
+/* Description for confirm mnemonic view controller */
+"recovery.confirm_mnemonic.description" = "recovery.confirm_mnemonic.description";
+
+/* Title for confirm mnemonic view controller */
+"recovery.confirm_mnemonic.title" = "recovery.confirm_mnemonic.title";
 

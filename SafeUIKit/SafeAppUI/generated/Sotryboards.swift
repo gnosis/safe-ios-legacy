@@ -53,6 +53,33 @@ extension UIViewController {
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 enum StoryboardScene {
+  enum AppFlow: StoryboardType {
+    static let storyboardName = "AppFlow"
+
+    static let unlockViewController = SceneType<SafeAppUI.UnlockViewController>(storyboard: AppFlow.self, identifier: "UnlockViewController")
+  }
+  enum MasterPassword: StoryboardType {
+    static let storyboardName = "MasterPassword"
+
+    static let confirmPaswordViewController = SceneType<SafeAppUI.ConfirmPaswordViewController>(storyboard: MasterPassword.self, identifier: "ConfirmPaswordViewController")
+
+    static let setPasswordViewController = SceneType<SafeAppUI.SetPasswordViewController>(storyboard: MasterPassword.self, identifier: "SetPasswordViewController")
+
+    static let startViewController = SceneType<SafeAppUI.StartViewController>(storyboard: MasterPassword.self, identifier: "StartViewController")
+  }
+  enum NewSafe: StoryboardType {
+    static let storyboardName = "NewSafe"
+
+    static let confirmMnemonicViewController = SceneType<SafeAppUI.ConfirmMnemonicViewController>(storyboard: NewSafe.self, identifier: "ConfirmMnemonicViewController")
+
+    static let navigationController = SceneType<UINavigationController>(storyboard: NewSafe.self, identifier: "NavigationController")
+
+    static let newSafeViewController = SceneType<SafeAppUI.NewSafeViewController>(storyboard: NewSafe.self, identifier: "NewSafeViewController")
+
+    static let pairWithBrowserExtensionViewController = SceneType<SafeAppUI.PairWithBrowserExtensionViewController>(storyboard: NewSafe.self, identifier: "PairWithBrowserExtensionViewController")
+
+    static let saveMnemonicViewController = SceneType<SafeAppUI.SaveMnemonicViewController>(storyboard: NewSafe.self, identifier: "SaveMnemonicViewController")
+  }
   enum SetupSafe: StoryboardType {
     static let storyboardName = "SetupSafe"
 

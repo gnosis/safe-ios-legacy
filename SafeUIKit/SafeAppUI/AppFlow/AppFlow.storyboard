@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Unlock View Controller-->
+        <scene sceneID="LUy-on-hWp">
+            <objects>
+                <viewController storyboardIdentifier="UnlockViewController" id="rVK-CN-jIO" customClass="UnlockViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TWI-OQ-quH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock your safe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bk-4K-dHx" customClass="H1Label" customModule="SafeUIKit">
+                                <rect key="frame" x="20" y="60" width="335" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" placeholder="YES" id="cvd-y9-rtG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fz4-D4-HVk">
+                                <rect key="frame" x="20" y="180" width="335" height="166.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nj1-ul-eXr" customClass="TextInput" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" placeholder="YES" id="LFV-D8-WyK"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-AZ-zil" customClass="CountdownLabel" customModule="SafeAppUI" customModuleProvider="target">
+                                        <rect key="frame" x="135.5" y="64" width="64" height="32.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1G-7q-Z9o">
+                                        <rect key="frame" x="142.5" y="116.5" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Eyx-45-2Yj"/>
+                                            <constraint firstAttribute="width" constant="50" id="Zfl-mx-bnT"/>
+                                        </constraints>
+                                        <state key="normal" image="touch-id-icon"/>
+                                        <connections>
+                                            <action selector="loginWithBiometry:" destination="rVK-CN-jIO" eventType="touchUpInside" id="kRe-Fo-hk5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="nj1-ul-eXr" firstAttribute="leading" secondItem="fz4-D4-HVk" secondAttribute="leading" id="Ggy-XR-tay"/>
+                                    <constraint firstAttribute="trailing" secondItem="nj1-ul-eXr" secondAttribute="trailing" id="hw0-iD-ONc"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9bk-4K-dHx" firstAttribute="leading" secondItem="gwt-tb-99E" secondAttribute="leading" constant="20" id="OSx-fd-2p6"/>
+                            <constraint firstItem="gwt-tb-99E" firstAttribute="trailing" secondItem="fz4-D4-HVk" secondAttribute="trailing" constant="20" id="f0N-JP-ECg"/>
+                            <constraint firstItem="fz4-D4-HVk" firstAttribute="top" secondItem="9bk-4K-dHx" secondAttribute="bottom" constant="40" id="fa8-Al-Qd4"/>
+                            <constraint firstItem="9bk-4K-dHx" firstAttribute="top" secondItem="gwt-tb-99E" secondAttribute="top" constant="40" id="i66-jZ-NY1"/>
+                            <constraint firstItem="fz4-D4-HVk" firstAttribute="leading" secondItem="gwt-tb-99E" secondAttribute="leading" constant="20" id="p9M-dA-lTX"/>
+                            <constraint firstItem="gwt-tb-99E" firstAttribute="trailing" secondItem="9bk-4K-dHx" secondAttribute="trailing" constant="20" id="x2l-gb-Qr5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gwt-tb-99E"/>
+                    </view>
+                    <connections>
+                        <outlet property="countdownLabel" destination="k6Y-AZ-zil" id="0UI-I6-JvS"/>
+                        <outlet property="headerLabel" destination="9bk-4K-dHx" id="dVf-dr-wUm"/>
+                        <outlet property="loginWithBiometryButton" destination="h1G-7q-Z9o" id="n6X-7D-Iau"/>
+                        <outlet property="textInput" destination="nj1-ul-eXr" id="zEF-xN-NcA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u4Z-dD-nOl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-498.39999999999998" y="33.733133433283363"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="touch-id-icon" width="85" height="85"/>
+    </resources>
+</document>

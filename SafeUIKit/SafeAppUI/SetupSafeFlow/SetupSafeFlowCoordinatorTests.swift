@@ -8,8 +8,14 @@ import CommonTestSupport
 
 class SetupSafeFlowCoordinatorTests: SafeTestCase {
 
-    let setupSafeFlowCoordinator = SetupSafeFlowCoordinator()
-    let newSafeFlowCoordinator = NewSafeFlowCoordinator()
+    var setupSafeFlowCoordinator: SetupSafeFlowCoordinator!
+    var newSafeFlowCoordinator: NewSafeFlowCoordinator!
+
+    override func setUp() {
+        super.setUp()
+        setupSafeFlowCoordinator = SetupSafeFlowCoordinator()
+        newSafeFlowCoordinator = NewSafeFlowCoordinator()
+    }
 
     func test_startViewController() {
         let startVC = setupSafeFlowCoordinator.startViewController()

@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A0455F120484FD800088B5E /* OnboardingFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455F020484FD800088B5E /* OnboardingFlowCoordinator.swift */; };
-		0A0455F32048505500088B5E /* MasterPasswordFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455F22048505500088B5E /* MasterPasswordFlowCoordinator.swift */; };
-		0A0455F52048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455F42048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift */; };
-		0A0455F7204851B100088B5E /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */; };
-		0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */; };
-		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
 		0A0660842099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */; };
 		0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */; };
 		0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* SafeUIKit.strings */; };
@@ -23,17 +17,11 @@
 		0A334DF0209C8A8000ABC6AE /* SafeAppUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334DEE209C8A8000ABC6AE /* SafeAppUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A34BC60207B808800636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC5F207B808800636560 /* libCommonTestSupport.a */; };
 		0A4B004520977266006343EB /* SetupSafeOptionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */; };
-		0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527324205BCCF4004A5F9A /* CountdownLabel.swift */; };
-		0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527326205BD364004A5F9A /* CountdownLabelTests.swift */; };
 		0A537C17207D019800921FB9 /* libIdentityAccessApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C16207D019800921FB9 /* libIdentityAccessApplication.a */; };
 		0A537C19207D019800921FB9 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C18207D019800921FB9 /* libIdentityAccessDomainModel.a */; };
 		0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1A207D019800921FB9 /* libIdentityAccessImplementations.a */; };
 		0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */; };
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
-		0A666D282088944E0034FF66 /* FatalErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D272088944E0034FF66 /* FatalErrorHandler.swift */; };
-		0A666D2A208894680034FF66 /* FatalErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D29208894680034FF66 /* FatalErrorHandlerTests.swift */; };
-		0A7AE8C1205285D00044D5DD /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */; };
-		0A9A13B52077AAA800E197A1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */; };
 		0AA0C856207B74AC0019E282 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */; };
 		0AA0C858207B74B10019E282 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C857207B74B10019E282 /* XCTest.framework */; };
 		0AA0C863207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */; };
@@ -71,60 +59,25 @@
 		0ACB1A402099EEFA00EBE267 /* UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A3F2099EEFA00EBE267 /* UITestCase.swift */; };
 		0ACB1A422099EF2300EBE267 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A412099EF2300EBE267 /* Springboard.swift */; };
 		0ACB1A442099F3F500EBE267 /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A432099F3F500EBE267 /* CameraScreen.swift */; };
-		0AD93E192048350D008C38CA /* ConfirmPaswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD93E182048350D008C38CA /* ConfirmPaswordViewController.swift */; };
-		0AD93E1B2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */; };
-		0AE75CD82061134B002D5E2D /* SafeUIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE75CD72061134B002D5E2D /* SafeUIKitExtensions.swift */; };
-		0AE75CDA20611359002D5E2D /* SafeUIKitExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE75CD920611359002D5E2D /* SafeUIKitExtensionsTests.swift */; };
 		0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */; };
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
 		0AFEDEB22073C7BC002F5924 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */; };
 		0AFEDEB32073C7BC002F5924 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0AFFF3F7207F8AC60030200C /* MockIdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */; };
-		55071BBF209224FB00297D1C /* ReviewSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BBE209224FB00297D1C /* ReviewSafeViewController.swift */; };
-		55071BC12092251100297D1C /* ReviewSafeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BC02092251100297D1C /* ReviewSafeViewControllerTests.swift */; };
 		55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4A203DAE1D00AD0E1F /* Assets.swift */; };
 		55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */; };
-		55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D522040492200AD0E1F /* SetPasswordViewController.swift */; };
-		55147D552040493C00AD0E1F /* MasterPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55147D542040493C00AD0E1F /* MasterPassword.storyboard */; };
-		55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */; };
-		55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */; };
 		55147D6020405BBA00AD0E1F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D5F20405BBA00AD0E1F /* Colors.swift */; };
-		55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */; };
 		55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */; };
 		5527A7FC208DE9D500AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; };
 		5527A7FD208DE9D500AF3A50 /* RSBarcodes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5528C43E20470AF500E79A4D /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5528C43D20470AF500E79A4D /* PasswordValidator.swift */; };
-		5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5528C43F20470B9700E79A4D /* PasswordValidatorTests.swift */; };
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
-		5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4F0203C3054009C9BE3 /* StartViewController.swift */; };
 		5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F5203C3054009C9BE3 /* Assets.xcassets */; };
 		5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F7203C3054009C9BE3 /* LaunchScreen.storyboard */; };
-		555DD6D7205148D100D1178A /* UnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555DD6D6205148D100D1178A /* UnlockViewController.swift */; };
-		555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555DD6D82051497700D1178A /* UnlockViewControllerTests.swift */; };
-		5575BD4E2090839A009CC020 /* PairWithBrowserExtensionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5575BD4D2090839A009CC020 /* PairWithBrowserExtensionFlowCoordinator.swift */; };
-		5575BD50209083CC009CC020 /* PairWithBrowserExtensionFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5575BD4F209083CC009CC020 /* PairWithBrowserExtensionFlowCoordinatorTests.swift */; };
-		558FD80F20766BCD004F070E /* NewSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80E20766BCD004F070E /* NewSafeFlowCoordinator.swift */; };
-		558FD81120767277004F070E /* PairWithBrowserExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81020767277004F070E /* PairWithBrowserExtensionViewController.swift */; };
-		558FD813207672A3004F070E /* PairWithBrowserExtensionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD812207672A3004F070E /* PairWithBrowserExtensionViewControllerTests.swift */; };
 		558FD81520767F18004F070E /* NewSafeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81420767F18004F070E /* NewSafeScreen.swift */; };
-		55922C5A207BBF7C00BF968F /* SafeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55922C58207BBF7600BF968F /* SafeTestCase.swift */; };
-		55ACFD9B2074E0BA000F54CC /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ACFD9A2074E0BA000F54CC /* FlowCoordinator.swift */; };
-		55ACFD9D2075092E000F54CC /* FlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ACFD9C2075092E000F54CC /* FlowCoordinatorTests.swift */; };
 		55CAA001209AF0A1009AE181 /* SaveMnemonicScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */; };
 		55CAA003209AF0FB009AE181 /* SaveMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */; };
 		55CAA005209AF204009AE181 /* ConfirmMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */; };
 		55CAA007209AF267009AE181 /* ConfirmMnemonicScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA006209AF267009AE181 /* ConfirmMnemonicScreen.swift */; };
 		55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D97D7D20496E390004AEDD /* AppDelegateTests.swift */; };
-		55FEBFAD207E0A66004099AA /* NewSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFAC207E0A66004099AA /* NewSafeViewController.swift */; };
-		55FEBFAF207E0AB0004099AA /* NewSafe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FEBFAE207E0AB0004099AA /* NewSafe.storyboard */; };
-		55FEBFB1207E0B67004099AA /* NewSafeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFB0207E0B67004099AA /* NewSafeViewControllerTests.swift */; };
-		55FEBFB5207E14E4004099AA /* NewSafeFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFB4207E14E4004099AA /* NewSafeFlowCoordinatorTests.swift */; };
-		55FEBFBA207F6F91004099AA /* PaperWalletFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFB9207F6F91004099AA /* PaperWalletFlowCoordinator.swift */; };
-		55FEBFBC207F6FC9004099AA /* PaperWalletFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFBB207F6FC9004099AA /* PaperWalletFlowCoordinatorTests.swift */; };
-		55FEBFBE207F7041004099AA /* SaveMnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFBD207F7041004099AA /* SaveMnemonicViewController.swift */; };
-		55FEBFC0207F7057004099AA /* SaveMnemonicViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFBF207F7057004099AA /* SaveMnemonicViewControllerTests.swift */; };
-		55FEBFC3207FB2F9004099AA /* ConfirmMnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFC2207FB2F9004099AA /* ConfirmMnemonicViewController.swift */; };
-		55FEBFC5207FB322004099AA /* ConfirmMnemonicViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBFC4207FB322004099AA /* ConfirmMnemonicViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,12 +188,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0A0455F020484FD800088B5E /* OnboardingFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinator.swift; sourceTree = "<group>"; };
-		0A0455F22048505500088B5E /* MasterPasswordFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPasswordFlowCoordinator.swift; sourceTree = "<group>"; };
-		0A0455F42048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPasswordFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
-		0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreenUITests.swift; sourceTree = "<group>"; };
 		0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreen.swift; sourceTree = "<group>"; };
 		0A0660872099B4870048FBD3 /* SafeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -254,18 +201,12 @@
 		0A34BC5F207B808800636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapterTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsScreen.swift; sourceTree = "<group>"; };
-		0A527324205BCCF4004A5F9A /* CountdownLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
-		0A527326205BD364004A5F9A /* CountdownLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownLabelTests.swift; sourceTree = "<group>"; };
 		0A537C16207D019800921FB9 /* libIdentityAccessApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537C18207D019800921FB9 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537C1A207D019800921FB9 /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A53AD3820595C2300D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD3A20595C2800D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		0A666D272088944E0034FF66 /* FatalErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorHandler.swift; sourceTree = "<group>"; };
-		0A666D29208894680034FF66 /* FatalErrorHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorHandlerTests.swift; sourceTree = "<group>"; };
-		0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppFlow.storyboard; sourceTree = "<group>"; };
-		0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AA0C857207B74B10019E282 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
@@ -297,32 +238,17 @@
 		0ACB1A3F2099EEFA00EBE267 /* UITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestCase.swift; sourceTree = "<group>"; };
 		0ACB1A412099EF2300EBE267 /* Springboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Springboard.swift; sourceTree = "<group>"; };
 		0ACB1A432099F3F500EBE267 /* CameraScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
-		0AD93E182048350D008C38CA /* ConfirmPaswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaswordViewController.swift; sourceTree = "<group>"; };
-		0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaswordViewControllerTests.swift; sourceTree = "<group>"; };
-		0AE75CD72061134B002D5E2D /* SafeUIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeUIKitExtensions.swift; sourceTree = "<group>"; };
-		0AE75CD920611359002D5E2D /* SafeUIKitExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeUIKitExtensionsTests.swift; sourceTree = "<group>"; };
 		0AF281D62074C23400D3843D /* libIdentityAccess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccess.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../lib/Crashlytics.framework; sourceTree = "<group>"; };
 		0AFEDEAE2073C79C002F5924 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../lib/Fabric.framework; sourceTree = "<group>"; };
 		0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SafeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEDEB42073C80A002F5924 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIdentityApplicationService.swift; sourceTree = "<group>"; };
-		55071BBE209224FB00297D1C /* ReviewSafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSafeViewController.swift; sourceTree = "<group>"; };
-		55071BC02092251100297D1C /* ReviewSafeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSafeViewControllerTests.swift; sourceTree = "<group>"; };
-		55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerTests.swift; sourceTree = "<group>"; };
 		55147D4A203DAE1D00AD0E1F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sotryboards.swift; sourceTree = "<group>"; };
-		55147D522040492200AD0E1F /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
-		55147D542040493C00AD0E1F /* MasterPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MasterPassword.storyboard; sourceTree = "<group>"; };
-		55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewControllerTests.swift; sourceTree = "<group>"; };
 		55147D5F20405BBA00AD0E1F /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensions.swift; sourceTree = "<group>"; };
 		55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensionsTests.swift; sourceTree = "<group>"; };
-		5528C43D20470AF500E79A4D /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
-		5528C43F20470B9700E79A4D /* PasswordValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidatorTests.swift; sourceTree = "<group>"; };
 		5540A4EB203C3054009C9BE3 /* safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A4EE203C3054009C9BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5540A4F0203C3054009C9BE3 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		5540A4F5203C3054009C9BE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5540A4F8203C3054009C9BE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5540A4FA203C3054009C9BE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -330,32 +256,12 @@
 		5540A505203C3054009C9BE3 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		5540A50A203C3054009C9BE3 /* SafeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A510203C3054009C9BE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		555DD6D6205148D100D1178A /* UnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewController.swift; sourceTree = "<group>"; };
-		555DD6D82051497700D1178A /* UnlockViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewControllerTests.swift; sourceTree = "<group>"; };
-		5575BD4D2090839A009CC020 /* PairWithBrowserExtensionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionFlowCoordinator.swift; sourceTree = "<group>"; };
-		5575BD4F209083CC009CC020 /* PairWithBrowserExtensionFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		558FD80E20766BCD004F070E /* NewSafeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeFlowCoordinator.swift; sourceTree = "<group>"; };
-		558FD81020767277004F070E /* PairWithBrowserExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionViewController.swift; sourceTree = "<group>"; };
-		558FD812207672A3004F070E /* PairWithBrowserExtensionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionViewControllerTests.swift; sourceTree = "<group>"; };
 		558FD81420767F18004F070E /* NewSafeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeScreen.swift; sourceTree = "<group>"; };
-		55922C58207BBF7600BF968F /* SafeTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeTestCase.swift; sourceTree = "<group>"; };
-		55ACFD9A2074E0BA000F54CC /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
-		55ACFD9C2075092E000F54CC /* FlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicScreen.swift; sourceTree = "<group>"; };
 		55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicUITests.swift; sourceTree = "<group>"; };
 		55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicUITests.swift; sourceTree = "<group>"; };
 		55CAA006209AF267009AE181 /* ConfirmMnemonicScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicScreen.swift; sourceTree = "<group>"; };
 		55D97D7D20496E390004AEDD /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
-		55FEBFAC207E0A66004099AA /* NewSafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeViewController.swift; sourceTree = "<group>"; };
-		55FEBFAE207E0AB0004099AA /* NewSafe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewSafe.storyboard; sourceTree = "<group>"; };
-		55FEBFB0207E0B67004099AA /* NewSafeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeViewControllerTests.swift; sourceTree = "<group>"; };
-		55FEBFB4207E14E4004099AA /* NewSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		55FEBFB9207F6F91004099AA /* PaperWalletFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperWalletFlowCoordinator.swift; sourceTree = "<group>"; };
-		55FEBFBB207F6FC9004099AA /* PaperWalletFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperWalletFlowCoordinatorTests.swift; sourceTree = "<group>"; };
-		55FEBFBD207F7041004099AA /* SaveMnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMnemonicViewController.swift; sourceTree = "<group>"; };
-		55FEBFBF207F7057004099AA /* SaveMnemonicViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMnemonicViewControllerTests.swift; sourceTree = "<group>"; };
-		55FEBFC2207FB2F9004099AA /* ConfirmMnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicViewController.swift; sourceTree = "<group>"; };
-		55FEBFC4207FB322004099AA /* ConfirmMnemonicViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,24 +307,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A0455EF20484FA000088B5E /* MasterPasswordFlow */ = {
-			isa = PBXGroup;
-			children = (
-				0A0455F22048505500088B5E /* MasterPasswordFlowCoordinator.swift */,
-				0A0455F42048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift */,
-				55147D542040493C00AD0E1F /* MasterPassword.storyboard */,
-				5540A4F0203C3054009C9BE3 /* StartViewController.swift */,
-				55147D42203DA7F000AD0E1F /* StartViewControllerTests.swift */,
-				55147D522040492200AD0E1F /* SetPasswordViewController.swift */,
-				55147D5B2040543500AD0E1F /* SetPasswordViewControllerTests.swift */,
-				0AD93E182048350D008C38CA /* ConfirmPaswordViewController.swift */,
-				0AD93E1A2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift */,
-				5528C43D20470AF500E79A4D /* PasswordValidator.swift */,
-				5528C43F20470B9700E79A4D /* PasswordValidatorTests.swift */,
-			);
-			path = MasterPasswordFlow;
-			sourceTree = "<group>";
-		};
 		0A53306B2073C73E00DE55F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,17 +407,6 @@
 			path = generated;
 			sourceTree = "<group>";
 		};
-		55147D51204048BC00AD0E1F /* OnboardingFlow */ = {
-			isa = PBXGroup;
-			children = (
-				558FD80D20766BA0004F070E /* NewSafeFlow */,
-				0A0455EF20484FA000088B5E /* MasterPasswordFlow */,
-				0A0455F020484FD800088B5E /* OnboardingFlowCoordinator.swift */,
-				0A0455FA2048539800088B5E /* OnboardingFlowCoordinatorTests.swift */,
-			);
-			path = OnboardingFlow;
-			sourceTree = "<group>";
-		};
 		5540A4E2203C3054009C9BE3 = {
 			isa = PBXGroup;
 			children = (
@@ -559,18 +436,9 @@
 		5540A4ED203C3054009C9BE3 /* safe */ = {
 			isa = PBXGroup;
 			children = (
-				555DD6D52051488F00D1178A /* AppFlow */,
-				55147D51204048BC00AD0E1F /* OnboardingFlow */,
 				55147D49203DAE1D00AD0E1F /* generated */,
 				5540A4EE203C3054009C9BE3 /* AppDelegate.swift */,
 				55D97D7D20496E390004AEDD /* AppDelegateTests.swift */,
-				0A666D272088944E0034FF66 /* FatalErrorHandler.swift */,
-				0A666D29208894680034FF66 /* FatalErrorHandlerTests.swift */,
-				55ACFD9A2074E0BA000F54CC /* FlowCoordinator.swift */,
-				55ACFD9C2075092E000F54CC /* FlowCoordinatorTests.swift */,
-				55147D68204077A800AD0E1F /* SafeFoundationExtensions.swift */,
-				0AE75CD72061134B002D5E2D /* SafeUIKitExtensions.swift */,
-				0AE75CD920611359002D5E2D /* SafeUIKitExtensionsTests.swift */,
 				55147D6A204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift */,
 				5540A4F5203C3054009C9BE3 /* Assets.xcassets */,
 				5540A4F7203C3054009C9BE3 /* LaunchScreen.storyboard */,
@@ -605,49 +473,6 @@
 			path = SafeUITests;
 			sourceTree = "<group>";
 		};
-		555DD6D52051488F00D1178A /* AppFlow */ = {
-			isa = PBXGroup;
-			children = (
-				0A0455F6204851B100088B5E /* AppFlowCoordinator.swift */,
-				0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */,
-				0A7AE8C0205285D00044D5DD /* AppFlow.storyboard */,
-				0A9A13B42077AAA800E197A1 /* MockAuthenticationService.swift */,
-				555DD6D6205148D100D1178A /* UnlockViewController.swift */,
-				555DD6D82051497700D1178A /* UnlockViewControllerTests.swift */,
-				0A527324205BCCF4004A5F9A /* CountdownLabel.swift */,
-				0A527326205BD364004A5F9A /* CountdownLabelTests.swift */,
-			);
-			path = AppFlow;
-			sourceTree = "<group>";
-		};
-		5575BD4C20908374009CC020 /* PairWithBrowserExtensionFlow */ = {
-			isa = PBXGroup;
-			children = (
-				5575BD4D2090839A009CC020 /* PairWithBrowserExtensionFlowCoordinator.swift */,
-				5575BD4F209083CC009CC020 /* PairWithBrowserExtensionFlowCoordinatorTests.swift */,
-				558FD81020767277004F070E /* PairWithBrowserExtensionViewController.swift */,
-				558FD812207672A3004F070E /* PairWithBrowserExtensionViewControllerTests.swift */,
-			);
-			path = PairWithBrowserExtensionFlow;
-			sourceTree = "<group>";
-		};
-		558FD80D20766BA0004F070E /* NewSafeFlow */ = {
-			isa = PBXGroup;
-			children = (
-				5575BD4C20908374009CC020 /* PairWithBrowserExtensionFlow */,
-				55FEBFB8207F6CFE004099AA /* PaperWalletSetupFlow */,
-				558FD80E20766BCD004F070E /* NewSafeFlowCoordinator.swift */,
-				55FEBFB4207E14E4004099AA /* NewSafeFlowCoordinatorTests.swift */,
-				55FEBFAC207E0A66004099AA /* NewSafeViewController.swift */,
-				55FEBFB0207E0B67004099AA /* NewSafeViewControllerTests.swift */,
-				55071BBE209224FB00297D1C /* ReviewSafeViewController.swift */,
-				55071BC02092251100297D1C /* ReviewSafeViewControllerTests.swift */,
-				0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */,
-				55FEBFAE207E0AB0004099AA /* NewSafe.storyboard */,
-			);
-			path = NewSafeFlow;
-			sourceTree = "<group>";
-		};
 		55CA9FFF209AF0A0009AE181 /* PaperWalletSetupFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -663,25 +488,11 @@
 				0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */,
 				0AA27840205FCDFA00EBB9D1 /* TestSupport.swift */,
 				0AA27842205FCE2800EBB9D1 /* TestSupportTests.swift */,
-				55922C58207BBF7600BF968F /* SafeTestCase.swift */,
 				0AA0C862207B756C0019E282 /* XCTest+Assert.swift */,
 				0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */,
 			);
 			name = TestTools;
 			path = ../TestTools;
-			sourceTree = "<group>";
-		};
-		55FEBFB8207F6CFE004099AA /* PaperWalletSetupFlow */ = {
-			isa = PBXGroup;
-			children = (
-				55FEBFB9207F6F91004099AA /* PaperWalletFlowCoordinator.swift */,
-				55FEBFBB207F6FC9004099AA /* PaperWalletFlowCoordinatorTests.swift */,
-				55FEBFBD207F7041004099AA /* SaveMnemonicViewController.swift */,
-				55FEBFBF207F7057004099AA /* SaveMnemonicViewControllerTests.swift */,
-				55FEBFC2207FB2F9004099AA /* ConfirmMnemonicViewController.swift */,
-				55FEBFC4207FB322004099AA /* ConfirmMnemonicViewControllerTests.swift */,
-			);
-			path = PaperWalletSetupFlow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -851,10 +662,7 @@
 				0A53AD3920595C2300D713AD /* Localizable.strings in Resources */,
 				5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
-				0A7AE8C1205285D00044D5DD /* AppFlow.storyboard in Resources */,
 				0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,
-				55147D552040493C00AD0E1F /* MasterPassword.storyboard in Resources */,
-				55FEBFAF207E0AB0004099AA /* NewSafe.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -981,32 +789,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55FEBFBE207F7041004099AA /* SaveMnemonicViewController.swift in Sources */,
 				55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */,
-				0A0455F7204851B100088B5E /* AppFlowCoordinator.swift in Sources */,
-				0A666D282088944E0034FF66 /* FatalErrorHandler.swift in Sources */,
-				55FEBFAD207E0A66004099AA /* NewSafeViewController.swift in Sources */,
-				5540A4F1203C3054009C9BE3 /* StartViewController.swift in Sources */,
-				555DD6D7205148D100D1178A /* UnlockViewController.swift in Sources */,
-				0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */,
-				0AE75CD82061134B002D5E2D /* SafeUIKitExtensions.swift in Sources */,
-				55FEBFC3207FB2F9004099AA /* ConfirmMnemonicViewController.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				55147D6020405BBA00AD0E1F /* Colors.swift in Sources */,
 				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
-				0A0455F32048505500088B5E /* MasterPasswordFlowCoordinator.swift in Sources */,
-				0AD93E192048350D008C38CA /* ConfirmPaswordViewController.swift in Sources */,
-				55FEBFBA207F6F91004099AA /* PaperWalletFlowCoordinator.swift in Sources */,
-				55147D69204077A800AD0E1F /* SafeFoundationExtensions.swift in Sources */,
-				0A0455F120484FD800088B5E /* OnboardingFlowCoordinator.swift in Sources */,
-				558FD80F20766BCD004F070E /* NewSafeFlowCoordinator.swift in Sources */,
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,
-				55071BBF209224FB00297D1C /* ReviewSafeViewController.swift in Sources */,
-				55ACFD9B2074E0BA000F54CC /* FlowCoordinator.swift in Sources */,
-				5575BD4E2090839A009CC020 /* PairWithBrowserExtensionFlowCoordinator.swift in Sources */,
-				5528C43E20470AF500E79A4D /* PasswordValidator.swift in Sources */,
-				55147D532040492200AD0E1F /* SetPasswordViewController.swift in Sources */,
-				558FD81120767277004F070E /* PairWithBrowserExtensionViewController.swift in Sources */,
 				0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1015,34 +802,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55FEBFB1207E0B67004099AA /* NewSafeViewControllerTests.swift in Sources */,
-				558FD813207672A3004F070E /* PairWithBrowserExtensionViewControllerTests.swift in Sources */,
-				0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */,
-				55FEBFBC207F6FC9004099AA /* PaperWalletFlowCoordinatorTests.swift in Sources */,
 				55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */,
-				55FEBFB5207E14E4004099AA /* NewSafeFlowCoordinatorTests.swift in Sources */,
-				0A0455FB2048539800088B5E /* OnboardingFlowCoordinatorTests.swift in Sources */,
-				55922C5A207BBF7C00BF968F /* SafeTestCase.swift in Sources */,
-				55FEBFC5207FB322004099AA /* ConfirmMnemonicViewControllerTests.swift in Sources */,
-				0AE75CDA20611359002D5E2D /* SafeUIKitExtensionsTests.swift in Sources */,
-				0A9A13B52077AAA800E197A1 /* MockAuthenticationService.swift in Sources */,
-				55FEBFC0207F7057004099AA /* SaveMnemonicViewControllerTests.swift in Sources */,
-				55ACFD9D2075092E000F54CC /* FlowCoordinatorTests.swift in Sources */,
 				0AA0C866207B756C0019E282 /* XCTest+Assert.swift in Sources */,
-				0AD93E1B2048351A008C38CA /* ConfirmPaswordViewControllerTests.swift in Sources */,
-				0AFFF3F7207F8AC60030200C /* MockIdentityApplicationService.swift in Sources */,
-				55147D5C2040543500AD0E1F /* SetPasswordViewControllerTests.swift in Sources */,
-				55147D5720404E6F00AD0E1F /* StartViewControllerTests.swift in Sources */,
-				0A666D2A208894680034FF66 /* FatalErrorHandlerTests.swift in Sources */,
 				0AA0C863207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */,
-				5575BD50209083CC009CC020 /* PairWithBrowserExtensionFlowCoordinatorTests.swift in Sources */,
 				55147D6B204077DC00AD0E1F /* SafeFoundationExtensionsTests.swift in Sources */,
-				55071BC12092251100297D1C /* ReviewSafeViewControllerTests.swift in Sources */,
-				555DD6D92051497700D1178A /* UnlockViewControllerTests.swift in Sources */,
-				0A527327205BD364004A5F9A /* CountdownLabelTests.swift in Sources */,
 				0AA27843205FCE2800EBB9D1 /* TestSupportTests.swift in Sources */,
-				5528C44020470B9700E79A4D /* PasswordValidatorTests.swift in Sources */,
-				0A0455F52048513600088B5E /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
