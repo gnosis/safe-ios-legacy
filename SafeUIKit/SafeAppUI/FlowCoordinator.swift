@@ -4,11 +4,11 @@
 
 import UIKit
 
-class FlowCoordinator {
+public class FlowCoordinator {
 
-    var rootVC: UINavigationController!
+    public var rootVC: UINavigationController!
 
-    func startViewController(parent: UINavigationController? = nil) -> UIViewController {
+    public func startViewController(parent: UINavigationController? = nil) -> UIViewController {
         rootVC = parent == nil ? TransparentNavigationController() : parent
         let startVC = flowStartController()
         if parent == nil {
@@ -18,7 +18,7 @@ class FlowCoordinator {
         return startVC
     }
 
-    func flowStartController() -> UIViewController {
+    public func flowStartController() -> UIViewController {
         assertionFailure("flowStartController should be overriden")
         return UIViewController()
     }

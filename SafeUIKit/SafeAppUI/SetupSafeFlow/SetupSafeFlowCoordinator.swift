@@ -4,11 +4,13 @@
 
 import UIKit
 
-final class SetupSafeFlowCoordinator: FlowCoordinator {
+public final class SetupSafeFlowCoordinator: FlowCoordinator {
 
 //    private let newSafeFlowCoordinator = NewSafeFlowCoordinator()
 
-    override func flowStartController() -> UIViewController {
+    public override init() {}
+
+    public override func flowStartController() -> UIViewController {
         return SetupSafeOptionsViewController.create(delegate: self)
     }
 

@@ -19,6 +19,8 @@
 		0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A0C873F209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A0C874920976D3A00471885 /* NewSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */; };
+		0A334DEF209C8A8000ABC6AE /* SafeAppUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334DEE209C8A8000ABC6AE /* SafeAppUI.framework */; };
+		0A334DF0209C8A8000ABC6AE /* SafeAppUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334DEE209C8A8000ABC6AE /* SafeAppUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A34BC60207B808800636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC5F207B808800636560 /* libCommonTestSupport.a */; };
 		0A4B004520977266006343EB /* SetupSafeOptionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */; };
 		0A527325205BCCF4004A5F9A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A527324205BCCF4004A5F9A /* CountdownLabel.swift */; };
@@ -225,6 +227,7 @@
 				0ABCA975207E560B00E2C193 /* CryptoSwift.framework in Embed Frameworks */,
 				0ABCA976207E560B00E2C193 /* EthereumKit.framework in Embed Frameworks */,
 				0AFEDEB32073C7BC002F5924 /* SafeUIKit.framework in Embed Frameworks */,
+				0A334DF0209C8A8000ABC6AE /* SafeAppUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,6 +250,7 @@
 		0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IdentityAccessImplementationsResources.bundle; sourceTree = "<group>"; };
 		0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeScreenUITests.swift; sourceTree = "<group>"; };
 		0A334DDB209C721D00ABC6AE /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
+		0A334DEE209C8A8000ABC6AE /* SafeAppUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SafeAppUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A34BC5F207B808800636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapterTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsScreen.swift; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 				0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 				0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */,
 				0ABBDC052073CADD006D0A48 /* Result.framework in Frameworks */,
+				0A334DEF209C8A8000ABC6AE /* SafeAppUI.framework in Frameworks */,
 				5527A7FC208DE9D500AF3A50 /* RSBarcodes.framework in Frameworks */,
 				0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */,
 				0ABBDC032073CADD006D0A48 /* EthereumKit.framework in Frameworks */,
@@ -528,6 +533,7 @@
 		5540A4E2203C3054009C9BE3 = {
 			isa = PBXGroup;
 			children = (
+				0A334DEE209C8A8000ABC6AE /* SafeAppUI.framework */,
 				0A334DDB209C721D00ABC6AE /* swiftgen.yml */,
 				0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */,
 				0ABCA964207E560500E2C193 /* Library.xcodeproj */,

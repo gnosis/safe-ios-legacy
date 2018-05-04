@@ -4,6 +4,7 @@
 
 import UIKit
 import IdentityAccessApplication
+import SafeAppUI
 
 final class OnboardingFlowCoordinator: FlowCoordinator {
 

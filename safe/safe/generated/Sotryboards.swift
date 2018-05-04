@@ -85,11 +85,6 @@ enum StoryboardScene {
 
     static let saveMnemonicViewController = SceneType<safe.SaveMnemonicViewController>(storyboard: NewSafe.self, identifier: "SaveMnemonicViewController")
   }
-  enum SetupSafe: StoryboardType {
-    static let storyboardName = "SetupSafe"
-
-    static let setupSafeOptionsViewController = SceneType<safe.SetupSafeOptionsViewController>(storyboard: SetupSafe.self, identifier: "SetupSafeOptionsViewController")
-  }
 }
 
 enum StoryboardSegue {

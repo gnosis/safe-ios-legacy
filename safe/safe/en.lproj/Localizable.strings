@@ -55,15 +55,6 @@
 /* Minimum length rule for password field */
 "onboarding.set_password.length" = "• Minimum 6 charachters";
 
-/* Set up safe options screen title */
-"onboarding.setup_safe.info" = "Setup your Safe";
-
-/* New safe button */
-"onboarding.setup_safe.new_safe" = "New Safe";
-
-/* Restore safe button */
-"onboarding.setup_safe.restore" = "Restore Safe";
-
 /* App slogan */
 "onboarding.start.description" = "Your secure crypto wallet with 2-factor authentication.";
 
