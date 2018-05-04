@@ -76,16 +76,6 @@
                ReferencedContainer = "container:safe/safe.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AB0FF55204EF81C0066682F"
-               BuildableName = "safeIntegrationTests.xctest"
-               BlueprintName = "safeIntegrationTests"
-               ReferencedContainer = "container:safe/safe.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

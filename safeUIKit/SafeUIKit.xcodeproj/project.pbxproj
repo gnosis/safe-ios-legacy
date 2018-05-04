@@ -16,6 +16,22 @@
 		0A0974EA20480E11005753DF /* SafeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */; };
 		0A0974EC20480E45005753DF /* SafeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* SafeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
+		0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */; };
+		0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */; };
+		0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */; };
+		0A334DC1209C6D8D00ABC6AE /* SetupSafeFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */; };
+		0A334DC2209C6D8D00ABC6AE /* SetupSafeOptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */; };
+		0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DC3209C6DB200ABC6AE /* FlowCoordinator.swift */; };
+		0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DC4209C6DB200ABC6AE /* FlowCoordinatorTests.swift */; };
+		0A334DC9209C6DD800ABC6AE /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334DC8209C6DD800ABC6AE /* libCommonTestSupport.a */; };
+		0A334DCA209C6DEC00ABC6AE /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
+		0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DD0209C700700ABC6AE /* LocalizedString.swift */; };
+		0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DD9209C70F000ABC6AE /* Localizable.strings */; };
+		0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DDD209C726100ABC6AE /* Sotryboards.swift */; };
+		0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DE2209C892700ABC6AE /* SafeTestCase.swift */; };
+		0A334DE9209C894D00ABC6AE /* libIdentityAccessApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334DE8209C894D00ABC6AE /* libIdentityAccessApplication.a */; };
+		0A334DEB209C894D00ABC6AE /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334DEA209C894D00ABC6AE /* libIdentityAccessDomainModel.a */; };
+		0A334DED209C894D00ABC6AE /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A334DEC209C894D00ABC6AE /* libIdentityAccessImplementations.a */; };
 		0A34BC63207B80A700636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC62207B80A700636560 /* libCommonTestSupport.a */; };
 		0A53AD5320598B5000D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD5520598B5000D713AD /* Localizable.strings */; };
 		0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */; };
@@ -187,6 +203,22 @@
 		0A0974EB20480E45005753DF /* SafeUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeUIKit.h; sourceTree = "<group>"; };
 		0A2972C8205A89C500CEC7D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = SafeUIKit/Base.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeFlowCoordinator.swift; sourceTree = "<group>"; };
+		0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsViewControllerTests.swift; sourceTree = "<group>"; };
+		0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SetupSafe.storyboard; sourceTree = "<group>"; };
+		0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsViewController.swift; sourceTree = "<group>"; };
+		0A334DC3209C6DB200ABC6AE /* FlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
+		0A334DC4209C6DB200ABC6AE /* FlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		0A334DC8209C6DD800ABC6AE /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A334DD0209C700700ABC6AE /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		0A334DD8209C70F000ABC6AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A334DDA209C720000ABC6AE /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
+		0A334DDD209C726100ABC6AE /* Sotryboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sotryboards.swift; sourceTree = "<group>"; };
+		0A334DE2209C892700ABC6AE /* SafeTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeTestCase.swift; sourceTree = "<group>"; };
+		0A334DE8209C894D00ABC6AE /* libIdentityAccessApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A334DEA209C894D00ABC6AE /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A334DEC209C894D00ABC6AE /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A34BC62207B80A700636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A53AD5420598B5000D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD5620598B5E00D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -272,6 +304,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A334DCA209C6DEC00ABC6AE /* SafeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +312,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A334DE9209C894D00ABC6AE /* libIdentityAccessApplication.a in Frameworks */,
+				0A334DEB209C894D00ABC6AE /* libIdentityAccessDomainModel.a in Frameworks */,
+				0A334DED209C894D00ABC6AE /* libIdentityAccessImplementations.a in Frameworks */,
+				0A334DC9209C6DD800ABC6AE /* libCommonTestSupport.a in Frameworks */,
 				0AF33D3E209C6BF800527D25 /* SafeAppUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,9 +323,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A334DB2209C6D8600ABC6AE /* SetupSafeFlow */ = {
+			isa = PBXGroup;
+			children = (
+				0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */,
+				0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */,
+				0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */,
+				0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */,
+				0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */,
+			);
+			path = SetupSafeFlow;
+			sourceTree = "<group>";
+		};
+		0A334DDC209C726100ABC6AE /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				0A334DDD209C726100ABC6AE /* Sotryboards.swift */,
+			);
+			path = generated;
+			sourceTree = "<group>";
+		};
 		0A34BC61207B80A700636560 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A334DE8209C894D00ABC6AE /* libIdentityAccessApplication.a */,
+				0A334DEA209C894D00ABC6AE /* libIdentityAccessDomainModel.a */,
+				0A334DEC209C894D00ABC6AE /* libIdentityAccessImplementations.a */,
+				0A334DC8209C6DD800ABC6AE /* libCommonTestSupport.a */,
 				5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */,
 				0A34BC62207B80A700636560 /* libCommonTestSupport.a */,
 			);
@@ -308,6 +369,7 @@
 		0A96706F20480C1200445AC2 = {
 			isa = PBXGroup;
 			children = (
+				0A334DDA209C720000ABC6AE /* swiftgen.yml */,
 				5527A7E0208DE87600AF3A50 /* Library.xcodeproj */,
 				0A7AE8C22052C20A0044D5DD /* TestTools */,
 				0A96707C20480C3E00445AC2 /* SafeUIKitDemo */,
@@ -403,8 +465,15 @@
 		0AF33D36209C6BF800527D25 /* SafeAppUI */ = {
 			isa = PBXGroup;
 			children = (
+				0A334DDC209C726100ABC6AE /* generated */,
+				0A334DC3209C6DB200ABC6AE /* FlowCoordinator.swift */,
+				0A334DC4209C6DB200ABC6AE /* FlowCoordinatorTests.swift */,
+				0A334DE2209C892700ABC6AE /* SafeTestCase.swift */,
+				0A334DB2209C6D8600ABC6AE /* SetupSafeFlow */,
 				0AF33D37209C6BF800527D25 /* SafeAppUI.h */,
 				0AF33D38209C6BF800527D25 /* Info.plist */,
+				0A334DD9209C70F000ABC6AE /* Localizable.strings */,
+				0A334DD0209C700700ABC6AE /* LocalizedString.swift */,
 			);
 			path = SafeAppUI;
 			sourceTree = "<group>";
@@ -535,9 +604,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AF33D4C209C6BF800527D25 /* Build configuration list for PBXNativeTarget "SafeAppUI" */;
 			buildPhases = (
+				0A334DCB209C6F8A00ABC6AE /* SwiftGen */,
+				0A334DCC209C6F9F00ABC6AE /* Lint */,
 				0AF33D30209C6BF800527D25 /* Sources */,
 				0AF33D31209C6BF800527D25 /* Frameworks */,
 				0AF33D32209C6BF800527D25 /* Headers */,
+				0A334DCD209C6FB200ABC6AE /* Localize */,
 				0AF33D33209C6BF800527D25 /* Resources */,
 			);
 			buildRules = (
@@ -716,6 +788,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
+				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,6 +818,49 @@
 			shellScript = ../scripts/run_swiftgen.sh;
 			showEnvVarsInLog = 0;
 		};
+		0A334DCB209C6F8A00ABC6AE /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ../scripts/run_swiftgen.sh;
+			showEnvVarsInLog = 0;
+		};
+		0A334DCC209C6F9F00ABC6AE /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
+		};
+		0A334DCD209C6FB200ABC6AE /* Localize */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Localize;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "../scripts/localize.sh LocalizedString SafeAppUI";
+		};
 		0A3EEC6E2074C8AF00BFA9E0 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -770,7 +887,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "../scripts/localize.sh LocalizedString";
+			shellScript = "../scripts/localize.sh LocalizedString SafeUIKit";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -836,6 +953,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
+				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
+				0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */,
+				0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */,
+				0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -843,6 +965,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */,
+				0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */,
+				0A334DC2209C6D8D00ABC6AE /* SetupSafeOptionsViewControllerTests.swift in Sources */,
+				0A334DC1209C6D8D00ABC6AE /* SetupSafeFlowCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,6 +1044,14 @@
 			children = (
 				0A2972C8205A89C500CEC7D4 /* Base */,
 				0A2972CA205A8A6200CEC7D4 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		0A334DD9209C70F000ABC6AE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A334DD8209C70F000ABC6AE /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

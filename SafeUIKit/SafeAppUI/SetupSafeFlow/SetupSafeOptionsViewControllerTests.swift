@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import safe
+@testable import SafeAppUI
 
 class SetupSafeOptionsViewControllerTests: XCTestCase {
 

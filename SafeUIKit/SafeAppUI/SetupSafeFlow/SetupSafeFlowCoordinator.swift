@@ -6,7 +6,7 @@ import UIKit
 
 final class SetupSafeFlowCoordinator: FlowCoordinator {
 
-    private let newSafeFlowCoordinator = NewSafeFlowCoordinator()
+//    private let newSafeFlowCoordinator = NewSafeFlowCoordinator()
 
     override func flowStartController() -> UIViewController {
         return SetupSafeOptionsViewController.create(delegate: self)
@@ -17,7 +17,8 @@ final class SetupSafeFlowCoordinator: FlowCoordinator {
 extension SetupSafeFlowCoordinator: SetupSafeOptionsDelegate {
 
     func didSelectNewSafe() {
-        let startVC = newSafeFlowCoordinator.startViewController(parent: rootVC)
+//        let startVC = newSafeFlowCoordinator.startViewController(parent: rootVC)
+        let startVC = UIViewController()
         rootVC.pushViewController(startVC, animated: true)
     }
 

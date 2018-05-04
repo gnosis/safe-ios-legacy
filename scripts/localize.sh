@@ -10,8 +10,13 @@ if [ "$1" != "" ]; then
     LOCALIZE_FUNC_NAME="-s $1"
 fi
 
+SOURCE_DIR="${SRCROOT}"
+if [ "$2" != "" ]; then
+    SOURCE_DIR="${SRCROOT}/$2"
+fi
+
 # generate Localizable.strings for every Swift file in the project
-find ${SRCROOT} -name "*.swift" \
+find ${SOURCE_DIR} -name "*.swift" \
     -and -not -name "NSLocalizedString.swift" \
     -and -not -name "LocalizedString.swift" | xargs genstrings -o . $LOCALIZE_FUNC_NAME
 
@@ -26,7 +31,7 @@ iconv -f utf-16 -t utf-8 $TEMP_FILE > "${TEMP_FILE}.utf8"
 mv "${TEMP_FILE}.utf8" $TEMP_FILE
 
 # Merge genstrings' file with each localization's strings file
-find ${SRCROOT} -name "Localizable.strings" \
+find ${SOURCE_DIR} -name "Localizable.strings" \
     -and -not -path "*.bundle/*" \
     -and -not -path "*.framework/*" -print0 | xargs -0 -I STRINGS_FILE $MERGE_SCRIPT $TEMP_FILE STRINGS_FILE
 

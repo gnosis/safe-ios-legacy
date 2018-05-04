@@ -623,6 +623,7 @@
 		0A537ACE207CEDAE00921FB9 /* IdentityAccessImplementations */ = {
 			isa = PBXGroup;
 			children = (
+				0A0C871820974B6900471885 /* LocalizedString.swift.swift */,
 				0AFFF40B20808BEA0030200C /* persistence */,
 				0A537B01207CF2D600921FB9 /* biometry */,
 				0A537AFE207CF2D600921FB9 /* clock */,
@@ -687,7 +688,6 @@
 			isa = PBXGroup;
 			children = (
 				0A537B03207CF2D600921FB9 /* BiometricService.swift */,
-				0A0C871820974B6900471885 /* LocalizedString.swift.swift */,
 				0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */,
 				0A537AD8207CEE1100921FB9 /* MockBiometricService.swift */,
 			);

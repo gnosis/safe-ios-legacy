@@ -12,9 +12,9 @@ protocol SetupSafeOptionsDelegate: class {
 class SetupSafeOptionsViewController: UIViewController {
 
     struct Strings {
-        static let header = NSLocalizedString("onboarding.setup_safe.info", comment: "Set up safe options screen title")
-        static let newSafe = NSLocalizedString("onboarding.setup_safe.new_safe", comment: "New safe button")
-        static let restoreSafe = NSLocalizedString("onboarding.setup_safe.restore", comment: "Restore safe button")
+        static let header = LocalizedString("onboarding.setup_safe.info", comment: "Set up safe options screen title")
+        static let newSafe = LocalizedString("onboarding.setup_safe.new_safe", comment: "New safe button")
+        static let restoreSafe = LocalizedString("onboarding.setup_safe.restore", comment: "Restore safe button")
     }
 
     @IBOutlet weak var headerLabel: H1Label!

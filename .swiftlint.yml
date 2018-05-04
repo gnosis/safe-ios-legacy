@@ -144,4 +144,5 @@ file_header:
 excluded:
   - safe/generated
   - SafeUIKit/generated
+  - SafeAppUI/generated
   

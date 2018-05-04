@@ -1,0 +1,9 @@
+/* Set up safe options screen title */
+"onboarding.setup_safe.info" = "onboarding.setup_safe.info";
+
+/* New safe button */
+"onboarding.setup_safe.new_safe" = "onboarding.setup_safe.new_safe";
+
+/* Restore safe button */
+"onboarding.setup_safe.restore" = "onboarding.setup_safe.restore";
+

@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A96707920480C3E00445AC2"
-               BuildableName = "SafeUIKitDemo.app"
-               BlueprintName = "SafeUIKitDemo"
-               ReferencedContainer = "container:SafeUIKit.temp_caseinsensitive_rename.xcodeproj">
+               BlueprintIdentifier = "0AF33D34209C6BF800527D25"
+               BuildableName = "SafeAppUI.framework"
+               BlueprintName = "SafeAppUI"
+               ReferencedContainer = "container:SafeUIKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A96708D20480C3E00445AC2"
-               BuildableName = "SafeUIKitDemoUITests.xctest"
-               BlueprintName = "SafeUIKitDemoUITests"
-               ReferencedContainer = "container:SafeUIKit.temp_caseinsensitive_rename.xcodeproj">
+               BlueprintIdentifier = "0AF33D3C209C6BF800527D25"
+               BuildableName = "SafeAppUIUnitTests.xctest"
+               BlueprintName = "SafeAppUIUnitTests"
+               ReferencedContainer = "container:SafeUIKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "0A96707920480C3E00445AC2"
             BuildableName = "SafeUIKitDemo.app"
             BlueprintName = "SafeUIKitDemo"
-            ReferencedContainer = "container:SafeUIKit.temp_caseinsensitive_rename.xcodeproj">
+            ReferencedContainer = "container:SafeUIKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -68,7 +68,7 @@
             BlueprintIdentifier = "0A96707920480C3E00445AC2"
             BuildableName = "SafeUIKitDemo.app"
             BlueprintName = "SafeUIKitDemo"
-            ReferencedContainer = "container:SafeUIKit.temp_caseinsensitive_rename.xcodeproj">
+            ReferencedContainer = "container:SafeUIKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,16 +80,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0A96707920480C3E00445AC2"
-            BuildableName = "SafeUIKitDemo.app"
-            BlueprintName = "SafeUIKitDemo"
-            ReferencedContainer = "container:SafeUIKit.temp_caseinsensitive_rename.xcodeproj">
+            BlueprintIdentifier = "0AF33D34209C6BF800527D25"
+            BuildableName = "SafeAppUI.framework"
+            BlueprintName = "SafeAppUI"
+            ReferencedContainer = "container:SafeUIKit.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
