@@ -15,7 +15,7 @@
 		0A0455FD2048549900088B5E /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */; };
 		0A0660842099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */; };
 		0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */; };
-		0A0C86FE2097461700471885 /* safeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* safeUIKit.strings */; };
+		0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* SafeUIKit.strings */; };
 		0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A0C873F209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A0C874920976D3A00471885 /* NewSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */; };
@@ -75,8 +75,8 @@
 		0AE75CDA20611359002D5E2D /* SafeUIKitExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE75CD920611359002D5E2D /* SafeUIKitExtensionsTests.swift */; };
 		0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */; };
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
-		0AFEDEB22073C7BC002F5924 /* safeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */; };
-		0AFEDEB32073C7BC002F5924 /* safeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0AFEDEB22073C7BC002F5924 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */; };
+		0AFEDEB32073C7BC002F5924 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AFFF3F7207F8AC60030200C /* MockIdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */; };
 		55071BBF209224FB00297D1C /* ReviewSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BBE209224FB00297D1C /* ReviewSafeViewController.swift */; };
 		55071BC12092251100297D1C /* ReviewSafeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BC02092251100297D1C /* ReviewSafeViewControllerTests.swift */; };
@@ -229,7 +229,7 @@
 				5527A7FD208DE9D500AF3A50 /* RSBarcodes.framework in Embed Frameworks */,
 				0ABCA975207E560B00E2C193 /* CryptoSwift.framework in Embed Frameworks */,
 				0ABCA976207E560B00E2C193 /* EthereumKit.framework in Embed Frameworks */,
-				0AFEDEB32073C7BC002F5924 /* safeUIKit.framework in Embed Frameworks */,
+				0AFEDEB32073C7BC002F5924 /* SafeUIKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,10 +245,10 @@
 		0A0455FC2048549900088B5E /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreenUITests.swift; sourceTree = "<group>"; };
 		0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreen.swift; sourceTree = "<group>"; };
-		0A0660872099B4870048FBD3 /* safeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "safeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		0A0660872099B4870048FBD3 /* SafeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A06608B2099B4FF0048FBD3 /* XCUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCUIElement.h; sourceTree = "<group>"; };
 		0A06608C2099B4FF0048FBD3 /* XCUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCUIApplication.h; sourceTree = "<group>"; };
-		0A0C86FD2097461700471885 /* safeUIKit.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = safeUIKit.strings; sourceTree = "<group>"; };
+		0A0C86FD2097461700471885 /* SafeUIKit.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = SafeUIKit.strings; sourceTree = "<group>"; };
 		0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IdentityAccessImplementationsResources.bundle; sourceTree = "<group>"; };
 		0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeScreenUITests.swift; sourceTree = "<group>"; };
 		0A34BC5F207B808800636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,7 +304,7 @@
 		0AF281D62074C23400D3843D /* libIdentityAccess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccess.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../lib/Crashlytics.framework; sourceTree = "<group>"; };
 		0AFEDEAE2073C79C002F5924 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../lib/Fabric.framework; sourceTree = "<group>"; };
-		0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = safeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SafeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEDEB42073C80A002F5924 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0AFFF3F6207F8AC60030200C /* MockIdentityApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIdentityApplicationService.swift; sourceTree = "<group>"; };
 		55071BBE209224FB00297D1C /* ReviewSafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSafeViewController.swift; sourceTree = "<group>"; };
@@ -328,7 +328,7 @@
 		5540A4FA203C3054009C9BE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5540A4FF203C3054009C9BE3 /* safeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A505203C3054009C9BE3 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
-		5540A50A203C3054009C9BE3 /* safeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5540A50A203C3054009C9BE3 /* SafeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A510203C3054009C9BE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		555DD6D1205144C900D1178A /* SetupSafeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeFlowCoordinator.swift; sourceTree = "<group>"; };
 		555DD6D3205144EB00D1178A /* SetupSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
@@ -378,7 +378,7 @@
 				0ABBDC032073CADD006D0A48 /* EthereumKit.framework in Frameworks */,
 				0ABBDBFF2073CADD006D0A48 /* APIKit.framework in Frameworks */,
 				0ABBDC012073CADD006D0A48 /* CryptoSwift.framework in Frameworks */,
-				0AFEDEB22073C7BC002F5924 /* safeUIKit.framework in Frameworks */,
+				0AFEDEB22073C7BC002F5924 /* SafeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,7 +442,7 @@
 				0ABBDBF82073CACD006D0A48 /* CryptoSwift.framework */,
 				0ABBDBFA2073CACD006D0A48 /* EthereumKit.framework */,
 				0ABBDBF92073CACD006D0A48 /* Result.framework */,
-				0AFEDEB12073C7BC002F5924 /* safeUIKit.framework */,
+				0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */,
 				0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */,
 				0AFEDEAE2073C79C002F5924 /* Fabric.framework */,
 			);
@@ -543,7 +543,7 @@
 				0AFEDEB62073C846002F5924 /* config */,
 				55D6C2F72045C38D0026BC72 /* TestTools */,
 				5540A4ED203C3054009C9BE3 /* safe */,
-				5540A50D203C3054009C9BE3 /* safeUITests */,
+				5540A50D203C3054009C9BE3 /* SafeUITests */,
 				5540A4EC203C3054009C9BE3 /* Products */,
 				0A53306B2073C73E00DE55F5 /* Frameworks */,
 			);
@@ -554,7 +554,7 @@
 			children = (
 				5540A4EB203C3054009C9BE3 /* safe.app */,
 				5540A4FF203C3054009C9BE3 /* safeTests.xctest */,
-				5540A50A203C3054009C9BE3 /* safeUITests.xctest */,
+				5540A50A203C3054009C9BE3 /* SafeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -584,10 +584,10 @@
 			path = safe;
 			sourceTree = "<group>";
 		};
-		5540A50D203C3054009C9BE3 /* safeUITests */ = {
+		5540A50D203C3054009C9BE3 /* SafeUITests */ = {
 			isa = PBXGroup;
 			children = (
-				0A0C86FD2097461700471885 /* safeUIKit.strings */,
+				0A0C86FD2097461700471885 /* SafeUIKit.strings */,
 				0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */,
 				0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */,
 				0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */,
@@ -603,9 +603,9 @@
 				5540A510203C3054009C9BE3 /* Info.plist */,
 				0A06608C2099B4FF0048FBD3 /* XCUIApplication.h */,
 				0A06608B2099B4FF0048FBD3 /* XCUIElement.h */,
-				0A0660872099B4870048FBD3 /* safeUITests-Bridging-Header.h */,
+				0A0660872099B4870048FBD3 /* SafeUITests-Bridging-Header.h */,
 			);
-			path = safeUITests;
+			path = SafeUITests;
 			sourceTree = "<group>";
 		};
 		555DD6D02051432600D1178A /* SetupSafeFlow */ = {
@@ -748,13 +748,13 @@
 			productReference = 5540A4FF203C3054009C9BE3 /* safeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5540A509203C3054009C9BE3 /* safeUITests */ = {
+		5540A509203C3054009C9BE3 /* SafeUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5540A519203C3054009C9BE3 /* Build configuration list for PBXNativeTarget "safeUITests" */;
+			buildConfigurationList = 5540A519203C3054009C9BE3 /* Build configuration list for PBXNativeTarget "SafeUITests" */;
 			buildPhases = (
 				5540A506203C3054009C9BE3 /* Sources */,
 				5540A507203C3054009C9BE3 /* Frameworks */,
-				0A0C86FC2097455F00471885 /* Copy safeUIKit Localizations */,
+				0A0C86FC2097455F00471885 /* Copy SafeUIKit Localizations */,
 				5540A508203C3054009C9BE3 /* Resources */,
 			);
 			buildRules = (
@@ -762,9 +762,9 @@
 			dependencies = (
 				5540A50C203C3054009C9BE3 /* PBXTargetDependency */,
 			);
-			name = safeUITests;
-			productName = safeUITests;
-			productReference = 5540A50A203C3054009C9BE3 /* safeUITests.xctest */;
+			name = SafeUITests;
+			productName = SafeUITests;
+			productReference = 5540A50A203C3054009C9BE3 /* SafeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -815,7 +815,7 @@
 			targets = (
 				5540A4EA203C3054009C9BE3 /* safe */,
 				5540A4FE203C3054009C9BE3 /* safeTests */,
-				5540A509203C3054009C9BE3 /* safeUITests */,
+				5540A509203C3054009C9BE3 /* SafeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -886,7 +886,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A0C873F209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,
-				0A0C86FE2097461700471885 /* safeUIKit.strings in Resources */,
+				0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */,
 				0AA27835205FC60100EBB9D1 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -894,17 +894,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A0C86FC2097455F00471885 /* Copy safeUIKit Localizations */ = {
+		0A0C86FC2097455F00471885 /* Copy SafeUIKit Localizations */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/../safeUIKit/safeUIKit/en.lproj/Localizable.strings",
+				"$(SRCROOT)/../SafeUIKit/SafeUIKit/en.lproj/Localizable.strings",
 			);
-			name = "Copy safeUIKit Localizations";
+			name = "Copy SafeUIKit Localizations";
 			outputPaths = (
-				"$(SRCROOT)/$(PRODUCT_NAME)/safeUIKit.strings",
+				"$(SRCROOT)/$(PRODUCT_NAME)/SafeUIKit.strings",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1369,12 +1369,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
-				INFOPLIST_FILE = safeUITests/Info.plist;
+				INFOPLIST_FILE = SafeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safeUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.SafeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "safeUITests/safeUITests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SafeUITests/SafeUITests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1390,12 +1390,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
-				INFOPLIST_FILE = safeUITests/Info.plist;
+				INFOPLIST_FILE = SafeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safeUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.SafeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "safeUITests/safeUITests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SafeUITests/SafeUITests-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = safe;
@@ -1516,12 +1516,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
-				INFOPLIST_FILE = safeUITests/Info.plist;
+				INFOPLIST_FILE = SafeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safeUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.SafeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "safeUITests/safeUITests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SafeUITests/SafeUITests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1562,7 +1562,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5540A519203C3054009C9BE3 /* Build configuration list for PBXNativeTarget "safeUITests" */ = {
+		5540A519203C3054009C9BE3 /* Build configuration list for PBXNativeTarget "SafeUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5540A51A203C3054009C9BE3 /* Debug */,

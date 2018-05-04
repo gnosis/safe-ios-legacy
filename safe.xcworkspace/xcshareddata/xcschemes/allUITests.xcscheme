@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0A96708D20480C3E00445AC2"
-               BuildableName = "safeUIKitDemoUITests.xctest"
-               BlueprintName = "safeUIKitDemoUITests"
-               ReferencedContainer = "container:safeUIKit/safeUIKit.xcodeproj">
+               BuildableName = "SafeUIKitDemoUITests.xctest"
+               BlueprintName = "SafeUIKitDemoUITests"
+               ReferencedContainer = "container:SafeUIKit/SafeUIKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5540A509203C3054009C9BE3"
-               BuildableName = "safeUITests.xctest"
-               BlueprintName = "safeUITests"
+               BuildableName = "SafeUITests.xctest"
+               BlueprintName = "SafeUITests"
                ReferencedContainer = "container:safe/safe.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0A96708D20480C3E00445AC2"
-               BuildableName = "safeUIKitDemoUITests.xctest"
-               BlueprintName = "safeUIKitDemoUITests"
-               ReferencedContainer = "container:safeUIKit/safeUIKit.xcodeproj">
+               BuildableName = "SafeUIKitDemoUITests.xctest"
+               BlueprintName = "SafeUIKitDemoUITests"
+               ReferencedContainer = "container:SafeUIKit/SafeUIKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -71,8 +71,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5540A509203C3054009C9BE3"
-               BuildableName = "safeUITests.xctest"
-               BlueprintName = "safeUITests"
+               BuildableName = "SafeUITests.xctest"
+               BlueprintName = "SafeUITests"
                ReferencedContainer = "container:safe/safe.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -91,9 +91,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A96708D20480C3E00445AC2"
-            BuildableName = "safeUIKitDemoUITests.xctest"
-            BlueprintName = "safeUIKitDemoUITests"
-            ReferencedContainer = "container:safeUIKit/safeUIKit.xcodeproj">
+            BuildableName = "SafeUIKitDemoUITests.xctest"
+            BlueprintName = "SafeUIKitDemoUITests"
+            ReferencedContainer = "container:SafeUIKit/SafeUIKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A96708D20480C3E00445AC2"
-            BuildableName = "safeUIKitDemoUITests.xctest"
-            BlueprintName = "safeUIKitDemoUITests"
-            ReferencedContainer = "container:safeUIKit/safeUIKit.xcodeproj">
+            BuildableName = "SafeUIKitDemoUITests.xctest"
+            BlueprintName = "SafeUIKitDemoUITests"
+            ReferencedContainer = "container:SafeUIKit/SafeUIKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -131,9 +131,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A96708D20480C3E00445AC2"
-            BuildableName = "safeUIKitDemoUITests.xctest"
-            BlueprintName = "safeUIKitDemoUITests"
-            ReferencedContainer = "container:safeUIKit/safeUIKit.xcodeproj">
+            BuildableName = "SafeUIKitDemoUITests.xctest"
+            BlueprintName = "SafeUIKitDemoUITests"
+            ReferencedContainer = "container:SafeUIKit/SafeUIKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

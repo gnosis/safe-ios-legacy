@@ -6,7 +6,7 @@ import XCTest
 @testable import safe
 import IdentityAccessApplication
 import CommonTestSupport
-import safeUIKit
+import SafeUIKit
 
 class NewSafeViewControllerTests: SafeTestCase {
 

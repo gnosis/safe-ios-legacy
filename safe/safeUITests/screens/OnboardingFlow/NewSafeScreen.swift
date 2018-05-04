@@ -22,7 +22,7 @@ final class NewSafeScreen {
 
         var enabled: Bool { return element.isEnabled }
         var isChecked: Bool {
-            return hasCheckmark && element.value as? String == XCLocalizedString("button.checked", table: "safeUIKit")
+            return hasCheckmark && element.value as? String == XCLocalizedString("button.checked", table: "SafeUIKit")
         }
         var hasCheckmark: Bool { return element.value != nil }
 

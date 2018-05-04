@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import safeUIKit
+import SafeUIKit
 import IdentityAccessApplication
 
 protocol PairWithBrowserDelegate: class {

@@ -2,7 +2,7 @@
 
 import UIKit
 import PlaygroundSupport
-import safeUIKit
+import SafeUIKit
 
 func wait(_ delay: TimeInterval) {
     RunLoop.current.run(until: Date(timeIntervalSinceNow: delay))

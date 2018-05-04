@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import safeUIKit
+import SafeUIKit
 
 protocol SetupSafeOptionsDelegate: class {
     func didSelectNewSafe()

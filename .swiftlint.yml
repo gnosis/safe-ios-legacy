@@ -143,5 +143,5 @@ file_header:
                       \/\/
 excluded:
   - safe/generated
-  - safeUIKit/generated
+  - SafeUIKit/generated
   

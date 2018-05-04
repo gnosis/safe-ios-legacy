@@ -4,7 +4,7 @@
 
 import XCTest
 @testable import safe
-import safeUIKit
+import SafeUIKit
 
 class SetPasswordViewControllerTests: XCTestCase {
 

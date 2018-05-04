@@ -127,11 +127,11 @@ extension PairWithBrowserExtensionScreenUITests {
 
     private func handleSuggestionAlertByCancelling(with expectation: XCTestExpectation) {
         cameraSuggestionHandler = addUIInterruptionMonitor(withDescription: "Suggestion Alert") { alert in
-            guard alert.label == XCLocalizedString("scanner.camera_access_required.title", table: "safeUIKit") else {
+            guard alert.label == XCLocalizedString("scanner.camera_access_required.title", table: "SafeUIKit") else {
                 return false
             }
-            XCTAssertExist(alert.buttons[XCLocalizedString("scanner.camera_access_required.allow", table: "safeUIKit")])
-            alert.buttons[XCLocalizedString("cancel", table: "safeUIKit")].tap()
+            XCTAssertExist(alert.buttons[XCLocalizedString("scanner.camera_access_required.allow", table: "SafeUIKit")])
+            alert.buttons[XCLocalizedString("cancel", table: "SafeUIKit")].tap()
             expectation.fulfill()
             return true
         }

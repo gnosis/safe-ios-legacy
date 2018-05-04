@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import safeUIKit
+import SafeUIKit
 
 protocol SetPasswordViewControllerDelegate: class {
     func didSetPassword(_ password: String)
