@@ -99,6 +99,16 @@
                ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0AF33D3C209C6BF800527D25"
+               BuildableName = "SafeAppUIUnitTests.xctest"
+               BlueprintName = "SafeAppUIUnitTests"
+               ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
