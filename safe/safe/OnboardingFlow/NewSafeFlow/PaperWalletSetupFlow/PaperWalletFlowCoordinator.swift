@@ -4,7 +4,6 @@
 
 import UIKit
 import IdentityAccessApplication
-import IdentityAccessDomainModel
 
 typealias PaperWalletSetupCompletion = () -> Void
 
