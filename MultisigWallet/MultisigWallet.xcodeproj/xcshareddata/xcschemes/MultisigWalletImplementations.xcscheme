@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AF33D34209C6BF800527D25"
-               BuildableName = "SafeAppUI.framework"
-               BlueprintName = "SafeAppUI"
-               ReferencedContainer = "container:SafeUIKit.xcodeproj">
+               BlueprintIdentifier = "0AEF8AA920A088B1006A1265"
+               BuildableName = "libMultisigWalletImplementations.a"
+               BlueprintName = "MultisigWalletImplementations"
+               ReferencedContainer = "container:MultisigWallet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,20 +32,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AF33D3C209C6BF800527D25"
-               BuildableName = "SafeAppUIUnitTests.xctest"
-               BlueprintName = "SafeAppUIUnitTests"
-               ReferencedContainer = "container:SafeUIKit.xcodeproj">
+               BlueprintIdentifier = "0AEF8AB420A088C3006A1265"
+               BuildableName = "MultisigWalletImplementationsTests.xctest"
+               BlueprintName = "MultisigWalletImplementationsTests"
+               ReferencedContainer = "container:MultisigWallet.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AF33D34209C6BF800527D25"
-            BuildableName = "SafeAppUI.framework"
-            BlueprintName = "SafeAppUI"
-            ReferencedContainer = "container:SafeUIKit.xcodeproj">
+            BlueprintIdentifier = "0AEF8AA920A088B1006A1265"
+            BuildableName = "libMultisigWalletImplementations.a"
+            BlueprintName = "MultisigWalletImplementations"
+            ReferencedContainer = "container:MultisigWallet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,10 +64,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AF33D34209C6BF800527D25"
-            BuildableName = "SafeAppUI.framework"
-            BlueprintName = "SafeAppUI"
-            ReferencedContainer = "container:SafeUIKit.xcodeproj">
+            BlueprintIdentifier = "0AEF8AA920A088B1006A1265"
+            BuildableName = "libMultisigWalletImplementations.a"
+            BlueprintName = "MultisigWalletImplementations"
+            ReferencedContainer = "container:MultisigWallet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -82,10 +82,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AF33D34209C6BF800527D25"
-            BuildableName = "SafeAppUI.framework"
-            BlueprintName = "SafeAppUI"
-            ReferencedContainer = "container:SafeUIKit.xcodeproj">
+            BlueprintIdentifier = "0AEF8AA920A088B1006A1265"
+            BuildableName = "libMultisigWalletImplementations.a"
+            BlueprintName = "MultisigWalletImplementations"
+            ReferencedContainer = "container:MultisigWallet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

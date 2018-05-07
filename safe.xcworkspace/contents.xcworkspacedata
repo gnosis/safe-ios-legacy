@@ -29,6 +29,9 @@
       location = "group:IdentityAccess/IdentityAccess.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:MultisigWallet/MultisigWallet.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:/Users/dmitry/projects/gnosis/safe-ios/SafeUIKit/SafeUIKit.xcodeproj">
    </FileRef>
    <FileRef
