@@ -9,6 +9,7 @@ import SafeAppUI
 import IdentityAccessApplication
 import IdentityAccessDomainModel
 import IdentityAccessImplementations
+import Database
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

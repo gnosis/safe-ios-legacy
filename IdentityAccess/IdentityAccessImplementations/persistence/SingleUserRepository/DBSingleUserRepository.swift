@@ -4,6 +4,7 @@
 
 import Foundation
 import IdentityAccessDomainModel
+import Database
 
 public class DBSingleUserRepository: SingleUserRepository {
 

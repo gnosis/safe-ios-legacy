@@ -2,8 +2,7 @@
 //  Copyright © 2018 Gnosis Ltd. All rights reserved.
 //
 
-import XCTest
-@testable import IdentityAccessImplementations
+import Foundation
 import SQLite3
 
 class MockCSQLite3: CSQLite3 {

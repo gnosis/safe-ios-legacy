@@ -60,6 +60,7 @@
 		0ACB1A402099EEFA00EBE267 /* UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A3F2099EEFA00EBE267 /* UITestCase.swift */; };
 		0ACB1A422099EF2300EBE267 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A412099EF2300EBE267 /* Springboard.swift */; };
 		0ACB1A442099F3F500EBE267 /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A432099F3F500EBE267 /* CameraScreen.swift */; };
+		0AEF8A3D20A08262006A1265 /* libDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A3C20A08262006A1265 /* libDatabase.a */; };
 		0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */; };
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
 		5527A7FC208DE9D500AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; };
@@ -355,6 +356,7 @@
 		0ACB1A3F2099EEFA00EBE267 /* UITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestCase.swift; sourceTree = "<group>"; };
 		0ACB1A412099EF2300EBE267 /* Springboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Springboard.swift; sourceTree = "<group>"; };
 		0ACB1A432099F3F500EBE267 /* CameraScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
+		0AEF8A3C20A08262006A1265 /* libDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF281D62074C23400D3843D /* libIdentityAccess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccess.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../lib/Crashlytics.framework; sourceTree = "<group>"; };
 		0AFEDEAE2073C79C002F5924 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../lib/Fabric.framework; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AEF8A3D20A08262006A1265 /* libDatabase.a in Frameworks */,
 				0A160B8520A07C6300E064E1 /* SafeAppUI.framework in Frameworks */,
 				0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */,
 				0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
@@ -449,6 +452,7 @@
 		0A53306B2073C73E00DE55F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AEF8A3C20A08262006A1265 /* libDatabase.a */,
 				0A5DC58A209CA2E500BA7A06 /* libCommon.a */,
 				0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */,
 				0A537C16207D019800921FB9 /* libIdentityAccessApplication.a */,
