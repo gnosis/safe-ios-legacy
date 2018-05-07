@@ -8,9 +8,9 @@ import CommonTestSupport
 
 final class StartScreen {
 
-    let title = XCUIApplication().staticTexts[XCLocalizedString("onboarding.start.header")]
-    let description = XCUIApplication().staticTexts[XCLocalizedString("onboarding.start.description")]
-    let startButton = XCUIApplication().buttons[XCLocalizedString("onboarding.start.start")]
+    let title = XCUIApplication().staticTexts[LocalizedString("onboarding.start.header")]
+    let description = XCUIApplication().staticTexts[LocalizedString("onboarding.start.description")]
+    let startButton = XCUIApplication().buttons[LocalizedString("onboarding.start.start")]
 
     var isDisplayed: Bool {
         return title.exists

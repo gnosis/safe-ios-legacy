@@ -12,10 +12,10 @@ final class SaveMnemonicScreen {
         return title.exists
     }
 
-    let title = XCUIApplication().staticTexts[XCLocalizedString("new_safe.paper_wallet.title")]
+    let title = XCUIApplication().staticTexts[LocalizedString("new_safe.paper_wallet.title")]
     let description = XCUIApplication().staticTexts["description"]
     let mnemonic = XCUIApplication().staticTexts["mnemonic"]
-    let saveButton = XCUIApplication().buttons[XCLocalizedString("new_safe.paper_wallet.save")]
-    let continueButton = XCUIApplication().buttons[XCLocalizedString("new_safe.paper_wallet.continue")]
+    let saveButton = XCUIApplication().buttons[LocalizedString("new_safe.paper_wallet.save")]
+    let continueButton = XCUIApplication().buttons[LocalizedString("new_safe.paper_wallet.continue")]
 
 }

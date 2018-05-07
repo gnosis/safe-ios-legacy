@@ -11,7 +11,7 @@ class CameraScreen {
         return closeButton.exists
     }
 
-    var closeButton = XCUIApplication().buttons[XCLocalizedString("camera.close", table: "SafeUIKit")]
+    var closeButton = XCUIApplication().buttons[LocalizedString("camera.close")]
     var scanValidCodeButton = XCUIApplication().buttons["Scan Valid Code"]
     var scanAnotherValidCodeButton = XCUIApplication().buttons["Scan Another Valid Code"]
     var scanInvalidCodeButton = XCUIApplication().buttons["Scan Invalid Code"]

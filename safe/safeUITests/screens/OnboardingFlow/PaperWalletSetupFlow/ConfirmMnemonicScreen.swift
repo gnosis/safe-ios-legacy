@@ -12,8 +12,8 @@ final class ConfirmMnemonicScreen {
         return title.exists
     }
 
-    let title = XCUIApplication().staticTexts[XCLocalizedString("recovery.confirm_mnemonic.title")]
-    let description = XCUIApplication().staticTexts[XCLocalizedString("recovery.confirm_mnemonic.description")]
+    let title = XCUIApplication().staticTexts[LocalizedString("recovery.confirm_mnemonic.title")]
+    let description = XCUIApplication().staticTexts[LocalizedString("recovery.confirm_mnemonic.description")]
     let firstInput = XCUIApplication().otherElements["firstInput"].textFields.firstMatch
     let secondInput = XCUIApplication().otherElements["secondInput"].textFields.firstMatch
     let firstWordNumberLabel = XCUIApplication().staticTexts["firstWordNumberLabel"]

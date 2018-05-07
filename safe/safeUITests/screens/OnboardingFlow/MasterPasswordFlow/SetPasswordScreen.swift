@@ -21,7 +21,7 @@ final class SetPasswordScreen: SecureTextfieldScreen {
     }
 
     override var title: XCUIElement {
-        return XCUIApplication().staticTexts[XCLocalizedString("onboarding.set_password.header")]
+        return XCUIApplication().staticTexts[LocalizedString("onboarding.set_password.header")]
     }
     var rules = Rules()
 
