@@ -18,6 +18,7 @@ Changed
 - Moved all view controllers and flow coordinators to new SafeAppUI framework.
 - Renamed safeUIKit* targets to capitalized names: SafeUIKit*.
 - Moved ``Database`` and SQLite implementations into ``Database`` library.
+- Created new ``MultisigWallet`` project with DomainModel, Application and Implementations libraries.
 
 `0.2.0`_ - 2018-05-03
 ==========
