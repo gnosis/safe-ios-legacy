@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0A0C87112097488300471885 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C87132097488300471885 /* Localizable.strings */; };
 		0A0C871920974B6900471885 /* LocalizedString.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0C871820974B6900471885 /* LocalizedString.swift.swift */; };
-		0A44F9A9208F6F4500BB7101 /* CSQLite3ErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9A8208F6F4500BB7101 /* CSQLite3ErrorTests.swift */; };
 		0A44F9C520908BBD00BB7101 /* DBSingleUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */; };
 		0A44F9CB20908BE400BB7101 /* DBSingleUserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */; };
 		0A44F9CD2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9CC2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift */; };
@@ -84,15 +83,11 @@
 		0A5DC585209CA24600BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC584209CA24600BA7A06 /* libCommon.a */; };
 		0A5DC587209CA24C00BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC586209CA24C00BA7A06 /* libCommon.a */; };
 		0A5DC589209CA25200BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC588209CA25200BA7A06 /* libCommon.a */; };
-		0A665987208A3EA700A4C8CE /* MockCSQLite3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A665986208A3EA700A4C8CE /* MockCSQLite3.swift */; };
-		0A66598B208A403500A4C8CE /* SQLiteDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D3F208A07C90034FF66 /* SQLiteDatabaseTests.swift */; };
 		0A666D04208643A50034FF66 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666CFF208643A50034FF66 /* Clock.swift */; };
 		0A666D062086496E0034FF66 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D052086496D0034FF66 /* Logger.swift */; };
 		0A666D132087A17F0034FF66 /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */; };
 		0A666D192087A1990034FF66 /* AuthenticationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D182087A1990034FF66 /* AuthenticationMethod.swift */; };
 		0A666D1B2087A1A90034FF66 /* AuthenticationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */; };
-		0A666D3C208A07AA0034FF66 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D3B208A07A90034FF66 /* SQLiteDatabase.swift */; };
-		0A666D43208A0E0A0034FF66 /* CSQLite3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D42208A0E0A0034FF66 /* CSQLite3.swift */; };
 		0AA4FF912085F46900C82CFE /* AuthenticationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */; };
 		0ABCA958207E55BE00E2C193 /* APIKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F6F3207E397F00AF407D /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA959207E55BE00E2C193 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -106,12 +101,7 @@
 		0ABCA961207E55CF00E2C193 /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA962207E55CF00E2C193 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA963207E55CF00E2C193 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0AD8598D208F39830084C0B9 /* MockFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8598C208F39830084C0B9 /* MockFileManager.swift */; };
-		0AD85993208F39C00084C0B9 /* SQLiteConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD85992208F39C00084C0B9 /* SQLiteConnection.swift */; };
-		0AD85995208F39CE0084C0B9 /* SQLiteStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD85994208F39CE0084C0B9 /* SQLiteStatement.swift */; };
-		0AD85997208F39E70084C0B9 /* SQLiteResultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */; };
-		0AD8599F208F3B9B0084C0B9 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8599E208F3B9B0084C0B9 /* Database.swift */; };
-		0AD859A1208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD859A0208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift */; };
+		0AEF8A3B20A08211006A1265 /* libDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160BA020A0801A00E064E1 /* libDatabase.a */; };
 		0AFFF40620808A5D0030200C /* SingleUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40520808A5D0030200C /* SingleUserRepository.swift */; };
 		0AFFF40820808ABD0030200C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40720808ABD0030200C /* User.swift */; };
 		0AFFF40A20808AE30030200C /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFF40920808AE30030200C /* UserTests.swift */; };
@@ -139,6 +129,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0A0C8702209747E100471885;
 			remoteInfo = IdentityAccessImplementationsResources;
+		};
+		0A160B9F20A0801A00E064E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A160B9220A07FE100E064E1;
+			remoteInfo = Database;
 		};
 		0A48A06D2091CBCA00B704AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -280,6 +277,20 @@
 			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
 			remoteInfo = Common;
 		};
+		0AEF8A2D20A08182006A1265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A160B9120A07FE100E064E1;
+			remoteInfo = Database;
+		};
+		0AEF8A3320A08182006A1265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A160BC220A0804500E064E1;
+			remoteInfo = DatabaseTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -361,7 +372,6 @@
 		0A0C8705209747E200471885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A0C87122097488300471885 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A0C871820974B6900471885 /* LocalizedString.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift.swift; sourceTree = "<group>"; };
-		0A44F9A8208F6F4500BB7101 /* CSQLite3ErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSQLite3ErrorTests.swift; sourceTree = "<group>"; };
 		0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepository.swift; sourceTree = "<group>"; };
 		0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepositoryTests.swift; sourceTree = "<group>"; };
 		0A44F9CC2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
@@ -446,22 +456,12 @@
 		0A5DC584209CA24600BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A5DC586209CA24C00BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A5DC588209CA25200BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A665986208A3EA700A4C8CE /* MockCSQLite3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCSQLite3.swift; sourceTree = "<group>"; };
 		0A666CFF208643A50034FF66 /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		0A666D052086496D0034FF66 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
 		0A666D182087A1990034FF66 /* AuthenticationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationMethod.swift; sourceTree = "<group>"; };
 		0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResult.swift; sourceTree = "<group>"; };
-		0A666D3B208A07A90034FF66 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
-		0A666D3F208A07C90034FF66 /* SQLiteDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabaseTests.swift; sourceTree = "<group>"; };
-		0A666D42208A0E0A0034FF66 /* CSQLite3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSQLite3.swift; sourceTree = "<group>"; };
 		0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPolicy.swift; sourceTree = "<group>"; };
-		0AD8598C208F39830084C0B9 /* MockFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFileManager.swift; sourceTree = "<group>"; };
-		0AD85992208F39C00084C0B9 /* SQLiteConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteConnection.swift; sourceTree = "<group>"; };
-		0AD85994208F39CE0084C0B9 /* SQLiteStatement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteStatement.swift; sourceTree = "<group>"; };
-		0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteResultSet.swift; sourceTree = "<group>"; };
-		0AD8599E208F3B9B0084C0B9 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
-		0AD859A0208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabaseIntegrationTests.swift; sourceTree = "<group>"; };
 		0ADFDD8820A0615600423554 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
 		0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0AFFF40520808A5D0030200C /* SingleUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUserRepository.swift; sourceTree = "<group>"; };
@@ -514,6 +514,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AEF8A3B20A08211006A1265 /* libDatabase.a in Frameworks */,
 				0A5DC585209CA24600BA7A06 /* libCommon.a in Frameworks */,
 				0A537B33207CF4B000921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 			);
@@ -608,23 +609,6 @@
 				0A537A8A207CE74100921FB9 /* EncryptionService.swift */,
 			);
 			path = Ethereum;
-			sourceTree = "<group>";
-		};
-		0A48A08720935BA000B704AD /* SQLite */ = {
-			isa = PBXGroup;
-			children = (
-				0A666D42208A0E0A0034FF66 /* CSQLite3.swift */,
-				0A44F9A8208F6F4500BB7101 /* CSQLite3ErrorTests.swift */,
-				0A666D3B208A07A90034FF66 /* SQLiteDatabase.swift */,
-				0AD85992208F39C00084C0B9 /* SQLiteConnection.swift */,
-				0AD85994208F39CE0084C0B9 /* SQLiteStatement.swift */,
-				0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */,
-				0A666D3F208A07C90034FF66 /* SQLiteDatabaseTests.swift */,
-				0AD859A0208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift */,
-				0AD8598C208F39830084C0B9 /* MockFileManager.swift */,
-				0A665986208A3EA700A4C8CE /* MockCSQLite3.swift */,
-			);
-			path = SQLite;
 			sourceTree = "<group>";
 		};
 		0A48A08820935BBC00B704AD /* SingleGatekeeperRepository */ = {
@@ -845,6 +829,8 @@
 				0ADFDD8F20A0615600423554 /* libCommon.a */,
 				0ADFDD9120A0615600423554 /* CommonTests.xctest */,
 				0ADFDD9320A0615600423554 /* libCommonTestSupport.a */,
+				0A160BA020A0801A00E064E1 /* libDatabase.a */,
+				0AEF8A3420A08182006A1265 /* DatabaseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -903,8 +889,6 @@
 			children = (
 				0A48A08920935BC900B704AD /* SingleUserRepository */,
 				0A48A08820935BBC00B704AD /* SingleGatekeeperRepository */,
-				0AD8599E208F3B9B0084C0B9 /* Database.swift */,
-				0A48A08720935BA000B704AD /* SQLite */,
 			);
 			path = persistence;
 			sourceTree = "<group>";
@@ -978,6 +962,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0AEF8A2E20A08182006A1265 /* PBXTargetDependency */,
 				0ADFDD9C20A0616700423554 /* PBXTargetDependency */,
 				0A0C871720974B1B00471885 /* PBXTargetDependency */,
 				0A666D08208654090034FF66 /* PBXTargetDependency */,
@@ -1163,6 +1148,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0A160BA020A0801A00E064E1 /* libDatabase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDatabase.a;
+			remoteRef = 0A160B9F20A0801A00E064E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0A48A06E2091CBCA00B704AD /* RSBarcodes.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1217,6 +1209,13 @@
 			fileType = archive.ar;
 			path = libCommonTestSupport.a;
 			remoteRef = 0ADFDD9220A0615600423554 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0AEF8A3420A08182006A1265 /* DatabaseTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DatabaseTests.xctest;
+			remoteRef = 0AEF8A3320A08182006A1265 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1371,9 +1370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A537AE0207CEE7300921FB9 /* MockClockService.swift in Sources */,
-				0A666D43208A0E0A0034FF66 /* CSQLite3.swift in Sources */,
 				0A537B12207CF2D600921FB9 /* ConsoleLogger.swift in Sources */,
-				0AD85993208F39C00084C0B9 /* SQLiteConnection.swift in Sources */,
 				0A0C871920974B6900471885 /* LocalizedString.swift.swift in Sources */,
 				0A44F9C520908BBD00BB7101 /* DBSingleUserRepository.swift in Sources */,
 				0A537B1C207CF2D600921FB9 /* EncryptionService.swift in Sources */,
@@ -1387,17 +1384,12 @@
 				0A537AE7207CF00D00921FB9 /* MockEncryptionService.swift in Sources */,
 				0A537B1D207CF2D600921FB9 /* UserDefaultsService.swift in Sources */,
 				0A537B0F207CF2D600921FB9 /* LogFormatter.swift in Sources */,
-				0AD85995208F39CE0084C0B9 /* SQLiteStatement.swift in Sources */,
-				0AD85997208F39E70084C0B9 /* SQLiteResultSet.swift in Sources */,
 				0A48A0722092003C00B704AD /* DBSingleGatekeeperRepository.swift in Sources */,
 				0A537AE9207CF02C00921FB9 /* MockLogger.swift in Sources */,
-				0AD8598D208F39830084C0B9 /* MockFileManager.swift in Sources */,
 				0A537B19207CF2D600921FB9 /* BiometricService.swift in Sources */,
 				0AFFF4302084C01A0030200C /* InMemoryGatekeeperRepository.swift in Sources */,
 				0A537ADA207CEE1100921FB9 /* InMemoryUserDefaults.swift in Sources */,
 				0A537B11207CF2D600921FB9 /* CrashlyticsLogger.swift in Sources */,
-				0A666D3C208A07AA0034FF66 /* SQLiteDatabase.swift in Sources */,
-				0AD8599F208F3B9B0084C0B9 /* Database.swift in Sources */,
 				0A537AE5207CEFED00921FB9 /* InMemoryKeyValueStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1408,7 +1400,6 @@
 			files = (
 				0A537BA8207CF93F00921FB9 /* EthereumAccountTests.swift in Sources */,
 				0A48A07B2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift in Sources */,
-				0A66598B208A403500A4C8CE /* SQLiteDatabaseTests.swift in Sources */,
 				0A44F9CB20908BE400BB7101 /* DBSingleUserRepositoryTests.swift in Sources */,
 				0A537BAB207CF96500921FB9 /* CrashlyticsLoggerTests.swift in Sources */,
 				0AFFF42E2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift in Sources */,
@@ -1416,14 +1407,11 @@
 				0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */,
 				0AFFF40E20808C0B0030200C /* InMemoryUserRepositoryTests.swift in Sources */,
 				0A537BAC207CF96B00921FB9 /* LogFormatterTests.swift in Sources */,
-				0A665987208A3EA700A4C8CE /* MockCSQLite3.swift in Sources */,
 				0AFFF4342084D4DA0030200C /* AuthenticationPolicyTests.swift in Sources */,
-				0A44F9A9208F6F4500BB7101 /* CSQLite3ErrorTests.swift in Sources */,
 				0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */,
 				0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */,
 				0A48A0792092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift in Sources */,
 				0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */,
-				0AD859A1208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift in Sources */,
 				0A44F9CD2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift in Sources */,
 				0A537BA9207CF94E00921FB9 /* UserDefaultsIntegrationTests.swift in Sources */,
 				0A537BAD207CF96E00921FB9 /* LoggableErrorTests.swift in Sources */,
@@ -1544,6 +1532,11 @@
 			isa = PBXTargetDependency;
 			name = Common;
 			targetProxy = 0ADFDD9D20A0616D00423554 /* PBXContainerItemProxy */;
+		};
+		0AEF8A2E20A08182006A1265 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Database;
+			targetProxy = 0AEF8A2D20A08182006A1265 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -5,6 +5,7 @@
 import Foundation
 import IdentityAccessDomainModel
 import Common
+import Database
 
 public class DBSingleGatekeeperRepository: SingleGatekeeperRepository, Assertable {
 

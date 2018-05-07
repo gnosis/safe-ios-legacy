@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import IdentityAccessImplementations
+@testable import Database
 
 // swiftlint:disable file_length
 class SQLiteDatabaseTests: XCTestCase {

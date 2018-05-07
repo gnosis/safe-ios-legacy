@@ -5,6 +5,7 @@
 import XCTest
 @testable import IdentityAccessImplementations
 import IdentityAccessDomainModel
+import Database
 
 class DBSingleGatekeeperRepositoryTests: XCTestCase {
 

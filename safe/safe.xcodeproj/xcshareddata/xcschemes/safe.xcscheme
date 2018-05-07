@@ -109,6 +109,16 @@
                ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A160BC120A0804500E064E1"
+               BuildableName = "DatabaseTests.xctest"
+               BlueprintName = "DatabaseTests"
+               ReferencedContainer = "container:../Common/Common.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
