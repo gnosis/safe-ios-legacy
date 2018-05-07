@@ -1525,7 +1525,6 @@
 		};
 		0A46702B207E58B700F55ADE /* AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1660,6 +1659,7 @@
 		};
 		0A467030207E58B700F55ADE /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
@@ -1874,6 +1874,7 @@
 		};
 		0A537BC4207CF9B600921FB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
@@ -1891,6 +1892,7 @@
 		};
 		0A537BC5207CF9B600921FB9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;

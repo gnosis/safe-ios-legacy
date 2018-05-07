@@ -23,15 +23,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0A9670B120480C5700445AC2"
-            BuildableName = "SafeUIKit.framework"
-            BlueprintName = "SafeUIKit"
-            ReferencedContainer = "container:SafeUIKit.temp_caseinsensitive_rename.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
