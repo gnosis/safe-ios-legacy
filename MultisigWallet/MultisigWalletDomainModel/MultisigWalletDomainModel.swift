@@ -1,0 +1,9 @@
+//
+//  
+//
+
+import Common
+
+class MultisigWalletDomainModel {
+
+}
