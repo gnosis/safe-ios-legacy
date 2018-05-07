@@ -323,6 +323,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AEF8A7A20A08878006A1265 /* Build configuration list for PBXNativeTarget "MultisigWalletDomainModel" */;
 			buildPhases = (
+				0AEF8AF520A08EF9006A1265 /* Lint */,
 				0AEF8A7120A08878006A1265 /* Sources */,
 				0AEF8A7220A08878006A1265 /* Frameworks */,
 				0AEF8A7320A08878006A1265 /* CopyFiles */,
@@ -341,6 +342,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AEF8A8920A08889006A1265 /* Build configuration list for PBXNativeTarget "MultisigWalletDomainModelTests" */;
 			buildPhases = (
+				0AEF8AF420A08EED006A1265 /* Lint */,
 				0AEF8A7D20A08889006A1265 /* Sources */,
 				0AEF8A7E20A08889006A1265 /* Frameworks */,
 				0AEF8A7F20A08889006A1265 /* Resources */,
@@ -359,6 +361,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AEF8A9420A08899006A1265 /* Build configuration list for PBXNativeTarget "MultisigWalletApplication" */;
 			buildPhases = (
+				0AEF8AF320A08EE1006A1265 /* Lint */,
 				0AEF8A8C20A08899006A1265 /* Sources */,
 				0AEF8A8D20A08899006A1265 /* Frameworks */,
 				0AEF8A8E20A08899006A1265 /* CopyFiles */,
@@ -377,6 +380,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AEF8AA320A088A5006A1265 /* Build configuration list for PBXNativeTarget "MultisigWalletApplicationTests" */;
 			buildPhases = (
+				0AEF8AF220A08ECF006A1265 /* Lint */,
 				0AEF8A9720A088A5006A1265 /* Sources */,
 				0AEF8A9820A088A5006A1265 /* Frameworks */,
 				0AEF8A9920A088A5006A1265 /* Resources */,
@@ -395,6 +399,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AEF8AAE20A088B1006A1265 /* Build configuration list for PBXNativeTarget "MultisigWalletImplementations" */;
 			buildPhases = (
+				0AEF8AF120A08EC1006A1265 /* Lint */,
 				0AEF8AA620A088B1006A1265 /* Sources */,
 				0AEF8AA720A088B1006A1265 /* Frameworks */,
 				0AEF8AA820A088B1006A1265 /* CopyFiles */,
@@ -413,6 +418,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AEF8ABD20A088C3006A1265 /* Build configuration list for PBXNativeTarget "MultisigWalletImplementationsTests" */;
 			buildPhases = (
+				0AEF8AF020A08E9E006A1265 /* Lint */,
 				0AEF8AB120A088C3006A1265 /* Sources */,
 				0AEF8AB220A088C3006A1265 /* Frameworks */,
 				0AEF8AB320A088C3006A1265 /* Resources */,
@@ -435,6 +441,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Gnosis Ltd";
 				TargetAttributes = {
 					0AEF8A7420A08878006A1265 = {
 						CreatedOnToolsVersion = 9.3;
@@ -545,6 +552,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0AEF8AF020A08E9E006A1265 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+			showEnvVarsInLog = 0;
+		};
+		0AEF8AF120A08EC1006A1265 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+			showEnvVarsInLog = 0;
+		};
+		0AEF8AF220A08ECF006A1265 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+			showEnvVarsInLog = 0;
+		};
+		0AEF8AF320A08EE1006A1265 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+			showEnvVarsInLog = 0;
+		};
+		0AEF8AF420A08EED006A1265 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+			showEnvVarsInLog = 0;
+		};
+		0AEF8AF520A08EF9006A1265 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0AEF8A7120A08878006A1265 /* Sources */ = {
