@@ -5,6 +5,19 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+Unreleased
+==========
+Added
+-----
+
+Removed
+-------
+
+Changed
+-------
+- Moved all view controllers and flow coordinators to new SafeAppUI framework.
+- Renamed safeUIKit* targets to capitalized names: SafeUIKit*.
+
 `0.2.0`_ - 2018-05-03
 ==========
 Added
