@@ -276,7 +276,6 @@
 		0A334DC8209C6DD800ABC6AE /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A334DD0209C700700ABC6AE /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		0A334DD8209C70F000ABC6AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		0A334DDA209C720000ABC6AE /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
 		0A334DDD209C726100ABC6AE /* Sotryboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sotryboards.swift; sourceTree = "<group>"; };
 		0A334DE2209C892700ABC6AE /* SafeTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeTestCase.swift; sourceTree = "<group>"; };
 		0A334DE8209C894D00ABC6AE /* libIdentityAccessApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -355,6 +354,8 @@
 		0A9670D420480C7B00445AC2 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
 		0A9670D520480C7B00445AC2 /* TextInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTests.swift; sourceTree = "<group>"; };
 		0A9670D820480C7B00445AC2 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0A99436820A0485300E36FD7 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
+		0A99436A20A0489800E36FD7 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 		0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SafeUIKitMedia.xcassets; sourceTree = "<group>"; };
 		0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButtonTests.swift; sourceTree = "<group>"; };
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
@@ -566,7 +567,6 @@
 		0A96706F20480C1200445AC2 = {
 			isa = PBXGroup;
 			children = (
-				0A334DDA209C720000ABC6AE /* swiftgen.yml */,
 				5527A7E0208DE87600AF3A50 /* Library.xcodeproj */,
 				0A7AE8C22052C20A0044D5DD /* TestTools */,
 				0A96707C20480C3E00445AC2 /* SafeUIKitDemo */,
@@ -620,6 +620,8 @@
 		0A9670B320480C5700445AC2 /* SafeUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				0A99436A20A0489800E36FD7 /* swiftlint.yml */,
+				0A99436820A0485300E36FD7 /* swiftgen.yml */,
 				0A9670D920480C7B00445AC2 /* generated */,
 				0A9670CF20480C7A00445AC2 /* Colors.txt */,
 				55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */,
@@ -1030,7 +1032,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ../scripts/run_swiftgen.sh;
+			shellScript = ../scripts/run_swiftgen_per_target.sh;
 			showEnvVarsInLog = 0;
 		};
 		0A334DCB209C6F8A00ABC6AE /* SwiftGen */ = {
@@ -1089,7 +1091,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/../scripts/run_swiftlint.sh";
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
 		};
 		0A53AD5720598B6F00D713AD /* Localize */ = {
 			isa = PBXShellScriptBuildPhase;

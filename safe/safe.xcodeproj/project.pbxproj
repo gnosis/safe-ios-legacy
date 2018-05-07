@@ -60,9 +60,6 @@
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
 		0AFEDEB22073C7BC002F5924 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */; };
 		0AFEDEB32073C7BC002F5924 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4A203DAE1D00AD0E1F /* Assets.swift */; };
-		55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */; };
-		55147D6020405BBA00AD0E1F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55147D5F20405BBA00AD0E1F /* Colors.swift */; };
 		5527A7FC208DE9D500AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; };
 		5527A7FD208DE9D500AF3A50 /* RSBarcodes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
@@ -192,7 +189,6 @@
 		0A0C86FD2097461700471885 /* SafeUIKit.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = SafeUIKit.strings; sourceTree = "<group>"; };
 		0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IdentityAccessImplementationsResources.bundle; sourceTree = "<group>"; };
 		0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSafeScreenUITests.swift; sourceTree = "<group>"; };
-		0A334DDB209C721D00ABC6AE /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
 		0A334DEE209C8A8000ABC6AE /* SafeAppUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SafeAppUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A34BC5F207B808800636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3FAEAA207B53BF00F0D214 /* libIdentityAccessPortAdapterTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessPortAdapterTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,9 +236,6 @@
 		0AFEDEAE2073C79C002F5924 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../lib/Fabric.framework; sourceTree = "<group>"; };
 		0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SafeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEDEB42073C80A002F5924 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		55147D4A203DAE1D00AD0E1F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
-		55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sotryboards.swift; sourceTree = "<group>"; };
-		55147D5F20405BBA00AD0E1F /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5540A4EB203C3054009C9BE3 /* safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A4EE203C3054009C9BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5540A4F5203C3054009C9BE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -391,21 +384,10 @@
 			name = config;
 			sourceTree = "<group>";
 		};
-		55147D49203DAE1D00AD0E1F /* generated */ = {
-			isa = PBXGroup;
-			children = (
-				55147D5F20405BBA00AD0E1F /* Colors.swift */,
-				55147D4A203DAE1D00AD0E1F /* Assets.swift */,
-				55147D4B203DAE1D00AD0E1F /* Sotryboards.swift */,
-			);
-			path = generated;
-			sourceTree = "<group>";
-		};
 		5540A4E2203C3054009C9BE3 = {
 			isa = PBXGroup;
 			children = (
 				0A334DEE209C8A8000ABC6AE /* SafeAppUI.framework */,
-				0A334DDB209C721D00ABC6AE /* swiftgen.yml */,
 				0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */,
 				0ABCA964207E560500E2C193 /* Library.xcodeproj */,
 				0AFEDEB62073C846002F5924 /* config */,
@@ -430,7 +412,6 @@
 		5540A4ED203C3054009C9BE3 /* safe */ = {
 			isa = PBXGroup;
 			children = (
-				55147D49203DAE1D00AD0E1F /* generated */,
 				5540A4EE203C3054009C9BE3 /* AppDelegate.swift */,
 				55D97D7D20496E390004AEDD /* AppDelegateTests.swift */,
 				5540A4F5203C3054009C9BE3 /* Assets.xcassets */,
@@ -495,7 +476,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5540A513203C3054009C9BE3 /* Build configuration list for PBXNativeTarget "safe" */;
 			buildPhases = (
-				55147D50203DAE5900AD0E1F /* SwiftGen */,
 				55DF6A95203C681A00DF6486 /* Lint */,
 				5540A4E7203C3054009C9BE3 /* Sources */,
 				5540A4E8203C3054009C9BE3 /* Frameworks */,
@@ -730,21 +710,6 @@
 			shellScript = "${SRCROOT}/../scripts/localize.sh";
 			showEnvVarsInLog = 0;
 		};
-		55147D50203DAE5900AD0E1F /* SwiftGen */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftGen;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = ../scripts/run_swiftgen.sh;
-			showEnvVarsInLog = 0;
-		};
 		5540A520203C6077009C9BE3 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -782,10 +747,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55147D4D203DAE1D00AD0E1F /* Sotryboards.swift in Sources */,
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
-				55147D6020405BBA00AD0E1F /* Colors.swift in Sources */,
-				55147D4C203DAE1D00AD0E1F /* Assets.swift in Sources */,
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,
 				0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
 			);
