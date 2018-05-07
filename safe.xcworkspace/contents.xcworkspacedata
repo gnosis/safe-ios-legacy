@@ -29,7 +29,7 @@
       location = "group:IdentityAccess/IdentityAccess.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:safeUIKit/safeUIKit.xcodeproj">
+      location = "group:/Users/dmitry/projects/gnosis/safe-ios/SafeUIKit/SafeUIKit.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:safe/safe.xcodeproj">

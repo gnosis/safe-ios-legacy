@@ -13,15 +13,15 @@ struct Rule {
     }
 
     var element: XCUIElement {
-        return XCUIApplication().staticTexts[XCLocalizedString(key)]
+        return XCUIApplication().staticTexts[LocalizedString(key)]
     }
     var state: State? {
         guard let value = element.value as? String else {
             preconditionFailure("Accessibilty value is missing in Rule element")
         }
-        let inactiveValue = "\(XCLocalizedString("rule.inactive", table: "safeUIKit")) \(element.label)"
-        let errorValue = "\(XCLocalizedString("rule.error", table: "safeUIKit")) \(element.label)"
-        let successValue = "\(XCLocalizedString("rule.success", table: "safeUIKit")) \(element.label)"
+        let inactiveValue = "\(LocalizedString("rule.inactive")) \(element.label)"
+        let errorValue = "\(LocalizedString("rule.error")) \(element.label)"
+        let successValue = "\(LocalizedString("rule.success")) \(element.label)"
         switch value {
         case inactiveValue: return .inactive
         case errorValue: return .error

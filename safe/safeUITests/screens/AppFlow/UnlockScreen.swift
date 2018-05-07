@@ -9,7 +9,7 @@ import CommonTestSupport
 final class UnlockScreen: SecureTextfieldScreen {
 
     override var title: XCUIElement {
-        return XCUIApplication().staticTexts[XCLocalizedString("app.unlock.header")]
+        return XCUIApplication().staticTexts[LocalizedString("app.unlock.header")]
     }
     let countdown = XCUIApplication().staticTexts["countdown"]
 

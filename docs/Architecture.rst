@@ -5,7 +5,7 @@ Architecture
 The architecture follows a hexagonal high-level architecture pattern. Currently, there are the following modules, from high-level to low-level.
 
 * safe iOS app
-* safeUIKit - components used in the app.
+* SafeUIKit - components used in the app.
 * IdentityAccess - user and authentication related components.
 
   - IdentityAccessApplications - implementations of use-cases using domain model objects
@@ -55,7 +55,7 @@ The testing targets also depend on various modules. Here's the graph for Identit
 
 .. image:: png/Model__IdentityAccessTests_3.png
 
-And the one for safe and safeUIKit tests:
+And the one for safe and SafeUIKit tests:
 
 .. image:: png/Model__SafeTests_2.png
 

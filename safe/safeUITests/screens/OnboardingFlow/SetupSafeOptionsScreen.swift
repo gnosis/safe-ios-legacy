@@ -9,8 +9,8 @@ import CommonTestSupport
 class SetupSafeOptionsScreen {
 
     var isDisplayed: Bool { return title.exists }
-    let title = XCUIApplication().staticTexts[XCLocalizedString("onboarding.setup_safe.info")]
-    let newSafe = XCUIApplication().buttons[XCLocalizedString("onboarding.setup_safe.new_safe")]
-    let restoreSafe = XCUIApplication().buttons[XCLocalizedString("onboarding.setup_safe.restore")]
+    let title = XCUIApplication().staticTexts[LocalizedString("onboarding.setup_safe.info")]
+    let newSafe = XCUIApplication().buttons[LocalizedString("onboarding.setup_safe.new_safe")]
+    let restoreSafe = XCUIApplication().buttons[LocalizedString("onboarding.setup_safe.restore")]
 
 }

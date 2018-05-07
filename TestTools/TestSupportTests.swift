@@ -4,10 +4,18 @@
 
 import XCTest
 @testable import safe
+import IdentityAccessApplication
+import IdentityAccessImplementations
 
-class TestSupportTests: SafeTestCase {
+class TestSupportTests: XCTestCase {
 
     let support = TestSupport()
+    let authenticationService = MockAuthenticationService()
+
+    override func setUp() {
+        super.setUp()
+        ApplicationServiceRegistry.put(service: authenticationService, for: AuthenticationApplicationService.self)
+    }
 
     func test_setUp_whenResetFlagIsSet_thenResetsAllAddedObjects() {
         let mockResettable = MockResettable()

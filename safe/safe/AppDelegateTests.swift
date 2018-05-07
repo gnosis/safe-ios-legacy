@@ -6,6 +6,7 @@ import XCTest
 @testable import safe
 import IdentityAccessImplementations
 import IdentityAccessDomainModel
+import SafeAppUI
 
 class AppDelegateTests: XCTestCase {
 

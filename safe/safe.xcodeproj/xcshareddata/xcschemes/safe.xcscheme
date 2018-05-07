@@ -44,9 +44,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0A9670B920480C5700445AC2"
-               BuildableName = "safeUIKitTests.xctest"
-               BlueprintName = "safeUIKitTests"
-               ReferencedContainer = "container:../safeUIKit/safeUIKit.xcodeproj">
+               BuildableName = "SafeUIKitTests.xctest"
+               BlueprintName = "SafeUIKitTests"
+               ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -97,6 +97,16 @@
                BuildableName = "IdentityAccessIntegrationTests.xctest"
                BlueprintName = "IdentityAccessIntegrationTests"
                ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0AF33D3C209C6BF800527D25"
+               BuildableName = "SafeAppUIUnitTests.xctest"
+               BlueprintName = "SafeAppUIUnitTests"
+               ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

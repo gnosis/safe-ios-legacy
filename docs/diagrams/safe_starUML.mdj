@@ -172,7 +172,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "safeUIKit",
+					"name": "SafeUIKit",
 					"visibility": "public"
 				},
 				{
@@ -482,7 +482,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "safeUIKitDemo",
+					"name": "SafeUIKitDemo",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
@@ -507,7 +507,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "safeUIKitDemoUITests",
+					"name": "SafeUIKitDemoUITests",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
@@ -532,7 +532,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "safeUIKitTests",
+					"name": "SafeUIKitTests",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
@@ -596,7 +596,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "safeUITests",
+					"name": "SafeUITests",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
@@ -1545,7 +1545,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "safeUIKit",
+											"text": "SafeUIKit",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -5309,7 +5309,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "safeUITests",
+											"text": "SafeUITests",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -5484,7 +5484,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "safeUIKitTests",
+											"text": "SafeUIKitTests",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -5659,7 +5659,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "safeUIKitDemo",
+											"text": "SafeUIKitDemo",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -5834,7 +5834,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "safeUIKitDemoUITests",
+											"text": "SafeUIKitDemoUITests",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -6152,7 +6152,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "safeUIKit",
+											"text": "SafeUIKit",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false

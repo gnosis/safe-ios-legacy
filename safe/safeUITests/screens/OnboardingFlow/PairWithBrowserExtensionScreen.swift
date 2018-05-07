@@ -10,6 +10,6 @@ class PairWithBrowserExtensionScreen {
 
     var qrCodeInput = XCUIApplication().textFields.element
     var qrCodeButton = XCUIApplication().buttons["QRCodeButton"]
-    var finishButton = XCUIApplication().buttons[XCLocalizedString("new_safe.extension.finish")]
+    var finishButton = XCUIApplication().buttons[LocalizedString("new_safe.extension.finish")]
 
 }

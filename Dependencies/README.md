@@ -15,4 +15,4 @@ For added framework
 	- Add Input Files `$(SRCROOT)/${PLATFORM_NAME}/${PRODUCT_NAME}.framework`
 	- Add Output Files `${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework`
 
-You need to add the new framework to all dependent projects like safe, safeUIKIt, unit tests and UI test targets where it needed.
+You need to add the new framework to all dependent projects like safe, SafeUIKIt, unit tests and UI test targets where it needed.

@@ -34,7 +34,6 @@
 		0A537AE5207CEFED00921FB9 /* InMemoryKeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE4207CEFED00921FB9 /* InMemoryKeyValueStore.swift */; };
 		0A537AE7207CF00D00921FB9 /* MockEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE6207CF00D00921FB9 /* MockEncryptionService.swift */; };
 		0A537AE9207CF02C00921FB9 /* MockLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE8207CF02C00921FB9 /* MockLogger.swift */; };
-		0A537AEB207CF0F900921FB9 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEA207CF0F900921FB9 /* libCommon.a */; };
 		0A537AED207CF10000921FB9 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEC207CF10000921FB9 /* libCommonTestSupport.a */; };
 		0A537AEF207CF18B00921FB9 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */; };
 		0A537AF0207CF1A200921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
@@ -65,7 +64,6 @@
 		0A537BC1207CF9B600921FB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBF207CF9B600921FB9 /* LaunchScreen.storyboard */; };
 		0A537BD6207CF9EE00921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
 		0A537BDC207CFA6600921FB9 /* KeychainServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFD207CF2D600921FB9 /* KeychainServiceIntegrationTests.swift */; };
-		0A537BEB207CFAF800921FB9 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537BEA207CFAF800921FB9 /* libCommon.a */; };
 		0A537BF3207CFB1C00921FB9 /* AuthenticationApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BED207CFB1C00921FB9 /* AuthenticationApplicationService.swift */; };
 		0A537BF4207CFB1C00921FB9 /* IdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BEE207CFB1C00921FB9 /* IdentityApplicationService.swift */; };
 		0A537BF5207CFB1C00921FB9 /* ApplicationServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BEF207CFB1C00921FB9 /* ApplicationServiceRegistry.swift */; };
@@ -80,6 +78,12 @@
 		0A57F708207E3D6900AF407D /* Result.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F707207E3D6900AF407D /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A57F72B207E4CF900AF407D /* CryptoSwift.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A57F72C207E4CF900AF407D /* EthereumKit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A5DC57E209C9EBE00BA7A06 /* MockIdentityApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5DC578209C9EBE00BA7A06 /* MockIdentityApplicationService.swift */; };
+		0A5DC580209C9F4300BA7A06 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5DC57F209C9F4300BA7A06 /* MockAuthenticationService.swift */; };
+		0A5DC583209CA23F00BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC582209CA23F00BA7A06 /* libCommon.a */; };
+		0A5DC585209CA24600BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC584209CA24600BA7A06 /* libCommon.a */; };
+		0A5DC587209CA24C00BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC586209CA24C00BA7A06 /* libCommon.a */; };
+		0A5DC589209CA25200BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC588209CA25200BA7A06 /* libCommon.a */; };
 		0A665987208A3EA700A4C8CE /* MockCSQLite3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A665986208A3EA700A4C8CE /* MockCSQLite3.swift */; };
 		0A66598B208A403500A4C8CE /* SQLiteDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D3F208A07C90034FF66 /* SQLiteDatabaseTests.swift */; };
 		0A666D04208643A50034FF66 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666CFF208643A50034FF66 /* Clock.swift */; };
@@ -233,6 +237,48 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0A537BE0207CFADE00921FB9;
 			remoteInfo = IdentityAccessApplication;
+		};
+		0ADFDD8E20A0615600423554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A3FADDB207B501F00F0D214;
+			remoteInfo = Common;
+		};
+		0ADFDD9020A0615600423554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A3FADEB207B504F00F0D214;
+			remoteInfo = CommonTests;
+		};
+		0ADFDD9220A0615600423554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AC17580207B73A90016320A;
+			remoteInfo = CommonTestSupport;
+		};
+		0ADFDD9920A0616100423554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
+			remoteInfo = Common;
+		};
+		0ADFDD9B20A0616700423554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
+			remoteInfo = Common;
+		};
+		0ADFDD9D20A0616D00423554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
+			remoteInfo = Common;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -393,6 +439,13 @@
 		0A537C02207CFB9200921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A57F6DD207E38D900AF407D /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
+		0A5DC578209C9EBE00BA7A06 /* MockIdentityApplicationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockIdentityApplicationService.swift; sourceTree = "<group>"; };
+		0A5DC57F209C9F4300BA7A06 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
+		0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CommonConfig.xcconfig; sourceTree = "<group>"; };
+		0A5DC582209CA23F00BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A5DC584209CA24600BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A5DC586209CA24C00BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A5DC588209CA25200BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A665986208A3EA700A4C8CE /* MockCSQLite3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCSQLite3.swift; sourceTree = "<group>"; };
 		0A666CFF208643A50034FF66 /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		0A666D052086496D0034FF66 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -409,6 +462,7 @@
 		0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteResultSet.swift; sourceTree = "<group>"; };
 		0AD8599E208F3B9B0084C0B9 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		0AD859A0208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabaseIntegrationTests.swift; sourceTree = "<group>"; };
+		0ADFDD8820A0615600423554 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
 		0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0AFFF40520808A5D0030200C /* SingleUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUserRepository.swift; sourceTree = "<group>"; };
 		0AFFF40720808ABD0030200C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -434,7 +488,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A537AEB207CF0F900921FB9 /* libCommon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +495,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A5DC583209CA23F00BA7A06 /* libCommon.a in Frameworks */,
 				0A537AF0207CF1A200921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 				0A537AEF207CF18B00921FB9 /* libCommonTestSupport.a in Frameworks */,
 				0A537AAC207CEA0100921FB9 /* libIdentityAccessDomainModel.a in Frameworks */,
@@ -460,6 +514,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A5DC585209CA24600BA7A06 /* libCommon.a in Frameworks */,
 				0A537B33207CF4B000921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +530,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A5DC587209CA24C00BA7A06 /* libCommon.a in Frameworks */,
 				0A537BD6207CF9EE00921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,7 +539,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A537BEB207CFAF800921FB9 /* libCommon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +546,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A5DC589209CA25200BA7A06 /* libCommon.a in Frameworks */,
 				0A537C0B207CFC1C00921FB9 /* libIdentityAccessDomainModel.a in Frameworks */,
 				0A537C0C207CFC1C00921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 				0A537C0A207CFC1C00921FB9 /* libCommonTestSupport.a in Frameworks */,
@@ -623,6 +679,7 @@
 		0A537ACE207CEDAE00921FB9 /* IdentityAccessImplementations */ = {
 			isa = PBXGroup;
 			children = (
+				0A0C871820974B6900471885 /* LocalizedString.swift.swift */,
 				0AFFF40B20808BEA0030200C /* persistence */,
 				0A537B01207CF2D600921FB9 /* biometry */,
 				0A537AFE207CF2D600921FB9 /* clock */,
@@ -687,7 +744,6 @@
 			isa = PBXGroup;
 			children = (
 				0A537B03207CF2D600921FB9 /* BiometricService.swift */,
-				0A0C871820974B6900471885 /* LocalizedString.swift.swift */,
 				0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */,
 				0A537AD8207CEE1100921FB9 /* MockBiometricService.swift */,
 			);
@@ -738,11 +794,13 @@
 				0A537BF1207CFB1C00921FB9 /* ApplicationServiceRegistryTests.swift */,
 				0A537BED207CFB1C00921FB9 /* AuthenticationApplicationService.swift */,
 				0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */,
+				0A5DC57F209C9F4300BA7A06 /* MockAuthenticationService.swift */,
 				0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */,
 				0A666D182087A1990034FF66 /* AuthenticationMethod.swift */,
 				0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */,
 				0A537BEE207CFB1C00921FB9 /* IdentityApplicationService.swift */,
 				0A537BF2207CFB1C00921FB9 /* IdentityApplicationServiceTests.swift */,
+				0A5DC578209C9EBE00BA7A06 /* MockIdentityApplicationService.swift */,
 				559F77DC2085F5BC0080A5CF /* DraftSafe.swift */,
 				559F77E22085F5CF0080A5CF /* DraftSafeTests.swift */,
 				0A666D0B2086577D0034FF66 /* Interfaces */,
@@ -781,9 +839,21 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
+		0ADFDD8920A0615600423554 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0ADFDD8F20A0615600423554 /* libCommon.a */,
+				0ADFDD9120A0615600423554 /* CommonTests.xctest */,
+				0ADFDD9320A0615600423554 /* libCommonTestSupport.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0AF2818E2074C18B00D3843D = {
 			isa = PBXGroup;
 			children = (
+				0ADFDD8820A0615600423554 /* Common.xcodeproj */,
+				0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */,
 				0A57F6DD207E38D900AF407D /* Library.xcodeproj */,
 				0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */,
 				0A537BE2207CFADE00921FB9 /* IdentityAccessApplication */,
@@ -815,6 +885,10 @@
 		0AF281D32074C21B00D3843D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A5DC588209CA25200BA7A06 /* libCommon.a */,
+				0A5DC586209CA24C00BA7A06 /* libCommon.a */,
+				0A5DC584209CA24600BA7A06 /* libCommon.a */,
+				0A5DC582209CA23F00BA7A06 /* libCommon.a */,
 				0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */,
 				0A537BEA207CFAF800921FB9 /* libCommon.a */,
 				0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */,
@@ -865,6 +939,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0ADFDD9A20A0616100423554 /* PBXTargetDependency */,
 			);
 			name = IdentityAccessDomainModel;
 			productName = IdentityAccessDomainModel;
@@ -903,6 +978,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0ADFDD9C20A0616700423554 /* PBXTargetDependency */,
 				0A0C871720974B1B00471885 /* PBXTargetDependency */,
 				0A666D08208654090034FF66 /* PBXTargetDependency */,
 				0A537AD5207CEDD400921FB9 /* PBXTargetDependency */,
@@ -980,6 +1056,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0ADFDD9E20A0616D00423554 /* PBXTargetDependency */,
 				0A537BE9207CFAF300921FB9 /* PBXTargetDependency */,
 			);
 			name = IdentityAccessApplication;
@@ -1062,6 +1139,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 0ADFDD8920A0615600423554 /* Products */;
+					ProjectRef = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+				},
+				{
 					ProductGroup = 0A57F6DE207E38D900AF407D /* Products */;
 					ProjectRef = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
 				},
@@ -1115,6 +1196,27 @@
 			fileType = wrapper.framework;
 			path = EthereumKit.framework;
 			remoteRef = 0A57F729207E4CF900AF407D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ADFDD8F20A0615600423554 /* libCommon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCommon.a;
+			remoteRef = 0ADFDD8E20A0615600423554 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ADFDD9120A0615600423554 /* CommonTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CommonTests.xctest;
+			remoteRef = 0ADFDD9020A0615600423554 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ADFDD9320A0615600423554 /* libCommonTestSupport.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCommonTestSupport.a;
+			remoteRef = 0ADFDD9220A0615600423554 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1354,9 +1456,11 @@
 				0A537BF5207CFB1C00921FB9 /* ApplicationServiceRegistry.swift in Sources */,
 				0A537BF4207CFB1C00921FB9 /* IdentityApplicationService.swift in Sources */,
 				559F77DD2085F5BC0080A5CF /* DraftSafe.swift in Sources */,
+				0A5DC580209C9F4300BA7A06 /* MockAuthenticationService.swift in Sources */,
 				0A666D1B2087A1A90034FF66 /* AuthenticationResult.swift in Sources */,
 				0A666D192087A1990034FF66 /* AuthenticationMethod.swift in Sources */,
 				0A666D04208643A50034FF66 /* Clock.swift in Sources */,
+				0A5DC57E209C9EBE00BA7A06 /* MockIdentityApplicationService.swift in Sources */,
 				0A537BF3207CFB1C00921FB9 /* AuthenticationApplicationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1425,6 +1529,21 @@
 			isa = PBXTargetDependency;
 			target = 0A537BE0207CFADE00921FB9 /* IdentityAccessApplication */;
 			targetProxy = 0A666D07208654090034FF66 /* PBXContainerItemProxy */;
+		};
+		0ADFDD9A20A0616100423554 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Common;
+			targetProxy = 0ADFDD9920A0616100423554 /* PBXContainerItemProxy */;
+		};
+		0ADFDD9C20A0616700423554 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Common;
+			targetProxy = 0ADFDD9B20A0616700423554 /* PBXContainerItemProxy */;
+		};
+		0ADFDD9E20A0616D00423554 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Common;
+			targetProxy = 0ADFDD9D20A0616D00423554 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1565,6 +1684,7 @@
 		};
 		0A46702C207E58B700F55ADE /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1636,6 +1756,7 @@
 		};
 		0A467030207E58B700F55ADE /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
@@ -1673,6 +1794,7 @@
 		};
 		0A467032207E58B700F55ADE /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1707,6 +1829,7 @@
 		};
 		0A537A68207CE5BC00921FB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1725,6 +1848,7 @@
 		};
 		0A537A69207CE5BC00921FB9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1847,6 +1971,7 @@
 		};
 		0A537BC4207CF9B600921FB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
@@ -1864,6 +1989,7 @@
 		};
 		0A537BC5207CF9B600921FB9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
@@ -1921,6 +2047,7 @@
 		};
 		0A537BE6207CFADE00921FB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1939,6 +2066,7 @@
 		};
 		0A537BE7207CFADE00921FB9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
