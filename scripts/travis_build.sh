@@ -6,5 +6,6 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     bundle exec fastlane fabric
   fi
 else
-  bundle exec fastlane test
+  xcodebuild -workspace safe.xcworkspace/ -destination 'platform=iOS Simulator,name=iPhone SE' -scheme safe -configuration Debug  test
+  # bundle exec fastlane test
 fi
