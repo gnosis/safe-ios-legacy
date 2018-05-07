@@ -156,6 +156,7 @@
 		0AEF8AB720A088C3006A1265 /* MultisigWalletImplementationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultisigWalletImplementationsTests.swift; sourceTree = "<group>"; };
 		0AEF8AB920A088C3006A1265 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
+		0AEF8AF620A08F7D006A1265 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +222,7 @@
 		0AEF8A6A20A08868006A1265 = {
 			isa = PBXGroup;
 			children = (
+				0AEF8AF620A08F7D006A1265 /* swiftlint.yml */,
 				0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */,
 				0AEF8A7720A08878006A1265 /* MultisigWalletDomainModel */,
 				0AEF8A8220A08889006A1265 /* MultisigWalletDomainModelTests */,
