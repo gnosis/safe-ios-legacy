@@ -238,6 +238,48 @@
 			remoteGlobalIDString = 0A537BE0207CFADE00921FB9;
 			remoteInfo = IdentityAccessApplication;
 		};
+		0ADFDD8E20A0615600423554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A3FADDB207B501F00F0D214;
+			remoteInfo = Common;
+		};
+		0ADFDD9020A0615600423554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A3FADEB207B504F00F0D214;
+			remoteInfo = CommonTests;
+		};
+		0ADFDD9220A0615600423554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AC17580207B73A90016320A;
+			remoteInfo = CommonTestSupport;
+		};
+		0ADFDD9920A0616100423554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
+			remoteInfo = Common;
+		};
+		0ADFDD9B20A0616700423554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
+			remoteInfo = Common;
+		};
+		0ADFDD9D20A0616D00423554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
+			remoteInfo = Common;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -420,6 +462,7 @@
 		0AD85996208F39E70084C0B9 /* SQLiteResultSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteResultSet.swift; sourceTree = "<group>"; };
 		0AD8599E208F3B9B0084C0B9 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		0AD859A0208F5C280084C0B9 /* SQLiteDatabaseIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabaseIntegrationTests.swift; sourceTree = "<group>"; };
+		0ADFDD8820A0615600423554 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
 		0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0AFFF40520808A5D0030200C /* SingleUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUserRepository.swift; sourceTree = "<group>"; };
 		0AFFF40720808ABD0030200C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -796,9 +839,20 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
+		0ADFDD8920A0615600423554 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0ADFDD8F20A0615600423554 /* libCommon.a */,
+				0ADFDD9120A0615600423554 /* CommonTests.xctest */,
+				0ADFDD9320A0615600423554 /* libCommonTestSupport.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0AF2818E2074C18B00D3843D = {
 			isa = PBXGroup;
 			children = (
+				0ADFDD8820A0615600423554 /* Common.xcodeproj */,
 				0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */,
 				0A57F6DD207E38D900AF407D /* Library.xcodeproj */,
 				0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */,
@@ -885,6 +939,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0ADFDD9A20A0616100423554 /* PBXTargetDependency */,
 			);
 			name = IdentityAccessDomainModel;
 			productName = IdentityAccessDomainModel;
@@ -923,6 +978,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0ADFDD9C20A0616700423554 /* PBXTargetDependency */,
 				0A0C871720974B1B00471885 /* PBXTargetDependency */,
 				0A666D08208654090034FF66 /* PBXTargetDependency */,
 				0A537AD5207CEDD400921FB9 /* PBXTargetDependency */,
@@ -1000,6 +1056,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0ADFDD9E20A0616D00423554 /* PBXTargetDependency */,
 				0A537BE9207CFAF300921FB9 /* PBXTargetDependency */,
 			);
 			name = IdentityAccessApplication;
@@ -1082,6 +1139,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 0ADFDD8920A0615600423554 /* Products */;
+					ProjectRef = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+				},
+				{
 					ProductGroup = 0A57F6DE207E38D900AF407D /* Products */;
 					ProjectRef = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
 				},
@@ -1135,6 +1196,27 @@
 			fileType = wrapper.framework;
 			path = EthereumKit.framework;
 			remoteRef = 0A57F729207E4CF900AF407D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ADFDD8F20A0615600423554 /* libCommon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCommon.a;
+			remoteRef = 0ADFDD8E20A0615600423554 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ADFDD9120A0615600423554 /* CommonTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CommonTests.xctest;
+			remoteRef = 0ADFDD9020A0615600423554 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0ADFDD9320A0615600423554 /* libCommonTestSupport.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCommonTestSupport.a;
+			remoteRef = 0ADFDD9220A0615600423554 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1447,6 +1529,21 @@
 			isa = PBXTargetDependency;
 			target = 0A537BE0207CFADE00921FB9 /* IdentityAccessApplication */;
 			targetProxy = 0A666D07208654090034FF66 /* PBXContainerItemProxy */;
+		};
+		0ADFDD9A20A0616100423554 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Common;
+			targetProxy = 0ADFDD9920A0616100423554 /* PBXContainerItemProxy */;
+		};
+		0ADFDD9C20A0616700423554 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Common;
+			targetProxy = 0ADFDD9B20A0616700423554 /* PBXContainerItemProxy */;
+		};
+		0ADFDD9E20A0616D00423554 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Common;
+			targetProxy = 0ADFDD9D20A0616D00423554 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
