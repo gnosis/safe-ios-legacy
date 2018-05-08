@@ -11,7 +11,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     private var ownersByKind = [String: Owner]()
 
-    enum Error: String, LocalizedError, Hashable {
+    public enum Error: String, LocalizedError, Hashable {
         case ownerAlreadyExists
         case ownerNotFound
     }
