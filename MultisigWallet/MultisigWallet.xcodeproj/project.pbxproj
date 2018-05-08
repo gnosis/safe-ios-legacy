@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A23C80520A1B09100C72483 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80420A1B09100C72483 /* Wallet.swift */; };
+		0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80A20A1B09900C72483 /* WalletTests.swift */; };
+		0A23C80D20A1B34900C72483 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80C20A1B34900C72483 /* Owner.swift */; };
+		0A23C80F20A1B35D00C72483 /* BlockchainAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80E20A1B35D00C72483 /* BlockchainAddress.swift */; };
 		0AEF8A7920A08878006A1265 /* MultisigWalletDomainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEF8A7820A08878006A1265 /* MultisigWalletDomainModel.swift */; };
 		0AEF8A8420A08889006A1265 /* MultisigWalletDomainModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEF8A8320A08889006A1265 /* MultisigWalletDomainModelTests.swift */; };
 		0AEF8A8620A08889006A1265 /* libMultisigWalletDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A7520A08878006A1265 /* libMultisigWalletDomainModel.a */; };
@@ -140,6 +144,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A23C80420A1B09100C72483 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		0A23C80A20A1B09900C72483 /* WalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTests.swift; sourceTree = "<group>"; };
+		0A23C80C20A1B34900C72483 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
+		0A23C80E20A1B35D00C72483 /* BlockchainAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainAddress.swift; sourceTree = "<group>"; };
 		0AEF8A7520A08878006A1265 /* libMultisigWalletDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMultisigWalletDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AEF8A7820A08878006A1265 /* MultisigWalletDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultisigWalletDomainModel.swift; sourceTree = "<group>"; };
 		0AEF8A8120A08889006A1265 /* MultisigWalletDomainModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultisigWalletDomainModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -252,6 +260,10 @@
 			isa = PBXGroup;
 			children = (
 				0AEF8A7820A08878006A1265 /* MultisigWalletDomainModel.swift */,
+				0A23C80420A1B09100C72483 /* Wallet.swift */,
+				0A23C80C20A1B34900C72483 /* Owner.swift */,
+				0A23C80E20A1B35D00C72483 /* BlockchainAddress.swift */,
+				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
 			);
 			path = MultisigWalletDomainModel;
 			sourceTree = "<group>";
@@ -653,6 +665,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,
+				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
+				0A23C80F20A1B35D00C72483 /* BlockchainAddress.swift in Sources */,
 				0AEF8A7920A08878006A1265 /* MultisigWalletDomainModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -661,6 +676,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */,
 				0AEF8A8420A08889006A1265 /* MultisigWalletDomainModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
