@@ -32,7 +32,7 @@
       location = "group:MultisigWallet/MultisigWallet.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/dmitry/projects/gnosis/safe-ios/SafeUIKit/SafeUIKit.xcodeproj">
+      location = "group:SafeUIKit/SafeUIKit.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:safe/safe.xcodeproj">
