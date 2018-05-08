@@ -49,6 +49,9 @@ fi
 echo "Installing git configuration"
 cp git/hooks/* .git/hooks/
 
+echo "Disabling git case insensitive matches"
+git config --local core.ignorecase false
+
 echo "Running bundle install"
 bundle install
 
