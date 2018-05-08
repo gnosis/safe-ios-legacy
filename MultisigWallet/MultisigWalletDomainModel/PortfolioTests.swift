@@ -18,7 +18,6 @@ class PortfolioTests: XCTestCase {
         XCTAssertNoThrow(wallet = Wallet(id: try WalletID()))
         XCTAssertNoThrow(wallet1 = Wallet(id: try WalletID()))
         XCTAssertNoThrow(wallet2 = Wallet(id: try WalletID()))
-
     }
 
     func test_whenCreated_thenHasID() throws {
