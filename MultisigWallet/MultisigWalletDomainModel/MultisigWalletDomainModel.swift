@@ -4,6 +4,6 @@
 
 import Common
 
-class MultisigWalletDomainModel {
+public class MultisigWalletDomainModel {
 
 }

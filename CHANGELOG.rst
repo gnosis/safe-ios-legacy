@@ -10,6 +10,7 @@ Unreleased
 Added
 -----
 - Created new ``MultisigWallet`` project with DomainModel, Application and Implementations libraries.
+- New ``Wallet``, ``Portfolio`` and ``Owner`` objects
 
 Removed
 -------
