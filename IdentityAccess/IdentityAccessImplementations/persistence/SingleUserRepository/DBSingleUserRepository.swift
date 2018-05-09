@@ -33,47 +33,33 @@ CREATE TABLE IF NOT EXISTS tbl_user (
     }
 
     public func setUp() throws {
-        try db.executeUpdate(sql: SQL.createTable)
+        try db.execute(sql: SQL.createTable)
     }
 
     public func save(_ user: User) throws {
-        return try db.executeUpdate { conn in
-            let stmt = try conn.prepare(statement: SQL.insertUser)
-            try stmt.set(user.id.id, at: 1)
-            try stmt.set(user.password, at: 2)
-            if let id = user.sessionID {
-                try stmt.set(id.id, at: 3)
-            } else {
-                try stmt.setNil(at: 3)
-            }
-            return stmt
-        }
+        try db.execute(sql: SQL.insertUser, bindings: [user.id.id, user.password, user.sessionID?.id])
     }
 
     public func remove(_ user: User) throws {
-        return try db.executeUpdate { conn in
-            let stmt = try conn.prepare(statement: SQL.deleteUser)
-            try stmt.set(user.id.id, at: 1)
-            return stmt
-        }
+        try db.execute(sql: SQL.deleteUser, bindings: [user.id.id])
     }
 
     public func primaryUser() -> User? {
-        return db.executeQuery(sql: SQL.findPrimaryUser, resultMap: userFromResultSet)
+        guard let result = try? db.execute(sql: SQL.findPrimaryUser, resultMap: userFromResultSet).first as? User else {
+            return nil
+        }
+        return result
     }
 
     public func user(encryptedPassword: String) -> User? {
-        return db.executeQuery(resultMap: userFromResultSet) { conn in
-            let stmt = try conn.prepare(statement: SQL.findUserByPassword)
-            try stmt.set(encryptedPassword, at: 1)
-            return stmt
-        }
+        guard let result = try? db.execute(sql: SQL.findUserByPassword,
+                                           bindings: [encryptedPassword],
+                                           resultMap: userFromResultSet).first as? User else { return nil }
+        return result
     }
 
     private func userFromResultSet(_ rs: ResultSet) throws -> User? {
-        guard try rs.advanceToNextRow(),
-            let id = rs.string(at: 0),
-            let password = rs.string(at: 1) else {
+        guard let id = rs.string(at: 0), let password = rs.string(at: 1) else {
                 return nil
         }
         let user = try User(id: try UserID(id), password: password)

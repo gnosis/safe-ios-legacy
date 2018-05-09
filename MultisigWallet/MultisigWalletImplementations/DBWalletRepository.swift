@@ -4,10 +4,21 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import Database
 
 public class DBWalletRepository: WalletRepository {
 
-    public init() {}
+    struct SQL {
+    }
+
+    private let db: Database
+
+    public init(db: Database) {
+        self.db = db
+    }
+
+    public func setUp() throws {
+    }
 
     public func save(_ wallet: Wallet) throws {
 

@@ -65,6 +65,7 @@ class DBSingleGatekeeperRepositoryTests: XCTestCase {
             "rs.advanceToNextRow()",
             "rs.string(0)",
             "rs.data(1)",
+            "rs.advanceToNextRow()",
             "db.close()"]
         XCTAssertEqual(trace.log, expectedCalls, trace.diff(expectedCalls))
     }
