@@ -7,9 +7,9 @@ import MultisigWalletDomainModel
 
 extension Portfolio: DBCodable {}
 
-class DBSinglePortfolioRepository: DBBaseRepository<Portfolio>, SinglePortfolioRepository {
+public class DBSinglePortfolioRepository: DBBaseRepository<Portfolio>, SinglePortfolioRepository {
 
-    func portfolio() throws -> Portfolio? {
+    public func portfolio() throws -> Portfolio? {
         return try findFirst()
     }
 
