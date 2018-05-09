@@ -19,7 +19,6 @@
 		0A23C82920A1DEED00C72483 /* libDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD620A08A3F006A1265 /* libDatabase.a */; };
 		0A23C82A20A1DEF400C72483 /* libDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8AD620A08A3F006A1265 /* libDatabase.a */; };
 		0A23C82C20A1DF0A00C72483 /* DBWalletRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */; };
-		0A23C82E20A1DF5800C72483 /* DBWalletRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C82D20A1DF5800C72483 /* DBWalletRepositoryTests.swift */; };
 		0A23C83020A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */; };
 		0A23C83220A1E30800C72483 /* InMemoryWalletRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */; };
 		0A23C83420A1E34700C72483 /* InMemoryWalletRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C83320A1E34700C72483 /* InMemoryWalletRepositoryTests.swift */; };
@@ -172,7 +171,6 @@
 		0A23C82220A1DDEC00C72483 /* WalletRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRepository.swift; sourceTree = "<group>"; };
 		0A23C82420A1DE5300C72483 /* SinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePortfolioRepository.swift; sourceTree = "<group>"; };
 		0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBWalletRepository.swift; sourceTree = "<group>"; };
-		0A23C82D20A1DF5800C72483 /* DBWalletRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBWalletRepositoryTests.swift; sourceTree = "<group>"; };
 		0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBWalletRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
 		0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryWalletRepository.swift; sourceTree = "<group>"; };
 		0A23C83320A1E34700C72483 /* InMemoryWalletRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryWalletRepositoryTests.swift; sourceTree = "<group>"; };
@@ -336,7 +334,6 @@
 				0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */,
 				0A23C83320A1E34700C72483 /* InMemoryWalletRepositoryTests.swift */,
 				0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */,
-				0A23C82D20A1DF5800C72483 /* DBWalletRepositoryTests.swift */,
 				0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */,
 			);
 			path = MultisigWalletImplementations;
@@ -757,7 +754,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A23C83020A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift in Sources */,
-				0A23C82E20A1DF5800C72483 /* DBWalletRepositoryTests.swift in Sources */,
 				0A23C83420A1E34700C72483 /* InMemoryWalletRepositoryTests.swift in Sources */,
 				0AEF8AB820A088C3006A1265 /* MultisigWalletImplementationsTests.swift in Sources */,
 			);

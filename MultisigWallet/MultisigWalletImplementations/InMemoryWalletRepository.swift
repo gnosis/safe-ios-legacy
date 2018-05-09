@@ -25,4 +25,7 @@ public class InMemoryWalletRepository: WalletRepository {
         return wallets.first { $0.id == walletID }
     }
 
+    public func nextID() -> WalletID {
+        return try! WalletID()
+    }
 }

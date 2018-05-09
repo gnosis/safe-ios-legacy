@@ -4,6 +4,6 @@
 
 import Foundation
 
-public struct Owner: Hashable {
+public struct Owner: Hashable, Codable {
     var address: BlockchainAddress
 }

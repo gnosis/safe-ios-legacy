@@ -15,15 +15,38 @@ public class Wallet: IdentifiableEntity<WalletID> {
         case invalidState
     }
 
-    public enum Status: String, Hashable {
+    public enum Status: String, Hashable, Codable {
         case newDraft
         case deploymentPending
         case ready
     }
 
+    private struct State: Codable {
+        fileprivate let id: String
+        fileprivate let status: Status
+        fileprivate let ownersByKind: [String: Owner]
+    }
+
     public private(set) var status = Status.newDraft
     private static let mutableStates: [Status] = [.newDraft, .ready]
     private var ownersByKind = [String: Owner]()
+
+    public convenience init(data: Data) throws {
+        let decoder = PropertyListDecoder()
+        let state = try decoder.decode(State.self, from: data)
+        self.init(id: try WalletID(state.id))
+        status = state.status
+        ownersByKind = state.ownersByKind
+    }
+
+    public func data() throws -> Data {
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .binary
+        let state = State(id: id.id,
+                          status: status,
+                          ownersByKind: ownersByKind)
+        return try encoder.encode(state)
+    }
 
     override public init(id: WalletID) {
         super.init(id: id)

@@ -4,6 +4,6 @@
 
 import Foundation
 
-public struct BlockchainAddress: Hashable {
+public struct BlockchainAddress: Hashable, Codable {
     var value: String
 }
