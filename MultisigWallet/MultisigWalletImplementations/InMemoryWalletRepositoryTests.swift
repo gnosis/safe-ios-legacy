@@ -24,7 +24,7 @@ class InMemoryWalletRepositoryTests: XCTestCase {
 
     func test_remove_whenRemoved_thenCannotFindIt() throws {
         try repository.save(wallet)
-        try repository.remove(wallet.id)
+        try repository.remove(wallet)
         XCTAssertNil(try repository.findByID(wallet.id))
     }
 

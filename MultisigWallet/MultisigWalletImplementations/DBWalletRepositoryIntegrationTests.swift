@@ -24,7 +24,7 @@ class DBWalletRepositoryIntegrationTests: XCTestCase {
         let saved = try repo.findByID(wallet.id)
         XCTAssertEqual(saved, wallet)
 
-        try repo.remove(wallet.id)
+        try repo.remove(wallet)
         XCTAssertNil(try repo.findByID(wallet.id))
     }
 

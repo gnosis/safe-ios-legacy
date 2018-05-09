@@ -15,8 +15,8 @@ public class InMemoryWalletRepository: WalletRepository {
         wallets.insert(wallet)
     }
 
-    public func remove(_ walletID: WalletID) throws {
-        if let foundWallet = try findByID(walletID) {
+    public func remove(_ wallet: Wallet) throws {
+        if let foundWallet = try findByID(wallet.id) {
             wallets.remove(foundWallet)
         }
     }

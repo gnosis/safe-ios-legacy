@@ -31,10 +31,10 @@ public class Wallet: IdentifiableEntity<WalletID> {
     private static let mutableStates: [Status] = [.newDraft, .ready]
     private var ownersByKind = [String: Owner]()
 
-    public convenience init(data: Data) throws {
+    public required init(data: Data) throws {
         let decoder = PropertyListDecoder()
         let state = try decoder.decode(State.self, from: data)
-        self.init(id: try WalletID(state.id))
+        super.init(id: try WalletID(state.id))
         status = state.status
         ownersByKind = state.ownersByKind
     }
