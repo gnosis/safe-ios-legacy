@@ -21,6 +21,11 @@ final class OnboardingFlowCoordinator: FlowCoordinator {
     }
 
     override func flowStartController() -> UIViewController {
+        // TODO: if user registered
+        //      if not selected any safe - show setup screen
+        //      else if selected is restore - show restore flow flow
+        //      else if selected is new - show new safe flow
+        // else - show user registration flow
         return ApplicationServiceRegistry.authenticationService.isUserRegistered ?
             setupSafeFlowCoordinator.startViewController(parent: rootVC) :
             masterPasswordFlowCoordinator.startViewController(parent: rootVC)

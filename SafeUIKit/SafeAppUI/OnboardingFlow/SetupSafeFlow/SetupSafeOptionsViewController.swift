@@ -4,6 +4,7 @@
 
 import UIKit
 import SafeUIKit
+import MultisigWalletApplication
 
 protocol SetupSafeOptionsDelegate: class {
     func didSelectNewSafe()
@@ -24,6 +25,9 @@ class SetupSafeOptionsViewController: UIViewController {
     private weak var delegate: SetupSafeOptionsDelegate?
 
     @IBAction func createNewSafe(_ sender: Any) {
+        // TODO: precondition: portfolio is empty
+        // postcondition: new wallet in draft state, selected by portfolio OR new wallet in restore safe, selected
+//        walletApplicationService.createNewWallet()
         delegate?.didSelectNewSafe()
     }
 

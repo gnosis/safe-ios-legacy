@@ -439,11 +439,11 @@
 		0A334DB2209C6D8600ABC6AE /* SetupSafeFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */,
-				0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */,
-				0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */,
 				0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */,
+				0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */,
+				0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */,
 				0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */,
+				0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */,
 			);
 			path = SetupSafeFlow;
 			sourceTree = "<group>";
@@ -472,15 +472,15 @@
 		0A334DFB209C8E3800ABC6AE /* NewSafeFlow */ = {
 			isa = PBXGroup;
 			children = (
+				0A334E00209C8E3800ABC6AE /* NewSafe.storyboard */,
 				0A334DFD209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift */,
 				0A334E0A209C8E3800ABC6AE /* NewSafeFlowCoordinatorTests.swift */,
 				0A334DFC209C8E3800ABC6AE /* NewSafeViewController.swift */,
 				0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */,
+				0A334E0B209C8E3800ABC6AE /* PairWithBrowserExtensionFlow */,
+				0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */,
 				0A334E09209C8E3800ABC6AE /* PendingSafeViewController.swift */,
 				0A334DFF209C8E3800ABC6AE /* PendingSafeViewControllerTests.swift */,
-				0A334E00209C8E3800ABC6AE /* NewSafe.storyboard */,
-				0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */,
-				0A334E0B209C8E3800ABC6AE /* PairWithBrowserExtensionFlow */,
 			);
 			path = NewSafeFlow;
 			sourceTree = "<group>";
@@ -488,12 +488,12 @@
 		0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334E03209C8E3800ABC6AE /* SaveMnemonicViewControllerTests.swift */,
-				0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */,
+				0A334E07209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift */,
 				0A334E05209C8E3800ABC6AE /* ConfirmMnemonicViewControllerTests.swift */,
 				0A334E06209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift */,
-				0A334E07209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift */,
+				0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */,
 				0A334E08209C8E3800ABC6AE /* SaveMnemonicViewController.swift */,
+				0A334E03209C8E3800ABC6AE /* SaveMnemonicViewControllerTests.swift */,
 			);
 			path = PaperWalletSetupFlow;
 			sourceTree = "<group>";

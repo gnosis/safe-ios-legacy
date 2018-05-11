@@ -52,6 +52,9 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         extensionAddressInput.editingMode = .scanOnly
         extensionAddressInput.qrCodeDelegate = self
         extensionAddressInput.qrCodeConverter = { [unowned self] code in
+            // TODO: use application service
+            // address = ethereumApplicationService.createExternallyOwnedAccount(signature: <code>)
+            // walletApplicationService.addOwner(address)
             return self.identityService.convertBrowserExtensionCodeIntoEthereumAddress(code)
         }
         finishButton.isEnabled = initialExtensionAddress != nil

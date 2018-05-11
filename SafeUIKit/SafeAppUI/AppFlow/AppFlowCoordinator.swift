@@ -32,6 +32,8 @@ public final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
     public init() {}
 
     public func startViewController() -> UIViewController {
+        // TODO: if selected wallet exists and ready - show main screen
+        // else show onboarding flow
         lockedViewController = onboardingFlowCoordinator.startViewController()
         if authenticationService.isUserRegistered {
             return unlockController { [unowned self] in

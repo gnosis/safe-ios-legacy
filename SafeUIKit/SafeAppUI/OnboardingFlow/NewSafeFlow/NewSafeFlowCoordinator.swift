@@ -22,16 +22,18 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
     }
 
     override func flowStartController() -> UIViewController {
+        // TODO: always start from new safe vc
         startVC = NewSafeViewController.create(draftSafe: draftSafe, delegate: self)
         return startVC
     }
 
     private func paperWalletSetupCompletion() {
-        identityService.confirmPaperWallet(draftSafe: draftSafe!)
+        identityService.confirmPaperWallet(draftSafe: draftSafe!) // this should be done in controller
         rootVC.popToViewController(startVC, animated: true)
     }
 
     private func pairWithBrowserExtensionCompletion(extensionAddress: String) {
+         // this should be done in controller
         identityService.confirmBrowserExtension(draftSafe: draftSafe!, address: extensionAddress)
         rootVC.popToViewController(startVC, animated: true)
     }
