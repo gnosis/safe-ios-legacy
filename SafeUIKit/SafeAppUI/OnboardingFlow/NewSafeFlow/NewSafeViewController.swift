@@ -31,6 +31,7 @@ class NewSafeViewController: UIViewController {
         static let paperWallet = LocalizedString("new_safe.paper_wallet", comment: "Paper Wallet Button")
         static let browserExtension = LocalizedString("new_safe.browser_extension",
                                                       comment: "Browser extension Button")
+        static let next = LocalizedString("new_safe.create", comment: "Create button")
     }
 
     static func create(draftSafe: DraftSafe?, delegate: NewSafeDelegate) -> NewSafeViewController {
@@ -57,6 +58,7 @@ class NewSafeViewController: UIViewController {
         browserExtensionButton.setTitle(Strings.browserExtension, for: .normal)
         thisDeviceButton.isEnabled = false
         thisDeviceButton.checkmarkStatus = .selected
+        nextButton.title = Strings.next
     }
 
     override func viewWillAppear(_ animated: Bool) {
