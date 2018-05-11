@@ -17,10 +17,18 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
         newSafeFlowCoordinator = NewSafeFlowCoordinator()
     }
 
-    func test_startViewController() {
+    func test_whenNoSafeSelected_thenShowsOptionsScreen() {
         let startVC = setupSafeFlowCoordinator.startViewController()
         XCTAssertTrue(startVC.childViewControllers[0] is SetupSafeOptionsViewController)
     }
+
+    // FIXME: enable when flow coordinator's start controller can accept multiple controllers at once.
+//    func test_whenSelectedDraftSafe_thenShowsNewSafeFlow() {
+//        walletService.createNewDraftWallet()
+//        let startVC = setupSafeFlowCoordinator.startViewController()
+//        XCTAssertEqual(startVC.childViewControllers.count, 2)
+//        XCTAssertTrue(startVC.childViewControllers.last is NewSafeViewController)
+//    }
 
     func test_didSelectNewSafe_showsNewSafeFlowStartVC() {
         _ = setupSafeFlowCoordinator.startViewController()

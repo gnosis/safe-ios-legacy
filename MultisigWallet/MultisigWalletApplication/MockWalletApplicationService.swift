@@ -15,4 +15,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         _hasReadyToUseWallet = true
     }
 
+    public func createNewDraftWallet() {
+
+    }
+
 }

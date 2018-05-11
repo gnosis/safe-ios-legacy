@@ -11,7 +11,14 @@ public final class SetupSafeFlowCoordinator: FlowCoordinator {
     public override init() {}
 
     public override func flowStartController() -> UIViewController {
-        return SetupSafeOptionsViewController.create(delegate: self)
+        //      if not selected any safe - show setup screen
+        //      else if selected is restore - show restore flow flow
+        //      else if selected is new - show new safe flow
+        let optionsVC = SetupSafeOptionsViewController.create(delegate: self)
+    }
+
+    public override func startViewController(parent: UINavigationController?) -> UIViewController {
+        
     }
 
 }

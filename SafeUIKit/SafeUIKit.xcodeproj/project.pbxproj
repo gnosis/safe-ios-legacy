@@ -465,11 +465,11 @@
 		0A334DF8209C8E3800ABC6AE /* OnboardingFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334DF9209C8E3800ABC6AE /* OnboardingFlowCoordinatorTests.swift */,
-				0A334DFA209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift */,
-				0A334DB2209C6D8600ABC6AE /* SetupSafeFlow */,
-				0A334DFB209C8E3800ABC6AE /* NewSafeFlow */,
 				0A334E10209C8E3800ABC6AE /* MasterPasswordFlow */,
+				0A334DFB209C8E3800ABC6AE /* NewSafeFlow */,
+				0A334DFA209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift */,
+				0A334DF9209C8E3800ABC6AE /* OnboardingFlowCoordinatorTests.swift */,
+				0A334DB2209C6D8600ABC6AE /* SetupSafeFlow */,
 			);
 			path = OnboardingFlow;
 			sourceTree = "<group>";
