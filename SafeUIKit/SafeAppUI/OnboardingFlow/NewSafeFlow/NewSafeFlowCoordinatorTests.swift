@@ -43,7 +43,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     func test_didSelectNext_presentsReviewSafeViewController() {
         newSafeFlowCoordinator.didSelectNext()
         delay()
-        XCTAssertTrue(nav.topViewController! is ReviewSafeViewController)
+        XCTAssertTrue(nav.topViewController! is PendingSafeViewController)
     }
 
     func test_paperWalletSetupCompletion_popsToStartVC() {

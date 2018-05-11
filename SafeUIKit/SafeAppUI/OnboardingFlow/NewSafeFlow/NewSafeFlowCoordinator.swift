@@ -54,7 +54,7 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     }
 
     func didSelectNext() {
-       rootVC.pushViewController(ReviewSafeViewController(), animated: false)
+       rootVC.pushViewController(PendingSafeViewController(), animated: false)
     }
 
 }

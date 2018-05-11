@@ -78,6 +78,8 @@ enum StoryboardScene {
 
     static let pairWithBrowserExtensionViewController = SceneType<SafeAppUI.PairWithBrowserExtensionViewController>(storyboard: NewSafe.self, identifier: "PairWithBrowserExtensionViewController")
 
+    static let pendingSafeViewController = SceneType<SafeAppUI.PendingSafeViewController>(storyboard: NewSafe.self, identifier: "PendingSafeViewController")
+
     static let saveMnemonicViewController = SceneType<SafeAppUI.SaveMnemonicViewController>(storyboard: NewSafe.self, identifier: "SaveMnemonicViewController")
   }
   enum SetupSafe: StoryboardType {
