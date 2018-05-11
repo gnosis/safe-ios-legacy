@@ -527,7 +527,6 @@
 				558FD81420767F18004F070E /* NewSafeScreen.swift */,
 				55CA9FFF209AF0A0009AE181 /* PaperWalletSetupFlow */,
 				0ACA9C3B205FDAC5005EC186 /* MasterPasswordFlow */,
-				0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */,
 				0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */,
 			);
 			path = OnboardingFlow;
@@ -600,6 +599,7 @@
 				0ACB1A412099EF2300EBE267 /* Springboard.swift */,
 				0ACA9C3A205FDA92005EC186 /* screens */,
 				5540A510203C3054009C9BE3 /* Info.plist */,
+				0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */,
 				0A06608C2099B4FF0048FBD3 /* XCUIApplication.h */,
 				0A06608B2099B4FF0048FBD3 /* XCUIElement.h */,
 				0A0660872099B4870048FBD3 /* SafeUITests-Bridging-Header.h */,

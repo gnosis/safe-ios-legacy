@@ -16,6 +16,7 @@ final class NewSafeScreen {
     var thisDevice = CheckButton(LocalizedString("new_safe.this_device"))
     var browserExtension = CheckButton(LocalizedString("new_safe.browser_extension"))
     var paperWallet = CheckButton(LocalizedString("new_safe.paper_wallet"))
+    var next = XCUIApplication().buttons[LocalizedString("new_safe.create")]
 
     struct CheckButton {
         let element: XCUIElement
