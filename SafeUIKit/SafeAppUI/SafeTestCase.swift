@@ -7,9 +7,11 @@ import XCTest
 import IdentityAccessApplication
 import IdentityAccessDomainModel
 import IdentityAccessImplementations
+import MultisigWalletApplication
 
 class SafeTestCase: XCTestCase {
 
+    let walletService = MockWalletApplicationService()
     let authenticationService = MockAuthenticationService()
     let clock = MockClockService()
     let identityService = MockIdentityApplicationService()
@@ -19,18 +21,30 @@ class SafeTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        DomainRegistry.put(service: secureStore, for: SecureStore.self)
-        DomainRegistry.put(service: keyValueStore, for: KeyValueStore.self)
-        DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
-        DomainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
-        DomainRegistry.put(service: InMemoryUserRepository(), for: SingleUserRepository.self)
-        DomainRegistry.put(service: InMemoryGatekeeperRepository(), for: SingleGatekeeperRepository.self)
-        DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
+        configureIdentityAccessModule()
+        configureMultisigWalletModule()
+    }
 
-        ApplicationServiceRegistry.put(service: logger, for: Logger.self)
-        ApplicationServiceRegistry.put(service: authenticationService, for: AuthenticationApplicationService.self)
-        ApplicationServiceRegistry.put(service: clock, for: Clock.self)
-        ApplicationServiceRegistry.put(service: identityService, for: IdentityApplicationService.self)
+    private func configureIdentityAccessModule() {
+        let domainRegistry = IdentityAccessDomainModel.DomainRegistry.self
+        domainRegistry.put(service: secureStore, for: SecureStore.self)
+        domainRegistry.put(service: keyValueStore, for: KeyValueStore.self)
+        domainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
+        domainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
+        domainRegistry.put(service: InMemoryUserRepository(), for: SingleUserRepository.self)
+        domainRegistry.put(service: InMemoryGatekeeperRepository(), for: SingleGatekeeperRepository.self)
+        domainRegistry.put(service: IdentityService(), for: IdentityService.self)
+
+        let applicationRegistry = IdentityAccessApplication.ApplicationServiceRegistry.self
+        applicationRegistry.put(service: logger, for: Logger.self)
+        applicationRegistry.put(service: authenticationService, for: AuthenticationApplicationService.self)
+        applicationRegistry.put(service: clock, for: Clock.self)
+        applicationRegistry.put(service: identityService, for: IdentityApplicationService.self)
+    }
+
+    private func configureMultisigWalletModule() {
+        let applicationRegistry = MultisigWalletApplication.ApplicationServiceRegistry.self
+        applicationRegistry.put(service: walletService, for: WalletApplicationService.self)
     }
 
 }

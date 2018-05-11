@@ -4,6 +4,7 @@
 
 import UIKit
 import IdentityAccessApplication
+import MultisigWalletApplication
 
 public protocol AppFlowCoordinatorProtocol: class {
 
@@ -17,9 +18,11 @@ public final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
     let onboardingFlowCoordinator = OnboardingFlowCoordinator()
     private var lockedViewController: UIViewController!
     private var authenticationService: AuthenticationApplicationService {
-        return ApplicationServiceRegistry.authenticationService
+        return IdentityAccessApplication.ApplicationServiceRegistry.authenticationService
     }
-
+    private var walletService: WalletApplicationService {
+        return MultisigWalletApplication.ApplicationServiceRegistry.walletService
+    }
     private var rootViewController: UIViewController? {
         get { return UIApplication.shared.keyWindow?.rootViewController }
         set { UIApplication.shared.keyWindow?.rootViewController = newValue }
@@ -32,15 +35,18 @@ public final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
     public init() {}
 
     public func startViewController() -> UIViewController {
-        // TODO: if selected wallet exists and ready - show main screen
-        // else show onboarding flow
-        lockedViewController = onboardingFlowCoordinator.startViewController()
+        lockedViewController = walletService.hasReadyToUseWallet ? mainController() :
+            onboardingFlowCoordinator.startViewController()
         if authenticationService.isUserRegistered {
             return unlockController { [unowned self] in
                 self.rootViewController = self.lockedViewController
             }
         }
         return lockedViewController
+    }
+
+    private func mainController() -> UIViewController {
+        return MainViewController.create()
     }
 
     func unlockController(completion: @escaping () -> Void) -> UIViewController {

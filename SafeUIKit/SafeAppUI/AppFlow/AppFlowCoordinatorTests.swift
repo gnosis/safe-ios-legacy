@@ -70,6 +70,13 @@ class AppFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(isUnlockedAfterBecomingActive())
     }
 
+    func test_whenSelectedWalletIsReady_thenShowsMainScreen() throws {
+        authenticationService.allowAuthentication()
+        _ = try Authenticator.instance.authenticate(.password(password))
+        walletService.createReadyToUseWallet()
+        XCTAssertTrue(rootViewControlleOnAppStartrAfterUnlocking() is MainViewController)
+    }
+
 }
 
 extension AppFlowCoordinatorTests {

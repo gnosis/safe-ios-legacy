@@ -73,6 +73,8 @@
 		0A334E6D209C8F8800ABC6AE /* FatalErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E69209C8F8500ABC6AE /* FatalErrorHandlerTests.swift */; };
 		0A334E6F209C8FB100ABC6AE /* SafeFoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E6E209C8FB100ABC6AE /* SafeFoundationExtensions.swift */; };
 		0A34BC63207B80A700636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC62207B80A700636560 /* libCommonTestSupport.a */; };
+		0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668C20A5E059009BA7FC /* MainViewController.swift */; };
+		0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */; };
 		0A53AD5320598B5000D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD5520598B5000D713AD /* Localizable.strings */; };
 		0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */; };
 		0A5DC575209C9AB600BA7A06 /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */; };
@@ -328,6 +330,8 @@
 		0A334E6E209C8FB100ABC6AE /* SafeFoundationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensions.swift; sourceTree = "<group>"; };
 		0A334E70209C918A00ABC6AE /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0A34BC62207B80A700636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A40668C20A5E059009BA7FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A53AD5420598B5000D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD5620598B5E00D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A5DC574209C9A8600BA7A06 /* TestConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TestConfig.xcconfig; sourceTree = "<group>"; };
@@ -418,6 +422,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */,
 				0A334E64209C8ED300ABC6AE /* libIdentityAccessApplication.a in Frameworks */,
 				0A334DCA209C6DEC00ABC6AE /* SafeUIKit.framework in Frameworks */,
 			);
@@ -530,13 +535,14 @@
 		0A334E20209C8E3800ABC6AE /* AppFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */,
-				0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */,
-				0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */,
-				0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */,
 				0A334E26209C8E3800ABC6AE /* AppFlow.storyboard */,
-				0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */,
+				0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */,
+				0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */,
+				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
+				0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */,
 				0A334E28209C8E3800ABC6AE /* CountdownLabelTests.swift */,
+				0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */,
+				0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
@@ -544,6 +550,7 @@
 		0A34BC61207B80A700636560 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */,
 				0A334E63209C8ED300ABC6AE /* libIdentityAccessApplication.a */,
 				0A334DE8209C894D00ABC6AE /* libIdentityAccessApplication.a */,
 				0A334DEA209C894D00ABC6AE /* libIdentityAccessDomainModel.a */,
@@ -1172,6 +1179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
+				0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
