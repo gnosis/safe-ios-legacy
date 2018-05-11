@@ -4,6 +4,9 @@
 /* Browser extension Button */
 "new_safe.browser_extension" = "Browser Extension";
 
+/* Create button */
+"new_safe.create" = "Create";
+
 /* Finish button title in extension setup screen */
 "new_safe.extension.finish" = "Finish";
 
