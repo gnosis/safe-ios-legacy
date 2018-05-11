@@ -145,6 +145,7 @@
 		0A30674C20A5C7740059F521 /* EthereumImplementationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumImplementationsTests.swift; sourceTree = "<group>"; };
 		0A30674E20A5C7740059F521 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A30676220A5C7FF0059F521 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
+		0A30677420A5C8EC0059F521 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +200,7 @@
 		0A3066FF20A5C7120059F521 = {
 			isa = PBXGroup;
 			children = (
+				0A30677420A5C8EC0059F521 /* swiftlint.yml */,
 				0A30676220A5C7FF0059F521 /* Common.xcodeproj */,
 				0A30670C20A5C72C0059F521 /* EthereumDomainModel */,
 				0A30671720A5C73A0059F521 /* EthereumDomainModelTests */,
@@ -293,6 +295,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A30670F20A5C72C0059F521 /* Build configuration list for PBXNativeTarget "EthereumDomainModel" */;
 			buildPhases = (
+				0A30677520A5C9530059F521 /* Lint */,
 				0A30670620A5C72C0059F521 /* Sources */,
 				0A30670720A5C72C0059F521 /* Frameworks */,
 				0A30670820A5C72C0059F521 /* CopyFiles */,
@@ -310,6 +313,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A30671E20A5C73A0059F521 /* Build configuration list for PBXNativeTarget "EthereumDomainModelTests" */;
 			buildPhases = (
+				0A30677620A5C96B0059F521 /* Lint */,
 				0A30671220A5C73A0059F521 /* Sources */,
 				0A30671320A5C73A0059F521 /* Frameworks */,
 				0A30671420A5C73A0059F521 /* Resources */,
@@ -328,6 +332,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A30672920A5C7480059F521 /* Build configuration list for PBXNativeTarget "EthereumApplication" */;
 			buildPhases = (
+				0A30677720A5C9760059F521 /* Lint */,
 				0A30672120A5C7480059F521 /* Sources */,
 				0A30672220A5C7480059F521 /* Frameworks */,
 				0A30672320A5C7480059F521 /* CopyFiles */,
@@ -346,6 +351,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A30673820A5C7560059F521 /* Build configuration list for PBXNativeTarget "EthereumApplicationTests" */;
 			buildPhases = (
+				0A30677820A5C9810059F521 /* Lint */,
 				0A30672C20A5C7560059F521 /* Sources */,
 				0A30672D20A5C7560059F521 /* Frameworks */,
 				0A30672E20A5C7560059F521 /* Resources */,
@@ -364,6 +370,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A30674320A5C7650059F521 /* Build configuration list for PBXNativeTarget "EthereumImplementations" */;
 			buildPhases = (
+				0A30677920A5C98C0059F521 /* Lint */,
 				0A30673B20A5C7650059F521 /* Sources */,
 				0A30673C20A5C7650059F521 /* Frameworks */,
 				0A30673D20A5C7650059F521 /* CopyFiles */,
@@ -383,6 +390,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A30675220A5C7740059F521 /* Build configuration list for PBXNativeTarget "EthereumImplementationsTests" */;
 			buildPhases = (
+				0A30677A20A5C9970059F521 /* Lint */,
 				0A30674620A5C7740059F521 /* Sources */,
 				0A30674720A5C7740059F521 /* Frameworks */,
 				0A30674820A5C7740059F521 /* Resources */,
@@ -405,6 +413,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Gnosis Ltd";
 				TargetAttributes = {
 					0A30670920A5C72C0059F521 = {
 						CreatedOnToolsVersion = 9.3;
@@ -515,6 +524,97 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A30677520A5C9530059F521 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+			showEnvVarsInLog = 0;
+		};
+		0A30677620A5C96B0059F521 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+			showEnvVarsInLog = 0;
+		};
+		0A30677720A5C9760059F521 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+		};
+		0A30677820A5C9810059F521 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+		};
+		0A30677920A5C98C0059F521 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+			showEnvVarsInLog = 0;
+		};
+		0A30677A20A5C9970059F521 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0A30670620A5C72C0059F521 /* Sources */ = {
