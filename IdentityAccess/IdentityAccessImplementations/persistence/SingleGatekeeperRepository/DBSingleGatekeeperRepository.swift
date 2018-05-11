@@ -32,37 +32,30 @@ CREATE TABLE IF NOT EXISTS tbl_gatekeeper (
     }
 
     public func setUp() throws {
-        try db.executeUpdate(sql: SQL.createTable)
+        try db.execute(sql: SQL.createTable)
     }
 
     public func save(_ gatekeeper: Gatekeeper) throws {
-        try db.executeUpdate { conn in
-            let stmt = try conn.prepare(statement: SQL.insertGatekeeper)
-            try stmt.set(gatekeeper.id.id, at: 1)
-            try stmt.set(try gatekeeper.data(), at: 2)
-            return stmt
-        }
+        try db.execute(sql: SQL.insertGatekeeper, bindings: [gatekeeper.id.id, try gatekeeper.data()])
     }
 
     public func remove(_ gatekeeper: Gatekeeper) throws {
-        try db.executeUpdate { conn in
-            let stmt = try conn.prepare(statement: SQL.deleteGatekeeper)
-            try stmt.set(gatekeeper.id.id, at: 1)
-            return stmt
-        }
+        try db.execute(sql: SQL.deleteGatekeeper, bindings: [gatekeeper.id.id])
     }
 
     public func gatekeeper() -> Gatekeeper? {
-        return db.executeQuery(sql: SQL.findGatekeeper) { [unowned self] rs in
-            guard try rs.advanceToNextRow(),
-                let id = rs.string(at: 0),
-                let data = rs.data(at: 1) else {
-                    return nil
-            }
-            let gatekeeper = try Gatekeeper(data: data)
-            try self.assertEqual(gatekeeper.id, try GatekeeperID(id), Error.invalidGatekeeperIdStoredWithData)
-            return gatekeeper
+        guard let result = try? db.execute(sql: SQL.findGatekeeper,
+                                           resultMap: gatekeeperFromResultSet).first as? Gatekeeper else { return nil }
+        return result
+    }
+
+    private func gatekeeperFromResultSet(_ rs: ResultSet) throws -> Gatekeeper? {
+        guard let id = rs.string(at: 0), let data = rs.data(at: 1) else {
+                return nil
         }
+        let gatekeeper = try Gatekeeper(data: data)
+        try self.assertEqual(gatekeeper.id, try GatekeeperID(id), Error.invalidGatekeeperIdStoredWithData)
+        return gatekeeper
     }
 
     public func nextId() -> GatekeeperID {
