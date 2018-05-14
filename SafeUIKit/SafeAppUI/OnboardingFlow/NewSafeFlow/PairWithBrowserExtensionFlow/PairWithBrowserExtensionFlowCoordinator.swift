@@ -18,8 +18,7 @@ final class PairWithBrowserExtensionFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-        let controller = PairWithBrowserExtensionViewController.create(delegate: self, extensionAddress: address)
-        pushController(controller)
+        pushController(PairWithBrowserExtensionViewController.create(delegate: self, extensionAddress: address))
     }
 
 }

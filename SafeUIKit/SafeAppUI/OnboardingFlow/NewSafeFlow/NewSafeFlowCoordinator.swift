@@ -20,8 +20,7 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-        let controller = NewSafeViewController.create(draftSafe: draftSafe, delegate: self)
-        pushController(controller)
+        pushController(NewSafeViewController.create(draftSafe: draftSafe, delegate: self))
     }
 
 }
