@@ -18,8 +18,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     }
     override func setUp() {
         super.setUp()
-        newSafeFlowCoordinator = NewSafeFlowCoordinator()
-        newSafeFlowCoordinator.rootVC = UINavigationController() // TODO: remove
+        newSafeFlowCoordinator = NewSafeFlowCoordinator(rootViewController: UINavigationController())
         newSafeFlowCoordinator.setUp()
     }
 
@@ -43,14 +42,14 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         let startVC = topViewController
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
         delay()
-        newSafeFlowCoordinator.pairWithBrowserExtensionFlowCoordinator.didPair(address)
+        newSafeFlowCoordinator.pairWithExtensionFlowCoordinator.didPair(address)
         delay()
         XCTAssertTrue(topViewController === startVC)
     }
 
     func test_pairWithBrowserExtensionCompletion_callsConfirmBrowserExtension() {
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
-        newSafeFlowCoordinator.pairWithBrowserExtensionFlowCoordinator.didPair(address)
+        newSafeFlowCoordinator.pairWithExtensionFlowCoordinator.didPair(address)
         XCTAssertEqual(identityService.confirmedBrowserExtensionAddress, address)
     }
 
@@ -91,9 +90,8 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
 
 class TestFlowCoordinator: FlowCoordinator {
 
-    override init() {
-        super.init()
-        rootVC = UINavigationController()
+    init() {
+        super.init(rootViewController: UINavigationController())
     }
 
     var topViewController: UIViewController? {

@@ -8,11 +8,10 @@ import CommonTestSupport
 
 class MasterPasswordFlowCoordinatorTests: XCTestCase {
 
-    let flowCoordinator = MasterPasswordFlowCoordinator()
+    let flowCoordinator = MasterPasswordFlowCoordinator(rootViewController: UINavigationController())
 
     override func setUp() {
         super.setUp()
-        flowCoordinator.rootVC = UINavigationController() // TODO: remove
         flowCoordinator.setUp()
     }
 

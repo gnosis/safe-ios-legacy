@@ -19,8 +19,7 @@ class PaperWalletFlowCoordinatorTests: SafeTestCase {
     override func setUp() {
         super.setUp()
         draftSafe = try! identityService.createDraftSafe()
-        coordinator = PaperWalletFlowCoordinator(draftSafe: draftSafe)
-        coordinator.rootVC = UINavigationController()
+        coordinator = PaperWalletFlowCoordinator(draftSafe: draftSafe, rootViewController: UINavigationController())
         coordinator.setUp()
     }
 
@@ -35,8 +34,7 @@ class PaperWalletFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_startViewController_whenDraftSafeIsNil_thenWordsAreEmpty() {
-        coordinator = PaperWalletFlowCoordinator(draftSafe: nil)
-        coordinator.rootVC = UINavigationController()
+        coordinator = PaperWalletFlowCoordinator(draftSafe: nil, rootViewController: UINavigationController())
         coordinator.setUp()
         let startVC = topViewController as! SaveMnemonicViewController
         XCTAssertTrue(startVC.words.isEmpty)

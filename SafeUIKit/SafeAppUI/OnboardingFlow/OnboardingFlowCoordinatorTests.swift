@@ -12,8 +12,7 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        flowCoordinator = OnboardingFlowCoordinator()
-        flowCoordinator.rootVC = UINavigationController() // TODO: remove
+        flowCoordinator = OnboardingFlowCoordinator(rootViewController: UINavigationController())
     }
 
     func test_startViewController_whenNoMasterPassword_thenMasterPasswordFlowStarted() {

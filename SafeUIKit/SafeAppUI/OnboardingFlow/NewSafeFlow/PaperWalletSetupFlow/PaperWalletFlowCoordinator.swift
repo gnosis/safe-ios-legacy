@@ -11,8 +11,9 @@ final class PaperWalletFlowCoordinator: FlowCoordinator {
 
     private let draftSafe: DraftSafe?
 
-    init(draftSafe: DraftSafe?) {
+    init(draftSafe: DraftSafe?, rootViewController: UIViewController? = nil) {
         self.draftSafe = draftSafe
+        super.init(rootViewController: rootViewController)
     }
 
     override func setUp() {

@@ -35,9 +35,8 @@ import UIKit
 */
 public class FlowCoordinator {
 
-    public var rootVC: UINavigationController!
     private var flowCompletion: (() -> Void)?
-
+    private(set) var rootViewController: UIViewController!
     var navigationController: UINavigationController {
         if let controller = rootViewController as? UINavigationController {
             return controller
@@ -45,22 +44,17 @@ public class FlowCoordinator {
             return rootViewController.navigationController!
         }
     }
-    var rootViewController: UIViewController {
-        return rootVC
-    }
-    func pushController(_ controller: UIViewController) {
-        navigationController.pushViewController(controller, animated: true)
+
+    init(rootViewController: UIViewController? = nil) {
+        self.rootViewController = rootViewController
     }
 
-    func clearNavigationStack() {
-        // TODO: see if it works in UI and fix it
-        navigationController.setViewControllers([], animated: false)
+    func setUp() {
+        // override in subclasses
     }
-
-    func setUp() {}
 
     func transition(to coordinator: FlowCoordinator, completion: (() -> Void)? = nil) {
-        coordinator.rootVC = self.rootVC
+        coordinator.rootViewController = rootViewController
         coordinator.flowCompletion = completion
         coordinator.setUp()
     }
@@ -69,9 +63,19 @@ public class FlowCoordinator {
         flowCompletion?()
     }
 
+    func pushController(_ controller: UIViewController) {
+        let isAnythingInNavigationStack = !navigationController.viewControllers.isEmpty
+        navigationController.pushViewController(controller, animated: isAnythingInNavigationStack)
+    }
+
     func pop(to controller: UIViewController) {
         navigationController.popToViewController(controller, animated: true)
     }
+
+    func clearNavigationStack() {
+        navigationController.setViewControllers([], animated: false)
+    }
+
 }
 
 final class TransparentNavigationController: UINavigationController {

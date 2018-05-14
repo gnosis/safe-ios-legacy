@@ -11,8 +11,9 @@ final class PairWithBrowserExtensionFlowCoordinator: FlowCoordinator {
     private let address: String?
     private(set) var extensionAddress: String?
 
-    init(address: String?) {
+    init(address: String?, rootViewController: UIViewController? = nil) {
         self.address = address
+        super.init(rootViewController: rootViewController)
     }
 
     override func setUp() {

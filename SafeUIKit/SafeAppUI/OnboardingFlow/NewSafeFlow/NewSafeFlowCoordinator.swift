@@ -13,8 +13,8 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
     private(set) lazy var draftSafe = try? identityService.getOrCreateDraftSafe()
 
-    override init() {
-        super.init()
+    override init(rootViewController: UIViewController? = nil) {
+        super.init(rootViewController: rootViewController)
         paperWalletFlowCoordinator = PaperWalletFlowCoordinator(draftSafe: draftSafe)
     }
 

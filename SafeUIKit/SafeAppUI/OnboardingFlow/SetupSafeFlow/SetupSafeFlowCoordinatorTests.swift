@@ -13,9 +13,8 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        setupSafeFlowCoordinator = SetupSafeFlowCoordinator()
+        setupSafeFlowCoordinator = SetupSafeFlowCoordinator(rootViewController: UINavigationController())
         newSafeFlowCoordinator = NewSafeFlowCoordinator()
-        setupSafeFlowCoordinator.rootVC = UINavigationController() // TODO: remove
         setupSafeFlowCoordinator.setUp()
     }
 

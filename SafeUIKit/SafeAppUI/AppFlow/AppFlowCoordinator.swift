@@ -33,9 +33,8 @@ public final class AppFlowCoordinator: FlowCoordinator, AppFlowCoordinatorProtoc
         return authenticationService.isUserRegistered  && !authenticationService.isUserAuthenticated
     }
 
-    public override init() {
-        super.init()
-        rootVC = TransparentNavigationController()
+    public init() {
+        super.init(rootViewController: TransparentNavigationController())
     }
 
     public func startViewController() -> UIViewController {
