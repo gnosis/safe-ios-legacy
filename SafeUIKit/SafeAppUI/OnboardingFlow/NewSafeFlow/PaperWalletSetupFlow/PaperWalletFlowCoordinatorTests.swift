@@ -12,51 +12,66 @@ import IdentityAccessImplementations
 
 class PaperWalletFlowCoordinatorTests: SafeTestCase {
 
-    var flowCoordinator: PaperWalletFlowCoordinator!
-    var nav = UINavigationController()
+    var coordinator: PaperWalletFlowCoordinator!
     var draftSafe: DraftSafe!
     var completionCalled = false
 
     override func setUp() {
         super.setUp()
         draftSafe = try! identityService.createDraftSafe()
-        flowCoordinator = PaperWalletFlowCoordinator(draftSafe: draftSafe) { [unowned self] in
-            self.completionCalled = true
-        }
-        let startVC = flowCoordinator.startViewController(parent: nav)
-        nav.pushViewController(startVC, animated: false)
+        coordinator = PaperWalletFlowCoordinator(draftSafe: draftSafe)
+        coordinator.rootVC = UINavigationController()
+        coordinator.setUp()
+    }
+
+    var topViewController: UIViewController? {
+        return coordinator.navigationController.topViewController
     }
 
     func test_startViewController_createsSaveMnemonicViewControllerWithDelegate() {
-        XCTAssertTrue(nav.topViewController is SaveMnemonicViewController)
-        let controller = nav.topViewController as! SaveMnemonicViewController
-        XCTAssertTrue(controller.delegate === flowCoordinator)
+        XCTAssertTrue(topViewController is SaveMnemonicViewController)
+        let controller = topViewController as! SaveMnemonicViewController
+        XCTAssertTrue(controller.delegate === coordinator)
     }
 
     func test_startViewController_whenDraftSafeIsNil_thenWordsAreEmpty() {
-        flowCoordinator = PaperWalletFlowCoordinator(draftSafe: nil)
-        let startVC = flowCoordinator.startViewController(parent: nav) as! SaveMnemonicViewController
+        coordinator = PaperWalletFlowCoordinator(draftSafe: nil)
+        coordinator.rootVC = UINavigationController()
+        coordinator.setUp()
+        let startVC = topViewController as! SaveMnemonicViewController
         XCTAssertTrue(startVC.words.isEmpty)
     }
 
-    func test_didPressContinue_whenDraftSafePaperWalletIsNotConfirmed_thenPushesConfirmMnemonicViewController() {
-        flowCoordinator.didPressContinue()
-        delay()
-        XCTAssertTrue(nav.topViewController is ConfirmMnemonicViewController)
-        let controller = nav.topViewController as! ConfirmMnemonicViewController
-        XCTAssertTrue(controller.delegate === flowCoordinator)
-        XCTAssertEqual(controller.words, draftSafe.paperWalletMnemonicWords)
-    }
-
     func test_didPressContinue_whenDraftSafePaperWalletIsConfirmed_thenCallsCompletion() {
+        let testFC = TestFlowCoordinator()
+        testFC.transition(to: coordinator) {
+            self.completionCalled = true
+        }
         identityService.confirmPaperWallet(draftSafe: draftSafe)
-        flowCoordinator.didPressContinue()
+        coordinator.didPressContinue()
         XCTAssertTrue(completionCalled)
     }
 
     func test_didConfirm_callsCompletion() {
-        flowCoordinator.didConfirm()
+        let testFC = TestFlowCoordinator()
+        testFC.transition(to: coordinator) {
+            self.completionCalled = true
+        }
+        coordinator.didConfirm()
         XCTAssertTrue(completionCalled)
+    }
+
+    func test_whenSetUp_thenPushesMnemonicController() throws {
+        XCTAssertTrue(topViewController is SaveMnemonicViewController)
+    }
+
+    func test_whenContinuesDuringUnconfirmedSafe_thenPushesConfirmController() {
+        coordinator.didPressContinue()
+        delay()
+        XCTAssertTrue(topViewController is ConfirmMnemonicViewController)
+        let controller = topViewController as! ConfirmMnemonicViewController
+        XCTAssertTrue(controller.delegate === coordinator)
+        XCTAssertEqual(controller.words, draftSafe.paperWalletMnemonicWords)
     }
 
 }

@@ -15,11 +15,12 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
         super.setUp()
         setupSafeFlowCoordinator = SetupSafeFlowCoordinator()
         newSafeFlowCoordinator = NewSafeFlowCoordinator()
+        setupSafeFlowCoordinator.rootVC = UINavigationController() // TODO: remove
+        setupSafeFlowCoordinator.setUp()
     }
 
     func test_whenNoSafeSelected_thenShowsOptionsScreen() {
-        let startVC = setupSafeFlowCoordinator.startViewController()
-        XCTAssertTrue(startVC.childViewControllers[0] is SetupSafeOptionsViewController)
+        XCTAssertTrue(setupSafeFlowCoordinator.navigationController.topViewController is SetupSafeOptionsViewController)
     }
 
     // FIXME: enable when flow coordinator's start controller can accept multiple controllers at once.
@@ -31,11 +32,14 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
 //    }
 
     func test_didSelectNewSafe_showsNewSafeFlowStartVC() {
-        _ = setupSafeFlowCoordinator.startViewController()
+        let testFC = TestFlowCoordinator()
+        testFC.transition(to: newSafeFlowCoordinator)
+
         setupSafeFlowCoordinator.didSelectNewSafe()
         delay()
-        let newSafeStartVC = newSafeFlowCoordinator.startViewController().childViewControllers[0]
-        XCTAssertTrue(type(of: setupSafeFlowCoordinator.rootVC.topViewController!) == type(of: newSafeStartVC))
+        let newSafeStartVC = testFC.topViewController
+        XCTAssertTrue(type(of: setupSafeFlowCoordinator.navigationController.topViewController) ==
+            type(of: newSafeStartVC))
     }
 
 }

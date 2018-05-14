@@ -9,15 +9,16 @@ typealias PairWithBrowserExtensionCompletion = (_ extensionAddress: String) -> V
 final class PairWithBrowserExtensionFlowCoordinator: FlowCoordinator {
 
     private let address: String?
-    private let completion: PairWithBrowserExtensionCompletion
+    private(set) var extensionAddress: String?
 
-    init(address: String?, completion: @escaping PairWithBrowserExtensionCompletion) {
+    init(address: String?) {
         self.address = address
-        self.completion = completion
     }
 
-    override func flowStartController() -> UIViewController {
-        return PairWithBrowserExtensionViewController.create(delegate: self, extensionAddress: address)
+    override func setUp() {
+        super.setUp()
+        let controller = PairWithBrowserExtensionViewController.create(delegate: self, extensionAddress: address)
+        pushController(controller)
     }
 
 }
@@ -25,7 +26,8 @@ final class PairWithBrowserExtensionFlowCoordinator: FlowCoordinator {
 extension PairWithBrowserExtensionFlowCoordinator: PairWithBrowserDelegate {
 
     func didPair(_ extensionAddress: String) {
-        completion(extensionAddress)
+        self.extensionAddress = extensionAddress
+        exitFlow()
     }
 
 }

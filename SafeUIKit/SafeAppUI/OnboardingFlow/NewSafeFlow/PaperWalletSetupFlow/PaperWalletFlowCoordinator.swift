@@ -9,16 +9,17 @@ typealias PaperWalletSetupCompletion = () -> Void
 
 final class PaperWalletFlowCoordinator: FlowCoordinator {
 
-    private let completion: PaperWalletSetupCompletion?
     private let draftSafe: DraftSafe?
 
-    init(draftSafe: DraftSafe?, completion: PaperWalletSetupCompletion? = nil) {
+    init(draftSafe: DraftSafe?) {
         self.draftSafe = draftSafe
-        self.completion = completion
     }
 
-    override func flowStartController() -> UIViewController {
-        return SaveMnemonicViewController.create(words: draftSafe?.paperWalletMnemonicWords ?? [], delegate: self)
+    override func setUp() {
+        super.setUp()
+        let words = draftSafe?.paperWalletMnemonicWords ?? []
+        let controller = SaveMnemonicViewController.create(words: words, delegate: self)
+        pushController(controller)
     }
 
 }
@@ -27,13 +28,13 @@ extension PaperWalletFlowCoordinator: SaveMnemonicDelegate {
 
     func didPressContinue() {
         guard !draftSafe!.confirmedAddresses.contains(.paperWallet) else {
-            completion?()
+            exitFlow()
             return
         }
         let controller = ConfirmMnemonicViewController.create(
             delegate: self,
             words: draftSafe!.paperWalletMnemonicWords)
-        rootVC.pushViewController(controller, animated: true)
+        pushController(controller)
     }
 
 }
@@ -41,7 +42,7 @@ extension PaperWalletFlowCoordinator: SaveMnemonicDelegate {
 extension PaperWalletFlowCoordinator: ConfirmMnemonicDelegate {
 
     func didConfirm() {
-        completion?()
+        exitFlow()
     }
 
 }

@@ -13,59 +13,39 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     var startVC: UIViewController!
     let address = "test_address"
 
+    var topViewController: UIViewController? {
+        return newSafeFlowCoordinator.navigationController.topViewController
+    }
     override func setUp() {
         super.setUp()
         newSafeFlowCoordinator = NewSafeFlowCoordinator()
-        startVC = newSafeFlowCoordinator.startViewController(parent: nav)
-        nav.pushViewController(startVC, animated: false)
+        newSafeFlowCoordinator.rootVC = UINavigationController() // TODO: remove
+        newSafeFlowCoordinator.setUp()
     }
 
     func test_startViewController_returnsSetupSafeStartVC() {
-        XCTAssertTrue(nav.topViewController is NewSafeViewController)
-    }
-
-    func test_didSelectPaperWalletSetup_showsPaperWalletFlowCoordinatorStartVC() {
-        newSafeFlowCoordinator.didSelectPaperWalletSetup()
-        delay()
-        let fc = PaperWalletFlowCoordinator(draftSafe: nil)
-        let paperWalletStartVC = fc.startViewController(parent: newSafeFlowCoordinator.rootVC)
-        XCTAssertTrue(type(of: nav.topViewController!) == type(of: paperWalletStartVC))
+        XCTAssertTrue(topViewController is NewSafeViewController)
     }
 
     func test_didSelectBrowserExtensionSetup_showsPairWithBrowserExtensionFlowCoordinatorStartVC() {
+        let testFC = TestFlowCoordinator()
+        testFC.transition(to: PairWithBrowserExtensionFlowCoordinator(address: nil))
+        let expectedViewController = testFC.topViewController
+
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
         delay()
-        let fc = PairWithBrowserExtensionFlowCoordinator(address: nil) { _ in }
-        let pairVC = fc.startViewController(parent: newSafeFlowCoordinator.rootVC)
-        XCTAssertTrue(type(of: nav.topViewController!) == type(of: pairVC))
-    }
 
-    func test_didSelectNext_presentsReviewSafeViewController() {
-        newSafeFlowCoordinator.didSelectNext()
-        delay()
-        XCTAssertTrue(nav.topViewController! is PendingSafeViewController)
-    }
-
-    func test_paperWalletSetupCompletion_popsToStartVC() {
-        newSafeFlowCoordinator.didSelectPaperWalletSetup()
-        delay()
-        newSafeFlowCoordinator.paperWalletFlowCoordinator.didConfirm()
-        delay()
-        XCTAssertTrue(nav.topViewController === startVC)
-    }
-
-    func test_paperWalletSetupCompletion_callsConfirmPaperWallet() {
-        newSafeFlowCoordinator.didSelectPaperWalletSetup()
-        newSafeFlowCoordinator.paperWalletFlowCoordinator.didConfirm()
-        XCTAssertTrue(identityService.didCallConfirmPaperWallet)
+        let finalTransitionedViewController = newSafeFlowCoordinator.navigationController.topViewController
+        XCTAssertTrue(type(of: finalTransitionedViewController) == type(of: expectedViewController))
     }
 
     func test_pairWithBrowserExtensionCompletion_popsToStartVC() {
+        let startVC = topViewController
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
         delay()
         newSafeFlowCoordinator.pairWithBrowserExtensionFlowCoordinator.didPair(address)
         delay()
-        XCTAssertTrue(nav.topViewController === startVC)
+        XCTAssertTrue(topViewController === startVC)
     }
 
     func test_pairWithBrowserExtensionCompletion_callsConfirmBrowserExtension() {
@@ -74,4 +54,49 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertEqual(identityService.confirmedBrowserExtensionAddress, address)
     }
 
+    func test_whenSelectedPaperWalletSetup_thenTransitionsToPaperWalletCoordinator() {
+        let testFC = TestFlowCoordinator()
+        testFC.transition(to: PaperWalletFlowCoordinator(draftSafe: nil))
+        let expectedViewController = testFC.topViewController
+
+        newSafeFlowCoordinator.didSelectPaperWalletSetup()
+
+        let finalTransitionedViewController = newSafeFlowCoordinator.navigationController.topViewController
+        XCTAssertTrue(type(of: finalTransitionedViewController) == type(of: expectedViewController))
+    }
+
+    func test_didSelectNext_presentsNextController() {
+        newSafeFlowCoordinator.didSelectNext()
+        delay()
+        XCTAssertTrue(topViewController is PendingSafeViewController)
+    }
+
+    func test_paperWalletSetupCompletion_popsToStartVC() {
+        let startVC = topViewController
+        newSafeFlowCoordinator.didSelectPaperWalletSetup()
+        delay()
+        newSafeFlowCoordinator.paperWalletFlowCoordinator.didConfirm()
+        delay()
+        XCTAssertTrue(topViewController === startVC)
+    }
+
+    func test_paperWalletSetupCompletion_callsConfirmPaperWallet() {
+        newSafeFlowCoordinator.didSelectPaperWalletSetup()
+        newSafeFlowCoordinator.paperWalletFlowCoordinator.didConfirm()
+        XCTAssertTrue(identityService.didCallConfirmPaperWallet)
+    }
+
+
+}
+
+class TestFlowCoordinator: FlowCoordinator {
+
+    override init() {
+        super.init()
+        rootVC = UINavigationController()
+    }
+
+    var topViewController: UIViewController? {
+        return navigationController.topViewController
+    }
 }

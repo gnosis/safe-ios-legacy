@@ -13,30 +13,42 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
     override func setUp() {
         super.setUp()
         flowCoordinator = OnboardingFlowCoordinator()
+        flowCoordinator.rootVC = UINavigationController() // TODO: remove
     }
 
     func test_startViewController_whenNoMasterPassword_thenMasterPasswordFlowStarted() {
+        let testFC = TestFlowCoordinator()
+        let masterPasswordFC = MasterPasswordFlowCoordinator()
+        testFC.transition(to: masterPasswordFC)
+        let expectedController = testFC.topViewController
+
         authenticationService.unregisterUser()
-        _ = flowCoordinator.startViewController()
-        let masterPasswordVC = flowCoordinator.masterPasswordFlowCoordinator.startViewController()
-        XCTAssertTrue(type(of: flowCoordinator.rootVC.childViewControllers[0]) ==
-                type(of: masterPasswordVC.childViewControllers[0]))
+        flowCoordinator.setUp()
+
+        XCTAssertNotNil(flowCoordinator.navigationController.topViewController)
+        XCTAssertTrue(type(of: flowCoordinator.navigationController.topViewController) == type(of: expectedController))
     }
 
     func test_startViewController_whenMasterPasswordIsSet_thenNewSafeFlowStarted() {
+        let testFC = TestFlowCoordinator()
+        let setupSafeFC = SetupSafeFlowCoordinator()
+        testFC.transition(to: setupSafeFC)
+        let expectedController = testFC.topViewController
+
         try? authenticationService.registerUser(password: "password")
-        _ = flowCoordinator.startViewController()
-        let setupSafeVC = flowCoordinator.setupSafeFlowCoordinator.startViewController().childViewControllers[0]
-        XCTAssertTrue(type(of: flowCoordinator.rootVC.childViewControllers[0]) == type(of: setupSafeVC))
+        flowCoordinator.setUp()
+
+        XCTAssertNotNil(flowCoordinator.navigationController.topViewController)
+        XCTAssertTrue(type(of: flowCoordinator.navigationController.topViewController) == type(of: expectedController))
     }
 
     func test_whenDidConfirmPassword_thenSetupSafeIsShown() {
         authenticationService.unregisterUser()
-        _ = flowCoordinator.startViewController()
+        flowCoordinator.setUp()
         flowCoordinator.masterPasswordFlowCoordinator.didConfirmPassword()
         delay()
-        XCTAssertTrue(flowCoordinator.rootVC.topViewController is SetupSafeOptionsViewController)
-        XCTAssertEqual(flowCoordinator.rootVC.viewControllers.count, 1)
+        XCTAssertTrue(flowCoordinator.navigationController.topViewController is SetupSafeOptionsViewController)
+        XCTAssertEqual(flowCoordinator.navigationController.viewControllers.count, 1)
     }
 
 }

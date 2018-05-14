@@ -20,13 +20,13 @@ class AppFlowCoordinatorTests: SafeTestCase {
     func test_startViewController_whenUserNotRegistered_thenPresentingOnboarding() {
         authenticationService.unregisterUser()
         let root = flowCoordinator.startViewController()
-        XCTAssertTrue(type(of: root) == type(of: flowCoordinator.onboardingFlowCoordinator.startViewController()))
+        XCTAssertTrue(type(of: root) == type(of: flowCoordinator.rootViewController))
     }
 
     func test_whenStartingAppAndAlreadyRegistered_thenIgnoresSessionStateAndShowsLockedController() throws {
         _ = try authenticationService.authenticateUser(.password(password))
         guard let rootVC = rootViewControlleOnAppStartrAfterUnlocking() else { return }
-        XCTAssertTrue(type(of: rootVC) == type(of: flowCoordinator.onboardingFlowCoordinator.startViewController()))
+        XCTAssertTrue(type(of: rootVC) == type(of: flowCoordinator.rootViewController))
     }
 
     func test_whenAuthenticationInvalidated_thenLocks() {

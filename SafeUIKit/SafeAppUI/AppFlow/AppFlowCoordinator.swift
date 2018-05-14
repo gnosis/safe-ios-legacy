@@ -13,17 +13,18 @@ public protocol AppFlowCoordinatorProtocol: class {
 
 }
 
-public final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
+public final class AppFlowCoordinator: FlowCoordinator, AppFlowCoordinatorProtocol {
 
     let onboardingFlowCoordinator = OnboardingFlowCoordinator()
     private var lockedViewController: UIViewController!
+
     private var authenticationService: AuthenticationApplicationService {
         return IdentityAccessApplication.ApplicationServiceRegistry.authenticationService
     }
     private var walletService: WalletApplicationService {
         return MultisigWalletApplication.ApplicationServiceRegistry.walletService
     }
-    private var rootViewController: UIViewController? {
+    private var applicationRootViewController: UIViewController? {
         get { return UIApplication.shared.keyWindow?.rootViewController }
         set { UIApplication.shared.keyWindow?.rootViewController = newValue }
     }
@@ -32,14 +33,22 @@ public final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
         return authenticationService.isUserRegistered  && !authenticationService.isUserAuthenticated
     }
 
-    public init() {}
+    public override init() {
+        super.init()
+        rootVC = TransparentNavigationController()
+    }
 
     public func startViewController() -> UIViewController {
-        lockedViewController = walletService.hasReadyToUseWallet ? mainController() :
-            onboardingFlowCoordinator.startViewController()
+        if walletService.hasReadyToUseWallet {
+            lockedViewController = mainController()
+        } else {
+            transition(to: onboardingFlowCoordinator)
+            lockedViewController = rootViewController
+        }
+
         if authenticationService.isUserRegistered {
             return unlockController { [unowned self] in
-                self.rootViewController = self.lockedViewController
+                self.applicationRootViewController = self.lockedViewController
             }
         }
         return lockedViewController
@@ -54,13 +63,13 @@ public final class AppFlowCoordinator: AppFlowCoordinatorProtocol {
     }
 
     public func appEntersForeground() {
-        guard let rootVC = self.rootViewController,
+        guard let rootVC = self.applicationRootViewController,
             !(rootVC is UnlockViewController) && shouldLockWhenAppActive else {
             return
         }
         lockedViewController = rootVC
-        self.rootViewController = unlockController { [unowned self] in
-            self.rootViewController = self.lockedViewController
+        self.applicationRootViewController = unlockController { [unowned self] in
+            self.applicationRootViewController = self.lockedViewController
         }
     }
 

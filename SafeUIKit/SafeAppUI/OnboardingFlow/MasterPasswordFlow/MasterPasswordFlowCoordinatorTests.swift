@@ -9,37 +9,35 @@ import CommonTestSupport
 class MasterPasswordFlowCoordinatorTests: XCTestCase {
 
     let flowCoordinator = MasterPasswordFlowCoordinator()
-    var nav = UINavigationController()
-    var hasSetMasterPassword = false
 
     override func setUp() {
         super.setUp()
-        let startVC = flowCoordinator.startViewController(parent: nav)
-        flowCoordinator.completion = masterPasswordFlowCompletion
-        nav.pushViewController(startVC, animated: false)
-    }
-
-    private func masterPasswordFlowCompletion() {
-        hasSetMasterPassword = true
+        flowCoordinator.rootVC = UINavigationController() // TODO: remove
+        flowCoordinator.setUp()
     }
 
     func test_startViewController() {
-        XCTAssertTrue(nav.topViewController is StartViewController)
+        XCTAssertTrue(flowCoordinator.navigationController.topViewController is StartViewController)
     }
 
     func test_whenDidStart_thenSetMasterPasswordIsShown() {
         flowCoordinator.didStart()
         delay()
-        XCTAssertTrue(nav.topViewController is SetPasswordViewController)
+        XCTAssertTrue(flowCoordinator.navigationController.topViewController is SetPasswordViewController)
     }
 
     func test_whenDidSetPassword_thenConfirmPasswordIsShown() {
         flowCoordinator.didSetPassword("Any")
         delay()
-        XCTAssertTrue(nav.topViewController is ConfirmPaswordViewController)
+        XCTAssertTrue(flowCoordinator.navigationController.topViewController is ConfirmPaswordViewController)
     }
 
     func test_whenDidConfirmPassword_thenFlowCompletionIsCalled() {
+        var hasSetMasterPassword = false
+        let testFC = TestFlowCoordinator()
+        testFC.transition(to: flowCoordinator) {
+            hasSetMasterPassword = true
+        }
         XCTAssertFalse(hasSetMasterPassword)
         flowCoordinator.didConfirmPassword()
         XCTAssertTrue(hasSetMasterPassword)
