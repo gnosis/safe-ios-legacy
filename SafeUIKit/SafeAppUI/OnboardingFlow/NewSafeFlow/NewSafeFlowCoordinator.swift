@@ -23,12 +23,22 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
         push(NewSafeViewController.create(draftSafe: draftSafe, delegate: self))
     }
 
+    func enterAndComeBack(from coordinator: FlowCoordinator, completion: @escaping () -> Void) {
+        let startVC = navigationController.topViewController
+        enter(flow: coordinator) {
+            completion()
+            if let startVC = startVC {
+                self.pop(to: startVC)
+            }
+        }
+    }
+
 }
 
 extension NewSafeFlowCoordinator: NewSafeDelegate {
 
     func didSelectPaperWalletSetup() {
-        transitionThenPopToStart(with: paperWalletFlowCoordinator) {
+        enterAndComeBack(from: paperWalletFlowCoordinator) {
             self.identityService.confirmPaperWallet(draftSafe: self.draftSafe!)
         }
     }
@@ -36,19 +46,9 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     func didSelectBrowserExtensionSetup() {
         let address = draftSafe?.browserExtensionAddressString
         pairWithExtensionFlowCoordinator = PairWithBrowserExtensionFlowCoordinator(address: address)
-        transitionThenPopToStart(with: pairWithExtensionFlowCoordinator) {
+        enterAndComeBack(from: pairWithExtensionFlowCoordinator) {
             if let extensionAddress = self.pairWithExtensionFlowCoordinator.extensionAddress {
                 self.identityService.confirmBrowserExtension(draftSafe: self.draftSafe!, address: extensionAddress)
-            }
-        }
-    }
-
-    func transitionThenPopToStart(with coordinator: FlowCoordinator, completion: @escaping () -> Void) {
-        let startVC = navigationController.topViewController
-        enter(flow: coordinator) {
-            completion()
-            if let startVC = startVC {
-                self.pop(to: startVC)
             }
         }
     }
