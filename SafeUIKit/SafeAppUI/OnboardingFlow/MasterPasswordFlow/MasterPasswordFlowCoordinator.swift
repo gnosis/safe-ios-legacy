@@ -18,6 +18,7 @@ final class MasterPasswordFlowCoordinator: FlowCoordinator {
 extension MasterPasswordFlowCoordinator: StartViewControllerDelegate {
 
     func didStart() {
+        // TODO: move to other flow
         push(SetPasswordViewController.create(delegate: self))
     }
 
