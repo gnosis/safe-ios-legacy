@@ -16,6 +16,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     var topViewController: UIViewController? {
         return newSafeFlowCoordinator.navigationController.topViewController
     }
+    
     override func setUp() {
         super.setUp()
         newSafeFlowCoordinator = NewSafeFlowCoordinator(rootViewController: UINavigationController())
