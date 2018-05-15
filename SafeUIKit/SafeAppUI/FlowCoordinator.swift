@@ -23,14 +23,14 @@ import UIKit
  For example, UnlockViewController handles password or biometry authentication, and is used from different parts of the
  app, whether after restart or transaction confirmation must be authorized.
 
- Each coordinator sets up its initial controllers in the `setUpCoordinator()` method.
+ Each coordinator sets up its initial controllers in the `setUp()` method.
 
- When one flow transitions into a child flow, the FlowCoordinator calls `transitionToCoordinator()`. This method
- calls `setUpCoordinator()` on a child flow coordinator.
+ When one flow transitions into a child flow, the FlowCoordinator calls `enter(flow:)`. This method
+ calls `setUp()` on a child flow coordinator.
 
- During `setUpCoordinator()`, flow coordinator creates necessary view controllers and uses navigation-related methods
+ During `setUp()`, flow coordinator creates necessary view controllers and uses navigation-related methods
  for presenting view controllers. For example, `MasterPasswordFlowCoordinator` creates SetPasswordViewController and
- pushes it onto navigation stack using `pushController()` method.
+ pushes it onto navigation stack using `push()` method.
 
 */
 open class FlowCoordinator {

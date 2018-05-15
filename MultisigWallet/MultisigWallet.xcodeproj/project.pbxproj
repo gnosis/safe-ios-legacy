@@ -58,6 +58,27 @@
 			remoteGlobalIDString = 0A160B9120A07FE100E064E1;
 			remoteInfo = Database;
 		};
+		0A59E8F320AADD510090E89C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AEF8A6B20A08868006A1265 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0AEF8A7420A08878006A1265;
+			remoteInfo = MultisigWalletDomainModel;
+		};
+		0A59E8F820AADD570090E89C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AEF8A6B20A08868006A1265 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0AEF8A7420A08878006A1265;
+			remoteInfo = MultisigWalletDomainModel;
+		};
+		0A59E8FA20AADD570090E89C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AEF8A6B20A08868006A1265 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0AEF8A8F20A08899006A1265;
+			remoteInfo = MultisigWalletApplication;
+		};
 		0AEF8A8720A08889006A1265 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0AEF8A6B20A08868006A1265 /* Project object */;
@@ -438,6 +459,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0A59E8F420AADD510090E89C /* PBXTargetDependency */,
 				0AEF8ADC20A08A54006A1265 /* PBXTargetDependency */,
 			);
 			name = MultisigWalletApplication;
@@ -476,6 +498,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				0A59E8F920AADD570090E89C /* PBXTargetDependency */,
+				0A59E8FB20AADD570090E89C /* PBXTargetDependency */,
 				0A23C82720A1DEDB00C72483 /* PBXTargetDependency */,
 				0AEF8ADE20A08A59006A1265 /* PBXTargetDependency */,
 			);
@@ -790,6 +814,21 @@
 			isa = PBXTargetDependency;
 			name = Database;
 			targetProxy = 0A23C82620A1DEDB00C72483 /* PBXContainerItemProxy */;
+		};
+		0A59E8F420AADD510090E89C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0AEF8A7420A08878006A1265 /* MultisigWalletDomainModel */;
+			targetProxy = 0A59E8F320AADD510090E89C /* PBXContainerItemProxy */;
+		};
+		0A59E8F920AADD570090E89C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0AEF8A7420A08878006A1265 /* MultisigWalletDomainModel */;
+			targetProxy = 0A59E8F820AADD570090E89C /* PBXContainerItemProxy */;
+		};
+		0A59E8FB20AADD570090E89C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0AEF8A8F20A08899006A1265 /* MultisigWalletApplication */;
+			targetProxy = 0A59E8FA20AADD570090E89C /* PBXContainerItemProxy */;
 		};
 		0AEF8A8820A08889006A1265 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
