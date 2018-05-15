@@ -9,7 +9,7 @@ import MultisigWalletApplication
 import EthereumApplication
 
 protocol PairWithBrowserDelegate: class {
-    func didPair(_ extensionAddress: String)
+    func didPair()
 }
 
 final class PairWithBrowserExtensionViewController: UIViewController {
@@ -26,7 +26,6 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     @IBOutlet weak var finishButton: UIButton!
 
     private(set) weak var delegate: PairWithBrowserDelegate?
-    private var initialExtensionAddress: String?
     private var logger: Logger {
         return ApplicationServiceRegistry.logger
     }
@@ -39,11 +38,9 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     private var scannerController: UIViewController?
 
-    static func create(delegate: PairWithBrowserDelegate,
-                       extensionAddress: String? = nil) -> PairWithBrowserExtensionViewController {
+    static func create(delegate: PairWithBrowserDelegate) -> PairWithBrowserExtensionViewController {
         let controller = StoryboardScene.NewSafe.pairWithBrowserExtensionViewController.instantiate()
         controller.delegate = delegate
-        controller.initialExtensionAddress = extensionAddress
         return controller
     }
 
@@ -52,7 +49,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         extensionAddressInput.text = walletService.ownerAddress(of: .browserExtension)
         extensionAddressInput.editingMode = .scanOnly
         extensionAddressInput.qrCodeDelegate = self
-        extensionAddressInput.qrCodeConverter = ethereumService.address(signature:)
+        extensionAddressInput.qrCodeConverter = ethereumService.address(browserExtensionCode:)
         finishButton.isEnabled = walletService.isOwnerExists(.browserExtension)
         finishButton.setTitle(Strings.finish, for: .normal)
     }
@@ -63,7 +60,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             return
         }
         walletService.addOwner(address: text, type: .browserExtension)
-        delegate?.didPair(text)
+        delegate?.didPair()
     }
 
 }

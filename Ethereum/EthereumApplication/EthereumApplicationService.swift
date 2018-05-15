@@ -8,7 +8,7 @@ public class EthereumApplicationService {
 
     public init() {}
 
-    public func address(signature: String) -> String? {
+    public func address(browserExtensionCode: String) -> String? {
         return nil
     }
 }

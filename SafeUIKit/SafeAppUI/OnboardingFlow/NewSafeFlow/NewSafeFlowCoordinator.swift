@@ -8,7 +8,6 @@ import IdentityAccessApplication
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator: PaperWalletFlowCoordinator!
-    var pairWithExtensionFlowCoordinator: PairWithBrowserExtensionFlowCoordinator!
 
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
     private(set) lazy var draftSafe = try? identityService.getOrCreateDraftSafe()
@@ -45,18 +44,19 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     }
 
     func didSelectBrowserExtensionSetup() {
-        let address = draftSafe?.browserExtensionAddressString
-        pairWithExtensionFlowCoordinator = PairWithBrowserExtensionFlowCoordinator(address: address)
-        enterAndComeBack(from: pairWithExtensionFlowCoordinator) {
-// TODO: this should be done in controller because coordinator only handles controller transitions
-            if let extensionAddress = self.pairWithExtensionFlowCoordinator.extensionAddress {
-                self.identityService.confirmBrowserExtension(draftSafe: self.draftSafe!, address: extensionAddress)
-            }
-        }
+        push(PairWithBrowserExtensionViewController.create(delegate: self))
     }
 
     func didSelectNext() {
         push(PendingSafeViewController())
+    }
+
+}
+
+extension NewSafeFlowCoordinator: PairWithBrowserDelegate {
+
+    func didPair() {
+        pop()
     }
 
 }

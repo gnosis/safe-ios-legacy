@@ -95,9 +95,9 @@ class MockPairWithBrowserDelegate: PairWithBrowserDelegate {
     var paired = false
     var address = ""
 
-    func didPair(_ extensionAddress: String) {
+    func didPair() {
         paired = true
-        address = extensionAddress
+        address = "address"
     }
 
 }
