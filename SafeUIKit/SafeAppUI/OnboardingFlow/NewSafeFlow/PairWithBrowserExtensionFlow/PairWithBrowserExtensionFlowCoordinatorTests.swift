@@ -9,28 +9,25 @@ class PairWithBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
     var flowCoordinator: PairWithBrowserExtensionFlowCoordinator!
     var nav = UINavigationController()
-    var extensionAddressFromCompletion = ""
 
     override func setUp() {
         super.setUp()
-        flowCoordinator = PairWithBrowserExtensionFlowCoordinator(address: nil) {
-            [unowned self] extensionAddress in
-            self.extensionAddressFromCompletion = extensionAddress
-        }
-        let startVC = flowCoordinator.startViewController(parent: nav)
-        nav.pushViewController(startVC, animated: false)
+        flowCoordinator = PairWithBrowserExtensionFlowCoordinator(address: nil,
+                                                                  rootViewController: UINavigationController())
+        flowCoordinator.setUp()
     }
 
     func test_startViewController_returnsPairWithChromeExtensionVC() {
-        XCTAssertTrue(nav.topViewController is PairWithBrowserExtensionViewController)
-        let controller = nav.topViewController as! PairWithBrowserExtensionViewController
+        let topViewController = flowCoordinator.navigationController.topViewController
+        XCTAssertTrue(topViewController is PairWithBrowserExtensionViewController)
+        let controller = topViewController as! PairWithBrowserExtensionViewController
         XCTAssertTrue(controller.delegate === flowCoordinator)
     }
 
     func test_didPair_callsCompletion() {
         let testAddress = "test_address"
         flowCoordinator.didPair(testAddress)
-        XCTAssertEqual(extensionAddressFromCompletion, testAddress)
+        XCTAssertEqual(flowCoordinator.extensionAddress, testAddress)
     }
 
 }

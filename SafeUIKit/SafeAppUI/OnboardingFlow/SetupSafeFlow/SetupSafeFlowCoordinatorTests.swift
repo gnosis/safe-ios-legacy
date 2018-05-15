@@ -13,21 +13,24 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        setupSafeFlowCoordinator = SetupSafeFlowCoordinator()
+        setupSafeFlowCoordinator = SetupSafeFlowCoordinator(rootViewController: UINavigationController())
         newSafeFlowCoordinator = NewSafeFlowCoordinator()
+        setupSafeFlowCoordinator.setUp()
     }
 
-    func test_startViewController() {
-        let startVC = setupSafeFlowCoordinator.startViewController()
-        XCTAssertTrue(startVC.childViewControllers[0] is SetupSafeOptionsViewController)
+    func test_whenNoSafeSelected_thenShowsOptionsScreen() {
+        XCTAssertTrue(setupSafeFlowCoordinator.navigationController.topViewController is SetupSafeOptionsViewController)
     }
 
     func test_didSelectNewSafe_showsNewSafeFlowStartVC() {
-        _ = setupSafeFlowCoordinator.startViewController()
+        let testFC = TestFlowCoordinator()
+        testFC.enter(flow: newSafeFlowCoordinator)
+
         setupSafeFlowCoordinator.didSelectNewSafe()
         delay()
-        let newSafeStartVC = newSafeFlowCoordinator.startViewController().childViewControllers[0]
-        XCTAssertTrue(type(of: setupSafeFlowCoordinator.rootVC.topViewController!) == type(of: newSafeStartVC))
+        let newSafeStartVC = testFC.topViewController
+        XCTAssertTrue(type(of: setupSafeFlowCoordinator.navigationController.topViewController) ==
+            type(of: newSafeStartVC))
     }
 
 }

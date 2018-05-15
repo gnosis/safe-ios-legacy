@@ -4,6 +4,7 @@
 
 import UIKit
 import SafeUIKit
+import MultisigWalletApplication
 
 protocol SetupSafeOptionsDelegate: class {
     func didSelectNewSafe()

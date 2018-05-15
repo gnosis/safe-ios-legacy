@@ -10,20 +10,20 @@ final class OnboardingFlowCoordinator: FlowCoordinator {
     let masterPasswordFlowCoordinator = MasterPasswordFlowCoordinator()
     let setupSafeFlowCoordinator = SetupSafeFlowCoordinator()
 
-    override init() {
-        super.init()
-        masterPasswordFlowCoordinator.completion = masterPasswordCompletion
+    private var isUserRegistered: Bool {
+        return ApplicationServiceRegistry.authenticationService.isUserRegistered
     }
 
-    private func masterPasswordCompletion() {
-        let vc = setupSafeFlowCoordinator.startViewController(parent: rootVC)
-        rootVC.setViewControllers([vc], animated: true)
-    }
-
-    override func flowStartController() -> UIViewController {
-        return ApplicationServiceRegistry.authenticationService.isUserRegistered ?
-            setupSafeFlowCoordinator.startViewController(parent: rootVC) :
-            masterPasswordFlowCoordinator.startViewController(parent: rootVC)
+    override func setUp() {
+        super.setUp()
+        if isUserRegistered {
+            enter(flow: setupSafeFlowCoordinator)
+        } else {
+            enter(flow: masterPasswordFlowCoordinator) { [unowned self] in
+                self.clearNavigationStack()
+                self.enter(flow: self.setupSafeFlowCoordinator)
+            }
+        }
     }
 
 }

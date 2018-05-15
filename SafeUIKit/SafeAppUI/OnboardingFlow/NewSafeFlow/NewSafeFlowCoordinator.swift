@@ -8,32 +8,29 @@ import IdentityAccessApplication
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator: PaperWalletFlowCoordinator!
-    var pairWithBrowserExtensionFlowCoordinator: PairWithBrowserExtensionFlowCoordinator!
+    var pairWithExtensionFlowCoordinator: PairWithBrowserExtensionFlowCoordinator!
 
     private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
-    private var startVC: UIViewController!
     private(set) lazy var draftSafe = try? identityService.getOrCreateDraftSafe()
 
-    override init() {
-        super.init()
-        paperWalletFlowCoordinator = PaperWalletFlowCoordinator(
-            draftSafe: draftSafe,
-            completion: paperWalletSetupCompletion)
+    override init(rootViewController: UIViewController? = nil) {
+        super.init(rootViewController: rootViewController)
+        paperWalletFlowCoordinator = PaperWalletFlowCoordinator(draftSafe: draftSafe)
     }
 
-    override func flowStartController() -> UIViewController {
-        startVC = NewSafeViewController.create(draftSafe: draftSafe, delegate: self)
-        return startVC
+    override func setUp() {
+        super.setUp()
+        push(NewSafeViewController.create(draftSafe: draftSafe, delegate: self))
     }
 
-    private func paperWalletSetupCompletion() {
-        identityService.confirmPaperWallet(draftSafe: draftSafe!)
-        rootVC.popToViewController(startVC, animated: true)
-    }
-
-    private func pairWithBrowserExtensionCompletion(extensionAddress: String) {
-        identityService.confirmBrowserExtension(draftSafe: draftSafe!, address: extensionAddress)
-        rootVC.popToViewController(startVC, animated: true)
+    func enterAndComeBack(from coordinator: FlowCoordinator, completion: @escaping () -> Void) {
+        let startVC = navigationController.topViewController
+        enter(flow: coordinator) {
+            completion()
+            if let startVC = startVC {
+                self.pop(to: startVC)
+            }
+        }
     }
 
 }
@@ -41,20 +38,23 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
 extension NewSafeFlowCoordinator: NewSafeDelegate {
 
     func didSelectPaperWalletSetup() {
-        let controller = paperWalletFlowCoordinator.startViewController(parent: rootVC)
-        rootVC.pushViewController(controller, animated: true)
+        enterAndComeBack(from: paperWalletFlowCoordinator) {
+            self.identityService.confirmPaperWallet(draftSafe: self.draftSafe!)
+        }
     }
 
     func didSelectBrowserExtensionSetup() {
-        pairWithBrowserExtensionFlowCoordinator = PairWithBrowserExtensionFlowCoordinator(
-            address: draftSafe?.browserExtensionAddressString,
-            completion: pairWithBrowserExtensionCompletion)
-        let controller = pairWithBrowserExtensionFlowCoordinator.startViewController(parent: rootVC)
-        rootVC.pushViewController(controller, animated: true)
+        let address = draftSafe?.browserExtensionAddressString
+        pairWithExtensionFlowCoordinator = PairWithBrowserExtensionFlowCoordinator(address: address)
+        enterAndComeBack(from: pairWithExtensionFlowCoordinator) {
+            if let extensionAddress = self.pairWithExtensionFlowCoordinator.extensionAddress {
+                self.identityService.confirmBrowserExtension(draftSafe: self.draftSafe!, address: extensionAddress)
+            }
+        }
     }
 
     func didSelectNext() {
-       rootVC.pushViewController(PendingSafeViewController(), animated: false)
+        push(PendingSafeViewController())
     }
 
 }

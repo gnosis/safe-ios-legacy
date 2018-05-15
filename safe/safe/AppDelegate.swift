@@ -9,13 +9,14 @@ import SafeAppUI
 import IdentityAccessApplication
 import IdentityAccessDomainModel
 import IdentityAccessImplementations
+import MultisigWalletApplication
 import Database
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    lazy var coordinator: AppFlowCoordinatorProtocol = AppFlowCoordinator()
+    lazy var coordinator = AppFlowCoordinator()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -30,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func configureDependencyInjection() {
+        MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletApplicationService(),
+                                                                 for: WalletApplicationService.self)
         ApplicationServiceRegistry.put(service: AuthenticationApplicationService(),
                                        for: AuthenticationApplicationService.self)
         ApplicationServiceRegistry.put(service: IdentityApplicationService(), for: IdentityApplicationService.self)

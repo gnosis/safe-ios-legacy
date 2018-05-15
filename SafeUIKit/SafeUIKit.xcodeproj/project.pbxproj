@@ -73,8 +73,11 @@
 		0A334E6D209C8F8800ABC6AE /* FatalErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E69209C8F8500ABC6AE /* FatalErrorHandlerTests.swift */; };
 		0A334E6F209C8FB100ABC6AE /* SafeFoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E6E209C8FB100ABC6AE /* SafeFoundationExtensions.swift */; };
 		0A34BC63207B80A700636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC62207B80A700636560 /* libCommonTestSupport.a */; };
+		0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668C20A5E059009BA7FC /* MainViewController.swift */; };
+		0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */; };
 		0A53AD5320598B5000D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD5520598B5000D713AD /* Localizable.strings */; };
 		0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */; };
+		0A59E90220AAE24A0090E89C /* TestFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */; };
 		0A5DC575209C9AB600BA7A06 /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */; };
 		0A5DC577209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5DC576209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift */; };
 		0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */; };
@@ -328,8 +331,11 @@
 		0A334E6E209C8FB100ABC6AE /* SafeFoundationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensions.swift; sourceTree = "<group>"; };
 		0A334E70209C918A00ABC6AE /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0A34BC62207B80A700636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A40668C20A5E059009BA7FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A53AD5420598B5000D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD5620598B5E00D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A5DC574209C9A8600BA7A06 /* TestConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TestConfig.xcconfig; sourceTree = "<group>"; };
 		0A5DC576209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensionsTests.swift; sourceTree = "<group>"; };
 		0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+SafeUIKit.swift"; sourceTree = "<group>"; };
@@ -418,6 +424,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */,
 				0A334E64209C8ED300ABC6AE /* libIdentityAccessApplication.a in Frameworks */,
 				0A334DCA209C6DEC00ABC6AE /* SafeUIKit.framework in Frameworks */,
 			);
@@ -439,11 +446,11 @@
 		0A334DB2209C6D8600ABC6AE /* SetupSafeFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */,
-				0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */,
-				0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */,
 				0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */,
+				0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */,
+				0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */,
 				0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */,
+				0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */,
 			);
 			path = SetupSafeFlow;
 			sourceTree = "<group>";
@@ -460,11 +467,11 @@
 		0A334DF8209C8E3800ABC6AE /* OnboardingFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334DF9209C8E3800ABC6AE /* OnboardingFlowCoordinatorTests.swift */,
-				0A334DFA209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift */,
-				0A334DB2209C6D8600ABC6AE /* SetupSafeFlow */,
-				0A334DFB209C8E3800ABC6AE /* NewSafeFlow */,
 				0A334E10209C8E3800ABC6AE /* MasterPasswordFlow */,
+				0A334DFB209C8E3800ABC6AE /* NewSafeFlow */,
+				0A334DFA209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift */,
+				0A334DF9209C8E3800ABC6AE /* OnboardingFlowCoordinatorTests.swift */,
+				0A334DB2209C6D8600ABC6AE /* SetupSafeFlow */,
 			);
 			path = OnboardingFlow;
 			sourceTree = "<group>";
@@ -472,15 +479,15 @@
 		0A334DFB209C8E3800ABC6AE /* NewSafeFlow */ = {
 			isa = PBXGroup;
 			children = (
+				0A334E00209C8E3800ABC6AE /* NewSafe.storyboard */,
 				0A334DFD209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift */,
 				0A334E0A209C8E3800ABC6AE /* NewSafeFlowCoordinatorTests.swift */,
 				0A334DFC209C8E3800ABC6AE /* NewSafeViewController.swift */,
 				0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */,
+				0A334E0B209C8E3800ABC6AE /* PairWithBrowserExtensionFlow */,
+				0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */,
 				0A334E09209C8E3800ABC6AE /* PendingSafeViewController.swift */,
 				0A334DFF209C8E3800ABC6AE /* PendingSafeViewControllerTests.swift */,
-				0A334E00209C8E3800ABC6AE /* NewSafe.storyboard */,
-				0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */,
-				0A334E0B209C8E3800ABC6AE /* PairWithBrowserExtensionFlow */,
 			);
 			path = NewSafeFlow;
 			sourceTree = "<group>";
@@ -488,12 +495,12 @@
 		0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334E03209C8E3800ABC6AE /* SaveMnemonicViewControllerTests.swift */,
-				0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */,
+				0A334E07209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift */,
 				0A334E05209C8E3800ABC6AE /* ConfirmMnemonicViewControllerTests.swift */,
 				0A334E06209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift */,
-				0A334E07209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift */,
+				0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */,
 				0A334E08209C8E3800ABC6AE /* SaveMnemonicViewController.swift */,
+				0A334E03209C8E3800ABC6AE /* SaveMnemonicViewControllerTests.swift */,
 			);
 			path = PaperWalletSetupFlow;
 			sourceTree = "<group>";
@@ -512,17 +519,17 @@
 		0A334E10209C8E3800ABC6AE /* MasterPasswordFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334E11209C8E3800ABC6AE /* PasswordValidatorTests.swift */,
-				0A334E12209C8E3800ABC6AE /* MasterPassword.storyboard */,
-				0A334E13209C8E3800ABC6AE /* StartViewController.swift */,
-				0A334E14209C8E3800ABC6AE /* SetPasswordViewControllerTests.swift */,
-				0A334E15209C8E3800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift */,
-				0A334E16209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift */,
-				0A334E17209C8E3800ABC6AE /* PasswordValidator.swift */,
-				0A334E18209C8E3800ABC6AE /* ConfirmPaswordViewControllerTests.swift */,
-				0A334E19209C8E3800ABC6AE /* StartViewControllerTests.swift */,
-				0A334E1A209C8E3800ABC6AE /* SetPasswordViewController.swift */,
 				0A334E1B209C8E3800ABC6AE /* ConfirmPaswordViewController.swift */,
+				0A334E18209C8E3800ABC6AE /* ConfirmPaswordViewControllerTests.swift */,
+				0A334E12209C8E3800ABC6AE /* MasterPassword.storyboard */,
+				0A334E16209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift */,
+				0A334E15209C8E3800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift */,
+				0A334E17209C8E3800ABC6AE /* PasswordValidator.swift */,
+				0A334E11209C8E3800ABC6AE /* PasswordValidatorTests.swift */,
+				0A334E1A209C8E3800ABC6AE /* SetPasswordViewController.swift */,
+				0A334E14209C8E3800ABC6AE /* SetPasswordViewControllerTests.swift */,
+				0A334E13209C8E3800ABC6AE /* StartViewController.swift */,
+				0A334E19209C8E3800ABC6AE /* StartViewControllerTests.swift */,
 			);
 			path = MasterPasswordFlow;
 			sourceTree = "<group>";
@@ -530,13 +537,14 @@
 		0A334E20209C8E3800ABC6AE /* AppFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */,
-				0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */,
-				0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */,
-				0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */,
 				0A334E26209C8E3800ABC6AE /* AppFlow.storyboard */,
-				0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */,
+				0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */,
+				0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */,
+				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
+				0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */,
 				0A334E28209C8E3800ABC6AE /* CountdownLabelTests.swift */,
+				0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */,
+				0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
@@ -544,6 +552,7 @@
 		0A34BC61207B80A700636560 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */,
 				0A334E63209C8ED300ABC6AE /* libIdentityAccessApplication.a */,
 				0A334DE8209C894D00ABC6AE /* libIdentityAccessApplication.a */,
 				0A334DEA209C894D00ABC6AE /* libIdentityAccessDomainModel.a */,
@@ -670,6 +679,7 @@
 				0A334DDC209C726100ABC6AE /* generated */,
 				0A334DC3209C6DB200ABC6AE /* FlowCoordinator.swift */,
 				0A334DC4209C6DB200ABC6AE /* FlowCoordinatorTests.swift */,
+				0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */,
 				0A334DE2209C892700ABC6AE /* SafeTestCase.swift */,
 				0A334E20209C8E3800ABC6AE /* AppFlow */,
 				0A334DF8209C8E3800ABC6AE /* OnboardingFlow */,
@@ -1172,6 +1182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
+				0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
@@ -1203,6 +1214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A59E90220AAE24A0090E89C /* TestFlowCoordinator.swift in Sources */,
 				0A334E52209C8E6800ABC6AE /* UnlockViewControllerTests.swift in Sources */,
 				0A334E5E209C8E6800ABC6AE /* PasswordValidatorTests.swift in Sources */,
 				0A334E62209C8E6800ABC6AE /* StartViewControllerTests.swift in Sources */,

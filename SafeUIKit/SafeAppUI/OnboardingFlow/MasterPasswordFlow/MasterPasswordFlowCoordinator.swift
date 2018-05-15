@@ -8,10 +8,9 @@ typealias MasterPasswordFlowCompletion = () -> Void
 
 final class MasterPasswordFlowCoordinator: FlowCoordinator {
 
-    var completion: MasterPasswordFlowCompletion?
-
-    override func flowStartController() -> UIViewController {
-        return StartViewController.create(delegate: self)
+    override func setUp() {
+        super.setUp()
+        push(StartViewController.create(delegate: self))
     }
 
 }
@@ -19,8 +18,7 @@ final class MasterPasswordFlowCoordinator: FlowCoordinator {
 extension MasterPasswordFlowCoordinator: StartViewControllerDelegate {
 
     func didStart() {
-        let vc = SetPasswordViewController.create(delegate: self)
-        rootVC.show(vc, sender: nil)
+        push(SetPasswordViewController.create(delegate: self))
     }
 
 }
@@ -28,8 +26,7 @@ extension MasterPasswordFlowCoordinator: StartViewControllerDelegate {
 extension MasterPasswordFlowCoordinator: SetPasswordViewControllerDelegate {
 
     func didSetPassword(_ password: String) {
-        let vc = ConfirmPaswordViewController.create(referencePassword: password, delegate: self)
-        rootVC.show(vc, sender: nil)
+        push(ConfirmPaswordViewController.create(referencePassword: password, delegate: self))
     }
 
 }
@@ -37,7 +34,7 @@ extension MasterPasswordFlowCoordinator: SetPasswordViewControllerDelegate {
 extension MasterPasswordFlowCoordinator: ConfirmPasswordViewControllerDelegate {
 
     func didConfirmPassword() {
-        completion?()
+        exitFlow()
     }
 
 }
