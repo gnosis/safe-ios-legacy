@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import MultisigWalletApplication
 
 public final class SetupSafeFlowCoordinator: FlowCoordinator {
 
@@ -11,6 +12,9 @@ public final class SetupSafeFlowCoordinator: FlowCoordinator {
     override func setUp() {
         super.setUp()
         push(SetupSafeOptionsViewController.create(delegate: self))
+        if ApplicationServiceRegistry.walletService.selectedWalletState == .newDraft {
+            enter(flow: newSafeFlowCoordinator)
+        }
     }
 }
 

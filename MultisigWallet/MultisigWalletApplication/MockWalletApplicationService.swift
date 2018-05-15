@@ -11,12 +11,17 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
     private var _hasReadyToUseWallet = false
 
+    public override var selectedWalletState: WalletState {
+        return _selectedWalletState
+    }
+    private var _selectedWalletState: WalletState = .none
+
     public func createReadyToUseWallet() {
         _hasReadyToUseWallet = true
     }
 
     public func createNewDraftWallet() {
-
+        _selectedWalletState = .newDraft
     }
 
 }

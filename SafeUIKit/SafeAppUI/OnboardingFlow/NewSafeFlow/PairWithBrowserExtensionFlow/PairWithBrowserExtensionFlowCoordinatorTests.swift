@@ -12,7 +12,8 @@ class PairWithBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        flowCoordinator = PairWithBrowserExtensionFlowCoordinator(address: nil, rootViewController: UINavigationController())
+        flowCoordinator = PairWithBrowserExtensionFlowCoordinator(address: nil,
+                                                                  rootViewController: UINavigationController())
         flowCoordinator.setUp()
     }
 
