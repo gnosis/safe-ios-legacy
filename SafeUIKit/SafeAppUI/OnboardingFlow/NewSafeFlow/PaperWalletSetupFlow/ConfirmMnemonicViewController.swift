@@ -32,6 +32,7 @@ final class ConfirmMnemonicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // TODO: ethereumApplicationService.createMnemonicChallenge(for: address)
         guard let words = words, words.count > 1 else {
             dismiss(animated: true)
             return
@@ -69,6 +70,8 @@ extension ConfirmMnemonicViewController: TextInputDelegate {
     func textInputDidReturn(_ textInput: TextInput) {
         if firstWordTextInput.text == firstMnemonicWordToCheck &&
             secondWordTextInput.text == secondMnemonicWordToCheck {
+            // TODO: ethereumApplicationService.solve(challenge, with: key)
+            // walletApplicationService.addOwner(address)
             delegate?.didConfirm()
         } else if textInput == firstWordTextInput {
             _ = secondWordTextInput.becomeFirstResponder()
