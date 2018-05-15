@@ -25,20 +25,18 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
     }
 
     func test_viewDidLoad() {
-        controller.viewDidLoad()
         XCTAssertTrue(controller.extensionAddressInput.qrCodeDelegate === controller)
         XCTAssertEqual(controller.extensionAddressInput.editingMode, .scanOnly)
     }
 
     func test_viewDidLoad_whenNoInitialAddress_thenFinishButtonIsDisabled() {
-        controller.viewDidLoad()
         XCTAssertFalse(controller.finishButton.isEnabled)
     }
 
     func test_viewDidLoad_whenInitialAddressProvided_thenFinishButtonIsEnabled() {
-        controller = PairWithBrowserExtensionViewController.create(delegate: delegate, extensionAddress: "test")
+        walletService.addOwner(address: "address", type: .browserExtension)
+        controller = PairWithBrowserExtensionViewController.create(delegate: delegate)
         controller.loadViewIfNeeded()
-        controller.viewDidLoad()
         XCTAssertTrue(controller.finishButton.isEnabled)
     }
 
@@ -50,7 +48,6 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
     }
 
     func test_didScanValidCode_makesFinishButtonEnabled() {
-        controller.viewDidLoad()
         controller.didScanValidCode()
         XCTAssertTrue(controller.finishButton.isEnabled)
     }
@@ -81,8 +78,14 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
     func test_finish_whenAddressIsThere_thenCallsDelegate() {
         controller.extensionAddressInput.text = "test_address"
         controller.finish(self)
-        XCTAssertEqual(controller.extensionAddressInput.text, delegate.address)
         XCTAssertTrue(delegate.paired)
+    }
+
+    func test_whenFinishing_thenCreatesOwner() {
+        walletService.createNewDraftWallet()
+        controller.extensionAddressInput.text = "address"
+        controller.finish(self)
+        XCTAssertTrue(walletService.isOwnerExists(.browserExtension))
     }
 
 }

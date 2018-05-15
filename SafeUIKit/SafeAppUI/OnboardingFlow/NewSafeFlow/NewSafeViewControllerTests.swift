@@ -52,15 +52,15 @@ class NewSafeViewControllerTests: SafeTestCase {
     }
 
     func test_viewWillAppear_whenDraftSafeHasConfiguredAddress_thenCheckmarksAreSet() {
-        walletService.existingOwners = [.thisDevice]
+        walletService.addOwner(address: "address", type: .thisDevice)
         controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .normal, .normal)
 
-        walletService.existingOwners = [.thisDevice, .paperWallet]
+        walletService.addOwner(address: "address", type: .paperWallet)
         controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .selected, .normal)
 
-        walletService.existingOwners = [.thisDevice, .paperWallet, .browserExtension]
+        walletService.addOwner(address: "address", type: .browserExtension)
         controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .selected, .selected)
     }

@@ -16,7 +16,7 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
     private var _selectedWalletState: WalletState = .none
 
-    public var existingOwners: [OwnerType] = []
+    private var existingOwners: [OwnerType: String] = [:]
 
     public func createReadyToUseWallet() {
         _hasReadyToUseWallet = true
@@ -31,15 +31,27 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public override func isOwnerExists(_ type: OwnerType) -> Bool {
-        return existingOwners.contains(type)
+        return existingOwners[type] != nil
     }
 
     public func createReadyToDeployWallet() {
         _selectedWalletState = .readyToDeploy
+        existingOwners = [
+            .thisDevice: "thisDeviceAddress",
+            .browserExtension: "browserExtensionAddress",
+            .paperWallet: "paperWalletAddress"
+        ]
     }
 
     public override func startDeployment() {
         _selectedWalletState = .pendingDeployment
     }
 
+    public override func addOwner(address: String, type: WalletApplicationService.OwnerType) {
+        existingOwners[type] = address
+    }
+
+    public override func ownerAddress(of type: WalletApplicationService.OwnerType) -> String? {
+        return existingOwners[type]
+    }
 }

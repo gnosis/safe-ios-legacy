@@ -8,9 +8,11 @@ import IdentityAccessApplication
 import IdentityAccessDomainModel
 import IdentityAccessImplementations
 import MultisigWalletApplication
+import EthereumApplication
 
 class SafeTestCase: XCTestCase {
 
+    let ethereumService = MockEthereumApplicationService()
     let walletService = MockWalletApplicationService()
     let authenticationService = MockAuthenticationService()
     let clock = MockClockService()
@@ -23,6 +25,7 @@ class SafeTestCase: XCTestCase {
         super.setUp()
         configureIdentityAccessModule()
         configureMultisigWalletModule()
+        configureEthereumModule()
     }
 
     private func configureIdentityAccessModule() {
@@ -45,6 +48,11 @@ class SafeTestCase: XCTestCase {
     private func configureMultisigWalletModule() {
         let applicationRegistry = MultisigWalletApplication.ApplicationServiceRegistry.self
         applicationRegistry.put(service: walletService, for: WalletApplicationService.self)
+    }
+
+    private func configureEthereumModule() {
+        let applicationRegistry = EthereumApplication.ApplicationServiceRegistry.self
+        applicationRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
     }
 
 }

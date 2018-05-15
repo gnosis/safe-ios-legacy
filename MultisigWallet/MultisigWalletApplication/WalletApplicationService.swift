@@ -39,6 +39,13 @@ public class WalletApplicationService {
         return false
     }
 
+    public func addOwner(address: String, type: OwnerType) {
+    }
+
+    public func ownerAddress(of type: OwnerType) -> String? {
+        return nil
+    }
+
     public func startDeployment() {
     }
 

@@ -5,6 +5,8 @@
 import UIKit
 import SafeUIKit
 import IdentityAccessApplication
+import MultisigWalletApplication
+import EthereumApplication
 
 protocol PairWithBrowserDelegate: class {
     func didPair(_ extensionAddress: String)
@@ -25,18 +27,17 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     private(set) weak var delegate: PairWithBrowserDelegate?
     private var initialExtensionAddress: String?
-    private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
-    private var logger: Logger { return ApplicationServiceRegistry.logger }
+    private var logger: Logger {
+        return ApplicationServiceRegistry.logger
+    }
+    private var walletService: WalletApplicationService {
+        return ApplicationServiceRegistry.walletService
+    }
+    private var ethereumService: EthereumApplicationService {
+        return ApplicationServiceRegistry.ethereumService
+    }
 
     private var scannerController: UIViewController?
-
-    @IBAction func finish(_ sender: Any) {
-        guard let text = extensionAddressInput.text, !text.isEmpty else {
-            logger.error("Wrong state in PairWithBrowserExtensionViewController.")
-            return
-        }
-        delegate?.didPair(text)
-    }
 
     static func create(delegate: PairWithBrowserDelegate,
                        extensionAddress: String? = nil) -> PairWithBrowserExtensionViewController {
@@ -48,17 +49,21 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        extensionAddressInput.text = initialExtensionAddress
+        extensionAddressInput.text = walletService.ownerAddress(of: .browserExtension)
         extensionAddressInput.editingMode = .scanOnly
         extensionAddressInput.qrCodeDelegate = self
-        extensionAddressInput.qrCodeConverter = { [unowned self] code in
-            // TODO: use application service
-            // address = ethereumApplicationService.createExternallyOwnedAccount(signature: <code>)
-            // walletApplicationService.addOwner(address)
-            return self.identityService.convertBrowserExtensionCodeIntoEthereumAddress(code)
-        }
-        finishButton.isEnabled = initialExtensionAddress != nil
+        extensionAddressInput.qrCodeConverter = ethereumService.address(signature:)
+        finishButton.isEnabled = walletService.isOwnerExists(.browserExtension)
         finishButton.setTitle(Strings.finish, for: .normal)
+    }
+
+    @IBAction func finish(_ sender: Any) {
+        guard let text = extensionAddressInput.text, !text.isEmpty else {
+            logger.error("Wrong state in PairWithBrowserExtensionViewController.")
+            return
+        }
+        walletService.addOwner(address: text, type: .browserExtension)
+        delegate?.didPair(text)
     }
 
 }

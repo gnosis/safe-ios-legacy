@@ -78,6 +78,7 @@
 		0A53AD5320598B5000D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD5520598B5000D713AD /* Localizable.strings */; };
 		0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */; };
 		0A59E90220AAE24A0090E89C /* TestFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */; };
+		0A59E91E20AB15E30090E89C /* libEthereumApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A59E91D20AB15E30090E89C /* libEthereumApplication.a */; };
 		0A5DC575209C9AB600BA7A06 /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */; };
 		0A5DC577209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5DC576209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift */; };
 		0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */; };
@@ -336,6 +337,7 @@
 		0A53AD5420598B5000D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD5620598B5E00D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFlowCoordinator.swift; sourceTree = "<group>"; };
+		0A59E91D20AB15E30090E89C /* libEthereumApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEthereumApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A5DC574209C9A8600BA7A06 /* TestConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TestConfig.xcconfig; sourceTree = "<group>"; };
 		0A5DC576209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensionsTests.swift; sourceTree = "<group>"; };
 		0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+SafeUIKit.swift"; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A59E91E20AB15E30090E89C /* libEthereumApplication.a in Frameworks */,
 				0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */,
 				0A334E64209C8ED300ABC6AE /* libIdentityAccessApplication.a in Frameworks */,
 				0A334DCA209C6DEC00ABC6AE /* SafeUIKit.framework in Frameworks */,
@@ -552,6 +555,7 @@
 		0A34BC61207B80A700636560 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A59E91D20AB15E30090E89C /* libEthereumApplication.a */,
 				0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */,
 				0A334E63209C8ED300ABC6AE /* libIdentityAccessApplication.a */,
 				0A334DE8209C894D00ABC6AE /* libIdentityAccessApplication.a */,
