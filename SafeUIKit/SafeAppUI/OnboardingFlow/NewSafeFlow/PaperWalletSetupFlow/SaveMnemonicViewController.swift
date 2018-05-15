@@ -44,8 +44,6 @@ final class SaveMnemonicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: ethereumApplicationService.createNewExternallyOwnedAccount() -> account address
-        // ethereumApplicationService.mnemonic(for: address)
         guard !words.isEmpty else {
             dismiss(animated: true)
             return

@@ -29,7 +29,6 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
 
     func didSelectPaperWalletSetup() {
         transitionThenPopToStart(with: paperWalletFlowCoordinator) {
-            // TODO: this should be done in controller
             self.identityService.confirmPaperWallet(draftSafe: self.draftSafe!)
         }
     }
@@ -38,7 +37,6 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
         let address = draftSafe?.browserExtensionAddressString
         pairWithExtensionFlowCoordinator = PairWithBrowserExtensionFlowCoordinator(address: address)
         transitionThenPopToStart(with: pairWithExtensionFlowCoordinator) {
-            // TODO: this should be done in controller because coordinator only handles controller transitions
             if let extensionAddress = self.pairWithExtensionFlowCoordinator.extensionAddress {
                 self.identityService.confirmBrowserExtension(draftSafe: self.draftSafe!, address: extensionAddress)
             }

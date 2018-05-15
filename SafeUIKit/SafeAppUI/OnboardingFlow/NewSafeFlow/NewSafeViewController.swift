@@ -42,10 +42,6 @@ class NewSafeViewController: UIViewController {
     }
 
     @IBAction func navigateNext(_ sender: Any) {
-        // TODO: precondition: wallet with 3 owners set
-        // postcondition: wallet deployment started, ethereum transaction created, safe address known
-        // ethereumApplicationService.safeContractTransaction() -> tx, safeAddress(from: tx)
-        // walletApplicationSerivce.startDeployment(safeAddress)
         delegate?.didSelectNext()
     }
 
@@ -67,9 +63,6 @@ class NewSafeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // TODO: precondition: existing draft wallet (selected wallet)
-        // its state is read into owners
-        // a) primary b) browser extension c) paper wallet
         guard let draftSafe = draftSafe else { return }
         paperWalletButton.checkmarkStatus =
             draftSafe.confirmedAddresses.contains(.paperWallet) ? .selected : .normal

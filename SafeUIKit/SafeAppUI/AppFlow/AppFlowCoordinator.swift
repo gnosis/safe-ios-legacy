@@ -30,7 +30,6 @@ open class AppFlowCoordinator: FlowCoordinator {
         super.init(rootViewController: TransparentNavigationController())
     }
 
-    // TODO: transform to setUp()
     open func startViewController() -> UIViewController {
         if walletService.hasReadyToUseWallet {
             lockedViewController = mainController()
