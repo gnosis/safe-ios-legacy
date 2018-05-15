@@ -20,7 +20,7 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-        push(NewSafeViewController.create(draftSafe: draftSafe, delegate: self))
+        push(NewSafeViewController.create(delegate: self))
     }
 
     func enterAndComeBack(from coordinator: FlowCoordinator, completion: @escaping () -> Void) {

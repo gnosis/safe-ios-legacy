@@ -9,6 +9,8 @@ public class WalletApplicationService {
     public enum WalletState {
         case none
         case newDraft
+        case readyToDeploy
+        case pendingDeployment
     }
 
     public var selectedWalletState: WalletState {
@@ -20,5 +22,24 @@ public class WalletApplicationService {
     }
 
     public init() {}
+
+    public func createNewDraftWallet() {
+
+    }
+
+    public enum OwnerType {
+        case thisDevice
+        case browserExtension
+        case paperWallet
+
+        static let all: [OwnerType] = [.thisDevice, .browserExtension, .paperWallet]
+    }
+
+    public func isOwnerExists(_ type: OwnerType) -> Bool {
+        return false
+    }
+
+    public func startDeployment() {
+    }
 
 }

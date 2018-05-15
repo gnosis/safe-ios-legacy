@@ -16,12 +16,30 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
     private var _selectedWalletState: WalletState = .none
 
+    public var existingOwners: [OwnerType] = []
+
     public func createReadyToUseWallet() {
         _hasReadyToUseWallet = true
     }
 
-    public func createNewDraftWallet() {
+    public override func createNewDraftWallet() {
         _selectedWalletState = .newDraft
+    }
+
+    public func removeSelectedWallet() {
+        _selectedWalletState = .none
+    }
+
+    public override func isOwnerExists(_ type: OwnerType) -> Bool {
+        return existingOwners.contains(type)
+    }
+
+    public func createReadyToDeployWallet() {
+        _selectedWalletState = .readyToDeploy
+    }
+
+    public override func startDeployment() {
+        _selectedWalletState = .pendingDeployment
     }
 
 }

@@ -5,7 +5,7 @@
 import XCTest
 @testable import SafeAppUI
 
-class SetupSafeOptionsViewControllerTests: XCTestCase {
+class SetupSafeOptionsViewControllerTests: SafeTestCase {
 
     // swiftlint:disable weak_delegate
     let delegate = MockSetupSafeOptionsDelegate()
@@ -27,6 +27,11 @@ class SetupSafeOptionsViewControllerTests: XCTestCase {
         XCTAssertFalse(delegate.pressedNewSafe)
         vc.createNewSafe(self)
         XCTAssertTrue(delegate.pressedNewSafe)
+    }
+
+    func test_whenNewSafeButtonPressed_thenNewWalletCreated() {
+        vc.createNewSafe(vc)
+        XCTAssertTrue(walletService.selectedWalletState == .newDraft)
     }
 
 }
