@@ -17,11 +17,11 @@ final class OnboardingFlowCoordinator: FlowCoordinator {
     override func setUp() {
         super.setUp()
         if isUserRegistered {
-            transition(to: setupSafeFlowCoordinator)
+            enter(flow: setupSafeFlowCoordinator)
         } else {
-            transition(to: masterPasswordFlowCoordinator) { [unowned self] in
+            enter(flow: masterPasswordFlowCoordinator) { [unowned self] in
                 self.clearNavigationStack()
-                self.transition(to: self.setupSafeFlowCoordinator)
+                self.enter(flow: self.setupSafeFlowCoordinator)
             }
         }
     }

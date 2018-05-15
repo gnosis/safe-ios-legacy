@@ -47,15 +47,15 @@ class AppDelegateTests: XCTestCase {
 
 }
 
-class MockCoordinator: AppFlowCoordinatorProtocol {
+class MockCoordinator: AppFlowCoordinator {
 
     var didBecomeActive = false
 
-    func appEntersForeground() {
+    override func appEntersForeground() {
         didBecomeActive = true
     }
 
-    func startViewController() -> UIViewController {
+    override func startViewController() -> UIViewController {
         return UIViewController()
     }
 

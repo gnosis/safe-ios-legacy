@@ -42,7 +42,7 @@ class PaperWalletFlowCoordinatorTests: SafeTestCase {
 
     func test_didPressContinue_whenDraftSafePaperWalletIsConfirmed_thenCallsCompletion() {
         let testFC = TestFlowCoordinator()
-        testFC.transition(to: coordinator) {
+        testFC.enter(flow: coordinator) {
             self.completionCalled = true
         }
         identityService.confirmPaperWallet(draftSafe: draftSafe)
@@ -52,7 +52,7 @@ class PaperWalletFlowCoordinatorTests: SafeTestCase {
 
     func test_didConfirm_callsCompletion() {
         let testFC = TestFlowCoordinator()
-        testFC.transition(to: coordinator) {
+        testFC.enter(flow: coordinator) {
             self.completionCalled = true
         }
         coordinator.didConfirm()

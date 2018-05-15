@@ -18,7 +18,7 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
     func test_startViewController_whenNoMasterPassword_thenMasterPasswordFlowStarted() {
         let testFC = TestFlowCoordinator()
         let masterPasswordFC = MasterPasswordFlowCoordinator()
-        testFC.transition(to: masterPasswordFC)
+        testFC.enter(flow: masterPasswordFC)
         let expectedController = testFC.topViewController
 
         authenticationService.unregisterUser()
@@ -31,7 +31,7 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
     func test_startViewController_whenMasterPasswordIsSet_thenNewSafeFlowStarted() {
         let testFC = TestFlowCoordinator()
         let setupSafeFC = SetupSafeFlowCoordinator()
-        testFC.transition(to: setupSafeFC)
+        testFC.enter(flow: setupSafeFC)
         let expectedController = testFC.topViewController
 
         try? authenticationService.registerUser(password: "password")

@@ -34,7 +34,7 @@ class MasterPasswordFlowCoordinatorTests: XCTestCase {
     func test_whenDidConfirmPassword_thenFlowCompletionIsCalled() {
         var hasSetMasterPassword = false
         let testFC = TestFlowCoordinator()
-        testFC.transition(to: flowCoordinator) {
+        testFC.enter(flow: flowCoordinator) {
             hasSetMasterPassword = true
         }
         XCTAssertFalse(hasSetMasterPassword)

@@ -20,7 +20,7 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-        pushController(NewSafeViewController.create(draftSafe: draftSafe, delegate: self))
+        push(NewSafeViewController.create(draftSafe: draftSafe, delegate: self))
     }
 
 }
@@ -47,7 +47,7 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
 
     func transitionThenPopToStart(with coordinator: FlowCoordinator, completion: @escaping () -> Void) {
         let startVC = navigationController.topViewController
-        transition(to: coordinator) {
+        enter(flow: coordinator) {
             completion()
             if let startVC = startVC {
                 self.pop(to: startVC)
@@ -56,7 +56,7 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     }
 
     func didSelectNext() {
-        pushController(PendingSafeViewController())
+        push(PendingSafeViewController())
     }
 
 }

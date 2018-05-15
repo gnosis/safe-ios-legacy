@@ -19,7 +19,7 @@ final class PaperWalletFlowCoordinator: FlowCoordinator {
     override func setUp() {
         super.setUp()
         let words = draftSafe?.paperWalletMnemonicWords ?? []
-        pushController(SaveMnemonicViewController.create(words: words, delegate: self))
+        push(SaveMnemonicViewController.create(words: words, delegate: self))
     }
 
 }
@@ -32,7 +32,7 @@ extension PaperWalletFlowCoordinator: SaveMnemonicDelegate {
             return
         }
         let words = draftSafe!.paperWalletMnemonicWords
-        pushController(ConfirmMnemonicViewController.create(delegate: self, words: words))
+        push(ConfirmMnemonicViewController.create(delegate: self, words: words))
     }
 
 }

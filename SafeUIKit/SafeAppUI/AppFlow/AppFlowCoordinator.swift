@@ -6,14 +6,7 @@ import UIKit
 import IdentityAccessApplication
 import MultisigWalletApplication
 
-public protocol AppFlowCoordinatorProtocol: class {
-
-    func startViewController() -> UIViewController
-    func appEntersForeground()
-
-}
-
-public final class AppFlowCoordinator: FlowCoordinator, AppFlowCoordinatorProtocol {
+open class AppFlowCoordinator: FlowCoordinator {
 
     let onboardingFlowCoordinator = OnboardingFlowCoordinator()
     private var lockedViewController: UIViewController!
@@ -37,11 +30,12 @@ public final class AppFlowCoordinator: FlowCoordinator, AppFlowCoordinatorProtoc
         super.init(rootViewController: TransparentNavigationController())
     }
 
-    public func startViewController() -> UIViewController {
+    // TODO: transform to setUp()
+    open func startViewController() -> UIViewController {
         if walletService.hasReadyToUseWallet {
             lockedViewController = mainController()
         } else {
-            transition(to: onboardingFlowCoordinator)
+            enter(flow: onboardingFlowCoordinator)
             lockedViewController = rootViewController
         }
 
@@ -61,7 +55,7 @@ public final class AppFlowCoordinator: FlowCoordinator, AppFlowCoordinatorProtoc
         return UnlockViewController.create(completion: completion)
     }
 
-    public func appEntersForeground() {
+    open func appEntersForeground() {
         guard let rootVC = self.applicationRootViewController,
             !(rootVC is UnlockViewController) && shouldLockWhenAppActive else {
             return

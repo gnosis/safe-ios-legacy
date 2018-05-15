@@ -10,14 +10,14 @@ public final class SetupSafeFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-        pushController(SetupSafeOptionsViewController.create(delegate: self))
+        push(SetupSafeOptionsViewController.create(delegate: self))
     }
 }
 
 extension SetupSafeFlowCoordinator: SetupSafeOptionsDelegate {
 
     func didSelectNewSafe() {
-        transition(to: newSafeFlowCoordinator)
+        enter(flow: newSafeFlowCoordinator)
     }
 
 }

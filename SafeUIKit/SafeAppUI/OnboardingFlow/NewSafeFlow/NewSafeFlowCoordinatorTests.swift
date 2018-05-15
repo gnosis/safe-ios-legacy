@@ -28,7 +28,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
 
     func test_didSelectBrowserExtensionSetup_showsPairWithBrowserExtensionFlowCoordinatorStartVC() {
         let testFC = TestFlowCoordinator()
-        testFC.transition(to: PairWithBrowserExtensionFlowCoordinator(address: nil))
+        testFC.enter(flow: PairWithBrowserExtensionFlowCoordinator(address: nil))
         let expectedViewController = testFC.topViewController
 
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
@@ -55,7 +55,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
 
     func test_whenSelectedPaperWalletSetup_thenTransitionsToPaperWalletCoordinator() {
         let testFC = TestFlowCoordinator()
-        testFC.transition(to: PaperWalletFlowCoordinator(draftSafe: nil))
+        testFC.enter(flow: PaperWalletFlowCoordinator(draftSafe: nil))
         let expectedViewController = testFC.topViewController
 
         newSafeFlowCoordinator.didSelectPaperWalletSetup()

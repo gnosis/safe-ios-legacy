@@ -10,7 +10,7 @@ final class MasterPasswordFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-        pushController(StartViewController.create(delegate: self))
+        push(StartViewController.create(delegate: self))
     }
 
 }
@@ -18,7 +18,7 @@ final class MasterPasswordFlowCoordinator: FlowCoordinator {
 extension MasterPasswordFlowCoordinator: StartViewControllerDelegate {
 
     func didStart() {
-        pushController(SetPasswordViewController.create(delegate: self))
+        push(SetPasswordViewController.create(delegate: self))
     }
 
 }
@@ -26,7 +26,7 @@ extension MasterPasswordFlowCoordinator: StartViewControllerDelegate {
 extension MasterPasswordFlowCoordinator: SetPasswordViewControllerDelegate {
 
     func didSetPassword(_ password: String) {
-        pushController(ConfirmPaswordViewController.create(referencePassword: password, delegate: self))
+        push(ConfirmPaswordViewController.create(referencePassword: password, delegate: self))
     }
 
 }

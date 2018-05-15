@@ -32,7 +32,7 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
 
     func test_didSelectNewSafe_showsNewSafeFlowStartVC() {
         let testFC = TestFlowCoordinator()
-        testFC.transition(to: newSafeFlowCoordinator)
+        testFC.enter(flow: newSafeFlowCoordinator)
 
         setupSafeFlowCoordinator.didSelectNewSafe()
         delay()

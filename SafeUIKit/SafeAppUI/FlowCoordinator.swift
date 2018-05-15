@@ -33,19 +33,23 @@ import UIKit
  pushes it onto navigation stack using `pushController()` method.
 
 */
-public class FlowCoordinator {
+open class FlowCoordinator {
 
     private var flowCompletion: (() -> Void)?
-    private(set) var rootViewController: UIViewController!
+    public private(set) var rootViewController: UIViewController!
+
     var navigationController: UINavigationController {
         if let controller = rootViewController as? UINavigationController {
             return controller
         } else {
+            precondition(rootViewController != nil, "FlowCoordinator has nil root controller")
+            precondition(rootViewController?.navigationController != nil,
+                         "FlowCoordinator's root controller doesn't have navigation controller")
             return rootViewController.navigationController!
         }
     }
 
-    init(rootViewController: UIViewController? = nil) {
+    public init(rootViewController: UIViewController? = nil) {
         self.rootViewController = rootViewController
     }
 
@@ -53,7 +57,7 @@ public class FlowCoordinator {
         // override in subclasses
     }
 
-    func transition(to coordinator: FlowCoordinator, completion: (() -> Void)? = nil) {
+    func enter(flow coordinator: FlowCoordinator, completion: (() -> Void)? = nil) {
         coordinator.rootViewController = rootViewController
         coordinator.flowCompletion = completion
         coordinator.setUp()
@@ -63,13 +67,17 @@ public class FlowCoordinator {
         flowCompletion?()
     }
 
-    func pushController(_ controller: UIViewController) {
+    func push(_ controller: UIViewController) {
         let isAnythingInNavigationStack = !navigationController.viewControllers.isEmpty
         navigationController.pushViewController(controller, animated: isAnythingInNavigationStack)
     }
 
-    func pop(to controller: UIViewController) {
-        navigationController.popToViewController(controller, animated: true)
+    func pop(to controller: UIViewController? = nil) {
+        if let controller = controller {
+            navigationController.popToViewController(controller, animated: true)
+        } else {
+            navigationController.popViewController(animated: true)
+        }
     }
 
     func clearNavigationStack() {
