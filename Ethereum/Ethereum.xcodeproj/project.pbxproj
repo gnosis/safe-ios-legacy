@@ -107,6 +107,27 @@
 			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
 			remoteInfo = Common;
 		};
+		55E1AD0920AC3886003E0C53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F70E207E411F00AF407D;
+			remoteInfo = CryptoSwift;
+		};
+		55E1AD0B20AC3886003E0C53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A57F71C207E430F00AF407D;
+			remoteInfo = EthereumKit;
+		};
+		55E1AD0D20AC3886003E0C53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B9CF3208DE6B9001F0CB2;
+			remoteInfo = RSBarcodes;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -160,6 +181,9 @@
 		0A59E90920AB0D450090E89C /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
 		0A59E91020AB0D8F0090E89C /* ApplicationServiceRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistryTests.swift; sourceTree = "<group>"; };
 		0A59E91220AB0DE70090E89C /* MockEthereumApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumApplicationService.swift; sourceTree = "<group>"; };
+		55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
+		55E1AD0F20AC391A003E0C53 /* CommonConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CommonConfig.xcconfig; sourceTree = "<group>"; };
+		55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ImplementationsConfig.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +239,9 @@
 		0A3066FF20A5C7120059F521 = {
 			isa = PBXGroup;
 			children = (
+				55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */,
+				55E1AD0F20AC391A003E0C53 /* CommonConfig.xcconfig */,
+				55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */,
 				0A30677420A5C8EC0059F521 /* swiftlint.yml */,
 				0A30676220A5C7FF0059F521 /* Common.xcodeproj */,
 				0A30670C20A5C72C0059F521 /* EthereumDomainModel */,
@@ -312,6 +339,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		55E1AD0020AC3886003E0C53 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55E1AD0A20AC3886003E0C53 /* CryptoSwift.framework */,
+				55E1AD0C20AC3886003E0C53 /* EthereumKit.framework */,
+				55E1AD0E20AC3886003E0C53 /* RSBarcodes.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -477,6 +514,10 @@
 					ProductGroup = 0A30676320A5C7FF0059F521 /* Products */;
 					ProjectRef = 0A30676220A5C7FF0059F521 /* Common.xcodeproj */;
 				},
+				{
+					ProductGroup = 55E1AD0020AC3886003E0C53 /* Products */;
+					ProjectRef = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -524,6 +565,27 @@
 			fileType = wrapper.cfbundle;
 			path = DatabaseTests.xctest;
 			remoteRef = 0A30677220A5C7FF0059F521 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55E1AD0A20AC3886003E0C53 /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = 55E1AD0920AC3886003E0C53 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55E1AD0C20AC3886003E0C53 /* EthereumKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EthereumKit.framework;
+			remoteRef = 55E1AD0B20AC3886003E0C53 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55E1AD0E20AC3886003E0C53 /* RSBarcodes.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RSBarcodes.framework;
+			remoteRef = 55E1AD0D20AC3886003E0C53 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -883,6 +945,7 @@
 		};
 		0A30671F20A5C73A0059F521 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -954,6 +1017,7 @@
 		};
 		0A30672020A5C73A0059F521 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1145,6 +1209,7 @@
 		};
 		0A30673920A5C7560059F521 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1216,6 +1281,7 @@
 		};
 		0A30673A20A5C7560059F521 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1281,6 +1347,7 @@
 		};
 		0A30674420A5C7650059F521 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1347,6 +1414,7 @@
 		};
 		0A30674520A5C7650059F521 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1407,6 +1475,7 @@
 		};
 		0A30675320A5C7740059F521 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1478,6 +1547,7 @@
 		};
 		0A30675420A5C7740059F521 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1617,6 +1687,7 @@
 		};
 		0A30675720A5C7A10059F521 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1752,6 +1823,7 @@
 		};
 		0A30675920A5C7A10059F521 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1822,6 +1894,7 @@
 		};
 		0A30675A20A5C7A10059F521 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1887,6 +1960,7 @@
 		};
 		0A30675B20A5C7A10059F521 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

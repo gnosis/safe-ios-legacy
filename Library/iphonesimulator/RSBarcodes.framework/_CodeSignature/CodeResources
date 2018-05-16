@@ -10,7 +10,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		5+G3vUj/RXU8vKXqQ+G+qjU7FNc=
+		OJNTOEeYrtI7Uynp55lkgjnT4MM=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftdoc</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftmodule</key>
 		<data>
-		ITB+5CXwmJs59sXVSf6rLj5DKjU=
+		qs8O0OaBBQ4ubU1L+/v9KGcdbvg=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		lPFE+aXpkvemeezJiLcBT60mPm0=
+		1+R+Ek2CLi6yqIZidw3YX+KDOds=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -61,11 +61,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ITB+5CXwmJs59sXVSf6rLj5DKjU=
+			qs8O0OaBBQ4ubU1L+/v9KGcdbvg=
 			</data>
 			<key>hash2</key>
 			<data>
-			hz8tb8q5OqrQwaDd42wOIVOxL+AqdSlwGxdBW8K0sMY=
+			MFdNUdvO/GQhU8++ShcOCok7oI6p4v279qaJbqF14Vo=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftdoc</key>
@@ -83,11 +83,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			lPFE+aXpkvemeezJiLcBT60mPm0=
+			1+R+Ek2CLi6yqIZidw3YX+KDOds=
 			</data>
 			<key>hash2</key>
 			<data>
-			7vgZ7hbeXzURZWVNwKFYo162xxEoXav4OqRzH8sY4KY=
+			yGY8FI5ZQOugy0c10f0XUcGDFds8gbFZ1sXt5kanLKM=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

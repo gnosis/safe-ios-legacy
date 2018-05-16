@@ -20,6 +20,6 @@ deps.each do |dependency|
             "VALID_ARCHS='arm64 armv7 armv7s i386 x86_64'",
             "SKIP_INSTALL=NO install"].join(" ")
         puts cmd
-        system cmd
+        abort unless system cmd
     end
 end
