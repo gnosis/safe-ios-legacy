@@ -5,21 +5,13 @@
 import UIKit
 import SafeUIKit
 import IdentityAccessApplication
+import EthereumApplication
 
 protocol SaveMnemonicDelegate: class {
     func didPressContinue()
 }
 
 final class SaveMnemonicViewController: UIViewController {
-
-    @IBOutlet weak var titleLabel: H1Label!
-    @IBOutlet weak var mnemonicCopyableLabel: UILabel!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var continueButton: UIButton!
-
-    private(set) weak var delegate: SaveMnemonicDelegate?
-    private(set) var words = [String]()
 
     private struct Strings {
         static let title = LocalizedString("new_safe.paper_wallet.title",
@@ -31,9 +23,20 @@ final class SaveMnemonicViewController: UIViewController {
                                                 comment: "Continue button for store paper wallet screen")
     }
 
-    static func create(words: [String], delegate: SaveMnemonicDelegate) -> SaveMnemonicViewController {
+    @IBOutlet weak var titleLabel: H1Label!
+    @IBOutlet weak var mnemonicCopyableLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var continueButton: UIButton!
+
+    private(set) weak var delegate: SaveMnemonicDelegate?
+    private var ethereumService: EthereumApplicationService {
+        return ApplicationServiceRegistry.ethereumService
+    }
+    private(set) var account: EthereumApplicationService.ExternallyOwnedAccount!
+
+    static func create(delegate: SaveMnemonicDelegate) -> SaveMnemonicViewController {
         let controller = StoryboardScene.NewSafe.saveMnemonicViewController.instantiate()
-        controller.words = words
         controller.delegate = delegate
         return controller
     }
@@ -44,14 +47,15 @@ final class SaveMnemonicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: ethereumApplicationService.createNewExternallyOwnedAccount() -> account address
-        // ethereumApplicationService.mnemonic(for: address)
-        guard !words.isEmpty else {
+
+        account = ethereumService.generateExternallyOwnedAccount()
+        guard !account.mnemonicWords.isEmpty else {
+            mnemonicCopyableLabel.text = nil
             dismiss(animated: true)
             return
         }
         titleLabel.text = Strings.title
-        mnemonicCopyableLabel.text = words.joined(separator: " ")
+        mnemonicCopyableLabel.text = account.mnemonicWords.joined(separator: " ")
         mnemonicCopyableLabel.accessibilityIdentifier = "mnemonic"
         saveButton.setTitle(Strings.save, for: .normal)
         descriptionLabel.text = Strings.description

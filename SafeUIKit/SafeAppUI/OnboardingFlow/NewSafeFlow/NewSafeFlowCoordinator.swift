@@ -7,25 +7,16 @@ import IdentityAccessApplication
 
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
-    var paperWalletFlowCoordinator: PaperWalletFlowCoordinator!
-
-    private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
-    private(set) lazy var draftSafe = try? identityService.getOrCreateDraftSafe()
-
-    override init(rootViewController: UIViewController? = nil) {
-        super.init(rootViewController: rootViewController)
-        paperWalletFlowCoordinator = PaperWalletFlowCoordinator(draftSafe: draftSafe)
-    }
+    var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
 
     override func setUp() {
         super.setUp()
         push(NewSafeViewController.create(delegate: self))
     }
 
-    func enterAndComeBack(from coordinator: FlowCoordinator, completion: @escaping () -> Void) {
+    func enterAndComeBack(from coordinator: FlowCoordinator) {
         let startVC = navigationController.topViewController
         enter(flow: coordinator) {
-            completion()
             if let startVC = startVC {
                 self.pop(to: startVC)
             }
@@ -37,10 +28,7 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
 extension NewSafeFlowCoordinator: NewSafeDelegate {
 
     func didSelectPaperWalletSetup() {
-        enterAndComeBack(from: paperWalletFlowCoordinator) {
-// TODO: this should be done in controller
-            self.identityService.confirmPaperWallet(draftSafe: self.draftSafe!)
-        }
+        enterAndComeBack(from: paperWalletFlowCoordinator)
     }
 
     func didSelectBrowserExtensionSetup() {

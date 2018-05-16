@@ -44,7 +44,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
 
     func test_whenSelectedPaperWalletSetup_thenTransitionsToPaperWalletCoordinator() {
         let testFC = TestFlowCoordinator()
-        testFC.enter(flow: PaperWalletFlowCoordinator(draftSafe: nil))
+        testFC.enter(flow: PaperWalletFlowCoordinator())
         let expectedViewController = testFC.topViewController
 
         newSafeFlowCoordinator.didSelectPaperWalletSetup()
@@ -66,12 +66,6 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         newSafeFlowCoordinator.paperWalletFlowCoordinator.didConfirm()
         delay()
         XCTAssertTrue(topViewController === startVC)
-    }
-
-    func test_paperWalletSetupCompletion_callsConfirmPaperWallet() {
-        newSafeFlowCoordinator.didSelectPaperWalletSetup()
-        newSafeFlowCoordinator.paperWalletFlowCoordinator.didConfirm()
-        XCTAssertTrue(identityService.didCallConfirmPaperWallet)
     }
 
 }

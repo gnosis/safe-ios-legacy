@@ -4,6 +4,8 @@
 
 import UIKit
 import SafeUIKit
+import EthereumApplication
+import MultisigWalletApplication
 
 protocol ConfirmMnemonicDelegate: class {
     func didConfirm()
@@ -19,21 +21,22 @@ final class ConfirmMnemonicViewController: UIViewController {
     @IBOutlet weak var secondWordTextInput: TextInput!
 
     private(set) weak var delegate: ConfirmMnemonicDelegate?
-    private(set) var words: [String]!
+    var words: [String] { return account.mnemonicWords }
+    private(set) var account: EthereumApplicationService.ExternallyOwnedAccount!
     private(set) var firstMnemonicWordToCheck = ""
     private(set) var secondMnemonicWordToCheck = ""
 
-    static func create(delegate: ConfirmMnemonicDelegate, words: [String]) -> ConfirmMnemonicViewController {
+    static func create(delegate: ConfirmMnemonicDelegate,
+                       account: EthereumApplicationService.ExternallyOwnedAccount) -> ConfirmMnemonicViewController {
         let controller = StoryboardScene.NewSafe.confirmMnemonicViewController.instantiate()
         controller.delegate = delegate
-        controller.words = words
+        controller.account = account
         return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: ethereumApplicationService.createMnemonicChallenge(for: address)
-        guard let words = words, words.count > 1 else {
+        guard let words = account?.mnemonicWords, words.count > 1 else {
             dismiss(animated: true)
             return
         }
@@ -54,7 +57,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     }
 
     private func twoRandomWords() -> (String, String) {
-        var wordsCopy = words!
+        var wordsCopy = account.mnemonicWords
         let firstIndex = Int(arc4random_uniform(UInt32(wordsCopy.count)))
         let firstWord = wordsCopy[firstIndex]
         wordsCopy.remove(at: firstIndex)
@@ -70,8 +73,7 @@ extension ConfirmMnemonicViewController: TextInputDelegate {
     func textInputDidReturn(_ textInput: TextInput) {
         if firstWordTextInput.text == firstMnemonicWordToCheck &&
             secondWordTextInput.text == secondMnemonicWordToCheck {
-            // TODO: ethereumApplicationService.solve(challenge, with: key)
-            // walletApplicationService.addOwner(address)
+            ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
             delegate?.didConfirm()
         } else if textInput == firstWordTextInput {
             _ = secondWordTextInput.becomeFirstResponder()
