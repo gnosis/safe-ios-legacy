@@ -9,6 +9,7 @@ import MultisigWalletApplication
 public protocol PendingSafeViewControllerDelegate: class {
     func deploymentDidFail()
     func deploymentDidSuccess()
+    func deploymentDidCancel()
 }
 
 public class PendingSafeViewController: UIViewController {
@@ -44,8 +45,9 @@ public class PendingSafeViewController: UIViewController {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressStatusLabel: UILabel!
     weak var delegate: PendingSafeViewControllerDelegate?
+    private var subscription: String?
 
-    public static func create(delegate: PendingSafeViewControllerDelegate) -> PendingSafeViewController {
+    public static func create(delegate: PendingSafeViewControllerDelegate? = nil) -> PendingSafeViewController {
         let controller = StoryboardScene.NewSafe.pendingSafeViewController.instantiate()
         controller.delegate = delegate
         return controller
@@ -60,6 +62,13 @@ public class PendingSafeViewController: UIViewController {
         progressStatusLabel.text = nil
         progressView.progress = 0
         updateStatus()
+        subscription = ApplicationServiceRegistry.walletService.subscribe(updateStatus)
+    }
+
+    deinit {
+        if let subscription = subscription {
+            ApplicationServiceRegistry.walletService.unsubscribe(subscription: subscription)
+        }
     }
 
     private func updateStatus() {
@@ -89,6 +98,8 @@ public class PendingSafeViewController: UIViewController {
     }
 
     @IBAction func cancel(_ sender: Any) {
+        ApplicationServiceRegistry.walletService.abortDeployment()
+        delegate?.deploymentDidCancel()
     }
 
 }

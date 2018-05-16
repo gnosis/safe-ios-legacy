@@ -68,10 +68,14 @@ class PendingSafeViewControllerTests: SafeTestCase {
         XCTAssertEqual(delegate.success, false)
     }
 
+    private func assertDisplayedDeploySuccessStatus() {
+        assert(progress: 100, status: "pending_safe.status.deployment_success")
+    }
+
     func test_whenTransactionSuccess_thenDisplaysStatus() {
         walletService.markDeploymentSuccess()
         controller.loadViewIfNeeded()
-        assert(progress: 100, status: "pending_safe.status.deployment_success")
+        assertDisplayedDeploySuccessStatus()
     }
 
     func test_whenTransactionSuccess_thenCallsDelegate() {
@@ -80,11 +84,30 @@ class PendingSafeViewControllerTests: SafeTestCase {
         XCTAssertEqual(delegate.success, true)
     }
 
+    func test_whenStatusUpdated_thenDisplaysIt() {
+        controller.loadViewIfNeeded()
+        walletService.markDeploymentSuccess()
+        assertDisplayedDeploySuccessStatus()
+    }
+
+    func test_whenCancels_thenAbortsSafeDeployment() {
+        controller.loadViewIfNeeded()
+        controller.cancel(controller)
+        XCTAssertEqual(walletService.selectedWalletState, .newDraft)
+    }
+
+    func test_whenCancels_thenCallsDelegate() {
+        controller.loadViewIfNeeded()
+        controller.cancel(controller)
+        XCTAssertTrue(delegate.cancelled)
+    }
+
 }
 
 class MockPendingSafeViewControllerDelegate: PendingSafeViewControllerDelegate {
 
     var success: Bool?
+    var cancelled = false
 
     func deploymentDidFail() {
         success = false
@@ -94,4 +117,7 @@ class MockPendingSafeViewControllerDelegate: PendingSafeViewControllerDelegate {
         success = true
     }
 
+    func deploymentDidCancel() {
+        cancelled = true
+    }
 }
