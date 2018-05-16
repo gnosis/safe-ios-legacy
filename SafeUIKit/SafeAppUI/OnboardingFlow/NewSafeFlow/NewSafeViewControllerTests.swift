@@ -79,7 +79,7 @@ class NewSafeViewControllerTests: SafeTestCase {
     func test_whenNavigatesNext_thenDeploymentStarted() {
         walletService.createReadyToDeployWallet()
         controller.navigateNext(self)
-        XCTAssertEqual(walletService.selectedWalletState, .pendingDeployment)
+        XCTAssertEqual(walletService.selectedWalletState, .deploymentStarted)
     }
 
 }

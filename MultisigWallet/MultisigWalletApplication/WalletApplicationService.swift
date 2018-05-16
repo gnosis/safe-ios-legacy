@@ -10,7 +10,14 @@ public class WalletApplicationService {
         case none
         case newDraft
         case readyToDeploy
-        case pendingDeployment
+        case deploymentStarted
+        case addressKnown
+        case accountFunded
+        case notEnoughFunds
+        case deploymentAcceptedByBlockchain
+        case deploymentSuccess
+        case deploymentFailed
+        case readyToUse
     }
 
     public var selectedWalletState: WalletState {
@@ -26,6 +33,19 @@ public class WalletApplicationService {
     public func createNewDraftWallet() {
 
     }
+
+    public func updateMinimumFunding(account: String, amount: Int) {}
+
+    public func update(account: String, newBalance: Int) {}
+
+    public func assignBlockchainAddress(_ address: String) {
+    }
+
+    public func markDeploymentAcceptedByBlockchain() {}
+
+    public func markDeploymentFailed() {}
+
+    public func markDeploymentSuccess() {}
 
     public enum OwnerType {
         case thisDevice
