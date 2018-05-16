@@ -76,6 +76,33 @@
 /* Start button title */
 "onboarding.start.start" = "Start";
 
+/* Cancel safe creation button */
+"pending_safe.cancel" = "Cancel";
+
+/* Info label about safe creation */
+"pending_safe.info" = "pending_safe.info";
+
+/* Account received enough funds */
+"pending_safe.status.account_funded" = "pending_safe.status.account_funded";
+
+/* Address is known status */
+"pending_safe.status.address_known" = "pending_safe.status.address_known";
+
+/* Deployment accepted by blockchain */
+"pending_safe.status.deployment_accepted" = "pending_safe.status.deployment_accepted";
+
+/* Deployment started status */
+"pending_safe.status.deployment_started" = "pending_safe.status.deployment_started";
+
+/* Deployment succeeded */
+"pending_safe.status.deployment_success" = "pending_safe.status.deployment_success";
+
+/* Not enough funds in account */
+"pending_safe.status.not_enough_funds" = "pending_safe.status.not_enough_funds";
+
+/* Title of pending safe screen */
+"pending_safe.title" = "Creating new safe";
+
 /* Description for confirm mnemonic view controller */
 "recovery.confirm_mnemonic.description" = "Please enter the following words from the mnemonic.";
 
