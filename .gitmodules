@@ -1,9 +1,3 @@
-[submodule "APIKit"]
-	path = Dependencies/APIKit
-	url = https://github.com/ishkawa/APIKit.git
-[submodule "Result"]
-	path = Dependencies/Result
-	url = https://github.com/antitypical/Result.git
 [submodule "CryptoSwift"]
 	path = Dependencies/CryptoSwift
 	url = https://github.com/krzyzanowskim/CryptoSwift.git
