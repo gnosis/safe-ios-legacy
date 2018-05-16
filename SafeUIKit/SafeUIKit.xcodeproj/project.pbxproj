@@ -471,6 +471,8 @@
 				0A334DFA209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift */,
 				0A334DF9209C8E3800ABC6AE /* OnboardingFlowCoordinatorTests.swift */,
 				0A334DB2209C6D8600ABC6AE /* SetupSafeFlow */,
+				0A334E13209C8E3800ABC6AE /* StartViewController.swift */,
+				0A334E19209C8E3800ABC6AE /* StartViewControllerTests.swift */,
 			);
 			path = OnboardingFlow;
 			sourceTree = "<group>";
@@ -517,8 +519,6 @@
 				0A334E11209C8E3800ABC6AE /* PasswordValidatorTests.swift */,
 				0A334E1A209C8E3800ABC6AE /* SetPasswordViewController.swift */,
 				0A334E14209C8E3800ABC6AE /* SetPasswordViewControllerTests.swift */,
-				0A334E13209C8E3800ABC6AE /* StartViewController.swift */,
-				0A334E19209C8E3800ABC6AE /* StartViewControllerTests.swift */,
 			);
 			path = MasterPasswordFlow;
 			sourceTree = "<group>";
