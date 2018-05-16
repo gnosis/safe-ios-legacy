@@ -68,11 +68,8 @@ open class FlowCoordinator {
     }
 
     func push(_ controller: UIViewController) {
-        if navigationController.viewControllers.isEmpty {
-            navigationController.setViewControllers([controller], animated: false)
-        } else {
-            navigationController.pushViewController(controller, animated: true)
-        }
+        let isAnythingInNavigationStack = !navigationController.viewControllers.isEmpty
+        navigationController.pushViewController(controller, animated: isAnythingInNavigationStack)
     }
 
     func pop(to controller: UIViewController? = nil) {

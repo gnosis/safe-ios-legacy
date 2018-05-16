@@ -19,8 +19,7 @@ class AppFlowCoordinatorTests: SafeTestCase {
 
     func test_startViewController_whenUserNotRegistered_thenPresentingOnboarding() {
         authenticationService.unregisterUser()
-        let root = UIApplication.shared.keyWindow?.rootViewController
-        XCTAssertTrue(type(of: root) == type(of: flowCoordinator.rootViewController))
+        XCTAssertTrue(type(of: UIApplication.rootViewController) == type(of: flowCoordinator.rootViewController))
     }
 
     func test_whenStartingAppAndAlreadyRegistered_thenIgnoresSessionStateAndShowsLockedController() throws {
