@@ -14,11 +14,13 @@ public protocol PendingSafeViewControllerDelegate: class {
 public class PendingSafeViewController: UIViewController {
 
     private struct Strings {
+
         static let title = LocalizedString("pending_safe.title", comment: "Title of pending safe screen")
         static let cancel = LocalizedString("pending_safe.cancel", comment: "Cancel safe creation button")
         static let info = LocalizedString("pending_safe.info", comment: "Info label about safe creation")
 
         struct Status {
+
             static let started = LocalizedString("pending_safe.status.deployment_started",
                                                  comment: "Deployment started status")
             static let addressKnown = LocalizedString("pending_safe.status.address_known",
@@ -32,6 +34,7 @@ public class PendingSafeViewController: UIViewController {
             static let deploymentSuccess = LocalizedString("pending_safe.status.deployment_success",
                                                            comment: "Deployment succeeded")
         }
+
     }
 
     @IBOutlet weak var titleLabel: H1Label!
