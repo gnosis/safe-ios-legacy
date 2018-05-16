@@ -16,12 +16,6 @@ class MasterPasswordFlowCoordinatorTests: XCTestCase {
     }
 
     func test_startViewController() {
-        XCTAssertTrue(flowCoordinator.navigationController.topViewController is StartViewController)
-    }
-
-    func test_whenDidStart_thenSetMasterPasswordIsShown() {
-        flowCoordinator.didStart()
-        delay()
         XCTAssertTrue(flowCoordinator.navigationController.topViewController is SetPasswordViewController)
     }
 

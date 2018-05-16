@@ -16,8 +16,8 @@ class NewSafeViewControllerTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        let draftSafe = try! identityService.createDraftSafe()
-        controller = NewSafeViewController.create(draftSafe: draftSafe, delegate: delegate)
+        walletService.createNewDraftWallet()
+        controller = NewSafeViewController.create(delegate: delegate)
         controller.loadViewIfNeeded()
     }
 
@@ -42,7 +42,8 @@ class NewSafeViewControllerTests: SafeTestCase {
     }
 
     func test_viewDidLoad_whenNoDraftSafe_thenDismissesAndLogs() {
-        controller = NewSafeViewController.create(draftSafe: nil, delegate: delegate)
+        walletService.removeSelectedWallet()
+        controller = NewSafeViewController.create(delegate: delegate)
         createWindow(controller)
         controller.viewDidLoad()
         delay(1)
@@ -51,23 +52,21 @@ class NewSafeViewControllerTests: SafeTestCase {
     }
 
     func test_viewWillAppear_whenDraftSafeHasConfiguredAddress_thenCheckmarksAreSet() {
-        let draftSafe = try! identityService.getOrCreateDraftSafe()
+        walletService.addOwner(address: "address", type: .thisDevice)
         controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .normal, .normal)
-        identityService.confirmPaperWallet(draftSafe: draftSafe)
+
+        walletService.addOwner(address: "address", type: .paperWallet)
         controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .selected, .normal)
-        identityService.confirmBrowserExtension(draftSafe: draftSafe, address: "test_address")
+
+        walletService.addOwner(address: "address", type: .browserExtension)
         controller.viewWillAppear(false)
         assertButtonCheckmarks(.selected, .selected, .selected)
     }
 
-    func test_viewWillAppear_whenAllDraftSafeConfirmationsAreSet_thenNextButtonIsEnabled() {
-        let draftSafe = try! identityService.getOrCreateDraftSafe()
-        controller.viewWillAppear(false)
-        XCTAssertFalse(controller.nextButton.isEnabled)
-        identityService.confirmPaperWallet(draftSafe: draftSafe)
-        identityService.confirmBrowserExtension(draftSafe: draftSafe, address: "test_address")
+    func test_viewWillAppear_whenDraftIsReady_thenNextButtonIsEnabled() {
+        walletService.createReadyToDeployWallet()
         controller.viewWillAppear(false)
         XCTAssertTrue(controller.nextButton.isEnabled)
     }
@@ -77,16 +76,23 @@ class NewSafeViewControllerTests: SafeTestCase {
         XCTAssertTrue(delegate.nextSelected)
     }
 
+    func test_whenNavigatesNext_thenDeploymentStarted() {
+        walletService.createReadyToDeployWallet()
+        controller.navigateNext(self)
+        XCTAssertEqual(walletService.selectedWalletState, .pendingDeployment)
+    }
+
 }
 
 extension NewSafeViewControllerTests {
 
     private func assertButtonCheckmarks(_ thisDeviceCheckmark: BigButton.CheckmarkStatus,
                                         _ paperWalletCheckmark: BigButton.CheckmarkStatus,
-                                        _ browserExtensionCheckmark: BigButton.CheckmarkStatus) {
-        XCTAssertEqual(controller.thisDeviceButton.checkmarkStatus, thisDeviceCheckmark)
-        XCTAssertEqual(controller.paperWalletButton.checkmarkStatus, paperWalletCheckmark)
-        XCTAssertEqual(controller.browserExtensionButton.checkmarkStatus, browserExtensionCheckmark)
+                                        _ browserExtensionCheckmark: BigButton.CheckmarkStatus,
+                                        line: UInt = #line) {
+        XCTAssertEqual(controller.thisDeviceButton.checkmarkStatus, thisDeviceCheckmark, line: line)
+        XCTAssertEqual(controller.paperWalletButton.checkmarkStatus, paperWalletCheckmark, line: line)
+        XCTAssertEqual(controller.browserExtensionButton.checkmarkStatus, browserExtensionCheckmark, line: line)
     }
 
 }

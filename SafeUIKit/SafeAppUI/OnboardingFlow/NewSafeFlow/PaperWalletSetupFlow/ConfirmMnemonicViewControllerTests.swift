@@ -5,8 +5,9 @@
 import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
+import EthereumApplication
 
-class ConfirmMnemonicViewControllerTests: XCTestCase {
+class ConfirmMnemonicViewControllerTests: SafeTestCase {
 
     // swiftlint:disable weak_delegate
     private let delegate = MockConfirmMnemonicDelegate()
@@ -86,6 +87,12 @@ class ConfirmMnemonicViewControllerTests: XCTestCase {
         XCTAssertTrue(controller.secondWordTextInput.isActive)
     }
 
+    func test_whenTextInputReturns_thenAddsOwner() {
+        walletService.createNewDraftWallet()
+        setTextInputs(controller.firstMnemonicWordToCheck, controller.secondMnemonicWordToCheck)
+        XCTAssertEqual(walletService.ownerAddress(of: .paperWallet), "address")
+    }
+
 }
 
 extension ConfirmMnemonicViewControllerTests {
@@ -97,7 +104,8 @@ extension ConfirmMnemonicViewControllerTests {
     }
 
     private func createController(words: [String]) {
-        controller = ConfirmMnemonicViewController.create(delegate: delegate, words: words)
+        let account = EthereumApplicationService.ExternallyOwnedAccount(address: "address", mnemonicWords: words)
+        controller = ConfirmMnemonicViewController.create(delegate: delegate, account: account)
         controller.loadViewIfNeeded()
     }
 

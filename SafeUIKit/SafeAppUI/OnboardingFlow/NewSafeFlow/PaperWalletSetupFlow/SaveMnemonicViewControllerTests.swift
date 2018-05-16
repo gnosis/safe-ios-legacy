@@ -16,7 +16,8 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        controller = SaveMnemonicViewController.create(words: words, delegate: delegate)
+        ethereumService.prepareToGenerateExternallyOwnedAccount(address: "address", mnemonic: words)
+        controller = SaveMnemonicViewController.create(delegate: delegate)
         controller.loadViewIfNeeded()
     }
 
@@ -30,14 +31,15 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
         XCTAssertTrue(controller.delegate === delegate)
     }
 
-    func test_viewDidLoad_setsCorrectWords() {
+    func test_whenNoPaperWalletExists_thenDisplaysGeneratedMnemonicWords() {
+        walletService.createNewDraftWallet()
         let mnemonicStr = words.joined(separator: " ")
-        XCTAssertEqual(controller.words, words)
         XCTAssertEqual(controller.mnemonicCopyableLabel.text, mnemonicStr)
     }
 
     func test_viewDidLoad_dismissesIfNoWordsProvided() {
-        controller = SaveMnemonicViewController.create(words: [], delegate: delegate)
+        ethereumService.prepareToGenerateExternallyOwnedAccount(address: "address", mnemonic: [])
+        controller = SaveMnemonicViewController.create(delegate: delegate)
         createWindow(controller)
         controller.viewDidLoad()
         delay(1)

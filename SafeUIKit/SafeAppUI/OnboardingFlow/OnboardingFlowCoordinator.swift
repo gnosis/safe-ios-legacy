@@ -19,10 +19,18 @@ final class OnboardingFlowCoordinator: FlowCoordinator {
         if isUserRegistered {
             enter(flow: setupSafeFlowCoordinator)
         } else {
-            enter(flow: masterPasswordFlowCoordinator) { [unowned self] in
-                self.clearNavigationStack()
-                self.enter(flow: self.setupSafeFlowCoordinator)
-            }
+            push(StartViewController.create(delegate: self))
+        }
+    }
+
+}
+
+extension OnboardingFlowCoordinator: StartViewControllerDelegate {
+
+    func didStart() {
+        enter(flow: masterPasswordFlowCoordinator) { [unowned self] in
+            self.clearNavigationStack()
+            self.enter(flow: self.setupSafeFlowCoordinator)
         }
     }
 

@@ -3,23 +3,15 @@
 //
 
 import UIKit
-import IdentityAccessApplication
+import MultisigWalletApplication
 
 typealias PaperWalletSetupCompletion = () -> Void
 
 final class PaperWalletFlowCoordinator: FlowCoordinator {
 
-    private let draftSafe: DraftSafe?
-
-    init(draftSafe: DraftSafe?, rootViewController: UIViewController? = nil) {
-        self.draftSafe = draftSafe
-        super.init(rootViewController: rootViewController)
-    }
-
     override func setUp() {
         super.setUp()
-        let words = draftSafe?.paperWalletMnemonicWords ?? []
-        push(SaveMnemonicViewController.create(words: words, delegate: self))
+        push(SaveMnemonicViewController.create(delegate: self))
     }
 
 }
@@ -27,12 +19,12 @@ final class PaperWalletFlowCoordinator: FlowCoordinator {
 extension PaperWalletFlowCoordinator: SaveMnemonicDelegate {
 
     func didPressContinue() {
-        guard !draftSafe!.confirmedAddresses.contains(.paperWallet) else {
+        guard !ApplicationServiceRegistry.walletService.isOwnerExists(.paperWallet) else {
             exitFlow()
             return
         }
-        let words = draftSafe!.paperWalletMnemonicWords
-        push(ConfirmMnemonicViewController.create(delegate: self, words: words))
+        let mnemonicController = navigationController.topViewController as! SaveMnemonicViewController
+        push(ConfirmMnemonicViewController.create(delegate: self, account: mnemonicController.account))
     }
 
 }

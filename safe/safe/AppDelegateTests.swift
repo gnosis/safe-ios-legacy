@@ -55,8 +55,9 @@ class MockCoordinator: AppFlowCoordinator {
         didBecomeActive = true
     }
 
-    override func startViewController() -> UIViewController {
-        return UIViewController()
+    override func setUp() {
+        super.setUp()
+        UIApplication.shared.keyWindow?.rootViewController = UIViewController()
     }
 
 }

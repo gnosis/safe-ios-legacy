@@ -5,9 +5,11 @@
 import UIKit
 import SafeUIKit
 import IdentityAccessApplication
+import MultisigWalletApplication
+import EthereumApplication
 
 protocol PairWithBrowserDelegate: class {
-    func didPair(_ extensionAddress: String)
+    func didPair()
 }
 
 final class PairWithBrowserExtensionViewController: UIViewController {
@@ -24,38 +26,41 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     @IBOutlet weak var finishButton: UIButton!
 
     private(set) weak var delegate: PairWithBrowserDelegate?
-    private var initialExtensionAddress: String?
-    private var identityService: IdentityApplicationService { return ApplicationServiceRegistry.identityService }
-    private var logger: Logger { return ApplicationServiceRegistry.logger }
+    private var logger: Logger {
+        return ApplicationServiceRegistry.logger
+    }
+    private var walletService: WalletApplicationService {
+        return ApplicationServiceRegistry.walletService
+    }
+    private var ethereumService: EthereumApplicationService {
+        return ApplicationServiceRegistry.ethereumService
+    }
 
     private var scannerController: UIViewController?
+
+    static func create(delegate: PairWithBrowserDelegate) -> PairWithBrowserExtensionViewController {
+        let controller = StoryboardScene.NewSafe.pairWithBrowserExtensionViewController.instantiate()
+        controller.delegate = delegate
+        return controller
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        extensionAddressInput.text = walletService.ownerAddress(of: .browserExtension)
+        extensionAddressInput.editingMode = .scanOnly
+        extensionAddressInput.qrCodeDelegate = self
+        extensionAddressInput.qrCodeConverter = ethereumService.address(browserExtensionCode:)
+        finishButton.isEnabled = walletService.isOwnerExists(.browserExtension)
+        finishButton.setTitle(Strings.finish, for: .normal)
+    }
 
     @IBAction func finish(_ sender: Any) {
         guard let text = extensionAddressInput.text, !text.isEmpty else {
             logger.error("Wrong state in PairWithBrowserExtensionViewController.")
             return
         }
-        delegate?.didPair(text)
-    }
-
-    static func create(delegate: PairWithBrowserDelegate,
-                       extensionAddress: String? = nil) -> PairWithBrowserExtensionViewController {
-        let controller = StoryboardScene.NewSafe.pairWithBrowserExtensionViewController.instantiate()
-        controller.delegate = delegate
-        controller.initialExtensionAddress = extensionAddress
-        return controller
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        extensionAddressInput.text = initialExtensionAddress
-        extensionAddressInput.editingMode = .scanOnly
-        extensionAddressInput.qrCodeDelegate = self
-        extensionAddressInput.qrCodeConverter = { [unowned self] code in
-            return self.identityService.convertBrowserExtensionCodeIntoEthereumAddress(code)
-        }
-        finishButton.isEnabled = initialExtensionAddress != nil
-        finishButton.setTitle(Strings.finish, for: .normal)
+        walletService.addOwner(address: text, type: .browserExtension)
+        delegate?.didPair()
     }
 
 }

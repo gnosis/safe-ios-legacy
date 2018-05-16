@@ -27,36 +27,24 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(topViewController is NewSafeViewController)
     }
 
-    func test_didSelectBrowserExtensionSetup_showsPairWithBrowserExtensionFlowCoordinatorStartVC() {
-        let testFC = TestFlowCoordinator()
-        testFC.enter(flow: PairWithBrowserExtensionFlowCoordinator(address: nil))
-        let expectedViewController = testFC.topViewController
-
+    func test_didSelectBrowserExtensionSetup_showsController() {
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
         delay()
-
-        let finalTransitionedViewController = newSafeFlowCoordinator.navigationController.topViewController
-        XCTAssertTrue(type(of: finalTransitionedViewController) == type(of: expectedViewController))
+        XCTAssertTrue(topViewController is PairWithBrowserExtensionViewController)
     }
 
     func test_pairWithBrowserExtensionCompletion_popsToStartVC() {
         let startVC = topViewController
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
         delay()
-        newSafeFlowCoordinator.pairWithExtensionFlowCoordinator.didPair(address)
+        newSafeFlowCoordinator.didPair()
         delay()
         XCTAssertTrue(topViewController === startVC)
     }
 
-    func test_pairWithBrowserExtensionCompletion_callsConfirmBrowserExtension() {
-        newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
-        newSafeFlowCoordinator.pairWithExtensionFlowCoordinator.didPair(address)
-        XCTAssertEqual(identityService.confirmedBrowserExtensionAddress, address)
-    }
-
     func test_whenSelectedPaperWalletSetup_thenTransitionsToPaperWalletCoordinator() {
         let testFC = TestFlowCoordinator()
-        testFC.enter(flow: PaperWalletFlowCoordinator(draftSafe: nil))
+        testFC.enter(flow: PaperWalletFlowCoordinator())
         let expectedViewController = testFC.topViewController
 
         newSafeFlowCoordinator.didSelectPaperWalletSetup()
@@ -79,12 +67,5 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         delay()
         XCTAssertTrue(topViewController === startVC)
     }
-
-    func test_paperWalletSetupCompletion_callsConfirmPaperWallet() {
-        newSafeFlowCoordinator.didSelectPaperWalletSetup()
-        newSafeFlowCoordinator.paperWalletFlowCoordinator.didConfirm()
-        XCTAssertTrue(identityService.didCallConfirmPaperWallet)
-    }
-
 
 }
