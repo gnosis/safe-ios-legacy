@@ -53,7 +53,7 @@ open class FlowCoordinator {
         self.rootViewController = rootViewController
     }
 
-    func setUp() {
+    open func setUp() {
         // override in subclasses
     }
 

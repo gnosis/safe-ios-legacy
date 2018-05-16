@@ -30,8 +30,8 @@ open class AppFlowCoordinator: FlowCoordinator {
         super.init(rootViewController: TransparentNavigationController())
     }
 
-    // TODO: transform to setUp()
-    open func startViewController() -> UIViewController {
+    open override func setUp() {
+        super.setUp()
         if walletService.hasReadyToUseWallet {
             lockedViewController = mainController()
         } else {
@@ -40,11 +40,12 @@ open class AppFlowCoordinator: FlowCoordinator {
         }
 
         if authenticationService.isUserRegistered {
-            return unlockController { [unowned self] in
+            applicationRootViewController = unlockController { [unowned self] in
                 self.applicationRootViewController = self.lockedViewController
             }
+        } else {
+            applicationRootViewController = lockedViewController
         }
-        return lockedViewController
     }
 
     private func mainController() -> UIViewController {
@@ -56,12 +57,12 @@ open class AppFlowCoordinator: FlowCoordinator {
     }
 
     open func appEntersForeground() {
-        guard let rootVC = self.applicationRootViewController,
+        guard let rootVC = applicationRootViewController,
             !(rootVC is UnlockViewController) && shouldLockWhenAppActive else {
             return
         }
         lockedViewController = rootVC
-        self.applicationRootViewController = unlockController { [unowned self] in
+        applicationRootViewController = unlockController { [unowned self] in
             self.applicationRootViewController = self.lockedViewController
         }
     }

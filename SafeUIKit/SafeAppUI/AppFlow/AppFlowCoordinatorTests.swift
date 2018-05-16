@@ -13,25 +13,32 @@ class AppFlowCoordinatorTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        flowCoordinator = AppFlowCoordinator()
         try? authenticationService.registerUser(password: password)
+        createFlowCoordinator()
     }
 
     func test_startViewController_whenUserNotRegistered_thenPresentingOnboarding() {
         authenticationService.unregisterUser()
-        let root = flowCoordinator.startViewController()
-        XCTAssertTrue(type(of: root) == type(of: flowCoordinator.rootViewController!))
+        let root = UIApplication.shared.keyWindow?.rootViewController
+        XCTAssertTrue(type(of: root) == type(of: flowCoordinator.rootViewController))
     }
 
     func test_whenStartingAppAndAlreadyRegistered_thenIgnoresSessionStateAndShowsLockedController() throws {
         _ = try authenticationService.authenticateUser(.password(password))
-        guard let rootVC = rootViewControlleOnAppStartrAfterUnlocking() else { return }
-        XCTAssertTrue(type(of: rootVC) == type(of: flowCoordinator.rootViewController!))
+        createFlowCoordinator()
+        guard let rootVC = rootViewControlleOnAppStartrAfterUnlocking() else {
+            XCTFail()
+            return
+        }
+        let typeA = type(of: rootVC)
+        let typeB = type(of: flowCoordinator.rootViewController!)
+        XCTAssertTrue(typeA == typeB)
     }
 
     func test_whenAuthenticationInvalidated_thenLocks() {
         authenticationService.invalidateAuthentication()
-        XCTAssertTrue(flowCoordinator.startViewController() is UnlockViewController)
+        createFlowCoordinator()
+        XCTAssertTrue(UIApplication.rootViewController is UnlockViewController)
     }
 
     func test_whenAppBecomesActiveAndNotAuthenticated_thenLocks() {
@@ -56,6 +63,7 @@ class AppFlowCoordinatorTests: SafeTestCase {
 
     func test_whenAppIsLockedAndBecomesActive_thenDoesntLockTwice() {
         authenticationService.invalidateAuthentication()
+        createFlowCoordinator()
         XCTAssertFalse(rootViewControlleOnAppStartrAfterUnlocking() is UnlockViewController)
     }
 
@@ -74,6 +82,7 @@ class AppFlowCoordinatorTests: SafeTestCase {
         authenticationService.allowAuthentication()
         _ = try Authenticator.instance.authenticate(.password(password))
         walletService.createReadyToUseWallet()
+        createFlowCoordinator()
         XCTAssertTrue(rootViewControlleOnAppStartrAfterUnlocking() is MainViewController)
     }
 
@@ -81,8 +90,13 @@ class AppFlowCoordinatorTests: SafeTestCase {
 
 extension AppFlowCoordinatorTests {
 
+    private func createFlowCoordinator() {
+        flowCoordinator = AppFlowCoordinator()
+        flowCoordinator.setUp()
+    }
+
     private func rootViewControlleOnAppStartrAfterUnlocking() -> UIViewController? {
-        guard let unlockVC = flowCoordinator.startViewController() as? UnlockViewController else {
+        guard let unlockVC = UIApplication.rootViewController as? UnlockViewController else {
             XCTFail("Expecting unlock view controller")
             return nil
         }

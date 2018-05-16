@@ -71,8 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func createWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = coordinator.startViewController()
         window?.makeKeyAndVisible()
+        coordinator.setUp()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
