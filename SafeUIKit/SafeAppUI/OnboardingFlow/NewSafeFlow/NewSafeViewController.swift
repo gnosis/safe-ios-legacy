@@ -48,9 +48,6 @@ class NewSafeViewController: UIViewController {
     }
 
     @IBAction func navigateNext(_ sender: Any) {
-        // TODO: ethereum
-        // postcondition: wallet deployment started, ethereum transaction created, safe address known
-        // ethereumApplicationService.safeContractTransaction() -> tx, safeAddress(from: tx)
         walletService.startDeployment()
         delegate?.didSelectNext()
     }
