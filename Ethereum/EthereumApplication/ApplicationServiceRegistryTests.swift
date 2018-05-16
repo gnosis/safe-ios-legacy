@@ -4,13 +4,12 @@
 
 import XCTest
 @testable import EthereumApplication
+import EthereumDomainModel
 
-class ApplicationServiceRegistryTests: XCTestCase {
+class ApplicationServiceRegistryTests: EthereumApplicationTestCase {
 
-    func test_ethereumService() {
-        let mock = MockEthereumApplicationService()
-        ApplicationServiceRegistry.put(service: mock, for: EthereumApplicationService.self)
-        XCTAssertTrue(ApplicationServiceRegistry.ethereumService === mock)
+    func test_services() {
+        XCTAssertNotNil(ApplicationServiceRegistry.ethereumService)
     }
 
 }
