@@ -800,7 +800,6 @@
 /* Begin XCBuildConfiguration section */
 		0A30670420A5C7120059F521 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55E1AD0F20AC391A003E0C53 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -811,7 +810,6 @@
 		};
 		0A30670520A5C7120059F521 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55E1AD0F20AC391A003E0C53 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				SDKROOT = iphoneos;
@@ -1615,7 +1613,6 @@
 		};
 		0A30675520A5C7A10059F521 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55E1AD0F20AC391A003E0C53 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				SDKROOT = iphoneos;
