@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import MultisigWalletApplication
 
 class SafeAlertController: UIAlertController {
 
@@ -31,9 +32,10 @@ class AbortSafeCreationAlertController: SafeAlertController {
         let controller = AbortSafeCreationAlertController(title: Strings.title,
                                                           message: Strings.message,
                                                           preferredStyle: .alert)
-        let abortAction = UIAlertAction.create(title: Strings.abortTitle,
-                                               style: .destructive,
-                                               handler: wrap(closure: abort))
+        let abortAction = UIAlertAction.create(title: Strings.abortTitle, style: .destructive) { _ in
+            ApplicationServiceRegistry.walletService.abortDeployment()
+            abort()
+        }
         controller.addAction(abortAction)
         let continueAction = UIAlertAction.create(title: Strings.continueTitle,
                                                   style: .cancel,

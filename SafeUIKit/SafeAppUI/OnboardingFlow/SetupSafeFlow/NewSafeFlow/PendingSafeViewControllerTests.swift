@@ -90,12 +90,6 @@ class PendingSafeViewControllerTests: SafeTestCase {
         assertDisplayedDeploySuccessStatus()
     }
 
-    func test_whenCancels_thenAbortsSafeDeployment() {
-        controller.loadViewIfNeeded()
-        controller.cancel(controller)
-        XCTAssertEqual(walletService.selectedWalletState, .newDraft)
-    }
-
     func test_whenCancels_thenCallsDelegate() {
         controller.loadViewIfNeeded()
         controller.cancel(controller)

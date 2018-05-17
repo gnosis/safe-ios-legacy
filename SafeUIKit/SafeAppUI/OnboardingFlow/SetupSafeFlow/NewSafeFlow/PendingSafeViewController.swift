@@ -98,7 +98,6 @@ public class PendingSafeViewController: UIViewController {
     }
 
     @IBAction func cancel(_ sender: Any) {
-        ApplicationServiceRegistry.walletService.abortDeployment()
         delegate?.deploymentDidCancel()
     }
 

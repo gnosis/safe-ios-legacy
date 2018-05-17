@@ -82,6 +82,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         }
         confirmCancellationAction.test_handler?(confirmCancellationAction)
         delay(1)
+        XCTAssertEqual(walletService.selectedWalletState, .newDraft)
         XCTAssertNil(newSafeFlowCoordinator.rootViewController.presentedViewController)
         XCTAssertTrue(newSafeFlowCoordinator.navigationController.topViewController is NewSafeViewController)
     }
