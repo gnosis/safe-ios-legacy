@@ -35,7 +35,9 @@ open class AppFlowCoordinator: FlowCoordinator {
         if walletService.hasReadyToUseWallet {
             lockedViewController = mainController()
         } else {
-            enter(flow: onboardingFlowCoordinator)
+            enter(flow: onboardingFlowCoordinator) { [unowned self] in
+                self.applicationRootViewController = self.mainController()
+            }
             lockedViewController = rootViewController
         }
 

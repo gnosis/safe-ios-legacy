@@ -44,4 +44,26 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
             type(of: newSafeStartVC))
     }
 
+    func test_whenNewSafeFlowExits_thenSetupSafeFlowExits() {
+        walletService.createNewDraftWallet()
+        let testFC = TestFlowCoordinator()
+        var finished = false
+        testFC.enter(flow: setupSafeFlowCoordinator) {
+            finished = true
+        }
+        setupSafeFlowCoordinator.newSafeFlowCoordinator.exitFlow()
+        XCTAssertTrue(finished)
+    }
+
+    func test_whenSelectedNewSafeFlowExits_thenSetupSafeFlowExits() {
+        let testFC = TestFlowCoordinator()
+        var finished = false
+        testFC.enter(flow: setupSafeFlowCoordinator) {
+            finished = true
+        }
+        setupSafeFlowCoordinator.didSelectNewSafe()
+        setupSafeFlowCoordinator.newSafeFlowCoordinator.exitFlow()
+        XCTAssertTrue(finished)
+    }
+
 }

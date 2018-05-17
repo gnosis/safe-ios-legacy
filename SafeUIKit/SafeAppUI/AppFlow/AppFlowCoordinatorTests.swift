@@ -90,6 +90,15 @@ class AppFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(rootViewControlleOnAppStartrAfterUnlocking() is MainViewController)
     }
 
+    func test_whenOnboardingFlowExits_thenEntersMainScreen() throws {
+        authenticationService.allowAuthentication()
+        _ = try Authenticator.instance.authenticate(.password(password))
+        walletService.createNewDraftWallet()
+        createFlowCoordinator()
+        flowCoordinator.onboardingFlowCoordinator.exitFlow()
+        XCTAssertTrue(UIApplication.rootViewController is MainViewController)
+    }
+
 }
 
 extension AppFlowCoordinatorTests {

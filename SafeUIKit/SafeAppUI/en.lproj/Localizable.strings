@@ -76,8 +76,29 @@
 /* Start button title */
 "onboarding.start.start" = "Start";
 
+/* Abort safe creation button title */
+"pending_safe.abort_alert.abort" = "pending_safe.abort_alert.abort";
+
+/* Continue safe creation button title */
+"pending_safe.abort_alert.continue" = "pending_safe.abort_alert.continue";
+
+/* Message body of abort alert */
+"pending_safe.abort_alert.message" = "pending_safe.abort_alert.message";
+
+/* Title of abort safe creation alert */
+"pending_safe.abort_alert.title" = "pending_safe.abort_alert.title";
+
 /* Cancel safe creation button */
 "pending_safe.cancel" = "Cancel";
+
+/* Pending safe failed alert's message */
+"pending_safe.failed_alert.message" = "pending_safe.failed_alert.message";
+
+/* OK button title */
+"pending_safe.failed_alert.ok" = "pending_safe.failed_alert.ok";
+
+/* Pending safe failed alert's title */
+"pending_safe.failed_alert.title" = "pending_safe.failed_alert.title";
 
 /* Info label about safe creation */
 "pending_safe.info" = "pending_safe.info";

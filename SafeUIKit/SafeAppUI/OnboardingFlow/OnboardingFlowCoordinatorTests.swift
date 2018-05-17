@@ -61,4 +61,13 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(controller is SetupSafeOptionsViewController)
     }
 
+    func test_whenSetupSafeFlowExits_thenOnboardingFlowExits() {
+        try? authenticationService.registerUser(password: "password")
+        let testFC = TestFlowCoordinator()
+        var finished = false
+        testFC.enter(flow: flowCoordinator) { finished = true }
+        flowCoordinator.setupSafeFlowCoordinator.exitFlow()
+        XCTAssertTrue(finished)
+    }
+
 }
