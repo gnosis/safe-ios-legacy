@@ -20,6 +20,14 @@ public class WalletApplicationService {
         case readyToUse
     }
 
+    public enum OwnerType {
+        case thisDevice
+        case browserExtension
+        case paperWallet
+
+        static let all: [OwnerType] = [.thisDevice, .browserExtension, .paperWallet]
+    }
+
     public var selectedWalletState: WalletState {
         return .none
     }
@@ -30,16 +38,15 @@ public class WalletApplicationService {
 
     public init() {}
 
-    public func createNewDraftWallet() {
+    public func createNewDraftWallet() {}
 
-    }
+    public func startDeployment() {}
 
     public func updateMinimumFunding(account: String, amount: Int) {}
 
     public func update(account: String, newBalance: Int) {}
 
-    public func assignBlockchainAddress(_ address: String) {
-    }
+    public func assignBlockchainAddress(_ address: String) {}
 
     public func markDeploymentAcceptedByBlockchain() {}
 
@@ -47,26 +54,22 @@ public class WalletApplicationService {
 
     public func markDeploymentSuccess() {}
 
-    public enum OwnerType {
-        case thisDevice
-        case browserExtension
-        case paperWallet
+    public func abortDeployment() {}
 
-        static let all: [OwnerType] = [.thisDevice, .browserExtension, .paperWallet]
+    public func subscribe(_ update: @escaping () -> Void) -> String {
+        return ""
     }
+
+    public func unsubscribe(subscription: String) {}
 
     public func isOwnerExists(_ type: OwnerType) -> Bool {
         return false
     }
 
-    public func addOwner(address: String, type: OwnerType) {
-    }
+    public func addOwner(address: String, type: OwnerType) {}
 
     public func ownerAddress(of type: OwnerType) -> String? {
         return nil
-    }
-
-    public func startDeployment() {
     }
 
 }

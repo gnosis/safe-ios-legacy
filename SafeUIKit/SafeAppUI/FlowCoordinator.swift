@@ -37,6 +37,7 @@ open class FlowCoordinator {
 
     private var flowCompletion: (() -> Void)?
     public private(set) var rootViewController: UIViewController!
+    private var checkpoints: [UIViewController] = []
 
     var navigationController: UINavigationController {
         if let controller = rootViewController as? UINavigationController {
@@ -80,8 +81,33 @@ open class FlowCoordinator {
         }
     }
 
+    func saveCheckpoint() {
+        if let controller = navigationController.topViewController {
+            checkpoints.append(controller)
+        }
+    }
+
+    func popToLastCheckpoint() {
+        if let controller = checkpoints.last {
+            checkpoints.removeLast()
+            pop(to: controller)
+        } else {
+            pop()
+        }
+    }
+
     func clearNavigationStack() {
         navigationController.setViewControllers([], animated: false)
+    }
+
+    func presentModally(_ controller: UIViewController) {
+        rootViewController.present(controller, animated: true, completion: nil)
+    }
+
+    func dismissModal() {
+        if rootViewController.presentedViewController != nil {
+            rootViewController.dismiss(animated: true, completion: nil)
+        }
     }
 
 }

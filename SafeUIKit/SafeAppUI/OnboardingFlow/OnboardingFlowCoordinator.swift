@@ -17,9 +17,15 @@ final class OnboardingFlowCoordinator: FlowCoordinator {
     override func setUp() {
         super.setUp()
         if isUserRegistered {
-            enter(flow: setupSafeFlowCoordinator)
+            enterSetupSafeFlow()
         } else {
             push(StartViewController.create(delegate: self))
+        }
+    }
+
+    private func enterSetupSafeFlow() {
+        enter(flow: setupSafeFlowCoordinator) { [unowned self] in
+            self.exitFlow()
         }
     }
 
@@ -30,7 +36,7 @@ extension OnboardingFlowCoordinator: StartViewControllerDelegate {
     func didStart() {
         enter(flow: masterPasswordFlowCoordinator) { [unowned self] in
             self.clearNavigationStack()
-            self.enter(flow: self.setupSafeFlowCoordinator)
+            self.enterSetupSafeFlow()
         }
     }
 
