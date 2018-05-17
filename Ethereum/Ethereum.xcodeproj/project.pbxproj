@@ -25,6 +25,7 @@
 		55704B1A20AC8B960054256B /* libEthereumImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30673F20A5C7650059F521 /* libEthereumImplementations.a */; };
 		55704B2720AC8D940054256B /* libEthereumImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30673F20A5C7650059F521 /* libEthereumImplementations.a */; };
 		55704B2820AC8DFD0054256B /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30676B20A5C7FF0059F521 /* libCommon.a */; };
+		55704B3320AD76050054256B /* EthereumApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55704B3220AD76050054256B /* EthereumApplicationServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +183,7 @@
 		0A59E90920AB0D450090E89C /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
 		0A59E91020AB0D8F0090E89C /* ApplicationServiceRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistryTests.swift; sourceTree = "<group>"; };
 		0A59E91220AB0DE70090E89C /* MockEthereumApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumApplicationService.swift; sourceTree = "<group>"; };
+		55704B3220AD76050054256B /* EthereumApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationServiceTests.swift; sourceTree = "<group>"; };
 		557E77D020AC7A0800732A77 /* EncryptionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionDomainService.swift; sourceTree = "<group>"; };
 		557E77D920AC7D2A00732A77 /* EthereumApplicationTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationTestCase.swift; sourceTree = "<group>"; };
 		557E77DB20AC7F6300732A77 /* DomainRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistry.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				0A30672720A5C7480059F521 /* EthereumApplicationService.swift */,
+				55704B3220AD76050054256B /* EthereumApplicationServiceTests.swift */,
 				0A59E91220AB0DE70090E89C /* MockEthereumApplicationService.swift */,
 				0A59E90920AB0D450090E89C /* ApplicationServiceRegistry.swift */,
 				0A59E91020AB0D8F0090E89C /* ApplicationServiceRegistryTests.swift */,
@@ -678,6 +681,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55704B3320AD76050054256B /* EthereumApplicationServiceTests.swift in Sources */,
 				55704B1620AC8B090054256B /* EthereumApplicationTestCase.swift in Sources */,
 				0A59E91620AB0E440090E89C /* ApplicationServiceRegistryTests.swift in Sources */,
 			);
