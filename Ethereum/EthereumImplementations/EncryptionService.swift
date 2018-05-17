@@ -53,7 +53,7 @@ public class EncryptionService: EncryptionDomainService {
 
     public func address(browserExtensionCode: String) -> String? {
         guard let code = extensionCode(from: browserExtensionCode) else {
-            // TODO log error
+            // TODO: log error
             return nil
         }
         let signer = EIP155Signer(chainID: chainId.rawValue)
@@ -61,7 +61,7 @@ public class EncryptionService: EncryptionDomainService {
         let message = "GNO" + code.expirationDate
         let signedData = Crypto.hashSHA3_256(message.data(using: .utf8)!)
         guard let pubKey = Crypto.publicKey(signature: signature, of: signedData, compressed: false) else {
-            // TODO log error
+            // TODO: log error
             return nil
         }
         return PublicKey(raw: Data(hex: "0x") + pubKey).generateAddress()
