@@ -16,6 +16,8 @@
 		0A59E91320AB0DE70090E89C /* MockEthereumApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E91220AB0DE70090E89C /* MockEthereumApplicationService.swift */; };
 		0A59E91620AB0E440090E89C /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E91020AB0D8F0090E89C /* ApplicationServiceRegistryTests.swift */; };
 		0A59E91820AB0E7A0090E89C /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30676B20A5C7FF0059F521 /* libCommon.a */; };
+		5563EF1320AD942D00DB0F36 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55E1AD0A20AC3886003E0C53 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5563EF1420AD942D00DB0F36 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55E1AD0C20AC3886003E0C53 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55704B0C20AC8AD90054256B /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E77DD20AC7FF500732A77 /* DomainRegistryTests.swift */; };
 		55704B1420AC8AE30054256B /* EncryptionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E77D020AC7A0800732A77 /* EncryptionDomainService.swift */; };
 		55704B1520AC8AEC0054256B /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E77DB20AC7F6300732A77 /* DomainRegistry.swift */; };
@@ -26,6 +28,8 @@
 		55704B2720AC8D940054256B /* libEthereumImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30673F20A5C7650059F521 /* libEthereumImplementations.a */; };
 		55704B2820AC8DFD0054256B /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30676B20A5C7FF0059F521 /* libCommon.a */; };
 		55704B3320AD76050054256B /* EthereumApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55704B3220AD76050054256B /* EthereumApplicationServiceTests.swift */; };
+		55F2D9CE20AD94FE00F9EFC2 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E1AD0A20AC3886003E0C53 /* CryptoSwift.framework */; };
+		55F2D9CF20AD94FE00F9EFC2 /* EthereumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E1AD0C20AC3886003E0C53 /* EthereumKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +168,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5563EF1220AD941D00DB0F36 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5563EF1320AD942D00DB0F36 /* CryptoSwift.framework in CopyFiles */,
+				5563EF1420AD942D00DB0F36 /* EthereumKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -242,6 +257,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A30674F20A5C7740059F521 /* libEthereumImplementations.a in Frameworks */,
+				55F2D9CE20AD94FE00F9EFC2 /* CryptoSwift.framework in Frameworks */,
+				55F2D9CF20AD94FE00F9EFC2 /* EthereumKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +463,7 @@
 				0A30674620A5C7740059F521 /* Sources */,
 				0A30674720A5C7740059F521 /* Frameworks */,
 				0A30674820A5C7740059F521 /* Resources */,
+				5563EF1220AD941D00DB0F36 /* CopyFiles */,
 			);
 			buildRules = (
 			);
