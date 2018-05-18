@@ -322,9 +322,9 @@
 			isa = PBXGroup;
 			children = (
 				0A23C80420A1B09100C72483 /* Wallet.swift */,
+				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
 				0A23C80C20A1B34900C72483 /* Owner.swift */,
 				0A23C80E20A1B35D00C72483 /* BlockchainAddress.swift */,
-				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
 				0A23C81A20A1CEDA00C72483 /* PortfolioTests.swift */,
 				0A23C82020A1CF1D00C72483 /* Portfolio.swift */,
 				0A23C82220A1DDEC00C72483 /* WalletRepository.swift */,

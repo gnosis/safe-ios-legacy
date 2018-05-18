@@ -56,15 +56,25 @@ public class Wallet: IdentifiableEntity<WalletID> {
         return ownersByKind[kind]
     }
 
+    public static func createOwner(address: String) -> Owner {
+        return Owner(address: BlockchainAddress(value: address))
+    }
+
     public func addOwner(_ owner: Owner, kind: String) throws {
         try assertMutable()
         try assertNil(self.owner(kind: kind), Error.ownerAlreadyExists)
+        try assertFalse(contains(owner: owner), Error.ownerAlreadyExists)
         ownersByKind[kind] = owner
+    }
+
+    public func contains(owner: Owner) -> Bool {
+        return ownersByKind.values.contains(owner)
     }
 
     public func replaceOwner(with newOwner: Owner, kind: String) throws {
         try assertMutable()
         try assertOwnerExists(kind)
+        try assertFalse(contains(owner: newOwner), Error.ownerAlreadyExists)
         ownersByKind[kind] = newOwner
     }
 

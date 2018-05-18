@@ -107,4 +107,21 @@ class WalletTests: XCTestCase {
         XCTAssertThrowsError(try wallet.cancelDeployment())
     }
 
+    func test_whenCreatingOwner_thenConfiguresIt() {
+        let owner = Wallet.createOwner(address: "address")
+        XCTAssertEqual(owner.address.value, "address")
+    }
+
+    func test_whenAddingDuplicateOwnerAddress_thenThrows() throws {
+        try wallet.addOwner(Wallet.createOwner(address: "a"), kind: "a")
+        XCTAssertThrowsError(try wallet.addOwner(Wallet.createOwner(address: "a"), kind: "b"))
+    }
+
+    func test_whenReplacingWithDuplicateOwner_thenThrows() throws {
+        try wallet.addOwner(Wallet.createOwner(address: "a"), kind: "a")
+        try wallet.addOwner(Wallet.createOwner(address: "b"), kind: "b")
+        XCTAssertThrowsError(try wallet.replaceOwner(with: Wallet.createOwner(address: "a"), kind: "b"))
+    }
+
+
 }
