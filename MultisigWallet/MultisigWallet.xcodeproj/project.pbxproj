@@ -31,6 +31,9 @@
 		0A76BE5520AEF31000D07770 /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5420AEF31000D07770 /* DomainRegistry.swift */; };
 		0A76BE5720AEF35C00D07770 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5620AEF35C00D07770 /* DomainRegistryTests.swift */; };
 		0A76BE5820AEF35C00D07770 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5620AEF35C00D07770 /* DomainRegistryTests.swift */; };
+		0A76BE5A20AF0CB500D07770 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5920AF0CB500D07770 /* Account.swift */; };
+		0A76BE5C20AF11CD00D07770 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5B20AF11CD00D07770 /* AccountRepository.swift */; };
+		0A76BE5E20AF167D00D07770 /* InMemoryAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5D20AF167D00D07770 /* InMemoryAccountRepository.swift */; };
 		0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */; };
 		0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */; };
 		0AD22D7C20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */; };
@@ -211,6 +214,9 @@
 		0A76BE5320AEC5CC00D07770 /* ImplementationsConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ImplementationsConfig.xcconfig; sourceTree = "<group>"; };
 		0A76BE5420AEF31000D07770 /* DomainRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistry.swift; sourceTree = "<group>"; };
 		0A76BE5620AEF35C00D07770 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
+		0A76BE5920AF0CB500D07770 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		0A76BE5B20AF11CD00D07770 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
+		0A76BE5D20AF167D00D07770 /* InMemoryAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryAccountRepository.swift; sourceTree = "<group>"; };
 		0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBBaseRepository.swift; sourceTree = "<group>"; };
 		0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepository.swift; sourceTree = "<group>"; };
 		0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
@@ -322,6 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				0A23C80420A1B09100C72483 /* Wallet.swift */,
+				0A76BE5920AF0CB500D07770 /* Account.swift */,
+				0A76BE5B20AF11CD00D07770 /* AccountRepository.swift */,
 				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
 				0A23C80C20A1B34900C72483 /* Owner.swift */,
 				0A23C80E20A1B35D00C72483 /* BlockchainAddress.swift */,
@@ -353,6 +361,7 @@
 			children = (
 				0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */,
 				0A23C83320A1E34700C72483 /* InMemoryWalletRepositoryTests.swift */,
+				0A76BE5D20AF167D00D07770 /* InMemoryAccountRepository.swift */,
 				0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */,
 				0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */,
 				0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */,
@@ -675,11 +684,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A76BE5C20AF11CD00D07770 /* AccountRepository.swift in Sources */,
 				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
 				0A23C82320A1DDEC00C72483 /* WalletRepository.swift in Sources */,
 				0A76BE5520AEF31000D07770 /* DomainRegistry.swift in Sources */,
 				0A23C80F20A1B35D00C72483 /* BlockchainAddress.swift in Sources */,
+				0A76BE5A20AF0CB500D07770 /* Account.swift in Sources */,
 				0A23C82120A1CF1D00C72483 /* Portfolio.swift in Sources */,
 				0A23C82520A1DE5300C72483 /* SinglePortfolioRepository.swift in Sources */,
 			);
@@ -720,6 +731,7 @@
 				0A23C82C20A1DF0A00C72483 /* DBWalletRepository.swift in Sources */,
 				0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */,
 				0A76BE4F20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift in Sources */,
+				0A76BE5E20AF167D00D07770 /* InMemoryAccountRepository.swift in Sources */,
 				0A23C83220A1E30800C72483 /* InMemoryWalletRepository.swift in Sources */,
 				0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */,
 			);

@@ -13,23 +13,31 @@ public class Wallet: IdentifiableEntity<WalletID> {
         case ownerAlreadyExists
         case ownerNotFound
         case invalidState
+        case accountAlreadyExists
     }
 
     public enum Status: String, Hashable, Codable {
         case newDraft
-        case deploymentPending
-        case ready
+        case readyToDeploy
+        case deploymentStarted
+        case addressKnown
+        case deploymentAcceptedByBlockchain
+        case deploymentSuccess
+        case deploymentFailed
+        case readyToUse
     }
 
     private struct State: Codable {
         fileprivate let id: String
         fileprivate let status: Status
         fileprivate let ownersByKind: [String: Owner]
+        fileprivate let address: BlockchainAddress?
     }
 
     public private(set) var status = Status.newDraft
-    private static let mutableStates: [Status] = [.newDraft, .ready]
+    private static let mutableStates: [Status] = [.newDraft, .readyToUse]
     private var ownersByKind = [String: Owner]()
+    public private(set) var address: BlockchainAddress?
 
     public required init(data: Data) throws {
         let decoder = PropertyListDecoder()
@@ -37,6 +45,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         super.init(id: try WalletID(state.id))
         status = state.status
         ownersByKind = state.ownersByKind
+        address = state.address
     }
 
     public func data() throws -> Data {
@@ -44,7 +53,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
         encoder.outputFormat = .binary
         let state = State(id: id.id,
                           status: status,
-                          ownersByKind: ownersByKind)
+                          ownersByKind: ownersByKind,
+                          address: address)
         return try encoder.encode(state)
     }
 
@@ -61,7 +71,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func addOwner(_ owner: Owner, kind: String) throws {
-        try assertMutable()
+        try assert(statusIsOneOf: .newDraft, .readyToUse)
         try assertNil(self.owner(kind: kind), Error.ownerAlreadyExists)
         try assertFalse(contains(owner: owner), Error.ownerAlreadyExists)
         ownersByKind[kind] = owner
@@ -72,31 +82,65 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func replaceOwner(with newOwner: Owner, kind: String) throws {
-        try assertMutable()
+        try assert(statusIsOneOf: .newDraft, .readyToUse)
         try assertOwnerExists(kind)
         try assertFalse(contains(owner: newOwner), Error.ownerAlreadyExists)
         ownersByKind[kind] = newOwner
     }
 
     public func removeOwner(kind: String) throws {
-        try assertMutable()
+        try assert(statusIsOneOf: .newDraft, .readyToUse)
         try assertOwnerExists(kind)
         ownersByKind.removeValue(forKey: kind)
     }
 
     public func startDeployment() throws {
-        try assertEqual(status, .newDraft, Error.invalidState)
-        status = .deploymentPending
+        try assert(status: .readyToDeploy)
+        status = .deploymentStarted
     }
 
-    public func completeDeployment() throws {
-        try assertEqual(status, .deploymentPending, Error.invalidState)
-        status = .ready
+    private func assert(status: Wallet.Status) throws {
+        try assertEqual(self.status, status, Error.invalidState)
     }
 
-    public func cancelDeployment() throws {
-        try assertEqual(status, .deploymentPending, Error.invalidState)
+    private func assert(statusIsOneOf statuses: Wallet.Status ...) throws {
+        try assertTrue(statuses.contains(status), Error.invalidState)
+    }
+
+    public func markReadyToDeploy() throws {
+        try assert(status: .newDraft)
+        status = .readyToDeploy
+    }
+
+    public func markDeploymentAcceptedByBlockchain() throws {
+        try assert(status: .addressKnown)
+        status = .deploymentAcceptedByBlockchain
+    }
+
+    public func markDeploymentFailed() throws {
+        try assert(status: .deploymentAcceptedByBlockchain)
+        status = .deploymentFailed
+    }
+
+    public func markDeploymentSuccess() throws {
+        try assert(status: .deploymentAcceptedByBlockchain)
+        status = .deploymentSuccess
+    }
+
+    public func abortDeployment() throws {
+        try assert(statusIsOneOf: .deploymentStarted, .addressKnown, .deploymentAcceptedByBlockchain)
         status = .newDraft
+    }
+
+    public func finishDeployment() throws {
+        try assert(status: .deploymentSuccess)
+        status = .readyToUse
+    }
+
+    public func changeBlockchainAddress(_ address: BlockchainAddress) throws {
+        try assert(status: .deploymentStarted)
+        self.address = address
+        status = .addressKnown
     }
 
     private func assertMutable() throws {

@@ -15,4 +15,8 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: SinglePortfolioRepository.self)
     }
 
+    public static var accountRepository: AccountRepository {
+        return service(for: AccountRepository.self)
+    }
+
 }
