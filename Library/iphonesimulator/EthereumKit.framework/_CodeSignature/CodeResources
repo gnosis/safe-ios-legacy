@@ -14,23 +14,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		+eV6cYwqKWB5aCEOIgU9ArLrNMk=
+		ha5pFzr8KQZVOROzg1g3/qb3lHE=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/i386.swiftdoc</key>
 		<data>
-		Hww8+nQgt9gSPXkQWk5ssoFns+Q=
+		iuU+PSvxBMI69GnA3N7zN0AA81M=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/i386.swiftmodule</key>
 		<data>
-		suBek2xrGS/Qirkv7wbPBnyO0Rc=
+		q047c3ltsD1H7QmhptmJ6YVY9oI=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		zXx/W1NNRNPj94oPg8Pc2edJ7Vk=
+		dIG64UiHwORcjzmU/rjd4nvHC6I=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		94jksklhbLBvxrEl2LzNfgTO0mw=
+		ntpn5F4XDN7ccAq37qTk2aiAQy8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -69,44 +69,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Hww8+nQgt9gSPXkQWk5ssoFns+Q=
+			iuU+PSvxBMI69GnA3N7zN0AA81M=
 			</data>
 			<key>hash2</key>
 			<data>
-			9fQEACyFsQUrQwGzUrjJACSNCenhzgf2nI/9zxMgnqI=
+			FqQViubOrkJpqqo7Gw7ymQKRVbTjXrhaVgy4PGvm+MY=
 			</data>
 		</dict>
 		<key>Modules/EthereumKit.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			suBek2xrGS/Qirkv7wbPBnyO0Rc=
+			q047c3ltsD1H7QmhptmJ6YVY9oI=
 			</data>
 			<key>hash2</key>
 			<data>
-			5DBRfgjzGmvoTS2Dg56/TO21WUVANP/Z67OJkWzOpWg=
+			LyNmunJx9TGE83RtV2DbYbXkNMqPd4sf3vRHRj3cgHY=
 			</data>
 		</dict>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zXx/W1NNRNPj94oPg8Pc2edJ7Vk=
+			dIG64UiHwORcjzmU/rjd4nvHC6I=
 			</data>
 			<key>hash2</key>
 			<data>
-			p7tBU6AZ0+5sFNhr4P98lAXj0zSXEnmRLrkLrElJO1M=
+			ci8qBJ+aKhjOfJaXw1e188BrmJruveEGI3OKthB5sGk=
 			</data>
 		</dict>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			94jksklhbLBvxrEl2LzNfgTO0mw=
+			ntpn5F4XDN7ccAq37qTk2aiAQy8=
 			</data>
 			<key>hash2</key>
 			<data>
-			pJgCGAziYnFgpGKcgsVnlKK3alKf1eqg5KPlTPrfgOo=
+			AlLqUlKe+9av2HIDEdVyFGOBeoWZ1dLasIuBu1r7ZFY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
