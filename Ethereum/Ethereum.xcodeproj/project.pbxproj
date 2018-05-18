@@ -118,6 +118,13 @@
 			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
 			remoteInfo = Common;
 		};
+		555C4C6720AEFC25001E8A34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A30676220A5C7FF0059F521 /* Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
+			remoteInfo = Common;
+		};
 		55E1AD0920AC3886003E0C53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
@@ -376,6 +383,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				555C4C6820AEFC25001E8A34 /* PBXTargetDependency */,
 			);
 			name = EthereumDomainModel;
 			productName = EthereumDomainModel;
@@ -761,6 +769,11 @@
 			isa = PBXTargetDependency;
 			name = Common;
 			targetProxy = 0A59E91420AB0E2E0090E89C /* PBXContainerItemProxy */;
+		};
+		555C4C6820AEFC25001E8A34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Common;
+			targetProxy = 555C4C6720AEFC25001E8A34 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
