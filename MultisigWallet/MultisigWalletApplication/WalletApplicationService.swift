@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import MultisigWalletDomainModel
 
 public class WalletApplicationService {
 
@@ -38,7 +39,21 @@ public class WalletApplicationService {
 
     public init() {}
 
-    public func createNewDraftWallet() {}
+    public func createNewDraftWallet() throws {
+        let portfolio = try fetchOrCreatePortfolio()
+        let wallet = Wallet(id: DomainRegistry.walletRepository.nextID())
+        try portfolio.addWallet(wallet.id)
+        try DomainRegistry.walletRepository.save(wallet)
+        try DomainRegistry.portfolioRepository.save(portfolio)
+    }
+
+    private func fetchOrCreatePortfolio() throws -> Portfolio {
+        if let result = try DomainRegistry.portfolioRepository.portfolio() {
+            return result
+        } else {
+            return try Portfolio(id: DomainRegistry.portfolioRepository.nextID())
+        }
+    }
 
     public func startDeployment() {}
 

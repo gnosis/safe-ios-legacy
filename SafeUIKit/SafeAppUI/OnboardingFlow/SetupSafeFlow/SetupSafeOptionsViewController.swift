@@ -25,7 +25,11 @@ class SetupSafeOptionsViewController: UIViewController {
     private weak var delegate: SetupSafeOptionsDelegate?
 
     @IBAction func createNewSafe(_ sender: Any) {
-        ApplicationServiceRegistry.walletService.createNewDraftWallet()
+        do {
+            try ApplicationServiceRegistry.walletService.createNewDraftWallet()
+        } catch {
+            // TODO: handle error
+        }
         delegate?.didSelectNewSafe()
     }
 
