@@ -9,6 +9,7 @@ import IdentityAccessDomainModel
 import IdentityAccessImplementations
 import MultisigWalletApplication
 import EthereumApplication
+import Common
 
 class SafeTestCase: XCTestCase {
 

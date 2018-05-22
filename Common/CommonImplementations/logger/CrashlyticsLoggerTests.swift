@@ -3,8 +3,8 @@
 //
 
 import XCTest
-@testable import IdentityAccessImplementations
-import IdentityAccessDomainModel
+@testable import CommonImplementations
+import Common
 
 class CrashlyticsLoggerTests: XCTestCase {
 
@@ -38,10 +38,6 @@ class CrashlyticsLoggerTests: XCTestCase {
                        "error")
     }
 
-}
-
-enum TestLoggableError: LoggableError {
-    case error
 }
 
 class MockCrashlytics: CrashlyticsProtocol {

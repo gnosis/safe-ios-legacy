@@ -3,8 +3,7 @@
 //
 
 import XCTest
-@testable import IdentityAccessImplementations
-import IdentityAccessDomainModel
+@testable import Common
 
 class LoggableErrorTests: XCTestCase {
 

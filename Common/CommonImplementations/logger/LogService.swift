@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import IdentityAccessApplication
+import Common
 
 protocol LogWriter {
 

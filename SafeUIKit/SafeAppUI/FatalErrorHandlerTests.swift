@@ -4,9 +4,9 @@
 
 import XCTest
 @testable import SafeAppUI
+import Common
 import CommonTestSupport
 import IdentityAccessApplication
-import IdentityAccessImplementations
 
 class FatalErrorHandlerTests: XCTestCase {
 

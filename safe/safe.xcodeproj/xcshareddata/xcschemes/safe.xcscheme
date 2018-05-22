@@ -179,6 +179,16 @@
                ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A8E3B9D20B419E000F002F6"
+               BuildableName = "CommonImplementationsTests.xctest"
+               BlueprintName = "CommonImplementationsTests"
+               ReferencedContainer = "container:../Common/Common.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

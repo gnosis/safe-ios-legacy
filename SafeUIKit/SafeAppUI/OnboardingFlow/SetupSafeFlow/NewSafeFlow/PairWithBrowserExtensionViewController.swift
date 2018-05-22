@@ -7,6 +7,7 @@ import SafeUIKit
 import IdentityAccessApplication
 import MultisigWalletApplication
 import EthereumApplication
+import Common
 
 protocol PairWithBrowserDelegate: class {
     func didPair()

@@ -3,7 +3,6 @@
 //
 
 import Foundation
-import IdentityAccessApplication
 
 public class MockLogger: Logger {
 

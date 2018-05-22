@@ -13,6 +13,8 @@ import MultisigWalletApplication
 import MultisigWalletDomainModel
 import EthereumApplication
 import Database
+import Common
+import CommonImplementations
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

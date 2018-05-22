@@ -6,6 +6,7 @@ import UIKit
 import SafeUIKit
 import IdentityAccessApplication
 import MultisigWalletApplication
+import Common
 
 protocol NewSafeDelegate: class {
     func didSelectPaperWalletSetup()
