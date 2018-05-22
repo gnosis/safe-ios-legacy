@@ -95,7 +95,6 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Wallet
 
-
     public func createNewDraftWallet() throws {
         try notifyWalletStateChangesAfter {
             let portfolio = try fetchOrCreatePortfolio()
