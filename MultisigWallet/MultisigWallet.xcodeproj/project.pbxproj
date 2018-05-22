@@ -379,19 +379,19 @@
 		0AEF8AAB20A088B1006A1265 /* MultisigWalletImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */,
-				0A23C83320A1E34700C72483 /* InMemoryWalletRepositoryTests.swift */,
-				0A76BE5D20AF167D00D07770 /* InMemoryAccountRepository.swift */,
-				0A8E3BF920B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift */,
 				0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */,
 				0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */,
-				0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */,
 				0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */,
-				0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */,
-				0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */,
-				0A76BE5020AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift */,
 				0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */,
 				0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */,
+				0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */,
+				0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */,
+				0A76BE5D20AF167D00D07770 /* InMemoryAccountRepository.swift */,
+				0A8E3BF920B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift */,
+				0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */,
+				0A76BE5020AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift */,
+				0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */,
+				0A23C83320A1E34700C72483 /* InMemoryWalletRepositoryTests.swift */,
 				0AEF8AB920A088C3006A1265 /* Tests-Info.plist */,
 			);
 			path = MultisigWalletImplementations;

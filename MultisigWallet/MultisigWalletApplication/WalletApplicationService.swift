@@ -93,13 +93,6 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Wallet
 
-    private func fetchOrCreatePortfolio() throws -> Portfolio {
-        if let result = try DomainRegistry.portfolioRepository.portfolio() {
-            return result
-        } else {
-            return try Portfolio(id: DomainRegistry.portfolioRepository.nextID())
-        }
-    }
 
     public func createNewDraftWallet() throws {
         try observeWalletStateWhile {
@@ -110,6 +103,14 @@ public class WalletApplicationService: Assertable {
             try DomainRegistry.walletRepository.save(wallet)
             try DomainRegistry.portfolioRepository.save(portfolio)
             try DomainRegistry.accountRepository.save(account)
+        }
+    }
+
+    private func fetchOrCreatePortfolio() throws -> Portfolio {
+        if let result = try DomainRegistry.portfolioRepository.portfolio() {
+            return result
+        } else {
+            return try Portfolio(id: DomainRegistry.portfolioRepository.nextID())
         }
     }
 

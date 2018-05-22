@@ -11,6 +11,7 @@ import IdentityAccessDomainModel
 import IdentityAccessImplementations
 import MultisigWalletApplication
 import MultisigWalletDomainModel
+import MultisigWalletImplementations
 import EthereumApplication
 import Database
 import Common
@@ -37,9 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func configureDependencyInjection() {
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletApplicationService(),
                                                                  for: WalletApplicationService.self)
-
-        // TODO: database and repositories for multisig domain model
-
         EthereumApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
                                                            for: EthereumApplicationService.self)
         IdentityAccessApplication.ApplicationServiceRegistry.put(service: AuthenticationApplicationService(),
@@ -76,7 +74,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                 blockedPeriodDuration: 15)
             }
         } catch let e {
-            ErrorHandler.showFatalError(log: "Failed to setup authentication policy", error: e)
+            ErrorHandler.showFatalError(log: "Failed to set up identity access database", error: e)
+        }
+        do {
+            let db = SQLiteDatabase(name: "MultisigWallet",
+                                    fileManager: FileManager.default,
+                                    sqlite: CSQLite3(),
+                                    bundleId: Bundle.main.bundleIdentifier ?? "pm.gnosis.safe")
+            let walletRepo = DBWalletRepository(db: db)
+            let portfolioRepo = DBSinglePortfolioRepository(db: db)
+            let accountRepo = DBAccountRepository(db: db)
+            MultisigWalletDomainModel.DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
+            MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
+            MultisigWalletDomainModel.DomainRegistry.put(service: accountRepo, for: AccountRepository.self)
+
+            if !db.exists {
+                try db.create()
+                try portfolioRepo.setUp()
+                try walletRepo.setUp()
+                try accountRepo.setUp()
+            }
+        } catch let e {
+            ErrorHandler.showFatalError(log: "Failed to set up multisig database", error: e)
         }
     }
 
