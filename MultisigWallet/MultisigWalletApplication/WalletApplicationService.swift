@@ -97,7 +97,7 @@ public class WalletApplicationService: Assertable {
 
 
     public func createNewDraftWallet() throws {
-        try observeWalletStateWhile {
+        try notifyWalletStateChangesAfter {
             let portfolio = try fetchOrCreatePortfolio()
             let wallet = Wallet(id: DomainRegistry.walletRepository.nextID())
             let account = Account(id: AccountID(token: "ETH"), walletID: wallet.id, balance: 0, minimumAmount: 0)
@@ -160,7 +160,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func mutateSelectedWallet(_ closure: (Wallet) throws -> Void) throws {
-        try observeWalletStateWhile {
+        try notifyWalletStateChangesAfter {
             let wallet = try findSelectedWallet()
             try closure(wallet)
             try DomainRegistry.walletRepository.save(wallet)
@@ -176,7 +176,7 @@ public class WalletApplicationService: Assertable {
         return wallet
     }
 
-    private func observeWalletStateWhile(_ closure: () throws -> Void) rethrows {
+    private func notifyWalletStateChangesAfter(_ closure: () throws -> Void) rethrows {
         let startState = selectedWalletState
         try closure()
         let endState = selectedWalletState
@@ -246,7 +246,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func mutateAccount(token: String, closure: (Account) throws -> Void) throws {
-        try observeWalletStateWhile {
+        try notifyWalletStateChangesAfter {
             let account = try findAccount(token)
             try closure(account)
             try DomainRegistry.accountRepository.save(account)
