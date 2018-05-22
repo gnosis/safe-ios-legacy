@@ -7,6 +7,30 @@ import Common
 
 public class WalletID: BaseID {}
 
+/*
+ Wallet state transitions
+ //swiftlint:disable line_length
+ |          Start State           |              Operation               |           End State            |    Comment     |
+ |--------------------------------|--------------------------------------|--------------------------------|----------------|
+ |                                | init(id)                             | newDraft                       |                |
+ | newDraft                       | markReadyToDeploy()                  | readyToDeploy                  |                |
+ |                                | addOwner()                           | newDraft                       |                |
+ |                                | replaceOwner()                       | newDraft                       |                |
+ |                                | removeOwner()                        | newDraft                       |                |
+ | readyToDeploy                  | startDeployment()                    | deploymentStarted              |                |
+ | deploymentStarted              | abortDeployment()                    | newDraft                       |                |
+ |                                | changeBlockchainAddress()            | addressKnown                   |                |
+ | addressKnown                   | markDeploymentAcceptedByBlockchain() | deploymentAcceptedByBlockchain |                |
+ |                                | abortDeployment()                    | addressKnown                   |                |
+ | deploymentAcceptedByBlockchain | markDeploymentFailed()               | deploymentFailed               | Terminal State |
+ |                                | markDeploymentSuccess()              | deploymentSuccess              |                |
+ |                                | abortDeployment()                    | newDraft                       |                |
+ | deploymentSuccess              | finishDeployment()                   | readyToUse                     | Terminal State |
+ | readyToUse                     | addOwner()                           | readyToUse                     |                |
+ |                                | replaceOwner()                       | readyToUse                     |                |
+ |                                | removeOwner()                        | readyToUse                     |                |
+ //swiftlint:enable line_length
+ */
 public class Wallet: IdentifiableEntity<WalletID> {
 
     public enum Error: String, LocalizedError, Hashable {
@@ -141,10 +165,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
         try assert(status: .deploymentStarted)
         self.address = address
         status = .addressKnown
-    }
-
-    private func assertMutable() throws {
-        try assertTrue(Wallet.mutableStates.contains(status), Error.invalidState)
     }
 
     private func assertOwnerExists(_ kind: String) throws {

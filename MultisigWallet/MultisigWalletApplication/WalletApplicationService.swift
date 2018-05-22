@@ -83,22 +83,15 @@ public class WalletApplicationService: Assertable {
     public var hasReadyToUseWallet: Bool {
         return selectedWalletState == .readyToUse
     }
-    
+
     private static let validAccountUpdateStates: [WalletState] = [
         .addressKnown, .readyToUse, .notEnoughFunds, .accountFunded, .deploymentAcceptedByBlockchain,
         .deploymentSuccess, .deploymentFailed]
+    private var statusUpdateHandlers = [String: () -> Void]()
 
     public init() {}
 
-    public func createNewDraftWallet() throws {
-        let portfolio = try fetchOrCreatePortfolio()
-        let wallet = Wallet(id: DomainRegistry.walletRepository.nextID())
-        let account = Account(id: AccountID(token: "ETH"), walletID: wallet.id, balance: 0, minimumAmount: 0)
-        try portfolio.addWallet(wallet.id)
-        try DomainRegistry.walletRepository.save(wallet)
-        try DomainRegistry.portfolioRepository.save(portfolio)
-        try DomainRegistry.accountRepository.save(account)
-    }
+    // MARK: - Wallet
 
     private func fetchOrCreatePortfolio() throws -> Portfolio {
         if let result = try DomainRegistry.portfolioRepository.portfolio() {
@@ -108,78 +101,16 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public func isOwnerExists(_ type: OwnerType) -> Bool {
-        do {
-            let wallet = try findSelectedWallet()
-            return wallet.owner(kind: type.kind) != nil
-        } catch {
-            // TODO: handle error
+    public func createNewDraftWallet() throws {
+        try observeWalletStateWhile {
+            let portfolio = try fetchOrCreatePortfolio()
+            let wallet = Wallet(id: DomainRegistry.walletRepository.nextID())
+            let account = Account(id: AccountID(token: "ETH"), walletID: wallet.id, balance: 0, minimumAmount: 0)
+            try portfolio.addWallet(wallet.id)
+            try DomainRegistry.walletRepository.save(wallet)
+            try DomainRegistry.portfolioRepository.save(portfolio)
+            try DomainRegistry.accountRepository.save(account)
         }
-        return false
-    }
-
-    public func addOwner(address: String, type: OwnerType) throws {
-        let wallet = try findSelectedWallet()
-        let owner = Wallet.createOwner(address: address)
-        try wallet.addOwner(owner, kind: type.kind)
-        if wallet.status == .newDraft {
-            let enoughOwnersExist = OwnerType.all.reduce(true) { isEnough, type in
-                isEnough && wallet.owner(kind: type.kind) != nil
-            }
-            if enoughOwnersExist {
-                try wallet.markReadyToDeploy()
-            }
-        }
-        try DomainRegistry.walletRepository.save(wallet)
-    }
-
-    public func ownerAddress(of type: OwnerType) -> String? {
-        do {
-            let wallet = try findSelectedWallet()
-            if let owner = wallet.owner(kind: type.kind) {
-                return owner.address.value
-            }
-        } catch {
-            // TODO: log error
-        }
-        return nil
-    }
-
-
-    private func findSelectedWallet() throws -> Wallet {
-        guard let portfolio = try DomainRegistry.portfolioRepository.portfolio(),
-            let walletID = portfolio.selectedWallet,
-            let wallet = try DomainRegistry.walletRepository.findByID(walletID) else {
-                throw Error.selectedWalletNotFound
-        }
-        return wallet
-    }
-
-    public func updateMinimumFunding(account token: String, amount: Int) throws {
-        try assertCanChangeAccount()
-        let account = try findAccount(token)
-        account.updateMinimumTransactionAmount(amount)
-        try DomainRegistry.accountRepository.save(account)
-    }
-
-    private func findAccount(_ token: String) throws -> Account {
-        let wallet = try findSelectedWallet()
-        guard let account = try DomainRegistry.accountRepository.find(id: AccountID(token: token),
-                                                                      walletID: wallet.id) else {
-            throw Error.accountNotFound
-        }
-        return account
-    }
-
-    private func assertCanChangeAccount() throws {
-        try assertTrue(WalletApplicationService.validAccountUpdateStates.contains(selectedWalletState),
-                       Error.invalidWalletState)
-    }
-    public func update(account token: String, newBalance: Int) throws {
-        try assertCanChangeAccount()
-        let account = try findAccount(token)
-        account.update(newAmount: newBalance)
-        try DomainRegistry.accountRepository.save(account)
     }
 
     public func assignBlockchainAddress(_ address: String) throws {
@@ -188,11 +119,6 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    private func mutateSelectedWallet(_ closure: (Wallet) throws -> Void) throws {
-        let wallet = try findSelectedWallet()
-        try closure(wallet)
-        try DomainRegistry.walletRepository.save(wallet)
-    }
 
     public func startDeployment() throws {
         try mutateSelectedWallet { wallet in
@@ -230,12 +156,122 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public func subscribe(_ update: @escaping () -> Void) -> String {
-        return ""
+    private func mutateSelectedWallet(_ closure: (Wallet) throws -> Void) throws {
+        try observeWalletStateWhile {
+            let wallet = try findSelectedWallet()
+            try closure(wallet)
+            try DomainRegistry.walletRepository.save(wallet)
+        }
     }
 
-    public func unsubscribe(subscription: String) {}
+    private func findSelectedWallet() throws -> Wallet {
+        guard let portfolio = try DomainRegistry.portfolioRepository.portfolio(),
+            let walletID = portfolio.selectedWallet,
+            let wallet = try DomainRegistry.walletRepository.findByID(walletID) else {
+                throw Error.selectedWalletNotFound
+        }
+        return wallet
+    }
 
+    private func observeWalletStateWhile(_ closure: () throws -> Void) rethrows {
+        let startState = selectedWalletState
+        try closure()
+        let endState = selectedWalletState
+        if startState != endState {
+            notifyStatusUpdate()
+        }
+    }
+    // MARK: - Owners
 
+    public func isOwnerExists(_ type: OwnerType) -> Bool {
+        do {
+            let wallet = try findSelectedWallet()
+            return wallet.owner(kind: type.kind) != nil
+        } catch {
+            // TODO: handle error
+        }
+        return false
+    }
+
+    public func addOwner(address: String, type: OwnerType) throws {
+        try mutateSelectedWallet { wallet in
+            let owner = Wallet.createOwner(address: address)
+            try wallet.addOwner(owner, kind: type.kind)
+            if wallet.status == .newDraft {
+                let enoughOwnersExist = OwnerType.all.reduce(true) { isEnough, type in
+                    isEnough && wallet.owner(kind: type.kind) != nil
+                }
+                if enoughOwnersExist {
+                    try wallet.markReadyToDeploy()
+                }
+            }
+        }
+    }
+
+    public func ownerAddress(of type: OwnerType) -> String? {
+        do {
+            let wallet = try findSelectedWallet()
+            if let owner = wallet.owner(kind: type.kind) {
+                return owner.address.value
+            }
+        } catch {
+            // TODO: log error
+        }
+        return nil
+    }
+
+    // MARK: - Accounts
+
+    public func updateMinimumFunding(account token: String, amount: Int) throws {
+        try assertCanChangeAccount()
+        try mutateAccount(token: token) { account in
+            account.updateMinimumTransactionAmount(amount)
+        }
+    }
+
+    private func assertCanChangeAccount() throws {
+        try assertTrue(WalletApplicationService.validAccountUpdateStates.contains(selectedWalletState),
+                       Error.invalidWalletState)
+    }
+
+    public func update(account token: String, newBalance: Int) throws {
+        try assertCanChangeAccount()
+        try mutateAccount(token: token) { account in
+            account.update(newAmount: newBalance)
+        }
+    }
+
+    private func mutateAccount(token: String, closure: (Account) throws -> Void) throws {
+        try observeWalletStateWhile {
+            let account = try findAccount(token)
+            try closure(account)
+            try DomainRegistry.accountRepository.save(account)
+        }
+    }
+
+    private func findAccount(_ token: String) throws -> Account {
+        let wallet = try findSelectedWallet()
+        guard let account = try DomainRegistry.accountRepository.find(id: AccountID(token: token),
+                                                                      walletID: wallet.id) else {
+                                                                        throw Error.accountNotFound
+        }
+        return account
+    }
+
+    // MARK: - Wallet status update subsribing
+
+    public func subscribe(_ update: @escaping () -> Void) -> String {
+        let key = UUID().uuidString
+        statusUpdateHandlers[key] = update
+        return key
+    }
+
+    public func unsubscribe(subscription: String) {
+        statusUpdateHandlers.removeValue(forKey: subscription)
+    }
+
+    private func notifyStatusUpdate() {
+        statusUpdateHandlers.values.forEach { $0() }
+    }
 
 }

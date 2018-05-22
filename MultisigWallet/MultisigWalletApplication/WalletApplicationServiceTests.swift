@@ -163,4 +163,49 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(account.balance, 100)
     }
 
+    func test_whenSubscribesForUpdates_thenReceivesThem() throws {
+        givenDraftWallet()
+        var updated = false
+        _ = service.subscribe {
+            updated = true
+        }
+        try addAllOwners()
+        XCTAssertTrue(updated)
+    }
+
+    func test_whenUnsubscribes_thenNoUpdatesReceived() throws {
+        givenDraftWallet()
+        var updated = false
+        let handle = service.subscribe {
+            updated = true
+        }
+        service.unsubscribe(subscription: handle)
+        try addAllOwners()
+        XCTAssertFalse(updated)
+    }
+
+    func test_whenCreatingFirstWallet_thenCanObserveStatusUpdate() {
+        var updated = false
+        _ = service.subscribe {
+            updated = true
+        }
+        givenDraftWallet()
+        XCTAssertTrue(updated)
+    }
+
+    func test_whenWalletIsReady_thenHasReadyState() throws {
+        createPortfolio()
+        try service.createNewDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        try service.assignBlockchainAddress("address")
+        try service.updateMinimumFunding(account: "ETH", amount: 2)
+        try service.update(account: "ETH", newBalance: 1)
+        try service.update(account: "ETH", newBalance: 2)
+        try service.markDeploymentAcceptedByBlockchain()
+        try service.markDeploymentSuccess()
+        try service.finishDeployment()
+        XCTAssertTrue(service.hasReadyToUseWallet)
+    }
+
 }

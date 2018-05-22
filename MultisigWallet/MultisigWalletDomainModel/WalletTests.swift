@@ -56,33 +56,44 @@ class WalletTests: XCTestCase {
     }
 
     func test_whenDeploymentStarted_thenChangesState() throws {
+        try wallet.markReadyToDeploy()
         try wallet.startDeployment()
-        XCTAssertEqual(wallet.status, .deploymentPending)
+        XCTAssertEqual(wallet.status, Wallet.Status.deploymentStarted)
     }
 
     func test_whenDeploymentCompleted_thenChangesStatus() throws {
+        try wallet.markReadyToDeploy()
         try wallet.startDeployment()
-        try wallet.completeDeployment()
-        XCTAssertEqual(wallet.status, .ready)
+        try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
+        try wallet.markDeploymentAcceptedByBlockchain()
+        try wallet.markDeploymentSuccess()
+        try wallet.finishDeployment()
+        XCTAssertEqual(wallet.status, Wallet.Status.readyToUse)
     }
 
     func test_whenStartsDeploymentInWrongState_thenThrows() throws {
+        try wallet.markReadyToDeploy()
         try wallet.startDeployment()
-        try wallet.completeDeployment()
+        try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
+        try wallet.markDeploymentAcceptedByBlockchain()
+        try wallet.markDeploymentSuccess()
+        try wallet.finishDeployment()
         XCTAssertThrowsError(try wallet.startDeployment())
     }
 
     func test_whenCompletesDeploymentInWrongState_thenThrows() throws {
-        XCTAssertThrowsError(try wallet.completeDeployment())
+        XCTAssertThrowsError(try wallet.finishDeployment())
     }
 
     func test_whenTryingToAddOwnerInPendingState_thenThrows() throws {
+        try wallet.markReadyToDeploy()
         try wallet.startDeployment()
         XCTAssertThrowsError(try wallet.addOwner(owner, kind: "kind"))
     }
 
     func test_whenTryingToRemoveOwnerWhenInPendingState_thenThrows() throws {
         try wallet.addOwner(owner, kind: "kind")
+        try wallet.markReadyToDeploy()
         try wallet.startDeployment()
         XCTAssertThrowsError(try wallet.removeOwner(kind: "kind"))
     }
@@ -90,21 +101,29 @@ class WalletTests: XCTestCase {
     func test_whenTryingToReplaceOwnerWhilePending_thenThrows() throws {
         let otherOwner = Owner(address: BlockchainAddress(value: "Other"))
         try wallet.addOwner(owner, kind: "kind")
+        try wallet.markReadyToDeploy()
         try wallet.startDeployment()
         XCTAssertThrowsError(try wallet.replaceOwner(with: otherOwner, kind: "kind"))
     }
 
     func test_whenCancellingDeployment_thenChangesState() throws {
+        try wallet.markReadyToDeploy()
         try wallet.startDeployment()
-        try wallet.cancelDeployment()
+        try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
+        try wallet.markDeploymentAcceptedByBlockchain()
+        try wallet.abortDeployment()
         XCTAssertEqual(wallet.status, .newDraft)
     }
 
     func test_whenTryingToCancelDeplolymentWhileNotDeploying_thenThrows() throws {
-        XCTAssertThrowsError(try wallet.cancelDeployment())
+        XCTAssertThrowsError(try wallet.abortDeployment())
+        try wallet.markReadyToDeploy()
         try wallet.startDeployment()
-        try wallet.completeDeployment()
-        XCTAssertThrowsError(try wallet.cancelDeployment())
+        try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
+        try wallet.markDeploymentAcceptedByBlockchain()
+        try wallet.markDeploymentSuccess()
+        try wallet.finishDeployment()
+        XCTAssertThrowsError(try wallet.abortDeployment())
     }
 
     func test_whenCreatingOwner_thenConfiguresIt() {
