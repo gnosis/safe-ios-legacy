@@ -40,17 +40,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         EthereumApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
                                                            for: EthereumApplicationService.self)
-        ApplicationServiceRegistry.put(service: AuthenticationApplicationService(),
+        IdentityAccessApplication.ApplicationServiceRegistry.put(service: AuthenticationApplicationService(),
                                        for: AuthenticationApplicationService.self)
-        ApplicationServiceRegistry.put(service: IdentityApplicationService(), for: IdentityApplicationService.self)
-        ApplicationServiceRegistry.put(service: SystemClockService(), for: Clock.self)
-        ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
-        DomainRegistry.put(service: UserDefaultsService(), for: KeyValueStore.self)
-        DomainRegistry.put(service: KeychainService(), for: SecureStore.self)
-        DomainRegistry.put(service: BiometricService(), for: BiometricAuthenticationService.self)
-        DomainRegistry.put(service: SystemClockService(), for: Clock.self)
-        DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
-        DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
+        IdentityAccessApplication.ApplicationServiceRegistry.put(service: IdentityApplicationService(),
+                                                                 for: IdentityApplicationService.self)
+        IdentityAccessApplication.ApplicationServiceRegistry.put(service: SystemClockService(), for: Clock.self)
+        IdentityAccessApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
+        IdentityAccessDomainModel.DomainRegistry.put(service: UserDefaultsService(), for: KeyValueStore.self)
+        IdentityAccessDomainModel.DomainRegistry.put(service: KeychainService(), for: SecureStore.self)
+        IdentityAccessDomainModel.DomainRegistry.put(service: BiometricService(),
+                                                     for: BiometricAuthenticationService.self)
+        IdentityAccessDomainModel.DomainRegistry.put(service: SystemClockService(), for: Clock.self)
+        IdentityAccessDomainModel.DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
+        IdentityAccessDomainModel.DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
         do {
             let db = SQLiteDatabase(name: "IdentityAccess",
                                     fileManager: FileManager.default,
@@ -58,8 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     bundleId: Bundle.main.bundleIdentifier ?? "pm.gnosis.safe")
             let userRepo = DBSingleUserRepository(db: db)
             let gatekeeperRepo = DBSingleGatekeeperRepository(db: db)
-            DomainRegistry.put(service: userRepo, for: SingleUserRepository.self)
-            DomainRegistry.put(service: gatekeeperRepo, for: SingleGatekeeperRepository.self)
+            IdentityAccessDomainModel.DomainRegistry.put(service: userRepo, for: SingleUserRepository.self)
+            IdentityAccessDomainModel.DomainRegistry.put(service: gatekeeperRepo, for: SingleGatekeeperRepository.self)
 
             if !db.exists {
                 try db.create()
