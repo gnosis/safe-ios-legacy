@@ -261,7 +261,7 @@ public class WalletApplicationService: Assertable {
         return account
     }
 
-    // MARK: - Wallet status update subsribing
+    // MARK: - Wallet status update subscribing
 
     public func subscribe(_ update: @escaping () -> Void) -> String {
         let key = UUID().uuidString
