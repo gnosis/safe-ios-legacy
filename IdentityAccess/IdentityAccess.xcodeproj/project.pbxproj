@@ -21,7 +21,6 @@
 		0A537A98207CE74100921FB9 /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A87207CE74100921FB9 /* DomainRegistry.swift */; };
 		0A537A9A207CE74100921FB9 /* BiometricAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A89207CE74100921FB9 /* BiometricAuthenticationService.swift */; };
 		0A537A9B207CE74100921FB9 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A8A207CE74100921FB9 /* EncryptionService.swift */; };
-		0A537A9E207CE74100921FB9 /* LoggableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A8D207CE74100921FB9 /* LoggableError.swift */; };
 		0A537AAC207CEA0100921FB9 /* libIdentityAccessDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */; };
 		0A537AB5207CEAC700921FB9 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */; };
 		0A537AB7207CEBB100921FB9 /* DomainTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A8C207CE74100921FB9 /* DomainTestCase.swift */; };
@@ -32,14 +31,9 @@
 		0A537AE1207CEE7300921FB9 /* InMemorySecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537ADF207CEE7300921FB9 /* InMemorySecureStore.swift */; };
 		0A537AE5207CEFED00921FB9 /* InMemoryKeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE4207CEFED00921FB9 /* InMemoryKeyValueStore.swift */; };
 		0A537AE7207CF00D00921FB9 /* MockEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE6207CF00D00921FB9 /* MockEncryptionService.swift */; };
-		0A537AE9207CF02C00921FB9 /* MockLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AE8207CF02C00921FB9 /* MockLogger.swift */; };
 		0A537AED207CF10000921FB9 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEC207CF10000921FB9 /* libCommonTestSupport.a */; };
 		0A537AEF207CF18B00921FB9 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */; };
 		0A537AF0207CF1A200921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
-		0A537B0F207CF2D600921FB9 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF6207CF2D600921FB9 /* LogFormatter.swift */; };
-		0A537B11207CF2D600921FB9 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF8207CF2D600921FB9 /* CrashlyticsLogger.swift */; };
-		0A537B12207CF2D600921FB9 /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF9207CF2D600921FB9 /* ConsoleLogger.swift */; };
-		0A537B13207CF2D600921FB9 /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFA207CF2D600921FB9 /* LogService.swift */; };
 		0A537B14207CF2D600921FB9 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFC207CF2D600921FB9 /* KeychainService.swift */; };
 		0A537B16207CF2D600921FB9 /* SystemClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFF207CF2D600921FB9 /* SystemClockService.swift */; };
 		0A537B19207CF2D600921FB9 /* BiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B03207CF2D600921FB9 /* BiometricService.swift */; };
@@ -51,11 +45,6 @@
 		0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B06207CF2D600921FB9 /* EncryptionServiceTests.swift */; };
 		0A537BA8207CF93F00921FB9 /* EthereumAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B05207CF2D600921FB9 /* EthereumAccountTests.swift */; };
 		0A537BA9207CF94E00921FB9 /* UserDefaultsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B0A207CF2D600921FB9 /* UserDefaultsIntegrationTests.swift */; };
-		0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF7207CF2D600921FB9 /* ConsoleLoggerTests.swift */; };
-		0A537BAB207CF96500921FB9 /* CrashlyticsLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF2207CF2D600921FB9 /* CrashlyticsLoggerTests.swift */; };
-		0A537BAC207CF96B00921FB9 /* LogFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF4207CF2D600921FB9 /* LogFormatterTests.swift */; };
-		0A537BAD207CF96E00921FB9 /* LoggableErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF3207CF2D600921FB9 /* LoggableErrorTests.swift */; };
-		0A537BAE207CF97300921FB9 /* LogServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AF5207CF2D600921FB9 /* LogServiceTests.swift */; };
 		0A537BB7207CF9B400921FB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BB6207CF9B400921FB9 /* AppDelegate.swift */; };
 		0A537BB9207CF9B400921FB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BB8207CF9B400921FB9 /* ViewController.swift */; };
 		0A537BBC207CF9B400921FB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBA207CF9B400921FB9 /* Main.storyboard */; };
@@ -82,7 +71,6 @@
 		0A5DC587209CA24C00BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC586209CA24C00BA7A06 /* libCommon.a */; };
 		0A5DC589209CA25200BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC588209CA25200BA7A06 /* libCommon.a */; };
 		0A666D04208643A50034FF66 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666CFF208643A50034FF66 /* Clock.swift */; };
-		0A666D062086496E0034FF66 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D052086496D0034FF66 /* Logger.swift */; };
 		0A666D132087A17F0034FF66 /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */; };
 		0A666D192087A1990034FF66 /* AuthenticationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D182087A1990034FF66 /* AuthenticationMethod.swift */; };
 		0A666D1B2087A1A90034FF66 /* AuthenticationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */; };
@@ -212,6 +200,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0A537BE0207CFADE00921FB9;
 			remoteInfo = IdentityAccessApplication;
+		};
+		0A8E3BB320B41AB100F002F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A8E3B9220B419CC00F002F6;
+			remoteInfo = CommonImplementations;
+		};
+		0A8E3BB520B41AB100F002F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A8E3B9E20B419E000F002F6;
+			remoteInfo = CommonImplementationsTests;
 		};
 		0ADFDD8E20A0615600423554 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -358,7 +360,6 @@
 		0A537A89207CE74100921FB9 /* BiometricAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationService.swift; sourceTree = "<group>"; };
 		0A537A8A207CE74100921FB9 /* EncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
 		0A537A8C207CE74100921FB9 /* DomainTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainTestCase.swift; sourceTree = "<group>"; };
-		0A537A8D207CE74100921FB9 /* LoggableError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggableError.swift; sourceTree = "<group>"; };
 		0A537AA7207CEA0100921FB9 /* IdentityAccessDomainModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessDomainModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537AAB207CEA0100921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -370,19 +371,9 @@
 		0A537ADF207CEE7300921FB9 /* InMemorySecureStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemorySecureStore.swift; sourceTree = "<group>"; };
 		0A537AE4207CEFED00921FB9 /* InMemoryKeyValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryKeyValueStore.swift; sourceTree = "<group>"; };
 		0A537AE6207CF00D00921FB9 /* MockEncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEncryptionService.swift; sourceTree = "<group>"; };
-		0A537AE8207CF02C00921FB9 /* MockLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLogger.swift; sourceTree = "<group>"; };
 		0A537AEA207CF0F900921FB9 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537AEC207CF10000921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A537AF2207CF2D600921FB9 /* CrashlyticsLoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsLoggerTests.swift; sourceTree = "<group>"; };
-		0A537AF3207CF2D600921FB9 /* LoggableErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggableErrorTests.swift; sourceTree = "<group>"; };
-		0A537AF4207CF2D600921FB9 /* LogFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFormatterTests.swift; sourceTree = "<group>"; };
-		0A537AF5207CF2D600921FB9 /* LogServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogServiceTests.swift; sourceTree = "<group>"; };
-		0A537AF6207CF2D600921FB9 /* LogFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
-		0A537AF7207CF2D600921FB9 /* ConsoleLoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLoggerTests.swift; sourceTree = "<group>"; };
-		0A537AF8207CF2D600921FB9 /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogger.swift; sourceTree = "<group>"; };
-		0A537AF9207CF2D600921FB9 /* ConsoleLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
-		0A537AFA207CF2D600921FB9 /* LogService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
 		0A537AFC207CF2D600921FB9 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		0A537AFD207CF2D600921FB9 /* KeychainServiceIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainServiceIntegrationTests.swift; sourceTree = "<group>"; };
 		0A537AFF207CF2D600921FB9 /* SystemClockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemClockService.swift; sourceTree = "<group>"; };
@@ -427,7 +418,6 @@
 		0A5DC586209CA24C00BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A5DC588209CA25200BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A666CFF208643A50034FF66 /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
-		0A666D052086496D0034FF66 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
 		0A666D182087A1990034FF66 /* AuthenticationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationMethod.swift; sourceTree = "<group>"; };
 		0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResult.swift; sourceTree = "<group>"; };
@@ -611,7 +601,6 @@
 				0A537A87207CE74100921FB9 /* DomainRegistry.swift */,
 				0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */,
 				0A537A8C207CE74100921FB9 /* DomainTestCase.swift */,
-				0A537A8D207CE74100921FB9 /* LoggableError.swift */,
 				0A48A08620935AFE00B704AD /* Ethereum */,
 				0A48A08420935A9000B704AD /* Gatekeeper */,
 				0A48A08520935ABC00B704AD /* IdentityService */,
@@ -639,7 +628,6 @@
 				0A537AFE207CF2D600921FB9 /* clock */,
 				0A537B04207CF2D600921FB9 /* ethereum */,
 				0A537B08207CF2D600921FB9 /* keyValueStore */,
-				0A537AF1207CF2D600921FB9 /* logger */,
 				0A537AFB207CF2D600921FB9 /* secureStore */,
 				0A537ADD207CEE1600921FB9 /* XcodeBuildSupport */,
 				0A0C87132097488300471885 /* Localizable.strings */,
@@ -654,23 +642,6 @@
 				0A537B32207CF4B000921FB9 /* Tests-Info.plist */,
 			);
 			path = XcodeBuildSupport;
-			sourceTree = "<group>";
-		};
-		0A537AF1207CF2D600921FB9 /* logger */ = {
-			isa = PBXGroup;
-			children = (
-				0A537AF9207CF2D600921FB9 /* ConsoleLogger.swift */,
-				0A537AF7207CF2D600921FB9 /* ConsoleLoggerTests.swift */,
-				0A537AF8207CF2D600921FB9 /* CrashlyticsLogger.swift */,
-				0A537AF2207CF2D600921FB9 /* CrashlyticsLoggerTests.swift */,
-				0A537AF6207CF2D600921FB9 /* LogFormatter.swift */,
-				0A537AF4207CF2D600921FB9 /* LogFormatterTests.swift */,
-				0A537AF3207CF2D600921FB9 /* LoggableErrorTests.swift */,
-				0A537AFA207CF2D600921FB9 /* LogService.swift */,
-				0A537AF5207CF2D600921FB9 /* LogServiceTests.swift */,
-				0A537AE8207CF02C00921FB9 /* MockLogger.swift */,
-			);
-			path = logger;
 			sourceTree = "<group>";
 		};
 		0A537AFB207CF2D600921FB9 /* secureStore */ = {
@@ -786,7 +757,6 @@
 			isa = PBXGroup;
 			children = (
 				0A666CFF208643A50034FF66 /* Clock.swift */,
-				0A666D052086496D0034FF66 /* Logger.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -799,6 +769,8 @@
 				0ADFDD9320A0615600423554 /* libCommonTestSupport.a */,
 				0A160BA020A0801A00E064E1 /* libDatabase.a */,
 				0AEF8A3420A08182006A1265 /* DatabaseTests.xctest */,
+				0A8E3BB420B41AB100F002F6 /* libCommonImplementations.a */,
+				0A8E3BB620B41AB100F002F6 /* CommonImplementationsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1144,6 +1116,20 @@
 			remoteRef = 0A57F729207E4CF900AF407D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		0A8E3BB420B41AB100F002F6 /* libCommonImplementations.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCommonImplementations.a;
+			remoteRef = 0A8E3BB320B41AB100F002F6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A8E3BB620B41AB100F002F6 /* CommonImplementationsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CommonImplementationsTests.xctest;
+			remoteRef = 0A8E3BB520B41AB100F002F6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0ADFDD8F20A0615600423554 /* libCommon.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1301,7 +1287,6 @@
 				0A537A9A207CE74100921FB9 /* BiometricAuthenticationService.swift in Sources */,
 				0A537A93207CE74100921FB9 /* KeyValueStore.swift in Sources */,
 				0AFFF41C2080BC900030200C /* IdentityService.swift in Sources */,
-				0A537A9E207CE74100921FB9 /* LoggableError.swift in Sources */,
 				0AA4FF912085F46900C82CFE /* AuthenticationPolicy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1324,7 +1309,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A537AE0207CEE7300921FB9 /* MockClockService.swift in Sources */,
-				0A537B12207CF2D600921FB9 /* ConsoleLogger.swift in Sources */,
 				0A0C871920974B6900471885 /* LocalizedString.swift.swift in Sources */,
 				0A44F9C520908BBD00BB7101 /* DBSingleUserRepository.swift in Sources */,
 				0A537B1C207CF2D600921FB9 /* EncryptionService.swift in Sources */,
@@ -1334,16 +1318,12 @@
 				0A537B16207CF2D600921FB9 /* SystemClockService.swift in Sources */,
 				0A537B14207CF2D600921FB9 /* KeychainService.swift in Sources */,
 				0AFFF41020808C160030200C /* InMemoryUserRepository.swift in Sources */,
-				0A537B13207CF2D600921FB9 /* LogService.swift in Sources */,
 				0A537AE7207CF00D00921FB9 /* MockEncryptionService.swift in Sources */,
 				0A537B1D207CF2D600921FB9 /* UserDefaultsService.swift in Sources */,
-				0A537B0F207CF2D600921FB9 /* LogFormatter.swift in Sources */,
 				0A48A0722092003C00B704AD /* DBSingleGatekeeperRepository.swift in Sources */,
-				0A537AE9207CF02C00921FB9 /* MockLogger.swift in Sources */,
 				0A537B19207CF2D600921FB9 /* BiometricService.swift in Sources */,
 				0AFFF4302084C01A0030200C /* InMemoryGatekeeperRepository.swift in Sources */,
 				0A537ADA207CEE1100921FB9 /* InMemoryUserDefaults.swift in Sources */,
-				0A537B11207CF2D600921FB9 /* CrashlyticsLogger.swift in Sources */,
 				0A537AE5207CEFED00921FB9 /* InMemoryKeyValueStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1355,20 +1335,15 @@
 				0A537BA8207CF93F00921FB9 /* EthereumAccountTests.swift in Sources */,
 				0A48A07B2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift in Sources */,
 				0A44F9CB20908BE400BB7101 /* DBSingleUserRepositoryTests.swift in Sources */,
-				0A537BAB207CF96500921FB9 /* CrashlyticsLoggerTests.swift in Sources */,
 				0AFFF42E2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift in Sources */,
-				0A537BAE207CF97300921FB9 /* LogServiceTests.swift in Sources */,
 				0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */,
 				0AFFF40E20808C0B0030200C /* InMemoryUserRepositoryTests.swift in Sources */,
-				0A537BAC207CF96B00921FB9 /* LogFormatterTests.swift in Sources */,
 				0AFFF4342084D4DA0030200C /* AuthenticationPolicyTests.swift in Sources */,
 				0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */,
-				0A537BAA207CF95B00921FB9 /* ConsoleLoggerTests.swift in Sources */,
 				0A48A0792092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift in Sources */,
 				0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */,
 				0A44F9CD2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift in Sources */,
 				0A537BA9207CF94E00921FB9 /* UserDefaultsIntegrationTests.swift in Sources */,
-				0A537BAD207CF96E00921FB9 /* LoggableErrorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1393,7 +1368,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A666D062086496E0034FF66 /* Logger.swift in Sources */,
 				0A666D132087A17F0034FF66 /* AuthenticationRequest.swift in Sources */,
 				0A537BF5207CFB1C00921FB9 /* ApplicationServiceRegistry.swift in Sources */,
 				0A537BF4207CFB1C00921FB9 /* IdentityApplicationService.swift in Sources */,

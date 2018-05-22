@@ -24,3 +24,7 @@ public extension LoggableError {
     }
 
 }
+
+public enum TestLoggableError: LoggableError {
+    case error
+}

@@ -9,5 +9,6 @@ public protocol SinglePortfolioRepository {
     func save(_ portfolio: Portfolio) throws
     func remove(_ portfolio: Portfolio) throws
     func portfolio() throws -> Portfolio?
+    func nextID() throws -> PortfolioID
 
 }

@@ -1,0 +1,6 @@
+//
+//  Copyright © 2018 Gnosis Ltd. All rights reserved.
+//
+
+#include "CommonConfig.xcconfig"
+OTHER_LDFLAGS = $(inherited) -lMultisigWalletDomainModel -lMultisigWalletApplication -lsqlite3

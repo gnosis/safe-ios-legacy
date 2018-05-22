@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Common
 import LocalAuthentication
 import IdentityAccessDomainModel
 import IdentityAccessApplication

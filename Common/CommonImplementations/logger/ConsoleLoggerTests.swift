@@ -3,8 +3,8 @@
 //
 
 import XCTest
-@testable import IdentityAccessImplementations
-import IdentityAccessDomainModel
+@testable import CommonImplementations
+import Common
 
 class ConsoleLoggerTests: XCTestCase {
 

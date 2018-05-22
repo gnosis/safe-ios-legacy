@@ -7,6 +7,7 @@ import SafeUIKit
 import IdentityAccessApplication
 import MultisigWalletApplication
 import EthereumApplication
+import Common
 
 protocol PairWithBrowserDelegate: class {
     func didPair()
@@ -27,7 +28,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     private(set) weak var delegate: PairWithBrowserDelegate?
     private var logger: Logger {
-        return ApplicationServiceRegistry.logger
+        return MultisigWalletApplication.ApplicationServiceRegistry.logger
     }
     private var walletService: WalletApplicationService {
         return ApplicationServiceRegistry.walletService
@@ -59,8 +60,12 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             logger.error("Wrong state in PairWithBrowserExtensionViewController.")
             return
         }
-        walletService.addOwner(address: text, type: .browserExtension)
-        delegate?.didPair()
+        do {
+            try walletService.addOwner(address: text, type: .browserExtension)
+            delegate?.didPair()
+        } catch let e {
+            ErrorHandler.showError(log: "Failed to add browser extension \(text)", error: e)
+        }
     }
 
 }

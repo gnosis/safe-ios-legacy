@@ -5,11 +5,11 @@
 import Foundation
 import EthereumDomainModel
 
-public class EthereumApplicationService {
+open class EthereumApplicationService {
 
     public init() {}
 
-    public func address(browserExtensionCode: String) -> String? {
+    open func address(browserExtensionCode: String) -> String? {
         return DomainRegistry.encryptionService.address(browserExtensionCode: browserExtensionCode)
     }
 
@@ -25,7 +25,7 @@ public class EthereumApplicationService {
 
     }
 
-    public func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {
+    open func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {
         return ExternallyOwnedAccount(address: "address", mnemonicWords: [])
     }
 

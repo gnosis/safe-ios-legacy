@@ -6,6 +6,7 @@ import XCTest
 @testable import EthereumApplication
 import EthereumImplementations
 import EthereumDomainModel
+import Common
 
 class EthereumApplicationTestCase: XCTestCase {
 
@@ -16,6 +17,7 @@ class EthereumApplicationTestCase: XCTestCase {
         super.setUp()
         ApplicationServiceRegistry.put(service: ethereumApplicationService, for: EthereumApplicationService.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
+        ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
     }
 
 }

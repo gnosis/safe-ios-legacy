@@ -37,6 +37,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let words = account?.mnemonicWords, words.count > 1 else {
+            MultisigWalletApplication.ApplicationServiceRegistry.logger.error("Not enough words in mnemonic phrase")
             dismiss(animated: true)
             return
         }
@@ -73,8 +74,12 @@ extension ConfirmMnemonicViewController: TextInputDelegate {
     func textInputDidReturn(_ textInput: TextInput) {
         if firstWordTextInput.text == firstMnemonicWordToCheck &&
             secondWordTextInput.text == secondMnemonicWordToCheck {
-            ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
-            delegate?.didConfirm()
+            do {
+                try ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
+                delegate?.didConfirm()
+            } catch let e {
+                ErrorHandler.showError(log: "Failed to add paper wallet owner \(account.address)", error: e)
+            }
         } else if textInput == firstWordTextInput {
             _ = secondWordTextInput.becomeFirstResponder()
         }

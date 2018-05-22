@@ -3,8 +3,8 @@
 //
 
 import XCTest
-@testable import IdentityAccessImplementations
-import IdentityAccessDomainModel
+@testable import CommonImplementations
+import Common
 import CommonTestSupport
 
 class LogFormatterTests: XCTestCase {
@@ -37,7 +37,7 @@ class LogFormatterTests: XCTestCase {
 
     func test_errorFormat() {
         formatter.format = "Test %e parameter."
-        XCTAssertEqual(formatter.string(from: testMsg, error: TestError.error), "Test error parameter.")
+        XCTAssertEqual(formatter.string(from: testMsg, error: TestError.error), "Test (error) parameter.")
         XCTAssertEqual(formatter.string(from: testMsg, error: nil), "Test  parameter.")
     }
 

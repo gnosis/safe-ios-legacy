@@ -6,6 +6,7 @@ import UIKit
 import SafeUIKit
 import IdentityAccessApplication
 import MultisigWalletApplication
+import Common
 
 protocol NewSafeDelegate: class {
     func didSelectPaperWalletSetup()
@@ -35,7 +36,7 @@ class NewSafeViewController: UIViewController {
     weak var delegate: NewSafeDelegate?
 
     private var logger: Logger {
-        return ApplicationServiceRegistry.logger
+        return MultisigWalletApplication.ApplicationServiceRegistry.logger
     }
     private var walletService: WalletApplicationService {
         return MultisigWalletApplication.ApplicationServiceRegistry.walletService
@@ -48,8 +49,12 @@ class NewSafeViewController: UIViewController {
     }
 
     @IBAction func navigateNext(_ sender: Any) {
-        walletService.startDeployment()
-        delegate?.didSelectNext()
+        do {
+            try walletService.startDeployment()
+            delegate?.didSelectNext()
+        } catch let e {
+            ErrorHandler.showError(log: "Failed to start deployment", error: e)
+        }
     }
 
     override func viewDidLoad() {

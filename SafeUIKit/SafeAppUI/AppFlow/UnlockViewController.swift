@@ -105,7 +105,7 @@ final class UnlockViewController: UIViewController {
                 focusPasswordField()
             }
         } catch let e {
-            FatalErrorHandler.showFatalError(log: "Failed to authenticate with biometry", error: e)
+            ErrorHandler.showFatalError(log: "Failed to authenticate with biometry", error: e)
         }
     }
 
@@ -128,7 +128,7 @@ extension UnlockViewController: TextInputDelegate {
                 self.startCountdownIfNeeded()
             }
         } catch let e {
-            FatalErrorHandler.showFatalError(log: "Failed to authenticate with password", error: e)
+            ErrorHandler.showFatalError(log: "Failed to authenticate with password", error: e)
         }
     }
 

@@ -1,6 +1,9 @@
 /* Unlock screen header */
 "app.unlock.header" = "Unlock with your master password";
 
+/* Generic error message alert */
+"generic.error.message" = "generic.error.message";
+
 /* Browser extension Button */
 "new_safe.browser_extension" = "Browser Extension";
 

@@ -4,6 +4,7 @@
 
 import Foundation
 import EthereumDomainModel
+import EthereumApplication
 import EthereumKit
 
 // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md
@@ -53,7 +54,7 @@ public class EncryptionService: EncryptionDomainService {
 
     public func address(browserExtensionCode: String) -> String? {
         guard let code = extensionCode(from: browserExtensionCode) else {
-            // TODO: log error
+            ApplicationServiceRegistry.logger.error("Failed to convert extension code (\(browserExtensionCode))")
             return nil
         }
         let signer = EIP155Signer(chainID: chainId.rawValue)
@@ -61,7 +62,8 @@ public class EncryptionService: EncryptionDomainService {
         let message = "GNO" + code.expirationDate
         let signedData = Crypto.hashSHA3_256(message.data(using: .utf8)!)
         guard let pubKey = Crypto.publicKey(signature: signature, of: signedData, compressed: false) else {
-            // TODO: log error
+            ApplicationServiceRegistry.logger.error(
+                "Failed to extract public key from extension code (\(browserExtensionCode))")
             return nil
         }
         return PublicKey(raw: Data(hex: "0x") + pubKey).generateAddress()
