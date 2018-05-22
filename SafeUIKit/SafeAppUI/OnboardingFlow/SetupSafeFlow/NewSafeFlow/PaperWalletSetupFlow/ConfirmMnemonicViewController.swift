@@ -37,6 +37,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let words = account?.mnemonicWords, words.count > 1 else {
+            MultisigWalletApplication.ApplicationServiceRegistry.logger.error("Not enough words in mnemonic phrase")
             dismiss(animated: true)
             return
         }

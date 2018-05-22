@@ -74,6 +74,8 @@ public class WalletApplicationService: Assertable {
             case .readyToUse:
                 return .readyToUse
             }
+        } catch Error.selectedWalletNotFound {
+            return .none // all good
         } catch let e {
             ApplicationServiceRegistry.logger.error("Failed to compute selected wallet state", error: e)
         }

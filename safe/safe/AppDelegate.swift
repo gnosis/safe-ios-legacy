@@ -18,17 +18,19 @@ import Common
 import CommonImplementations
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
     var window: UIWindow?
     lazy var coordinator = AppFlowCoordinator()
+    var identityAccessDB: Database?
+    var multisigWalletDB: Database?
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         configureDependencyInjection()
         #if DEBUG
-            TestSupport.shared.addResettable(ApplicationServiceRegistry.authenticationService)
+            TestSupport.shared.addResettable(self)
             TestSupport.shared.setUp()
         #endif
         createWindow()
@@ -65,8 +67,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setUpMultisigDatabase()
     }
 
+    class FakeEthereumApplicationService: MockEthereumApplicationService {
+
+        override func address(browserExtensionCode code: String) -> String? {
+            if code == "invalid_code" { return nil }
+            if code == "another_code" { return "0xa06a215ca4a54189e7f951c59f0431e33d044440" }
+            return "0xa06a215ca4a54189e7f951c59f0431e33d0f38a0"
+        }
+
+    }
+
     private func configureEthereum() {
-        EthereumApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
+        let service = FakeEthereumApplicationService()
+        service.prepareToGenerateExternallyOwnedAccount(address: "0xa06a215ca4a54189e7f951c59f0431e33d0f38a0",
+                                                        mnemonic: [
+                                                            "alpha",
+                                                            "beta",
+                                                            "gamma",
+                                                            "delta",
+                                                            "epsilon",
+                                                            "zeta",
+                                                            "eta",
+                                                            "theta",
+                                                            "iota",
+                                                            "kappa",
+                                                            "lambda",
+                                                            "mu"])
+        EthereumApplication.ApplicationServiceRegistry.put(service: service,
                                                            for: EthereumApplicationService.self)
     }
 
@@ -76,6 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     fileManager: FileManager.default,
                                     sqlite: CSQLite3(),
                                     bundleId: Bundle.main.bundleIdentifier ?? "pm.gnosis.safe")
+            identityAccessDB = db
             let userRepo = DBSingleUserRepository(db: db)
             let gatekeeperRepo = DBSingleGatekeeperRepository(db: db)
             IdentityAccessDomainModel.DomainRegistry.put(service: userRepo, for: SingleUserRepository.self)
@@ -102,6 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     fileManager: FileManager.default,
                                     sqlite: CSQLite3(),
                                     bundleId: Bundle.main.bundleIdentifier ?? "pm.gnosis.safe")
+            multisigWalletDB = db
             let walletRepo = DBWalletRepository(db: db)
             let portfolioRepo = DBSinglePortfolioRepository(db: db)
             let accountRepo = DBAccountRepository(db: db)
@@ -130,12 +159,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         coordinator.appEntersForeground()
     }
 
-}
-
-extension AuthenticationApplicationService: Resettable {
-
     func resetAll() {
-        try? reset()
+        if let db = identityAccessDB {
+            try? db.destroy()
+            setUpIdentityAccessDatabase()
+        }
+        if let db = multisigWalletDB {
+            try? db.destroy()
+            setUpMultisigDatabase()
+        }
     }
 
 }

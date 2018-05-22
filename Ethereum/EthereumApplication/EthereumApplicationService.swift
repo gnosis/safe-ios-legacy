@@ -4,11 +4,11 @@
 
 import Foundation
 
-public class EthereumApplicationService {
+open class EthereumApplicationService {
 
     public init() {}
 
-    public func address(browserExtensionCode: String) -> String? {
+    open func address(browserExtensionCode: String) -> String? {
         return nil
     }
 
@@ -24,7 +24,7 @@ public class EthereumApplicationService {
 
     }
 
-    public func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {
+    open func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {
         return ExternallyOwnedAccount(address: "address", mnemonicWords: [])
     }
 

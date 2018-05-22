@@ -4,20 +4,20 @@
 
 import Foundation
 
-public class MockEthereumApplicationService: EthereumApplicationService {
+open class MockEthereumApplicationService: EthereumApplicationService {
 
-    public var resultAddressFromAnyBrowserExtensionCode: String?
+    open var resultAddressFromAnyBrowserExtensionCode: String?
     private var generatedAccount: ExternallyOwnedAccount?
 
-    public override func address(browserExtensionCode: String) -> String? {
+    open override func address(browserExtensionCode: String) -> String? {
         return resultAddressFromAnyBrowserExtensionCode
     }
 
-    public func prepareToGenerateExternallyOwnedAccount(address: String, mnemonic: [String]) {
+    open func prepareToGenerateExternallyOwnedAccount(address: String, mnemonic: [String]) {
         generatedAccount = ExternallyOwnedAccount(address: address, mnemonicWords: mnemonic)
     }
 
-    public override func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {
+    open override func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {
         return generatedAccount!
     }
 
