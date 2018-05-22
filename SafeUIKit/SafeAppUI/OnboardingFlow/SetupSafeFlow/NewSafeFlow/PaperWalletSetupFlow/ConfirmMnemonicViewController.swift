@@ -73,8 +73,12 @@ extension ConfirmMnemonicViewController: TextInputDelegate {
     func textInputDidReturn(_ textInput: TextInput) {
         if firstWordTextInput.text == firstMnemonicWordToCheck &&
             secondWordTextInput.text == secondMnemonicWordToCheck {
-            ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
-            delegate?.didConfirm()
+            do {
+                try ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
+                delegate?.didConfirm()
+            } catch {
+                // TODO: handle error
+            }
         } else if textInput == firstWordTextInput {
             _ = secondWordTextInput.becomeFirstResponder()
         }

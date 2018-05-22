@@ -48,8 +48,12 @@ class NewSafeViewController: UIViewController {
     }
 
     @IBAction func navigateNext(_ sender: Any) {
-        walletService.startDeployment()
-        delegate?.didSelectNext()
+        do {
+            try walletService.startDeployment()
+            delegate?.didSelectNext()
+        } catch {
+            // TODO: log error
+        }
     }
 
     override func viewDidLoad() {

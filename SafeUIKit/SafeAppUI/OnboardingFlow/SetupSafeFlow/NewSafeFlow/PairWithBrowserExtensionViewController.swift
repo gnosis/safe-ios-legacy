@@ -59,8 +59,12 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             logger.error("Wrong state in PairWithBrowserExtensionViewController.")
             return
         }
-        walletService.addOwner(address: text, type: .browserExtension)
-        delegate?.didPair()
+        do {
+            try walletService.addOwner(address: text, type: .browserExtension)
+            delegate?.didPair()
+        } catch {
+            // TODO: handle error
+        }
     }
 
 }

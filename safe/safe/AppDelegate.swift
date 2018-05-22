@@ -10,6 +10,7 @@ import IdentityAccessApplication
 import IdentityAccessDomainModel
 import IdentityAccessImplementations
 import MultisigWalletApplication
+import MultisigWalletDomainModel
 import EthereumApplication
 import Database
 
@@ -34,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func configureDependencyInjection() {
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletApplicationService(),
                                                                  for: WalletApplicationService.self)
+
+        // TODO: database and repositories for multisig domain model
+
         EthereumApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
                                                            for: EthereumApplicationService.self)
         ApplicationServiceRegistry.put(service: AuthenticationApplicationService(),
