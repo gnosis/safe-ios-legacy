@@ -4,11 +4,18 @@
 
 import XCTest
 @testable import EthereumImplementations
+import EthereumApplication
 import EthereumKit
+import Common
 
 class EncryptionServiceTests: XCTestCase {
 
     let encryptionService = EncryptionService()
+
+    override func setUp() {
+        super.setUp()
+        ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
+    }
 
     func test_extensionCodeWithValidJson() {
         let json = JSON(extensionCode: QRCode.validCode1)

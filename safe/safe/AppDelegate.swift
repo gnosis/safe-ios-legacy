@@ -93,8 +93,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                             "kappa",
                                                             "lambda",
                                                             "mu"])
-        EthereumApplication.ApplicationServiceRegistry.put(service: service,
-                                                           for: EthereumApplicationService.self)
+        EthereumApplication.ApplicationServiceRegistry.put(service: service, for: EthereumApplicationService.self)
+        EthereumApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
     }
 
     private func setUpIdentityAccessDatabase() {
