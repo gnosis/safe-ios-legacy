@@ -184,6 +184,7 @@ public class WalletApplicationService: Assertable {
             notifyStatusUpdate()
         }
     }
+
     // MARK: - Owners
 
     public func isOwnerExists(_ type: OwnerType) -> Bool {
