@@ -7,19 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A30670E20A5C72C0059F521 /* EthereumDomainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30670D20A5C72C0059F521 /* EthereumDomainModel.swift */; };
-		0A30671920A5C73A0059F521 /* EthereumDomainModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30671820A5C73A0059F521 /* EthereumDomainModelTests.swift */; };
 		0A30671B20A5C73A0059F521 /* libEthereumDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30670A20A5C72C0059F521 /* libEthereumDomainModel.a */; };
 		0A30672820A5C7480059F521 /* EthereumApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30672720A5C7480059F521 /* EthereumApplicationService.swift */; };
-		0A30673320A5C7560059F521 /* EthereumApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30673220A5C7560059F521 /* EthereumApplicationTests.swift */; };
 		0A30673520A5C7560059F521 /* libEthereumApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30672520A5C7480059F521 /* libEthereumApplication.a */; };
-		0A30674220A5C7650059F521 /* EthereumImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30674120A5C7650059F521 /* EthereumImplementations.swift */; };
-		0A30674D20A5C7740059F521 /* EthereumImplementationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30674C20A5C7740059F521 /* EthereumImplementationsTests.swift */; };
+		0A30674220A5C7650059F521 /* MockEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30674120A5C7650059F521 /* MockEncryptionService.swift */; };
 		0A30674F20A5C7740059F521 /* libEthereumImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30673F20A5C7650059F521 /* libEthereumImplementations.a */; };
 		0A59E90A20AB0D450090E89C /* ApplicationServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E90920AB0D450090E89C /* ApplicationServiceRegistry.swift */; };
 		0A59E91320AB0DE70090E89C /* MockEthereumApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E91220AB0DE70090E89C /* MockEthereumApplicationService.swift */; };
 		0A59E91620AB0E440090E89C /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E91020AB0D8F0090E89C /* ApplicationServiceRegistryTests.swift */; };
 		0A59E91820AB0E7A0090E89C /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30676B20A5C7FF0059F521 /* libCommon.a */; };
+		5563EF1320AD942D00DB0F36 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55E1AD0A20AC3886003E0C53 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5563EF1420AD942D00DB0F36 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55E1AD0C20AC3886003E0C53 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55704B0C20AC8AD90054256B /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E77DD20AC7FF500732A77 /* DomainRegistryTests.swift */; };
+		55704B1420AC8AE30054256B /* EncryptionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E77D020AC7A0800732A77 /* EncryptionDomainService.swift */; };
+		55704B1520AC8AEC0054256B /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E77DB20AC7F6300732A77 /* DomainRegistry.swift */; };
+		55704B1620AC8B090054256B /* EthereumApplicationTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E77D920AC7D2A00732A77 /* EthereumApplicationTestCase.swift */; };
+		55704B1720AC8B250054256B /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E77DF20AC80CB00732A77 /* EncryptionService.swift */; };
+		55704B1920AC8B4D0054256B /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E77E120AC80E900732A77 /* EncryptionServiceTests.swift */; };
+		55704B1A20AC8B960054256B /* libEthereumImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30673F20A5C7650059F521 /* libEthereumImplementations.a */; };
+		55704B2720AC8D940054256B /* libEthereumImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30673F20A5C7650059F521 /* libEthereumImplementations.a */; };
+		55704B2820AC8DFD0054256B /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30676B20A5C7FF0059F521 /* libCommon.a */; };
+		55704B3320AD76050054256B /* EthereumApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55704B3220AD76050054256B /* EthereumApplicationServiceTests.swift */; };
+		55F2D9CE20AD94FE00F9EFC2 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E1AD0A20AC3886003E0C53 /* CryptoSwift.framework */; };
+		55F2D9CF20AD94FE00F9EFC2 /* EthereumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E1AD0C20AC3886003E0C53 /* EthereumKit.framework */; };
+		55F2D9D020ADB92A00F9EFC2 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E1AD0A20AC3886003E0C53 /* CryptoSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +118,13 @@
 			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
 			remoteInfo = Common;
 		};
+		555C4C6720AEFC25001E8A34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A30676220A5C7FF0059F521 /* Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
+			remoteInfo = Common;
+		};
 		55E1AD0920AC3886003E0C53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
@@ -158,29 +176,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5563EF1220AD941D00DB0F36 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5563EF1320AD942D00DB0F36 /* CryptoSwift.framework in CopyFiles */,
+				5563EF1420AD942D00DB0F36 /* EthereumKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0A30670A20A5C72C0059F521 /* libEthereumDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEthereumDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A30670D20A5C72C0059F521 /* EthereumDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumDomainModel.swift; sourceTree = "<group>"; };
 		0A30671620A5C73A0059F521 /* EthereumDomainModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EthereumDomainModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A30671820A5C73A0059F521 /* EthereumDomainModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumDomainModelTests.swift; sourceTree = "<group>"; };
-		0A30671A20A5C73A0059F521 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A30671A20A5C73A0059F521 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A30672520A5C7480059F521 /* libEthereumApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEthereumApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A30672720A5C7480059F521 /* EthereumApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationService.swift; sourceTree = "<group>"; };
 		0A30673020A5C7560059F521 /* EthereumApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EthereumApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A30673220A5C7560059F521 /* EthereumApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationTests.swift; sourceTree = "<group>"; };
-		0A30673420A5C7560059F521 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A30673420A5C7560059F521 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A30673F20A5C7650059F521 /* libEthereumImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEthereumImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A30674120A5C7650059F521 /* EthereumImplementations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumImplementations.swift; sourceTree = "<group>"; };
+		0A30674120A5C7650059F521 /* MockEncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEncryptionService.swift; sourceTree = "<group>"; };
 		0A30674A20A5C7740059F521 /* EthereumImplementationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EthereumImplementationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A30674C20A5C7740059F521 /* EthereumImplementationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumImplementationsTests.swift; sourceTree = "<group>"; };
-		0A30674E20A5C7740059F521 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A30674E20A5C7740059F521 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A30676220A5C7FF0059F521 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
 		0A30677420A5C8EC0059F521 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 		0A59E90920AB0D450090E89C /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
 		0A59E91020AB0D8F0090E89C /* ApplicationServiceRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistryTests.swift; sourceTree = "<group>"; };
 		0A59E91220AB0DE70090E89C /* MockEthereumApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumApplicationService.swift; sourceTree = "<group>"; };
+		55704B3220AD76050054256B /* EthereumApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationServiceTests.swift; sourceTree = "<group>"; };
+		557E77D020AC7A0800732A77 /* EncryptionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionDomainService.swift; sourceTree = "<group>"; };
+		557E77D920AC7D2A00732A77 /* EthereumApplicationTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationTestCase.swift; sourceTree = "<group>"; };
+		557E77DB20AC7F6300732A77 /* DomainRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistry.swift; sourceTree = "<group>"; };
+		557E77DD20AC7FF500732A77 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
+		557E77DF20AC80CB00732A77 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
+		557E77E120AC80E900732A77 /* EncryptionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionServiceTests.swift; sourceTree = "<group>"; };
 		55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 		55E1AD0F20AC391A003E0C53 /* CommonConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CommonConfig.xcconfig; sourceTree = "<group>"; };
 		55E1AD1020AC3927003E0C53 /* ImplementationsConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ImplementationsConfig.xcconfig; sourceTree = "<group>"; };
@@ -198,6 +230,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55F2D9D020ADB92A00F9EFC2 /* CryptoSwift.framework in Frameworks */,
+				55704B2820AC8DFD0054256B /* libCommon.a in Frameworks */,
+				55704B2720AC8D940054256B /* libEthereumImplementations.a in Frameworks */,
 				0A30671B20A5C73A0059F521 /* libEthereumDomainModel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55704B1A20AC8B960054256B /* libEthereumImplementations.a in Frameworks */,
 				0A59E91820AB0E7A0090E89C /* libCommon.a in Frameworks */,
 				0A30673520A5C7560059F521 /* libEthereumApplication.a in Frameworks */,
 			);
@@ -230,6 +266,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A30674F20A5C7740059F521 /* libEthereumImplementations.a in Frameworks */,
+				55F2D9CE20AD94FE00F9EFC2 /* CryptoSwift.framework in Frameworks */,
+				55F2D9CF20AD94FE00F9EFC2 /* EthereumKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,11 +283,8 @@
 				0A30677420A5C8EC0059F521 /* swiftlint.yml */,
 				0A30676220A5C7FF0059F521 /* Common.xcodeproj */,
 				0A30670C20A5C72C0059F521 /* EthereumDomainModel */,
-				0A30671720A5C73A0059F521 /* EthereumDomainModelTests */,
 				0A30672620A5C7480059F521 /* EthereumApplication */,
-				0A30673120A5C7560059F521 /* EthereumApplicationTests */,
 				0A30674020A5C7650059F521 /* EthereumImplementations */,
-				0A30674B20A5C7740059F521 /* EthereumImplementationsTests */,
 				0A30670B20A5C72C0059F521 /* Products */,
 				0A59E91720AB0E7A0090E89C /* Frameworks */,
 			);
@@ -271,55 +306,37 @@
 		0A30670C20A5C72C0059F521 /* EthereumDomainModel */ = {
 			isa = PBXGroup;
 			children = (
-				0A30670D20A5C72C0059F521 /* EthereumDomainModel.swift */,
+				557E77D020AC7A0800732A77 /* EncryptionDomainService.swift */,
+				557E77DB20AC7F6300732A77 /* DomainRegistry.swift */,
+				557E77DD20AC7FF500732A77 /* DomainRegistryTests.swift */,
+				0A30671A20A5C73A0059F521 /* Tests-Info.plist */,
 			);
 			path = EthereumDomainModel;
-			sourceTree = "<group>";
-		};
-		0A30671720A5C73A0059F521 /* EthereumDomainModelTests */ = {
-			isa = PBXGroup;
-			children = (
-				0A30671820A5C73A0059F521 /* EthereumDomainModelTests.swift */,
-				0A30671A20A5C73A0059F521 /* Info.plist */,
-			);
-			path = EthereumDomainModelTests;
 			sourceTree = "<group>";
 		};
 		0A30672620A5C7480059F521 /* EthereumApplication */ = {
 			isa = PBXGroup;
 			children = (
 				0A30672720A5C7480059F521 /* EthereumApplicationService.swift */,
+				55704B3220AD76050054256B /* EthereumApplicationServiceTests.swift */,
 				0A59E91220AB0DE70090E89C /* MockEthereumApplicationService.swift */,
 				0A59E90920AB0D450090E89C /* ApplicationServiceRegistry.swift */,
 				0A59E91020AB0D8F0090E89C /* ApplicationServiceRegistryTests.swift */,
+				557E77D920AC7D2A00732A77 /* EthereumApplicationTestCase.swift */,
+				0A30673420A5C7560059F521 /* Tests-Info.plist */,
 			);
 			path = EthereumApplication;
-			sourceTree = "<group>";
-		};
-		0A30673120A5C7560059F521 /* EthereumApplicationTests */ = {
-			isa = PBXGroup;
-			children = (
-				0A30673220A5C7560059F521 /* EthereumApplicationTests.swift */,
-				0A30673420A5C7560059F521 /* Info.plist */,
-			);
-			path = EthereumApplicationTests;
 			sourceTree = "<group>";
 		};
 		0A30674020A5C7650059F521 /* EthereumImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				0A30674120A5C7650059F521 /* EthereumImplementations.swift */,
+				0A30674120A5C7650059F521 /* MockEncryptionService.swift */,
+				557E77DF20AC80CB00732A77 /* EncryptionService.swift */,
+				557E77E120AC80E900732A77 /* EncryptionServiceTests.swift */,
+				0A30674E20A5C7740059F521 /* Tests-Info.plist */,
 			);
 			path = EthereumImplementations;
-			sourceTree = "<group>";
-		};
-		0A30674B20A5C7740059F521 /* EthereumImplementationsTests */ = {
-			isa = PBXGroup;
-			children = (
-				0A30674C20A5C7740059F521 /* EthereumImplementationsTests.swift */,
-				0A30674E20A5C7740059F521 /* Info.plist */,
-			);
-			path = EthereumImplementationsTests;
 			sourceTree = "<group>";
 		};
 		0A30676320A5C7FF0059F521 /* Products */ = {
@@ -366,6 +383,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				555C4C6820AEFC25001E8A34 /* PBXTargetDependency */,
 			);
 			name = EthereumDomainModel;
 			productName = EthereumDomainModel;
@@ -376,7 +394,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A30671E20A5C73A0059F521 /* Build configuration list for PBXNativeTarget "EthereumDomainModelTests" */;
 			buildPhases = (
-				0A30677620A5C96B0059F521 /* Lint */,
 				0A30671220A5C73A0059F521 /* Sources */,
 				0A30671320A5C73A0059F521 /* Frameworks */,
 				0A30671420A5C73A0059F521 /* Resources */,
@@ -415,7 +432,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A30673820A5C7560059F521 /* Build configuration list for PBXNativeTarget "EthereumApplicationTests" */;
 			buildPhases = (
-				0A30677820A5C9810059F521 /* Lint */,
 				0A30672C20A5C7560059F521 /* Sources */,
 				0A30672D20A5C7560059F521 /* Frameworks */,
 				0A30672E20A5C7560059F521 /* Resources */,
@@ -454,10 +470,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A30675220A5C7740059F521 /* Build configuration list for PBXNativeTarget "EthereumImplementationsTests" */;
 			buildPhases = (
-				0A30677A20A5C9970059F521 /* Lint */,
 				0A30674620A5C7740059F521 /* Sources */,
 				0A30674720A5C7740059F521 /* Frameworks */,
 				0A30674820A5C7740059F521 /* Resources */,
+				5563EF1220AD941D00DB0F36 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -630,36 +646,7 @@
 			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
 			showEnvVarsInLog = 0;
 		};
-		0A30677620A5C96B0059F521 /* Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Lint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
-			showEnvVarsInLog = 0;
-		};
 		0A30677720A5C9760059F521 /* Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Lint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
-		};
-		0A30677820A5C9810059F521 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -688,21 +675,6 @@
 			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
 			showEnvVarsInLog = 0;
 		};
-		0A30677A20A5C9970059F521 /* Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Lint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/../scripts/run_swiftlint_per_target.sh";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -710,7 +682,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A30670E20A5C72C0059F521 /* EthereumDomainModel.swift in Sources */,
+				55704B1520AC8AEC0054256B /* DomainRegistry.swift in Sources */,
+				55704B1420AC8AE30054256B /* EncryptionDomainService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -718,7 +691,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A30671920A5C73A0059F521 /* EthereumDomainModelTests.swift in Sources */,
+				55704B0C20AC8AD90054256B /* DomainRegistryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,7 +709,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A30673320A5C7560059F521 /* EthereumApplicationTests.swift in Sources */,
+				55704B3320AD76050054256B /* EthereumApplicationServiceTests.swift in Sources */,
+				55704B1620AC8B090054256B /* EthereumApplicationTestCase.swift in Sources */,
 				0A59E91620AB0E440090E89C /* ApplicationServiceRegistryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -745,7 +719,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A30674220A5C7650059F521 /* EthereumImplementations.swift in Sources */,
+				0A30674220A5C7650059F521 /* MockEncryptionService.swift in Sources */,
+				55704B1720AC8B250054256B /* EncryptionService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,7 +728,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A30674D20A5C7740059F521 /* EthereumImplementationsTests.swift in Sources */,
+				55704B1920AC8B4D0054256B /* EncryptionServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,6 +769,11 @@
 			isa = PBXTargetDependency;
 			name = Common;
 			targetProxy = 0A59E91420AB0E2E0090E89C /* PBXContainerItemProxy */;
+		};
+		555C4C6820AEFC25001E8A34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Common;
+			targetProxy = 555C4C6720AEFC25001E8A34 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -997,7 +977,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = EthereumDomainModelTests/Info.plist;
+				INFOPLIST_FILE = "EthereumDomainModel/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1063,7 +1043,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = EthereumDomainModelTests/Info.plist;
+				INFOPLIST_FILE = "EthereumDomainModel/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1261,7 +1241,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = EthereumApplicationTests/Info.plist;
+				INFOPLIST_FILE = "EthereumApplication/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1327,7 +1307,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = EthereumApplicationTests/Info.plist;
+				INFOPLIST_FILE = "EthereumApplication/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1527,7 +1507,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = EthereumImplementationsTests/Info.plist;
+				INFOPLIST_FILE = "EthereumImplementations/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1593,7 +1573,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = EthereumImplementationsTests/Info.plist;
+				INFOPLIST_FILE = "EthereumImplementations/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1739,7 +1719,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = EthereumDomainModelTests/Info.plist;
+				INFOPLIST_FILE = "EthereumDomainModel/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1875,7 +1855,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = EthereumApplicationTests/Info.plist;
+				INFOPLIST_FILE = "EthereumApplication/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2012,7 +1992,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = EthereumImplementationsTests/Info.plist;
+				INFOPLIST_FILE = "EthereumImplementations/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
