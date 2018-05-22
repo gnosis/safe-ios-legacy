@@ -7,4 +7,10 @@ import MultisigWalletDomainModel
 
 extension Wallet: DBCodable {}
 
-public class DBWalletRepository: DBBaseRepository<Wallet>, WalletRepository {}
+public class DBWalletRepository: DBBaseRepository<Wallet>, WalletRepository {
+
+    public override var tableName: String {
+        return "tbl_wallets"
+    }
+
+}
