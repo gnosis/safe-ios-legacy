@@ -74,8 +74,8 @@ public class WalletApplicationService: Assertable {
             case .readyToUse:
                 return .readyToUse
             }
-        } catch {
-            // TODO: handle errors
+        } catch let e {
+            ApplicationServiceRegistry.logger.error("Failed to compute selected wallet state", error: e)
         }
         return .none
     }
@@ -187,8 +187,8 @@ public class WalletApplicationService: Assertable {
         do {
             let wallet = try findSelectedWallet()
             return wallet.owner(kind: type.kind) != nil
-        } catch {
-            // TODO: handle error
+        } catch let e {
+            ApplicationServiceRegistry.logger.error("Failed to check if owner exists (\(type))", error: e)
         }
         return false
     }
@@ -214,8 +214,8 @@ public class WalletApplicationService: Assertable {
             if let owner = wallet.owner(kind: type.kind) {
                 return owner.address.value
             }
-        } catch {
-            // TODO: log error
+        } catch let e {
+            ApplicationServiceRegistry.logger.error("Failed to fetch owner's address (\(type))", error: e)
         }
         return nil
     }

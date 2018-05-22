@@ -36,7 +36,7 @@ class NewSafeViewController: UIViewController {
     weak var delegate: NewSafeDelegate?
 
     private var logger: Logger {
-        return ApplicationServiceRegistry.logger
+        return MultisigWalletApplication.ApplicationServiceRegistry.logger
     }
     private var walletService: WalletApplicationService {
         return MultisigWalletApplication.ApplicationServiceRegistry.walletService
@@ -52,8 +52,8 @@ class NewSafeViewController: UIViewController {
         do {
             try walletService.startDeployment()
             delegate?.didSelectNext()
-        } catch {
-            // TODO: log error
+        } catch let e {
+            ErrorHandler.showError(log: "Failed to start deployment", error: e)
         }
     }
 

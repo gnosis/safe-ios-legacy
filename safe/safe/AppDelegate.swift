@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         EthereumApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
                                                            for: EthereumApplicationService.self)
         IdentityAccessApplication.ApplicationServiceRegistry.put(service: AuthenticationApplicationService(),
-                                       for: AuthenticationApplicationService.self)
+                                                                 for: AuthenticationApplicationService.self)
         IdentityAccessApplication.ApplicationServiceRegistry.put(service: IdentityApplicationService(),
                                                                  for: IdentityApplicationService.self)
         IdentityAccessApplication.ApplicationServiceRegistry.put(service: SystemClockService(), for: Clock.self)
@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                 blockedPeriodDuration: 15)
             }
         } catch let e {
-            FatalErrorHandler.showFatalError(log: "Failed to setup authentication policy", error: e)
+            ErrorHandler.showFatalError(log: "Failed to setup authentication policy", error: e)
         }
     }
 

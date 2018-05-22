@@ -27,10 +27,10 @@ class SetupSafeOptionsViewController: UIViewController {
     @IBAction func createNewSafe(_ sender: Any) {
         do {
             try ApplicationServiceRegistry.walletService.createNewDraftWallet()
-        } catch {
-            // TODO: handle error
+            delegate?.didSelectNewSafe()
+        } catch let e {
+            ErrorHandler.showError(log: "Failed to create new draft wallet", error: e)
         }
-        delegate?.didSelectNewSafe()
     }
 
     static func create(delegate: SetupSafeOptionsDelegate) -> SetupSafeOptionsViewController {

@@ -28,7 +28,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     private(set) weak var delegate: PairWithBrowserDelegate?
     private var logger: Logger {
-        return ApplicationServiceRegistry.logger
+        return MultisigWalletApplication.ApplicationServiceRegistry.logger
     }
     private var walletService: WalletApplicationService {
         return ApplicationServiceRegistry.walletService
@@ -63,8 +63,8 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         do {
             try walletService.addOwner(address: text, type: .browserExtension)
             delegate?.didPair()
-        } catch {
-            // TODO: handle error
+        } catch let e {
+            ErrorHandler.showError(log: "Failed to add browser extension \(text)", error: e)
         }
     }
 

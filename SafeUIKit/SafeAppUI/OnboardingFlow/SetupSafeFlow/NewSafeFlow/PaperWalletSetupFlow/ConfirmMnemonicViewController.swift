@@ -76,8 +76,8 @@ extension ConfirmMnemonicViewController: TextInputDelegate {
             do {
                 try ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
                 delegate?.didConfirm()
-            } catch {
-                // TODO: handle error
+            } catch let e {
+                ErrorHandler.showError(log: "Failed to add paper wallet owner \(account.address)", error: e)
             }
         } else if textInput == firstWordTextInput {
             _ = secondWordTextInput.becomeFirstResponder()
