@@ -59,23 +59,34 @@ final class ScannerViewController: UIViewController {
 
     // MARK: - Debug Buttons
 
-    private let validCode = """
+    private let validCode1 = """
         {
             "expirationDate" : "2018-06-18T14:46:09+00:00",
             "signature": {
-            "v" : 27,
-            "r" : "15823297914388465068645274956031579191506355248080856511104898257696315269079",
-            "s" : "38724157826109967392954642570806414877371763764993427831319914375642632707148"
+                "v" : 27,
+                "r" : "15823297914388465068645274956031579191506355248080856511104898257696315269079",
+                "s" : "38724157826109967392954642570806414877371763764993427831319914375642632707148"
+            }
+        }
+        """
+
+    private let validCode2 = """
+        {
+            "expirationDate" : "2018-05-17T13:47:00+00:00",
+            "signature": {
+                "v": 27,
+                "r":"79425995431864040500581522255237765710685762616259654871112297909982135982384",
+                "s":"1777326029228985739367131500591267170048497362640342741198949880105318675913"
             }
         }
         """
 
     @IBAction func debugScanValidCode(_ sender: Any) {
-        delegate?.didScan(validCode)
+        delegate?.didScan(validCode1)
     }
 
     @IBAction func scanAnotherValidCode(_ sender: Any) {
-        delegate?.didScan("another_code")
+        delegate?.didScan(validCode2)
     }
 
     @IBAction func debugScanInvalidCode(_ sender: Any) {
@@ -83,8 +94,8 @@ final class ScannerViewController: UIViewController {
     }
 
     @IBAction func debugScanTwoValidCodes(_ sender: Any) {
-        delegate?.didScan(validCode)
-        delegate?.didScan(validCode)
+        delegate?.didScan(validCode1)
+        delegate?.didScan(validCode2)
     }
 
 }

@@ -3,13 +3,14 @@
 //
 
 import Foundation
+import EthereumDomainModel
 
 open class EthereumApplicationService {
 
     public init() {}
 
     open func address(browserExtensionCode: String) -> String? {
-        return nil
+        return DomainRegistry.encryptionService.address(browserExtensionCode: browserExtensionCode)
     }
 
     public struct ExternallyOwnedAccount: Equatable {
