@@ -36,10 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func configureDependencyInjection() {
-        MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletApplicationService(),
-                                                                 for: WalletApplicationService.self)
-        EthereumApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
-                                                           for: EthereumApplicationService.self)
+        configureIdentityAccess()
+        configureMultisigWallet()
+        configureEthereum()
+    }
+
+    private func configureIdentityAccess() {
         IdentityAccessApplication.ApplicationServiceRegistry.put(service: AuthenticationApplicationService(),
                                                                  for: AuthenticationApplicationService.self)
         IdentityAccessApplication.ApplicationServiceRegistry.put(service: IdentityApplicationService(),
@@ -53,6 +55,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IdentityAccessDomainModel.DomainRegistry.put(service: SystemClockService(), for: Clock.self)
         IdentityAccessDomainModel.DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
         IdentityAccessDomainModel.DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
+        setUpIdentityAccessDatabase()
+    }
+
+    private func configureMultisigWallet() {
+        MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletApplicationService(),
+                                                                 for: WalletApplicationService.self)
+        MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
+        setUpMultisigDatabase()
+    }
+
+    private func configureEthereum() {
+        EthereumApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
+                                                           for: EthereumApplicationService.self)
+    }
+
+    private func setUpIdentityAccessDatabase() {
         do {
             let db = SQLiteDatabase(name: "IdentityAccess",
                                     fileManager: FileManager.default,
@@ -76,6 +94,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch let e {
             ErrorHandler.showFatalError(log: "Failed to set up identity access database", error: e)
         }
+    }
+
+    private func setUpMultisigDatabase() {
         do {
             let db = SQLiteDatabase(name: "MultisigWallet",
                                     fileManager: FileManager.default,

@@ -6,6 +6,7 @@ import XCTest
 @testable import MultisigWalletApplication
 import MultisigWalletImplementations
 import MultisigWalletDomainModel
+import Common
 
 class WalletApplicationServiceTests: XCTestCase {
 
@@ -24,6 +25,7 @@ class WalletApplicationServiceTests: XCTestCase {
         MultisigWalletDomainModel.DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
+        MultisigWalletApplication.ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
     }
 
     func test_whenCreatingNewDraft_thenCreatesPortfolio() throws {
