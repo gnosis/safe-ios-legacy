@@ -17,7 +17,6 @@ class SafeTestCase: XCTestCase {
     let walletService = MockWalletApplicationService()
     let authenticationService = MockAuthenticationService()
     let clock = MockClockService()
-    let identityService = MockIdentityApplicationService()
     let keyValueStore = InMemoryKeyValueStore()
     let secureStore = InMemorySecureStore()
     let logger = MockLogger()
@@ -43,7 +42,6 @@ class SafeTestCase: XCTestCase {
         applicationRegistry.put(service: logger, for: Logger.self)
         applicationRegistry.put(service: authenticationService, for: AuthenticationApplicationService.self)
         applicationRegistry.put(service: clock, for: Clock.self)
-        applicationRegistry.put(service: identityService, for: IdentityApplicationService.self)
     }
 
     private func configureMultisigWalletModule() {

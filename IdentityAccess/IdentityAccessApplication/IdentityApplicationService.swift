@@ -26,31 +26,4 @@ open class IdentityApplicationService {
         return account as! ExternallyOwnedAccount
     }
 
-    open func createDraftSafe() throws -> DraftSafe {
-        let eoa = try getOrCreateEOA()
-        let paperWallet = EthereumAccountFactory(service: encryptionService).generateAccount()
-        let draftSafe = DraftSafe.create(currentDeviceAddress: eoa.address, paperWallet: paperWallet)
-        return draftSafe
-    }
-
-    open func getOrCreateDraftSafe() throws -> DraftSafe {
-        if let draftSafe = DraftSafe.shared { return draftSafe }
-        return try createDraftSafe()
-    }
-
-    open func confirmPaperWallet(draftSafe: DraftSafe) {
-        draftSafe.confirmPaperWallet()
-    }
-
-    open func confirmBrowserExtension(draftSafe: DraftSafe, address: String) {
-        let ethereumAddress = EthereumAddress(data: address.data(using: .utf8)!)
-        draftSafe.confirmBrowserExtension(address: ethereumAddress)
-    }
-
-    open func convertBrowserExtensionCodeIntoEthereumAddress(_ code: String) -> String? {
-        if code == "invalid_code" { return nil }
-        if code == "another_code" { return "0xa06a215ca4a54189e7f951c59f0431e33d044440" }
-        return "0xa06a215ca4a54189e7f951c59f0431e33d0f38a0"
-    }
-
 }
