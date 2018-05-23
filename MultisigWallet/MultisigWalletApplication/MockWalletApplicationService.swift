@@ -22,6 +22,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         }
     }
 
+    public var didCreateNewDraft = false
+
     private var existingOwners: [OwnerType: String] = [:]
     private var accounts: [String: Int] = [:]
     private var minimumFunding: [String: Int] = [:]
@@ -33,6 +35,7 @@ public class MockWalletApplicationService: WalletApplicationService {
 
     public override func createNewDraftWallet() {
         _selectedWalletState = .newDraft
+        didCreateNewDraft = true
     }
 
     public func removeSelectedWallet() {

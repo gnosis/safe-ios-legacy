@@ -26,7 +26,9 @@ class SetupSafeOptionsViewController: UIViewController {
 
     @IBAction func createNewSafe(_ sender: Any) {
         do {
-            try ApplicationServiceRegistry.walletService.createNewDraftWallet()
+            if ApplicationServiceRegistry.walletService.selectedWalletState == .none {
+                try ApplicationServiceRegistry.walletService.createNewDraftWallet()
+            }
             delegate?.didSelectNewSafe()
         } catch let e {
             ErrorHandler.showError(log: "Failed to create new draft wallet", error: e)
