@@ -86,7 +86,7 @@ final class ScannerViewController: UIViewController {
     }
 
     @IBAction func scanAnotherValidCode(_ sender: Any) {
-        delegate?.didScan(validCode2)
+        delegate?.didScan("another_code")
     }
 
     @IBAction func debugScanInvalidCode(_ sender: Any) {
@@ -95,7 +95,7 @@ final class ScannerViewController: UIViewController {
 
     @IBAction func debugScanTwoValidCodes(_ sender: Any) {
         delegate?.didScan(validCode1)
-        delegate?.didScan(validCode2)
+        delegate?.didScan("another_code")
     }
 
 }
