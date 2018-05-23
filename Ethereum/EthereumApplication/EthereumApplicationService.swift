@@ -26,7 +26,20 @@ open class EthereumApplicationService {
     }
 
     open func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {
-        return ExternallyOwnedAccount(address: "address", mnemonicWords: [])
+        return ExternallyOwnedAccount(address: "0xa06a215ca4a54189e7f951c59f0431e33d0f38a0",
+                                      mnemonicWords: [
+                                        "alpha",
+                                        "beta",
+                                        "gamma",
+                                        "delta",
+                                        "epsilon",
+                                        "zeta",
+                                        "eta",
+                                        "theta",
+                                        "iota",
+                                        "kappa",
+                                        "lambda",
+                                        "mu"])
     }
 
 }

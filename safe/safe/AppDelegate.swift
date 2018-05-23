@@ -13,6 +13,8 @@ import MultisigWalletApplication
 import MultisigWalletDomainModel
 import MultisigWalletImplementations
 import EthereumApplication
+import EthereumImplementations
+import EthereumDomainModel
 import Database
 import Common
 import CommonImplementations
@@ -67,34 +69,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         setUpMultisigDatabase()
     }
 
-    class FakeEthereumApplicationService: MockEthereumApplicationService {
-
-        override func address(browserExtensionCode code: String) -> String? {
-            if code == "invalid_code" { return nil }
-            if code == "another_code" { return "0xa06a215ca4a54189e7f951c59f0431e33d044440" }
-            return "0xa06a215ca4a54189e7f951c59f0431e33d0f38a0"
-        }
-
-    }
-
     private func configureEthereum() {
-        let service = FakeEthereumApplicationService()
-        service.prepareToGenerateExternallyOwnedAccount(address: "0xa06a215ca4a54189e7f951c59f0431e33d0f38a0",
-                                                        mnemonic: [
-                                                            "alpha",
-                                                            "beta",
-                                                            "gamma",
-                                                            "delta",
-                                                            "epsilon",
-                                                            "zeta",
-                                                            "eta",
-                                                            "theta",
-                                                            "iota",
-                                                            "kappa",
-                                                            "lambda",
-                                                            "mu"])
-        EthereumApplication.ApplicationServiceRegistry.put(service: service, for: EthereumApplicationService.self)
+        EthereumApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
+                                                           for: EthereumApplicationService.self)
         EthereumApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
+        EthereumDomainModel.DomainRegistry.put(service: EthereumImplementations.EncryptionService(),
+                                               for: EncryptionDomainService.self)
     }
 
     private func setUpIdentityAccessDatabase() {
