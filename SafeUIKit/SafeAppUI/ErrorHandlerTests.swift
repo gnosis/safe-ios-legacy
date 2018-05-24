@@ -28,19 +28,7 @@ class ErrorHandlerTests: XCTestCase {
     func test_presentsWindow() {
         ErrorHandler.showFatalError(message: "Fatal error", log: "Fatal", error: nil)
         delay()
-        assertAlertShown(message: "Fatal error")
-    }
-
-    private func assertAlertShown(message expectedMessage: String, line: UInt = #line) {
-        XCTAssertNotNil(UIApplication.shared.keyWindow?.rootViewController, line: line)
-        guard let vc = UIApplication.shared.keyWindow?.rootViewController else { return }
-        XCTAssertEqual(vc.view.backgroundColor, .clear, line: line)
-        XCTAssertNotNil(vc.presentedViewController, line: line)
-        guard let alertVC = vc.presentedViewController as? UIAlertController else { return }
-        XCTAssertEqual(alertVC.message, expectedMessage, line: line)
-        XCTAssertEqual(alertVC.actions.count, 1, line: line)
-        XCTAssertNotNil(alertVC.title, line: line)
-        XCTAssertNotNil(alertVC.actions.first?.title, line: line)
+        XCTAssertAlertShown(message: "Fatal error")
     }
 
     func test_logsToLogger() {
@@ -51,7 +39,7 @@ class ErrorHandlerTests: XCTestCase {
     func test_whenErrorPresented_thenShowsIt() {
         ErrorHandler.showError(message: "Error!", log: "Error", error: nil)
         delay()
-        assertAlertShown(message: "Error!")
+        XCTAssertAlertShown(message: "Error!")
     }
 
 }

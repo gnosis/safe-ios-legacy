@@ -82,8 +82,9 @@ public class Wallet: IdentifiableEntity<WalletID> {
         return try encoder.encode(state)
     }
 
-    override public init(id: WalletID) {
+    public init(id: WalletID, owner: Owner, kind: String) throws {
         super.init(id: id)
+        try addOwner(owner, kind: kind)
     }
 
     public func owner(kind: String) -> Owner? {

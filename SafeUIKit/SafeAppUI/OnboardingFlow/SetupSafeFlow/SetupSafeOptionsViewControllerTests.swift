@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import SafeAppUI
+import CommonTestSupport
 
 class SetupSafeOptionsViewControllerTests: SafeTestCase {
 
@@ -39,6 +40,14 @@ class SetupSafeOptionsViewControllerTests: SafeTestCase {
         walletService.didCreateNewDraft = false
         vc.createNewSafe(vc)
         XCTAssertFalse(walletService.didCreateNewDraft)
+    }
+
+    func test_whenBlockchainFails_thenErrorPresented() throws {
+        createWindow(vc)
+        walletService.shouldThrow = true
+        vc.createNewSafe(vc)
+        delay()
+        XCTAssertAlertShown()
     }
 
 }

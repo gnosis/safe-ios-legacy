@@ -22,8 +22,8 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(setupSafeFlowCoordinator.navigationController.topViewController is SetupSafeOptionsViewController)
     }
 
-    func test_whenDraftAlreadyExists_thenShowsNewSafeFlow() {
-        walletService.createNewDraftWallet()
+    func test_whenDraftAlreadyExists_thenShowsNewSafeFlow() throws {
+        try walletService.createNewDraftWallet()
 
         let testFC = TestFlowCoordinator()
         testFC.enter(flow: setupSafeFlowCoordinator)
@@ -44,8 +44,8 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
             type(of: newSafeStartVC))
     }
 
-    func test_whenNewSafeFlowExits_thenSetupSafeFlowExits() {
-        walletService.createNewDraftWallet()
+    func test_whenNewSafeFlowExits_thenSetupSafeFlowExits() throws {
+        try walletService.createNewDraftWallet()
         let testFC = TestFlowCoordinator()
         var finished = false
         testFC.enter(flow: setupSafeFlowCoordinator) {

@@ -13,7 +13,8 @@ class InMemoryWalletRepositoryTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        XCTAssertNoThrow(wallet = Wallet(id: try WalletID()))
+        let owner = Wallet.createOwner(address: "address")
+        XCTAssertNoThrow(wallet = try Wallet(id: try WalletID(), owner: owner, kind: "kind"))
         repository = InMemoryWalletRepository()
     }
 

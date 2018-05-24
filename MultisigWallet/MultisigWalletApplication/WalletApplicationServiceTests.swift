@@ -13,6 +13,7 @@ class WalletApplicationServiceTests: XCTestCase {
     let walletRepository = InMemoryWalletRepository()
     let portfolioRepository = InMemorySinglePortfolioRepository()
     let accountRepository = InMemoryAccountRepository()
+    let blockchainService = MockBlockchainDomainService()
     let service = WalletApplicationService()
 
     enum Error: String, LocalizedError, Hashable {
@@ -25,25 +26,13 @@ class WalletApplicationServiceTests: XCTestCase {
         MultisigWalletDomainModel.DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: blockchainService, for: BlockchainDomainService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
     }
 
     func test_whenCreatingNewDraft_thenCreatesPortfolio() throws {
         try service.createNewDraftWallet()
         XCTAssertNotNil(try portfolioRepository.portfolio())
-    }
-
-    private func createPortfolio(line: UInt = #line) {
-        XCTAssertNoThrow(try portfolioRepository.save(Portfolio(id: portfolioRepository.nextID())), line: line)
-    }
-
-    private func selectedWallet() throws -> Wallet {
-        guard let portfolio = try portfolioRepository.portfolio(),
-            let walletID = portfolio.selectedWallet,
-            let wallet = try walletRepository.findByID(walletID) else {
-                throw Error.walletNotFound
-        }
-        return wallet
     }
 
     func test_whenCreatingNewDraft_thenCreatesNewWallet() throws {
@@ -69,11 +58,6 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(account?.balance, 0)
     }
 
-    private func givenDraftWallet(line: UInt = #line) {
-        createPortfolio(line: line)
-        XCTAssertNoThrow(try service.createNewDraftWallet(), line: line)
-    }
-
     func test_whenDeploymentStarted_thenInPendingState() throws {
         givenDraftWallet()
         try addAllOwners()
@@ -83,8 +67,8 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenAddingOwner_thenAddressCanBeFound() throws {
         givenDraftWallet()
-        try service.addOwner(address: "address", type: .thisDevice)
-        XCTAssertEqual(service.ownerAddress(of: .thisDevice), "address")
+        try service.addOwner(address: "testAddress", type: .paperWallet)
+        XCTAssertEqual(service.ownerAddress(of: .paperWallet), "testAddress")
     }
 
     fileprivate func givenReadyToDeployWallet(line: UInt = #line) throws {
@@ -95,12 +79,6 @@ class WalletApplicationServiceTests: XCTestCase {
     func test_whenAddedEnoughOwners_thenWalletIsReadyToDeploy() throws {
         try givenReadyToDeployWallet()
         XCTAssertEqual(service.selectedWalletState, .readyToDeploy)
-    }
-
-    private func addAllOwners() throws {
-        try service.addOwner(address: "address1", type: .thisDevice)
-        try service.addOwner(address: "address2", type: .browserExtension)
-        try service.addOwner(address: "address3", type: .paperWallet)
     }
 
     func test_whenNotReadyToDeploy_thenCantStartDeployment() {
@@ -133,10 +111,6 @@ class WalletApplicationServiceTests: XCTestCase {
         assert(state: .readyToUse)
     }
 
-    private func assert(state: WalletApplicationService.WalletState, line: UInt = #line) {
-        XCTAssertEqual(service.selectedWalletState, state, line: line)
-    }
-
     func test_whenUpdatingMinimumAmount_thenCanRetrieveIt() throws {
         givenDraftWallet()
         try addAllOwners()
@@ -145,14 +119,6 @@ class WalletApplicationServiceTests: XCTestCase {
         try service.updateMinimumFunding(account: "ETH", amount: 100)
         let account = try findAccount("ETH")
         XCTAssertEqual(account.minimumTransactionAmount, 100)
-    }
-
-    private func findAccount(_ token: String) throws -> Account {
-        let wallet = try selectedWallet()
-        guard let account = try accountRepository.find(id: AccountID(token: "ETH"), walletID: wallet.id) else {
-            throw Error.accountNotFound
-        }
-        return account
     }
 
     func test_whenUpdatingAccountBalance_thenUpdatesIt() throws {
@@ -208,6 +174,45 @@ class WalletApplicationServiceTests: XCTestCase {
         try service.markDeploymentSuccess()
         try service.finishDeployment()
         XCTAssertTrue(service.hasReadyToUseWallet)
+    }
+
+}
+
+fileprivate extension WalletApplicationServiceTests {
+
+    func addAllOwners() throws {
+        try service.addOwner(address: "address2", type: .browserExtension)
+        try service.addOwner(address: "address3", type: .paperWallet)
+    }
+
+    func createPortfolio(line: UInt = #line) {
+        XCTAssertNoThrow(try portfolioRepository.save(Portfolio(id: portfolioRepository.nextID())), line: line)
+    }
+
+    func selectedWallet() throws -> Wallet {
+        guard let portfolio = try portfolioRepository.portfolio(),
+            let walletID = portfolio.selectedWallet,
+            let wallet = try walletRepository.findByID(walletID) else {
+                throw Error.walletNotFound
+        }
+        return wallet
+    }
+
+    func assert(state: WalletApplicationService.WalletState, line: UInt = #line) {
+        XCTAssertEqual(service.selectedWalletState, state, line: line)
+    }
+
+    func findAccount(_ token: String) throws -> Account {
+        let wallet = try selectedWallet()
+        guard let account = try accountRepository.find(id: AccountID(token: "ETH"), walletID: wallet.id) else {
+            throw Error.accountNotFound
+        }
+        return account
+    }
+
+    func givenDraftWallet(line: UInt = #line) {
+        createPortfolio(line: line)
+        XCTAssertNoThrow(try service.createNewDraftWallet(), line: line)
     }
 
 }

@@ -8,15 +8,17 @@ import XCTest
 class WalletTests: XCTestCase {
 
     var wallet: Wallet!
+    let firstOwner = Owner(address: BlockchainAddress(value: "First Address"))
     let owner = Owner(address: BlockchainAddress(value: "My Address"))
 
     override func setUp() {
         super.setUp()
-        XCTAssertNoThrow(wallet = Wallet(id: try WalletID()))
+        XCTAssertNoThrow(wallet = try Wallet(id: try WalletID(), owner: firstOwner, kind: "mean"))
     }
 
-    func test_init_whenCreated_thenHasID() throws {
+    func test_init_whenCreated_thenHasAllData() throws {
         XCTAssertNotNil(wallet.id)
+        XCTAssertNotNil(wallet.owner(kind: "mean"))
     }
 
     func test_whenAddingOwner_thenHasOwner() throws {

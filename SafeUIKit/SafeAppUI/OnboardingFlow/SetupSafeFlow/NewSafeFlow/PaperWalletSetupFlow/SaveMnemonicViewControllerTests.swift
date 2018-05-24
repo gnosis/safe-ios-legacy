@@ -31,8 +31,8 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
         XCTAssertTrue(controller.delegate === delegate)
     }
 
-    func test_whenNoPaperWalletExists_thenDisplaysGeneratedMnemonicWords() {
-        walletService.createNewDraftWallet()
+    func test_whenNoPaperWalletExists_thenDisplaysGeneratedMnemonicWords() throws {
+        try walletService.createNewDraftWallet()
         let mnemonicStr = words.joined(separator: " ")
         XCTAssertEqual(controller.mnemonicCopyableLabel.text, mnemonicStr)
     }
