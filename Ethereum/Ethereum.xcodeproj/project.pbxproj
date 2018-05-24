@@ -25,6 +25,7 @@
 		0A934D2620B6FFBD00F15616 /* InMemoryExternallyOwnedAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934D2520B6FFBD00F15616 /* InMemoryExternallyOwnedAccountRepository.swift */; };
 		0A934D2820B6FFE700F15616 /* InMemoryExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934D2720B6FFE700F15616 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */; };
 		0A934D2A20B7009100F15616 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934D2920B7009100F15616 /* ExternallyOwnedAccount+TestFixture.swift */; };
+		0A934D2C20B7022B00F15616 /* DBExternallyOwnedAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934D2B20B7022B00F15616 /* DBExternallyOwnedAccountRepository.swift */; };
 		5563EF1320AD942D00DB0F36 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55E1AD0A20AC3886003E0C53 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5563EF1420AD942D00DB0F36 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55E1AD0C20AC3886003E0C53 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55704B0C20AC8AD90054256B /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E77DD20AC7FF500732A77 /* DomainRegistryTests.swift */; };
@@ -245,6 +246,7 @@
 		0A934D2520B6FFBD00F15616 /* InMemoryExternallyOwnedAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryExternallyOwnedAccountRepository.swift; sourceTree = "<group>"; };
 		0A934D2720B6FFE700F15616 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryExternallyOwnedAccountRepositoryTests.swift; sourceTree = "<group>"; };
 		0A934D2920B7009100F15616 /* ExternallyOwnedAccount+TestFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExternallyOwnedAccount+TestFixture.swift"; sourceTree = "<group>"; };
+		0A934D2B20B7022B00F15616 /* DBExternallyOwnedAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBExternallyOwnedAccountRepository.swift; sourceTree = "<group>"; };
 		55704B3220AD76050054256B /* EthereumApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationServiceTests.swift; sourceTree = "<group>"; };
 		557E77D020AC7A0800732A77 /* EncryptionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionDomainService.swift; sourceTree = "<group>"; };
 		557E77D920AC7D2A00732A77 /* EthereumApplicationTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationTestCase.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 				0A30674E20A5C7740059F521 /* Tests-Info.plist */,
 				0A934D2520B6FFBD00F15616 /* InMemoryExternallyOwnedAccountRepository.swift */,
 				0A934D2720B6FFE700F15616 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */,
+				0A934D2B20B7022B00F15616 /* DBExternallyOwnedAccountRepository.swift */,
 			);
 			path = EthereumImplementations;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				0A934D0F20B6CDB700F15616 /* EthereumKitEthereumService.swift in Sources */,
 				55704B1720AC8B250054256B /* EncryptionService.swift in Sources */,
 				0A934D2620B6FFBD00F15616 /* InMemoryExternallyOwnedAccountRepository.swift in Sources */,
+				0A934D2C20B7022B00F15616 /* DBExternallyOwnedAccountRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
