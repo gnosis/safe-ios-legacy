@@ -32,8 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         Fabric.with([Crashlytics.self])
         configureDependencyInjection()
         #if DEBUG
-            TestSupport.shared.addResettable(self)
-            TestSupport.shared.setUp()
+        TestSupport.shared.addResettable(self)
+        TestSupport.shared.setUp()
         #endif
         createWindow()
         return true
@@ -49,16 +49,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     private func configureIdentityAccess() {
         IdentityAccessApplication.ApplicationServiceRegistry.put(service: AuthenticationApplicationService(),
                                                                  for: AuthenticationApplicationService.self)
-        IdentityAccessApplication.ApplicationServiceRegistry.put(service: IdentityApplicationService(),
-                                                                 for: IdentityApplicationService.self)
         IdentityAccessApplication.ApplicationServiceRegistry.put(service: SystemClockService(), for: Clock.self)
         IdentityAccessApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
-        IdentityAccessDomainModel.DomainRegistry.put(service: UserDefaultsService(), for: KeyValueStore.self)
-        IdentityAccessDomainModel.DomainRegistry.put(service: KeychainService(), for: SecureStore.self)
         IdentityAccessDomainModel.DomainRegistry.put(service: BiometricService(),
                                                      for: BiometricAuthenticationService.self)
         IdentityAccessDomainModel.DomainRegistry.put(service: SystemClockService(), for: Clock.self)
-        IdentityAccessDomainModel.DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
+        let encryptionService = IdentityAccessImplementations.EthereumKitEncryptionService()
+        IdentityAccessDomainModel.DomainRegistry.put(service: encryptionService,
+                                                     for: IdentityAccessDomainModel.EncryptionService.self)
         IdentityAccessDomainModel.DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
         setUpIdentityAccessDatabase()
     }
@@ -73,9 +71,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     private func configureEthereum() {
         EthereumApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
                                                            for: EthereumApplicationService.self)
+
         EthereumApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
         EthereumDomainModel.DomainRegistry.put(service: EthereumImplementations.EncryptionService(),
-                                               for: EncryptionDomainService.self)
+                                               for: EthereumDomainModel.EncryptionDomainService.self)
+        EthereumDomainModel.DomainRegistry.put(service: KeychainService(identifier: "pm.gnosis.safe"),
+                                               for: SecureStore.self)
     }
 
     private func connectMultisigWalletWithEthereum() {

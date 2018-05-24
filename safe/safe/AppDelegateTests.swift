@@ -37,8 +37,6 @@ class AppDelegateTests: XCTestCase {
     }
 
     func test_defaultValues() {
-        XCTAssertNotNil(DomainRegistry.keyValueStore)
-        XCTAssertNotNil(DomainRegistry.secureStore)
         XCTAssertNotNil(DomainRegistry.biometricAuthenticationService)
         XCTAssertNotNil(DomainRegistry.userRepository)
         XCTAssertNotNil(DomainRegistry.identityService)

@@ -7,20 +7,12 @@ import Common
 
 public class DomainRegistry: AbstractRegistry {
 
-    public static var keyValueStore: KeyValueStore {
-        return service(for: KeyValueStore.self)
-    }
-
-    public static var secureStore: SecureStore {
-        return service(for: SecureStore.self)
-    }
-
     public static var biometricAuthenticationService: BiometricAuthenticationService {
         return service(for: BiometricAuthenticationService.self)
     }
 
-    public static var encryptionService: EncryptionServiceProtocol {
-        return service(for: EncryptionServiceProtocol.self)
+    public static var encryptionService: EncryptionService {
+        return service(for: EncryptionService.self)
     }
 
     public static var userRepository: SingleUserRepository {
