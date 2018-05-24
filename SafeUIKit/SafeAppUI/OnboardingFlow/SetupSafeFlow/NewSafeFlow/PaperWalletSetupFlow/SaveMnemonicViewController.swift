@@ -33,7 +33,7 @@ final class SaveMnemonicViewController: UIViewController {
     private var ethereumService: EthereumApplicationService {
         return ApplicationServiceRegistry.ethereumService
     }
-    private(set) var account: EthereumApplicationService.ExternallyOwnedAccount!
+    private(set) var account: ExternallyOwnedAccountData!
 
     static func create(delegate: SaveMnemonicDelegate) -> SaveMnemonicViewController {
         let controller = StoryboardScene.NewSafe.saveMnemonicViewController.instantiate()
@@ -48,7 +48,13 @@ final class SaveMnemonicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        account = ethereumService.generateExternallyOwnedAccount()
+        do {
+            account = try ethereumService.generateExternallyOwnedAccount()
+        } catch let e {
+            ErrorHandler.showError(log: "Failed to generate paper wallet account", error: e)
+            dismiss(animated: true)
+            return
+        }
         guard !account.mnemonicWords.isEmpty else {
             mnemonicCopyableLabel.text = nil
             dismiss(animated: true)

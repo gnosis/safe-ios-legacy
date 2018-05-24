@@ -8,7 +8,7 @@ import SafeUIKit
 
 class SetPasswordViewControllerTests: XCTestCase {
 
-    // swiftlint:disable weak_delegate
+    // swiftlint:disable:next weak_delegate
     let delegate = MockSetPasswordViewControllerDelegate()
     var vc: SetPasswordViewController!
 

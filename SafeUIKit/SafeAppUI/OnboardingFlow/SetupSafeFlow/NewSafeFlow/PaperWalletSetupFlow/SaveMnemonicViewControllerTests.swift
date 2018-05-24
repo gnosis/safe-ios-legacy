@@ -9,7 +9,7 @@ import CommonTestSupport
 
 class SaveMnemonicViewControllerTests: SafeTestCase {
 
-    // swiftlint:disable weak_delegate
+    // swiftlint:disable:next weak_delegate
     private let delegate = MockSaveMnemonicDelegate()
     private var controller: SaveMnemonicViewController!
     private var words = ["test", "mnemonic"]
@@ -49,6 +49,14 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
     func test_continuePressed_callsDelegate() throws {
         controller.continuePressed(self)
         XCTAssertTrue(delegate.pressedContinue)
+    }
+
+    func test_whenEOAGenerationFails_thenShowsErrorAlert() {
+        ethereumService.shouldThrow = true
+        controller = SaveMnemonicViewController.create(delegate: delegate)
+        createWindow(controller)
+        delay(1)
+        XCTAssertAlertShown()
     }
 
 }

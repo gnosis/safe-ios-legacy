@@ -5,5 +5,8 @@
 import Foundation
 
 public protocol EncryptionDomainService {
+
     func address(browserExtensionCode: String) -> String?
+    func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccount
+
 }

@@ -10,7 +10,7 @@ import SafeUIKit
 
 class NewSafeViewControllerTests: SafeTestCase {
 
-    // swiftlint:disable weak_delegate
+    // swiftlint:disable:next weak_delegate
     private let delegate = MockNewSafeDelegate()
     private var controller: NewSafeViewController!
 
