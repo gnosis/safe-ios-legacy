@@ -71,7 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     private func configureEthereum() {
         EthereumApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
                                                            for: EthereumApplicationService.self)
-
         EthereumApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
         EthereumDomainModel.DomainRegistry.put(service: EthereumImplementations.EncryptionService(),
                                                for: EthereumDomainModel.EncryptionDomainService.self)

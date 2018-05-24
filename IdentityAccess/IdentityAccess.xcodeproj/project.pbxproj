@@ -58,7 +58,7 @@
 		0A666D132087A17F0034FF66 /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */; };
 		0A666D192087A1990034FF66 /* AuthenticationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D182087A1990034FF66 /* AuthenticationMethod.swift */; };
 		0A666D1B2087A1A90034FF66 /* AuthenticationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */; };
-		0A934D7020B7161D00F15616 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934D6F20B7161D00F15616 /* EncryptionService.swift */; };
+		0A934D7520B71BDB00F15616 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934D7420B71BDA00F15616 /* EncryptionService.swift */; };
 		0AA4FF912085F46900C82CFE /* AuthenticationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */; };
 		0ABCA95A207E55BE00E2C193 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA95B207E55BE00E2C193 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -395,7 +395,7 @@
 		0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
 		0A666D182087A1990034FF66 /* AuthenticationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationMethod.swift; sourceTree = "<group>"; };
 		0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResult.swift; sourceTree = "<group>"; };
-		0A934D6F20B7161D00F15616 /* EncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EncryptionService.swift; path = ../../../../../.Trash/EncryptionService.swift; sourceTree = "<group>"; };
+		0A934D7420B71BDA00F15616 /* EncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
 		0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPolicy.swift; sourceTree = "<group>"; };
 		0ADFDD8820A0615600423554 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
 		0AFFF3FF208088D70030200C /* AuthenticationApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationServiceTests.swift; sourceTree = "<group>"; };
@@ -563,7 +563,7 @@
 				0A537A87207CE74100921FB9 /* DomainRegistry.swift */,
 				0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */,
 				0A537A8C207CE74100921FB9 /* DomainTestCase.swift */,
-				0A934D6F20B7161D00F15616 /* EncryptionService.swift */,
+				0A934D7420B71BDA00F15616 /* EncryptionService.swift */,
 				0A48A08420935A9000B704AD /* Gatekeeper */,
 				0A48A08520935ABC00B704AD /* IdentityService */,
 				0A48A07E20935A7E00B704AD /* User */,
@@ -1215,7 +1215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A934D7020B7161D00F15616 /* EncryptionService.swift in Sources */,
+				0A934D7520B71BDB00F15616 /* EncryptionService.swift in Sources */,
 				0AFFF40620808A5D0030200C /* SingleUserRepository.swift in Sources */,
 				0AFFF42C2084BBA30030200C /* SingleGatekeeperRepository.swift in Sources */,
 				0A537A98207CE74100921FB9 /* DomainRegistry.swift in Sources */,
