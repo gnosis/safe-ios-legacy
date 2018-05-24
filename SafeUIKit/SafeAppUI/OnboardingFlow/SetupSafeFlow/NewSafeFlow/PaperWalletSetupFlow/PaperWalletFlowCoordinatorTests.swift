@@ -17,7 +17,7 @@ class PaperWalletFlowCoordinatorTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        walletService.createNewDraftWallet()
+        XCTAssertNoThrow(try walletService.createNewDraftWallet())
         ethereumService.prepareToGenerateExternallyOwnedAccount(address: "address", mnemonic: ["a", "b"])
         coordinator = PaperWalletFlowCoordinator(rootViewController: UINavigationController())
         coordinator.setUp()

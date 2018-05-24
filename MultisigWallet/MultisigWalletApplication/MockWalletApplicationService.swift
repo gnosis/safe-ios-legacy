@@ -6,6 +6,10 @@ import Foundation
 
 public class MockWalletApplicationService: WalletApplicationService {
 
+    public enum Error: String, LocalizedError, Hashable {
+        case error
+    }
+
     public override var hasReadyToUseWallet: Bool {
         return _hasReadyToUseWallet
     }
@@ -23,6 +27,7 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public var didCreateNewDraft = false
+    public var shouldThrow = false
 
     private var existingOwners: [OwnerType: String] = [:]
     private var accounts: [String: Int] = [:]
@@ -33,7 +38,10 @@ public class MockWalletApplicationService: WalletApplicationService {
         _hasReadyToUseWallet = true
     }
 
-    public override func createNewDraftWallet() {
+    public override func createNewDraftWallet() throws {
+        if shouldThrow {
+            throw Error.error
+        }
         _selectedWalletState = .newDraft
         didCreateNewDraft = true
     }

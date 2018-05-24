@@ -44,3 +44,18 @@ func XCTAssertPredicate(_ closure: @autoclosure () throws -> XCUIElement,
         XCTFail("\(e)", file: file, line: line)
     }
 }
+
+public func XCTAssertAlertShown(message expectedMessage: String? = nil, file: StaticString = #file, line: UInt = #line) {
+    XCTAssertNotNil(UIApplication.shared.keyWindow?.rootViewController, file: file, line: line)
+    guard let vc = UIApplication.shared.keyWindow?.rootViewController else { return }
+    XCTAssertEqual(vc.view.backgroundColor, .clear, file: file, line: line)
+    XCTAssertNotNil(vc.presentedViewController, file: file, line: line)
+    guard let alertVC = vc.presentedViewController as? UIAlertController else { return }
+    if let expectedMessage = expectedMessage {
+        XCTAssertEqual(alertVC.message, expectedMessage, file: file, line: line)
+    }
+    XCTAssertEqual(alertVC.actions.count, 1, file: file, line: line)
+    XCTAssertNotNil(alertVC.title, file: file, line: line)
+    XCTAssertNotNil(alertVC.actions.first?.title, file: file, line: line)
+}
+

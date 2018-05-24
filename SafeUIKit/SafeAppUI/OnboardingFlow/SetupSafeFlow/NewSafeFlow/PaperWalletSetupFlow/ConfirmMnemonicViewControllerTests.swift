@@ -87,8 +87,8 @@ class ConfirmMnemonicViewControllerTests: SafeTestCase {
         XCTAssertTrue(controller.secondWordTextInput.isActive)
     }
 
-    func test_whenTextInputReturns_thenAddsOwner() {
-        walletService.createNewDraftWallet()
+    func test_whenTextInputReturns_thenAddsOwner() throws {
+        try walletService.createNewDraftWallet()
         setTextInputs(controller.firstMnemonicWordToCheck, controller.secondMnemonicWordToCheck)
         XCTAssertEqual(walletService.ownerAddress(of: .paperWallet), "address")
     }

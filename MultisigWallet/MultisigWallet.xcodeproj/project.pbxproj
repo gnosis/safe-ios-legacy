@@ -37,6 +37,8 @@
 		0A8E3BFA20B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3BF920B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift */; };
 		0A8E3C0520B4260600F002F6 /* DBAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */; };
 		0A8E3C0720B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */; };
+		0A934CEE20B6B42900F15616 /* BlockchainDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934CED20B6B42900F15616 /* BlockchainDomainService.swift */; };
+		0A934CF120B6B46300F15616 /* MockBlockchainDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934CEF20B6B44D00F15616 /* MockBlockchainDomainService.swift */; };
 		0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */; };
 		0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */; };
 		0AD22D7C20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */; };
@@ -237,6 +239,8 @@
 		0A8E3BF920B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryAccountRepositoryTests.swift; sourceTree = "<group>"; };
 		0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBAccountRepository.swift; sourceTree = "<group>"; };
 		0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBAccountRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
+		0A934CED20B6B42900F15616 /* BlockchainDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainDomainService.swift; sourceTree = "<group>"; };
+		0A934CEF20B6B44D00F15616 /* MockBlockchainDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBlockchainDomainService.swift; sourceTree = "<group>"; };
 		0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBBaseRepository.swift; sourceTree = "<group>"; };
 		0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepository.swift; sourceTree = "<group>"; };
 		0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
@@ -347,19 +351,20 @@
 		0AEF8A7720A08878006A1265 /* MultisigWalletDomainModel */ = {
 			isa = PBXGroup;
 			children = (
-				0A23C80420A1B09100C72483 /* Wallet.swift */,
 				0A76BE5920AF0CB500D07770 /* Account.swift */,
 				0A76BE5B20AF11CD00D07770 /* AccountRepository.swift */,
-				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
-				0A23C80C20A1B34900C72483 /* Owner.swift */,
 				0A23C80E20A1B35D00C72483 /* BlockchainAddress.swift */,
-				0A23C81A20A1CEDA00C72483 /* PortfolioTests.swift */,
-				0A23C82020A1CF1D00C72483 /* Portfolio.swift */,
-				0A23C82220A1DDEC00C72483 /* WalletRepository.swift */,
-				0A23C82420A1DE5300C72483 /* SinglePortfolioRepository.swift */,
 				0A76BE5420AEF31000D07770 /* DomainRegistry.swift */,
 				0A76BE5620AEF35C00D07770 /* DomainRegistryTests.swift */,
+				0A934CED20B6B42900F15616 /* BlockchainDomainService.swift */,
+				0A23C80C20A1B34900C72483 /* Owner.swift */,
+				0A23C82020A1CF1D00C72483 /* Portfolio.swift */,
+				0A23C81A20A1CEDA00C72483 /* PortfolioTests.swift */,
+				0A23C82420A1DE5300C72483 /* SinglePortfolioRepository.swift */,
 				0AEF8A8520A08889006A1265 /* Tests-Info.plist */,
+				0A23C80420A1B09100C72483 /* Wallet.swift */,
+				0A23C82220A1DDEC00C72483 /* WalletRepository.swift */,
+				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
 			);
 			path = MultisigWalletDomainModel;
 			sourceTree = "<group>";
@@ -379,6 +384,7 @@
 		0AEF8AAB20A088B1006A1265 /* MultisigWalletImplementations */ = {
 			isa = PBXGroup;
 			children = (
+				0A934CEF20B6B44D00F15616 /* MockBlockchainDomainService.swift */,
 				0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */,
 				0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */,
 				0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */,
@@ -724,6 +730,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A76BE5C20AF11CD00D07770 /* AccountRepository.swift in Sources */,
+				0A934CEE20B6B42900F15616 /* BlockchainDomainService.swift in Sources */,
 				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
 				0A23C82320A1DDEC00C72483 /* WalletRepository.swift in Sources */,
@@ -774,6 +781,7 @@
 				0A8E3C0520B4260600F002F6 /* DBAccountRepository.swift in Sources */,
 				0A23C83220A1E30800C72483 /* InMemoryWalletRepository.swift in Sources */,
 				0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */,
+				0A934CF120B6B46300F15616 /* MockBlockchainDomainService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

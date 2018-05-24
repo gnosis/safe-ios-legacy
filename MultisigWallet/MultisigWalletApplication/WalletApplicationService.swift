@@ -98,7 +98,11 @@ public class WalletApplicationService: Assertable {
     public func createNewDraftWallet() throws {
         try notifyWalletStateChangesAfter {
             let portfolio = try fetchOrCreatePortfolio()
-            let wallet = Wallet(id: DomainRegistry.walletRepository.nextID())
+            let address = try DomainRegistry.blockchainService.generateExternallyOwnedAccount()
+            let owner = Wallet.createOwner(address: address)
+            let wallet = try Wallet(id: DomainRegistry.walletRepository.nextID(),
+                                    owner: owner,
+                                    kind: OwnerType.thisDevice.kind)
             let account = Account(id: AccountID(token: "ETH"), walletID: wallet.id, balance: 0, minimumAmount: 0)
             try portfolio.addWallet(wallet.id)
             try DomainRegistry.walletRepository.save(wallet)

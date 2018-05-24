@@ -11,13 +11,14 @@ class PortfolioTests: XCTestCase {
     var wallet: Wallet!
     var wallet1: Wallet!
     var wallet2: Wallet!
+    var owner = Owner(address: BlockchainAddress(value: "address"))
 
     override func setUp() {
         super.setUp()
         XCTAssertNoThrow(portfolio = Portfolio(id: try PortfolioID()))
-        XCTAssertNoThrow(wallet = Wallet(id: try WalletID()))
-        XCTAssertNoThrow(wallet1 = Wallet(id: try WalletID()))
-        XCTAssertNoThrow(wallet2 = Wallet(id: try WalletID()))
+        XCTAssertNoThrow(wallet = try Wallet(id: try WalletID(), owner: owner, kind: "kind"))
+        XCTAssertNoThrow(wallet1 = try Wallet(id: try WalletID(), owner: owner, kind: "kind"))
+        XCTAssertNoThrow(wallet2 = try Wallet(id: try WalletID(), owner: owner, kind: "kind"))
     }
 
     func test_whenCreated_thenHasID() throws {
