@@ -15,7 +15,6 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
 
     override func setUp() {
         super.setUp()
-        DraftSafe.shared = nil
         DomainRegistry.put(service: secureStore, for: SecureStore.self)
         DomainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
         DomainRegistry.put(service: keyValueStore, for: KeyValueStore.self)
@@ -42,43 +41,4 @@ class IdentityApplicationServiceTests: ApplicationServiceTestCase {
         }
     }
 
-    func test_createDraftSafe_alwaysCreatesNewDraftSafe() throws {
-        let ds1 = try identityService.createDraftSafe()
-        XCTAssertTrue(ds1 === DraftSafe.shared)
-        let ds2 = try identityService.createDraftSafe()
-        XCTAssertTrue(ds2 === DraftSafe.shared)
-        XCTAssertFalse(ds1 === ds2)
-    }
-
-    func test_getOrCreateDraftSafe_returnsExistingDraftSafe() throws {
-        XCTAssertNil(DraftSafe.shared)
-        let ds1 = try identityService.getOrCreateDraftSafe()
-        XCTAssertNotNil(DraftSafe.shared)
-        let ds2 = try identityService.getOrCreateDraftSafe()
-        XCTAssertTrue(ds1 === ds2)
-    }
-
-    func test_confirmPaperWallet_callsDraftSafeMethod() {
-        let ds = draftSafe()
-        identityService.confirmPaperWallet(draftSafe: ds)
-        XCTAssertEqual(ds.confirmedAddresses, [.currentDevice, .paperWallet])
-    }
-
-    func test_confirmBrowserExtension_callsDraftSafeMethod() {
-        let ds = draftSafe()
-        let address = "test_address"
-        identityService.confirmBrowserExtension(draftSafe: ds, address: address)
-        XCTAssertEqual(ds.confirmedAddresses, [.currentDevice, .browserExtension])
-        XCTAssertEqual(ds.browserExtensionAddress, EthereumAddress(data: address.data(using: .utf8)!))
-    }
-
-}
-
-extension IdentityApplicationServiceTests {
-
-    private func draftSafe() -> DraftSafe {
-        let ethAddress = EthereumAddress(data: Data())
-        let paperWallet = EthereumAccountFactory(service: DomainRegistry.encryptionService).generateAccount()
-        return DraftSafe.create(currentDeviceAddress: ethAddress, paperWallet: paperWallet)
-    }
 }
