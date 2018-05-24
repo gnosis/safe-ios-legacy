@@ -8,7 +8,7 @@ import CommonTestSupport
 
 class SetupSafeOptionsViewControllerTests: SafeTestCase {
 
-    // swiftlint:disable weak_delegate
+    // swiftlint:disable:next weak_delegate
     let delegate = MockSetupSafeOptionsDelegate()
     var vc: SetupSafeOptionsViewController!
 

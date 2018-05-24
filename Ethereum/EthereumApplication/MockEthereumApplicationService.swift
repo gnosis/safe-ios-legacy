@@ -6,8 +6,13 @@ import Foundation
 
 open class MockEthereumApplicationService: EthereumApplicationService {
 
+    enum Error: String, LocalizedError, Hashable {
+        case error
+    }
+
     open var resultAddressFromAnyBrowserExtensionCode: String?
     private var generatedAccount: ExternallyOwnedAccountData?
+    public var shouldThrow = false
 
     open override func address(browserExtensionCode: String) -> String? {
         return resultAddressFromAnyBrowserExtensionCode
@@ -17,7 +22,10 @@ open class MockEthereumApplicationService: EthereumApplicationService {
         generatedAccount = ExternallyOwnedAccountData(address: address, mnemonicWords: mnemonic)
     }
 
-    open override func generateExternallyOwnedAccount() -> ExternallyOwnedAccountData {
+    open override func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccountData {
+        if shouldThrow {
+            throw Error.error
+        }
         return generatedAccount!
     }
 

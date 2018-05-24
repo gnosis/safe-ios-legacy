@@ -9,7 +9,7 @@ import EthereumApplication
 extension EthereumApplicationService: BlockchainDomainService {
 
     public func generateExternallyOwnedAccount() throws -> String {
-        return generateExternallyOwnedAccount().address
+        return try generateExternallyOwnedAccount().address
     }
 
 }

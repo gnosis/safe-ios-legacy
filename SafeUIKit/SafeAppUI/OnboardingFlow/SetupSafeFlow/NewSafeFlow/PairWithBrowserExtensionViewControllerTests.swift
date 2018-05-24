@@ -9,7 +9,7 @@ import CommonTestSupport
 
 class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
 
-    // swiftlint:disable weak_delegate
+    // swiftlint:disable:next weak_delegate
     let delegate = MockPairWithBrowserDelegate()
     var controller: PairWithBrowserExtensionViewController!
 

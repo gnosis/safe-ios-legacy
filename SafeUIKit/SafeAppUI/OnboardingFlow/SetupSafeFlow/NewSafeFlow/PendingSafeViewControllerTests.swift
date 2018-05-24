@@ -8,7 +8,7 @@ import CommonTestSupport
 
 class PendingSafeViewControllerTests: SafeTestCase {
 
-    //swiftlint:disable weak_delegate
+    //swiftlint:disable:next weak_delegate
     var delegate = MockPendingSafeViewControllerDelegate()
     var controller: PendingSafeViewController!
 
