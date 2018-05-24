@@ -14,5 +14,16 @@ public class DBExternallyOwnedAccountRepository: ExternallyOwnedAccountRepositor
         self.db = db
     }
 
-}
+    public func save(_ account: ExternallyOwnedAccount) throws {
 
+    }
+
+    public func remove(_ account: ExternallyOwnedAccount) throws {
+
+    }
+
+    public func find(by address: Address) throws -> ExternallyOwnedAccount? {
+        return nil
+    }
+
+}
