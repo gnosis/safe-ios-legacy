@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         configureIdentityAccess()
         configureMultisigWallet()
         configureEthereum()
+        connectMultisigWalletWithEthereum()
     }
 
     private func configureIdentityAccess() {
@@ -66,8 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletApplicationService(),
                                                                  for: WalletApplicationService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: MockBlockchainDomainService(),
-                                                     for: BlockchainDomainService.self)
         setUpMultisigDatabase()
     }
 
@@ -77,6 +76,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         EthereumApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
         EthereumDomainModel.DomainRegistry.put(service: EthereumImplementations.EncryptionService(),
                                                for: EncryptionDomainService.self)
+    }
+
+    private func connectMultisigWalletWithEthereum() {
+        let service = EthereumApplication.ApplicationServiceRegistry.ethereumService
+        MultisigWalletDomainModel.DomainRegistry.put(service: service, for: BlockchainDomainService.self)
     }
 
     private func setUpIdentityAccessDatabase() {

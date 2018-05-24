@@ -104,7 +104,7 @@ extension ConfirmMnemonicViewControllerTests {
     }
 
     private func createController(words: [String]) {
-        let account = EthereumApplicationService.ExternallyOwnedAccount(address: "address", mnemonicWords: words)
+        let account = EthereumApplicationService.ExternallyOwnedAccountData(address: "address", mnemonicWords: words)
         controller = ConfirmMnemonicViewController.create(delegate: delegate, account: account)
         controller.loadViewIfNeeded()
     }

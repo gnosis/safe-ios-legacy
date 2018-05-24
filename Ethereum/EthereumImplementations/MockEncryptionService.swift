@@ -2,6 +2,7 @@
 //  Copyright © 2018 Gnosis Ltd. All rights reserved.
 //
 
+import Foundation
 import EthereumDomainModel
 
 public class MockEncryptionService: EncryptionDomainService {
@@ -12,6 +13,13 @@ public class MockEncryptionService: EncryptionDomainService {
 
     public func address(browserExtensionCode: String) -> String? {
         return extensionAddress
+    }
+
+    public func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccount {
+        return ExternallyOwnedAccount(address: Address(value: "address"),
+                                      mnemonic: Mnemonic(words: ["one", "two", "three"]),
+                                      privateKey: PrivateKey(data: Data()),
+                                      publicKey: PublicKey(data: Data()))
     }
 
 }

@@ -33,7 +33,7 @@ final class SaveMnemonicViewController: UIViewController {
     private var ethereumService: EthereumApplicationService {
         return ApplicationServiceRegistry.ethereumService
     }
-    private(set) var account: EthereumApplicationService.ExternallyOwnedAccount!
+    private(set) var account: EthereumApplicationService.ExternallyOwnedAccountData!
 
     static func create(delegate: SaveMnemonicDelegate) -> SaveMnemonicViewController {
         let controller = StoryboardScene.NewSafe.saveMnemonicViewController.instantiate()

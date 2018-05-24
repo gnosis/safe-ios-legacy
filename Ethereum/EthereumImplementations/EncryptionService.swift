@@ -6,6 +6,7 @@ import Foundation
 import EthereumDomainModel
 import EthereumApplication
 import EthereumKit
+import Common
 
 // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md
 public enum EIP155ChainId: Int {
@@ -44,12 +45,46 @@ struct ExtensionCode {
 
 }
 
+public protocol EthereumService: Assertable {
+
+    func createMnemonic() -> [String]
+    func createSeed(mnemonic: [String]) -> Data
+    func createPrivateKey(seed: Data, network: EIP155ChainId) -> Data
+    func createPublicKey(privateKey: Data) -> Data
+    func createAddress(publicKey: Data) -> String
+
+}
+
+public enum EthereumServiceError: String, LocalizedError, Hashable {
+    case invalidMnemonicWordsCount
+}
+
+public extension EthereumService {
+
+    func createExternallyOwnedAccount(chainId: EIP155ChainId) throws ->
+        (mnemonic: [String], privateKey: Data, publicKey: Data, address: String) {
+        let words = createMnemonic()
+        try assertEqual(words.count, 12, EthereumServiceError.invalidMnemonicWordsCount)
+        let seed = createSeed(mnemonic: words)
+        let privateKey = createPrivateKey(seed: seed, network: chainId)
+        let publicKey = createPublicKey(privateKey: privateKey)
+        let address = createAddress(publicKey: publicKey)
+        return (words, privateKey, publicKey, address)
+    }
+}
+
 public class EncryptionService: EncryptionDomainService {
 
-    let chainId: EIP155ChainId
+    public enum Error: String, LocalizedError, Hashable {
+        case failedToGenerateAccount
+    }
 
-    public init(chainId: EIP155ChainId = .mainnet) {
+    let chainId: EIP155ChainId
+    let ethereumService: EthereumService
+
+    public init(chainId: EIP155ChainId = .mainnet, ethereumService: EthereumService = EthereumKitEthereumService()) {
         self.chainId = chainId
+        self.ethereumService = ethereumService
     }
 
     public func address(browserExtensionCode: String) -> String? {
@@ -76,6 +111,16 @@ public class EncryptionService: EncryptionDomainService {
                 return nil
         }
         return extensionCode
+    }
+
+    public func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccount {
+        let (mnemonicWords, privateKeyData, publicKeyData, address) =
+            try ethereumService.createExternallyOwnedAccount(chainId: chainId)
+        let account = ExternallyOwnedAccount(address: Address(value: address),
+                                             mnemonic: Mnemonic(words: mnemonicWords),
+                                             privateKey: PrivateKey(data: privateKeyData),
+                                             publicKey: PublicKey(data: publicKeyData))
+        return account
     }
 
 }

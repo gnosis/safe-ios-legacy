@@ -7,10 +7,12 @@ import XCTest
 import EthereumApplication
 import EthereumKit
 import Common
+import EthereumDomainModel
+import CryptoSwift
 
 class EncryptionServiceTests: XCTestCase {
 
-    let encryptionService = EncryptionService()
+    var encryptionService = EncryptionService()
 
     override func setUp() {
         super.setUp()
@@ -53,6 +55,38 @@ class EncryptionServiceTests: XCTestCase {
         XCTAssertNil(address)
     }
 
+    func test_whenMnemonicNotEnough_thenThrows() {
+        let ethereumService = MockEthereumService()
+        ethereumService.mnemonic = []
+        encryptionService = EncryptionService(chainId: .mainnet, ethereumService: ethereumService)
+        XCTAssertThrowsError(try encryptionService.generateExternallyOwnedAccount())
+    }
+
+    func test_whenExternallyOwnedAccountCreated_thenItIsCorrect() throws {
+        let words = ["skirt", "subway", "absurd", "dune",
+                     "repeat", "riot", "tank", "inspire",
+                     "lazy", "extend", "valve", "pause"]
+        let address = "0x0A41A23898F7ad3a2C5b5BB061D393e9667fd0e5"
+        let privateKeyHex = "b81d3d33393353ea9d89ca77514cc4e0855c93fa5c65dfbd8467046f3758194d"
+        let publicKeyHex = "026f935cee32a145a51c172d1d54b22d56fd646654ae88293a6ff596a846b32a94"
+        let expectedAccount =
+            ExternallyOwnedAccount(address: EthereumDomainModel.Address(value: address),
+                                   mnemonic: EthereumDomainModel.Mnemonic(words: words),
+                                   privateKey: EthereumDomainModel.PrivateKey(data: Data(hex: privateKeyHex)),
+                                   publicKey: EthereumDomainModel.PublicKey(data: Data(hex: publicKeyHex)))
+
+        let ethereumService = CustomWordsEthereumService(words: words)
+        encryptionService = EncryptionService(chainId: .mainnet, ethereumService: ethereumService)
+
+        let account = try encryptionService.generateExternallyOwnedAccount()
+
+        XCTAssertEqual(account, expectedAccount)
+        XCTAssertEqual(account.address, expectedAccount.address)
+        XCTAssertEqual(account.mnemonic, expectedAccount.mnemonic)
+        XCTAssertEqual(account.privateKey, expectedAccount.privateKey)
+        XCTAssertEqual(account.publicKey, expectedAccount.publicKey)
+    }
+
 }
 
 extension EncryptionServiceTests {
@@ -65,6 +99,7 @@ extension EncryptionServiceTests {
 }
 
 struct QRCode {
+
     let code: String
     let address: String
 
@@ -105,5 +140,50 @@ struct QRCode {
         """,
         address: "0xeBECD3521491D9D2CAA5111D23B6B764238DD09f"
     )
+
+}
+
+
+class CustomWordsEthereumService: EthereumKitEthereumService {
+
+    let words: [String]
+
+    init(words: [String]) {
+        self.words = words
+    }
+
+    override func createMnemonic() -> [String] {
+        return words
+    }
+
+}
+
+class MockEthereumService: EthereumService {
+
+    var mnemonic = [String]()
+    var seed = Data()
+    var privateKey = Data()
+    var publicKey = Data()
+    var address = "address"
+
+    func createMnemonic() -> [String] {
+        return mnemonic
+    }
+
+    func createSeed(mnemonic: [String]) -> Data {
+        return seed
+    }
+
+    func createPrivateKey(seed: Data, network: EIP155ChainId) -> Data {
+        return privateKey
+    }
+
+    func createPublicKey(privateKey: Data) -> Data {
+        return publicKey
+    }
+
+    func createAddress(publicKey: Data) -> String {
+        return address
+    }
 
 }

@@ -13,7 +13,7 @@ open class EthereumApplicationService {
         return DomainRegistry.encryptionService.address(browserExtensionCode: browserExtensionCode)
     }
 
-    public struct ExternallyOwnedAccount: Equatable {
+    public struct ExternallyOwnedAccountData: Equatable {
 
         public var address: String
         public var mnemonicWords: [String]
@@ -25,21 +25,9 @@ open class EthereumApplicationService {
 
     }
 
-    open func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {
-        return ExternallyOwnedAccount(address: "0xa06a215ca4a54189e7f951c59f0431e33d0f38a0",
-                                      mnemonicWords: [
-                                        "alpha",
-                                        "beta",
-                                        "gamma",
-                                        "delta",
-                                        "epsilon",
-                                        "zeta",
-                                        "eta",
-                                        "theta",
-                                        "iota",
-                                        "kappa",
-                                        "lambda",
-                                        "mu"])
+    open func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccountData {
+        let account = try DomainRegistry.encryptionService.generateExternallyOwnedAccount()
+        return ExternallyOwnedAccountData(address: account.address.value, mnemonicWords: account.mnemonic.words)
     }
 
 }
