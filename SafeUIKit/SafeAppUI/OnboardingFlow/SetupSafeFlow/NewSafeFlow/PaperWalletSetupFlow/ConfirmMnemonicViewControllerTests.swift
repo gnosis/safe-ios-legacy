@@ -9,7 +9,7 @@ import EthereumApplication
 
 class ConfirmMnemonicViewControllerTests: SafeTestCase {
 
-    // swiftlint:disable weak_delegate
+    // swiftlint:disable:next weak_delegate
     private let delegate = MockConfirmMnemonicDelegate()
     private var controller: ConfirmMnemonicViewController!
     private var words = ["some", "random", "words", "from", "a", "mnemonic"]
@@ -104,7 +104,7 @@ extension ConfirmMnemonicViewControllerTests {
     }
 
     private func createController(words: [String]) {
-        let account = EthereumApplicationService.ExternallyOwnedAccountData(address: "address", mnemonicWords: words)
+        let account = ExternallyOwnedAccountData(address: "address", mnemonicWords: words)
         controller = ConfirmMnemonicViewController.create(delegate: delegate, account: account)
         controller.loadViewIfNeeded()
     }

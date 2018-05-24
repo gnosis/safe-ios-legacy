@@ -9,7 +9,7 @@ import IdentityAccessApplication
 
 class ConfirmPaswordViewControllerTests: SafeTestCase {
 
-    // swiftlint:disable weak_delegate
+    // swiftlint:disable:next weak_delegate
     let delegate = MockConfirmPasswordViewControllerDelegate()
     var vc: ConfirmPaswordViewController!
 

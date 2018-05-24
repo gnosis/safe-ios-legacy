@@ -9,7 +9,7 @@ import CommonTestSupport
 
 class ScannerViewControllerTests: XCTestCase {
 
-    // swiftlint:disable weak_delegate
+    // swiftlint:disable:next weak_delegate
     let delegate = MockScannerDelegate()
     var controller: ScannerViewController!
 

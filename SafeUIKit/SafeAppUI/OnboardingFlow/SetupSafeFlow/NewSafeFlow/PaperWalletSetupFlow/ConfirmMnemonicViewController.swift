@@ -22,12 +22,12 @@ final class ConfirmMnemonicViewController: UIViewController {
 
     private(set) weak var delegate: ConfirmMnemonicDelegate?
     var words: [String] { return account.mnemonicWords }
-    private(set) var account: EthereumApplicationService.ExternallyOwnedAccountData!
+    private(set) var account: ExternallyOwnedAccountData!
     private(set) var firstMnemonicWordToCheck = ""
     private(set) var secondMnemonicWordToCheck = ""
 
     static func create(delegate: ConfirmMnemonicDelegate,
-                       account: EthereumApplicationService.ExternallyOwnedAccountData) -> ConfirmMnemonicViewController {
+                       account: ExternallyOwnedAccountData) -> ConfirmMnemonicViewController {
         let controller = StoryboardScene.NewSafe.confirmMnemonicViewController.instantiate()
         controller.delegate = delegate
         controller.account = account

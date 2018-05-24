@@ -5,6 +5,18 @@
 import Foundation
 import EthereumDomainModel
 
+public struct ExternallyOwnedAccountData: Equatable {
+
+    public var address: String
+    public var mnemonicWords: [String]
+
+    public init(address: String, mnemonicWords: [String]) {
+        self.address = address
+        self.mnemonicWords = mnemonicWords
+    }
+
+}
+
 open class EthereumApplicationService {
 
     public init() {}
@@ -13,17 +25,6 @@ open class EthereumApplicationService {
         return DomainRegistry.encryptionService.address(browserExtensionCode: browserExtensionCode)
     }
 
-    public struct ExternallyOwnedAccountData: Equatable {
-
-        public var address: String
-        public var mnemonicWords: [String]
-
-        public init(address: String, mnemonicWords: [String]) {
-            self.address = address
-            self.mnemonicWords = mnemonicWords
-        }
-
-    }
 
     open func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccountData {
         let account = try DomainRegistry.encryptionService.generateExternallyOwnedAccount()
