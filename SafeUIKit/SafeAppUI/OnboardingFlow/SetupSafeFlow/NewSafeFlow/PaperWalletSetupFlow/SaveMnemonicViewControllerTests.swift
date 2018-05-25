@@ -6,6 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import IdentityAccessDomainModel
 import CommonTestSupport
+import EthereumApplication
 
 class SaveMnemonicViewControllerTests: SafeTestCase {
 
@@ -57,6 +58,19 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
         createWindow(controller)
         delay(1)
         XCTAssertAlertShown()
+    }
+
+    func test_whenPaperWalletExists_thenItIsDisplayed() throws {
+        try walletService.createNewDraftWallet()
+        walletService.addOwner(address: "some", type: .paperWallet)
+        let expectedMnemonic = ["one", "two", "three"]
+        let expectedAccount = ExternallyOwnedAccountData(address: "some", mnemonicWords: expectedMnemonic)
+        ethereumService.addExternallyOwnedAccount(expectedAccount)
+        let generatedMnemonic = ["alpha", "beta", "gamma"]
+        ethereumService.prepareToGenerateExternallyOwnedAccount(address: "newAddress", mnemonic: generatedMnemonic)
+        controller = SaveMnemonicViewController.create(delegate: delegate)
+        controller.loadViewIfNeeded()
+        XCTAssertEqual(controller.account, expectedAccount)
     }
 
 }

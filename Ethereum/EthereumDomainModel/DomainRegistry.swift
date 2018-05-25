@@ -11,4 +11,7 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: EncryptionDomainService.self)
     }
 
+    public static var externallyOwnedAccountRepository: ExternallyOwnedAccountRepository {
+        return service(for: ExternallyOwnedAccountRepository.self)
+    }
 }

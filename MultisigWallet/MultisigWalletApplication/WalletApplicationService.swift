@@ -125,7 +125,6 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-
     public func startDeployment() throws {
         try mutateSelectedWallet { wallet in
             try wallet.startDeployment()
