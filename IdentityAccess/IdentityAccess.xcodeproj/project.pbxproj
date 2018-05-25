@@ -33,12 +33,6 @@
 		0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */; };
 		0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B00207CF2D600921FB9 /* SystemClockServiceIntegrationTests.swift */; };
 		0A537B3C207CF80700921FB9 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B06207CF2D600921FB9 /* EncryptionServiceTests.swift */; };
-		0A537BB7207CF9B400921FB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BB6207CF9B400921FB9 /* AppDelegate.swift */; };
-		0A537BB9207CF9B400921FB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BB8207CF9B400921FB9 /* ViewController.swift */; };
-		0A537BBC207CF9B400921FB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBA207CF9B400921FB9 /* Main.storyboard */; };
-		0A537BBE207CF9B600921FB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBD207CF9B600921FB9 /* Assets.xcassets */; };
-		0A537BC1207CF9B600921FB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A537BBF207CF9B600921FB9 /* LaunchScreen.storyboard */; };
-		0A537BD6207CF9EE00921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
 		0A537BF3207CFB1C00921FB9 /* AuthenticationApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BED207CFB1C00921FB9 /* AuthenticationApplicationService.swift */; };
 		0A537BF5207CFB1C00921FB9 /* ApplicationServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537BEF207CFB1C00921FB9 /* ApplicationServiceRegistry.swift */; };
 		0A537C03207CFB9200921FB9 /* libIdentityAccessApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537BE1207CFADE00921FB9 /* libIdentityAccessApplication.a */; };
@@ -52,7 +46,6 @@
 		0A5DC580209C9F4300BA7A06 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5DC57F209C9F4300BA7A06 /* MockAuthenticationService.swift */; };
 		0A5DC583209CA23F00BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC582209CA23F00BA7A06 /* libCommon.a */; };
 		0A5DC585209CA24600BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC584209CA24600BA7A06 /* libCommon.a */; };
-		0A5DC587209CA24C00BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC586209CA24C00BA7A06 /* libCommon.a */; };
 		0A5DC589209CA25200BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC588209CA25200BA7A06 /* libCommon.a */; };
 		0A666D04208643A50034FF66 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666CFF208643A50034FF66 /* Clock.swift */; };
 		0A666D132087A17F0034FF66 /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */; };
@@ -62,8 +55,6 @@
 		0AA4FF912085F46900C82CFE /* AuthenticationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */; };
 		0ABCA95A207E55BE00E2C193 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA95B207E55BE00E2C193 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0ABCA95E207E55C800E2C193 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0ABCA95F207E55C800E2C193 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA962207E55CF00E2C193 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F728207E4CF900AF407D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA963207E55CF00E2C193 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A57F72A207E4CF900AF407D /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AEF8A3B20A08211006A1265 /* libDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160BA020A0801A00E064E1 /* libDatabase.a */; };
@@ -129,20 +120,6 @@
 			remoteInfo = IdentityAccessImplementations;
 		};
 		0A537B34207CF4B000921FB9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A537ACC207CEDAE00921FB9;
-			remoteInfo = IdentityAccessImplementations;
-		};
-		0A537BCF207CF9CD00921FB9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A537BB3207CF9B400921FB9;
-			remoteInfo = IdentityAccessIntegration;
-		};
-		0A537BD4207CF9DE00921FB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
 			proxyType = 1;
@@ -284,17 +261,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A537BD7207CF9F200921FB9 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0ABCA95E207E55C800E2C193 /* CryptoSwift.framework in CopyFiles */,
-				0ABCA95F207E55C800E2C193 /* EthereumKit.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0A537BDF207CFADE00921FB9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -365,15 +331,6 @@
 		0A537B2E207CF4B000921FB9 /* IdentityAccessImplementationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessImplementationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537B32207CF4B000921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ImplementationsConfig.xcconfig; sourceTree = "<group>"; };
-		0A537BB4207CF9B400921FB9 /* IdentityAccessIntegration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdentityAccessIntegration.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A537BB6207CF9B400921FB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0A537BB8207CF9B400921FB9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0A537BBB207CF9B400921FB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0A537BBD207CF9B600921FB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0A537BC0207CF9B600921FB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0A537BC2207CF9B600921FB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A537BCA207CF9CD00921FB9 /* IdentityAccessIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A537BCE207CF9CD00921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A537BE1207CFADE00921FB9 /* libIdentityAccessApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537BEA207CFAF800921FB9 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537BEC207CFB1B00921FB9 /* IdentityAccessApplication-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityAccessApplication-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -450,22 +407,6 @@
 				0AEF8A3B20A08211006A1265 /* libDatabase.a in Frameworks */,
 				0A5DC585209CA24600BA7A06 /* libCommon.a in Frameworks */,
 				0A537B33207CF4B000921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0A537BB1207CF9B400921FB9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0A537BC7207CF9CD00921FB9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0A5DC587209CA24C00BA7A06 /* libCommon.a in Frameworks */,
-				0A537BD6207CF9EE00921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,20 +575,6 @@
 			path = ethereum;
 			sourceTree = "<group>";
 		};
-		0A537BB5207CF9B400921FB9 /* IdentityAccessIntegration */ = {
-			isa = PBXGroup;
-			children = (
-				0A537BB6207CF9B400921FB9 /* AppDelegate.swift */,
-				0A537BB8207CF9B400921FB9 /* ViewController.swift */,
-				0A537BBA207CF9B400921FB9 /* Main.storyboard */,
-				0A537BBD207CF9B600921FB9 /* Assets.xcassets */,
-				0A537BBF207CF9B600921FB9 /* LaunchScreen.storyboard */,
-				0A537BC2207CF9B600921FB9 /* Info.plist */,
-				0A537BCE207CF9CD00921FB9 /* Tests-Info.plist */,
-			);
-			path = IdentityAccessIntegration;
-			sourceTree = "<group>";
-		};
 		0A537BE2207CFADE00921FB9 /* IdentityAccessApplication */ = {
 			isa = PBXGroup;
 			children = (
@@ -718,7 +645,6 @@
 				0A537BE2207CFADE00921FB9 /* IdentityAccessApplication */,
 				0A537A65207CE5BC00921FB9 /* IdentityAccessDomainModel */,
 				0A537ACE207CEDAE00921FB9 /* IdentityAccessImplementations */,
-				0A537BB5207CF9B400921FB9 /* IdentityAccessIntegration */,
 				0A0C8704209747E200471885 /* IdentityAccessImplementationsResources */,
 				0AF281982074C18B00D3843D /* Products */,
 				0AF281D32074C21B00D3843D /* Frameworks */,
@@ -732,8 +658,6 @@
 				0A537AA7207CEA0100921FB9 /* IdentityAccessDomainModelTests.xctest */,
 				0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */,
 				0A537B2E207CF4B000921FB9 /* IdentityAccessImplementationsTests.xctest */,
-				0A537BB4207CF9B400921FB9 /* IdentityAccessIntegration.app */,
-				0A537BCA207CF9CD00921FB9 /* IdentityAccessIntegrationTests.xctest */,
 				0A537BE1207CFADE00921FB9 /* libIdentityAccessApplication.a */,
 				0A537BFE207CFB9200921FB9 /* IdentityAccessApplicationTests.xctest */,
 				0A0C8703209747E100471885 /* IdentityAccessImplementationsResources.bundle */,
@@ -865,43 +789,6 @@
 			productReference = 0A537B2E207CF4B000921FB9 /* IdentityAccessImplementationsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0A537BB3207CF9B400921FB9 /* IdentityAccessIntegration */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0A537BC3207CF9B600921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessIntegration" */;
-			buildPhases = (
-				0A537BB0207CF9B400921FB9 /* Sources */,
-				0A537BB1207CF9B400921FB9 /* Frameworks */,
-				0A537BB2207CF9B400921FB9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = IdentityAccessIntegration;
-			productName = IdentityAccessIntegration;
-			productReference = 0A537BB4207CF9B400921FB9 /* IdentityAccessIntegration.app */;
-			productType = "com.apple.product-type.application";
-		};
-		0A537BC9207CF9CD00921FB9 /* IdentityAccessIntegrationTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0A537BD1207CF9CD00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessIntegrationTests" */;
-			buildPhases = (
-				0A537BC6207CF9CD00921FB9 /* Sources */,
-				0A537BC7207CF9CD00921FB9 /* Frameworks */,
-				0A537BC8207CF9CD00921FB9 /* Resources */,
-				0A537BD7207CF9F200921FB9 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0A537BD5207CF9DE00921FB9 /* PBXTargetDependency */,
-				0A537BD0207CF9CD00921FB9 /* PBXTargetDependency */,
-			);
-			name = IdentityAccessIntegrationTests;
-			productName = IdentityAccessIntegrationTests;
-			productReference = 0A537BCA207CF9CD00921FB9 /* IdentityAccessIntegrationTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		0A537BE0207CFADE00921FB9 /* IdentityAccessApplication */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A537BE5207CFADE00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessApplication" */;
@@ -968,13 +855,6 @@
 					0A537B2D207CF4B000921FB9 = {
 						CreatedOnToolsVersion = 9.3;
 					};
-					0A537BB3207CF9B400921FB9 = {
-						CreatedOnToolsVersion = 9.3;
-					};
-					0A537BC9207CF9CD00921FB9 = {
-						CreatedOnToolsVersion = 9.3;
-						TestTargetID = 0A537BB3207CF9B400921FB9;
-					};
 					0A537BE0207CFADE00921FB9 = {
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 0930;
@@ -1011,8 +891,6 @@
 				0A537AA6207CEA0100921FB9 /* IdentityAccessDomainModelTests */,
 				0A537ACC207CEDAE00921FB9 /* IdentityAccessImplementations */,
 				0A537B2D207CF4B000921FB9 /* IdentityAccessImplementationsTests */,
-				0A537BB3207CF9B400921FB9 /* IdentityAccessIntegration */,
-				0A537BC9207CF9CD00921FB9 /* IdentityAccessIntegrationTests */,
 				0A537BE0207CFADE00921FB9 /* IdentityAccessApplication */,
 				0A537BFD207CFB9200921FB9 /* IdentityAccessApplicationTests */,
 				0A0C8702209747E100471885 /* IdentityAccessImplementationsResources */,
@@ -1117,23 +995,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0A537B2C207CF4B000921FB9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0A537BB2207CF9B400921FB9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0A537BC1207CF9B600921FB9 /* LaunchScreen.storyboard in Resources */,
-				0A537BBE207CF9B600921FB9 /* Assets.xcassets in Resources */,
-				0A537BBC207CF9B400921FB9 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0A537BC8207CF9CD00921FB9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1276,22 +1137,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A537BB0207CF9B400921FB9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0A537BB9207CF9B400921FB9 /* ViewController.swift in Sources */,
-				0A537BB7207CF9B400921FB9 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0A537BC6207CF9CD00921FB9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0A537BDD207CFADE00921FB9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1344,16 +1189,6 @@
 			target = 0A537ACC207CEDAE00921FB9 /* IdentityAccessImplementations */;
 			targetProxy = 0A537B34207CF4B000921FB9 /* PBXContainerItemProxy */;
 		};
-		0A537BD0207CF9CD00921FB9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0A537BB3207CF9B400921FB9 /* IdentityAccessIntegration */;
-			targetProxy = 0A537BCF207CF9CD00921FB9 /* PBXContainerItemProxy */;
-		};
-		0A537BD5207CF9DE00921FB9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0A537ACC207CEDAE00921FB9 /* IdentityAccessImplementations */;
-			targetProxy = 0A537BD4207CF9DE00921FB9 /* PBXContainerItemProxy */;
-		};
 		0A537BE9207CFAF300921FB9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0A537A63207CE5BC00921FB9 /* IdentityAccessDomainModel */;
@@ -1398,22 +1233,6 @@
 				0A0C87122097488300471885 /* en */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		0A537BBA207CF9B400921FB9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0A537BBB207CF9B400921FB9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		0A537BBF207CF9B600921FB9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0A537BC0207CF9B600921FB9 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1598,43 +1417,6 @@
 			};
 			name = AdHoc;
 		};
-		0A467030207E58B700F55ADE /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegration;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = AdHoc;
-		};
-		0A467031207E58B700F55ADE /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "IdentityAccessIntegration/Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegrationTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IdentityAccessIntegration.app/IdentityAccessIntegration";
-			};
-			name = AdHoc;
-		};
 		0A467032207E58B700F55ADE /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
@@ -1809,80 +1591,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		0A537BC4207CF9B600921FB9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegration;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		0A537BC5207CF9B600921FB9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = IdentityAccessIntegration/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegration;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		0A537BD2207CF9CD00921FB9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "IdentityAccessIntegration/Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegrationTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IdentityAccessIntegration.app/IdentityAccessIntegration";
-			};
-			name = Debug;
-		};
-		0A537BD3207CF9CD00921FB9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "IdentityAccessIntegration/Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessIntegrationTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IdentityAccessIntegration.app/IdentityAccessIntegration";
 			};
 			name = Release;
 		};
@@ -2124,26 +1832,6 @@
 				0A537B37207CF4B000921FB9 /* Debug */,
 				0A46702F207E58B700F55ADE /* AdHoc */,
 				0A537B38207CF4B000921FB9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0A537BC3207CF9B600921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessIntegration" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0A537BC4207CF9B600921FB9 /* Debug */,
-				0A467030207E58B700F55ADE /* AdHoc */,
-				0A537BC5207CF9B600921FB9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0A537BD1207CF9CD00921FB9 /* Build configuration list for PBXNativeTarget "IdentityAccessIntegrationTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0A537BD2207CF9CD00921FB9 /* Debug */,
-				0A467031207E58B700F55ADE /* AdHoc */,
-				0A537BD3207CF9CD00921FB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
