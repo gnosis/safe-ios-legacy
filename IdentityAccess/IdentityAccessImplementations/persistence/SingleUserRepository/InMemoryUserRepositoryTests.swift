@@ -14,7 +14,7 @@ class InMemoryUserRepositoryTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        DomainRegistry.put(service: MockEncryptionService(), for: EncryptionServiceProtocol.self)
+        DomainRegistry.put(service: MockEncryptionService(), for: EncryptionService.self)
         DomainRegistry.put(service: repository, for: SingleUserRepository.self)
         DomainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
         DomainRegistry.put(service: IdentityService(), for: IdentityService.self)

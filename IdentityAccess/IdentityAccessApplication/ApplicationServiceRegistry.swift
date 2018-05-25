@@ -12,10 +12,6 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: AuthenticationApplicationService.self)
     }
 
-    public static var identityService: IdentityApplicationService {
-        return service(for: IdentityApplicationService.self)
-    }
-
     public static var clock: Clock {
         return service(for: Clock.self)
     }

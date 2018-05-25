@@ -17,8 +17,6 @@ class SafeTestCase: XCTestCase {
     let walletService = MockWalletApplicationService()
     let authenticationService = MockAuthenticationService()
     let clock = MockClockService()
-    let keyValueStore = InMemoryKeyValueStore()
-    let secureStore = InMemorySecureStore()
     let logger = MockLogger()
 
     override func setUp() {
@@ -30,9 +28,7 @@ class SafeTestCase: XCTestCase {
 
     private func configureIdentityAccessModule() {
         let domainRegistry = IdentityAccessDomainModel.DomainRegistry.self
-        domainRegistry.put(service: secureStore, for: SecureStore.self)
-        domainRegistry.put(service: keyValueStore, for: KeyValueStore.self)
-        domainRegistry.put(service: EncryptionService(), for: EncryptionServiceProtocol.self)
+        domainRegistry.put(service: EthereumKitEncryptionService(), for: EncryptionService.self)
         domainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
         domainRegistry.put(service: InMemoryUserRepository(), for: SingleUserRepository.self)
         domainRegistry.put(service: InMemoryGatekeeperRepository(), for: SingleGatekeeperRepository.self)

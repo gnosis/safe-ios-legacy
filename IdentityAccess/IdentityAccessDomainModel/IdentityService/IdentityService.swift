@@ -24,7 +24,7 @@ public class IdentityService: Assertable {
     private var userRepository: SingleUserRepository {
         return DomainRegistry.userRepository
     }
-    private var encryptionService: EncryptionServiceProtocol {
+    private var encryptionService: EncryptionService {
         return DomainRegistry.encryptionService
     }
     private var biometricService: BiometricAuthenticationService {
