@@ -136,6 +136,13 @@
 			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
 			remoteInfo = Common;
 		};
+		0A65F96020B8303700EA25C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A30676220A5C7FF0059F521 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A934D4F20B711F400F15616;
+			remoteInfo = CommonIntegration;
+		};
 		0A8E3C1420B44D3A00F002F6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A30676220A5C7FF0059F521 /* Common.xcodeproj */;
@@ -652,6 +659,13 @@
 			fileType = wrapper.cfbundle;
 			path = DatabaseTests.xctest;
 			remoteRef = 0A30677220A5C7FF0059F521 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A65F96120B8303700EA25C4 /* CommonIntegration.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CommonIntegration.app;
+			remoteRef = 0A65F96020B8303700EA25C4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0A8E3C1520B44D3A00F002F6 /* libCommonImplementations.a */ = {
