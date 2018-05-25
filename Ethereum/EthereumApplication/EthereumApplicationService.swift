@@ -25,7 +25,6 @@ open class EthereumApplicationService {
         return DomainRegistry.encryptionService.address(browserExtensionCode: browserExtensionCode)
     }
 
-
     open func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccountData {
         let account = try DomainRegistry.encryptionService.generateExternallyOwnedAccount()
         return ExternallyOwnedAccountData(address: account.address.value, mnemonicWords: account.mnemonic.words)
