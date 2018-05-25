@@ -14,6 +14,7 @@ public class SecureExternallyOwnedAccountRepository: ExternallyOwnedAccountRepos
         self.store = store
     }
 
+    /// throws if account already exists
     public func save(_ account: ExternallyOwnedAccount) throws {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .binary
