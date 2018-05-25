@@ -24,4 +24,14 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         XCTAssertNotEqual(one, two)
     }
 
+    func test_whenAccountGenerated_thenItIsPersisted() throws {
+        let account = try applicationService.generateExternallyOwnedAccount()
+        let saved = try applicationService.findExternallyOwnedAccount(by: account.address)
+        XCTAssertEqual(saved, account)
+    }
+
+    func test_whenAccountNotFound_thenReturnsNil() {
+        XCTAssertNil(try applicationService.findExternallyOwnedAccount(by: "some"))
+    }
+
 }

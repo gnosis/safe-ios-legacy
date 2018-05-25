@@ -15,8 +15,8 @@ public class InMemoryExternallyOwnedAccountRepository: ExternallyOwnedAccountRep
         accounts[account.address] = account
     }
 
-    public func remove(_ account: ExternallyOwnedAccount) throws {
-        accounts.removeValue(forKey: account.address)
+    public func remove(address: Address) throws {
+        accounts.removeValue(forKey: address)
     }
 
     public func find(by address: Address) throws -> ExternallyOwnedAccount? {

@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     lazy var coordinator = AppFlowCoordinator()
     var identityAccessDB: Database?
     var multisigWalletDB: Database?
+    var secureStore: SecureStore?
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -74,8 +75,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         EthereumApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
         EthereumDomainModel.DomainRegistry.put(service: EthereumImplementations.EncryptionService(),
                                                for: EthereumDomainModel.EncryptionDomainService.self)
-        EthereumDomainModel.DomainRegistry.put(service: KeychainService(identifier: "pm.gnosis.safe"),
-                                               for: SecureStore.self)
+        secureStore = KeychainService(identifier: "pm.gnosis.safe")
+        EthereumDomainModel.DomainRegistry.put(service: SecureExternallyOwnedAccountRepository(store: secureStore!),
+                                               for: ExternallyOwnedAccountRepository.self)
     }
 
     private func connectMultisigWalletWithEthereum() {
@@ -153,6 +155,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         if let db = multisigWalletDB {
             try? db.destroy()
             setUpMultisigDatabase()
+        }
+        if let store = secureStore {
+            try? store.destroy()
         }
     }
 

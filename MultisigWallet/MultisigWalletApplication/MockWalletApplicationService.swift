@@ -119,4 +119,5 @@ public class MockWalletApplicationService: WalletApplicationService {
     public override func ownerAddress(of type: WalletApplicationService.OwnerType) -> String? {
         return existingOwners[type]
     }
+
 }

@@ -6,6 +6,7 @@ import UIKit
 import SafeUIKit
 import IdentityAccessApplication
 import EthereumApplication
+import MultisigWalletApplication
 
 protocol SaveMnemonicDelegate: class {
     func didPressContinue()
@@ -47,9 +48,13 @@ final class SaveMnemonicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         do {
-            account = try ethereumService.generateExternallyOwnedAccount()
+            if let existingAddress = ApplicationServiceRegistry.walletService.ownerAddress(of: .paperWallet),
+                let existingAccount = try ethereumService.findExternallyOwnedAccount(by: existingAddress) {
+                account = existingAccount
+            } else {
+                account = try ethereumService.generateExternallyOwnedAccount()
+            }
         } catch let e {
             ErrorHandler.showError(log: "Failed to generate paper wallet account", error: e)
             dismiss(animated: true)

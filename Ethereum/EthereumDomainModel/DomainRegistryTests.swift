@@ -10,7 +10,10 @@ class DomainRegistryTests: XCTestCase {
 
     func test_exists() {
         DomainRegistry.put(service: EncryptionService(), for: EncryptionDomainService.self)
+        DomainRegistry.put(service: InMemoryExternallyOwnedAccountRepository(),
+                           for: ExternallyOwnedAccountRepository.self)
         XCTAssertNotNil(DomainRegistry.encryptionService)
+        XCTAssertNotNil(DomainRegistry.externallyOwnedAccountRepository)
     }
 
 }

@@ -25,10 +25,25 @@ open class EthereumApplicationService {
         return DomainRegistry.encryptionService.address(browserExtensionCode: browserExtensionCode)
     }
 
-
     open func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccountData {
         let account = try DomainRegistry.encryptionService.generateExternallyOwnedAccount()
-        return ExternallyOwnedAccountData(address: account.address.value, mnemonicWords: account.mnemonic.words)
+        try DomainRegistry.externallyOwnedAccountRepository.save(account)
+        return account.applicationServiceData
+    }
+
+    open func findExternallyOwnedAccount(by address: String) throws -> ExternallyOwnedAccountData? {
+        guard let account = try DomainRegistry.externallyOwnedAccountRepository.find(by: Address(value: address)) else {
+            return nil
+        }
+        return account.applicationServiceData
+    }
+
+}
+
+fileprivate extension ExternallyOwnedAccount {
+
+    var applicationServiceData: ExternallyOwnedAccountData {
+        return ExternallyOwnedAccountData(address: address.value, mnemonicWords: mnemonic.words)
     }
 
 }

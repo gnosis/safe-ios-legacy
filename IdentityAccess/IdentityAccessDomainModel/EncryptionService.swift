@@ -9,4 +9,3 @@ public protocol EncryptionService {
     func encrypted(_ plainText: String) -> String
 
 }
-
