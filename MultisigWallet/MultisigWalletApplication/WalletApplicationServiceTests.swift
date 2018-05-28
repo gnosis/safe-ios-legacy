@@ -28,6 +28,7 @@ class WalletApplicationServiceTests: XCTestCase {
         MultisigWalletDomainModel.DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: blockchainService, for: BlockchainDomainService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
+        blockchainService.requestWalletCreationData_output = WalletCreationData(walletAddress: "address", fee: 100)
     }
 
     func test_whenCreatingNewDraft_thenCreatesPortfolio() throws {
@@ -44,7 +45,6 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         try addAllOwners()
         try service.startDeployment()
-        try service.assignBlockchainAddress("address")
         XCTAssertEqual(try selectedWallet().address?.value, "address")
     }
 
@@ -62,7 +62,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         try addAllOwners()
         try service.startDeployment()
-        XCTAssertEqual(service.selectedWalletState, .deploymentStarted)
+        XCTAssertEqual(service.selectedWalletState, .notEnoughFunds)
     }
 
     func test_whenAddingOwner_thenAddressCanBeFound() throws {
@@ -94,14 +94,10 @@ class WalletApplicationServiceTests: XCTestCase {
         try addAllOwners()
         assert(state: .readyToDeploy)
         try service.startDeployment()
-        assert(state: .deploymentStarted)
-        try service.assignBlockchainAddress("address")
-        assert(state: .addressKnown)
-        try service.updateMinimumFunding(account: "ETH", amount: 2)
         assert(state: .notEnoughFunds)
         try service.update(account: "ETH", newBalance: 1)
         assert(state: .notEnoughFunds)
-        try service.update(account: "ETH", newBalance: 2)
+        try service.update(account: "ETH", newBalance: 100)
         assert(state: .accountFunded)
         try service.markDeploymentAcceptedByBlockchain()
         assert(state: .deploymentAcceptedByBlockchain)
@@ -115,17 +111,14 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         try addAllOwners()
         try service.startDeployment()
-        try service.assignBlockchainAddress("address")
-        try service.updateMinimumFunding(account: "ETH", amount: 100)
         let account = try findAccount("ETH")
-        XCTAssertEqual(account.minimumTransactionAmount, 100)
+        XCTAssertEqual(account.minimumDeploymentTransactionAmount, 100)
     }
 
     func test_whenUpdatingAccountBalance_thenUpdatesIt() throws {
         givenDraftWallet()
         try addAllOwners()
         try service.startDeployment()
-        try service.assignBlockchainAddress("address")
         try service.update(account: "ETH", newBalance: 100)
         let account = try findAccount("ETH")
         XCTAssertEqual(account.balance, 100)
@@ -166,14 +159,47 @@ class WalletApplicationServiceTests: XCTestCase {
         try service.createNewDraftWallet()
         try addAllOwners()
         try service.startDeployment()
-        try service.assignBlockchainAddress("address")
-        try service.updateMinimumFunding(account: "ETH", amount: 2)
         try service.update(account: "ETH", newBalance: 1)
         try service.update(account: "ETH", newBalance: 2)
         try service.markDeploymentAcceptedByBlockchain()
         try service.markDeploymentSuccess()
         try service.finishDeployment()
         XCTAssertTrue(service.hasReadyToUseWallet)
+    }
+
+    func test_whenStartingDeployment_thenRequestsBlockchain() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        let expectedOwners = [service.ownerAddress(of: .thisDevice)!,
+                              service.ownerAddress(of: .browserExtension)!,
+                              service.ownerAddress(of: .paperWallet)!]
+        guard let input = blockchainService.requestWalletCreationData_input else {
+            XCTFail("Wallet creation was not called")
+            return
+        }
+        XCTAssertEqual(Set(input.owners), Set(expectedOwners))
+        XCTAssertEqual(input.confirmationCount, WalletApplicationService.requiredConfirmationCount)
+    }
+
+    func test_whenRequestWalletCreationThrows_thenIsInDeployingState() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        blockchainService.shouldThrow = true
+        XCTAssertThrowsError(try service.startDeployment())
+        XCTAssertEqual(service.selectedWalletState, .readyToDeploy)
+    }
+
+    func test_whenRequestWalletCreationReturnsData_thenAssignsSafeAddress() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        XCTAssertEqual(service.selectedWalletState, .notEnoughFunds)
+        let account = try findAccount("ETH")
+        XCTAssertEqual(account.minimumDeploymentTransactionAmount, 100)
+        XCTAssertEqual(account.balance, 0)
+        let wallet = try selectedWallet()
+        XCTAssertEqual(wallet.address, BlockchainAddress(value: "address"))
     }
 
 }

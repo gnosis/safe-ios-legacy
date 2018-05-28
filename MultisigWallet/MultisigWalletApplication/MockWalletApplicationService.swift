@@ -67,7 +67,7 @@ public class MockWalletApplicationService: WalletApplicationService {
         _selectedWalletState = .deploymentStarted
     }
 
-    public override func assignBlockchainAddress(_ address: String) {
+    public func assignBlockchainAddress(_ address: String) {
         _selectedWalletState = .addressKnown
     }
 
@@ -78,7 +78,7 @@ public class MockWalletApplicationService: WalletApplicationService {
         }
     }
 
-    public override func updateMinimumFunding(account: String, amount: Int) {
+    public func updateMinimumFunding(account: String, amount: Int) {
         minimumFunding[account] = amount
     }
 

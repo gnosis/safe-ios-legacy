@@ -41,7 +41,7 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
         try db.execute(sql: SQL.insert, bindings: [account.id.token,
                                                    account.walletID.id,
                                                    account.balance,
-                                                   account.minimumTransactionAmount])
+                                                   account.minimumDeploymentTransactionAmount])
     }
 
     public func remove(_ account: Account) throws {

@@ -83,6 +83,13 @@ class WalletTests: XCTestCase {
         XCTAssertThrowsError(try wallet.startDeployment())
     }
 
+    func test_whenReadyToDeploy_thenCanChangeOwners() throws {
+        try wallet.markReadyToDeploy()
+        XCTAssertNoThrow(try wallet.addOwner(owner, kind: "kind"))
+        XCTAssertNoThrow(try wallet.replaceOwner(with: Owner(address: BlockchainAddress(value: "new")), kind: "kind"))
+        XCTAssertNoThrow(try wallet.removeOwner(kind: "kind"))
+    }
+
     func test_whenCompletesDeploymentInWrongState_thenThrows() throws {
         XCTAssertThrowsError(try wallet.finishDeployment())
     }
@@ -114,7 +121,7 @@ class WalletTests: XCTestCase {
         try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
         try wallet.markDeploymentAcceptedByBlockchain()
         try wallet.abortDeployment()
-        XCTAssertEqual(wallet.status, .newDraft)
+        XCTAssertEqual(wallet.status, .readyToDeploy)
     }
 
     func test_whenTryingToCancelDeplolymentWhileNotDeploying_thenThrows() throws {

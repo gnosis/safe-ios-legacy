@@ -8,6 +8,10 @@ import EthereumApplication
 
 extension EthereumApplicationService: BlockchainDomainService {
 
+    public func requestWalletCreationData(owners: [String], confirmationCount: Int) throws -> WalletCreationData {
+        return WalletCreationData(walletAddress: "", fee: 0)
+    }
+
     public func generateExternallyOwnedAccount() throws -> String {
         return try generateExternallyOwnedAccount().address
     }
