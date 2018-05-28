@@ -18,13 +18,16 @@ public class WalletID: BaseID {}
  |                                | replaceOwner()                       | newDraft                       |                |
  |                                | removeOwner()                        | newDraft                       |                |
  | readyToDeploy                  | startDeployment()                    | deploymentStarted              |                |
- | deploymentStarted              | abortDeployment()                    | newDraft                       |                |
+ |                                | addOwner()                           | readyToDeploy                  |                |
+ |                                | replaceOwner()                       | readyToDeploy                  |                |
+ |                                | removeOwner()                        | readyToDeploy                  |                |
+ | deploymentStarted              | abortDeployment()                    | readyToDeploy                  |                |
  |                                | changeBlockchainAddress()            | addressKnown                   |                |
  | addressKnown                   | markDeploymentAcceptedByBlockchain() | deploymentAcceptedByBlockchain |                |
- |                                | abortDeployment()                    | newDraft                       |                |
+ |                                | abortDeployment()                    | readyToDeploy                  |                |
  | deploymentAcceptedByBlockchain | markDeploymentFailed()               | deploymentFailed               | Terminal State |
  |                                | markDeploymentSuccess()              | deploymentSuccess              |                |
- |                                | abortDeployment()                    | newDraft                       |                |
+ |                                | abortDeployment()                    | readyToDeploy                  |                |
  | deploymentSuccess              | finishDeployment()                   | readyToUse                     | Terminal State |
  | readyToUse                     | addOwner()                           | readyToUse                     |                |
  |                                | replaceOwner()                       | readyToUse                     |                |
@@ -96,10 +99,14 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func addOwner(_ owner: Owner, kind: String) throws {
-        try assert(statusIsOneOf: .newDraft, .readyToUse)
+        try assertCanChangeOwners()
         try assertNil(self.owner(kind: kind), Error.ownerAlreadyExists)
         try assertFalse(contains(owner: owner), Error.ownerAlreadyExists)
         ownersByKind[kind] = owner
+    }
+
+    private func assertCanChangeOwners() throws {
+        try assert(statusIsOneOf: .newDraft, .readyToUse, .readyToDeploy)
     }
 
     public func contains(owner: Owner) -> Bool {
@@ -107,14 +114,14 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func replaceOwner(with newOwner: Owner, kind: String) throws {
-        try assert(statusIsOneOf: .newDraft, .readyToUse)
+        try assertCanChangeOwners()
         try assertOwnerExists(kind)
         try assertFalse(contains(owner: newOwner), Error.ownerAlreadyExists)
         ownersByKind[kind] = newOwner
     }
 
     public func removeOwner(kind: String) throws {
-        try assert(statusIsOneOf: .newDraft, .readyToUse)
+        try assertCanChangeOwners()
         try assertOwnerExists(kind)
         ownersByKind.removeValue(forKey: kind)
     }
@@ -133,7 +140,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func markReadyToDeploy() throws {
-        try assert(status: .newDraft)
+        try assert(statusIsOneOf: .newDraft)
         status = .readyToDeploy
     }
 
@@ -154,7 +161,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public func abortDeployment() throws {
         try assert(statusIsOneOf: .deploymentStarted, .addressKnown, .deploymentAcceptedByBlockchain)
-        status = .newDraft
+        status = .readyToDeploy
     }
 
     public func finishDeployment() throws {

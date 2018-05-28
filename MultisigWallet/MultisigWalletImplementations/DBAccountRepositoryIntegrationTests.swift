@@ -32,7 +32,7 @@ class DBAccountRepositoryIntegrationTests: XCTestCase {
         let saved = try repo.find(id: account.id, walletID: walletID)
         XCTAssertEqual(saved, account)
         XCTAssertEqual(saved?.balance, account.balance)
-        XCTAssertEqual(saved?.minimumTransactionAmount, account.minimumTransactionAmount)
+        XCTAssertEqual(saved?.minimumDeploymentTransactionAmount, account.minimumDeploymentTransactionAmount)
 
         try repo.remove(account)
         XCTAssertNil(try repo.find(id: account.id, walletID: walletID))

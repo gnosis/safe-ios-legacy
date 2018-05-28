@@ -23,4 +23,14 @@ public class MockBlockchainDomainService: BlockchainDomainService {
         return generatedAccountAddress
     }
 
+    public var requestWalletCreationData_input: (owners: [String], confirmationCount: Int)?
+    public var requestWalletCreationData_output: WalletCreationData!
+    public func requestWalletCreationData(owners: [String], confirmationCount: Int) throws -> WalletCreationData {
+        requestWalletCreationData_input = (owners, confirmationCount)
+        if shouldThrow {
+            throw Error.error
+        }
+        return requestWalletCreationData_output
+    }
+
 }

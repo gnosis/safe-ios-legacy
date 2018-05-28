@@ -45,6 +45,8 @@ public class WalletApplicationService: Assertable {
         case accountNotFound
     }
 
+    public static let requiredConfirmationCount: Int = 2
+
     public var selectedWalletState: WalletState {
         do {
             let wallet = try findSelectedWallet()
@@ -57,10 +59,9 @@ public class WalletApplicationService: Assertable {
                 return .deploymentStarted
             case .addressKnown:
                 let account = try findAccount("ETH")
-                if account.minimumTransactionAmount == 0 &&
-                    account.balance == 0 {
+                if account.minimumDeploymentTransactionAmount == 0 && account.balance == 0 {
                     return .addressKnown
-                } else if account.balance < account.minimumTransactionAmount {
+                } else if account.balance < account.minimumDeploymentTransactionAmount {
                     return .notEnoughFunds
                 } else {
                     return .accountFunded
@@ -119,15 +120,42 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public func assignBlockchainAddress(_ address: String) throws {
+    public func startDeployment() throws {
+        do {
+            try doStartDeployment()
+            let data = try requestWalletCreation()
+            try assignBlockchainAddress(data.walletAddress)
+            try updateMinimumFunding(account: "ETH", amount: data.fee)
+        } catch let error {
+            try abortDeployment()
+            throw error
+        }
+    }
+
+    private func requestWalletCreation() throws -> WalletCreationData {
+        let owners: [String] = OwnerType.all.compactMap { ownerAddress(of: $0) }
+        try assertEqual(owners.count, OwnerType.all.count, Error.oneOrMoreOwnersAreMissing)
+        let confirmationCount = WalletApplicationService.requiredConfirmationCount
+        let service = DomainRegistry.blockchainService
+        let data = try service.requestWalletCreationData(owners: owners, confirmationCount: confirmationCount)
+        return data
+    }
+
+    private func doStartDeployment() throws {
+        try mutateSelectedWallet { wallet in
+            try wallet.startDeployment()
+        }
+    }
+
+    private func assignBlockchainAddress(_ address: String) throws {
         try mutateSelectedWallet { wallet in
             try wallet.changeBlockchainAddress(BlockchainAddress(value: address))
         }
     }
 
-    public func startDeployment() throws {
+    private func markReadyToDeploy() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.startDeployment()
+            try wallet.markReadyToDeploy()
         }
     }
 
@@ -228,7 +256,7 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Accounts
 
-    public func updateMinimumFunding(account token: String, amount: Int) throws {
+    private func updateMinimumFunding(account token: String, amount: Int) throws {
         try assertCanChangeAccount()
         try mutateAccount(token: token) { account in
             account.updateMinimumTransactionAmount(amount)

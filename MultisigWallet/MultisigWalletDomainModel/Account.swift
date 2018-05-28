@@ -19,12 +19,12 @@ public class Account: IdentifiableEntity<AccountID> {
 
     public private(set) var balance: Int
     public let walletID: WalletID
-    public private(set) var minimumTransactionAmount: Int
+    public private(set) var minimumDeploymentTransactionAmount: Int
 
     public init(id: AccountID, walletID: WalletID, balance: Int, minimumAmount: Int) {
         self.balance = balance
         self.walletID = walletID
-        self.minimumTransactionAmount = minimumAmount
+        self.minimumDeploymentTransactionAmount = minimumAmount
         super.init(id: id)
     }
 
@@ -41,7 +41,7 @@ public class Account: IdentifiableEntity<AccountID> {
     }
 
     public func updateMinimumTransactionAmount(_ newValue: Int) {
-        minimumTransactionAmount = newValue
+        minimumDeploymentTransactionAmount = newValue
     }
 
 }
