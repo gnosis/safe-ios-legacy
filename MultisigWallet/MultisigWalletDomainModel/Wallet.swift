@@ -140,7 +140,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func markReadyToDeploy() throws {
-        try assert(statusIsOneOf: .newDraft)
+        try assert(status: .newDraft)
         status = .readyToDeploy
     }
 
