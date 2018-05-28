@@ -33,4 +33,35 @@ public class MockBlockchainDomainService: BlockchainDomainService {
         return requestWalletCreationData_output
     }
 
+
+    public var observeBalance_input: (account: String, observer: BlockchainBalanceObserver)?
+    public func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) {
+        observeBalance_input = (account, observer)
+    }
+
+    @discardableResult
+    public func updateBalance(_ newBalance: Int) -> BlockchainBalanceObserverResponse? {
+        if let input = observeBalance_input {
+            return input.observer(input.account, newBalance)
+        }
+        return nil
+    }
+
+    public var createWallet_input: (address: String, completion: (Bool, Swift.Error?) -> Void)?
+    public func createWallet(address: String, completion: @escaping (Bool, Swift.Error?) -> Void) {
+        createWallet_input = (address, completion)
+    }
+
+    public func finishDeploymentSuccessfully() {
+        if let input = createWallet_input {
+            input.completion(true, nil)
+        }
+    }
+
+    public func finishDeploymentWithError(_ error: Swift.Error) {
+        if let input = createWallet_input {
+            input.completion(false, error)
+        }
+    }
+
 }

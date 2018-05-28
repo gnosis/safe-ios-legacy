@@ -31,10 +31,10 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         return MultisigWalletApplication.ApplicationServiceRegistry.logger
     }
     private var walletService: WalletApplicationService {
-        return ApplicationServiceRegistry.walletService
+        return MultisigWalletApplication.ApplicationServiceRegistry.walletService
     }
     private var ethereumService: EthereumApplicationService {
-        return ApplicationServiceRegistry.ethereumService
+        return EthereumApplication.ApplicationServiceRegistry.ethereumService
     }
 
     private var scannerController: UIViewController?

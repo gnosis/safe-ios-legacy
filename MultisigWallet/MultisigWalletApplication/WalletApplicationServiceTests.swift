@@ -202,6 +202,79 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(wallet.address, BlockchainAddress(value: "address"))
     }
 
+    func test_whenDeploymentStarted_thenStartsObservingBalance() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        guard let input = blockchainService.observeBalance_input else {
+            XCTFail("Expected to start observing balance")
+            return
+        }
+        let wallet = try selectedWallet()
+        XCTAssertEqual(input.account, wallet.address?.value)
+    }
+
+    func test_whenBalanceUpdated_thenUpdatesAccount() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        blockchainService.updateBalance(1)
+        let account = try findAccount("ETH")
+        XCTAssertEqual(account.balance, 1)
+    }
+
+    func test_whenBalanceReachesMinimum_thenStopsObserving() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        let account = try findAccount("ETH")
+        let requiredBalance = account.minimumDeploymentTransactionAmount
+        let response1 = blockchainService.updateBalance(requiredBalance - 1)
+        XCTAssertEqual(response1, .continueObserving)
+        let response2 = blockchainService.updateBalance(requiredBalance)
+        XCTAssertEqual(response2, .stopObserving)
+    }
+
+    func test_whenAccountFunded_thenStartsCreatingSafe() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        blockchainService.updateBalance(100)
+        guard let input = blockchainService.createWallet_input else {
+            XCTFail("Expected createWallet call")
+            return
+        }
+        let wallet = try selectedWallet()
+        XCTAssertEqual(input.address, wallet.address?.value)
+    }
+
+    func test_whenStartedCreatingSafe_thenChangesState() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        blockchainService.updateBalance(100)
+        assert(state: .deploymentAcceptedByBlockchain)
+    }
+
+    func test_whenCreatedSafeErrors_thenFailsDeployment() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        blockchainService.updateBalance(100)
+        let anyError = Error.accountNotFound
+        blockchainService.finishDeploymentWithError(anyError)
+        assert(state: .deploymentFailed)
+    }
+
+    func test_whenDeploymentSuccessful_thenMarksSo() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        blockchainService.updateBalance(100)
+        blockchainService.finishDeploymentSuccessfully()
+        assert(state: .readyToUse)
+    }
+
 }
 
 fileprivate extension WalletApplicationServiceTests {
