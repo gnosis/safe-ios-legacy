@@ -4,22 +4,49 @@
 
 import Foundation
 
-struct TransactionReceipt {
+public struct TransactionReceipt {
 
-    var hash: TransactionHash
-    var status: TransactionStatus
+    public let hash: TransactionHash
+    public let status: TransactionStatus
 
+    public init(hash: TransactionHash, status: TransactionStatus) {
+        self.hash = hash
+        self.status = status
+    }
 }
 
-enum TransactionStatus {
+public enum TransactionStatus {
     case success
     case failed
 }
 
-struct TransactionHash {}
+public struct TransactionHash {
 
-struct Transaction {}
+    public let value: String
 
-struct Ether {}
+    public init(value: String) {
+        self.value = value
+    }
 
-struct Signature {}
+}
+
+public struct Transaction {
+
+    public init() {}
+
+}
+
+public struct Ether {
+
+    public let amount: Int
+
+    public init(amount: Int) {
+        self.amount = amount
+    }
+}
+
+public struct Signature {
+
+    public init() {}
+
+}

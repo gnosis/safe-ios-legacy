@@ -14,4 +14,9 @@ public class DomainRegistry: AbstractRegistry {
     public static var externallyOwnedAccountRepository: ExternallyOwnedAccountRepository {
         return service(for: ExternallyOwnedAccountRepository.self)
     }
+
+    public static var transactionRelayService: TransactionRelayDomainService {
+        return service(for: TransactionRelayDomainService.self)
+    }
+
 }
