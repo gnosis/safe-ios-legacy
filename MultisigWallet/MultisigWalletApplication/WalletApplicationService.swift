@@ -172,7 +172,7 @@ public class WalletApplicationService: Assertable {
                 return .stopObserving
             }
         } catch let error {
-            ApplicationServiceRegistry.logger.error("Failed to update ETH account balance", error: error)
+            ApplicationServiceRegistry.logger.fatal("Failed to update ETH account balance", error: error)
         }
         return .continueObserving
     }
@@ -193,11 +193,11 @@ public class WalletApplicationService: Assertable {
                 try markDeploymentSuccess()
                 try finishDeployment()
             } catch let error {
-                ApplicationServiceRegistry.logger.error("Failed to save success deployment state", error: error)
+                ApplicationServiceRegistry.logger.fatal("Failed to save success deployment state", error: error)
                 try? markDeploymentFailed()
             }
         } else {
-            ApplicationServiceRegistry.logger.error("Failed to deploy wallet in blockchain", error: error!)
+            ApplicationServiceRegistry.logger.fatal("Failed to deploy wallet in blockchain", error: error!)
             try? markDeploymentFailed()
         }
     }
