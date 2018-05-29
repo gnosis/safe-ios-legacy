@@ -4,10 +4,26 @@
 
 import Foundation
 
+/// must return true to continue observation, false otherwise
+public struct BlockchainBalanceObserverResponse: Equatable {
+
+    public static let stopObserving = BlockchainBalanceObserverResponse(true)
+    public static let continueObserving = BlockchainBalanceObserverResponse(false)
+    var shouldStopObserving: Bool
+
+    public init(_ shouldStop: Bool) {
+        shouldStopObserving = shouldStop
+    }
+
+}
+public typealias BlockchainBalanceObserver = (_ account: String, _ balance: Int) -> BlockchainBalanceObserverResponse
+
 public protocol BlockchainDomainService {
 
     func generateExternallyOwnedAccount() throws -> String
     func requestWalletCreationData(owners: [String], confirmationCount: Int) throws -> WalletCreationData
+    func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver)
+    func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void)
 
 }
 

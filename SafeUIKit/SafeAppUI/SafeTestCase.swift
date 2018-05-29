@@ -7,7 +7,9 @@ import XCTest
 import IdentityAccessApplication
 import IdentityAccessDomainModel
 import IdentityAccessImplementations
+import MultisigWalletDomainModel
 import MultisigWalletApplication
+import MultisigWalletImplementations
 import EthereumApplication
 import Common
 

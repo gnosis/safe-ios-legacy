@@ -43,6 +43,7 @@ public class WalletApplicationService: Assertable {
         case selectedWalletNotFound
         case invalidWalletState
         case accountNotFound
+        case missingWalletAddress
     }
 
     public static let requiredConfirmationCount: Int = 2
@@ -126,6 +127,7 @@ public class WalletApplicationService: Assertable {
             let data = try requestWalletCreation()
             try assignBlockchainAddress(data.walletAddress)
             try updateMinimumFunding(account: "ETH", amount: data.fee)
+            try startObservingWalletBalance()
         } catch let error {
             try abortDeployment()
             throw error
@@ -150,6 +152,53 @@ public class WalletApplicationService: Assertable {
     private func assignBlockchainAddress(_ address: String) throws {
         try mutateSelectedWallet { wallet in
             try wallet.changeBlockchainAddress(BlockchainAddress(value: address))
+        }
+    }
+
+    private func startObservingWalletBalance() throws {
+        let service = DomainRegistry.blockchainService
+        let wallet = try findSelectedWallet()
+        guard let address = wallet.address else {
+            throw Error.missingWalletAddress
+        }
+        service.observeBalance(account: address.value, observer: didUpdateBalance(account:newBalance:))
+    }
+
+    private func didUpdateBalance(account: String, newBalance: Int) -> BlockchainBalanceObserverResponse {
+        do {
+            try update(account: "ETH", newBalance: newBalance)
+            if selectedWalletState == .accountFunded {
+                try createWalletInBlockchain()
+                return .stopObserving
+            }
+        } catch let error {
+            ApplicationServiceRegistry.logger.error("Failed to update ETH account balance", error: error)
+        }
+        return .continueObserving
+    }
+
+    private func createWalletInBlockchain() throws {
+        let wallet = try findSelectedWallet()
+        guard let address = wallet.address else {
+            throw Error.missingWalletAddress
+        }
+        let service = DomainRegistry.blockchainService
+        service.createWallet(address: address.value, completion: didFinishDeployment(success:error:))
+        try markDeploymentAcceptedByBlockchain()
+    }
+
+    private func didFinishDeployment(success: Bool, error: Swift.Error?) {
+        if success {
+            do {
+                try markDeploymentSuccess()
+                try finishDeployment()
+            } catch let error {
+                ApplicationServiceRegistry.logger.error("Failed to save success deployment state", error: error)
+                try? markDeploymentFailed()
+            }
+        } else {
+            ApplicationServiceRegistry.logger.error("Failed to deploy wallet in blockchain", error: error!)
+            try? markDeploymentFailed()
         }
     }
 
