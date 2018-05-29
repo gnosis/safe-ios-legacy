@@ -22,8 +22,12 @@ extension EthereumApplicationService: BlockchainDomainService {
     }
 
     public func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void) {
-        let transactionHash = try startSafeCreation(address: address)
-        completion(true, nil)
+        do {
+            _ = try startSafeCreation(address: address)
+            completion(true, nil)
+        } catch let error {
+            completion(false, error)
+        }
     }
 
 }
