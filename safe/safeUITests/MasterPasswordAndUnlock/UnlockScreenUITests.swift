@@ -5,35 +5,34 @@
 import XCTest
 import CommonTestSupport
 
-class UnlockScreenUITests: XCTestCase {
+class UnlockScreenUITests: UITestCase {
 
-    var application = Application()
     let screen = UnlockScreen()
     let securedScreen = SetupSafeOptionsScreen()
-    let validPassword = "abcdeF1"
     let invalidPassword = "a"
     var blockTime: TimeInterval = 3
 
     override func setUp() {
         super.setUp()
-        continueAfterFailure = false
         application.resetAllContentAndSettings()
     }
 
+    // MP-101
     func test_whenSetPasswordFinishedAndSessionNotExpired_thenSafeSetupOptionsScreenIsDisplayed() {
         let sessionDuration: TimeInterval = 10
         application.setSessionDuration(seconds: sessionDuration)
-        start()
+        givenMasterPasswordIsSet()
         application.minimize()
         delay(1)
         application.maximize()
         XCTAssertTrue(securedScreen.isDisplayed)
     }
 
+    // MP-102
     func test_whenSetPasswordFinishedAndSessionExpired_thenUnlockIsDisplayed() {
         let sessionDuration: TimeInterval = 2
         application.setSessionDuration(seconds: sessionDuration)
-        start()
+        givenMasterPasswordIsSet()
         application.minimize()
         delay(sessionDuration * 2)
         application.maximize()
@@ -41,23 +40,17 @@ class UnlockScreenUITests: XCTestCase {
             XCTFail("Expected to see Unlock screen")
             return
         }
-        screen.enterPassword(validPassword)
+        screen.enterPassword(password)
         XCTAssertTrue(securedScreen.isDisplayed)
     }
 
+    // MP-103
     func test_whenAppRestarted_thenUnlockShown() {
-        application.start()
-        application.terminate()
-        application.setPassword(validPassword)
-        application.start()
-        guard screen.isDisplayed else {
-            XCTFail("Expected to see Unlock screen")
-            return
-        }
-        screen.enterPassword(validPassword)
+        givenUnlockedAppSetup()
         XCTAssertTrue(securedScreen.isDisplayed)
     }
 
+    // MP-104
     func test_whenEntersWrongPasswordTooManyTimes_thenBlocksUnlocking() {
         blockTime = 5
         block(attempts: 2)
@@ -68,6 +61,7 @@ class UnlockScreenUITests: XCTestCase {
         XCTAssertExist(screen.countdown)
     }
 
+    // MP-105
     func test_whenAccountBlockAndAppMaximized_thenTimerContinuesFromLastValue() {
         block()
         application.minimize()
@@ -83,7 +77,7 @@ extension UnlockScreenUITests {
     private func block(attempts: Int = 1) {
         application.setMaxPasswordAttempts(attempts)
         application.setAccountBlockedPeriodDuration(blockTime)
-        application.setPassword(validPassword)
+        application.setPassword(password)
         application.start()
         for _ in 0..<attempts {
             screen.enterPassword(invalidPassword)
@@ -91,18 +85,9 @@ extension UnlockScreenUITests {
     }
 
     private func restart() {
-        application = Application()
         application.setMaxPasswordAttempts(1)
         application.setAccountBlockedPeriodDuration(blockTime)
         application.start()
-    }
-
-    // move to application
-    private func start() {
-        application.start()
-        StartScreen().start()
-        SetPasswordScreen().enterPassword(validPassword)
-        ConfirmPasswordScreen().enterPassword(validPassword)
     }
 
 }

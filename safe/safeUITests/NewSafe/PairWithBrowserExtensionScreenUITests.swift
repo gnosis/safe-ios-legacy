@@ -115,6 +115,17 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
         XCTAssertTrue(QRCodeInputIsEqual(to: scannedValue))
     }
 
+    // NS-012
+    func test_browserExtension_whenAppRestarted_thenCodeSaved() {
+        givenCameraOpened()
+        cameraScreen.scanValidCodeButton.tap()
+        let scannedValue = screen.qrCodeInput.value as! String
+        screen.finishButton.tap()
+        Application().terminate()
+        givenBrowserExtensionSetup(withAppReset: false)
+        XCTAssertTrue(QRCodeInputIsEqual(to: scannedValue))
+    }
+
 }
 
 extension PairWithBrowserExtensionScreenUITests {

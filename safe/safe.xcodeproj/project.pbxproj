@@ -148,20 +148,6 @@
 			remoteGlobalIDString = 0A537B2E207CF4B000921FB9;
 			remoteInfo = IdentityAccessImplementationsTests;
 		};
-		0A160B7720A07C3F00E064E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A160B6320A07C3E00E064E1 /* IdentityAccess.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A537BB4207CF9B400921FB9;
-			remoteInfo = IdentityAccessIntegration;
-		};
-		0A160B7920A07C3F00E064E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A160B6320A07C3E00E064E1 /* IdentityAccess.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A537BCA207CF9CD00921FB9;
-			remoteInfo = IdentityAccessIntegrationTests;
-		};
 		0A160B7B20A07C3F00E064E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A160B6320A07C3E00E064E1 /* IdentityAccess.xcodeproj */;
@@ -419,8 +405,6 @@
 				0A160B7220A07C3F00E064E1 /* IdentityAccessDomainModelTests.xctest */,
 				0A160B7420A07C3F00E064E1 /* libIdentityAccessImplementations.a */,
 				0A160B7620A07C3F00E064E1 /* IdentityAccessImplementationsTests.xctest */,
-				0A160B7820A07C3F00E064E1 /* IdentityAccessIntegration.app */,
-				0A160B7A20A07C3F00E064E1 /* IdentityAccessIntegrationTests.xctest */,
 				0A160B7C20A07C3F00E064E1 /* libIdentityAccessApplication.a */,
 				0A160B7E20A07C3F00E064E1 /* IdentityAccessApplicationTests.xctest */,
 				0A160B8020A07C3F00E064E1 /* IdentityAccessImplementationsResources.bundle */,
@@ -566,17 +550,11 @@
 		5540A50D203C3054009C9BE3 /* SafeUITests */ = {
 			isa = PBXGroup;
 			children = (
+				55FBDAA720BD89380065AB29 /* MasterPasswordAndUnlock */,
+				55F8120220BD59CB00BD07E3 /* NewSafe */,
 				0A99436D20A04C9B00E36FD7 /* SafeAppUI.strings */,
 				0A0C86FD2097461700471885 /* SafeUIKit.strings */,
 				0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */,
-				0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */,
-				0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */,
-				0ACA9C42206017C6005EC186 /* ConfirmPasswordScreenUITests.swift */,
-				0ACA9C48206021E8005EC186 /* UnlockScreenUITests.swift */,
-				0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */,
-				55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */,
-				55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */,
-				0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */,
 				0ACB1A3F2099EEFA00EBE267 /* UITestCase.swift */,
 				0A99436B20A04C6700E36FD7 /* LocalizedString.swift */,
 				0ACB1A412099EF2300EBE267 /* Springboard.swift */,
@@ -610,6 +588,28 @@
 			);
 			name = TestTools;
 			path = ../TestTools;
+			sourceTree = "<group>";
+		};
+		55F8120220BD59CB00BD07E3 /* NewSafe */ = {
+			isa = PBXGroup;
+			children = (
+				0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */,
+				55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */,
+				55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */,
+				0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */,
+			);
+			path = NewSafe;
+			sourceTree = "<group>";
+		};
+		55FBDAA720BD89380065AB29 /* MasterPasswordAndUnlock */ = {
+			isa = PBXGroup;
+			children = (
+				0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */,
+				0ACA9C40205FFEDF005EC186 /* SetPasswordScreenUITests.swift */,
+				0ACA9C42206017C6005EC186 /* ConfirmPasswordScreenUITests.swift */,
+				0ACA9C48206021E8005EC186 /* UnlockScreenUITests.swift */,
+			);
+			path = MasterPasswordAndUnlock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -809,20 +809,6 @@
 			fileType = wrapper.cfbundle;
 			path = IdentityAccessImplementationsTests.xctest;
 			remoteRef = 0A160B7520A07C3F00E064E1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A160B7820A07C3F00E064E1 /* IdentityAccessIntegration.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = IdentityAccessIntegration.app;
-			remoteRef = 0A160B7720A07C3F00E064E1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A160B7A20A07C3F00E064E1 /* IdentityAccessIntegrationTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = IdentityAccessIntegrationTests.xctest;
-			remoteRef = 0A160B7920A07C3F00E064E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0A160B7C20A07C3F00E064E1 /* libIdentityAccessApplication.a */ = {

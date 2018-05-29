@@ -35,6 +35,10 @@ final class Application {
         arguments.append(String(time))
     }
 
+    func resetArguments() {
+        arguments = []
+    }
+
     func start() {
         app.launchArguments = arguments
         app.launch()

@@ -16,12 +16,14 @@ class StartScreenUITests: XCTestCase {
         application.start()
     }
 
+    // MP-001
     func test_contents() {
         XCTAssertExist(screen.title)
         XCTAssertExist(screen.description)
         XCTAssertExist(screen.startButton)
     }
 
+    // MP-001
     func test_start_navigatesToSetMasterPassword() {
         screen.start()
         let setPasswordScreen = SetPasswordScreen()

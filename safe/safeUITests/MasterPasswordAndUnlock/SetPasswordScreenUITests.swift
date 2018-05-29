@@ -19,6 +19,7 @@ class SetPasswordScreenUITests: XCTestCase {
         StartScreen().start()
     }
 
+    // MP-002
     func test_contents() {
         XCTAssertExist(screen.title)
         XCTAssertExist(screen.passwordField)
@@ -29,6 +30,7 @@ class SetPasswordScreenUITests: XCTestCase {
         }
     }
 
+    // MP-003
     func test_whenInvalidPasswordEntered_thenRulesHaveErrors() {
         screen.enterPassword(invalidPassword)
         screen.rules.all.forEach { rule in
@@ -36,6 +38,7 @@ class SetPasswordScreenUITests: XCTestCase {
         }
     }
 
+    // MP-003
     func test_whenValidPasswordEntered_thenRulesAreGreen() {
         screen.enterPassword(validPassword, hittingEnter: false)
         screen.rules.all.forEach { rule in
@@ -43,6 +46,7 @@ class SetPasswordScreenUITests: XCTestCase {
         }
     }
 
+    // MP-004
     func test_whenValidPasswordEnteredAndReturnKeyHit_thenNavigatesToConfirmPassword() {
         screen.enterPassword(validPassword)
         XCTAssertTrue(ConfirmPasswordScreen().isDisplayed)
