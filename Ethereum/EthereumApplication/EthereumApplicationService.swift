@@ -17,6 +17,17 @@ public struct ExternallyOwnedAccountData: Equatable {
 
 }
 
+public struct SafeCreationTransactionData: Equatable {
+
+    public var safe: String
+    public var payment: Int
+
+    public init(safe: String, payment: Int) {
+        self.safe = safe
+        self.payment = payment
+    }
+}
+
 open class EthereumApplicationService {
 
     public init() {}
@@ -36,6 +47,11 @@ open class EthereumApplicationService {
             return nil
         }
         return account.applicationServiceData
+    }
+
+    open func createSafeCreationTransaction(owners: [String], confirmationCount: Int) throws
+        -> SafeCreationTransactionData {
+        return SafeCreationTransactionData(safe: "", payment: 0)
     }
 
 }

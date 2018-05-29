@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0A042E1220B8184C00F5C885 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A042E1120B8184C00F5C885 /* SecureExternallyOwnedAccountRepositoryTests.swift */; };
+		0A06510320BC52B800464D9D /* TransactionRelayDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A06510220BC52B800464D9D /* TransactionRelayDomainService.swift */; };
+		0A06510F20BC5B9000464D9D /* EthereumNodeDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A06510E20BC5B9000464D9D /* EthereumNodeDomainService.swift */; };
 		0A30671B20A5C73A0059F521 /* libEthereumDomainModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30670A20A5C72C0059F521 /* libEthereumDomainModel.a */; };
 		0A30672820A5C7480059F521 /* EthereumApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30672720A5C7480059F521 /* EthereumApplicationService.swift */; };
 		0A30673520A5C7560059F521 /* libEthereumApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30672520A5C7480059F521 /* libEthereumApplication.a */; };
 		0A30674220A5C7650059F521 /* MockEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30674120A5C7650059F521 /* MockEncryptionService.swift */; };
 		0A30674F20A5C7740059F521 /* libEthereumImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A30673F20A5C7650059F521 /* libEthereumImplementations.a */; };
+		0A3F662A20BD47A100602FCB /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3F662920BD47A100602FCB /* Transaction.swift */; };
 		0A59E90A20AB0D450090E89C /* ApplicationServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E90920AB0D450090E89C /* ApplicationServiceRegistry.swift */; };
 		0A59E91320AB0DE70090E89C /* MockEthereumApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E91220AB0DE70090E89C /* MockEthereumApplicationService.swift */; };
 		0A59E91620AB0E440090E89C /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E91020AB0D8F0090E89C /* ApplicationServiceRegistryTests.swift */; };
@@ -136,13 +139,6 @@
 			remoteGlobalIDString = 0A3FADDA207B501F00F0D214;
 			remoteInfo = Common;
 		};
-		0A65F96020B8303700EA25C4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A30676220A5C7FF0059F521 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A934D4F20B711F400F15616;
-			remoteInfo = CommonIntegration;
-		};
 		0A8E3C1420B44D3A00F002F6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A30676220A5C7FF0059F521 /* Common.xcodeproj */;
@@ -240,6 +236,8 @@
 
 /* Begin PBXFileReference section */
 		0A042E1120B8184C00F5C885 /* SecureExternallyOwnedAccountRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureExternallyOwnedAccountRepositoryTests.swift; sourceTree = "<group>"; };
+		0A06510220BC52B800464D9D /* TransactionRelayDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRelayDomainService.swift; sourceTree = "<group>"; };
+		0A06510E20BC5B9000464D9D /* EthereumNodeDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumNodeDomainService.swift; sourceTree = "<group>"; };
 		0A30670A20A5C72C0059F521 /* libEthereumDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEthereumDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A30671620A5C73A0059F521 /* EthereumDomainModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EthereumDomainModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A30671A20A5C73A0059F521 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
@@ -253,6 +251,7 @@
 		0A30674E20A5C7740059F521 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A30676220A5C7FF0059F521 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
 		0A30677420A5C8EC0059F521 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
+		0A3F662920BD47A100602FCB /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		0A59E90920AB0D450090E89C /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
 		0A59E91020AB0D8F0090E89C /* ApplicationServiceRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistryTests.swift; sourceTree = "<group>"; };
 		0A59E91220AB0DE70090E89C /* MockEthereumApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumApplicationService.swift; sourceTree = "<group>"; };
@@ -366,6 +365,9 @@
 			isa = PBXGroup;
 			children = (
 				557E77D020AC7A0800732A77 /* EncryptionDomainService.swift */,
+				0A06510220BC52B800464D9D /* TransactionRelayDomainService.swift */,
+				0A3F662920BD47A100602FCB /* Transaction.swift */,
+				0A06510E20BC5B9000464D9D /* EthereumNodeDomainService.swift */,
 				0A934D0120B6C0CA00F15616 /* ExternallyOwnedAccount.swift */,
 				0A934D0C20B6C79000F15616 /* ExternallyOwnedAccountRepository.swift */,
 				557E77DB20AC7F6300732A77 /* DomainRegistry.swift */,
@@ -661,13 +663,6 @@
 			remoteRef = 0A30677220A5C7FF0059F521 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A65F96120B8303700EA25C4 /* CommonIntegration.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = CommonIntegration.app;
-			remoteRef = 0A65F96020B8303700EA25C4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		0A8E3C1520B44D3A00F002F6 /* libCommonImplementations.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -781,9 +776,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3F662A20BD47A100602FCB /* Transaction.swift in Sources */,
+				0A06510F20BC5B9000464D9D /* EthereumNodeDomainService.swift in Sources */,
 				55704B1520AC8AEC0054256B /* DomainRegistry.swift in Sources */,
 				55704B1420AC8AE30054256B /* EncryptionDomainService.swift in Sources */,
 				0A934D0220B6C0CA00F15616 /* ExternallyOwnedAccount.swift in Sources */,
+				0A06510320BC52B800464D9D /* TransactionRelayDomainService.swift in Sources */,
 				0A934D0D20B6C79000F15616 /* ExternallyOwnedAccountRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -123,4 +123,8 @@ public class EncryptionService: EncryptionDomainService {
         return account
     }
 
+    public func randomData(byteCount: Int) throws -> Data {
+        return Data(repeating: 1, count: byteCount)
+    }
+
 }
