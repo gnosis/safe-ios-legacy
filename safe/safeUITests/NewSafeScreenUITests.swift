@@ -13,6 +13,7 @@ class NewSafeScreenUITests: UITestCase {
         givenNewSafeSetup()
     }
 
+    // NS-001
     func test_contents() {
         XCTAssertTrue(screen.isDisplayed)
         XCTAssertExist(screen.thisDevice.element)

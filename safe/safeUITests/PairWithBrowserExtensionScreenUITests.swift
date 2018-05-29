@@ -11,6 +11,7 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
     var cameraPermissionHandler: NSObjectProtocol!
     var cameraSuggestionHandler: NSObjectProtocol!
     let cameraScreen = CameraScreen()
+    let newSafe = NewSafeScreen()
 
     enum CameraOpenOption {
         case input, button
@@ -32,12 +33,14 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
         super.tearDown()
     }
 
+    // NS-002
     func test_contents() {
         XCTAssertExist(screen.qrCodeInput)
         XCTAssertExist(screen.finishButton)
         XCTAssertFalse(screen.finishButton.isEnabled)
     }
 
+    // NS-003
     func test_denyCameraAccess() {
         handleCameraPermissionByDenying()
         handleSuggestionAlertByCancelling(with: expectation(description: "Alerts handled"))
@@ -45,61 +48,71 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
         handleAlerts()
     }
 
+    // NS-005
     func test_allowCameraAccess() {
         givenCameraOpened()
         closeCamera()
+        XCTAssertTrue(QRCodeInputIsEqual(to: ""))
     }
 
+    // NS-006, NS-007
     func test_scanInvalidCode() {
         givenCameraOpened(with: .input)
         cameraScreen.scanInvalidCodeButton.tap()
         XCTAssertTrue(cameraScreen.isDisplayed)
         closeCamera()
+        XCTAssertTrue(QRCodeInputIsEqual(to: ""))
     }
 
+    // NS-008
     func test_scanValidCodeButDoNotFinishSetup() {
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
-        XCTAssertFalse((screen.qrCodeInput.value as? String)?.isEmpty ?? true)
+        XCTAssertFalse(QRCodeInputIsEqual(to: ""))
         TestUtils.navigateBack()
-        let newSafe = NewSafeScreen()
         XCTAssertFalse(newSafe.browserExtension.isChecked)
         newSafe.browserExtension.element.tap()
-        XCTAssertTrue((screen.qrCodeInput.value as? String)?.isEmpty ?? false)
+        XCTAssertTrue(QRCodeInputIsEqual(to: ""))
     }
 
+    // NS-009
     func test_scanTwoValidCodes() {
         givenCameraOpened()
         cameraScreen.scanTwoValidCodes.tap()
-        XCTAssertFalse((screen.qrCodeInput.value as? String)?.isEmpty ?? true)
+        XCTAssertFalse(QRCodeInputIsEqual(to: ""))
         XCTAssertTrue(screen.finishButton.isEnabled)
         screen.finishButton.tap()
-        let newSafe = NewSafeScreen()
         XCTAssertTrue(newSafe.browserExtension.isChecked)
     }
 
+    // NS-010
     func test_rescanInvalidOnTopOfValid() {
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
         screen.finishButton.tap()
-        let newSafe = NewSafeScreen()
         newSafe.browserExtension.element.tap()
-        let value = screen.qrCodeInput.value
+        let scannedValue = screen.qrCodeInput.value as! String
         screen.qrCodeInput.tap()
         cameraScreen.scanInvalidCodeButton.tap()
         cameraScreen.closeButton.tap()
-        XCTAssertEqual(screen.qrCodeInput.value as? String, value as? String)
+        XCTAssertTrue(QRCodeInputIsEqual(to: scannedValue))
         TestUtils.navigateBack()
         XCTAssertTrue(newSafe.browserExtension.isChecked)
     }
 
+    // NS-011
     func test_rescanValidCodeOnTopOfValidCode() {
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
-        let value = screen.qrCodeInput.value
+        let scannedValue = screen.qrCodeInput.value as! String
+        screen.finishButton.tap()
+        newSafe.browserExtension.element.tap()
         screen.qrCodeInput.tap()
         cameraScreen.scanAnotherValidCodeButton.tap()
-        XCTAssertNotEqual(screen.qrCodeInput.value as? String, value as? String)
+        XCTAssertFalse(QRCodeInputIsEqual(to: scannedValue))
+        TestUtils.navigateBack()
+        newSafe.browserExtension.element.tap()
+        XCTAssertTrue(QRCodeInputIsEqual(to: scannedValue))
     }
 
 }
@@ -158,6 +171,10 @@ extension PairWithBrowserExtensionScreenUITests {
             screen.qrCodeButton.tap()
         }
         handleAlerts()
+    }
+
+    private func QRCodeInputIsEqual(to value: String) -> Bool {
+        return screen.qrCodeInput.value as? String == value
     }
 
 }
