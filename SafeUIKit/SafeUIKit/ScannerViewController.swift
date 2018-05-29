@@ -45,6 +45,7 @@ final class ScannerViewController: UIViewController {
         }
 
         addChildViewController(codeReaderVC)
+        codeReaderVC.view.frame = view.frame
         view.insertSubview(codeReaderVC.view, at: 0)
         codeReaderVC.didMove(toParentViewController: self)
 
