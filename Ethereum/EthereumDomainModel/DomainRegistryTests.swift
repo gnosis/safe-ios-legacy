@@ -12,8 +12,11 @@ class DomainRegistryTests: XCTestCase {
         DomainRegistry.put(service: EncryptionService(), for: EncryptionDomainService.self)
         DomainRegistry.put(service: InMemoryExternallyOwnedAccountRepository(),
                            for: ExternallyOwnedAccountRepository.self)
+        DomainRegistry.put(service: MockTransactionRelayService(averageDelay: 0, maxDeviation: 0),
+                           for: TransactionRelayDomainService.self)
         XCTAssertNotNil(DomainRegistry.encryptionService)
         XCTAssertNotNil(DomainRegistry.externallyOwnedAccountRepository)
+        XCTAssertNotNil(DomainRegistry.transactionRelayService)
     }
 
 }

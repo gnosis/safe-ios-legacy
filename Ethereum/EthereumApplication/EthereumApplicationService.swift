@@ -30,6 +30,9 @@ public struct SafeCreationTransactionData: Equatable {
 
 open class EthereumApplicationService {
 
+    private var relayService: TransactionRelayDomainService { return DomainRegistry.transactionRelayService }
+    private var encryptionService: EncryptionDomainService { return DomainRegistry.encryptionService }
+
     public init() {}
 
     open func address(browserExtensionCode: String) -> String? {
@@ -37,7 +40,7 @@ open class EthereumApplicationService {
     }
 
     open func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccountData {
-        let account = try DomainRegistry.encryptionService.generateExternallyOwnedAccount()
+        let account = try encryptionService.generateExternallyOwnedAccount()
         try DomainRegistry.externallyOwnedAccountRepository.save(account)
         return account.applicationServiceData
     }
@@ -51,7 +54,17 @@ open class EthereumApplicationService {
 
     open func createSafeCreationTransaction(owners: [String], confirmationCount: Int) throws
         -> SafeCreationTransactionData {
-        return SafeCreationTransactionData(safe: "", payment: 0)
+            let ownerAddresses = owners.map { Address(value: $0) }
+            let randomData = try encryptionService.randomData(byteCount: 32) // 256-bit random
+            let transaction = try relayService.createSafeCreationTransaction(owners: ownerAddresses,
+                                                                             confirmationCount: confirmationCount,
+                                                                             randomData: randomData)
+            return SafeCreationTransactionData(safe: transaction.safe.value, payment: transaction.payment.amount)
+    }
+
+    open func startSafeCreation(address: String) throws -> String {
+        let transactionHash = try relayService.startSafeCreation(address: Address(value: address))
+        return transactionHash.value
     }
 
 }

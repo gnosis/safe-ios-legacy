@@ -9,7 +9,8 @@ import EthereumApplication
 extension EthereumApplicationService: BlockchainDomainService {
 
     public func requestWalletCreationData(owners: [String], confirmationCount: Int) throws -> WalletCreationData {
-        return WalletCreationData(walletAddress: "", fee: 0)
+        let data = try createSafeCreationTransaction(owners: owners, confirmationCount: confirmationCount)
+        return WalletCreationData(walletAddress: data.safe, fee: data.payment)
     }
 
     public func generateExternallyOwnedAccount() throws -> String {
@@ -21,7 +22,8 @@ extension EthereumApplicationService: BlockchainDomainService {
     }
 
     public func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void) {
-
+        let transactionHash = try startSafeCreation(address: address)
+        completion(true, nil)
     }
 
 }

@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol TransactionRelayDomainService {
+public protocol TransactionRelayDomainService {
 
     func createSafeCreationTransaction(owners: [Address], confirmationCount: Int, randomData: Data) throws
         -> SignedSafeCreationTransaction
@@ -12,11 +12,18 @@ protocol TransactionRelayDomainService {
 
 }
 
-struct SignedSafeCreationTransaction {
+public struct SignedSafeCreationTransaction {
 
-    var safe: Address
-    var payment: Ether
-    var signature: Signature
-    var tx: Transaction
+    public let safe: Address
+    public let payment: Ether
+    public let signature: Signature
+    public let tx: Transaction
+
+    public init(safe: Address, payment: Ether, signature: Signature, tx: Transaction) {
+        self.safe = safe
+        self.payment = payment
+        self.signature = signature
+        self.tx = tx
+    }
 
 }

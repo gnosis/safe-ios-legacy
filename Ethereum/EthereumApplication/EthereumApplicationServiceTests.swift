@@ -34,4 +34,28 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         XCTAssertNil(try applicationService.findExternallyOwnedAccount(by: "some"))
     }
 
+    func test_whenCreatingSafeTransaction_thenCallsRelayService() throws {
+        let output = try applicationService.createSafeCreationTransaction(owners: ["one"], confirmationCount: 1)
+        guard let input = relayService.createSafeCreationTransaction_input else {
+            XCTFail("Expected call to relay service")
+            return
+        }
+        XCTAssertEqual(input.owners, [Address(value: "one")])
+        XCTAssertEqual(input.confirmationCount, 1)
+        XCTAssertEqual(input.randomData, Data(repeating: 1, count: 32))
+        XCTAssertFalse(output.safe.isEmpty)
+        XCTAssertNotEqual(output.payment, 0)
+    }
+
+    func test_whenStartingSafeCreation_thenCallsRelayService() throws {
+        let output = try applicationService.startSafeCreation(address: "some")
+        guard let input = relayService.startSafeCreation_input else {
+            XCTFail("Expected call to relay service")
+            return
+        }
+        XCTAssertEqual(input, Address(value: "some"))
+        XCTAssertFalse(output.isEmpty)
+    }
+
+
 }
