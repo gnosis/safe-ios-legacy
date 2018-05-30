@@ -78,7 +78,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         XCTAssertEqual(callCount, 3)
     }
 
-    func test_whenBalanceThrows_thenObservationStops() throws {
+    func test_whenBalanceThrows_thenContinuesObserving() throws {
         var callCount = 0
         try applicationService.observeBalance(address: "address", every: 0.1) { _ in
             if callCount == 3 {
@@ -92,8 +92,56 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         nodeService.shouldThrow = true
         nodeService.eth_getBalance_output = Ether(amount: 1)
         delay(0.1)
+        nodeService.shouldThrow = false
+        delay(0.1)
+        XCTAssertEqual(callCount, 3)
+    }
+
+    func test_whenTransactionAlreadyCompleted_thenReturnsImmediately() throws {
+        nodeService.eth_getTransactionReceipt_output =
+            TransactionReceipt(hash: TransactionHash(value: "0xsome"), status: .success)
+        var callCount = 0
+        try applicationService.observeTransaction(hash: "0xsome", every: 0.1) { _ in
+            callCount += 1
+        }
+        delay(0.2)
+        XCTAssertEqual(callCount, 1)
+    }
+
+    func test_whenTransactionNotCompleted_thenNotifiesNilOnce() throws {
+        var callCount = 0
+        try applicationService.observeTransaction(hash: "0xsome", every: 0.1) { _ in
+            callCount += 1
+        }
+        delay(0.2)
+        XCTAssertEqual(callCount, 1)
+    }
+
+    func test_whenTransactionBecomesCompleted_thenNotifiesAboutIt() throws {
+        var callCount = 0
+        try applicationService.observeTransaction(hash: "0xsome", every: 0.1) { _ in
+            callCount += 1
+        }
+        delay(0.1)
+        nodeService.eth_getTransactionReceipt_output =
+            TransactionReceipt(hash: TransactionHash(value: "0xsome"), status: .success)
+        delay(0.2)
         XCTAssertEqual(callCount, 2)
     }
 
+    func test_whenServiceThrows_thenDoesNotifyNextTime() throws {
+        var callCount = 0
+        try applicationService.observeTransaction(hash: "0xsome", every: 0.1) { _ in
+            callCount += 1
+        }
+        delay(0.1)
+        nodeService.shouldThrow = true
+        delay(0.1)
+        nodeService.shouldThrow = false
+        nodeService.eth_getTransactionReceipt_output =
+            TransactionReceipt(hash: TransactionHash(value: "0xsome"), status: .success)
+        delay(0.1)
+        XCTAssertEqual(callCount, 2)
+    }
 
 }

@@ -80,6 +80,27 @@ open class EthereumApplicationService {
         }
     }
 
+    open func observeTransaction(hash: String, every interval: TimeInterval, block: @escaping (Bool?) -> Void) throws {
+        var didNotifyFirstTime = false
+        try startRepeating(every: interval) {
+            var status: Bool?
+            let receipt = try self.nodeService.eth_getTransactionReceipt(transaction: TransactionHash(value: hash))
+            if let receipt = receipt {
+                status = receipt.status == .success
+            } else {
+                status = nil
+            }
+            if status != nil {
+                block(status)
+                return true
+            } else if !didNotifyFirstTime {
+                block(status)
+                didNotifyFirstTime = true
+            }
+            return false
+        }
+    }
+
     private func startRepeating(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {
         let shouldStop = try block()
         if shouldStop { return }
@@ -96,7 +117,6 @@ open class EthereumApplicationService {
                 }
             } catch let error {
                 ApplicationServiceRegistry.logger.error("Repeated action failed", error: error)
-                worker.stop()
             }
         }
     }
