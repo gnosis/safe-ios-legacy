@@ -18,7 +18,6 @@ extension EthereumApplicationService: BlockchainDomainService {
     }
 
     public func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) {
-
     }
 
     public func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void) {

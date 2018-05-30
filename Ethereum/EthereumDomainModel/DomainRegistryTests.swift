@@ -14,9 +14,11 @@ class DomainRegistryTests: XCTestCase {
                            for: ExternallyOwnedAccountRepository.self)
         DomainRegistry.put(service: MockTransactionRelayService(averageDelay: 0, maxDeviation: 0),
                            for: TransactionRelayDomainService.self)
+        DomainRegistry.put(service: MockEthereumNodeService(), for: EthereumNodeDomainService.self)
         XCTAssertNotNil(DomainRegistry.encryptionService)
         XCTAssertNotNil(DomainRegistry.externallyOwnedAccountRepository)
         XCTAssertNotNil(DomainRegistry.transactionRelayService)
+        XCTAssertNotNil(DomainRegistry.ethereumNodeService)
     }
 
 }

@@ -32,6 +32,7 @@ open class EthereumApplicationService {
 
     private var relayService: TransactionRelayDomainService { return DomainRegistry.transactionRelayService }
     private var encryptionService: EncryptionDomainService { return DomainRegistry.encryptionService }
+    private var nodeService: EthereumNodeDomainService { return DomainRegistry.ethereumNodeService }
 
     public init() {}
 
@@ -65,6 +66,39 @@ open class EthereumApplicationService {
     open func startSafeCreation(address: String) throws -> String {
         let transactionHash = try relayService.startSafeCreation(address: Address(value: address))
         return transactionHash.value
+    }
+
+    open func observeBalance(address: String, every interval: TimeInterval, block: @escaping (Ether) -> Bool) throws {
+        var balance: Ether?
+        try startRepeating(every: interval) {
+            let oldBalance = balance
+            balance = try self.nodeService.eth_getBalance(account: Address(value: address))
+            if balance != oldBalance {
+                return block(balance!)
+            }
+            return false
+        }
+    }
+
+    private func startRepeating(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {
+        let shouldStop = try block()
+        if shouldStop { return }
+        try Worker.start(repeating: interval) { [weak self] worker in
+            guard self != nil else {
+                worker.stop()
+                return
+            }
+            do {
+                let shouldStop = try block()
+                if shouldStop {
+                    worker.stop()
+                    return
+                }
+            } catch let error {
+                ApplicationServiceRegistry.logger.error("Repeated action failed", error: error)
+                worker.stop()
+            }
+        }
     }
 
 }

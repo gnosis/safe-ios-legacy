@@ -6,6 +6,8 @@ import XCTest
 @testable import EthereumApplication
 import EthereumDomainModel
 import EthereumImplementations
+import Common
+import CommonTestSupport
 
 class EthereumApplicationServiceTests: EthereumApplicationTestCase {
 
@@ -55,6 +57,42 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         }
         XCTAssertEqual(input, Address(value: "some"))
         XCTAssertFalse(output.isEmpty)
+    }
+
+    func test_whenObservingBalanceAndItChanges_thenCallsObserver() throws {
+        var observedBalance: Ether?
+        var callCount = 0
+        try applicationService.observeBalance(address: "address", every: 0.1) { balance in
+            if callCount == 3 {
+                return true
+            }
+            observedBalance = balance
+            callCount += 1
+            return false
+        }
+        nodeService.eth_getBalance_output = Ether(amount: 2)
+        delay(0.1)
+        nodeService.eth_getBalance_output = Ether(amount: 1)
+        delay(0.1)
+        XCTAssertEqual(observedBalance, Ether(amount: 1))
+        XCTAssertEqual(callCount, 3)
+    }
+
+    func test_whenBalanceThrows_thenObservationStops() throws {
+        var callCount = 0
+        try applicationService.observeBalance(address: "address", every: 0.1) { _ in
+            if callCount == 3 {
+                return true
+            }
+            callCount += 1
+            return false
+        }
+        nodeService.eth_getBalance_output = Ether(amount: 2)
+        delay(0.1)
+        nodeService.shouldThrow = true
+        nodeService.eth_getBalance_output = Ether(amount: 1)
+        delay(0.1)
+        XCTAssertEqual(callCount, 2)
     }
 
 
