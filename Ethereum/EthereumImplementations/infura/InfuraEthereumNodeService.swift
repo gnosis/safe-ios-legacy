@@ -17,7 +17,9 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
     }
 
     public func eth_getTransactionReceipt(transaction: TransactionHash) throws -> TransactionReceipt? {
-        return nil
+        let request = GetTransactionReceiptRequest(transactionHash: transaction)
+        let result = try execute(request: request)
+        return result
     }
 
     /// Executes JSONRPCRequest synchronously. This method is blocking until response or error is received.

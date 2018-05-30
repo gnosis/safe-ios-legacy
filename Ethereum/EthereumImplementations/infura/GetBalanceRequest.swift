@@ -27,4 +27,5 @@ struct GetBalanceRequest: JSONRPCRequest {
         }
         return result
     }
+
 }

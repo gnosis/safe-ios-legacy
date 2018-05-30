@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct TransactionReceipt {
+public struct TransactionReceipt: Equatable {
 
     public let hash: TransactionHash
     public let status: TransactionStatus
@@ -20,7 +20,7 @@ public enum TransactionStatus {
     case failed
 }
 
-public struct TransactionHash {
+public struct TransactionHash: Hashable {
 
     public let value: String
 
