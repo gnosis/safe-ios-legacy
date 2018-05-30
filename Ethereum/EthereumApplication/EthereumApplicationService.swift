@@ -68,56 +68,45 @@ open class EthereumApplicationService {
         return transactionHash.value
     }
 
-    open func observeBalance(address: String, every interval: TimeInterval, block: @escaping (Int) -> Bool) throws {
+    open func observeChangesInBalance(address: String,
+                                      every interval: TimeInterval,
+                                      block didUpdateBalanceBlock: @escaping (Int) -> Bool) throws {
         var balance: Ether?
-        try startRepeating(every: interval) {
+        try repeatBlock(every: interval) {
+            let oldBalance = balance
             let newBalance = try self.nodeService.eth_getBalance(account: Address(value: address))
-            if newBalance != balance {
-                return block(newBalance.amount)
-            }
             balance = newBalance
-            return false
+            if newBalance != oldBalance {
+                return didUpdateBalanceBlock(newBalance.amount)
+            }
+            return RepeatingShouldStop.no
         }
     }
 
-    open func observeTransaction(hash: String, every interval: TimeInterval, block: @escaping (Bool?) -> Void) throws {
-        var didNotifyFirstTime = false
-        try startRepeating(every: interval) {
-            var status: Bool?
+    open func waitForPendingTransaction(hash: String,
+                                        every interval: TimeInterval,
+                                        completion: @escaping (Bool) -> Void) throws {
+        try repeatBlock(every: interval) {
             let receipt = try self.nodeService.eth_getTransactionReceipt(transaction: TransactionHash(value: hash))
             if let receipt = receipt {
-                status = receipt.status == .success
-            } else {
-                status = nil
+                completion(receipt.status == .success)
+                return RepeatingShouldStop.yes
             }
-            if status != nil {
-                block(status)
-                return true
-            } else if !didNotifyFirstTime {
-                block(status)
-                didNotifyFirstTime = true
-            }
-            return false
+            return RepeatingShouldStop.no
         }
     }
 
-    private func startRepeating(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {
-        let shouldStop = try block()
-        if shouldStop { return }
-        try Worker.start(repeating: interval) { [weak self] worker in
+    private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {
+        try Worker.start(repeating: interval) { [weak self] in
             guard self != nil else {
-                worker.stop()
-                return
+                return RepeatingShouldStop.yes
             }
             do {
-                let shouldStop = try block()
-                if shouldStop {
-                    worker.stop()
-                    return
-                }
+                return try block()
             } catch let error {
-                ApplicationServiceRegistry.logger.error("Repeated action failed", error: error)
+                ApplicationServiceRegistry.logger.error("Repeated action failed: \(error)")
             }
+            return RepeatingShouldStop.no
         }
     }
 

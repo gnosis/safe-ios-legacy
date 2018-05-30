@@ -21,7 +21,8 @@ extension EthereumApplicationService: BlockchainDomainService {
 
     public func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) {
         do {
-            try observeBalance(address: account, every: EthereumApplicationService.pollingInterval) { newBalance in
+            try observeChangesInBalance(address: account,
+                                        every: EthereumApplicationService.pollingInterval) { newBalance in
                 let response = observer(account, newBalance)
                 return response == .stopObserving
             }
@@ -33,10 +34,8 @@ extension EthereumApplicationService: BlockchainDomainService {
     public func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void) {
         do {
             let txHash = try startSafeCreation(address: address)
-            try observeTransaction(hash: txHash, every: EthereumApplicationService.pollingInterval) { status in
-                if let status = status {
-                    completion(status, nil)
-                }
+            try waitForPendingTransaction(hash: txHash, every: EthereumApplicationService.pollingInterval) { status in
+                completion(status, nil)
             }
         } catch let error {
             completion(false, error)

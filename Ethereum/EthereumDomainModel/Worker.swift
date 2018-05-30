@@ -5,13 +5,19 @@
 import Foundation
 import Common
 
+public struct RepeatingShouldStop {
+    public static let yes = true
+    public static let no = false
+}
+
 public class Worker: Assertable {
 
     enum Error: String, LocalizedError, Hashable {
         case invalidRepatingTimeInterval
     }
 
-    private let block: (Worker) -> Void
+
+    private let block: () -> Bool
     private let interval: TimeInterval
     private var timer: Timer?
 
@@ -24,7 +30,7 @@ public class Worker: Assertable {
         return queue
     }()
 
-    public static func start(repeating interval: TimeInterval, block: @escaping (Worker) -> Void) throws {
+    public static func start(repeating interval: TimeInterval, block: @escaping () -> Bool) throws {
         let worker = try Worker(repeating: interval, block: block)
         add(worker: worker)
         worker.start()
@@ -44,21 +50,29 @@ public class Worker: Assertable {
         }
     }
 
-    public init(repeating interval: TimeInterval, block: @escaping (Worker) -> Void) throws {
+    public init(repeating interval: TimeInterval, block: @escaping () -> Bool) throws {
         self.interval = interval
         self.block = block
         try assertTrue(interval > 0, Error.invalidRepatingTimeInterval)
     }
 
-    public func start() {
+    func start() {
+        let shouldStop = self.block()
+        if shouldStop {
+            stop()
+            return
+        }
         guard timer == nil else { return }
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
             guard let `self` = self else { return }
-            self.block(self)
+            let shouldStop = self.block()
+            if shouldStop {
+                self.stop()
+            }
         }
     }
 
-    public func stop() {
+    private func stop() {
         timer?.invalidate()
         timer = nil
         Worker.remove(worker: self)
