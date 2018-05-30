@@ -36,12 +36,20 @@ public struct Transaction {
 
 }
 
-public struct Ether {
+public struct Ether: Equatable {
+
+    public static let zero = Ether(amount: 0)
 
     public let amount: Int
 
     public init(amount: Int) {
         self.amount = amount
+    }
+
+    public init?(hexAmount: String) {
+        let hex = hexAmount.hasPrefix("0x") ? String(hexAmount.dropFirst(2)) : hexAmount
+        guard let value = Int(hex, radix: 16) else { return nil }
+        amount = value
     }
 }
 
