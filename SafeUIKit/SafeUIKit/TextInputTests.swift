@@ -8,6 +8,12 @@ import XCTest
 class TextInputTests: XCTestCase {
 
     let input = TextInput()
+    let delegate = MockTextInputDelegate()
+
+    override func setUp() {
+        super.setUp()
+        input.delegate = delegate
+    }
 
     func test_whenAddingRule_addsLabel() {
         input.addRule("test") { _ in true }
@@ -70,12 +76,10 @@ class TextInputTests: XCTestCase {
     }
 
     func test_whenReturnKeyPressed_thenCallsDelegate() {
-        let delegate = MockTextInputDelegate()
-        input.delegate = delegate
         input.addRule("test1") { _ in true }
         input.type("a")
         input.hitReturn()
-        XCTAssertTrue(delegate.wasCalled)
+        XCTAssertTrue(delegate.didReturnWasCalled)
     }
 
     func test_whenTypingText_thenTextInputHasText() {
@@ -121,6 +125,11 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(input.text, "a")
     }
 
+    func test_whenВeginEditing_thenDelegateIsCalled() {
+        input.beginEditing()
+        XCTAssertTrue(delegate.didBeginEditingWasCalled)
+    }
+
 }
 
 fileprivate extension TextInput {
@@ -141,6 +150,10 @@ fileprivate extension TextInput {
         _ = textField(textField, shouldChangeCharactersIn: NSRange(), replacementString: text)
     }
 
+    func beginEditing() {
+        _ = textFieldDidBeginEditing(textField)
+    }
+
     func clear() {
         _ = textFieldShouldClear(textField)
     }
@@ -153,10 +166,15 @@ fileprivate extension TextInput {
 
 class MockTextInputDelegate: TextInputDelegate {
 
-    var wasCalled = false
+    var didReturnWasCalled = false
+    var didBeginEditingWasCalled = false
 
     func textInputDidReturn(_ textInput: TextInput) {
-        wasCalled = true
+        didReturnWasCalled = true
+    }
+
+    func textInputDidBeginEditing(_ textInput: TextInput) {
+        didBeginEditingWasCalled = true
     }
 
 }
