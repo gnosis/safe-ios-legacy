@@ -1,0 +1,59 @@
+//
+//  Copyright © 2018 Gnosis Ltd. All rights reserved.
+//
+
+import Foundation
+import EthereumDomainModel
+import EthereumKit
+
+public class InfuraEthereumNodeService: EthereumNodeDomainService {
+
+    public init() {}
+
+    public func eth_getBalance(account: EthereumDomainModel.Address) throws -> EthereumDomainModel.Ether {
+        let request = GetBalanceRequest(address: account.value)
+        let result = try execute(request: request)
+        return result
+    }
+
+    public func eth_getTransactionReceipt(transaction: TransactionHash) throws -> TransactionReceipt? {
+        return nil
+    }
+
+    /// Executes JSONRPCRequest synchronously. This method is blocking until response or error is received.
+    ///
+    /// - Parameter request: JSON RPC request to send
+    /// - Returns: Response according to request
+    /// - Throws: any kind of networking-related error or response deserialization error
+    private func execute<Request>(request: Request) throws -> Request.Response where Request: JSONRPCRequest {
+        var error: Error?
+        var result: Request.Response!
+        let semaphore = DispatchSemaphore(value: 0)
+        httpClient().send(request) { response in
+            switch response {
+            case let .failure(e): error = e
+            case let .success(value): result = value
+            }
+            semaphore.signal()
+        }
+        if !Thread.isMainThread {
+            semaphore.wait()
+        } else {
+            while error == nil && result == nil {
+                RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.1))
+            }
+        }
+        if let error = error { throw error }
+        return result
+    }
+
+    private func httpClient() -> HTTPClient {
+        let config = InfuraServiceConfiguration.rinkeby
+        let client = HTTPClient(configuration: Configuration(network: Network.private(chainID: config.chainID),
+                                                             nodeEndpoint: config.endpoint.absoluteString,
+                                                             etherscanAPIKey: "",
+                                                             debugPrints: true))
+        return client
+    }
+
+}
