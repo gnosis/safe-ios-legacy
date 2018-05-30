@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol EthereumNodeDomainService {
+public protocol EthereumNodeDomainService {
 
     func eth_getBalance(account: Address) throws -> Ether
     func eth_getTransactionReceipt(transaction: TransactionHash) throws -> TransactionReceipt?
