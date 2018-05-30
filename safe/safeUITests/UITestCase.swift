@@ -14,10 +14,19 @@ class UITestCase: XCTestCase {
         continueAfterFailure = false
     }
 
+    func givenMasterPasswordIsSet() {
+        application.start()
+        StartScreen().start()
+        SetPasswordScreen().enterPassword(password)
+        ConfirmPasswordScreen().enterPassword(password)
+    }
+
     func givenUnlockedAppSetup(withAppReset: Bool = true) {
         if withAppReset {
             application.resetAllContentAndSettings()
             application.setPassword(password)
+        } else {
+            application.resetArguments()
         }
         application.start()
         UnlockScreen().enterPassword(password)
@@ -26,11 +35,13 @@ class UITestCase: XCTestCase {
     func givenNewSafeSetup(withAppReset: Bool = true) {
         givenUnlockedAppSetup(withAppReset: withAppReset)
         let setupOptions = SetupSafeOptionsScreen()
-        setupOptions.newSafe.tap()
+        if withAppReset {
+            setupOptions.newSafe.tap()            
+        }
     }
 
-    func givenBrowserExtensionSetup() {
-        givenNewSafeSetup()
+    func givenBrowserExtensionSetup(withAppReset: Bool = true) {
+        givenNewSafeSetup(withAppReset: withAppReset)
         NewSafeScreen().browserExtension.element.tap()
     }
 

@@ -11,6 +11,7 @@ DerivedData/
 ModuleCache/
 Logs/
 build_logs
+Index/
 
 ## Various settings
 *.pbxuser

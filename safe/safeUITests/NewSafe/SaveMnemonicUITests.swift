@@ -14,6 +14,7 @@ final class SaveMnemonicUITests: UITestCase {
         givenSaveMnemonicSetup()
     }
 
+    // NS-101
     func test_contents() {
         XCTAssertTrue(saveMnemonicScreen.isDisplayed)
         XCTAssertEqual(saveMnemonicScreen.description.label, LocalizedString("new_safe.paper_wallet.description"))
