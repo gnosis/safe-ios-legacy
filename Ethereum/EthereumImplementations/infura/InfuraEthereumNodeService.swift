@@ -29,6 +29,10 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
         var error: Error?
         var result: Request.Response!
         let semaphore = DispatchSemaphore(value: 0)
+        // NOTE: EthereumKit calls send()'s completion block on the main thread. Therefore, if we would use
+        // semaphore to wait until completion block is called, then it would deadlock the main thread.
+        // That's why we use RunLoop-based busy wait to detect completion block was called.
+        // See also the test cases for this class.
         httpClient().send(request) { response in
             switch response {
             case let .failure(e): error = e

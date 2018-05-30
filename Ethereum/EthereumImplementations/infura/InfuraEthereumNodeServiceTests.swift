@@ -16,7 +16,7 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
         XCTAssertEqual(try service.eth_getBalance(account: emptyAddress), Ether.zero)
     }
 
-    func test_whenAccountHasFunds_thenBalanceReturned() throws {
+    func test_whenBalanceCheckedInBackground_thenItIsFetched() throws {
         var balance: Ether?
         let exp = expectation(description: "wait")
         DispatchQueue.global().async { [weak self] in
