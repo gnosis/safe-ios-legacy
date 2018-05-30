@@ -60,7 +60,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
     }
 
     func test_whenObservingBalanceAndItChanges_thenCallsObserver() throws {
-        var observedBalance: Ether?
+        var observedBalance: Int?
         var callCount = 0
         try applicationService.observeBalance(address: "address", every: 0.1) { balance in
             if callCount == 3 {
@@ -74,7 +74,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         delay(0.1)
         nodeService.eth_getBalance_output = Ether(amount: 1)
         delay(0.1)
-        XCTAssertEqual(observedBalance, Ether(amount: 1))
+        XCTAssertEqual(observedBalance, 1)
         XCTAssertEqual(callCount, 3)
     }
 

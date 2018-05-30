@@ -17,6 +17,7 @@ public class Worker: Assertable {
 
     private static var workers = [Worker]()
 
+    // queue is used for multi-thread synchronization when mutating `workers` array
     private static var syncQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1

@@ -18,6 +18,10 @@ extension EthereumApplicationService: BlockchainDomainService {
     }
 
     public func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) {
+        observeBalance(address: account, every: 5) { newBalance -> Bool in
+            let response = observer(account, newBalance)
+            return response == .stopObserving
+        }
     }
 
     public func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void) {
