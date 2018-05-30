@@ -116,7 +116,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func replaceOwner(with newOwner: Owner, kind: String) throws {
         try assertCanChangeOwners()
         try assertOwnerExists(kind)
-        try assertFalse(contains(owner: newOwner), Error.ownerAlreadyExists)
+        // swiftlint:disable:next trailing_closure
+        try assertFalse(ownersByKind.filter({ $0.key != kind }).values.contains(newOwner), Error.ownerAlreadyExists)
         ownersByKind[kind] = newOwner
     }
 

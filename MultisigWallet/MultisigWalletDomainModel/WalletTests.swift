@@ -43,6 +43,17 @@ class WalletTests: XCTestCase {
         XCTAssertThrowsError(try wallet.replaceOwner(with: owner, kind: "kind"))
     }
 
+    func test_whenReplacingExistingOwnerWithSameOwner_thenNothingChanges() throws {
+        try wallet.replaceOwner(with: firstOwner, kind: "mean")
+        XCTAssertEqual(wallet.owner(kind: "mean"), firstOwner)
+    }
+
+    func test_whenReplacingWithDuplicateOwner_thenThrows() throws {
+        try wallet.addOwner(Wallet.createOwner(address: "a"), kind: "a")
+        try wallet.addOwner(Wallet.createOwner(address: "b"), kind: "b")
+        XCTAssertThrowsError(try wallet.replaceOwner(with: Wallet.createOwner(address: "a"), kind: "b"))
+    }
+
     func test_whenRemovingInexistingOwner_thenThrows() throws {
         XCTAssertThrowsError(try wallet.removeOwner(kind: "kind"))
     }
@@ -144,12 +155,5 @@ class WalletTests: XCTestCase {
         try wallet.addOwner(Wallet.createOwner(address: "a"), kind: "a")
         XCTAssertThrowsError(try wallet.addOwner(Wallet.createOwner(address: "a"), kind: "b"))
     }
-
-    func test_whenReplacingWithDuplicateOwner_thenThrows() throws {
-        try wallet.addOwner(Wallet.createOwner(address: "a"), kind: "a")
-        try wallet.addOwner(Wallet.createOwner(address: "b"), kind: "b")
-        XCTAssertThrowsError(try wallet.replaceOwner(with: Wallet.createOwner(address: "a"), kind: "b"))
-    }
-
 
 }

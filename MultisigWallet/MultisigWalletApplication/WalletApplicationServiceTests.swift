@@ -71,6 +71,15 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(service.ownerAddress(of: .paperWallet), "testAddress")
     }
 
+    func test_whenAddingAlreadyExistingTypeOfOwner_thenOldOwnerIsReplaysed() throws {
+        givenDraftWallet()
+        try service.addOwner(address: "testAddress", type: .browserExtension)
+        try service.addOwner(address: "testAddress", type: .browserExtension)
+        XCTAssertEqual(service.ownerAddress(of: .browserExtension), "testAddress")
+        try service.addOwner(address: "newTestAddress", type: .browserExtension)
+        XCTAssertEqual(service.ownerAddress(of: .browserExtension), "newTestAddress")
+    }
+
     fileprivate func givenReadyToDeployWallet(line: UInt = #line) throws {
         givenDraftWallet(line: line)
         try addAllOwners()

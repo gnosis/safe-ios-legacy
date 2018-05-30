@@ -279,7 +279,11 @@ public class WalletApplicationService: Assertable {
     public func addOwner(address: String, type: OwnerType) throws {
         try mutateSelectedWallet { wallet in
             let owner = Wallet.createOwner(address: address)
-            try wallet.addOwner(owner, kind: type.kind)
+            if wallet.owner(kind: type.kind) != nil {
+                try wallet.replaceOwner(with: owner, kind: type.kind)
+            } else {
+                try wallet.addOwner(owner, kind: type.kind)
+            }
             if wallet.status == .newDraft {
                 let enoughOwnersExist = OwnerType.all.reduce(true) { isEnough, type in
                     isEnough && wallet.owner(kind: type.kind) != nil
