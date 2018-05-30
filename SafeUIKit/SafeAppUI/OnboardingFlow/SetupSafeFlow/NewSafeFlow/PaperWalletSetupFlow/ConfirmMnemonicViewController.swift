@@ -40,7 +40,12 @@ final class ConfirmMnemonicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureAppearance()
+        guard let words = account?.mnemonicWords, words.count > 1 else {
+            MultisigWalletApplication.ApplicationServiceRegistry.logger.error("Not enough words in mnemonic phrase")
+            dismiss(animated: true)
+            return
+        }
+        configureAppearance(words: words)
         firstWordTextInput.delegate = self
         firstWordTextInput.accessibilityIdentifier = "firstInput"
         secondWordTextInput.delegate = self
@@ -49,12 +54,7 @@ final class ConfirmMnemonicViewController: UIViewController {
         registerForKeyboardNotifications()
     }
 
-    private func configureAppearance() {
-        guard let words = account?.mnemonicWords, words.count > 1 else {
-            MultisigWalletApplication.ApplicationServiceRegistry.logger.error("Not enough words in mnemonic phrase")
-            dismiss(animated: true)
-            return
-        }
+    private func configureAppearance(words: [String]) {
         (firstMnemonicWordToCheck, secondMnemonicWordToCheck) = twoRandomWords()
         firstWordNumberLabel.text = "#\(words.index(of: firstMnemonicWordToCheck)! + 1)."
         firstWordNumberLabel.accessibilityIdentifier = "firstWordNumberLabel"
