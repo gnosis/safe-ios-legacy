@@ -360,15 +360,24 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
                                                     <constraint firstAttribute="height" constant="30" id="rXA-sy-f3b"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2r-vt-STm">
+                                                <rect key="frame" x="159.5" y="290.5" width="55" height="30"/>
+                                                <state key="normal" title="Confirm"/>
+                                                <connections>
+                                                    <action selector="confirm" destination="6df-k4-yRy" eventType="touchUpInside" id="J6y-PE-FNH"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="cJf-ly-PfB" firstAttribute="trailing" secondItem="ZOk-8C-8Np" secondAttribute="trailing" id="0x1-pq-2dQ"/>
+                                            <constraint firstItem="A2r-vt-STm" firstAttribute="centerX" secondItem="Tg8-dj-jlu" secondAttribute="centerX" id="1ui-rJ-Dln"/>
                                             <constraint firstItem="6RJ-o3-TZA" firstAttribute="top" secondItem="ExC-zY-WT9" secondAttribute="bottom" constant="30" id="6xx-2I-cE6"/>
                                             <constraint firstItem="LkB-30-dua" firstAttribute="top" secondItem="6RJ-o3-TZA" secondAttribute="bottom" constant="30" id="ALR-De-KCj"/>
                                             <constraint firstItem="cJf-ly-PfB" firstAttribute="centerY" secondItem="LkB-30-dua" secondAttribute="centerY" id="Aen-y6-0WS"/>
                                             <constraint firstItem="ExC-zY-WT9" firstAttribute="top" secondItem="2HR-Sn-W86" secondAttribute="bottom" constant="40" id="Ams-xr-R3s"/>
                                             <constraint firstItem="LkB-30-dua" firstAttribute="leading" secondItem="6RJ-o3-TZA" secondAttribute="leading" id="Au4-te-cQN"/>
+                                            <constraint firstItem="A2r-vt-STm" firstAttribute="top" secondItem="cJf-ly-PfB" secondAttribute="bottom" constant="20" id="BnM-Sg-v4Z"/>
                                             <constraint firstItem="ZOk-8C-8Np" firstAttribute="trailing" secondItem="ExC-zY-WT9" secondAttribute="trailing" id="Efp-eE-Bai"/>
                                             <constraint firstItem="ZOk-8C-8Np" firstAttribute="centerY" secondItem="6RJ-o3-TZA" secondAttribute="centerY" id="IUF-Sf-CU1"/>
                                             <constraint firstItem="6RJ-o3-TZA" firstAttribute="leading" secondItem="ExC-zY-WT9" secondAttribute="leading" id="Iq7-kQ-Il1"/>
@@ -403,6 +412,7 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
                         <viewLayoutGuide key="safeArea" id="5VZ-dU-rzz"/>
                     </view>
                     <connections>
+                        <outlet property="confirmButton" destination="A2r-vt-STm" id="OkC-SA-wmH"/>
                         <outlet property="descriptionLabel" destination="ExC-zY-WT9" id="nI8-4W-V6C"/>
                         <outlet property="firstWordNumberLabel" destination="6RJ-o3-TZA" id="4tl-Ue-NwG"/>
                         <outlet property="firstWordTextInput" destination="ZOk-8C-8Np" id="HTx-9s-Khz"/>

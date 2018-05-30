@@ -8,6 +8,7 @@ import XCTest
 class TextInputTests: XCTestCase {
 
     let input = TextInput()
+    // swiftlint:disable:next weak_delegate
     let delegate = MockTextInputDelegate()
 
     override func setUp() {
@@ -130,6 +131,11 @@ class TextInputTests: XCTestCase {
         XCTAssertTrue(delegate.didBeginEditingWasCalled)
     }
 
+    func test_whenEndEditing_thenDelegateIsCalled() {
+        input.endEditing()
+        XCTAssertTrue(delegate.didEndEditing)
+    }
+
 }
 
 fileprivate extension TextInput {
@@ -154,6 +160,10 @@ fileprivate extension TextInput {
         _ = textFieldDidBeginEditing(textField)
     }
 
+    func endEditing() {
+        _ = textFieldDidEndEditing(textField)
+    }
+
     func clear() {
         _ = textFieldShouldClear(textField)
     }
@@ -168,6 +178,7 @@ class MockTextInputDelegate: TextInputDelegate {
 
     var didReturnWasCalled = false
     var didBeginEditingWasCalled = false
+    var didEndEditing = false
 
     func textInputDidReturn(_ textInput: TextInput) {
         didReturnWasCalled = true
@@ -175,6 +186,10 @@ class MockTextInputDelegate: TextInputDelegate {
 
     func textInputDidBeginEditing(_ textInput: TextInput) {
         didBeginEditingWasCalled = true
+    }
+
+    func textInputDidEndEditing(_ textInput: TextInput) {
+        didEndEditing = true
     }
 
 }

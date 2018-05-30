@@ -20,6 +20,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     @IBOutlet weak var secondWordNumberLabel: UILabel!
     @IBOutlet weak var firstWordTextInput: TextInput!
     @IBOutlet weak var secondWordTextInput: TextInput!
+    @IBOutlet weak var confirmButton: UIButton!
 
     private var activeInput: TextInput?
 
@@ -103,7 +104,26 @@ final class ConfirmMnemonicViewController: UIViewController {
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
 
-    // TODO: Add finish button
+    @IBAction func confirm() {
+        if !validate() { shakeErrors() }
+    }
+
+    private func validate() -> Bool {
+        guard firstWordTextInput.text == firstMnemonicWordToCheck &&
+            secondWordTextInput.text == secondMnemonicWordToCheck else { return false }
+        do {
+            try ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
+            delegate?.didConfirm()
+        } catch let e {
+            ErrorHandler.showFatalError(log: "Failed to add paper wallet owner \(account.address)", error: e)
+        }
+        return true
+    }
+
+    private func shakeErrors() {
+        if firstWordTextInput.text != firstMnemonicWordToCheck { firstWordTextInput.shake() }
+        if secondWordTextInput.text != secondMnemonicWordToCheck { secondWordTextInput.shake() }
+    }
 
 }
 
@@ -113,17 +133,15 @@ extension ConfirmMnemonicViewController: TextInputDelegate {
         activeInput = textInput
     }
 
+    func textInputDidEndEditing(_ textInput: TextInput) {
+        activeInput = nil
+    }
+
     func textInputDidReturn(_ textInput: TextInput) {
-        if firstWordTextInput.text == firstMnemonicWordToCheck &&
-            secondWordTextInput.text == secondMnemonicWordToCheck {
-            do {
-                try ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
-                delegate?.didConfirm()
-            } catch let e {
-                ErrorHandler.showError(log: "Failed to add paper wallet owner \(account.address)", error: e)
-            }
-        } else if textInput == firstWordTextInput {
+        if !validate() && textInput == firstWordTextInput {
             _ = secondWordTextInput.becomeFirstResponder()
+        } else {
+            shakeErrors()
         }
     }
 

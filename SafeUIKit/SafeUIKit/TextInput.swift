@@ -8,6 +8,7 @@ import UIKit
 
     func textInputDidReturn(_ textInput: TextInput)
     @objc optional func textInputDidBeginEditing(_ textInput: TextInput)
+    @objc optional func textInputDidEndEditing(_ textInput: TextInput)
 
 }
 
@@ -137,6 +138,10 @@ extension TextInput: UITextFieldDelegate {
 
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         delegate?.textInputDidBeginEditing?(self)
+    }
+
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.textInputDidEndEditing?(self)
     }
 
     private func resetRules() {
