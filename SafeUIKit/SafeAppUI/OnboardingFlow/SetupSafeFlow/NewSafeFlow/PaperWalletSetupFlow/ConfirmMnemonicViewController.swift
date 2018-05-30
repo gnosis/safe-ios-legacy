@@ -64,6 +64,9 @@ final class ConfirmMnemonicViewController: UIViewController {
                                           comment: "Title for confirm mnemonic view controller")
         descriptionLabel.text = LocalizedString("recovery.confirm_mnemonic.description",
                                                 comment: "Description for confirm mnemonic view controller")
+        confirmButton.setTitle(
+            LocalizedString("recovery.confirm_mnemonic.confirm_button", comment: "Title for confirm button"),
+            for: .normal)
     }
 
     private func twoRandomWords() -> (String, String) {

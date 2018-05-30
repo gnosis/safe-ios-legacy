@@ -18,5 +18,6 @@ final class ConfirmMnemonicScreen {
     let secondInput = XCUIApplication().otherElements["secondInput"].textFields.firstMatch
     let firstWordNumberLabel = XCUIApplication().staticTexts["firstWordNumberLabel"]
     let secondWordNumberLabel = XCUIApplication().staticTexts["secondWordNumberLabel"]
+    let confirmButton = XCUIApplication().buttons[LocalizedString("recovery.confirm_mnemonic.confirm_button")]
 
 }

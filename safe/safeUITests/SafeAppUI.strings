@@ -127,6 +127,9 @@
 /* Title of pending safe screen */
 "pending_safe.title" = "Creating new safe";
 
+/* Title for confirm button */
+"recovery.confirm_mnemonic.confirm_button" = "Confirm";
+
 /* Description for confirm mnemonic view controller */
 "recovery.confirm_mnemonic.description" = "Please enter the following words from the mnemonic.";
 
