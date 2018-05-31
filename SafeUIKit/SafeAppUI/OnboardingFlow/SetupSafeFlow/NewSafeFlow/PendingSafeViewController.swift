@@ -88,7 +88,6 @@ public class PendingSafeViewController: UIViewController {
         let payment = walletService.minimumDeploymentAmount
         let balance = walletService.accountBalance(token: "ETH")
         uiUpdateQueue.addOperation { [unowned self] in
-            self.wait(for: 0.5) // otherwise changes feel too fast
             self.updateAddressLabel(address: address, balance: balance)
             switch state {
             case .deploymentStarted:
@@ -127,10 +126,6 @@ public class PendingSafeViewController: UIViewController {
         let balanceEth = "\(balance!) Wei"
         let status = String(format: Strings.Status.notEnoughFundsFormat, balanceEth, requiredEth)
         return status
-    }
-
-    private func wait(for time: TimeInterval) {
-        RunLoop.current.run(until: Date(timeIntervalSinceNow: time))
     }
 
     private func update(progress: Float, status: String) {
