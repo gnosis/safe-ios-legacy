@@ -10,8 +10,8 @@
 /* Create button */
 "new_safe.create" = "Create";
 
-/* Finish button title in extension setup screen */
-"new_safe.extension.finish" = "Finish";
+/* Save button title in extension setup screen */
+"new_safe.extension.save" = "Save";
 
 /* Paper Wallet Button */
 "new_safe.paper_wallet" = "Paper Wallet";

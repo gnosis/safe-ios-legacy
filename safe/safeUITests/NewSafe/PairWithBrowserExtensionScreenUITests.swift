@@ -36,8 +36,8 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
     // NS-002
     func test_contents() {
         XCTAssertExist(screen.qrCodeInput)
-        XCTAssertExist(screen.finishButton)
-        XCTAssertFalse(screen.finishButton.isEnabled)
+        XCTAssertExist(screen.saveButton)
+        XCTAssertFalse(screen.saveButton.isEnabled)
     }
 
     // NS-003
@@ -80,8 +80,8 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
         givenCameraOpened()
         cameraScreen.scanTwoValidCodes.tap()
         XCTAssertFalse(QRCodeInputIsEqual(to: ""))
-        XCTAssertTrue(screen.finishButton.isEnabled)
-        screen.finishButton.tap()
+        XCTAssertTrue(screen.saveButton.isEnabled)
+        screen.saveButton.tap()
         XCTAssertTrue(newSafe.browserExtension.isChecked)
     }
 
@@ -89,7 +89,7 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
     func test_rescanInvalidOnTopOfValid() {
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
-        screen.finishButton.tap()
+        screen.saveButton.tap()
         newSafe.browserExtension.element.tap()
         let scannedValue = screen.qrCodeInput.value as! String
         screen.qrCodeInput.tap()
@@ -105,7 +105,7 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
         let scannedValue = screen.qrCodeInput.value as! String
-        screen.finishButton.tap()
+        screen.saveButton.tap()
         newSafe.browserExtension.element.tap()
         screen.qrCodeInput.tap()
         cameraScreen.scanAnotherValidCodeButton.tap()
@@ -120,7 +120,7 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
         let scannedValue = screen.qrCodeInput.value as! String
-        screen.finishButton.tap()
+        screen.saveButton.tap()
         Application().terminate()
         givenBrowserExtensionSetup(withAppReset: false)
         XCTAssertTrue(QRCodeInputIsEqual(to: scannedValue))
