@@ -108,19 +108,25 @@ final class ConfirmMnemonicViewController: UIViewController {
     }
 
     @IBAction func confirm() {
-        if !validate() { shakeErrors() }
+        if validate() {
+            confirmMnemonic()
+        } else {
+            shakeErrors()
+        }
     }
 
     private func validate() -> Bool {
-        guard firstWordTextInput.text == firstMnemonicWordToCheck &&
-            secondWordTextInput.text == secondMnemonicWordToCheck else { return false }
+        return firstWordTextInput.text == firstMnemonicWordToCheck &&
+            secondWordTextInput.text == secondMnemonicWordToCheck
+    }
+
+    private func confirmMnemonic() {
         do {
             try ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
             delegate?.didConfirm()
         } catch let e {
             ErrorHandler.showFatalError(log: "Failed to add paper wallet owner \(account.address)", error: e)
         }
-        return true
     }
 
     private func shakeErrors() {
@@ -141,11 +147,13 @@ extension ConfirmMnemonicViewController: TextInputDelegate {
     }
 
     func textInputDidReturn(_ textInput: TextInput) {
-        if !validate() && textInput == firstWordTextInput {
+        if validate() {
+            confirmMnemonic()
+        } else if textInput == firstWordTextInput {
             _ = secondWordTextInput.becomeFirstResponder()
         } else {
             shakeErrors()
-        }
+        }        
     }
 
 }
