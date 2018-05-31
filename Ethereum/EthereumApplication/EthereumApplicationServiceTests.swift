@@ -32,6 +32,12 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         XCTAssertEqual(saved, account)
     }
 
+    func test_whenAccountRemoved_thenCannotBeFound() throws {
+        let account = try applicationService.generateExternallyOwnedAccount()
+        try applicationService.removeExternallyOwnedAccount(address: account.address)
+        XCTAssertNil(try applicationService.findExternallyOwnedAccount(by: account.address))
+    }
+
     func test_whenAccountNotFound_thenReturnsNil() {
         XCTAssertNil(try applicationService.findExternallyOwnedAccount(by: "some"))
     }

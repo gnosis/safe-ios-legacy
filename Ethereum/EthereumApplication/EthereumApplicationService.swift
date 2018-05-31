@@ -46,6 +46,10 @@ open class EthereumApplicationService {
         return account.applicationServiceData
     }
 
+    open func removeExternallyOwnedAccount(address: String) throws {
+        try DomainRegistry.externallyOwnedAccountRepository.remove(address: Address(value: address))
+    }
+
     open func findExternallyOwnedAccount(by address: String) throws -> ExternallyOwnedAccountData? {
         guard let account = try DomainRegistry.externallyOwnedAccountRepository.find(by: Address(value: address)) else {
             return nil

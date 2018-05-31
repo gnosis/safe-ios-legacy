@@ -64,4 +64,10 @@ public class MockBlockchainDomainService: BlockchainDomainService {
         }
     }
 
+    public var removedAddress: String?
+
+    public func removeExternallyOwnedAccount(address: String) throws {
+        if shouldThrow { throw Error.error }
+        removedAddress = address
+    }
 }
