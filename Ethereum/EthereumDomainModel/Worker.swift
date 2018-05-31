@@ -56,20 +56,17 @@ public class Worker: Assertable {
     }
 
     func start() {
-        RunLoop.current.perform {
-            let shouldStop = self.block()
-            if shouldStop {
-                self.stop()
-                return
-            }
-        }
-        guard timer == nil else { return }
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
+        let updateClosure = { [weak self] in
             guard let `self` = self else { return }
             let shouldStop = self.block()
             if shouldStop {
                 self.stop()
             }
+        }
+        RunLoop.current.perform(updateClosure)
+        guard timer == nil else { return }
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
+            updateClosure()
         }
     }
 
