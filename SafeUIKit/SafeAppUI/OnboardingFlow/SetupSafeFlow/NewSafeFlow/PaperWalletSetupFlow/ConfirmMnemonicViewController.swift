@@ -108,14 +108,14 @@ final class ConfirmMnemonicViewController: UIViewController {
     }
 
     @IBAction func confirm() {
-        if validate() {
+        if isValid() {
             confirmMnemonic()
         } else {
             shakeErrors()
         }
     }
 
-    private func validate() -> Bool {
+    private func isValid() -> Bool {
         return firstWordTextInput.text == firstMnemonicWordToCheck &&
             secondWordTextInput.text == secondMnemonicWordToCheck
     }
@@ -147,13 +147,13 @@ extension ConfirmMnemonicViewController: TextInputDelegate {
     }
 
     func textInputDidReturn(_ textInput: TextInput) {
-        if validate() {
+        if isValid() {
             confirmMnemonic()
         } else if textInput == firstWordTextInput {
             _ = secondWordTextInput.becomeFirstResponder()
         } else {
-            shakeErrors()
-        }        
+            shakeErrors()            
+        }
     }
 
 }
