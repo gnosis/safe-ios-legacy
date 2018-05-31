@@ -26,6 +26,10 @@ public class MockWalletApplicationService: WalletApplicationService {
         }
     }
 
+    public override var selectedWalletAddress: String? {
+        return nil
+    }
+
     public var didCreateNewDraft = false
     public var shouldThrow = false
 
