@@ -32,6 +32,7 @@ open class EthereumApplicationService {
 
     private var relayService: TransactionRelayDomainService { return DomainRegistry.transactionRelayService }
     private var encryptionService: EncryptionDomainService { return DomainRegistry.encryptionService }
+    private var nodeService: EthereumNodeDomainService { return DomainRegistry.ethereumNodeService }
 
     public init() {}
 
@@ -65,6 +66,48 @@ open class EthereumApplicationService {
     open func startSafeCreation(address: String) throws -> String {
         let transactionHash = try relayService.startSafeCreation(address: Address(value: address))
         return transactionHash.value
+    }
+
+    open func observeChangesInBalance(address: String,
+                                      every interval: TimeInterval,
+                                      block didUpdateBalanceBlock: @escaping (Int) -> Bool) throws {
+        var balance: Ether?
+        try repeatBlock(every: interval) {
+            let oldBalance = balance
+            let newBalance = try self.nodeService.eth_getBalance(account: Address(value: address))
+            balance = newBalance
+            if newBalance != oldBalance {
+                return didUpdateBalanceBlock(newBalance.amount)
+            }
+            return RepeatingShouldStop.no
+        }
+    }
+
+    open func waitForPendingTransaction(hash: String,
+                                        every interval: TimeInterval,
+                                        completion: @escaping (Bool) -> Void) throws {
+        try repeatBlock(every: interval) {
+            let receipt = try self.nodeService.eth_getTransactionReceipt(transaction: TransactionHash(value: hash))
+            if let receipt = receipt {
+                completion(receipt.status == .success)
+                return RepeatingShouldStop.yes
+            }
+            return RepeatingShouldStop.no
+        }
+    }
+
+    private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {
+        try Worker.start(repeating: interval) { [weak self] in
+            guard self != nil else {
+                return RepeatingShouldStop.yes
+            }
+            do {
+                return try block()
+            } catch let error {
+                ApplicationServiceRegistry.logger.error("Repeated action failed: \(error)")
+            }
+            return RepeatingShouldStop.no
+        }
     }
 
 }

@@ -6,6 +6,8 @@ import XCTest
 @testable import EthereumApplication
 import EthereumDomainModel
 import EthereumImplementations
+import Common
+import CommonTestSupport
 
 class EthereumApplicationServiceTests: EthereumApplicationTestCase {
 
@@ -57,5 +59,94 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         XCTAssertFalse(output.isEmpty)
     }
 
+    func test_whenObservingBalanceAndItChanges_thenCallsObserver() throws {
+        var observedBalance: Int?
+        var callCount = 0
+        try applicationService.observeChangesInBalance(address: "address", every: 0.1) { balance in
+            if callCount == 3 {
+                return true
+            }
+            observedBalance = balance
+            callCount += 1
+            return false
+        }
+        nodeService.eth_getBalance_output = Ether(amount: 2)
+        delay(0.1)
+        nodeService.eth_getBalance_output = Ether(amount: 2)
+        delay(0.1)
+        nodeService.eth_getBalance_output = Ether(amount: 1)
+        delay(0.1)
+        XCTAssertEqual(observedBalance, 1)
+        XCTAssertEqual(callCount, 3)
+    }
+
+    func test_whenBalanceThrows_thenContinuesObserving() throws {
+        var callCount = 0
+        try applicationService.observeChangesInBalance(address: "address", every: 0.1) { _ in
+            if callCount == 3 {
+                return true
+            }
+            callCount += 1
+            return false
+        }
+        nodeService.eth_getBalance_output = Ether(amount: 2)
+        delay(0.1)
+        nodeService.shouldThrow = true
+        nodeService.eth_getBalance_output = Ether(amount: 1)
+        delay(0.1)
+        nodeService.shouldThrow = false
+        delay(0.1)
+        XCTAssertEqual(callCount, 3)
+    }
+
+    func test_whenTransactionAlreadyCompleted_thenReturnsImmediately() throws {
+        nodeService.eth_getTransactionReceipt_output =
+            TransactionReceipt(hash: TransactionHash(value: "0xsome"), status: .success)
+        var callCount = 0
+        try applicationService.waitForPendingTransaction(hash: "0xsome", every: 0.1) { _ in
+            callCount += 1
+        }
+        delay(0.2)
+        XCTAssertEqual(callCount, 1)
+    }
+
+    func test_whenTransactionNotCompleted_thenDoesNotNotify() throws {
+        var callCount = 0
+        try applicationService.waitForPendingTransaction(hash: "0xsome", every: 0.1) { _ in
+            callCount += 1
+        }
+        delay(0.2)
+        XCTAssertEqual(callCount, 0)
+    }
+
+    func test_whenTransactionBecomesCompleted_thenNotifiesAboutIt() throws {
+        var callCount = 0
+        try applicationService.waitForPendingTransaction(hash: "0xsome", every: 0.1) { _ in
+            callCount += 1
+        }
+        delay(0.1)
+        nodeService.eth_getTransactionReceipt_output =
+            TransactionReceipt(hash: TransactionHash(value: "0xsome"), status: .success)
+        delay(0.2)
+        XCTAssertEqual(callCount, 1)
+    }
+
+    func test_whenServiceThrows_thenDoesNotifyNextTime() throws {
+        var callCount = 0
+        try applicationService.waitForPendingTransaction(hash: "0xsome", every: 0.1) { _ in
+            callCount += 1
+        }
+        delay(0.1)
+        nodeService.shouldThrow = true
+        delay(0.1)
+        nodeService.shouldThrow = false
+        nodeService.eth_getTransactionReceipt_output =
+            TransactionReceipt(hash: TransactionHash(value: "0xsome"), status: .success)
+        delay(0.1)
+        nodeService.eth_getTransactionReceipt_output =
+            TransactionReceipt(hash: TransactionHash(value: "0xsome"), status: .success)
+        delay(0.1)
+        XCTAssertEqual(callCount, 1)
+    }
 
 }

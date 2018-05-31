@@ -8,6 +8,8 @@ import EthereumApplication
 
 extension EthereumApplicationService: BlockchainDomainService {
 
+    static let pollingInterval: TimeInterval = 5
+
     public func requestWalletCreationData(owners: [String], confirmationCount: Int) throws -> WalletCreationData {
         let data = try createSafeCreationTransaction(owners: owners, confirmationCount: confirmationCount)
         return WalletCreationData(walletAddress: data.safe, fee: data.payment)
@@ -18,13 +20,23 @@ extension EthereumApplicationService: BlockchainDomainService {
     }
 
     public func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) {
-
+        do {
+            try observeChangesInBalance(address: account,
+                                        every: EthereumApplicationService.pollingInterval) { newBalance in
+                let response = observer(account, newBalance)
+                return response == .stopObserving
+            }
+        } catch let error {
+            ApplicationServiceRegistry.logger.fatal("Failed to observe balance", error: error)
+        }
     }
 
     public func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void) {
         do {
-            _ = try startSafeCreation(address: address)
-            completion(true, nil)
+            let txHash = try startSafeCreation(address: address)
+            try waitForPendingTransaction(hash: txHash, every: EthereumApplicationService.pollingInterval) { status in
+                completion(status, nil)
+            }
         } catch let error {
             completion(false, error)
         }
