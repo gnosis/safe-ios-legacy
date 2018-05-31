@@ -76,6 +76,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
             callCount += 1
             return false
         }
+        delay(0.1)
         nodeService.eth_getBalance_output = Ether(amount: 2)
         delay(0.1)
         nodeService.eth_getBalance_output = Ether(amount: 2)
@@ -95,6 +96,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
             callCount += 1
             return false
         }
+        delay(0.1)
         nodeService.eth_getBalance_output = Ether(amount: 2)
         delay(0.1)
         nodeService.shouldThrow = true

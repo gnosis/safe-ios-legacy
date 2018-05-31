@@ -294,6 +294,31 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(blockchainService.removedAddress, paperWallet)
     }
 
+    func test_whenDeploymentSuccessful_thenFetchesNewBalance() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        blockchainService.updateBalance(100)
+        blockchainService.fund(address: "address", balance: 50)
+        blockchainService.finishDeploymentSuccessfully()
+        let account = try findAccount("ETH")
+        XCTAssertEqual(account.balance, 50)
+    }
+
+    func test_whenAddressIsKnown_thenReturnsIt() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        XCTAssertNotNil(service.selectedWalletAddress)
+    }
+
+    func test_whenAccountMinimumAmountIsKnown_thenReturnsIt() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        XCTAssertNotNil(service.minimumDeploymentAmount)
+    }
+
 }
 
 fileprivate extension WalletApplicationServiceTests {

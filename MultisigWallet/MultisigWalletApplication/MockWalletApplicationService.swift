@@ -26,12 +26,25 @@ public class MockWalletApplicationService: WalletApplicationService {
         }
     }
 
+    private var walletAddress: String?
+
+    public override var selectedWalletAddress: String? {
+        return walletAddress
+    }
+
+    private var deploymentAmount: Int?
+
+    public override var minimumDeploymentAmount: Int? {
+        return deploymentAmount
+    }
+
     public var didCreateNewDraft = false
     public var shouldThrow = false
 
     private var existingOwners: [OwnerType: String] = [:]
     private var accounts: [String: Int] = [:]
     private var minimumFunding: [String: Int] = [:]
+    private var funds: [String: Int] = [:]
     private var subscriptions: [String: () -> Void] = [:]
 
     public func createReadyToUseWallet() {
@@ -68,18 +81,26 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public func assignBlockchainAddress(_ address: String) {
+        walletAddress = address
         _selectedWalletState = .addressKnown
     }
 
     public override func update(account: String, newBalance: Int) {
-        _selectedWalletState = .accountFunded
-        if let minimum = minimumFunding[account], newBalance < minimum {
+        funds[account] = newBalance
+        if let minimum = minimumFunding[account], newBalance >= minimum {
+            _selectedWalletState = .accountFunded
+        } else {
             _selectedWalletState = .notEnoughFunds
         }
     }
 
     public func updateMinimumFunding(account: String, amount: Int) {
+        deploymentAmount = amount
         minimumFunding[account] = amount
+    }
+
+    public override func accountBalance(token: String) -> Int? {
+        return funds[token]
     }
 
     public override func markDeploymentAcceptedByBlockchain() {

@@ -72,16 +72,20 @@ open class EthereumApplicationService {
         return transactionHash.value
     }
 
+    open func balance(address: String) throws -> Int {
+        return try nodeService.eth_getBalance(account: Address(value: address)).amount
+    }
+
     open func observeChangesInBalance(address: String,
                                       every interval: TimeInterval,
                                       block didUpdateBalanceBlock: @escaping (Int) -> Bool) throws {
-        var balance: Ether?
+        var balance: Int?
         try repeatBlock(every: interval) {
             let oldBalance = balance
-            let newBalance = try self.nodeService.eth_getBalance(account: Address(value: address))
+            let newBalance = try self.balance(address: address)
             balance = newBalance
             if newBalance != oldBalance {
-                return didUpdateBalanceBlock(newBalance.amount)
+                return didUpdateBalanceBlock(newBalance)
             }
             return RepeatingShouldStop.no
         }

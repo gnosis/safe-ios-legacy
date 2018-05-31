@@ -25,6 +25,7 @@ public protocol BlockchainDomainService {
     func requestWalletCreationData(owners: [String], confirmationCount: Int) throws -> WalletCreationData
     func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) throws
     func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void) throws
+    func balance(address: String) throws -> Int
 
 }
 

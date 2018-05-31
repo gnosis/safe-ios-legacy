@@ -28,10 +28,11 @@ class PendingSafeViewControllerTests: SafeTestCase {
         XCTAssertNotNil(controller.safeAddressLabel)
     }
 
-    fileprivate func assert(progress percentage: Float, status key: String) {
+    fileprivate func assert(progress percentage: Float, status key: String, line: UInt = #line) {
         controller.loadViewIfNeeded()
-        XCTAssertEqual(controller.progressView.progress, percentage / 100.0)
-        XCTAssertEqual(controller.progressStatusLabel.text, XCLocalizedString(key))
+        delay()
+        XCTAssertEqual(controller.progressView.progress, percentage / 100.0, line: line)
+        XCTAssertEqual(controller.progressStatusLabel.text, XCLocalizedString(key), line: line)
     }
 
     func test_whenAddressNotKnown_thenDisplaysStatus() {
@@ -54,7 +55,11 @@ class PendingSafeViewControllerTests: SafeTestCase {
     func test_whenNotEnoughFunds_thenDisplaysStatus() {
         walletService.updateMinimumFunding(account: "ETH", amount: 100)
         walletService.update(account: "ETH", newBalance: 90)
-        assert(progress: 50, status: "pending_safe.status.not_enough_funds")
+        let status = String(format: XCLocalizedString("pending_safe.status.not_enough_funds"), "90 Wei", "100 Wei")
+        controller.loadViewIfNeeded()
+        delay()
+        XCTAssertEqual(controller.progressView.progress, 50.0 / 100.0)
+        XCTAssertEqual(controller.progressStatusLabel.text, status)
     }
 
     func test_whenTransactionSubmitted_thenDisplaysStatus() {
@@ -65,6 +70,7 @@ class PendingSafeViewControllerTests: SafeTestCase {
     func test_whenTransactionFailed_thenCallsDelegate() {
         walletService.markDeploymentFailed()
         controller.loadViewIfNeeded()
+        delay()
         XCTAssertEqual(delegate.success, false)
     }
 
@@ -81,11 +87,13 @@ class PendingSafeViewControllerTests: SafeTestCase {
     func test_whenTransactionSuccess_thenCallsDelegate() {
         walletService.markDeploymentSuccess()
         controller.loadViewIfNeeded()
+        delay()
         XCTAssertEqual(delegate.success, true)
     }
 
     func test_whenStatusUpdated_thenDisplaysIt() {
         controller.loadViewIfNeeded()
+        delay()
         walletService.markDeploymentSuccess()
         assertDisplayedDeploySuccessStatus()
     }
