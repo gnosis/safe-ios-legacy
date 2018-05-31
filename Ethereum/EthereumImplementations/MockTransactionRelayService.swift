@@ -32,7 +32,7 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         -> SignedSafeCreationTransaction {
             createSafeCreationTransaction_input = (owners, confirmationCount, randomData)
             delay(randomizedNetworkResponseDelay)
-            return SignedSafeCreationTransaction(safe: Address(value: "0x9c717087d1838c58e6ea0be9d0169c498224fded"),
+            return SignedSafeCreationTransaction(safe: Address(value: "0x57b2573E5FA7c7C9B5Fa82F3F03A75F53A0efdF5"),
                                                  payment: Ether(amount: 1),
                                                  signature: Signature(),
                                                  tx: Transaction())
@@ -43,7 +43,7 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
     public func startSafeCreation(address: Address) throws -> TransactionHash {
         delay(randomizedNetworkResponseDelay)
         startSafeCreation_input = address
-        return TransactionHash(value: "0x1e58d214d8d70b6e3711d94ecc9cb2d4edccbd593caf6be46a379929c01b7d80")
+        return TransactionHash(value: "0x3b9307c1473e915d04292a0f5b0f425eaf527f53852357e2c649b8c447e3246a")
     }
 
 }

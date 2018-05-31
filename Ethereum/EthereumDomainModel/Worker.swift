@@ -16,7 +16,6 @@ public class Worker: Assertable {
         case invalidRepatingTimeInterval
     }
 
-
     private let block: () -> Bool
     private let interval: TimeInterval
     private var timer: Timer?
@@ -57,10 +56,12 @@ public class Worker: Assertable {
     }
 
     func start() {
-        let shouldStop = self.block()
-        if shouldStop {
-            stop()
-            return
+        RunLoop.current.perform {
+            let shouldStop = self.block()
+            if shouldStop {
+                self.stop()
+                return
+            }
         }
         guard timer == nil else { return }
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in

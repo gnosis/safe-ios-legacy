@@ -28,10 +28,10 @@ class PendingSafeViewControllerTests: SafeTestCase {
         XCTAssertNotNil(controller.safeAddressLabel)
     }
 
-    fileprivate func assert(progress percentage: Float, status key: String) {
+    fileprivate func assert(progress percentage: Float, status key: String, line: UInt = #line) {
         controller.loadViewIfNeeded()
-        XCTAssertEqual(controller.progressView.progress, percentage / 100.0)
-        XCTAssertEqual(controller.progressStatusLabel.text, XCLocalizedString(key))
+        XCTAssertEqual(controller.progressView.progress, percentage / 100.0, line: line)
+        XCTAssertEqual(controller.progressStatusLabel.text, XCLocalizedString(key), line: line)
     }
 
     func test_whenAddressNotKnown_thenDisplaysStatus() {
