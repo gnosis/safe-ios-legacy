@@ -29,15 +29,15 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
         XCTAssertEqual(controller.extensionAddressInput.editingMode, .scanOnly)
     }
 
-    func test_viewDidLoad_whenNoInitialAddress_thenFinishButtonIsDisabled() {
-        XCTAssertFalse(controller.finishButton.isEnabled)
+    func test_viewDidLoad_whenNoInitialAddress_thenSaveButtonIsDisabled() {
+        XCTAssertFalse(controller.saveButton.isEnabled)
     }
 
-    func test_viewDidLoad_whenInitialAddressProvided_thenFinishButtonIsEnabled() {
+    func test_viewDidLoad_whenInitialAddressProvided_thenSaveButtonIsEnabled() {
         walletService.addOwner(address: "address", type: .browserExtension)
         controller = PairWithBrowserExtensionViewController.create(delegate: delegate)
         controller.loadViewIfNeeded()
-        XCTAssertTrue(controller.finishButton.isEnabled)
+        XCTAssertTrue(controller.saveButton.isEnabled)
     }
 
     func test_presentScannerController() {
@@ -47,9 +47,9 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
         XCTAssertTrue(controller.presentedViewController === presentedController)
     }
 
-    func test_didScanValidCode_makesFinishButtonEnabled() {
+    func test_didScanValidCode_makesSaveButtonEnabled() {
         controller.didScanValidCode()
-        XCTAssertTrue(controller.finishButton.isEnabled)
+        XCTAssertTrue(controller.saveButton.isEnabled)
     }
 
     func test_didScanValidCode_dismissesScannerController() {

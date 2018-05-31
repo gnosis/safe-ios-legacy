@@ -192,8 +192,8 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59r-7j-b9i">
-                                <rect key="frame" x="167" y="260" width="41" height="30"/>
-                                <state key="normal" title="Finish"/>
+                                <rect key="frame" x="171" y="260" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="finish:" destination="OM1-mc-Hz2" eventType="touchUpInside" id="xlP-Cf-Oqi"/>
                                 </connections>
@@ -214,7 +214,7 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
                     </view>
                     <connections>
                         <outlet property="extensionAddressInput" destination="NTc-Ch-rJw" id="py2-WJ-ikW"/>
-                        <outlet property="finishButton" destination="59r-7j-b9i" id="V4F-bV-Mox"/>
+                        <outlet property="saveButton" destination="59r-7j-b9i" id="V4F-bV-Mox"/>
                         <outlet property="titleLabel" destination="X9O-S6-MKV" id="xR5-uf-jsI"/>
                     </connections>
                 </viewController>

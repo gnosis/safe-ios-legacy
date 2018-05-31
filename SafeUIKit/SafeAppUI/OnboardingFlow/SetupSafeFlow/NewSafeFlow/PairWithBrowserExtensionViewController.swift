@@ -17,14 +17,14 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     enum Strings {
 
-        static let finish = LocalizedString("new_safe.extension.finish",
-                                            comment: "Finish button title in extension setup screen")
+        static let save = LocalizedString("new_safe.extension.save",
+                                            comment: "Save button title in extension setup screen")
 
     }
 
     @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var extensionAddressInput: QRCodeInput!
-    @IBOutlet weak var finishButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
 
     private(set) weak var delegate: PairWithBrowserDelegate?
     private var logger: Logger {
@@ -51,8 +51,8 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         extensionAddressInput.editingMode = .scanOnly
         extensionAddressInput.qrCodeDelegate = self
         extensionAddressInput.qrCodeConverter = ethereumService.address(browserExtensionCode:)
-        finishButton.isEnabled = walletService.isOwnerExists(.browserExtension)
-        finishButton.setTitle(Strings.finish, for: .normal)
+        saveButton.isEnabled = walletService.isOwnerExists(.browserExtension)
+        saveButton.setTitle(Strings.save, for: .normal)
     }
 
     @IBAction func finish(_ sender: Any) {
@@ -64,7 +64,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             try walletService.addOwner(address: text, type: .browserExtension)
             delegate?.didPair()
         } catch let e {
-            ErrorHandler.showError(log: "Failed to add browser extension \(text)", error: e)
+            ErrorHandler.showFatalError(log: "Failed to add browser extension \(text)", error: e)
         }
     }
 
@@ -83,7 +83,7 @@ extension PairWithBrowserExtensionViewController: QRCodeInputDelegate {
 
     func didScanValidCode() {
         scannerController?.dismiss(animated: true)
-        finishButton.isEnabled = true
+        saveButton.isEnabled = true
     }
 
 }
