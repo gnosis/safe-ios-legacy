@@ -192,9 +192,8 @@ public class WalletApplicationService: Assertable {
             do {
                 try markDeploymentSuccess()
                 try finishDeployment()
-                if let paperWallet = ownerAddress(of: .paperWallet) {
-                    try DomainRegistry.blockchainService.removeExternallyOwnedAccount(address: paperWallet)
-                }
+                let paperWallet = ownerAddress(of: .paperWallet)!
+                try DomainRegistry.blockchainService.removeExternallyOwnedAccount(address: paperWallet)
             } catch let error {
                 ApplicationServiceRegistry.logger.fatal("Failed to save success deployment state", error: error)
                 try? markDeploymentFailed()
