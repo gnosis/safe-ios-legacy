@@ -13,12 +13,16 @@ protocol ConfirmMnemonicDelegate: class {
 
 final class ConfirmMnemonicViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var firstWordNumberLabel: UILabel!
     @IBOutlet weak var secondWordNumberLabel: UILabel!
     @IBOutlet weak var firstWordTextInput: TextInput!
     @IBOutlet weak var secondWordTextInput: TextInput!
+    @IBOutlet weak var confirmButton: UIButton!
+
+    private var activeInput: TextInput?
 
     private(set) weak var delegate: ConfirmMnemonicDelegate?
     var words: [String] { return account.mnemonicWords }
@@ -41,6 +45,16 @@ final class ConfirmMnemonicViewController: UIViewController {
             dismiss(animated: true)
             return
         }
+        configureAppearance(words: words)
+        firstWordTextInput.delegate = self
+        firstWordTextInput.accessibilityIdentifier = "firstInput"
+        secondWordTextInput.delegate = self
+        secondWordTextInput.accessibilityIdentifier = "secondInput"
+        _ = firstWordTextInput.becomeFirstResponder()
+        registerForKeyboardNotifications()
+    }
+
+    private func configureAppearance(words: [String]) {
         (firstMnemonicWordToCheck, secondMnemonicWordToCheck) = twoRandomWords()
         firstWordNumberLabel.text = "#\(words.index(of: firstMnemonicWordToCheck)! + 1)."
         firstWordNumberLabel.accessibilityIdentifier = "firstWordNumberLabel"
@@ -50,11 +64,9 @@ final class ConfirmMnemonicViewController: UIViewController {
                                           comment: "Title for confirm mnemonic view controller")
         descriptionLabel.text = LocalizedString("recovery.confirm_mnemonic.description",
                                                 comment: "Description for confirm mnemonic view controller")
-        firstWordTextInput.delegate = self
-        firstWordTextInput.accessibilityIdentifier = "firstInput"
-        secondWordTextInput.delegate = self
-        secondWordTextInput.accessibilityIdentifier = "secondInput"
-        _ = firstWordTextInput.becomeFirstResponder()
+        confirmButton.setTitle(
+            LocalizedString("recovery.confirm_mnemonic.confirm_button", comment: "Title for confirm button"),
+            for: .normal)
     }
 
     private func twoRandomWords() -> (String, String) {
@@ -67,21 +79,80 @@ final class ConfirmMnemonicViewController: UIViewController {
         return (firstWord, secondWord)
     }
 
+    private func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWasShown(_:)),
+                                               name: .UIKeyboardDidShow,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillBeHidden(_:)),
+                                               name: .UIKeyboardWillHide,
+                                               object: nil)
+    }
+
+    @objc private func keyboardWasShown(_ notification: Notification) {
+        guard let info = (notification as NSNotification).userInfo,
+            let kbSize = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size,
+            let activeInput = activeInput else { return }
+        let height = kbSize.height
+        // swiftlint:disable:next legacy_constructor
+        let contentInsets = UIEdgeInsetsMake(0, 0, height + 8, 0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+        scrollView.scrollRectToVisible(activeInput.frame, animated: true)
+    }
+
+    @objc private func keyboardWillBeHidden(_ notification: Notification) {
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
+    }
+
+    @IBAction func confirm() {
+        if isValid() {
+            confirmMnemonic()
+        } else {
+            shakeErrors()
+        }
+    }
+
+    private func isValid() -> Bool {
+        return firstWordTextInput.text == firstMnemonicWordToCheck &&
+            secondWordTextInput.text == secondMnemonicWordToCheck
+    }
+
+    private func confirmMnemonic() {
+        do {
+            try ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
+            delegate?.didConfirm()
+        } catch let e {
+            ErrorHandler.showFatalError(log: "Failed to add paper wallet owner \(account.address)", error: e)
+        }
+    }
+
+    private func shakeErrors() {
+        if firstWordTextInput.text != firstMnemonicWordToCheck { firstWordTextInput.shake() }
+        if secondWordTextInput.text != secondMnemonicWordToCheck { secondWordTextInput.shake() }
+    }
+
 }
 
 extension ConfirmMnemonicViewController: TextInputDelegate {
 
+    func textInputDidBeginEditing(_ textInput: TextInput) {
+        activeInput = textInput
+    }
+
+    func textInputDidEndEditing(_ textInput: TextInput) {
+        activeInput = nil
+    }
+
     func textInputDidReturn(_ textInput: TextInput) {
-        if firstWordTextInput.text == firstMnemonicWordToCheck &&
-            secondWordTextInput.text == secondMnemonicWordToCheck {
-            do {
-                try ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
-                delegate?.didConfirm()
-            } catch let e {
-                ErrorHandler.showError(log: "Failed to add paper wallet owner \(account.address)", error: e)
-            }
+        if isValid() {
+            confirmMnemonic()
         } else if textInput == firstWordTextInput {
             _ = secondWordTextInput.becomeFirstResponder()
+        } else {
+            shakeErrors()            
         }
     }
 

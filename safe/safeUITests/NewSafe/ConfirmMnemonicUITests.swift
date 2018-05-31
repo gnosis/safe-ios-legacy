@@ -29,6 +29,17 @@ final class ConfirmMnemonicUITests: UITestCase {
         XCTAssertExist(confirmMnemonicScreen.secondWordNumberLabel)
     }
 
+    // NS-105
+    func test_whenTryingToConfirmWithInvalidWords_thenNothingHappens() {
+        confirmMnemonicScreen.firstInput.typeText("\n")
+        confirmMnemonicScreen.secondInput.typeText("\n")
+        delay()
+        XCTAssertTrue(confirmMnemonicScreen.isDisplayed)
+        confirmMnemonicScreen.confirmButton.tap()
+        delay()
+        XCTAssertTrue(confirmMnemonicScreen.isDisplayed)
+    }
+
     // NS-106
     func test_whenNavigatingBackAndForward_checkingWordsAreAlwaysDifferent() {
         let firstWordNumber = wordNumber(from: confirmMnemonicScreen.firstWordNumberLabel.label)
@@ -51,9 +62,9 @@ final class ConfirmMnemonicUITests: UITestCase {
         assertPaperWalletIsSet()
     }
 
-    // NS-110
+    // NS-107-01, NS-110
     func test_restartingAppInvalidatesConfiguredPaperWallet() {
-        let mnemonic = confirmPaperWalletWithValidWords()
+        let mnemonic = confirmPaperWalletWithValidWords(withConfirmButton: true)
         Application().terminate()
         givenNewSafeSetup(withAppReset: false)
         XCTAssertTrue(newSafeScreen.isDisplayed)
@@ -70,7 +81,7 @@ final class ConfirmMnemonicUITests: UITestCase {
     }
 
     @discardableResult
-    private func confirmPaperWalletWithValidWords() -> String {
+    private func confirmPaperWalletWithValidWords(withConfirmButton: Bool = false) -> String {
         TestUtils.navigateBack()
         let mnemonic = saveMnemonicScreen.mnemonic.label
         let mnemonicWords = mnemonic.components(separatedBy: " ")
@@ -81,7 +92,11 @@ final class ConfirmMnemonicUITests: UITestCase {
         confirmMnemonicScreen.firstInput.typeText("\n")
         XCTAssertTrue(confirmMnemonicScreen.secondInput.hasFocus)
         confirmMnemonicScreen.secondInput.typeText(mnemonicWords[secondWordNumber - 1])
-        confirmMnemonicScreen.secondInput.typeText("\n")
+        if withConfirmButton {
+            confirmMnemonicScreen.confirmButton.tap()
+        } else {
+            confirmMnemonicScreen.secondInput.typeText("\n")
+        }
         assertPaperWalletIsSet()
         return mnemonic
     }
