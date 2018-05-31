@@ -161,7 +161,7 @@ public class WalletApplicationService: Assertable {
         guard let address = wallet.address else {
             throw Error.missingWalletAddress
         }
-        service.observeBalance(account: address.value, observer: didUpdateBalance(account:newBalance:))
+        try service.observeBalance(account: address.value, observer: didUpdateBalance(account:newBalance:))
     }
 
     private func didUpdateBalance(account: String, newBalance: Int) -> BlockchainBalanceObserverResponse {
@@ -183,7 +183,7 @@ public class WalletApplicationService: Assertable {
             throw Error.missingWalletAddress
         }
         let service = DomainRegistry.blockchainService
-        service.createWallet(address: address.value, completion: didFinishDeployment(success:error:))
+        try service.createWallet(address: address.value, completion: didFinishDeployment(success:error:))
         try markDeploymentAcceptedByBlockchain()
     }
 
@@ -192,6 +192,8 @@ public class WalletApplicationService: Assertable {
             do {
                 try markDeploymentSuccess()
                 try finishDeployment()
+                let paperWallet = ownerAddress(of: .paperWallet)!
+                try DomainRegistry.blockchainService.removeExternallyOwnedAccount(address: paperWallet)
             } catch let error {
                 ApplicationServiceRegistry.logger.fatal("Failed to save success deployment state", error: error)
                 try? markDeploymentFailed()

@@ -21,9 +21,10 @@ public typealias BlockchainBalanceObserver = (_ account: String, _ balance: Int)
 public protocol BlockchainDomainService {
 
     func generateExternallyOwnedAccount() throws -> String
+    func removeExternallyOwnedAccount(address: String) throws
     func requestWalletCreationData(owners: [String], confirmationCount: Int) throws -> WalletCreationData
-    func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver)
-    func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void)
+    func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) throws
+    func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void) throws
 
 }
 

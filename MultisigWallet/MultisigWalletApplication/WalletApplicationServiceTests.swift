@@ -284,6 +284,16 @@ class WalletApplicationServiceTests: XCTestCase {
         assert(state: .readyToUse)
     }
 
+    func test_whenDeploymentSuccessful_thenRemovesPaperWallet() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        let paperWallet = service.ownerAddress(of: .paperWallet)!
+        try service.startDeployment()
+        blockchainService.updateBalance(100)
+        blockchainService.finishDeploymentSuccessfully()
+        XCTAssertEqual(blockchainService.removedAddress, paperWallet)
+    }
+
 }
 
 fileprivate extension WalletApplicationServiceTests {

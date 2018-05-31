@@ -19,26 +19,18 @@ extension EthereumApplicationService: BlockchainDomainService {
         return try generateExternallyOwnedAccount().address
     }
 
-    public func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) {
-        do {
-            try observeChangesInBalance(address: account,
-                                        every: EthereumApplicationService.pollingInterval) { newBalance in
-                let response = observer(account, newBalance)
-                return response == .stopObserving
-            }
-        } catch let error {
-            ApplicationServiceRegistry.logger.fatal("Failed to observe balance", error: error)
+    public func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) throws {
+        try observeChangesInBalance(address: account,
+                                    every: EthereumApplicationService.pollingInterval) { newBalance in
+            let response = observer(account, newBalance)
+            return response == .stopObserving
         }
     }
 
-    public func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void) {
-        do {
-            let txHash = try startSafeCreation(address: address)
-            try waitForPendingTransaction(hash: txHash, every: EthereumApplicationService.pollingInterval) { status in
-                completion(status, nil)
-            }
-        } catch let error {
-            completion(false, error)
+    public func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void) throws {
+        let txHash = try startSafeCreation(address: address)
+        try waitForPendingTransaction(hash: txHash, every: EthereumApplicationService.pollingInterval) { status in
+            completion(status, nil)
         }
     }
 
