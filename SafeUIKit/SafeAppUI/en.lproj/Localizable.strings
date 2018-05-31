@@ -104,7 +104,7 @@
 "pending_safe.failed_alert.title" = "Error";
 
 /* Info label about safe creation */
-"pending_safe.info" = "Please transfer required amount to the new safe address.";
+"pending_safe.info" = "Your safe is being created. Please follow status updates below.";
 
 /* Account received enough funds */
 "pending_safe.status.account_funded" = "Account has enough funds. Proceeding.";

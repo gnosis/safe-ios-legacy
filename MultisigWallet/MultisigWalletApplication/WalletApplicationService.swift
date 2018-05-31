@@ -88,6 +88,10 @@ public class WalletApplicationService: Assertable {
         return selectedWalletState == .readyToUse
     }
 
+    public var selectedWalletAddress: String? {
+        return (try? findSelectedWallet())?.address?.value
+    }
+
     private static let validAccountUpdateStates: [WalletState] = [
         .addressKnown, .readyToUse, .notEnoughFunds, .accountFunded, .deploymentAcceptedByBlockchain,
         .deploymentSuccess, .deploymentFailed]
@@ -96,6 +100,7 @@ public class WalletApplicationService: Assertable {
     public init() {}
 
     // MARK: - Wallet
+
 
     public func createNewDraftWallet() throws {
         try notifyWalletStateChangesAfter {

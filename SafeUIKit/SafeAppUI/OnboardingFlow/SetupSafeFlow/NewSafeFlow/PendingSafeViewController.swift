@@ -62,6 +62,7 @@ public class PendingSafeViewController: UIViewController {
         progressStatusLabel.text = nil
         progressView.progress = 0
         updateStatus()
+        updateSafeAddress()
         subscription = ApplicationServiceRegistry.walletService.subscribe(updateStatus)
     }
 
@@ -76,6 +77,7 @@ public class PendingSafeViewController: UIViewController {
         case .deploymentStarted:
             update(progress: 0.1, status: Strings.Status.started)
         case .addressKnown:
+            updateSafeAddress()
             update(progress: 0.2, status: Strings.Status.addressKnown)
         case .accountFunded:
             update(progress: 0.5, status: Strings.Status.accountFunded)
@@ -84,17 +86,29 @@ public class PendingSafeViewController: UIViewController {
         case .deploymentAcceptedByBlockchain:
             update(progress: 0.8, status: Strings.Status.deploymentAccepted)
         case .deploymentFailed:
+            wait(for: 2.0) // otherwise it feels too fast
             delegate?.deploymentDidFail()
         case .deploymentSuccess:
             update(progress: 1.0, status: Strings.Status.deploymentSuccess)
-            delegate?.deploymentDidSuccess()
+            wait(for: 2.0) // otherwise it feels too fast
+            self.delegate?.deploymentDidSuccess()
         default: break
         }
     }
 
+    private func updateSafeAddress() {
+        safeAddressLabel.text = ApplicationServiceRegistry.walletService.selectedWalletAddress
+    }
+
+    private func wait(for time: TimeInterval) {
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: time))
+    }
+
     private func update(progress: Float, status: String) {
-        progressStatusLabel.text = status
-        progressView.progress = progress
+        UIView.animate(withDuration: 0.15) {
+            self.progressStatusLabel.text = status
+        }
+        progressView.setProgress(progress, animated: true)
     }
 
     @IBAction func cancel(_ sender: Any) {

@@ -294,6 +294,13 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(blockchainService.removedAddress, paperWallet)
     }
 
+    func test_whenAddressIsKnown_thenReturnsIt() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        XCTAssertNotNil(service.selectedWalletAddress)
+    }
+
 }
 
 fileprivate extension WalletApplicationServiceTests {
