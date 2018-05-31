@@ -36,7 +36,7 @@ class UITestCase: XCTestCase {
         givenUnlockedAppSetup(withAppReset: withAppReset)
         let setupOptions = SetupSafeOptionsScreen()
         if withAppReset {
-            setupOptions.newSafe.tap()            
+            setupOptions.newSafe.tap()
         }
     }
 
