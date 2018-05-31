@@ -92,6 +92,15 @@ public class WalletApplicationService: Assertable {
         return (try? findSelectedWallet())?.address?.value
     }
 
+    public var minimumDeploymentAmount: Int? {
+        do {
+            let account = try findAccount("ETH")
+            return account.minimumDeploymentTransactionAmount
+        } catch {
+            return nil
+        }
+    }
+
     private static let validAccountUpdateStates: [WalletState] = [
         .addressKnown, .readyToUse, .notEnoughFunds, .accountFunded, .deploymentAcceptedByBlockchain,
         .deploymentSuccess, .deploymentFailed]
@@ -195,11 +204,10 @@ public class WalletApplicationService: Assertable {
     private func didFinishDeployment(success: Bool, error: Swift.Error?) {
         if success {
             do {
+                try fetchBalance()
                 try markDeploymentSuccess()
                 try finishDeployment()
-                if let paperWallet = ownerAddress(of: .paperWallet) {
-                    try DomainRegistry.blockchainService.removeExternallyOwnedAccount(address: paperWallet)
-                }
+                try removePaperWallet()
             } catch let error {
                 ApplicationServiceRegistry.logger.fatal("Failed to save success deployment state", error: error)
                 try? markDeploymentFailed()
@@ -208,6 +216,17 @@ public class WalletApplicationService: Assertable {
             ApplicationServiceRegistry.logger.fatal("Failed to deploy wallet in blockchain", error: error!)
             try? markDeploymentFailed()
         }
+    }
+
+    private func fetchBalance() throws {
+        let wallet = try findSelectedWallet()
+        let newBalance = try DomainRegistry.blockchainService.balance(address: wallet.address!.value)
+        try update(account: "ETH", newBalance: newBalance)
+    }
+
+    private func removePaperWallet() throws {
+        let paperWallet = ownerAddress(of: .paperWallet)!
+        try DomainRegistry.blockchainService.removeExternallyOwnedAccount(address: paperWallet)
     }
 
     private func markReadyToDeploy() throws {
@@ -316,6 +335,15 @@ public class WalletApplicationService: Assertable {
     }
 
     // MARK: - Accounts
+
+    public func accountBalance(token: String) -> Int? {
+        do {
+            let account = try findAccount(token)
+            return account.balance
+        } catch {
+            return nil
+        }
+    }
 
     private func updateMinimumFunding(account token: String, amount: Int) throws {
         try assertCanChangeAccount()

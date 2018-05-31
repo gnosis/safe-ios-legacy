@@ -19,6 +19,8 @@ public class PendingSafeViewController: UIViewController {
         static let title = LocalizedString("pending_safe.title", comment: "Title of pending safe screen")
         static let cancel = LocalizedString("pending_safe.cancel", comment: "Cancel safe creation button")
         static let info = LocalizedString("pending_safe.info", comment: "Info label about safe creation")
+        static let addressLabel = LocalizedString("pending_safe.address", comment: "Address label")
+        static let balanceLabel = LocalizedString("pending_safe.balanceLabel", comment: "Balance label")
 
         struct Status {
 
@@ -26,10 +28,11 @@ public class PendingSafeViewController: UIViewController {
                                                  comment: "Deployment started status")
             static let addressKnown = LocalizedString("pending_safe.status.address_known",
                                                       comment: "Address is known status")
+
             static let accountFunded = LocalizedString("pending_safe.status.account_funded",
                                                        comment: "Account received enough funds")
-            static let notEnoughFunds = LocalizedString("pending_safe.status.not_enough_funds",
-                                                        comment: "Not enough funds in account")
+            static let notEnoughFundsFormat = LocalizedString("pending_safe.status.not_enough_funds",
+                                                              comment: "Not enough funds in account")
             static let deploymentAccepted = LocalizedString("pending_safe.status.deployment_accepted",
                                                             comment: "Deployment accepted by blockchain")
             static let deploymentSuccess = LocalizedString("pending_safe.status.deployment_success",
@@ -46,6 +49,14 @@ public class PendingSafeViewController: UIViewController {
     @IBOutlet weak var progressStatusLabel: UILabel!
     weak var delegate: PendingSafeViewControllerDelegate?
     private var subscription: String?
+    private var walletService: WalletApplicationService { return ApplicationServiceRegistry.walletService }
+    private var uiUpdateQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.underlyingQueue = DispatchQueue.main
+        queue.maxConcurrentOperationCount = 1
+        queue.qualityOfService = .userInitiated
+        return queue
+    }()
 
     public static func create(delegate: PendingSafeViewControllerDelegate? = nil) -> PendingSafeViewController {
         let controller = StoryboardScene.NewSafe.pendingSafeViewController.instantiate()
@@ -62,42 +73,60 @@ public class PendingSafeViewController: UIViewController {
         progressStatusLabel.text = nil
         progressView.progress = 0
         updateStatus()
-        updateSafeAddress()
-        subscription = ApplicationServiceRegistry.walletService.subscribe(updateStatus)
+        subscription = walletService.subscribe(updateStatus)
     }
 
     deinit {
         if let subscription = subscription {
-            ApplicationServiceRegistry.walletService.unsubscribe(subscription: subscription)
+            walletService.unsubscribe(subscription: subscription)
         }
     }
 
     private func updateStatus() {
-        switch ApplicationServiceRegistry.walletService.selectedWalletState {
-        case .deploymentStarted:
-            update(progress: 0.1, status: Strings.Status.started)
-        case .addressKnown:
-            updateSafeAddress()
-            update(progress: 0.2, status: Strings.Status.addressKnown)
-        case .accountFunded:
-            update(progress: 0.5, status: Strings.Status.accountFunded)
-        case .notEnoughFunds:
-            update(progress: 0.5, status: Strings.Status.notEnoughFunds)
-        case .deploymentAcceptedByBlockchain:
-            update(progress: 0.8, status: Strings.Status.deploymentAccepted)
-        case .deploymentFailed:
-            wait(for: 2.0) // otherwise it feels too fast
-            delegate?.deploymentDidFail()
-        case .deploymentSuccess:
-            update(progress: 1.0, status: Strings.Status.deploymentSuccess)
-            wait(for: 2.0) // otherwise it feels too fast
-            self.delegate?.deploymentDidSuccess()
-        default: break
+        let state = walletService.selectedWalletState
+        let address = walletService.selectedWalletAddress
+        let payment = walletService.minimumDeploymentAmount
+        let balance = walletService.accountBalance(token: "ETH")
+        uiUpdateQueue.addOperation { [unowned self] in
+            self.wait(for: 0.5) // otherwise changes feel too fast
+            self.updateAddressLabel(address: address, balance: balance)
+            switch state {
+            case .deploymentStarted:
+                self.update(progress: 0.1, status: Strings.Status.started)
+            case .addressKnown:
+                self.update(progress: 0.2, status: Strings.Status.addressKnown)
+            case .accountFunded:
+                self.update(progress: 0.5, status: Strings.Status.accountFunded)
+            case .notEnoughFunds:
+                self.update(progress: 0.5, status: self.notEnoughFundsStatus(payment: payment, balance: balance))
+            case .deploymentAcceptedByBlockchain:
+                self.update(progress: 0.8, status: Strings.Status.deploymentAccepted)
+            case .deploymentFailed:
+                self.delegate?.deploymentDidFail()
+            case .deploymentSuccess:
+                self.update(progress: 1.0, status: Strings.Status.deploymentSuccess)
+                self.delegate?.deploymentDidSuccess()
+            default: break
+            }
         }
     }
 
-    private func updateSafeAddress() {
-        safeAddressLabel.text = ApplicationServiceRegistry.walletService.selectedWalletAddress
+    private func updateAddressLabel(address: String?, balance: Int?) {
+        var addressText = ""
+        if let address = address {
+            addressText += "\(Strings.addressLabel):\n\(address)"
+        }
+        if let balance = balance {
+            addressText += "\n\(Strings.balanceLabel): \(balance) Wei"
+        }
+        self.safeAddressLabel.text = addressText
+    }
+
+    private func notEnoughFundsStatus(payment: Int!, balance: Int!) -> String {
+        let requiredEth = "\(payment!) Wei"
+        let balanceEth = "\(balance!) Wei"
+        let status = String(format: Strings.Status.notEnoughFundsFormat, balanceEth, requiredEth)
+        return status
     }
 
     private func wait(for time: TimeInterval) {
@@ -105,7 +134,7 @@ public class PendingSafeViewController: UIViewController {
     }
 
     private func update(progress: Float, status: String) {
-        UIView.animate(withDuration: 0.15) {
+        UIView.animate(withDuration: 0.2) {
             self.progressStatusLabel.text = status
         }
         progressView.setProgress(progress, animated: true)

@@ -14,6 +14,7 @@ open class MockEthereumApplicationService: EthereumApplicationService {
     private var generatedAccount: ExternallyOwnedAccountData?
     public var shouldThrow = false
     private var accounts = [String: ExternallyOwnedAccountData]()
+    private var balances = [String: Int]()
 
     open override func address(browserExtensionCode: String) -> String? {
         return resultAddressFromAnyBrowserExtensionCode
@@ -36,6 +37,14 @@ open class MockEthereumApplicationService: EthereumApplicationService {
 
     open override func findExternallyOwnedAccount(by address: String) throws -> ExternallyOwnedAccountData? {
         return accounts[address]
+    }
+
+    public func fundAccount(address: String, balance: Int) {
+        balances[address] = balance
+    }
+
+    open override func balance(address: String) throws -> Int {
+        return balances[address] ?? 0
     }
 
 }

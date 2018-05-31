@@ -9,6 +9,7 @@ public class MockBlockchainDomainService: BlockchainDomainService {
 
     public var generatedAccountAddress: String = "address"
     public var shouldThrow = false
+    private var balances = [String: Int]()
 
     enum Error: String, LocalizedError, Hashable {
         case error
@@ -70,4 +71,13 @@ public class MockBlockchainDomainService: BlockchainDomainService {
         if shouldThrow { throw Error.error }
         removedAddress = address
     }
+
+    public func fund(address: String, balance: Int) {
+        balances[address] = balance
+    }
+
+    public func balance(address: String) throws -> Int {
+        return balances[address] ?? 0
+    }
+
 }

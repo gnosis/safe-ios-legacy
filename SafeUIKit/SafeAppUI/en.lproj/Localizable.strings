@@ -91,6 +91,12 @@
 /* Title of abort safe creation alert */
 "pending_safe.abort_alert.title" = "Aborting Safe Creation";
 
+/* Address label */
+"pending_safe.address" = "Safe address";
+
+/* Balance label */
+"pending_safe.balanceLabel" = "Balance";
+
 /* Cancel safe creation button */
 "pending_safe.cancel" = "Cancel";
 
@@ -122,7 +128,7 @@
 "pending_safe.status.deployment_success" = "Successfully created new Safe in the blockchain";
 
 /* Not enough funds in account */
-"pending_safe.status.not_enough_funds" = "Safe has not enough funds. Please transfer more.";
+"pending_safe.status.not_enough_funds" = "Not enough funds for safe creation: %@. Please transfer at least %@.";
 
 /* Title of pending safe screen */
 "pending_safe.title" = "Creating new safe";
