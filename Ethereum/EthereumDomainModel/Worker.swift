@@ -63,7 +63,13 @@ public class Worker: Assertable {
                 self.stop()
             }
         }
-        RunLoop.current.perform(updateClosure)
+        if Thread.isMainThread {
+            // RunLoop configured only on main thread, that's why this won't work on random background thread
+            RunLoop.current.perform(updateClosure)
+        } else {
+            // on background thread, we dispatch block asynchronously.
+            DispatchQueue.global().async(execute: updateClosure)
+        }
         guard timer == nil else { return }
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
             updateClosure()
