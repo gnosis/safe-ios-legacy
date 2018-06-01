@@ -23,7 +23,7 @@ class AbortSafeCreationAlertController: SafeAlertController {
         static let abortTitle = LocalizedString("pending_safe.abort_alert.abort",
                                                 comment: "Abort safe creation button title")
         static let cancelTitle = LocalizedString("pending_safe.abort_alert.cancel",
-                                                 comment: "Continue safe creation button title")
+                                                 comment: "Button to cancel 'abort create' alert")
 
     }
 

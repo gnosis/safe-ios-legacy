@@ -25,6 +25,7 @@ public class WalletID: BaseID {}
  |                                | changeBlockchainAddress()            | addressKnown                   |                |
  | addressKnown                   | markDeploymentAcceptedByBlockchain() | deploymentAcceptedByBlockchain |                |
  |                                | abortDeployment()                    | readyToDeploy                  |                |
+ |                                | markDeploymentFailed()               | deploymentFailed               |                |
  | deploymentAcceptedByBlockchain | markDeploymentFailed()               | deploymentFailed               | Terminal State |
  |                                | markDeploymentSuccess()              | deploymentSuccess              |                |
  |                                | abortDeployment()                    | readyToDeploy                  |                |
