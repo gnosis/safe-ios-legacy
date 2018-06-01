@@ -68,13 +68,15 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
     func test_whenObservingBalanceAndItChanges_thenCallsObserver() throws {
         var observedBalance: Int?
         var callCount = 0
-        try applicationService.observeChangesInBalance(address: "address", every: 0.1) { balance in
-            if callCount == 3 {
-                return true
+        DispatchQueue.global().async {
+            try? self.applicationService.observeChangesInBalance(address: "address", every: 0.1) { balance in
+                if callCount == 3 {
+                    return true
+                }
+                observedBalance = balance
+                callCount += 1
+                return false
             }
-            observedBalance = balance
-            callCount += 1
-            return false
         }
         delay(0.1)
         nodeService.eth_getBalance_output = Ether(amount: 2)
@@ -89,12 +91,14 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
 
     func test_whenBalanceThrows_thenContinuesObserving() throws {
         var callCount = 0
-        try applicationService.observeChangesInBalance(address: "address", every: 0.1) { _ in
-            if callCount == 3 {
-                return true
+        DispatchQueue.global().async {
+            try? self.applicationService.observeChangesInBalance(address: "address", every: 0.1) { _ in
+                if callCount == 3 {
+                    return true
+                }
+                callCount += 1
+                return false
             }
-            callCount += 1
-            return false
         }
         delay(0.1)
         nodeService.eth_getBalance_output = Ether(amount: 2)

@@ -91,7 +91,8 @@ public class WalletApplicationService: Assertable {
     public var selectedWalletAddress: String? {
         do {
             return try findSelectedWallet().address?.value
-        } catch {
+        } catch let error {
+            ApplicationServiceRegistry.logger.error("Error getting selected wallet: \(error)")
             return nil
         }
     }
@@ -143,6 +144,7 @@ public class WalletApplicationService: Assertable {
         do {
             try doStartDeployment()
             let data = try requestWalletCreation()
+            guard selectedWalletState == .deploymentStarted else { return }
             try assignBlockchainAddress(data.walletAddress)
             try updateMinimumFunding(account: "ETH", amount: data.fee)
             try startObservingWalletBalance()
@@ -184,6 +186,9 @@ public class WalletApplicationService: Assertable {
 
     private func didUpdateBalance(account: String, newBalance: Int) -> BlockchainBalanceObserverResponse {
         do {
+            guard [WalletState.accountFunded, WalletState.notEnoughFunds].contains(selectedWalletState) else {
+                return .stopObserving
+            }
             try update(account: "ETH", newBalance: newBalance)
             if selectedWalletState == .accountFunded {
                 try createWalletInBlockchain()
@@ -204,18 +209,19 @@ public class WalletApplicationService: Assertable {
         }
         let service = DomainRegistry.blockchainService
         // TODO: if the call fails, show error in UI and possibility to retry with a button
-        let hash = try service.executeWalletCreationTransaction(address: address.value)
+        let hash = try service.executeWalletCreationTransaction(address: address.value) // this may take a while
+        guard selectedWalletState == .accountFunded else { return }
         try markDeploymentAcceptedByBlockchain()
         let isSucdess = try service.waitForPendingTransaction(hash: hash)
+        guard selectedWalletState == .deploymentAcceptedByBlockchain else { return }
         didFinishDeployment(success: isSucdess)
     }
 
     private func didFinishDeployment(success: Bool) {
         if success {
             do {
-                try fetchBalance()
-                try markDeploymentSuccess()
                 try removePaperWallet()
+                try markDeploymentSuccess()
                 try finishDeployment()
             } catch let error {
                 ApplicationServiceRegistry.logger.fatal("Failed to save success deployment state", error: error)
@@ -283,10 +289,25 @@ public class WalletApplicationService: Assertable {
     }
 
     private func findSelectedWallet() throws -> Wallet {
-        guard let portfolio = try DomainRegistry.portfolioRepository.portfolio(),
-            let walletID = portfolio.selectedWallet,
-            let wallet = try DomainRegistry.walletRepository.findByID(walletID) else {
-                throw Error.selectedWalletNotFound
+        var savedPortfolio: Portfolio?
+        do {
+            savedPortfolio = try DomainRegistry.portfolioRepository.portfolio()
+        } catch let error {
+            ApplicationServiceRegistry.logger.error("Failed to fetch portfolio: \(error)")
+            throw error
+        }
+        guard let portfolio = savedPortfolio, let walletID = portfolio.selectedWallet else {
+            throw Error.selectedWalletNotFound
+        }
+        var savedWallet: Wallet?
+        do {
+            savedWallet = try DomainRegistry.walletRepository.findByID(walletID)
+        } catch let error {
+            ApplicationServiceRegistry.logger.error("Failed to fetch wallet \(walletID): \(error)")
+            throw error
+        }
+        guard let wallet = savedWallet else {
+            throw Error.selectedWalletNotFound
         }
         return wallet
     }
@@ -383,11 +404,17 @@ public class WalletApplicationService: Assertable {
 
     private func findAccount(_ token: String) throws -> Account {
         let wallet = try findSelectedWallet()
-        guard let account = try DomainRegistry.accountRepository.find(id: AccountID(token: token),
-                                                                      walletID: wallet.id) else {
-                                                                        throw Error.accountNotFound
+        do {
+            guard let account = try DomainRegistry
+                .accountRepository.find(id: AccountID(token: token), walletID: wallet.id) else {
+                    throw Error.accountNotFound
+            }
+            return account
+        } catch let error {
+            ApplicationServiceRegistry.logger
+                .error("Failed to to find account \(token) for wallet \(wallet.id) in account repository: \(error)")
+            throw error
         }
-        return account
     }
 
     // MARK: - Wallet status update subscribing

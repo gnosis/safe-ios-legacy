@@ -62,15 +62,15 @@ open class DBBaseRepository<T: DBCodable>: Assertable {
 
     open func findByID(_ itemID: T.ID) throws -> T? {
         let sql = String(format: DBBaseRepositorySQL.findByID, tableName)
-        guard let result = try? db.execute(sql: sql,
-                                           bindings: [itemID.id],
-                                           resultMap: itemFromResultSet).first as? T else { return nil }
+        let results = try db.execute(sql: sql, bindings: [itemID.id], resultMap: itemFromResultSet)
+        guard let result = results.first as? T else { return nil }
         return result
     }
 
     open func findFirst() throws -> T? {
         let sql = String(format: DBBaseRepositorySQL.findFirst, tableName)
-        guard let result = try? db.execute(sql: sql, resultMap: itemFromResultSet).first as? T else { return nil }
+        let results = try db.execute(sql: sql, resultMap: itemFromResultSet)
+        guard let result = results.first as? T else { return nil }
         return result
     }
 

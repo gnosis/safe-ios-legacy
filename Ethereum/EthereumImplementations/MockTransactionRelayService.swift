@@ -4,7 +4,6 @@
 
 import Foundation
 import EthereumDomainModel
-import CommonTestSupport
 
 public class MockTransactionRelayService: TransactionRelayDomainService {
 
@@ -12,7 +11,7 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
     private let maxDeviation: Double
 
     private var randomizedNetworkResponseDelay: Double {
-        return MockTransactionRelayService.random(average: averageDelay, maxDeviation: maxDeviation)
+        return MockTransactionRelayService.random(average: 5, maxDeviation: maxDeviation)
     }
 
     static func random(average: Double, maxDeviation: Double) -> Double {
@@ -26,12 +25,20 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         self.maxDeviation = fabs(maxDeviation)
     }
 
+    private func wait(_ time: TimeInterval) {
+        if Thread.isMainThread {
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: time))
+        } else {
+            usleep(UInt32(time * 1_000_000))
+        }
+    }
+
     public var createSafeCreationTransaction_input: (owners: [Address], confirmationCount: Int, randomData: Data)?
 
     public func createSafeCreationTransaction(owners: [Address], confirmationCount: Int, randomData: Data) throws
         -> SignedSafeCreationTransaction {
             createSafeCreationTransaction_input = (owners, confirmationCount, randomData)
-            delay(MockTransactionRelayService.random(average: averageDelay, maxDeviation: maxDeviation))
+            wait(randomizedNetworkResponseDelay)
             return SignedSafeCreationTransaction(safe: Address(value: "0x57b2573E5FA7c7C9B5Fa82F3F03A75F53A0efdF5"),
                                                  payment: Ether(amount: 100),
                                                  signature: Signature(),
@@ -41,7 +48,7 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
     public var startSafeCreation_input: Address?
 
     public func startSafeCreation(address: Address) throws -> TransactionHash {
-        delay(MockTransactionRelayService.random(average: 5, maxDeviation: maxDeviation))
+        wait(randomizedNetworkResponseDelay)
         startSafeCreation_input = address
         return TransactionHash(value: "0x3b9307c1473e915d04292a0f5b0f425eaf527f53852357e2c649b8c447e3246a")
     }
