@@ -152,7 +152,7 @@ extension ConfirmMnemonicViewController: TextInputDelegate {
         } else if textInput == firstWordTextInput {
             _ = secondWordTextInput.becomeFirstResponder()
         } else {
-            shakeErrors()            
+            shakeErrors()
         }
     }
 

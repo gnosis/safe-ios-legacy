@@ -25,12 +25,10 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         let service = ApplicationServiceRegistry.walletService
-        if let balance = service.accountBalance(token: "ETH") {
-            balanceLabel.text = "\(balance) Wei"
-        }
-        if let address = service.selectedWalletAddress {
-            addressLabel.text = address
-        }
+        let balance = service.accountBalance(token: "ETH")!
+        balanceLabel.text = "\(balance) Wei"
+        let address = service.selectedWalletAddress!
+        addressLabel.text = address
     }
 
 }

@@ -18,7 +18,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     enum Strings {
 
         static let save = LocalizedString("new_safe.extension.save",
-                                            comment: "Save button title in extension setup screen")
+                                          comment: "Save button title in extension setup screen")
 
     }
 

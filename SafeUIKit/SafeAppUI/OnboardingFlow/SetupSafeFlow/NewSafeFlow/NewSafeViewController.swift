@@ -49,11 +49,17 @@ class NewSafeViewController: UIViewController {
     }
 
     @IBAction func navigateNext(_ sender: Any) {
-        do {
-            try walletService.startDeployment()
-            delegate?.didSelectNext()
-        } catch let e {
-            ErrorHandler.showError(log: "Failed to start deployment", error: e)
+        DispatchQueue.global().async { [unowned self] in
+            do {
+                DispatchQueue.main.async {
+                    self.delegate?.didSelectNext()
+                }
+                try self.walletService.startDeployment()
+            } catch let e {
+                DispatchQueue.main.async {
+                    ErrorHandler.showError(log: "Failed to start deployment", error: e)
+                }
+            }
         }
     }
 

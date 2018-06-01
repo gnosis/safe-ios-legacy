@@ -22,8 +22,8 @@ class AbortSafeCreationAlertController: SafeAlertController {
         static let message = LocalizedString("pending_safe.abort_alert.message", comment: "Message body of abort alert")
         static let abortTitle = LocalizedString("pending_safe.abort_alert.abort",
                                                 comment: "Abort safe creation button title")
-        static let continueTitle = LocalizedString("pending_safe.abort_alert.continue",
-                                                   comment: "Continue safe creation button title")
+        static let cancelTitle = LocalizedString("pending_safe.abort_alert.cancel",
+                                                 comment: "Button to cancel 'abort create' alert")
 
     }
 
@@ -32,6 +32,10 @@ class AbortSafeCreationAlertController: SafeAlertController {
         let controller = AbortSafeCreationAlertController(title: Strings.title,
                                                           message: Strings.message,
                                                           preferredStyle: .alert)
+        let continueAction = UIAlertAction.create(title: Strings.cancelTitle,
+                                                  style: .cancel,
+                                                  handler: wrap(closure: `continue`))
+        controller.addAction(continueAction)
         let abortAction = UIAlertAction.create(title: Strings.abortTitle, style: .destructive) { _ in
             do {
                 try ApplicationServiceRegistry.walletService.abortDeployment()
@@ -41,10 +45,6 @@ class AbortSafeCreationAlertController: SafeAlertController {
             abort()
         }
         controller.addAction(abortAction)
-        let continueAction = UIAlertAction.create(title: Strings.continueTitle,
-                                                  style: .cancel,
-                                                  handler: wrap(closure: `continue`))
-        controller.addAction(continueAction)
         return controller
     }
 

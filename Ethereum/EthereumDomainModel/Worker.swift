@@ -19,7 +19,9 @@ public class Worker: Assertable {
     private let block: () -> Bool
     private let interval: TimeInterval
     private var timer: Timer?
-
+    private var isTimerRunning: Bool {
+        return timer?.isValid == true
+    }
     private static var workers = [Worker]()
 
     // queue is used for multi-thread synchronization when mutating `workers` array
@@ -56,17 +58,25 @@ public class Worker: Assertable {
     }
 
     func start() {
-        let updateClosure = { [weak self] in
+        guard timer == nil else { return }
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
             guard let `self` = self else { return }
             let shouldStop = self.block()
             if shouldStop {
                 self.stop()
             }
         }
-        RunLoop.current.perform(updateClosure)
-        guard timer == nil else { return }
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
-            updateClosure()
+        timer!.fire()
+        runTimer()
+    }
+
+    private func runTimer() {
+        if Thread.isMainThread {
+            // on main thread, the RunLoop is already configured and running, so nothing to do.
+            return
+        }
+        while isTimerRunning {
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 1)) // allows timer to fire
         }
     }
 

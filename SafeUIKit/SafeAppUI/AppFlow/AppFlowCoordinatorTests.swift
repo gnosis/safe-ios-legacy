@@ -94,6 +94,8 @@ class AppFlowCoordinatorTests: SafeTestCase {
         authenticationService.allowAuthentication()
         _ = try Authenticator.instance.authenticate(.password(password))
         try walletService.createNewDraftWallet()
+        walletService.update(account: "ETH", newBalance: 100)
+        walletService.assignBlockchainAddress("address")
         createFlowCoordinator()
         flowCoordinator.onboardingFlowCoordinator.exitFlow()
         XCTAssertTrue(UIApplication.rootViewController is MainViewController)

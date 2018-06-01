@@ -8,7 +8,7 @@ import EthereumApplication
 
 extension EthereumApplicationService: BlockchainDomainService {
 
-    static let pollingInterval: TimeInterval = 5
+    static let pollingInterval: TimeInterval = 3
 
     public func requestWalletCreationData(owners: [String], confirmationCount: Int) throws -> WalletCreationData {
         let data = try createSafeCreationTransaction(owners: owners, confirmationCount: confirmationCount)
@@ -27,11 +27,9 @@ extension EthereumApplicationService: BlockchainDomainService {
         }
     }
 
-    public func createWallet(address: String, completion: @escaping (Bool, Error?) -> Void) throws {
+    public func executeWalletCreationTransaction(address: String) throws -> String {
         let txHash = try startSafeCreation(address: address)
-        try waitForPendingTransaction(hash: txHash, every: EthereumApplicationService.pollingInterval) { status in
-            completion(status, nil)
-        }
+        return txHash
     }
 
 }

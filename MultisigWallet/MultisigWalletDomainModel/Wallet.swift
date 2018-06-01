@@ -25,6 +25,7 @@ public class WalletID: BaseID {}
  |                                | changeBlockchainAddress()            | addressKnown                   |                |
  | addressKnown                   | markDeploymentAcceptedByBlockchain() | deploymentAcceptedByBlockchain |                |
  |                                | abortDeployment()                    | readyToDeploy                  |                |
+ |                                | markDeploymentFailed()               | deploymentFailed               |                |
  | deploymentAcceptedByBlockchain | markDeploymentFailed()               | deploymentFailed               | Terminal State |
  |                                | markDeploymentSuccess()              | deploymentSuccess              |                |
  |                                | abortDeployment()                    | readyToDeploy                  |                |
@@ -151,7 +152,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func markDeploymentFailed() throws {
-        try assert(status: .deploymentAcceptedByBlockchain)
+        try assert(statusIsOneOf: .deploymentAcceptedByBlockchain, .addressKnown)
         status = .deploymentFailed
     }
 

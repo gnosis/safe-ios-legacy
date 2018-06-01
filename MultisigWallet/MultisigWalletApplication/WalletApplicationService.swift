@@ -89,7 +89,11 @@ public class WalletApplicationService: Assertable {
     }
 
     public var selectedWalletAddress: String? {
-        return (try? findSelectedWallet())?.address?.value
+        do {
+            return try findSelectedWallet().address?.value
+        } catch {
+            return nil
+        }
     }
 
     public var minimumDeploymentAmount: Int? {
@@ -185,10 +189,12 @@ public class WalletApplicationService: Assertable {
                 try createWalletInBlockchain()
                 return .stopObserving
             }
+            return .continueObserving
         } catch let error {
             ApplicationServiceRegistry.logger.fatal("Failed to update ETH account balance", error: error)
+            try? markDeploymentFailed()
+            return .stopObserving
         }
-        return .continueObserving
     }
 
     private func createWalletInBlockchain() throws {
@@ -197,23 +203,26 @@ public class WalletApplicationService: Assertable {
             throw Error.missingWalletAddress
         }
         let service = DomainRegistry.blockchainService
-        try service.createWallet(address: address.value, completion: didFinishDeployment(success:error:))
+        // TODO: if the call fails, show error in UI and possibility to retry with a button
+        let hash = try service.executeWalletCreationTransaction(address: address.value)
         try markDeploymentAcceptedByBlockchain()
+        let isSucdess = try service.waitForPendingTransaction(hash: hash)
+        didFinishDeployment(success: isSucdess)
     }
 
-    private func didFinishDeployment(success: Bool, error: Swift.Error?) {
+    private func didFinishDeployment(success: Bool) {
         if success {
             do {
                 try fetchBalance()
                 try markDeploymentSuccess()
-                try finishDeployment()
                 try removePaperWallet()
+                try finishDeployment()
             } catch let error {
                 ApplicationServiceRegistry.logger.fatal("Failed to save success deployment state", error: error)
                 try? markDeploymentFailed()
             }
         } else {
-            ApplicationServiceRegistry.logger.fatal("Failed to deploy wallet in blockchain", error: error!)
+            ApplicationServiceRegistry.logger.fatal("Blockchain transaction failed")
             try? markDeploymentFailed()
         }
     }
