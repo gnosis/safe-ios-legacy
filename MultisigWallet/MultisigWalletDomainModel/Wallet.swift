@@ -151,7 +151,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func markDeploymentFailed() throws {
-        try assert(status: .deploymentAcceptedByBlockchain)
+        try assert(statusIsOneOf: .deploymentAcceptedByBlockchain, .addressKnown)
         status = .deploymentFailed
     }
 

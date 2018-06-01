@@ -91,17 +91,15 @@ open class EthereumApplicationService {
         }
     }
 
-    open func waitForPendingTransaction(hash: String,
-                                        every interval: TimeInterval,
-                                        completion: @escaping (Bool) -> Void) throws {
-        try repeatBlock(every: interval) {
-            let receipt = try self.nodeService.eth_getTransactionReceipt(transaction: TransactionHash(value: hash))
-            if let receipt = receipt {
-                completion(receipt.status == .success)
-                return RepeatingShouldStop.yes
+    open func waitForPendingTransaction(hash: String) throws -> Bool {
+        var receipt: TransactionReceipt?
+        repeat {
+            receipt = try nodeService.eth_getTransactionReceipt(transaction: TransactionHash(value: hash))
+            if receipt == nil {
+                RunLoop.current.run(until: Date(timeIntervalSinceNow: 2))
             }
-            return RepeatingShouldStop.no
-        }
+        } while receipt == nil
+        return receipt!.status == .success
     }
 
     private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {

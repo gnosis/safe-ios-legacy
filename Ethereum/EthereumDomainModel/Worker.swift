@@ -56,23 +56,17 @@ public class Worker: Assertable {
     }
 
     func start() {
-        let updateClosure = { [weak self] in
+        guard timer == nil else { return }
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
             guard let `self` = self else { return }
             let shouldStop = self.block()
             if shouldStop {
                 self.stop()
             }
         }
-        if Thread.isMainThread {
-            // RunLoop configured only on main thread, that's why this won't work on random background thread
-            RunLoop.current.perform(updateClosure)
-        } else {
-            // on background thread, we dispatch block asynchronously.
-            DispatchQueue.global().async(execute: updateClosure)
-        }
-        guard timer == nil else { return }
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
-            updateClosure()
+        timer!.fire()
+        while !Thread.isMainThread && timer != nil {
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 1))
         }
     }
 

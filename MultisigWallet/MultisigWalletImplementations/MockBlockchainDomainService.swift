@@ -48,21 +48,23 @@ public class MockBlockchainDomainService: BlockchainDomainService {
         return nil
     }
 
-    public var createWallet_input: (address: String, completion: (Bool, Swift.Error?) -> Void)?
-    public func createWallet(address: String, completion: @escaping (Bool, Swift.Error?) -> Void) {
-        createWallet_input = (address, completion)
+    public var executeWalletCreationTransaction_input: String?
+    public var executeWalletCreationTransaction_output: String = ""
+    public var executeWalletCreationTransaction_shouldThrow = false
+
+    public func executeWalletCreationTransaction(address: String) throws -> String {
+        if executeWalletCreationTransaction_shouldThrow { throw Error.error }
+        executeWalletCreationTransaction_input = address
+        return executeWalletCreationTransaction_output
     }
 
-    public func finishDeploymentSuccessfully() {
-        if let input = createWallet_input {
-            input.completion(true, nil)
-        }
-    }
+    public var waitForPendingTransaction_input: String?
+    public var waitForPendingTransaction_output: Bool = true
 
-    public func finishDeploymentWithError(_ error: Swift.Error) {
-        if let input = createWallet_input {
-            input.completion(false, error)
-        }
+    public func waitForPendingTransaction(hash: String) throws -> Bool {
+        if shouldThrow { throw Error.error }
+        waitForPendingTransaction_input = hash
+        return waitForPendingTransaction_output
     }
 
     public var removedAddress: String?

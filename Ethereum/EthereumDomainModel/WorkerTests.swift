@@ -57,4 +57,20 @@ class WorkerTests: XCTestCase {
         waitForExpectations(timeout: 0.6, handler: nil)
     }
 
+    func test_whenCreatedOnBackgroundThread_thenRunsSuccessfully() {
+        let exp = expectation(description: "wait")
+        DispatchQueue.global().async {
+            var counter = 0
+            try! Worker.start(repeating: 0.1) {
+                if counter == 3 {
+                    exp.fulfill()
+                    return true
+                }
+                counter += 1
+                return false
+            }
+        }
+        waitForExpectations(timeout: 0.5, handler: nil)
+    }
+
 }

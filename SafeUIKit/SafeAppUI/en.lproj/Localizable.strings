@@ -89,7 +89,7 @@
 "pending_safe.abort_alert.abort" = "Abort";
 
 /* Continue safe creation button title */
-"pending_safe.abort_alert.continue" = "Continue";
+"pending_safe.abort_alert.cancel" = "Close";
 
 /* Message body of abort alert */
 "pending_safe.abort_alert.message" = "If you abort safe creation, you'll loose access to all funds on the safe address. This cannot be undone.";
