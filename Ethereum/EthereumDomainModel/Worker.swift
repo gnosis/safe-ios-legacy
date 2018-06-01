@@ -19,7 +19,9 @@ public class Worker: Assertable {
     private let block: () -> Bool
     private let interval: TimeInterval
     private var timer: Timer?
-
+    private var isTimerRunning: Bool {
+        return timer?.isValid == true
+    }
     private static var workers = [Worker]()
 
     // queue is used for multi-thread synchronization when mutating `workers` array
@@ -65,8 +67,16 @@ public class Worker: Assertable {
             }
         }
         timer!.fire()
-        while !Thread.isMainThread && timer != nil {
-            RunLoop.current.run(until: Date(timeIntervalSinceNow: 1))
+        runTimer()
+    }
+
+    private func runTimer() {
+        if Thread.isMainThread {
+            // on main thread, the RunLoop is already configured and running, so nothing to do.
+            return
+        }
+        while isTimerRunning {
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 1)) // allows timer to fire
         }
     }
 
