@@ -75,13 +75,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         EthereumApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
         EthereumDomainModel.DomainRegistry.put(service: EthereumImplementations.EncryptionService(),
                                                for: EthereumDomainModel.EncryptionDomainService.self)
-        EthereumDomainModel.DomainRegistry.put(service: MockTransactionRelayService(averageDelay: 2, maxDeviation: 0.3),
+        EthereumDomainModel.DomainRegistry.put(service: MockTransactionRelayService(averageDelay: 5, maxDeviation: 0.3),
                                                for: TransactionRelayDomainService.self)
         secureStore = KeychainService(identifier: "pm.gnosis.safe")
         EthereumDomainModel.DomainRegistry.put(service: SecureExternallyOwnedAccountRepository(store: secureStore!),
                                                for: ExternallyOwnedAccountRepository.self)
-//        EthereumDomainModel.DomainRegistry.put(service: InfuraEthereumNodeService(),
-//                                               for: EthereumNodeDomainService.self)
         EthereumDomainModel.DomainRegistry.put(service: DemoEthereumNodeService(),
                                                for: EthereumNodeDomainService.self)
     }

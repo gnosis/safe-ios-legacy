@@ -18,37 +18,11 @@ public class Worker: Assertable {
 
     private let block: () -> Bool
     private let interval: TimeInterval
-    private var timer: Timer?
-    private var isTimerRunning: Bool {
-        return timer?.isValid == true
-    }
-    private static var workers = [Worker]()
-
-    // queue is used for multi-thread synchronization when mutating `workers` array
-    private static var syncQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        return queue
-    }()
+    private var shouldStop: Bool = false
 
     public static func start(repeating interval: TimeInterval, block: @escaping () -> Bool) throws {
         let worker = try Worker(repeating: interval, block: block)
-        add(worker: worker)
         worker.start()
-    }
-
-    private static func add(worker: Worker) {
-        syncQueue.addOperation {
-            self.workers.append(worker)
-        }
-    }
-
-    private static func remove(worker: Worker) {
-        syncQueue.addOperation {
-            if let index = self.workers.index(where: { $0 === worker }) {
-                self.workers.remove(at: index)
-            }
-        }
     }
 
     public init(repeating interval: TimeInterval, block: @escaping () -> Bool) throws {
@@ -58,32 +32,23 @@ public class Worker: Assertable {
     }
 
     func start() {
-        guard timer == nil else { return }
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
-            guard let `self` = self else { return }
-            let shouldStop = self.block()
-            if shouldStop {
-                self.stop()
+        RunLoop.current.perform { // delay block until next run loop iteration
+            while !self.shouldStop {
+                self.shouldStop = self.block()
+                RunLoop.current.run(until: Date(timeIntervalSinceNow: self.interval))
             }
         }
-        timer!.fire()
-        runTimer()
+        runLoop()
     }
 
-    private func runTimer() {
+    private func runLoop() {
         if Thread.isMainThread {
             // on main thread, the RunLoop is already configured and running, so nothing to do.
             return
         }
-        while isTimerRunning {
-            RunLoop.current.run(until: Date(timeIntervalSinceNow: 1)) // allows timer to fire
+        while !shouldStop {
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 1)) // allows RunLoop blocks processing
         }
-    }
-
-    private func stop() {
-        timer?.invalidate()
-        timer = nil
-        Worker.remove(worker: self)
     }
 
 }

@@ -291,17 +291,6 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(blockchainService.removedAddress, paperWallet)
     }
 
-    func test_whenDeploymentSuccessful_thenFetchesNewBalance() throws {
-        givenDraftWallet()
-        try addAllOwners()
-        try service.startDeployment()
-        blockchainService.fund(address: "address", balance: 50)
-        blockchainService.updateBalance(100)
-        let account = try findAccount("ETH")
-        XCTAssertEqual(account.balance, 50)
-        assert(state: .readyToUse)
-    }
-
     func test_whenAddressIsKnown_thenReturnsIt() throws {
         givenDraftWallet()
         try addAllOwners()
