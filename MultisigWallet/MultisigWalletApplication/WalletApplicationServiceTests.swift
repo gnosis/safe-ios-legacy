@@ -10,7 +10,7 @@ import Common
 
 class WalletApplicationServiceTests: XCTestCase {
 
-    let walletRepository = InMemoryWalletRepository()
+    let walletRepository = MockWalletRepository()
     let portfolioRepository = InMemorySinglePortfolioRepository()
     let accountRepository = InMemoryAccountRepository()
     let blockchainService = MockBlockchainDomainService()
@@ -305,6 +305,78 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertNotNil(service.minimumDeploymentAmount)
     }
 
+    func test_whenErrorOccursDuringResumeDeployment_thenAborts() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        walletRepository.shouldThrow = true
+        XCTAssertThrowsError(try service.startDeployment())
+        assert(state: .readyToDeploy)
+    }
+
+    func test_whenResumesFromStartedDeployment_thenRequestsDataAgain() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try markDeploymentStarted()
+        try service.startDeployment()
+        assert(state: .notEnoughFunds)
+    }
+
+    func test_whenResumesFromNotEnoughFunds_thenStartsObservingBalance() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try markDeploymentStarted()
+        try assignAddress("address")
+        try makeNotEnoughFunds()
+        try service.startDeployment()
+        XCTAssertNotNil(blockchainService.observeBalance_input)
+    }
+
+    func test_whenResumingFromEnoughFunds_thenStartsWalletCreation() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try markDeploymentStarted()
+        try assignAddress("address")
+        try makeEnoughFunds()
+        try service.startDeployment()
+        XCTAssertNotNil(blockchainService.executeWalletCreationTransaction_input)
+    }
+
+    func test_whenResumingFromAcceptedByBlockchain_thenStartsObserving() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try markDeploymentStarted()
+        try assignAddress("address")
+        try makeEnoughFunds()
+        try markAcceptedByBlockchain()
+        try simulateCreationTransaction()
+        try service.startDeployment()
+        XCTAssertNotNil(blockchainService.waitForPendingTransaction_input)
+    }
+
+    func test_whenAddressKnown_thenStartsObservingBalance() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try markDeploymentStarted()
+        try assignAddress("address")
+        try service.startDeployment()
+        XCTAssertNotNil(blockchainService.observeBalance_input)
+    }
+
+}
+
+class MockWalletRepository: InMemoryWalletRepository {
+
+    var shouldThrow = false
+
+    enum Error: String, LocalizedError, Hashable {
+        case error
+    }
+
+    override func save(_ wallet: Wallet) throws {
+        if shouldThrow { throw Error.error }
+        try super.save(wallet)
+    }
+
 }
 
 fileprivate extension WalletApplicationServiceTests {
@@ -342,6 +414,44 @@ fileprivate extension WalletApplicationServiceTests {
     func givenDraftWallet(line: UInt = #line) {
         createPortfolio(line: line)
         XCTAssertNoThrow(try service.createNewDraftWallet(), line: line)
+    }
+
+    private func markDeploymentStarted() throws {
+        let wallet = try selectedWallet()
+        try wallet.startDeployment()
+        try walletRepository.save(wallet)
+    }
+
+    private func assignAddress(_ address: String) throws {
+        let wallet = try selectedWallet()
+        try wallet.changeBlockchainAddress(BlockchainAddress(value: address))
+        try walletRepository.save(wallet)
+    }
+
+    private func makeNotEnoughFunds() throws {
+        let account = try findAccount("ETH")
+        account.updateMinimumTransactionAmount(100)
+        account.update(newAmount: 50)
+        try accountRepository.save(account)
+    }
+
+    private func makeEnoughFunds() throws {
+        let account = try findAccount("ETH")
+        account.updateMinimumTransactionAmount(100)
+        account.update(newAmount: 150)
+        try accountRepository.save(account)
+    }
+
+    private func simulateCreationTransaction() throws {
+        let wallet = try selectedWallet()
+        try wallet.assignCreationTransaction(hash: "something")
+        try walletRepository.save(wallet)
+    }
+
+    private func markAcceptedByBlockchain() throws {
+        let wallet = try selectedWallet()
+        try wallet.markDeploymentAcceptedByBlockchain()
+        try walletRepository.save(wallet)
     }
 
 }

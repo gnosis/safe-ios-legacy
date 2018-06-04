@@ -51,6 +51,7 @@ public class MockWalletApplicationService: WalletApplicationService {
         _hasReadyToUseWallet = true
         assignBlockchainAddress("address")
         update(account: "ETH", newBalance: 100)
+        _selectedWalletState = .readyToUse
     }
 
     public override func createNewDraftWallet() throws {

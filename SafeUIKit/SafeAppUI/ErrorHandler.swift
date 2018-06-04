@@ -20,15 +20,23 @@ public class ErrorHandler {
 
     private init() {}
 
-    public static func showFatalError(message: String = Strings.fatalErrorMessage, log: String, error: Error?) {
-        ApplicationServiceRegistry.logger.fatal(log, error: error)
+    public static func showFatalError(message: String = Strings.fatalErrorMessage,
+                                      log: String,
+                                      error: Error?,
+                                      file: StaticString = #file,
+                                      line: UInt = #line) {
+        ApplicationServiceRegistry.logger.fatal(log, error: error, file: file, line: line)
         instance.showError(message: message, log: log, error: error) {
             fatalError(message + "; " + log)
         }
     }
 
-    public static func showError(message: String = Strings.errorMessage, log: String, error: Error?) {
-        ApplicationServiceRegistry.logger.error(log, error: error)
+    public static func showError(message: String = Strings.errorMessage,
+                                 log: String,
+                                 error: Error?,
+                                 file: StaticString = #file,
+                                 line: UInt = #line) {
+        ApplicationServiceRegistry.logger.error(log, error: error, file: file, line: line)
         // swiftlint:disable trailing_closure
         instance.showError(message: message, log: log, error: error, action: {})
     }

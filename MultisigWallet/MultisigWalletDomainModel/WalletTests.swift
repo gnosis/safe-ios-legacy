@@ -156,4 +156,24 @@ class WalletTests: XCTestCase {
         XCTAssertThrowsError(try wallet.addOwner(Wallet.createOwner(address: "a"), kind: "b"))
     }
 
+    func test_whenAssigningCreationTransaction_thenCanFetchIt() throws {
+        try wallet.markReadyToDeploy()
+        try wallet.startDeployment()
+        try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
+        try wallet.markDeploymentAcceptedByBlockchain()
+        try wallet.assignCreationTransaction(hash: "some")
+        XCTAssertEqual(wallet.creationTransactionHash, "some")
+    }
+
+    func test_whenInitFromData_thenHasTransactionHash() throws {
+        try wallet.markReadyToDeploy()
+        try wallet.startDeployment()
+        try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
+        try wallet.markDeploymentAcceptedByBlockchain()
+        try wallet.assignCreationTransaction(hash: "some")
+        let data = try wallet.data()
+        let otherWallet = try Wallet(data: data)
+        XCTAssertEqual(otherWallet.creationTransactionHash, "some")
+    }
+
 }

@@ -3,17 +3,32 @@
 //
 
 import UIKit
-import IdentityAccessApplication
+import MultisigWalletApplication
 
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
 
+    var isSafeCreationInProgress: Bool {
+        return ApplicationServiceRegistry.walletService.isSafeCreationInProgress
+    }
+
     override func setUp() {
         super.setUp()
+        if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
+            exitFlow()
+            return
+        }
         push(NewSafeViewController.create(delegate: self))
         saveCheckpoint()
+        if ApplicationServiceRegistry.walletService.hasPendingWalletCreation {
+            push(PendingSafeViewController.create(delegate: self))
+        }
     }
+
+}
+
+extension NewSafeFlowCoordinator {
 
     func enterAndComeBack(from coordinator: FlowCoordinator) {
         saveCheckpoint()

@@ -5,27 +5,28 @@
 import Foundation
 import MultisigWalletDomainModel
 
-public class InMemoryWalletRepository: WalletRepository {
+open class InMemoryWalletRepository: WalletRepository {
 
     private var wallets = Set<Wallet>()
 
     public init() {}
 
-    public func save(_ wallet: Wallet) throws {
+    open func save(_ wallet: Wallet) throws {
         wallets.insert(wallet)
     }
 
-    public func remove(_ wallet: Wallet) throws {
+    open func remove(_ wallet: Wallet) throws {
         if let foundWallet = try findByID(wallet.id) {
             wallets.remove(foundWallet)
         }
     }
 
-    public func findByID(_ walletID: WalletID) throws -> Wallet? {
+    open func findByID(_ walletID: WalletID) throws -> Wallet? {
         return wallets.first { $0.id == walletID }
     }
 
-    public func nextID() -> WalletID {
+    open func nextID() -> WalletID {
         return try! WalletID()
     }
+
 }

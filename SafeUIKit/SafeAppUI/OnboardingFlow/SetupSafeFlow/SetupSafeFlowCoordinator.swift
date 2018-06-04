@@ -12,7 +12,7 @@ public final class SetupSafeFlowCoordinator: FlowCoordinator {
     open override func setUp() {
         super.setUp()
         push(SetupSafeOptionsViewController.create(delegate: self))
-        if ApplicationServiceRegistry.walletService.selectedWalletState == .newDraft {
+        if newSafeFlowCoordinator.isSafeCreationInProgress {
             enterNewSafeFlow()
         }
     }
