@@ -305,15 +305,6 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertNotNil(service.minimumDeploymentAmount)
     }
 
-    func test_whenResumesDeploymentBeforeKnowingWalletData_thenRestartsWholeProcess() throws {
-        givenDraftWallet()
-        try addAllOwners()
-        try service.startDeployment()
-        blockchainService.updateBalance(100)
-        XCTAssertNotNil(blockchainService.requestWalletCreationData_input)
-        assert(state: .readyToUse)
-    }
-
     func test_whenErrorOccursDuringResumeDeployment_thenAborts() throws {
         givenDraftWallet()
         try addAllOwners()
