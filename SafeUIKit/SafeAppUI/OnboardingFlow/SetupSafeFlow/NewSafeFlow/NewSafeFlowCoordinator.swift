@@ -26,7 +26,8 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
         push(NewSafeViewController.create(delegate: self))
         saveCheckpoint()
         if ApplicationServiceRegistry.walletService.hasPendingWalletCreation {
-            push(PendingSafeViewController.create(delegate: self))
+            let controller = PendingSafeViewController.create(delegate: self)
+            push(controller)
         }
     }
 

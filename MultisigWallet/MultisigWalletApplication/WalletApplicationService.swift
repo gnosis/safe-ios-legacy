@@ -13,10 +13,12 @@ public class WalletApplicationService: Assertable {
         case newDraft
         case readyToDeploy
         case deploymentStarted
+        // TODO: remove addressKnown state
         case addressKnown
         case accountFunded
         case notEnoughFunds
         case deploymentAcceptedByBlockchain
+        // TODO: remove deploymentSuccess state
         case deploymentSuccess
         case deploymentFailed
         case readyToUse
@@ -44,6 +46,7 @@ public class WalletApplicationService: Assertable {
         case invalidWalletState
         case accountNotFound
         case missingWalletAddress
+        case creationTransactionHashNotFound
     }
 
     public static let requiredConfirmationCount: Int = 2
@@ -161,12 +164,23 @@ public class WalletApplicationService: Assertable {
 
     public func startDeployment() throws {
         do {
-            try doStartDeployment()
-            let data = try requestWalletCreation()
-            guard selectedWalletState == .deploymentStarted else { return }
-            try assignBlockchainAddress(data.walletAddress)
-            try updateMinimumFunding(account: "ETH", amount: data.fee)
-            try startObservingWalletBalance()
+            if selectedWalletState == .readyToDeploy {
+                try doStartDeployment()
+            }
+            if selectedWalletState == .deploymentStarted {
+                let data = try requestWalletCreation()
+                try assignBlockchainAddress(data.walletAddress)
+                try updateMinimumFunding(account: "ETH", amount: data.fee)
+            }
+            if selectedWalletState == .notEnoughFunds {
+                try startObservingWalletBalance()
+            } else if selectedWalletState == .accountFunded {
+                try createWalletInBlockchain()
+            } else if selectedWalletState == .deploymentAcceptedByBlockchain {
+                try waitForPendingTransaction()
+            } else {
+                throw Error.invalidWalletState
+            }
         } catch let error {
             try abortDeployment()
             throw error
@@ -226,14 +240,28 @@ public class WalletApplicationService: Assertable {
         guard let address = wallet.address else {
             throw Error.missingWalletAddress
         }
-        let service = DomainRegistry.blockchainService
         // TODO: if the call fails, show error in UI and possibility to retry with a button
-        let hash = try service.executeWalletCreationTransaction(address: address.value) // this may take a while
+        let hash = try DomainRegistry.blockchainService.executeWalletCreationTransaction(address: address.value)
         guard selectedWalletState == .accountFunded else { return }
         try markDeploymentAcceptedByBlockchain()
-        let isSucdess = try service.waitForPendingTransaction(hash: hash)
+        try storeTransactionHash(hash: hash)
+        try waitForPendingTransaction()
+    }
+
+    private func waitForPendingTransaction() throws {
+        let wallet = try findSelectedWallet()
+        guard let hash = wallet.creationTransactionHash else {
+            throw Error.creationTransactionHashNotFound
+        }
+        let isSuccess = try DomainRegistry.blockchainService.waitForPendingTransaction(hash: hash)
         guard selectedWalletState == .deploymentAcceptedByBlockchain else { return }
-        didFinishDeployment(success: isSucdess)
+        didFinishDeployment(success: isSuccess)
+    }
+
+    private func storeTransactionHash(hash: String) throws {
+        try mutateSelectedWallet { wallet in
+            try wallet.assignCreationTransaction(hash: hash)
+        }
     }
 
     private func didFinishDeployment(success: Bool) {

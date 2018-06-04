@@ -60,12 +60,14 @@ public class Wallet: IdentifiableEntity<WalletID> {
         fileprivate let status: Status
         fileprivate let ownersByKind: [String: Owner]
         fileprivate let address: BlockchainAddress?
+        fileprivate let creationTransactionHash: String?
     }
 
     public private(set) var status = Status.newDraft
     private static let mutableStates: [Status] = [.newDraft, .readyToUse]
     private var ownersByKind = [String: Owner]()
     public private(set) var address: BlockchainAddress?
+    public private(set) var creationTransactionHash: String?
 
     public required init(data: Data) throws {
         let decoder = PropertyListDecoder()
@@ -74,6 +76,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         status = state.status
         ownersByKind = state.ownersByKind
         address = state.address
+        self.creationTransactionHash = state.creationTransactionHash
     }
 
     public func data() throws -> Data {
@@ -82,7 +85,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
         let state = State(id: id.id,
                           status: status,
                           ownersByKind: ownersByKind,
-                          address: address)
+                          address: address,
+                          creationTransactionHash: creationTransactionHash)
         return try encoder.encode(state)
     }
 
@@ -149,6 +153,11 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func markDeploymentAcceptedByBlockchain() throws {
         try assert(status: .addressKnown)
         status = .deploymentAcceptedByBlockchain
+    }
+
+    public func assignCreationTransaction(hash: String) throws {
+        try assert(status: .deploymentAcceptedByBlockchain)
+        creationTransactionHash = hash
     }
 
     public func markDeploymentFailed() throws {
