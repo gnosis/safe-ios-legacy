@@ -11,7 +11,7 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
     private let maxDeviation: Double
 
     private var randomizedNetworkResponseDelay: Double {
-        return MockTransactionRelayService.random(average: 5, maxDeviation: maxDeviation)
+        return MockTransactionRelayService.random(average: averageDelay, maxDeviation: maxDeviation)
     }
 
     static func random(average: Double, maxDeviation: Double) -> Double {
