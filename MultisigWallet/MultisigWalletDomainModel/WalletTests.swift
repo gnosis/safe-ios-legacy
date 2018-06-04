@@ -160,6 +160,7 @@ class WalletTests: XCTestCase {
         try wallet.markReadyToDeploy()
         try wallet.startDeployment()
         try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
+        try wallet.markDeploymentAcceptedByBlockchain()
         try wallet.assignCreationTransaction(hash: "some")
         XCTAssertEqual(wallet.creationTransactionHash, "some")
     }
@@ -168,6 +169,7 @@ class WalletTests: XCTestCase {
         try wallet.markReadyToDeploy()
         try wallet.startDeployment()
         try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
+        try wallet.markDeploymentAcceptedByBlockchain()
         try wallet.assignCreationTransaction(hash: "some")
         let data = try wallet.data()
         let otherWallet = try Wallet(data: data)
