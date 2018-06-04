@@ -74,11 +74,24 @@ public class PendingSafeViewController: UIViewController {
         progressView.progress = 0
         updateStatus()
         subscription = walletService.subscribe(updateStatus)
+        startDeployment()
     }
 
     deinit {
         if let subscription = subscription {
             walletService.unsubscribe(subscription: subscription)
+        }
+    }
+
+    private func startDeployment() {
+        DispatchQueue.global().async {
+            do {
+                try ApplicationServiceRegistry.walletService.startDeployment()
+            } catch let error {
+                DispatchQueue.main.async {
+                    ErrorHandler.showFatalError(log: "Failed to restart deployment", error: error)
+                }
+            }
         }
     }
 

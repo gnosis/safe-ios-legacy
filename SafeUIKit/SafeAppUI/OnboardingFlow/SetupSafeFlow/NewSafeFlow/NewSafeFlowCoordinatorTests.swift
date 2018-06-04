@@ -187,7 +187,6 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         assertFinished()
     }
 
-
 }
 
 extension NewSafeFlowCoordinatorTests {

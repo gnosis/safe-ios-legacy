@@ -49,18 +49,7 @@ class NewSafeViewController: UIViewController {
     }
 
     @IBAction func navigateNext(_ sender: Any) {
-        DispatchQueue.global().async { [unowned self] in
-            do {
-                DispatchQueue.main.async {
-                    self.delegate?.didSelectNext()
-                }
-                try self.walletService.startDeployment()
-            } catch let e {
-                DispatchQueue.main.async {
-                    ErrorHandler.showError(log: "Failed to start deployment", error: e)
-                }
-            }
-        }
+        self.delegate?.didSelectNext()
     }
 
     override func viewDidLoad() {

@@ -104,6 +104,12 @@ class PendingSafeViewControllerTests: SafeTestCase {
         XCTAssertTrue(delegate.cancelled)
     }
 
+    func test_whenShouldResumeDeployment_thenStartsDeployment() {
+        controller.loadViewIfNeeded()
+        delay()
+        XCTAssertTrue(walletService.selectedWalletState == .deploymentStarted)
+    }
+
 }
 
 class MockPendingSafeViewControllerDelegate: PendingSafeViewControllerDelegate {

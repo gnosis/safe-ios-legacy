@@ -362,6 +362,15 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertNotNil(blockchainService.waitForPendingTransaction_input)
     }
 
+    func test_whenAddressKnown_thenStartsObservingBalance() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try markDeploymentStarted()
+        try assignAddress("address")
+        try service.startDeployment()
+        XCTAssertNotNil(blockchainService.observeBalance_input)
+    }
+
 }
 
 class MockWalletRepository: InMemoryWalletRepository {

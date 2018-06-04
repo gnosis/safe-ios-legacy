@@ -172,7 +172,7 @@ public class WalletApplicationService: Assertable {
                 try assignBlockchainAddress(data.walletAddress)
                 try updateMinimumFunding(account: "ETH", amount: data.fee)
             }
-            if selectedWalletState == .notEnoughFunds {
+            if selectedWalletState == .notEnoughFunds || selectedWalletState == .addressKnown {
                 try startObservingWalletBalance()
             } else if selectedWalletState == .accountFunded {
                 try createWalletInBlockchain()
