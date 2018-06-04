@@ -133,13 +133,80 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(newSafeFlowCoordinator.navigationController.topViewController is NewSafeViewController)
     }
 
-    func test_whenWalletCreationIsPending_thenOpensPendingController() {
-        walletService.createReadyToDeployWallet()
+    func test_whenSafeIsInAnyPendingState_thenShowingPendingController() {
         walletService.startDeployment()
-        newSafeFlowCoordinator = NewSafeFlowCoordinator(rootViewController: UINavigationController())
-        newSafeFlowCoordinator.setUp()
+        assertShowingPendingVC()
+
+        walletService.assignBlockchainAddress("address")
+        assertShowingPendingVC()
+
+        walletService.updateMinimumFunding(account: "ETH", amount: 100)
+        walletService.update(account: "ETH", newBalance: 50)
+        assertShowingPendingVC()
+
+        walletService.update(account: "ETH", newBalance: 100)
+        assertShowingPendingVC()
+
+        walletService.markDeploymentAcceptedByBlockchain()
+        assertShowingPendingVC()
+
+        walletService.markDeploymentSuccess()
+        assertShowingPendingVC()
+
+        walletService.createReadyToUseWallet()
+        assertShowingPendingVC(shouldShow: false)
+    }
+
+    func test_whenSafeIsNotReadyToUse_thenIsNotFinishedTrue() throws {
+        try walletService.createNewDraftWallet()
+        assertNotFinished()
+
+        walletService.createReadyToDeployWallet()
+        assertNotFinished()
+
+        walletService.startDeployment()
+        assertNotFinished()
+
+        walletService.assignBlockchainAddress("address")
+        assertNotFinished()
+
+        walletService.updateMinimumFunding(account: "ETH", amount: 100)
+        walletService.update(account: "ETH", newBalance: 50)
+        assertNotFinished()
+
+        walletService.update(account: "ETH", newBalance: 100)
+        assertNotFinished()
+
+        walletService.markDeploymentAcceptedByBlockchain()
+        assertNotFinished()
+
+        walletService.markDeploymentSuccess()
+        assertNotFinished()
+
+        walletService.createReadyToUseWallet()
+        assertFinished()
+    }
+
+
+}
+
+extension NewSafeFlowCoordinatorTests {
+
+    private func assertShowingPendingVC(shouldShow: Bool = true, line: UInt = #line) {
+        let testFC = TestFlowCoordinator()
+        testFC.enter(flow: newSafeFlowCoordinator)
         delay()
-        XCTAssertTrue(topViewController is PendingSafeViewController)
+        XCTAssertTrue((testFC.topViewController is PendingSafeViewController) == shouldShow,
+                      "\(String(describing: testFC.topViewController)) is not PendingViewController",
+                      line: line)
+    }
+
+    private func assertNotFinished(line: UInt = #line) {
+        XCTAssertTrue(newSafeFlowCoordinator.isNotFinished, line: line)
+    }
+
+    private func assertFinished(line: UInt = #line) {
+        XCTAssertFalse(newSafeFlowCoordinator.isNotFinished, line: line)
     }
 
 }

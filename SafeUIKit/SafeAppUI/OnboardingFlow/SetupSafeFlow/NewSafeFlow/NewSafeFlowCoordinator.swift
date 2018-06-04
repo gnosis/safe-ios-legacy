@@ -9,8 +9,20 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
 
+    var isNotFinished: Bool {
+        let walletState = ApplicationServiceRegistry.walletService.selectedWalletState
+        let value = walletState == .newDraft ||
+            walletState == .readyToDeploy ||
+            ApplicationServiceRegistry.walletService.hasPendingWalletCreation
+        return value
+    }
+
     override func setUp() {
         super.setUp()
+        if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
+            exitFlow()
+            return
+        }
         push(NewSafeViewController.create(delegate: self))
         saveCheckpoint()
         if ApplicationServiceRegistry.walletService.hasPendingWalletCreation {
