@@ -138,17 +138,6 @@ extension PairWithBrowserExtensionScreenUITests {
         }
     }
 
-    private func handleCameraPermsissionByAllowing(with expectation: XCTestExpectation) {
-        cameraPermissionHandler = addUIInterruptionMonitor(withDescription: "Camera access") { alert in
-            defer { expectation.fulfill() }
-            guard alert.label.localizedCaseInsensitiveContains("would like to access the camera") else {
-                return false
-            }
-            alert.buttons["OK"].tap()
-            return true
-        }
-    }
-
     private func handleSuggestionAlertByCancelling(with expectation: XCTestExpectation) {
         cameraSuggestionHandler = addUIInterruptionMonitor(withDescription: "Suggestion Alert") { alert in
             guard alert.label == LocalizedString("scanner.camera_access_required.title") else {
@@ -171,17 +160,6 @@ extension PairWithBrowserExtensionScreenUITests {
         delay(1)
         XCUIApplication().tap() // required for alert handlers firing
         waitForExpectations(timeout: 5)
-    }
-
-    private func givenCameraOpened(with option: CameraOpenOption = .button) {
-        handleCameraPermsissionByAllowing(with: expectation(description: "Alert"))
-        switch option {
-        case .input:
-            screen.qrCodeInput.tap()
-        case .button:
-            screen.qrCodeButton.tap()
-        }
-        handleAlerts()
     }
 
     private func QRCodeInputIsEqual(to value: String) -> Bool {

@@ -45,6 +45,8 @@
 		0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27840205FCDFA00EBB9D1 /* TestSupport.swift */; };
 		0AA27843205FCE2800EBB9D1 /* TestSupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27842205FCE2800EBB9D1 /* TestSupportTests.swift */; };
 		0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27847205FD97600EBB9D1 /* TestUtils.swift */; };
+		0ABA90DE20C567CE001AEAE4 /* PendingSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90DD20C567CE001AEAE4 /* PendingSafeScreenUITests.swift */; };
+		0ABA90EB20C56AB5001AEAE4 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90EA20C56AB5001AEAE4 /* MainScreen.swift */; };
 		0ABBDC012073CADD006D0A48 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBDBF82073CACD006D0A48 /* CryptoSwift.framework */; };
 		0ABBDC032073CADD006D0A48 /* EthereumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBDBFA2073CACD006D0A48 /* EthereumKit.framework */; };
 		0ABCA975207E560B00E2C193 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABCA970207E560500E2C193 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -286,7 +288,7 @@
 		0A8E3C0A20B42C2100F002F6 /* libMultisigWalletImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A934CF220B6BF8F00F15616 /* Adapters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adapters.swift; sourceTree = "<group>"; };
 		0A99436B20A04C6700E36FD7 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalizedString.swift; path = safeUITests/LocalizedString.swift; sourceTree = SOURCE_ROOT; };
-		0A99436D20A04C9B00E36FD7 /* SafeAppUI.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = SafeAppUI.strings; path = safeUITests/SafeAppUI.strings; sourceTree = SOURCE_ROOT; };
+		0A99436D20A04C9B00E36FD7 /* SafeAppUI.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = SafeAppUI.strings; path = SafeUITests/SafeAppUI.strings; sourceTree = SOURCE_ROOT; };
 		0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AA0C857207B74B10019E282 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
@@ -300,6 +302,8 @@
 		0AA27840205FCDFA00EBB9D1 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
 		0AA27842205FCE2800EBB9D1 /* TestSupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupportTests.swift; sourceTree = "<group>"; };
 		0AA27847205FD97600EBB9D1 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
+		0ABA90DD20C567CE001AEAE4 /* PendingSafeScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PendingSafeScreenUITests.swift; path = SafeUITests/NewSafe/PendingSafeScreenUITests.swift; sourceTree = SOURCE_ROOT; };
+		0ABA90EA20C56AB5001AEAE4 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainScreen.swift; path = SafeUITests/screens/AppFlow/MainScreen.swift; sourceTree = SOURCE_ROOT; };
 		0ABBDBF72073CACD006D0A48 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = ../lib/APIKit.framework; sourceTree = "<group>"; };
 		0ABBDBF82073CACD006D0A48 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = ../lib/CryptoSwift.framework; sourceTree = "<group>"; };
 		0ABBDBF92073CACD006D0A48 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../lib/Result.framework; sourceTree = "<group>"; };
@@ -445,6 +449,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0ABA90EC20C57842001AEAE4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5540A510203C3054009C9BE3 /* Info.plist */,
+				0A99436D20A04C9B00E36FD7 /* SafeAppUI.strings */,
+				0A0C86FD2097461700471885 /* SafeUIKit.strings */,
+				0A0660872099B4870048FBD3 /* SafeUITests-Bridging-Header.h */,
+				0A06608C2099B4FF0048FBD3 /* XCUIApplication.h */,
+				0A06608B2099B4FF0048FBD3 /* XCUIElement.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		0ABCA965207E560500E2C193 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,8 +475,6 @@
 		0ACA9C3A205FDA92005EC186 /* screens */ = {
 			isa = PBXGroup;
 			children = (
-				0AA27831205FC4E600EBB9D1 /* Application.swift */,
-				0AA27847205FD97600EBB9D1 /* TestUtils.swift */,
 				0ACA9C3D205FDAE3005EC186 /* OnboardingFlow */,
 				0ACA9C3C205FDADE005EC186 /* AppFlow */,
 			);
@@ -481,6 +496,7 @@
 		0ACA9C3C205FDADE005EC186 /* AppFlow */ = {
 			isa = PBXGroup;
 			children = (
+				0ABA90EA20C56AB5001AEAE4 /* MainScreen.swift */,
 				0AA2783C205FCC1800EBB9D1 /* UnlockScreen.swift */,
 			);
 			path = AppFlow;
@@ -550,20 +566,17 @@
 		5540A50D203C3054009C9BE3 /* SafeUITests */ = {
 			isa = PBXGroup;
 			children = (
+				0AA27831205FC4E600EBB9D1 /* Application.swift */,
+				0A99436B20A04C6700E36FD7 /* LocalizedString.swift */,
 				55FBDAA720BD89380065AB29 /* MasterPasswordAndUnlock */,
 				55F8120220BD59CB00BD07E3 /* NewSafe */,
-				0A99436D20A04C9B00E36FD7 /* SafeAppUI.strings */,
-				0A0C86FD2097461700471885 /* SafeUIKit.strings */,
-				0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */,
-				0ACB1A3F2099EEFA00EBE267 /* UITestCase.swift */,
-				0A99436B20A04C6700E36FD7 /* LocalizedString.swift */,
-				0ACB1A412099EF2300EBE267 /* Springboard.swift */,
 				0ACA9C3A205FDA92005EC186 /* screens */,
-				5540A510203C3054009C9BE3 /* Info.plist */,
 				0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */,
-				0A06608C2099B4FF0048FBD3 /* XCUIApplication.h */,
-				0A06608B2099B4FF0048FBD3 /* XCUIElement.h */,
-				0A0660872099B4870048FBD3 /* SafeUITests-Bridging-Header.h */,
+				0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */,
+				0ACB1A412099EF2300EBE267 /* Springboard.swift */,
+				0ABA90EC20C57842001AEAE4 /* Supporting Files */,
+				0AA27847205FD97600EBB9D1 /* TestUtils.swift */,
+				0ACB1A3F2099EEFA00EBE267 /* UITestCase.swift */,
 			);
 			path = SafeUITests;
 			sourceTree = "<group>";
@@ -597,6 +610,7 @@
 				55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */,
 				55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */,
 				0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */,
+				0ABA90DD20C567CE001AEAE4 /* PendingSafeScreenUITests.swift */,
 			);
 			path = NewSafe;
 			sourceTree = "<group>";
@@ -1020,10 +1034,12 @@
 				0A99436C20A04C6700E36FD7 /* LocalizedString.swift in Sources */,
 				0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */,
 				0AA27837205FC63800EBB9D1 /* SetPasswordScreen.swift in Sources */,
+				0ABA90DE20C567CE001AEAE4 /* PendingSafeScreenUITests.swift in Sources */,
 				0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */,
 				55CAA007209AF267009AE181 /* ConfirmMnemonicScreen.swift in Sources */,
 				0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */,
 				55CAA001209AF0A1009AE181 /* SaveMnemonicScreen.swift in Sources */,
+				0ABA90EB20C56AB5001AEAE4 /* MainScreen.swift in Sources */,
 				558FD81520767F18004F070E /* NewSafeScreen.swift in Sources */,
 				0ACB1A442099F3F500EBE267 /* CameraScreen.swift in Sources */,
 				0ACA9C43206017C6005EC186 /* ConfirmPasswordScreenUITests.swift in Sources */,

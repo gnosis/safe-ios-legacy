@@ -4,6 +4,8 @@
 
 import Foundation
 import IdentityAccessApplication
+import EthereumImplementations
+import EthereumDomainModel
 
 protocol Resettable: class {
     func resetAll()
@@ -44,6 +46,13 @@ final class TestSupport {
                 case ApplicationArguments.setAccountBlockedPeriodDuration:
                     if let blockingTime = timeInterval(&iterator) {
                         try authenticationService.configureBlockDuration(blockingTime)
+                    }
+                case ApplicationArguments.setMockServerResponseDelay:
+                    if let delayTime = timeInterval(&iterator) {
+                        let mockService = MockTransactionRelayService(averageDelay: delayTime, maxDeviation: 0)
+                        DomainRegistry.put(service: mockService, for: TransactionRelayDomainService.self)
+                        DomainRegistry.put(service: DemoEthereumNodeService(delay: delayTime),
+                                           for: EthereumNodeDomainService.self)
                     }
                 default: break
                 }

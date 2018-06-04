@@ -20,4 +20,19 @@ final class ConfirmMnemonicScreen {
     let secondWordNumberLabel = XCUIApplication().staticTexts["secondWordNumberLabel"]
     let confirmButton = XCUIApplication().buttons[LocalizedString("recovery.confirm_mnemonic.confirm_button")]
 
+    var firstWordNumber: Int {
+        return wordNumber(from: firstWordNumberLabel.label)
+    }
+
+    var secondWordNumber: Int {
+        return wordNumber(from: secondWordNumberLabel.label)
+    }
+
+    private func wordNumber(from label: String) -> Int {
+        let regexp = try! NSRegularExpression(pattern: "\\d+")
+        let match = regexp.firstMatch(in: label, range: NSRange(location: 0, length: label.count))
+        let result = (label as NSString).substring(with: match!.range)
+        return Int(result)!
+    }
+
 }

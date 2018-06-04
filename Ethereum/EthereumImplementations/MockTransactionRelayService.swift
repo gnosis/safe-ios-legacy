@@ -7,8 +7,8 @@ import EthereumDomainModel
 
 public class MockTransactionRelayService: TransactionRelayDomainService {
 
-    private let averageDelay: Double
-    private let maxDeviation: Double
+    public let averageDelay: Double
+    public let maxDeviation: Double
 
     private var randomizedNetworkResponseDelay: Double {
         return MockTransactionRelayService.random(average: averageDelay, maxDeviation: maxDeviation)
@@ -26,6 +26,7 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
     }
 
     private func wait(_ time: TimeInterval) {
+        guard time > 0 else { return }
         if Thread.isMainThread {
             RunLoop.current.run(until: Date(timeIntervalSinceNow: time))
         } else {

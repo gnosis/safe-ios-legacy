@@ -35,6 +35,11 @@ final class Application {
         arguments.append(String(time))
     }
 
+    func setMockServerResponseDelay(_ time: TimeInterval) {
+        arguments.append(ApplicationArguments.setMockServerResponseDelay)
+        arguments.append(String(time))
+    }
+
     func resetArguments() {
         arguments = []
     }
