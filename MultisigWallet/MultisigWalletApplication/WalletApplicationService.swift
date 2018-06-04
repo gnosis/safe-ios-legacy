@@ -88,6 +88,10 @@ public class WalletApplicationService: Assertable {
         return selectedWalletState == .readyToUse
     }
 
+    public var hasPendingWalletCreation: Bool {
+        return WalletApplicationService.pendingCreationStates.contains(selectedWalletState)
+    }
+
     public var selectedWalletAddress: String? {
         do {
             return try findSelectedWallet().address?.value
@@ -106,9 +110,24 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    private static let pendingCreationStates: [WalletState] = [
+        .deploymentStarted,
+        .addressKnown,
+        .accountFunded,
+        .notEnoughFunds,
+        .deploymentAcceptedByBlockchain,
+        .deploymentSuccess
+    ]
+
     private static let validAccountUpdateStates: [WalletState] = [
-        .addressKnown, .readyToUse, .notEnoughFunds, .accountFunded, .deploymentAcceptedByBlockchain,
-        .deploymentSuccess, .deploymentFailed]
+        .addressKnown,
+        .notEnoughFunds,
+        .accountFunded,
+        .deploymentAcceptedByBlockchain,
+        .deploymentSuccess,
+        .deploymentFailed,
+        .readyToUse]
+
     private var statusUpdateHandlers = [String: () -> Void]()
 
     public init() {}

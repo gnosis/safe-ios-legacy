@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import IdentityAccessApplication
+import MultisigWalletApplication
 
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
@@ -13,7 +13,14 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
         super.setUp()
         push(NewSafeViewController.create(delegate: self))
         saveCheckpoint()
+        if ApplicationServiceRegistry.walletService.hasPendingWalletCreation {
+            push(PendingSafeViewController.create(delegate: self))
+        }
     }
+
+}
+
+extension NewSafeFlowCoordinator {
 
     func enterAndComeBack(from coordinator: FlowCoordinator) {
         saveCheckpoint()

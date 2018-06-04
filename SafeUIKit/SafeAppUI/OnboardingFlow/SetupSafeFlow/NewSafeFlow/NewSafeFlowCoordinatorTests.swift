@@ -133,4 +133,13 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(newSafeFlowCoordinator.navigationController.topViewController is NewSafeViewController)
     }
 
+    func test_whenWalletCreationIsPending_thenOpensPendingController() {
+        walletService.createReadyToDeployWallet()
+        walletService.startDeployment()
+        newSafeFlowCoordinator = NewSafeFlowCoordinator(rootViewController: UINavigationController())
+        newSafeFlowCoordinator.setUp()
+        delay()
+        XCTAssertTrue(topViewController is PendingSafeViewController)
+    }
+
 }
