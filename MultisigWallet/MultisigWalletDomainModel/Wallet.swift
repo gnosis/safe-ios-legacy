@@ -76,7 +76,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         status = state.status
         ownersByKind = state.ownersByKind
         address = state.address
-        self.creationTransactionHash = state.creationTransactionHash
+        creationTransactionHash = state.creationTransactionHash
     }
 
     public func data() throws -> Data {
