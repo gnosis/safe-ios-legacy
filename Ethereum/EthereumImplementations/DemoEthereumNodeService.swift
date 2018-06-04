@@ -7,11 +7,16 @@ import EthereumDomainModel
 
 public class DemoEthereumNodeService: EthereumNodeDomainService {
 
-    public init() {}
+    public let delay: TimeInterval
+
+    public init(delay: TimeInterval = 5) {
+        self.delay = delay
+    }
 
     private var balanceUpdateCounter = 0
 
     private func wait(_ time: TimeInterval) {
+        guard time > 0 else { return }
         if Thread.isMainThread {
             RunLoop.current.run(until: Date(timeIntervalSinceNow: time))
         } else {
@@ -20,7 +25,7 @@ public class DemoEthereumNodeService: EthereumNodeDomainService {
     }
 
     public func eth_getBalance(account: Address) throws -> Ether {
-        wait(5)
+        wait(delay)
         if account.value == "0x57b2573E5FA7c7C9B5Fa82F3F03A75F53A0efdF5" {
             let balance = Ether(amount: min(balanceUpdateCounter * 100, 100))
             balanceUpdateCounter += 1
@@ -33,7 +38,7 @@ public class DemoEthereumNodeService: EthereumNodeDomainService {
     private var receiptUpdateCounter = 0
 
     public func eth_getTransactionReceipt(transaction: TransactionHash) throws -> TransactionReceipt? {
-        wait(5)
+        wait(delay)
         if receiptUpdateCounter == 3 {
             return TransactionReceipt(hash: transaction, status: .success)
         } else {

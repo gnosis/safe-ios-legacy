@@ -6,6 +6,8 @@ import XCTest
 @testable import safe
 import IdentityAccessApplication
 import IdentityAccessImplementations
+import EthereumDomainModel
+import EthereumImplementations
 
 class TestSupportTests: XCTestCase {
 
@@ -79,6 +81,22 @@ class TestSupportTests: XCTestCase {
         support.setUp([ApplicationArguments.setAccountBlockedPeriodDuration, "invalid"])
         XCTAssertEqual(authenticationService.blockedPeriodDuration, 3)
     }
+
+    func test_whenMockServerResponseDelayIsSet_thenSetsIt() {
+        EthereumDomainModel.DomainRegistry.put(service: MockTransactionRelayService(averageDelay: 5, maxDeviation: 1),
+                                               for: TransactionRelayDomainService.self)
+        EthereumDomainModel.DomainRegistry.put(service: DemoEthereumNodeService(),
+                                               for: EthereumNodeDomainService.self)
+        support.setUp([ApplicationArguments.setMockServerResponseDelay, "1.0"])
+        let mockTransactionService = EthereumDomainModel.DomainRegistry.transactionRelayService as!
+            MockTransactionRelayService
+        XCTAssertEqual(mockTransactionService.averageDelay, 1)
+        XCTAssertEqual(mockTransactionService.maxDeviation, 0)
+        let demoNodeService = EthereumDomainModel.DomainRegistry.ethereumNodeService as!
+            DemoEthereumNodeService
+        XCTAssertEqual(demoNodeService.delay, 1)
+    }
+
 
 }
 

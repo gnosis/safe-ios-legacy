@@ -11,5 +11,6 @@ struct ApplicationArguments {
     static let setSessionDuration = "-setSessionDuration"
     static let setMaxPasswordAttempts = "-setMaxPasswordAttempts"
     static let setAccountBlockedPeriodDuration = "-setAccountBlockedPeriodDuration"
+    static let setMockServerResponseDelay = "-setMockServerResponseDelay"
 
 }
