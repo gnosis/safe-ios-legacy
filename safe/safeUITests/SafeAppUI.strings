@@ -2,7 +2,13 @@
 "app.unlock.header" = "Unlock with your master password";
 
 /* Generic error message alert */
-"generic.error.message" = "generic.error.message";
+"generic.error.message" = "Operation failed because of an error. Please try again.";
+
+/* Address label */
+"main.label.address" = "Address";
+
+/* Balance label */
+"main.label.balance" = "Balance";
 
 /* Browser extension Button */
 "new_safe.browser_extension" = "Browser Extension";
@@ -80,49 +86,55 @@
 "onboarding.start.start" = "Start";
 
 /* Abort safe creation button title */
-"pending_safe.abort_alert.abort" = "pending_safe.abort_alert.abort";
+"pending_safe.abort_alert.abort" = "Abort";
 
-/* Continue safe creation button title */
-"pending_safe.abort_alert.continue" = "pending_safe.abort_alert.continue";
+/* Button to cancel 'abort create' alert */
+"pending_safe.abort_alert.cancel" = "Close";
 
 /* Message body of abort alert */
-"pending_safe.abort_alert.message" = "pending_safe.abort_alert.message";
+"pending_safe.abort_alert.message" = "If you abort safe creation, you'll loose access to all funds on the safe address. This cannot be undone.";
 
 /* Title of abort safe creation alert */
-"pending_safe.abort_alert.title" = "pending_safe.abort_alert.title";
+"pending_safe.abort_alert.title" = "Aborting Safe Creation";
+
+/* Address label */
+"pending_safe.address" = "Safe address";
+
+/* Balance label */
+"pending_safe.balanceLabel" = "Balance";
 
 /* Cancel safe creation button */
 "pending_safe.cancel" = "Cancel";
 
 /* Pending safe failed alert's message */
-"pending_safe.failed_alert.message" = "pending_safe.failed_alert.message";
+"pending_safe.failed_alert.message" = "Safe creation failed. Please try again.";
 
 /* OK button title */
-"pending_safe.failed_alert.ok" = "pending_safe.failed_alert.ok";
+"pending_safe.failed_alert.ok" = "OK";
 
 /* Pending safe failed alert's title */
-"pending_safe.failed_alert.title" = "pending_safe.failed_alert.title";
+"pending_safe.failed_alert.title" = "Error";
 
 /* Info label about safe creation */
-"pending_safe.info" = "pending_safe.info";
+"pending_safe.info" = "Your safe is being created. Please follow status updates below.";
 
 /* Account received enough funds */
-"pending_safe.status.account_funded" = "pending_safe.status.account_funded";
+"pending_safe.status.account_funded" = "Account has enough funds. Proceeding.";
 
 /* Address is known status */
-"pending_safe.status.address_known" = "pending_safe.status.address_known";
+"pending_safe.status.address_known" = "Safe address available.";
 
 /* Deployment accepted by blockchain */
-"pending_safe.status.deployment_accepted" = "pending_safe.status.deployment_accepted";
+"pending_safe.status.deployment_accepted" = "Creating Safe in the blockchain...";
 
 /* Deployment started status */
-"pending_safe.status.deployment_started" = "pending_safe.status.deployment_started";
+"pending_safe.status.deployment_started" = "Safe creation started.";
 
 /* Deployment succeeded */
-"pending_safe.status.deployment_success" = "pending_safe.status.deployment_success";
+"pending_safe.status.deployment_success" = "Successfully created new Safe in the blockchain";
 
 /* Not enough funds in account */
-"pending_safe.status.not_enough_funds" = "pending_safe.status.not_enough_funds";
+"pending_safe.status.not_enough_funds" = "Not enough funds for safe creation: %@. Please transfer at least %@.";
 
 /* Title of pending safe screen */
 "pending_safe.title" = "Creating new safe";

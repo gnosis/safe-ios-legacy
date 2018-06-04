@@ -9,12 +9,8 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
 
-    var isNotFinished: Bool {
-        let walletState = ApplicationServiceRegistry.walletService.selectedWalletState
-        let value = walletState == .newDraft ||
-            walletState == .readyToDeploy ||
-            ApplicationServiceRegistry.walletService.hasPendingWalletCreation
-        return value
+    var isSafeCreationInProgress: Bool {
+        return ApplicationServiceRegistry.walletService.isSafeCreationInProgress
     }
 
     override func setUp() {

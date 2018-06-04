@@ -201,11 +201,11 @@ extension NewSafeFlowCoordinatorTests {
     }
 
     private func assertNotFinished(line: UInt = #line) {
-        XCTAssertTrue(newSafeFlowCoordinator.isNotFinished, line: line)
+        XCTAssertTrue(newSafeFlowCoordinator.isSafeCreationInProgress, line: line)
     }
 
     private func assertFinished(line: UInt = #line) {
-        XCTAssertFalse(newSafeFlowCoordinator.isNotFinished, line: line)
+        XCTAssertFalse(newSafeFlowCoordinator.isSafeCreationInProgress, line: line)
     }
 
 }

@@ -22,6 +22,41 @@ public class WalletApplicationService: Assertable {
         case deploymentSuccess
         case deploymentFailed
         case readyToUse
+
+        var isBeingCreated: Bool {
+            return self == .newDraft || self == .readyToDeploy || isPendingDeployment
+        }
+
+        var isPendingDeployment: Bool {
+            return WalletState.pendingCreationStates.contains(self)
+        }
+
+        var isValidForAccountUpdate: Bool {
+            return WalletState.validAccountUpdateStates.contains(self)
+        }
+
+        var isReadyToUse: Bool {
+            return self == .readyToUse
+        }
+
+        private static let pendingCreationStates: [WalletState] = [
+            .deploymentStarted,
+            .addressKnown,
+            .accountFunded,
+            .notEnoughFunds,
+            .deploymentAcceptedByBlockchain,
+            .deploymentSuccess
+        ]
+
+        private static let validAccountUpdateStates: [WalletState] = [
+            .addressKnown,
+            .notEnoughFunds,
+            .accountFunded,
+            .deploymentAcceptedByBlockchain,
+            .deploymentSuccess,
+            .deploymentFailed,
+            .readyToUse
+        ]
     }
 
     public enum OwnerType {
@@ -88,11 +123,15 @@ public class WalletApplicationService: Assertable {
     }
 
     public var hasReadyToUseWallet: Bool {
-        return selectedWalletState == .readyToUse
+        return selectedWalletState.isReadyToUse
     }
 
     public var hasPendingWalletCreation: Bool {
-        return WalletApplicationService.pendingCreationStates.contains(selectedWalletState)
+        return selectedWalletState.isPendingDeployment
+    }
+
+    public var isSafeCreationInProgress: Bool {
+        return selectedWalletState.isBeingCreated
     }
 
     public var selectedWalletAddress: String? {
@@ -112,24 +151,6 @@ public class WalletApplicationService: Assertable {
             return nil
         }
     }
-
-    private static let pendingCreationStates: [WalletState] = [
-        .deploymentStarted,
-        .addressKnown,
-        .accountFunded,
-        .notEnoughFunds,
-        .deploymentAcceptedByBlockchain,
-        .deploymentSuccess
-    ]
-
-    private static let validAccountUpdateStates: [WalletState] = [
-        .addressKnown,
-        .notEnoughFunds,
-        .accountFunded,
-        .deploymentAcceptedByBlockchain,
-        .deploymentSuccess,
-        .deploymentFailed,
-        .readyToUse]
 
     private var statusUpdateHandlers = [String: () -> Void]()
 
@@ -430,8 +451,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func assertCanChangeAccount() throws {
-        try assertTrue(WalletApplicationService.validAccountUpdateStates.contains(selectedWalletState),
-                       Error.invalidWalletState)
+        try assertTrue(selectedWalletState.isValidForAccountUpdate, Error.invalidWalletState)
     }
 
     public func update(account token: String, newBalance: Int) throws {
