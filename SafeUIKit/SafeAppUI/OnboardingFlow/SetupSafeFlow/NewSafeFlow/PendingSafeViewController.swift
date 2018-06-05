@@ -109,7 +109,7 @@ public class PendingSafeViewController: UIViewController {
             case .addressKnown:
                 self.update(progress: 0.2, status: Strings.Status.addressKnown)
             case .notEnoughFunds:
-                self.update(progress: 0.2, status: self.notEnoughFundsStatus(payment: payment, balance: balance))
+                self.update(progress: 0.4, status: self.notEnoughFundsStatus(payment: payment, balance: balance))
             case .accountFunded:
                 self.update(progress: 0.5, status: Strings.Status.accountFunded)
             case .deploymentAcceptedByBlockchain:
