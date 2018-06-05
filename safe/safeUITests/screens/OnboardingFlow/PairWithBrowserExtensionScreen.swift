@@ -8,8 +8,8 @@ import CommonTestSupport
 
 class PairWithBrowserExtensionScreen {
 
-    var qrCodeInput = XCUIApplication().textFields.element
-    var qrCodeButton = XCUIApplication().buttons["QRCodeButton"]
-    var saveButton = XCUIApplication().buttons[LocalizedString("new_safe.extension.save")]
+    var qrCodeInput: XCUIElement { return XCUIApplication().textFields.element }
+    var qrCodeButton: XCUIElement { return XCUIApplication().buttons["QRCodeButton"] }
+    var saveButton: XCUIElement { return XCUIApplication().buttons[LocalizedString("new_safe.extension.save")] }
 
 }
