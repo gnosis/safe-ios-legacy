@@ -12,11 +12,11 @@ final class NewSafeScreen {
         return title.exists
     }
 
-    var title = XCUIApplication().staticTexts[LocalizedString("new_safe.title")]
-    var thisDevice = CheckButton(LocalizedString("new_safe.this_device"))
-    var browserExtension = CheckButton(LocalizedString("new_safe.browser_extension"))
-    var paperWallet = CheckButton(LocalizedString("new_safe.paper_wallet"))
-    var next = XCUIApplication().buttons[LocalizedString("new_safe.create")]
+    var title: XCUIElement { return XCUIApplication().staticTexts[LocalizedString("new_safe.title")] }
+    var thisDevice: CheckButton { return CheckButton(LocalizedString("new_safe.this_device")) }
+    var browserExtension: CheckButton { return CheckButton(LocalizedString("new_safe.browser_extension")) }
+    var paperWallet: CheckButton { return CheckButton(LocalizedString("new_safe.paper_wallet")) }
+    var next: XCUIElement { return XCUIApplication().buttons[LocalizedString("new_safe.create")] }
 
     struct CheckButton {
         let element: XCUIElement
