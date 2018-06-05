@@ -26,6 +26,7 @@ class PendingSafeViewControllerTests: SafeTestCase {
         XCTAssertNotNil(controller.titleLabel)
         XCTAssertNotNil(controller.infoLabel)
         XCTAssertNotNil(controller.safeAddressLabel)
+        XCTAssertTrue(controller.cancelButton.isEnabled)
     }
 
     func test_whenAddressNotKnown_thenDisplaysStatus() {
@@ -39,6 +40,7 @@ class PendingSafeViewControllerTests: SafeTestCase {
         walletService.assignBlockchainAddress("address")
         delay()
         assert(progress: 20, status: "pending_safe.status.address_known")
+        XCTAssertTrue(controller.cancelButton.isEnabled)
     }
 
     func test_whenWalletReceivedEnoughFunds_thenDisplaysStatus() {
@@ -47,6 +49,7 @@ class PendingSafeViewControllerTests: SafeTestCase {
         walletService.update(account: "ETH", newBalance: 100)
         delay()
         assert(progress: 50, status: "pending_safe.status.account_funded")
+        XCTAssertFalse(controller.cancelButton.isEnabled)
     }
 
     func test_whenNotEnoughFunds_thenDisplaysStatus() {
@@ -57,6 +60,7 @@ class PendingSafeViewControllerTests: SafeTestCase {
         let status = String(format: XCLocalizedString("pending_safe.status.not_enough_funds"), "90 Wei", "100 Wei")
         XCTAssertEqual(controller.progressView.progress, 40.0 / 100.0)
         XCTAssertEqual(controller.progressStatusLabel.text, status)
+        XCTAssertTrue(controller.cancelButton.isEnabled)
     }
 
     func test_whenTransactionSubmitted_thenDisplaysStatus() {
@@ -64,6 +68,7 @@ class PendingSafeViewControllerTests: SafeTestCase {
         walletService.markDeploymentAcceptedByBlockchain()
         delay()
         assert(progress: 80, status: "pending_safe.status.deployment_accepted")
+        XCTAssertFalse(controller.cancelButton.isEnabled)
     }
 
     func test_whenTransactionFailed_thenCallsDelegate() {

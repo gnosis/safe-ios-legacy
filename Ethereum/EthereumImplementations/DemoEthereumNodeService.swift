@@ -27,7 +27,7 @@ public class DemoEthereumNodeService: EthereumNodeDomainService {
     public func eth_getBalance(account: Address) throws -> Ether {
         wait(delay)
         if account.value == "0x57b2573E5FA7c7C9B5Fa82F3F03A75F53A0efdF5" {
-            let balance = Ether(amount: min(balanceUpdateCounter * 100, 100))
+            let balance = Ether(amount: min(balanceUpdateCounter * 50, 100))
             balanceUpdateCounter += 1
             return balance
         } else {
