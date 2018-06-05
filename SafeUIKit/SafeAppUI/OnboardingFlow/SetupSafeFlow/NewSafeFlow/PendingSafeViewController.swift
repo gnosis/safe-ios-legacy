@@ -71,6 +71,7 @@ public class PendingSafeViewController: UIViewController {
         infoLabel.text = Strings.info
         safeAddressLabel.text = nil
         progressStatusLabel.text = nil
+        progressStatusLabel.accessibilityIdentifier = "pending_safe.status"
         progressView.progress = 0
         updateStatus()
         subscription = walletService.subscribe(updateStatus)
@@ -107,10 +108,10 @@ public class PendingSafeViewController: UIViewController {
                 self.update(progress: 0.1, status: Strings.Status.started)
             case .addressKnown:
                 self.update(progress: 0.2, status: Strings.Status.addressKnown)
+            case .notEnoughFunds:
+                self.update(progress: 0.4, status: self.notEnoughFundsStatus(payment: payment, balance: balance))
             case .accountFunded:
                 self.update(progress: 0.5, status: Strings.Status.accountFunded)
-            case .notEnoughFunds:
-                self.update(progress: 0.5, status: self.notEnoughFundsStatus(payment: payment, balance: balance))
             case .deploymentAcceptedByBlockchain:
                 self.update(progress: 0.8, status: Strings.Status.deploymentAccepted)
             case .deploymentFailed:

@@ -55,7 +55,7 @@ class PendingSafeViewControllerTests: SafeTestCase {
         walletService.update(account: "ETH", newBalance: 90)
         delay()
         let status = String(format: XCLocalizedString("pending_safe.status.not_enough_funds"), "90 Wei", "100 Wei")
-        XCTAssertEqual(controller.progressView.progress, 50.0 / 100.0)
+        XCTAssertEqual(controller.progressView.progress, 40.0 / 100.0)
         XCTAssertEqual(controller.progressStatusLabel.text, status)
     }
 
