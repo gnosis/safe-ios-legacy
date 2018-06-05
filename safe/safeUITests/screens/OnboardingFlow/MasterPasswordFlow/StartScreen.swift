@@ -8,13 +8,12 @@ import CommonTestSupport
 
 final class StartScreen {
 
-    let title = XCUIApplication().staticTexts[LocalizedString("onboarding.start.header")]
-    let description = XCUIApplication().staticTexts[LocalizedString("onboarding.start.description")]
-    let startButton = XCUIApplication().buttons[LocalizedString("onboarding.start.start")]
-
-    var isDisplayed: Bool {
-        return title.exists
+    var isDisplayed: Bool { return title.exists }
+    var title: XCUIElement { return XCUIApplication().staticTexts[LocalizedString("onboarding.start.header")] }
+    var description: XCUIElement {
+        return XCUIApplication().staticTexts[LocalizedString("onboarding.start.description")]
     }
+    var startButton: XCUIElement { return XCUIApplication().buttons[LocalizedString("onboarding.start.start")] }
 
     func start() {
         startButton.tap()
