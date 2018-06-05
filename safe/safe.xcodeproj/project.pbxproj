@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A009BE820C58F5400380A07 /* MyPendingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A009BE720C58F5400380A07 /* MyPendingUITests.swift */; };
+		0A009C0920C688B700380A07 /* PendingSafeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A009C0820C688B700380A07 /* PendingSafeScreen.swift */; };
 		0A0660842099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */; };
 		0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */; };
 		0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* SafeUIKit.strings */; };
@@ -263,7 +263,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0A009BE720C58F5400380A07 /* MyPendingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyPendingUITests.swift; path = safeUITests/NewSafe/MyPendingUITests.swift; sourceTree = SOURCE_ROOT; };
+		0A009C0820C688B700380A07 /* PendingSafeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PendingSafeScreen.swift; path = safeUITests/screens/OnboardingFlow/PendingSafeScreen.swift; sourceTree = SOURCE_ROOT; };
 		0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreenUITests.swift; sourceTree = "<group>"; };
 		0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreen.swift; sourceTree = "<group>"; };
 		0A0660872099B4870048FBD3 /* SafeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -512,6 +512,7 @@
 				55CA9FFF209AF0A0009AE181 /* PaperWalletSetupFlow */,
 				0ACA9C3B205FDAC5005EC186 /* MasterPasswordFlow */,
 				0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */,
+				0A009C0820C688B700380A07 /* PendingSafeScreen.swift */,
 			);
 			path = OnboardingFlow;
 			sourceTree = "<group>";
@@ -613,7 +614,6 @@
 				55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */,
 				0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */,
 				0ABA90DD20C567CE001AEAE4 /* PendingSafeScreenUITests.swift */,
-				0A009BE720C58F5400380A07 /* MyPendingUITests.swift */,
 			);
 			path = NewSafe;
 			sourceTree = "<group>";
@@ -1028,7 +1028,6 @@
 				0A4B004520977266006343EB /* SetupSafeOptionsScreen.swift in Sources */,
 				0A0660842099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift in Sources */,
 				0AA27839205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift in Sources */,
-				0A009BE820C58F5400380A07 /* MyPendingUITests.swift in Sources */,
 				0AA0C864207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */,
 				0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */,
 				0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
@@ -1038,6 +1037,7 @@
 				0A99436C20A04C6700E36FD7 /* LocalizedString.swift in Sources */,
 				0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */,
 				0AA27837205FC63800EBB9D1 /* SetPasswordScreen.swift in Sources */,
+				0A009C0920C688B700380A07 /* PendingSafeScreen.swift in Sources */,
 				0ABA90DE20C567CE001AEAE4 /* PendingSafeScreenUITests.swift in Sources */,
 				0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */,
 				55CAA007209AF267009AE181 /* ConfirmMnemonicScreen.swift in Sources */,
