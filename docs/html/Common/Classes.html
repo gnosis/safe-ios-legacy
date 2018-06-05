@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Classes  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Section/Classes" class="dashAnchor"></a>
+    <a title="Classes  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">Common Docs</a> (82% documented)</p>
+        <p class="header-right"><a href="https://github.com/gnosis/safe-ios"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">Common Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Classes  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/AbstractRegistry.html">AbstractRegistry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/BaseID.html">BaseID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/BaseID/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/IdentifiableEntity.html">IdentifiableEntity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/InMemorySecureStore.html">InMemorySecureStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/MockLogger.html">MockLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Global Variables.html#/s:6Common27LoggableErrorDescriptionKeySSvp">LoggableErrorDescriptionKey</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/TestLoggableError.html">TestLoggableError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/SetAlgebra.html">SetAlgebra</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/Assertable.html">Assertable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/LoggableError.html">LoggableError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/Logger.html">Logger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/SecureStore.html">SecureStore</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Classes</h1>
+            <p>The following classes are available globally.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Common16AbstractRegistryC"></a>
+                    <a name="//apple_ref/swift/Class/AbstractRegistry" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Common16AbstractRegistryC">AbstractRegistry</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>AbstractRegistry</code> is the base class for service registries, implementing a simple dependency injection mechanism.</p>
+
+<p>Each registry class is a singleton that stores mapping from protocols or class types to objects - instances that
+implement that protocol or are that class or subclass.</p>
+
+<p>The registry provides implementations of two basic methods:
+<code><a href="Classes/AbstractRegistry.html#/s:6Common16AbstractRegistryC3putyx7service_xm3fortlFZ">AbstractRegistry.put(service:for:)</a></code> and <code><a href="Classes/AbstractRegistry.html#/s:6Common16AbstractRegistryC7servicexxm3for_tlFZ">AbstractRegistry.service(for:)</a></code>.
+Usually, you implement your own registry by adding getters that return specific type or protocol instance
+using <code><a href="Classes/AbstractRegistry.html#/s:6Common16AbstractRegistryC7servicexxm3for_tlFZ">AbstractRegistry.service(for:)</a></code> method under the hood. For example:</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyRegistry</span><span class="p">:</span> <span class="kt">AbstractRegistry</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">myService</span><span class="p">:</span> <span class="kt">MyService</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">service</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="kt">MyService</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Note, that before using services of the registry you must provide implementations by calling
+<code><a href="Classes/AbstractRegistry.html#/s:6Common16AbstractRegistryC3putyx7service_xm3fortlFZ">AbstractRegistry.put(service:for:)</a></code> method. You can put either mock services, for example,
+in test cases, or real implementations - in AppDelegate.</p>
+
+<p>Either way, your modules using the protocols can be independent of the implementations, providing
+you a plain dependency injection mechanism.</p>
+
+                        <a href="Classes/AbstractRegistry.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">AbstractRegistry</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Common6BaseIDC"></a>
+                    <a name="//apple_ref/swift/Class/BaseID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Common6BaseIDC">BaseID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Base generic class for all UUID-based identifier classes, used to identify Entities.</p>
+
+<p>To implement your identifier class, just inherit from the <code>BaseID</code>:</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyID</span><span class="p">:</span> <span class="kt">BaseID</span> <span class="p">{}</span>
+
+<span class="c1">// instantiation</span>
+<span class="k">let</span> <span class="nv">id</span> <span class="o">=</span> <span class="kt">MyID</span><span class="p">()</span>
+</code></pre>
+
+                        <a href="Classes/BaseID.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">BaseID</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt"><a href="Protocols/Assertable.html">Assertable</a></span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Common18IdentifiableEntityC"></a>
+                    <a name="//apple_ref/swift/Class/IdentifiableEntity" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Common18IdentifiableEntityC">IdentifiableEntity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Base class for an Entity with an identifier (immutable).</p>
+
+                        <a href="Classes/IdentifiableEntity.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">IdentifiableEntity</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt"><a href="Protocols/Assertable.html">Assertable</a></span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Common19InMemorySecureStoreC"></a>
+                    <a name="//apple_ref/swift/Class/InMemorySecureStore" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Common19InMemorySecureStoreC">InMemorySecureStore</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>In-memory implementation of the <code><a href="Protocols/SecureStore.html">SecureStore</a></code> protocol, handy for unit tests.</p>
+
+                        <a href="Classes/InMemorySecureStore.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">InMemorySecureStore</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SecureStore.html">SecureStore</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Common10MockLoggerC"></a>
+                    <a name="//apple_ref/swift/Class/MockLogger" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Common10MockLoggerC">MockLogger</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>MockLogger</code> implements <code><a href="Protocols/Logger.html">Logger</a></code> protocol for use in unit tests.</p>
+
+                        <a href="Classes/MockLogger.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MockLogger</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Logger.html">Logger</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>Copyright © 2018 Gnosis Ltd. All rights reserved.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
