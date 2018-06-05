@@ -62,7 +62,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         try addAllOwners()
         try service.startDeployment()
-        XCTAssertEqual(service.selectedWalletState, .notEnoughFunds)
+        XCTAssertEqual(service.selectedWalletState, .addressKnown)
     }
 
     func test_whenAddingOwner_thenAddressCanBeFound() throws {
@@ -103,7 +103,7 @@ class WalletApplicationServiceTests: XCTestCase {
         try addAllOwners()
         assert(state: .readyToDeploy)
         try service.startDeployment()
-        assert(state: .notEnoughFunds)
+        assert(state: .addressKnown)
         try service.update(account: "ETH", newBalance: 1)
         assert(state: .notEnoughFunds)
         try service.update(account: "ETH", newBalance: 100)
@@ -203,7 +203,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         try addAllOwners()
         try service.startDeployment()
-        XCTAssertEqual(service.selectedWalletState, .notEnoughFunds)
+        XCTAssertEqual(service.selectedWalletState, .addressKnown)
         let account = try findAccount("ETH")
         XCTAssertEqual(account.minimumDeploymentTransactionAmount, 100)
         XCTAssertEqual(account.balance, 0)
@@ -318,7 +318,7 @@ class WalletApplicationServiceTests: XCTestCase {
         try addAllOwners()
         try markDeploymentStarted()
         try service.startDeployment()
-        assert(state: .notEnoughFunds)
+        assert(state: .addressKnown)
     }
 
     func test_whenResumesFromNotEnoughFunds_thenStartsObservingBalance() throws {

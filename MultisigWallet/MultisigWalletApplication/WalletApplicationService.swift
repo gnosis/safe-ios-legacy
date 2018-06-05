@@ -98,7 +98,7 @@ public class WalletApplicationService: Assertable {
                 return .deploymentStarted
             case .addressKnown:
                 let account = try findAccount("ETH")
-                if account.minimumDeploymentTransactionAmount == 0 && account.balance == 0 {
+                if account.balance == 0 {
                     return .addressKnown
                 } else if account.balance < account.minimumDeploymentTransactionAmount {
                     return .notEnoughFunds
@@ -240,10 +240,11 @@ public class WalletApplicationService: Assertable {
 
     private func didUpdateBalance(account: String, newBalance: Int) -> BlockchainBalanceObserverResponse {
         do {
-            guard [WalletState.accountFunded, WalletState.notEnoughFunds].contains(selectedWalletState) else {
+            guard [WalletState.addressKnown, WalletState.notEnoughFunds, WalletState.accountFunded]
+                .contains(selectedWalletState) else {
                 return .stopObserving
             }
-            try update(account: "ETH", newBalance: newBalance)
+            try update(account: "ETH", newBalance: newBalance) // mutates selectedWalletState
             if selectedWalletState == .accountFunded {
                 try createWalletInBlockchain()
                 return .stopObserving
