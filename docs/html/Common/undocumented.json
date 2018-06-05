@@ -1,0 +1,96 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/BaseID.swift",
+      "line": 25,
+      "symbol": "BaseID.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/FoundationExtensions.swift",
+      "line": 9,
+      "symbol": "String.hasUppercaseLetter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/FoundationExtensions.swift",
+      "line": 13,
+      "symbol": "String.hasDecimalDigit",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/FoundationExtensions.swift",
+      "line": 21,
+      "symbol": "SetAlgebra.intersects(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/IdentifiableEntity.swift",
+      "line": 10,
+      "symbol": "IdentifiableEntity.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/InMemorySecureStore.swift",
+      "line": 10,
+      "symbol": "InMemorySecureStore.shouldThrow",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/InMemorySecureStore.swift",
+      "line": 13,
+      "symbol": "InMemorySecureStore.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/LoggableError.swift",
+      "line": 7,
+      "symbol": "LoggableErrorDescriptionKey",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/MockLogger.swift",
+      "line": 10,
+      "symbol": "MockLogger.fatalLogged",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/MockLogger.swift",
+      "line": 11,
+      "symbol": "MockLogger.errorLogged",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/MockLogger.swift",
+      "line": 12,
+      "symbol": "MockLogger.infoLogged",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/MockLogger.swift",
+      "line": 13,
+      "symbol": "MockLogger.debugLogged",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Common/MockLogger.swift",
+      "line": 15,
+      "symbol": "MockLogger.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/dmitry/projects/gnosis/safe-ios"
+}

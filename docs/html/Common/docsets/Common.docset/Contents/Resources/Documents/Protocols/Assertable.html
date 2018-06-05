@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Assertable Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/Assertable" class="dashAnchor"></a>
+    <a title="Assertable Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Common Docs</a> (82% documented)</p>
+        <p class="header-right"><a href="https://github.com/gnosis/safe-ios"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Common Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Assertable Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AbstractRegistry.html">AbstractRegistry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BaseID.html">BaseID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BaseID/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IdentifiableEntity.html">IdentifiableEntity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/InMemorySecureStore.html">InMemorySecureStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MockLogger.html">MockLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6Common27LoggableErrorDescriptionKeySSvp">LoggableErrorDescriptionKey</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/TestLoggableError.html">TestLoggableError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/SetAlgebra.html">SetAlgebra</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Assertable.html">Assertable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/LoggableError.html">LoggableError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Logger.html">Logger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SecureStore.html">SecureStore</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Assertable</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Assertable</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>Assertable</code> protocol provides utilities to assert method arguments or class invariants and throw error on assertion
+failure.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Common10AssertableP14assertArgumentySbyKXK_s5Error_ptKF"></a>
+                    <a name="//apple_ref/swift/Method/assertArgument(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Common10AssertableP14assertArgumentySbyKXK_s5Error_ptKF">assertArgument(_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asserts that condition is true, otherwise throws <code>error</code>.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Throws <code>error</code> when condition does not hold
+
+</div>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">assertArgument</span><span class="p">(</span><span class="n">_</span> <span class="nv">assertion</span><span class="p">:</span> <span class="kd">@autoclosure</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Error</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>assertion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Condition to assert</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Error thrown if condition evaluates to false</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Common10AssertableP9assertNilyypSgyKXK_s5Error_ptKF"></a>
+                    <a name="//apple_ref/swift/Method/assertNil(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Common10AssertableP9assertNilyypSgyKXK_s5Error_ptKF">assertNil(_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asserts that <code>assertion</code> is nil, otherwise throws <code>error</code>.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Throws <code>error</code> if assertion fails.
+
+</div>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">assertNil</span><span class="p">(</span><span class="n">_</span> <span class="nv">assertion</span><span class="p">:</span> <span class="kd">@autoclosure</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Error</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>assertion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Argument or expression to check</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Error thrown if expression is not nil</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Common10AssertableP12assertNotNilyypSgyKXK_s5Error_ptKF"></a>
+                    <a name="//apple_ref/swift/Method/assertNotNil(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Common10AssertableP12assertNotNilyypSgyKXK_s5Error_ptKF">assertNotNil(_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asserts that <code>assertion</code> is not nil, otherwise throws <code>error</code></p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code>error</code> if assertion fails.
+
+</div>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">assertNotNil</span><span class="p">(</span><span class="n">_</span> <span class="nv">assertion</span><span class="p">:</span> <span class="kd">@autoclosure</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Error</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>assertion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Argument or expression to check</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Eror thrown if expression is nil</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Common10AssertableP10assertTrueySbyKXK_s5Error_ptKF"></a>
+                    <a name="//apple_ref/swift/Method/assertTrue(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Common10AssertableP10assertTrueySbyKXK_s5Error_ptKF">assertTrue(_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asserts that <code>assertion</code> is true, otherwise throws <code>error</code>.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code>error</code> if assertion fails.
+
+</div>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">assertTrue</span><span class="p">(</span><span class="n">_</span> <span class="nv">assertion</span><span class="p">:</span> <span class="kd">@autoclosure</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Error</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>assertion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Argument or expression to be check if true</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Error thrown if expression is false</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Common10AssertableP11assertFalseySbyKXK_s5Error_ptKF"></a>
+                    <a name="//apple_ref/swift/Method/assertFalse(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Common10AssertableP11assertFalseySbyKXK_s5Error_ptKF">assertFalse(_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asserts that <code>assertion</code> is false, otherwise throws <code>error</code>.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code>error</code> if assertion fails
+
+</div>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">assertFalse</span><span class="p">(</span><span class="n">_</span> <span class="nv">assertion</span><span class="p">:</span> <span class="kd">@autoclosure</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Error</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>assertion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Argument or expression to check</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Error thrown if expression is true.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Common10AssertableP11assertEqualyqd__yKXK_qd__yKXKs5Error_ptKs9EquatableRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/assertEqual(_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Common10AssertableP11assertEqualyqd__yKXK_qd__yKXKs5Error_ptKs9EquatableRd__lF">assertEqual(_:_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asserts that two arguments are equal, otherwise throws <code>error</code>.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code>error</code> if assertion fails.
+
+</div>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">assertEqual</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">expression1</span><span class="p">:</span> <span class="kd">@autoclosure</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">,</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expression1</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>First expression to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expression2</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Second expression to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Error thrown if expression1 is not equal to expression2.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Common10AssertableP14assertNotEqualyqd__yKXK_qd__yKXKs5Error_ptKs9EquatableRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/assertNotEqual(_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Common10AssertableP14assertNotEqualyqd__yKXK_qd__yKXKs5Error_ptKs9EquatableRd__lF">assertNotEqual(_:_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asserts that two arguments are not equal, otherwise throws <code>error</code>.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code>error</code> if assertion fails.
+
+</div>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">assertNotEqual</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">expression1</span><span class="p">:</span> <span class="kd">@autoclosure</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">,</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expression1</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>First expression to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expression2</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Second expression to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Error thrown if expression1 is equal to expression2.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>Copyright © 2018 Gnosis Ltd. All rights reserved.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
