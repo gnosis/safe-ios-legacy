@@ -158,7 +158,7 @@ extension PairWithBrowserExtensionScreenUITests {
 
     private func handleAlerts() {
         delay(1)
-        XCUIApplication().tap() // required for alert handlers firing
+        XCUIApplication().swipeUp() // required for alert handlers firing
         waitForExpectations(timeout: 5)
     }
 
