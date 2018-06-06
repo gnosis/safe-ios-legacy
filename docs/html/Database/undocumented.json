@@ -1,0 +1,1951 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/Database.swift",
+      "line": 237,
+      "symbol": "Statement.bind(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/Database.swift",
+      "line": 253,
+      "symbol": "Statement.bind(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 7,
+      "symbol": "FunctionCallTrace",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 9,
+      "symbol": "FunctionCallTrace.log",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 11,
+      "symbol": "FunctionCallTrace.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 13,
+      "symbol": "FunctionCallTrace.append(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 17,
+      "symbol": "FunctionCallTrace.diff(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 34,
+      "symbol": "MockRawResultSet",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 36,
+      "symbol": "MockDatabase",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 39,
+      "symbol": "MockDatabase.connections",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 41,
+      "symbol": "MockDatabase.resultSet",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 43,
+      "symbol": "MockDatabase.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 64,
+      "symbol": "MockConnection",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 66,
+      "symbol": "MockConnection.statements",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 71,
+      "symbol": "MockConnection.init(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 89,
+      "symbol": "MockStatement",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 94,
+      "symbol": "MockStatement.init(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 149,
+      "symbol": "MockResultSet",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/MockDatabase.swift",
+      "line": 155,
+      "symbol": "MockResultSet.init(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 8,
+      "symbol": "CSQLite3",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 10,
+      "symbol": "CSQLite3.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 12,
+      "symbol": "CSQLite3.SQLITE_VERSION",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 13,
+      "symbol": "CSQLite3.SQLITE_VERSION_NUMBER",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 14,
+      "symbol": "CSQLite3.SQLITE_SOURCE_ID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 16,
+      "symbol": "CSQLite3.SQLITE_INTEGER",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 17,
+      "symbol": "CSQLite3.SQLITE_FLOAT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 18,
+      "symbol": "CSQLite3.SQLITE_TEXT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 19,
+      "symbol": "CSQLite3.SQLITE_BLOB",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 20,
+      "symbol": "CSQLite3.SQLITE_NULL",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 22,
+      "symbol": "CSQLite3.SQLITE_OK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 23,
+      "symbol": "CSQLite3.SQLITE_ERROR",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 24,
+      "symbol": "CSQLite3.SQLITE_INTERNAL",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 25,
+      "symbol": "CSQLite3.SQLITE_PERM",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 26,
+      "symbol": "CSQLite3.SQLITE_ABORT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 27,
+      "symbol": "CSQLite3.SQLITE_BUSY",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 28,
+      "symbol": "CSQLite3.SQLITE_LOCKED",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 29,
+      "symbol": "CSQLite3.SQLITE_NOMEM",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 30,
+      "symbol": "CSQLite3.SQLITE_READONLY",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 31,
+      "symbol": "CSQLite3.SQLITE_INTERRUPT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 32,
+      "symbol": "CSQLite3.SQLITE_IOERR",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 33,
+      "symbol": "CSQLite3.SQLITE_CORRUPT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 34,
+      "symbol": "CSQLite3.SQLITE_NOTFOUND",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 35,
+      "symbol": "CSQLite3.SQLITE_FULL",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 36,
+      "symbol": "CSQLite3.SQLITE_CANTOPEN",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 37,
+      "symbol": "CSQLite3.SQLITE_PROTOCOL",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 38,
+      "symbol": "CSQLite3.SQLITE_EMPTY",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 39,
+      "symbol": "CSQLite3.SQLITE_SCHEMA",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 40,
+      "symbol": "CSQLite3.SQLITE_TOOBIG",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 41,
+      "symbol": "CSQLite3.SQLITE_CONSTRAINT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 42,
+      "symbol": "CSQLite3.SQLITE_MISMATCH",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 43,
+      "symbol": "CSQLite3.SQLITE_MISUSE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 44,
+      "symbol": "CSQLite3.SQLITE_NOLFS",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 45,
+      "symbol": "CSQLite3.SQLITE_AUTH",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 46,
+      "symbol": "CSQLite3.SQLITE_FORMAT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 47,
+      "symbol": "CSQLite3.SQLITE_RANGE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 48,
+      "symbol": "CSQLite3.SQLITE_NOTADB",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 49,
+      "symbol": "CSQLite3.SQLITE_NOTICE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 50,
+      "symbol": "CSQLite3.SQLITE_WARNING",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 51,
+      "symbol": "CSQLite3.SQLITE_ROW",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 52,
+      "symbol": "CSQLite3.SQLITE_DONE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 54,
+      "symbol": "CSQLite3.SQLITE_IOERR_READ",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 55,
+      "symbol": "CSQLite3.SQLITE_IOERR_SHORT_READ",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 56,
+      "symbol": "CSQLite3.SQLITE_IOERR_WRITE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 57,
+      "symbol": "CSQLite3.SQLITE_IOERR_FSYNC",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 58,
+      "symbol": "CSQLite3.SQLITE_IOERR_DIR_FSYNC",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 59,
+      "symbol": "CSQLite3.SQLITE_IOERR_TRUNCATE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 60,
+      "symbol": "CSQLite3.SQLITE_IOERR_FSTAT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 61,
+      "symbol": "CSQLite3.SQLITE_IOERR_UNLOCK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 62,
+      "symbol": "CSQLite3.SQLITE_IOERR_RDLOCK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 63,
+      "symbol": "CSQLite3.SQLITE_IOERR_DELETE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 64,
+      "symbol": "CSQLite3.SQLITE_IOERR_BLOCKED",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 65,
+      "symbol": "CSQLite3.SQLITE_IOERR_NOMEM",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 66,
+      "symbol": "CSQLite3.SQLITE_IOERR_ACCESS",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 67,
+      "symbol": "CSQLite3.SQLITE_IOERR_CHECKRESERVEDLOCK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 68,
+      "symbol": "CSQLite3.SQLITE_IOERR_LOCK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 69,
+      "symbol": "CSQLite3.SQLITE_IOERR_CLOSE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 70,
+      "symbol": "CSQLite3.SQLITE_IOERR_DIR_CLOSE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 71,
+      "symbol": "CSQLite3.SQLITE_IOERR_SHMOPEN",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 72,
+      "symbol": "CSQLite3.SQLITE_IOERR_SHMSIZE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 73,
+      "symbol": "CSQLite3.SQLITE_IOERR_SHMLOCK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 74,
+      "symbol": "CSQLite3.SQLITE_IOERR_SHMMAP",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 75,
+      "symbol": "CSQLite3.SQLITE_IOERR_SEEK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 76,
+      "symbol": "CSQLite3.SQLITE_IOERR_DELETE_NOENT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 77,
+      "symbol": "CSQLite3.SQLITE_IOERR_MMAP",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 78,
+      "symbol": "CSQLite3.SQLITE_IOERR_GETTEMPPATH",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 79,
+      "symbol": "CSQLite3.SQLITE_IOERR_CONVPATH",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 80,
+      "symbol": "CSQLite3.SQLITE_IOERR_VNODE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 81,
+      "symbol": "CSQLite3.SQLITE_IOERR_AUTH",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 82,
+      "symbol": "CSQLite3.SQLITE_LOCKED_SHAREDCACHE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 83,
+      "symbol": "CSQLite3.SQLITE_BUSY_RECOVERY",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 84,
+      "symbol": "CSQLite3.SQLITE_BUSY_SNAPSHOT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 85,
+      "symbol": "CSQLite3.SQLITE_CANTOPEN_NOTEMPDIR",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 86,
+      "symbol": "CSQLite3.SQLITE_CANTOPEN_ISDIR",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 87,
+      "symbol": "CSQLite3.SQLITE_CANTOPEN_FULLPATH",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 88,
+      "symbol": "CSQLite3.SQLITE_CANTOPEN_CONVPATH",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 89,
+      "symbol": "CSQLite3.SQLITE_CANTOPEN_DIRTYWAL",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 90,
+      "symbol": "CSQLite3.SQLITE_CORRUPT_VTAB",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 91,
+      "symbol": "CSQLite3.SQLITE_READONLY_RECOVERY",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 92,
+      "symbol": "CSQLite3.SQLITE_READONLY_CANTLOCK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 93,
+      "symbol": "CSQLite3.SQLITE_READONLY_ROLLBACK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 94,
+      "symbol": "CSQLite3.SQLITE_READONLY_DBMOVED",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 95,
+      "symbol": "CSQLite3.SQLITE_ABORT_ROLLBACK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 96,
+      "symbol": "CSQLite3.SQLITE_CONSTRAINT_CHECK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 97,
+      "symbol": "CSQLite3.SQLITE_CONSTRAINT_COMMITHOOK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 98,
+      "symbol": "CSQLite3.SQLITE_CONSTRAINT_FOREIGNKEY",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 99,
+      "symbol": "CSQLite3.SQLITE_CONSTRAINT_FUNCTION",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 100,
+      "symbol": "CSQLite3.SQLITE_CONSTRAINT_NOTNULL",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 101,
+      "symbol": "CSQLite3.SQLITE_CONSTRAINT_PRIMARYKEY",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 102,
+      "symbol": "CSQLite3.SQLITE_CONSTRAINT_TRIGGER",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 103,
+      "symbol": "CSQLite3.SQLITE_CONSTRAINT_UNIQUE",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 104,
+      "symbol": "CSQLite3.SQLITE_CONSTRAINT_VTAB",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 105,
+      "symbol": "CSQLite3.SQLITE_CONSTRAINT_ROWID",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 106,
+      "symbol": "CSQLite3.SQLITE_NOTICE_RECOVER_WAL",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 107,
+      "symbol": "CSQLite3.SQLITE_NOTICE_RECOVER_ROLLBACK",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 108,
+      "symbol": "CSQLite3.SQLITE_WARNING_AUTOINDEX",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 109,
+      "symbol": "CSQLite3.SQLITE_AUTH_USER",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 110,
+      "symbol": "CSQLite3.SQLITE_OK_LOAD_PERMANENTLY",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 112,
+      "symbol": "CSQLite3.SQLITE_TRANSIENT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 113,
+      "symbol": "CSQLite3.SQLITE_STATIC",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 115,
+      "symbol": "CSQLite3.sqlite3_open(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 119,
+      "symbol": "CSQLite3.sqlite3_libversion_number()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 123,
+      "symbol": "CSQLite3.sqlite3_libversion()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 127,
+      "symbol": "CSQLite3.sqlite3_sourceid()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 131,
+      "symbol": "CSQLite3.sqlite3_close(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 135,
+      "symbol": "CSQLite3.sqlite3_prepare_v2(_:_:_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 143,
+      "symbol": "CSQLite3.sqlite3_finalize(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 147,
+      "symbol": "CSQLite3.sqlite3_get_autocommit(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 151,
+      "symbol": "CSQLite3.sqlite3_step(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 155,
+      "symbol": "CSQLite3.sqlite3_column_count(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 159,
+      "symbol": "CSQLite3.sqlite3_column_type(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 163,
+      "symbol": "CSQLite3.sqlite3_column_bytes(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 167,
+      "symbol": "CSQLite3.sqlite3_column_double(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 171,
+      "symbol": "CSQLite3.sqlite3_column_int64(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 175,
+      "symbol": "CSQLite3.sqlite3_column_text(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 179,
+      "symbol": "CSQLite3.sqlite3_column_blob(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 183,
+      "symbol": "CSQLite3.sqlite3_reset(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 187,
+      "symbol": "CSQLite3.sqlite3_bind_double(_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 191,
+      "symbol": "CSQLite3.sqlite3_bind_int64(_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 195,
+      "symbol": "CSQLite3.sqlite3_bind_null(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 199,
+      "symbol": "CSQLite3.sqlite3_bind_text(_:_:_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 207,
+      "symbol": "CSQLite3.sqlite3_bind_blob(_:_:_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 215,
+      "symbol": "CSQLite3.sqlite3_bind_parameter_index(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 219,
+      "symbol": "CSQLite3.sqlite3_errmsg(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/CSQLite3.swift",
+      "line": 223,
+      "symbol": "CSQLite3.sqlite3_errstr(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 8,
+      "symbol": "MockCSQLite3",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 10,
+      "symbol": "MockCSQLite3.openedFilename",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 11,
+      "symbol": "MockCSQLite3.SQLITE_VERSION",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 12,
+      "symbol": "MockCSQLite3.SQLITE_VERSION_NUMBER",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 13,
+      "symbol": "MockCSQLite3.SQLITE_SOURCE_ID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 14,
+      "symbol": "MockCSQLite3.version",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 15,
+      "symbol": "MockCSQLite3.number",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 16,
+      "symbol": "MockCSQLite3.sourceID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 19,
+      "symbol": "MockCSQLite3.libversion_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 20,
+      "symbol": "MockCSQLite3.sourceid_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 21,
+      "symbol": "MockCSQLite3.libversion_number_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 23,
+      "symbol": "MockCSQLite3.open_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 24,
+      "symbol": "MockCSQLite3.open_pointer_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 25,
+      "symbol": "MockCSQLite3.sqlite3_open(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 34,
+      "symbol": "MockCSQLite3.sqlite3_libversion_number()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 38,
+      "symbol": "MockCSQLite3.sqlite3_libversion()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 42,
+      "symbol": "MockCSQLite3.sqlite3_sourceid()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 46,
+      "symbol": "MockCSQLite3.close_pointer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 47,
+      "symbol": "MockCSQLite3.close_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 48,
+      "symbol": "MockCSQLite3.sqlite3_close(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 53,
+      "symbol": "MockCSQLite3.prepare_in_db",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 54,
+      "symbol": "MockCSQLite3.prepare_in_zSql",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 55,
+      "symbol": "MockCSQLite3.prepare_in_zSql_string",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 56,
+      "symbol": "MockCSQLite3.prepare_in_nByte",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 57,
+      "symbol": "MockCSQLite3.prepare_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 58,
+      "symbol": "MockCSQLite3.prepare_out_ppStmt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 59,
+      "symbol": "MockCSQLite3.prepare_out_pzTail",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 60,
+      "symbol": "MockCSQLite3.sqlite3_prepare_v2(_:_:_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 77,
+      "symbol": "MockCSQLite3.finalize_in_pStmt_list",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 78,
+      "symbol": "MockCSQLite3.finalize_in_pStmt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 79,
+      "symbol": "MockCSQLite3.finalize_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 80,
+      "symbol": "MockCSQLite3.sqlite3_finalize(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 85,
+      "symbol": "MockCSQLite3.get_autocommit_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 86,
+      "symbol": "MockCSQLite3.get_autocommit_in_db",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 87,
+      "symbol": "MockCSQLite3.sqlite3_get_autocommit(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 92,
+      "symbol": "MockCSQLite3.step_results",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 93,
+      "symbol": "MockCSQLite3.step_result_index",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 94,
+      "symbol": "MockCSQLite3.step_in_pStmt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 95,
+      "symbol": "MockCSQLite3.sqlite3_step(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 102,
+      "symbol": "MockCSQLite3.column_count_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 103,
+      "symbol": "MockCSQLite3.column_count_in_pStmt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 104,
+      "symbol": "MockCSQLite3.sqlite3_column_count(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 109,
+      "symbol": "MockCSQLite3.column_type_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 110,
+      "symbol": "MockCSQLite3.column_type_in_pStmt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 111,
+      "symbol": "MockCSQLite3.sqlite3_column_type(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 116,
+      "symbol": "MockCSQLite3.column_text_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 118,
+      "symbol": "MockCSQLite3.sqlite3_column_text(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 126,
+      "symbol": "MockCSQLite3.column_blob_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 128,
+      "symbol": "MockCSQLite3.sqlite3_column_blob(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 136,
+      "symbol": "MockCSQLite3.column_bytes_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 137,
+      "symbol": "MockCSQLite3.sqlite3_column_bytes(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 141,
+      "symbol": "MockCSQLite3.column_int64_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 142,
+      "symbol": "MockCSQLite3.sqlite3_column_int64(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 146,
+      "symbol": "MockCSQLite3.column_double_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 147,
+      "symbol": "MockCSQLite3.sqlite3_column_double(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 151,
+      "symbol": "MockCSQLite3.reset_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 152,
+      "symbol": "MockCSQLite3.reset_in_pStmt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 153,
+      "symbol": "MockCSQLite3.sqlite3_reset(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 158,
+      "symbol": "MockCSQLite3.bind_text_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 159,
+      "symbol": "MockCSQLite3.bind_text_in_pStmt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 160,
+      "symbol": "MockCSQLite3.bind_text_in_index",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 161,
+      "symbol": "MockCSQLite3.bind_text_in_zValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 162,
+      "symbol": "MockCSQLite3.bind_text_in_nByte",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 163,
+      "symbol": "MockCSQLite3.bind_text_in_destructor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 164,
+      "symbol": "MockCSQLite3.sqlite3_bind_text(_:_:_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 179,
+      "symbol": "MockCSQLite3.bind_blob_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 180,
+      "symbol": "MockCSQLite3.bind_blob_in_pStmt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 181,
+      "symbol": "MockCSQLite3.bind_blob_in_index",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 182,
+      "symbol": "MockCSQLite3.bind_blob_in_zValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 183,
+      "symbol": "MockCSQLite3.bind_blob_in_nByte",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 184,
+      "symbol": "MockCSQLite3.bind_blob_in_destructor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 185,
+      "symbol": "MockCSQLite3.sqlite3_bind_blob(_:_:_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 198,
+      "symbol": "MockCSQLite3.bind_double_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 199,
+      "symbol": "MockCSQLite3.bind_double_in_pStmt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 200,
+      "symbol": "MockCSQLite3.bind_double_in_index",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 201,
+      "symbol": "MockCSQLite3.bind_double_in_zValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 202,
+      "symbol": "MockCSQLite3.sqlite3_bind_double(_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 209,
+      "symbol": "MockCSQLite3.bind_int64_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 210,
+      "symbol": "MockCSQLite3.bind_int64_in_pStmt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 211,
+      "symbol": "MockCSQLite3.bind_int64_in_index",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 212,
+      "symbol": "MockCSQLite3.bind_int64_in_zValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 213,
+      "symbol": "MockCSQLite3.sqlite3_bind_int64(_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 220,
+      "symbol": "MockCSQLite3.bind_null_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 221,
+      "symbol": "MockCSQLite3.bind_null_in_pStmt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 222,
+      "symbol": "MockCSQLite3.bind_null_in_index",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 223,
+      "symbol": "MockCSQLite3.sqlite3_bind_null(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 229,
+      "symbol": "MockCSQLite3.bind_parameter_index_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 230,
+      "symbol": "MockCSQLite3.bind_parameter_index_in_pStmt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 231,
+      "symbol": "MockCSQLite3.bind_parameter_index_in_zName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 232,
+      "symbol": "MockCSQLite3.sqlite3_bind_parameter_index(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 240,
+      "symbol": "MockCSQLite3.errmsg_result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 242,
+      "symbol": "MockCSQLite3.errmsg_in_db",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockCSQLite3.swift",
+      "line": 243,
+      "symbol": "MockCSQLite3.sqlite3_errmsg(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockFileManager.swift",
+      "line": 7,
+      "symbol": "MockFileManager",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockFileManager.swift",
+      "line": 9,
+      "symbol": "MockFileManager.appSupportURL()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockFileManager.swift",
+      "line": 16,
+      "symbol": "MockFileManager.notExistingURLs",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockFileManager.swift",
+      "line": 17,
+      "symbol": "MockFileManager.existingURLs",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockFileManager.swift",
+      "line": 19,
+      "symbol": "MockFileManager.fileExists(atPath:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/MockFileManager.swift",
+      "line": 25,
+      "symbol": "MockFileManager.removeItem(at:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteConnection.swift",
+      "line": 8,
+      "symbol": "SQLiteConnection",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteConnection.swift",
+      "line": 16,
+      "symbol": "SQLiteConnection.init(sqlite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteConnection.swift",
+      "line": 59,
+      "symbol": "SQLiteConnection.open(url:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteConnection.swift",
+      "line": 69,
+      "symbol": "SQLiteConnection.close()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 53,
+      "symbol": "SQLiteDatabase.Error.applicationSupportDirNotFound",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 54,
+      "symbol": "SQLiteDatabase.Error.bundleIdentifierNotFound",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 55,
+      "symbol": "SQLiteDatabase.Error.databaseAlreadyExists",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 56,
+      "symbol": "SQLiteDatabase.Error.failedToCreateDatabase",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 57,
+      "symbol": "SQLiteDatabase.Error.databaseDoesNotExist",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 58,
+      "symbol": "SQLiteDatabase.Error.invalidSQLiteVersion",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 59,
+      "symbol": "SQLiteDatabase.Error.failedToOpenDatabase",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 60,
+      "symbol": "SQLiteDatabase.Error.databaseBusy",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 61,
+      "symbol": "SQLiteDatabase.Error.connectionIsNotOpened",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 62,
+      "symbol": "SQLiteDatabase.Error.invalidSQLStatement",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 63,
+      "symbol": "SQLiteDatabase.Error.attemptToExecuteFinalizedStatement",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 64,
+      "symbol": "SQLiteDatabase.Error.connectionIsAlreadyClosed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 65,
+      "symbol": "SQLiteDatabase.Error.invalidConnection",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 66,
+      "symbol": "SQLiteDatabase.Error.statementWasAlreadyExecuted",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 67,
+      "symbol": "SQLiteDatabase.Error.runtimeError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 68,
+      "symbol": "SQLiteDatabase.Error.invalidStatementState",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 69,
+      "symbol": "SQLiteDatabase.Error.transactionMustBeRolledBack",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 70,
+      "symbol": "SQLiteDatabase.Error.invalidStringBindingValue",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 71,
+      "symbol": "SQLiteDatabase.Error.failedToSetStatementParameter",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 72,
+      "symbol": "SQLiteDatabase.Error.statementParameterIndexOutOfRange",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 73,
+      "symbol": "SQLiteDatabase.Error.invalidStatementKeyValue",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 74,
+      "symbol": "SQLiteDatabase.Error.attemptToBindExecutedStatement",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteDatabase.swift",
+      "line": 75,
+      "symbol": "SQLiteDatabase.Error.attemptToBindFinalizedStatement",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteResultSet.swift",
+      "line": 8,
+      "symbol": "SQLiteResultSet",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteResultSet.swift",
+      "line": 10,
+      "symbol": "SQLiteResultSet.isColumnsEmpty",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteResultSet.swift",
+      "line": 11,
+      "symbol": "SQLiteResultSet.columnCount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteResultSet.swift",
+      "line": 16,
+      "symbol": "SQLiteResultSet.init(db:stmt:sqlite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteStatement.swift",
+      "line": 8,
+      "symbol": "SQLiteStatement",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteStatement.swift",
+      "line": 17,
+      "symbol": "SQLiteStatement.init(sql:db:stmt:sqlite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteStatement.swift",
+      "line": 55,
+      "symbol": "SQLiteStatement.lastErrorMessage()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmitry/projects/gnosis/safe-ios/Common/Database/SQLite/SQLiteStatement.swift",
+      "line": 60,
+      "symbol": "SQLiteStatement.finalize()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/dmitry/projects/gnosis/safe-ios"
+}
