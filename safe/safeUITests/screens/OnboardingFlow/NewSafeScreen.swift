@@ -8,10 +8,7 @@ import CommonTestSupport
 
 final class NewSafeScreen {
 
-    var isDisplayed: Bool {
-        return title.exists
-    }
-
+    var isDisplayed: Bool { return title.exists }
     var title: XCUIElement { return XCUIApplication().staticTexts[LocalizedString("new_safe.title")] }
     var thisDevice: CheckButton { return CheckButton(LocalizedString("new_safe.this_device")) }
     var browserExtension: CheckButton { return CheckButton(LocalizedString("new_safe.browser_extension")) }
