@@ -1369,7 +1369,6 @@
 			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "IdentityAccessDomainModel/XcodeBuildSupport/Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1494,7 +1493,6 @@
 			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "IdentityAccessDomainModel/XcodeBuildSupport/Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1512,7 +1510,6 @@
 			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "IdentityAccessDomainModel/XcodeBuildSupport/Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
