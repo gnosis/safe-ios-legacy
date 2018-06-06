@@ -18,11 +18,11 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
     let failedTransactionHash =
         TransactionHash(value: "0x1b6efea55bb515fd8599d543f57b54ec3ed4242c887269f1a2e9e0008c15ccaf")
 
-    func test_whenAccountNotExists_thenReturnsZero() throws {
+    private func test_whenAccountNotExists_thenReturnsZero() throws {
         XCTAssertEqual(try service.eth_getBalance(account: emptyAddress), Ether.zero)
     }
 
-    func test_whenBalanceCheckedInBackground_thenItIsFetched() throws {
+    private func test_whenBalanceCheckedInBackground_thenItIsFetched() throws {
         var balance: Ether?
         let exp = expectation(description: "wait")
         DispatchQueue.global().async { [weak self] in
@@ -34,22 +34,22 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
         XCTAssertEqual(balance, Ether(amount: 30_000_000_000_000_000))
     }
 
-    func test_whenExecutedOnMainThread_thenNotLocked() throws {
+    private func test_whenExecutedOnMainThread_thenNotLocked() throws {
         assert(Thread.isMainThread)
         // if the line below doesn't block the main thread, then this test passes. Otherwise, it will lock forever.
         _ = try self.service.eth_getBalance(account: testAddress)
     }
 
-    func test_whenTransactionDoesNotExist_thenReceiptIsNil() throws {
+    private func test_whenTransactionDoesNotExist_thenReceiptIsNil() throws {
         XCTAssertNil(try service.eth_getTransactionReceipt(transaction: notExistingTransactionHash))
     }
 
-    func test_whenTransactionCompletedSuccess_thenReceiptExists() throws {
+    private func test_whenTransactionCompletedSuccess_thenReceiptExists() throws {
         XCTAssertEqual(try service.eth_getTransactionReceipt(transaction: successfulTransactionHash),
                        TransactionReceipt(hash: successfulTransactionHash, status: .success))
     }
 
-    func test_whenTransactionWasDeclined_thenReceiptStatusIsFailed() throws {
+    private func test_whenTransactionWasDeclined_thenReceiptStatusIsFailed() throws {
         XCTAssertEqual(try service.eth_getTransactionReceipt(transaction: failedTransactionHash),
                        TransactionReceipt(hash: failedTransactionHash, status: .failed))
     }
