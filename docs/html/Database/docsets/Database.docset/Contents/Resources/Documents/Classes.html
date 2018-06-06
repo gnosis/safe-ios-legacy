@@ -14,7 +14,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Database Docs</a> (23% documented)</p>
+        <p><a href="index.html">Database Docs</a> (33% documented)</p>
         <p class="header-right"><a href="https://github.com/gnosis/safe-ios"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -38,16 +38,10 @@
                 <a href="Classes/FunctionCallTrace.html">FunctionCallTrace</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/MockCSQLite3.html">MockCSQLite3</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/MockConnection.html">MockConnection</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/MockDatabase.html">MockDatabase</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/MockFileManager.html">MockFileManager</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/MockResultSet.html">MockResultSet</a>
@@ -269,7 +263,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A single wrapper over all SQLite3 C API. Used to decouple <code><a href="Classes/SQLiteDatabase.html">SQLiteDatabase</a></code> and other classes from SQLite3 calls for
+testing purposes.</p>
+
+<p>For details, please see the SQLite documentation links below:</p>
+
+<ul>
+<li><a href="https://sqlite.org/c3ref/intro.html">SQLite3 C Interface</a></li>
+<li><a href="https://sqlite.org/c3ref/constlist.html">SQLite3 Constants List</a></li>
+<li><a href="https://sqlite.org/c3ref/funclist.html">SQLite3 Functions List</a></li>
+<li><a href="https://sqlite.org/c3ref/objlist.html">SQLite3 Objects List</a></li>
+</ul>
 
                         <a href="Classes/CSQLite3.html" class="slightly-smaller">See more</a>
                       </div>
@@ -278,70 +282,6 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">CSQLite3</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:8Database12MockCSQLite3C"></a>
-                    <a name="//apple_ref/swift/Class/MockCSQLite3" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8Database12MockCSQLite3C">MockCSQLite3</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Classes/MockCSQLite3.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MockCSQLite3</span> <span class="p">:</span> <span class="kt"><a href="Classes/CSQLite3.html">CSQLite3</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@Database@objc(cs)MockFileManager"></a>
-                    <a name="//apple_ref/swift/Class/MockFileManager" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Database@objc(cs)MockFileManager">MockFileManager</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Classes/MockFileManager.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MockFileManager</span> <span class="p">:</span> <span class="kt">FileManager</span></code></pre>
 
                         </div>
                       </div>
@@ -406,7 +346,7 @@ bundle identifier.</p>
 <p>After that, you can create database if it does not exist, otherwise, you can start executing
 queries or creating connections.</p>
 
-<p><em>Important</em>: If you created any connections with <code><a href="Classes/SQLiteDatabase.html#/s:8Database06SQLiteA0C10connectionAA10Connection_pyKF">SQLiteDatabase.connection()</a></code> method,
+<p><strong>Important</strong>: If you created any connections with <code><a href="Classes/SQLiteDatabase.html#/s:8Database06SQLiteA0C10connectionAA10Connection_pyKF">SQLiteDatabase.connection()</a></code> method,
 then remember to close them with <code><a href="Classes/SQLiteDatabase.html#/s:8Database06SQLiteA0C5closeyAA10Connection_pKF">SQLiteDatabase.close(...)</a></code> method, otherwise underlying C objects will leak
 and database may end up in undefined state.</p>
 

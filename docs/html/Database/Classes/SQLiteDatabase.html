@@ -14,7 +14,7 @@
     <a title="SQLiteDatabase Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Database Docs</a> (23% documented)</p>
+        <p><a href="../index.html">Database Docs</a> (33% documented)</p>
         <p class="header-right"><a href="https://github.com/gnosis/safe-ios"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -38,16 +38,10 @@
                 <a href="../Classes/FunctionCallTrace.html">FunctionCallTrace</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/MockCSQLite3.html">MockCSQLite3</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/MockConnection.html">MockConnection</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/MockDatabase.html">MockDatabase</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/MockFileManager.html">MockFileManager</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/MockResultSet.html">MockResultSet</a>
@@ -121,7 +115,7 @@ bundle identifier.</p>
 <p>After that, you can create database if it does not exist, otherwise, you can start executing
 queries or creating connections.</p>
 
-<p><em>Important</em>: If you created any connections with <code><a href="../Classes/SQLiteDatabase.html#/s:8Database06SQLiteA0C10connectionAA10Connection_pyKF">SQLiteDatabase.connection()</a></code> method,
+<p><strong>Important</strong>: If you created any connections with <code><a href="../Classes/SQLiteDatabase.html#/s:8Database06SQLiteA0C10connectionAA10Connection_pyKF">SQLiteDatabase.connection()</a></code> method,
 then remember to close them with <code><a href="../Classes/SQLiteDatabase.html#/s:8Database06SQLiteA0C5closeyAA10Connection_pKF">SQLiteDatabase.close(...)</a></code> method, otherwise underlying C objects will leak
 and database may end up in undefined state.</p>
 
@@ -382,7 +376,7 @@ It will also create an empty file named <code><a href="../Classes/SQLiteDatabase
 <li><code><a href="../Classes/SQLiteDatabase/Error.html#/s:8Database06SQLiteA0C5ErrorO07invalidB7VersionA2EmF">Error.invalidSQLiteVersion</a></code> if the linked library&rsquo;s major version is different from headers version</li>
 <li><code><a href="../Classes/SQLiteDatabase/Error.html#/s:8Database06SQLiteA0C5ErrorO07invalidB7VersionA2EmF">Error.invalidSQLiteVersion</a></code> if linked library&rsquo;s and headers version equal but other version
 variables, like source id and integer version number have different header and linked values.</li>
-<li>If <code>SQLConnection</code> opening throws error, it will be rethrown here.</li>
+<li>If <code><a href="../Classes/SQLiteConnection.html">SQLiteConnection</a></code> opening throws error, it will be rethrown here.</li>
 </ul>
 
 </div>
@@ -422,7 +416,7 @@ object when connection is successfully closed.</p>
     <p class="aside-title">Throws</p>
     <ul>
 <li><code><a href="../Classes/SQLiteDatabase/Error.html#/s:8Database06SQLiteA0C5ErrorO17invalidConnectionA2EmF">Error.invalidConnection</a></code> in case connection is not <code><a href="../Classes/SQLiteConnection.html">SQLiteConnection</a></code></li>
-<li>Any error thrown from <code>Connection.close()</code> is rethrown.</li>
+<li>Any error thrown from <code>SQLiteConnection.close()</code> is rethrown.</li>
 </ul>
 
 </div>
