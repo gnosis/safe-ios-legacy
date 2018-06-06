@@ -34,8 +34,10 @@ struct ExtensionCode {
             let expirationDate = json["expirationDate"] as? String,
             let signature = json["signature"] as? [String: Any],
             let vInt = signature["v"] as? Int,
-            let rStr = signature["r"] as? String, let r = BInt(rStr, radix: 10),
-            let sStr = signature["s"] as? String, let s = BInt(sStr, radix: 10)
+            let rStr = signature["r"] as? String,
+            let r = BInt(rStr, radix: 10), // FIXME: crashes on iOS 10.0
+            let sStr = signature["s"] as? String,
+            let s = BInt(sStr, radix: 10)
             else { return nil }
         self.expirationDate = expirationDate
         self.v = BInt(vInt)

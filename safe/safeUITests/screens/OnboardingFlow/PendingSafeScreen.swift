@@ -7,9 +7,10 @@ import XCTest
 
 class PendingSafeScreen {
 
-    let title = XCUIApplication().staticTexts[LocalizedString("pending_safe.title")]
-    let progressView = XCUIApplication().progressIndicators.element
-    let status = XCUIApplication().staticTexts["pending_safe.status"]
-    let cancel = XCUIApplication().buttons[LocalizedString("pending_safe.cancel")]
+    var isDisplayed: Bool { return title.exists }
+    var title: XCUIElement { return XCUIApplication().staticTexts[LocalizedString("pending_safe.title")] }
+    var progressView: XCUIElement { return XCUIApplication().progressIndicators.element }
+    var status: XCUIElement { return XCUIApplication().staticTexts["pending_safe.status"] }
+    var cancel: XCUIElement { return XCUIApplication().buttons[LocalizedString("pending_safe.cancel")] }
 
 }

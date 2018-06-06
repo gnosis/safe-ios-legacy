@@ -8,22 +8,21 @@ import CommonTestSupport
 
 final class ConfirmMnemonicScreen {
 
-    var isDisplayed: Bool {
-        return title.exists
+    var isDisplayed: Bool { return title.exists }
+    var title: XCUIElement { return XCUIApplication().staticTexts[LocalizedString("recovery.confirm_mnemonic.title")] }
+    var description: XCUIElement {
+        return XCUIApplication().staticTexts[LocalizedString("recovery.confirm_mnemonic.description")]
     }
-
-    let title = XCUIApplication().staticTexts[LocalizedString("recovery.confirm_mnemonic.title")]
-    let description = XCUIApplication().staticTexts[LocalizedString("recovery.confirm_mnemonic.description")]
-    let firstInput = XCUIApplication().otherElements["firstInput"].textFields.firstMatch
-    let secondInput = XCUIApplication().otherElements["secondInput"].textFields.firstMatch
-    let firstWordNumberLabel = XCUIApplication().staticTexts["firstWordNumberLabel"]
-    let secondWordNumberLabel = XCUIApplication().staticTexts["secondWordNumberLabel"]
-    let confirmButton = XCUIApplication().buttons[LocalizedString("recovery.confirm_mnemonic.confirm_button")]
-
+    var firstInput: XCUIElement { return XCUIApplication().otherElements["firstInput"].textFields.firstMatch }
+    var secondInput: XCUIElement { return XCUIApplication().otherElements["secondInput"].textFields.firstMatch }
+    var firstWordNumberLabel: XCUIElement { return XCUIApplication().staticTexts["firstWordNumberLabel"] }
+    var secondWordNumberLabel: XCUIElement { return XCUIApplication().staticTexts["secondWordNumberLabel"] }
+    var confirmButton: XCUIElement {
+        return XCUIApplication().buttons[LocalizedString("recovery.confirm_mnemonic.confirm_button")]
+    }
     var firstWordNumber: Int {
         return wordNumber(from: firstWordNumberLabel.label)
     }
-
     var secondWordNumber: Int {
         return wordNumber(from: secondWordNumberLabel.label)
     }

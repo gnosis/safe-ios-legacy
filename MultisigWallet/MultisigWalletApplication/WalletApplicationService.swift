@@ -49,13 +49,9 @@ public class WalletApplicationService: Assertable {
         ]
 
         private static let validAccountUpdateStates: [WalletState] = [
+            .deploymentStarted,
             .addressKnown,
-            .notEnoughFunds,
-            .accountFunded,
-            .deploymentAcceptedByBlockchain,
-            .deploymentSuccess,
-            .deploymentFailed,
-            .readyToUse
+            .notEnoughFunds
         ]
     }
 
@@ -98,7 +94,7 @@ public class WalletApplicationService: Assertable {
                 return .deploymentStarted
             case .addressKnown:
                 let account = try findAccount("ETH")
-                if account.minimumDeploymentTransactionAmount == 0 && account.balance == 0 {
+                if account.balance == 0 {
                     return .addressKnown
                 } else if account.balance < account.minimumDeploymentTransactionAmount {
                     return .notEnoughFunds
@@ -134,6 +130,10 @@ public class WalletApplicationService: Assertable {
         return selectedWalletState.isBeingCreated
     }
 
+    public var canChangeAccount: Bool {
+        return selectedWalletState.isValidForAccountUpdate
+    }
+
     public var selectedWalletAddress: String? {
         do {
             return try findSelectedWallet().address?.value
@@ -157,7 +157,6 @@ public class WalletApplicationService: Assertable {
     public init() {}
 
     // MARK: - Wallet
-
 
     public func createNewDraftWallet() throws {
         try notifyWalletStateChangesAfter {
@@ -240,10 +239,11 @@ public class WalletApplicationService: Assertable {
 
     private func didUpdateBalance(account: String, newBalance: Int) -> BlockchainBalanceObserverResponse {
         do {
-            guard [WalletState.accountFunded, WalletState.notEnoughFunds].contains(selectedWalletState) else {
+            guard [WalletState.addressKnown, WalletState.notEnoughFunds, WalletState.accountFunded]
+                .contains(selectedWalletState) else {
                 return .stopObserving
             }
-            try update(account: "ETH", newBalance: newBalance)
+            try update(account: "ETH", newBalance: newBalance) // mutates selectedWalletState
             if selectedWalletState == .accountFunded {
                 try createWalletInBlockchain()
                 return .stopObserving

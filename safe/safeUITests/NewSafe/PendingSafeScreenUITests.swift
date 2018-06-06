@@ -11,27 +11,32 @@ class PendingSafeScreenUITests: UITestCase {
     let mainScreen = MainScreen()
     let newSafeScreen = NewSafeScreen()
 
-    // NS-201
-    func test_whenStartedCreation_thenStartsAtSmallProgress() {
-        application.setMockServerResponseDelay(100)
+    override func setUp() {
+        super.setUp()
+        application.setMockServerResponseDelay(2)
         givenDeploymentStarted()
-        waitUntil(pendingScreen.title, .exists)
-        XCTAssertEqual(pendingScreen.progressView.value as? String, "10%")
     }
 
-    // NS-201
-    func test_whenGotNewAddress_thenDisplaysIt() {
-        application.setMockServerResponseDelay(1)
-        givenDeploymentStarted()
+    // NS-201, NS-203, NS-209
+    func test_whenStartedCreation_thenHasCorrectIntermediateValues() {
         waitUntil(pendingScreen.title, .exists)
-        waitUntilNotEnoughFundsStatus()
+        XCTAssertEqual(pendingScreen.progressView.value as? String, "10%")
+        waitUntilAddressKnownStatus()
         XCTAssertEqual(pendingScreen.progressView.value as? String, "20%")
+        waitUntilNotEnoughFundsStatus()
+        XCTAssertEqual(pendingScreen.progressView.value as? String, "40%")
+        XCTAssertExist(XCUIApplication().staticTexts[notEnoughFundsLabel()])
+        waitUntilAccountFundedStatus()
+        XCTAssertEqual(pendingScreen.progressView.value as? String, "50%")
+        waitUntilDeploymentAcceptedByBlockchainStatus()
+        XCTAssertEqual(pendingScreen.progressView.value as? String, "80%")
+        waitUntil(mainScreen.addressLabel, .exists)
+        restartTheApp()
+        XCTAssertTrue(mainScreen.isDisplayed)
     }
 
     // NS-202
     func test_whenDismissesAbort_thenContinuesDeployment() {
-        application.setMockServerResponseDelay(2)
-        givenDeploymentStarted()
         waitUntil(pendingScreen.title, .exists)
         let (alertMonitor, alertExpectation) = addAbortAlertMonitor(cancellingAlert: true)
         defer { removeUIInterruptionMonitor(alertMonitor) }
@@ -42,8 +47,6 @@ class PendingSafeScreenUITests: UITestCase {
 
     // NS-202
     func test_whenAbortsDeployment_thenGoesBack() {
-        application.setMockServerResponseDelay(1)
-        givenDeploymentStarted()
         waitUntil(pendingScreen.title, .exists)
         let (monitor, expectation) = addAbortAlertMonitor(cancellingAlert: false)
         defer { removeUIInterruptionMonitor(monitor) }
@@ -55,20 +58,15 @@ class PendingSafeScreenUITests: UITestCase {
         waitUntil(mainScreen.addressLabel, .exists)
     }
 
-    // NS-203, NS-204
+    // NS-204
     func test_whenNotEnoughFunds_thenProgessHasCorrectValue() {
-        application.setMockServerResponseDelay(2)
-        givenDeploymentStarted()
         waitUntilNotEnoughFundsStatus()
-        XCTAssertEqual(pendingScreen.progressView.value as? String, "40%")
-        restartTheApp(serverResponseDelay: 2)
+        restartTheApp(serverResponseDelay: 5)
         XCTAssertExist(XCUIApplication().staticTexts[notEnoughFundsLabel()])
     }
 
     // NS-205
     func test_whenCancellingDuringNotEnoughFunds_thenContinuesDeployment() {
-        application.setMockServerResponseDelay(2)
-        givenDeploymentStarted()
         waitUntilNotEnoughFundsStatus()
         let (alertMonitor, alertExpectation) = addAbortAlertMonitor(cancellingAlert: true)
         defer { removeUIInterruptionMonitor(alertMonitor) }
@@ -78,15 +76,24 @@ class PendingSafeScreenUITests: UITestCase {
     }
 
     // NS-205
-    func test_whenAbortingDuringSafeCreation_thenGoesBack() {
-        application.setMockServerResponseDelay(2)
-        givenDeploymentStarted()
+    func test_whenAbortingDuringSafeCreationWithNotEnoughFunds_thenGoesBack() {
         waitUntilNotEnoughFundsStatus()
         let (monitor, expectation) = addAbortAlertMonitor(cancellingAlert: false)
         defer { removeUIInterruptionMonitor(monitor) }
         pendingScreen.cancel.tap()
         handleAlert()
         waitUntil(newSafeScreen.isDisplayed)
+    }
+
+    // NS-206, NS-207, NS-208
+    func test_whenAccountIsFunded_thenCanNotAbortSafeCreation() {
+        waitUntilAccountFundedStatus()
+        XCTAssertFalse(pendingScreen.cancel.isEnabled)
+        restartTheApp(serverResponseDelay: 5)
+        XCTAssertFalse(pendingScreen.cancel.isEnabled)
+        XCTAssertTrue(pendingScreen.status.label == LocalizedString("pending_safe.status.account_funded"))
+        restartTheApp(serverResponseDelay: 0.1)
+        waitUntil(mainScreen.addressLabel, .exists)
     }
 
 }
@@ -103,19 +110,31 @@ extension PendingSafeScreenUITests {
 
     private func handleAlert() {
         delay(1)
-        XCUIApplication().tap()
+        XCUIApplication().swipeUp() // without it, alert monitors are not firing up.
         waitForExpectations(timeout: 1)
     }
 
     private func notEnoughFundsLabel() -> String {
         let requiredEth = "100 Wei"
-        let balanceEth = "0 Wei"
+        let balanceEth = "50 Wei"
         let status = String(format: LocalizedString("pending_safe.status.not_enough_funds"), balanceEth, requiredEth)
         return status
     }
 
+    private func waitUntilAddressKnownStatus() {
+        waitUntil(pendingScreen.status.label == LocalizedString("pending_safe.status.address_known"), timeout: 10)
+    }
+
     private func waitUntilNotEnoughFundsStatus() {
         waitUntil(pendingScreen.status.label == notEnoughFundsLabel(), timeout: 10)
+    }
+
+    private func waitUntilAccountFundedStatus() {
+        waitUntil(pendingScreen.status.label == LocalizedString("pending_safe.status.account_funded"), timeout: 10)
+    }
+
+    private func waitUntilDeploymentAcceptedByBlockchainStatus() {
+        waitUntil(pendingScreen.status.label == LocalizedString("pending_safe.status.deployment_accepted"), timeout: 10)
     }
 
     private func addAbortAlertMonitor(cancellingAlert: Bool) -> (NSObjectProtocol, XCTestExpectation) {
