@@ -110,7 +110,7 @@ extension PendingSafeScreenUITests {
 
     private func handleAlert() {
         delay(1)
-        XCUIApplication().tap()
+        XCUIApplication().swipeUp() // without it, alert monitors are not firing up.
         waitForExpectations(timeout: 1)
     }
 
