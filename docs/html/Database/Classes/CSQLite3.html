@@ -1,0 +1,3497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CSQLite3 Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/CSQLite3" class="dashAnchor"></a>
+    <a title="CSQLite3 Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Database Docs</a> (33% documented)</p>
+        <p class="header-right"><a href="https://github.com/gnosis/safe-ios"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Database Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CSQLite3 Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSQLite3.html">CSQLite3</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FunctionCallTrace.html">FunctionCallTrace</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MockConnection.html">MockConnection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MockDatabase.html">MockDatabase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MockResultSet.html">MockResultSet</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MockStatement.html">MockStatement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SQLiteConnection.html">SQLiteConnection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SQLiteDatabase.html">SQLiteDatabase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SQLiteDatabase/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SQLiteResultSet.html">SQLiteResultSet</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SQLiteStatement.html">SQLiteStatement</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Connection.html">Connection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Database.html">Database</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ResultSet.html">ResultSet</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:8Database11SQLBindableP">SQLBindable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Statement.html">Statement</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8Database16MockRawResultSeta">MockRawResultSet</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CSQLite3</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">CSQLite3</span></code></pre>
+
+                </div>
+              </div>
+            <p>A single wrapper over all SQLite3 C API. Used to decouple <code><a href="../Classes/SQLiteDatabase.html">SQLiteDatabase</a></code> and other classes from SQLite3 calls for
+testing purposes.</p>
+
+<p>For details, please see the SQLite documentation links below:</p>
+
+<ul>
+<li><a href="https://sqlite.org/c3ref/intro.html">SQLite3 C Interface</a></li>
+<li><a href="https://sqlite.org/c3ref/constlist.html">SQLite3 Constants List</a></li>
+<li><a href="https://sqlite.org/c3ref/funclist.html">SQLite3 Functions List</a></li>
+<li><a href="https://sqlite.org/c3ref/objlist.html">SQLite3 Objects List</a></li>
+</ul>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3CACycfc"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3CACycfc">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C14SQLITE_VERSIONSSvp"></a>
+                    <a name="//apple_ref/swift/Property/SQLITE_VERSION" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C14SQLITE_VERSIONSSvp">SQLITE_VERSION</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">SQLITE_VERSION</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C21SQLITE_VERSION_NUMBERs5Int32Vvp"></a>
+                    <a name="//apple_ref/swift/Property/SQLITE_VERSION_NUMBER" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C21SQLITE_VERSION_NUMBERs5Int32Vvp">SQLITE_VERSION_NUMBER</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">SQLITE_VERSION_NUMBER</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C16SQLITE_SOURCE_IDSSvp"></a>
+                    <a name="//apple_ref/swift/Property/SQLITE_SOURCE_ID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C16SQLITE_SOURCE_IDSSvp">SQLITE_SOURCE_ID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">SQLITE_SOURCE_ID</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C14SQLITE_INTEGERs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_INTEGER" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C14SQLITE_INTEGERs5Int32VvpZ">SQLITE_INTEGER</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_INTEGER</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C12SQLITE_FLOATs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_FLOAT" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C12SQLITE_FLOATs5Int32VvpZ">SQLITE_FLOAT</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_FLOAT</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C11SQLITE_TEXTs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_TEXT" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C11SQLITE_TEXTs5Int32VvpZ">SQLITE_TEXT</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_TEXT</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C11SQLITE_BLOBs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_BLOB" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C11SQLITE_BLOBs5Int32VvpZ">SQLITE_BLOB</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_BLOB</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C11SQLITE_NULLs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_NULL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C11SQLITE_NULLs5Int32VvpZ">SQLITE_NULL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_NULL</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C9SQLITE_OKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_OK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C9SQLITE_OKs5Int32VvpZ">SQLITE_OK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_OK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C12SQLITE_ERRORs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_ERROR" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C12SQLITE_ERRORs5Int32VvpZ">SQLITE_ERROR</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_ERROR</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C15SQLITE_INTERNALs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_INTERNAL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C15SQLITE_INTERNALs5Int32VvpZ">SQLITE_INTERNAL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_INTERNAL</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C11SQLITE_PERMs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_PERM" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C11SQLITE_PERMs5Int32VvpZ">SQLITE_PERM</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_PERM</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C12SQLITE_ABORTs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_ABORT" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C12SQLITE_ABORTs5Int32VvpZ">SQLITE_ABORT</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_ABORT</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C11SQLITE_BUSYs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_BUSY" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C11SQLITE_BUSYs5Int32VvpZ">SQLITE_BUSY</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_BUSY</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C13SQLITE_LOCKEDs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_LOCKED" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C13SQLITE_LOCKEDs5Int32VvpZ">SQLITE_LOCKED</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_LOCKED</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C12SQLITE_NOMEMs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_NOMEM" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C12SQLITE_NOMEMs5Int32VvpZ">SQLITE_NOMEM</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_NOMEM</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C15SQLITE_READONLYs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_READONLY" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C15SQLITE_READONLYs5Int32VvpZ">SQLITE_READONLY</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_READONLY</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C16SQLITE_INTERRUPTs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_INTERRUPT" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C16SQLITE_INTERRUPTs5Int32VvpZ">SQLITE_INTERRUPT</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_INTERRUPT</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C12SQLITE_IOERRs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C12SQLITE_IOERRs5Int32VvpZ">SQLITE_IOERR</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C14SQLITE_CORRUPTs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CORRUPT" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C14SQLITE_CORRUPTs5Int32VvpZ">SQLITE_CORRUPT</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CORRUPT</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C15SQLITE_NOTFOUNDs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_NOTFOUND" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C15SQLITE_NOTFOUNDs5Int32VvpZ">SQLITE_NOTFOUND</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_NOTFOUND</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C11SQLITE_FULLs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_FULL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C11SQLITE_FULLs5Int32VvpZ">SQLITE_FULL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_FULL</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C15SQLITE_CANTOPENs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CANTOPEN" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C15SQLITE_CANTOPENs5Int32VvpZ">SQLITE_CANTOPEN</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CANTOPEN</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C15SQLITE_PROTOCOLs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_PROTOCOL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C15SQLITE_PROTOCOLs5Int32VvpZ">SQLITE_PROTOCOL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_PROTOCOL</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C12SQLITE_EMPTYs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_EMPTY" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C12SQLITE_EMPTYs5Int32VvpZ">SQLITE_EMPTY</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_EMPTY</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C13SQLITE_SCHEMAs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_SCHEMA" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C13SQLITE_SCHEMAs5Int32VvpZ">SQLITE_SCHEMA</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_SCHEMA</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C13SQLITE_TOOBIGs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_TOOBIG" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C13SQLITE_TOOBIGs5Int32VvpZ">SQLITE_TOOBIG</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_TOOBIG</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C17SQLITE_CONSTRAINTs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CONSTRAINT" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C17SQLITE_CONSTRAINTs5Int32VvpZ">SQLITE_CONSTRAINT</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CONSTRAINT</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C15SQLITE_MISMATCHs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_MISMATCH" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C15SQLITE_MISMATCHs5Int32VvpZ">SQLITE_MISMATCH</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_MISMATCH</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C13SQLITE_MISUSEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_MISUSE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C13SQLITE_MISUSEs5Int32VvpZ">SQLITE_MISUSE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_MISUSE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C12SQLITE_NOLFSs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_NOLFS" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C12SQLITE_NOLFSs5Int32VvpZ">SQLITE_NOLFS</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_NOLFS</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C11SQLITE_AUTHs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_AUTH" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C11SQLITE_AUTHs5Int32VvpZ">SQLITE_AUTH</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_AUTH</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C13SQLITE_FORMATs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_FORMAT" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C13SQLITE_FORMATs5Int32VvpZ">SQLITE_FORMAT</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_FORMAT</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C12SQLITE_RANGEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_RANGE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C12SQLITE_RANGEs5Int32VvpZ">SQLITE_RANGE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_RANGE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C13SQLITE_NOTADBs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_NOTADB" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C13SQLITE_NOTADBs5Int32VvpZ">SQLITE_NOTADB</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_NOTADB</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C13SQLITE_NOTICEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_NOTICE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C13SQLITE_NOTICEs5Int32VvpZ">SQLITE_NOTICE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_NOTICE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C14SQLITE_WARNINGs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_WARNING" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C14SQLITE_WARNINGs5Int32VvpZ">SQLITE_WARNING</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_WARNING</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C10SQLITE_ROWs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_ROW" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C10SQLITE_ROWs5Int32VvpZ">SQLITE_ROW</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_ROW</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C11SQLITE_DONEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_DONE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C11SQLITE_DONEs5Int32VvpZ">SQLITE_DONE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_DONE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C17SQLITE_IOERR_READs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_READ" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C17SQLITE_IOERR_READs5Int32VvpZ">SQLITE_IOERR_READ</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_READ</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C23SQLITE_IOERR_SHORT_READs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_SHORT_READ" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C23SQLITE_IOERR_SHORT_READs5Int32VvpZ">SQLITE_IOERR_SHORT_READ</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_SHORT_READ</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C18SQLITE_IOERR_WRITEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_WRITE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C18SQLITE_IOERR_WRITEs5Int32VvpZ">SQLITE_IOERR_WRITE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_WRITE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C18SQLITE_IOERR_FSYNCs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_FSYNC" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C18SQLITE_IOERR_FSYNCs5Int32VvpZ">SQLITE_IOERR_FSYNC</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_FSYNC</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C22SQLITE_IOERR_DIR_FSYNCs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_DIR_FSYNC" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C22SQLITE_IOERR_DIR_FSYNCs5Int32VvpZ">SQLITE_IOERR_DIR_FSYNC</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_DIR_FSYNC</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C21SQLITE_IOERR_TRUNCATEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_TRUNCATE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C21SQLITE_IOERR_TRUNCATEs5Int32VvpZ">SQLITE_IOERR_TRUNCATE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_TRUNCATE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C18SQLITE_IOERR_FSTATs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_FSTAT" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C18SQLITE_IOERR_FSTATs5Int32VvpZ">SQLITE_IOERR_FSTAT</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_FSTAT</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C19SQLITE_IOERR_UNLOCKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_UNLOCK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C19SQLITE_IOERR_UNLOCKs5Int32VvpZ">SQLITE_IOERR_UNLOCK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_UNLOCK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C19SQLITE_IOERR_RDLOCKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_RDLOCK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C19SQLITE_IOERR_RDLOCKs5Int32VvpZ">SQLITE_IOERR_RDLOCK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_RDLOCK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C19SQLITE_IOERR_DELETEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_DELETE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C19SQLITE_IOERR_DELETEs5Int32VvpZ">SQLITE_IOERR_DELETE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_DELETE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C20SQLITE_IOERR_BLOCKEDs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_BLOCKED" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C20SQLITE_IOERR_BLOCKEDs5Int32VvpZ">SQLITE_IOERR_BLOCKED</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_BLOCKED</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C18SQLITE_IOERR_NOMEMs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_NOMEM" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C18SQLITE_IOERR_NOMEMs5Int32VvpZ">SQLITE_IOERR_NOMEM</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_NOMEM</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C19SQLITE_IOERR_ACCESSs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_ACCESS" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C19SQLITE_IOERR_ACCESSs5Int32VvpZ">SQLITE_IOERR_ACCESS</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_ACCESS</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C30SQLITE_IOERR_CHECKRESERVEDLOCKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_CHECKRESERVEDLOCK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C30SQLITE_IOERR_CHECKRESERVEDLOCKs5Int32VvpZ">SQLITE_IOERR_CHECKRESERVEDLOCK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_CHECKRESERVEDLOCK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C17SQLITE_IOERR_LOCKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_LOCK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C17SQLITE_IOERR_LOCKs5Int32VvpZ">SQLITE_IOERR_LOCK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_LOCK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C18SQLITE_IOERR_CLOSEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_CLOSE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C18SQLITE_IOERR_CLOSEs5Int32VvpZ">SQLITE_IOERR_CLOSE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_CLOSE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C22SQLITE_IOERR_DIR_CLOSEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_DIR_CLOSE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C22SQLITE_IOERR_DIR_CLOSEs5Int32VvpZ">SQLITE_IOERR_DIR_CLOSE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_DIR_CLOSE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C20SQLITE_IOERR_SHMOPENs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_SHMOPEN" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C20SQLITE_IOERR_SHMOPENs5Int32VvpZ">SQLITE_IOERR_SHMOPEN</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_SHMOPEN</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C20SQLITE_IOERR_SHMSIZEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_SHMSIZE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C20SQLITE_IOERR_SHMSIZEs5Int32VvpZ">SQLITE_IOERR_SHMSIZE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_SHMSIZE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C20SQLITE_IOERR_SHMLOCKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_SHMLOCK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C20SQLITE_IOERR_SHMLOCKs5Int32VvpZ">SQLITE_IOERR_SHMLOCK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_SHMLOCK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C19SQLITE_IOERR_SHMMAPs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_SHMMAP" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C19SQLITE_IOERR_SHMMAPs5Int32VvpZ">SQLITE_IOERR_SHMMAP</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_SHMMAP</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C17SQLITE_IOERR_SEEKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_SEEK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C17SQLITE_IOERR_SEEKs5Int32VvpZ">SQLITE_IOERR_SEEK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_SEEK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C25SQLITE_IOERR_DELETE_NOENTs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_DELETE_NOENT" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C25SQLITE_IOERR_DELETE_NOENTs5Int32VvpZ">SQLITE_IOERR_DELETE_NOENT</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_DELETE_NOENT</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C17SQLITE_IOERR_MMAPs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_MMAP" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C17SQLITE_IOERR_MMAPs5Int32VvpZ">SQLITE_IOERR_MMAP</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_MMAP</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C24SQLITE_IOERR_GETTEMPPATHs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_GETTEMPPATH" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C24SQLITE_IOERR_GETTEMPPATHs5Int32VvpZ">SQLITE_IOERR_GETTEMPPATH</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_GETTEMPPATH</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C21SQLITE_IOERR_CONVPATHs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_CONVPATH" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C21SQLITE_IOERR_CONVPATHs5Int32VvpZ">SQLITE_IOERR_CONVPATH</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_CONVPATH</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C18SQLITE_IOERR_VNODEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_VNODE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C18SQLITE_IOERR_VNODEs5Int32VvpZ">SQLITE_IOERR_VNODE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_VNODE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C17SQLITE_IOERR_AUTHs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_IOERR_AUTH" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C17SQLITE_IOERR_AUTHs5Int32VvpZ">SQLITE_IOERR_AUTH</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_IOERR_AUTH</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C25SQLITE_LOCKED_SHAREDCACHEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_LOCKED_SHAREDCACHE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C25SQLITE_LOCKED_SHAREDCACHEs5Int32VvpZ">SQLITE_LOCKED_SHAREDCACHE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_LOCKED_SHAREDCACHE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C20SQLITE_BUSY_RECOVERYs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_BUSY_RECOVERY" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C20SQLITE_BUSY_RECOVERYs5Int32VvpZ">SQLITE_BUSY_RECOVERY</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_BUSY_RECOVERY</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C20SQLITE_BUSY_SNAPSHOTs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_BUSY_SNAPSHOT" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C20SQLITE_BUSY_SNAPSHOTs5Int32VvpZ">SQLITE_BUSY_SNAPSHOT</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_BUSY_SNAPSHOT</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C25SQLITE_CANTOPEN_NOTEMPDIRs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CANTOPEN_NOTEMPDIR" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C25SQLITE_CANTOPEN_NOTEMPDIRs5Int32VvpZ">SQLITE_CANTOPEN_NOTEMPDIR</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CANTOPEN_NOTEMPDIR</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C21SQLITE_CANTOPEN_ISDIRs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CANTOPEN_ISDIR" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C21SQLITE_CANTOPEN_ISDIRs5Int32VvpZ">SQLITE_CANTOPEN_ISDIR</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CANTOPEN_ISDIR</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C24SQLITE_CANTOPEN_FULLPATHs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CANTOPEN_FULLPATH" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C24SQLITE_CANTOPEN_FULLPATHs5Int32VvpZ">SQLITE_CANTOPEN_FULLPATH</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CANTOPEN_FULLPATH</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C24SQLITE_CANTOPEN_CONVPATHs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CANTOPEN_CONVPATH" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C24SQLITE_CANTOPEN_CONVPATHs5Int32VvpZ">SQLITE_CANTOPEN_CONVPATH</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CANTOPEN_CONVPATH</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C24SQLITE_CANTOPEN_DIRTYWALs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CANTOPEN_DIRTYWAL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C24SQLITE_CANTOPEN_DIRTYWALs5Int32VvpZ">SQLITE_CANTOPEN_DIRTYWAL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CANTOPEN_DIRTYWAL</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C19SQLITE_CORRUPT_VTABs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CORRUPT_VTAB" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C19SQLITE_CORRUPT_VTABs5Int32VvpZ">SQLITE_CORRUPT_VTAB</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CORRUPT_VTAB</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C24SQLITE_READONLY_RECOVERYs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_READONLY_RECOVERY" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C24SQLITE_READONLY_RECOVERYs5Int32VvpZ">SQLITE_READONLY_RECOVERY</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_READONLY_RECOVERY</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C24SQLITE_READONLY_CANTLOCKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_READONLY_CANTLOCK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C24SQLITE_READONLY_CANTLOCKs5Int32VvpZ">SQLITE_READONLY_CANTLOCK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_READONLY_CANTLOCK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C24SQLITE_READONLY_ROLLBACKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_READONLY_ROLLBACK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C24SQLITE_READONLY_ROLLBACKs5Int32VvpZ">SQLITE_READONLY_ROLLBACK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_READONLY_ROLLBACK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C23SQLITE_READONLY_DBMOVEDs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_READONLY_DBMOVED" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C23SQLITE_READONLY_DBMOVEDs5Int32VvpZ">SQLITE_READONLY_DBMOVED</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_READONLY_DBMOVED</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C21SQLITE_ABORT_ROLLBACKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_ABORT_ROLLBACK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C21SQLITE_ABORT_ROLLBACKs5Int32VvpZ">SQLITE_ABORT_ROLLBACK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_ABORT_ROLLBACK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C23SQLITE_CONSTRAINT_CHECKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CONSTRAINT_CHECK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C23SQLITE_CONSTRAINT_CHECKs5Int32VvpZ">SQLITE_CONSTRAINT_CHECK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CONSTRAINT_CHECK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C28SQLITE_CONSTRAINT_COMMITHOOKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CONSTRAINT_COMMITHOOK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C28SQLITE_CONSTRAINT_COMMITHOOKs5Int32VvpZ">SQLITE_CONSTRAINT_COMMITHOOK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CONSTRAINT_COMMITHOOK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C28SQLITE_CONSTRAINT_FOREIGNKEYs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CONSTRAINT_FOREIGNKEY" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C28SQLITE_CONSTRAINT_FOREIGNKEYs5Int32VvpZ">SQLITE_CONSTRAINT_FOREIGNKEY</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CONSTRAINT_FOREIGNKEY</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C26SQLITE_CONSTRAINT_FUNCTIONs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CONSTRAINT_FUNCTION" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C26SQLITE_CONSTRAINT_FUNCTIONs5Int32VvpZ">SQLITE_CONSTRAINT_FUNCTION</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CONSTRAINT_FUNCTION</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C25SQLITE_CONSTRAINT_NOTNULLs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CONSTRAINT_NOTNULL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C25SQLITE_CONSTRAINT_NOTNULLs5Int32VvpZ">SQLITE_CONSTRAINT_NOTNULL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CONSTRAINT_NOTNULL</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C28SQLITE_CONSTRAINT_PRIMARYKEYs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CONSTRAINT_PRIMARYKEY" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C28SQLITE_CONSTRAINT_PRIMARYKEYs5Int32VvpZ">SQLITE_CONSTRAINT_PRIMARYKEY</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CONSTRAINT_PRIMARYKEY</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C25SQLITE_CONSTRAINT_TRIGGERs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CONSTRAINT_TRIGGER" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C25SQLITE_CONSTRAINT_TRIGGERs5Int32VvpZ">SQLITE_CONSTRAINT_TRIGGER</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CONSTRAINT_TRIGGER</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C24SQLITE_CONSTRAINT_UNIQUEs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CONSTRAINT_UNIQUE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C24SQLITE_CONSTRAINT_UNIQUEs5Int32VvpZ">SQLITE_CONSTRAINT_UNIQUE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CONSTRAINT_UNIQUE</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C22SQLITE_CONSTRAINT_VTABs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CONSTRAINT_VTAB" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C22SQLITE_CONSTRAINT_VTABs5Int32VvpZ">SQLITE_CONSTRAINT_VTAB</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CONSTRAINT_VTAB</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C23SQLITE_CONSTRAINT_ROWIDs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_CONSTRAINT_ROWID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C23SQLITE_CONSTRAINT_ROWIDs5Int32VvpZ">SQLITE_CONSTRAINT_ROWID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_CONSTRAINT_ROWID</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C25SQLITE_NOTICE_RECOVER_WALs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_NOTICE_RECOVER_WAL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C25SQLITE_NOTICE_RECOVER_WALs5Int32VvpZ">SQLITE_NOTICE_RECOVER_WAL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_NOTICE_RECOVER_WAL</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C30SQLITE_NOTICE_RECOVER_ROLLBACKs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_NOTICE_RECOVER_ROLLBACK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C30SQLITE_NOTICE_RECOVER_ROLLBACKs5Int32VvpZ">SQLITE_NOTICE_RECOVER_ROLLBACK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_NOTICE_RECOVER_ROLLBACK</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C24SQLITE_WARNING_AUTOINDEXs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_WARNING_AUTOINDEX" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C24SQLITE_WARNING_AUTOINDEXs5Int32VvpZ">SQLITE_WARNING_AUTOINDEX</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_WARNING_AUTOINDEX</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C16SQLITE_AUTH_USERs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_AUTH_USER" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C16SQLITE_AUTH_USERs5Int32VvpZ">SQLITE_AUTH_USER</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_AUTH_USER</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C26SQLITE_OK_LOAD_PERMANENTLYs5Int32VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_OK_LOAD_PERMANENTLY" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C26SQLITE_OK_LOAD_PERMANENTLYs5Int32VvpZ">SQLITE_OK_LOAD_PERMANENTLY</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_OK_LOAD_PERMANENTLY</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C16SQLITE_TRANSIENTySvSgXCvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_TRANSIENT" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C16SQLITE_TRANSIENTySvSgXCvpZ">SQLITE_TRANSIENT</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_TRANSIENT</span><span class="p">:</span> <span class="n">sqlite3_destructor_type</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C13SQLITE_STATICySvSgXCvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/SQLITE_STATIC" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C13SQLITE_STATICySvSgXCvpZ">SQLITE_STATIC</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">SQLITE_STATIC</span><span class="p">:</span> <span class="n">sqlite3_destructor_type</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C12sqlite3_opens5Int32VSQySPys4Int8VGG_SQySpys13OpaquePointerVSgGGtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_open(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C12sqlite3_opens5Int32VSQySPys4Int8VGG_SQySpys13OpaquePointerVSgGGtF">sqlite3_open(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_open</span><span class="p">(</span><span class="n">_</span> <span class="nv">filename</span><span class="p">:</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;!</span><span class="p">,</span> <span class="n">_</span> <span class="nv">ppDb</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">OpaquePointer</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C25sqlite3_libversion_numbers5Int32VyF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_libversion_number()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C25sqlite3_libversion_numbers5Int32VyF">sqlite3_libversion_number()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_libversion_number</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C18sqlite3_libversionSQySPys4Int8VGGyF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_libversion()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C18sqlite3_libversionSQySPys4Int8VGGyF">sqlite3_libversion()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_libversion</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C16sqlite3_sourceidSQySPys4Int8VGGyF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_sourceid()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C16sqlite3_sourceidSQySPys4Int8VGGyF">sqlite3_sourceid()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_sourceid</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C13sqlite3_closes5Int32VSQys13OpaquePointerVGF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_close(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C13sqlite3_closes5Int32VSQys13OpaquePointerVGF">sqlite3_close(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_close</span><span class="p">(</span><span class="n">_</span> <span class="nv">db</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C18sqlite3_prepare_v2s5Int32VSQys13OpaquePointerVG_SQySPys4Int8VGGAFSQySpyAHSgGGSQySpyALSgGGtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_prepare_v2(_:_:_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C18sqlite3_prepare_v2s5Int32VSQys13OpaquePointerVG_SQySPys4Int8VGGAFSQySpyAHSgGGSQySpyALSgGGtF">sqlite3_prepare_v2(_:_:_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_prepare_v2</span><span class="p">(</span><span class="n">_</span> <span class="nv">db</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span>
+                             <span class="n">_</span> <span class="nv">zSql</span><span class="p">:</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;!</span><span class="p">,</span>
+                             <span class="n">_</span> <span class="nv">nByte</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">,</span>
+                             <span class="n">_</span> <span class="nv">ppStmt</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">OpaquePointer</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">,</span>
+                             <span class="n">_</span> <span class="nv">pzTail</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C16sqlite3_finalizes5Int32VSQys13OpaquePointerVGF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_finalize(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C16sqlite3_finalizes5Int32VSQys13OpaquePointerVGF">sqlite3_finalize(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_finalize</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C22sqlite3_get_autocommits5Int32VSQys13OpaquePointerVGF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_get_autocommit(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C22sqlite3_get_autocommits5Int32VSQys13OpaquePointerVGF">sqlite3_get_autocommit(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_get_autocommit</span><span class="p">(</span><span class="n">_</span> <span class="nv">db</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C12sqlite3_steps5Int32VSQys13OpaquePointerVGF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_step(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C12sqlite3_steps5Int32VSQys13OpaquePointerVGF">sqlite3_step(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_step</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C20sqlite3_column_counts5Int32VSQys13OpaquePointerVGF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_column_count(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C20sqlite3_column_counts5Int32VSQys13OpaquePointerVGF">sqlite3_column_count(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_column_count</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C19sqlite3_column_types5Int32VSQys13OpaquePointerVG_AFtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_column_type(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C19sqlite3_column_types5Int32VSQys13OpaquePointerVG_AFtF">sqlite3_column_type(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_column_type</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span> <span class="n">_</span> <span class="nv">iCol</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C20sqlite3_column_bytess5Int32VSQys13OpaquePointerVG_AFtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_column_bytes(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C20sqlite3_column_bytess5Int32VSQys13OpaquePointerVG_AFtF">sqlite3_column_bytes(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_column_bytes</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span> <span class="n">_</span> <span class="nv">iCol</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C21sqlite3_column_doubleSdSQys13OpaquePointerVG_s5Int32VtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_column_double(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C21sqlite3_column_doubleSdSQys13OpaquePointerVG_s5Int32VtF">sqlite3_column_double(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_column_double</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span> <span class="n">_</span> <span class="nv">iCol</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C20sqlite3_column_int64s5Int64VSQys13OpaquePointerVG_s5Int32VtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_column_int64(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C20sqlite3_column_int64s5Int64VSQys13OpaquePointerVG_s5Int32VtF">sqlite3_column_int64(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_column_int64</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span> <span class="n">_</span> <span class="nv">iCol</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sqlite3_int64</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C19sqlite3_column_textSQySPys5UInt8VGGSQys13OpaquePointerVG_s5Int32VtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_column_text(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C19sqlite3_column_textSQySPys5UInt8VGGSQys13OpaquePointerVG_s5Int32VtF">sqlite3_column_text(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_column_text</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span> <span class="n">_</span> <span class="nv">iCol</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C19sqlite3_column_blobSQySVGSQys13OpaquePointerVG_s5Int32VtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_column_blob(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C19sqlite3_column_blobSQySVGSQys13OpaquePointerVG_s5Int32VtF">sqlite3_column_blob(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_column_blob</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span> <span class="n">_</span> <span class="nv">iCol</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UnsafeRawPointer</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C13sqlite3_resets5Int32VSQys13OpaquePointerVGF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_reset(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C13sqlite3_resets5Int32VSQys13OpaquePointerVGF">sqlite3_reset(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_reset</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C19sqlite3_bind_doubles5Int32VSQys13OpaquePointerVG_AFSdtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_bind_double(_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C19sqlite3_bind_doubles5Int32VSQys13OpaquePointerVG_AFSdtF">sqlite3_bind_double(_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_bind_double</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span> <span class="n">_</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">,</span> <span class="n">_</span> <span class="nv">zValue</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C18sqlite3_bind_int64s5Int32VSQys13OpaquePointerVG_AFs5Int64VtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_bind_int64(_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C18sqlite3_bind_int64s5Int32VSQys13OpaquePointerVG_AFs5Int64VtF">sqlite3_bind_int64(_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_bind_int64</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span> <span class="n">_</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">,</span> <span class="n">_</span> <span class="nv">zValue</span><span class="p">:</span> <span class="n">sqlite3_int64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C17sqlite3_bind_nulls5Int32VSQys13OpaquePointerVG_AFtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_bind_null(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C17sqlite3_bind_nulls5Int32VSQys13OpaquePointerVG_AFtF">sqlite3_bind_null(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_bind_null</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span> <span class="n">_</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C17sqlite3_bind_texts5Int32VSQys13OpaquePointerVG_AFSQySPys4Int8VGGAFSQyySvSgXCGtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_bind_text(_:_:_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C17sqlite3_bind_texts5Int32VSQys13OpaquePointerVG_AFSQySPys4Int8VGGAFSQyySvSgXCGtF">sqlite3_bind_text(_:_:_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_bind_text</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span>
+                            <span class="n">_</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">,</span>
+                            <span class="n">_</span> <span class="nv">zValue</span><span class="p">:</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;!</span><span class="p">,</span>
+                            <span class="n">_</span> <span class="nv">nByte</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">,</span>
+                            <span class="n">_</span> <span class="nv">destructor</span><span class="p">:</span> <span class="p">(</span><span class="kd">@convention(c)</span> <span class="p">(</span><span class="kt">UnsafeMutableRawPointer</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Void</span><span class="p">)</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C17sqlite3_bind_blobs5Int32VSQys13OpaquePointerVG_AFSQySVGAFSQyySvSgXCGtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_bind_blob(_:_:_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C17sqlite3_bind_blobs5Int32VSQys13OpaquePointerVG_AFSQySVGAFSQyySvSgXCGtF">sqlite3_bind_blob(_:_:_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_bind_blob</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span>
+                            <span class="n">_</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">,</span>
+                            <span class="n">_</span> <span class="nv">zValue</span><span class="p">:</span> <span class="kt">UnsafeRawPointer</span><span class="o">!</span><span class="p">,</span>
+                            <span class="n">_</span> <span class="nv">nByte</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">,</span>
+                            <span class="n">_</span> <span class="nv">destructor</span><span class="p">:</span> <span class="p">(</span><span class="kd">@convention(c)</span> <span class="p">(</span><span class="kt">UnsafeMutableRawPointer</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Void</span><span class="p">)</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C28sqlite3_bind_parameter_indexs5Int32VSQys13OpaquePointerVG_SQySPys4Int8VGGtF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_bind_parameter_index(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C28sqlite3_bind_parameter_indexs5Int32VSQys13OpaquePointerVG_SQySPys4Int8VGGtF">sqlite3_bind_parameter_index(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_bind_parameter_index</span><span class="p">(</span><span class="n">_</span> <span class="nv">pStmt</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">,</span> <span class="n">_</span> <span class="nv">zName</span><span class="p">:</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C14sqlite3_errmsgSQySPys4Int8VGGSQys13OpaquePointerVGF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_errmsg(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C14sqlite3_errmsgSQySPys4Int8VGGSQys13OpaquePointerVGF">sqlite3_errmsg(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_errmsg</span><span class="p">(</span><span class="n">_</span> <span class="nv">db</span><span class="p">:</span> <span class="kt">OpaquePointer</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8Database8CSQLite3C14sqlite3_errstrSQySPys4Int8VGGs5Int32VF"></a>
+                    <a name="//apple_ref/swift/Method/sqlite3_errstr(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8Database8CSQLite3C14sqlite3_errstrSQySPys4Int8VGGs5Int32VF">sqlite3_errstr(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">sqlite3_errstr</span><span class="p">(</span><span class="n">_</span> <span class="nv">code</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>Copyright © 2018 Gnosis Ltd. All rights reserved.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

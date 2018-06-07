@@ -5,4 +5,4 @@ author: Gnosis Ltd
 author_url: https://gnosis.pm
 copyright: "Copyright © 2018 Gnosis Ltd. All rights reserved."
 github_url: https://github.com/gnosis/safe-ios
-min_acl: internal
+min_acl: public
