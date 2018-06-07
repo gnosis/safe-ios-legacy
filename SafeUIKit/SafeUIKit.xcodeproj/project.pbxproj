@@ -113,6 +113,10 @@
 		0AF33D4A209C6BF800527D25 /* SafeAppUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; };
 		0AF33D4B209C6BF800527D25 /* SafeAppUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BC2209313F800297D1C /* UIDevice+Extensions.swift */; };
+		550954EA20C9590000F5F25F /* TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954E920C9590000F5F25F /* TokenInput.swift */; };
+		550954EE20C9592900F5F25F /* TokenInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954ED20C9592900F5F25F /* TokenInputTests.swift */; };
+		550954F020C9594700F5F25F /* TokenInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 550954EF20C9594700F5F25F /* TokenInput.xib */; };
+		550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954F120C966CF00F5F25F /* UIView+Extensions.swift */; };
 		5527A7F4208DE8A300AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
 		5527A7F5208DE8B700AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
 		5527A7F6208DE8B700AF3A50 /* RSBarcodes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -357,6 +361,10 @@
 		0AF33D3D209C6BF800527D25 /* SafeAppUIUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeAppUIUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF33D46209C6BF800527D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55071BC2209313F800297D1C /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
+		550954E920C9590000F5F25F /* TokenInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInput.swift; sourceTree = "<group>"; };
+		550954ED20C9592900F5F25F /* TokenInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInputTests.swift; sourceTree = "<group>"; };
+		550954EF20C9594700F5F25F /* TokenInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenInput.xib; sourceTree = "<group>"; };
+		550954F120C966CF00F5F25F /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		5527A7E0208DE87600AF3A50 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 		5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewControllerTests.swift; sourceTree = "<group>"; };
 		5527A806208E357B00AF3A50 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -610,34 +618,38 @@
 		0A9670B320480C5700445AC2 /* SafeUIKit */ = {
 			isa = PBXGroup;
 			children = (
-				0A99436A20A0489800E36FD7 /* swiftlint.yml */,
-				0A99436820A0485300E36FD7 /* swiftgen.yml */,
-				0A9670D920480C7B00445AC2 /* generated */,
-				0A9670CF20480C7A00445AC2 /* Colors.txt */,
-				55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */,
-				55E9F558208A298200889C9F /* QRCodeInputTests.swift */,
-				5527A806208E357B00AF3A50 /* ScannerViewController.swift */,
-				5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */,
-				5527A807208E357B00AF3A50 /* ScannerViewController.xib */,
-				0A9670D420480C7B00445AC2 /* TextInput.swift */,
-				0A9670D520480C7B00445AC2 /* TextInputTests.swift */,
-				556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */,
-				556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */,
-				0A9670D020480C7A00445AC2 /* TextInput.xib */,
-				0A9670D320480C7B00445AC2 /* RuleLabel.swift */,
-				0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */,
-				0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */,
-				0A638BEC205A8D63003619EF /* LocalizedString.swift */,
-				0A9670D220480C7B00445AC2 /* Fonts.swift */,
-				0A9670B520480C5700445AC2 /* Info.plist */,
-				0A0974EB20480E45005753DF /* SafeUIKit.h */,
-				0A7AE8BE205284180044D5DD /* H1Label.swift */,
 				558FD80920765C53004F070E /* BigButton.swift */,
 				0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */,
-				55071BC2209313F800297D1C /* UIDevice+Extensions.swift */,
+				0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */,
+				556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */,
+				556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */,
+				0A9670CF20480C7A00445AC2 /* Colors.txt */,
+				0A9670D220480C7B00445AC2 /* Fonts.swift */,
+				0A9670D920480C7B00445AC2 /* generated */,
+				0A7AE8BE205284180044D5DD /* H1Label.swift */,
+				0A9670B520480C5700445AC2 /* Info.plist */,
 				0A53AD5520598B5000D713AD /* Localizable.strings */,
-				0A9670C320480C5700445AC2 /* Tests-Info.plist */,
+				0A638BEC205A8D63003619EF /* LocalizedString.swift */,
+				55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */,
+				55E9F558208A298200889C9F /* QRCodeInputTests.swift */,
+				0A9670D320480C7B00445AC2 /* RuleLabel.swift */,
+				0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */,
+				0A0974EB20480E45005753DF /* SafeUIKit.h */,
 				0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */,
+				5527A806208E357B00AF3A50 /* ScannerViewController.swift */,
+				5527A807208E357B00AF3A50 /* ScannerViewController.xib */,
+				5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */,
+				0A99436820A0485300E36FD7 /* swiftgen.yml */,
+				0A99436A20A0489800E36FD7 /* swiftlint.yml */,
+				0A9670C320480C5700445AC2 /* Tests-Info.plist */,
+				0A9670D420480C7B00445AC2 /* TextInput.swift */,
+				0A9670D020480C7A00445AC2 /* TextInput.xib */,
+				0A9670D520480C7B00445AC2 /* TextInputTests.swift */,
+				550954E920C9590000F5F25F /* TokenInput.swift */,
+				550954EF20C9594700F5F25F /* TokenInput.xib */,
+				550954ED20C9592900F5F25F /* TokenInputTests.swift */,
+				55071BC2209313F800297D1C /* UIDevice+Extensions.swift */,
+				550954F120C966CF00F5F25F /* UIView+Extensions.swift */,
 			);
 			path = SafeUIKit;
 			sourceTree = "<group>";
@@ -960,6 +972,7 @@
 				0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */,
 				0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */,
 				0A53AD5320598B5000D713AD /* Localizable.strings in Resources */,
+				550954F020C9594700F5F25F /* TokenInput.xib in Resources */,
 				5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1121,7 +1134,9 @@
 				0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */,
 				5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */,
 				0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */,
+				550954EA20C9590000F5F25F /* TokenInput.swift in Sources */,
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
+				550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */,
 				558FD80A20765C53004F070E /* BigButton.swift in Sources */,
 				55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */,
 			);
@@ -1135,6 +1150,7 @@
 				0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */,
 				0A9BA3C9207F6B6A001DC22F /* BigButtonTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
+				550954EE20C9592900F5F25F /* TokenInputTests.swift in Sources */,
 				0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
 				5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */,
