@@ -12,7 +12,7 @@ extension UIView {
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
         let contents = nib.instantiate(withOwner: self)
         contents.compactMap { $0 as? UIView }.forEach { subview in
-            subview.frame = self.frame
+            subview.frame = self.bounds
             subview.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             self.addSubview(subview)
         }
