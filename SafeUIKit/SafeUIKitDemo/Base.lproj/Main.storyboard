@@ -258,7 +258,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="TokenInput" id="Dz2-fv-jyA"/>
                     <connections>
-                        <outlet property="tokenInput" destination="pSs-ff-zPV" id="Xwx-OW-hX3"/>
+                        <outlet property="tokenInput" destination="jbp-PS-dN6" id="3pT-O1-yXD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQ5-Zp-4ct" userLabel="First Responder" sceneMemberID="firstResponder"/>
