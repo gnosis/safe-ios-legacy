@@ -10,3 +10,6 @@
 [submodule "Dependencies/BigInt"]
 	path = Dependencies/BigInt
 	url = https://github.com/attaswift/BigInt.git
+[submodule "Dependencies/CryptoEthereumSwift"]
+	path = Dependencies/CryptoEthereumSwift
+	url = https://github.com/yuzushioh/CryptoEthereumSwift.git
