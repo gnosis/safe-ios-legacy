@@ -23,10 +23,6 @@ modules = [
         path: "Common/CommonImplementations"
     },
     {
-        name: "CommonTestSupport",
-        path: "Common/CommonTestSupport"
-    },
-    {
         name: "IdentityAccessApplication",
         path: "IdentityAccess/IdentityAccessApplication"
     }
