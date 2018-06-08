@@ -4,6 +4,8 @@
 
 import Foundation
 
+/// Mock subclass of the `AuthenticationApplicationService` that does not use domain model objects and allows
+/// to test the clients depending on the application service.
 public class MockAuthenticationService: AuthenticationApplicationService {
 
     private var userRegistered = false
