@@ -44,6 +44,8 @@
 		0AB1569420BEED79005BCB99 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE51A9A20BEE9E10003524D /* Worker.swift */; };
 		0AE51A8820BED8AB0003524D /* GetTransactionReceiptRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE51A8720BED8AB0003524D /* GetTransactionReceiptRequest.swift */; };
 		0AE51A9820BEE8150003524D /* MockEthereumNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE51A9720BEE8150003524D /* MockEthereumNodeService.swift */; };
+		555B0E9920CAD3F800424CEE /* CryptoEthereumSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 555B0E9820CAD3F800424CEE /* CryptoEthereumSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		555B0E9A20CAD41400424CEE /* CryptoEthereumSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0E9820CAD3F800424CEE /* CryptoEthereumSwift.framework */; };
 		5563EF1320AD942D00DB0F36 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55E1AD0A20AC3886003E0C53 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5563EF1420AD942D00DB0F36 /* EthereumKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55E1AD0C20AC3886003E0C53 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55704B0C20AC8AD90054256B /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E77DD20AC7FF500732A77 /* DomainRegistryTests.swift */; };
@@ -167,6 +169,13 @@
 			remoteGlobalIDString = 0A8E3B9E20B419E000F002F6;
 			remoteInfo = CommonImplementationsTests;
 		};
+		555B0E9720CAD3F800424CEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B0E7A20CAD34C00424CEE;
+			remoteInfo = CryptoEthereumSwift;
+		};
 		555C4C6720AEFC25001E8A34 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A30676220A5C7FF0059F521 /* Common.xcodeproj */;
@@ -241,6 +250,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				555B0E9920CAD3F800424CEE /* CryptoEthereumSwift.framework in CopyFiles */,
 				5563EF1320AD942D00DB0F36 /* CryptoSwift.framework in CopyFiles */,
 				5563EF1420AD942D00DB0F36 /* EthereumKit.framework in CopyFiles */,
 			);
@@ -354,6 +364,7 @@
 				0A30674F20A5C7740059F521 /* libEthereumImplementations.a in Frameworks */,
 				55F2D9CE20AD94FE00F9EFC2 /* CryptoSwift.framework in Frameworks */,
 				55F2D9CF20AD94FE00F9EFC2 /* EthereumKit.framework in Frameworks */,
+				555B0E9A20CAD41400424CEE /* CryptoEthereumSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +504,7 @@
 				55E1AD0A20AC3886003E0C53 /* CryptoSwift.framework */,
 				55E1AD0C20AC3886003E0C53 /* EthereumKit.framework */,
 				55E1AD0E20AC3886003E0C53 /* RSBarcodes.framework */,
+				555B0E9820CAD3F800424CEE /* CryptoEthereumSwift.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -733,6 +745,13 @@
 			fileType = wrapper.cfbundle;
 			path = CommonImplementationsTests.xctest;
 			remoteRef = 0A8E3C1620B44D3A00F002F6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		555B0E9820CAD3F800424CEE /* CryptoEthereumSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoEthereumSwift.framework;
+			remoteRef = 555B0E9720CAD3F800424CEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		55E1AD0A20AC3886003E0C53 /* CryptoSwift.framework */ = {
