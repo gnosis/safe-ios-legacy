@@ -17,6 +17,8 @@ class TokenInputTests: XCTestCase {
     func test_whenCreated_thenAllElementsAreThere() {
         XCTAssertNotNil(tokenInput.integerPartTextField)
         XCTAssertNotNil(tokenInput.fractionalPartTextField)
+        XCTAssertEqual(tokenInput.decimals, 18)
+        XCTAssertEqual(tokenInput.value, 0)
     }
 
 }

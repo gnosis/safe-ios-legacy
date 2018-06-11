@@ -125,6 +125,10 @@
 		5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5527A807208E357B00AF3A50 /* ScannerViewController.xib */; };
 		5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */; };
 		555B0E6720CA83DF00424CEE /* TokenInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B0E6620CA83DF00424CEE /* TokenInputViewController.swift */; };
+		555B0EBB20CE62C400424CEE /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0EBA20CE62C400424CEE /* BigInt.framework */; };
+		555B0ED020CE678700424CEE /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0ECF20CE678700424CEE /* SipHash.framework */; };
+		555B0ED320CE682900424CEE /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0EBA20CE62C400424CEE /* BigInt.framework */; };
+		555B0ED420CE682E00424CEE /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0ECF20CE678700424CEE /* SipHash.framework */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
 		558FD80A20765C53004F070E /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* BigButton.swift */; };
@@ -217,6 +221,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = 555B9CF2208DE6B9001F0CB2;
 			remoteInfo = RSBarcode;
+		};
+		555B0EB720CE62C400424CEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B0E7A20CAD34C00424CEE;
+			remoteInfo = CryptoEthereumSwift;
+		};
+		555B0EB920CE62C400424CEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B0EA920CE5EF800424CEE;
+			remoteInfo = BigInt;
+		};
+		555B0EBC20CE669D00424CEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B0EA820CE5EF800424CEE;
+			remoteInfo = BigInt;
+		};
+		555B0ECE20CE678700424CEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B0EC320CE66EB00424CEE;
+			remoteInfo = SipHash;
+		};
+		555B0ED120CE678F00424CEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B0EC220CE66EB00424CEE;
+			remoteInfo = SipHash;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -403,6 +442,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				555B0ED020CE678700424CEE /* SipHash.framework in Frameworks */,
+				555B0EBB20CE62C400424CEE /* BigInt.framework in Frameworks */,
 				5527A7F4208DE8A300AF3A50 /* RSBarcodes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +452,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				555B0ED420CE682E00424CEE /* SipHash.framework in Frameworks */,
+				555B0ED320CE682900424CEE /* BigInt.framework in Frameworks */,
 				5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */,
 				0A9670BB20480C5700445AC2 /* SafeUIKit.framework in Frameworks */,
 			);
@@ -709,6 +752,9 @@
 				5527A7ED208DE87700AF3A50 /* CryptoSwift.framework */,
 				5527A7EF208DE87700AF3A50 /* EthereumKit.framework */,
 				5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */,
+				555B0EB820CE62C400424CEE /* CryptoEthereumSwift.framework */,
+				555B0EBA20CE62C400424CEE /* BigInt.framework */,
+				555B0ECF20CE678700424CEE /* SipHash.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -789,6 +835,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				555B0ED220CE678F00424CEE /* PBXTargetDependency */,
+				555B0EBD20CE669D00424CEE /* PBXTargetDependency */,
 				5527A7F3208DE89800AF3A50 /* PBXTargetDependency */,
 			);
 			name = SafeUIKit;
@@ -945,6 +993,27 @@
 			fileType = wrapper.framework;
 			path = RSBarcodes.framework;
 			remoteRef = 5527A7F0208DE87700AF3A50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		555B0EB820CE62C400424CEE /* CryptoEthereumSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoEthereumSwift.framework;
+			remoteRef = 555B0EB720CE62C400424CEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		555B0EBA20CE62C400424CEE /* BigInt.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BigInt.framework;
+			remoteRef = 555B0EB920CE62C400424CEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		555B0ECF20CE678700424CEE /* SipHash.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SipHash.framework;
+			remoteRef = 555B0ECE20CE678700424CEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1278,6 +1347,16 @@
 			isa = PBXTargetDependency;
 			name = RSBarcode;
 			targetProxy = 5527A7F7208DE8B700AF3A50 /* PBXContainerItemProxy */;
+		};
+		555B0EBD20CE669D00424CEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BigInt;
+			targetProxy = 555B0EBC20CE669D00424CEE /* PBXContainerItemProxy */;
+		};
+		555B0ED220CE678F00424CEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SipHash;
+			targetProxy = 555B0ED120CE678F00424CEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import BigInt
 
 public class TokenInput: UIView {
 
@@ -11,6 +12,8 @@ public class TokenInput: UIView {
     @IBOutlet weak var currencyValueLabel: UILabel!
 
     private let delimiter: Character = "."
+    public private(set) var decimals: Int = 18
+    public private(set) var value: BigInt = 0
 
     enum Field: Int {
         case integer
