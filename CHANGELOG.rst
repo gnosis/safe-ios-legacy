@@ -5,15 +5,15 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
-Unreleased
+`0.3.0`_ - 2018-06-11
 ==========
 Added
 -----
 - Created new ``MultisigWallet`` project with DomainModel, Application and Implementations libraries.
 - New ``Wallet``, ``Portfolio`` and ``Owner`` objects
-
-Removed
--------
+- New ``Ethereum`` project
+- New Pending Safe screen and basic UI main screen.
+- Mock implementations of Transaction Relay Service and Infura service.
 
 Changed
 -------
@@ -49,6 +49,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _0.3.0: https://github.com/gnosis/safe-ios/tree/0.3.0
 .. _0.2.0: https://github.com/gnosis/safe-ios/tree/0.2.0
 .. _0.1.0: https://github.com/gnosis/safe-ios/tree/0.1.0
 .. _Keep a Changelog: https://keepachangelog.com/en/1.0.0/
