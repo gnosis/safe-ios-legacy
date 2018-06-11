@@ -97,6 +97,34 @@ class TokenInputTests: XCTestCase {
             field: .integer))
     }
 
+    func test_whenFinishesEditing_thenValueIsUpdated() {
+        tokenInput.setUp(value: 0, decimals: 1)
+        tokenInput.endEditing(finalValue: "1", field: .integer)
+        XCTAssertEqual(tokenInput.value, 10)
+        tokenInput.endEditing(finalValue: "", field: .integer)
+        XCTAssertEqual(tokenInput.value, 0)
+        tokenInput.endEditing(finalValue: "1", field: .fractional)
+        XCTAssertEqual(tokenInput.value, 1)
+
+        tokenInput.setUp(value: 0, decimals: 78)
+        tokenInput.endEditing(
+            finalValue: "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            field: .fractional)
+        XCTAssertEqual(tokenInput.value, tokenInput._2_pow_256_minus_1)
+
+        tokenInput.setUp(value: 0, decimals: 0)
+        tokenInput.endEditing(
+            finalValue: "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            field: .integer)
+        XCTAssertEqual(tokenInput.value, tokenInput._2_pow_256_minus_1)
+
+        tokenInput.setUp(value: 0, decimals: 18)
+        tokenInput.endEditing(finalValue: "1", field: .integer)
+        XCTAssertEqual(tokenInput.value, BigInt("1000000000000000000"))
+        tokenInput.endEditing(finalValue: "001", field: .fractional)
+        XCTAssertEqual(tokenInput.value, BigInt("1001000000000000000"))
+    }
+
 }
 
 extension TokenInputTests {
@@ -126,7 +154,7 @@ private extension TokenInput {
         return textField(tokenTextField, shouldChangeCharactersIn: NSRange(), replacementString: text)
     }
 
-    func endEditing(field: TokenInput.Field) {
+    func endEditing(finalValue: String, field: TokenInput.Field) {
         var tokenTextField: UITextField
         switch field {
         case .integer:
@@ -134,6 +162,7 @@ private extension TokenInput {
         case .fractional:
             tokenTextField = fractionalPartTextField
         }
+        tokenTextField.text = finalValue
         _ = textFieldDidEndEditing(tokenTextField)
     }
 

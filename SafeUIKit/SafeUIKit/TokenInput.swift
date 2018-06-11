@@ -40,7 +40,7 @@ public class TokenInput: UIView {
             fractionalPartTextField.text = normalizedFractionalStringForUI(
                 String(repeating: "0", count: decimals - str.count) + str)
         } else {
-            integerPartTextField.text = String(str.prefix(str.count - decimals)) + "."
+            integerPartTextField.text = String(str.prefix(str.count - decimals)) + String(delimiter)
             fractionalPartTextField.text = normalizedFractionalStringForUI(String(str.suffix(decimals)))
         }
         if decimals == 0 {
@@ -59,7 +59,11 @@ public class TokenInput: UIView {
     }
 
     private func normalizedFractionalStringForValue(_ initialString: String) -> String {
-        return String(repeating: "0", count: decimals - initialString.count) + initialString
+        return initialString + String(repeating: "0", count: decimals - initialString.count)
+    }
+
+    private func normalizedIntegerStringForValue(_ initialString: String) -> String {
+        return initialString.replacingOccurrences(of: String(delimiter), with: "")
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -103,7 +107,7 @@ extension TokenInput: UITextFieldDelegate {
         guard CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) else {
             return false
         }
-        var exectedFullValueString: String
+        var expectedFullValueString: String
 
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
@@ -116,27 +120,34 @@ extension TokenInput: UITextFieldDelegate {
             guard newLength <= decimals else {
                 return false
             }
-            exectedFullValueString = (integerPartTextField.text ?? "") + normalizedFractionalStringForValue(updatedText)
+            expectedFullValueString = (integerPartTextField.text ?? "") +
+                normalizedFractionalStringForValue(updatedText)
         } else { // integer part
             let fractionalPartValue = fractionalPartTextField.text ?? ""
-            exectedFullValueString = updatedText + normalizedFractionalStringForValue(fractionalPartValue)
+            expectedFullValueString = updatedText + normalizedFractionalStringForValue(fractionalPartValue)
         }
-        guard let newExpectedValue = BigInt(exectedFullValueString), newExpectedValue <= _2_pow_256_minus_1 else {
+        guard let newExpectedValue = BigInt(expectedFullValueString), newExpectedValue <= _2_pow_256_minus_1 else {
             return false
         }
         return true
     }
 
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        textField.text = textField.text?.replacingOccurrences(of: String(delimiter), with: "")
+        textField.text = normalizedIntegerStringForValue(textField.text ?? "")
         return true
     }
 
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        if textField.tag == Field.integer.rawValue &&
-            !text.isEmpty &&
-            text.last != delimiter {
+        let expectedFullValueString = normalizedIntegerStringForValue(integerPartTextField.text ?? "") +
+            normalizedFractionalStringForValue(fractionalPartTextField.text ?? "")
+        guard let newValue = BigInt(expectedFullValueString), !expectedFullValueString.isEmpty else {
+            value = 0
+            return
+        }
+        value = newValue
+
+        let text = textField.text ?? ""
+        if textField.tag == Field.integer.rawValue && !text.isEmpty {
             textField.text! += String(delimiter)
         }
     }
