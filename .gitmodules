@@ -13,3 +13,6 @@
 [submodule "Dependencies/CryptoEthereumSwift"]
 	path = Dependencies/CryptoEthereumSwift
 	url = https://github.com/yuzushioh/CryptoEthereumSwift.git
+[submodule "Dependencies/SipHash"]
+	path = Dependencies/SipHash
+	url = https://github.com/attaswift/SipHash.git
