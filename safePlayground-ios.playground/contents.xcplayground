@@ -3,5 +3,6 @@
     <pages>
         <page name='PendingSafe'/>
         <page name='Main'/>
+        <page name='TokenBalances'/>
     </pages>
 </playground>
