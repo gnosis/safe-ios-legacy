@@ -112,6 +112,7 @@
 		0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */; };
 		0A9BA3C9207F6B6A001DC22F /* BigButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */; };
 		0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3CA207F6BB6001DC22F /* Assets.swift */; };
+		0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D058A20CEB5C3007DED3B /* Colors.swift */; };
 		0AD93E0820481442008C38CA /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D520480C7B00445AC2 /* TextInputTests.swift */; };
 		0AD93E0920481461008C38CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D820480C7B00445AC2 /* Colors.swift */; };
 		0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9670D020480C7A00445AC2 /* TextInput.xib */; };
@@ -365,6 +366,8 @@
 		0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SafeUIKitMedia.xcassets; sourceTree = "<group>"; };
 		0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButtonTests.swift; sourceTree = "<group>"; };
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		0A9D058920CEB59E007DED3B /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
+		0A9D058A20CEB5C3007DED3B /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0AF33D35209C6BF800527D25 /* SafeAppUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SafeAppUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF33D37209C6BF800527D25 /* SafeAppUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafeAppUI.h; sourceTree = "<group>"; };
 		0AF33D38209C6BF800527D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -460,6 +463,7 @@
 		0A334DDC209C726100ABC6AE /* generated */ = {
 			isa = PBXGroup;
 			children = (
+				0A9D058A20CEB5C3007DED3B /* Colors.swift */,
 				0A334E67209C8F4700ABC6AE /* Assets.swift */,
 				0A334DDD209C726100ABC6AE /* Sotryboards.swift */,
 			);
@@ -690,6 +694,7 @@
 				0A5D467420AD6D8200AC287E /* UIAlertController+Testable.swift */,
 				0A334DC3209C6DB200ABC6AE /* FlowCoordinator.swift */,
 				0A334DC4209C6DB200ABC6AE /* FlowCoordinatorTests.swift */,
+				0A9D058920CEB59E007DED3B /* Colors.txt */,
 				0A334DDC209C726100ABC6AE /* generated */,
 				0AF33D38209C6BF800527D25 /* Info.plist */,
 				0A334DD9209C70F000ABC6AE /* Localizable.strings */,
@@ -1178,6 +1183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A4DF82720CE70B40095C00D /* TokenBalanceTableViewCell.swift in Sources */,
+				0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */,
 				0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */,

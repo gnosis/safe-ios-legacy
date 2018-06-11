@@ -16,7 +16,7 @@ class TokenBalanceTableViewCell: UITableViewCell {
         if let image = UIImage(named: balance.token, in: bundle, compatibleWith: nil) {
             tokenImageView.image = image
         } else {
-            tokenImageView.image = UIImage(named: "default-token", in: bundle, compatibleWith: nil)
+            tokenImageView.image = Asset.TokenIcons.defaultToken.image
         }
         tokenNameLabel.text = balance.token
         tokenBalanceLabel.text = balance.balance
