@@ -125,45 +125,75 @@ class TokenInputTests: XCTestCase {
         XCTAssertEqual(tokenInput.value, BigInt("1001000000000000000"))
     }
 
+    func test_whenBeginEditing_thenIntegerPartDelimiterIsRemoved() {
+        tokenInput.endEditing(finalValue: "1", field: .integer)
+        XCTAssertEqual(tokenInput.integerPartTextField.text, "1.")
+        tokenInput.beginEditing(field: .integer)
+        XCTAssertEqual(tokenInput.integerPartTextField.text, "1")
+    }
+
+    func test_whenResignsFirstResponder_thenAllTextFieldsResign() {
+        guard let window = UIApplication.shared.keyWindow else {
+            XCTFail("Must have active window")
+            return
+        }
+        window.addSubview(tokenInput)
+
+        _ = tokenInput.integerPartTextField.becomeFirstResponder()
+        XCTAssertTrue(tokenInput.isFirstResponder)
+        _ = tokenInput.resignFirstResponder()
+        XCTAssertFalse(tokenInput.isFirstResponder)
+
+        _ = tokenInput.fractionalPartTextField.becomeFirstResponder()
+        XCTAssertTrue(tokenInput.isFirstResponder)
+        _ = tokenInput.resignFirstResponder()
+        XCTAssertFalse(tokenInput.isFirstResponder)
+    }
+
 }
 
-extension TokenInputTests {
+private extension TokenInputTests {
 
-    private func assertUI(_ value: BigInt,
-                          _ decimals: Int,
-                          _ expectedIntegerPart: String,
-                          _ expectedFractionalPart: String) {
+    func assertUI(_ value: BigInt,
+                  _ decimals: Int,
+                  _ expectedIntegerPart: String,
+                  _ expectedFractionalPart: String) {
         tokenInput.setUp(value: value, decimals: decimals)
         XCTAssertEqual(tokenInput.value, value)
         XCTAssertEqual(tokenInput.integerPartTextField.text, expectedIntegerPart)
         XCTAssertEqual(tokenInput.fractionalPartTextField.text, expectedFractionalPart)
     }
+
 }
 
 private extension TokenInput {
 
     func canType(_ text: String, field: TokenInput.Field) -> Bool {
-        var tokenTextField: UITextField
-        switch field {
-        case .integer:
-            tokenTextField = integerPartTextField
-        case .fractional:
-            tokenTextField = fractionalPartTextField
-        }
+        let tokenTextField = tokenField(for: field)
         tokenTextField.text = ""
         return textField(tokenTextField, shouldChangeCharactersIn: NSRange(), replacementString: text)
     }
 
     func endEditing(finalValue: String, field: TokenInput.Field) {
-        var tokenTextField: UITextField
-        switch field {
-        case .integer:
-            tokenTextField = integerPartTextField
-        case .fractional:
-            tokenTextField = fractionalPartTextField
-        }
+        let tokenTextField = tokenField(for: field)
         tokenTextField.text = finalValue
         _ = textFieldDidEndEditing(tokenTextField)
+    }
+
+    func beginEditing(field: TokenInput.Field) {
+        let tokenTextField = tokenField(for: field)
+        _ = textFieldShouldBeginEditing(tokenTextField)
+    }
+
+    func tokenField(for field: TokenInput.Field) -> UITextField {
+        var textField: UITextField
+        switch field {
+        case .integer:
+            textField = integerPartTextField
+        case .fractional:
+            textField = fractionalPartTextField
+        }
+        return textField
     }
 
 }
