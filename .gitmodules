@@ -7,3 +7,6 @@
 [submodule "RSBarcodes"]
 	path = Dependencies/RSBarcodes
 	url = https://github.com/yeahdongcn/RSBarcodes_Swift.git
+[submodule "BlockiesSwift"]
+	path = Dependencies/BlockiesSwift
+	url = https://github.com/Boilertalk/BlockiesSwift.git
