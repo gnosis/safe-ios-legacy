@@ -15,9 +15,44 @@ public class TokenInput: UIView {
     public private(set) var decimals: Int = 18
     public private(set) var value: BigInt = 0
 
+    let _2_pow_256_minus_1 = BigInt("115792089237316195423570985008687907853269984665640564039457584007913129639935")!
+
     enum Field: Int {
         case integer
         case fractional
+    }
+
+    public func setUp(value: BigInt, decimals: Int) {
+        // maximum possible value of token is 2^256 - 1
+        // String(2^256 - 1).count == 78
+        precondition(decimals >= 0 && decimals <= 78)
+        precondition(value >= 0 && value <= _2_pow_256_minus_1)
+        self.decimals = decimals
+        self.value = value
+        updateUI()
+    }
+
+    private func updateUI() {
+        let str = String(value)
+        if str.count <= decimals {
+            integerPartTextField.text = ""
+            fractionalPartTextField.text = normalizedFractionalString(
+                String(repeating: "0", count: decimals - str.count) + str)
+        } else {
+            integerPartTextField.text = String(str.prefix(str.count - decimals)) + "."
+            fractionalPartTextField.text = normalizedFractionalString(String(str.suffix(decimals)))
+        }
+        if decimals == 0 {
+            fractionalPartTextField.isEnabled = false
+        }
+    }
+
+    private func normalizedFractionalString(_ initialString: String) -> String {
+        var fractionalStr = initialString
+        while fractionalStr.last == "0" {
+            fractionalStr = String(fractionalStr.dropLast())
+        }
+        return fractionalStr
     }
 
     public required init?(coder aDecoder: NSCoder) {
