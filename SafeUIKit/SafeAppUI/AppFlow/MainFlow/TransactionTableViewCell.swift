@@ -15,9 +15,17 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var tokenAmountLabel: UILabel!
     @IBOutlet weak var singleValueLabelStackView: UIStackView!
     @IBOutlet weak var singleValueLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backgroundView = UIView()
+        backgroundView?.backgroundColor = UIColor.white
+        progressView.transform = CGAffineTransform(scaleX: 1.0, y: 0.5)
+    }
 
     func configure(transaction: TransactionOverview) {
-        transactionIconImageView.image = transaction.status == .failed ? Asset.TransactionOverviewIcons.error.image :
+        transactionIconImageView.image = transaction.status.isFailed ? Asset.TransactionOverviewIcons.error.image :
             transaction.icon
         transactionIconImageView.layer.cornerRadius = transactionIconImageView.bounds.width / 2
         transactionIconImageView.clipsToBounds = true
@@ -29,7 +37,7 @@ class TransactionTableViewCell: UITableViewCell {
         transactionTypeIconImageView.clipsToBounds = true
 
         transactionDescriptionLabel.text = transaction.transactionDescription
-        transactionDescriptionLabel.textColor = transaction.status == .failed ? ColorName.tomato.color :
+        transactionDescriptionLabel.textColor = transaction.status.isFailed ? ColorName.tomato.color :
             ColorName.darkSlateBlue.color
 
         transactionDateLabel.text = transaction.formattedDate
@@ -47,6 +55,16 @@ class TransactionTableViewCell: UITableViewCell {
         singleValueLabel.textColor = valueColor(transaction)
 
         singleValueLabelStackView.isHidden = transaction.actionDescription == nil
+
+        if case TransactionStatus.pending(let progress) = transaction.status {
+            progressView.isHidden = false
+            progressView.setProgress(Float(progress), animated: true)
+        } else {
+            progressView.isHidden = true
+        }
+
+        backgroundView?.backgroundColor = transaction.status.isFailed ? ColorName.transparentWhiteOnGrey.color :
+            UIColor.white
     }
 
     private func typeIcon(_ transaction: TransactionOverview) -> UIImage {
@@ -58,6 +76,7 @@ class TransactionTableViewCell: UITableViewCell {
     }
 
     private func valueColor(_ transaction: TransactionOverview) -> UIColor {
+        if transaction.status.isFailed { return ColorName.battleshipGrey.color }
         switch transaction.type {
         case .incoming: return ColorName.greenTeal.color
         case .outgoing: return ColorName.tomato.color

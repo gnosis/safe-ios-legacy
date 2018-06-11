@@ -47,9 +47,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f02525"></span>
   /// Alpha: 100% <br/> (0xf02525ff)
   static let tomato = ColorName(rgbaValue: 0xf02525ff)
-  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
-  /// Alpha: 50% <br/> (0xffffff80)
-  static let transparentWhite = ColorName(rgbaValue: 0xffffff80)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f9fafc"></span>
+  /// Alpha: 100% <br/> (0xf9fafcff)
+  static let transparentWhiteOnGrey = ColorName(rgbaValue: 0xf9fafcff)
 }
 // swiftlint:enable identifier_name line_length type_body_length
 

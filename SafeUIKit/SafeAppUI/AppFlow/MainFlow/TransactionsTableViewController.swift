@@ -53,7 +53,7 @@ public class TransactionsTableViewController: UITableViewController {
         let pending = TransactionGroup(name: "PENDING", transactions: [
             TransactionOverview(transactionDescription: "Johny Cash",
                                 formattedDate: "1 secs ago",
-                                status: .success,
+                                status: .pending(0.35),
                                 tokenAmount: "-2.42453 ETH",
                                 fiatAmount: "$1,429.42",
                                 type: .outgoing,
@@ -61,12 +61,12 @@ public class TransactionsTableViewController: UITableViewController {
                                 icon: iconImage(seed: "Johny Cash")),
             TransactionOverview(transactionDescription: "Martin Winklervos",
                                 formattedDate: "6 mins ago",
-                                status: .success,
+                                status: .pending(0.75),
                                 tokenAmount: "-1.10000 ETH",
                                 fiatAmount: "$643.42",
                                 type: .outgoing,
                                 actionDescription: nil,
-                                icon: iconImage(seed: "Martin Winklervos"))])
+                                icon: iconImage(seed: "Martin Winklervos"))], isPending: true)
         let today = TransactionGroup(name: "TODAY", transactions: [
             TransactionOverview(transactionDescription: "Martin Winklervos (failed)",
                                 formattedDate: "15 mins ago",
@@ -83,7 +83,7 @@ public class TransactionsTableViewController: UITableViewController {
                                 fiatAmount: "$5,913.12",
                                 type: .incoming,
                                 actionDescription: nil,
-                                icon: iconImage(seed: "Martin Winklervos"))])
+                                icon: iconImage(seed: "Martin Winklervos"))], isPending: false)
         let yesterday = TransactionGroup(name: "YESTERDAY", transactions: [
             TransactionOverview(transactionDescription: "0x0be5bb0e39b38970b2d7c40ff0b2e1f0521dd8da",
                                 formattedDate: "1 day 2hrs ago",
@@ -100,7 +100,7 @@ public class TransactionsTableViewController: UITableViewController {
                                 fiatAmount: nil,
                                 type: .settings,
                                 actionDescription: "SETTINGS\nCHANGE",
-                                icon: Asset.TransactionOverviewIcons.settingTransaction.image)])
+                                icon: Asset.TransactionOverviewIcons.settingTransaction.image)], isPending: false)
         return [pending, today, yesterday]
     }
 
@@ -116,6 +116,7 @@ public class TransactionsTableViewController: UITableViewController {
 struct TransactionGroup {
     var name: String
     var transactions: [TransactionOverview]
+    var isPending: Bool
 }
 
 struct TransactionOverview {
@@ -138,7 +139,14 @@ enum TransactionType {
 }
 
 enum TransactionStatus {
-    case pending
+    case pending(Double)
     case success
     case failed
+
+    var isFailed: Bool {
+        switch self {
+        case .failed: return true
+        default: return false
+        }
+    }
 }
