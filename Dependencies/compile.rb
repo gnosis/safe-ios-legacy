@@ -1,17 +1,30 @@
+#! /usr/bin/env ruby
 require 'yaml'
 
+filter_deps = ARGV
 sdks = ["iphoneos", "iphonesimulator"]
 deps = YAML.load_file('Dependencies.yml')
 deps.each do |dependency|   
     if dependency.is_a?(Hash)
-        project = dependency.first.first
-        target = dependency.first.last
+        dependency_name = dependency.first.first 
+        value = dependency.first.last
+        if value.is_a?(Hash)
+          project = value.first.first
+          target = value.first.last
+        else
+          project = "#{dependency_name}/#{dependency_name}.xcodeproj"
+          target = value
+        end
     else
-        project = dependency
+        dependency_name = dependency
+        project = "#{dependency}/#{dependency}.xcodeproj"
         target = dependency
     end
+    unless filter_deps.empty? || filter_deps.member?(dependency_name)
+      next
+    end
     sdks.each do |sdk|
-        cmd = ["xcodebuild -project #{project}/#{project}.xcodeproj/",
+        cmd = ["xcodebuild -project #{project}",
             "-target #{target} -sdk #{sdk}",
             "SYMROOT='${SRCROOT}/../../Build/'", 
             "DSTROOT='${SRCROOT}/../../Library/${PLATFORM_NAME}'",

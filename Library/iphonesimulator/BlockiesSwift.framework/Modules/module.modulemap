@@ -1,0 +1,11 @@
+framework module BlockiesSwift {
+  umbrella header "BlockiesSwift.h"
+
+  export *
+  module * { export * }
+}
+
+module BlockiesSwift.Swift {
+    header "BlockiesSwift-Swift.h"
+    requires objc
+}

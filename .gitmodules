@@ -9,4 +9,4 @@
 	url = https://github.com/yeahdongcn/RSBarcodes_Swift.git
 [submodule "BlockiesSwift"]
 	path = Dependencies/BlockiesSwift
-	url = https://github.com/Boilertalk/BlockiesSwift.git
+	url = git@github.com:gnosis/BlockiesSwift.git
