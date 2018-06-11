@@ -17,6 +17,8 @@
 		0A0974EA20480E11005753DF /* SafeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */; };
 		0A0974EC20480E45005753DF /* SafeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* SafeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
+		0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */; };
+		0A321BBE20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A321BBD20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib */; };
 		0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */; };
 		0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */; };
 		0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */; };
@@ -113,6 +115,9 @@
 		0A9BA3C9207F6B6A001DC22F /* BigButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */; };
 		0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3CA207F6BB6001DC22F /* Assets.swift */; };
 		0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D058A20CEB5C3007DED3B /* Colors.swift */; };
+		0AD8FD2F20CEC50500591B91 /* BlockiesSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; };
+		0AD8FD3020CEC51800591B91 /* BlockiesSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; };
+		0AD8FD3120CEC51E00591B91 /* BlockiesSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AD93E0820481442008C38CA /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D520480C7B00445AC2 /* TextInputTests.swift */; };
 		0AD93E0920481461008C38CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D820480C7B00445AC2 /* Colors.swift */; };
 		0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9670D020480C7A00445AC2 /* TextInput.xib */; };
@@ -164,6 +169,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0A9670B120480C5700445AC2;
 			remoteInfo = SafeUIKit;
+		};
+		0AD8FD2D20CEC50500591B91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AD8FD2020CEC4BA00591B91;
+			remoteInfo = BlockiesSwift;
 		};
 		0AF33D3F209C6BF800527D25 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -230,6 +242,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0AD8FD3120CEC51E00591B91 /* BlockiesSwift.framework in CopyFiles */,
 				0A72D43D209C934B0082C0A3 /* CryptoSwift.framework in CopyFiles */,
 				0A72D43E209C934B0082C0A3 /* EthereumKit.framework in CopyFiles */,
 			);
@@ -262,6 +275,8 @@
 		0A0974EB20480E45005753DF /* SafeUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeUIKit.h; sourceTree = "<group>"; };
 		0A2972C8205A89C500CEC7D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = SafeUIKit/Base.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsGroupHeaderView.swift; sourceTree = "<group>"; };
+		0A321BBD20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionsGroupHeaderView.xib; sourceTree = "<group>"; };
 		0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -427,6 +442,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AD8FD2F20CEC50500591B91 /* BlockiesSwift.framework in Frameworks */,
 				0A59E91E20AB15E30090E89C /* libEthereumApplication.a in Frameworks */,
 				0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */,
 				0A334E64209C8ED300ABC6AE /* libIdentityAccessApplication.a in Frameworks */,
@@ -438,6 +454,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AD8FD3020CEC51800591B91 /* BlockiesSwift.framework in Frameworks */,
 				0A334DED209C894D00ABC6AE /* libIdentityAccessImplementations.a in Frameworks */,
 				0A334DC9209C6DD800ABC6AE /* libCommonTestSupport.a in Frameworks */,
 				0AF33D3E209C6BF800527D25 /* SafeAppUI.framework in Frameworks */,
@@ -571,6 +588,8 @@
 				0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */,
 				0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */,
 				0A4DF82E20CE9D5B0095C00D /* TransactionsTableViewController.swift */,
+				0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */,
+				0A321BBD20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib */,
 				0A4DF83020CE9D950095C00D /* TransactionTableViewCell.swift */,
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
 			);
@@ -728,6 +747,7 @@
 				5527A7ED208DE87700AF3A50 /* CryptoSwift.framework */,
 				5527A7EF208DE87700AF3A50 /* EthereumKit.framework */,
 				5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */,
+				0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -945,6 +965,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BlockiesSwift.framework;
+			remoteRef = 0AD8FD2D20CEC50500591B91 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		5527A7ED208DE87700AF3A50 /* CryptoSwift.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1012,6 +1039,7 @@
 				0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */,
 				0A334E3E209C8E3800ABC6AE /* MasterPassword.storyboard in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
+				0A321BBE20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib in Resources */,
 				0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */,
 				0A4DF82920CE80C50095C00D /* tokens.txt in Resources */,
 				0A334E2F209C8E3800ABC6AE /* NewSafe.storyboard in Resources */,
@@ -1192,6 +1220,7 @@
 				0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */,
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
+				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
 				0A334E6F209C8FB100ABC6AE /* SafeFoundationExtensions.swift in Sources */,

@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import BlockiesSwift
 
 public class TransactionsTableViewController: UITableViewController {
 
@@ -14,6 +15,9 @@ public class TransactionsTableViewController: UITableViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(UINib(nibName: "TransactionsGroupHeaderView",
+                                 bundle: Bundle(for: TransactionsGroupHeaderView.self)),
+                           forHeaderFooterViewReuseIdentifier: "TransactionsGroupHeaderView")
         groups = generateTransactions()
     }
 
@@ -27,8 +31,11 @@ public class TransactionsTableViewController: UITableViewController {
         return groups[section].transactions.count
     }
 
-    override public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return groups[section].name
+    public override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TransactionsGroupHeaderView")
+            as! TransactionsGroupHeaderView
+        view.configure(group: groups[section])
+        return view
     }
 
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,7 +49,6 @@ public class TransactionsTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    // swiftlint:disable all
     private func generateTransactions() -> [TransactionGroup] {
         let pending = TransactionGroup(name: "PENDING", transactions: [
             TransactionOverview(transactionDescription: "Johny Cash",
@@ -52,7 +58,7 @@ public class TransactionsTableViewController: UITableViewController {
                                 fiatAmount: "$1,429.42",
                                 type: .outgoing,
                                 actionDescription: nil,
-                                icon: UIImage()),
+                                icon: iconImage(seed: "Johny Cash")),
             TransactionOverview(transactionDescription: "Martin Winklervos",
                                 formattedDate: "6 mins ago",
                                 status: .success,
@@ -60,7 +66,7 @@ public class TransactionsTableViewController: UITableViewController {
                                 fiatAmount: "$643.42",
                                 type: .outgoing,
                                 actionDescription: nil,
-                                icon: UIImage())])
+                                icon: iconImage(seed: "Martin Winklervos"))])
         let today = TransactionGroup(name: "TODAY", transactions: [
             TransactionOverview(transactionDescription: "Martin Winklervos (failed)",
                                 formattedDate: "15 mins ago",
@@ -77,7 +83,7 @@ public class TransactionsTableViewController: UITableViewController {
                                 fiatAmount: "$5,913.12",
                                 type: .incoming,
                                 actionDescription: nil,
-                                icon: UIImage())])
+                                icon: iconImage(seed: "Martin Winklervos"))])
         let yesterday = TransactionGroup(name: "YESTERDAY", transactions: [
             TransactionOverview(transactionDescription: "0x0be5bb0e39b38970b2d7c40ff0b2e1f0521dd8da",
                                 formattedDate: "1 day 2hrs ago",
@@ -86,7 +92,7 @@ public class TransactionsTableViewController: UITableViewController {
                                 fiatAmount: "$11,492.04",
                                 type: .incoming,
                                 actionDescription: nil,
-                                icon: UIImage()),
+                                icon: iconImage(seed: "0x0be5bb0e39b38970b2d7c40ff0b2e1f0521dd8da")),
             TransactionOverview(transactionDescription: "Changed device",
                                 formattedDate: "1 day 9hrs ago",
                                 status: .success,
@@ -97,7 +103,13 @@ public class TransactionsTableViewController: UITableViewController {
                                 icon: Asset.TransactionOverviewIcons.settingTransaction.image)])
         return [pending, today, yesterday]
     }
-    // swiftlint:enable all
+
+    private func iconImage(seed: String) -> UIImage {
+        let blockies = Blockies(seed: seed,
+                                size: 8,
+                                scale: 5)
+        return blockies.createImage(customScale: 3)!
+    }
 
 }
 

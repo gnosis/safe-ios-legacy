@@ -98,7 +98,7 @@
         <scene sceneID="dIf-Mg-lgQ">
             <objects>
                 <tableViewController storyboardIdentifier="TransactionsTableViewController" id="NdG-Tt-8xh" customClass="TransactionsTableViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="68" estimatedRowHeight="68" sectionHeaderHeight="46" sectionFooterHeight="18" id="Yyv-2N-gW7">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="68" estimatedRowHeight="68" sectionHeaderHeight="46" estimatedSectionHeaderHeight="46" sectionFooterHeight="1" id="Yyv-2N-gW7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
