@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A0C87112097488300471885 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C87132097488300471885 /* Localizable.strings */; };
-		0A0C871920974B6900471885 /* LocalizedString.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0C871820974B6900471885 /* LocalizedString.swift.swift */; };
+		0A0C871920974B6900471885 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0C871820974B6900471885 /* LocalizedString.swift */; };
 		0A44F9C520908BBD00BB7101 /* DBSingleUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */; };
 		0A44F9CB20908BE400BB7101 /* DBSingleUserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */; };
 		0A44F9CD2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9CC2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift */; };
@@ -238,6 +238,27 @@
 			remoteGlobalIDString = 0A160BC220A0804500E064E1;
 			remoteInfo = DatabaseTests;
 		};
+		55DA829720CED9930080C7EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B0E7A20CAD34C00424CEE;
+			remoteInfo = CryptoEthereumSwift;
+		};
+		55DA829920CED9930080C7EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B0EA920CE5EF800424CEE;
+			remoteInfo = BigInt;
+		};
+		55DA829B20CED9930080C7EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B0EC320CE66EB00424CEE;
+			remoteInfo = SipHash;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -299,7 +320,7 @@
 		0A0C8703209747E100471885 /* IdentityAccessImplementationsResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessImplementationsResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A0C8705209747E200471885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A0C87122097488300471885 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		0A0C871820974B6900471885 /* LocalizedString.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift.swift; sourceTree = "<group>"; };
+		0A0C871820974B6900471885 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		0A44F9C420908BBD00BB7101 /* DBSingleUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepository.swift; sourceTree = "<group>"; };
 		0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepositoryTests.swift; sourceTree = "<group>"; };
 		0A44F9CC2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
@@ -526,7 +547,7 @@
 		0A537ACE207CEDAE00921FB9 /* IdentityAccessImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				0A0C871820974B6900471885 /* LocalizedString.swift.swift */,
+				0A0C871820974B6900471885 /* LocalizedString.swift */,
 				0AFFF40B20808BEA0030200C /* persistence */,
 				0A537B01207CF2D600921FB9 /* biometry */,
 				0A537AFE207CF2D600921FB9 /* clock */,
@@ -610,6 +631,9 @@
 				0A57F728207E4CF900AF407D /* CryptoSwift.framework */,
 				0A57F72A207E4CF900AF407D /* EthereumKit.framework */,
 				0A48A06E2091CBCA00B704AD /* RSBarcodes.framework */,
+				55DA829820CED9930080C7EF /* CryptoEthereumSwift.framework */,
+				55DA829A20CED9930080C7EF /* BigInt.framework */,
+				55DA829C20CED9930080C7EF /* SipHash.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -978,6 +1002,27 @@
 			remoteRef = 0AEF8A3320A08182006A1265 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		55DA829820CED9930080C7EF /* CryptoEthereumSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoEthereumSwift.framework;
+			remoteRef = 55DA829720CED9930080C7EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55DA829A20CED9930080C7EF /* BigInt.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BigInt.framework;
+			remoteRef = 55DA829920CED9930080C7EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55DA829C20CED9930080C7EF /* SipHash.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SipHash.framework;
+			remoteRef = 55DA829B20CED9930080C7EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1109,7 +1154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A537AE0207CEE7300921FB9 /* MockClockService.swift in Sources */,
-				0A0C871920974B6900471885 /* LocalizedString.swift.swift in Sources */,
+				0A0C871920974B6900471885 /* LocalizedString.swift in Sources */,
 				0A44F9C520908BBD00BB7101 /* DBSingleUserRepository.swift in Sources */,
 				0A537B1C207CF2D600921FB9 /* EthereumKitEncryptionService.swift in Sources */,
 				0A537ADB207CEE1100921FB9 /* MockBiometricService.swift in Sources */,
