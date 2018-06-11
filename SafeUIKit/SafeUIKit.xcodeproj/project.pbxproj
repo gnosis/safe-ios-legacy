@@ -19,6 +19,8 @@
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
 		0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */; };
 		0A321BBE20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A321BBD20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib */; };
+		0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */; };
+		0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */; };
 		0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */; };
 		0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */; };
 		0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */; };
@@ -277,6 +279,8 @@
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsGroupHeaderView.swift; sourceTree = "<group>"; };
 		0A321BBD20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionsGroupHeaderView.xib; sourceTree = "<group>"; };
+		0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenFooterView.swift; sourceTree = "<group>"; };
+		0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTokenFooterView.xib; sourceTree = "<group>"; };
 		0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeOptionsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -586,6 +590,8 @@
 				0A4DF82820CE80C50095C00D /* tokens.txt */,
 				0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */,
 				0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */,
+				0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */,
+				0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */,
 				0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */,
 				0A4DF82E20CE9D5B0095C00D /* TransactionsTableViewController.swift */,
 				0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */,
@@ -1041,6 +1047,7 @@
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
 				0A321BBE20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib in Resources */,
 				0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */,
+				0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */,
 				0A4DF82920CE80C50095C00D /* tokens.txt in Resources */,
 				0A334E2F209C8E3800ABC6AE /* NewSafe.storyboard in Resources */,
 				0A334E4D209C8E3800ABC6AE /* AppFlow.storyboard in Resources */,
@@ -1224,6 +1231,7 @@
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
 				0A334E6F209C8FB100ABC6AE /* SafeFoundationExtensions.swift in Sources */,
+				0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */,
 				0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */,
 				0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */,
 				0A4DF82020CE6FC70095C00D /* TokensTableViewController.swift in Sources */,

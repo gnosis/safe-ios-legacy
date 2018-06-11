@@ -19,6 +19,10 @@ public class TokensTableViewController: UITableViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(UINib(nibName: "AddTokenFooterView",
+                                 bundle: Bundle(for: AddTokenFooterView.self)),
+                           forHeaderFooterViewReuseIdentifier: "AddTokenFooterView")
+        tableView.contentInset = UIEdgeInsets(top: -35, left: 0, bottom: 0, right: 0)
         let tokensFile = Bundle(for: TokensTableViewController.self).url(forResource: "tokens", withExtension: "txt")!
         let tokens = try! String(contentsOf: tokensFile)
             .components(separatedBy: "\n")
@@ -62,6 +66,10 @@ public class TokensTableViewController: UITableViewController {
 
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    public override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "AddTokenFooterView")
     }
 
 }
