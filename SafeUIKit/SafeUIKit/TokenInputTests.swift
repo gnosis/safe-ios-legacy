@@ -70,6 +70,11 @@ class TokenInputTests: XCTestCase {
         XCTAssertFalse(tokenInput.canType("1111", field: .fractional))
     }
 
+    func test_whenTryingToTypeInFractionalPartWithFilledIntegerPart_thenAllows() {
+        tokenInput.setUp(value: 1_001, decimals: 3)
+        XCTAssertTrue(tokenInput.canType("01", field: .fractional))
+    }
+
     func test_whenTryingToTypeMoreThanAllowedValue_thenNotPossible() {
         tokenInput.setUp(value: 0, decimals: 78)
         XCTAssertTrue(tokenInput.canType(
@@ -79,6 +84,7 @@ class TokenInputTests: XCTestCase {
             "115792089237316195423570985008687907853269984665640564039457584007913129639936",
             field: .fractional))
         XCTAssertFalse(tokenInput.canType("1", field: .integer))
+
         tokenInput.setUp(value: 0, decimals: 0)
         XCTAssertTrue(tokenInput.canType(
             "115792089237316195423570985008687907853269984665640564039457584007913129639935",
@@ -86,6 +92,7 @@ class TokenInputTests: XCTestCase {
         XCTAssertFalse(tokenInput.canType(
             "115792089237316195423570985008687907853269984665640564039457584007913129639936",
             field: .integer))
+
         tokenInput.setUp(value: 0, decimals: 1)
         tokenInput.fractionalPartTextField.text = "5"
         XCTAssertTrue(tokenInput.canType(

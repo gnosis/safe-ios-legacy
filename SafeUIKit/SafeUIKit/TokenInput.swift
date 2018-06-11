@@ -107,25 +107,26 @@ extension TokenInput: UITextFieldDelegate {
         guard CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) else {
             return false
         }
-        var expectedFullValueString: String
 
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
             .replacingOccurrences(of: String(delimiter), with: "")
 
+        var expectedFullValueString: String
         if textField.tag == Field.fractional.rawValue {
             let oldLength = textField.text?.count ?? 0
             let newLength = oldLength + string.count - range.length
             guard newLength <= decimals else {
                 return false
             }
-            expectedFullValueString = (integerPartTextField.text ?? "") +
+            expectedFullValueString = normalizedIntegerStringForValue(integerPartTextField.text ?? "") +
                 normalizedFractionalStringForValue(updatedText)
         } else { // integer part
             let fractionalPartValue = fractionalPartTextField.text ?? ""
             expectedFullValueString = updatedText + normalizedFractionalStringForValue(fractionalPartValue)
         }
+
         guard let newExpectedValue = BigInt(expectedFullValueString), newExpectedValue <= _2_pow_256_minus_1 else {
             return false
         }
