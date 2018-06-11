@@ -17,6 +17,14 @@ modules = [
     {
         name: "Database",
         path: "Common/Database"
+    },
+    {
+        name: "CommonImplementations",
+        path: "Common/CommonImplementations"
+    },
+    {
+        name: "IdentityAccessApplication",
+        path: "IdentityAccess/IdentityAccessApplication"
     }
 ]
 

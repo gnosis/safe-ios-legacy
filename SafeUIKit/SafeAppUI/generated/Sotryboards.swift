@@ -60,6 +60,11 @@ enum StoryboardScene {
 
     static let unlockViewController = SceneType<SafeAppUI.UnlockViewController>(storyboard: AppFlow.self, identifier: "UnlockViewController")
   }
+  enum Main: StoryboardType {
+    static let storyboardName = "Main"
+
+    static let tokensTableViewController = SceneType<SafeAppUI.TokensTableViewController>(storyboard: Main.self, identifier: "TokensTableViewController")
+  }
   enum MasterPassword: StoryboardType {
     static let storyboardName = "MasterPassword"
 

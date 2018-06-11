@@ -7,6 +7,7 @@ import XCTest
 import IdentityAccessDomainModel
 import IdentityAccessImplementations
 
+/// Base class for all unit tests in this module.
 class ApplicationServiceTestCase: XCTestCase {
 
     let authenticationService = AuthenticationApplicationService()

@@ -4,6 +4,7 @@
 
 import Foundation
 
+/// Valid authentication methods supported by the application
 public struct AuthenticationMethod: OptionSet {
 
     public let rawValue: Int
