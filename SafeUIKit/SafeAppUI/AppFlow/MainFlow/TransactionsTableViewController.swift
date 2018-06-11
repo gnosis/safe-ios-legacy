@@ -49,59 +49,46 @@ public class TransactionsTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    // NOTE: this method will be thrown out. Only for playground for now.
     private func generateTransactions() -> [TransactionGroup] {
-        let pending = TransactionGroup(name: "PENDING", transactions: [
-            TransactionOverview(transactionDescription: "Johny Cash",
-                                formattedDate: "1 secs ago",
-                                status: .pending(0.35),
-                                tokenAmount: "-2.42453 ETH",
-                                fiatAmount: "$1,429.42",
-                                type: .outgoing,
-                                actionDescription: nil,
-                                icon: iconImage(seed: "Johny Cash")),
-            TransactionOverview(transactionDescription: "Martin Winklervos",
-                                formattedDate: "6 mins ago",
-                                status: .pending(0.75),
-                                tokenAmount: "-1.10000 ETH",
-                                fiatAmount: "$643.42",
-                                type: .outgoing,
-                                actionDescription: nil,
-                                icon: iconImage(seed: "Martin Winklervos"))], isPending: true)
-        let today = TransactionGroup(name: "TODAY", transactions: [
-            TransactionOverview(transactionDescription: "Martin Winklervos (failed)",
-                                formattedDate: "15 mins ago",
-                                status: .failed,
-                                tokenAmount: "-1.10000 ETH",
-                                fiatAmount: "$643.42",
-                                type: .outgoing,
-                                actionDescription: nil,
-                                icon: UIImage()),
-            TransactionOverview(transactionDescription: "0x828b8fb3fcbf2d7d73d69ea78efc5d5d8e136b48",
-                                formattedDate: "2hrs 2 mins ago",
-                                status: .success,
-                                tokenAmount: "+23.14454 ETH",
-                                fiatAmount: "$5,913.12",
-                                type: .incoming,
-                                actionDescription: nil,
-                                icon: iconImage(seed: "Martin Winklervos"))], isPending: false)
-        let yesterday = TransactionGroup(name: "YESTERDAY", transactions: [
-            TransactionOverview(transactionDescription: "0x0be5bb0e39b38970b2d7c40ff0b2e1f0521dd8da",
-                                formattedDate: "1 day 2hrs ago",
-                                status: .success,
-                                tokenAmount: "+9.11300 ETH",
-                                fiatAmount: "$11,492.04",
-                                type: .incoming,
-                                actionDescription: nil,
-                                icon: iconImage(seed: "0x0be5bb0e39b38970b2d7c40ff0b2e1f0521dd8da")),
-            TransactionOverview(transactionDescription: "Changed device",
-                                formattedDate: "1 day 9hrs ago",
-                                status: .success,
-                                tokenAmount: nil,
-                                fiatAmount: nil,
-                                type: .settings,
-                                actionDescription: "SETTINGS\nCHANGE",
-                                icon: Asset.TransactionOverviewIcons.settingTransaction.image)], isPending: false)
-        return [pending, today, yesterday]
+        let transactionsURL = Bundle(for: TransactionsTableViewController.self)
+            .url(forResource: "transactions", withExtension: "txt")!
+        let contents = try! String(contentsOf: transactionsURL)
+        let groups = contents.components(separatedBy: "\n\n")
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+        return groups.map { text -> TransactionGroup in
+            let lines = text.components(separatedBy: "\n")
+                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                .filter { !$0.isEmpty }
+            let name = lines[0]
+            let txs = lines[1..<lines.count].map { line -> TransactionOverview in
+                let parts = line.components(separatedBy: ";")
+                    .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                    .filter { !$0.isEmpty }
+                let description = parts[0]
+                let time = parts[1]
+                let status: TransactionStatus = parts[2] == "success" ? .success :
+                    (parts[2] == "failed" ? .failed :
+                        (.pending(Double(parts[2])!)))
+                let type: TransactionType = parts[3] == "outgoing" ? .outgoing :
+                    (parts[3] == "incoming" ? .incoming : .settings)
+                let tokenAmount: String? = type != .settings ? parts[4] : nil
+                let fiatAmount: String? = type != .settings ? parts[5] : nil
+                let action: String? = type == .settings ? parts[4].replacingOccurrences(of: "\\n", with: "\n") : nil
+                let icon: UIImage = type == .settings ? Asset.TransactionOverviewIcons.settingTransaction.image :
+                    iconImage(seed: description)
+                return TransactionOverview(transactionDescription: description,
+                                           formattedDate: time,
+                                           status: status,
+                                           tokenAmount: tokenAmount,
+                                           fiatAmount: fiatAmount,
+                                           type: type,
+                                           actionDescription: action,
+                                           icon: icon)
+            }
+            return TransactionGroup(name: name, transactions: txs, isPending: name == "PENDING")
+        }
     }
 
     private func iconImage(seed: String) -> UIImage {

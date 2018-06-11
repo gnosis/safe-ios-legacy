@@ -13,7 +13,7 @@ class AddTokenFooterView: UITableViewHeaderFooterView {
         backgroundView = UIView()
         backgroundView?.backgroundColor = ColorName.paleGreyThree.color
     }
-    
+
     @IBAction func manageTokens(_ sender: Any) {
     }
 
