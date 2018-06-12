@@ -7,6 +7,7 @@ import EthereumDomainModel
 import EthereumApplication
 import EthereumKit
 import Common
+import CryptoSwift
 
 // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md
 public enum EIP155ChainId: Int {

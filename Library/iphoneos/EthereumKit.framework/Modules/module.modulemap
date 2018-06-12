@@ -1,13 +1,8 @@
 framework module EthereumKit {
-    umbrella header "EthereumKit.h"
-    
-    export *
-    module * { export * }
-    
-    explicit module Private {
-        header "Internal.h"
-        link "crypto"
-    }
+  umbrella header "EthereumKit.h"
+
+  export *
+  module * { export * }
 }
 
 module EthereumKit.Swift {

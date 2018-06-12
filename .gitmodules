@@ -7,3 +7,12 @@
 [submodule "RSBarcodes"]
 	path = Dependencies/RSBarcodes
 	url = https://github.com/yeahdongcn/RSBarcodes_Swift.git
+[submodule "Dependencies/BigInt"]
+	path = Dependencies/BigInt
+	url = https://github.com/attaswift/BigInt.git
+[submodule "Dependencies/CryptoEthereumSwift"]
+	path = Dependencies/CryptoEthereumSwift
+	url = https://github.com/yuzushioh/CryptoEthereumSwift.git
+[submodule "Dependencies/SipHash"]
+	path = Dependencies/SipHash
+	url = https://github.com/attaswift/SipHash.git

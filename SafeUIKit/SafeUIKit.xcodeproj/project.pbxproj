@@ -118,6 +118,10 @@
 		0AF33D4A209C6BF800527D25 /* SafeAppUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; };
 		0AF33D4B209C6BF800527D25 /* SafeAppUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BC2209313F800297D1C /* UIDevice+Extensions.swift */; };
+		550954EA20C9590000F5F25F /* TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954E920C9590000F5F25F /* TokenInput.swift */; };
+		550954EE20C9592900F5F25F /* TokenInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954ED20C9592900F5F25F /* TokenInputTests.swift */; };
+		550954F020C9594700F5F25F /* TokenInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 550954EF20C9594700F5F25F /* TokenInput.xib */; };
+		550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954F120C966CF00F5F25F /* UIView+Extensions.swift */; };
 		5527A7F4208DE8A300AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
 		5527A7F5208DE8B700AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
 		5527A7F6208DE8B700AF3A50 /* RSBarcodes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -125,6 +129,11 @@
 		5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527A806208E357B00AF3A50 /* ScannerViewController.swift */; };
 		5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5527A807208E357B00AF3A50 /* ScannerViewController.xib */; };
 		5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */; };
+		555B0E6720CA83DF00424CEE /* TokenInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B0E6620CA83DF00424CEE /* TokenInputViewController.swift */; };
+		555B0EBB20CE62C400424CEE /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0EBA20CE62C400424CEE /* BigInt.framework */; };
+		555B0ED020CE678700424CEE /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0ECF20CE678700424CEE /* SipHash.framework */; };
+		555B0ED320CE682900424CEE /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0EBA20CE62C400424CEE /* BigInt.framework */; };
+		555B0ED420CE682E00424CEE /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0ECF20CE678700424CEE /* SipHash.framework */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
 		558FD80A20765C53004F070E /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* BigButton.swift */; };
@@ -217,6 +226,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = 555B9CF2208DE6B9001F0CB2;
 			remoteInfo = RSBarcode;
+		};
+		555B0EB720CE62C400424CEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B0E7A20CAD34C00424CEE;
+			remoteInfo = CryptoEthereumSwift;
+		};
+		555B0EB920CE62C400424CEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B0EA920CE5EF800424CEE;
+			remoteInfo = BigInt;
+		};
+		555B0EBC20CE669D00424CEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B0EA820CE5EF800424CEE;
+			remoteInfo = BigInt;
+		};
+		555B0ECE20CE678700424CEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B0EC320CE66EB00424CEE;
+			remoteInfo = SipHash;
+		};
+		555B0ED120CE678F00424CEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B0EC220CE66EB00424CEE;
+			remoteInfo = SipHash;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -367,11 +411,16 @@
 		0AF33D3D209C6BF800527D25 /* SafeAppUIUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeAppUIUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF33D46209C6BF800527D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55071BC2209313F800297D1C /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
+		550954E920C9590000F5F25F /* TokenInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInput.swift; sourceTree = "<group>"; };
+		550954ED20C9592900F5F25F /* TokenInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInputTests.swift; sourceTree = "<group>"; };
+		550954EF20C9594700F5F25F /* TokenInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenInput.xib; sourceTree = "<group>"; };
+		550954F120C966CF00F5F25F /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		5527A7E0208DE87600AF3A50 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 		5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewControllerTests.swift; sourceTree = "<group>"; };
 		5527A806208E357B00AF3A50 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		5527A807208E357B00AF3A50 /* ScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
 		5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		555B0E6620CA83DF00424CEE /* TokenInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInputViewController.swift; sourceTree = "<group>"; };
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
@@ -403,6 +452,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				555B0ED020CE678700424CEE /* SipHash.framework in Frameworks */,
+				555B0EBB20CE62C400424CEE /* BigInt.framework in Frameworks */,
 				5527A7F4208DE8A300AF3A50 /* RSBarcodes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +462,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				555B0ED420CE682E00424CEE /* SipHash.framework in Frameworks */,
+				555B0ED320CE682900424CEE /* BigInt.framework in Frameworks */,
 				5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */,
 				0A9670BB20480C5700445AC2 /* SafeUIKit.framework in Frameworks */,
 			);
@@ -616,6 +669,7 @@
 				0A0974D020480CEB005753DF /* TextInputViewController.swift */,
 				0A0974CF20480CEB005753DF /* ViewController.swift */,
 				55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */,
+				555B0E6620CA83DF00424CEE /* TokenInputViewController.swift */,
 			);
 			path = SafeUIKitDemo;
 			sourceTree = "<group>";
@@ -633,34 +687,38 @@
 		0A9670B320480C5700445AC2 /* SafeUIKit */ = {
 			isa = PBXGroup;
 			children = (
-				0A99436A20A0489800E36FD7 /* swiftlint.yml */,
-				0A99436820A0485300E36FD7 /* swiftgen.yml */,
-				0A9670D920480C7B00445AC2 /* generated */,
-				0A9670CF20480C7A00445AC2 /* Colors.txt */,
-				55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */,
-				55E9F558208A298200889C9F /* QRCodeInputTests.swift */,
-				5527A806208E357B00AF3A50 /* ScannerViewController.swift */,
-				5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */,
-				5527A807208E357B00AF3A50 /* ScannerViewController.xib */,
-				0A9670D420480C7B00445AC2 /* TextInput.swift */,
-				0A9670D520480C7B00445AC2 /* TextInputTests.swift */,
-				556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */,
-				556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */,
-				0A9670D020480C7A00445AC2 /* TextInput.xib */,
-				0A9670D320480C7B00445AC2 /* RuleLabel.swift */,
-				0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */,
-				0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */,
-				0A638BEC205A8D63003619EF /* LocalizedString.swift */,
-				0A9670D220480C7B00445AC2 /* Fonts.swift */,
-				0A9670B520480C5700445AC2 /* Info.plist */,
-				0A0974EB20480E45005753DF /* SafeUIKit.h */,
-				0A7AE8BE205284180044D5DD /* H1Label.swift */,
 				558FD80920765C53004F070E /* BigButton.swift */,
 				0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */,
-				55071BC2209313F800297D1C /* UIDevice+Extensions.swift */,
+				0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */,
+				556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */,
+				556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */,
+				0A9670CF20480C7A00445AC2 /* Colors.txt */,
+				0A9670D220480C7B00445AC2 /* Fonts.swift */,
+				0A9670D920480C7B00445AC2 /* generated */,
+				0A7AE8BE205284180044D5DD /* H1Label.swift */,
+				0A9670B520480C5700445AC2 /* Info.plist */,
 				0A53AD5520598B5000D713AD /* Localizable.strings */,
-				0A9670C320480C5700445AC2 /* Tests-Info.plist */,
+				0A638BEC205A8D63003619EF /* LocalizedString.swift */,
+				55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */,
+				55E9F558208A298200889C9F /* QRCodeInputTests.swift */,
+				0A9670D320480C7B00445AC2 /* RuleLabel.swift */,
+				0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */,
+				0A0974EB20480E45005753DF /* SafeUIKit.h */,
 				0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */,
+				5527A806208E357B00AF3A50 /* ScannerViewController.swift */,
+				5527A807208E357B00AF3A50 /* ScannerViewController.xib */,
+				5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */,
+				0A99436820A0485300E36FD7 /* swiftgen.yml */,
+				0A99436A20A0489800E36FD7 /* swiftlint.yml */,
+				0A9670C320480C5700445AC2 /* Tests-Info.plist */,
+				0A9670D420480C7B00445AC2 /* TextInput.swift */,
+				0A9670D020480C7A00445AC2 /* TextInput.xib */,
+				0A9670D520480C7B00445AC2 /* TextInputTests.swift */,
+				550954E920C9590000F5F25F /* TokenInput.swift */,
+				550954EF20C9594700F5F25F /* TokenInput.xib */,
+				550954ED20C9592900F5F25F /* TokenInputTests.swift */,
+				55071BC2209313F800297D1C /* UIDevice+Extensions.swift */,
+				550954F120C966CF00F5F25F /* UIView+Extensions.swift */,
 			);
 			path = SafeUIKit;
 			sourceTree = "<group>";
@@ -717,6 +775,9 @@
 				5527A7ED208DE87700AF3A50 /* CryptoSwift.framework */,
 				5527A7EF208DE87700AF3A50 /* EthereumKit.framework */,
 				5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */,
+				555B0EB820CE62C400424CEE /* CryptoEthereumSwift.framework */,
+				555B0EBA20CE62C400424CEE /* BigInt.framework */,
+				555B0ECF20CE678700424CEE /* SipHash.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -797,6 +858,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				555B0ED220CE678F00424CEE /* PBXTargetDependency */,
+				555B0EBD20CE669D00424CEE /* PBXTargetDependency */,
 				5527A7F3208DE89800AF3A50 /* PBXTargetDependency */,
 			);
 			name = SafeUIKit;
@@ -955,6 +1018,27 @@
 			remoteRef = 5527A7F0208DE87700AF3A50 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		555B0EB820CE62C400424CEE /* CryptoEthereumSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoEthereumSwift.framework;
+			remoteRef = 555B0EB720CE62C400424CEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		555B0EBA20CE62C400424CEE /* BigInt.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BigInt.framework;
+			remoteRef = 555B0EB920CE62C400424CEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		555B0ECF20CE678700424CEE /* SipHash.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SipHash.framework;
+			remoteRef = 555B0ECE20CE678700424CEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -983,6 +1067,7 @@
 				0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */,
 				0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */,
 				0A53AD5320598B5000D713AD /* Localizable.strings in Resources */,
+				550954F020C9594700F5F25F /* TokenInput.xib in Resources */,
 				5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1117,6 +1202,7 @@
 			files = (
 				55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */,
 				0A0974D620480CEB005753DF /* ViewController.swift in Sources */,
+				555B0E6720CA83DF00424CEE /* TokenInputViewController.swift in Sources */,
 				0A0974D720480CEB005753DF /* TextInputViewController.swift in Sources */,
 				0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */,
 			);
@@ -1146,7 +1232,9 @@
 				0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */,
 				5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */,
 				0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */,
+				550954EA20C9590000F5F25F /* TokenInput.swift in Sources */,
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
+				550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */,
 				558FD80A20765C53004F070E /* BigButton.swift in Sources */,
 				55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */,
 			);
@@ -1160,6 +1248,7 @@
 				0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */,
 				0A9BA3C9207F6B6A001DC22F /* BigButtonTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
+				550954EE20C9592900F5F25F /* TokenInputTests.swift in Sources */,
 				0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
 				5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */,
@@ -1286,6 +1375,16 @@
 			isa = PBXTargetDependency;
 			name = RSBarcode;
 			targetProxy = 5527A7F7208DE8B700AF3A50 /* PBXContainerItemProxy */;
+		};
+		555B0EBD20CE669D00424CEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BigInt;
+			targetProxy = 555B0EBC20CE669D00424CEE /* PBXContainerItemProxy */;
+		};
+		555B0ED220CE678F00424CEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SipHash;
+			targetProxy = 555B0ED120CE678F00424CEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

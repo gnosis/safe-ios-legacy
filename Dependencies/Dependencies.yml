@@ -3,5 +3,8 @@
 # or
 # - <target name> # if it is the same as project name
 - CryptoSwift
+- CryptoEthereumSwift
 - EthereumKit
 - RSBarcodes
+- SipHash: iOS
+- BigInt: BigInt-iOS
