@@ -9,3 +9,8 @@ storyboards:
     - .
   templateName: swift4
   output: generated/Sotryboards.swift
+colors:
+  paths:
+    - Colors.txt
+  templateName: swift4
+  output: generated/Colors.swift

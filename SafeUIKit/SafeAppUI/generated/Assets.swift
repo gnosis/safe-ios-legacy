@@ -141,6 +141,13 @@ enum Asset {
     static let defaultToken = ImageAsset(name: "default-token")
   }
   static let touchIdIcon = ImageAsset(name: "touch-id-icon")
+  enum TransactionOverviewIcons {
+    static let error = ImageAsset(name: "error")
+    static let receive = ImageAsset(name: "receive")
+    static let sent = ImageAsset(name: "sent")
+    static let settingTransaction = ImageAsset(name: "setting_transaction")
+    static let settingTransactionIcon = ImageAsset(name: "setting_transaction_icon")
+  }
 
   // swiftlint:disable trailing_comma
   static let allColors: [ColorAsset] = [
@@ -241,6 +248,11 @@ enum Asset {
     TokenIcons.zrx,
     TokenIcons.defaultToken,
     touchIdIcon,
+    TransactionOverviewIcons.error,
+    TransactionOverviewIcons.receive,
+    TransactionOverviewIcons.sent,
+    TransactionOverviewIcons.settingTransaction,
+    TransactionOverviewIcons.settingTransactionIcon,
   ]
   // swiftlint:enable trailing_comma
   @available(*, deprecated, renamed: "allImages")

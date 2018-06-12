@@ -1,10 +1,11 @@
 # Format: 
-# - <.xcodeproj name>: <target name>
-# or
-# - <target name> # if it is the same as project name
+# - <target name> # <name>/<name>.xcodeproj ; target <name>
+# - <name>: <target> # <name>/<name>.xcodeproj ; target <target>
+# - <name>: { <xcodeproj>: <target> } # <xcodeproj> ; target <target>
 - CryptoSwift
 - CryptoEthereumSwift
 - EthereumKit
 - RSBarcodes
 - SipHash: iOS
 - BigInt: BigInt-iOS
+- BlockiesSwift
