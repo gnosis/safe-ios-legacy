@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A00291720CEDDD0009A4BFE /* transactions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A00291620CEDDD0009A4BFE /* transactions.txt */; };
+		0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A00292B20CFC118009A4BFE /* SegmentBar.swift */; };
 		0A03402F20C004C200C1C3BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DD9209C70F000ABC6AE /* Localizable.strings */; };
 		0A0974D220480CEB005753DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974C820480CEB005753DF /* Assets.xcassets */; };
 		0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974C920480CEB005753DF /* AppDelegate.swift */; };
@@ -268,6 +269,7 @@
 
 /* Begin PBXFileReference section */
 		0A00291620CEDDD0009A4BFE /* transactions.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = transactions.txt; sourceTree = "<group>"; };
+		0A00292B20CFC118009A4BFE /* SegmentBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBar.swift; sourceTree = "<group>"; };
 		0A0974C720480CEB005753DF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A0974C820480CEB005753DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A0974C920480CEB005753DF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -600,6 +602,7 @@
 				0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */,
 				0A321BBD20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib */,
 				0A4DF83020CE9D950095C00D /* TransactionTableViewCell.swift */,
+				0A00292B20CFC118009A4BFE /* SegmentBar.swift */,
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
 			);
 			path = MainFlow;
@@ -1224,6 +1227,7 @@
 				0A4DF82720CE70B40095C00D /* TokenBalanceTableViewCell.swift in Sources */,
 				0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
+				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
 				0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */,
 				0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,

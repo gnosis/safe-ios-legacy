@@ -29,6 +29,9 @@ struct ColorName {
   let rgbaValue: UInt32
   var color: Color { return Color(named: self) }
 
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#28b2fa"></span>
+  /// Alpha: 100% <br/> (0x28b2faff)
+  static let azure = ColorName(rgbaValue: 0x28b2faff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#65707e"></span>
   /// Alpha: 100% <br/> (0x65707eff)
   static let battleshipGrey = ColorName(rgbaValue: 0x65707eff)
