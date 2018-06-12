@@ -28,6 +28,9 @@ public class SegmentBar: UIControl {
 
     private let stackView = UIStackView()
     private let selectionMarker = UIView()
+    var buttons: [UIButton] {
+        return stackView.arrangedSubviews.compactMap { $0 as? UIButton }
+    }
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
