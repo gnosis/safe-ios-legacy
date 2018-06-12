@@ -5,31 +5,26 @@ import UIKit
 import PlaygroundSupport
 import SafeAppUI
 
-
-//let controller = TokensTableViewController.create()
-//let controller = TransactionsTableViewController.create()
-
 let controller = SegmentBarController()
+PlaygroundPage.current.liveView = controller
+
 controller.view.backgroundColor = .white
 
-class SegmentViewController: UIViewController, SegmentController {
-
-    var segmentItem: SegmentBarItem {
-        return SegmentBarItem(title: title ?? "")
+extension TokensTableViewController: SegmentController {
+    public var segmentItem: SegmentBarItem {
+        return SegmentBarItem(title: "Tokens")
     }
-
 }
-let segA = SegmentViewController()
-segA.title = "Hello"
-segA.view.backgroundColor = .yellow
 
-let segB = SegmentViewController()
-segB.title = "Bye"
-segB.view.backgroundColor = .purple
+extension TransactionsTableViewController: SegmentController {
+    public var segmentItem: SegmentBarItem {
+        return SegmentBarItem(title: "Transactions")
+    }
+}
 
-controller.viewControllers = [segA, segB]
+let tokensController = TokensTableViewController.create()
+let transactionsController = TransactionsTableViewController.create()
+controller.viewControllers = [tokensController, transactionsController]
 controller.selectedViewController = controller.viewControllers.first
-
-PlaygroundPage.current.liveView = controller
 
 //: [Next](@next)

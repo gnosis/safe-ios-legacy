@@ -11,8 +11,9 @@ class MySegmentViewController: SegmentBarController {
         super.viewDidLoad()
         let oneSeg = MySegment()
         oneSeg.segmentItem = SegmentBarItem(title: "Hello")
+        oneSeg.view.backgroundColor = .yellow
         let twoSeg = MySegment()
-        
+        twoSeg.view.backgroundColor = .purple
         twoSeg.segmentItem = SegmentBarItem(title: "Bye")
         viewControllers = [oneSeg, twoSeg]
         selectedViewController = oneSeg

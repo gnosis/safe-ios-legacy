@@ -37,21 +37,35 @@ open class SegmentBarController: UIViewController {
         NSLayoutConstraint.activate(
             [
                 stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-                stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-                stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-                stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
+                stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
 
         segmentBar.addTarget(self, action: #selector(didChangeSegment(bar:)), for: .valueChanged)
         segmentBar.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(segmentBar)
-        NSLayoutConstraint.activate([segmentBar.heightAnchor.constraint(equalToConstant: 48)])
+        NSLayoutConstraint.activate(
+            [
+            segmentBar.heightAnchor.constraint(equalToConstant: 48),
+            segmentBar.widthAnchor.constraint(greaterThanOrEqualToConstant: 0)
+            ])
 
-        contentView.frame = view.bounds
-        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(contentView)
-
+        NSLayoutConstraint.activate(
+            [
+                contentView.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
+                contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
+            ])
         update()
+    }
+
+    private func enableDebug() {
+        view.backgroundColor = UIColor.brown
+        stackView.backgroundColor = UIColor.darkGray
+        segmentBar.backgroundColor = .red
+        contentView.backgroundColor = UIColor.green
     }
 
     private func update() {
