@@ -16,6 +16,9 @@ public class SegmentBar: UIControl {
     }
 
     public var selectedItem: SegmentBarItem? {
+        willSet {
+            precondition(newValue == nil || items.contains(newValue!))
+        }
         didSet {
             if oldValue != selectedItem {
                 updateSelection()
@@ -61,6 +64,7 @@ public class SegmentBar: UIControl {
         let toRemove = stackView.arrangedSubviews
         toRemove.forEach { stackView.removeArrangedSubview($0) }
         buttons.forEach { stackView.addArrangedSubview($0) }
+        selectedItem = nil
         setNeedsLayout()
     }
 

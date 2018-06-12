@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AF33D34209C6BF800527D25"
-            BuildableName = "SafeAppUI.framework"
-            BlueprintName = "SafeAppUI"
+            BlueprintIdentifier = "0A96707920480C3E00445AC2"
+            BuildableName = "SafeUIKitDemo.app"
+            BlueprintName = "SafeUIKitDemo"
             ReferencedContainer = "container:SafeUIKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -61,15 +61,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AF33D34209C6BF800527D25"
-            BuildableName = "SafeAppUI.framework"
-            BlueprintName = "SafeAppUI"
+            BlueprintIdentifier = "0A96707920480C3E00445AC2"
+            BuildableName = "SafeUIKitDemo.app"
+            BlueprintName = "SafeUIKitDemo"
             ReferencedContainer = "container:SafeUIKit.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
