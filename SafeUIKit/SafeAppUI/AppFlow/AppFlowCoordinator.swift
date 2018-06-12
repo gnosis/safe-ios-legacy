@@ -51,7 +51,7 @@ open class AppFlowCoordinator: FlowCoordinator {
     }
 
     private func mainController() -> UIViewController {
-        return MainViewController.create()
+        return StoryboardScene.Main.mainNavigationController.instantiate()
     }
 
     func unlockController(completion: @escaping () -> Void) -> UIViewController {

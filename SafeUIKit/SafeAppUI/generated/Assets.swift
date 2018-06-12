@@ -45,6 +45,16 @@ struct ColorAsset {
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 enum Asset {
   static let faceIdIcon = ImageAsset(name: "face-id-icon")
+  enum MainScreenHeader {
+    static let arrows = ImageAsset(name: "arrows")
+    static let arrowsGrey = ImageAsset(name: "arrows_grey")
+    static let coins = ImageAsset(name: "coins")
+    static let coinsGrey = ImageAsset(name: "coins_grey")
+    static let gnosisSafeLogo = ImageAsset(name: "gnosis-safe-logo")
+    static let qrcodeScan = ImageAsset(name: "qrcode-scan")
+    static let send = ImageAsset(name: "send")
+    static let settingsButtonIcon = ImageAsset(name: "settings-button-icon")
+  }
   enum TokenIcons {
     static let ada = ImageAsset(name: "ADA")
     static let ae = ImageAsset(name: "AE")
@@ -154,6 +164,14 @@ enum Asset {
   ]
   static let allImages: [ImageAsset] = [
     faceIdIcon,
+    MainScreenHeader.arrows,
+    MainScreenHeader.arrowsGrey,
+    MainScreenHeader.coins,
+    MainScreenHeader.coinsGrey,
+    MainScreenHeader.gnosisSafeLogo,
+    MainScreenHeader.qrcodeScan,
+    MainScreenHeader.send,
+    MainScreenHeader.settingsButtonIcon,
     TokenIcons.ada,
     TokenIcons.ae,
     TokenIcons.aion,

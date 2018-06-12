@@ -5,30 +5,26 @@
 import UIKit
 import MultisigWalletApplication
 
-class MainViewController: UIViewController {
+public class MainViewController: UIViewController {
 
-    @IBOutlet weak var addressFieldLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var balanceFieldLabel: UILabel!
-    @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var totalBalanceLabel: UILabel!
+    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var receiveButton: UIButton!
 
-    struct Strings {
-        static let addressLabel = LocalizedString("main.label.address", comment: "Address label")
-        static let balanceLabel = LocalizedString("main.label.balance", comment: "Balance label")
+    public static func create() -> MainViewController {
+        return StoryboardScene.Main.mainViewController.instantiate()
     }
 
-    static func create() -> MainViewController {
-        return StoryboardScene.AppFlow.mainViewController.instantiate()
-    }
-
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        let service = ApplicationServiceRegistry.walletService
-        let balance = service.accountBalance(token: "ETH")!
-        balanceLabel.text = "\(balance) Wei"
-        let address = service.selectedWalletAddress!
-        addressLabel.text = address
+        stylize(button: receiveButton)
+        stylize(button: sendButton)
+    }
+
+    private func stylize(button: UIButton) {
+        button.layer.borderColor = ColorName.borderGrey.color.cgColor
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 4
     }
 
 }
