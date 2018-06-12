@@ -70,10 +70,7 @@ public final class TextInput: UIView {
     }
 
     private func loadContentsFromNib() {
-        let bundle = Bundle(for: TextInput.self)
-        let nib = UINib(nibName: "TextInput", bundle: bundle)
-        let contents = nib.instantiate(withOwner: self)
-        contents.compactMap { $0 as? UIView }.forEach { self.addSubview($0) }
+        safeUIKit_loadFromNib()
         self.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
         wrapperView.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
         pinWrapperToSelf()

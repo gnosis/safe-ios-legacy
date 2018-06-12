@@ -42,7 +42,7 @@
                                             <segue destination="fKi-A2-cTi" kind="show" id="QGp-Ic-K51"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TextInput" textLabel="xwi-ZV-2sD" style="IBUITableViewCellStyleDefault" id="Oip-c1-d0d">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="QRCodeInput" textLabel="xwi-ZV-2sD" style="IBUITableViewCellStyleDefault" id="Oip-c1-d0d">
                                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oip-c1-d0d" id="7uu-5X-l3R">
@@ -60,6 +60,26 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="R2l-o7-LoB" kind="show" id="dZB-bx-OVV"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TokenInput" textLabel="7ym-BP-2gl" style="IBUITableViewCellStyleDefault" id="dKG-Zy-lKH">
+                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dKG-Zy-lKH" id="BoP-wB-kJF">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="TokenInput" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7ym-BP-2gl">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="gs4-Ex-QRT" kind="show" id="s4K-eO-AF8"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TextInput" textLabel="Y7h-R6-dkD" style="IBUITableViewCellStyleDefault" id="WK6-Gd-PeN">
@@ -176,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oRr-ge-pRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1965.5999999999999" y="31.934032983508249"/>
+            <point key="canvasLocation" x="1882" y="-576"/>
         </scene>
         <!--Segments-->
         <scene sceneID="VYb-TI-mvB">
@@ -195,6 +215,7 @@
             <point key="canvasLocation" x="1340" y="735"/>
         </scene>
         <!--Code Input View Controller-->
+        <!--QRCodeInput-->
         <scene sceneID="bpq-FF-WHS">
             <objects>
                 <viewController id="R2l-o7-LoB" customClass="QRCodeInputViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
@@ -239,13 +260,47 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kg9-fc-eke"/>
                     </view>
+                    <navigationItem key="navigationItem" title="QRCodeInput" id="Fxh-Wt-zwp"/>
                     <connections>
                         <outlet property="barcodeInput" destination="qwC-ik-yxe" id="6aX-BO-JMO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hy9-Nk-nb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1966" y="801"/>
+            <point key="canvasLocation" x="2604" y="-380"/>
+        </scene>
+        <!--TokenInput-->
+        <scene sceneID="ctb-rB-S28">
+            <objects>
+                <viewController id="gs4-Ex-QRT" customClass="TokenInputViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pSs-ff-zPV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbp-PS-dN6" customClass="TokenInput" customModule="SafeUIKit">
+                                <rect key="frame" x="20" y="84" width="335" height="72"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" placeholder="YES" id="Ltr-Yf-nJT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jbp-PS-dN6" firstAttribute="leading" secondItem="fkL-vb-cbE" secondAttribute="leading" constant="20" id="Z0m-nc-3P3"/>
+                            <constraint firstItem="jbp-PS-dN6" firstAttribute="top" secondItem="fkL-vb-cbE" secondAttribute="top" constant="20" id="cBg-Bo-rCr"/>
+                            <constraint firstItem="fkL-vb-cbE" firstAttribute="trailing" secondItem="jbp-PS-dN6" secondAttribute="trailing" constant="20" id="zt6-KG-dk2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fkL-vb-cbE"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="TokenInput" id="Dz2-fv-jyA"/>
+                    <connections>
+                        <outlet property="tokenInput" destination="jbp-PS-dN6" id="3pT-O1-yXD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KQ5-Zp-4ct" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2597.5999999999999" y="297.30134932533736"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KwY-5H-yHZ">
