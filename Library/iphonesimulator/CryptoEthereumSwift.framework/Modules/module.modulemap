@@ -1,0 +1,16 @@
+framework module CryptoEthereumSwift {
+    umbrella header "CryptoEthereumSwift.h"
+    
+    export *
+    module * { export * }
+    
+    explicit module Private {
+        header "Internal.h"
+        link "crypto"
+    }
+}
+
+module CryptoEthereumSwift.Swift {
+    header "CryptoEthereumSwift-Swift.h"
+    requires objc
+}

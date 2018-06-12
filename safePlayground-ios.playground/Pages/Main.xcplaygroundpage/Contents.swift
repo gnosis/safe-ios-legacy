@@ -8,7 +8,7 @@ func wait(_ delay: TimeInterval) {
     RunLoop.current.run(until: Date(timeIntervalSinceNow: delay))
 }
 
-let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 480))
+let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 680))
 view.backgroundColor = .white
 
 let input = TextInput()
@@ -28,24 +28,32 @@ let qrCodeInput = QRCodeInput()
 qrCodeInput.translatesAutoresizingMaskIntoConstraints = false
 view.addSubview(qrCodeInput)
 
+let tokenInput = TokenInput()
+tokenInput.translatesAutoresizingMaskIntoConstraints = false
+view.addSubview(tokenInput)
+
 NSLayoutConstraint.activate([
     input.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
     input.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-    input.topAnchor.constraint(equalTo: view.topAnchor, constant: 180),
+    input.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
     checkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
     checkButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
     checkButton.topAnchor.constraint(equalTo: input.bottomAnchor, constant: 100),
     qrCodeInput.leadingAnchor.constraint(equalTo: input.leadingAnchor),
     qrCodeInput.trailingAnchor.constraint(equalTo: input.trailingAnchor),
-    qrCodeInput.topAnchor.constraint(equalTo: checkButton.bottomAnchor, constant: 30)])
+    qrCodeInput.topAnchor.constraint(equalTo: checkButton.bottomAnchor, constant: 30),
+    tokenInput.leadingAnchor.constraint(equalTo: checkButton.leadingAnchor),
+    tokenInput.trailingAnchor.constraint(equalTo: checkButton.trailingAnchor),
+    tokenInput.topAnchor.constraint(equalTo: checkButton.bottomAnchor, constant: 30)
+])
 
 
-func execute(_ timer: Timer) {
+//func execute(_ timer: Timer) {
     //    input.addRule("Right right right") { _ in true }
 //    input.shake()
     //    wait(1)
     //    input.addRule("Wrong wrong wrong") { _ in false }
-}
+//}
 
 // we want to test that input resizes according to its contents
 // so we attach "bottomView" as a marker to the bottom of the input.
@@ -63,4 +71,4 @@ NSLayoutConstraint.activate([
 // Present the view controller in the Live View window
 PlaygroundPage.current.liveView = view
 
-Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: execute)
+//Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: execute)

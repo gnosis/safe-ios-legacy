@@ -3,7 +3,9 @@
 # - <name>: <target> # <name>/<name>.xcodeproj ; target <target>
 # - <name>: { <xcodeproj>: <target> } # <xcodeproj> ; target <target>
 - CryptoSwift
+- CryptoEthereumSwift
 - EthereumKit
 - RSBarcodes
+- SipHash: iOS
+- BigInt: BigInt-iOS
 - BlockiesSwift
-
