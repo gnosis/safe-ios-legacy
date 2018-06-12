@@ -86,7 +86,6 @@
 		0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4DF82320CE6FE20095C00D /* Main.storyboard */; };
 		0A4DF82720CE70B40095C00D /* TokenBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */; };
 		0A4DF82920CE80C50095C00D /* tokens.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A4DF82820CE80C50095C00D /* tokens.txt */; };
-		0A4DF82D20CE9A080095C00D /* TokensTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */; };
 		0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82E20CE9D5B0095C00D /* TransactionsTableViewController.swift */; };
 		0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF83020CE9D950095C00D /* TransactionTableViewCell.swift */; };
 		0A53AD5320598B5000D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD5520598B5000D713AD /* Localizable.strings */; };
@@ -133,6 +132,9 @@
 		0AF33D4B209C6BF800527D25 /* SafeAppUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AF8D53020CFF68D001E8423 /* SegmentBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D52F20CFF68D001E8423 /* SegmentBarTests.swift */; };
 		0AF8D53520CFF85B001E8423 /* TestSegmentBarNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */; };
+		0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */; };
+		0AF8D53920D00E56001E8423 /* TransactionsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53820D00E56001E8423 /* TransactionsTableViewControllerTests.swift */; };
+		0AF8D53B20D00FEA001E8423 /* TokensTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */; };
 		55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BC2209313F800297D1C /* UIDevice+Extensions.swift */; };
 		5527A7F4208DE8A300AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
 		5527A7F5208DE8B700AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
@@ -404,6 +406,8 @@
 		0AF33D46209C6BF800527D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AF8D52F20CFF68D001E8423 /* SegmentBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBarTests.swift; sourceTree = "<group>"; };
 		0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestSegmentBarNib.xib; sourceTree = "<group>"; };
+		0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBarControllerTests.swift; sourceTree = "<group>"; };
+		0AF8D53820D00E56001E8423 /* TransactionsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewControllerTests.swift; sourceTree = "<group>"; };
 		55071BC2209313F800297D1C /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		5527A7E0208DE87600AF3A50 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 		5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewControllerTests.swift; sourceTree = "<group>"; };
@@ -598,23 +602,11 @@
 		0A4DF82520CE701E0095C00D /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
-				0A4DF82820CE80C50095C00D /* tokens.txt */,
-				0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */,
-				0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */,
-				0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */,
-				0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */,
-				0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */,
-				0A4DF82E20CE9D5B0095C00D /* TransactionsTableViewController.swift */,
-				0A00291620CEDDD0009A4BFE /* transactions.txt */,
-				0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */,
-				0A321BBD20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib */,
-				0A4DF83020CE9D950095C00D /* TransactionTableViewCell.swift */,
-				0A00292B20CFC118009A4BFE /* SegmentBar.swift */,
-				0AF8D52F20CFF68D001E8423 /* SegmentBarTests.swift */,
-				0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */,
-				0A00292F20CFCBA3009A4BFE /* SegmentBarController.swift */,
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
+				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
+				0AF8D53D20D01002001E8423 /* SegmentBar */,
+				0AF8D53A20D00FDB001E8423 /* Tokens */,
+				0AF8D53C20D00FF6001E8423 /* Transactions */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
@@ -763,6 +755,44 @@
 				0AF33D46209C6BF800527D25 /* Info.plist */,
 			);
 			path = SafeAppUIUnitTests;
+			sourceTree = "<group>";
+		};
+		0AF8D53A20D00FDB001E8423 /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
+				0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */,
+				0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */,
+				0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */,
+				0A4DF82820CE80C50095C00D /* tokens.txt */,
+				0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */,
+				0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */,
+			);
+			path = Tokens;
+			sourceTree = "<group>";
+		};
+		0AF8D53C20D00FF6001E8423 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				0A00291620CEDDD0009A4BFE /* transactions.txt */,
+				0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */,
+				0A321BBD20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib */,
+				0A4DF82E20CE9D5B0095C00D /* TransactionsTableViewController.swift */,
+				0AF8D53820D00E56001E8423 /* TransactionsTableViewControllerTests.swift */,
+				0A4DF83020CE9D950095C00D /* TransactionTableViewCell.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		0AF8D53D20D01002001E8423 /* SegmentBar */ = {
+			isa = PBXGroup;
+			children = (
+				0A00292B20CFC118009A4BFE /* SegmentBar.swift */,
+				0A00292F20CFCBA3009A4BFE /* SegmentBarController.swift */,
+				0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */,
+				0AF8D52F20CFF68D001E8423 /* SegmentBarTests.swift */,
+				0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */,
+			);
+			path = SegmentBar;
 			sourceTree = "<group>";
 		};
 		5527A7E1208DE87600AF3A50 /* Products */ = {
@@ -1243,6 +1273,7 @@
 				0A00293020CFCBA3009A4BFE /* SegmentBarController.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
+				0AF8D53B20D00FEA001E8423 /* TokensTableViewControllerTests.swift in Sources */,
 				0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */,
 				0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
@@ -1287,11 +1318,11 @@
 				0A334E5E209C8E6800ABC6AE /* PasswordValidatorTests.swift in Sources */,
 				0A334E62209C8E6800ABC6AE /* StartViewControllerTests.swift in Sources */,
 				0A334E55209C8E6800ABC6AE /* OnboardingFlowCoordinatorTests.swift in Sources */,
-				0A4DF82D20CE9A080095C00D /* TokensTableViewControllerTests.swift in Sources */,
 				0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */,
 				0A5DC577209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
 				0A334E56209C8E6800ABC6AE /* NewSafeViewControllerTests.swift in Sources */,
+				0AF8D53920D00E56001E8423 /* TransactionsTableViewControllerTests.swift in Sources */,
 				0A72D42C209C92700082C0A3 /* XCTestCase+Extensions.swift in Sources */,
 				0A72D431209C92740082C0A3 /* XCTest+Assert.swift in Sources */,
 				0A334E57209C8E6800ABC6AE /* PendingSafeViewControllerTests.swift in Sources */,
@@ -1301,6 +1332,7 @@
 				0A72D439209C92A20082C0A3 /* TestExtensionsTests.swift in Sources */,
 				0A334E6D209C8F8800ABC6AE /* ErrorHandlerTests.swift in Sources */,
 				0A334E5F209C8E6800ABC6AE /* SetPasswordViewControllerTests.swift in Sources */,
+				0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */,
 				0A334E5D209C8E6800ABC6AE /* PairWithBrowserExtensionViewControllerTests.swift in Sources */,
 				0A334E61209C8E6800ABC6AE /* ConfirmPaswordViewControllerTests.swift in Sources */,
 				0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */,

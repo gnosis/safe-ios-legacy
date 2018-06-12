@@ -41,7 +41,7 @@ class SegmentBarTests: XCTestCase {
         let bar = SegmentBar(coder: NSKeyedUnarchiver(forReadingWith: data as Data))
         XCTAssertNotNil(bar)
     }
-    
+
     func test_whenTapsOnAButton_thenRecievesAction() {
         bar.items = [item, SegmentBarItem(title: "other")]
         bar.addTarget(self, action: #selector(didTap), for: .valueChanged)

@@ -5,7 +5,9 @@
 import UIKit
 
 public protocol SegmentController {
+
     var segmentItem: SegmentBarItem { get }
+
 }
 
 open class SegmentBarController: UIViewController {
@@ -13,6 +15,7 @@ open class SegmentBarController: UIViewController {
     open var viewControllers = [UIViewController & SegmentController]() {
         didSet {
             update()
+            selectedViewController = nil
         }
     }
     open var selectedViewController: (UIViewController & SegmentController)? {
@@ -26,7 +29,7 @@ open class SegmentBarController: UIViewController {
         }
     }
     private let contentView = UIView()
-    private let segmentBar = SegmentBar()
+    let segmentBar = SegmentBar()
     private let stackView = UIStackView()
 
     override open func viewDidLoad() {
@@ -61,17 +64,9 @@ open class SegmentBarController: UIViewController {
         update()
     }
 
-    private func enableDebug() {
-        view.backgroundColor = UIColor.brown
-        stackView.backgroundColor = UIColor.darkGray
-        segmentBar.backgroundColor = .red
-        contentView.backgroundColor = UIColor.green
-    }
-
     private func update() {
         guard isViewLoaded else { return }
         segmentBar.items = viewControllers.map { $0.segmentItem }
-        selectedViewController = nil
     }
 
     private func updateSelection(old oldController: (UIViewController & SegmentController)?) {
@@ -105,7 +100,6 @@ open class SegmentBarController: UIViewController {
     }
 
     @objc private func didChangeSegment(bar: SegmentBar) {
-        guard isViewLoaded else { return }
         if let selected = bar.selectedItem, let index = bar.items.index(of: selected) {
             selectedViewController = viewControllers[index]
         } else {
