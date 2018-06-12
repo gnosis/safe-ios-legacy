@@ -3,4 +3,4 @@
 //
 
 #include "CommonConfig.xcconfig"
-OTHER_LDFLAGS = $(inherited) -lsqlite3 -lEthereumDomainModel -lEthereumApplication
+OTHER_LDFLAGS = $(inherited) -lsqlite3 -lEthereumDomainModel -lEthereumApplication -lsecp256k1 -lcrypto
