@@ -18,6 +18,7 @@ public class TransactionsTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "TransactionsGroupHeaderView",
                                  bundle: Bundle(for: TransactionsGroupHeaderView.self)),
                            forHeaderFooterViewReuseIdentifier: "TransactionsGroupHeaderView")
+        tableView.estimatedSectionHeaderHeight = tableView.sectionHeaderHeight
         groups = generateTransactions()
     }
 

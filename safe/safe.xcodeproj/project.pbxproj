@@ -85,6 +85,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0A12F17020D01E4E0039B3E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B0EA920CE5EF800424CEE;
+			remoteInfo = BigInt;
+		};
+		0A12F17220D01E4E0039B3E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 555B0EC320CE66EB00424CEE;
+			remoteInfo = SipHash;
+		};
+		0A12F17820D01E530039B3E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0AF33D34209C6BF800527D25;
+			remoteInfo = SafeAppUI;
+		};
 		0A160B5720A07C2D00E064E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */;
@@ -175,13 +196,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 0A0C8703209747E100471885;
 			remoteInfo = IdentityAccessImplementationsResources;
-		};
-		0A160B8320A07C5800E064E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0AF33D34209C6BF800527D25;
-			remoteInfo = SafeAppUI;
 		};
 		0A160B8A20A07CC200E064E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -507,6 +521,8 @@
 				0ABCA972207E560500E2C193 /* EthereumKit.framework */,
 				5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */,
 				555B0E8620CAD3CB00424CEE /* CryptoEthereumSwift.framework */,
+				0A12F17120D01E4E0039B3E1 /* BigInt.framework */,
+				0A12F17320D01E4E0039B3E1 /* SipHash.framework */,
 				0AD8FD3B20CEC52700591B91 /* BlockiesSwift.framework */,
 			);
 			name = Products;
@@ -686,7 +702,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				0A160B8420A07C5800E064E1 /* PBXTargetDependency */,
+				0A12F17920D01E530039B3E1 /* PBXTargetDependency */,
 				0A46703F207E596700F55ADE /* PBXTargetDependency */,
 				0A467041207E596700F55ADE /* PBXTargetDependency */,
 				5527A7FF208DE9D500AF3A50 /* PBXTargetDependency */,
@@ -798,6 +814,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0A12F17120D01E4E0039B3E1 /* BigInt.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BigInt.framework;
+			remoteRef = 0A12F17020D01E4E0039B3E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A12F17320D01E4E0039B3E1 /* SipHash.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SipHash.framework;
+			remoteRef = 0A12F17220D01E4E0039B3E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0A160B5820A07C2D00E064E1 /* SafeUIKitDemo.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
@@ -1107,10 +1137,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0A160B8420A07C5800E064E1 /* PBXTargetDependency */ = {
+		0A12F17920D01E530039B3E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SafeAppUI;
-			targetProxy = 0A160B8320A07C5800E064E1 /* PBXContainerItemProxy */;
+			targetProxy = 0A12F17820D01E530039B3E1 /* PBXContainerItemProxy */;
 		};
 		0A160B8B20A07CC200E064E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
