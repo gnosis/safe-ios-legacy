@@ -73,11 +73,6 @@ class SegmentBarControllerTests: XCTestCase {
 
 }
 
-extension SegmentBarControllerTests {
-
-
-}
-
 class TestSegmentController: UIViewController, SegmentController {
     var segmentItem = SegmentBarItem(title: "testSegment")
 }
