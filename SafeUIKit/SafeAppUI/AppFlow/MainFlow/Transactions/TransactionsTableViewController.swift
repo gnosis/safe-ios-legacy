@@ -78,7 +78,7 @@ public class TransactionsTableViewController: UITableViewController {
                 let fiatAmount: String? = type != .settings ? parts[5] : nil
                 let action: String? = type == .settings ? parts[4].replacingOccurrences(of: "\\n", with: "\n") : nil
                 let icon: UIImage = type == .settings ? Asset.TransactionOverviewIcons.settingTransaction.image :
-                    iconImage(seed: description)
+                    UIImage.create(seed: description)
                 return TransactionOverview(transactionDescription: description,
                                            formattedDate: time,
                                            status: status,
@@ -92,13 +92,16 @@ public class TransactionsTableViewController: UITableViewController {
         }
     }
 
-    private func iconImage(seed: String) -> UIImage {
+}
+
+extension UIImage {
+
+    static func create(seed: String) -> UIImage {
         let blockies = Blockies(seed: seed,
                                 size: 8,
                                 scale: 5)
         return blockies.createImage(customScale: 3)!
     }
-
 }
 
 struct TransactionGroup {

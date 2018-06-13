@@ -5,8 +5,9 @@ import UIKit
 import PlaygroundSupport
 import SafeAppUI
 
-let controller = MainViewController.create()
-let navi = TransparentNavigationController(rootViewController: controller)
+//let controller = MainViewController.create()
+let controller = SettingsTableViewController.create()
+let navi = UINavigationController(rootViewController: controller)
 
 PlaygroundPage.current.liveView = navi
 
