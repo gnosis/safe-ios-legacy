@@ -6,7 +6,7 @@ import UIKit
 
 public class SettingsTableViewController: UITableViewController {
 
-    var settings = [(section: SettingsSection, cellHeight: CGFloat, items: [Any])]()
+    private var settings = [(section: SettingsSection, cellHeight: CGFloat, items: [Any])]()
 
     public static func create() -> SettingsTableViewController {
         return StoryboardScene.Main.settingsTableViewController.instantiate()
@@ -48,6 +48,7 @@ public class SettingsTableViewController: UITableViewController {
              ])
         ]
     }
+
     // MARK: - Table view data source
 
     override public func numberOfSections(in tableView: UITableView) -> Int {
