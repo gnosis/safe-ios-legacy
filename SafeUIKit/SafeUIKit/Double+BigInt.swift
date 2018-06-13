@@ -12,8 +12,9 @@ extension Double {
         let (integerPart, fractionalPart) = number.quotientAndRemainder(dividingBy: BigInt(10).power(decimals))
         let integerPartString = "\(integerPart)"
         let fractionalPartInitialString = "\(fractionalPart)"
-        let fractionalPartFinalString =
-            String(repeating: "0", count: decimals - fractionalPartInitialString.count) + fractionalPartInitialString
+        let leadingZeroes =
+            decimals > 0 ? String(repeating: "0", count: decimals - fractionalPartInitialString.count) : ""
+        let fractionalPartFinalString = leadingZeroes + fractionalPartInitialString
         return Double("\(integerPartString).\(fractionalPartFinalString)")
     }
 

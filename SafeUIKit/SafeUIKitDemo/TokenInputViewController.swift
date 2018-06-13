@@ -10,6 +10,22 @@ class TokenInputViewController: UIViewController {
 
     @IBOutlet var tokenInput: TokenInput!
 
+    @IBAction func zeroDecimals(_ sender: Any) {
+        setup(decimals: 0)
+    }
+
+    @IBAction func fiveDecimals(_ sender: Any) {
+        setup(decimals: 5)
+    }
+
+    @IBAction func eighteenDecimals(_ sender: Any) {
+        setup(decimals: 18)
+    }
+
+    @IBAction func seventyEightDecimals(_ sender: Any) {
+        setup(decimals: 78)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tokenInput.setUp(value: 0, decimals: 5, fiatConvertionRate: 0.1, locale: Locale.current)
@@ -19,6 +35,10 @@ class TokenInputViewController: UIViewController {
 
     @objc func hideKeyboard() {        
         _ = tokenInput.resignFirstResponder()
+    }
+
+    private func setup(decimals: Int) {
+        tokenInput.setUp(value: 0, decimals: decimals, fiatConvertionRate: 0.1, locale: Locale.current)
     }
 
 }

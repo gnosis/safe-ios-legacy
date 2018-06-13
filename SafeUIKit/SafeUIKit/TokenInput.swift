@@ -5,6 +5,11 @@
 import UIKit
 import BigInt
 
+
+/// Token Input component contains separate inputs for integer and fractional part of a Token.
+/// - It validates user inputs taking into account decimal part of a Token and maximum possible value.
+/// - Call setup(value:decimals:fiatConvertionRate:locale) before usage.
+/// - Needs BigInt as a dependency.
 public class TokenInput: UIView {
 
     @IBOutlet weak var integerTextField: UITextField!
@@ -35,6 +40,14 @@ public class TokenInput: UIView {
         case fractional
     }
 
+
+    /// Configut TokenInput. Call this method before compont usage.
+    ///
+    /// - Parameters:
+    ///   - value: Initital BigInt value
+    ///   - decimals: Decimals of a ERC20 Token. https://theethereum.wiki/w/index.php/ERC20_Token_Standard
+    ///   - fiatConvertionRate: Optional token to fiat convertion rate. If used should always go in pair with 'locale' parameter.
+    ///   - locale: Optional locale fot proper fiat currency formatting. If used should always go in pair with 'fiatConvertionRate' parameter.
     public func setUp(value: BigInt, decimals: Int, fiatConvertionRate: Double? = nil, locale: Locale? = nil) {
         // maximum possible value of token is 2^256 - 1
         // String(2^256 - 1).count == 78
@@ -58,6 +71,9 @@ public class TokenInput: UIView {
             integerTextField.text = String(str.prefix(str.count - decimals)) + decimalSeparator
             fractionalTextField.text = normalizedFractionalStringForUI(String(str.suffix(decimals)))
         }
+
+        integerTextField.isEnabled = true
+        fractionalTextField.isEnabled = true
         if decimals == 0 {
             fractionalTextField.isEnabled = false
         } else if decimals == maxDecimals {
@@ -116,6 +132,8 @@ public class TokenInput: UIView {
         updateUIOnInitialLoad()
     }
 
+
+    /// If integer or fractional text field is first responder.
     public override var isFirstResponder: Bool {
         return integerTextField.isFirstResponder || fractionalTextField.isFirstResponder
     }
