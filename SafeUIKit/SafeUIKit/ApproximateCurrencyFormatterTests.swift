@@ -11,7 +11,7 @@ class ApproximateCurrencyFormatterTests: XCTestCase {
     let approxFormatter = ApproximateCurrencyFormatter(locale: Locale(identifier: "de_DE"))
 
     func test_formattingFromBigInt() {
-        assertFormatting(BigInt(0), 3, "0,00")
+        assertFormatting(BigInt(0), 3, "")
         assertFormatting(BigInt(5), 3, "0,00")
         assertFormatting(BigInt(6), 3, "0,01")
         assertFormatting(BigInt(1_000), 3, "1,00")
@@ -25,7 +25,7 @@ class ApproximateCurrencyFormatterTests: XCTestCase {
     }
 
     func test_formattingFromDouble() {
-        assertFormatting(0, "0,00")
+        assertFormatting(0, "")
         assertFormatting(0.005, "0,00")
         assertFormatting(0.006, "0,01")
         assertFormatting(1, "1,00")

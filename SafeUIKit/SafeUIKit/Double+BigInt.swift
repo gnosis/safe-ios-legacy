@@ -5,9 +5,9 @@
 import Foundation
 import BigInt
 
-extension NumberFormatter {
+extension Double {
 
-    func double(from number: BigInt, decimals: Int) -> Double? {
+    static func value(from number: BigInt, decimals: Int) -> Double? {
         guard decimals >= 0 && number >= 0 else { return nil }
         let (integerPart, fractionalPart) = number.quotientAndRemainder(dividingBy: BigInt(10).power(decimals))
         let integerPartString = "\(integerPart)"

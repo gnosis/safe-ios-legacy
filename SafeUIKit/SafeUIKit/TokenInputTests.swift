@@ -5,10 +5,12 @@
 import XCTest
 @testable import SafeUIKit
 import BigInt
+import CommonTestSupport
 
 class TokenInputTests: XCTestCase {
 
     var tokenInput: TokenInput!
+    let germanLocale = Locale(identifier: "de_DE")
 
     override func setUp() {
         super.setUp()
@@ -20,6 +22,8 @@ class TokenInputTests: XCTestCase {
         XCTAssertNotNil(tokenInput.fractionalPartTextField)
         XCTAssertEqual(tokenInput.decimals, 18)
         XCTAssertEqual(tokenInput.value, 0)
+        XCTAssertNil(tokenInput.fiatConvertionRate)
+        XCTAssertNil(tokenInput.locale)
     }
 
     func test_maxTokenValue() {
@@ -157,6 +161,35 @@ class TokenInputTests: XCTestCase {
         XCTAssertFalse(tokenInput.isFirstResponder)
     }
 
+    func test_whenFiatConversionRateIsNotKnown_thenFiatValueIsNotDisplayed() {
+        XCTAssertEqual(tokenInput.fiatValueLabel.text, "")
+    }
+
+    func test_whenFiatConvertionRateIsKnown_thenDisplaysItAfterSetup() {
+        tokenInput.setUp(value: 1_000, decimals: 3, fiatConvertionRate: 0.1, locale: germanLocale)
+        XCTAssertEqual(tokenInput.fiatConvertionRate, 0.1)
+        XCTAssertEqual(tokenInput.locale, germanLocale)
+        assertFormatting("0,10")
+
+        tokenInput.setUp(value: 0, decimals: 3, fiatConvertionRate: 0.1, locale: germanLocale)
+        assertFormatting("")
+
+        tokenInput.setUp(value: 10_000_015, decimals: 3, fiatConvertionRate: 0.1, locale: germanLocale)
+        assertFormatting("1.000,00")
+    }
+
+    func test_whenTyping_thenFiatValueIsUpdated() {
+        tokenInput.setUp(value: 0, decimals: 3, fiatConvertionRate: 0.1, locale: germanLocale)
+        tokenInput.canType("1", field: .integer)
+        assertFormatting("0,10")
+        tokenInput.endEditing(finalValue: "1", field: .integer)
+        assertFormatting("0,10")
+        tokenInput.canType("123", field: .fractional)
+        assertFormatting("0,11")
+        tokenInput.endEditing(finalValue: "123", field: .fractional)
+        assertFormatting("0,11")
+    }
+
 }
 
 private extension TokenInputTests {
@@ -169,6 +202,10 @@ private extension TokenInputTests {
         XCTAssertEqual(tokenInput.value, value)
         XCTAssertEqual(tokenInput.integerPartTextField.text, expectedIntegerPart)
         XCTAssertEqual(tokenInput.fractionalPartTextField.text, expectedFractionalPart)
+    }
+
+    func assertFormatting(_ expected: String) {
+        XCTAssertEqual(tokenInput.fiatValueLabel.text, expected == "" ? "" : "≈ \(expected) €")
     }
 
 }

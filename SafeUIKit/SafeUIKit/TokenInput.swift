@@ -9,11 +9,23 @@ public class TokenInput: UIView {
 
     @IBOutlet weak var integerPartTextField: UITextField!
     @IBOutlet weak var fractionalPartTextField: UITextField!
-    @IBOutlet weak var currencyValueLabel: UILabel!
+    @IBOutlet weak var fiatValueLabel: UILabel!
 
     private let delimiter: Character = "."
+    private var approximateCurrencyFormatter: ApproximateCurrencyFormatter?
+
     public private(set) var decimals: Int = 18
     public private(set) var value: BigInt = 0
+    public private(set) var fiatConvertionRate: Double?
+    public private(set) var locale: Locale? {
+        didSet {
+            guard let locale = locale else {
+                approximateCurrencyFormatter = nil
+                return
+            }
+            approximateCurrencyFormatter = ApproximateCurrencyFormatter(locale: locale)
+        }
+    }
 
     let _2_pow_256_minus_1 = BigInt("115792089237316195423570985008687907853269984665640564039457584007913129639935")!
     let maxDecimals = 78
@@ -23,13 +35,15 @@ public class TokenInput: UIView {
         case fractional
     }
 
-    public func setUp(value: BigInt, decimals: Int) {
+    public func setUp(value: BigInt, decimals: Int, fiatConvertionRate: Double? = nil, locale: Locale? = nil) {
         // maximum possible value of token is 2^256 - 1
         // String(2^256 - 1).count == 78
         precondition(decimals >= 0 && decimals <= maxDecimals)
         precondition(value >= 0 && value <= _2_pow_256_minus_1)
         self.decimals = decimals
         self.value = value
+        self.fiatConvertionRate = fiatConvertionRate
+        self.locale = locale
         updateUI()
     }
 
@@ -48,6 +62,15 @@ public class TokenInput: UIView {
         } else if decimals == maxDecimals {
             integerPartTextField.isEnabled = false
         }
+        fiatValueLabel.text = approximateFiatValue(for: value)
+    }
+
+    private func approximateFiatValue(for value: BigInt) -> String {
+        guard let fiatConvertionRate = fiatConvertionRate,
+            let approximateCurrencyFormatter = approximateCurrencyFormatter,
+            let doubleValue = Double.value(from: value, decimals: decimals) else { return "" }
+        let fiatValue = doubleValue * fiatConvertionRate
+        return approximateCurrencyFormatter.string(from: fiatValue)
     }
 
     private func normalizedFractionalStringForUI(_ initialString: String) -> String {
@@ -85,6 +108,7 @@ public class TokenInput: UIView {
         integerPartTextField.tag = Field.integer.rawValue
         fractionalPartTextField.delegate = self
         fractionalPartTextField.tag = Field.fractional.rawValue
+        updateUI()
     }
 
     public override var isFirstResponder: Bool {
@@ -130,6 +154,8 @@ extension TokenInput: UITextFieldDelegate {
         guard let newExpectedValue = BigInt(expectedFullValueString), newExpectedValue <= _2_pow_256_minus_1 else {
             return false
         }
+        fiatValueLabel.text = approximateFiatValue(for: newExpectedValue)
+
         return true
     }
 

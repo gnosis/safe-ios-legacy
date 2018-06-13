@@ -20,11 +20,12 @@ public class ApproximateCurrencyFormatter: NumberFormatter {
     }
 
     public func string(from number: BigInt, decimals: Int) -> String {
-        guard let doubleValue = double(from: number, decimals: decimals) else { return "" }
+        guard let doubleValue = Double.value(from: number, decimals: decimals) else { return "" }
         return string(from: doubleValue)
     }
 
     public func string(from number: Double) -> String {
+        guard number != 0 else { return "" }
         guard number / NSDecimalNumber(decimal: pow(10, maxIntegerPartLength)).doubleValue < 1 else { return "" }
         guard let stringValue = string(from: NSNumber(value: number)) else { return "" }
         return "≈ \(stringValue)"
