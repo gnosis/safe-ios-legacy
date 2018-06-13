@@ -133,44 +133,57 @@ extension TokenInput: UITextFieldDelegate {
     public func textField(_ textField: UITextField,
                           shouldChangeCharactersIn range: NSRange,
                           replacementString string: String) -> Bool {
+
+        // decimal separator pressed in integer field
         if textField.tag == Field.integer.rawValue && string == decimalSeparator {
-            // decimal separator pressed in integer field
             fractionalTextField.becomeFirstResponder()
             return false
         }
+
+        // trying to add to the beginning of integer part
         if textField.tag == Field.integer.rawValue && range.upperBound == 0 {
-            // trying to add to the beginning of integer part
             guard Double(string) != 0 else { return false }
         }
+
+        // allow only digits
         guard CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) else {
             return false
         }
 
-        let currentText = textField.text ?? ""
-        guard let stringRange = Range(range, in: currentText) else { return false }
-        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-            .replacingOccurrences(of: decimalSeparator, with: "")
-
-        var expectedFullValueString: String
-        if textField.tag == Field.fractional.rawValue {
-            let oldLength = textField.text?.count ?? 0
-            let newLength = oldLength + string.count - range.length
-            guard newLength <= decimals else {
+        // calculate resulting value string
+        guard let expectedFullValueString =
+            expectedValueString(textField: textField, range: range, replacementString: string) else {
                 return false
-            }
-            expectedFullValueString = normalizedIntegerStringForValue(integerTextField.text ?? "") +
-                normalizedFractionalStringForValue(updatedText)
-        } else { // integer part
-            let fractionalPartValue = fractionalTextField.text ?? ""
-            expectedFullValueString = updatedText + normalizedFractionalStringForValue(fractionalPartValue)
         }
 
-        guard let newExpectedValue = BigInt(expectedFullValueString), newExpectedValue <= _2_pow_256_minus_1 else {
+        // validate on maximum allowed value
+        guard let newExpectedValue = BigInt(expectedFullValueString),
+            newExpectedValue >= 0 && newExpectedValue <= _2_pow_256_minus_1 else {
             return false
         }
+
+        // update fiat value label
         fiatValueLabel.text = approximateFiatValue(for: newExpectedValue)
 
         return true
+    }
+
+    private func expectedValueString(textField: UITextField, range: NSRange, replacementString: String) -> String? {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return nil }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: replacementString)
+            .replacingOccurrences(of: decimalSeparator, with: "")
+
+        var value: String
+        if textField.tag == Field.fractional.rawValue { // fractional part
+            guard updatedText.count <= decimals else { return nil }
+            value = normalizedIntegerStringForValue(integerTextField.text ?? "") +
+                normalizedFractionalStringForValue(updatedText)
+        } else { // integer part
+            let fractionalPartValue = fractionalTextField.text ?? ""
+            value = updatedText + normalizedFractionalStringForValue(fractionalPartValue)
+        }
+        return value
     }
 
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
