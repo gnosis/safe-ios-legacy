@@ -129,6 +129,11 @@ extension TokenInput: UITextFieldDelegate {
     public func textField(_ textField: UITextField,
                           shouldChangeCharactersIn range: NSRange,
                           replacementString string: String) -> Bool {
+        if textField.tag == Field.integer.rawValue && string == (Locale.current as NSLocale).decimalSeparator {
+            // decimal separator pressed in integer field
+            fractionalPartTextField.becomeFirstResponder()
+            return false
+        }
         guard CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) else {
             return false
         }

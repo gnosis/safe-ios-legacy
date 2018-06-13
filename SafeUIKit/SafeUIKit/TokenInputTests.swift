@@ -24,6 +24,8 @@ class TokenInputTests: XCTestCase {
         XCTAssertEqual(tokenInput.value, 0)
         XCTAssertNil(tokenInput.fiatConvertionRate)
         XCTAssertNil(tokenInput.locale)
+        XCTAssertEqual(tokenInput.integerPartTextField.keyboardType, .decimalPad)
+        XCTAssertEqual(tokenInput.fractionalPartTextField.keyboardType, .numberPad)
     }
 
     func test_maxTokenValue() {
@@ -144,11 +146,7 @@ class TokenInputTests: XCTestCase {
     }
 
     func test_whenResignsFirstResponder_thenAllTextFieldsResign() {
-        guard let window = UIApplication.shared.keyWindow else {
-            XCTFail("Must have active window")
-            return
-        }
-        window.addSubview(tokenInput)
+        addToWindow(tokenInput)
 
         _ = tokenInput.integerPartTextField.becomeFirstResponder()
         XCTAssertTrue(tokenInput.isFirstResponder)
@@ -190,6 +188,19 @@ class TokenInputTests: XCTestCase {
         assertFormatting("0,11")
     }
 
+    func test_whenTypingDecimalSeparatorInIntegerInput_thenSwitchesToFractionalPart() {
+        addToWindow(tokenInput)
+        tokenInput.setUp(value: 0, decimals: 3, fiatConvertionRate: 1, locale: germanLocale)
+        _ = tokenInput.integerPartTextField.becomeFirstResponder()
+        tokenInput.canType("1", field: .integer)
+        tokenInput.endEditing(finalValue: "1", field: .integer)
+        XCTAssertEqual(tokenInput.integerPartTextField.text, "1.")
+        tokenInput.canType((Locale.current as NSLocale).decimalSeparator, field: .integer)
+        XCTAssertTrue(tokenInput.fractionalPartTextField.isFirstResponder)
+        XCTAssertEqual(tokenInput.fractionalPartTextField.text, "")
+        assertFormatting("1,00")
+    }
+
 }
 
 private extension TokenInputTests {
@@ -206,6 +217,14 @@ private extension TokenInputTests {
 
     func assertFormatting(_ expected: String) {
         XCTAssertEqual(tokenInput.fiatValueLabel.text, expected == "" ? "" : "≈ \(expected) €")
+    }
+
+    func addToWindow(_ tokenInput: TokenInput) {
+        guard let window = UIApplication.shared.keyWindow else {
+            XCTFail("Must have active window")
+            return
+        }
+        window.addSubview(tokenInput)
     }
 
 }
