@@ -40,6 +40,7 @@ public class TokenInput: UIView {
         // String(2^256 - 1).count == 78
         precondition(decimals >= 0 && decimals <= maxDecimals)
         precondition(value >= 0 && value <= _2_pow_256_minus_1)
+        precondition((fiatConvertionRate == nil && locale == nil) || (fiatConvertionRate != nil && locale != nil))
         self.decimals = decimals
         self.value = value
         self.fiatConvertionRate = fiatConvertionRate
@@ -172,7 +173,7 @@ extension TokenInput: UITextFieldDelegate {
             return
         }
         value = newValue
-
+        
         let text = textField.text ?? ""
         if textField.tag == Field.integer.rawValue && !text.isEmpty {
             textField.text! += String(delimiter)
