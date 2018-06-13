@@ -21,7 +21,6 @@ class ApproximateCurrencyFormatterTests: XCTestCase {
         assertFormatting(BigInt(1_005), 3, "1,00")
         assertFormatting(BigInt(1_006), 3, "1,01")
         assertFormatting(BigInt(10_000_000_000_006), 3, "10.000.000.000,01")
-        assertFormatting(BigInt(100_000_000_000_006), 3, "")
     }
 
     func test_formattingFromDouble() {
@@ -34,8 +33,12 @@ class ApproximateCurrencyFormatterTests: XCTestCase {
         assertFormatting(1.001, "1,00")
         assertFormatting(1.005, "1,00")
         assertFormatting(1.006, "1,01")
-        assertFormatting(10_000_000_000.006, "10.000.000.000,01")
-        assertFormatting(100_000_000_000.006, "")
+        // swiftlint:disable number_separator
+        // swiftlint:disable line_length
+        assertFormatting(115792089237316195423570985008687907853269984665640564039457584007913129639935,
+                         "115.792.089.237.316.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000,00")
+        // swiftlint:enable number_separator
+        // swiftlint:enable line_length
     }
 
     private func assertFormatting(_ value: BigInt, _ decimals: Int, _ expected: String) {
