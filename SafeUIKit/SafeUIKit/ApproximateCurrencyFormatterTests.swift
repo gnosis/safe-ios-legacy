@@ -6,9 +6,9 @@ import XCTest
 @testable import SafeUIKit
 import BigInt
 
-class ApproximateNumberFormatterTests: XCTestCase {
+class ApproximateCurrencyFormatterTests: XCTestCase {
 
-    let approxFormatter = ApproximateNumberFormatter(locale: Locale(identifier: "de_DE"))
+    let approxFormatter = ApproximateCurrencyFormatter(locale: Locale(identifier: "de_DE"))
 
     func test_formatting() {
         assertFormatting(BigInt(0), 3, "0,00")

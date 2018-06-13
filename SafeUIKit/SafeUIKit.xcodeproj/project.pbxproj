@@ -117,8 +117,9 @@
 		0AF33D47209C6BF800527D25 /* SafeAppUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AF33D37209C6BF800527D25 /* SafeAppUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AF33D4A209C6BF800527D25 /* SafeAppUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; };
 		0AF33D4B209C6BF800527D25 /* SafeAppUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5506394B20D02044000F2A82 /* ApproximateNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506394A20D02044000F2A82 /* ApproximateNumberFormatter.swift */; };
-		5506395020D0206E000F2A82 /* ApproximateNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506394F20D0206E000F2A82 /* ApproximateNumberFormatterTests.swift */; };
+		5506394B20D02044000F2A82 /* ApproximateCurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506394A20D02044000F2A82 /* ApproximateCurrencyFormatter.swift */; };
+		5506395020D0206E000F2A82 /* ApproximateCurrencyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506394F20D0206E000F2A82 /* ApproximateCurrencyFormatterTests.swift */; };
+		5506395220D1007C000F2A82 /* NumberFormatter+BigInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395120D1007C000F2A82 /* NumberFormatter+BigInt.swift */; };
 		55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BC2209313F800297D1C /* UIDevice+Extensions.swift */; };
 		550954EA20C9590000F5F25F /* TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954E920C9590000F5F25F /* TokenInput.swift */; };
 		550954EE20C9592900F5F25F /* TokenInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954ED20C9592900F5F25F /* TokenInputTests.swift */; };
@@ -412,8 +413,9 @@
 		0AF33D38209C6BF800527D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AF33D3D209C6BF800527D25 /* SafeAppUIUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeAppUIUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF33D46209C6BF800527D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5506394A20D02044000F2A82 /* ApproximateNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproximateNumberFormatter.swift; sourceTree = "<group>"; };
-		5506394F20D0206E000F2A82 /* ApproximateNumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproximateNumberFormatterTests.swift; sourceTree = "<group>"; };
+		5506394A20D02044000F2A82 /* ApproximateCurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproximateCurrencyFormatter.swift; sourceTree = "<group>"; };
+		5506394F20D0206E000F2A82 /* ApproximateCurrencyFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproximateCurrencyFormatterTests.swift; sourceTree = "<group>"; };
+		5506395120D1007C000F2A82 /* NumberFormatter+BigInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+BigInt.swift"; sourceTree = "<group>"; };
 		55071BC2209313F800297D1C /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		550954E920C9590000F5F25F /* TokenInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInput.swift; sourceTree = "<group>"; };
 		550954ED20C9592900F5F25F /* TokenInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInputTests.swift; sourceTree = "<group>"; };
@@ -723,8 +725,9 @@
 				550954ED20C9592900F5F25F /* TokenInputTests.swift */,
 				55071BC2209313F800297D1C /* UIDevice+Extensions.swift */,
 				550954F120C966CF00F5F25F /* UIView+Extensions.swift */,
-				5506394A20D02044000F2A82 /* ApproximateNumberFormatter.swift */,
-				5506394F20D0206E000F2A82 /* ApproximateNumberFormatterTests.swift */,
+				5506394A20D02044000F2A82 /* ApproximateCurrencyFormatter.swift */,
+				5506394F20D0206E000F2A82 /* ApproximateCurrencyFormatterTests.swift */,
+				5506395120D1007C000F2A82 /* NumberFormatter+BigInt.swift */,
 			);
 			path = SafeUIKit;
 			sourceTree = "<group>";
@@ -1232,7 +1235,7 @@
 				0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */,
 				0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */,
 				0A9670DB20480C7B00445AC2 /* Fonts.swift in Sources */,
-				5506394B20D02044000F2A82 /* ApproximateNumberFormatter.swift in Sources */,
+				5506394B20D02044000F2A82 /* ApproximateCurrencyFormatter.swift in Sources */,
 				556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */,
 				0AD93E0920481461008C38CA /* Colors.swift in Sources */,
 				55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */,
@@ -1244,6 +1247,7 @@
 				550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */,
 				558FD80A20765C53004F070E /* BigButton.swift in Sources */,
 				55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */,
+				5506395220D1007C000F2A82 /* NumberFormatter+BigInt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1255,7 +1259,7 @@
 				0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */,
 				0A9BA3C9207F6B6A001DC22F /* BigButtonTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
-				5506395020D0206E000F2A82 /* ApproximateNumberFormatterTests.swift in Sources */,
+				5506395020D0206E000F2A82 /* ApproximateCurrencyFormatterTests.swift in Sources */,
 				550954EE20C9592900F5F25F /* TokenInputTests.swift in Sources */,
 				0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
