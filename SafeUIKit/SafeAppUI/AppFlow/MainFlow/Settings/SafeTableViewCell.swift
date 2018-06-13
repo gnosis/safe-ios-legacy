@@ -10,16 +10,21 @@ class SafeTableViewCell: UITableViewCell {
     @IBOutlet weak var safeAddressLabel: UILabel!
     @IBOutlet weak var safeNameLabel: UILabel!
 
-    func configure(safe: SafeDescription) {
-        safeIconImageView.image = safe.image
+    override func awakeFromNib() {
+        super.awakeFromNib()
         safeIconImageView.layer.cornerRadius = safeIconImageView.frame.width / 2
         safeIconImageView.clipsToBounds = true
+
+        backgroundView = UIView()
+        backgroundView?.backgroundColor = ColorName.paleGreyThree.color
+    }
+
+    func configure(safe: SafeDescription) {
+        safeIconImageView.image = safe.image
 
         safeNameLabel.text = safe.name
         safeAddressLabel.text = safe.address
 
-        backgroundView = UIView()
-        backgroundView?.backgroundColor = ColorName.paleGreyThree.color
     }
 
 }

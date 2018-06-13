@@ -22,19 +22,21 @@ class TransactionTableViewCell: UITableViewCell {
         backgroundView = UIView()
         backgroundView?.backgroundColor = UIColor.white
         progressView.transform = CGAffineTransform(scaleX: 1.0, y: 0.5)
+
+        transactionIconImageView.layer.cornerRadius = transactionIconImageView.bounds.width / 2
+        transactionIconImageView.clipsToBounds = true
+
+        transactionTypeIconImageView.layer.cornerRadius = transactionTypeIconImageView.bounds.width / 2
+        transactionTypeIconImageView.layer.borderWidth = 2
+        transactionTypeIconImageView.layer.borderColor = UIColor.white.cgColor
+        transactionTypeIconImageView.clipsToBounds = true
     }
 
     func configure(transaction: TransactionOverview) {
         transactionIconImageView.image = transaction.status.isFailed ? Asset.TransactionOverviewIcons.error.image :
             transaction.icon
-        transactionIconImageView.layer.cornerRadius = transactionIconImageView.bounds.width / 2
-        transactionIconImageView.clipsToBounds = true
 
         transactionTypeIconImageView.image = typeIcon(transaction)
-        transactionTypeIconImageView.layer.cornerRadius = transactionTypeIconImageView.bounds.width / 2
-        transactionTypeIconImageView.layer.borderWidth = 2
-        transactionTypeIconImageView.layer.borderColor = UIColor.white.cgColor
-        transactionTypeIconImageView.clipsToBounds = true
 
         transactionDescriptionLabel.text = transaction.transactionDescription
         transactionDescriptionLabel.textColor = transaction.status.isFailed ? ColorName.tomato.color :
