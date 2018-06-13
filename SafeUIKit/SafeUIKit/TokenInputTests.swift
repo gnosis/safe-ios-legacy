@@ -18,14 +18,14 @@ class TokenInputTests: XCTestCase {
     }
 
     func test_whenCreated_thenAllElementsAreThere() {
-        XCTAssertNotNil(tokenInput.integerPartTextField)
-        XCTAssertNotNil(tokenInput.fractionalPartTextField)
+        XCTAssertNotNil(tokenInput.integerTextField)
+        XCTAssertNotNil(tokenInput.fractionalTextField)
         XCTAssertEqual(tokenInput.decimals, 18)
         XCTAssertEqual(tokenInput.value, 0)
         XCTAssertNil(tokenInput.fiatConvertionRate)
         XCTAssertNil(tokenInput.locale)
-        XCTAssertEqual(tokenInput.integerPartTextField.keyboardType, .decimalPad)
-        XCTAssertEqual(tokenInput.fractionalPartTextField.keyboardType, .numberPad)
+        XCTAssertEqual(tokenInput.integerTextField.keyboardType, .decimalPad)
+        XCTAssertEqual(tokenInput.fractionalTextField.keyboardType, .numberPad)
     }
 
     func test_maxTokenValue() {
@@ -62,12 +62,12 @@ class TokenInputTests: XCTestCase {
 
     func test_whenNoDecimals_thenFractionalPartIsDisabled() {
         assertUI(1, 0, "1.", "")
-        XCTAssertFalse(tokenInput.fractionalPartTextField.isEnabled)
+        XCTAssertFalse(tokenInput.fractionalTextField.isEnabled)
     }
 
     func test_whenMaxDecimalsAllowed_thenIntegerPartIsDisabled() {
         assertUI(0, 78, "", "")
-        XCTAssertFalse(tokenInput.integerPartTextField.isEnabled)
+        XCTAssertFalse(tokenInput.integerTextField.isEnabled)
     }
 
     func test_whenTryingToTypeMoreDigitsThanAllowedInFractionalPart_thenNotPossible() {
@@ -100,11 +100,11 @@ class TokenInputTests: XCTestCase {
             field: .integer))
 
         tokenInput.setUp(value: 0, decimals: 1)
-        tokenInput.fractionalPartTextField.text = "5"
+        tokenInput.fractionalTextField.text = "5"
         XCTAssertTrue(tokenInput.canType(
             "11579208923731619542357098500868790785326998466564056403945758400791312963993",
             field: .integer))
-        tokenInput.fractionalPartTextField.text = "6"
+        tokenInput.fractionalTextField.text = "6"
         XCTAssertFalse(tokenInput.canType(
             "11579208923731619542357098500868790785326998466564056403945758400791312963993",
             field: .integer))
@@ -143,31 +143,31 @@ class TokenInputTests: XCTestCase {
 
         tokenInput.endEditing(finalValue: "000001", field: .integer)
         XCTAssertEqual(tokenInput.value, BigInt("100000"))
-        XCTAssertEqual(tokenInput.integerPartTextField.text, "1.")
-        XCTAssertEqual(tokenInput.fractionalPartTextField.text, "")
+        XCTAssertEqual(tokenInput.integerTextField.text, "1.")
+        XCTAssertEqual(tokenInput.fractionalTextField.text, "")
 
         tokenInput.endEditing(finalValue: "11000", field: .fractional)
         XCTAssertEqual(tokenInput.value, BigInt("111000"))
-        XCTAssertEqual(tokenInput.integerPartTextField.text, "1.")
-        XCTAssertEqual(tokenInput.fractionalPartTextField.text, "11")
+        XCTAssertEqual(tokenInput.integerTextField.text, "1.")
+        XCTAssertEqual(tokenInput.fractionalTextField.text, "11")
     }
 
     func test_whenBeginEditing_thenIntegerPartDelimiterIsRemoved() {
         tokenInput.endEditing(finalValue: "1", field: .integer)
-        XCTAssertEqual(tokenInput.integerPartTextField.text, "1.")
+        XCTAssertEqual(tokenInput.integerTextField.text, "1.")
         tokenInput.beginEditing(field: .integer)
-        XCTAssertEqual(tokenInput.integerPartTextField.text, "1")
+        XCTAssertEqual(tokenInput.integerTextField.text, "1")
     }
 
     func test_whenResignsFirstResponder_thenAllTextFieldsResign() {
         addToWindow(tokenInput)
 
-        _ = tokenInput.integerPartTextField.becomeFirstResponder()
+        _ = tokenInput.integerTextField.becomeFirstResponder()
         XCTAssertTrue(tokenInput.isFirstResponder)
         _ = tokenInput.resignFirstResponder()
         XCTAssertFalse(tokenInput.isFirstResponder)
 
-        _ = tokenInput.fractionalPartTextField.becomeFirstResponder()
+        _ = tokenInput.fractionalTextField.becomeFirstResponder()
         XCTAssertTrue(tokenInput.isFirstResponder)
         _ = tokenInput.resignFirstResponder()
         XCTAssertFalse(tokenInput.isFirstResponder)
@@ -205,13 +205,13 @@ class TokenInputTests: XCTestCase {
     func test_whenTypingDecimalSeparatorInIntegerInput_thenSwitchesToFractionalPart() {
         addToWindow(tokenInput)
         tokenInput.setUp(value: 0, decimals: 3, fiatConvertionRate: 1, locale: germanLocale)
-        _ = tokenInput.integerPartTextField.becomeFirstResponder()
+        _ = tokenInput.integerTextField.becomeFirstResponder()
         tokenInput.canType("1", field: .integer)
         tokenInput.endEditing(finalValue: "1", field: .integer)
-        XCTAssertEqual(tokenInput.integerPartTextField.text, "1.")
+        XCTAssertEqual(tokenInput.integerTextField.text, "1.")
         tokenInput.canType((Locale.current as NSLocale).decimalSeparator, field: .integer)
-        XCTAssertTrue(tokenInput.fractionalPartTextField.isFirstResponder)
-        XCTAssertEqual(tokenInput.fractionalPartTextField.text, "")
+        XCTAssertTrue(tokenInput.fractionalTextField.isFirstResponder)
+        XCTAssertEqual(tokenInput.fractionalTextField.text, "")
         assertFormatting("1,00")
     }
 
@@ -234,8 +234,8 @@ private extension TokenInputTests {
                   _ expectedFractionalPart: String) {
         tokenInput.setUp(value: value, decimals: decimals)
         XCTAssertEqual(tokenInput.value, value)
-        XCTAssertEqual(tokenInput.integerPartTextField.text, expectedIntegerPart)
-        XCTAssertEqual(tokenInput.fractionalPartTextField.text, expectedFractionalPart)
+        XCTAssertEqual(tokenInput.integerTextField.text, expectedIntegerPart)
+        XCTAssertEqual(tokenInput.fractionalTextField.text, expectedFractionalPart)
     }
 
     func assertFormatting(_ expected: String) {
@@ -275,9 +275,9 @@ private extension TokenInput {
         var textField: UITextField
         switch field {
         case .integer:
-            textField = integerPartTextField
+            textField = integerTextField
         case .fractional:
-            textField = fractionalPartTextField
+            textField = fractionalTextField
         }
         return textField
     }

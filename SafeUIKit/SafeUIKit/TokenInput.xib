@@ -14,8 +14,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TokenInput" customModule="SafeUIKit" customModuleProvider="target">
             <connections>
                 <outlet property="fiatValueLabel" destination="gIa-9X-3Yh" id="0Cs-7B-VXf"/>
-                <outlet property="fractionalPartTextField" destination="jsc-aV-3bw" id="Llt-gq-wDD"/>
-                <outlet property="integerPartTextField" destination="9ne-Qp-HlL" id="Zyh-Og-XmW"/>
+                <outlet property="fractionalTextField" destination="jsc-aV-3bw" id="Llt-gq-wDD"/>
+                <outlet property="integerTextField" destination="9ne-Qp-HlL" id="Zyh-Og-XmW"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
