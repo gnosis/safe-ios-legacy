@@ -4,6 +4,18 @@
 /* Generic error message alert */
 "generic.error.message" = "Operation failed because of an error. Please try again.";
 
+/* Receive button title */
+"main.receive" = "Receive";
+
+/* Tokens tab title */
+"main.segment.tokens" = "Tokens";
+
+/* Transactions tab title */
+"main.segment.transactions" = "Transactions";
+
+/* Send button title */
+"main.send" = "Send";
+
 /* Browser extension Button */
 "new_safe.browser_extension" = "Browser Extension";
 
@@ -141,4 +153,28 @@
 
 /* Title for confirm mnemonic view controller */
 "recovery.confirm_mnemonic.title" = "Confirmation";
+
+/* Address Book menu item */
+"settings.action.address_book" = "Address Book";
+
+/* Create new Safe menu item */
+"settings.action.create_safe" = "Create new Safe";
+
+/* General Settings menu item */
+"settings.action.general_settings" = "General Settings";
+
+/* Manage Tokens menu item */
+"settings.action.manage_tokens" = "Manage Tokens";
+
+/* Recover Safe menu item */
+"settings.action.recover_safe" = "Recover Safe";
+
+/* Pending transactions group header */
+"transactions.group.pending" = "PENDING";
+
+/* Today transactions group header */
+"transactions.group.today" = "TODAY";
+
+/* Yesterday transactions group header */
+"trasnactions.group.yesterday" = "YESTERDAY";
 

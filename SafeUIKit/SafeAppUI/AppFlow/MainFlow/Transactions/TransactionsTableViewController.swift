@@ -9,6 +9,14 @@ public class TransactionsTableViewController: UITableViewController {
 
     private var groups = [TransactionGroup]()
 
+    private enum Strings {
+        // Note: these are not used yet, just for localization for now.
+        static let pending = LocalizedString("transactions.group.pending", comment: "Pending transactions group header")
+        static let today = LocalizedString("transactions.group.today", comment: "Today transactions group header")
+        static let yesterday = LocalizedString("trasnactions.group.yesterday",
+                                               comment: "Yesterday transactions group header")
+    }
+
     public static func create() -> TransactionsTableViewController {
         return StoryboardScene.Main.transactionsTableViewController.instantiate()
     }

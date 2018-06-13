@@ -8,6 +8,15 @@ public class SettingsTableViewController: UITableViewController {
 
     private var settings = [(section: SettingsSection, cellHeight: CGFloat, items: [Any])]()
 
+    private enum Strings {
+        static let createSafe = LocalizedString("settings.action.create_safe", comment: "Create new Safe menu item")
+        static let recoverSafe = LocalizedString("settings.action.recover_safe", comment: "Recover Safe menu item")
+        static let manageTokens = LocalizedString("settings.action.manage_tokens", comment: "Manage Tokens menu item")
+        static let addressBook = LocalizedString("settings.action.address_book", comment: "Address Book menu item")
+        static let generalSettings = LocalizedString("settings.action.general_settings",
+                                                     comment: "General Settings menu item")
+    }
+
     public static func create() -> SettingsTableViewController {
         return StoryboardScene.Main.settingsTableViewController.instantiate()
     }
@@ -40,11 +49,11 @@ public class SettingsTableViewController: UITableViewController {
              ]),
             (.menuItems, 54,
              [
-                MenuItem(name: "Create new Safe", icon: Asset.TokenIcons.eth.image),
-                MenuItem(name: "Recover Safe", icon: Asset.TokenIcons.btc.image),
-                MenuItem(name: "Manage Tokens", icon: Asset.TokenIcons.gnt.image),
-                MenuItem(name: "Address Book", icon: Asset.TokenIcons.ada.image),
-                MenuItem(name: "General Settings", icon: Asset.TokenIcons.steem.image)
+                MenuItem(name: Strings.createSafe, icon: Asset.TokenIcons.eth.image),
+                MenuItem(name: Strings.recoverSafe, icon: Asset.TokenIcons.btc.image),
+                MenuItem(name: Strings.manageTokens, icon: Asset.TokenIcons.gnt.image),
+                MenuItem(name: Strings.addressBook, icon: Asset.TokenIcons.ada.image),
+                MenuItem(name: Strings.generalSettings, icon: Asset.TokenIcons.steem.image)
              ])
         ]
     }
