@@ -45,10 +45,10 @@ public class TokenInput: UIView {
         self.value = value
         self.fiatConvertionRate = fiatConvertionRate
         self.locale = locale
-        updateUI()
+        updateUIOnInitialLoad()
     }
 
-    private func updateUI() {
+    private func updateUIOnInitialLoad() {
         let str = String(value)
         if str.count <= decimals {
             integerPartTextField.text = ""
@@ -77,7 +77,7 @@ public class TokenInput: UIView {
     private func normalizedFractionalStringForUI(_ initialString: String) -> String {
         var fractionalStr = initialString
         while fractionalStr.last == "0" {
-            fractionalStr = String(fractionalStr.dropLast())
+            fractionalStr.removeLast()
         }
         return fractionalStr
     }
@@ -87,7 +87,11 @@ public class TokenInput: UIView {
     }
 
     private func normalizedIntegerStringForValue(_ initialString: String) -> String {
-        return initialString.replacingOccurrences(of: String(delimiter), with: "")
+        var normalizedString = initialString.replacingOccurrences(of: String(delimiter), with: "")
+        while normalizedString.first == "0" {
+            normalizedString.removeFirst()
+        }
+        return normalizedString
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -109,7 +113,7 @@ public class TokenInput: UIView {
         integerPartTextField.tag = Field.integer.rawValue
         fractionalPartTextField.delegate = self
         fractionalPartTextField.tag = Field.fractional.rawValue
-        updateUI()
+        updateUIOnInitialLoad()
     }
 
     public override var isFirstResponder: Bool {
@@ -133,6 +137,10 @@ extension TokenInput: UITextFieldDelegate {
             // decimal separator pressed in integer field
             fractionalPartTextField.becomeFirstResponder()
             return false
+        }
+        if textField.tag == Field.integer.rawValue && range.upperBound == 0 {
+            // trying to add to the beginning of integer part
+            guard Double(string) != 0 else { return false }
         }
         guard CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) else {
             return false
@@ -178,10 +186,12 @@ extension TokenInput: UITextFieldDelegate {
             return
         }
         value = newValue
-        
-        let text = textField.text ?? ""
-        if textField.tag == Field.integer.rawValue && !text.isEmpty {
-            textField.text! += String(delimiter)
+
+        guard let len = textField.text?.count, len > 0 else { return }
+        if textField.tag == Field.integer.rawValue {
+            textField.text = normalizedIntegerStringForValue(textField.text!) + String(delimiter)
+        } else {
+            textField.text = normalizedFractionalStringForUI(textField.text!)
         }
     }
 

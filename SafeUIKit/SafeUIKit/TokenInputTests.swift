@@ -138,6 +138,20 @@ class TokenInputTests: XCTestCase {
         XCTAssertEqual(tokenInput.value, BigInt("1001000000000000000"))
     }
 
+    func test_whenFinishesEditing_thenFormattedProperly() {
+        tokenInput.setUp(value: 0, decimals: 5)
+
+        tokenInput.endEditing(finalValue: "000001", field: .integer)
+        XCTAssertEqual(tokenInput.value, BigInt("100000"))
+        XCTAssertEqual(tokenInput.integerPartTextField.text, "1.")
+        XCTAssertEqual(tokenInput.fractionalPartTextField.text, "")
+
+        tokenInput.endEditing(finalValue: "11000", field: .fractional)
+        XCTAssertEqual(tokenInput.value, BigInt("111000"))
+        XCTAssertEqual(tokenInput.integerPartTextField.text, "1.")
+        XCTAssertEqual(tokenInput.fractionalPartTextField.text, "11")
+    }
+
     func test_whenBeginEditing_thenIntegerPartDelimiterIsRemoved() {
         tokenInput.endEditing(finalValue: "1", field: .integer)
         XCTAssertEqual(tokenInput.integerPartTextField.text, "1.")
@@ -201,6 +215,15 @@ class TokenInputTests: XCTestCase {
         assertFormatting("1,00")
     }
 
+    func test_whenAddingLeadingZeroesToIntegerPart_thenNotPossible() {
+        XCTAssertFalse(tokenInput.canType("0", field: .integer))
+        XCTAssertFalse(tokenInput.canType("000", field: .integer))
+        XCTAssertTrue(tokenInput.canType("001", field: .integer))
+        tokenInput.endEditing(finalValue: "1", field: .integer)
+        XCTAssertTrue(tokenInput.canType("000", field: .integer, range: NSRange(location: 1, length: 1)))
+        XCTAssertFalse(tokenInput.canType("000", field: .integer, range: NSRange(location: 0, length: 0)))
+    }
+
 }
 
 private extension TokenInputTests {
@@ -231,10 +254,10 @@ private extension TokenInputTests {
 
 private extension TokenInput {
 
-    func canType(_ text: String, field: TokenInput.Field) -> Bool {
+    func canType(_ text: String, field: TokenInput.Field, range: NSRange = NSRange()) -> Bool {
         let tokenTextField = tokenField(for: field)
-        tokenTextField.text = ""
-        return textField(tokenTextField, shouldChangeCharactersIn: NSRange(), replacementString: text)
+        if range.length == 0 { tokenTextField.text = "" }
+        return textField(tokenTextField, shouldChangeCharactersIn: range, replacementString: text)
     }
 
     func endEditing(finalValue: String, field: TokenInput.Field) {
