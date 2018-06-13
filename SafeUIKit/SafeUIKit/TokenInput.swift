@@ -46,8 +46,10 @@ public class TokenInput: UIView {
     /// - Parameters:
     ///   - value: Initital BigInt value
     ///   - decimals: Decimals of a ERC20 Token. https://theethereum.wiki/w/index.php/ERC20_Token_Standard
-    ///   - fiatConvertionRate: Optional token to fiat convertion rate. If used should always go in pair with 'locale' parameter.
-    ///   - locale: Optional locale fot proper fiat currency formatting. If used should always go in pair with 'fiatConvertionRate' parameter.
+    ///   - fiatConvertionRate: Optional token to fiat convertion rate. If used should always go in pair
+    ///     with 'locale' parameter.
+    ///   - locale: Optional locale fot proper fiat currency formatting. If used should always go in pair
+    ///     with 'fiatConvertionRate' parameter.
     public func setUp(value: BigInt, decimals: Int, fiatConvertionRate: Double? = nil, locale: Locale? = nil) {
         // maximum possible value of token is 2^256 - 1
         // String(2^256 - 1).count == 78
