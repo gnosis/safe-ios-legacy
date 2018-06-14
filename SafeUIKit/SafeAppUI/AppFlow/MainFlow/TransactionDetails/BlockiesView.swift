@@ -15,7 +15,6 @@ class BlockiesView: DesignableView {
 
     var imageView: UIImageView!
 
-
     override func commonInit() {
         imageView = UIImageView()
         imageView.frame = self.bounds
