@@ -82,6 +82,8 @@
 		0A34BC63207B80A700636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC62207B80A700636560 /* libCommonTestSupport.a */; };
 		0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668C20A5E059009BA7FC /* MainViewController.swift */; };
 		0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */; };
+		0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */; };
+		0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */; };
 		0A4DF82020CE6FC70095C00D /* TokensTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */; };
 		0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4DF82320CE6FE20095C00D /* Main.storyboard */; };
 		0A4DF82720CE70B40095C00D /* TokenBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */; };
@@ -132,6 +134,14 @@
 		0AD93E0820481442008C38CA /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D520480C7B00445AC2 /* TextInputTests.swift */; };
 		0AD93E0920481461008C38CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D820480C7B00445AC2 /* Colors.swift */; };
 		0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9670D020480C7A00445AC2 /* TextInput.xib */; };
+		0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950BD20D29C910099B79D /* TransactionValueView.swift */; };
+		0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C220D29C920099B79D /* TransactionParameterView.swift */; };
+		0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C320D29C920099B79D /* TransactionParticipantView.swift */; };
+		0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C420D29C920099B79D /* StatusTransactionParameterView.swift */; };
+		0AE950CA20D29C930099B79D /* TokenAmountTransactionParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C520D29C930099B79D /* TokenAmountTransactionParameterView.swift */; };
+		0AE950CD20D29CAF0099B79D /* BlockiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950CB20D29CAF0099B79D /* BlockiesView.swift */; };
+		0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950CC20D29CAF0099B79D /* HorizontalSeparatorView.swift */; };
+		0AE950D020D29D9E0099B79D /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950CF20D29D9E0099B79D /* DesignableView.swift */; };
 		0AF33D3E209C6BF800527D25 /* SafeAppUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; };
 		0AF33D47209C6BF800527D25 /* SafeAppUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AF33D37209C6BF800527D25 /* SafeAppUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AF33D4A209C6BF800527D25 /* SafeAppUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; };
@@ -404,6 +414,8 @@
 		0A34BC62207B80A700636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A40668C20A5E059009BA7FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
+		0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensTableViewController.swift; sourceTree = "<group>"; };
 		0A4DF82320CE6FE20095C00D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBalanceTableViewCell.swift; sourceTree = "<group>"; };
@@ -455,6 +467,14 @@
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		0A9D058920CEB59E007DED3B /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
 		0A9D058A20CEB5C3007DED3B /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0AE950BD20D29C910099B79D /* TransactionValueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionValueView.swift; sourceTree = "<group>"; };
+		0AE950C220D29C920099B79D /* TransactionParameterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionParameterView.swift; sourceTree = "<group>"; };
+		0AE950C320D29C920099B79D /* TransactionParticipantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionParticipantView.swift; sourceTree = "<group>"; };
+		0AE950C420D29C920099B79D /* StatusTransactionParameterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusTransactionParameterView.swift; sourceTree = "<group>"; };
+		0AE950C520D29C930099B79D /* TokenAmountTransactionParameterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenAmountTransactionParameterView.swift; sourceTree = "<group>"; };
+		0AE950CB20D29CAF0099B79D /* BlockiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockiesView.swift; sourceTree = "<group>"; };
+		0AE950CC20D29CAF0099B79D /* HorizontalSeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalSeparatorView.swift; sourceTree = "<group>"; };
+		0AE950CF20D29D9E0099B79D /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		0AF33D35209C6BF800527D25 /* SafeAppUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SafeAppUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF33D37209C6BF800527D25 /* SafeAppUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafeAppUI.h; sourceTree = "<group>"; };
 		0AF33D38209C6BF800527D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -670,6 +690,7 @@
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
 				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
 				0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */,
+				0A8C961920D2A783007D2410 /* TransactionDetails */,
 				0AF8D53D20D01002001E8423 /* SegmentBar */,
 				0A4EEA6B20D11109005CDAC0 /* Settings */,
 				0AF8D53A20D00FDB001E8423 /* Tokens */,
@@ -698,6 +719,23 @@
 			);
 			name = TestTools;
 			path = ../TestTools;
+			sourceTree = "<group>";
+		};
+		0A8C961920D2A783007D2410 /* TransactionDetails */ = {
+			isa = PBXGroup;
+			children = (
+				0AE950CB20D29CAF0099B79D /* BlockiesView.swift */,
+				0AE950CC20D29CAF0099B79D /* HorizontalSeparatorView.swift */,
+				0AE950C420D29C920099B79D /* StatusTransactionParameterView.swift */,
+				0AE950C520D29C930099B79D /* TokenAmountTransactionParameterView.swift */,
+				0AE950C220D29C920099B79D /* TransactionParameterView.swift */,
+				0AE950CF20D29D9E0099B79D /* DesignableView.swift */,
+				0AE950C320D29C920099B79D /* TransactionParticipantView.swift */,
+				0AE950BD20D29C910099B79D /* TransactionValueView.swift */,
+				0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */,
+				0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */,
+			);
+			path = TransactionDetails;
 			sourceTree = "<group>";
 		};
 		0A96706F20480C1200445AC2 = {
@@ -1388,9 +1426,14 @@
 				0A00293020CFCBA3009A4BFE /* SegmentBarController.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
+				0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */,
 				0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */,
 				0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */,
+				0AE950CA20D29C930099B79D /* TokenAmountTransactionParameterView.swift in Sources */,
+				0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */,
 				0A4EEA5120D02E9D005CDAC0 /* MainContentViewController.swift in Sources */,
+				0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */,
+				0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
 				0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */,
 				0A4EEA6820D107BF005CDAC0 /* SafeTableViewCell.swift in Sources */,
@@ -1408,6 +1451,7 @@
 				0A4DF82020CE6FC70095C00D /* TokensTableViewController.swift in Sources */,
 				0A334E47209C8E3800ABC6AE /* ConfirmPaswordViewController.swift in Sources */,
 				0A334E6C209C8F8500ABC6AE /* ErrorHandler.swift in Sources */,
+				0AE950CD20D29CAF0099B79D /* BlockiesView.swift in Sources */,
 				0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */,
 				0A334E2A209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift in Sources */,
 				0A334E48209C8E3800ABC6AE /* AppFlowCoordinator.swift in Sources */,
@@ -1418,13 +1462,16 @@
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
 				0A5D467B20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift in Sources */,
 				0A334E3B209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift in Sources */,
+				0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,
 				0A334E3F209C8E3800ABC6AE /* StartViewController.swift in Sources */,
 				0A334E35209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift in Sources */,
 				0A334E46209C8E3800ABC6AE /* SetPasswordViewController.swift in Sources */,
 				0A4EEA6A20D107C9005CDAC0 /* MenuItemTableViewCell.swift in Sources */,
+				0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */,
 				0A5D467520AD6D8200AC287E /* UIAlertController+Testable.swift in Sources */,
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
+				0AE950D020D29D9E0099B79D /* DesignableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1439,6 +1486,7 @@
 				0A334E55209C8E6800ABC6AE /* OnboardingFlowCoordinatorTests.swift in Sources */,
 				0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */,
 				0A5DC577209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift in Sources */,
+				0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
 				0A334E56209C8E6800ABC6AE /* NewSafeViewControllerTests.swift in Sources */,
 				0AF8D53920D00E56001E8423 /* TransactionsTableViewControllerTests.swift in Sources */,
