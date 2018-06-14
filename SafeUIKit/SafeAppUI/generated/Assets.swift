@@ -153,6 +153,7 @@ enum Asset {
   static let touchIdIcon = ImageAsset(name: "touch-id-icon")
   enum TransactionDetails {
     static let arrowTransaction = ImageAsset(name: "arrow_transaction")
+    static let externalLink = ImageAsset(name: "external_link")
   }
   enum TransactionOverviewIcons {
     static let error = ImageAsset(name: "error")
@@ -270,6 +271,7 @@ enum Asset {
     TokenIcons.defaultToken,
     touchIdIcon,
     TransactionDetails.arrowTransaction,
+    TransactionDetails.externalLink,
     TransactionOverviewIcons.error,
     TransactionOverviewIcons.receive,
     TransactionOverviewIcons.sent,

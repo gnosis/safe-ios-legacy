@@ -6,6 +6,169 @@ import Foundation
 import UIKit
 
 @IBDesignable
+class TokenAmountTransactionParameterView: TransactionParameterView {
+
+    @IBInspectable
+    var IBStyle: Int {
+        get { return style.rawValue }
+        set {
+            setStyle(newValue)
+        }
+    }
+
+    var style: TransactionValueStyle = .positive {
+        didSet {
+            update()
+        }
+    }
+
+    func setStyle(_ newValue: Int) {
+        if let value = TransactionValueStyle(rawValue: newValue) {
+            style = value
+        } else {
+            style = .neutral
+        }
+    }
+
+    override func update() {
+        super.update()
+        guard isLoaded else { return }
+        valueLabel.textColor = style.colorValue
+    }
+}
+
+@IBDesignable
+class StatusTransactionParameterView: TransactionParameterView {
+
+    @IBInspectable
+    var IBStatus: Int {
+        get { return status.rawValue }
+        set { setStatus(newValue) }
+    }
+
+    var status: TransactionStatusParameter = .pending {
+        didSet {
+            update()
+        }
+    }
+
+    func setStatus(_ newValue: Int) {
+        if let value = TransactionStatusParameter(rawValue: newValue) {
+            status = value
+        } else {
+            status = .pending
+        }
+    }
+
+    override func update() {
+        super.update()
+        guard isLoaded else { return }
+
+        let statusString = NSAttributedString(string: status.stringValue,
+                                            attributes:
+            [
+                NSAttributedStringKey.foregroundColor: status.colorValue
+            ])
+        let otherString = NSAttributedString(string: " - \(value)")
+        let valueString = NSMutableAttributedString()
+        valueString.append(statusString)
+        valueString.append(otherString)
+        valueLabel.attributedText = valueString
+    }
+
+}
+
+enum TransactionStatusParameter: Int {
+    case failed = -1
+    case pending
+    case success
+
+    var stringValue: String {
+        switch self {
+        case .failed: return "Failed"
+        case .pending: return "Pending"
+        case .success: return "Success"
+        }
+    }
+
+    var colorValue: UIColor {
+        switch self {
+        case .failed: return ColorName.tomato.color
+        case .pending: return ColorName.battleshipGrey.color
+        case .success: return ColorName.greenTeal.color
+        }
+    }
+}
+
+@IBDesignable
+class TransactionParameterView: UIView {
+
+    @IBInspectable
+    var name: String = "Parameter" {
+        didSet {
+            update()
+        }
+    }
+    @IBInspectable
+    var value: String = "Value of a transaction parameter" {
+        didSet {
+            update()
+        }
+    }
+
+    var nameLabel: UILabel!
+    var valueLabel: UILabel!
+
+    var isLoaded = false
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        commonInit()
+    }
+
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        update()
+    }
+
+    func commonInit() {
+        nameLabel = UILabel()
+        nameLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        nameLabel.textColor = ColorName.darkSlateBlue.color
+
+        valueLabel = UILabel()
+        valueLabel.font = UIFont.systemFont(ofSize: 13)
+        valueLabel.textColor = ColorName.battleshipGrey.color
+        valueLabel.numberOfLines = 0
+
+        let stack = UIStackView(arrangedSubviews: [nameLabel, valueLabel])
+        stack.axis = .vertical
+        stack.frame = self.bounds
+        stack.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(stack)
+
+        isLoaded = true
+        update()
+    }
+
+    func update() {
+        guard isLoaded else { return }
+        nameLabel.text = name
+        valueLabel.text = value
+    }
+
+}
+
+@IBDesignable
 class HorizontalSeparatorView: UIView {
 
     @IBInspectable
@@ -94,10 +257,6 @@ class TransactionValueView: UIView {
     private var isLoaded = false
 
     struct Colors {
-        static let neutral = ColorName.darkSlateBlue.color
-        static let positive = ColorName.greenTeal.color
-        static let negative = ColorName.tomato.color
-
         static let fiat = ColorName.blueyGrey.color
     }
 
@@ -118,7 +277,6 @@ class TransactionValueView: UIView {
     func commonInit() {
         tokenLabel = UILabel()
         tokenLabel.font = UIFont.systemFont(ofSize: 19)
-        tokenLabel.textColor = Colors.neutral
         tokenLabel.textAlignment = .right
         tokenLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         tokenLabel.adjustsFontSizeToFitWidth = true
@@ -167,15 +325,7 @@ class TransactionValueView: UIView {
         tokenLabel.text = tokenAmount
         fiatLabel.isHidden = isSingleValue
         fiatLabel.text = fiatAmount
-        updateStyle()
-    }
-
-    func updateStyle() {
-        switch style {
-        case .neutral: tokenLabel.textColor = Colors.neutral
-        case .negative: tokenLabel.textColor = Colors.negative
-        case .positive: tokenLabel.textColor = Colors.positive
-        }
+        tokenLabel.textColor = style.colorValue
     }
 
 }
@@ -184,6 +334,20 @@ enum TransactionValueStyle: Int {
     case negative = -1
     case neutral
     case positive
+
+    struct Colors {
+        static let neutral = ColorName.darkSlateBlue.color
+        static let positive = ColorName.greenTeal.color
+        static let negative = ColorName.tomato.color
+    }
+
+    var colorValue: UIColor {
+        switch self {
+        case .neutral: return Colors.neutral
+        case .negative: return Colors.negative
+        case .positive: return Colors.positive
+        }
+    }
 }
 
 @IBDesignable
