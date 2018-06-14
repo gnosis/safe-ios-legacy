@@ -8,3 +8,6 @@ pale_grey_four: #e3e5ec
 transparent_white_on_grey: #F9FAFC
 azure: #28b2fa
 border_grey: #c8ced4
+tomato_15: #f0252527
+pale_grey: #e4e8f1
+dark_azure: #0888CB
