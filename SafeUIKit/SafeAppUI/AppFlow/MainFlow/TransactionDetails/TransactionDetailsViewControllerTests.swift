@@ -10,7 +10,14 @@ class TransactionDetailsViewControllerTests: XCTestCase {
     func test_canCreate() {
         let controller = TransactionDetailsViewController.create()
         createWindow(controller)
-        XCTAssertNotNil(controller)
+        XCTAssertNotNil(controller.senderView)
+        XCTAssertNotNil(controller.recepientView)
+        XCTAssertNotNil(controller.transactionValueView)
+        XCTAssertNotNil(controller.transactionTypeView)
+        XCTAssertNotNil(controller.submittedParameterView)
+        XCTAssertNotNil(controller.transactionStatusView)
+        XCTAssertNotNil(controller.transactionFeeView)
+        XCTAssertNotNil(controller.viewInExternalAppButton)
     }
 
 }

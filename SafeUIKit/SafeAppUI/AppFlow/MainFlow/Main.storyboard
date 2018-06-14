@@ -661,6 +661,16 @@
                     </view>
                     <navigationItem key="navigationItem" title="Transaction details" id="F5R-fq-Lbi"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="recepientView" destination="8Jz-dP-8hR" id="CBV-6g-Hkd"/>
+                        <outlet property="senderView" destination="bEM-ck-55S" id="sx8-sg-7pT"/>
+                        <outlet property="submittedParameterView" destination="1fJ-ed-qN7" id="81l-1z-BXr"/>
+                        <outlet property="transactionFeeView" destination="5am-MD-ipW" id="hdM-2A-Gbb"/>
+                        <outlet property="transactionStatusView" destination="gQu-Qj-qJQ" id="5MI-ZJ-7oB"/>
+                        <outlet property="transactionTypeView" destination="DPa-hP-BFi" id="FeQ-vO-qkK"/>
+                        <outlet property="transactionValueView" destination="EZC-qM-B0L" id="fVD-u5-0xV"/>
+                        <outlet property="viewInExternalAppButton" destination="maA-2G-VbL" id="sKL-O9-pkY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HsJ-WE-Y9R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
