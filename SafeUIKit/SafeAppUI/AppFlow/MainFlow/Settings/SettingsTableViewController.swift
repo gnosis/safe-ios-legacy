@@ -33,19 +33,19 @@ public class SettingsTableViewController: UITableViewController {
              [
                 SafeDescription(address: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c",
                                 name: "Tobias Funds",
-                                image: UIImage.create(seed: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c"))
+                                image: UIImage.createBlockiesImage(seed: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c"))
              ]),
             (.safeList, 80,
              [
                 SafeDescription(address: "0x40e5bcfece45f3a61a88e5445ba342f89629e301",
                                 name: "VC Safe Public Fundraiser Fund",
-                                image: UIImage.create(seed: "0x40e5bcfece45f3a61a88e5445ba342f89629e301")),
+                                image: UIImage.createBlockiesImage(seed: "0x40e5bcfece45f3a61a88e5445ba342f89629e301")),
                 SafeDescription(address: "0x72558bf6ab0a70a3469e32719b8778f8aa41c1db",
                                 name: "GNO Honey Pot",
-                                image: UIImage.create(seed: "0x72558bf6ab0a70a3469e32719b8778f8aa41c1db")),
+                                image: UIImage.createBlockiesImage(seed: "0x72558bf6ab0a70a3469e32719b8778f8aa41c1db")),
                 SafeDescription(address: "0x41e98fb1abced605b475f8cc8110f7ae0ae4ccd9",
                                 name: "Untitled",
-                                image: UIImage.create(seed: "0x41e98fb1abced605b475f8cc8110f7ae0ae4ccd9"))
+                                image: UIImage.createBlockiesImage(seed: "0x41e98fb1abced605b475f8cc8110f7ae0ae4ccd9"))
              ]),
             (.menuItems, 54,
              [

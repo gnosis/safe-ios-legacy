@@ -4,7 +4,6 @@
 
 import UIKit
 
-@IBDesignable
 class TokenAmountTransactionParameterView: TransactionParameterView {
 
     @IBInspectable

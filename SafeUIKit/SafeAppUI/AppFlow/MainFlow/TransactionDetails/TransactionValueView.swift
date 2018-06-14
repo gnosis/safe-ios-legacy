@@ -22,7 +22,7 @@ class TransactionValueView: DesignableView {
     var IBStyle: Int {
         get { return style.rawValue }
         set {
-            setNeedsUpdate(newValue)
+            setStyle(newValue)
         }
     }
     @IBInspectable
@@ -84,7 +84,6 @@ class TransactionValueView: DesignableView {
     }
 
     override func update() {
-        guard isLoaded else { return }
         tokenLabel.font = isSingleValue ? UIFont.systemFont(ofSize: 13) : UIFont.systemFont(ofSize: 19)
         tokenLabel.text = tokenAmount
         fiatLabel.isHidden = isSingleValue

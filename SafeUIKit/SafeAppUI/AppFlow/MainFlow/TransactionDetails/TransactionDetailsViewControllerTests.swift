@@ -7,13 +7,10 @@ import XCTest
 
 class TransactionDetailsViewControllerTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-    }
-
-    func test_whenCondition_thenResult() {
+    func test_canCreate() {
         let controller = TransactionDetailsViewController.create()
         createWindow(controller)
+        XCTAssertNotNil(controller)
     }
 
 }

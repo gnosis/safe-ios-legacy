@@ -45,11 +45,6 @@ class DesignableView: UIView {
 
     /// Call this method when your view model changes and view has to be updated.
     func setNeedsUpdate() {
-        RunLoop.current.cancelPerformSelectors(withTarget: self)
-        performSelector(onMainThread: #selector(performUpdate), with: nil, waitUntilDone: false)
-    }
-
-    @objc private func performUpdate() {
         guard isLoaded else { return }
         update()
     }

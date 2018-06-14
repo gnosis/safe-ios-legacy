@@ -2,6 +2,8 @@
 //  Copyright © 2018 Gnosis Ltd. All rights reserved.
 //
 
+import UIKit
+
 class TransactionParticipantView: DesignableView {
 
     @IBInspectable
@@ -39,7 +41,7 @@ class TransactionParticipantView: DesignableView {
         addressLabel.textColor = ColorName.blueyGrey.color
         addressLabel.lineBreakMode = .byTruncatingMiddle
 
-        blockiesView = BlockiesView(seed: address)
+        blockiesView = BlockiesView()
         blockiesView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
 
         let nameStack = UIStackView(arrangedSubviews: [nameLabel, addressLabel])

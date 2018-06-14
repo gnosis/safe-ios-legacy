@@ -688,18 +688,9 @@
 			isa = PBXGroup;
 			children = (
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
-				0AE950CB20D29CAF0099B79D /* BlockiesView.swift */,
-				0AE950CC20D29CAF0099B79D /* HorizontalSeparatorView.swift */,
-				0AE950C420D29C920099B79D /* StatusTransactionParameterView.swift */,
-				0AE950C520D29C930099B79D /* TokenAmountTransactionParameterView.swift */,
-				0AE950C220D29C920099B79D /* TransactionParameterView.swift */,
-				0AE950CF20D29D9E0099B79D /* DesignableView.swift */,
-				0AE950C320D29C920099B79D /* TransactionParticipantView.swift */,
-				0AE950BD20D29C910099B79D /* TransactionValueView.swift */,
-				0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */,
-				0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */,
 				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
 				0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */,
+				0A8C961920D2A783007D2410 /* TransactionDetails */,
 				0AF8D53D20D01002001E8423 /* SegmentBar */,
 				0A4EEA6B20D11109005CDAC0 /* Settings */,
 				0AF8D53A20D00FDB001E8423 /* Tokens */,
@@ -728,6 +719,23 @@
 			);
 			name = TestTools;
 			path = ../TestTools;
+			sourceTree = "<group>";
+		};
+		0A8C961920D2A783007D2410 /* TransactionDetails */ = {
+			isa = PBXGroup;
+			children = (
+				0AE950CB20D29CAF0099B79D /* BlockiesView.swift */,
+				0AE950CC20D29CAF0099B79D /* HorizontalSeparatorView.swift */,
+				0AE950C420D29C920099B79D /* StatusTransactionParameterView.swift */,
+				0AE950C520D29C930099B79D /* TokenAmountTransactionParameterView.swift */,
+				0AE950C220D29C920099B79D /* TransactionParameterView.swift */,
+				0AE950CF20D29D9E0099B79D /* DesignableView.swift */,
+				0AE950C320D29C920099B79D /* TransactionParticipantView.swift */,
+				0AE950BD20D29C910099B79D /* TransactionValueView.swift */,
+				0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */,
+				0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */,
+			);
+			path = TransactionDetails;
 			sourceTree = "<group>";
 		};
 		0A96706F20480C1200445AC2 = {

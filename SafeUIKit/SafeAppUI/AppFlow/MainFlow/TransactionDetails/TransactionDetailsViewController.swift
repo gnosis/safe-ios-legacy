@@ -10,8 +10,4 @@ public class TransactionDetailsViewController: UIViewController {
         return StoryboardScene.Main.transactionDetailsViewController.instantiate()
     }
 
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
 }
