@@ -516,6 +516,92 @@
             </objects>
             <point key="canvasLocation" x="1924" y="66"/>
         </scene>
+        <!--Transaction Details View Controller-->
+        <scene sceneID="Ud1-YG-cNL">
+            <objects>
+                <viewController storyboardIdentifier="TransactionDetailsViewController" id="hMI-YP-Is6" customClass="TransactionDetailsViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="coI-KM-0GS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5wW-Om-Ydr">
+                                <rect key="frame" x="16" y="40" width="343" height="144"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEM-ck-55S" customClass="TransactionParticipantView" customModule="SafeAppUI" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="kQL-4W-5MV"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="Tobias Funds"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="address" value="0xb0859c869dd022a4827a6916e6b7b83fe97d912f"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9bO-C5-2MI">
+                                        <rect key="frame" x="0.0" y="50" width="343" height="44"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_transaction" translatesAutoresizingMaskIntoConstraints="NO" id="zI8-ic-i5E">
+                                                <rect key="frame" x="0.0" y="12" width="32" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="9JO-Kb-gw9"/>
+                                                    <constraint firstAttribute="height" constant="20" id="KCu-OE-i97"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOV-v2-loh" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
+                                                <rect key="frame" x="42" y="21.5" width="129.5" height="1"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZC-qM-B0L" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
+                                                <rect key="frame" x="181.5" y="0.0" width="161.5" height="44"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tokenAmount" value="Replaced Recovery Phrase"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="IBStyle">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="fiatAmount" value="316934 bytes included"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSingleValue" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="cIG-nG-aCm"/>
+                                        </constraints>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Jz-dP-8hR" customClass="TransactionParticipantView" customModule="SafeAppUI" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="94" width="343" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="w3a-Wi-Kth"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="Martin Winklervos"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="address" value="0xd3996b90f0976d6c1dec1155db4933aca4898f9a"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="9bO-C5-2MI" firstAttribute="leading" secondItem="5wW-Om-Ydr" secondAttribute="leading" id="ikp-DU-ip1"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3a-bg-PE7" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="204" width="375" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="a3a-bg-PE7" firstAttribute="top" secondItem="5wW-Om-Ydr" secondAttribute="bottom" constant="20" id="7c0-kn-sNs"/>
+                            <constraint firstItem="a3a-bg-PE7" firstAttribute="leading" secondItem="m89-Zk-oYt" secondAttribute="leading" id="8Ol-SJ-sXY"/>
+                            <constraint firstItem="m89-Zk-oYt" firstAttribute="trailing" secondItem="a3a-bg-PE7" secondAttribute="trailing" id="AZ4-gF-o0f"/>
+                            <constraint firstItem="m89-Zk-oYt" firstAttribute="trailing" secondItem="5wW-Om-Ydr" secondAttribute="trailing" constant="16" id="JXH-xb-266"/>
+                            <constraint firstItem="5wW-Om-Ydr" firstAttribute="leading" secondItem="m89-Zk-oYt" secondAttribute="leading" constant="16" id="LcY-ZX-PVL"/>
+                            <constraint firstItem="5wW-Om-Ydr" firstAttribute="top" secondItem="m89-Zk-oYt" secondAttribute="top" constant="20" id="VZc-sA-8Nf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="m89-Zk-oYt"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HsJ-WE-Y9R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2700" y="64.31784107946028"/>
+        </scene>
         <!--Transparent Navigation Controller-->
         <scene sceneID="lJd-J1-TGU">
             <objects>
@@ -552,6 +638,7 @@
     </scenes>
     <resources>
         <image name="ETH" width="300" height="300"/>
+        <image name="arrow_transaction" width="13" height="20"/>
         <image name="gnosis-safe-logo" width="54" height="57"/>
         <image name="qrcode-scan" width="14" height="14"/>
         <image name="send" width="14" height="12"/>
