@@ -11,6 +11,11 @@ public class MainViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var receiveButton: UIButton!
 
+    private enum Strings {
+        static let send = LocalizedString("main.send", comment: "Send button title")
+        static let receive = LocalizedString("main.receive", comment: "Receive button title")
+    }
+
     public static func create() -> MainViewController {
         return StoryboardScene.Main.mainViewController.instantiate()
     }

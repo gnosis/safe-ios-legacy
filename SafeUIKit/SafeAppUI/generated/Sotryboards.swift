@@ -67,7 +67,7 @@ enum StoryboardScene {
 
     static let mainViewController = SceneType<SafeAppUI.MainViewController>(storyboard: Main.self, identifier: "MainViewController")
 
-    static let settingsViewController = SceneType<UITableViewController>(storyboard: Main.self, identifier: "SettingsViewController")
+    static let settingsTableViewController = SceneType<SafeAppUI.SettingsTableViewController>(storyboard: Main.self, identifier: "SettingsTableViewController")
 
     static let tokensTableViewController = SceneType<SafeAppUI.TokensTableViewController>(storyboard: Main.self, identifier: "TokensTableViewController")
 
