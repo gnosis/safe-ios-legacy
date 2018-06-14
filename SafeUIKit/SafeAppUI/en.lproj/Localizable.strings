@@ -4,12 +4,6 @@
 /* Generic error message alert */
 "generic.error.message" = "Operation failed because of an error. Please try again.";
 
-/* Address label */
-"main.label.address" = "Address";
-
-/* Balance label */
-"main.label.balance" = "Balance";
-
 /* Browser extension Button */
 "new_safe.browser_extension" = "Browser Extension";
 

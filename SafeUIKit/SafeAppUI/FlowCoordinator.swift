@@ -112,9 +112,9 @@ open class FlowCoordinator {
 
 }
 
-final class TransparentNavigationController: UINavigationController {
+public final class TransparentNavigationController: UINavigationController {
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         makeNavBarTransparent()
     }

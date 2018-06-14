@@ -87,7 +87,8 @@ class AppFlowCoordinatorTests: SafeTestCase {
         _ = try Authenticator.instance.authenticate(.password(password))
         walletService.createReadyToUseWallet()
         createFlowCoordinator()
-        XCTAssertTrue(rootViewControlleOnAppStartrAfterUnlocking() is MainViewController)
+        XCTAssertTrue((rootViewControlleOnAppStartrAfterUnlocking() as? UINavigationController)?.topViewController
+            is MainViewController)
     }
 
     func test_whenOnboardingFlowExits_thenEntersMainScreen() throws {
@@ -98,7 +99,8 @@ class AppFlowCoordinatorTests: SafeTestCase {
         walletService.assignBlockchainAddress("address")
         createFlowCoordinator()
         flowCoordinator.onboardingFlowCoordinator.exitFlow()
-        XCTAssertTrue(UIApplication.rootViewController is MainViewController)
+        XCTAssertTrue((UIApplication.rootViewController as? UINavigationController)?.topViewController
+            is MainViewController)
     }
 
 }
