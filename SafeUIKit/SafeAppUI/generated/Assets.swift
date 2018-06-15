@@ -170,9 +170,6 @@ enum Asset {
   enum TransactionReview {
     static let extensionWindow = ImageAsset(name: "extension_window")
     static let rejectedExtension = ImageAsset(name: "rejected_extension")
-    static let scanQrCopy = ImageAsset(name: "scan_qr_copy")
-    static let shape = ImageAsset(name: "shape")
-    static let `switch` = ImageAsset(name: "switch")
   }
 
   // swiftlint:disable trailing_comma
@@ -294,9 +291,6 @@ enum Asset {
     TransactionOverviewIcons.settingTransactionIcon,
     TransactionReview.extensionWindow,
     TransactionReview.rejectedExtension,
-    TransactionReview.scanQrCopy,
-    TransactionReview.shape,
-    TransactionReview.`switch`,
   ]
   // swiftlint:enable trailing_comma
   @available(*, deprecated, renamed: "allImages")
