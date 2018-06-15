@@ -7,38 +7,33 @@ import UIKit
 class ProgressView: DesignableView {
 
     @IBInspectable
-    var progress: Double {
-        get {
-            return state.doubleValue
-        }
-        set {
-            setState(isError: isError, isIndeterminate: isIndeterminate, progress: newValue)
+    var progress: Double = 0 {
+        didSet {
+            updateState()
         }
     }
 
     @IBInspectable
-    var isError: Bool {
-        get { return state.isError }
-        set {
-            setState(isError: newValue, isIndeterminate: isIndeterminate, progress: progress)
+    var isError: Bool = false {
+        didSet {
+            updateState()
         }
     }
 
     @IBInspectable
-    var isIndeterminate: Bool {
-        get { return state.isIndeterminate }
-        set {
-            setState(isError: isError, isIndeterminate: newValue, progress: progress)
+    var isIndeterminate: Bool = false {
+        didSet {
+            updateState()
         }
     }
 
-    var state: ProgressViewState = .progress(0.5) {
+    private(set) var state: ProgressViewState = .progress(0.5) {
         didSet {
             setNeedsUpdate()
         }
     }
 
-    func setState(isError: Bool, isIndeterminate: Bool, progress: Double) {
+    func updateState() {
         if isError {
             state = .error
         } else if isIndeterminate {

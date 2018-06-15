@@ -39,7 +39,7 @@ class BorderedButton: DesignableButton {
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         // otherwise IB doesn't update title color with correct value for the disabled state.
-        setTitleColor(ColorName.azure.color, for: isEnabled ? .disabled : .normal)
+        setTitleColor(isEnabled ? .white : ColorName.azure.color, for: .normal)
     }
 
     override func update() {
