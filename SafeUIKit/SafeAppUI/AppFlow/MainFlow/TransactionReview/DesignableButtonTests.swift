@@ -7,10 +7,6 @@ import XCTest
 
 class DesignableButtonTests: XCTestCase {
 
-    var buttonInit: () -> TestDesignableButton = {
-        return TestDesignableButton()
-    }
-
     func test_whenInited_thenCallsCommonInit() {
         let button = TestDesignableButton()
         XCTAssertTrue(button.didCallCommonInit)
