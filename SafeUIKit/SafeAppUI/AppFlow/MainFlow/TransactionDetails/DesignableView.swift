@@ -25,7 +25,7 @@ class DesignableView: UIView {
 
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        update()
+        setNeedsUpdate()
     }
 
     /// Common initializer called in `init(frame:)` and in `awakeFromNib()`
