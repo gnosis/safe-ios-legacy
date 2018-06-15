@@ -725,7 +725,7 @@
                                 <rect key="frame" x="16" y="85" width="343" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZo-4H-qgY" customClass="TransactionParticipantView" customModule="SafeAppUI" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="188.5" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="164" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="nUI-tP-njN"/>
                                         </constraints>
@@ -735,7 +735,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QRc-eC-DsR" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
-                                        <rect key="frame" x="203.5" y="0.0" width="139.5" height="50"/>
+                                        <rect key="frame" x="179" y="0.0" width="164" height="50"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tokenAmount" value="94.34934 ETH"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="IBStyle">
@@ -745,6 +745,9 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="TZo-4H-qgY" firstAttribute="bottom" secondItem="QRc-eC-DsR" secondAttribute="bottom" id="Gqv-bW-yKV"/>
+                                </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UOr-9L-FKb" userLabel="border around amount">
                                 <rect key="frame" x="0.0" y="155" width="375" height="64"/>
@@ -760,7 +763,7 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" returnKeyType="continue" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JoI-fL-dfu">
-                                                <rect key="frame" x="16" y="24" width="24" height="14.5"/>
+                                                <rect key="frame" x="16" y="24.5" width="24" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.63529411764705879" green="0.6588235294117647" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
