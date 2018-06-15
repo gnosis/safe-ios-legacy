@@ -4,6 +4,7 @@
 
 import UIKit
 
+
 @IBDesignable
 class DesignableButton: UIButton {
 
@@ -25,7 +26,7 @@ class DesignableButton: UIButton {
 
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        update()
+        setNeedsUpdate()
     }
 
     /// Common initializer called in `init(frame:)` and in `awakeFromNib()`
