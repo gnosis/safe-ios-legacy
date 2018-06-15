@@ -155,6 +155,11 @@ enum Asset {
     static let arrowTransaction = ImageAsset(name: "arrow_transaction")
     static let externalLink = ImageAsset(name: "external_link")
   }
+  enum TransactionEdit {
+    static let scanQrCopy = ImageAsset(name: "scan_qr_copy")
+    static let shape = ImageAsset(name: "shape")
+    static let `switch` = ImageAsset(name: "switch")
+  }
   enum TransactionOverviewIcons {
     static let error = ImageAsset(name: "error")
     static let receive = ImageAsset(name: "receive")
@@ -165,6 +170,9 @@ enum Asset {
   enum TransactionReview {
     static let extensionWindow = ImageAsset(name: "extension_window")
     static let rejectedExtension = ImageAsset(name: "rejected_extension")
+    static let scanQrCopy = ImageAsset(name: "scan_qr_copy")
+    static let shape = ImageAsset(name: "shape")
+    static let `switch` = ImageAsset(name: "switch")
   }
 
   // swiftlint:disable trailing_comma
@@ -276,6 +284,9 @@ enum Asset {
     touchIdIcon,
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,
+    TransactionEdit.scanQrCopy,
+    TransactionEdit.shape,
+    TransactionEdit.`switch`,
     TransactionOverviewIcons.error,
     TransactionOverviewIcons.receive,
     TransactionOverviewIcons.sent,
@@ -283,6 +294,9 @@ enum Asset {
     TransactionOverviewIcons.settingTransactionIcon,
     TransactionReview.extensionWindow,
     TransactionReview.rejectedExtension,
+    TransactionReview.scanQrCopy,
+    TransactionReview.shape,
+    TransactionReview.`switch`,
   ]
   // swiftlint:enable trailing_comma
   @available(*, deprecated, renamed: "allImages")

@@ -63,6 +63,8 @@ enum StoryboardScene {
   enum Main: StoryboardType {
     static let storyboardName = "Main"
 
+    static let fundsTransferTransactionViewController = SceneType<SafeAppUI.FundsTransferTransactionViewController>(storyboard: Main.self, identifier: "FundsTransferTransactionViewController")
+
     static let mainNavigationController = SceneType<SafeAppUI.TransparentNavigationController>(storyboard: Main.self, identifier: "MainNavigationController")
 
     static let mainViewController = SceneType<SafeAppUI.MainViewController>(storyboard: Main.self, identifier: "MainViewController")
