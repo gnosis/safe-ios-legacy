@@ -155,6 +155,11 @@ enum Asset {
     static let arrowTransaction = ImageAsset(name: "arrow_transaction")
     static let externalLink = ImageAsset(name: "external_link")
   }
+  enum TransactionEdit {
+    static let scanQrCopy = ImageAsset(name: "scan_qr_copy")
+    static let shape = ImageAsset(name: "shape")
+    static let `switch` = ImageAsset(name: "switch")
+  }
   enum TransactionOverviewIcons {
     static let error = ImageAsset(name: "error")
     static let receive = ImageAsset(name: "receive")
@@ -276,6 +281,9 @@ enum Asset {
     touchIdIcon,
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,
+    TransactionEdit.scanQrCopy,
+    TransactionEdit.shape,
+    TransactionEdit.`switch`,
     TransactionOverviewIcons.error,
     TransactionOverviewIcons.receive,
     TransactionOverviewIcons.sent,
