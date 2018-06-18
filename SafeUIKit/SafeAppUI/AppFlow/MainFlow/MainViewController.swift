@@ -22,6 +22,7 @@ public class MainViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        totalBalanceLabel.accessibilityIdentifier = "main.label.balance"
         stylize(button: receiveButton)
         stylize(button: sendButton)
     }

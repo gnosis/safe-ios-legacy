@@ -30,7 +30,7 @@ class PendingSafeScreenUITests: UITestCase {
         XCTAssertEqual(pendingScreen.progressView.value as? String, "50%")
         waitUntilDeploymentAcceptedByBlockchainStatus()
         XCTAssertEqual(pendingScreen.progressView.value as? String, "80%")
-        waitUntil(mainScreen.addressLabel, .exists)
+        waitUntil(mainScreen.isDisplayed, timeout: 15)
         restartTheApp()
         XCTAssertTrue(mainScreen.isDisplayed)
     }
@@ -42,7 +42,7 @@ class PendingSafeScreenUITests: UITestCase {
         defer { removeUIInterruptionMonitor(alertMonitor) }
         pendingScreen.cancel.tap()
         handleAlert()
-        waitUntil(mainScreen.addressLabel, .exists)
+        waitUntil(mainScreen.isDisplayed, timeout: 15)
     }
 
     // NS-202
@@ -55,7 +55,7 @@ class PendingSafeScreenUITests: UITestCase {
         waitUntil(newSafeScreen.isDisplayed)
         restartTheApp()
         newSafeScreen.next.tap()
-        waitUntil(mainScreen.addressLabel, .exists)
+        waitUntil(mainScreen.isDisplayed, timeout: 15)
     }
 
     // NS-204
@@ -72,7 +72,7 @@ class PendingSafeScreenUITests: UITestCase {
         defer { removeUIInterruptionMonitor(alertMonitor) }
         pendingScreen.cancel.tap()
         handleAlert()
-        waitUntil(mainScreen.addressLabel, .exists)
+        waitUntil(mainScreen.isDisplayed, timeout: 15)
     }
 
     // NS-205
@@ -93,7 +93,7 @@ class PendingSafeScreenUITests: UITestCase {
         XCTAssertFalse(pendingScreen.cancel.isEnabled)
         XCTAssertTrue(pendingScreen.status.label == LocalizedString("pending_safe.status.account_funded"))
         restartTheApp(serverResponseDelay: 0.1)
-        waitUntil(mainScreen.addressLabel, .exists)
+        waitUntil(mainScreen.isDisplayed)
     }
 
 }
