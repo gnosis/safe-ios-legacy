@@ -7,8 +7,7 @@ import XCTest
 
 class MainScreen {
 
-    var isDisplayed: Bool { return addressLabel.exists }
-    var addressLabel: XCUIElement { return XCUIApplication().staticTexts[LocalizedString("main.label.address")] }
-    var balanceLabel: XCUIElement { return XCUIApplication().staticTexts[LocalizedString("main.label.balance")] }
+    var isDisplayed: Bool { return balanceLabel.exists }
+    var balanceLabel: XCUIElement { return XCUIApplication().staticTexts["main.label.balance"] }
 
 }
