@@ -23,6 +23,10 @@
 		0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1A207D019800921FB9 /* libIdentityAccessImplementations.a */; };
 		0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */; };
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
+		0A5D2F2120D7A94A009E9918 /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A12F17120D01E4E0039B3E1 /* BigInt.framework */; };
+		0A5D2F2220D7A94A009E9918 /* BigInt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A12F17120D01E4E0039B3E1 /* BigInt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A5D2F2520D7A94A009E9918 /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A12F17320D01E4E0039B3E1 /* SipHash.framework */; };
+		0A5D2F2620D7A94A009E9918 /* SipHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A12F17320D01E4E0039B3E1 /* SipHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC58A209CA2E500BA7A06 /* libCommon.a */; };
 		0A8E3BE720B41D3F00F002F6 /* libCommonImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8E3BE620B41D3F00F002F6 /* libCommonImplementations.a */; };
 		0A8E3BF620B41E7100F002F6 /* libCommonImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8E3BF520B41E7100F002F6 /* libCommonImplementations.a */; };
@@ -218,6 +222,20 @@
 			remoteGlobalIDString = 0A57F71B207E430F00AF407D;
 			remoteInfo = EthereumKit;
 		};
+		0A5D2F2320D7A94A009E9918 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B0EA820CE5EF800424CEE;
+			remoteInfo = BigInt;
+		};
+		0A5D2F2720D7A94A009E9918 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B0EC220CE66EB00424CEE;
+			remoteInfo = SipHash;
+		};
 		0ABCA96F207E560500E2C193 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
@@ -298,12 +316,14 @@
 			dstSubfolderSpec = 10;
 			files = (
 				555B0E8820CAD3CB00424CEE /* CryptoEthereumSwift.framework in Embed Frameworks */,
+				0A5D2F2220D7A94A009E9918 /* BigInt.framework in Embed Frameworks */,
 				0AD8FD4120CEC53700591B91 /* BlockiesSwift.framework in Embed Frameworks */,
 				0A160B8620A07C7300E064E1 /* SafeAppUI.framework in Embed Frameworks */,
 				5527A7FD208DE9D500AF3A50 /* RSBarcodes.framework in Embed Frameworks */,
 				0ABCA975207E560B00E2C193 /* CryptoSwift.framework in Embed Frameworks */,
 				0ABCA976207E560B00E2C193 /* EthereumKit.framework in Embed Frameworks */,
 				0A160B8920A07CC200E064E1 /* SafeUIKit.framework in Embed Frameworks */,
+				0A5D2F2620D7A94A009E9918 /* SipHash.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,10 +426,12 @@
 				0A8E3C0B20B42C2100F002F6 /* libMultisigWalletImplementations.a in Frameworks */,
 				0A8E3BE720B41D3F00F002F6 /* libCommonImplementations.a in Frameworks */,
 				0AEF8A3D20A08262006A1265 /* libDatabase.a in Frameworks */,
+				0A5D2F2520D7A94A009E9918 /* SipHash.framework in Frameworks */,
 				555B0E8720CAD3CB00424CEE /* CryptoEthereumSwift.framework in Frameworks */,
 				0A160B8520A07C6300E064E1 /* SafeAppUI.framework in Frameworks */,
 				0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */,
 				0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
+				0A5D2F2120D7A94A009E9918 /* BigInt.framework in Frameworks */,
 				0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */,
 				5527A7FC208DE9D500AF3A50 /* RSBarcodes.framework in Frameworks */,
 				0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */,
@@ -709,6 +731,8 @@
 				0A160B8B20A07CC200E064E1 /* PBXTargetDependency */,
 				555B0E8A20CAD3CB00424CEE /* PBXTargetDependency */,
 				0AD8FD4320CEC53700591B91 /* PBXTargetDependency */,
+				0A5D2F2420D7A94A009E9918 /* PBXTargetDependency */,
+				0A5D2F2820D7A94A009E9918 /* PBXTargetDependency */,
 			);
 			name = safe;
 			productName = safe;
@@ -1156,6 +1180,16 @@
 			isa = PBXTargetDependency;
 			name = EthereumKit;
 			targetProxy = 0A467040207E596700F55ADE /* PBXContainerItemProxy */;
+		};
+		0A5D2F2420D7A94A009E9918 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BigInt;
+			targetProxy = 0A5D2F2320D7A94A009E9918 /* PBXContainerItemProxy */;
+		};
+		0A5D2F2820D7A94A009E9918 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SipHash;
+			targetProxy = 0A5D2F2720D7A94A009E9918 /* PBXContainerItemProxy */;
 		};
 		0AD8FD4320CEC53700591B91 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

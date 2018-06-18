@@ -100,6 +100,12 @@
 		0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */; };
 		0A59E90220AAE24A0090E89C /* TestFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */; };
 		0A59E91E20AB15E30090E89C /* libEthereumApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A59E91D20AB15E30090E89C /* libEthereumApplication.a */; };
+		0A5D2F1320D7A8E5009E9918 /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0ECF20CE678700424CEE /* SipHash.framework */; };
+		0A5D2F1420D7A8E5009E9918 /* SipHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0ECF20CE678700424CEE /* SipHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A5D2F1720D7A8FE009E9918 /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0EBA20CE62C400424CEE /* BigInt.framework */; };
+		0A5D2F1820D7A8FE009E9918 /* BigInt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0EBA20CE62C400424CEE /* BigInt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A5D2F1B20D7A915009E9918 /* BlockiesSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; };
+		0A5D2F1C20D7A915009E9918 /* BlockiesSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A5D467520AD6D8200AC287E /* UIAlertController+Testable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467420AD6D8200AC287E /* UIAlertController+Testable.swift */; };
 		0A5D467B20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467A20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift */; };
 		0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */; };
@@ -177,6 +183,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0A5D2F1520D7A8E5009E9918 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B0EC220CE66EB00424CEE;
+			remoteInfo = SipHash;
+		};
+		0A5D2F1920D7A8FE009E9918 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B0EA820CE5EF800424CEE;
+			remoteInfo = BigInt;
+		};
+		0A5D2F1D20D7A915009E9918 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0AD8FD1F20CEC4BA00591B91;
+			remoteInfo = BlockiesSwift;
+		};
 		0A96708F20480C3F00445AC2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A96707020480C1200445AC2 /* Project object */;
@@ -324,8 +351,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0A5D2F1C20D7A915009E9918 /* BlockiesSwift.framework in Embed Frameworks */,
 				5527A7F6208DE8B700AF3A50 /* RSBarcodes.framework in Embed Frameworks */,
+				0A5D2F1420D7A8E5009E9918 /* SipHash.framework in Embed Frameworks */,
 				0A9670C820480C5700445AC2 /* SafeUIKit.framework in Embed Frameworks */,
+				0A5D2F1820D7A8FE009E9918 /* BigInt.framework in Embed Frameworks */,
 				0AF33D4B209C6BF800527D25 /* SafeAppUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -508,8 +538,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A5D2F1B20D7A915009E9918 /* BlockiesSwift.framework in Frameworks */,
 				5527A7F5208DE8B700AF3A50 /* RSBarcodes.framework in Frameworks */,
+				0A5D2F1320D7A8E5009E9918 /* SipHash.framework in Frameworks */,
 				0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */,
+				0A5D2F1720D7A8FE009E9918 /* BigInt.framework in Frameworks */,
 				0AF33D4A209C6BF800527D25 /* SafeAppUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -968,6 +1001,9 @@
 				0A9670C620480C5700445AC2 /* PBXTargetDependency */,
 				5527A7F8208DE8B700AF3A50 /* PBXTargetDependency */,
 				0AF33D49209C6BF800527D25 /* PBXTargetDependency */,
+				0A5D2F1620D7A8E5009E9918 /* PBXTargetDependency */,
+				0A5D2F1A20D7A8FE009E9918 /* PBXTargetDependency */,
+				0A5D2F1E20D7A915009E9918 /* PBXTargetDependency */,
 			);
 			name = SafeUIKitDemo;
 			productName = SafeUIKitDemo;
@@ -1518,6 +1554,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0A5D2F1620D7A8E5009E9918 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SipHash;
+			targetProxy = 0A5D2F1520D7A8E5009E9918 /* PBXContainerItemProxy */;
+		};
+		0A5D2F1A20D7A8FE009E9918 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BigInt;
+			targetProxy = 0A5D2F1920D7A8FE009E9918 /* PBXContainerItemProxy */;
+		};
+		0A5D2F1E20D7A915009E9918 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BlockiesSwift;
+			targetProxy = 0A5D2F1D20D7A915009E9918 /* PBXContainerItemProxy */;
+		};
 		0A96709020480C3F00445AC2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0A96707920480C3E00445AC2 /* SafeUIKitDemo */;
