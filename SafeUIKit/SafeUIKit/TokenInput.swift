@@ -46,20 +46,26 @@ public class TokenInput: UIView {
     /// - Parameters:
     ///   - value: Initital BigInt value
     ///   - decimals: Decimals of a ERC20 Token. https://theethereum.wiki/w/index.php/ERC20_Token_Standard
-    ///   - fiatConversionRate: Optional token to fiat conversion rate. If used should always go in pair
-    ///     with 'locale' parameter.
-    ///   - locale: Optional locale fot proper fiat currency formatting. If used should always go in pair
-    ///     with 'fiatConversionRate' parameter.
-    public func setUp(value: BigInt, decimals: Int, fiatConversionRate: Double? = nil, locale: Locale? = nil) {
+    ///   - fiatConversionRate: Token to fiat conversion rate.
+    ///   - locale: Locale fot proper fiat currency formatting.
+    public func setUp(value: BigInt, decimals: Int, fiatConversionRate: Double, locale: Locale) {
+        self.fiatConversionRate = fiatConversionRate
+        self.locale = locale
+        setUp(value: value, decimals: decimals)
+    }
+
+    /// Configut TokenInput. Call this method before component usage.
+    ///
+    /// - Parameters:
+    ///   - value: Initital BigInt value
+    ///   - decimals: Decimals of a ERC20 Token. https://theethereum.wiki/w/index.php/ERC20_Token_Standard
+    public func setUp(value: BigInt, decimals: Int) {
         // maximum possible value of token is 2^256 - 1
         // String(2^256 - 1).count == 78
         precondition(decimals >= 0 && decimals <= maxDecimals)
         precondition(value >= 0 && value <= _2_pow_256_minus_1)
-        precondition((fiatConversionRate == nil && locale == nil) || (fiatConversionRate != nil && locale != nil))
         self.decimals = decimals
         self.value = value
-        self.fiatConversionRate = fiatConversionRate
-        self.locale = locale
         updateUIOnInitialLoad()
     }
 
