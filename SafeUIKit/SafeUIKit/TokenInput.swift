@@ -32,14 +32,17 @@ public class TokenInput: UIView {
         }
     }
 
-    let _2_pow_256_minus_1 = BigInt("115792089237316195423570985008687907853269984665640564039457584007913129639935")!
-    let maxDecimals = 78
+    struct Bounds {
+        static let maxTokenValue = BigInt(2).power(256) - 1
+        static let minTokenValue = BigInt(0)
+        static let maxDecimalCount = String(maxTokenValue).count
+        static let minDecimalCount = 0
+    }
 
     enum Field: Int {
         case integer
         case fractional
     }
-
 
     /// Configut TokenInput. Call this method before component usage.
     ///
@@ -60,10 +63,8 @@ public class TokenInput: UIView {
     ///   - value: Initital BigInt value
     ///   - decimals: Decimals of a ERC20 Token. https://theethereum.wiki/w/index.php/ERC20_Token_Standard
     public func setUp(value: BigInt, decimals: Int) {
-        // maximum possible value of token is 2^256 - 1
-        // String(2^256 - 1).count == 78
-        precondition(decimals >= 0 && decimals <= maxDecimals)
-        precondition(value >= 0 && value <= _2_pow_256_minus_1)
+        precondition(decimals >= Bounds.minDecimalCount && decimals <= Bounds.maxDecimalCount)
+        precondition(value >= Bounds.minTokenValue && value <= Bounds.maxTokenValue)
         self.decimals = decimals
         self.value = value
         updateUIOnInitialLoad()
@@ -84,7 +85,7 @@ public class TokenInput: UIView {
         fractionalTextField.isEnabled = true
         if decimals == 0 {
             fractionalTextField.isEnabled = false
-        } else if decimals == maxDecimals {
+        } else if decimals == Bounds.maxDecimalCount {
             integerTextField.isEnabled = false
         }
         fiatValueLabel.text = approximateFiatValue(for: value)
@@ -99,23 +100,15 @@ public class TokenInput: UIView {
     }
 
     private func normalizedFractionalStringForUI(_ initialString: String) -> String {
-        var fractionalStr = initialString
-        while fractionalStr.last == "0" {
-            fractionalStr.removeLast()
-        }
-        return fractionalStr
+        return initialString.removingTrailingZeroes
     }
 
     private func normalizedFractionalStringForValue(_ initialString: String) -> String {
-        return initialString + String(repeating: "0", count: decimals - initialString.count)
+        return initialString.paddingWithTrailingZeroes(to: decimals)
     }
 
     private func normalizedIntegerStringForValue(_ initialString: String) -> String {
-        var normalizedString = initialString.replacingOccurrences(of: decimalSeparator, with: "")
-        while normalizedString.first == "0" {
-            normalizedString.removeFirst()
-        }
-        return normalizedString
+        return initialString.removingDecimalSeparator.removingLeadingZeroes
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -154,6 +147,35 @@ public class TokenInput: UIView {
 
 }
 
+fileprivate extension String {
+
+    var removingTrailingZeroes: String {
+        var result = self
+        while result.last == "0" {
+            result.removeLast()
+        }
+        return result
+    }
+
+    var removingLeadingZeroes: String {
+        var result = self
+        while result.first == "0" {
+            result.removeFirst()
+        }
+        return result
+    }
+
+    var removingDecimalSeparator: String {
+        guard let decimalSeparator = Locale.current.decimalSeparator else { return self }
+        return self.replacingOccurrences(of: decimalSeparator, with: "")
+    }
+
+    func paddingWithTrailingZeroes(to width: Int) -> String {
+        return self + String(repeating: "0", count: width - self.count)
+    }
+
+}
+
 extension TokenInput: UITextFieldDelegate {
 
     public func textField(_ textField: UITextField,
@@ -184,7 +206,7 @@ extension TokenInput: UITextFieldDelegate {
 
         // validate on maximum allowed value
         guard let newExpectedValue = BigInt(expectedFullValueString),
-            newExpectedValue >= 0 && newExpectedValue <= _2_pow_256_minus_1 else {
+            newExpectedValue >= 0 && newExpectedValue <= Bounds.maxTokenValue else {
             return false
         }
 
