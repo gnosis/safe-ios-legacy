@@ -6,6 +6,5 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     bundle exec fastlane fabric
   fi
 else
-    bundle exec fastlane fabric
-  #bundle exec fastlane test
+  bundle exec fastlane test
 fi
