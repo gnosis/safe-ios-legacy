@@ -13,9 +13,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TokenInput" customModule="SafeUIKit" customModuleProvider="target">
             <connections>
-                <outlet property="currencyValueLabel" destination="gIa-9X-3Yh" id="0Cs-7B-VXf"/>
-                <outlet property="fractionalPartTextField" destination="jsc-aV-3bw" id="Llt-gq-wDD"/>
-                <outlet property="integerPartTextField" destination="9ne-Qp-HlL" id="Zyh-Og-XmW"/>
+                <outlet property="fiatValueLabel" destination="gIa-9X-3Yh" id="0Cs-7B-VXf"/>
+                <outlet property="fractionalTextField" destination="jsc-aV-3bw" id="Llt-gq-wDD"/>
+                <outlet property="integerTextField" destination="9ne-Qp-HlL" id="Zyh-Og-XmW"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -30,7 +30,7 @@
                     </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="000" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jsc-aV-3bw">
                     <rect key="frame" x="163" y="8" width="220" height="30"/>
@@ -39,7 +39,7 @@
                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="~ 200.43 USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIa-9X-3Yh">
-                    <rect key="frame" x="291" y="46" width="92" height="42"/>
+                    <rect key="frame" x="20" y="46" width="363" height="42"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -47,6 +47,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="gIa-9X-3Yh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="JIk-T9-XEP"/>
                 <constraint firstItem="9ne-Qp-HlL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="PnT-sw-W94"/>
                 <constraint firstItem="gIa-9X-3Yh" firstAttribute="top" secondItem="jsc-aV-3bw" secondAttribute="bottom" constant="8" id="dzB-10-I4w"/>
                 <constraint firstItem="gIa-9X-3Yh" firstAttribute="trailing" secondItem="jsc-aV-3bw" secondAttribute="trailing" id="ilY-Wl-d4y"/>

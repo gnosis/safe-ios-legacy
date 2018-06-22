@@ -172,6 +172,9 @@
 		0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */; };
 		0AF8D53920D00E56001E8423 /* TransactionsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53820D00E56001E8423 /* TransactionsTableViewControllerTests.swift */; };
 		0AF8D55720D01A90001E8423 /* TokensTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */; };
+		5506395C20D17CAD000F2A82 /* ApproximateCurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395720D17CAC000F2A82 /* ApproximateCurrencyFormatter.swift */; };
+		5506395E20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395D20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift */; };
+		5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395F20D17CDB000F2A82 /* Double+BigInt.swift */; };
 		55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BC2209313F800297D1C /* UIDevice+Extensions.swift */; };
 		550954EA20C9590000F5F25F /* TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954E920C9590000F5F25F /* TokenInput.swift */; };
 		550954EE20C9592900F5F25F /* TokenInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954ED20C9592900F5F25F /* TokenInputTests.swift */; };
@@ -544,6 +547,9 @@
 		0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestSegmentBarNib.xib; sourceTree = "<group>"; };
 		0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBarControllerTests.swift; sourceTree = "<group>"; };
 		0AF8D53820D00E56001E8423 /* TransactionsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewControllerTests.swift; sourceTree = "<group>"; };
+		5506395720D17CAC000F2A82 /* ApproximateCurrencyFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproximateCurrencyFormatter.swift; sourceTree = "<group>"; };
+		5506395D20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproximateCurrencyFormatterTests.swift; sourceTree = "<group>"; };
+		5506395F20D17CDB000F2A82 /* Double+BigInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+BigInt.swift"; sourceTree = "<group>"; };
 		55071BC2209313F800297D1C /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		550954E920C9590000F5F25F /* TokenInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInput.swift; sourceTree = "<group>"; };
 		550954ED20C9592900F5F25F /* TokenInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInputTests.swift; sourceTree = "<group>"; };
@@ -872,12 +878,15 @@
 		0A9670B320480C5700445AC2 /* SafeUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				5506395720D17CAC000F2A82 /* ApproximateCurrencyFormatter.swift */,
+				5506395D20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift */,
 				558FD80920765C53004F070E /* BigButton.swift */,
 				0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */,
 				0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */,
 				556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */,
 				556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */,
 				0A9670CF20480C7A00445AC2 /* Colors.txt */,
+				5506395F20D17CDB000F2A82 /* Double+BigInt.swift */,
 				0A9670D220480C7B00445AC2 /* Fonts.swift */,
 				0A9670D920480C7B00445AC2 /* generated */,
 				0A7AE8BE205284180044D5DD /* H1Label.swift */,
@@ -1480,6 +1489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */,
 				0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */,
 				0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */,
 				0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */,
@@ -1494,6 +1504,7 @@
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
 				550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */,
 				558FD80A20765C53004F070E /* BigButton.swift in Sources */,
+				5506395C20D17CAD000F2A82 /* ApproximateCurrencyFormatter.swift in Sources */,
 				55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1504,6 +1515,7 @@
 			files = (
 				0AD93E0820481442008C38CA /* TextInputTests.swift in Sources */,
 				0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */,
+				5506395E20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift in Sources */,
 				0A9BA3C9207F6B6A001DC22F /* BigButtonTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
 				550954EE20C9592900F5F25F /* TokenInputTests.swift in Sources */,
