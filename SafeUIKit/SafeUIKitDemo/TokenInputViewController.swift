@@ -28,7 +28,7 @@ class TokenInputViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tokenInput.setUp(value: 0, decimals: 5, fiatConvertionRate: 0.1, locale: Locale.current)
+        tokenInput.setUp(value: 0, decimals: 5, fiatConversionRate: 0.1, locale: Locale.current)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
@@ -38,7 +38,7 @@ class TokenInputViewController: UIViewController {
     }
 
     private func setup(decimals: Int) {
-        tokenInput.setUp(value: 0, decimals: decimals, fiatConvertionRate: 0.1, locale: Locale.current)
+        tokenInput.setUp(value: 0, decimals: decimals, fiatConversionRate: 0.1, locale: Locale.current)
     }
 
 }

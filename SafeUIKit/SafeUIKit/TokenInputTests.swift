@@ -22,7 +22,7 @@ class TokenInputTests: XCTestCase {
         XCTAssertNotNil(tokenInput.fractionalTextField)
         XCTAssertEqual(tokenInput.decimals, 18)
         XCTAssertEqual(tokenInput.value, 0)
-        XCTAssertNil(tokenInput.fiatConvertionRate)
+        XCTAssertNil(tokenInput.fiatConversionRate)
         XCTAssertNil(tokenInput.locale)
         XCTAssertEqual(tokenInput.integerTextField.keyboardType, .decimalPad)
         XCTAssertEqual(tokenInput.fractionalTextField.keyboardType, .numberPad)
@@ -177,21 +177,21 @@ class TokenInputTests: XCTestCase {
         XCTAssertEqual(tokenInput.fiatValueLabel.text, "")
     }
 
-    func test_whenFiatConvertionRateIsKnown_thenDisplaysItAfterSetup() {
-        tokenInput.setUp(value: 1_000, decimals: 3, fiatConvertionRate: 0.1, locale: germanLocale)
-        XCTAssertEqual(tokenInput.fiatConvertionRate, 0.1)
+    func test_whenfiatConversionRateIsKnown_thenDisplaysItAfterSetup() {
+        tokenInput.setUp(value: 1_000, decimals: 3, fiatConversionRate: 0.1, locale: germanLocale)
+        XCTAssertEqual(tokenInput.fiatConversionRate, 0.1)
         XCTAssertEqual(tokenInput.locale, germanLocale)
         assertFormatting("0,10")
 
-        tokenInput.setUp(value: 0, decimals: 3, fiatConvertionRate: 0.1, locale: germanLocale)
+        tokenInput.setUp(value: 0, decimals: 3, fiatConversionRate: 0.1, locale: germanLocale)
         assertFormatting("")
 
-        tokenInput.setUp(value: 10_000_015, decimals: 3, fiatConvertionRate: 0.1, locale: germanLocale)
+        tokenInput.setUp(value: 10_000_015, decimals: 3, fiatConversionRate: 0.1, locale: germanLocale)
         assertFormatting("1.000,00")
     }
 
     func test_whenTyping_thenFiatValueIsUpdated() {
-        tokenInput.setUp(value: 0, decimals: 3, fiatConvertionRate: 0.1, locale: germanLocale)
+        tokenInput.setUp(value: 0, decimals: 3, fiatConversionRate: 0.1, locale: germanLocale)
         tokenInput.canType("1", field: .integer)
         assertFormatting("0,10")
         tokenInput.endEditing(finalValue: "1", field: .integer)
@@ -204,7 +204,7 @@ class TokenInputTests: XCTestCase {
 
     func test_whenTypingDecimalSeparatorInIntegerInput_thenSwitchesToFractionalPart() {
         addToWindow(tokenInput)
-        tokenInput.setUp(value: 0, decimals: 3, fiatConvertionRate: 1, locale: germanLocale)
+        tokenInput.setUp(value: 0, decimals: 3, fiatConversionRate: 1, locale: germanLocale)
         _ = tokenInput.integerTextField.becomeFirstResponder()
         tokenInput.canType("1", field: .integer)
         tokenInput.endEditing(finalValue: "1", field: .integer)

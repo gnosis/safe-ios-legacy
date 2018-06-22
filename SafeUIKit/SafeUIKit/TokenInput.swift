@@ -8,7 +8,7 @@ import BigInt
 
 /// Token Input component contains separate inputs for integer and fractional part of a Token.
 /// - It validates user inputs taking into account decimal part of a Token and maximum possible value.
-/// - Call setup(value:decimals:fiatConvertionRate:locale) before usage.
+/// - Call setup(value:decimals:fiatConversionRate:locale) before usage.
 /// - Needs BigInt as a dependency.
 public class TokenInput: UIView {
 
@@ -21,7 +21,7 @@ public class TokenInput: UIView {
 
     public private(set) var decimals: Int = 18
     public private(set) var value: BigInt = 0
-    public private(set) var fiatConvertionRate: Double?
+    public private(set) var fiatConversionRate: Double?
     public private(set) var locale: Locale? {
         didSet {
             guard let locale = locale else {
@@ -41,24 +41,24 @@ public class TokenInput: UIView {
     }
 
 
-    /// Configut TokenInput. Call this method before compont usage.
+    /// Configut TokenInput. Call this method before component usage.
     ///
     /// - Parameters:
     ///   - value: Initital BigInt value
     ///   - decimals: Decimals of a ERC20 Token. https://theethereum.wiki/w/index.php/ERC20_Token_Standard
-    ///   - fiatConvertionRate: Optional token to fiat convertion rate. If used should always go in pair
+    ///   - fiatConversionRate: Optional token to fiat conversion rate. If used should always go in pair
     ///     with 'locale' parameter.
     ///   - locale: Optional locale fot proper fiat currency formatting. If used should always go in pair
-    ///     with 'fiatConvertionRate' parameter.
-    public func setUp(value: BigInt, decimals: Int, fiatConvertionRate: Double? = nil, locale: Locale? = nil) {
+    ///     with 'fiatConversionRate' parameter.
+    public func setUp(value: BigInt, decimals: Int, fiatConversionRate: Double? = nil, locale: Locale? = nil) {
         // maximum possible value of token is 2^256 - 1
         // String(2^256 - 1).count == 78
         precondition(decimals >= 0 && decimals <= maxDecimals)
         precondition(value >= 0 && value <= _2_pow_256_minus_1)
-        precondition((fiatConvertionRate == nil && locale == nil) || (fiatConvertionRate != nil && locale != nil))
+        precondition((fiatConversionRate == nil && locale == nil) || (fiatConversionRate != nil && locale != nil))
         self.decimals = decimals
         self.value = value
-        self.fiatConvertionRate = fiatConvertionRate
+        self.fiatConversionRate = fiatConversionRate
         self.locale = locale
         updateUIOnInitialLoad()
     }
@@ -85,10 +85,10 @@ public class TokenInput: UIView {
     }
 
     private func approximateFiatValue(for value: BigInt) -> String {
-        guard let fiatConvertionRate = fiatConvertionRate,
+        guard let fiatConversionRate = fiatConversionRate,
             let approximateCurrencyFormatter = approximateCurrencyFormatter,
             let doubleValue = Double.value(from: value, decimals: decimals) else { return "" }
-        let fiatValue = doubleValue * fiatConvertionRate
+        let fiatValue = doubleValue * fiatConversionRate
         return approximateCurrencyFormatter.string(from: fiatValue)
     }
 
