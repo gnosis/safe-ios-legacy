@@ -2,24 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:README.md">
-   </FileRef>
-   <FileRef
-      location = "group:CHANGELOG.rst">
-   </FileRef>
-   <FileRef
-      location = "group:LICENSE">
-   </FileRef>
-   <FileRef
-      location = "group:fastlane">
-   </FileRef>
-   <FileRef
-      location = "group:docs">
-   </FileRef>
-   <FileRef
-      location = "group:scripts">
-   </FileRef>
-   <FileRef
       location = "group:Library/Library.xcodeproj">
    </FileRef>
    <FileRef
@@ -39,8 +21,5 @@
    </FileRef>
    <FileRef
       location = "group:safe/safe.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:safePlayground-ios.playground">
    </FileRef>
 </Workspace>
