@@ -33,10 +33,21 @@ public class TokenInput: UIView {
     }
 
     struct Bounds {
+
         static let maxTokenValue = BigInt(2).power(256) - 1
         static let minTokenValue = BigInt(0)
-        static let maxDecimalCount = String(maxTokenValue).count
-        static let minDecimalCount = 0
+
+        static let maxDigitsCount = String(maxTokenValue).count
+        static let minDigitsCount = 0
+
+        static func isWithinBounds(value: BigInt) -> Bool {
+            return value >= Bounds.minTokenValue && value <= Bounds.maxTokenValue
+        }
+
+        static func hasCorrectDigitCount(_ value: Int) -> Bool {
+            return value >= Bounds.minDigitsCount && value <= Bounds.maxDigitsCount
+        }
+
     }
 
     enum Field: Int {
@@ -63,8 +74,8 @@ public class TokenInput: UIView {
     ///   - value: Initital BigInt value
     ///   - decimals: Decimals of a ERC20 Token. https://theethereum.wiki/w/index.php/ERC20_Token_Standard
     public func setUp(value: BigInt, decimals: Int) {
-        precondition(decimals >= Bounds.minDecimalCount && decimals <= Bounds.maxDecimalCount)
-        precondition(value >= Bounds.minTokenValue && value <= Bounds.maxTokenValue)
+        precondition(Bounds.hasCorrectDigitCount(decimals))
+        precondition(Bounds.isWithinBounds(value: value))
         self.decimals = decimals
         self.value = value
         updateUIOnInitialLoad()
@@ -74,18 +85,18 @@ public class TokenInput: UIView {
         let str = String(value)
         if str.count <= decimals {
             integerTextField.text = ""
-            fractionalTextField.text = normalizedFractionalStringForUI(
+            fractionalTextField.text = bigIntFractionalPartStringToUIText(
                 String(repeating: "0", count: decimals - str.count) + str)
         } else {
             integerTextField.text = String(str.prefix(str.count - decimals)) + decimalSeparator
-            fractionalTextField.text = normalizedFractionalStringForUI(String(str.suffix(decimals)))
+            fractionalTextField.text = bigIntFractionalPartStringToUIText(String(str.suffix(decimals)))
         }
 
         integerTextField.isEnabled = true
         fractionalTextField.isEnabled = true
         if decimals == 0 {
             fractionalTextField.isEnabled = false
-        } else if decimals == Bounds.maxDecimalCount {
+        } else if decimals == Bounds.maxDigitsCount {
             integerTextField.isEnabled = false
         }
         fiatValueLabel.text = approximateFiatValue(for: value)
@@ -99,16 +110,16 @@ public class TokenInput: UIView {
         return approximateCurrencyFormatter.string(from: fiatValue)
     }
 
-    private func normalizedFractionalStringForUI(_ initialString: String) -> String {
-        return initialString.removingTrailingZeroes
+    private func bigIntFractionalPartStringToUIText(_ fractionalPart: String) -> String {
+        return fractionalPart.removingTrailingZeroes
     }
 
-    private func normalizedFractionalStringForValue(_ initialString: String) -> String {
-        return initialString.paddingWithTrailingZeroes(to: decimals)
+    private func uiTextToBigIntFractionalPartString(_ fractionalPart: String) -> String {
+        return fractionalPart.paddingWithTrailingZeroes(to: decimals)
     }
 
-    private func normalizedIntegerStringForValue(_ initialString: String) -> String {
-        return initialString.removingDecimalSeparator.removingLeadingZeroes
+    private func uiTextToBigIntIntegerPartString(_ integerPart: String) -> String {
+        return integerPart.removingDecimalSeparator.removingLeadingZeroes
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -132,7 +143,6 @@ public class TokenInput: UIView {
         fractionalTextField.tag = Field.fractional.rawValue
         updateUIOnInitialLoad()
     }
-
 
     /// If integer or fractional text field is first responder.
     public override var isFirstResponder: Bool {
@@ -174,85 +184,102 @@ fileprivate extension String {
         return self + String(repeating: "0", count: width - self.count)
     }
 
+    var hasNonDecimalDigitCharacters: Bool {
+        return rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) != nil
+    }
+
+}
+
+fileprivate extension UITextField {
+
+    var isIntegerField: Bool {
+        return tag == TokenInput.Field.integer.rawValue
+    }
+
+    var isFractionalField: Bool {
+        return tag == TokenInput.Field.fractional.rawValue
+    }
+
+    var nonNilText: String {
+        return text ?? ""
+    }
 }
 
 extension TokenInput: UITextFieldDelegate {
 
     public func textField(_ textField: UITextField,
-                          shouldChangeCharactersIn range: NSRange,
-                          replacementString string: String) -> Bool {
+                          shouldChangeCharactersIn rangeToReplace: NSRange,
+                          replacementString enteredString: String) -> Bool {
+        let updatedText = (textField.nonNilText as NSString)
+            .replacingCharacters(in: rangeToReplace, with: enteredString)
 
-        // decimal separator pressed in integer field
-        if textField.tag == Field.integer.rawValue && string == decimalSeparator {
+        guard updatedText.count <= Bounds.maxDigitsCount else {
+            return false
+        }
+
+        if textField.isIntegerField && enteredString == decimalSeparator {
             fractionalTextField.becomeFirstResponder()
             return false
         }
 
-        // trying to add to the beginning of integer part
-        if textField.tag == Field.integer.rawValue && range.upperBound == 0 {
-            guard Double(string) != 0 else { return false }
-        }
-
-        // allow only digits
-        guard CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) else {
+        guard !enteredString.hasNonDecimalDigitCharacters else {
             return false
         }
 
-        // calculate resulting value string
-        guard let expectedFullValueString =
-            expectedValueString(textField: textField, range: range, replacementString: string) else {
-                return false
-        }
-
-        // validate on maximum allowed value
-        guard let newExpectedValue = BigInt(expectedFullValueString),
-            newExpectedValue >= 0 && newExpectedValue <= Bounds.maxTokenValue else {
+        let isEnteringToBeginning = rangeToReplace.upperBound == 0
+        if textField.isIntegerField && isEnteringToBeginning && Double(enteredString) == 0 {
             return false
         }
 
-        // update fiat value label
-        fiatValueLabel.text = approximateFiatValue(for: newExpectedValue)
+        if textField.isFractionalField && updatedText.count > decimals {
+            return false
+        }
+
+        guard let bigIntValue = validBigIntValue(from: textField, updatedText: updatedText) else {
+            return false
+        }
+
+        fiatValueLabel.text = approximateFiatValue(for: bigIntValue)
 
         return true
     }
 
-    private func expectedValueString(textField: UITextField, range: NSRange, replacementString: String) -> String? {
-        let currentText = textField.text ?? ""
-        guard let stringRange = Range(range, in: currentText) else { return nil }
-        let updatedText = currentText.replacingCharacters(in: stringRange, with: replacementString)
-            .replacingOccurrences(of: decimalSeparator, with: "")
+    private func validBigIntValue(from currentTextField: UITextField, updatedText: String) -> BigInt? {
+        let uiIntegerPart = currentTextField.isIntegerField ? updatedText : integerTextField.nonNilText
+        let uiFractionalPart = currentTextField.isFractionalField ? updatedText : fractionalTextField.nonNilText
+        return validBigIntValue(integerPart: uiIntegerPart, fractionalPart: uiFractionalPart)
+    }
 
-        var value: String
-        if textField.tag == Field.fractional.rawValue { // fractional part
-            guard updatedText.count <= decimals else { return nil }
-            value = normalizedIntegerStringForValue(integerTextField.text ?? "") +
-                normalizedFractionalStringForValue(updatedText)
-        } else { // integer part
-            let fractionalPartValue = fractionalTextField.text ?? ""
-            value = updatedText + normalizedFractionalStringForValue(fractionalPartValue)
+    private func validBigIntValue(integerPart: String, fractionalPart: String) -> BigInt? {
+        let bigIntStringValue = uiTextToBigIntIntegerPartString(integerPart) +
+                                uiTextToBigIntFractionalPartString(fractionalPart)
+        guard let result = BigInt(bigIntStringValue), Bounds.isWithinBounds(value: result) else {
+            return nil
         }
-        return value
+        return result
     }
 
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        textField.text = normalizedIntegerStringForValue(textField.text ?? "")
+        guard textField.isIntegerField else { return true }
+        textField.text = uiTextToBigIntIntegerPartString(textField.text ?? "")
         return true
     }
 
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        let expectedFullValueString = normalizedIntegerStringForValue(integerTextField.text ?? "") +
-            normalizedFractionalStringForValue(fractionalTextField.text ?? "")
-        guard let newValue = BigInt(expectedFullValueString), !expectedFullValueString.isEmpty else {
+        let bigIntValue = validBigIntValue(integerPart: integerTextField.nonNilText,
+                                           fractionalPart: fractionalTextField.nonNilText)
+        guard let newValue = bigIntValue else {
             value = 0
             return
         }
         value = newValue
 
-        guard let len = textField.text?.count, len > 0 else { return }
-        if textField.tag == Field.integer.rawValue {
-            textField.text = normalizedIntegerStringForValue(textField.text!) + decimalSeparator
+        guard !textField.nonNilText.isEmpty else { return }
+
+        if textField.isIntegerField {
+            textField.text = uiTextToBigIntIntegerPartString(textField.nonNilText) + decimalSeparator
         } else {
-            textField.text = normalizedFractionalStringForUI(textField.text!)
+            textField.text = bigIntFractionalPartStringToUIText(textField.nonNilText)
         }
     }
 

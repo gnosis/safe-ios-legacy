@@ -42,11 +42,11 @@ class TokenInputTests: XCTestCase {
         assertUI(1_000_100, 3, "1000.", "1")
         assertUI(1_000_100, 7, "", "10001")
         assertUI(TokenInput.Bounds.maxTokenValue,
-                 TokenInput.Bounds.minDecimalCount,
+                 TokenInput.Bounds.minDigitsCount,
                  "115792089237316195423570985008687907853269984665640564039457584007913129639935.",
                  "")
         assertUI(TokenInput.Bounds.maxTokenValue,
-                 TokenInput.Bounds.maxDecimalCount,
+                 TokenInput.Bounds.maxDigitsCount,
                  "",
                  "115792089237316195423570985008687907853269984665640564039457584007913129639935")
     }
@@ -61,12 +61,12 @@ class TokenInputTests: XCTestCase {
     }
 
     func test_whenNoDecimals_thenFractionalPartIsDisabled() {
-        assertUI(1, TokenInput.Bounds.minDecimalCount, "1.", "")
+        assertUI(1, TokenInput.Bounds.minDigitsCount, "1.", "")
         XCTAssertFalse(tokenInput.fractionalTextField.isEnabled)
     }
 
     func test_whenMaxDecimalsAllowed_thenIntegerPartIsDisabled() {
-        assertUI(0, TokenInput.Bounds.maxDecimalCount, "", "")
+        assertUI(0, TokenInput.Bounds.maxDigitsCount, "", "")
         XCTAssertFalse(tokenInput.integerTextField.isEnabled)
     }
 
@@ -82,7 +82,7 @@ class TokenInputTests: XCTestCase {
     }
 
     func test_whenTryingToTypeMoreThanAllowedValue_thenNotPossible() {
-        tokenInput.setUp(value: 0, decimals: TokenInput.Bounds.maxDecimalCount)
+        tokenInput.setUp(value: 0, decimals: TokenInput.Bounds.maxDigitsCount)
         XCTAssertTrue(tokenInput.canType(
             "115792089237316195423570985008687907853269984665640564039457584007913129639935",
             field: .fractional))
@@ -119,7 +119,7 @@ class TokenInputTests: XCTestCase {
         tokenInput.endEditing(finalValue: "1", field: .fractional)
         XCTAssertEqual(tokenInput.value, 1)
 
-        tokenInput.setUp(value: 0, decimals: TokenInput.Bounds.maxDecimalCount)
+        tokenInput.setUp(value: 0, decimals: TokenInput.Bounds.maxDigitsCount)
         tokenInput.endEditing(
             finalValue: "115792089237316195423570985008687907853269984665640564039457584007913129639935",
             field: .fractional)
@@ -157,6 +157,12 @@ class TokenInputTests: XCTestCase {
         XCTAssertEqual(tokenInput.integerTextField.text, "1.")
         tokenInput.beginEditing(field: .integer)
         XCTAssertEqual(tokenInput.integerTextField.text, "1")
+    }
+
+    func test_whenBeginEditing_thenDoesNotRemoveLeadingZeroesFromFractionalPart() {
+        tokenInput.endEditing(finalValue: "001", field: .fractional)
+        tokenInput.beginEditing(field: .fractional)
+        XCTAssertEqual(tokenInput.fractionalTextField.text, "001")
     }
 
     func test_whenResignsFirstResponder_thenAllTextFieldsResign() {
