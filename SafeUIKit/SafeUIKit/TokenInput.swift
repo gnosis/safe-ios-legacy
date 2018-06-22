@@ -83,22 +83,18 @@ public class TokenInput: UIView {
 
     private func updateUIOnInitialLoad() {
         let str = String(value)
+
         if str.count <= decimals {
             integerTextField.text = ""
-            fractionalTextField.text = bigIntFractionalPartStringToUIText(
-                String(repeating: "0", count: decimals - str.count) + str)
+            fractionalTextField.text = bigIntFractionalPartStringToUIText(str.paddingWithLeadingZeroes(to: decimals))
         } else {
-            integerTextField.text = String(str.prefix(str.count - decimals)) + decimalSeparator
-            fractionalTextField.text = bigIntFractionalPartStringToUIText(String(str.suffix(decimals)))
+            integerTextField.text = str.integerPart(decimals) + decimalSeparator
+            fractionalTextField.text = bigIntFractionalPartStringToUIText(str.fractionalPart(decimals))
         }
 
-        integerTextField.isEnabled = true
-        fractionalTextField.isEnabled = true
-        if decimals == 0 {
-            fractionalTextField.isEnabled = false
-        } else if decimals == Bounds.maxDigitsCount {
-            integerTextField.isEnabled = false
-        }
+        integerTextField.isEnabled = decimals < Bounds.maxDigitsCount
+        fractionalTextField.isEnabled = decimals > Bounds.minDigitsCount
+
         fiatValueLabel.text = approximateFiatValue(for: value)
     }
 
@@ -106,7 +102,7 @@ public class TokenInput: UIView {
         guard let fiatConversionRate = fiatConversionRate,
             let approximateCurrencyFormatter = approximateCurrencyFormatter,
             let doubleValue = Double.value(from: value, decimals: decimals) else { return "" }
-        let fiatValue = doubleValue * fiatConversionRate
+        let fiatValue = doubleValue * fiatConversionRate // note: _really_ big values will be "+Inf"
         return approximateCurrencyFormatter.string(from: fiatValue)
     }
 
@@ -180,12 +176,24 @@ fileprivate extension String {
         return self.replacingOccurrences(of: decimalSeparator, with: "")
     }
 
+    var hasNonDecimalDigitCharacters: Bool {
+        return rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) != nil
+    }
+
     func paddingWithTrailingZeroes(to width: Int) -> String {
         return self + String(repeating: "0", count: width - self.count)
     }
 
-    var hasNonDecimalDigitCharacters: Bool {
-        return rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) != nil
+    func paddingWithLeadingZeroes(to width: Int) -> String {
+        return String(repeating: "0", count: width - self.count) + self
+    }
+
+    func integerPart(_ decimals: Int) -> String {
+        return String(prefix(count - decimals))
+    }
+
+    func fractionalPart(_ decimals: Int) -> String {
+        return String(suffix(decimals))
     }
 
 }
