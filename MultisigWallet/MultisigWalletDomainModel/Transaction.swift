@@ -15,8 +15,8 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public let type: TransactionType
     public private(set) var sender: BlockchainAddress?
     public private(set) var recipient: BlockchainAddress?
-    public private(set) var amount: Money?
-    public private(set) var fee: Money?
+    public private(set) var amount: TokenAmount?
+    public private(set) var fee: TokenAmount?
     public private(set) var status: TransactionStatus = .draft
     public private(set) var signatures = [Signature]()
     public private(set) var submissionDate: Date?
@@ -39,10 +39,10 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     // MARK: - Editing Transaction draft
 
-    public func change(amount: Money) {}
+    public func change(amount: TokenAmount) {}
     public func change(sender: BlockchainAddress) {}
     public func change(recipient: BlockchainAddress) {}
-    public func change(fee: Money) {}
+    public func change(fee: TokenAmount) {}
 
     // MARK: - Signing Transaction
 
