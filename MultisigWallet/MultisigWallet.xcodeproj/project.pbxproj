@@ -39,6 +39,8 @@
 		0A8E3C0720B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */; };
 		0A934CEE20B6B42900F15616 /* BlockchainDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934CED20B6B42900F15616 /* BlockchainDomainService.swift */; };
 		0A934CF120B6B46300F15616 /* MockBlockchainDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934CEF20B6B44D00F15616 /* MockBlockchainDomainService.swift */; };
+		0AA5D4A020E12B68006F46CD /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5D49F20E12B68006F46CD /* Token.swift */; };
+		0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5D49520E113EE006F46CD /* Transaction.swift */; };
 		0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */; };
 		0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */; };
 		0AD22D7C20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */; };
@@ -100,6 +102,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 0A8E3B9E20B419E000F002F6;
 			remoteInfo = CommonImplementationsTests;
+		};
+		0AA5D49D20E113EF006F46CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A934D4F20B711F400F15616;
+			remoteInfo = CommonIntegration;
 		};
 		0AEF8A8720A08889006A1265 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -241,6 +250,8 @@
 		0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBAccountRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
 		0A934CED20B6B42900F15616 /* BlockchainDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainDomainService.swift; sourceTree = "<group>"; };
 		0A934CEF20B6B44D00F15616 /* MockBlockchainDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBlockchainDomainService.swift; sourceTree = "<group>"; };
+		0AA5D49520E113EE006F46CD /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		0AA5D49F20E12B68006F46CD /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBBaseRepository.swift; sourceTree = "<group>"; };
 		0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepository.swift; sourceTree = "<group>"; };
 		0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
@@ -361,6 +372,8 @@
 				0A23C82020A1CF1D00C72483 /* Portfolio.swift */,
 				0A23C81A20A1CEDA00C72483 /* PortfolioTests.swift */,
 				0A23C82420A1DE5300C72483 /* SinglePortfolioRepository.swift */,
+				0AA5D49520E113EE006F46CD /* Transaction.swift */,
+				0AA5D49F20E12B68006F46CD /* Token.swift */,
 				0AEF8A8520A08889006A1265 /* Tests-Info.plist */,
 				0A23C80420A1B09100C72483 /* Wallet.swift */,
 				0A23C82220A1DDEC00C72483 /* WalletRepository.swift */,
@@ -413,6 +426,7 @@
 				0AEF8AD820A08A3F006A1265 /* DatabaseTests.xctest */,
 				0A8E3C0120B4254F00F002F6 /* libCommonImplementations.a */,
 				0A8E3C0320B4254F00F002F6 /* CommonImplementationsTests.xctest */,
+				0AA5D49E20E113EF006F46CD /* CommonIntegration.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -615,6 +629,13 @@
 			remoteRef = 0A8E3C0220B4254F00F002F6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		0AA5D49E20E113EF006F46CD /* CommonIntegration.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CommonIntegration.app;
+			remoteRef = 0AA5D49D20E113EF006F46CD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0AEF8AD020A08A3F006A1265 /* libCommon.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -731,9 +752,11 @@
 			files = (
 				0A76BE5C20AF11CD00D07770 /* AccountRepository.swift in Sources */,
 				0A934CEE20B6B42900F15616 /* BlockchainDomainService.swift in Sources */,
+				0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */,
 				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
 				0A23C82320A1DDEC00C72483 /* WalletRepository.swift in Sources */,
+				0AA5D4A020E12B68006F46CD /* Token.swift in Sources */,
 				0A76BE5520AEF31000D07770 /* DomainRegistry.swift in Sources */,
 				0A23C80F20A1B35D00C72483 /* BlockchainAddress.swift in Sources */,
 				0A76BE5A20AF0CB500D07770 /* Account.swift in Sources */,
