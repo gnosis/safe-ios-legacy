@@ -7,8 +7,10 @@ import Common
 
 public class TransactionID: BaseID {}
 
-/// Transaction represent an operation in of the wallet's accounts.
+/// Transaction represents an operation in an account of a wallet.
 public class Transaction: IdentifiableEntity<TransactionID> {
+
+    // MARK: - Querying transaction data
 
     public let type: TransactionType
     public private(set) var sender: BlockchainAddress?
@@ -22,6 +24,8 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public let walletID: WalletID
     public let accountID: AccountID
 
+    // MARK: - Creating Transaction
+
     init(id: TransactionID, type: TransactionType, walletID: WalletID, accountID: AccountID) {
         self.type = type
         self.walletID = walletID
@@ -29,10 +33,18 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         super.init(id: id)
     }
 
+    // MARK: - Changing transaction's status
+
+    public func change(status: TransactionStatus) {}
+
+    // MARK: - Editing Transaction draft
+
     public func change(amount: Money) {}
     public func change(sender: BlockchainAddress) {}
     public func change(recipient: BlockchainAddress) {}
     public func change(fee: Money) {}
+
+    // MARK: - Signing Transaction
 
     /// Moves transaction to `signing` status to collect signatures
     public func lockForSigning() {}
@@ -41,6 +53,8 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public func unlockForEditing() {}
 
     public func add(signature: Signature) {}
+
+    // MARK: - Recording transaction's state in the blockchain
 
     /// Records date of submission to a blockchain
     ///
@@ -58,9 +72,9 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     /// - Parameter at: timestamp of transaction processing
     public func timestampProcessed(at: Date) {}
 
-    public func change(status: TransactionStatus) {}
-
 }
+
+// MARK: - Supporting types
 
 public enum TransactionStatus {
 
