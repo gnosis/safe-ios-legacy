@@ -362,6 +362,13 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertNotNil(blockchainService.observeBalance_input)
     }
 
+    func test_whenAddingBrowserExtensionOwner_thenCallsBlockchainServiceToSign() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.addBrowserExtensionOwner(address: service.ownerAddress(of: .browserExtension)!, browserExtensionData: ["": ""])
+        XCTAssertTrue(blockchainService.didSign)
+    }
+
 }
 
 class MockWalletRepository: InMemoryWalletRepository {
