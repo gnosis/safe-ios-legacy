@@ -76,6 +76,23 @@ class EncryptionServiceTests: XCTestCase {
         XCTAssertEqual(account.publicKey, expectedAccount.publicKey)
     }
 
+    func test_whenSigningMessage_thenSignatureIsCorrect() throws {
+        let pkData = Data(hex: "d0d3ae306602070917c456b61d88bee9dc74edb5853bb87b1c13e5bfa2c3d0d9")
+        let privateKey = EthereumDomainModel.PrivateKey(data: pkData)
+        let message = "Gnosis"
+
+        let signature = try encryptionService.sign(message: message, privateKey: privateKey)
+
+        // swiftlint:disable:next line_length
+        XCTAssertEqual(signature.toHexString(), "dfc3e6c87132b3ef90b514041b7c77444d9d3f69b53c884e99fd37811b9dc9af7215daaf0fc1132306f7cb4223aa03e967ad6734f241bf17e0a33ced764db1e200")
+
+        let publicKey = Crypto.generatePublicKey(data: pkData, compressed: true)
+        let signedData = Crypto.hashSHA3_256(message.data(using: .utf8)!)
+        let restoredPublicKey = Crypto.publicKey(signature: signature, of: signedData, compressed: true)!
+
+        XCTAssertEqual(publicKey, restoredPublicKey)
+    }
+
 }
 
 

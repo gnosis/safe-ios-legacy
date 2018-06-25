@@ -130,4 +130,9 @@ public class EncryptionService: EncryptionDomainService {
         return Data(repeating: 1, count: byteCount)
     }
 
+    public func sign(message: String, privateKey: EthereumDomainModel.PrivateKey) throws -> Data {
+        let hash = Crypto.hashSHA3_256(message.data(using: .utf8)!)
+        return try Crypto.sign(hash, privateKey: privateKey.data)
+    }
+
 }
