@@ -4,7 +4,8 @@
 
 import Foundation
 
-public struct Signature {
+public struct Signature: Codable, Equatable {
+
     let v: Int
     let r: String
     let s: String
@@ -14,4 +15,5 @@ public struct Signature {
         self.r = r
         self.s = s
     }
+
 }
