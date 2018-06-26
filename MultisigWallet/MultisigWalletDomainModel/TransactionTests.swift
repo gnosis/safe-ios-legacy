@@ -88,6 +88,23 @@ class TransactionTests: XCTestCase {
         XCTAssertThrowsError(try transaction.remove(signature: signature))
     }
 
+    func test_whenInDraftOrSigningOrPending_thenCanChangeHash() throws {
+        givenNewlyCreatedTransaction()
+        XCTAssertNoThrow(try transaction.set(hash: TransactionHash("hash1")))
+        XCTAssertEqual(transaction.transactionHash, TransactionHash("hash1"))
+        try moveToSigningStatus()
+        XCTAssertNoThrow(try transaction.set(hash: TransactionHash("hash2")))
+        try transaction.change(status: .pending)
+        XCTAssertThrowsError(try transaction.set(hash: TransactionHash("hash3")))
+        try transaction.change(status: .discarded)
+        XCTAssertThrowsError(try transaction.set(hash: TransactionHash("hash4")))
+    }
+
+    func test_whenHashNotSetAndTransitionsToPending_thenThrowsError() throws {
+        try givenSigningTransaction()
+        XCTAssertThrowsError(try transaction.change(status: .pending))
+    }
+
 }
 
 extension TransactionTests {

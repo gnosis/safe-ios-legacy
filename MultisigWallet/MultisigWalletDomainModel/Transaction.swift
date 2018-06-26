@@ -13,11 +13,13 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public enum Error: Swift.Error {
         case invalidStatusForEditing(TransactionStatus)
         case invalidStatusForSigning(TransactionStatus)
+        case invalidStatusForSetHash(TransactionStatus)
         case invalidStatusTransition(from: TransactionStatus, to: TransactionStatus)
         case senderNotSet
         case recipientNotSet
         case amountNotSet
         case feeNotSet
+        case transactionHashNotSet
     }
 
     // MARK: - Querying transaction data
@@ -31,6 +33,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public private(set) var signatures = [Signature]()
     public private(set) var submissionDate: Date?
     public private(set) var processedDate: Date?
+    public private(set) var transactionHash: TransactionHash?
     public let walletID: WalletID
     public let accountID: AccountID
 
@@ -48,7 +51,8 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     private static let statusTransitionTable: [TransactionStatus: [TransactionStatus]] =
     [
         .draft: [.signing, .discarded],
-        .signing: [.draft, .discarded],
+        .signing: [.draft, .pending, .discarded],
+        .pending: [.discarded],
         .discarded: [.draft]
     ]
 
@@ -59,6 +63,8 @@ public class Transaction: IdentifiableEntity<TransactionID> {
             try assertNotNil(recipient, Error.recipientNotSet)
             try assertNotNil(amount, Error.amountNotSet)
             try assertNotNil(fee, Error.feeNotSet)
+        } else if status == .pending {
+            try assertNotNil(transactionHash, Error.transactionHashNotSet)
         }
         let allowedNextStates = Transaction.statusTransitionTable[self.status]!
         try assertTrue(allowedNextStates.contains(status), Error.invalidStatusTransition(from: self.status, to: status))
@@ -100,6 +106,17 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         try assertEqual(status, .draft, Error.invalidStatusForEditing(status))
     }
 
+    /// Sets hash of the transaction (retrieved from a blockchain or pre-calculated).
+    ///
+    /// - Parameter hash: hash of the transaction
+    @discardableResult
+    public func set(hash: TransactionHash) throws -> Transaction {
+        try assertTrue(status == .draft ||
+            status == .signing, Error.invalidStatusForSetHash(status))
+        transactionHash = hash
+        return self
+    }
+
     // MARK: - Signing Transaction
 
     public func add(signature: Signature) throws {
@@ -124,12 +141,6 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     ///
     /// - Parameter at: timestamp of submission event
     public func timestampSubmitted(at: Date) {}
-
-    /// Sets hash of the transaction (retrieved from a blockchain submission).
-    /// This is a one-time operation and cannot be undone. Supposed to be called within pending `status`.
-    ///
-    /// - Parameter hash: hash of the transaction
-    public func set(hash: TransactionHash) {}
 
     /// Records date of transaction processing - whether it is failure or success
     ///
@@ -179,7 +190,7 @@ public struct Signature: Equatable {
 
 }
 
-public struct TransactionHash {
+public struct TransactionHash: Equatable {
 
     public let value: String
 
