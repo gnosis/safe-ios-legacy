@@ -8,7 +8,7 @@ import AVFoundation
 public protocol QRCodeInputDelegate: class {
     func presentScannerController(_ controller: UIViewController)
     func presentCameraRequiredAlert(_ alert: UIAlertController)
-    func didScanValidCode()
+    func didScanValidCode(_ code: String)
 }
 
 public typealias QRCodeConverter = (String) -> String?
@@ -144,7 +144,7 @@ extension QRCodeInput: ScannerDelegate {
         if let result = qrCodeConverter?(code) {
             DispatchQueue.main.async {
                 self.text = result
-                self.qrCodeDelegate?.didScanValidCode()
+                self.qrCodeDelegate?.didScanValidCode(code)
             }
         }
     }
