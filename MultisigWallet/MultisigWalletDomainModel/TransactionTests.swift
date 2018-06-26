@@ -8,6 +8,7 @@ import XCTest
 class TransactionTests: XCTestCase {
 
     var transaction: Transaction!
+    let signature = Signature(data: Data(), address: BlockchainAddress(value: "signer"))
 
     func test_whenNew_thenIsDraft() {
         givenNewlyCreatedTransaction()
@@ -46,6 +47,45 @@ class TransactionTests: XCTestCase {
         XCTAssertNoThrow(try transaction.change(status: .draft))
         XCTAssertNoThrow(try transaction.change(status: .signing))
         XCTAssertNoThrow(try transaction.change(status: .discarded))
+        XCTAssertNoThrow(try transaction.change(status: .draft))
+        XCTAssertNoThrow(try transaction.change(status: .discarded))
+    }
+
+    func test_whenInDraft_thenCanAddSignature() throws {
+        givenNewlyCreatedTransaction()
+        XCTAssertNoThrow(try transaction.add(signature: signature))
+        XCTAssertEqual(transaction.signatures, [signature])
+    }
+
+    func test_whenAddingSignatureTwice_thenIgnoresDuplicate() throws {
+        givenNewlyCreatedTransaction()
+        try transaction.add(signature: signature)
+        try transaction.add(signature: signature)
+        XCTAssertEqual(transaction.signatures, [signature])
+    }
+
+    func test_whenInSigning_thenCanAddSignature() throws {
+        try givenSigningTransaction()
+        try transaction.add(signature: signature)
+    }
+
+    func test_whenNotInDraftOrSigningAndAddsSignature_thenThrowsError() throws {
+        givenNewlyCreatedTransaction()
+        try transaction.change(status: .discarded)
+        XCTAssertThrowsError(try transaction.add(signature: signature))
+    }
+
+    func test_whenAddedSignature_thenCanRemoveIt() throws {
+        givenNewlyCreatedTransaction()
+        try transaction.add(signature: signature)
+        try transaction.remove(signature: signature)
+        XCTAssertTrue(transaction.signatures.isEmpty)
+    }
+
+    func test_whenNotInDraftOrSigning_thenCanNotRemoveSignature() throws {
+        try givenSigningTransaction()
+        try transaction.change(status: .discarded)
+        XCTAssertThrowsError(try transaction.remove(signature: signature))
     }
 
 }
