@@ -130,9 +130,12 @@ public class EncryptionService: EncryptionDomainService {
         return Data(repeating: 1, count: byteCount)
     }
 
-    public func sign(message: String, privateKey: EthereumDomainModel.PrivateKey) throws -> Data {
+    public func sign(message: String, privateKey: EthereumDomainModel.PrivateKey) throws -> RSVSignature {
         let hash = Crypto.hashSHA3_256(message.data(using: .utf8)!)
-        return try Crypto.sign(hash, privateKey: privateKey.data)
+        let rawSignature = try Crypto.sign(hash, privateKey: privateKey.data)
+        let signer = EIP155Signer(chainID: chainId.rawValue)
+        let (r, s, v) = signer.calculateRSV(signiture: rawSignature)
+        return (r.asString(withBase: 10), s.asString(withBase: 10), Int(v.asString(withBase: 10))!)
     }
 
 }

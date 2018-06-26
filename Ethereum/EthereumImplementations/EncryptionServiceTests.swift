@@ -81,7 +81,13 @@ class EncryptionServiceTests: XCTestCase {
         let privateKey = EthereumDomainModel.PrivateKey(data: pkData)
         let message = "Gnosis"
 
-        let signature = try encryptionService.sign(message: message, privateKey: privateKey)
+        let (r, s, v) = try encryptionService.sign(message: message, privateKey: privateKey)
+        XCTAssertEqual(r, "101211893217270431722518027522228002686666504049250244774157670632781156043183")
+        XCTAssertEqual(s, "51602277827206092161359189523869407094850301206236947198082645428468309668322")
+        XCTAssertEqual(v, 37)
+
+        let signer = EIP155Signer(chainID: encryptionService.chainId.rawValue)
+        let signature = signer.calculateSignature(r: BInt(r)!, s: BInt(s)!, v: BInt(v))
 
         // swiftlint:disable:next line_length
         XCTAssertEqual(signature.toHexString(), "dfc3e6c87132b3ef90b514041b7c77444d9d3f69b53c884e99fd37811b9dc9af7215daaf0fc1132306f7cb4223aa03e967ad6734f241bf17e0a33ced764db1e200")
