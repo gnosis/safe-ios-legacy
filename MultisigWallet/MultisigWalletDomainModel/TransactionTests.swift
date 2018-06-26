@@ -88,6 +88,53 @@ class TransactionTests: XCTestCase {
         XCTAssertThrowsError(try transaction.remove(signature: signature))
     }
 
+    func test_whenInDraftOrSigningOrPending_thenCanChangeHash() throws {
+        givenNewlyCreatedTransaction()
+        XCTAssertNoThrow(try transaction.set(hash: TransactionHash("hash1")))
+        XCTAssertEqual(transaction.transactionHash, TransactionHash("hash1"))
+        try moveToSigningStatus()
+        XCTAssertNoThrow(try transaction.set(hash: TransactionHash("hash2")))
+        try transaction.change(status: .pending)
+        XCTAssertThrowsError(try transaction.set(hash: TransactionHash("hash3")))
+        try transaction.change(status: .discarded)
+        XCTAssertThrowsError(try transaction.set(hash: TransactionHash("hash4")))
+    }
+
+    func test_whenHashNotSetAndTransitionsToPending_thenThrowsError() throws {
+        try givenSigningTransaction()
+        XCTAssertThrowsError(try transaction.change(status: .pending))
+    }
+
+    func test_timestampingAllowedInAnyButDiscardedState() throws {
+        givenNewlyCreatedTransaction()
+        let date1 = Date()
+        let date2 = date1.addingTimeInterval(5)
+        XCTAssertNoThrow(try transaction.timestampSubmitted(at: date1)
+            .timestampProcessed(at: date2))
+        XCTAssertEqual(transaction.submissionDate, date1)
+        XCTAssertEqual(transaction.processedDate, date2)
+
+        try transaction.change(status: .discarded)
+        XCTAssertThrowsError(try transaction.timestampSubmitted(at: date2))
+        XCTAssertThrowsError(try transaction.timestampProcessed(at: date1))
+    }
+
+    func test_whenGoesFromDiscardedBackToDraft_thenResetsData() throws {
+        try givenSigningTransaction()
+        try transaction.set(hash: TransactionHash("hash"))
+            .add(signature: signature)
+            .change(status: .pending)
+            .timestampSubmitted(at: Date())
+            .change(status: .success)
+            .timestampProcessed(at: Date())
+            .change(status: .discarded)
+        try transaction.change(status: .draft)
+        XCTAssertNil(transaction.transactionHash)
+        XCTAssertNil(transaction.submissionDate)
+        XCTAssertNil(transaction.processedDate)
+        XCTAssertTrue(transaction.signatures.isEmpty)
+    }
+
 }
 
 extension TransactionTests {
