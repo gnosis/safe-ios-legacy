@@ -105,6 +105,20 @@ class TransactionTests: XCTestCase {
         XCTAssertThrowsError(try transaction.change(status: .pending))
     }
 
+    func test_timestampingAllowedInAnyButDiscardedState() throws {
+        givenNewlyCreatedTransaction()
+        let date1 = Date()
+        let date2 = date1.addingTimeInterval(5)
+        XCTAssertNoThrow(try transaction.timestampSubmitted(at: date1)
+            .timestampProcessed(at: date2))
+        XCTAssertEqual(transaction.submissionDate, date1)
+        XCTAssertEqual(transaction.processedDate, date2)
+
+        try transaction.change(status: .discarded)
+        XCTAssertThrowsError(try transaction.timestampSubmitted(at: date2))
+        XCTAssertThrowsError(try transaction.timestampProcessed(at: date1))
+    }
+
 }
 
 extension TransactionTests {

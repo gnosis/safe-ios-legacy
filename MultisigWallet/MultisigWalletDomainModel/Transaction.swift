@@ -14,6 +14,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         case invalidStatusForEditing(TransactionStatus)
         case invalidStatusForSigning(TransactionStatus)
         case invalidStatusForSetHash(TransactionStatus)
+        case invalidStatusForTimestamp(TransactionStatus)
         case invalidStatusTransition(from: TransactionStatus, to: TransactionStatus)
         case senderNotSet
         case recipientNotSet
@@ -140,12 +141,30 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     /// Records date of submission to a blockchain
     ///
     /// - Parameter at: timestamp of submission event
-    public func timestampSubmitted(at: Date) {}
+    @discardableResult
+    public func timestampSubmitted(at date: Date) throws -> Transaction {
+        try assertCanTimestamp()
+        submissionDate = date
+        return self
+    }
 
     /// Records date of transaction processing - whether it is failure or success
     ///
     /// - Parameter at: timestamp of transaction processing
-    public func timestampProcessed(at: Date) {}
+    @discardableResult
+    public func timestampProcessed(at date: Date) throws -> Transaction {
+        try assertCanTimestamp()
+        processedDate = date
+        return self
+    }
+
+    private static let timestampingStatuses: [TransactionStatus] =
+        [.draft, .signing, .pending, .rejected, .failed, .success]
+
+    private func assertCanTimestamp() throws {
+        try assertTrue(Transaction.timestampingStatuses.contains(status),
+                       Error.invalidStatusForTimestamp(status))
+    }
 
 }
 
