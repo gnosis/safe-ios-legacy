@@ -13,11 +13,14 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public enum Error: Swift.Error {
         case invalidStatusForEditing(TransactionStatus)
         case invalidStatusForSigning(TransactionStatus)
+        case invalidStatusForSetHash(TransactionStatus)
+        case invalidStatusForTimestamp(TransactionStatus)
         case invalidStatusTransition(from: TransactionStatus, to: TransactionStatus)
         case senderNotSet
         case recipientNotSet
         case amountNotSet
         case feeNotSet
+        case transactionHashNotSet
     }
 
     // MARK: - Querying transaction data
@@ -31,6 +34,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public private(set) var signatures = [Signature]()
     public private(set) var submissionDate: Date?
     public private(set) var processedDate: Date?
+    public private(set) var transactionHash: TransactionHash?
     public let walletID: WalletID
     public let accountID: AccountID
 
@@ -48,22 +52,38 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     private static let statusTransitionTable: [TransactionStatus: [TransactionStatus]] =
     [
         .draft: [.signing, .discarded],
-        .signing: [.draft, .discarded],
+        .signing: [.draft, .rejected, .pending, .discarded],
+        .rejected: [.discarded],
+        .pending: [.success, .failed, .discarded],
+        .success: [.discarded],
+        .failed: [.discarded],
         .discarded: [.draft]
     ]
 
     @discardableResult
     public func change(status: TransactionStatus) throws -> Transaction {
+        try assertAllowedTransition(to: status)
         if status == .signing {
             try assertNotNil(sender, Error.senderNotSet)
             try assertNotNil(recipient, Error.recipientNotSet)
             try assertNotNil(amount, Error.amountNotSet)
             try assertNotNil(fee, Error.feeNotSet)
+        } else if status == .pending {
+            try assertNotNil(transactionHash, Error.transactionHashNotSet)
         }
-        let allowedNextStates = Transaction.statusTransitionTable[self.status]!
-        try assertTrue(allowedNextStates.contains(status), Error.invalidStatusTransition(from: self.status, to: status))
+        if self.status == .discarded && status == .draft {
+            transactionHash = nil
+            submissionDate = nil
+            processedDate = nil
+            signatures = []
+        }
         self.status = status
         return self
+    }
+
+    private func assertAllowedTransition(to status: TransactionStatus) throws {
+        let allowedNextStates = Transaction.statusTransitionTable[self.status]!
+        try assertTrue(allowedNextStates.contains(status), Error.invalidStatusTransition(from: self.status, to: status))
     }
 
     // MARK: - Editing Transaction draft
@@ -100,18 +120,33 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         try assertEqual(status, .draft, Error.invalidStatusForEditing(status))
     }
 
-    // MARK: - Signing Transaction
-
-    public func add(signature: Signature) throws {
-        try assertSignaturesEditable()
-        guard !signatures.contains(signature) else { return }
-        signatures.append(signature)
+    /// Sets hash of the transaction (retrieved from a blockchain or pre-calculated).
+    ///
+    /// - Parameter hash: hash of the transaction
+    @discardableResult
+    public func set(hash: TransactionHash) throws -> Transaction {
+        try assertTrue(status == .draft ||
+            status == .signing, Error.invalidStatusForSetHash(status))
+        transactionHash = hash
+        return self
     }
 
-    public func remove(signature: Signature) throws {
+    // MARK: - Signing Transaction
+
+    @discardableResult
+    public func add(signature: Signature) throws -> Transaction {
         try assertSignaturesEditable()
-        guard let index = signatures.index(of: signature) else { return }
+        guard !signatures.contains(signature) else { return self }
+        signatures.append(signature)
+        return self
+    }
+
+    @discardableResult
+    public func remove(signature: Signature) throws -> Transaction {
+        try assertSignaturesEditable()
+        guard let index = signatures.index(of: signature) else { return self }
         signatures.remove(at: index)
+        return self
     }
 
     private func assertSignaturesEditable() throws {
@@ -123,18 +158,30 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     /// Records date of submission to a blockchain
     ///
     /// - Parameter at: timestamp of submission event
-    public func timestampSubmitted(at: Date) {}
-
-    /// Sets hash of the transaction (retrieved from a blockchain submission).
-    /// This is a one-time operation and cannot be undone. Supposed to be called within pending `status`.
-    ///
-    /// - Parameter hash: hash of the transaction
-    public func set(hash: TransactionHash) {}
+    @discardableResult
+    public func timestampSubmitted(at date: Date) throws -> Transaction {
+        try assertCanTimestamp()
+        submissionDate = date
+        return self
+    }
 
     /// Records date of transaction processing - whether it is failure or success
     ///
     /// - Parameter at: timestamp of transaction processing
-    public func timestampProcessed(at: Date) {}
+    @discardableResult
+    public func timestampProcessed(at date: Date) throws -> Transaction {
+        try assertCanTimestamp()
+        processedDate = date
+        return self
+    }
+
+    private static let timestampingStatuses: [TransactionStatus] =
+        [.draft, .signing, .pending, .rejected, .failed, .success]
+
+    private func assertCanTimestamp() throws {
+        try assertTrue(Transaction.timestampingStatuses.contains(status),
+                       Error.invalidStatusForTimestamp(status))
+    }
 
 }
 
@@ -179,7 +226,7 @@ public struct Signature: Equatable {
 
 }
 
-public struct TransactionHash {
+public struct TransactionHash: Equatable {
 
     public let value: String
 
