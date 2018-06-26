@@ -119,6 +119,22 @@ class TransactionTests: XCTestCase {
         XCTAssertThrowsError(try transaction.timestampProcessed(at: date1))
     }
 
+    func test_whenGoesFromDiscardedBackToDraft_thenResetsData() throws {
+        try givenSigningTransaction()
+        try transaction.set(hash: TransactionHash("hash"))
+            .add(signature: signature)
+            .change(status: .pending)
+            .timestampSubmitted(at: Date())
+            .change(status: .success)
+            .timestampProcessed(at: Date())
+            .change(status: .discarded)
+        try transaction.change(status: .draft)
+        XCTAssertNil(transaction.transactionHash)
+        XCTAssertNil(transaction.submissionDate)
+        XCTAssertNil(transaction.processedDate)
+        XCTAssertTrue(transaction.signatures.isEmpty)
+    }
+
 }
 
 extension TransactionTests {

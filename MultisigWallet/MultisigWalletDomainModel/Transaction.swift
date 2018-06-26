@@ -52,13 +52,17 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     private static let statusTransitionTable: [TransactionStatus: [TransactionStatus]] =
     [
         .draft: [.signing, .discarded],
-        .signing: [.draft, .pending, .discarded],
-        .pending: [.discarded],
+        .signing: [.draft, .rejected, .pending, .discarded],
+        .rejected: [.discarded],
+        .pending: [.success, .failed, .discarded],
+        .success: [.discarded],
+        .failed: [.discarded],
         .discarded: [.draft]
     ]
 
     @discardableResult
     public func change(status: TransactionStatus) throws -> Transaction {
+        try assertAllowedTransition(to: status)
         if status == .signing {
             try assertNotNil(sender, Error.senderNotSet)
             try assertNotNil(recipient, Error.recipientNotSet)
@@ -67,10 +71,19 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         } else if status == .pending {
             try assertNotNil(transactionHash, Error.transactionHashNotSet)
         }
-        let allowedNextStates = Transaction.statusTransitionTable[self.status]!
-        try assertTrue(allowedNextStates.contains(status), Error.invalidStatusTransition(from: self.status, to: status))
+        if self.status == .discarded && status == .draft {
+            transactionHash = nil
+            submissionDate = nil
+            processedDate = nil
+            signatures = []
+        }
         self.status = status
         return self
+    }
+
+    private func assertAllowedTransition(to status: TransactionStatus) throws {
+        let allowedNextStates = Transaction.statusTransitionTable[self.status]!
+        try assertTrue(allowedNextStates.contains(status), Error.invalidStatusTransition(from: self.status, to: status))
     }
 
     // MARK: - Editing Transaction draft
@@ -120,16 +133,20 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     // MARK: - Signing Transaction
 
-    public func add(signature: Signature) throws {
+    @discardableResult
+    public func add(signature: Signature) throws -> Transaction {
         try assertSignaturesEditable()
-        guard !signatures.contains(signature) else { return }
+        guard !signatures.contains(signature) else { return self }
         signatures.append(signature)
+        return self
     }
 
-    public func remove(signature: Signature) throws {
+    @discardableResult
+    public func remove(signature: Signature) throws -> Transaction {
         try assertSignaturesEditable()
-        guard let index = signatures.index(of: signature) else { return }
+        guard let index = signatures.index(of: signature) else { return self }
         signatures.remove(at: index)
+        return self
     }
 
     private func assertSignaturesEditable() throws {
