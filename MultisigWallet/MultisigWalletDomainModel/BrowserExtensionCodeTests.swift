@@ -20,7 +20,7 @@ class BrowserExtensionCodeTests: XCTestCase {
         let dateFormatter = WalletDateFormatter()
 
         let date = dateFormatter.date(from: "2018-05-09T14:18:55+00:00")!
-        let signature = Signature(v: 27, r: "test", s: "me")
+        let signature = RSVSignature(r: "test", s: "me", v: 27)
         let code = BroewserExtensionCode(expirationDate: date, signature: signature)
 
         let decoder = JSONDecoder()

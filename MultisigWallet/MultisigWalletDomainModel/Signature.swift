@@ -4,16 +4,16 @@
 
 import Foundation
 
-public struct Signature: Codable, Equatable {
+public struct RSVSignature: Codable, Equatable {
 
-    let v: Int
     let r: String
     let s: String
+    let v: Int
 
-    public init(v: Int, r: String, s: String) {
-        self.v = v
+    public init(r: String, s: String, v: Int) {
         self.r = r
         self.s = s
+        self.v = v
     }
 
 }

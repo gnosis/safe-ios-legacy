@@ -27,7 +27,7 @@ public protocol BlockchainDomainService {
     func executeWalletCreationTransaction(address: String) throws -> String
     func waitForPendingTransaction(hash: String) throws -> Bool
     func balance(address: String) throws -> Int
-    func sign(message: String, by address: String) throws -> Signature
+    func sign(message: String, by address: String) throws -> RSVSignature
 
 }
 

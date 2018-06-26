@@ -48,7 +48,7 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
     }
 
     func test_didScanValidCode_makesSaveButtonEnabled() {
-        controller.didScanValidCode()
+        controller.didScanValidCode("code")
         XCTAssertTrue(controller.saveButton.isEnabled)
     }
 
@@ -57,7 +57,7 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
         let presentedController = UIViewController()
         controller.presentScannerController(presentedController)
         delay(1)
-        controller.didScanValidCode()
+        controller.didScanValidCode("code")
         delay(1)
         XCTAssertFalse(controller.presentedViewController === presentedController)
     }

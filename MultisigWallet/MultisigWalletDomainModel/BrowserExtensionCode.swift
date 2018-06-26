@@ -7,9 +7,9 @@ import Foundation
 public struct BroewserExtensionCode: Codable, Equatable {
 
     let expirationDate: Date
-    let signature: Signature
+    let signature: RSVSignature
 
-    public init(expirationDate: Date, signature: Signature) {
+    public init(expirationDate: Date, signature: RSVSignature) {
         self.expirationDate = expirationDate
         self.signature = signature
     }

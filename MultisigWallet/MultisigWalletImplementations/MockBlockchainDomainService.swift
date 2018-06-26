@@ -83,9 +83,9 @@ public class MockBlockchainDomainService: BlockchainDomainService {
         return balances[address] ?? 0
     }
 
-    public func sign(message: String, by address: String) throws -> Signature {
+    public func sign(message: String, by address: String) throws -> RSVSignature {
         didSign = true
-        return Signature(v: 0, r: "", s: "")
+        return RSVSignature(r: "", s: "", v: 0)
     }
 
 }
