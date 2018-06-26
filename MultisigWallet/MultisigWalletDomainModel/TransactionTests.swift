@@ -66,10 +66,10 @@ extension TransactionTests {
 
     private func moveToSigningStatus() throws {
         try transaction.change(amount: .ether(0))
-        try transaction.change(fee: .ether(0))
-        try transaction.change(sender: BlockchainAddress(value: "sender"))
-        try transaction.change(recipient: BlockchainAddress(value: "recipient"))
-        try transaction.change(status: .signing)
+            .change(fee: .ether(0))
+            .change(sender: BlockchainAddress(value: "sender"))
+            .change(recipient: BlockchainAddress(value: "recipient"))
+            .change(status: .signing)
     }
 
 }

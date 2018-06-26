@@ -43,7 +43,8 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     // MARK: - Changing transaction's status
 
-    public func change(status: TransactionStatus) throws {
+    @discardableResult
+    public func change(status: TransactionStatus) throws -> Transaction {
         if status == .signing {
             try assertNotNil(sender, Error.senderNotSet)
             try assertNotNil(recipient, Error.recipientNotSet)
@@ -51,6 +52,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
             try assertNotNil(fee, Error.feeNotSet)
         }
         self.status = status
+        return self
     }
 
     // MARK: - Editing Transaction draft
@@ -59,24 +61,32 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         try assertEqual(status, .draft, Error.invalidStatusForEditing(status))
     }
 
-    public func change(amount: TokenAmount) throws {
+    @discardableResult
+    public func change(amount: TokenAmount) throws -> Transaction {
         try assertInDraftStatus()
         self.amount = amount
+        return self
     }
 
-    public func change(sender: BlockchainAddress) throws {
+    @discardableResult
+    public func change(sender: BlockchainAddress) throws -> Transaction {
         try assertInDraftStatus()
         self.sender = sender
+        return self
     }
 
-    public func change(recipient: BlockchainAddress) throws {
+    @discardableResult
+    public func change(recipient: BlockchainAddress) throws -> Transaction {
         try assertInDraftStatus()
         self.recipient = recipient
+        return self
     }
 
-    public func change(fee: TokenAmount) throws {
+    @discardableResult
+    public func change(fee: TokenAmount) throws -> Transaction {
         try assertInDraftStatus()
         self.fee = fee
+        return self
     }
 
     // MARK: - Signing Transaction
