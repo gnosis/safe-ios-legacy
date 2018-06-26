@@ -41,6 +41,7 @@
 		0A934CF120B6B46300F15616 /* MockBlockchainDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934CEF20B6B44D00F15616 /* MockBlockchainDomainService.swift */; };
 		0AA5D4A020E12B68006F46CD /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5D49F20E12B68006F46CD /* Token.swift */; };
 		0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5D49520E113EE006F46CD /* Transaction.swift */; };
+		0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */; };
 		0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */; };
 		0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */; };
 		0AD22D7C20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */; };
@@ -252,6 +253,7 @@
 		0A934CEF20B6B44D00F15616 /* MockBlockchainDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBlockchainDomainService.swift; sourceTree = "<group>"; };
 		0AA5D49520E113EE006F46CD /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		0AA5D49F20E12B68006F46CD /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
 		0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBBaseRepository.swift; sourceTree = "<group>"; };
 		0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepository.swift; sourceTree = "<group>"; };
 		0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 				0A23C81A20A1CEDA00C72483 /* PortfolioTests.swift */,
 				0A23C82420A1DE5300C72483 /* SinglePortfolioRepository.swift */,
 				0AA5D49520E113EE006F46CD /* Transaction.swift */,
+				0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */,
 				0AA5D49F20E12B68006F46CD /* Token.swift */,
 				0AEF8A8520A08889006A1265 /* Tests-Info.plist */,
 				0A23C80420A1B09100C72483 /* Wallet.swift */,
@@ -771,6 +774,7 @@
 			files = (
 				0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */,
 				0A76BE5720AEF35C00D07770 /* DomainRegistryTests.swift in Sources */,
+				0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */,
 				0A23C81B20A1CEDA00C72483 /* PortfolioTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
