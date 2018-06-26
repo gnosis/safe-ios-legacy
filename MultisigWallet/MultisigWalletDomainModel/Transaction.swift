@@ -68,10 +68,6 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     // MARK: - Editing Transaction draft
 
-    private func assertInDraftStatus() throws {
-        try assertEqual(status, .draft, Error.invalidStatusForEditing(status))
-    }
-
     @discardableResult
     public func change(amount: TokenAmount) throws -> Transaction {
         try assertInDraftStatus()
