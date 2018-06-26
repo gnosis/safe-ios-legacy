@@ -12,6 +12,8 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     public enum Error: Swift.Error {
         case invalidStatusForEditing(TransactionStatus)
+        case invalidStatusForSigning(TransactionStatus)
+        case invalidStatusTransition(from: TransactionStatus, to: TransactionStatus)
         case senderNotSet
         case recipientNotSet
         case amountNotSet
@@ -43,6 +45,13 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     // MARK: - Changing transaction's status
 
+    private static let statusTransitionTable: [TransactionStatus: [TransactionStatus]] =
+    [
+        .draft: [.signing, .discarded],
+        .signing: [.draft, .discarded],
+        .discarded: [.draft]
+    ]
+
     @discardableResult
     public func change(status: TransactionStatus) throws -> Transaction {
         if status == .signing {
@@ -51,15 +60,13 @@ public class Transaction: IdentifiableEntity<TransactionID> {
             try assertNotNil(amount, Error.amountNotSet)
             try assertNotNil(fee, Error.feeNotSet)
         }
+        let allowedNextStates = Transaction.statusTransitionTable[self.status]!
+        try assertTrue(allowedNextStates.contains(status), Error.invalidStatusTransition(from: self.status, to: status))
         self.status = status
         return self
     }
 
     // MARK: - Editing Transaction draft
-
-    private func assertInDraftStatus() throws {
-        try assertEqual(status, .draft, Error.invalidStatusForEditing(status))
-    }
 
     @discardableResult
     public func change(amount: TokenAmount) throws -> Transaction {
@@ -89,9 +96,27 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         return self
     }
 
+    private func assertInDraftStatus() throws {
+        try assertEqual(status, .draft, Error.invalidStatusForEditing(status))
+    }
+
     // MARK: - Signing Transaction
 
-    public func add(signature: Signature) {}
+    public func add(signature: Signature) throws {
+        try assertSignaturesEditable()
+        guard !signatures.contains(signature) else { return }
+        signatures.append(signature)
+    }
+
+    public func remove(signature: Signature) throws {
+        try assertSignaturesEditable()
+        guard let index = signatures.index(of: signature) else { return }
+        signatures.remove(at: index)
+    }
+
+    private func assertSignaturesEditable() throws {
+        try assertTrue(status == .draft || status == .signing, Error.invalidStatusForSigning(status))
+    }
 
     // MARK: - Recording transaction's state in the blockchain
 
@@ -142,7 +167,7 @@ public enum TransactionType {
 
 }
 
-public struct Signature {
+public struct Signature: Equatable {
 
     public var address: BlockchainAddress
     public var data: Data
