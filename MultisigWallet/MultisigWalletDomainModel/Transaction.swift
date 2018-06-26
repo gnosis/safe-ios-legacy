@@ -10,6 +10,14 @@ public class TransactionID: BaseID {}
 /// Transaction represents an operation in an account of a wallet.
 public class Transaction: IdentifiableEntity<TransactionID> {
 
+    public enum Error: Swift.Error {
+        case invalidStatusForEditing(TransactionStatus)
+        case senderNotSet
+        case recipientNotSet
+        case amountNotSet
+        case feeNotSet
+    }
+
     // MARK: - Querying transaction data
 
     public let type: TransactionType
@@ -35,22 +43,43 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     // MARK: - Changing transaction's status
 
-    public func change(status: TransactionStatus) {}
+    public func change(status: TransactionStatus) throws {
+        if status == .signing {
+            try assertNotNil(sender, Error.senderNotSet)
+            try assertNotNil(recipient, Error.recipientNotSet)
+            try assertNotNil(amount, Error.amountNotSet)
+            try assertNotNil(fee, Error.feeNotSet)
+        }
+        self.status = status
+    }
 
     // MARK: - Editing Transaction draft
 
-    public func change(amount: TokenAmount) {}
-    public func change(sender: BlockchainAddress) {}
-    public func change(recipient: BlockchainAddress) {}
-    public func change(fee: TokenAmount) {}
+    private func assertInDraftStatus() throws {
+        try assertEqual(status, .draft, Error.invalidStatusForEditing(status))
+    }
+
+    public func change(amount: TokenAmount) throws {
+        try assertInDraftStatus()
+        self.amount = amount
+    }
+
+    public func change(sender: BlockchainAddress) throws {
+        try assertInDraftStatus()
+        self.sender = sender
+    }
+
+    public func change(recipient: BlockchainAddress) throws {
+        try assertInDraftStatus()
+        self.recipient = recipient
+    }
+
+    public func change(fee: TokenAmount) throws {
+        try assertInDraftStatus()
+        self.fee = fee
+    }
 
     // MARK: - Signing Transaction
-
-    /// Moves transaction to `signing` status to collect signatures
-    public func lockForSigning() {}
-
-    /// Moves transaction from `signing` status back to `draft` that allows editing
-    public func unlockForEditing() {}
 
     public func add(signature: Signature) {}
 
