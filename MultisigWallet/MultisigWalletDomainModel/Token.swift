@@ -21,6 +21,21 @@ public struct Token: Equatable {
 
 }
 
+extension Token: CustomStringConvertible {
+
+    public init?(_ value: String) {
+        let components = value.components(separatedBy: "/")
+        guard components.count == 2 else { return nil }
+        guard let decimals = Int(components.last!) else { return nil }
+        self.init(code: components.first!, decimals: decimals)
+    }
+
+    public var description: String {
+        return "\(code)/\(decimals)"
+    }
+
+}
+
 /// Token Int type for representing tokens amount
 public typealias TokenInt = BigInt
 
@@ -34,12 +49,30 @@ public struct TokenAmount: Equatable {
         self.amount = amount
         self.token = token
     }
+
 }
 
 public extension TokenAmount {
 
     static func ether(_ amount: TokenInt) -> TokenAmount {
         return TokenAmount(amount: amount, token: .Ether)
+    }
+
+}
+
+extension TokenAmount: CustomStringConvertible {
+
+    public init?(_ value: String) {
+        let components = value.components(separatedBy: " ")
+        guard components.count == 2 else { return nil }
+        guard let amount = TokenInt(components.first!), let token = Token(components.last!) else {
+            return nil
+        }
+        self.init(amount: amount, token: token)
+    }
+
+    public var description: String {
+        return "\(String(amount)) \(token)"
     }
 
 }

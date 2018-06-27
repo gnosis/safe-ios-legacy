@@ -41,6 +41,8 @@
 		0AAA174720E26E90003B35B3 /* TransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA174620E26E90003B35B3 /* TransactionRepository.swift */; };
 		0AAA175320E27398003B35B3 /* BaseInMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA175220E27398003B35B3 /* BaseInMemoryRepository.swift */; };
 		0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */; };
+		0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */; };
+		0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */; };
 		0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */; };
 		0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */; };
 		0AD22D7C20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */; };
@@ -261,6 +263,8 @@
 		0AAA174620E26E90003B35B3 /* TransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepository.swift; sourceTree = "<group>"; };
 		0AAA175220E27398003B35B3 /* BaseInMemoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInMemoryRepository.swift; sourceTree = "<group>"; };
 		0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTransactionRepository.swift; sourceTree = "<group>"; };
+		0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTransactionRepository.swift; sourceTree = "<group>"; };
+		0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTransactionRepositoryTests.swift; sourceTree = "<group>"; };
 		0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBBaseRepository.swift; sourceTree = "<group>"; };
 		0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepository.swift; sourceTree = "<group>"; };
 		0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
@@ -422,6 +426,8 @@
 				0A934CEF20B6B44D00F15616 /* MockBlockchainDomainService.swift */,
 				0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */,
 				0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */,
+				0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */,
+				0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */,
 				0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */,
 				0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */,
 				0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */,
@@ -839,6 +845,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */,
 				0AAA175320E27398003B35B3 /* BaseInMemoryRepository.swift in Sources */,
 				0A23C82C20A1DF0A00C72483 /* DBWalletRepository.swift in Sources */,
 				0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */,
@@ -860,6 +867,7 @@
 				0AD22D7C20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */,
 				0A76BE5820AEF35C00D07770 /* DomainRegistryTests.swift in Sources */,
 				0A23C83420A1E34700C72483 /* BaseInMemoryRepositoryTests.swift in Sources */,
+				0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */,
 				0A76BE5120AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,
 				0A8E3BFA20B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift in Sources */,
 				0A8E3C0720B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift in Sources */,
