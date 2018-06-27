@@ -67,9 +67,10 @@
 		555C94A020E2A62E00A0621D /* WalletDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949B20E2A62D00A0621D /* WalletDateFormatter.swift */; };
 		555C94A320E2A63100A0621D /* BrowserExtensionCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949D20E2A62D00A0621D /* BrowserExtensionCodeTests.swift */; };
 		555C94A420E2A63500A0621D /* SignatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949C20E2A62D00A0621D /* SignatureTests.swift */; };
-		555C94A620E3824800A0621D /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94A520E3824800A0621D /* NotificationService.swift */; };
+		555C94A620E3824800A0621D /* NotificationDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94A520E3824800A0621D /* NotificationDomainService.swift */; };
 		555C94A820E385DB00A0621D /* PairingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94A720E385DB00A0621D /* PairingRequest.swift */; };
 		555C94AA20E3868900A0621D /* PairingRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94A920E3868900A0621D /* PairingRequestTests.swift */; };
+		555C94AF20E3924C00A0621D /* MockNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94AD20E3920600A0621D /* MockNotificationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,9 +288,10 @@
 		555C949B20E2A62D00A0621D /* WalletDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletDateFormatter.swift; sourceTree = "<group>"; };
 		555C949C20E2A62D00A0621D /* SignatureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureTests.swift; sourceTree = "<group>"; };
 		555C949D20E2A62D00A0621D /* BrowserExtensionCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserExtensionCodeTests.swift; sourceTree = "<group>"; };
-		555C94A520E3824800A0621D /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		555C94A520E3824800A0621D /* NotificationDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDomainService.swift; sourceTree = "<group>"; };
 		555C94A720E385DB00A0621D /* PairingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingRequest.swift; sourceTree = "<group>"; };
 		555C94A920E3868900A0621D /* PairingRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingRequestTests.swift; sourceTree = "<group>"; };
+		555C94AD20E3920600A0621D /* MockNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -466,7 +468,7 @@
 			children = (
 				555C948C20E2A60F00A0621D /* AccountRepository.swift */,
 				555C948920E2A60F00A0621D /* BlockchainDomainService.swift */,
-				555C94A520E3824800A0621D /* NotificationService.swift */,
+				555C94A520E3824800A0621D /* NotificationDomainService.swift */,
 				555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */,
 				0AAA174620E26E90003B35B3 /* TransactionRepository.swift */,
 				555C948A20E2A60F00A0621D /* WalletRepository.swift */,
@@ -486,6 +488,7 @@
 				0A76BE5020AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift */,
 				0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */,
 				0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */,
+				555C94AD20E3920600A0621D /* MockNotificationService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -812,7 +815,7 @@
 				555C94A020E2A62E00A0621D /* WalletDateFormatter.swift in Sources */,
 				0AA5D4A020E12B68006F46CD /* Token.swift in Sources */,
 				0A76BE5520AEF31000D07770 /* DomainRegistry.swift in Sources */,
-				555C94A620E3824800A0621D /* NotificationService.swift in Sources */,
+				555C94A620E3824800A0621D /* NotificationDomainService.swift in Sources */,
 				555C949420E2A60F00A0621D /* BlockchainDomainService.swift in Sources */,
 				0A23C80F20A1B35D00C72483 /* BlockchainAddress.swift in Sources */,
 				0A76BE5A20AF0CB500D07770 /* Account.swift in Sources */,
@@ -869,6 +872,7 @@
 				0A23C83220A1E30800C72483 /* InMemoryWalletRepository.swift in Sources */,
 				0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */,
 				0A934CF120B6B46300F15616 /* MockBlockchainDomainService.swift in Sources */,
+				555C94AF20E3924C00A0621D /* MockNotificationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

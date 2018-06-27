@@ -23,8 +23,8 @@ public enum RequestError: Error {
     case unexpectedError
 }
 
-public protocol NotificationService {
+public protocol NotificationDomainService {
 
-    func pair(pairingRequest: PairingRequest) -> Result<Bool, RequestError>
+    func pair(pairingRequest: PairingRequest) throws
 
 }
