@@ -386,6 +386,7 @@
 		0AEF8A7720A08878006A1265 /* MultisigWalletDomainModel */ = {
 			isa = PBXGroup;
 			children = (
+				0AEF8A8520A08889006A1265 /* Tests-Info.plist */,
 				0A76BE5920AF0CB500D07770 /* Account.swift */,
 				0A23C80E20A1B35D00C72483 /* BlockchainAddress.swift */,
 				555C949920E2A62D00A0621D /* BrowserExtensionCode.swift */,
@@ -393,21 +394,19 @@
 				0A76BE5420AEF31000D07770 /* DomainRegistry.swift */,
 				0A76BE5620AEF35C00D07770 /* DomainRegistryTests.swift */,
 				0A23C80C20A1B34900C72483 /* Owner.swift */,
+				555C94A720E385DB00A0621D /* PairingRequest.swift */,
+				555C94A920E3868900A0621D /* PairingRequestTests.swift */,
 				0A23C82020A1CF1D00C72483 /* Portfolio.swift */,
 				0A23C81A20A1CEDA00C72483 /* PortfolioTests.swift */,
-				555C948820E2A60F00A0621D /* Protocols */,
 				555C949A20E2A62D00A0621D /* Signature.swift */,
 				555C949C20E2A62D00A0621D /* SignatureTests.swift */,
-				0AEF8A8520A08889006A1265 /* Tests-Info.plist */,
 				0AA5D49F20E12B68006F46CD /* Token.swift */,
 				0AA5D49520E113EE006F46CD /* Transaction.swift */,
-				0AAA174620E26E90003B35B3 /* TransactionRepository.swift */,
 				0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */,
 				0A23C80420A1B09100C72483 /* Wallet.swift */,
 				555C949B20E2A62D00A0621D /* WalletDateFormatter.swift */,
 				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
-				555C94A720E385DB00A0621D /* PairingRequest.swift */,
-				555C94A920E3868900A0621D /* PairingRequestTests.swift */,
+				555C948820E2A60F00A0621D /* Protocols */,
 			);
 			path = MultisigWalletDomainModel;
 			sourceTree = "<group>";
@@ -435,14 +434,6 @@
 				0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */,
 				0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */,
 				0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */,
-				0A76BE5D20AF167D00D07770 /* InMemoryAccountRepository.swift */,
-				0A8E3BF920B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift */,
-				0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */,
-				0A76BE5020AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift */,
-				0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */,
-				0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */,
-				0AAA175220E27398003B35B3 /* BaseInMemoryRepository.swift */,
-				0A23C83320A1E34700C72483 /* BaseInMemoryRepositoryTests.swift */,
 				0AEF8AB920A088C3006A1265 /* Tests-Info.plist */,
 			);
 			path = MultisigWalletImplementations;
@@ -473,13 +464,30 @@
 		555C948820E2A60F00A0621D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				555C948920E2A60F00A0621D /* BlockchainDomainService.swift */,
-				555C948A20E2A60F00A0621D /* WalletRepository.swift */,
 				555C948C20E2A60F00A0621D /* AccountRepository.swift */,
-				555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */,
+				555C948920E2A60F00A0621D /* BlockchainDomainService.swift */,
 				555C94A520E3824800A0621D /* NotificationService.swift */,
+				555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */,
+				0AAA174620E26E90003B35B3 /* TransactionRepository.swift */,
+				555C948A20E2A60F00A0621D /* WalletRepository.swift */,
+				555C94AB20E390A000A0621D /* Mocks */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		555C94AB20E390A000A0621D /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				0AAA175220E27398003B35B3 /* BaseInMemoryRepository.swift */,
+				0A23C83320A1E34700C72483 /* BaseInMemoryRepositoryTests.swift */,
+				0A76BE5D20AF167D00D07770 /* InMemoryAccountRepository.swift */,
+				0A8E3BF920B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift */,
+				0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */,
+				0A76BE5020AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift */,
+				0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */,
+				0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
