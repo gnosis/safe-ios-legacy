@@ -6,7 +6,7 @@ import MultisigWalletDomainModel
 
 public final class MockNotificationService: NotificationDomainService {
 
-    var didPair = false
+    public var didPair = false
 
     public init() {}
 

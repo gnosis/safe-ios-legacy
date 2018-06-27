@@ -7,6 +7,7 @@ import XCTest
 import MultisigWalletImplementations
 import MultisigWalletDomainModel
 import Common
+import CommonTestSupport
 
 class WalletApplicationServiceTests: XCTestCase {
 
@@ -15,6 +16,7 @@ class WalletApplicationServiceTests: XCTestCase {
     let accountRepository = InMemoryAccountRepository()
     let blockchainService = MockBlockchainDomainService()
     let service = WalletApplicationService()
+    let notificationService = MockNotificationService()
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -27,6 +29,7 @@ class WalletApplicationServiceTests: XCTestCase {
         MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: blockchainService, for: BlockchainDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
         blockchainService.requestWalletCreationData_output = WalletCreationData(walletAddress: "address", fee: 100)
     }
@@ -365,8 +368,19 @@ class WalletApplicationServiceTests: XCTestCase {
     func test_whenAddingBrowserExtensionOwner_thenCallsBlockchainServiceToSign() throws {
         givenDraftWallet()
         try addAllOwners()
-        try service.addBrowserExtensionOwner(address: service.ownerAddress(of: .browserExtension)!, browserExtensionData: ["": ""])
+        try service.addBrowserExtensionOwner(
+            address: service.ownerAddress(of: .browserExtension)!,
+            browserExtensionCode: "")
         XCTAssertTrue(blockchainService.didSign)
+    }
+
+    func test_whenAddingBrowserExtensionOwner_thenCallsBNotificationService() throws {
+        givenDraftWallet()
+        try addAllOwners()
+        try service.addBrowserExtensionOwner(
+            address: service.ownerAddress(of: .browserExtension)!,
+            browserExtensionCode: BrowserExtensionFixture.testJSON)
+        XCTAssertTrue(notificationService.didPair)
     }
 
 }

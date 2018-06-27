@@ -12,6 +12,10 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.blockchainService
     }
 
+    private var notificationService: NotificationDomainService {
+        return DomainRegistry.notificationService
+    }
+
     public enum WalletState {
         case none
         case newDraft
@@ -422,9 +426,12 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public func addBrowserExtensionOwner(address: String, browserExtensionData: [String: Any]) throws {
-        try _ = blockchainService.sign(message: "GNO" + address, by: "")
-//        notificationService.pair(address: address, browserExtensionData: browserExtensionData, signature: signature)
+    public func addBrowserExtensionOwner(address: String, browserExtensionCode: String) throws {
+        // TODO: implement
+        let signature = try blockchainService.sign(message: "GNO" + address, by: "")
+        let browserExtension = try BrowserExtensionCode(json: browserExtensionCode)
+        let pairingRequest = PairingRequest(temporaryAuthorization: browserExtension, signature: signature)
+        try notificationService.pair(pairingRequest: pairingRequest)
 //        addOwner(address: address, type: .browserExtension)
     }
 
