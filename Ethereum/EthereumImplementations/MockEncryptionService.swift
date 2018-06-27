@@ -26,4 +26,8 @@ public class MockEncryptionService: EncryptionDomainService {
         return Data(repeating: 1, count: byteCount)
     }
 
+    public func sign(message: String, privateKey: PrivateKey) throws -> RSVSignature {
+        return (r: "", s: "", v: 27)
+    }
+
 }

@@ -29,7 +29,7 @@ class QRCodeInputViewController: UIViewController {
 
 extension QRCodeInputViewController: QRCodeInputDelegate {
 
-    func didScanValidCode() {
+    func didScanValidCode(_ code: String) {
         scannerController?.dismiss(animated: true)
     }
 

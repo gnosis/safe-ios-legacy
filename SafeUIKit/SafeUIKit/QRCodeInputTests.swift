@@ -101,7 +101,7 @@ class QRCodeInputTests: XCTestCase {
         }
         barcodeTextField.didScan("test")
         XCTAssertEqual(barcodeTextField.text, "some input")
-        XCTAssertFalse(delegate.didScan)
+        XCTAssertTrue(delegate.scannedCode.isEmpty)
     }
 
     func test_didScan_whenCodeIsValid_thenCallsDelegate_andFillsTextWithConvertedString() {
@@ -111,7 +111,7 @@ class QRCodeInputTests: XCTestCase {
         barcodeTextField.didScan("test")
         delay()
         XCTAssertEqual(barcodeTextField.text, "converted string")
-        XCTAssertTrue(delegate.didScan)
+        XCTAssertEqual(delegate.scannedCode, "test")
     }
 
 }
@@ -121,6 +121,7 @@ class MockQRCodeInputDelegate: QRCodeInputDelegate {
     var didPresent = false
     var didScan = false
     var didAlert = false
+    var scannedCode = ""
 
     func presentScannerController(_ controller: UIViewController) {
         didPresent = true
@@ -130,8 +131,8 @@ class MockQRCodeInputDelegate: QRCodeInputDelegate {
         didAlert = true
     }
 
-    func didScanValidCode() {
-        didScan = true
+    func didScanValidCode(_ code: String) {
+        scannedCode = code
     }
 
 }

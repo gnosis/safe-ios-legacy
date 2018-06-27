@@ -8,6 +8,10 @@ import Common
 
 public class WalletApplicationService: Assertable {
 
+    private var blockchainService: BlockchainDomainService {
+        return DomainRegistry.blockchainService
+    }
+
     public enum WalletState {
         case none
         case newDraft
@@ -161,7 +165,7 @@ public class WalletApplicationService: Assertable {
     public func createNewDraftWallet() throws {
         try notifyWalletStateChangesAfter {
             let portfolio = try fetchOrCreatePortfolio()
-            let address = try DomainRegistry.blockchainService.generateExternallyOwnedAccount()
+            let address = try blockchainService.generateExternallyOwnedAccount()
             let owner = Wallet.createOwner(address: address)
             let wallet = try Wallet(id: DomainRegistry.walletRepository.nextID(),
                                     owner: owner,
@@ -211,8 +215,7 @@ public class WalletApplicationService: Assertable {
         let owners: [String] = OwnerType.all.compactMap { ownerAddress(of: $0) }
         try assertEqual(owners.count, OwnerType.all.count, Error.oneOrMoreOwnersAreMissing)
         let confirmationCount = WalletApplicationService.requiredConfirmationCount
-        let service = DomainRegistry.blockchainService
-        let data = try service.requestWalletCreationData(owners: owners, confirmationCount: confirmationCount)
+        let data = try blockchainService.requestWalletCreationData(owners: owners, confirmationCount: confirmationCount)
         return data
     }
 
@@ -229,12 +232,11 @@ public class WalletApplicationService: Assertable {
     }
 
     private func startObservingWalletBalance() throws {
-        let service = DomainRegistry.blockchainService
         let wallet = try findSelectedWallet()
         guard let address = wallet.address else {
             throw Error.missingWalletAddress
         }
-        try service.observeBalance(account: address.value, observer: didUpdateBalance(account:newBalance:))
+        try blockchainService.observeBalance(account: address.value, observer: didUpdateBalance(account:newBalance:))
     }
 
     private func didUpdateBalance(account: String, newBalance: Int) -> BlockchainBalanceObserverResponse {
@@ -262,7 +264,7 @@ public class WalletApplicationService: Assertable {
             throw Error.missingWalletAddress
         }
         // TODO: if the call fails, show error in UI and possibility to retry with a button
-        let hash = try DomainRegistry.blockchainService.executeWalletCreationTransaction(address: address.value)
+        let hash = try blockchainService.executeWalletCreationTransaction(address: address.value)
         guard selectedWalletState == .accountFunded else { return }
         try markDeploymentAcceptedByBlockchain()
         try storeTransactionHash(hash: hash)
@@ -274,7 +276,7 @@ public class WalletApplicationService: Assertable {
         guard let hash = wallet.creationTransactionHash else {
             throw Error.creationTransactionHashNotFound
         }
-        let isSuccess = try DomainRegistry.blockchainService.waitForPendingTransaction(hash: hash)
+        let isSuccess = try blockchainService.waitForPendingTransaction(hash: hash)
         guard selectedWalletState == .deploymentAcceptedByBlockchain else { return }
         didFinishDeployment(success: isSuccess)
     }
@@ -303,13 +305,13 @@ public class WalletApplicationService: Assertable {
 
     private func fetchBalance() throws {
         let wallet = try findSelectedWallet()
-        let newBalance = try DomainRegistry.blockchainService.balance(address: wallet.address!.value)
+        let newBalance = try blockchainService.balance(address: wallet.address!.value)
         try update(account: "ETH", newBalance: newBalance)
     }
 
     private func removePaperWallet() throws {
         let paperWallet = ownerAddress(of: .paperWallet)!
-        try DomainRegistry.blockchainService.removeExternallyOwnedAccount(address: paperWallet)
+        try blockchainService.removeExternallyOwnedAccount(address: paperWallet)
     }
 
     private func markReadyToDeploy() throws {
@@ -418,6 +420,12 @@ public class WalletApplicationService: Assertable {
                 }
             }
         }
+    }
+
+    public func addBrowserExtensionOwner(address: String, browserExtensionData: [String: Any]) throws {
+        try _ = blockchainService.sign(message: "GNO" + address, by: "")
+//        notificationService.pair(address: address, browserExtensionData: browserExtensionData, signature: signature)
+//        addOwner(address: address, type: .browserExtension)
     }
 
     public func ownerAddress(of type: OwnerType) -> String? {

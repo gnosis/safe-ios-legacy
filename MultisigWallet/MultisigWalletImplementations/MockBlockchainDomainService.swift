@@ -9,6 +9,7 @@ public class MockBlockchainDomainService: BlockchainDomainService {
 
     public var generatedAccountAddress: String = "address"
     public var shouldThrow = false
+    public var didSign = false
     private var balances = [String: Int]()
 
     enum Error: String, LocalizedError, Hashable {
@@ -80,6 +81,11 @@ public class MockBlockchainDomainService: BlockchainDomainService {
 
     public func balance(address: String) throws -> Int {
         return balances[address] ?? 0
+    }
+
+    public func sign(message: String, by address: String) throws -> RSVSignature {
+        didSign = true
+        return RSVSignature(r: "", s: "", v: 0)
     }
 
 }
