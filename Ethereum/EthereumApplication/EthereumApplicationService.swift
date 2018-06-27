@@ -33,6 +33,13 @@ open class EthereumApplicationService {
     private var relayService: TransactionRelayDomainService { return DomainRegistry.transactionRelayService }
     private var encryptionService: EncryptionDomainService { return DomainRegistry.encryptionService }
     private var nodeService: EthereumNodeDomainService { return DomainRegistry.ethereumNodeService }
+    private var eoaRepository: ExternallyOwnedAccountRepository {
+        return DomainRegistry.externallyOwnedAccountRepository
+    }
+
+    enum Error: String, LocalizedError, Hashable {
+        case eoaNotFound
+    }
 
     public init() {}
 
@@ -42,16 +49,16 @@ open class EthereumApplicationService {
 
     open func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccountData {
         let account = try encryptionService.generateExternallyOwnedAccount()
-        try DomainRegistry.externallyOwnedAccountRepository.save(account)
+        try eoaRepository.save(account)
         return account.applicationServiceData
     }
 
     open func removeExternallyOwnedAccount(address: String) throws {
-        try DomainRegistry.externallyOwnedAccountRepository.remove(address: Address(value: address))
+        try eoaRepository.remove(address: Address(value: address))
     }
 
     open func findExternallyOwnedAccount(by address: String) throws -> ExternallyOwnedAccountData? {
-        guard let account = try DomainRegistry.externallyOwnedAccountRepository.find(by: Address(value: address)) else {
+        guard let account = try eoaRepository.find(by: Address(value: address)) else {
             return nil
         }
         return account.applicationServiceData
@@ -100,6 +107,13 @@ open class EthereumApplicationService {
             }
         } while receipt == nil
         return receipt!.status == .success
+    }
+
+    open func sign(message: String, by address: String) throws -> (r: String, s: String, v: Int) {
+        guard let eoa = try eoaRepository.find(by: Address(value: address)) else {
+            throw Error.eoaNotFound
+        }
+        return try encryptionService.sign(message: message, privateKey: eoa.privateKey)
     }
 
     private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {
