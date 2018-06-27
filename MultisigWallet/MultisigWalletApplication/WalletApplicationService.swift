@@ -79,13 +79,14 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    enum Error: String, LocalizedError, Hashable {
+    public enum Error: String, LocalizedError, Hashable {
         case oneOrMoreOwnersAreMissing
         case selectedWalletNotFound
         case invalidWalletState
         case accountNotFound
         case missingWalletAddress
         case creationTransactionHashNotFound
+        case networkError
     }
 
     public static let requiredConfirmationCount: Int = 2
@@ -427,12 +428,16 @@ public class WalletApplicationService: Assertable {
     }
 
     public func addBrowserExtensionOwner(address: String, browserExtensionCode: String) throws {
-        // TODO: implement
-        let signature = try blockchainService.sign(message: "GNO" + address, by: "")
+        let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
+        let signature = try blockchainService.sign(message: "GNO" + address, by: deviceOwnerAddress)
         let browserExtension = try BrowserExtensionCode(json: browserExtensionCode)
-        let pairingRequest = PairingRequest(temporaryAuthorization: browserExtension, signature: signature)
-        try notificationService.pair(pairingRequest: pairingRequest)
-//        addOwner(address: address, type: .browserExtension)
+        do {
+            let pairingRequest = PairingRequest(temporaryAuthorization: browserExtension, signature: signature)
+            try notificationService.pair(pairingRequest: pairingRequest)
+        } catch {
+            throw Error.networkError
+        }
+        try addOwner(address: address, type: .browserExtension)
     }
 
     public func ownerAddress(of type: OwnerType) -> String? {

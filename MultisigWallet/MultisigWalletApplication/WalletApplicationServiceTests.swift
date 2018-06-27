@@ -365,22 +365,25 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertNotNil(blockchainService.observeBalance_input)
     }
 
-    func test_whenAddingBrowserExtensionOwner_thenCallsBlockchainServiceToSign() throws {
+    func test_whenAddingBrowserExtensionOwner_thenWorksProperly() throws {
         givenDraftWallet()
-        try addAllOwners()
         try service.addBrowserExtensionOwner(
-            address: service.ownerAddress(of: .browserExtension)!,
-            browserExtensionCode: "")
+            address: "test",
+            browserExtensionCode: BrowserExtensionFixture.testJSON)
         XCTAssertTrue(blockchainService.didSign)
+        XCTAssertTrue(notificationService.didPair)
+        XCTAssertNotNil(service.ownerAddress(of: .browserExtension))
     }
 
-    func test_whenAddingBrowserExtensionOwner_thenCallsBNotificationService() throws {
+    func test_whenAddingBrowserExtensionOwnerWithNetworkFailure_thenThrowsError() throws {
         givenDraftWallet()
-        try addAllOwners()
-        try service.addBrowserExtensionOwner(
-            address: service.ownerAddress(of: .browserExtension)!,
-            browserExtensionCode: BrowserExtensionFixture.testJSON)
-        XCTAssertTrue(notificationService.didPair)
+        notificationService.shouldThrow = true
+        XCTAssertThrowsError(
+            try service.addBrowserExtensionOwner(
+                address: "test",
+                browserExtensionCode: BrowserExtensionFixture.testJSON)) { error in
+                    XCTAssertEqual(error as! WalletApplicationService.Error, .networkError)
+        }
     }
 
 }
