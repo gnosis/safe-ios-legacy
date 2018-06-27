@@ -40,7 +40,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     // MARK: - Creating Transaction
 
-    init(id: TransactionID, type: TransactionType, walletID: WalletID, accountID: AccountID) {
+    public init(id: TransactionID, type: TransactionType, walletID: WalletID, accountID: AccountID) {
         self.type = type
         self.walletID = walletID
         self.accountID = accountID
@@ -187,7 +187,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
 // MARK: - Supporting types
 
-public enum TransactionStatus {
+public enum TransactionStatus: Int {
 
     /// Draft transaction is allowed to change any data
     case draft
@@ -208,7 +208,7 @@ public enum TransactionStatus {
 
 }
 
-public enum TransactionType {
+public enum TransactionType: Int {
 
     case transfer
 
