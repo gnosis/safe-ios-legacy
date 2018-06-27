@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct BroewserExtensionCode: Codable, Equatable {
+public struct BrowserExtensionCode: Codable, Equatable {
 
     let expirationDate: Date
     let signature: RSVSignature

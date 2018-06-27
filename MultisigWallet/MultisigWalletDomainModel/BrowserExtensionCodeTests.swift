@@ -21,18 +21,18 @@ class BrowserExtensionCodeTests: XCTestCase {
 
         let date = dateFormatter.date(from: "2018-05-09T14:18:55+00:00")!
         let signature = RSVSignature(r: "test", s: "me", v: 27)
-        let code = BroewserExtensionCode(expirationDate: date, signature: signature)
+        let code = BrowserExtensionCode(expirationDate: date, signature: signature)
 
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
-        let code2 = try decoder.decode(BroewserExtensionCode.self, from: str.data(using: .utf8)!)
+        let code2 = try decoder.decode(BrowserExtensionCode.self, from: str.data(using: .utf8)!)
         XCTAssertEqual(code, code2)
 
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         encoder.dateEncodingStrategy = .formatted(dateFormatter)
         let data = try encoder.encode(code)
-        let code3 = try decoder.decode(BroewserExtensionCode.self, from: data)
+        let code3 = try decoder.decode(BrowserExtensionCode.self, from: data)
         XCTAssertEqual(code, code3)
     }
 
