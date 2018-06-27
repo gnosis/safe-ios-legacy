@@ -5,7 +5,7 @@
 import Foundation
 import MultisigWalletDomainModel
 import Database
-import Common
+import CryptoSwift
 
 public class DBTransactionRepository: TransactionRepository {
 
