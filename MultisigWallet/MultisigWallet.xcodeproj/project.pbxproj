@@ -67,6 +67,9 @@
 		555C94A020E2A62E00A0621D /* WalletDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949B20E2A62D00A0621D /* WalletDateFormatter.swift */; };
 		555C94A320E2A63100A0621D /* BrowserExtensionCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949D20E2A62D00A0621D /* BrowserExtensionCodeTests.swift */; };
 		555C94A420E2A63500A0621D /* SignatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949C20E2A62D00A0621D /* SignatureTests.swift */; };
+		555C94A620E3824800A0621D /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94A520E3824800A0621D /* NotificationService.swift */; };
+		555C94A820E385DB00A0621D /* PairingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94A720E385DB00A0621D /* PairingRequest.swift */; };
+		555C94AA20E3868900A0621D /* PairingRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94A920E3868900A0621D /* PairingRequestTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -284,6 +287,9 @@
 		555C949B20E2A62D00A0621D /* WalletDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletDateFormatter.swift; sourceTree = "<group>"; };
 		555C949C20E2A62D00A0621D /* SignatureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureTests.swift; sourceTree = "<group>"; };
 		555C949D20E2A62D00A0621D /* BrowserExtensionCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserExtensionCodeTests.swift; sourceTree = "<group>"; };
+		555C94A520E3824800A0621D /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		555C94A720E385DB00A0621D /* PairingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingRequest.swift; sourceTree = "<group>"; };
+		555C94A920E3868900A0621D /* PairingRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingRequestTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +406,8 @@
 				0A23C80420A1B09100C72483 /* Wallet.swift */,
 				555C949B20E2A62D00A0621D /* WalletDateFormatter.swift */,
 				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
+				555C94A720E385DB00A0621D /* PairingRequest.swift */,
+				555C94A920E3868900A0621D /* PairingRequestTests.swift */,
 			);
 			path = MultisigWalletDomainModel;
 			sourceTree = "<group>";
@@ -469,6 +477,7 @@
 				555C948A20E2A60F00A0621D /* WalletRepository.swift */,
 				555C948C20E2A60F00A0621D /* AccountRepository.swift */,
 				555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */,
+				555C94A520E3824800A0621D /* NotificationService.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -787,6 +796,7 @@
 			files = (
 				0AAA174720E26E90003B35B3 /* TransactionRepository.swift in Sources */,
 				0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */,
+				555C94A820E385DB00A0621D /* PairingRequest.swift in Sources */,
 				555C949820E2A60F00A0621D /* SinglePortfolioRepository.swift in Sources */,
 				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
@@ -794,6 +804,7 @@
 				555C94A020E2A62E00A0621D /* WalletDateFormatter.swift in Sources */,
 				0AA5D4A020E12B68006F46CD /* Token.swift in Sources */,
 				0A76BE5520AEF31000D07770 /* DomainRegistry.swift in Sources */,
+				555C94A620E3824800A0621D /* NotificationService.swift in Sources */,
 				555C949420E2A60F00A0621D /* BlockchainDomainService.swift in Sources */,
 				0A23C80F20A1B35D00C72483 /* BlockchainAddress.swift in Sources */,
 				0A76BE5A20AF0CB500D07770 /* Account.swift in Sources */,
@@ -811,6 +822,7 @@
 				0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */,
 				555C94A320E2A63100A0621D /* BrowserExtensionCodeTests.swift in Sources */,
 				0A76BE5720AEF35C00D07770 /* DomainRegistryTests.swift in Sources */,
+				555C94AA20E3868900A0621D /* PairingRequestTests.swift in Sources */,
 				0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */,
 				555C94A420E2A63500A0621D /* SignatureTests.swift in Sources */,
 				0A23C81B20A1CEDA00C72483 /* PortfolioTests.swift in Sources */,

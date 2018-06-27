@@ -29,7 +29,6 @@ class BrowserExtensionCodeTests: XCTestCase {
         XCTAssertEqual(code, code2)
 
         let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
         encoder.dateEncodingStrategy = .formatted(dateFormatter)
         let data = try encoder.encode(code)
         let code3 = try decoder.decode(BrowserExtensionCode.self, from: data)
