@@ -74,7 +74,7 @@ public class JSONHTTPClient {
         do {
             response = try JSONDecoder().decode(T.self, from: data)
         } catch let error {
-            print(error)
+            ApplicationServiceRegistry.logger.error("Failed to decode response: \(error)")
             throw error
         }
         return response
