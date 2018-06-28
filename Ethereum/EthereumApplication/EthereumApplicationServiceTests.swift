@@ -50,7 +50,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         }
         XCTAssertEqual(input.owners, [Address(value: "one")])
         XCTAssertEqual(input.confirmationCount, 1)
-        XCTAssertEqual(input.randomData, Data(repeating: 1, count: 32))
+        XCTAssertEqual(input.randomUInt256, "randomUInt256")
         XCTAssertFalse(output.safe.isEmpty)
         XCTAssertNotEqual(output.payment, 0)
     }

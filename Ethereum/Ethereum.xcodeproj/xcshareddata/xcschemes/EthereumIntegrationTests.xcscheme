@@ -32,26 +32,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A30672F20A5C7560059F521"
-               BuildableName = "EthereumApplicationTests.xctest"
-               BlueprintName = "EthereumApplicationTests"
-               ReferencedContainer = "container:Ethereum.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A30671520A5C73A0059F521"
-               BuildableName = "EthereumDomainModelTests.xctest"
-               BlueprintName = "EthereumDomainModelTests"
-               ReferencedContainer = "container:Ethereum.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "0A30674920A5C7740059F521"
                BuildableName = "EthereumImplementationsTests.xctest"
                BlueprintName = "EthereumImplementationsTests"
@@ -59,7 +39,16 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "GnosisTransactionRelayServiceTests">
+                  Identifier = "EncryptionServiceTests">
+               </Test>
+               <Test
+                  Identifier = "InMemoryExternallyOwnedAccountRepositoryTests">
+               </Test>
+               <Test
+                  Identifier = "InfuraEthereumNodeServiceTests">
+               </Test>
+               <Test
+                  Identifier = "MockTransactionRelayServiceTests">
                </Test>
             </SkippedTests>
          </TestableReference>
