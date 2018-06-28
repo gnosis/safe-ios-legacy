@@ -5,16 +5,11 @@
 import Foundation
 import EthereumDomainModel
 
-struct SafeCreationTransactionRequest: JSONRequest {
-
-    var httpMethod: String { return "POST" }
-    var urlPath: String { return "safes/" }
+struct SafeCreationTransactionRequest: Encodable {
 
     let owners: [String]
     let threshold: String
     let s: String
-
-    typealias ResponseType = SafeCreationTransactionRequest.Response
 
     struct Response: Decodable {
         let signature: Response.Signature
@@ -43,5 +38,14 @@ struct SafeCreationTransactionRequest: JSONRequest {
         threshold = String(confirmationCount)
         s = randomUInt256
     }
+
+}
+
+extension SafeCreationTransactionRequest: JSONRequest {
+
+    var httpMethod: String { return "POST" }
+    var urlPath: String { return "safes/" }
+
+    typealias ResponseType = SafeCreationTransactionRequest.Response
 
 }
