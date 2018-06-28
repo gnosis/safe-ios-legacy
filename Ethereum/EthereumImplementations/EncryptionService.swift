@@ -8,6 +8,7 @@ import EthereumApplication
 import EthereumKit
 import Common
 import CryptoSwift
+import BigInt
 
 // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md
 public enum EIP155ChainId: Int {
@@ -21,6 +22,7 @@ public enum EIP155ChainId: Int {
     case ethereumClassicMainnet = 61
     case ethereumClassicTestnet = 62
     case gethPrivateChains = 1_337
+    case any = 0
 }
 
 struct ExtensionCode {
@@ -126,8 +128,8 @@ public class EncryptionService: EncryptionDomainService {
         return account
     }
 
-    public func randomData(byteCount: Int) throws -> Data {
-        return Data(repeating: 1, count: byteCount)
+    public func randomUInt256() -> String {
+        return String(BigUInt.randomInteger(withExactWidth: 256))
     }
 
     public func sign(message: String, privateKey: EthereumDomainModel.PrivateKey) throws -> RSVSignature {

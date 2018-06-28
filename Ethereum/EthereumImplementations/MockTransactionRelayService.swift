@@ -34,15 +34,15 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         }
     }
 
-    public var createSafeCreationTransaction_input: (owners: [Address], confirmationCount: Int, randomData: Data)?
+    public var createSafeCreationTransaction_input: (owners: [Address], confirmationCount: Int, randomUInt256: String)?
 
-    public func createSafeCreationTransaction(owners: [Address], confirmationCount: Int, randomData: Data) throws
+    public func createSafeCreationTransaction(owners: [Address], confirmationCount: Int, randomUInt256: String) throws
         -> SignedSafeCreationTransaction {
-            createSafeCreationTransaction_input = (owners, confirmationCount, randomData)
+            createSafeCreationTransaction_input = (owners, confirmationCount, randomUInt256)
             wait(randomizedNetworkResponseDelay)
             return SignedSafeCreationTransaction(safe: Address(value: "0x57b2573E5FA7c7C9B5Fa82F3F03A75F53A0efdF5"),
                                                  payment: Ether(amount: 100),
-                                                 signature: Signature(),
+                                                 signature: Signature.empty,
                                                  tx: Transaction())
     }
 

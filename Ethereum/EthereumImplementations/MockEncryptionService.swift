@@ -22,8 +22,8 @@ public class MockEncryptionService: EncryptionDomainService {
                                       publicKey: PublicKey(data: Data()))
     }
 
-    public func randomData(byteCount: Int) throws -> Data {
-        return Data(repeating: 1, count: byteCount)
+    public func randomUInt256() -> String {
+        return "randomUInt256"
     }
 
     public func sign(message: String, privateKey: PrivateKey) throws -> RSVSignature {

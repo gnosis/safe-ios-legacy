@@ -4,6 +4,7 @@
 
 import Foundation
 import EthereumDomainModel
+import BigInt
 
 public struct ExternallyOwnedAccountData: Equatable {
 
@@ -60,10 +61,10 @@ open class EthereumApplicationService {
     open func createSafeCreationTransaction(owners: [String], confirmationCount: Int) throws
         -> SafeCreationTransactionData {
             let ownerAddresses = owners.map { Address(value: $0) }
-            let randomData = try encryptionService.randomData(byteCount: 32) // 256-bit random
+            let randomUInt256 = encryptionService.randomUInt256()
             let transaction = try relayService.createSafeCreationTransaction(owners: ownerAddresses,
                                                                              confirmationCount: confirmationCount,
-                                                                             randomData: randomData)
+                                                                             randomUInt256: randomUInt256)
             return SafeCreationTransactionData(safe: transaction.safe.value, payment: transaction.payment.amount)
     }
 

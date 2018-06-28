@@ -10,7 +10,7 @@ public protocol EncryptionDomainService {
 
     func address(browserExtensionCode: String) -> String?
     func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccount
-    func randomData(byteCount: Int) throws -> Data
+    func randomUInt256() -> String
     func sign(message: String, privateKey: PrivateKey) throws -> RSVSignature
 
 }
