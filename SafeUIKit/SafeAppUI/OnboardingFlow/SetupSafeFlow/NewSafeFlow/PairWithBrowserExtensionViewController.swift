@@ -38,6 +38,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     }
 
     private var scannerController: UIViewController?
+    private var scannedCode: String?
 
     static func create(delegate: PairWithBrowserDelegate) -> PairWithBrowserExtensionViewController {
         let controller = StoryboardScene.NewSafe.pairWithBrowserExtensionViewController.instantiate()
@@ -60,11 +61,26 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             logger.error("Wrong state in PairWithBrowserExtensionViewController.")
             return
         }
-        do {
-            try walletService.addOwner(address: text, type: .browserExtension)
-            delegate?.didPair()
-        } catch let e {
-            ErrorHandler.showFatalError(log: "Failed to add browser extension \(text)", error: e)
+        // TODO: activity indicator
+        saveButton.isEnabled = false
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
+            do {
+                try self.walletService.addBrowserExtensionOwner(address: text, browserExtensionCode: self.scannedCode!)
+                DispatchQueue.main.async {
+                    self.delegate?.didPair()
+                }
+            } catch WalletApplicationService.Error.networkError {
+                DispatchQueue.main.async {
+                    // TODO: localize
+                    self.saveButton.isEnabled = true
+                    ErrorHandler.showError(message: "Network error", log: "Network Error in pairing", error: nil)
+                }
+            } catch let e {
+                DispatchQueue.main.async {
+                    ErrorHandler.showFatalError(log: "Failed to add browser extension \(text)", error: e)
+                }
+            }
         }
     }
 
@@ -84,6 +100,7 @@ extension PairWithBrowserExtensionViewController: QRCodeInputDelegate {
     func didScanValidCode(_ code: String) {
         scannerController?.dismiss(animated: true)
         saveButton.isEnabled = true
+        scannedCode = code
     }
 
 }

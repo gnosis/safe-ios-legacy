@@ -12,6 +12,10 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.blockchainService
     }
 
+    private var notificationService: NotificationDomainService {
+        return DomainRegistry.notificationService
+    }
+
     public enum WalletState {
         case none
         case newDraft
@@ -75,13 +79,14 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    enum Error: String, LocalizedError, Hashable {
+    public enum Error: String, LocalizedError, Hashable {
         case oneOrMoreOwnersAreMissing
         case selectedWalletNotFound
         case invalidWalletState
         case accountNotFound
         case missingWalletAddress
         case creationTransactionHashNotFound
+        case networkError
     }
 
     public static let requiredConfirmationCount: Int = 2
@@ -422,10 +427,17 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public func addBrowserExtensionOwner(address: String, browserExtensionData: [String: Any]) throws {
-        try _ = blockchainService.sign(message: "GNO" + address, by: "")
-//        notificationService.pair(address: address, browserExtensionData: browserExtensionData, signature: signature)
-//        addOwner(address: address, type: .browserExtension)
+    public func addBrowserExtensionOwner(address: String, browserExtensionCode: String) throws {
+        let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
+        let signature = try blockchainService.sign(message: "GNO" + address, by: deviceOwnerAddress)
+        let browserExtension = try BrowserExtensionCode(json: browserExtensionCode)
+        do {
+            let pairingRequest = PairingRequest(temporaryAuthorization: browserExtension, signature: signature)
+            try notificationService.pair(pairingRequest: pairingRequest)
+        } catch {
+            throw Error.networkError
+        }
+        try addOwner(address: address, type: .browserExtension)
     }
 
     public func ownerAddress(of type: OwnerType) -> String? {

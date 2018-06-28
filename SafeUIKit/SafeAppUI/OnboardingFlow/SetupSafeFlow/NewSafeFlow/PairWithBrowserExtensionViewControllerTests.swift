@@ -77,14 +77,18 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
 
     func test_finish_whenAddressIsThere_thenCallsDelegate() {
         controller.extensionAddressInput.text = "test_address"
+        controller.didScanValidCode("code")
         controller.finish(self)
+        delay()
         XCTAssertTrue(delegate.paired)
     }
 
     func test_whenFinishing_thenCreatesOwner() throws {
         try walletService.createNewDraftWallet()
         controller.extensionAddressInput.text = "address"
+        controller.didScanValidCode("code")
         controller.finish(self)
+        delay()
         XCTAssertTrue(walletService.isOwnerExists(.browserExtension))
     }
 

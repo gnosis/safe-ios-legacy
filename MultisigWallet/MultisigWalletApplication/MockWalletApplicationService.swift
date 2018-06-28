@@ -144,4 +144,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         return existingOwners[type]
     }
 
+    public override func addBrowserExtensionOwner(address: String, browserExtensionCode: String) throws {
+        addOwner(address: address, type: .browserExtension)
+    }
+
 }

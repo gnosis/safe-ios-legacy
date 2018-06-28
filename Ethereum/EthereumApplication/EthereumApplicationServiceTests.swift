@@ -111,4 +111,24 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         XCTAssertEqual(callCount, 3)
     }
 
+    func test_whenSignsMessage_thenSignatureIsCorrect() throws {
+        let pk = PrivateKey(data: Data(repeating: 1, count: 32))
+        try eoaRepository.save(ExternallyOwnedAccount(
+            address: Address(value: "signer"),
+            mnemonic: Mnemonic(words: ["test"]),
+            privateKey: pk,
+            publicKey: PublicKey(data: Data())))
+        encryptionService.sign_output = ("r", "s", 1)
+        let (r, s, v) = try applicationService.sign(message: "Gnosis", by: "signer")
+        XCTAssertEqual(r, "r")
+        XCTAssertEqual(s, "s")
+        XCTAssertEqual(v, 1)
+        XCTAssertEqual(encryptionService.sign_input?.message, "Gnosis")
+        XCTAssertEqual(encryptionService.sign_input?.privateKey, pk)
+    }
+
+    func test_whenSignMessageForUnknownAddress_thenThrows() throws {
+        XCTAssertThrowsError(try applicationService.sign(message: "Gnosis", by: "signer"))
+    }
+
 }
