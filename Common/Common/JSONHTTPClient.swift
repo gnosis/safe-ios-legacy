@@ -3,7 +3,6 @@
 //
 
 import Foundation
-import EthereumApplication
 
 public protocol JSONRequest: Encodable {
 
@@ -22,10 +21,12 @@ public class JSONHTTPClient {
 
     private typealias URLDataTaskResult = (data: Data?, response: URLResponse?, error: Swift.Error?)
 
-    let baseURL: URL
+    private let baseURL: URL
+    private let logger: Logger?
 
-    init(url: URL) {
+    public init(url: URL, logger: Logger? = nil) {
         baseURL = url
+        self.logger = logger
     }
 
     public func execute<T: JSONRequest>(request: T) throws -> T.ResponseType {
@@ -47,7 +48,7 @@ public class JSONHTTPClient {
     private func send(_ request: URLRequest) -> URLDataTaskResult {
         var result: URLDataTaskResult
         let semaphore = DispatchSemaphore(value: 0)
-        ApplicationServiceRegistry.logger.debug("Sending request \(request)")
+        logger?.debug("Sending request \(request)")
 
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             result = (data, response, error)
@@ -55,7 +56,7 @@ public class JSONHTTPClient {
         }
         dataTask.resume()
         semaphore.wait()
-        ApplicationServiceRegistry.logger.debug("Received response \(result)")
+        logger?.debug("Received response \(result)")
         return result
     }
 
@@ -68,13 +69,13 @@ public class JSONHTTPClient {
                 throw Error.networkRequestFailed(request, result.response)
         }
         if let rawResponse = String(data: data, encoding: .utf8) {
-            ApplicationServiceRegistry.logger.debug(rawResponse)
+            logger?.debug(rawResponse)
         }
         let response: T
         do {
             response = try JSONDecoder().decode(T.self, from: data)
         } catch let error {
-            ApplicationServiceRegistry.logger.error("Failed to decode response: \(error)")
+            logger?.error("Failed to decode response: \(error)")
             throw error
         }
         return response
