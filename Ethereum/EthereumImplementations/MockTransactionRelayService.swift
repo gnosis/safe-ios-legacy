@@ -42,7 +42,7 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
             wait(randomizedNetworkResponseDelay)
             return SignedSafeCreationTransaction(safe: Address(value: "0x57b2573E5FA7c7C9B5Fa82F3F03A75F53A0efdF5"),
                                                  payment: Ether(amount: 100),
-                                                 signature: Signature.empty,
+                                                 signature: Signature(r: "", s: "", v: 0),
                                                  tx: Transaction())
     }
 

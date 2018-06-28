@@ -55,8 +55,6 @@ public struct Ether: Equatable {
 
 public struct Signature {
 
-    public static let empty = Signature(r: "", s: "", v: 0)
-
     public var r: String
     public var s: String
     public var v: Int
