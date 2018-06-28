@@ -35,6 +35,15 @@ public class JSONHTTPClient {
         return response
     }
 
+    private func urlRequest<T: JSONRequest>(from jsonRequest: T) throws -> URLRequest {
+        let url = baseURL.appendingPathComponent(jsonRequest.urlPath)
+        var request = URLRequest(url: url)
+        request.httpMethod = jsonRequest.httpMethod
+        request.httpBody = try JSONEncoder().encode(jsonRequest)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        return request
+    }
+
     private func send(_ request: URLRequest) -> URLDataTaskResult {
         var result: URLDataTaskResult
         let semaphore = DispatchSemaphore(value: 0)
@@ -48,15 +57,6 @@ public class JSONHTTPClient {
         semaphore.wait()
         ApplicationServiceRegistry.logger.debug("Received response \(result)")
         return result
-    }
-
-    private func urlRequest<T: JSONRequest>(from jsonRequest: T) throws -> URLRequest {
-        let url = baseURL.appendingPathComponent(jsonRequest.urlPath)
-        var request = URLRequest(url: url)
-        request.httpMethod = jsonRequest.httpMethod
-        request.httpBody = try JSONEncoder().encode(jsonRequest)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        return request
     }
 
     private func response<T: Decodable>(from request: URLRequest, result: URLDataTaskResult) throws -> T {
