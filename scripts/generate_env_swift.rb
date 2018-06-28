@@ -20,9 +20,9 @@ keys_file_template = <<EOF
 
 import Foundation
 
-struct Keys {
-    static let infuraApiKey = "#{infura_key}"
-    static let transactionRelayServiceURL = URL(string: "#{relay_service_url}")!
+public struct Keys {
+    public static let infuraApiKey = "#{infura_key}"
+    public static let transactionRelayServiceURL = URL(string: "#{relay_service_url}")!
 }
 EOF
 File.open(dst_file, "w") { |f| f.write(keys_file_template) }

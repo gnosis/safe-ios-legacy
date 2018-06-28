@@ -13,7 +13,6 @@
 		0A2CAD7620BD7C170074F9FA /* MockTransactionRelayServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CAD7520BD7C170074F9FA /* MockTransactionRelayServiceTests.swift */; };
 		0A2CAD7C20BD888C0074F9FA /* InfuraEthereumNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CAD7B20BD888C0074F9FA /* InfuraEthereumNodeService.swift */; };
 		0A2CAD8820BD88C40074F9FA /* InfuraEthereumNodeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CAD8720BD88C40074F9FA /* InfuraEthereumNodeServiceTests.swift */; };
-		0A2CAD9120BDAF990074F9FA /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CAD9020BDAF990074F9FA /* Keys.swift */; };
 		0A2CAD9420BEA8870074F9FA /* EtherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CAD9320BEA8870074F9FA /* EtherTests.swift */; };
 		0A2CAD9820BEB2590074F9FA /* InfuraServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CAD9720BEB2590074F9FA /* InfuraServiceConfiguration.swift */; };
 		0A2CAD9A20BEB2710074F9FA /* GetBalanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CAD9920BEB2710074F9FA /* GetBalanceRequest.swift */; };
@@ -284,7 +283,6 @@
 		0A2CAD7520BD7C170074F9FA /* MockTransactionRelayServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTransactionRelayServiceTests.swift; sourceTree = "<group>"; };
 		0A2CAD7B20BD888C0074F9FA /* InfuraEthereumNodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfuraEthereumNodeService.swift; sourceTree = "<group>"; };
 		0A2CAD8720BD88C40074F9FA /* InfuraEthereumNodeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfuraEthereumNodeServiceTests.swift; sourceTree = "<group>"; };
-		0A2CAD9020BDAF990074F9FA /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		0A2CAD9320BEA8870074F9FA /* EtherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EtherTests.swift; sourceTree = "<group>"; };
 		0A2CAD9720BEB2590074F9FA /* InfuraServiceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfuraServiceConfiguration.swift; sourceTree = "<group>"; };
 		0A2CAD9920BEB2710074F9FA /* GetBalanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBalanceRequest.swift; sourceTree = "<group>"; };
@@ -388,14 +386,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A2CAD8B20BDACEC0074F9FA /* generated */ = {
-			isa = PBXGroup;
-			children = (
-				0A2CAD9020BDAF990074F9FA /* Keys.swift */,
-			);
-			path = generated;
-			sourceTree = "<group>";
-		};
 		0A2CAD9B20BEB2D00074F9FA /* infura */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,7 +467,6 @@
 				557E77E120AC80E900732A77 /* EncryptionServiceTests.swift */,
 				0A934D0E20B6CDB700F15616 /* EthereumKitEthereumService.swift */,
 				0A934D2920B7009100F15616 /* ExternallyOwnedAccount+TestFixture.swift */,
-				0A2CAD8B20BDACEC0074F9FA /* generated */,
 				0A2CAD9B20BEB2D00074F9FA /* infura */,
 				0A934D2520B6FFBD00F15616 /* InMemoryExternallyOwnedAccountRepository.swift */,
 				0A934D2720B6FFE700F15616 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */,
@@ -616,7 +605,6 @@
 			buildConfigurationList = 0A30674320A5C7650059F521 /* Build configuration list for PBXNativeTarget "EthereumImplementations" */;
 			buildPhases = (
 				0A30677920A5C98C0059F521 /* Lint */,
-				0A2CAD8A20BDA99E0074F9FA /* Generate API Keys File */,
 				0A30673B20A5C7650059F521 /* Sources */,
 				0A30673C20A5C7650059F521 /* Frameworks */,
 				0A30673D20A5C7650059F521 /* CopyFiles */,
@@ -846,24 +834,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A2CAD8A20BDA99E0074F9FA /* Generate API Keys File */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/../.env.default",
-				"${SRCROOT}/../scripts/generate_env_swift.rb",
-			);
-			name = "Generate API Keys File";
-			outputPaths = (
-				"$(SRCROOT)/$(PRODUCT_NAME)/generated/Keys.swift",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which rbenv > /dev/null; then\n    PATH=\"$HOME/.rbenv/bin:$PATH\"\n    eval \"$(rbenv init -)\"\nfi\n${SCRIPT_INPUT_FILE_1}";
-			showEnvVarsInLog = 0;
-		};
 		0A30677520A5C9530059F521 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -963,7 +933,6 @@
 				0A2CAD9820BEB2590074F9FA /* InfuraServiceConfiguration.swift in Sources */,
 				0A30674220A5C7650059F521 /* MockEncryptionService.swift in Sources */,
 				0AAA178B20E50C64003B35B3 /* SafeCreationTransactionRequest.swift in Sources */,
-				0A2CAD9120BDAF990074F9FA /* Keys.swift in Sources */,
 				0A934D0F20B6CDB700F15616 /* EthereumKitEthereumService.swift in Sources */,
 				55704B1720AC8B250054256B /* EncryptionService.swift in Sources */,
 				0A934D2620B6FFBD00F15616 /* InMemoryExternallyOwnedAccountRepository.swift in Sources */,
