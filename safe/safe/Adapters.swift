@@ -33,8 +33,8 @@ extension EthereumApplicationService: BlockchainDomainService {
     }
 
     public func sign(message: String, by address: String) throws -> RSVSignature {
-        let (r, s, v) = try sign(message: message, by: address)
-        return RSVSignature(r: r, s: s, v: v)
+        let signature: (r: String, s: String, v: Int) = try sign(message: message, by: address)
+        return RSVSignature(r: signature.r, s: signature.s, v: signature.v)
     }
 
 }

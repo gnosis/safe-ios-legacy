@@ -82,41 +82,112 @@ public class EncryptionService: EncryptionDomainService {
 
     public enum Error: String, LocalizedError, Hashable {
         case failedToGenerateAccount
+        case invalidTransactionData
+        case invalidSignature
+        case invalidCodeJSON
+        case invalidString
     }
 
     let chainId: EIP155ChainId
     let ethereumService: EthereumService
+    private let signer: EIP155Signer
 
     public init(chainId: EIP155ChainId = .mainnet, ethereumService: EthereumService = EthereumKitEthereumService()) {
         self.chainId = chainId
         self.ethereumService = ethereumService
+        self.signer = EIP155Signer(chainID: chainId.rawValue)
     }
 
+    // MARK: - Browser Extension Code conversion
+
     public func address(browserExtensionCode: String) -> String? {
-        guard let code = extensionCode(from: browserExtensionCode) else {
+        do {
+            let code = try extensionCode(from: browserExtensionCode)
+            let message = try hash(data("GNO" + code.expirationDate))
+            let result = try string(address: address(publicKey(signature(from: code), message)))
+            return result
+        } catch Error.invalidCodeJSON {
             ApplicationServiceRegistry.logger.error("Failed to convert extension code (\(browserExtensionCode))")
             return nil
-        }
-        let signer = EIP155Signer(chainID: chainId.rawValue)
-        let signature = signer.calculateSignature(r: code.r, s: code.s, v: code.v)
-        let message = "GNO" + code.expirationDate
-        let signedData = Crypto.hashSHA3_256(message.data(using: .utf8)!)
-        guard let pubKey = Crypto.publicKey(signature: signature, of: signedData, compressed: false) else {
+        } catch {
             ApplicationServiceRegistry.logger.error(
                 "Failed to extract public key from extension code (\(browserExtensionCode))")
             return nil
         }
-        return PublicKey(raw: Data(hex: "0x") + pubKey).generateAddress()
     }
 
-    private func extensionCode(from code: String) -> ExtensionCode? {
+    private func extensionCode(from code: String) throws -> ExtensionCode {
         guard let data = code.data(using: .utf8),
             let json = try? JSONSerialization.jsonObject(with: data),
             let extensionCode = ExtensionCode(json: json) else {
-                return nil
+                throw Error.invalidCodeJSON
         }
         return extensionCode
     }
+
+    private func signature(from code: ExtensionCode) -> RSVSignature {
+        return signature(from: (code.r, code.s, code.v))
+    }
+
+    private func signature(from value: (r: BInt, s: BInt, v: BInt)) -> RSVSignature {
+        return (value.r.asString(withBase: 10), value.s.asString(withBase: 10), Int(value.v))
+    }
+
+    private func data(_ value: String) throws -> Data {
+        guard let result = value.data(using: .utf8) else {
+            throw Error.invalidString
+        }
+        return result
+    }
+
+    // MARK: - Contract Address computation
+
+    public func contractAddress(from signature: RSVSignature, for transaction: EthTransaction) throws -> String? {
+        let sender = try address(publicKey(signature, hash(transaction)))
+        let result = try string(address: hash(rlp(sender, transaction.nonce)).suffix(from: 12)) // last 20 of 32 bytes
+        return result
+    }
+
+    private func rlp(_ values: Any...) throws -> Data {
+        return try RLP.encode(values)
+    }
+
+    private func hash(_ value: Data) -> Data {
+        return Crypto.hashSHA3_256(value)
+    }
+
+    private func hash(_ tx: EthTransaction) throws -> Data {
+        let to = 0
+        return hash(
+            try rlp(tx.nonce, try Int(string: tx.gasPrice), try Int(string: tx.gas), to, tx.value, Data(hex: tx.data)))
+    }
+
+    private func data(from signature: RSVSignature) throws -> Data {
+        guard let r = BInt.init(signature.r, radix: 10), let s = BInt.init(signature.s, radix: 10) else {
+            throw Error.invalidSignature
+        }
+        let v = BInt.init(signature.v)
+        let data = signer.calculateSignature(r: r, s: s, v: v)
+        return data
+    }
+
+    private func publicKey(_ signature: RSVSignature, _ hash: Data) throws -> Data {
+        guard let key = Crypto.publicKey(signature: try data(from: signature), of: hash, compressed: false) else {
+            throw Error.invalidSignature
+        }
+        return key
+    }
+
+    private func address(_ publicKey: Data) -> Data {
+        let string = ethereumService.createAddress(publicKey: publicKey)
+        return Data(hex: string)
+    }
+
+    private func string(address: Data) -> String {
+        return EthereumKit.Address(data: address).string
+    }
+
+    // MARK: - EOA generation
 
     public func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccount {
         let (mnemonicWords, privateKeyData, publicKeyData, address) =
@@ -128,20 +199,35 @@ public class EncryptionService: EncryptionDomainService {
         return account
     }
 
+    // MARK: - random numbers
+
     public func randomUInt256() -> String {
         return String(BigUInt.randomInteger(withExactWidth: 256))
     }
 
+    // MARK: - Signing messages
+
     public func sign(message: String, privateKey: EthereumDomainModel.PrivateKey) throws -> RSVSignature {
-        let hash = Crypto.hashSHA3_256(message.data(using: .utf8)!)
-        let rawSignature = try Crypto.sign(hash, privateKey: privateKey.data)
-        let signer = EIP155Signer(chainID: chainId.rawValue)
-        var (r, s, v) = signer.calculateRSV(signiture: rawSignature)
+        let rawSignature = try Crypto.sign(hash(data(message)), privateKey: privateKey.data)
+        var result = signature(from: signer.calculateRSV(signiture: rawSignature))
         // FIXME: contribute to EthereumKit
-        if chainId == .any && v > 28 {
-            v += -35 + 27
+        if chainId == .any && result.v > 28 {
+            result.v += -35 + 27
         }
-        return (r.asString(withBase: 10), s.asString(withBase: 10), Int(v.asString(withBase: 10))!)
+        return result
+    }
+
+}
+
+extension Int {
+
+    enum Error: Swift.Error {
+        case invalidIntValue(String)
+    }
+
+    init(string: String) throws {
+        guard let v = Int(string) else { throw Error.invalidIntValue(string) }
+        self = v
     }
 
 }
