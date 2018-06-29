@@ -7,6 +7,10 @@ import EthereumDomainModel
 
 public class MockEncryptionService: EncryptionDomainService {
 
+    public func contractAddress(from: RSVSignature, for transaction: EthTransaction) throws -> String? {
+        return "address"
+    }
+
     public var extensionAddress: String?
 
     public var sign_output: RSVSignature = (r: "", s: "", v: 27)

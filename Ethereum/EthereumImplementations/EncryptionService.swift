@@ -82,6 +82,8 @@ public class EncryptionService: EncryptionDomainService {
 
     public enum Error: String, LocalizedError, Hashable {
         case failedToGenerateAccount
+        case invalidTransactionData
+        case invalidSignature
     }
 
     let chainId: EIP155ChainId
@@ -107,6 +109,39 @@ public class EncryptionService: EncryptionDomainService {
             return nil
         }
         return PublicKey(raw: Data(hex: "0x") + pubKey).generateAddress()
+    }
+
+    public func contractAddress(from signature: RSVSignature, for transaction: EthTransaction) throws -> String? {
+        guard let gasPrice = Int(transaction.gasPrice),
+            let gasLimit = Int(transaction.gas) else {
+            throw Error.invalidTransactionData
+        }
+        let txData = try RLP.encode([
+            transaction.nonce,
+            gasPrice,
+            gasLimit,
+            0, // to
+            transaction.value,
+            Data(hex: transaction.data)])
+        let txHash = Crypto.hashSHA3_256(txData)
+        guard let r = BInt.init(signature.r, radix: 10), let s = BInt.init(signature.s, radix: 10) else {
+            throw Error.invalidSignature
+        }
+        let v = BInt.init(signature.v)
+        let signature = EIP155Signer(chainID: chainId.rawValue).calculateSignature(r: r, s: s, v: v)
+        guard let key = Crypto.publicKey(signature: signature, of: txHash, compressed: false) else {
+            throw Error.invalidSignature
+        }
+        let senderAddress = ethereumService.createAddress(publicKey: key)
+        guard senderAddress == transaction.from else {
+            throw Error.invalidSignature
+        }
+        let rlpAddress = try RLP.encode([
+            Data(hex: senderAddress),
+            0]) // nonce
+        let addressData = Crypto.hashSHA3_256(rlpAddress).suffix(from: 12)
+        let contractAddress = EthereumKit.Address(data: addressData).string
+        return contractAddress
     }
 
     private func extensionCode(from code: String) -> ExtensionCode? {
