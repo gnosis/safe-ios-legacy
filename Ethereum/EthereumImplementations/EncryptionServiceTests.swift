@@ -74,7 +74,6 @@ class EncryptionServiceTests: XCTestCase {
         XCTAssertEqual(account.mnemonic, expectedAccount.mnemonic)
         XCTAssertEqual(account.privateKey, expectedAccount.privateKey)
         XCTAssertEqual(account.publicKey, expectedAccount.publicKey)
-        print(account.address.value)
     }
 
     func test_whenSigningMessage_thenSignatureIsCorrect() throws {
