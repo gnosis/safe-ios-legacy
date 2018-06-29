@@ -5,6 +5,7 @@
 import Foundation
 import EthereumDomainModel
 import BigInt
+import Common
 
 public struct ExternallyOwnedAccountData: Equatable {
 
@@ -29,7 +30,7 @@ public struct SafeCreationTransactionData: Equatable {
     }
 }
 
-open class EthereumApplicationService {
+open class EthereumApplicationService: Assertable {
 
     private var relayService: TransactionRelayDomainService { return DomainRegistry.transactionRelayService }
     private var encryptionService: EncryptionDomainService { return DomainRegistry.encryptionService }
@@ -38,14 +39,16 @@ open class EthereumApplicationService {
         return DomainRegistry.externallyOwnedAccountRepository
     }
 
-    enum Error: String, LocalizedError, Hashable {
+    public enum Error: String, LocalizedError, Hashable {
         case eoaNotFound
+        case invalidSignature
+        case invalidTransaction
     }
 
     public init() {}
 
     open func address(browserExtensionCode: String) -> String? {
-        return DomainRegistry.encryptionService.address(browserExtensionCode: browserExtensionCode)
+        return encryptionService.address(browserExtensionCode: browserExtensionCode)
     }
 
     open func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccountData {
@@ -67,12 +70,28 @@ open class EthereumApplicationService {
 
     open func createSafeCreationTransaction(owners: [String], confirmationCount: Int) throws
         -> SafeCreationTransactionData {
-            let ownerAddresses = owners.map { Address(value: $0) }
-            let randomUInt256 = encryptionService.randomUInt256()
-            let transaction = try relayService.createSafeCreationTransaction(owners: ownerAddresses,
-                                                                             confirmationCount: confirmationCount,
-                                                                             randomUInt256: randomUInt256)
-            return SafeCreationTransactionData(safe: transaction.safe.value, payment: transaction.payment.amount)
+            let request = SafeCreationTransactionRequest(owners: owners,
+                                                         confirmationCount: 2,
+                                                         randomUInt256: encryptionService.randomUInt256())
+            let response = try relayService.createSafeCreationTransaction(request: request)
+            try assertEqual(response.signature.s, request.s, Error.invalidSignature)
+            guard let v = Int(response.signature.v) else { throw Error.invalidSignature }
+            let signature = (response.signature.r, response.signature.s, v)
+            let transaction = (response.tx.from,
+                               response.tx.value,
+                               response.tx.data,
+                               response.tx.gas,
+                               response.tx.gasPrice,
+                               response.tx.nonce)
+            let safeAddress: String?
+            do {
+                safeAddress = try encryptionService.contractAddress(from: signature, for: transaction)
+            } catch {
+                throw Error.invalidSignature
+            }
+            try assertEqual(safeAddress, response.safe, Error.invalidSignature)
+            guard let payment = Int(response.payment) else { throw Error.invalidTransaction }
+            return SafeCreationTransactionData(safe: response.safe, payment: payment)
     }
 
     open func startSafeCreation(address: String) throws -> String {

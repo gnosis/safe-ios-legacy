@@ -18,12 +18,21 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
         let eoa1 = try encryptionService.generateExternallyOwnedAccount()
         let eoa2 = try encryptionService.generateExternallyOwnedAccount()
         let eoa3 = try encryptionService.generateExternallyOwnedAccount()
-        let owners = [eoa1, eoa2, eoa3].map { $0.address }
+        let owners = [eoa1, eoa2, eoa3].map { $0.address.value }
         let randomUInt256 = encryptionService.randomUInt256()
-        let result = try relayService.createSafeCreationTransaction(owners: owners,
-                                                                    confirmationCount: 2,
-                                                                    randomUInt256: randomUInt256)
-        XCTAssertFalse(result.safe.value.isEmpty)
+        let request = SafeCreationTransactionRequest(owners: owners, confirmationCount: 2, randomUInt256: randomUInt256)
+        let response = try relayService.createSafeCreationTransaction(request: request)
+
+        XCTAssertEqual(response.signature.s, request.s)
+        let signature = (response.signature.r, response.signature.s, Int(response.signature.v) ?? 0)
+        let transaction = (response.tx.from,
+                           response.tx.value,
+                           response.tx.data,
+                           response.tx.gas,
+                           response.tx.gasPrice,
+                           response.tx.nonce)
+        let safeAddress = try encryptionService.contractAddress(from: signature, for: transaction)
+        XCTAssertEqual(safeAddress, response.safe)
     }
 
 

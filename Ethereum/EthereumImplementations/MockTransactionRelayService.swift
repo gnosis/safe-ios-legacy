@@ -7,6 +7,7 @@ import EthereumDomainModel
 
 public class MockTransactionRelayService: TransactionRelayDomainService {
 
+
     public let averageDelay: Double
     public let maxDeviation: Double
 
@@ -34,16 +35,15 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         }
     }
 
-    public var createSafeCreationTransaction_input: (owners: [Address], confirmationCount: Int, randomUInt256: String)?
+    public var createSafeCreationTransaction_input: SafeCreationTransactionRequest?
 
-    public func createSafeCreationTransaction(owners: [Address], confirmationCount: Int, randomUInt256: String) throws
-        -> SignedSafeCreationTransaction {
-            createSafeCreationTransaction_input = (owners, confirmationCount, randomUInt256)
-            wait(randomizedNetworkResponseDelay)
-            return SignedSafeCreationTransaction(safe: Address(value: "0x57b2573E5FA7c7C9B5Fa82F3F03A75F53A0efdF5"),
-                                                 payment: Ether(amount: 100),
-                                                 signature: Signature(r: "", s: "", v: 0),
-                                                 tx: Transaction())
+    public func createSafeCreationTransaction(request: SafeCreationTransactionRequest)
+        throws -> SafeCreationTransactionRequest.Response {
+            createSafeCreationTransaction_input = request
+            return .init(signature: .init(r: "222", s: request.s, v: "27"),
+                         tx: .init(from: "", value: 0, data: "0x0001", gas: "10", gasPrice: "100", nonce: 0),
+                         safe: "address",
+                         payment: "100")
     }
 
     public var startSafeCreation_input: Address?
