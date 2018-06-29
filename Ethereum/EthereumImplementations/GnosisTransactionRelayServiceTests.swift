@@ -5,14 +5,12 @@
 import XCTest
 @testable import EthereumImplementations
 import EthereumDomainModel
-import EthereumApplication
 import BigInt
 import Common
 
 class GnosisTransactionRelayServiceTests: XCTestCase {
 
     func test_whenGoodData_thenReturnsSomething() throws {
-        ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
         let relayService = GnosisTransactionRelayService()
         let ethService = EthereumKitEthereumService()
         let encryptionService = EncryptionService(chainId: .any,

@@ -52,6 +52,24 @@
                </Test>
             </SkippedTests>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5540A4FE203C3054009C9BE3"
+               BuildableName = "safeTests.xctest"
+               BlueprintName = "safeTests"
+               ReferencedContainer = "container:../safe/safe.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "AppDelegateTests">
+               </Test>
+               <Test
+                  Identifier = "TestSupportTests">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

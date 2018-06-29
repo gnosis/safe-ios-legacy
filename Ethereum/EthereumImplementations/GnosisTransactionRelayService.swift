@@ -4,6 +4,7 @@
 
 import Foundation
 import EthereumDomainModel
+import Common
 
 public class GnosisTransactionRelayService: TransactionRelayDomainService {
 
