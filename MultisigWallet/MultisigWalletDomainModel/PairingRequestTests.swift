@@ -4,29 +4,12 @@
 
 import XCTest
 @testable import MultisigWalletDomainModel
+import CommonTestSupport
 
 class PairingRequestTests: XCTestCase {
 
     func test_canEcnodeAndDecode() throws {
-        let str = """
-            {
-                "temporaryAuthorization": {
-                    "expirationDate": "2018-05-09T14:18:55+00:00",
-                    "signature": {
-                        "v": 27,
-                        "r":"test",
-                        "s":"me"
-                    }
-                },
-                "signature": {
-                    "v" : 35,
-                    "r" : "test",
-                    "s" : "it"
-                }
-            }
-            """
-        let dateFormatter = WalletDateFormatter()
-
+        let dateFormatter = DateFormatter.networkDateFormatter
         let date = dateFormatter.date(from: "2018-05-09T14:18:55+00:00")!
         let codeSignature = RSVSignature(r: "test", s: "me", v: 27)
         let browserExtensionCode = BrowserExtensionCode(expirationDate: date, signature: codeSignature)
@@ -37,7 +20,9 @@ class PairingRequestTests: XCTestCase {
 
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
-        let pairingRequest2 = try decoder.decode(PairingRequest.self, from: str.data(using: .utf8)!)
+        let pairingRequest2 = try decoder.decode(
+            PairingRequest.self,
+            from: PairingRequestFixture.testJSON.data(using: .utf8)!)
         XCTAssertEqual(pairingRequest, pairingRequest2)
 
         let encoder = JSONEncoder()

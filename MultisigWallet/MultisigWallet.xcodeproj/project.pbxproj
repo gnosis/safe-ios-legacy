@@ -66,13 +66,13 @@
 		555C949820E2A60F00A0621D /* SinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */; };
 		555C949E20E2A62E00A0621D /* BrowserExtensionCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949920E2A62D00A0621D /* BrowserExtensionCode.swift */; };
 		555C949F20E2A62E00A0621D /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949A20E2A62D00A0621D /* Signature.swift */; };
-		555C94A020E2A62E00A0621D /* WalletDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949B20E2A62D00A0621D /* WalletDateFormatter.swift */; };
 		555C94A320E2A63100A0621D /* BrowserExtensionCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949D20E2A62D00A0621D /* BrowserExtensionCodeTests.swift */; };
 		555C94A420E2A63500A0621D /* SignatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949C20E2A62D00A0621D /* SignatureTests.swift */; };
 		555C94A620E3824800A0621D /* NotificationDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94A520E3824800A0621D /* NotificationDomainService.swift */; };
 		555C94A820E385DB00A0621D /* PairingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94A720E385DB00A0621D /* PairingRequest.swift */; };
 		555C94AA20E3868900A0621D /* PairingRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94A920E3868900A0621D /* PairingRequestTests.swift */; };
 		555C94AF20E3924C00A0621D /* MockNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94AD20E3920600A0621D /* MockNotificationService.swift */; };
+		555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94BB20E4E35200A0621D /* HTTPNotificatonService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,13 +289,13 @@
 		555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePortfolioRepository.swift; sourceTree = "<group>"; };
 		555C949920E2A62D00A0621D /* BrowserExtensionCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserExtensionCode.swift; sourceTree = "<group>"; };
 		555C949A20E2A62D00A0621D /* Signature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
-		555C949B20E2A62D00A0621D /* WalletDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletDateFormatter.swift; sourceTree = "<group>"; };
 		555C949C20E2A62D00A0621D /* SignatureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureTests.swift; sourceTree = "<group>"; };
 		555C949D20E2A62D00A0621D /* BrowserExtensionCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserExtensionCodeTests.swift; sourceTree = "<group>"; };
 		555C94A520E3824800A0621D /* NotificationDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDomainService.swift; sourceTree = "<group>"; };
 		555C94A720E385DB00A0621D /* PairingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingRequest.swift; sourceTree = "<group>"; };
 		555C94A920E3868900A0621D /* PairingRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingRequestTests.swift; sourceTree = "<group>"; };
 		555C94AD20E3920600A0621D /* MockNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationService.swift; sourceTree = "<group>"; };
+		555C94BB20E4E35200A0621D /* HTTPNotificatonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPNotificatonService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,7 +410,6 @@
 				0AA5D49520E113EE006F46CD /* Transaction.swift */,
 				0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */,
 				0A23C80420A1B09100C72483 /* Wallet.swift */,
-				555C949B20E2A62D00A0621D /* WalletDateFormatter.swift */,
 				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
 				555C948820E2A60F00A0621D /* Protocols */,
 			);
@@ -443,6 +442,7 @@
 				0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */,
 				0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */,
 				0AEF8AB920A088C3006A1265 /* Tests-Info.plist */,
+				555C94BB20E4E35200A0621D /* HTTPNotificatonService.swift */,
 			);
 			path = MultisigWalletImplementations;
 			sourceTree = "<group>";
@@ -818,7 +818,6 @@
 				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
 				555C949F20E2A62E00A0621D /* Signature.swift in Sources */,
-				555C94A020E2A62E00A0621D /* WalletDateFormatter.swift in Sources */,
 				0AA5D4A020E12B68006F46CD /* Token.swift in Sources */,
 				0A76BE5520AEF31000D07770 /* DomainRegistry.swift in Sources */,
 				555C94A620E3824800A0621D /* NotificationDomainService.swift in Sources */,
@@ -869,6 +868,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */,
+				555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */,
 				0AAA175320E27398003B35B3 /* BaseInMemoryRepository.swift in Sources */,
 				0A23C82C20A1DF0A00C72483 /* DBWalletRepository.swift in Sources */,
 				0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */,

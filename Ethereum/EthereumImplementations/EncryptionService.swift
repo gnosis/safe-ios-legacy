@@ -209,7 +209,12 @@ public class EncryptionService: EncryptionDomainService {
 
     public func sign(message: String, privateKey: EthereumDomainModel.PrivateKey) throws -> RSVSignature {
         let rawSignature = try Crypto.sign(hash(data(message)), privateKey: privateKey.data)
-        return signature(from: signer.calculateRSV(signiture: rawSignature))
+        var result = signature(from: signer.calculateRSV(signiture: rawSignature))
+        // FIXME: contribute to EthereumKit
+        if chainId == .any && result.v > 28 {
+            result.v += -35 + 27
+        }
+        return result
     }
 
 }

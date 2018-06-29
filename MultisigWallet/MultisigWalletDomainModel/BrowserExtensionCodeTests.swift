@@ -9,7 +9,7 @@ import CommonTestSupport
 class BrowserExtensionCodeTests: XCTestCase {
 
     func test_canEcnodeAndDecode() throws {
-        let dateFormatter = WalletDateFormatter()
+        let dateFormatter = DateFormatter.networkDateFormatter
 
         let date = dateFormatter.date(from: "2018-05-09T14:18:55+00:00")!
         let signature = RSVSignature(r: "test", s: "me", v: 27)

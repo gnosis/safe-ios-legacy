@@ -7,6 +7,7 @@ Dotenv.load(dotenvfile_path)
 
 infura_key = ENV['INFURA_API_KEY']
 relay_service_url = ENV['TRANSACTION_RELAY_SERVICE_URL']
+notification_service_url = ENV['NOTIFICATION_SERVICE_BASE_URL']
 abort("error: Missing INFURA_API_KEY dotenv variable") unless infura_key
 abort("error: Missing TRANSACTION_RELAY_SERVICE_URL dotenv variable") unless relay_service_url
 
@@ -23,6 +24,7 @@ import Foundation
 public struct Keys {
     public static let infuraApiKey = "#{infura_key}"
     public static let transactionRelayServiceURL = URL(string: "#{relay_service_url}")!
+    public static let notificationServiceURL = URL(string: "#{notification_service_url}")!
 }
 EOF
 File.open(dst_file, "w") { |f| f.write(keys_file_template) }
