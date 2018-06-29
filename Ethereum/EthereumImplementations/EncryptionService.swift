@@ -136,7 +136,11 @@ public class EncryptionService: EncryptionDomainService {
         let hash = Crypto.hashSHA3_256(message.data(using: .utf8)!)
         let rawSignature = try Crypto.sign(hash, privateKey: privateKey.data)
         let signer = EIP155Signer(chainID: chainId.rawValue)
-        let (r, s, v) = signer.calculateRSV(signiture: rawSignature)
+        var (r, s, v) = signer.calculateRSV(signiture: rawSignature)
+        // FIXME: contribute to EthereumKit
+        if chainId == .any && v > 28 {
+            v += -35 + 27
+        }
         return (r.asString(withBase: 10), s.asString(withBase: 10), Int(v.asString(withBase: 10))!)
     }
 

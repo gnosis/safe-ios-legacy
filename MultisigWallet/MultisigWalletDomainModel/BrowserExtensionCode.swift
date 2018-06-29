@@ -20,7 +20,7 @@ public struct BrowserExtensionCode: Codable, Equatable {
 
     public init(json: String) throws {
         let decoder = JSONDecoder()
-        let dateFormatter = WalletDateFormatter()
+        let dateFormatter = DateFormatter.networkDateFormatter
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         guard let jsonData = json.data(using: .utf8) else {
             throw Error.invalidJsonFormat

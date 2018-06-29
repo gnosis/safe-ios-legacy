@@ -23,7 +23,7 @@ public class EthereumKitEthereumService: EthereumService {
     }
 
     public func createPublicKey(privateKey: Data) -> Data {
-        return Crypto.generatePublicKey(data: privateKey, compressed: true)
+        return Crypto.generatePublicKey(data: privateKey, compressed: false)
     }
 
     public func createAddress(publicKey: Data) -> String {

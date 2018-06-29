@@ -38,6 +38,11 @@
                BlueprintName = "safeTests"
                ReferencedContainer = "container:safe.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "HTTPNotificatonServiceTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">

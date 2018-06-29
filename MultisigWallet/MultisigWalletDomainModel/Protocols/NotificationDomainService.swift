@@ -4,25 +4,6 @@
 
 import Foundation
 
-public enum Result<Value, Error: Swift.Error> {
-
-    case success(Value)
-    case failure(Error)
-
-    public init(value: Value) {
-        self = .success(value)
-    }
-
-    public init(error: Error) {
-        self = .failure(error)
-    }
-
-}
-
-public enum RequestError: Error {
-    case unexpectedError
-}
-
 public protocol NotificationDomainService {
 
     func pair(pairingRequest: PairingRequest) throws
