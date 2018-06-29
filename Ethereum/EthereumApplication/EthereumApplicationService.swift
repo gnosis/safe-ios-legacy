@@ -75,7 +75,8 @@ open class EthereumApplicationService: Assertable {
                                                          randomUInt256: encryptionService.randomUInt256())
             let response = try relayService.createSafeCreationTransaction(request: request)
             try assertEqual(response.signature.s, request.s, Error.invalidSignature)
-            let signature = (response.signature.r, response.signature.s, Int(response.signature.v) ?? 0)
+            guard let v = Int(response.signature.v) else { throw Error.invalidSignature }
+            let signature = (response.signature.r, response.signature.s, v)
             let transaction = (response.tx.from,
                                response.tx.value,
                                response.tx.data,
