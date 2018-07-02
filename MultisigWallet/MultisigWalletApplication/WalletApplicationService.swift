@@ -87,6 +87,7 @@ public class WalletApplicationService: Assertable {
         case missingWalletAddress
         case creationTransactionHashNotFound
         case networkError
+        case validationFailed
     }
 
     public static let requiredConfirmationCount: Int = 2
@@ -432,8 +433,13 @@ public class WalletApplicationService: Assertable {
         let signature = try blockchainService.sign(message: "GNO" + address, by: deviceOwnerAddress)
         let browserExtension = try BrowserExtensionCode(json: browserExtensionCode)
         do {
-            let pairingRequest = PairingRequest(temporaryAuthorization: browserExtension, signature: signature)
+            let pairingRequest = PairingRequest(
+                temporaryAuthorization: browserExtension,
+                signature: signature,
+                deviceOwnerAddress: deviceOwnerAddress)
             try notificationService.pair(pairingRequest: pairingRequest)
+        } catch NotificationDomainServiceError.validationFailed {
+            throw Error.validationFailed
         } catch {
             throw Error.networkError
         }

@@ -28,6 +28,7 @@ public protocol BlockchainDomainService {
     func waitForPendingTransaction(hash: String) throws -> Bool
     func balance(address: String) throws -> Int
     func sign(message: String, by address: String) throws -> RSVSignature
+    func address(browserExtensionCode: String) -> String?
 
 }
 

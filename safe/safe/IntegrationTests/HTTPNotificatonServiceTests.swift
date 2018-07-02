@@ -27,17 +27,20 @@ class HTTPNotificatonServiceTests: XCTestCase {
         let (r, s, v) = try encryptionService.sign(message: "GNO" + dateStr, privateKey: eoa1.privateKey)
 
         let browserExtensionSignature = RSVSignature(r: r, s: s, v: v)
-        let browserExtensionCode = BrowserExtensionCode(expirationDate: date, signature: browserExtensionSignature)
+        let browserExtensionCode = BrowserExtensionCode(
+            expirationDate: date, signature: browserExtensionSignature, extensionAddress: eoa1.address.value)
 
         let address = eoa1.address.value
 
         let (r1, s1, v1) = try encryptionService.sign(message: "GNO" + address, privateKey: eoa2.privateKey)
         let signature = RSVSignature(r: r1, s: s1, v: v1)
 
-        let pairingRequest = PairingRequest(temporaryAuthorization: browserExtensionCode, signature: signature)
+        let pairingRequest = PairingRequest(
+            temporaryAuthorization: browserExtensionCode, signature: signature, deviceOwnerAddress: eoa2.address.value)
 
         try notificationService.pair(pairingRequest: pairingRequest)
         // TODO: add validation when server implements deviced keys in response
     }
 
 }
+

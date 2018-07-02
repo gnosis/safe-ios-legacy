@@ -13,7 +13,12 @@ final public class HTTPNotificationService: NotificationDomainService {
 
     public func pair(pairingRequest: PairingRequest) throws {
         let response = try httpClient.execute(request: pairingRequest)
-        print(response)
+        let browserExtensionAddress = pairingRequest.temporaryAuthorization.extensionAddress!
+        let deviceOwnerAddress = pairingRequest.deviceOwnerAddress!
+        guard response.devicePair.contains(browserExtensionAddress) &&
+            response.devicePair.contains(deviceOwnerAddress) else {
+            throw NotificationDomainServiceError.validationFailed
+        }
     }
 
     public init() {}
@@ -25,8 +30,12 @@ extension PairingRequest: JSONRequest {
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v1/pairing/" }
 
-    public struct EmptyResponse: Decodable {}
+    public struct DevicePair: Decodable {
 
-    public typealias ResponseType = EmptyResponse
+        let devicePair: [String]
+
+    }
+
+    public typealias ResponseType = DevicePair
 
 }

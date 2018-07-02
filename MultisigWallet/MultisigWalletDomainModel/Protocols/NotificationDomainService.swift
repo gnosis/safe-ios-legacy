@@ -4,6 +4,10 @@
 
 import Foundation
 
+public enum NotificationDomainServiceError: String, LocalizedError, Hashable {
+    case validationFailed
+}
+
 public protocol NotificationDomainService {
 
     func pair(pairingRequest: PairingRequest) throws
