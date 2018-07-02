@@ -66,6 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletApplicationService(),
                                                                  for: WalletApplicationService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
+        MultisigWalletDomainModel.DomainRegistry.put(
+            service: HTTPNotificationService(), for: NotificationDomainService.self)
         setUpMultisigDatabase()
     }
 

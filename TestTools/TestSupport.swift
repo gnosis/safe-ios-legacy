@@ -6,6 +6,8 @@ import Foundation
 import IdentityAccessApplication
 import EthereumImplementations
 import EthereumDomainModel
+import MultisigWalletDomainModel
+import MultisigWalletImplementations
 
 protocol Resettable: class {
     func resetAll()
@@ -53,6 +55,7 @@ final class TestSupport {
                         DomainRegistry.put(service: mockService, for: TransactionRelayDomainService.self)
                         DomainRegistry.put(service: DemoEthereumNodeService(delay: delayTime),
                                            for: EthereumNodeDomainService.self)
+                        DomainRegistry.put(service: MockNotificationService(), for: NotificationDomainService.self)
                     }
                 default: break
                 }
