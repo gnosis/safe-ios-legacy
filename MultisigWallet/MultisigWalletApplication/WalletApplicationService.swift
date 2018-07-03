@@ -88,6 +88,7 @@ public class WalletApplicationService: Assertable {
         case creationTransactionHashNotFound
         case networkError
         case validationFailed
+        case exceededExpirationDate
     }
 
     public static let requiredConfirmationCount: Int = 2
@@ -440,8 +441,16 @@ public class WalletApplicationService: Assertable {
             try notificationService.pair(pairingRequest: pairingRequest)
         } catch NotificationDomainServiceError.validationFailed {
             throw Error.validationFailed
-        } catch {
-            throw Error.networkError
+        } catch let e as JSONHTTPClient.Error {
+            switch e {
+            case let .networkRequestFailed(_, _, data):
+                if let data = data,
+                    let dataStr = String(data: data, encoding: .utf8),
+                    dataStr.range(of: "Exceeded expiration date") != nil {
+                    throw Error.exceededExpirationDate
+                }
+                throw Error.networkError
+            }
         }
         try addOwner(address: address, type: .browserExtension)
     }

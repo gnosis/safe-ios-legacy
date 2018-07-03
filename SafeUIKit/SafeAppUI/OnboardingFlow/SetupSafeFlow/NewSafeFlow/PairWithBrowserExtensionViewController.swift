@@ -70,18 +70,37 @@ final class PairWithBrowserExtensionViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.delegate?.didPair()
                 }
-            } catch WalletApplicationService.Error.networkError {
-                DispatchQueue.main.async {
+            } catch let e as WalletApplicationService.Error {
+                switch e {
+                case .networkError:
                     // TODO: localize
-                    self.saveButton.isEnabled = true
-                    ErrorHandler.showError(message: "Network error", log: "Network Error in pairing", error: nil)
+                    self.showError(message: "Network error", log: "Network Error in pairing")
+                case .exceededExpirationDate:
+                    // TODO: localize
+                    let message = "Browser Extrnsion Code is expired"
+                    self.showError(message: message,
+                                   log: message)
+                default:
+                    self.showFatalError(text, error: e)
                 }
             } catch let e {
-                DispatchQueue.main.async {
-                    ErrorHandler.showFatalError(log: "Failed to add browser extension \(text)", error: e)
-                }
+                self.showFatalError(text, error: e)
             }
         }
+    }
+
+    private func showFatalError(_ text: String, error: Error) {
+        DispatchQueue.main.async {
+            ErrorHandler.showFatalError(log: "Failed to add browser extension \(text)", error: error)
+        }
+    }
+
+    private func showError(message: String, log: String) {
+        DispatchQueue.main.async {
+            self.saveButton.isEnabled = true
+            ErrorHandler.showError(message: message, log: log, error: nil)
+        }
+
     }
 
 }
