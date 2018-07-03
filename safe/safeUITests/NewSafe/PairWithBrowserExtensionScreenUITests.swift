@@ -20,6 +20,7 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
     override func setUp() {
         super.setUp()
         Springboard.deleteSafeApp()
+        application.setMockServerResponseDelay(0)
         givenBrowserExtensionSetup()
     }
 
