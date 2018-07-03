@@ -92,7 +92,7 @@ open class EncryptionService: EncryptionDomainService {
     let ethereumService: EthereumService
     private let signer: EIP155Signer
 
-    public init(chainId: EIP155ChainId = .mainnet, ethereumService: EthereumService = EthereumKitEthereumService()) {
+    public init(chainId: EIP155ChainId = .any, ethereumService: EthereumService = EthereumKitEthereumService()) {
         self.chainId = chainId
         self.ethereumService = ethereumService
         self.signer = EIP155Signer(chainID: chainId.rawValue)

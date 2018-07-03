@@ -25,6 +25,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var extensionAddressInput: QRCodeInput!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     private(set) weak var delegate: PairWithBrowserDelegate?
     private var logger: Logger {
@@ -61,8 +62,8 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             logger.error("Wrong state in PairWithBrowserExtensionViewController.")
             return
         }
-        // TODO: activity indicator
         saveButton.isEnabled = false
+        activityIndicator.startAnimating()
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
             do {
@@ -98,6 +99,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     private func showError(message: String, log: String) {
         DispatchQueue.main.async {
             self.saveButton.isEnabled = true
+            self.activityIndicator.stopAnimating()
             ErrorHandler.showError(message: message, log: log, error: nil)
         }
 

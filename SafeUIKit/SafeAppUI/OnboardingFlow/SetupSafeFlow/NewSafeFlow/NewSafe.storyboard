@@ -25,15 +25,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mv5-vW-qj2">
-                                <rect key="frame" x="20" y="230" width="335" height="172"/>
+                                <rect key="frame" x="20" y="230" width="335" height="163"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUi-Ui-sFY" customClass="BigButton" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="This Device"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-2s-l1J" customClass="BigButton" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="64" width="335" height="44"/>
+                                        <rect key="frame" x="0.0" y="61" width="335" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Browser Extension"/>
                                         <connections>
@@ -41,7 +41,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn0-3F-SUf" customClass="BigButton" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="128" width="335" height="44"/>
+                                        <rect key="frame" x="0.0" y="122" width="335" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Paper Wallet"/>
                                         <connections>
@@ -180,24 +180,27 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Browser Extension Owner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9O-S6-MKV" customClass="H1Label" customModule="SafeUIKit">
-                                <rect key="frame" x="20" y="60" width="335" height="86"/>
+                                <rect key="frame" x="20" y="60" width="335" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NTc-Ch-rJw" customClass="QRCodeInput" customModule="SafeUIKit">
-                                <rect key="frame" x="20" y="186" width="335" height="34"/>
+                                <rect key="frame" x="20" y="120.5" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59r-7j-b9i">
-                                <rect key="frame" x="171" y="260" width="34" height="30"/>
+                                <rect key="frame" x="171" y="190.5" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="finish:" destination="OM1-mc-Hz2" eventType="touchUpInside" id="xlP-Cf-Oqi"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DXQ-c4-hQc">
+                                <rect key="frame" x="213" y="195" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -207,12 +210,15 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
                             <constraint firstItem="NTc-Ch-rJw" firstAttribute="trailing" secondItem="X9O-S6-MKV" secondAttribute="trailing" id="M3N-CF-mUy"/>
                             <constraint firstItem="NTc-Ch-rJw" firstAttribute="leading" secondItem="X9O-S6-MKV" secondAttribute="leading" id="MZZ-Qq-OUN"/>
                             <constraint firstItem="59r-7j-b9i" firstAttribute="top" secondItem="NTc-Ch-rJw" secondAttribute="bottom" constant="40" id="Wz5-uj-wgt"/>
+                            <constraint firstItem="DXQ-c4-hQc" firstAttribute="centerY" secondItem="59r-7j-b9i" secondAttribute="centerY" id="cqv-qD-6T0"/>
                             <constraint firstItem="X9O-S6-MKV" firstAttribute="leading" secondItem="NEY-tF-2Rh" secondAttribute="leading" constant="20" id="hgP-7q-evy"/>
+                            <constraint firstItem="DXQ-c4-hQc" firstAttribute="leading" secondItem="59r-7j-b9i" secondAttribute="trailing" constant="8" id="i0E-cM-0Gi"/>
                             <constraint firstItem="NEY-tF-2Rh" firstAttribute="trailing" secondItem="X9O-S6-MKV" secondAttribute="trailing" constant="20" id="zA5-gb-poE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NEY-tF-2Rh"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="DXQ-c4-hQc" id="aTM-kn-O7t"/>
                         <outlet property="extensionAddressInput" destination="NTc-Ch-rJw" id="py2-WJ-ikW"/>
                         <outlet property="saveButton" destination="59r-7j-b9i" id="V4F-bV-Mox"/>
                         <outlet property="titleLabel" destination="X9O-S6-MKV" id="xR5-uf-jsI"/>
@@ -231,16 +237,16 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="w1G-G5-xVT">
-                                <rect key="frame" x="20" y="84" width="335" height="241.5"/>
+                                <rect key="frame" x="20" y="84" width="335" height="219"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creating new safe..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cv-Bx-yOR" customClass="H1Label" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="WmZ-9x-LQR">
-                                        <rect key="frame" x="0.0" y="83" width="335" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="60.5" width="335" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transfer funds explanation label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwl-dk-2oa">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
@@ -251,7 +257,7 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="em0-j1-OOa">
-                                        <rect key="frame" x="0.0" y="143.5" width="335" height="37.5"/>
+                                        <rect key="frame" x="0.0" y="121" width="335" height="37.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress status label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgr-s4-dYH">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
@@ -265,7 +271,7 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safe address label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNd-pS-6ri">
-                                        <rect key="frame" x="0.0" y="221" width="335" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="198.5" width="335" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
