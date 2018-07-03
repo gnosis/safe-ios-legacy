@@ -13,7 +13,7 @@ class PendingSafeScreenUITests: UITestCase {
 
     override func setUp() {
         super.setUp()
-        application.setMockServerResponseDelay(2)
+        application.setMockServerResponseDelay(3)
         givenDeploymentStarted()
     }
 

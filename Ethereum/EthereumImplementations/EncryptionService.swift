@@ -78,7 +78,7 @@ public extension EthereumService {
     }
 }
 
-public class EncryptionService: EncryptionDomainService {
+open class EncryptionService: EncryptionDomainService {
 
     public enum Error: String, LocalizedError, Hashable {
         case failedToGenerateAccount
@@ -201,7 +201,7 @@ public class EncryptionService: EncryptionDomainService {
 
     // MARK: - random numbers
 
-    public func randomUInt256() -> String {
+    open func randomUInt256() -> String {
         return String(BigUInt.randomInteger(withExactWidth: 256))
     }
 

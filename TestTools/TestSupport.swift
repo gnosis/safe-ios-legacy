@@ -13,6 +13,14 @@ protocol Resettable: class {
     func resetAll()
 }
 
+final class StubEncryptionService: EncryptionService {
+
+    override func randomUInt256() -> String {
+        return "51602277827206092161359189523869407094850301206236947198082645428468309668322"
+    }
+
+}
+
 final class TestSupport {
 
     static let shared = TestSupport()
@@ -56,6 +64,7 @@ final class TestSupport {
                         DomainRegistry.put(service: DemoEthereumNodeService(delay: delayTime),
                                            for: EthereumNodeDomainService.self)
                         DomainRegistry.put(service: MockNotificationService(), for: NotificationDomainService.self)
+                        DomainRegistry.put(service: StubEncryptionService(), for: EncryptionDomainService.self)
                     }
                 default: break
                 }
