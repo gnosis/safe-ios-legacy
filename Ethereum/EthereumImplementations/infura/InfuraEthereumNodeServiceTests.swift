@@ -54,4 +54,9 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
                        TransactionReceipt(hash: failedTransactionHash, status: .failed))
     }
 
+    func test_whenGettingGasPrice_thenReturnsResult() throws {
+        let price = try service.eth_gasPrice()
+        XCTAssertGreaterThan(price, 0)
+    }
+
 }

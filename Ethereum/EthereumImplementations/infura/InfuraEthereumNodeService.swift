@@ -10,6 +10,10 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
 
     public init() {}
 
+    public func eth_gasPrice() throws -> UInt256 {
+        return try execute(request: GasPriceRequest())
+    }
+
     public func eth_getBalance(account: EthereumDomainModel.Address) throws -> EthereumDomainModel.Ether {
         let request = GetBalanceRequest(address: account.value)
         let result = try execute(request: request)
