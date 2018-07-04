@@ -5,12 +5,13 @@
 import Foundation
 import EthereumDomainModel
 import EthereumKit
+import BigInt
 
 public class InfuraEthereumNodeService: EthereumNodeDomainService {
 
     public init() {}
 
-    public func eth_gasPrice() throws -> UInt256 {
+    public func eth_gasPrice() throws -> BigInt {
         return try execute(request: GasPriceRequest())
     }
 

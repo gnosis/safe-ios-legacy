@@ -39,6 +39,9 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "ETHTypesTests">
+               </Test>
+               <Test
                   Identifier = "EncryptionServiceTests">
                </Test>
                <Test

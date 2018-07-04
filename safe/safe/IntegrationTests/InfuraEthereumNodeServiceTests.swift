@@ -3,8 +3,9 @@
 //
 
 import XCTest
-@testable import EthereumImplementations
+@testable import safe
 import EthereumDomainModel
+import EthereumImplementations
 
 class InfuraEthereumNodeServiceTests: XCTestCase {
 

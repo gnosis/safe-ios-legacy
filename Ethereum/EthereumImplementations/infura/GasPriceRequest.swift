@@ -4,6 +4,7 @@
 
 import Foundation
 import EthereumKit
+import BigInt
 
 struct GasPriceRequest: JSONRPCRequest {
 
@@ -11,14 +12,14 @@ struct GasPriceRequest: JSONRPCRequest {
         case unexpectedValue(String)
     }
 
-    typealias Response = UInt256
+    typealias Response = BigInt
     var method: String { return "eth_gasPrice" }
 
-    func response(from resultObject: Any) throws -> UInt256 {
+    func response(from resultObject: Any) throws -> BigInt {
         guard let string = resultObject as? String else {
             throw JSONRPCError.unexpectedTypeObject(resultObject)
         }
-        guard let value = UInt256(hex: string) else {
+        guard let value = BigInt(hex: string) else {
             throw Error.unexpectedValue(string)
         }
         return value
