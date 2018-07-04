@@ -3,8 +3,9 @@
 //
 
 import XCTest
-@testable import EthereumImplementations
+@testable import safe
 import EthereumDomainModel
+import EthereumImplementations
 import BigInt
 import Common
 
@@ -34,6 +35,5 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
         let safeAddress = try encryptionService.contractAddress(from: signature, for: transaction)
         XCTAssertEqual(safeAddress, response.safe)
     }
-
 
 }

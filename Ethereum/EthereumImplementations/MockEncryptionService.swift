@@ -8,7 +8,7 @@ import EthereumDomainModel
 public class MockEncryptionService: EncryptionDomainService {
 
     public func contractAddress(from: RSVSignature, for transaction: EthTransaction) throws -> String? {
-        return "address"
+        return "0x93a03e4223a1F281f07B442bfDcb34baF796772f"
     }
 
     public var extensionAddress: String?
@@ -30,7 +30,7 @@ public class MockEncryptionService: EncryptionDomainService {
     }
 
     public func randomUInt256() -> String {
-        return "randomUInt256"
+        return "51602277827206092161359189523869407094850301206236947198082645428468309668322"
     }
 
     public func sign(message: String, privateKey: PrivateKey) throws -> RSVSignature {

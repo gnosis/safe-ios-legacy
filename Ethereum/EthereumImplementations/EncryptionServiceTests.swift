@@ -80,6 +80,7 @@ class EncryptionServiceTests: XCTestCase {
         let pkData = Data(hex: "d0d3ae306602070917c456b61d88bee9dc74edb5853bb87b1c13e5bfa2c3d0d9")
         let privateKey = EthereumDomainModel.PrivateKey(data: pkData)
         let message = "Gnosis"
+        encryptionService = EncryptionService(chainId: .mainnet)
 
         let (r, s, v) = try encryptionService.sign(message: message, privateKey: privateKey)
         XCTAssertEqual(r, "101211893217270431722518027522228002686666504049250244774157670632781156043183")

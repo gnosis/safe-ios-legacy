@@ -36,8 +36,8 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
     public var startSafeCreation_input: Address?
 
     public func startSafeCreation(address: Address) throws -> TransactionHash {
-        Timer.wait(randomizedNetworkResponseDelay)
         startSafeCreation_input = address
+        Timer.wait(randomizedNetworkResponseDelay)
         return TransactionHash(value: "0x3b9307c1473e915d04292a0f5b0f425eaf527f53852357e2c649b8c447e3246a")
     }
 

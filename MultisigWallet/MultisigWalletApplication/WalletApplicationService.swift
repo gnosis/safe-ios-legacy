@@ -89,6 +89,7 @@ public class WalletApplicationService: Assertable {
         case networkError
         case validationFailed
         case exceededExpirationDate
+        case unknownError
     }
 
     public static let requiredConfirmationCount: Int = 2
@@ -451,6 +452,8 @@ public class WalletApplicationService: Assertable {
                 }
                 throw Error.networkError
             }
+        } catch {
+            throw Error.unknownError
         }
         try addOwner(address: address, type: .browserExtension)
     }

@@ -382,7 +382,7 @@ class WalletApplicationServiceTests: XCTestCase {
             try service.addBrowserExtensionOwner(
                 address: "test",
                 browserExtensionCode: BrowserExtensionFixture.testJSON)) { error in
-                    XCTAssertEqual(error as! WalletApplicationService.Error, .networkError)
+                    XCTAssertEqual(error as! WalletApplicationService.Error, .unknownError)
         }
     }
 
