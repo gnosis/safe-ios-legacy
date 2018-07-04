@@ -25,6 +25,9 @@
 /* Save button title in extension setup screen */
 "new_safe.extension.save" = "Save";
 
+/* Update button title in extension setup screen */
+"new_safe.extension.update" = "Update";
+
 /* Paper Wallet Button */
 "new_safe.paper_wallet" = "Paper Wallet";
 

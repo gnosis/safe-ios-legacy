@@ -19,6 +19,8 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
         static let save = LocalizedString("new_safe.extension.save",
                                           comment: "Save button title in extension setup screen")
+        static let update = LocalizedString("new_safe.extension.update",
+                                            comment: "Update button title in extension setup screen")
 
     }
 
@@ -53,8 +55,9 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         extensionAddressInput.editingMode = .scanOnly
         extensionAddressInput.qrCodeDelegate = self
         extensionAddressInput.qrCodeConverter = ethereumService.address(browserExtensionCode:)
-        saveButton.isEnabled = walletService.isOwnerExists(.browserExtension)
-        saveButton.setTitle(Strings.save, for: .normal)
+        let buttonTitle = walletService.isOwnerExists(.browserExtension) ? Strings.update : Strings.save
+        saveButton.setTitle(buttonTitle, for: .normal)
+        saveButton.isEnabled = false
     }
 
     @IBAction func finish(_ sender: Any) {

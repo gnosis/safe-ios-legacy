@@ -5,6 +5,7 @@
 import UIKit
 import RSBarcodes
 import AVFoundation
+import Common
 
 protocol ScannerDelegate: class {
     func didScan(_ code: String)
@@ -60,9 +61,9 @@ final class ScannerViewController: UIViewController {
 
     // MARK: - Debug Buttons
 
-    private let validCode1 = """
+    private let validCodeTemplate = """
         {
-            "expirationDate" : "2018-06-18T14:46:09+00:00",
+            "expirationDate" : "%@",
             "signature": {
                 "v" : 27,
                 "r" : "15823297914388465068645274956031579191506355248080856511104898257696315269079",
@@ -71,23 +72,13 @@ final class ScannerViewController: UIViewController {
         }
         """
 
-    private let validCode2 = """
-        {
-            "expirationDate" : "2018-05-17T13:47:00+00:00",
-            "signature": {
-                "v": 27,
-                "r":"79425995431864040500581522255237765710685762616259654871112297909982135982384",
-                "s":"1777326029228985739367131500591267170048497362640342741198949880105318675913"
-            }
-        }
-        """
-
-    @IBAction func debugScanValidCode(_ sender: Any) {
-        delegate?.didScan(validCode1)
+    private func validCode(timeIntervalSinceNow: TimeInterval) -> String {
+        let dateStr = DateFormatter.networkDateFormatter.string(from: Date(timeIntervalSinceNow: timeIntervalSinceNow))
+        return String(format: validCodeTemplate, dateStr)
     }
 
-    @IBAction func scanAnotherValidCode(_ sender: Any) {
-        delegate?.didScan(validCode2)
+    @IBAction func debugScanRandomValidCode(_ sender: Any) {
+        delegate?.didScan(validCode(timeIntervalSinceNow: 5 * 60))
     }
 
     @IBAction func debugScanInvalidCode(_ sender: Any) {
@@ -95,8 +86,8 @@ final class ScannerViewController: UIViewController {
     }
 
     @IBAction func debugScanTwoValidCodes(_ sender: Any) {
-        delegate?.didScan(validCode1)
-        delegate?.didScan(validCode2)
+        delegate?.didScan(validCode(timeIntervalSinceNow: 5 * 60))
+        delegate?.didScan(validCode(timeIntervalSinceNow: 6 * 60))
     }
 
 }
