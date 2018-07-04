@@ -34,7 +34,7 @@
                     </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="yRE-kA-A0c">
-                    <rect key="frame" x="20" y="276.5" width="335" height="114"/>
+                    <rect key="frame" x="20" y="255.5" width="335" height="156"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKO-WK-yOT">
                             <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
@@ -54,8 +54,17 @@
                                 <action selector="debugScanInvalidCode:" destination="-1" eventType="touchUpInside" id="Mei-hY-SGc"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2I-6H-qLn">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvn-P3-8Sn">
                             <rect key="frame" x="0.0" y="84" width="335" height="30"/>
+                            <state key="normal" title="Scan Expired Code">
+                                <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="debugScanExpiredCode:" destination="-1" eventType="touchUpInside" id="1qS-cU-glv"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2I-6H-qLn">
+                            <rect key="frame" x="0.0" y="126" width="335" height="30"/>
                             <state key="normal" title="Scan Two Valid Codes at Ones">
                                 <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>

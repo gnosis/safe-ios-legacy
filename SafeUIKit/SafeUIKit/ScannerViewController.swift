@@ -85,6 +85,10 @@ final class ScannerViewController: UIViewController {
         delegate?.didScan("invalid_code")
     }
 
+    @IBAction func debugScanExpiredCode(_ sender: Any) {
+        delegate?.didScan(validCode(timeIntervalSinceNow: -5 * 60))
+    }
+
     @IBAction func debugScanTwoValidCodes(_ sender: Any) {
         delegate?.didScan(validCode(timeIntervalSinceNow: 5 * 60))
         delegate?.didScan(validCode(timeIntervalSinceNow: 6 * 60))
