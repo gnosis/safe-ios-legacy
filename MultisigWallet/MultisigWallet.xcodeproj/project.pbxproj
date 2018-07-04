@@ -1080,6 +1080,7 @@
 		};
 		0AEF8A7B20A08878006A1265 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A76BE5220AEC5CC00D07770 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1146,6 +1147,7 @@
 		};
 		0AEF8A7C20A08878006A1265 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A76BE5220AEC5CC00D07770 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1936,6 +1938,7 @@
 		};
 		0AEF8AC120A089F0006A1265 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A76BE5220AEC5CC00D07770 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

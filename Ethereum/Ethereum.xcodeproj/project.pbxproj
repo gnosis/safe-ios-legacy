@@ -170,6 +170,13 @@
 			remoteGlobalIDString = 0AD8FD2020CEC4BA00591B91;
 			remoteInfo = BlockiesSwift;
 		};
+		0AB7437120ECDE2000D8DFFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A30676220A5C7FF0059F521 /* Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0AC1757F207B73A90016320A;
+			remoteInfo = CommonTestSupport;
+		};
 		5506392F20D0041E000F2A82 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
@@ -527,6 +534,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0AB7437220ECDE2000D8DFFC /* PBXTargetDependency */,
 				555C4C6820AEFC25001E8A34 /* PBXTargetDependency */,
 			);
 			name = EthereumDomainModel;
@@ -987,6 +995,11 @@
 			name = Common;
 			targetProxy = 0A59E91420AB0E2E0090E89C /* PBXContainerItemProxy */;
 		};
+		0AB7437220ECDE2000D8DFFC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CommonTestSupport;
+			targetProxy = 0AB7437120ECDE2000D8DFFC /* PBXContainerItemProxy */;
+		};
 		555C4C6820AEFC25001E8A34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Common;
@@ -1331,6 +1344,7 @@
 		};
 		0A30672A20A5C7480059F521 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD0F20AC391A003E0C53 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1397,6 +1411,7 @@
 		};
 		0A30672B20A5C7480059F521 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD0F20AC391A003E0C53 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2031,6 +2046,7 @@
 		};
 		0A30675820A5C7A10059F521 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E1AD0F20AC391A003E0C53 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
