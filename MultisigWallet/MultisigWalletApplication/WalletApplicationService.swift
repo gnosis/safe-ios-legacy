@@ -87,6 +87,9 @@ public class WalletApplicationService: Assertable {
         case missingWalletAddress
         case creationTransactionHashNotFound
         case networkError
+        case validationFailed
+        case exceededExpirationDate
+        case unknownError
     }
 
     public static let requiredConfirmationCount: Int = 2
@@ -432,10 +435,25 @@ public class WalletApplicationService: Assertable {
         let signature = try blockchainService.sign(message: "GNO" + address, by: deviceOwnerAddress)
         let browserExtension = try BrowserExtensionCode(json: browserExtensionCode)
         do {
-            let pairingRequest = PairingRequest(temporaryAuthorization: browserExtension, signature: signature)
+            let pairingRequest = PairingRequest(
+                temporaryAuthorization: browserExtension,
+                signature: signature,
+                deviceOwnerAddress: deviceOwnerAddress)
             try notificationService.pair(pairingRequest: pairingRequest)
+        } catch NotificationDomainServiceError.validationFailed {
+            throw Error.validationFailed
+        } catch let e as JSONHTTPClient.Error {
+            switch e {
+            case let .networkRequestFailed(_, _, data):
+                if let data = data,
+                    let dataStr = String(data: data, encoding: .utf8),
+                    dataStr.range(of: "Exceeded expiration date") != nil {
+                    throw Error.exceededExpirationDate
+                }
+                throw Error.networkError
+            }
         } catch {
-            throw Error.networkError
+            throw Error.unknownError
         }
         try addOwner(address: address, type: .browserExtension)
     }

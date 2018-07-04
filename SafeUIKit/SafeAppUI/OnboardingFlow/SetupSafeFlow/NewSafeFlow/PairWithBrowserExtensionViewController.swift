@@ -25,6 +25,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var extensionAddressInput: QRCodeInput!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     private(set) weak var delegate: PairWithBrowserDelegate?
     private var logger: Logger {
@@ -61,8 +62,8 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             logger.error("Wrong state in PairWithBrowserExtensionViewController.")
             return
         }
-        // TODO: activity indicator
         saveButton.isEnabled = false
+        activityIndicator.startAnimating()
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
             do {
@@ -70,18 +71,38 @@ final class PairWithBrowserExtensionViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.delegate?.didPair()
                 }
-            } catch WalletApplicationService.Error.networkError {
-                DispatchQueue.main.async {
+            } catch let e as WalletApplicationService.Error {
+                switch e {
+                case .networkError:
                     // TODO: localize
-                    self.saveButton.isEnabled = true
-                    ErrorHandler.showError(message: "Network error", log: "Network Error in pairing", error: nil)
+                    self.showError(message: "Network error", log: "Network Error in pairing")
+                case .exceededExpirationDate:
+                    // TODO: localize
+                    let message = "Browser Extrnsion Code is expired"
+                    self.showError(message: message,
+                                   log: message)
+                default:
+                    self.showFatalError(text, error: e)
                 }
             } catch let e {
-                DispatchQueue.main.async {
-                    ErrorHandler.showFatalError(log: "Failed to add browser extension \(text)", error: e)
-                }
+                self.showFatalError(text, error: e)
             }
         }
+    }
+
+    private func showFatalError(_ text: String, error: Error) {
+        DispatchQueue.main.async {
+            ErrorHandler.showFatalError(log: "Failed to add browser extension \(text)", error: error)
+        }
+    }
+
+    private func showError(message: String, log: String) {
+        DispatchQueue.main.async {
+            self.saveButton.isEnabled = true
+            self.activityIndicator.stopAnimating()
+            ErrorHandler.showError(message: message, log: log, error: nil)
+        }
+
     }
 
 }

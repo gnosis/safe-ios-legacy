@@ -40,6 +40,9 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "GnosisTransactionRelayServiceTests">
+               </Test>
+               <Test
                   Identifier = "HTTPNotificatonServiceTests">
                </Test>
             </SkippedTests>
@@ -143,6 +146,11 @@
                BlueprintName = "EthereumImplementationsTests"
                ReferencedContainer = "container:../Ethereum/Ethereum.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "GnosisTransactionRelayServiceTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">

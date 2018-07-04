@@ -3,15 +3,15 @@
 //
 
 import XCTest
-@testable import EthereumImplementations
+@testable import Common
 
-class MockTransactionRelayServiceTests: XCTestCase {
+class TimerTests: XCTestCase {
 
     func test_random() {
         let avg = 1.0
         let dev = 0.5
         for _ in (0..<1_000) {
-            let value = MockTransactionRelayService.random(average: avg, maxDeviation: dev)
+            let value = Timer.random(average: avg, maxDeviation: dev)
             XCTAssertLessThanOrEqual(value, avg + dev)
             XCTAssertGreaterThanOrEqual(value, avg - dev)
         }

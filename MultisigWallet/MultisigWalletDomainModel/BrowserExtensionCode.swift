@@ -9,13 +9,21 @@ public struct BrowserExtensionCode: Codable, Equatable {
     let expirationDate: Date
     let signature: RSVSignature
 
+    public private(set) var extensionAddress: String?
+
     enum Error: String, LocalizedError, Hashable {
         case invalidJsonFormat
     }
 
-    public init(expirationDate: Date, signature: RSVSignature) {
+    enum CodingKeys: String, CodingKey {
+        case expirationDate
+        case signature
+    }
+
+    public init(expirationDate: Date, signature: RSVSignature, extensionAddress: String?) {
         self.expirationDate = expirationDate
         self.signature = signature
+        self.extensionAddress = extensionAddress
     }
 
     public init(json: String) throws {
@@ -27,6 +35,7 @@ public struct BrowserExtensionCode: Codable, Equatable {
         }
         do {
             self = try decoder.decode(BrowserExtensionCode.self, from: jsonData)
+            extensionAddress = DomainRegistry.blockchainService.address(browserExtensionCode: json)
         } catch {
             throw Error.invalidJsonFormat
         }
