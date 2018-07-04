@@ -21,6 +21,9 @@ final class PairWithBrowserExtensionViewController: UIViewController {
                                           comment: "Save button title in extension setup screen")
         static let update = LocalizedString("new_safe.extension.update",
                                             comment: "Update button title in extension setup screen")
+        static let browserExtensionExpired = LocalizedString("new_safe.extension.expired",
+                                                             comment: "Browser Extension Expired Message")
+        static let networkError = LocalizedString("new_safe.extension.network_error", comment: "Network error message")
 
     }
 
@@ -76,14 +79,11 @@ final class PairWithBrowserExtensionViewController: UIViewController {
                 }
             } catch let e as WalletApplicationService.Error {
                 switch e {
-                case .networkError:
-                    // TODO: localize
-                    self.showError(message: "Network error", log: "Network Error in pairing")
+                case .networkError:                    
+                    self.showError(message: Strings.networkError, log: "Network Error in pairing")
                 case .exceededExpirationDate:
-                    // TODO: localize
-                    let message = "Browser Extrnsion Code is expired"
-                    self.showError(message: message,
-                                   log: message)
+                    self.showError(message: Strings.browserExtensionExpired,
+                                   log: "Browser Extension code is expired")
                 default:
                     self.showFatalError(text, error: e)
                 }
