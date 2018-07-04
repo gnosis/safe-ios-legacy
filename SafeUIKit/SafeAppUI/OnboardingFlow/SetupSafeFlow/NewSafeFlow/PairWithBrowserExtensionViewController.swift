@@ -79,7 +79,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
                 }
             } catch let e as WalletApplicationService.Error {
                 switch e {
-                case .networkError:                    
+                case .networkError:
                     self.showError(message: Strings.networkError, log: "Network Error in pairing")
                 case .exceededExpirationDate:
                     self.showError(message: Strings.browserExtensionExpired,
