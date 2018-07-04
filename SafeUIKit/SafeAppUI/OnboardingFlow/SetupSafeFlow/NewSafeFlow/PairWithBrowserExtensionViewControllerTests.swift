@@ -31,13 +31,17 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
 
     func test_viewDidLoad_whenNoInitialAddress_thenSaveButtonIsDisabled() {
         XCTAssertFalse(controller.saveButton.isEnabled)
+        XCTAssertEqual(controller.saveButton.title(for: .normal),
+                       XCLocalizedString(PairWithBrowserExtensionViewController.Strings.save))
     }
 
-    func test_viewDidLoad_whenInitialAddressProvided_thenSaveButtonIsEnabled() {
+    func test_viewDidLoad_whenInitialAddressProvided_thenUpdateButtonIsDisabled() {
         walletService.addOwner(address: "address", type: .browserExtension)
         controller = PairWithBrowserExtensionViewController.create(delegate: delegate)
         controller.loadViewIfNeeded()
-        XCTAssertTrue(controller.saveButton.isEnabled)
+        XCTAssertFalse(controller.saveButton.isEnabled)
+        XCTAssertEqual(controller.saveButton.title(for: .normal),
+                       XCLocalizedString(PairWithBrowserExtensionViewController.Strings.update))
     }
 
     func test_presentScannerController() {
