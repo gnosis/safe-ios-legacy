@@ -8,10 +8,14 @@ import BigInt
 
 class BigInt_HexTests: XCTestCase {
 
-    func test_whenCondition_thenResult() {
+    func test_bigInt() {
         let int = BigInt(2).power(256) - 1
-        let value = BigInt(hex: int.hexString)
-        XCTAssertEqual(value, int)
+        let intValue = BigInt(hex: int.hexString)
+        XCTAssertEqual(intValue, int)
+
+        let uint = BigUInt(2).power(256) - 1
+        let uintValue = BigUInt(hex: uint.hexString)
+        XCTAssertEqual(uintValue, uint)
     }
 
 }
