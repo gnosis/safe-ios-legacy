@@ -63,9 +63,25 @@ final class TestSupport {
                         DomainRegistry.put(service: mockService, for: TransactionRelayDomainService.self)
                         DomainRegistry.put(service: DemoEthereumNodeService(delay: delayTime),
                                            for: EthereumNodeDomainService.self)
-                        DomainRegistry.put(service: MockNotificationService(), for: NotificationDomainService.self)
+                        DomainRegistry.put(service: MockNotificationService(delay: delayTime),
+                                           for: NotificationDomainService.self)
                         DomainRegistry.put(service: StubEncryptionService(), for: EncryptionDomainService.self)
                     }
+                case ApplicationArguments.setMockNotificationService:
+                    let notificationService = MockNotificationService()
+                    var delay: TimeInterval = 0
+                    if let parametes = iterator.next()?.split(separator: ",") {
+                        if parametes.contains("shouldThrow") {
+                            notificationService.shouldThrowNetworkError = true
+                        }
+                        let delayParameters = parametes.filter { $0.range(of: "delay=") != nil }
+                        if !delayParameters.isEmpty {
+                            let delayParam = delayParameters.first!
+                            delay = TimeInterval(delayParam.suffix(from: delayParam.index(of: "=")!).dropFirst())!
+                            notificationService.delay = delay
+                        }
+                    }
+                    DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
                 default: break
                 }
             }

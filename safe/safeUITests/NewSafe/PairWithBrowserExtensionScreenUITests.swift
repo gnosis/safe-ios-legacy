@@ -10,6 +10,7 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
     let screen = PairWithBrowserExtensionScreen()
     var cameraPermissionHandler: NSObjectProtocol!
     var cameraSuggestionHandler: NSObjectProtocol!
+    var errorAlertHandler: NSObjectProtocol!
     let cameraScreen = CameraScreen()
     let newSafe = NewSafeScreen()
 
@@ -21,7 +22,6 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
         super.setUp()
         Springboard.deleteSafeApp()
         application.setMockServerResponseDelay(0)
-        givenBrowserExtensionSetup()
     }
 
     override func tearDown() {
@@ -32,6 +32,21 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
             removeUIInterruptionMonitor(handler)
         }
         super.tearDown()
+    }
+
+    func handleAlerts() {
+        delay(1)
+        XCUIApplication().swipeUp() // required for alert handlers firing
+        waitForExpectations(timeout: 5)
+    }
+
+}
+
+final class PairWithBrowserExtensionScreenSuccessUITests: PairWithBrowserExtensionScreenUITests {
+
+    override func setUp() {
+        super.setUp()
+        givenBrowserExtensionSetup()
     }
 
     // NS-002
@@ -162,12 +177,6 @@ private extension PairWithBrowserExtensionScreenUITests {
         XCTAssertExist(screen.qrCodeInput)
     }
 
-    func handleAlerts() {
-        delay(1)
-        XCUIApplication().swipeUp() // required for alert handlers firing
-        waitForExpectations(timeout: 5)
-    }
-
     func QRCodeInputIsEqual(to value: String) -> Bool {
         return screen.qrCodeInput.value as? String == value
     }
@@ -183,6 +192,43 @@ private extension PairWithBrowserExtensionScreenUITests {
         cameraScreen.scanValidCodeButton.tap()
         XCTAssertFalse(QRCodeInputIsEqual(to: scannedValue))
         return scannedValue
+    }
+
+}
+
+final class PairWithBrowserExtensionScreenErrorsUITests: PairWithBrowserExtensionScreenUITests {
+
+    private let networkDelay: TimeInterval = 2
+
+    override func setUp() {
+        super.setUp()
+        application.setMockNotificationService(delay: networkDelay, shouldThrow: true)
+        givenBrowserExtensionSetup()
+    }
+
+    // NS-ERR-001
+    func test_whenNetworkErrorInPairing_thenShowsAlert() {
+        givenCameraOpened()
+        cameraScreen.scanValidCodeButton.tap()
+        handleNetworkErrorAlert(with: expectation(description: "Alert handled"))
+        screen.saveButton.tap()
+        XCTAssertFalse(screen.saveButton.isEnabled)
+        delay(networkDelay)
+        handleAlerts()
+        XCTAssertTrue(screen.saveButton.isEnabled)
+    }
+
+}
+
+private extension PairWithBrowserExtensionScreenErrorsUITests {
+
+    func handleNetworkErrorAlert(with expectation: XCTestExpectation) {
+        errorAlertHandler = addUIInterruptionMonitor(withDescription: "Error Alert") { alert in
+            guard alert.label == LocalizedString("onboarding.error.title") else { return false }
+            alert.buttons[LocalizedString("onboarding.fatal.ok")].tap()
+            expectation.fulfill()
+            return true
+        }
     }
 
 }

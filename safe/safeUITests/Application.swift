@@ -40,6 +40,15 @@ final class Application {
         arguments.append(String(time))
     }
 
+    func setMockNotificationService(delay: TimeInterval, shouldThrow: Bool) {
+        var params = "delay=\(Int(delay))"
+        if shouldThrow {
+            params += ",shouldThrow"
+        }
+        arguments.append(ApplicationArguments.setMockNotificationService)
+        arguments.append(params)
+    }
+
     func resetArguments() {
         arguments = []
     }
