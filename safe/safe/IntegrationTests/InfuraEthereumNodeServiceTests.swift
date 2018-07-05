@@ -66,5 +66,10 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
         XCTAssertGreaterThan(gas, 0)
     }
 
+    func test_whenGettingTransactionCount_thenReturnsResult() throws {
+        let address = EthAddress(hex: "0x1CBFf6551B8713296b0604705B1a3B76D238Ae14")
+        let nonce = try service.eth_getTransactionCount(address: address, blockNumber: .latest)
+        XCTAssertGreaterThan(nonce, 0)
+    }
 
 }

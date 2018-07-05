@@ -6,11 +6,7 @@ import Foundation
 import EthereumKit
 import BigInt
 
-
-struct GasPriceRequest: JSONRPCRequest {
-
-    typealias Response = BigInt
-    var method: String { return "eth_gasPrice" }
+extension JSONRPCRequest where Response == BigInt {
 
     func response(from resultObject: Any) throws -> BigInt {
         guard let string = resultObject as? String else {
