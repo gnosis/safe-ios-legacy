@@ -8,7 +8,7 @@ import BigInt
 
 class TransactionCallTests: XCTestCase {
 
-    func test_address() throws {
+    func test_ethAddress() throws {
         let zero = EthAddress.zero
         XCTAssertEqual(zero.data.count, 20)
 
@@ -31,6 +31,29 @@ class TransactionCallTests: XCTestCase {
         let fromHex = EthAddress(hex: "0xabcdef44556677889900abcdef44556677889900")
         XCTAssertEqual(fromHex.data, Data(hex: "0xabcdef44556677889900abcdef44556677889900"))
         XCTAssertEqual(fromHex.data, Data(hex: fromHex.mixedCaseChecksumEncoded))
+        XCTAssertEqual(fromHex.mixedCaseChecksumEncoded, "0xaBcdeF44556677889900ABcdef44556677889900")
+    }
+
+    func test_ethData() throws {
+        let source = Data(repeating: 1, count: 12)
+        let data = EthData(source)
+        XCTAssertEqual(data.data, source)
+        XCTAssertEqual(data.hexString, "0x010101010101010101010101")
+
+        let paddedTo100 = data.padded(to: 100)
+        XCTAssertEqual(paddedTo100.data, Data(repeating: 0, count: 100 - 12) + source)
+
+        let paddedTo10 = data.padded(to: 10)
+        XCTAssertEqual(paddedTo10.data, source.suffix(10))
+
+        struct Box: Codable {
+            var data: EthData
+        }
+
+        let b = Box(data: EthData(hex: "0xF"))
+        let encoded = try JSONEncoder().encode(b)
+        let decoded = try JSONDecoder().decode(Box.self, from: encoded)
+        XCTAssertEqual(decoded.data, b.data)
     }
 
 }
