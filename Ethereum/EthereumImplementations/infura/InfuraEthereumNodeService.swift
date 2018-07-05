@@ -5,10 +5,15 @@
 import Foundation
 import EthereumDomainModel
 import EthereumKit
+import BigInt
 
 public class InfuraEthereumNodeService: EthereumNodeDomainService {
 
     public init() {}
+
+    public func eth_gasPrice() throws -> BigInt {
+        return try execute(request: GasPriceRequest())
+    }
 
     public func eth_getBalance(account: EthereumDomainModel.Address) throws -> EthereumDomainModel.Ether {
         let request = GetBalanceRequest(address: account.value)

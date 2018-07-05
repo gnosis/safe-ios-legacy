@@ -3,8 +3,9 @@
 //
 
 import XCTest
-@testable import EthereumImplementations
+@testable import safe
 import EthereumDomainModel
+import EthereumImplementations
 
 class InfuraEthereumNodeServiceTests: XCTestCase {
 
@@ -52,6 +53,11 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
     func test_whenTransactionWasDeclined_thenReceiptStatusIsFailed() throws {
         XCTAssertEqual(try service.eth_getTransactionReceipt(transaction: failedTransactionHash),
                        TransactionReceipt(hash: failedTransactionHash, status: .failed))
+    }
+
+    func test_whenGettingGasPrice_thenReturnsResult() throws {
+        let price = try service.eth_gasPrice()
+        XCTAssertGreaterThan(price, 0)
     }
 
 }
