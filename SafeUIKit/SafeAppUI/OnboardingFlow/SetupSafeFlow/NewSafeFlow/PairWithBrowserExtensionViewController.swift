@@ -19,6 +19,11 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
         static let save = LocalizedString("new_safe.extension.save",
                                           comment: "Save button title in extension setup screen")
+        static let update = LocalizedString("new_safe.extension.update",
+                                            comment: "Update button title in extension setup screen")
+        static let browserExtensionExpired = LocalizedString("new_safe.extension.expired",
+                                                             comment: "Browser Extension Expired Message")
+        static let networkError = LocalizedString("new_safe.extension.network_error", comment: "Network error message")
 
     }
 
@@ -53,8 +58,9 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         extensionAddressInput.editingMode = .scanOnly
         extensionAddressInput.qrCodeDelegate = self
         extensionAddressInput.qrCodeConverter = ethereumService.address(browserExtensionCode:)
-        saveButton.isEnabled = walletService.isOwnerExists(.browserExtension)
-        saveButton.setTitle(Strings.save, for: .normal)
+        let buttonTitle = walletService.isOwnerExists(.browserExtension) ? Strings.update : Strings.save
+        saveButton.setTitle(buttonTitle, for: .normal)
+        saveButton.isEnabled = false
     }
 
     @IBAction func finish(_ sender: Any) {
@@ -74,13 +80,10 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             } catch let e as WalletApplicationService.Error {
                 switch e {
                 case .networkError:
-                    // TODO: localize
-                    self.showError(message: "Network error", log: "Network Error in pairing")
+                    self.showError(message: Strings.networkError, log: "Network Error in pairing")
                 case .exceededExpirationDate:
-                    // TODO: localize
-                    let message = "Browser Extrnsion Code is expired"
-                    self.showError(message: message,
-                                   log: message)
+                    self.showError(message: Strings.browserExtensionExpired,
+                                   log: "Browser Extension code is expired")
                 default:
                     self.showFatalError(text, error: e)
                 }

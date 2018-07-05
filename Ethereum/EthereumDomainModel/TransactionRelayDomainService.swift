@@ -6,7 +6,8 @@ import Foundation
 
 public protocol TransactionRelayDomainService {
 
-    func createSafeCreationTransaction(request: SafeCreationTransactionRequest) throws -> SafeCreationTransactionRequest.Response
+    func createSafeCreationTransaction(
+        request: SafeCreationTransactionRequest) throws -> SafeCreationTransactionRequest.Response
     func startSafeCreation(address: Address) throws -> TransactionHash
 
 }
