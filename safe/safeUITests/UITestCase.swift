@@ -10,6 +10,7 @@ class UITestCase: XCTestCase {
     let application = Application()
     let password = "11111A"
     private var cameraPermissionHandler: NSObjectProtocol!
+    private var errorAlertHandler: NSObjectProtocol!
     private var cameraPermissionExpectation: XCTestExpectation!
 
     override func setUp() {
@@ -19,6 +20,9 @@ class UITestCase: XCTestCase {
 
     override func tearDown() {
         if let handler = cameraPermissionHandler {
+            removeUIInterruptionMonitor(handler)
+        }
+        if let handler = errorAlertHandler {
             removeUIInterruptionMonitor(handler)
         }
         super.tearDown()
@@ -114,7 +118,7 @@ class UITestCase: XCTestCase {
         case .button:
             pairWithBrowserScreen.qrCodeButton.tap()
         }
-        handleAlerts()
+        handleCameraAlerts()
     }
 
     private func handleCameraPermsissionByAllowing() {
@@ -128,7 +132,7 @@ class UITestCase: XCTestCase {
         }
     }
 
-    private func handleAlerts() {
+    private func handleCameraAlerts() {
         let cameraScreen = CameraScreen()
         delay(1)
         XCUIApplication().swipeUp() // required for alert handlers firing
@@ -136,6 +140,32 @@ class UITestCase: XCTestCase {
             cameraPermissionExpectation.fulfill()
         }
         waitForExpectations(timeout: 1)
+    }
+
+    // Alerts handling
+
+    func handleErrorAlert(with expectation: XCTestExpectation) {
+        errorAlertHandler = addUIInterruptionMonitor(withDescription: "Error Alert") { alert in
+            guard alert.label == LocalizedString("onboarding.error.title") else { return false }
+            alert.buttons[LocalizedString("onboarding.fatal.ok")].tap()
+            expectation.fulfill()
+            return true
+        }
+    }
+
+    func assureFatalErrorAlertIsShown(with expectation: XCTestExpectation) {
+        errorAlertHandler = addUIInterruptionMonitor(withDescription: "Error Alert") { alert in
+            guard alert.label == LocalizedString("onboarding.fatal.title") else { return false }
+            alert.buttons[LocalizedString("onboarding.fatal.ok")].tap()
+            expectation.fulfill()
+            return true
+        }
+    }
+
+    func handleAlerts() {
+        delay(1)
+        XCUIApplication().swipeUp() // required for alert handlers firing
+        waitForExpectations(timeout: 5)
     }
 
 }

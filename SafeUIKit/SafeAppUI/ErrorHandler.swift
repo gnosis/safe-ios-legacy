@@ -19,7 +19,8 @@ public class ErrorHandler {
         public static let errorMessage = LocalizedString("generic.error.message",
                                                          comment: "Generic error message alert")
     }
-    private static let instance = ErrorHandler()
+    public static let instance = ErrorHandler()
+    public var chashOnFatalError = true
 
     private init() {}
 
@@ -30,7 +31,9 @@ public class ErrorHandler {
                                       line: UInt = #line) {
         ApplicationServiceRegistry.logger.fatal(log, error: error, file: file, line: line)
         instance.showError(title: Strings.fatalErrorTitle, message: message, log: log, error: error) {
-            fatalError(message + "; " + log)
+            if instance.chashOnFatalError {
+                fatalError(message + "; " + log)
+            }
         }
     }
 

@@ -12,6 +12,7 @@ public final class MockNotificationService: NotificationDomainService {
     public var didPair = false
     public var shouldThrow = false
     public var shouldThrowNetworkError = false
+    public var shouldThrowValidationFailedError = false
     public var delay: TimeInterval
 
     public init(delay: TimeInterval = 0) {
@@ -22,6 +23,9 @@ public final class MockNotificationService: NotificationDomainService {
         Timer.wait(delay)
         if shouldThrowNetworkError {
             throw JSONHTTPClient.Error.networkRequestFailed(URLRequest(url: URL(string: "http://test.url")!), nil, nil)
+        }
+        if shouldThrowValidationFailedError {
+            throw NotificationDomainServiceError.validationFailed
         }
         if shouldThrow { throw TestError.error }
         didPair = true
