@@ -6,7 +6,7 @@ import XCTest
 @testable import EthereumImplementations
 import BigInt
 
-class TransactionCallTests: XCTestCase {
+class EthTypesTests: XCTestCase {
 
     func test_ethAddress() throws {
         let zero = EthAddress.zero
@@ -72,4 +72,12 @@ class TransactionCallTests: XCTestCase {
         XCTAssertTrue(json.localizedCaseInsensitiveContains("0xBB"))
         XCTAssertTrue(json.localizedCaseInsensitiveContains("0xDD"))
     }
+
+    func test_ethBlockNumber() throws {
+        let all: [EthBlockNumber] = [3, .latest, .earliest, .pending]
+        let encoded = try JSONEncoder().encode(all)
+        let decoded = try JSONDecoder().decode([EthBlockNumber].self, from: encoded)
+        XCTAssertEqual(decoded, all)
+    }
+
 }

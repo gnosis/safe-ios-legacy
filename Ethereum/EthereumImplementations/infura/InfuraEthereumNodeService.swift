@@ -23,6 +23,10 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
         return try execute(request: GasPriceRequest())
     }
 
+    public func eth_getTransactionCount(address: EthAddress, blockNumber: EthBlockNumber) throws -> BigInt {
+        return try execute(request: GetTransactionCountRequest(address, blockNumber))
+    }
+
     public func eth_getBalance(account: EthereumDomainModel.Address) throws -> EthereumDomainModel.Ether {
         let request = GetBalanceRequest(address: account.value)
         let result = try execute(request: request)
