@@ -72,4 +72,53 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
         XCTAssertGreaterThan(nonce, 0)
     }
 
+    func test_whenSendingEther_thenSendsIt() throws {
+        let sourcePrivateKey =
+            PrivateKey(data: Data(hex: "0x72a2a6f44f24b099f279c87548a93fd7229e5927b4f1c7209f7130d5352efa40"))
+        let encryptionService = EncryptionService(chainId: .rinkeby)
+        let sourceAddress = encryptionService.address(privateKey: sourcePrivateKey)
+        let destinationEOA = try encryptionService.generateExternallyOwnedAccount()
+        let gasPrice = try service.eth_gasPrice()
+        let gas = try service.eth_estimateGas(transaction:
+            TransactionCall(to: EthAddress(hex: destinationEOA.address.value),
+                            gasPrice: EthInt(gasPrice),
+                            value: 1))
+        let nonce = try service.eth_getTransactionCount(address: EthAddress(hex: sourceAddress.value),
+                                                        blockNumber: .latest)
+        let tx = EthRawTransaction(to: destinationEOA.address.value,
+                                   value: 1,
+                                   data: "",
+                                   gas: String(gas),
+                                   gasPrice: String(gasPrice),
+                                   nonce: Int(nonce))
+        let rawTx = try encryptionService.sign(transaction: tx, privateKey: sourcePrivateKey)
+        let txHash = try service.eth_sendRawTransaction(signedTransactionHash: rawTx)
+        let receipt = try waitForTransaction(txHash)!
+        XCTAssertEqual(receipt.status, .success)
+        let newBalance = try service.eth_getBalance(account: destinationEOA.address)
+        XCTAssertEqual(newBalance.amount, 1)
+    }
+
+    func waitForTransaction(_ transactionHash: TransactionHash) throws -> TransactionReceipt? {
+        var result: TransactionReceipt? = nil
+        let exp = expectation(description: "Transaction Mining")
+        try Worker.start(repeating: 3) {
+            do {
+                guard let receipt = try self.service.eth_getTransactionReceipt(transaction: transactionHash) else {
+                    return false
+                }
+                result = receipt
+                exp.fulfill()
+                return true
+            } catch let error {
+                print("Error: \(error)")
+                exp.fulfill()
+                return true
+            }
+        }
+        waitForExpectations(timeout: 5 * 60)
+        return result
+    }
+
+
 }

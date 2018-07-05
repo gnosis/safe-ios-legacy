@@ -133,6 +133,12 @@ open class EncryptionService: EncryptionDomainService {
         return (value.r.asString(withBase: 10), value.s.asString(withBase: 10), Int(value.v))
     }
 
+    private func bintSignature(from signature: RSVSignature) -> (r: BInt, s: BInt, v: BInt) {
+        return (BInt.init(signature.r, radix: 10)!,
+                BInt.init(signature.s, radix: 10)!,
+                BInt.init(signature.v))
+    }
+
     private func data(_ value: String) throws -> Data {
         guard let result = value.data(using: .utf8) else {
             throw Error.invalidString
@@ -149,7 +155,11 @@ open class EncryptionService: EncryptionDomainService {
     }
 
     private func rlp(_ values: Any...) throws -> Data {
-        return try RLP.encode(values)
+        return try rlp(varArgs: values)
+    }
+
+    private func rlp(varArgs: [Any]) throws -> Data {
+        return try RLP.encode(varArgs)
     }
 
     private func hash(_ value: Data) -> Data {
@@ -157,9 +167,25 @@ open class EncryptionService: EncryptionDomainService {
     }
 
     private func hash(_ tx: EthTransaction) throws -> Data {
-        let to = 0
-        return hash(
-            try rlp(tx.nonce, try Int(string: tx.gasPrice), try Int(string: tx.gas), to, tx.value, Data(hex: tx.data)))
+        return try hash(EthRawTransaction(to: "", tx.value, tx.data, tx.gas, tx.gasPrice, tx.nonce))
+    }
+
+    private func hash(_ tx: EthRawTransaction, _ signature: RSVSignature? = nil) throws -> Data {
+        return try hash(rlp(tx, signature: signature))
+    }
+
+    private func rlp(_ tx: EthRawTransaction, signature: RSVSignature? = nil) throws -> Data {
+        var toEncode: [Any] = [tx.nonce,
+                               BInt(tx.gasPrice, radix: 10)!,
+                               BInt(tx.gas, radix: 10)!,
+                               Data(hex: tx.to),
+                               tx.value,
+                               Data(hex: tx.data)]
+        if let signature = signature {
+            let (r, s, v) = bintSignature(from: signature)
+            toEncode.append(contentsOf: [v, r, s])
+        }
+        return try rlp(varArgs: toEncode)
     }
 
     private func data(from signature: RSVSignature) throws -> Data {
@@ -187,6 +213,14 @@ open class EncryptionService: EncryptionDomainService {
         return EthereumKit.Address(data: address).string
     }
 
+    // MARK: - EOA address computation
+
+    public func address(privateKey: EthereumDomainModel.PrivateKey) -> EthereumDomainModel.Address {
+        let publicKey = ethereumService.createPublicKey(privateKey: privateKey.data)
+        let address = ethereumService.createAddress(publicKey: publicKey)
+        return Address(value: address)
+    }
+
     // MARK: - EOA generation
 
     public func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccount {
@@ -208,13 +242,27 @@ open class EncryptionService: EncryptionDomainService {
     // MARK: - Signing messages
 
     public func sign(message: String, privateKey: EthereumDomainModel.PrivateKey) throws -> RSVSignature {
-        let rawSignature = try Crypto.sign(hash(data(message)), privateKey: privateKey.data)
+        let signature = try rawSignature(of: hash(data(message)), with: privateKey.data)
+        return calculateRSV(from: signature)
+    }
+
+    private func calculateRSV(from rawSignature: Data) -> RSVSignature {
         var result = signature(from: signer.calculateRSV(signiture: rawSignature))
         // FIXME: contribute to EthereumKit
         if chainId == .any && result.v > 28 {
             result.v += -35 + 27
         }
         return result
+    }
+
+    public func sign(transaction: EthRawTransaction, privateKey: EthereumDomainModel.PrivateKey) throws -> String {
+        let rlpAppendix: RSVSignature? = chainId == .any ? nil : ("0", "0", chainId.rawValue)
+        let signature = try calculateRSV(from: rawSignature(of: hash(transaction, rlpAppendix), with: privateKey.data))
+        return try rlp(transaction, signature: signature).toHexString().addHexPrefix()
+    }
+
+    private func rawSignature(of data: Data, with privateKey: Data) throws -> Data {
+        return try Crypto.sign(data, privateKey: privateKey)
     }
 
 }
