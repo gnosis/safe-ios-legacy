@@ -5,6 +5,7 @@
 import Foundation
 import BigInt
 import EthereumKit
+import CryptoSwift
 
 public struct TransactionCall: Codable {
 
@@ -14,6 +15,21 @@ public struct TransactionCall: Codable {
     public var gasPrice: EthInt?
     public var value: EthInt?
     public var data: EthData?
+
+
+    public init(from: EthAddress? = nil,
+                to: EthAddress? = nil,
+                gas: EthInt? = nil,
+                gasPrice: EthInt? = nil,
+                value: EthInt? = nil,
+                data: EthData? = nil) {
+        self.from = from
+        self.to = to
+        self.gas = gas
+        self.gasPrice = gasPrice
+        self.value = value
+        self.data = data
+    }
 
 }
 

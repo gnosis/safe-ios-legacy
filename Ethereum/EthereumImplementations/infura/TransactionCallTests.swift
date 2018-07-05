@@ -63,8 +63,8 @@ class TransactionCallTests: XCTestCase {
                                    gasPrice: 0xee,
                                    value: 0xbb,
                                    data: EthData(hex: "0xdD"))
-        let json = try String(data: JSONEncoder().encode(call), encoding: .utf8)!
-        print(json)
+        let encoded = try JSONEncoder().encode(call)
+        let json = String(data: encoded, encoding: .utf8)!
         XCTAssertTrue(json.contains("0x0000000000000000000000000000000000000000"))
         XCTAssertTrue(json.contains("0x0000000000000000000000000000000000000001"))
         XCTAssertTrue(json.localizedCaseInsensitiveContains("0xFF"))
