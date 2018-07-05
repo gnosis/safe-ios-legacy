@@ -9,41 +9,28 @@ import BigInt
 class TransactionCallTests: XCTestCase {
 
     func test_address() throws {
-        let zero: EthAddress = 0
-        XCTAssertEqual(zero, 0)
+        let zero = EthAddress.zero
         XCTAssertEqual(zero.data.count, 20)
 
-        let lessThan20Bytes = EthAddress(BigInt(2).power(15) - 1)
-        XCTAssertEqual(lessThan20Bytes.data.count, 20)
+        let moreThan20Bytes = EthAddress(Data(repeating: 1, count: 25))
+        let expectedMoreThan20Bytes = EthAddress(Data(repeating: 1, count: 20))
+        XCTAssertEqual(moreThan20Bytes, expectedMoreThan20Bytes)
 
-        let exactly20Bytes = EthAddress(BigInt(2).power(19) - 1)
-        XCTAssertEqual(exactly20Bytes.data.count, 20)
+        XCTAssertTrue(zero.mixedCaseChecksumEncoded.hasPrefix("0x"))
+        XCTAssertEqual(zero.hexString, "0x0000000000000000000000000000000000000000")
 
-        let moreThan20Bytes = EthAddress(BigInt(2).power(19))
-        XCTAssertEqual(moreThan20Bytes.data.count, 20)
-
-        XCTAssertEqual(exactly20Bytes, moreThan20Bytes)
-
-        let last20Bytes = EthAddress(0b1111_1100_1111_1111_1111_1111_1111_1111_1111_1111_1100)
-        let expected20BytesAddress = EthAddress(0b1100_1111_1111_1111_1111_1111_1111_1111_1111_1100)
-        XCTAssertEqual(last20Bytes, expected20BytesAddress)
-
-        let fromHex = EthAddress(hex: exactly20Bytes.hexString)
-        XCTAssertEqual(fromHex, exactly20Bytes)
-
-        let fromChecksum = EthAddress(hex: exactly20Bytes.mixedCaseChecksumEncoded)!
-        XCTAssertEqual(fromChecksum, exactly20Bytes)
-
-        struct Wrapper: Codable {
-            var address: EthAddress
+        struct Box: Codable {
+            var data: EthAddress
         }
 
-        let wrapper = Wrapper(address: fromChecksum)
-        let encoded = try JSONEncoder().encode(wrapper)
-        XCTAssertTrue(String(data: encoded, encoding: .utf8)!.contains(fromChecksum.mixedCaseChecksumEncoded))
+        let b = Box(data: EthAddress.zero)
+        let data = try JSONEncoder().encode(b)
+        let decoded = try JSONDecoder().decode(Box.self, from: data)
+        XCTAssertEqual(decoded.data, b.data)
 
-        let decoded = try JSONDecoder().decode(Wrapper.self, from: encoded)
-        XCTAssertEqual(decoded.address, wrapper.address)
+        let fromHex = EthAddress(hex: "0xabcdef44556677889900abcdef44556677889900")
+        XCTAssertEqual(fromHex.data, Data(hex: "0xabcdef44556677889900abcdef44556677889900"))
+        XCTAssertEqual(fromHex.data, Data(hex: fromHex.mixedCaseChecksumEncoded))
     }
 
 }

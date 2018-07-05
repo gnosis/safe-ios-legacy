@@ -17,40 +17,31 @@ public struct TransactionCall {
 
 }
 
-public struct EthAddress: Equatable {
+public struct EthAddress: Equatable, CustomStringConvertible {
 
-    private let value: BigInt
+    public static let zero = EthAddress(Data())
+    private static let size = 20
+    public let data: Data
 
-    public init(_ value: BigInt) {
-        self.value = BigInt(clamping: 0b1111_1111_1111_1111_1111_1111_1111_1111_1111_1111)
+    public init(_ value: Data) {
+        let v = value.suffix(EthAddress.size)
+        self.data = Data(repeating: 0, count: EthAddress.size - v.count) + v
     }
 
-    public init?(hex string: String) {
-        guard let value = BigInt(hex: string) else { return nil }
-        self.init(value)
-    }
-
-    public var data: Data {
-        let valueData = BigUInt(value).serialize().suffix(20)
-        return Data(repeating: 0, count: 20 - valueData.count) + valueData
+    public init(hex: String) {
+        self.init(Data(hex: hex))
     }
 
     public var hexString: String {
-        return data.toHexString()
+        return data.toHexString().addHexPrefix()
     }
 
     public var mixedCaseChecksumEncoded: String {
-        return EIP55.encode(data)
+        return EIP55.encode(data).addHexPrefix()
     }
 
-}
-
-extension EthAddress: ExpressibleByIntegerLiteral {
-
-    public typealias IntegerLiteralType = UInt
-
-    public init(integerLiteral value: UInt) {
-        self.init(BigInt(value))
+    public var description: String {
+        return mixedCaseChecksumEncoded
     }
 
 }
@@ -64,10 +55,7 @@ extension EthAddress: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self)
-        guard let value = EthAddress(hex: string) else {
-            throw Error.wrongHexValue
-        }
-        self = value
+        self.init(hex: string)
     }
 
     public func encode(to encoder: Encoder) throws {
