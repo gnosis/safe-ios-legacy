@@ -167,7 +167,7 @@ open class EncryptionService: EncryptionDomainService {
     }
 
     private func hash(_ tx: EthTransaction) throws -> Data {
-        return try hash(EthRawTransaction("", tx.value, tx.data, tx.gas, tx.gasPrice, tx.nonce))
+        return try hash(EthRawTransaction(to: "", tx.value, tx.data, tx.gas, tx.gasPrice, tx.nonce))
     }
 
     private func hash(_ tx: EthRawTransaction, _ signature: RSVSignature? = nil) throws -> Data {
