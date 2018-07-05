@@ -6,6 +6,8 @@ import Foundation
 
 public typealias RSVSignature = (r: String, s: String, v: Int)
 public typealias EthTransaction = (from: String, value: Int, data: String, gas: String, gasPrice: String, nonce: Int)
+public typealias EthRawTransaction =
+    (to: String, value: Int, data: String, gas: String, gasPrice: String, nonce: Int)
 
 public protocol EncryptionDomainService {
 

@@ -51,6 +51,7 @@
 		0AB7444720EE4DBC00D8DFFC /* EthInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7444620EE4DBC00D8DFFC /* EthInt.swift */; };
 		0AB7444920EE508400D8DFFC /* GetTransactionCountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7444820EE508400D8DFFC /* GetTransactionCountRequest.swift */; };
 		0AB7444B20EE518D00D8DFFC /* JSONRPCRequest+BigIntResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7444A20EE518D00D8DFFC /* JSONRPCRequest+BigIntResponse.swift */; };
+		0AB7445020EE54BA00D8DFFC /* SendRawTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7444F20EE54BA00D8DFFC /* SendRawTransactionRequest.swift */; };
 		0AE51A8820BED8AB0003524D /* GetTransactionReceiptRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE51A8720BED8AB0003524D /* GetTransactionReceiptRequest.swift */; };
 		0AE51A9820BEE8150003524D /* MockEthereumNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE51A9720BEE8150003524D /* MockEthereumNodeService.swift */; };
 		555B0E9920CAD3F800424CEE /* CryptoEthereumSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 555B0E9820CAD3F800424CEE /* CryptoEthereumSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -338,6 +339,7 @@
 		0AB7444620EE4DBC00D8DFFC /* EthInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthInt.swift; sourceTree = "<group>"; };
 		0AB7444820EE508400D8DFFC /* GetTransactionCountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionCountRequest.swift; sourceTree = "<group>"; };
 		0AB7444A20EE518D00D8DFFC /* JSONRPCRequest+BigIntResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONRPCRequest+BigIntResponse.swift"; sourceTree = "<group>"; };
+		0AB7444F20EE54BA00D8DFFC /* SendRawTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRawTransactionRequest.swift; sourceTree = "<group>"; };
 		0AE51A8720BED8AB0003524D /* GetTransactionReceiptRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionReceiptRequest.swift; sourceTree = "<group>"; };
 		0AE51A9720BEE8150003524D /* MockEthereumNodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumNodeService.swift; sourceTree = "<group>"; };
 		0AE51A9920BEE9E10003524D /* WorkerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkerTests.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 			children = (
 				0A2CAD9920BEB2710074F9FA /* GetBalanceRequest.swift */,
 				0AE51A8720BED8AB0003524D /* GetTransactionReceiptRequest.swift */,
+				0AB7444F20EE54BA00D8DFFC /* SendRawTransactionRequest.swift */,
 				0AB743E720ED0DC900D8DFFC /* GasPriceRequest.swift */,
 				0AB7444A20EE518D00D8DFFC /* JSONRPCRequest+BigIntResponse.swift */,
 				0AB7444820EE508400D8DFFC /* GetTransactionCountRequest.swift */,
@@ -983,6 +986,7 @@
 				0A30674220A5C7650059F521 /* MockEncryptionService.swift in Sources */,
 				0AB7441820ED1AEC00D8DFFC /* TransactionCall.swift in Sources */,
 				0A934D0F20B6CDB700F15616 /* EthereumKitEthereumService.swift in Sources */,
+				0AB7445020EE54BA00D8DFFC /* SendRawTransactionRequest.swift in Sources */,
 				55704B1720AC8B250054256B /* EncryptionService.swift in Sources */,
 				0AB7444320EE4D9D00D8DFFC /* EthData.swift in Sources */,
 				0AB7444B20EE518D00D8DFFC /* JSONRPCRequest+BigIntResponse.swift in Sources */,

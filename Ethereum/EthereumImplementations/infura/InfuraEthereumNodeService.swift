@@ -27,6 +27,10 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
         return try execute(request: GetTransactionCountRequest(address, blockNumber))
     }
 
+    public func eth_sendRawTransaction(signedTransactionHash: String) throws -> TransactionHash {
+        return try execute(request: SendRawTransactionRequest(signedTransactionHash))
+    }
+
     public func eth_getBalance(account: EthereumDomainModel.Address) throws -> EthereumDomainModel.Ether {
         let request = GetBalanceRequest(address: account.value)
         let result = try execute(request: request)
