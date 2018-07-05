@@ -256,8 +256,8 @@ open class EncryptionService: EncryptionDomainService {
     }
 
     public func sign(transaction: EthRawTransaction, privateKey: EthereumDomainModel.PrivateKey) throws -> String {
-        let appendix: RSVSignature? = chainId == .any ? nil : ("0", "0", chainId.rawValue)
-        let signature = try calculateRSV(from: rawSignature(of: hash(transaction, appendix), with: privateKey.data))
+        let rlpAppendix: RSVSignature? = chainId == .any ? nil : ("0", "0", chainId.rawValue)
+        let signature = try calculateRSV(from: rawSignature(of: hash(transaction, rlpAppendix), with: privateKey.data))
         return try rlp(transaction, signature: signature).toHexString().addHexPrefix()
     }
 
