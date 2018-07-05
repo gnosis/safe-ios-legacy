@@ -7,9 +7,17 @@ import EthereumDomainModel
 import EthereumKit
 import BigInt
 
+public enum JSONRPCExtendedError: Swift.Error {
+    case unexpectedValue(String)
+}
+
 public class InfuraEthereumNodeService: EthereumNodeDomainService {
 
     public init() {}
+
+    public func eth_estimateGas(transaction: TransactionCall) throws -> BigInt {
+        return try execute(request: EstimateGasRequest(transaction))
+    }
 
     public func eth_gasPrice() throws -> BigInt {
         return try execute(request: GasPriceRequest())

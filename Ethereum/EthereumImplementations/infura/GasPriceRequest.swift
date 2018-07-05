@@ -6,11 +6,8 @@ import Foundation
 import EthereumKit
 import BigInt
 
-struct GasPriceRequest: JSONRPCRequest {
 
-    enum Error: Swift.Error {
-        case unexpectedValue(String)
-    }
+struct GasPriceRequest: JSONRPCRequest {
 
     typealias Response = BigInt
     var method: String { return "eth_gasPrice" }
@@ -20,7 +17,7 @@ struct GasPriceRequest: JSONRPCRequest {
             throw JSONRPCError.unexpectedTypeObject(resultObject)
         }
         guard let value = BigInt(hex: string) else {
-            throw Error.unexpectedValue(string)
+            throw JSONRPCExtendedError.unexpectedValue(string)
         }
         return value
     }

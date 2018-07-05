@@ -60,4 +60,11 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
         XCTAssertGreaterThan(price, 0)
     }
 
+    func test_whenEstimatingGas_thenReturnsResult() throws {
+        let tx = TransactionCall(gas: 100, gasPrice: 100, value: 100)
+        let gas = try service.eth_estimateGas(transaction: tx)
+        XCTAssertGreaterThan(gas, 0)
+    }
+
+
 }

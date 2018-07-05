@@ -5,15 +5,72 @@
 import Foundation
 import BigInt
 import EthereumKit
+import CryptoSwift
 
 public struct TransactionCall: Codable {
 
     public var from: EthAddress?
     public var to: EthAddress?
-    public var gas: Int?
-    public var gasPrice: BigInt?
-    public var value: BigInt?
+    public var gas: EthInt?
+    public var gasPrice: EthInt?
+    public var value: EthInt?
     public var data: EthData?
+
+
+    public init(from: EthAddress? = nil,
+                to: EthAddress? = nil,
+                gas: EthInt? = nil,
+                gasPrice: EthInt? = nil,
+                value: EthInt? = nil,
+                data: EthData? = nil) {
+        self.from = from
+        self.to = to
+        self.gas = gas
+        self.gasPrice = gasPrice
+        self.value = value
+        self.data = data
+    }
+
+}
+
+public struct EthInt {
+
+    public let value: BigInt
+
+    public init(_ value: BigInt) {
+        self.value = value
+    }
+
+}
+
+extension EthInt: Codable {
+
+    public enum CodableError: Error {
+        case invalidStringValue(String)
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let string = try container.decode(String.self)
+        guard let value = BigInt(string.stripHexPrefix(), radix: 16) else {
+            throw CodableError.invalidStringValue(string)
+        }
+        self.init(value)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        let string = String(value, radix: 16).addHexPrefix()
+        try container.encode(string)
+    }
+
+}
+
+extension EthInt: ExpressibleByIntegerLiteral {
+
+    public init(integerLiteral value: Int) {
+        self.init(BigInt(value))
+    }
 
 }
 

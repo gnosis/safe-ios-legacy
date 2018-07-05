@@ -56,4 +56,20 @@ class TransactionCallTests: XCTestCase {
         XCTAssertEqual(decoded.data, b.data)
     }
 
+    func test_transactionCall() throws {
+        let call = TransactionCall(from: .zero,
+                                   to: EthAddress(hex: "0x01"),
+                                   gas: 0xff,
+                                   gasPrice: 0xee,
+                                   value: 0xbb,
+                                   data: EthData(hex: "0xdD"))
+        let encoded = try JSONEncoder().encode(call)
+        let json = String(data: encoded, encoding: .utf8)!
+        XCTAssertTrue(json.contains("0x0000000000000000000000000000000000000000"))
+        XCTAssertTrue(json.contains("0x0000000000000000000000000000000000000001"))
+        XCTAssertTrue(json.localizedCaseInsensitiveContains("0xFF"))
+        XCTAssertTrue(json.localizedCaseInsensitiveContains("0xEE"))
+        XCTAssertTrue(json.localizedCaseInsensitiveContains("0xBB"))
+        XCTAssertTrue(json.localizedCaseInsensitiveContains("0xDD"))
+    }
 }
