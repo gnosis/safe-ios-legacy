@@ -12,6 +12,6 @@ class CameraScreen {
     var scanValidCodeButton: XCUIElement { return XCUIApplication().buttons["Scan Valid Code"] }
     var scanInvalidCodeButton: XCUIElement { return XCUIApplication().buttons["Scan Invalid Code"] }
     var scanExpiredCodeButton: XCUIElement { return XCUIApplication().buttons["Scan Expired Code"] }
-    var scanTwoValidCodes: XCUIElement { return XCUIApplication().buttons["Scan Two Valid Codes at Once"] }
+    var scanTwoValidCodes: XCUIElement { return XCUIApplication().buttons["Scan Two Valid Codes at Ones"] }
 
 }
