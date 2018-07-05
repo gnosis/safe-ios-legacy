@@ -121,7 +121,9 @@ class UITestCase: XCTestCase {
         handleCameraAlerts()
     }
 
-    private func handleCameraPermsissionByAllowing() {
+    // - MARK: Alerts handling
+
+    func handleCameraPermsissionByAllowing() {
         cameraPermissionHandler = addUIInterruptionMonitor(withDescription: "Camera access") { [unowned self] alert in
             defer { self.cameraPermissionExpectation.fulfill() }
             guard alert.label.localizedCaseInsensitiveContains("would like to access the camera") else {
@@ -132,17 +134,25 @@ class UITestCase: XCTestCase {
         }
     }
 
-    private func handleCameraAlerts() {
-        let cameraScreen = CameraScreen()
-        delay(1)
-        XCUIApplication().swipeUp() // required for alert handlers firing
-        if cameraScreen.isDisplayed {
-            cameraPermissionExpectation.fulfill()
+    func handleCameraPermissionByDenying() {
+        cameraPermissionHandler = addUIInterruptionMonitor(withDescription: "Camera access") { alert in
+            guard alert.label.localizedCaseInsensitiveContains("would like to access the camera") else { return false }
+            alert.buttons["Don’t Allow"].tap()
+            return true
         }
-        waitForExpectations(timeout: 1)
     }
 
-    // Alerts handling
+    func handleSuggestionAlertByCancelling(with expectation: XCTestExpectation) {
+        cameraSuggestionHandler = addUIInterruptionMonitor(withDescription: "Suggestion Alert") { alert in
+            guard alert.label == LocalizedString("scanner.camera_access_required.title") else {
+                return false
+            }
+            XCTAssertExist(alert.buttons[LocalizedString("scanner.camera_access_required.allow")])
+            alert.buttons[LocalizedString("cancel")].tap()
+            expectation.fulfill()
+            return true
+        }
+    }
 
     func handleErrorAlert(with expectation: XCTestExpectation) {
         errorAlertHandler = addUIInterruptionMonitor(withDescription: "Error Alert") { alert in
@@ -160,6 +170,16 @@ class UITestCase: XCTestCase {
             expectation.fulfill()
             return true
         }
+    }
+
+    func handleCameraAlerts() {
+        let cameraScreen = CameraScreen()
+        delay(1)
+        XCUIApplication().swipeUp() // required for alert handlers firing
+        if cameraScreen.isDisplayed {
+            cameraPermissionExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 1)
     }
 
     func handleAlerts() {
