@@ -8,8 +8,6 @@ import CommonTestSupport
 class PairWithBrowserExtensionScreenUITests: UITestCase {
 
     let screen = PairWithBrowserExtensionScreen()
-    var cameraPermissionHandler: NSObjectProtocol!
-    var cameraSuggestionHandler: NSObjectProtocol!
     let cameraScreen = CameraScreen()
     let newSafe = NewSafeScreen()
 
@@ -21,16 +19,6 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
         super.setUp()
         Springboard.deleteSafeApp()
         application.setMockServerResponseDelay(0)
-    }
-
-    override func tearDown() {
-        if let handler = cameraPermissionHandler {
-            removeUIInterruptionMonitor(handler)
-        }
-        if let handler = cameraSuggestionHandler {
-            removeUIInterruptionMonitor(handler)
-        }
-        super.tearDown()
     }
 
 }

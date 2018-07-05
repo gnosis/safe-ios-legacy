@@ -9,6 +9,7 @@ class UITestCase: XCTestCase {
 
     let application = Application()
     let password = "11111A"
+    private var cameraSuggestionHandler: NSObjectProtocol!
     private var cameraPermissionHandler: NSObjectProtocol!
     private var errorAlertHandler: NSObjectProtocol!
     private var cameraPermissionExpectation: XCTestExpectation!
@@ -20,6 +21,9 @@ class UITestCase: XCTestCase {
 
     override func tearDown() {
         if let handler = cameraPermissionHandler {
+            removeUIInterruptionMonitor(handler)
+        }
+        if let handler = cameraSuggestionHandler {
             removeUIInterruptionMonitor(handler)
         }
         if let handler = errorAlertHandler {
@@ -80,7 +84,7 @@ class UITestCase: XCTestCase {
         newSafeScreen.browserExtension.element.tap()
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
-        pairWithBrowserScreen.saveButton.tap()
+        pairWithBrowserScreen.saveButton.tap()        
         newSafeScreen.next.tap()
     }
 
