@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         secureStore = KeychainService(identifier: "pm.gnosis.safe")
         EthereumDomainModel.DomainRegistry.put(service: SecureExternallyOwnedAccountRepository(store: secureStore!),
                                                for: ExternallyOwnedAccountRepository.self)
-        EthereumDomainModel.DomainRegistry.put(service: DemoEthereumNodeService(),
+        EthereumDomainModel.DomainRegistry.put(service: InfuraEthereumNodeService(),
                                                for: EthereumNodeDomainService.self)
     }
 
