@@ -51,13 +51,20 @@ public class MockBlockchainDomainService: BlockchainDomainService {
     }
 
     public var executeWalletCreationTransaction_input: String?
-    public var executeWalletCreationTransaction_output: String = ""
     public var executeWalletCreationTransaction_shouldThrow = false
 
-    public func executeWalletCreationTransaction(address: String) throws -> String {
+    public func executeWalletCreationTransaction(address: String) throws {
         if executeWalletCreationTransaction_shouldThrow { throw Error.error }
         executeWalletCreationTransaction_input = address
-        return executeWalletCreationTransaction_output
+    }
+
+    public var waitForCreationTransaction_input: String?
+    public var waitForCreationTransaction_output: String = ""
+
+    public func waitForCreationTransaction(address: String) throws -> String {
+        if shouldThrow { throw Error.error }
+        waitForCreationTransaction_input = address
+        return waitForCreationTransaction_output
     }
 
     public var waitForPendingTransaction_input: String?

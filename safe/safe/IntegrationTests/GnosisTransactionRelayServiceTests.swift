@@ -16,6 +16,10 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
     lazy var encryptionService = EncryptionService(chainId: .any, ethereumService: ethService)
     let infuraService = InfuraEthereumNodeService()
 
+    enum Error: String, LocalizedError, Hashable {
+        case errorWhileWaitingForCreationTransactionHash
+    }
+
     func test_whenGoodData_thenReturnsSomething() throws {
         let eoa1 = try encryptionService.generateExternallyOwnedAccount()
         let eoa2 = try encryptionService.generateExternallyOwnedAccount()
@@ -41,9 +45,9 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
 
         try fundSafe(address: safeAddress, amount: response.payment)
 
-        let txHash = try relayService.startSafeCreation(address: Address(value: safeAddress))
+        try relayService.startSafeCreation(address: Address(value: safeAddress))
+        let txHash = try waitForSafeCreationTransaction(Address(value: safeAddress))
         XCTAssertFalse(txHash.value.isEmpty)
-
         let receipt = try waitForTransaction(txHash)!
         XCTAssertEqual(receipt.status, .success)
     }
@@ -75,6 +79,28 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
         XCTAssertEqual(receipt.status, .success)
         let newBalance = try infuraService.eth_getBalance(account: destination)
         XCTAssertEqual(newBalance.amount, Int(value.value))
+    }
+
+    func waitForSafeCreationTransaction(_ address: Address) throws -> TransactionHash {
+        var result: TransactionHash!
+        let exp = expectation(description: "Safe creation")
+        try Worker.start(repeating: 5) {
+            do {
+                guard let hash = try self.relayService.safeCreationTransactionHash(address: address) else {
+                    return false
+                }
+                result = hash
+                exp.fulfill()
+                return true
+            } catch let error {
+                print("Error: \(error)")
+                exp.fulfill()
+                return true
+            }
+        }
+        waitForExpectations(timeout: 5 * 60)
+        guard let hash = result else { throw Error.errorWhileWaitingForCreationTransactionHash }
+        return hash
     }
 
     func waitForTransaction(_ transactionHash: TransactionHash) throws -> TransactionReceipt? {

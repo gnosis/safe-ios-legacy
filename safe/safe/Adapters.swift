@@ -27,9 +27,8 @@ extension EthereumApplicationService: BlockchainDomainService {
         }
     }
 
-    public func executeWalletCreationTransaction(address: String) throws -> String {
-        let txHash = try startSafeCreation(address: address)
-        return txHash
+    public func executeWalletCreationTransaction(address: String) throws {
+        try startSafeCreation(address: address)
     }
 
     public func sign(message: String, by address: String) throws -> RSVSignature {

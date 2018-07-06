@@ -48,13 +48,12 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
     }
 
     func test_whenStartingSafeCreation_thenCallsRelayService() throws {
-        let output = try applicationService.startSafeCreation(address: "some")
+        try applicationService.startSafeCreation(address: "some")
         guard let input = relayService.startSafeCreation_input else {
             XCTFail("Expected call to relay service")
             return
         }
         XCTAssertEqual(input, Address(value: "some"))
-        XCTAssertFalse(output.isEmpty)
     }
 
     func test_whenObservingBalanceAndItChanges_thenCallsObserver() throws {

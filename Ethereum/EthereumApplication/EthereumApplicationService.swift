@@ -94,9 +94,19 @@ open class EthereumApplicationService: Assertable {
             return SafeCreationTransactionData(safe: response.safe, payment: payment)
     }
 
-    open func startSafeCreation(address: String) throws -> String {
-        let transactionHash = try relayService.startSafeCreation(address: Address(value: address))
-        return transactionHash.value
+    open func startSafeCreation(address: String) throws {
+        try relayService.startSafeCreation(address: Address(value: address))
+    }
+
+    open func waitForCreationTransaction(address: String) throws -> String {
+        var hash: String?
+        repeat {
+            hash = try relayService.safeCreationTransactionHash(address: Address(value: address))?.value
+            if hash == nil {
+                RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
+            }
+        } while hash == nil
+        return hash!
     }
 
     open func balance(address: String) throws -> Int {

@@ -18,19 +18,14 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
             return try httpClient.execute(request: request)
     }
 
-    // TODO: split this up into two separate steps to enable app quit & resume
-    public func startSafeCreation(address: Address) throws -> TransactionHash {
-        _ = try httpClient.execute(request: StartSafeCreationRequest(safeAddress: address.value))
-        var status = try self.safeCreationStatus(address: address) // may return 500
-        while status.safeDeployedTxHash == nil {
-            RunLoop.current.run(until: .init(timeIntervalSinceNow: 5))
-            status = try self.safeCreationStatus(address: address)
-        }
-        return TransactionHash(value: status.safeDeployedTxHash!.addHexPrefix())
+    public func startSafeCreation(address: Address) throws {
+        try httpClient.execute(request: StartSafeCreationRequest(safeAddress: address.value))
     }
 
-    private func safeCreationStatus(address: Address) throws -> GetSafeCreationStatusRequest.Resposne {
-        return try httpClient.execute(request: GetSafeCreationStatusRequest(safeAddress: address.value))
+    public func safeCreationTransactionHash(address: Address) throws -> TransactionHash? {
+        let response = try httpClient.execute(request: GetSafeCreationStatusRequest(safeAddress: address.value))
+        guard let hash = response.safeDeployedTxHash else { return nil }
+        return TransactionHash(value: hash)
     }
 
 }
@@ -44,41 +39,22 @@ extension SafeCreationTransactionRequest: JSONRequest {
 
 }
 
-struct StartSafeCreationRequest: Encodable {
-
-    let safeAddress: String
-
-}
 
 extension StartSafeCreationRequest: JSONRequest {
 
-    var httpMethod: String { return "PUT" }
-    var urlPath: String { return "safes/\(safeAddress)/funded" }
+    public var httpMethod: String { return "PUT" }
+    public var urlPath: String { return "safes/\(safeAddress)/funded" }
 
-    struct EmptyResponse: Codable {}
+    public struct EmptyResponse: Codable {}
 
-    typealias ResponseType = EmptyResponse
-}
-
-struct GetSafeCreationStatusRequest: Encodable {
-
-    let safeAddress: String
-
-    struct Resposne: Decodable {
-        var safeFunded: Bool
-        var deployerFunded: Bool
-        var deployerFundedTxHash: String?
-        var safeDeployed: Bool
-        var safeDeployedTxHash: String?
-    }
-
+    public typealias ResponseType = EmptyResponse
 }
 
 extension GetSafeCreationStatusRequest: JSONRequest {
 
-    var httpMethod: String { return "GET" }
-    var urlPath: String { return "safes/\(safeAddress)/funded" }
+    public var httpMethod: String { return "GET" }
+    public var urlPath: String { return "safes/\(safeAddress)/funded" }
 
-    typealias ResponseType = GetSafeCreationStatusRequest.Resposne
+    public typealias ResponseType = GetSafeCreationStatusRequest.Resposne
 
 }

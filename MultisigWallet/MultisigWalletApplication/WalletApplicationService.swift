@@ -272,19 +272,22 @@ public class WalletApplicationService: Assertable {
             throw Error.missingWalletAddress
         }
         // TODO: if the call fails, show error in UI and possibility to retry with a button
-        let hash = try blockchainService.executeWalletCreationTransaction(address: address.value)
+        try blockchainService.executeWalletCreationTransaction(address: address.value)
         guard selectedWalletState == .accountFunded else { return }
         try markDeploymentAcceptedByBlockchain()
-        try storeTransactionHash(hash: hash)
         try waitForPendingTransaction()
     }
 
     private func waitForPendingTransaction() throws {
         let wallet = try findSelectedWallet()
-        guard let hash = wallet.creationTransactionHash else {
-            throw Error.creationTransactionHashNotFound
+        if wallet.creationTransactionHash == nil {
+            guard let address = wallet.address else {
+                throw Error.missingWalletAddress
+            }
+            let hash = try blockchainService.waitForCreationTransaction(address: address.value)
+            try storeTransactionHash(hash: hash)
         }
-        let isSuccess = try blockchainService.waitForPendingTransaction(hash: hash)
+        let isSuccess = try blockchainService.waitForPendingTransaction(hash: wallet.creationTransactionHash!)
         guard selectedWalletState == .deploymentAcceptedByBlockchain else { return }
         didFinishDeployment(success: isSuccess)
     }
