@@ -52,6 +52,7 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
         XCTAssertEqual(receipt.status, .success)
     }
 
+    // TODO: remove code duplication
     func fundSafe(address: String, amount: String) throws {
         let sourcePrivateKey =
             PrivateKey(data: Data(hex: "0x72a2a6f44f24b099f279c87548a93fd7229e5927b4f1c7209f7130d5352efa40"))
