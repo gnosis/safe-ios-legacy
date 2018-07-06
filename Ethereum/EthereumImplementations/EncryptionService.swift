@@ -235,7 +235,7 @@ open class EncryptionService: EncryptionDomainService {
 
     // MARK: - random numbers
 
-    open func randomUInt256() -> String {
+    open func randomUInt252() -> String {
         return String(BigUInt.randomInteger(lessThan: BigUInt(2).power(252)))
     }
 

@@ -29,7 +29,7 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
             // Please do not change data here. Or you will need to update StubEncryptionService to fix related UI tests.
             return .init(signature: .init(r: "222", s: request.s, v: "27"),
                          tx: .init(from: "", value: 0, data: "0x0001", gas: "10", gasPrice: "100", nonce: 0),
-                         safe: "0x93a03e4223a1F281f07B442bfDcb34baF796772f",
+                         safe: "0x8c89eb758AF5Ee056Bc251328105F8893B057A05",
                          payment: "100")
     }
 

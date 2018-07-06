@@ -11,11 +11,11 @@ public struct SafeCreationTransactionRequest: Encodable {
     public let threshold: String
     public let s: String
 
-    public init(owners: [String], confirmationCount: Int, randomUInt256: String) {
+    public init(owners: [String], confirmationCount: Int, randomUInt252: String) {
         self.owners = owners
         threshold = String(confirmationCount)
-        precondition(BigInt(randomUInt256)! < BigInt(2).power(252) - 1)
-        s = randomUInt256
+        precondition(BigInt(randomUInt252)! < BigInt(2).power(252) - 1)
+        s = randomUInt252
     }
 
     public struct Response: Decodable {

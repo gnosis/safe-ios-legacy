@@ -14,6 +14,6 @@ public protocol EncryptionDomainService {
     func address(browserExtensionCode: String) -> String?
     func contractAddress(from: RSVSignature, for transaction: EthTransaction) throws -> String?
     func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccount
-    func randomUInt256() -> String
+    func randomUInt252() -> String
     func sign(message: String, privateKey: PrivateKey) throws -> RSVSignature
 }

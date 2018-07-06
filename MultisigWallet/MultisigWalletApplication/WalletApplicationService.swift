@@ -280,14 +280,15 @@ public class WalletApplicationService: Assertable {
 
     private func waitForPendingTransaction() throws {
         let wallet = try findSelectedWallet()
-        if wallet.creationTransactionHash == nil {
+        var hash = wallet.creationTransactionHash
+        if hash == nil {
             guard let address = wallet.address else {
                 throw Error.missingWalletAddress
             }
-            let hash = try blockchainService.waitForCreationTransaction(address: address.value)
-            try storeTransactionHash(hash: hash)
+            hash = try blockchainService.waitForCreationTransaction(address: address.value)
+            try storeTransactionHash(hash: hash!)
         }
-        let isSuccess = try blockchainService.waitForPendingTransaction(hash: wallet.creationTransactionHash!)
+        let isSuccess = try blockchainService.waitForPendingTransaction(hash: hash!)
         guard selectedWalletState == .deploymentAcceptedByBlockchain else { return }
         didFinishDeployment(success: isSuccess)
     }
