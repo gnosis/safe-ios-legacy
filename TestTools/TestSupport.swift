@@ -16,8 +16,8 @@ protocol Resettable: class {
 
 final class StubEncryptionService: EncryptionService {
 
-    override func randomUInt256() -> String {
-        return "51602277827206092161359189523869407094850301206236947198082645428468309668322"
+    override func randomUInt252() -> String {
+        return "1809251394333065553493296640760748560207343510400633813116524750123642650623"
     }
 
 }

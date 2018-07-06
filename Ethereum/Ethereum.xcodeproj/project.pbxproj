@@ -52,6 +52,9 @@
 		0AB7444920EE508400D8DFFC /* GetTransactionCountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7444820EE508400D8DFFC /* GetTransactionCountRequest.swift */; };
 		0AB7444B20EE518D00D8DFFC /* JSONRPCRequest+BigIntResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7444A20EE518D00D8DFFC /* JSONRPCRequest+BigIntResponse.swift */; };
 		0AB7445020EE54BA00D8DFFC /* SendRawTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7444F20EE54BA00D8DFFC /* SendRawTransactionRequest.swift */; };
+		0AC5F19820EF8CCE0081D7F2 /* SafeCreationTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC5F19720EF8CCE0081D7F2 /* SafeCreationTransactionRequest.swift */; };
+		0AC5F1A720EF8D2E0081D7F2 /* StartSafeCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC5F1A620EF8D2E0081D7F2 /* StartSafeCreationRequest.swift */; };
+		0AC5F1A920EF8DD40081D7F2 /* GetSafeCreationStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC5F1A820EF8DD40081D7F2 /* GetSafeCreationStatusRequest.swift */; };
 		0AE51A8820BED8AB0003524D /* GetTransactionReceiptRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE51A8720BED8AB0003524D /* GetTransactionReceiptRequest.swift */; };
 		0AE51A9820BEE8150003524D /* MockEthereumNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE51A9720BEE8150003524D /* MockEthereumNodeService.swift */; };
 		555B0E9920CAD3F800424CEE /* CryptoEthereumSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 555B0E9820CAD3F800424CEE /* CryptoEthereumSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -188,6 +191,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0AC1757F207B73A90016320A;
 			remoteInfo = CommonTestSupport;
+		};
+		0AC5F1AD20EFAFE10081D7F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B0EA820CE5EF800424CEE;
+			remoteInfo = BigInt;
 		};
 		5506392F20D0041E000F2A82 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -340,6 +350,9 @@
 		0AB7444820EE508400D8DFFC /* GetTransactionCountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionCountRequest.swift; sourceTree = "<group>"; };
 		0AB7444A20EE518D00D8DFFC /* JSONRPCRequest+BigIntResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONRPCRequest+BigIntResponse.swift"; sourceTree = "<group>"; };
 		0AB7444F20EE54BA00D8DFFC /* SendRawTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRawTransactionRequest.swift; sourceTree = "<group>"; };
+		0AC5F19720EF8CCE0081D7F2 /* SafeCreationTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationTransactionRequest.swift; sourceTree = "<group>"; };
+		0AC5F1A620EF8D2E0081D7F2 /* StartSafeCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSafeCreationRequest.swift; sourceTree = "<group>"; };
+		0AC5F1A820EF8DD40081D7F2 /* GetSafeCreationStatusRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSafeCreationStatusRequest.swift; sourceTree = "<group>"; };
 		0AE51A8720BED8AB0003524D /* GetTransactionReceiptRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionReceiptRequest.swift; sourceTree = "<group>"; };
 		0AE51A9720BEE8150003524D /* MockEthereumNodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumNodeService.swift; sourceTree = "<group>"; };
 		0AE51A9920BEE9E10003524D /* WorkerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkerTests.swift; sourceTree = "<group>"; };
@@ -456,6 +469,9 @@
 			children = (
 				557E77D020AC7A0800732A77 /* EncryptionDomainService.swift */,
 				0A06510220BC52B800464D9D /* TransactionRelayDomainService.swift */,
+				0AC5F19720EF8CCE0081D7F2 /* SafeCreationTransactionRequest.swift */,
+				0AC5F1A620EF8D2E0081D7F2 /* StartSafeCreationRequest.swift */,
+				0AC5F1A820EF8DD40081D7F2 /* GetSafeCreationStatusRequest.swift */,
 				0A3F662920BD47A100602FCB /* Transaction.swift */,
 				0A2CAD9320BEA8870074F9FA /* EtherTests.swift */,
 				0A06510E20BC5B9000464D9D /* EthereumNodeDomainService.swift */,
@@ -586,6 +602,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0AC5F1AE20EFAFE10081D7F2 /* PBXTargetDependency */,
 				0AB7437220ECDE2000D8DFFC /* PBXTargetDependency */,
 				555C4C6820AEFC25001E8A34 /* PBXTargetDependency */,
 			);
@@ -938,9 +955,12 @@
 			files = (
 				0A3F662A20BD47A100602FCB /* Transaction.swift in Sources */,
 				0AB1569420BEED79005BCB99 /* Worker.swift in Sources */,
+				0AC5F1A720EF8D2E0081D7F2 /* StartSafeCreationRequest.swift in Sources */,
 				0A06510F20BC5B9000464D9D /* EthereumNodeDomainService.swift in Sources */,
+				0AC5F19820EF8CCE0081D7F2 /* SafeCreationTransactionRequest.swift in Sources */,
 				55704B1520AC8AEC0054256B /* DomainRegistry.swift in Sources */,
 				55704B1420AC8AE30054256B /* EncryptionDomainService.swift in Sources */,
+				0AC5F1A920EF8DD40081D7F2 /* GetSafeCreationStatusRequest.swift in Sources */,
 				0A934D0220B6C0CA00F15616 /* ExternallyOwnedAccount.swift in Sources */,
 				0A06510320BC52B800464D9D /* TransactionRelayDomainService.swift in Sources */,
 				0A934D0D20B6C79000F15616 /* ExternallyOwnedAccountRepository.swift in Sources */,
@@ -1063,6 +1083,11 @@
 			isa = PBXTargetDependency;
 			name = CommonTestSupport;
 			targetProxy = 0AB7437120ECDE2000D8DFFC /* PBXContainerItemProxy */;
+		};
+		0AC5F1AE20EFAFE10081D7F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BigInt;
+			targetProxy = 0AC5F1AD20EFAFE10081D7F2 /* PBXContainerItemProxy */;
 		};
 		555C4C6820AEFC25001E8A34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

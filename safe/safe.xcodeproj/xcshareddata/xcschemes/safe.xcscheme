@@ -45,6 +45,9 @@
                <Test
                   Identifier = "HTTPNotificatonServiceTests">
                </Test>
+               <Test
+                  Identifier = "InfuraEthereumNodeServiceTests">
+               </Test>
             </SkippedTests>
          </TestableReference>
          <TestableReference
