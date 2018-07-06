@@ -11,6 +11,12 @@ final class Application {
     private var arguments = [String]()
     private let app = XCUIApplication()
 
+    enum ApplicationError {
+        case none
+        case networkError
+        case validationError
+    }
+
     func resetAllContentAndSettings() {
         arguments.append(ApplicationArguments.resetAllContentAndSettings)
     }
@@ -38,6 +44,20 @@ final class Application {
     func setMockServerResponseDelay(_ time: TimeInterval) {
         arguments.append(ApplicationArguments.setMockServerResponseDelay)
         arguments.append(String(time))
+    }
+
+    func setMockNotificationService(delay: TimeInterval, shouldThrow: ApplicationError) {
+        var params = "delay=\(Int(delay))"
+        switch shouldThrow {
+        case .networkError:
+            params += ",networkError"
+        case .validationError:
+            params += ",validationError"
+        case .none:
+            break
+        }
+        arguments.append(ApplicationArguments.setMockNotificationService)
+        arguments.append(params)
     }
 
     func resetArguments() {

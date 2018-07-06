@@ -85,6 +85,7 @@
 		558FD81520767F18004F070E /* NewSafeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81420767F18004F070E /* NewSafeScreen.swift */; };
 		55A7B2A320ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */; };
 		55A7B2A720ECD43A0035EF38 /* libEthereumImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2A620ECD43A0035EF38 /* libEthereumImplementations.a */; };
+		55A7B2D620ED22F90035EF38 /* SafeCreationIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7B2D520ED22F90035EF38 /* SafeCreationIntegrationTests.swift */; };
 		55B9FD6320B5A09000FCCD2F /* libEthereumImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B9FD6220B5A09000FCCD2F /* libEthereumImplementations.a */; };
 		55CAA001209AF0A1009AE181 /* SaveMnemonicScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */; };
 		55CAA003209AF0FB009AE181 /* SaveMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */; };
@@ -419,6 +420,7 @@
 		55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisTransactionRelayServiceTests.swift; sourceTree = "<group>"; };
 		55A7B2A420ECD3640035EF38 /* libEthereumImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEthereumImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55A7B2A620ECD43A0035EF38 /* libEthereumImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEthereumImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55A7B2D520ED22F90035EF38 /* SafeCreationIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SafeCreationIntegrationTests.swift; path = safeUITests/IntegrationTests/SafeCreationIntegrationTests.swift; sourceTree = SOURCE_ROOT; };
 		55B9FD6220B5A09000FCCD2F /* libEthereumImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEthereumImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicScreen.swift; sourceTree = "<group>"; };
 		55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicUITests.swift; sourceTree = "<group>"; };
@@ -662,6 +664,7 @@
 		5540A50D203C3054009C9BE3 /* SafeUITests */ = {
 			isa = PBXGroup;
 			children = (
+				55A7B2C920ED22A80035EF38 /* IntegrationTests */,
 				0AA27831205FC4E600EBB9D1 /* Application.swift */,
 				0A99436B20A04C6700E36FD7 /* LocalizedString.swift */,
 				55FBDAA720BD89380065AB29 /* MasterPasswordAndUnlock */,
@@ -683,6 +686,14 @@
 				555C94EF20E533E000A0621D /* HTTPNotificatonServiceTests.swift */,
 				0AB743EA20ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift */,
 				55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */,
+			);
+			path = IntegrationTests;
+			sourceTree = "<group>";
+		};
+		55A7B2C920ED22A80035EF38 /* IntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				55A7B2D520ED22F90035EF38 /* SafeCreationIntegrationTests.swift */,
 			);
 			path = IntegrationTests;
 			sourceTree = "<group>";
@@ -1176,6 +1187,7 @@
 				0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */,
 				0AA27837205FC63800EBB9D1 /* SetPasswordScreen.swift in Sources */,
 				0A009C0920C688B700380A07 /* PendingSafeScreen.swift in Sources */,
+				55A7B2D620ED22F90035EF38 /* SafeCreationIntegrationTests.swift in Sources */,
 				0ABA90DE20C567CE001AEAE4 /* PendingSafeScreenUITests.swift in Sources */,
 				0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */,
 				55CAA007209AF267009AE181 /* ConfirmMnemonicScreen.swift in Sources */,

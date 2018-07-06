@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "0940"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5540A509203C3054009C9BE3"
+               BuildableName = "SafeUITests.xctest"
+               BlueprintName = "SafeUITests"
+               ReferencedContainer = "container:safe/safe.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ConfirmMnemonicUITests">
+               </Test>
+               <Test
+                  Identifier = "ConfirmPasswordScreenUITests">
+               </Test>
+               <Test
+                  Identifier = "NewSafeScreenUITests">
+               </Test>
+               <Test
+                  Identifier = "PairWithBrowserExtensionScreenUITests">
+               </Test>
+               <Test
+                  Identifier = "PendingSafeScreenUITests">
+               </Test>
+               <Test
+                  Identifier = "SaveMnemonicUITests">
+               </Test>
+               <Test
+                  Identifier = "SetPasswordScreenUITests">
+               </Test>
+               <Test
+                  Identifier = "SmokeUITests">
+               </Test>
+               <Test
+                  Identifier = "StartScreenUITests">
+               </Test>
+               <Test
+                  Identifier = "UITestCase">
+               </Test>
+               <Test
+                  Identifier = "UnlockScreenUITests">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5540A4EA203C3054009C9BE3"
+            BuildableName = "safe.app"
+            BlueprintName = "safe"
+            ReferencedContainer = "container:safe/safe.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>
