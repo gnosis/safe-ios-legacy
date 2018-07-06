@@ -17,7 +17,7 @@ final class SaveMnemonicViewController: UIViewController {
     private struct Strings {
         static let title = LocalizedString("new_safe.paper_wallet.title",
                                            comment: "Title for store paper wallet screen")
-        static let save = LocalizedString("new_safe.paper_wallet.save", comment: "Save Button")
+        static let copy = LocalizedString("new_safe.paper_wallet.copy", comment: "Copy Button")
         static let description = LocalizedString("new_safe.paper_wallet.description",
                                                  comment: "Description for store paper wallet screen")
         static let `continue` = LocalizedString("new_safe.paper_wallet.continue",
@@ -26,7 +26,7 @@ final class SaveMnemonicViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var mnemonicCopyableLabel: UILabel!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var copyToClipboardButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var continueButton: UIButton!
 
@@ -44,6 +44,10 @@ final class SaveMnemonicViewController: UIViewController {
 
     @IBAction func continuePressed(_ sender: Any) {
         delegate?.didPressContinue()
+    }
+
+    @IBAction func copyToClipboard(_ sender: Any) {
+        UIPasteboard.general.string = mnemonicCopyableLabel.text!
     }
 
     override func viewDidLoad() {
@@ -68,7 +72,7 @@ final class SaveMnemonicViewController: UIViewController {
         titleLabel.text = Strings.title
         mnemonicCopyableLabel.text = account.mnemonicWords.joined(separator: " ")
         mnemonicCopyableLabel.accessibilityIdentifier = "mnemonic"
-        saveButton.setTitle(Strings.save, for: .normal)
+        copyToClipboardButton.setTitle(Strings.copy, for: .normal)
         descriptionLabel.text = Strings.description
         descriptionLabel.accessibilityIdentifier = "description"
         continueButton.setTitle(Strings.continue, for: .normal)

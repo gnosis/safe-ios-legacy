@@ -26,7 +26,7 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
         XCTAssertNotNil(controller)
         XCTAssertNotNil(controller.titleLabel)
         XCTAssertNotNil(controller.mnemonicCopyableLabel)
-        XCTAssertNotNil(controller.saveButton)
+        XCTAssertNotNil(controller.copyToClipboardButton)
         XCTAssertNotNil(controller.descriptionLabel)
         XCTAssertNotNil(controller.continueButton)
         XCTAssertTrue(controller.delegate === delegate)

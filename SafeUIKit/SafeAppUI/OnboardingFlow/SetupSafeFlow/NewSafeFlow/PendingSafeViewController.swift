@@ -47,6 +47,8 @@ public class PendingSafeViewController: UIViewController {
     @IBOutlet weak var safeAddressLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressStatusLabel: UILabel!
+    @IBOutlet weak var copySafeAddressButton: UIButton!
+
     weak var delegate: PendingSafeViewControllerDelegate?
     private var subscription: String?
     private var walletService: WalletApplicationService { return ApplicationServiceRegistry.walletService }
@@ -70,6 +72,7 @@ public class PendingSafeViewController: UIViewController {
         cancelButton.title = Strings.cancel
         infoLabel.text = Strings.info
         safeAddressLabel.text = nil
+        copySafeAddressButton.isHidden = true
         progressStatusLabel.text = nil
         progressStatusLabel.accessibilityIdentifier = "pending_safe.status"
         progressView.progress = 0
@@ -129,6 +132,7 @@ public class PendingSafeViewController: UIViewController {
         var addressText = ""
         if let address = address {
             addressText += "\(Strings.addressLabel):\n\(address)"
+            copySafeAddressButton.isHidden = false
         }
         if let balance = balance {
             addressText += "\n\(Strings.balanceLabel): \(balance) Wei"
@@ -152,6 +156,10 @@ public class PendingSafeViewController: UIViewController {
 
     @IBAction func cancel(_ sender: Any) {
         delegate?.deploymentDidCancel()
+    }
+
+    @IBAction func copySafeAddress(_ sender: Any) {
+        UIPasteboard.general.string = walletService.selectedWalletAddress!
     }
 
 }

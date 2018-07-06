@@ -12,7 +12,7 @@ final class SaveMnemonicScreen {
     var title: XCUIElement { return XCUIApplication().staticTexts[LocalizedString("new_safe.paper_wallet.title")] }
     var description: XCUIElement { return XCUIApplication().staticTexts["description"] }
     var mnemonic: XCUIElement { return XCUIApplication().staticTexts["mnemonic"] }
-    var saveButton: XCUIElement { return XCUIApplication().buttons[LocalizedString("new_safe.paper_wallet.save")] }
+    var saveButton: XCUIElement { return XCUIApplication().buttons[LocalizedString("new_safe.paper_wallet.copy")] }
     var continueButton: XCUIElement {
         return XCUIApplication().buttons[LocalizedString("new_safe.paper_wallet.continue")]
     }
