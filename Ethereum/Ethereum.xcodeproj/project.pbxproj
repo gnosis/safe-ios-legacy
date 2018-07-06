@@ -192,6 +192,13 @@
 			remoteGlobalIDString = 0AC1757F207B73A90016320A;
 			remoteInfo = CommonTestSupport;
 		};
+		0AC5F1AD20EFAFE10081D7F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B0EA820CE5EF800424CEE;
+			remoteInfo = BigInt;
+		};
 		5506392F20D0041E000F2A82 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
@@ -595,6 +602,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0AC5F1AE20EFAFE10081D7F2 /* PBXTargetDependency */,
 				0AB7437220ECDE2000D8DFFC /* PBXTargetDependency */,
 				555C4C6820AEFC25001E8A34 /* PBXTargetDependency */,
 			);
@@ -1075,6 +1083,11 @@
 			isa = PBXTargetDependency;
 			name = CommonTestSupport;
 			targetProxy = 0AB7437120ECDE2000D8DFFC /* PBXContainerItemProxy */;
+		};
+		0AC5F1AE20EFAFE10081D7F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BigInt;
+			targetProxy = 0AC5F1AD20EFAFE10081D7F2 /* PBXContainerItemProxy */;
 		};
 		555C4C6820AEFC25001E8A34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
