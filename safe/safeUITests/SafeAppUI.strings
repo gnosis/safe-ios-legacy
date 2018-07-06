@@ -40,11 +40,11 @@
 /* Continue button for store paper wallet screen */
 "new_safe.paper_wallet.continue" = "I understand, continue";
 
+/* Copy Button */
+"new_safe.paper_wallet.copy" = "Copy";
+
 /* Description for store paper wallet screen */
 "new_safe.paper_wallet.description" = "This phrase is one of your Safe secret keys.\n\nPlease store it in a secure place and do not share it with anyone. Gnosis Safe team will never ask you to reveal your secret phrase.";
-
-/* Save Button */
-"new_safe.paper_wallet.save" = "Save";
 
 /* Title for store paper wallet screen */
 "new_safe.paper_wallet.title" = "Store paper wallet secret phrase";
