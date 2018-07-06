@@ -236,7 +236,7 @@ open class EncryptionService: EncryptionDomainService {
     // MARK: - random numbers
 
     open func randomUInt256() -> String {
-        return String(BigUInt.randomInteger(withExactWidth: 256))
+        return String(BigUInt.randomInteger(lessThan: BigUInt(2).power(252)))
     }
 
     // MARK: - Signing messages

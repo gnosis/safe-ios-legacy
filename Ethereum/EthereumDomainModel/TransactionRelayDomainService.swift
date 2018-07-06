@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import BigInt
 
 public protocol TransactionRelayDomainService {
 
@@ -21,6 +22,7 @@ public struct SafeCreationTransactionRequest: Encodable {
     public init(owners: [String], confirmationCount: Int, randomUInt256: String) {
         self.owners = owners
         threshold = String(confirmationCount)
+        precondition(BigInt(randomUInt256)! < BigInt(2).power(252) - 1)
         s = randomUInt256
     }
 
