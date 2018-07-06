@@ -8,8 +8,6 @@ import CommonTestSupport
 class PairWithBrowserExtensionScreenUITests: UITestCase {
 
     let screen = PairWithBrowserExtensionScreen()
-    var cameraPermissionHandler: NSObjectProtocol!
-    var cameraSuggestionHandler: NSObjectProtocol!
     let cameraScreen = CameraScreen()
     let newSafe = NewSafeScreen()
 
@@ -21,17 +19,15 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
         super.setUp()
         Springboard.deleteSafeApp()
         application.setMockServerResponseDelay(0)
-        givenBrowserExtensionSetup()
     }
 
-    override func tearDown() {
-        if let handler = cameraPermissionHandler {
-            removeUIInterruptionMonitor(handler)
-        }
-        if let handler = cameraSuggestionHandler {
-            removeUIInterruptionMonitor(handler)
-        }
-        super.tearDown()
+}
+
+final class PairWithBrowserExtensionScreenSuccessUITests: PairWithBrowserExtensionScreenUITests {
+
+    override func setUp() {
+        super.setUp()
+        givenBrowserExtensionSetup()
     }
 
     // NS-002
@@ -92,6 +88,7 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
         cameraScreen.scanValidCodeButton.tap()
         screen.saveButton.tap()
         newSafe.browserExtension.element.tap()
+        XCTAssertFalse(screen.updateButton.isEnabled)
         let scannedValue = screen.qrCodeInput.value as! String
         screen.qrCodeInput.tap()
         cameraScreen.scanInvalidCodeButton.tap()
@@ -103,14 +100,9 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
 
     // NS-011
     func test_rescanValidCodeOnTopOfValidCode() {
-        givenCameraOpened()
-        cameraScreen.scanValidCodeButton.tap()
-        let scannedValue = screen.qrCodeInput.value as! String
-        screen.saveButton.tap()
-        newSafe.browserExtension.element.tap()
-        screen.qrCodeInput.tap()
-        cameraScreen.scanAnotherValidCodeButton.tap()
-        XCTAssertFalse(QRCodeInputIsEqual(to: scannedValue))
+        let scannedValue = rescanValidCodeOnTopOfValidWithoutUpdate()
+        let newScannedValue = screen.qrCodeInput.value as! String
+        XCTAssertTrue(scannedValue != newScannedValue)
         TestUtils.navigateBack()
         newSafe.browserExtension.element.tap()
         XCTAssertTrue(QRCodeInputIsEqual(to: scannedValue))
@@ -127,44 +119,81 @@ class PairWithBrowserExtensionScreenUITests: UITestCase {
         XCTAssertTrue(QRCodeInputIsEqual(to: scannedValue))
     }
 
+    // NS-013
+    func test_whenUpdatingValidCodeOnANewValidCode_thenNewValidCodeReplacedOld() {
+        rescanValidCodeOnTopOfValidWithoutUpdate()
+        let newScannedValue = screen.qrCodeInput.value as! String
+        screen.updateButton.tap()
+        newSafe.browserExtension.element.tap()
+        XCTAssertTrue(QRCodeInputIsEqual(to: newScannedValue))
+    }
+
 }
 
-extension PairWithBrowserExtensionScreenUITests {
+private extension PairWithBrowserExtensionScreenUITests {
 
-    private func handleCameraPermissionByDenying() {
-        cameraPermissionHandler = addUIInterruptionMonitor(withDescription: "Camera access") { alert in
-            guard alert.label.localizedCaseInsensitiveContains("would like to access the camera") else { return false }
-            alert.buttons["Don’t Allow"].tap()
-            return true
-        }
-    }
-
-    private func handleSuggestionAlertByCancelling(with expectation: XCTestExpectation) {
-        cameraSuggestionHandler = addUIInterruptionMonitor(withDescription: "Suggestion Alert") { alert in
-            guard alert.label == LocalizedString("scanner.camera_access_required.title") else {
-                return false
-            }
-            XCTAssertExist(alert.buttons[LocalizedString("scanner.camera_access_required.allow")])
-            alert.buttons[LocalizedString("cancel")].tap()
-            expectation.fulfill()
-            return true
-        }
-    }
-
-    private func closeCamera() {
+    func closeCamera() {
         XCTAssertTrue(cameraScreen.isDisplayed)
         cameraScreen.closeButton.tap()
         XCTAssertExist(screen.qrCodeInput)
     }
 
-    private func handleAlerts() {
-        delay(1)
-        XCUIApplication().swipeUp() // required for alert handlers firing
-        waitForExpectations(timeout: 5)
-    }
-
-    private func QRCodeInputIsEqual(to value: String) -> Bool {
+    func QRCodeInputIsEqual(to value: String) -> Bool {
         return screen.qrCodeInput.value as? String == value
     }
+
+    @discardableResult
+    func rescanValidCodeOnTopOfValidWithoutUpdate() -> String {
+        givenCameraOpened()
+        cameraScreen.scanValidCodeButton.tap()
+        let scannedValue = screen.qrCodeInput.value as! String
+        screen.saveButton.tap()
+        newSafe.browserExtension.element.tap()
+        screen.qrCodeInput.tap()
+        cameraScreen.scanValidCodeButton.tap()
+        XCTAssertFalse(QRCodeInputIsEqual(to: scannedValue))
+        return scannedValue
+    }
+
+}
+
+final class PairWithBrowserExtensionScreenErrorsUITests: PairWithBrowserExtensionScreenUITests {
+
+    private let networkDelay: TimeInterval = 2
+
+    enum ErrorType {
+        case regular
+        case fatal
+    }
+
+    // NS-ERR-001
+    func test_whenNetworkErrorInPairing_thenShowsAlert() {
+        application.setMockNotificationService(delay: networkDelay, shouldThrow: .networkError)
+        handleNotificationServiceError(errorType: .regular)
+        XCTAssertTrue(screen.saveButton.isEnabled)
+    }
+
+    // NS-ERR-002
+    func test_whenResponseValidationErrorInPairing_thenShowsAlert() {
+        application.setMockNotificationService(delay: networkDelay, shouldThrow: .validationError)
+        handleNotificationServiceError(errorType: .fatal)
+    }
+
+    private func handleNotificationServiceError(errorType: ErrorType) {
+        givenBrowserExtensionSetup()
+        givenCameraOpened()
+        cameraScreen.scanValidCodeButton.tap()
+        switch errorType {
+        case .regular:
+            handleErrorAlert(with: expectation(description: "Alert handled"))
+        case .fatal:
+            assureFatalErrorAlertIsShown(with: expectation(description: "Alert handled"))
+        }
+        screen.saveButton.tap()
+        XCTAssertFalse(screen.saveButton.isEnabled)
+        delay(networkDelay)
+        handleAlerts()
+    }
+
 
 }

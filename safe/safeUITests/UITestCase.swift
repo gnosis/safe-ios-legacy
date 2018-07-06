@@ -9,7 +9,9 @@ class UITestCase: XCTestCase {
 
     let application = Application()
     let password = "11111A"
+    private var cameraSuggestionHandler: NSObjectProtocol!
     private var cameraPermissionHandler: NSObjectProtocol!
+    private var errorAlertHandler: NSObjectProtocol!
     private var cameraPermissionExpectation: XCTestExpectation!
 
     override func setUp() {
@@ -19,6 +21,12 @@ class UITestCase: XCTestCase {
 
     override func tearDown() {
         if let handler = cameraPermissionHandler {
+            removeUIInterruptionMonitor(handler)
+        }
+        if let handler = cameraSuggestionHandler {
+            removeUIInterruptionMonitor(handler)
+        }
+        if let handler = errorAlertHandler {
             removeUIInterruptionMonitor(handler)
         }
         super.tearDown()
@@ -76,7 +84,7 @@ class UITestCase: XCTestCase {
         newSafeScreen.browserExtension.element.tap()
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
-        pairWithBrowserScreen.saveButton.tap()
+        pairWithBrowserScreen.saveButton.tap()        
         newSafeScreen.next.tap()
     }
 
@@ -114,10 +122,12 @@ class UITestCase: XCTestCase {
         case .button:
             pairWithBrowserScreen.qrCodeButton.tap()
         }
-        handleAlerts()
+        handleCameraAlerts()
     }
 
-    private func handleCameraPermsissionByAllowing() {
+    // - MARK: Alerts handling
+
+    func handleCameraPermsissionByAllowing() {
         cameraPermissionHandler = addUIInterruptionMonitor(withDescription: "Camera access") { [unowned self] alert in
             defer { self.cameraPermissionExpectation.fulfill() }
             guard alert.label.localizedCaseInsensitiveContains("would like to access the camera") else {
@@ -128,7 +138,45 @@ class UITestCase: XCTestCase {
         }
     }
 
-    private func handleAlerts() {
+    func handleCameraPermissionByDenying() {
+        cameraPermissionHandler = addUIInterruptionMonitor(withDescription: "Camera access") { alert in
+            guard alert.label.localizedCaseInsensitiveContains("would like to access the camera") else { return false }
+            alert.buttons["Don’t Allow"].tap()
+            return true
+        }
+    }
+
+    func handleSuggestionAlertByCancelling(with expectation: XCTestExpectation) {
+        cameraSuggestionHandler = addUIInterruptionMonitor(withDescription: "Suggestion Alert") { alert in
+            guard alert.label == LocalizedString("scanner.camera_access_required.title") else {
+                return false
+            }
+            XCTAssertExist(alert.buttons[LocalizedString("scanner.camera_access_required.allow")])
+            alert.buttons[LocalizedString("cancel")].tap()
+            expectation.fulfill()
+            return true
+        }
+    }
+
+    func handleErrorAlert(with expectation: XCTestExpectation) {
+        errorAlertHandler = addUIInterruptionMonitor(withDescription: "Error Alert") { alert in
+            guard alert.label == LocalizedString("onboarding.error.title") else { return false }
+            alert.buttons[LocalizedString("onboarding.fatal.ok")].tap()
+            expectation.fulfill()
+            return true
+        }
+    }
+
+    func assureFatalErrorAlertIsShown(with expectation: XCTestExpectation) {
+        errorAlertHandler = addUIInterruptionMonitor(withDescription: "Error Alert") { alert in
+            guard alert.label == LocalizedString("onboarding.fatal.title") else { return false }
+            alert.buttons[LocalizedString("onboarding.fatal.ok")].tap()
+            expectation.fulfill()
+            return true
+        }
+    }
+
+    func handleCameraAlerts() {
         let cameraScreen = CameraScreen()
         delay(1)
         XCUIApplication().swipeUp() // required for alert handlers firing
@@ -136,6 +184,12 @@ class UITestCase: XCTestCase {
             cameraPermissionExpectation.fulfill()
         }
         waitForExpectations(timeout: 1)
+    }
+
+    func handleAlerts() {
+        delay(1)
+        XCUIApplication().swipeUp() // required for alert handlers firing
+        waitForExpectations(timeout: 5)
     }
 
 }

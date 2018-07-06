@@ -8,6 +8,7 @@ import EthereumImplementations
 import EthereumDomainModel
 import MultisigWalletDomainModel
 import MultisigWalletImplementations
+import SafeAppUI
 
 protocol Resettable: class {
     func resetAll()
@@ -63,9 +64,28 @@ final class TestSupport {
                         DomainRegistry.put(service: mockService, for: TransactionRelayDomainService.self)
                         DomainRegistry.put(service: DemoEthereumNodeService(delay: delayTime),
                                            for: EthereumNodeDomainService.self)
-                        DomainRegistry.put(service: MockNotificationService(), for: NotificationDomainService.self)
+                        DomainRegistry.put(service: MockNotificationService(delay: delayTime),
+                                           for: NotificationDomainService.self)
                         DomainRegistry.put(service: StubEncryptionService(), for: EncryptionDomainService.self)
                     }
+                case ApplicationArguments.setMockNotificationService:
+                    let notificationService = MockNotificationService()
+                    var delay: TimeInterval = 0
+                    if let parametes = iterator.next()?.split(separator: ",") {
+                        let delayParameters = parametes.filter { $0.range(of: "delay=") != nil }
+                        if !delayParameters.isEmpty {
+                            let delayParam = delayParameters.first!
+                            delay = TimeInterval(delayParam.suffix(from: delayParam.index(of: "=")!).dropFirst())!
+                            notificationService.delay = delay
+                        }
+                        if parametes.contains("networkError") {
+                            notificationService.shouldThrowNetworkError = true
+                        } else if parametes.contains("validationError") {
+                            notificationService.shouldThrowValidationFailedError = true
+                            ErrorHandler.instance.chashOnFatalError = false
+                        }
+                    }
+                    DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
                 default: break
                 }
             }

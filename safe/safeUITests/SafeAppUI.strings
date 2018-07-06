@@ -22,8 +22,17 @@
 /* Create button */
 "new_safe.create" = "Create";
 
+/* Browser Extension Expired Message */
+"new_safe.extension.expired" = "Browser Extinsion QR code is expired. Please, generate a new code.";
+
+/* Network error message */
+"new_safe.extension.network_error" = "Internet connection error. Please try again later.";
+
 /* Save button title in extension setup screen */
 "new_safe.extension.save" = "Save";
+
+/* Update button title in extension setup screen */
+"new_safe.extension.update" = "Update";
 
 /* Paper Wallet Button */
 "new_safe.paper_wallet" = "Paper Wallet";
@@ -51,6 +60,9 @@
 
 /* Password confirmation must match set password rule */
 "onboarding.confirm_password.match" = "• Passwords must match";
+
+/* Error alert's title */
+"onboarding.error.title" = "Error";
 
 /* Fatal error alert's message */
 "onboarding.fatal.message" = "Failed to set master password. The app will be closed.";
