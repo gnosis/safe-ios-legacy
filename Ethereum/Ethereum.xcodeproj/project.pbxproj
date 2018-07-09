@@ -178,6 +178,13 @@
 			remoteGlobalIDString = 0A8E3B9E20B419E000F002F6;
 			remoteInfo = CommonImplementationsTests;
 		};
+		0A9E368320F3A68B0085E8D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B0EC220CE66EB00424CEE;
+			remoteInfo = SipHash;
+		};
 		0AAA177D20E4D5B9003B35B3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55E1ACFF20AC3886003E0C53 /* Library.xcodeproj */;
@@ -602,6 +609,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0A9E368420F3A68B0085E8D7 /* PBXTargetDependency */,
 				0AC5F1AE20EFAFE10081D7F2 /* PBXTargetDependency */,
 				0AB7437220ECDE2000D8DFFC /* PBXTargetDependency */,
 				555C4C6820AEFC25001E8A34 /* PBXTargetDependency */,
@@ -1078,6 +1086,11 @@
 			isa = PBXTargetDependency;
 			name = Common;
 			targetProxy = 0A59E91420AB0E2E0090E89C /* PBXContainerItemProxy */;
+		};
+		0A9E368420F3A68B0085E8D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SipHash;
+			targetProxy = 0A9E368320F3A68B0085E8D7 /* PBXContainerItemProxy */;
 		};
 		0AB7437220ECDE2000D8DFFC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
