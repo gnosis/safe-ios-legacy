@@ -70,7 +70,7 @@ class UnlockScreenUITests: UITestCase {
         XCTAssertExist(screen.countdown)
     }
 
-    // WA-461
+    // MP-003
     func test_whenEmptyPassword_thenIsNotAuthenticated() {
         application.setPassword(password)
         application.setSessionDuration(seconds: 10)
