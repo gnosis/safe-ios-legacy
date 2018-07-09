@@ -6,6 +6,7 @@ import XCTest
 @testable import safe
 import EthereumDomainModel
 import EthereumImplementations
+import CryptoSwift
 
 class InfuraEthereumNodeServiceTests: XCTestCase {
 
