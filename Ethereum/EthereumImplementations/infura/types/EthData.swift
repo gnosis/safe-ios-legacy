@@ -46,4 +46,3 @@ extension EthData: Codable {
     }
 
 }
-

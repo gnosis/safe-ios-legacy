@@ -5,17 +5,36 @@
 import Foundation
 import BigInt
 
+public struct ECDSASignatureBounds {
+
+    public static let secp256k1n =
+        BigUInt("115792089237316195423570985008687907852837564279074904382605163141518161494337")!
+    public static let rRange = (BigUInt(0) ..< secp256k1n)
+    public static let sRange = (BigUInt(0) ..< secp256k1n / 2 + 1)
+    public static let vRange = (27...28)
+
+    public static func isWithinBounds(r: String, s: String, v: Int) -> Bool {
+        guard let r = BigUInt(r), let s = BigUInt(s) else { return false }
+        return isWithinBounds(r: r, s: s, v: v)
+    }
+
+    public static func isWithinBounds(r: BigUInt, s: BigUInt, v: Int) -> Bool {
+        return rRange.contains(r) && sRange.contains(s) && vRange.contains(v)
+    }
+
+}
+
 public struct SafeCreationTransactionRequest: Encodable {
 
     public let owners: [String]
     public let threshold: String
     public let s: String
 
-    public init(owners: [String], confirmationCount: Int, randomUInt252: String) {
+    public init(owners: [String], confirmationCount: Int, ecdsaRandomS: String) {
         self.owners = owners
         threshold = String(confirmationCount)
-        precondition(BigInt(randomUInt252)! < BigInt(2).power(252) - 1)
-        s = randomUInt252
+        precondition(BigInt(ecdsaRandomS)! < ECDSASignatureBounds.sRange.upperBound)
+        s = ecdsaRandomS
     }
 
     public struct Response: Decodable {

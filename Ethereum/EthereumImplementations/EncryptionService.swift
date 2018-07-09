@@ -235,8 +235,8 @@ open class EncryptionService: EncryptionDomainService {
 
     // MARK: - random numbers
 
-    open func randomUInt252() -> String {
-        return String(BigUInt.randomInteger(lessThan: BigUInt(2).power(252)))
+    open func ecdsaRandomS() -> String {
+        return String(BigUInt.randomInteger(lessThan: ECDSASignatureBounds.sRange.upperBound))
     }
 
     // MARK: - Signing messages
