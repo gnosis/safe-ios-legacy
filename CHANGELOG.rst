@@ -5,6 +5,41 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`0.4.0`_ - 2018-07-09
+==========
+Added
+-----
+- Added source code documentation to common modules.
+- Added UI stubs for the screens of main flow:
+    - Main screen
+    - New transaction configuration screen
+    - Pending transaction screen
+    - Transaction details
+    - Menu screen
+- Added ``Transaction`` entity in MultisigWalletDomainModel.
+- Added transaction repository with SQLite database implementation.
+- Implemented QR code payload verification for pairing with browser extension.
+    - Extracting owner address
+    - Check expiration date
+    - Sign extension address
+- Implemented pairing request to notification service (HTTPNotificationService).
+- Added copy mnemonic and copy safe address buttons in onboarding.
+- Added TokenInput component with separate fields for integer and fractional parts.
+- Added various ``eth_`` methods to Infura service.
+- Added integration tests for transaction sending.
+- Added integration test for safe creation, start to end.
+- Added integration test for pairing with browser extension.
+- Implemented GnosisTransactionRelayService calls:
+    - POST /safes/
+    - PUT /safes/<address>/funded
+    - GET /safes/<address>/funded
+
+Changed
+-------
+- Replaced mock services with real service implementations in ``AppDelegate.swit``.
+- Moved integration tests to ``safeTests`` target and to separate scheme.
+
+
 `0.3.0`_ - 2018-06-11
 ==========
 Added
@@ -25,6 +60,7 @@ Changed
 ==========
 Added
 -----
+
 - New safe configuration screen.
 - Browser extension screen with QR code reading.
 - Mnemonic generation and confirmation screens.
@@ -49,6 +85,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _0.4.0: https://github.com/gnosis/safe-ios/tree/0.4.0
 .. _0.3.0: https://github.com/gnosis/safe-ios/tree/0.3.0
 .. _0.2.0: https://github.com/gnosis/safe-ios/tree/0.2.0
 .. _0.1.0: https://github.com/gnosis/safe-ios/tree/0.1.0
