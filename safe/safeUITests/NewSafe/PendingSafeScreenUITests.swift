@@ -43,7 +43,7 @@ class PendingSafeScreenUITests: UITestCase {
         defer { removeUIInterruptionMonitor(alertMonitor) }
         pendingScreen.cancel.tap()
         handleAlert()
-        waitUntil(mainScreen.isDisplayed, timeout: 15)
+        waitUntil(mainScreen.isDisplayed, timeout: 30)
     }
 
     // NS-202
@@ -94,7 +94,7 @@ class PendingSafeScreenUITests: UITestCase {
         XCTAssertFalse(pendingScreen.cancel.isEnabled)
         XCTAssertTrue(pendingScreen.status.label == LocalizedString("pending_safe.status.account_funded"))
         restartTheApp(serverResponseDelay: 0.1)
-        waitUntil(mainScreen.isDisplayed)
+        waitUntil(mainScreen.isDisplayed, timeout: 15)
     }
 
 }
