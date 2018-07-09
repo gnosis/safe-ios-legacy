@@ -72,11 +72,14 @@ open class EthereumApplicationService: Assertable {
         -> SafeCreationTransactionData {
             let request = SafeCreationTransactionRequest(owners: owners,
                                                          confirmationCount: 2,
-                                                         randomUInt252: encryptionService.randomUInt252())
+                                                         ecdsaRandomS: encryptionService.ecdsaRandomS())
             let response = try relayService.createSafeCreationTransaction(request: request)
             try assertEqual(response.signature.s, request.s, Error.invalidSignature)
             guard let v = Int(response.signature.v) else { throw Error.invalidSignature }
-            let signature = (response.signature.r, response.signature.s, v)
+            try assertTrue(ECDSASignatureBounds.isWithinBounds(r: response.signature.r,
+                                                               s: response.signature.s,
+                                                               v: v), Error.invalidSignature)
+            let signature = (r: response.signature.r, s: response.signature.s, v: v)
             let transaction = (response.tx.from,
                                response.tx.value,
                                response.tx.data,

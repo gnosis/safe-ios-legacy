@@ -7,7 +7,7 @@ import EthereumDomainModel
 
 public class MockEncryptionService: EncryptionDomainService {
 
-    // NOTE: contractAddress and randomUInt252 are connected - you'll need to regenerate address
+    // NOTE: contractAddress and ecdsaRandomS are connected - you'll need to regenerate address
     // if you change random number
     public func contractAddress(from: RSVSignature, for transaction: EthTransaction) throws -> String? {
         return "0x8c89eb758AF5Ee056Bc251328105F8893B057A05"
@@ -31,7 +31,7 @@ public class MockEncryptionService: EncryptionDomainService {
                                       publicKey: PublicKey(data: Data()))
     }
 
-    public func randomUInt252() -> String {
+    public func ecdsaRandomS() -> String {
         return "1809251394333065553493296640760748560207343510400633813116524750123642650623"
     }
 
