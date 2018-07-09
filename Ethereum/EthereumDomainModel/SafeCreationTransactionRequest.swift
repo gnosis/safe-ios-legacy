@@ -7,6 +7,7 @@ import BigInt
 
 public struct ECDSASignatureBounds {
 
+    // https://ethereum.github.io/yellowpaper/paper.pdf p.24 (280), (281), (282), (283)
     public static let secp256k1n =
         BigUInt("115792089237316195423570985008687907852837564279074904382605163141518161494337")!
     public static let rRange = (BigUInt(0) ..< secp256k1n)
