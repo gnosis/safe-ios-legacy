@@ -16,7 +16,7 @@ public class Worker: Assertable {
         case invalidRepatingTimeInterval
     }
 
-    private let block: () -> Bool
+    private let jobClosure: () -> Bool
     private let interval: TimeInterval
     private var shouldStop: Bool = false
 
@@ -27,18 +27,28 @@ public class Worker: Assertable {
 
     public init(repeating interval: TimeInterval, block: @escaping () -> Bool) throws {
         self.interval = interval
-        self.block = block
+        self.jobClosure = block
         try assertTrue(interval > 0, Error.invalidRepatingTimeInterval)
     }
 
     func start() {
         RunLoop.current.perform { // delay block until next run loop iteration
             while !self.shouldStop {
-                self.shouldStop = self.block()
-                RunLoop.current.run(until: Date(timeIntervalSinceNow: self.interval))
+                self.shouldStop = self.jobClosure()
+                if !self.shouldStop {
+                    self.blockingWait()
+                }
             }
         }
         runLoop()
+    }
+
+    private func blockingWait() {
+        if Thread.isMainThread {
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: self.interval))
+        } else {
+            usleep(UInt32(self.interval) * 1_000_000)
+        }
     }
 
     private func runLoop() {
