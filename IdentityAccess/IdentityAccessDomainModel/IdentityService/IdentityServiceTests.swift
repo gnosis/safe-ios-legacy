@@ -46,10 +46,9 @@ class IdentityServiceTests: DomainTestCase {
         XCTAssertEqual(user?.password, encryptionService.encrypted(password))
     }
 
-    func test_authenticateUser_whenEmptyPassword_thenThrowsError() {
-        XCTAssertThrowsError(try authenticateWithWrongPassword("")) {
-            XCTAssertEqual($0 as? IdentityService.AuthenticationError, .emptyPassword)
-        }
+    func test_authenticateUser_whenEmptyPassword_thenInvalid() throws {
+        let result = try authenticateWithWrongPassword("")
+        XCTAssertNil(result)
     }
 
     func test_authenticateUser_whenNotRegistered_thenReturnsNil() {

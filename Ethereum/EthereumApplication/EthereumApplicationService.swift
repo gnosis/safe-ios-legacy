@@ -103,12 +103,10 @@ open class EthereumApplicationService: Assertable {
 
     open func waitForCreationTransaction(address: String) throws -> String {
         var hash: String?
-        repeat {
-            hash = try relayService.safeCreationTransactionHash(address: Address(value: address))?.value
-            if hash == nil {
-                RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
-            }
-        } while hash == nil
+        try repeatBlock(every: 5) {
+            hash = try self.relayService.safeCreationTransactionHash(address: Address(value: address))?.value
+            return hash != nil ? RepeatingShouldStop.yes : RepeatingShouldStop.no
+        }
         return hash!
     }
 
@@ -133,12 +131,10 @@ open class EthereumApplicationService: Assertable {
 
     open func waitForPendingTransaction(hash: String) throws -> Bool {
         var receipt: TransactionReceipt?
-        repeat {
-            receipt = try nodeService.eth_getTransactionReceipt(transaction: TransactionHash(value: hash))
-            if receipt == nil {
-                RunLoop.current.run(until: Date(timeIntervalSinceNow: 2))
-            }
-        } while receipt == nil
+        try repeatBlock(every: 2) {
+            receipt = try self.nodeService.eth_getTransactionReceipt(transaction: TransactionHash(value: hash))
+            return receipt != nil ? RepeatingShouldStop.yes : RepeatingShouldStop.no
+        }
         return receipt!.status == .success
     }
 

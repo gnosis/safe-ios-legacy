@@ -70,6 +70,16 @@ class UnlockScreenUITests: UITestCase {
         XCTAssertExist(screen.countdown)
     }
 
+    // WA-461
+    func test_whenEmptyPassword_thenIsNotAuthenticated() {
+        application.setPassword(password)
+        application.setSessionDuration(seconds: 10)
+        restart()
+        screen.enterPassword("")
+        delay()
+        XCTAssertNotExist(XCUIApplication().staticTexts["Fatal error"])
+    }
+
 }
 
 extension UnlockScreenUITests {

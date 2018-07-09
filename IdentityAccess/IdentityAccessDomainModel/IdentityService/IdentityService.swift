@@ -17,7 +17,6 @@ public class IdentityService: Assertable {
     }
 
     public enum AuthenticationError: Error, Hashable {
-        case emptyPassword
         case gatekeeperNotFound
     }
 
@@ -77,7 +76,6 @@ public class IdentityService: Assertable {
     @discardableResult
     public func authenticateUser(password: String, at time: Date) throws -> UserID? {
         return try authenticate(at: time) {
-            try assertArgument(!password.isEmpty, AuthenticationError.emptyPassword)
             let encryptedPassword = encryptionService.encrypted(password)
             let user = userRepository.user(encryptedPassword: encryptedPassword)
             return user
