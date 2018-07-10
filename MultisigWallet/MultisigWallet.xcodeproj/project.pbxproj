@@ -777,35 +777,31 @@
 		0AEF8A7720A08878006A1265 /* MultisigWalletDomainModel */ = {
 			isa = PBXGroup;
 			children = (
-				0A9E379C20F4A4D10085E8D7 /* GetSafeCreationStatusRequest.swift */,
-				0A9E379D20F4A4D10085E8D7 /* EncryptionDomainService.swift */,
-				0A9E379E20F4A4D10085E8D7 /* StartSafeCreationRequest.swift */,
-				0A9E37A020F4A4D10085E8D7 /* ExternallyOwnedAccountRepository.swift */,
-				0A9E37A120F4A4D10085E8D7 /* ExternallyOwnedAccount.swift */,
-				0A9E37A320F4A4D10085E8D7 /* SafeCreationTransactionRequest.swift */,
-				0A9E37A520F4A4D10085E8D7 /* Worker.swift */,
-				0A9E37A620F4A4D10085E8D7 /* EthereumNodeDomainService.swift */,
-				0A9E37A720F4A4D10085E8D7 /* TransactionRelayDomainService.swift */,
-				0A9E37A820F4A4D10085E8D7 /* WorkerTests.swift */,
-				0AEF8A8520A08889006A1265 /* Tests-Info.plist */,
 				0A76BE5920AF0CB500D07770 /* Account.swift */,
 				0A23C80E20A1B35D00C72483 /* BlockchainAddress.swift */,
 				555C949920E2A62D00A0621D /* BrowserExtensionCode.swift */,
 				555C949D20E2A62D00A0621D /* BrowserExtensionCodeTests.swift */,
 				0A76BE5420AEF31000D07770 /* DomainRegistry.swift */,
 				0A76BE5620AEF35C00D07770 /* DomainRegistryTests.swift */,
+				0A9E37A120F4A4D10085E8D7 /* ExternallyOwnedAccount.swift */,
+				0A9E379C20F4A4D10085E8D7 /* GetSafeCreationStatusRequest.swift */,
 				0A23C80C20A1B34900C72483 /* Owner.swift */,
 				555C94A720E385DB00A0621D /* PairingRequest.swift */,
 				555C94A920E3868900A0621D /* PairingRequestTests.swift */,
 				0A23C82020A1CF1D00C72483 /* Portfolio.swift */,
 				0A23C81A20A1CEDA00C72483 /* PortfolioTests.swift */,
+				555C948820E2A60F00A0621D /* Protocols */,
+				0A9E37A320F4A4D10085E8D7 /* SafeCreationTransactionRequest.swift */,
 				555C949C20E2A62D00A0621D /* SignatureTests.swift */,
+				0A9E379E20F4A4D10085E8D7 /* StartSafeCreationRequest.swift */,
+				0AEF8A8520A08889006A1265 /* Tests-Info.plist */,
 				0AA5D49F20E12B68006F46CD /* Token.swift */,
 				0AA5D49520E113EE006F46CD /* Transaction.swift */,
 				0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */,
 				0A23C80420A1B09100C72483 /* Wallet.swift */,
 				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
-				555C948820E2A60F00A0621D /* Protocols */,
+				0A9E37A520F4A4D10085E8D7 /* Worker.swift */,
+				0A9E37A820F4A4D10085E8D7 /* WorkerTests.swift */,
 			);
 			path = MultisigWalletDomainModel;
 			sourceTree = "<group>";
@@ -868,11 +864,15 @@
 			children = (
 				555C948C20E2A60F00A0621D /* AccountRepository.swift */,
 				555C948920E2A60F00A0621D /* BlockchainDomainService.swift */,
+				0A9E379D20F4A4D10085E8D7 /* EncryptionDomainService.swift */,
+				0A9E37A620F4A4D10085E8D7 /* EthereumNodeDomainService.swift */,
+				0A9E37A020F4A4D10085E8D7 /* ExternallyOwnedAccountRepository.swift */,
+				555C94AB20E390A000A0621D /* Mocks */,
 				555C94A520E3824800A0621D /* NotificationDomainService.swift */,
 				555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */,
+				0A9E37A720F4A4D10085E8D7 /* TransactionRelayDomainService.swift */,
 				0AAA174620E26E90003B35B3 /* TransactionRepository.swift */,
 				555C948A20E2A60F00A0621D /* WalletRepository.swift */,
-				555C94AB20E390A000A0621D /* Mocks */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
