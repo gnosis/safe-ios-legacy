@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import BigInt
 
 open class MockEthereumApplicationService: EthereumApplicationService {
 
@@ -14,7 +15,7 @@ open class MockEthereumApplicationService: EthereumApplicationService {
     private var generatedAccount: ExternallyOwnedAccountData?
     public var shouldThrow = false
     private var accounts = [String: ExternallyOwnedAccountData]()
-    private var balances = [String: Int]()
+    private var balances = [String: BigInt]()
 
     open override func address(browserExtensionCode: String) -> String? {
         return resultAddressFromAnyBrowserExtensionCode
@@ -40,10 +41,10 @@ open class MockEthereumApplicationService: EthereumApplicationService {
     }
 
     public func fundAccount(address: String, balance: Int) {
-        balances[address] = balance
+        balances[address] = BigInt(balance)
     }
 
-    open override func balance(address: String) throws -> Int {
+    open override func balance(address: String) throws -> BigInt {
         return balances[address] ?? 0
     }
 

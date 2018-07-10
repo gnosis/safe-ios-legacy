@@ -44,6 +44,11 @@
 		0A9E380F20F4A4F20085E8D7 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37A520F4A4D10085E8D7 /* Worker.swift */; };
 		0A9E381020F4A4F20085E8D7 /* EthereumNodeDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37A620F4A4D10085E8D7 /* EthereumNodeDomainService.swift */; };
 		0A9E381120F4A4F20085E8D7 /* TransactionRelayDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37A720F4A4D10085E8D7 /* TransactionRelayDomainService.swift */; };
+		0A9E383320F4AC5F0085E8D7 /* MockEthereumApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379320F4A4D10085E8D7 /* MockEthereumApplicationService.swift */; };
+		0A9E383520F4AC5F0085E8D7 /* EthereumApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */; };
+		0A9E383620F4AC670085E8D7 /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379420F4A4D10085E8D7 /* ApplicationServiceRegistryTests.swift */; };
+		0A9E383720F4AC670085E8D7 /* EthereumApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379620F4A4D10085E8D7 /* EthereumApplicationServiceTests.swift */; };
+		0A9E383820F4AC670085E8D7 /* EthereumApplicationTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379820F4A4D10085E8D7 /* EthereumApplicationTestCase.swift */; };
 		0AA5D4A020E12B68006F46CD /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5D49F20E12B68006F46CD /* Token.swift */; };
 		0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5D49520E113EE006F46CD /* Transaction.swift */; };
 		0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */; };
@@ -341,12 +346,9 @@
 		0A934CEF20B6B44D00F15616 /* MockBlockchainDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBlockchainDomainService.swift; sourceTree = "<group>"; };
 		0A9E379320F4A4D10085E8D7 /* MockEthereumApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumApplicationService.swift; sourceTree = "<group>"; };
 		0A9E379420F4A4D10085E8D7 /* ApplicationServiceRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistryTests.swift; sourceTree = "<group>"; };
-		0A9E379520F4A4D10085E8D7 /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
 		0A9E379620F4A4D10085E8D7 /* EthereumApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationServiceTests.swift; sourceTree = "<group>"; };
-		0A9E379720F4A4D10085E8D7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A9E379820F4A4D10085E8D7 /* EthereumApplicationTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationTestCase.swift; sourceTree = "<group>"; };
 		0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumApplicationService.swift; sourceTree = "<group>"; };
-		0A9E379A20F4A4D10085E8D7 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 		0A9E379C20F4A4D10085E8D7 /* GetSafeCreationStatusRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSafeCreationStatusRequest.swift; sourceTree = "<group>"; };
 		0A9E379D20F4A4D10085E8D7 /* EncryptionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionDomainService.swift; sourceTree = "<group>"; };
 		0A9E379E20F4A4D10085E8D7 /* StartSafeCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSafeCreationRequest.swift; sourceTree = "<group>"; };
@@ -538,21 +540,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A9E379220F4A4D10085E8D7 /* EthereumApplication */ = {
-			isa = PBXGroup;
-			children = (
-				0A9E379320F4A4D10085E8D7 /* MockEthereumApplicationService.swift */,
-				0A9E379420F4A4D10085E8D7 /* ApplicationServiceRegistryTests.swift */,
-				0A9E379520F4A4D10085E8D7 /* ApplicationServiceRegistry.swift */,
-				0A9E379620F4A4D10085E8D7 /* EthereumApplicationServiceTests.swift */,
-				0A9E379720F4A4D10085E8D7 /* Tests-Info.plist */,
-				0A9E379820F4A4D10085E8D7 /* EthereumApplicationTestCase.swift */,
-				0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */,
-				0A9E379A20F4A4D10085E8D7 /* swiftlint.yml */,
-			);
-			path = EthereumApplication;
-			sourceTree = "<group>";
-		};
 		0A9E37AC20F4A4D10085E8D7 /* EthereumImplementations */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,7 +734,6 @@
 			isa = PBXGroup;
 			children = (
 				0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */,
-				0A9E379220F4A4D10085E8D7 /* EthereumApplication */,
 				0A9E37AC20F4A4D10085E8D7 /* EthereumImplementations */,
 				0A76BE5220AEC5CC00D07770 /* CommonConfig.xcconfig */,
 				0A76BE5320AEC5CC00D07770 /* ImplementationsConfig.xcconfig */,
@@ -809,10 +795,15 @@
 		0AEF8A9120A08899006A1265 /* MultisigWalletApplication */ = {
 			isa = PBXGroup;
 			children = (
+				0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */,
+				0A9E379620F4A4D10085E8D7 /* EthereumApplicationServiceTests.swift */,
+				0A9E379820F4A4D10085E8D7 /* EthereumApplicationTestCase.swift */,
+				0A9E379320F4A4D10085E8D7 /* MockEthereumApplicationService.swift */,
 				0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */,
 				0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */,
 				0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */,
 				0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */,
+				0A9E379420F4A4D10085E8D7 /* ApplicationServiceRegistryTests.swift */,
 				0AEF8A9F20A088A5006A1265 /* Tests-Info.plist */,
 			);
 			path = MultisigWalletApplication;
@@ -1308,7 +1299,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A40668820A5E01D009BA7FC /* MockWalletApplicationService.swift in Sources */,
+				0A9E383320F4AC5F0085E8D7 /* MockEthereumApplicationService.swift in Sources */,
 				0A40669320A5E1C2009BA7FC /* ApplicationServiceRegistry.swift in Sources */,
+				0A9E383520F4AC5F0085E8D7 /* EthereumApplicationService.swift in Sources */,
 				0A40669120A5E0EA009BA7FC /* WalletApplicationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1318,6 +1311,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A76BE4A20AEC3EB00D07770 /* WalletApplicationServiceTests.swift in Sources */,
+				0A9E383820F4AC670085E8D7 /* EthereumApplicationTestCase.swift in Sources */,
+				0A9E383620F4AC670085E8D7 /* ApplicationServiceRegistryTests.swift in Sources */,
+				0A9E383720F4AC670085E8D7 /* EthereumApplicationServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

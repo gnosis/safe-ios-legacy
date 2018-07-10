@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import EthereumDomainModel
+import MultisigWalletDomainModel
 import BigInt
 import Common
 
@@ -79,7 +79,7 @@ open class EthereumApplicationService: Assertable {
             try assertTrue(ECDSASignatureBounds.isWithinBounds(r: response.signature.r,
                                                                s: response.signature.s,
                                                                v: v), Error.invalidSignature)
-            let signature = (r: response.signature.r, s: response.signature.s, v: v)
+            let signature = EthSignature(r: response.signature.r, s: response.signature.s, v: v)
             let transaction = (response.tx.from,
                                response.tx.value,
                                response.tx.data,
@@ -110,14 +110,14 @@ open class EthereumApplicationService: Assertable {
         return hash!
     }
 
-    open func balance(address: String) throws -> Int {
-        return try nodeService.eth_getBalance(account: Address(value: address)).amount
+    open func balance(address: String) throws -> BigInt {
+        return try nodeService.eth_getBalance(account: Address(value: address))
     }
 
     open func observeChangesInBalance(address: String,
                                       every interval: TimeInterval,
-                                      block didUpdateBalanceBlock: @escaping (Int) -> Bool) throws {
-        var balance: Int?
+                                      block didUpdateBalanceBlock: @escaping (BigInt) -> Bool) throws {
+        var balance: BigInt?
         try repeatBlock(every: interval) {
             let oldBalance = balance
             let newBalance = try self.balance(address: address)
@@ -132,7 +132,7 @@ open class EthereumApplicationService: Assertable {
     open func waitForPendingTransaction(hash: String) throws -> Bool {
         var receipt: TransactionReceipt?
         try repeatBlock(every: 2) {
-            receipt = try self.nodeService.eth_getTransactionReceipt(transaction: TransactionHash(value: hash))
+            receipt = try self.nodeService.eth_getTransactionReceipt(transaction: TransactionHash(hash))
             return receipt != nil ? RepeatingShouldStop.yes : RepeatingShouldStop.no
         }
         return receipt!.status == .success
@@ -142,7 +142,8 @@ open class EthereumApplicationService: Assertable {
         guard let eoa = try eoaRepository.find(by: Address(value: address)) else {
             throw Error.eoaNotFound
         }
-        return try encryptionService.sign(message: message, privateKey: eoa.privateKey)
+        let signature = try encryptionService.sign(message: message, privateKey: eoa.privateKey)
+        return (signature.r, signature.s, signature.v)
     }
 
     private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {

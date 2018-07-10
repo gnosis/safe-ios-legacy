@@ -15,4 +15,8 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: Logger.self)
     }
 
+    public static var ethereumService: EthereumApplicationService {
+        return service(for: EthereumApplicationService.self)
+    }
+
 }
