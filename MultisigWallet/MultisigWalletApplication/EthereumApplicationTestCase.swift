@@ -3,9 +3,9 @@
 //
 
 import XCTest
-@testable import EthereumApplication
-import EthereumImplementations
-import EthereumDomainModel
+@testable import MultisigWalletApplication
+import MultisigWalletImplementations
+import MultisigWalletDomainModel
 import Common
 
 class EthereumApplicationTestCase: XCTestCase {

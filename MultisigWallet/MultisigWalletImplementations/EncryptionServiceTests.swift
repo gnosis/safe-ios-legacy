@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import EthereumImplementations
+@testable import MultisigWalletImplementations
 import MultisigWalletApplication
 import EthereumKit
 import Common
@@ -82,13 +82,15 @@ class EncryptionServiceTests: XCTestCase {
         let message = "Gnosis"
         encryptionService = EncryptionService(chainId: .mainnet)
 
-        let (r, s, v) = try encryptionService.sign(message: message, privateKey: privateKey)
-        XCTAssertEqual(r, "101211893217270431722518027522228002686666504049250244774157670632781156043183")
-        XCTAssertEqual(s, "51602277827206092161359189523869407094850301206236947198082645428468309668322")
-        XCTAssertEqual(v, 37)
+        let ethSignature = try encryptionService.sign(message: message, privateKey: privateKey)
+        XCTAssertEqual(ethSignature.r, "101211893217270431722518027522228002686666504049250244774157670632781156043183")
+        XCTAssertEqual(ethSignature.s, "51602277827206092161359189523869407094850301206236947198082645428468309668322")
+        XCTAssertEqual(ethSignature.v, 37)
 
         let signer = EIP155Signer(chainID: encryptionService.chainId.rawValue)
-        let signature = signer.calculateSignature(r: BInt(r)!, s: BInt(s)!, v: BInt(v))
+        let signature = signer.calculateSignature(r: BInt(ethSignature.r)!,
+                                                  s: BInt(ethSignature.s)!,
+                                                  v: BInt(ethSignature.v))
 
         // swiftlint:disable:next line_length
         XCTAssertEqual(signature.toHexString(), "dfc3e6c87132b3ef90b514041b7c77444d9d3f69b53c884e99fd37811b9dc9af7215daaf0fc1132306f7cb4223aa03e967ad6734f241bf17e0a33ced764db1e200")
@@ -134,7 +136,7 @@ extension EncryptionServiceTests {
 // swiftlint:disable line_length
 struct ContractAddressFixture {
 
-    static let signature = RSVSignature(r: "197968319015768475474728412290891320396909873147159586006855444916116598112",
+    static let signature = EthSignature(r: "197968319015768475474728412290891320396909873147159586006855444916116598112",
                                         s: "61819997756830335013150358111721476328157622718490157315818634400316888446796",
                                         v: 27)
     static let transaction = EthTransaction(from: "0xf0C64662da29ebF76C7B9Bed3D7B02F2EAbD52B9",

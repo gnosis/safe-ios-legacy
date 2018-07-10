@@ -3,8 +3,8 @@
 //
 
 import XCTest
-@testable import EthereumApplication
-import EthereumDomainModel
+@testable import MultisigWalletApplication
+import MultisigWalletDomainModel
 
 class ApplicationServiceRegistryTests: EthereumApplicationTestCase {
 

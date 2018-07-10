@@ -3,11 +3,12 @@
 //
 
 import XCTest
-@testable import EthereumApplication
-import EthereumDomainModel
-import EthereumImplementations
+@testable import MultisigWalletApplication
+import MultisigWalletDomainModel
+import MultisigWalletImplementations
 import Common
 import CommonTestSupport
+import BigInt
 
 class EthereumApplicationServiceTests: EthereumApplicationTestCase {
 
@@ -57,7 +58,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
     }
 
     func test_whenObservingBalanceAndItChanges_thenCallsObserver() throws {
-        var observedBalance: Int?
+        var observedBalance: BigInt?
         var callCount = 0
         DispatchQueue.global().async {
             try? self.applicationService.observeChangesInBalance(address: "address", every: 0.1) { balance in
@@ -70,11 +71,11 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
             }
         }
         delay(0.1)
-        nodeService.eth_getBalance_output = Ether(amount: 2)
+        nodeService.eth_getBalance_output = BigInt(2)
         delay(0.1)
-        nodeService.eth_getBalance_output = Ether(amount: 2)
+        nodeService.eth_getBalance_output = BigInt(2)
         delay(0.1)
-        nodeService.eth_getBalance_output = Ether(amount: 1)
+        nodeService.eth_getBalance_output = BigInt(1)
         delay(0.1)
         XCTAssertEqual(observedBalance, 1)
         XCTAssertEqual(callCount, 3)
@@ -92,10 +93,10 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
             }
         }
         delay(0.1)
-        nodeService.eth_getBalance_output = Ether(amount: 2)
+        nodeService.eth_getBalance_output = BigInt(2)
         delay(0.1)
         nodeService.shouldThrow = true
-        nodeService.eth_getBalance_output = Ether(amount: 1)
+        nodeService.eth_getBalance_output = BigInt(1)
         delay(0.1)
         nodeService.shouldThrow = false
         delay(0.1)
@@ -109,7 +110,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
             mnemonic: Mnemonic(words: ["test"]),
             privateKey: pk,
             publicKey: PublicKey(data: Data())))
-        encryptionService.sign_output = ("r", "s", 1)
+        encryptionService.sign_output = EthSignature(r: "r", s: "s", v: 1)
         let (r, s, v) = try applicationService.sign(message: "Gnosis", by: "signer")
         XCTAssertEqual(r, "r")
         XCTAssertEqual(s, "s")

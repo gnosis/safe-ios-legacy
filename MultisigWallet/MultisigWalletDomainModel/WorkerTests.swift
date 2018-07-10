@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import EthereumDomainModel
+@testable import MultisigWalletDomainModel
 
 class WorkerTests: XCTestCase {
 

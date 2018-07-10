@@ -19,19 +19,15 @@
 		0A23C82C20A1DF0A00C72483 /* DBWalletRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */; };
 		0A23C83020A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */; };
 		0A23C83220A1E30800C72483 /* InMemoryWalletRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */; };
-		0A23C83420A1E34700C72483 /* BaseInMemoryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C83320A1E34700C72483 /* BaseInMemoryRepositoryTests.swift */; };
 		0A40668820A5E01D009BA7FC /* MockWalletApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */; };
 		0A40669120A5E0EA009BA7FC /* WalletApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */; };
 		0A40669320A5E1C2009BA7FC /* ApplicationServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */; };
 		0A76BE4A20AEC3EB00D07770 /* WalletApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */; };
 		0A76BE4F20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */; };
-		0A76BE5120AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5020AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift */; };
 		0A76BE5520AEF31000D07770 /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5420AEF31000D07770 /* DomainRegistry.swift */; };
 		0A76BE5720AEF35C00D07770 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5620AEF35C00D07770 /* DomainRegistryTests.swift */; };
-		0A76BE5820AEF35C00D07770 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5620AEF35C00D07770 /* DomainRegistryTests.swift */; };
 		0A76BE5A20AF0CB500D07770 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5920AF0CB500D07770 /* Account.swift */; };
 		0A76BE5E20AF167D00D07770 /* InMemoryAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5D20AF167D00D07770 /* InMemoryAccountRepository.swift */; };
-		0A8E3BFA20B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3BF920B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift */; };
 		0A8E3C0520B4260600F002F6 /* DBAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */; };
 		0A8E3C0720B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */; };
 		0A934CF120B6B46300F15616 /* MockBlockchainDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934CEF20B6B44D00F15616 /* MockBlockchainDomainService.swift */; };
@@ -79,6 +75,10 @@
 		0A9E385520F4AE600085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */; };
 		0A9E385620F4AE600085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */; };
 		0A9E385720F4AE7C0085E8D7 /* BigInt+HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37ED20F4A4D20085E8D7 /* BigInt+HexTests.swift */; };
+		0A9E385F20F4B46C0085E8D7 /* BaseInMemoryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C83320A1E34700C72483 /* BaseInMemoryRepositoryTests.swift */; };
+		0A9E386020F4B46C0085E8D7 /* InMemoryAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3BF920B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift */; };
+		0A9E386120F4B46C0085E8D7 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5020AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift */; };
+		0A9E386220F4B46C0085E8D7 /* WorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37A820F4A4D10085E8D7 /* WorkerTests.swift */; };
 		0AA5D4A020E12B68006F46CD /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5D49F20E12B68006F46CD /* Token.swift */; };
 		0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5D49520E113EE006F46CD /* Transaction.swift */; };
 		0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */; };
@@ -1141,12 +1141,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */,
+				0A9E386220F4B46C0085E8D7 /* WorkerTests.swift in Sources */,
 				555C94A320E2A63100A0621D /* BrowserExtensionCodeTests.swift in Sources */,
 				0A76BE5720AEF35C00D07770 /* DomainRegistryTests.swift in Sources */,
 				555C94AA20E3868900A0621D /* PairingRequestTests.swift in Sources */,
+				0A9E386120F4B46C0085E8D7 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,
 				0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */,
 				555C94A420E2A63500A0621D /* SignatureTests.swift in Sources */,
+				0A9E385F20F4B46C0085E8D7 /* BaseInMemoryRepositoryTests.swift in Sources */,
 				0A23C81B20A1CEDA00C72483 /* PortfolioTests.swift in Sources */,
+				0A9E386020F4B46C0085E8D7 /* InMemoryAccountRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1226,14 +1230,10 @@
 				0A9E385320F4AE600085E8D7 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
 				0A9E385620F4AE600085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */,
 				0AD22D7C20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */,
-				0A76BE5820AEF35C00D07770 /* DomainRegistryTests.swift in Sources */,
 				0A9E385220F4AE600085E8D7 /* EncryptionServiceTests.swift in Sources */,
-				0A23C83420A1E34700C72483 /* BaseInMemoryRepositoryTests.swift in Sources */,
 				0A9E385420F4AE600085E8D7 /* EthTypesTests.swift in Sources */,
 				0A9E385520F4AE600085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift in Sources */,
 				0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */,
-				0A76BE5120AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,
-				0A8E3BFA20B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift in Sources */,
 				0A8E3C0720B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
