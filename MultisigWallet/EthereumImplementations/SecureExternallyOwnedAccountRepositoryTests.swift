@@ -5,7 +5,7 @@
 import XCTest
 @testable import EthereumImplementations
 import Common
-import EthereumDomainModel
+import MultisigWalletDomainModel
 
 class SecureExternallyOwnedAccountRepositoryTests: XCTestCase {
 

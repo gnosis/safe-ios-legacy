@@ -49,6 +49,36 @@
 		0A9E383620F4AC670085E8D7 /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379420F4A4D10085E8D7 /* ApplicationServiceRegistryTests.swift */; };
 		0A9E383720F4AC670085E8D7 /* EthereumApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379620F4A4D10085E8D7 /* EthereumApplicationServiceTests.swift */; };
 		0A9E383820F4AC670085E8D7 /* EthereumApplicationTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379820F4A4D10085E8D7 /* EthereumApplicationTestCase.swift */; };
+		0A9E383920F4AE510085E8D7 /* DemoEthereumNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380220F4A4D20085E8D7 /* DemoEthereumNodeService.swift */; };
+		0A9E383A20F4AE510085E8D7 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380820F4A4D20085E8D7 /* EncryptionService.swift */; };
+		0A9E383C20F4AE510085E8D7 /* EthereumKitEthereumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37E520F4A4D10085E8D7 /* EthereumKitEthereumService.swift */; };
+		0A9E383D20F4AE510085E8D7 /* GnosisTransactionRelayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380020F4A4D20085E8D7 /* GnosisTransactionRelayService.swift */; };
+		0A9E383E20F4AE510085E8D7 /* InfuraEthereumNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F920F4A4D20085E8D7 /* InfuraEthereumNodeService.swift */; };
+		0A9E383F20F4AE510085E8D7 /* InfuraServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F820F4A4D20085E8D7 /* InfuraServiceConfiguration.swift */; };
+		0A9E384020F4AE510085E8D7 /* EstimateGasRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F220F4A4D20085E8D7 /* EstimateGasRequest.swift */; };
+		0A9E384120F4AE510085E8D7 /* GasPriceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F320F4A4D20085E8D7 /* GasPriceRequest.swift */; };
+		0A9E384220F4AE510085E8D7 /* GetBalanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F720F4A4D20085E8D7 /* GetBalanceRequest.swift */; };
+		0A9E384320F4AE510085E8D7 /* GetTransactionCountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F420F4A4D20085E8D7 /* GetTransactionCountRequest.swift */; };
+		0A9E384420F4AE510085E8D7 /* GetTransactionReceiptRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F120F4A4D20085E8D7 /* GetTransactionReceiptRequest.swift */; };
+		0A9E384520F4AE510085E8D7 /* JSONRPCRequest+BigIntResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F620F4A4D20085E8D7 /* JSONRPCRequest+BigIntResponse.swift */; };
+		0A9E384620F4AE510085E8D7 /* SendRawTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F520F4A4D20085E8D7 /* SendRawTransactionRequest.swift */; };
+		0A9E384720F4AE510085E8D7 /* BigInt+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37E920F4A4D20085E8D7 /* BigInt+Hex.swift */; };
+		0A9E384820F4AE510085E8D7 /* EthAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37EA20F4A4D20085E8D7 /* EthAddress.swift */; };
+		0A9E384920F4AE510085E8D7 /* EthBlockNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37EB20F4A4D20085E8D7 /* EthBlockNumber.swift */; };
+		0A9E384A20F4AE510085E8D7 /* EthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37E820F4A4D20085E8D7 /* EthData.swift */; };
+		0A9E384B20F4AE510085E8D7 /* EthInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37EE20F4A4D20085E8D7 /* EthInt.swift */; };
+		0A9E384C20F4AE510085E8D7 /* TransactionCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37EF20F4A4D20085E8D7 /* TransactionCall.swift */; };
+		0A9E384D20F4AE510085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FB20F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift */; };
+		0A9E384E20F4AE510085E8D7 /* MockEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FC20F4A4D20085E8D7 /* MockEncryptionService.swift */; };
+		0A9E384F20F4AE510085E8D7 /* MockEthereumNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380720F4A4D20085E8D7 /* MockEthereumNodeService.swift */; };
+		0A9E385020F4AE510085E8D7 /* MockTransactionRelayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380120F4A4D20085E8D7 /* MockTransactionRelayService.swift */; };
+		0A9E385120F4AE510085E8D7 /* SecureExternallyOwnedAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FF20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepository.swift */; };
+		0A9E385220F4AE600085E8D7 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380520F4A4D20085E8D7 /* EncryptionServiceTests.swift */; };
+		0A9E385320F4AE600085E8D7 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
+		0A9E385420F4AE600085E8D7 /* EthTypesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37EC20F4A4D20085E8D7 /* EthTypesTests.swift */; };
+		0A9E385520F4AE600085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */; };
+		0A9E385620F4AE600085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */; };
+		0A9E385720F4AE7C0085E8D7 /* BigInt+HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37ED20F4A4D20085E8D7 /* BigInt+HexTests.swift */; };
 		0AA5D4A020E12B68006F46CD /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5D49F20E12B68006F46CD /* Token.swift */; };
 		0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5D49520E113EE006F46CD /* Transaction.swift */; };
 		0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */; };
@@ -359,54 +389,6 @@
 		0A9E37A620F4A4D10085E8D7 /* EthereumNodeDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumNodeDomainService.swift; sourceTree = "<group>"; };
 		0A9E37A720F4A4D10085E8D7 /* TransactionRelayDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRelayDomainService.swift; sourceTree = "<group>"; };
 		0A9E37A820F4A4D10085E8D7 /* WorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTests.swift; sourceTree = "<group>"; };
-		0A9E37B020F4A4D10085E8D7 /* Solidity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solidity.swift; sourceTree = "<group>"; };
-		0A9E37B120F4A4D10085E8D7 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
-		0A9E37B220F4A4D10085E8D7 /* UIntX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIntX.swift; sourceTree = "<group>"; };
-		0A9E37B320F4A4D10085E8D7 /* ArrayX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayX.swift; sourceTree = "<group>"; };
-		0A9E37B420F4A4D10085E8D7 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		0A9E37B520F4A4D10085E8D7 /* BytesX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytesX.swift; sourceTree = "<group>"; };
-		0A9E37B620F4A4D10085E8D7 /* Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
-		0A9E37B720F4A4D10085E8D7 /* VariableArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableArray.swift; sourceTree = "<group>"; };
-		0A9E37B820F4A4D10085E8D7 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
-		0A9E37B920F4A4D10085E8D7 /* IntX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntX.swift; sourceTree = "<group>"; };
-		0A9E37BA20F4A4D10085E8D7 /* Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bytes.swift; sourceTree = "<group>"; };
-		0A9E37BB20F4A4D10085E8D7 /* BivrostError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BivrostError.swift; sourceTree = "<group>"; };
-		0A9E37BD20F4A4D10085E8D7 /* ProxyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyFactory.swift; sourceTree = "<group>"; };
-		0A9E37BE20F4A4D10085E8D7 /* SignatureValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureValidator.swift; sourceTree = "<group>"; };
-		0A9E37BF20F4A4D10085E8D7 /* GnosisSafeTeamEdition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisSafeTeamEdition.swift; sourceTree = "<group>"; };
-		0A9E37C020F4A4D10085E8D7 /* GnosisSafePersonalEdition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisSafePersonalEdition.swift; sourceTree = "<group>"; };
-		0A9E37C120F4A4D10085E8D7 /* PayingProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayingProxy.swift; sourceTree = "<group>"; };
-		0A9E37C220F4A4D10085E8D7 /* Proxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Proxy.swift; sourceTree = "<group>"; };
-		0A9E37C320F4A4D10085E8D7 /* MasterCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterCopy.swift; sourceTree = "<group>"; };
-		0A9E37C420F4A4D10085E8D7 /* GnosisSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisSafe.swift; sourceTree = "<group>"; };
-		0A9E37C520F4A4D10085E8D7 /* MultiSend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSend.swift; sourceTree = "<group>"; };
-		0A9E37C620F4A4D10085E8D7 /* DelegateConstructorProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateConstructorProxy.swift; sourceTree = "<group>"; };
-		0A9E37C720F4A4D10085E8D7 /* SocialRecoveryModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialRecoveryModule.swift; sourceTree = "<group>"; };
-		0A9E37C820F4A4D10085E8D7 /* DailyLimitModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLimitModule.swift; sourceTree = "<group>"; };
-		0A9E37C920F4A4D10085E8D7 /* CreateAndAddModules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAndAddModules.swift; sourceTree = "<group>"; };
-		0A9E37CA20F4A4D10085E8D7 /* ModuleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleManager.swift; sourceTree = "<group>"; };
-		0A9E37CB20F4A4D10085E8D7 /* StateChannelModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateChannelModule.swift; sourceTree = "<group>"; };
-		0A9E37CC20F4A4D10085E8D7 /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
-		0A9E37CD20F4A4D10085E8D7 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
-		0A9E37CE20F4A4D10085E8D7 /* OwnerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerManager.swift; sourceTree = "<group>"; };
-		0A9E37CF20F4A4D10085E8D7 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
-		0A9E37D020F4A4D10085E8D7 /* WhitelistModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhitelistModule.swift; sourceTree = "<group>"; };
-		0A9E37D120F4A4D10085E8D7 /* SelfAuthorized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfAuthorized.swift; sourceTree = "<group>"; };
-		0A9E37D220F4A4D10085E8D7 /* ERC20Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20Token.swift; sourceTree = "<group>"; };
-		0A9E37D420F4A4D10085E8D7 /* BigIntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigIntExtension.swift; sourceTree = "<group>"; };
-		0A9E37D520F4A4D10085E8D7 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
-		0A9E37D620F4A4D10085E8D7 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		0A9E37D820F4A4D10085E8D7 /* UIntX-Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIntX-Generated.swift"; sourceTree = "<group>"; };
-		0A9E37D920F4A4D10085E8D7 /* BytesX-Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BytesX-Generated.swift"; sourceTree = "<group>"; };
-		0A9E37DA20F4A4D10085E8D7 /* IntX-Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntX-Generated.swift"; sourceTree = "<group>"; };
-		0A9E37DB20F4A4D10085E8D7 /* ArrayX-Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArrayX-Generated.swift"; sourceTree = "<group>"; };
-		0A9E37DD20F4A4D10085E8D7 /* BaseDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDecoder.swift; sourceTree = "<group>"; };
-		0A9E37DE20F4A4D10085E8D7 /* BaseEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEncoder.swift; sourceTree = "<group>"; };
-		0A9E37E020F4A4D10085E8D7 /* DynamicType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicType.swift; sourceTree = "<group>"; };
-		0A9E37E120F4A4D10085E8D7 /* StaticType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticType.swift; sourceTree = "<group>"; };
-		0A9E37E220F4A4D10085E8D7 /* SolidityCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidityCodable.swift; sourceTree = "<group>"; };
-		0A9E37E320F4A4D10085E8D7 /* SolidityFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidityFunction.swift; sourceTree = "<group>"; };
-		0A9E37E420F4A4D10085E8D7 /* EthereumImplementations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumImplementations.swift; sourceTree = "<group>"; };
 		0A9E37E520F4A4D10085E8D7 /* EthereumKitEthereumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumKitEthereumService.swift; sourceTree = "<group>"; };
 		0A9E37E820F4A4D20085E8D7 /* EthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthData.swift; sourceTree = "<group>"; };
 		0A9E37E920F4A4D20085E8D7 /* BigInt+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigInt+Hex.swift"; sourceTree = "<group>"; };
@@ -428,14 +410,11 @@
 		0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureExternallyOwnedAccountRepositoryTests.swift; sourceTree = "<group>"; };
 		0A9E37FB20F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryExternallyOwnedAccountRepository.swift; sourceTree = "<group>"; };
 		0A9E37FC20F4A4D20085E8D7 /* MockEncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEncryptionService.swift; sourceTree = "<group>"; };
-		0A9E37FD20F4A4D20085E8D7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExternallyOwnedAccount+TestFixture.swift"; sourceTree = "<group>"; };
 		0A9E37FF20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureExternallyOwnedAccountRepository.swift; sourceTree = "<group>"; };
 		0A9E380020F4A4D20085E8D7 /* GnosisTransactionRelayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisTransactionRelayService.swift; sourceTree = "<group>"; };
 		0A9E380120F4A4D20085E8D7 /* MockTransactionRelayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTransactionRelayService.swift; sourceTree = "<group>"; };
 		0A9E380220F4A4D20085E8D7 /* DemoEthereumNodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoEthereumNodeService.swift; sourceTree = "<group>"; };
-		0A9E380320F4A4D20085E8D7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		0A9E380420F4A4D20085E8D7 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
 		0A9E380520F4A4D20085E8D7 /* EncryptionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionServiceTests.swift; sourceTree = "<group>"; };
 		0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryExternallyOwnedAccountRepositoryTests.swift; sourceTree = "<group>"; };
 		0A9E380720F4A4D20085E8D7 /* MockEthereumNodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumNodeService.swift; sourceTree = "<group>"; };
@@ -543,146 +522,31 @@
 		0A9E37AC20F4A4D10085E8D7 /* EthereumImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				0A9E37AD20F4A4D10085E8D7 /* generated */,
-				0A9E37E420F4A4D10085E8D7 /* EthereumImplementations.swift */,
-				0A9E37E520F4A4D10085E8D7 /* EthereumKitEthereumService.swift */,
-				0A9E37E620F4A4D20085E8D7 /* infura */,
-				0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */,
-				0A9E37FB20F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift */,
-				0A9E37FC20F4A4D20085E8D7 /* MockEncryptionService.swift */,
-				0A9E37FD20F4A4D20085E8D7 /* Tests-Info.plist */,
-				0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */,
-				0A9E37FF20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepository.swift */,
-				0A9E380020F4A4D20085E8D7 /* GnosisTransactionRelayService.swift */,
-				0A9E380120F4A4D20085E8D7 /* MockTransactionRelayService.swift */,
 				0A9E380220F4A4D20085E8D7 /* DemoEthereumNodeService.swift */,
-				0A9E380320F4A4D20085E8D7 /* .gitignore */,
-				0A9E380420F4A4D20085E8D7 /* swiftlint.yml */,
-				0A9E380520F4A4D20085E8D7 /* EncryptionServiceTests.swift */,
-				0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */,
-				0A9E380720F4A4D20085E8D7 /* MockEthereumNodeService.swift */,
 				0A9E380820F4A4D20085E8D7 /* EncryptionService.swift */,
+				0A9E380520F4A4D20085E8D7 /* EncryptionServiceTests.swift */,
+				0A9E37E520F4A4D10085E8D7 /* EthereumKitEthereumService.swift */,
+				0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */,
+				0A9E380020F4A4D20085E8D7 /* GnosisTransactionRelayService.swift */,
+				0A9E37E620F4A4D20085E8D7 /* infura */,
+				0A9E37FB20F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift */,
+				0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */,
+				0A9E37FC20F4A4D20085E8D7 /* MockEncryptionService.swift */,
+				0A9E380720F4A4D20085E8D7 /* MockEthereumNodeService.swift */,
+				0A9E380120F4A4D20085E8D7 /* MockTransactionRelayService.swift */,
+				0A9E37FF20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepository.swift */,
+				0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */,
 			);
 			path = EthereumImplementations;
-			sourceTree = "<group>";
-		};
-		0A9E37AD20F4A4D10085E8D7 /* generated */ = {
-			isa = PBXGroup;
-			children = (
-				0A9E37AE20F4A4D10085E8D7 /* solidity */,
-			);
-			path = generated;
-			sourceTree = "<group>";
-		};
-		0A9E37AE20F4A4D10085E8D7 /* solidity */ = {
-			isa = PBXGroup;
-			children = (
-				0A9E37AF20F4A4D10085E8D7 /* Types */,
-				0A9E37BB20F4A4D10085E8D7 /* BivrostError.swift */,
-				0A9E37BC20F4A4D10085E8D7 /* Generated Contracts */,
-				0A9E37D320F4A4D10085E8D7 /* Extensions */,
-				0A9E37D720F4A4D10085E8D7 /* Generated Types */,
-				0A9E37DC20F4A4D10085E8D7 /* Coding */,
-				0A9E37DF20F4A4D10085E8D7 /* Protocols */,
-			);
-			path = solidity;
-			sourceTree = "<group>";
-		};
-		0A9E37AF20F4A4D10085E8D7 /* Types */ = {
-			isa = PBXGroup;
-			children = (
-				0A9E37B020F4A4D10085E8D7 /* Solidity.swift */,
-				0A9E37B120F4A4D10085E8D7 /* Address.swift */,
-				0A9E37B220F4A4D10085E8D7 /* UIntX.swift */,
-				0A9E37B320F4A4D10085E8D7 /* ArrayX.swift */,
-				0A9E37B420F4A4D10085E8D7 /* String.swift */,
-				0A9E37B520F4A4D10085E8D7 /* BytesX.swift */,
-				0A9E37B620F4A4D10085E8D7 /* Bool.swift */,
-				0A9E37B720F4A4D10085E8D7 /* VariableArray.swift */,
-				0A9E37B820F4A4D10085E8D7 /* Function.swift */,
-				0A9E37B920F4A4D10085E8D7 /* IntX.swift */,
-				0A9E37BA20F4A4D10085E8D7 /* Bytes.swift */,
-			);
-			path = Types;
-			sourceTree = "<group>";
-		};
-		0A9E37BC20F4A4D10085E8D7 /* Generated Contracts */ = {
-			isa = PBXGroup;
-			children = (
-				0A9E37BD20F4A4D10085E8D7 /* ProxyFactory.swift */,
-				0A9E37BE20F4A4D10085E8D7 /* SignatureValidator.swift */,
-				0A9E37BF20F4A4D10085E8D7 /* GnosisSafeTeamEdition.swift */,
-				0A9E37C020F4A4D10085E8D7 /* GnosisSafePersonalEdition.swift */,
-				0A9E37C120F4A4D10085E8D7 /* PayingProxy.swift */,
-				0A9E37C220F4A4D10085E8D7 /* Proxy.swift */,
-				0A9E37C320F4A4D10085E8D7 /* MasterCopy.swift */,
-				0A9E37C420F4A4D10085E8D7 /* GnosisSafe.swift */,
-				0A9E37C520F4A4D10085E8D7 /* MultiSend.swift */,
-				0A9E37C620F4A4D10085E8D7 /* DelegateConstructorProxy.swift */,
-				0A9E37C720F4A4D10085E8D7 /* SocialRecoveryModule.swift */,
-				0A9E37C820F4A4D10085E8D7 /* DailyLimitModule.swift */,
-				0A9E37C920F4A4D10085E8D7 /* CreateAndAddModules.swift */,
-				0A9E37CA20F4A4D10085E8D7 /* ModuleManager.swift */,
-				0A9E37CB20F4A4D10085E8D7 /* StateChannelModule.swift */,
-				0A9E37CC20F4A4D10085E8D7 /* Migrations.swift */,
-				0A9E37CD20F4A4D10085E8D7 /* Module.swift */,
-				0A9E37CE20F4A4D10085E8D7 /* OwnerManager.swift */,
-				0A9E37CF20F4A4D10085E8D7 /* Enum.swift */,
-				0A9E37D020F4A4D10085E8D7 /* WhitelistModule.swift */,
-				0A9E37D120F4A4D10085E8D7 /* SelfAuthorized.swift */,
-				0A9E37D220F4A4D10085E8D7 /* ERC20Token.swift */,
-			);
-			path = "Generated Contracts";
-			sourceTree = "<group>";
-		};
-		0A9E37D320F4A4D10085E8D7 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				0A9E37D420F4A4D10085E8D7 /* BigIntExtension.swift */,
-				0A9E37D520F4A4D10085E8D7 /* DataExtension.swift */,
-				0A9E37D620F4A4D10085E8D7 /* StringExtension.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		0A9E37D720F4A4D10085E8D7 /* Generated Types */ = {
-			isa = PBXGroup;
-			children = (
-				0A9E37D820F4A4D10085E8D7 /* UIntX-Generated.swift */,
-				0A9E37D920F4A4D10085E8D7 /* BytesX-Generated.swift */,
-				0A9E37DA20F4A4D10085E8D7 /* IntX-Generated.swift */,
-				0A9E37DB20F4A4D10085E8D7 /* ArrayX-Generated.swift */,
-			);
-			path = "Generated Types";
-			sourceTree = "<group>";
-		};
-		0A9E37DC20F4A4D10085E8D7 /* Coding */ = {
-			isa = PBXGroup;
-			children = (
-				0A9E37DD20F4A4D10085E8D7 /* BaseDecoder.swift */,
-				0A9E37DE20F4A4D10085E8D7 /* BaseEncoder.swift */,
-			);
-			path = Coding;
-			sourceTree = "<group>";
-		};
-		0A9E37DF20F4A4D10085E8D7 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				0A9E37E020F4A4D10085E8D7 /* DynamicType.swift */,
-				0A9E37E120F4A4D10085E8D7 /* StaticType.swift */,
-				0A9E37E220F4A4D10085E8D7 /* SolidityCodable.swift */,
-				0A9E37E320F4A4D10085E8D7 /* SolidityFunction.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		0A9E37E620F4A4D20085E8D7 /* infura */ = {
 			isa = PBXGroup;
 			children = (
-				0A9E37E720F4A4D20085E8D7 /* types */,
-				0A9E37F020F4A4D20085E8D7 /* requests */,
-				0A9E37F820F4A4D20085E8D7 /* InfuraServiceConfiguration.swift */,
 				0A9E37F920F4A4D20085E8D7 /* InfuraEthereumNodeService.swift */,
+				0A9E37F820F4A4D20085E8D7 /* InfuraServiceConfiguration.swift */,
+				0A9E37F020F4A4D20085E8D7 /* requests */,
+				0A9E37E720F4A4D20085E8D7 /* types */,
 			);
 			path = infura;
 			sourceTree = "<group>";
@@ -690,13 +554,13 @@
 		0A9E37E720F4A4D20085E8D7 /* types */ = {
 			isa = PBXGroup;
 			children = (
-				0A9E37E820F4A4D20085E8D7 /* EthData.swift */,
 				0A9E37E920F4A4D20085E8D7 /* BigInt+Hex.swift */,
+				0A9E37ED20F4A4D20085E8D7 /* BigInt+HexTests.swift */,
 				0A9E37EA20F4A4D20085E8D7 /* EthAddress.swift */,
 				0A9E37EB20F4A4D20085E8D7 /* EthBlockNumber.swift */,
-				0A9E37EC20F4A4D20085E8D7 /* EthTypesTests.swift */,
-				0A9E37ED20F4A4D20085E8D7 /* BigInt+HexTests.swift */,
+				0A9E37E820F4A4D20085E8D7 /* EthData.swift */,
 				0A9E37EE20F4A4D20085E8D7 /* EthInt.swift */,
+				0A9E37EC20F4A4D20085E8D7 /* EthTypesTests.swift */,
 				0A9E37EF20F4A4D20085E8D7 /* TransactionCall.swift */,
 			);
 			path = types;
@@ -705,13 +569,13 @@
 		0A9E37F020F4A4D20085E8D7 /* requests */ = {
 			isa = PBXGroup;
 			children = (
-				0A9E37F120F4A4D20085E8D7 /* GetTransactionReceiptRequest.swift */,
 				0A9E37F220F4A4D20085E8D7 /* EstimateGasRequest.swift */,
 				0A9E37F320F4A4D20085E8D7 /* GasPriceRequest.swift */,
-				0A9E37F420F4A4D20085E8D7 /* GetTransactionCountRequest.swift */,
-				0A9E37F520F4A4D20085E8D7 /* SendRawTransactionRequest.swift */,
-				0A9E37F620F4A4D20085E8D7 /* JSONRPCRequest+BigIntResponse.swift */,
 				0A9E37F720F4A4D20085E8D7 /* GetBalanceRequest.swift */,
+				0A9E37F420F4A4D20085E8D7 /* GetTransactionCountRequest.swift */,
+				0A9E37F120F4A4D20085E8D7 /* GetTransactionReceiptRequest.swift */,
+				0A9E37F620F4A4D20085E8D7 /* JSONRPCRequest+BigIntResponse.swift */,
+				0A9E37F520F4A4D20085E8D7 /* SendRawTransactionRequest.swift */,
 			);
 			path = requests;
 			sourceTree = "<group>";
@@ -1321,18 +1185,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A9E383E20F4AE510085E8D7 /* InfuraEthereumNodeService.swift in Sources */,
+				0A9E383F20F4AE510085E8D7 /* InfuraServiceConfiguration.swift in Sources */,
 				0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */,
 				555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */,
+				0A9E384220F4AE510085E8D7 /* GetBalanceRequest.swift in Sources */,
+				0A9E384120F4AE510085E8D7 /* GasPriceRequest.swift in Sources */,
 				0AAA175320E27398003B35B3 /* BaseInMemoryRepository.swift in Sources */,
+				0A9E384720F4AE510085E8D7 /* BigInt+Hex.swift in Sources */,
+				0A9E384620F4AE510085E8D7 /* SendRawTransactionRequest.swift in Sources */,
+				0A9E384A20F4AE510085E8D7 /* EthData.swift in Sources */,
 				0A23C82C20A1DF0A00C72483 /* DBWalletRepository.swift in Sources */,
 				0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */,
+				0A9E384D20F4AE510085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift in Sources */,
+				0A9E383A20F4AE510085E8D7 /* EncryptionService.swift in Sources */,
 				0A76BE4F20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift in Sources */,
+				0A9E384920F4AE510085E8D7 /* EthBlockNumber.swift in Sources */,
+				0A9E385020F4AE510085E8D7 /* MockTransactionRelayService.swift in Sources */,
 				0A76BE5E20AF167D00D07770 /* InMemoryAccountRepository.swift in Sources */,
+				0A9E384520F4AE510085E8D7 /* JSONRPCRequest+BigIntResponse.swift in Sources */,
 				0A8E3C0520B4260600F002F6 /* DBAccountRepository.swift in Sources */,
+				0A9E384F20F4AE510085E8D7 /* MockEthereumNodeService.swift in Sources */,
+				0A9E384B20F4AE510085E8D7 /* EthInt.swift in Sources */,
+				0A9E384420F4AE510085E8D7 /* GetTransactionReceiptRequest.swift in Sources */,
 				0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */,
+				0A9E383D20F4AE510085E8D7 /* GnosisTransactionRelayService.swift in Sources */,
+				0A9E384820F4AE510085E8D7 /* EthAddress.swift in Sources */,
+				0A9E383920F4AE510085E8D7 /* DemoEthereumNodeService.swift in Sources */,
+				0A9E383C20F4AE510085E8D7 /* EthereumKitEthereumService.swift in Sources */,
+				0A9E384C20F4AE510085E8D7 /* TransactionCall.swift in Sources */,
 				0A23C83220A1E30800C72483 /* InMemoryWalletRepository.swift in Sources */,
 				0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */,
+				0A9E385120F4AE510085E8D7 /* SecureExternallyOwnedAccountRepository.swift in Sources */,
 				0A934CF120B6B46300F15616 /* MockBlockchainDomainService.swift in Sources */,
+				0A9E384020F4AE510085E8D7 /* EstimateGasRequest.swift in Sources */,
+				0A9E384E20F4AE510085E8D7 /* MockEncryptionService.swift in Sources */,
+				0A9E384320F4AE510085E8D7 /* GetTransactionCountRequest.swift in Sources */,
 				555C94AF20E3924C00A0621D /* MockNotificationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1341,10 +1229,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A9E385720F4AE7C0085E8D7 /* BigInt+HexTests.swift in Sources */,
 				0A23C83020A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift in Sources */,
+				0A9E385320F4AE600085E8D7 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
+				0A9E385620F4AE600085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift in Sources */,
 				0AD22D7C20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */,
 				0A76BE5820AEF35C00D07770 /* DomainRegistryTests.swift in Sources */,
+				0A9E385220F4AE600085E8D7 /* EncryptionServiceTests.swift in Sources */,
 				0A23C83420A1E34700C72483 /* BaseInMemoryRepositoryTests.swift in Sources */,
+				0A9E385420F4AE600085E8D7 /* EthTypesTests.swift in Sources */,
+				0A9E385520F4AE600085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift in Sources */,
 				0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */,
 				0A76BE5120AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,
 				0A8E3BFA20B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift in Sources */,
@@ -1815,6 +1709,7 @@
 		};
 		0AEF8A9520A08899006A1265 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A76BE5220AEC5CC00D07770 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1881,6 +1776,7 @@
 		};
 		0AEF8A9620A08899006A1265 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A76BE5220AEC5CC00D07770 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2079,6 +1975,7 @@
 		};
 		0AEF8AAF20A088B1006A1265 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A76BE5320AEC5CC00D07770 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2132,7 +2029,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2145,6 +2042,7 @@
 		};
 		0AEF8AB020A088B1006A1265 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A76BE5320AEC5CC00D07770 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2191,7 +2089,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2544,6 +2442,7 @@
 		};
 		0AEF8AC320A089F0006A1265 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A76BE5220AEC5CC00D07770 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2680,6 +2579,7 @@
 		};
 		0AEF8AC520A089F0006A1265 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A76BE5320AEC5CC00D07770 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2732,7 +2632,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

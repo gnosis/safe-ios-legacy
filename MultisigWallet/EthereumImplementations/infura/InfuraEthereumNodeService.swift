@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import EthereumDomainModel
+import MultisigWalletDomainModel
 import EthereumKit
 import BigInt
 
@@ -31,10 +31,8 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
         return try execute(request: SendRawTransactionRequest(signedTransactionHash))
     }
 
-    public func eth_getBalance(account: EthereumDomainModel.Address) throws -> EthereumDomainModel.Ether {
-        let request = GetBalanceRequest(address: account.value)
-        let result = try execute(request: request)
-        return result
+    public func eth_getBalance(account: MultisigWalletDomainModel.Address) throws -> BigInt {
+        return try execute(request: GetBalanceRequest(address: account.value))
     }
 
     public func eth_getTransactionReceipt(transaction: TransactionHash) throws -> TransactionReceipt? {

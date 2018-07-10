@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import EthereumDomainModel
+import MultisigWalletDomainModel
 import Common
 
 public class GnosisTransactionRelayService: TransactionRelayDomainService {
@@ -25,7 +25,7 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
     public func safeCreationTransactionHash(address: Address) throws -> TransactionHash? {
         let response = try httpClient.execute(request: GetSafeCreationStatusRequest(safeAddress: address.value))
         guard let hash = response.safeDeployedTxHash?.addHexPrefix() else { return nil }
-        return TransactionHash(value: hash)
+        return TransactionHash(hash)
     }
 
 }

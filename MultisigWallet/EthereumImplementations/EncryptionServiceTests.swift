@@ -4,10 +4,10 @@
 
 import XCTest
 @testable import EthereumImplementations
-import EthereumApplication
+import MultisigWalletApplication
 import EthereumKit
 import Common
-import EthereumDomainModel
+import MultisigWalletDomainModel
 import CryptoSwift
 
 class EncryptionServiceTests: XCTestCase {
@@ -78,7 +78,7 @@ class EncryptionServiceTests: XCTestCase {
 
     func test_whenSigningMessage_thenSignatureIsCorrect() throws {
         let pkData = Data(hex: "d0d3ae306602070917c456b61d88bee9dc74edb5853bb87b1c13e5bfa2c3d0d9")
-        let privateKey = EthereumDomainModel.PrivateKey(data: pkData)
+        let privateKey = MultisigWalletDomainModel.PrivateKey(data: pkData)
         let message = "Gnosis"
         encryptionService = EncryptionService(chainId: .mainnet)
 
@@ -149,7 +149,7 @@ struct ContractAddressFixture {
 
 struct RawTransactionFixture {
 
-    static let privateKey = EthereumDomainModel.PrivateKey(data: Data(hex: "e331b6d69882b4cb4ea581d88e0b604039a3de5967688d3dcffdd2270c0fd109"))
+    static let privateKey = MultisigWalletDomainModel.PrivateKey(data: Data(hex: "e331b6d69882b4cb4ea581d88e0b604039a3de5967688d3dcffdd2270c0fd109"))
     static let tx = EthRawTransaction(to: "0x0000000000000000000000000000000000000000",
                                       value: 0,
                                       data: "0x7f7465737432000000000000000000000000000000000000000000000000000000600057",

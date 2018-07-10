@@ -4,11 +4,11 @@
 
 import Foundation
 import EthereumKit
-import EthereumDomainModel
+import MultisigWalletDomainModel
 
 struct GetTransactionReceiptRequest: JSONRPCRequest {
 
-    typealias Response = EthereumDomainModel.TransactionReceipt?
+    typealias Response = MultisigWalletDomainModel.TransactionReceipt?
 
     var method: String { return "eth_getTransactionReceipt" }
     var parameters: Any? { return [transactionHash.value] }

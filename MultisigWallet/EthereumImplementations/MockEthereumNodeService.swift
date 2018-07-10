@@ -3,7 +3,8 @@
 //
 
 import Foundation
-import EthereumDomainModel
+import MultisigWalletDomainModel
+import BigInt
 
 public class MockEthereumNodeService: EthereumNodeDomainService {
 
@@ -15,11 +16,11 @@ public class MockEthereumNodeService: EthereumNodeDomainService {
 
     public init() {}
 
-    public var eth_getBalance_output: Ether?
+    public var eth_getBalance_output: BigInt?
 
-    public func eth_getBalance(account: Address) throws -> Ether {
+    public func eth_getBalance(account: Address) throws -> BigInt {
         if shouldThrow { throw Error.error }
-        return eth_getBalance_output ?? Ether.zero
+        return eth_getBalance_output ?? 0
     }
 
     public var eth_getTransactionReceipt_output: TransactionReceipt?

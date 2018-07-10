@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import EthereumDomainModel
+import MultisigWalletDomainModel
 
 public class InMemoryExternallyOwnedAccountRepository: ExternallyOwnedAccountRepository {
 

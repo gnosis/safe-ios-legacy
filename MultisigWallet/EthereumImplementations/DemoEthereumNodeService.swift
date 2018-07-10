@@ -3,8 +3,9 @@
 //
 
 import Foundation
-import EthereumDomainModel
+import MultisigWalletDomainModel
 import Common
+import BigInt
 
 public class DemoEthereumNodeService: EthereumNodeDomainService {
 
@@ -16,14 +17,14 @@ public class DemoEthereumNodeService: EthereumNodeDomainService {
 
     private var balanceUpdateCounter = 0
 
-    public func eth_getBalance(account: Address) throws -> Ether {
+    public func eth_getBalance(account: Address) throws -> BigInt {
         Timer.wait(delay)
         if account.value == "0x8c89eb758AF5Ee056Bc251328105F8893B057A05" {
-            let balance = Ether(amount: min(balanceUpdateCounter * 50, 100))
+            let balance = BigInt(min(balanceUpdateCounter * 50, 100))
             balanceUpdateCounter += 1
             return balance
         } else {
-            return Ether.zero
+            return 0
         }
     }
 

@@ -4,7 +4,7 @@
 
 import Foundation
 import EthereumKit
-import EthereumDomainModel
+import MultisigWalletDomainModel
 
 struct SendRawTransactionRequest: JSONRPCRequest {
 
@@ -21,7 +21,7 @@ struct SendRawTransactionRequest: JSONRPCRequest {
         guard let string = resultObject as? String else {
             throw JSONRPCError.unexpectedTypeObject(resultObject)
         }
-        return TransactionHash(value: string)
+        return TransactionHash(string)
     }
 
 }

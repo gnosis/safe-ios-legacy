@@ -3,8 +3,8 @@
 //
 
 import Foundation
-import EthereumDomainModel
-import EthereumApplication
+import MultisigWalletDomainModel
+import MultisigWalletApplication
 import EthereumKit
 import Common
 import CryptoSwift
@@ -125,15 +125,15 @@ open class EncryptionService: EncryptionDomainService {
         return extensionCode
     }
 
-    private func signature(from code: ExtensionCode) -> RSVSignature {
+    private func signature(from code: ExtensionCode) -> EthSignature {
         return signature(from: (code.r, code.s, code.v))
     }
 
-    private func signature(from value: (r: BInt, s: BInt, v: BInt)) -> RSVSignature {
-        return (value.r.asString(withBase: 10), value.s.asString(withBase: 10), Int(value.v))
+    private func signature(from value: (r: BInt, s: BInt, v: BInt)) -> EthSignature {
+        return EthSignature(r: value.r.asString(withBase: 10), s: value.s.asString(withBase: 10), v: Int(value.v))
     }
 
-    private func bintSignature(from signature: RSVSignature) -> (r: BInt, s: BInt, v: BInt) {
+    private func bintSignature(from signature: EthSignature) -> (r: BInt, s: BInt, v: BInt) {
         return (BInt.init(signature.r, radix: 10)!,
                 BInt.init(signature.s, radix: 10)!,
                 BInt.init(signature.v))
@@ -148,7 +148,7 @@ open class EncryptionService: EncryptionDomainService {
 
     // MARK: - Contract Address computation
 
-    public func contractAddress(from signature: RSVSignature, for transaction: EthTransaction) throws -> String? {
+    public func contractAddress(from signature: EthSignature, for transaction: EthTransaction) throws -> String? {
         let sender = try address(publicKey(signature, hash(transaction)))
         let result = try string(address: hash(rlp(sender, transaction.nonce)).suffix(from: 12)) // last 20 of 32 bytes
         return result
@@ -170,11 +170,11 @@ open class EncryptionService: EncryptionDomainService {
         return try hash(EthRawTransaction(to: "", tx.value, tx.data, tx.gas, tx.gasPrice, tx.nonce))
     }
 
-    private func hash(_ tx: EthRawTransaction, _ signature: RSVSignature? = nil) throws -> Data {
+    private func hash(_ tx: EthRawTransaction, _ signature: EthSignature? = nil) throws -> Data {
         return try hash(rlp(tx, signature: signature))
     }
 
-    private func rlp(_ tx: EthRawTransaction, signature: RSVSignature? = nil) throws -> Data {
+    private func rlp(_ tx: EthRawTransaction, signature: EthSignature? = nil) throws -> Data {
         var toEncode: [Any] = [tx.nonce,
                                BInt(tx.gasPrice, radix: 10)!,
                                BInt(tx.gas, radix: 10)!,
@@ -188,7 +188,7 @@ open class EncryptionService: EncryptionDomainService {
         return try rlp(varArgs: toEncode)
     }
 
-    private func data(from signature: RSVSignature) throws -> Data {
+    private func data(from signature: EthSignature) throws -> Data {
         guard let r = BInt.init(signature.r, radix: 10), let s = BInt.init(signature.s, radix: 10) else {
             throw Error.invalidSignature
         }
@@ -197,7 +197,7 @@ open class EncryptionService: EncryptionDomainService {
         return data
     }
 
-    private func publicKey(_ signature: RSVSignature, _ hash: Data) throws -> Data {
+    private func publicKey(_ signature: EthSignature, _ hash: Data) throws -> Data {
         guard let key = Crypto.publicKey(signature: try data(from: signature), of: hash, compressed: false) else {
             throw Error.invalidSignature
         }
@@ -215,7 +215,7 @@ open class EncryptionService: EncryptionDomainService {
 
     // MARK: - EOA address computation
 
-    public func address(privateKey: EthereumDomainModel.PrivateKey) -> EthereumDomainModel.Address {
+    public func address(privateKey: MultisigWalletDomainModel.PrivateKey) -> MultisigWalletDomainModel.Address {
         let publicKey = ethereumService.createPublicKey(privateKey: privateKey.data)
         let address = ethereumService.createAddress(publicKey: publicKey)
         return Address(value: address)
@@ -241,12 +241,12 @@ open class EncryptionService: EncryptionDomainService {
 
     // MARK: - Signing messages
 
-    public func sign(message: String, privateKey: EthereumDomainModel.PrivateKey) throws -> RSVSignature {
+    public func sign(message: String, privateKey: MultisigWalletDomainModel.PrivateKey) throws -> EthSignature {
         let signature = try rawSignature(of: hash(data(message)), with: privateKey.data)
         return calculateRSV(from: signature)
     }
 
-    private func calculateRSV(from rawSignature: Data) -> RSVSignature {
+    private func calculateRSV(from rawSignature: Data) -> EthSignature {
         var result = signature(from: signer.calculateRSV(signiture: rawSignature))
         // FIXME: contribute to EthereumKit
         if chainId == .any && result.v > 28 {
@@ -255,8 +255,8 @@ open class EncryptionService: EncryptionDomainService {
         return result
     }
 
-    public func sign(transaction: EthRawTransaction, privateKey: EthereumDomainModel.PrivateKey) throws -> String {
-        let rlpAppendix: RSVSignature? = chainId == .any ? nil : ("0", "0", chainId.rawValue)
+    public func sign(transaction: EthRawTransaction, privateKey: MultisigWalletDomainModel.PrivateKey) throws -> String {
+        let rlpAppendix: EthSignature? = chainId == .any ? nil : EthSignature(r: "0", s: "0", v: chainId.rawValue)
         let signature = try calculateRSV(from: rawSignature(of: hash(transaction, rlpAppendix), with: privateKey.data))
         return try rlp(transaction, signature: signature).toHexString().addHexPrefix()
     }

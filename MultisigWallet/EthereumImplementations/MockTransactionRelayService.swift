@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import EthereumDomainModel
+import MultisigWalletDomainModel
 import Common
 
 public class MockTransactionRelayService: TransactionRelayDomainService {
@@ -42,7 +42,7 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
 
     public func safeCreationTransactionHash(address: Address) throws -> TransactionHash? {
         Timer.wait(randomizedNetworkResponseDelay)
-        return TransactionHash(value: "0x3b9307c1473e915d04292a0f5b0f425eaf527f53852357e2c649b8c447e3246a")
+        return TransactionHash("0x3b9307c1473e915d04292a0f5b0f425eaf527f53852357e2c649b8c447e3246a")
     }
 
 }

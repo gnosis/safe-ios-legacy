@@ -20,9 +20,9 @@ public protocol EncryptionDomainService {
 
 public struct EthSignature: Codable, Equatable {
 
-    public let r: String
-    public let s: String
-    public let v: Int
+    public var r: String
+    public var s: String
+    public var v: Int
 
     public init(r: String, s: String, v: Int) {
         self.r = r
