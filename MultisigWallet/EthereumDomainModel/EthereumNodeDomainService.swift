@@ -3,10 +3,11 @@
 //
 
 import Foundation
+import BigInt
 
 public protocol EthereumNodeDomainService {
 
-    func eth_getBalance(account: Address) throws -> Ether
-    func eth_getTransactionReceipt(transaction: TransactionHash) throws -> EthTransactionReceipt?
+    func eth_getBalance(account: Address) throws -> BigInt
+    func eth_getTransactionReceipt(transaction: TransactionHash) throws -> TransactionReceipt?
 
 }

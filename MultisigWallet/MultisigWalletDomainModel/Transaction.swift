@@ -214,7 +214,8 @@ public enum TransactionType: Int {
 
 }
 
-public struct Signature: Equatable {
+// TODO: confusion with EthSignature
+public struct Signature: Equatable { // signature of some owner?
 
     public var address: BlockchainAddress
     public var data: Data
@@ -234,4 +235,15 @@ public struct TransactionHash: Equatable {
         self.value = value
     }
 
+}
+
+public struct TransactionReceipt: Equatable {
+
+    public let hash: TransactionHash
+    public let status: TransactionStatus
+
+    public init(hash: TransactionHash, status: TransactionStatus) {
+        self.hash = hash
+        self.status = status
+    }
 }

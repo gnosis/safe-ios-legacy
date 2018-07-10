@@ -26,5 +26,21 @@ public class DomainRegistry: AbstractRegistry {
     public static var notificationService: NotificationDomainService {
         return service(for: NotificationDomainService.self)
     }
+    
+    public static var encryptionService: EncryptionDomainService {
+        return service(for: EncryptionDomainService.self)
+    }
+
+    public static var externallyOwnedAccountRepository: ExternallyOwnedAccountRepository {
+        return service(for: ExternallyOwnedAccountRepository.self)
+    }
+
+    public static var transactionRelayService: TransactionRelayDomainService {
+        return service(for: TransactionRelayDomainService.self)
+    }
+
+    public static var ethereumNodeService: EthereumNodeDomainService {
+        return service(for: EthereumNodeDomainService.self)
+    }
 
 }

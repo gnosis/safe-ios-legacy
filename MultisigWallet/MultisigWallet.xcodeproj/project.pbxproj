@@ -44,9 +44,6 @@
 		0A9E380F20F4A4F20085E8D7 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37A520F4A4D10085E8D7 /* Worker.swift */; };
 		0A9E381020F4A4F20085E8D7 /* EthereumNodeDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37A620F4A4D10085E8D7 /* EthereumNodeDomainService.swift */; };
 		0A9E381120F4A4F20085E8D7 /* TransactionRelayDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37A720F4A4D10085E8D7 /* TransactionRelayDomainService.swift */; };
-		0A9E381220F4A4F20085E8D7 /* EthTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37A920F4A4D10085E8D7 /* EthTransaction.swift */; };
-		0A9E381320F4A4F20085E8D7 /* EthDomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37AB20F4A4D10085E8D7 /* EthDomainRegistry.swift */; };
-		0A9E381420F4A5260085E8D7 /* EtherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37A220F4A4D10085E8D7 /* EtherTests.swift */; };
 		0AA5D4A020E12B68006F46CD /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5D49F20E12B68006F46CD /* Token.swift */; };
 		0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5D49520E113EE006F46CD /* Transaction.swift */; };
 		0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */; };
@@ -77,7 +74,6 @@
 		555C949720E2A60F00A0621D /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C948C20E2A60F00A0621D /* AccountRepository.swift */; };
 		555C949820E2A60F00A0621D /* SinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */; };
 		555C949E20E2A62E00A0621D /* BrowserExtensionCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949920E2A62D00A0621D /* BrowserExtensionCode.swift */; };
-		555C949F20E2A62E00A0621D /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949A20E2A62D00A0621D /* Signature.swift */; };
 		555C94A320E2A63100A0621D /* BrowserExtensionCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949D20E2A62D00A0621D /* BrowserExtensionCodeTests.swift */; };
 		555C94A420E2A63500A0621D /* SignatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949C20E2A62D00A0621D /* SignatureTests.swift */; };
 		555C94A620E3824800A0621D /* NotificationDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94A520E3824800A0621D /* NotificationDomainService.swift */; };
@@ -356,15 +352,11 @@
 		0A9E379E20F4A4D10085E8D7 /* StartSafeCreationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSafeCreationRequest.swift; sourceTree = "<group>"; };
 		0A9E37A020F4A4D10085E8D7 /* ExternallyOwnedAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternallyOwnedAccountRepository.swift; sourceTree = "<group>"; };
 		0A9E37A120F4A4D10085E8D7 /* ExternallyOwnedAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternallyOwnedAccount.swift; sourceTree = "<group>"; };
-		0A9E37A220F4A4D10085E8D7 /* EtherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EtherTests.swift; sourceTree = "<group>"; };
 		0A9E37A320F4A4D10085E8D7 /* SafeCreationTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationTransactionRequest.swift; sourceTree = "<group>"; };
 		0A9E37A520F4A4D10085E8D7 /* Worker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
 		0A9E37A620F4A4D10085E8D7 /* EthereumNodeDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumNodeDomainService.swift; sourceTree = "<group>"; };
 		0A9E37A720F4A4D10085E8D7 /* TransactionRelayDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRelayDomainService.swift; sourceTree = "<group>"; };
 		0A9E37A820F4A4D10085E8D7 /* WorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTests.swift; sourceTree = "<group>"; };
-		0A9E37A920F4A4D10085E8D7 /* EthTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthTransaction.swift; sourceTree = "<group>"; };
-		0A9E37AA20F4A4D10085E8D7 /* EthDomainRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthDomainRegistryTests.swift; sourceTree = "<group>"; };
-		0A9E37AB20F4A4D10085E8D7 /* EthDomainRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthDomainRegistry.swift; sourceTree = "<group>"; };
 		0A9E37B020F4A4D10085E8D7 /* Solidity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solidity.swift; sourceTree = "<group>"; };
 		0A9E37B120F4A4D10085E8D7 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		0A9E37B220F4A4D10085E8D7 /* UIntX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIntX.swift; sourceTree = "<group>"; };
@@ -474,7 +466,6 @@
 		555C948C20E2A60F00A0621D /* AccountRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePortfolioRepository.swift; sourceTree = "<group>"; };
 		555C949920E2A62D00A0621D /* BrowserExtensionCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserExtensionCode.swift; sourceTree = "<group>"; };
-		555C949A20E2A62D00A0621D /* Signature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
 		555C949C20E2A62D00A0621D /* SignatureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureTests.swift; sourceTree = "<group>"; };
 		555C949D20E2A62D00A0621D /* BrowserExtensionCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserExtensionCodeTests.swift; sourceTree = "<group>"; };
 		555C94A520E3824800A0621D /* NotificationDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDomainService.swift; sourceTree = "<group>"; };
@@ -570,15 +561,11 @@
 				0A9E379E20F4A4D10085E8D7 /* StartSafeCreationRequest.swift */,
 				0A9E37A020F4A4D10085E8D7 /* ExternallyOwnedAccountRepository.swift */,
 				0A9E37A120F4A4D10085E8D7 /* ExternallyOwnedAccount.swift */,
-				0A9E37A220F4A4D10085E8D7 /* EtherTests.swift */,
 				0A9E37A320F4A4D10085E8D7 /* SafeCreationTransactionRequest.swift */,
 				0A9E37A520F4A4D10085E8D7 /* Worker.swift */,
 				0A9E37A620F4A4D10085E8D7 /* EthereumNodeDomainService.swift */,
 				0A9E37A720F4A4D10085E8D7 /* TransactionRelayDomainService.swift */,
 				0A9E37A820F4A4D10085E8D7 /* WorkerTests.swift */,
-				0A9E37A920F4A4D10085E8D7 /* EthTransaction.swift */,
-				0A9E37AA20F4A4D10085E8D7 /* EthDomainRegistryTests.swift */,
-				0A9E37AB20F4A4D10085E8D7 /* EthDomainRegistry.swift */,
 			);
 			path = EthereumDomainModel;
 			sourceTree = "<group>";
@@ -778,12 +765,12 @@
 			children = (
 				0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */,
 				0A9E379220F4A4D10085E8D7 /* EthereumApplication */,
-				0A9E379B20F4A4D10085E8D7 /* EthereumDomainModel */,
 				0A9E37AC20F4A4D10085E8D7 /* EthereumImplementations */,
 				0A76BE5220AEC5CC00D07770 /* CommonConfig.xcconfig */,
 				0A76BE5320AEC5CC00D07770 /* ImplementationsConfig.xcconfig */,
 				0AEF8AF620A08F7D006A1265 /* swiftlint.yml */,
 				0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */,
+				0A9E379B20F4A4D10085E8D7 /* EthereumDomainModel */,
 				0AEF8A7720A08878006A1265 /* MultisigWalletDomainModel */,
 				0AEF8A9120A08899006A1265 /* MultisigWalletApplication */,
 				0AEF8AAB20A088B1006A1265 /* MultisigWalletImplementations */,
@@ -820,7 +807,6 @@
 				555C94A920E3868900A0621D /* PairingRequestTests.swift */,
 				0A23C82020A1CF1D00C72483 /* Portfolio.swift */,
 				0A23C81A20A1CEDA00C72483 /* PortfolioTests.swift */,
-				555C949A20E2A62D00A0621D /* Signature.swift */,
 				555C949C20E2A62D00A0621D /* SignatureTests.swift */,
 				0AA5D49F20E12B68006F46CD /* Token.swift */,
 				0AA5D49520E113EE006F46CD /* Transaction.swift */,
@@ -1292,7 +1278,6 @@
 				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,
 				0A9E380D20F4A4F20085E8D7 /* ExternallyOwnedAccount.swift in Sources */,
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
-				555C949F20E2A62E00A0621D /* Signature.swift in Sources */,
 				0AA5D4A020E12B68006F46CD /* Token.swift in Sources */,
 				0A9E380C20F4A4F20085E8D7 /* ExternallyOwnedAccountRepository.swift in Sources */,
 				0A9E380920F4A4F20085E8D7 /* GetSafeCreationStatusRequest.swift in Sources */,
@@ -1300,14 +1285,12 @@
 				555C94A620E3824800A0621D /* NotificationDomainService.swift in Sources */,
 				555C949420E2A60F00A0621D /* BlockchainDomainService.swift in Sources */,
 				0A9E380B20F4A4F20085E8D7 /* StartSafeCreationRequest.swift in Sources */,
-				0A9E381220F4A4F20085E8D7 /* EthTransaction.swift in Sources */,
 				0A9E380A20F4A4F20085E8D7 /* EncryptionDomainService.swift in Sources */,
 				0A23C80F20A1B35D00C72483 /* BlockchainAddress.swift in Sources */,
 				0A76BE5A20AF0CB500D07770 /* Account.swift in Sources */,
 				555C949E20E2A62E00A0621D /* BrowserExtensionCode.swift in Sources */,
 				0A23C82120A1CF1D00C72483 /* Portfolio.swift in Sources */,
 				555C949520E2A60F00A0621D /* WalletRepository.swift in Sources */,
-				0A9E381320F4A4F20085E8D7 /* EthDomainRegistry.swift in Sources */,
 				0A9E381020F4A4F20085E8D7 /* EthereumNodeDomainService.swift in Sources */,
 				0A9E381120F4A4F20085E8D7 /* TransactionRelayDomainService.swift in Sources */,
 				555C949720E2A60F00A0621D /* AccountRepository.swift in Sources */,
@@ -1324,7 +1307,6 @@
 				555C94AA20E3868900A0621D /* PairingRequestTests.swift in Sources */,
 				0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */,
 				555C94A420E2A63500A0621D /* SignatureTests.swift in Sources */,
-				0A9E381420F4A5260085E8D7 /* EtherTests.swift in Sources */,
 				0A23C81B20A1CEDA00C72483 /* PortfolioTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
