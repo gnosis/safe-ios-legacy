@@ -6,7 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import IdentityAccessDomainModel
 import CommonTestSupport
-import EthereumApplication
+import MultisigWalletApplication
 
 class SaveMnemonicViewControllerTests: SafeTestCase {
 

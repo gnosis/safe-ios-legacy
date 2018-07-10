@@ -6,7 +6,7 @@ import UIKit
 import SafeUIKit
 import IdentityAccessApplication
 import MultisigWalletApplication
-import EthereumApplication
+import MultisigWalletApplication
 import Common
 
 protocol PairWithBrowserDelegate: class {
@@ -40,7 +40,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         return MultisigWalletApplication.ApplicationServiceRegistry.walletService
     }
     private var ethereumService: EthereumApplicationService {
-        return EthereumApplication.ApplicationServiceRegistry.ethereumService
+        return MultisigWalletApplication.ApplicationServiceRegistry.ethereumService
     }
 
     private var scannerController: UIViewController?

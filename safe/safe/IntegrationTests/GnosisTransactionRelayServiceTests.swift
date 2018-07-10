@@ -4,8 +4,8 @@
 
 import XCTest
 @testable import safe
-import EthereumDomainModel
-import EthereumImplementations
+import MultisigWalletDomainModel
+import MultisigWalletImplementations
 import BigInt
 import Common
 
@@ -30,7 +30,9 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
         let response = try relayService.createSafeCreationTransaction(request: request)
 
         XCTAssertEqual(response.signature.s, request.s)
-        let signature = (response.signature.r, response.signature.s, Int(response.signature.v) ?? 0)
+        let signature = EthSignature(r: response.signature.r,
+                                     s: response.signature.s,
+                                     v: Int(response.signature.v) ?? 0)
         let transaction = (response.tx.from,
                            response.tx.value,
                            response.tx.data,
@@ -79,7 +81,7 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
         let receipt = try waitForTransaction(txHash)!
         XCTAssertEqual(receipt.status, .success)
         let newBalance = try infuraService.eth_getBalance(account: destination)
-        XCTAssertEqual(newBalance.amount, Int(value.value))
+        XCTAssertEqual(newBalance, BigInt(value.value))
     }
 
     func waitForSafeCreationTransaction(_ address: Address) throws -> TransactionHash {

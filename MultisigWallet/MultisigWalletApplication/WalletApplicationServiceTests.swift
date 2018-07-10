@@ -8,6 +8,7 @@ import MultisigWalletImplementations
 import MultisigWalletDomainModel
 import Common
 import CommonTestSupport
+import BigInt
 
 class WalletApplicationServiceTests: XCTestCase {
 
@@ -241,9 +242,9 @@ class WalletApplicationServiceTests: XCTestCase {
         try service.startDeployment()
         let account = try findAccount("ETH")
         let requiredBalance = account.minimumDeploymentTransactionAmount
-        let response1 = blockchainService.updateBalance(requiredBalance - 1)
+        let response1 = blockchainService.updateBalance(BigInt(requiredBalance - 1))
         XCTAssertEqual(response1, .continueObserving)
-        let response2 = blockchainService.updateBalance(requiredBalance)
+        let response2 = blockchainService.updateBalance(BigInt(requiredBalance))
         XCTAssertEqual(response2, .stopObserving)
     }
 

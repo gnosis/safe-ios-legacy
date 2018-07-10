@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import BigInt
 
 /// must return true to continue observation, false otherwise
 public struct BlockchainBalanceObserverResponse: Equatable {
@@ -16,7 +17,7 @@ public struct BlockchainBalanceObserverResponse: Equatable {
     }
 
 }
-public typealias BlockchainBalanceObserver = (_ account: String, _ balance: Int) -> BlockchainBalanceObserverResponse
+public typealias BlockchainBalanceObserver = (_ account: String, _ balance: BigInt) -> BlockchainBalanceObserverResponse
 
 public protocol BlockchainDomainService {
 
@@ -27,7 +28,7 @@ public protocol BlockchainDomainService {
     func executeWalletCreationTransaction(address: String) throws
     func waitForCreationTransaction(address: String) throws -> String
     func waitForPendingTransaction(hash: String) throws -> Bool
-    func balance(address: String) throws -> Int
+    func balance(address: String) throws -> BigInt
     func sign(message: String, by address: String) throws -> EthSignature
     func address(browserExtensionCode: String) -> String?
 

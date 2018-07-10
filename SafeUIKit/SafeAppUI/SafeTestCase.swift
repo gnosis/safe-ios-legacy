@@ -10,7 +10,7 @@ import IdentityAccessImplementations
 import MultisigWalletDomainModel
 import MultisigWalletApplication
 import MultisigWalletImplementations
-import EthereumApplication
+import MultisigWalletApplication
 import Common
 
 class SafeTestCase: XCTestCase {
@@ -48,7 +48,7 @@ class SafeTestCase: XCTestCase {
     }
 
     private func configureEthereumModule() {
-        let applicationRegistry = EthereumApplication.ApplicationServiceRegistry.self
+        let applicationRegistry = MultisigWalletApplication.ApplicationServiceRegistry.self
         applicationRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
     }
 

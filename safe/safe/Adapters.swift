@@ -4,7 +4,7 @@
 
 import Foundation
 import MultisigWalletDomainModel
-import EthereumApplication
+import MultisigWalletApplication
 
 extension EthereumApplicationService: BlockchainDomainService {
 
@@ -22,8 +22,8 @@ extension EthereumApplicationService: BlockchainDomainService {
     public func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) throws {
         try observeChangesInBalance(address: account,
                                     every: EthereumApplicationService.pollingInterval) { newBalance in
-            let response = observer(account, newBalance)
-            return response == .stopObserving
+                                        let response = observer(account, newBalance)
+                                        return response == .stopObserving
         }
     }
 
@@ -31,9 +31,9 @@ extension EthereumApplicationService: BlockchainDomainService {
         try startSafeCreation(address: address)
     }
 
-    public func sign(message: String, by address: String) throws -> RSVSignature {
+    public func sign(message: String, by address: String) throws -> EthSignature {
         let signature: (r: String, s: String, v: Int) = try sign(message: message, by: address)
-        return RSVSignature(r: signature.r, s: signature.s, v: signature.v)
+        return EthSignature(r: signature.r, s: signature.s, v: signature.v)
     }
 
 }
