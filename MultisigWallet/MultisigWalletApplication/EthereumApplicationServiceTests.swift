@@ -122,8 +122,9 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
     func test_whenSignMessageForUnknownAddress_thenThrows() throws {
         do {
             let _: (String, String, Int) = try applicationService.sign(message: "Gnosis", by: "signer")
-        } catch let error {
-            XCTFail("Threw error: \(error)")
+            XCTFail("Expected to throw")
+        } catch {
+            // pass
         }
     }
 
