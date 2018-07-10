@@ -519,27 +519,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A9E37AC20F4A4D10085E8D7 /* EthereumImplementations */ = {
-			isa = PBXGroup;
-			children = (
-				0A9E380220F4A4D20085E8D7 /* DemoEthereumNodeService.swift */,
-				0A9E380820F4A4D20085E8D7 /* EncryptionService.swift */,
-				0A9E380520F4A4D20085E8D7 /* EncryptionServiceTests.swift */,
-				0A9E37E520F4A4D10085E8D7 /* EthereumKitEthereumService.swift */,
-				0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */,
-				0A9E380020F4A4D20085E8D7 /* GnosisTransactionRelayService.swift */,
-				0A9E37E620F4A4D20085E8D7 /* infura */,
-				0A9E37FB20F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift */,
-				0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */,
-				0A9E37FC20F4A4D20085E8D7 /* MockEncryptionService.swift */,
-				0A9E380720F4A4D20085E8D7 /* MockEthereumNodeService.swift */,
-				0A9E380120F4A4D20085E8D7 /* MockTransactionRelayService.swift */,
-				0A9E37FF20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepository.swift */,
-				0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */,
-			);
-			path = EthereumImplementations;
-			sourceTree = "<group>";
-		};
 		0A9E37E620F4A4D20085E8D7 /* infura */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,7 +577,6 @@
 			isa = PBXGroup;
 			children = (
 				0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */,
-				0A9E37AC20F4A4D10085E8D7 /* EthereumImplementations */,
 				0A76BE5220AEC5CC00D07770 /* CommonConfig.xcconfig */,
 				0A76BE5320AEC5CC00D07770 /* ImplementationsConfig.xcconfig */,
 				0AEF8AF620A08F7D006A1265 /* swiftlint.yml */,
@@ -676,6 +654,20 @@
 		0AEF8AAB20A088B1006A1265 /* MultisigWalletImplementations */ = {
 			isa = PBXGroup;
 			children = (
+				0A9E380220F4A4D20085E8D7 /* DemoEthereumNodeService.swift */,
+				0A9E380820F4A4D20085E8D7 /* EncryptionService.swift */,
+				0A9E380520F4A4D20085E8D7 /* EncryptionServiceTests.swift */,
+				0A9E37E520F4A4D10085E8D7 /* EthereumKitEthereumService.swift */,
+				0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */,
+				0A9E380020F4A4D20085E8D7 /* GnosisTransactionRelayService.swift */,
+				0A9E37E620F4A4D20085E8D7 /* infura */,
+				0A9E37FB20F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift */,
+				0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */,
+				0A9E37FC20F4A4D20085E8D7 /* MockEncryptionService.swift */,
+				0A9E380720F4A4D20085E8D7 /* MockEthereumNodeService.swift */,
+				0A9E380120F4A4D20085E8D7 /* MockTransactionRelayService.swift */,
+				0A9E37FF20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepository.swift */,
+				0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */,
 				0A934CEF20B6B44D00F15616 /* MockBlockchainDomainService.swift */,
 				0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */,
 				0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */,
