@@ -26,7 +26,7 @@ public class DomainRegistry: AbstractRegistry {
     public static var notificationService: NotificationDomainService {
         return service(for: NotificationDomainService.self)
     }
-    
+
     public static var encryptionService: EncryptionDomainService {
         return service(for: EncryptionDomainService.self)
     }
