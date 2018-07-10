@@ -169,3 +169,36 @@ fileprivate extension ExternallyOwnedAccount {
     }
 
 }
+
+// TODO: refactor to simplify interaction between services
+extension EthereumApplicationService: BlockchainDomainService {
+
+    static let pollingInterval: TimeInterval = 3
+
+    public func requestWalletCreationData(owners: [String], confirmationCount: Int) throws -> WalletCreationData {
+        let data = try createSafeCreationTransaction(owners: owners, confirmationCount: confirmationCount)
+        return WalletCreationData(walletAddress: data.safe, fee: data.payment)
+    }
+
+    public func generateExternallyOwnedAccount() throws -> String {
+        return try generateExternallyOwnedAccount().address
+    }
+
+    public func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) throws {
+        try observeChangesInBalance(address: account,
+                                    every: EthereumApplicationService.pollingInterval) { newBalance in
+                                        let response = observer(account, newBalance)
+                                        return response == .stopObserving
+        }
+    }
+
+    public func executeWalletCreationTransaction(address: String) throws {
+        try startSafeCreation(address: address)
+    }
+
+    public func sign(message: String, by address: String) throws -> EthSignature {
+        let signature: (r: String, s: String, v: Int) = try sign(message: message, by: address)
+        return EthSignature(r: signature.r, s: signature.s, v: signature.v)
+    }
+
+}

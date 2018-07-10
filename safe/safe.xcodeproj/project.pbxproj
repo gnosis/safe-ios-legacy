@@ -31,7 +31,6 @@
 		0A8E3BE720B41D3F00F002F6 /* libCommonImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8E3BE620B41D3F00F002F6 /* libCommonImplementations.a */; };
 		0A8E3BF620B41E7100F002F6 /* libCommonImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8E3BF520B41E7100F002F6 /* libCommonImplementations.a */; };
 		0A8E3C0B20B42C2100F002F6 /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8E3C0A20B42C2100F002F6 /* libMultisigWalletImplementations.a */; };
-		0A934CF320B6BF8F00F15616 /* Adapters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A934CF220B6BF8F00F15616 /* Adapters.swift */; };
 		0A99436C20A04C6700E36FD7 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A99436B20A04C6700E36FD7 /* LocalizedString.swift */; };
 		0A99436E20A04C9C00E36FD7 /* SafeAppUI.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A99436D20A04C9B00E36FD7 /* SafeAppUI.strings */; };
 		0AA0C856207B74AC0019E282 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */; };
@@ -362,7 +361,6 @@
 		0A8E3BF520B41E7100F002F6 /* libCommonImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8E3C0820B42BF200F002F6 /* libMultisigWalletImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8E3C0A20B42C2100F002F6 /* libMultisigWalletImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A934CF220B6BF8F00F15616 /* Adapters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adapters.swift; sourceTree = "<group>"; };
 		0A99436B20A04C6700E36FD7 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalizedString.swift; path = safeUITests/LocalizedString.swift; sourceTree = SOURCE_ROOT; };
 		0A99436D20A04C9B00E36FD7 /* SafeAppUI.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = SafeAppUI.strings; path = SafeUITests/SafeAppUI.strings; sourceTree = SOURCE_ROOT; };
 		0AA0C855207B74AC0019E282 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -650,7 +648,6 @@
 			children = (
 				555C94E320E533C400A0621D /* IntegrationTests */,
 				5540A4EE203C3054009C9BE3 /* AppDelegate.swift */,
-				0A934CF220B6BF8F00F15616 /* Adapters.swift */,
 				55D97D7D20496E390004AEDD /* AppDelegateTests.swift */,
 				5540A4F5203C3054009C9BE3 /* Assets.xcassets */,
 				5540A4F7203C3054009C9BE3 /* LaunchScreen.storyboard */,
@@ -1140,7 +1137,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
-				0A934CF320B6BF8F00F15616 /* Adapters.swift in Sources */,
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,
 				0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
 			);

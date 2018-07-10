@@ -22,19 +22,19 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
 
     func test_whenGeneratesTwoAccounts_thenTheyAreDifferent() throws {
         DomainRegistry.put(service: EncryptionService(), for: EncryptionDomainService.self)
-        let one = try applicationService.generateExternallyOwnedAccount()
-        let two = try applicationService.generateExternallyOwnedAccount()
+        let one: ExternallyOwnedAccountData = try applicationService.generateExternallyOwnedAccount()
+        let two: ExternallyOwnedAccountData = try applicationService.generateExternallyOwnedAccount()
         XCTAssertNotEqual(one, two)
     }
 
     func test_whenAccountGenerated_thenItIsPersisted() throws {
-        let account = try applicationService.generateExternallyOwnedAccount()
+        let account: ExternallyOwnedAccountData = try applicationService.generateExternallyOwnedAccount()
         let saved = try applicationService.findExternallyOwnedAccount(by: account.address)
         XCTAssertEqual(saved, account)
     }
 
     func test_whenAccountRemoved_thenCannotBeFound() throws {
-        let account = try applicationService.generateExternallyOwnedAccount()
+        let account: ExternallyOwnedAccountData = try applicationService.generateExternallyOwnedAccount()
         try applicationService.removeExternallyOwnedAccount(address: account.address)
         XCTAssertNil(try applicationService.findExternallyOwnedAccount(by: account.address))
     }
@@ -120,7 +120,11 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
     }
 
     func test_whenSignMessageForUnknownAddress_thenThrows() throws {
-        XCTAssertThrowsError(try applicationService.sign(message: "Gnosis", by: "signer"))
+        do {
+            let _: (String, String, Int) = try applicationService.sign(message: "Gnosis", by: "signer")
+        } catch let error {
+            XCTFail("Threw error: \(error)")
+        }
     }
 
 }
