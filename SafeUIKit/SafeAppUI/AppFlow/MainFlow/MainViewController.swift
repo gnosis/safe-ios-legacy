@@ -27,6 +27,11 @@ public class MainViewController: UIViewController {
         stylize(button: sendButton)
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIApplication.shared.requestRemoteNotificationsRegistration()
+    }
+
     private func stylize(button: UIButton) {
         button.layer.borderColor = ColorName.borderGrey.color.cgColor
         button.layer.borderWidth = 1

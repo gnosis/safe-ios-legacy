@@ -199,6 +199,7 @@
 		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
 		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
 		55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F558208A298200889C9F /* QRCodeInputTests.swift */; };
+		55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -569,6 +570,7 @@
 		55A7B2B220ECE2940035EF38 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputViewController.swift; sourceTree = "<group>"; };
 		55E9F558208A298200889C9F /* QRCodeInputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputTests.swift; sourceTree = "<group>"; };
+		55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -916,6 +918,7 @@
 				550954EF20C9594700F5F25F /* TokenInput.xib */,
 				550954ED20C9592900F5F25F /* TokenInputTests.swift */,
 				55071BC2209313F800297D1C /* UIDevice+Extensions.swift */,
+				55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */,
 				550954F120C966CF00F5F25F /* UIView+Extensions.swift */,
 			);
 			path = SafeUIKit;
@@ -1495,6 +1498,7 @@
 			files = (
 				5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */,
 				0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */,
+				55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */,
 				0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */,
 				0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */,
 				0A9670DB20480C7B00445AC2 /* Fonts.swift in Sources */,

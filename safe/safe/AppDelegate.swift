@@ -18,6 +18,9 @@ import EthereumDomainModel
 import Database
 import Common
 import CommonImplementations
+import FirebaseCore
+import FirebaseMessaging
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
@@ -31,11 +34,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
+
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        Messaging.messaging().shouldEstablishDirectChannel = true
+
+        // https://firebase.google.com/docs/cloud-messaging/ios/client
+        // for devices running iOS 10 and above, you must assign your delegate object to the UNUserNotificationCenter
+        // object to receive display notifications, and the FIRMessaging object to receive data messages,
+        // before your app finishes launching.
+        UNUserNotificationCenter.current().delegate = self
+
         configureDependencyInjection()
+
         #if DEBUG
         TestSupport.shared.addResettable(self)
         TestSupport.shared.setUp()
         #endif
+
         createWindow()
         return true
     }
@@ -165,6 +181,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         if let store = secureStore {
             try? store.destroy()
         }
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        LogService.shared.error("Failed to registed to remote notifications", error: error)
+    }
+
+    // TODO: remove after debugging
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("APNs token retrieved: \(deviceToken)")
+    }
+
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        // TODO: implement
+        let userInfo = notification.request.content.userInfo
+        print("userInfo: \(userInfo)")
+        completionHandler([])
+
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+
+        // TODO: implement
+        let userInfo = response.notification.request.content.userInfo
+        print("userInfo: \(userInfo)")
+        completionHandler()
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        // TODO: send token to server
+    }
+
+    // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
+    // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        // TODO: check if we need it
+        print("Received data message: \(remoteMessage.appData)")
     }
 
 }
