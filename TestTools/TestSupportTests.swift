@@ -6,8 +6,8 @@ import XCTest
 @testable import safe
 import IdentityAccessApplication
 import IdentityAccessImplementations
-import EthereumDomainModel
-import EthereumImplementations
+import MultisigWalletDomainModel
+import MultisigWalletImplementations
 
 class TestSupportTests: XCTestCase {
 
@@ -83,16 +83,16 @@ class TestSupportTests: XCTestCase {
     }
 
     func test_whenMockServerResponseDelayIsSet_thenSetsIt() {
-        EthereumDomainModel.DomainRegistry.put(service: MockTransactionRelayService(averageDelay: 5, maxDeviation: 1),
+        MultisigWalletDomainModel.DomainRegistry.put(service: MockTransactionRelayService(averageDelay: 5, maxDeviation: 1),
                                                for: TransactionRelayDomainService.self)
-        EthereumDomainModel.DomainRegistry.put(service: DemoEthereumNodeService(),
+        MultisigWalletDomainModel.DomainRegistry.put(service: DemoEthereumNodeService(),
                                                for: EthereumNodeDomainService.self)
         support.setUp([ApplicationArguments.setMockServerResponseDelay, "1.0"])
-        let mockTransactionService = EthereumDomainModel.DomainRegistry.transactionRelayService as!
+        let mockTransactionService = MultisigWalletDomainModel.DomainRegistry.transactionRelayService as!
             MockTransactionRelayService
         XCTAssertEqual(mockTransactionService.averageDelay, 1)
         XCTAssertEqual(mockTransactionService.maxDeviation, 0)
-        let demoNodeService = EthereumDomainModel.DomainRegistry.ethereumNodeService as!
+        let demoNodeService = MultisigWalletDomainModel.DomainRegistry.ethereumNodeService as!
             DemoEthereumNodeService
         XCTAssertEqual(demoNodeService.delay, 1)
     }

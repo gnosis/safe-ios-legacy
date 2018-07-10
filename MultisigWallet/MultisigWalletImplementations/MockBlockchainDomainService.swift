@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import BigInt
 
 public class MockBlockchainDomainService: BlockchainDomainService {
 
@@ -11,7 +12,7 @@ public class MockBlockchainDomainService: BlockchainDomainService {
     public var shouldThrow = false
     public var didSign = false
     public var browserExtensionAddress: String?
-    private var balances = [String: Int]()
+    private var balances = [String: BigInt]()
 
     enum Error: String, LocalizedError, Hashable {
         case error
@@ -43,7 +44,7 @@ public class MockBlockchainDomainService: BlockchainDomainService {
     }
 
     @discardableResult
-    public func updateBalance(_ newBalance: Int) -> BlockchainBalanceObserverResponse? {
+    public func updateBalance(_ newBalance: BigInt) -> BlockchainBalanceObserverResponse? {
         if let input = observeBalance_input {
             return input.observer(input.account, newBalance)
         }
@@ -84,16 +85,16 @@ public class MockBlockchainDomainService: BlockchainDomainService {
     }
 
     public func fund(address: String, balance: Int) {
-        balances[address] = balance
+        balances[address] = BigInt(balance)
     }
 
-    public func balance(address: String) throws -> Int {
+    public func balance(address: String) throws -> BigInt {
         return balances[address] ?? 0
     }
 
-    public func sign(message: String, by address: String) throws -> RSVSignature {
+    public func sign(message: String, by address: String) throws -> EthSignature {
         didSign = true
-        return RSVSignature(r: "", s: "", v: 0)
+        return EthSignature(r: "", s: "", v: 0)
     }
 
     public func address(browserExtensionCode: String) -> String? {

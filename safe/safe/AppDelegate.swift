@@ -12,9 +12,6 @@ import IdentityAccessImplementations
 import MultisigWalletApplication
 import MultisigWalletDomainModel
 import MultisigWalletImplementations
-import EthereumApplication
-import EthereumImplementations
-import EthereumDomainModel
 import Database
 import Common
 import CommonImplementations
@@ -72,22 +69,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     }
 
     private func configureEthereum() {
-        EthereumApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
-                                                           for: EthereumApplicationService.self)
-        EthereumApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
-        EthereumDomainModel.DomainRegistry.put(service: EthereumImplementations.EncryptionService(),
-                                               for: EthereumDomainModel.EncryptionDomainService.self)
-        EthereumDomainModel.DomainRegistry.put(service: GnosisTransactionRelayService(),
-                                               for: TransactionRelayDomainService.self)
+        MultisigWalletApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
+                                                                 for: EthereumApplicationService.self)
+        MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: MultisigWalletImplementations.EncryptionService(),
+                                                     for: MultisigWalletDomainModel.EncryptionDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: GnosisTransactionRelayService(),
+                                                     for: TransactionRelayDomainService.self)
         secureStore = KeychainService(identifier: "pm.gnosis.safe")
-        EthereumDomainModel.DomainRegistry.put(service: SecureExternallyOwnedAccountRepository(store: secureStore!),
-                                               for: ExternallyOwnedAccountRepository.self)
-        EthereumDomainModel.DomainRegistry.put(service: InfuraEthereumNodeService(),
-                                               for: EthereumNodeDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service:
+            SecureExternallyOwnedAccountRepository(store: secureStore!),
+                                                     for: ExternallyOwnedAccountRepository.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: InfuraEthereumNodeService(),
+                                                     for: EthereumNodeDomainService.self)
     }
 
     private func connectMultisigWalletWithEthereum() {
-        let service = EthereumApplication.ApplicationServiceRegistry.ethereumService
+        let service = MultisigWalletApplication.ApplicationServiceRegistry.ethereumService
         MultisigWalletDomainModel.DomainRegistry.put(service: service, for: BlockchainDomainService.self)
     }
 

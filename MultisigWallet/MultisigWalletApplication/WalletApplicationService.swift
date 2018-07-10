@@ -5,6 +5,7 @@
 import Foundation
 import MultisigWalletDomainModel
 import Common
+import BigInt
 
 public class WalletApplicationService: Assertable {
 
@@ -247,13 +248,14 @@ public class WalletApplicationService: Assertable {
         try blockchainService.observeBalance(account: address.value, observer: didUpdateBalance(account:newBalance:))
     }
 
-    private func didUpdateBalance(account: String, newBalance: Int) -> BlockchainBalanceObserverResponse {
+    private func didUpdateBalance(account: String, newBalance: BigInt) -> BlockchainBalanceObserverResponse {
         do {
             guard [WalletState.addressKnown, WalletState.notEnoughFunds, WalletState.accountFunded]
                 .contains(selectedWalletState) else {
                 return .stopObserving
             }
-            try update(account: "ETH", newBalance: newBalance) // mutates selectedWalletState
+            // TODO: BigInt support
+            try update(account: "ETH", newBalance: Int(newBalance)) // mutates selectedWalletState
             if selectedWalletState == .accountFunded {
                 try createWalletInBlockchain()
                 return .stopObserving
@@ -318,7 +320,8 @@ public class WalletApplicationService: Assertable {
     private func fetchBalance() throws {
         let wallet = try findSelectedWallet()
         let newBalance = try blockchainService.balance(address: wallet.address!.value)
-        try update(account: "ETH", newBalance: newBalance)
+        // TODO: BigInt support
+        try update(account: "ETH", newBalance: Int(newBalance))
     }
 
     private func removePaperWallet() throws {

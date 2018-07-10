@@ -5,7 +5,7 @@
 import UIKit
 import SafeUIKit
 import IdentityAccessApplication
-import EthereumApplication
+import MultisigWalletApplication
 import MultisigWalletApplication
 
 protocol SaveMnemonicDelegate: class {

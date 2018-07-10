@@ -4,9 +4,10 @@
 
 import XCTest
 @testable import safe
-import EthereumDomainModel
-import EthereumImplementations
+import MultisigWalletDomainModel
+import MultisigWalletImplementations
 import CryptoSwift
+import BigInt
 
 class InfuraEthereumNodeServiceTests: XCTestCase {
 
@@ -14,18 +15,18 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
     let testAddress = Address(value: "0x57b2573E5FA7c7C9B5Fa82F3F03A75F53A0efdF5")
     let emptyAddress = Address(value: "0xd1776c60688a3277c7e69204849989c7dc9f5aaa")
     let notExistingTransactionHash =
-        TransactionHash(value: "0xaaaad132ec7112c08c166fbdc7f87a4e17ee00aaaa4c67eb7fde3cab53c60abe")
+        TransactionHash("0xaaaad132ec7112c08c166fbdc7f87a4e17ee00aaaa4c67eb7fde3cab53c60abe")
     let successfulTransactionHash =
-        TransactionHash(value: "0x5b448bad86b814dc7aab866f32ffc3d22f140cdcb6c24116548ede8e6e4d343b")
+        TransactionHash("0x5b448bad86b814dc7aab866f32ffc3d22f140cdcb6c24116548ede8e6e4d343b")
     let failedTransactionHash =
-        TransactionHash(value: "0x1b6efea55bb515fd8599d543f57b54ec3ed4242c887269f1a2e9e0008c15ccaf")
+        TransactionHash("0x1b6efea55bb515fd8599d543f57b54ec3ed4242c887269f1a2e9e0008c15ccaf")
 
     func test_whenAccountNotExists_thenReturnsZero() throws {
-        XCTAssertEqual(try service.eth_getBalance(account: emptyAddress), Ether.zero)
+        XCTAssertEqual(try service.eth_getBalance(account: emptyAddress), 0)
     }
 
     func test_whenBalanceCheckedInBackground_thenItIsFetched() throws {
-        var balance: Ether?
+        var balance: BigInt?
         let exp = expectation(description: "wait")
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
@@ -33,7 +34,7 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
             exp.fulfill()
         }
         waitForExpectations(timeout: 1.0, handler: nil)
-        XCTAssertEqual(balance, Ether(amount: 30_000_000_000_000_000))
+        XCTAssertEqual(balance, BigInt(30_000_000_000_000_000))
     }
 
     func test_whenExecutedOnMainThread_thenNotLocked() throws {
@@ -97,7 +98,7 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
         let receipt = try waitForTransaction(txHash)!
         XCTAssertEqual(receipt.status, .success)
         let newBalance = try service.eth_getBalance(account: destinationEOA.address)
-        XCTAssertEqual(newBalance.amount, 1)
+        XCTAssertEqual(newBalance, BigInt(1))
     }
 
     func waitForTransaction(_ transactionHash: TransactionHash) throws -> TransactionReceipt? {

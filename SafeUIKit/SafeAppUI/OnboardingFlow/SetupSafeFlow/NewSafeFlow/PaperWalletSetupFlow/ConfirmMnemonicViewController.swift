@@ -4,7 +4,7 @@
 
 import UIKit
 import SafeUIKit
-import EthereumApplication
+import MultisigWalletApplication
 import MultisigWalletApplication
 
 protocol ConfirmMnemonicDelegate: class {

@@ -5,8 +5,6 @@
 import XCTest
 @testable import safe
 import MultisigWalletDomainModel
-import EthereumDomainModel
-import EthereumImplementations
 import MultisigWalletImplementations
 import Common
 
@@ -62,20 +60,17 @@ class HTTPNotificatonServiceTests: XCTestCase {
 
     private func browserExtensionCode(expirationDate: Date) throws -> BrowserExtensionCode {
         let dateStr = DateFormatter.networkDateFormatter.string(from: expirationDate)
-
-        let (r, s, v) = try encryptionService.sign(
+        let browserExtensionSignature = try encryptionService.sign(
             message: "GNO" + dateStr, privateKey: browserExtensionEOA.privateKey)
-        let browserExtensionSignature = RSVSignature(r: r, s: s, v: v)
         return BrowserExtensionCode(
             expirationDate: expirationDate,
             signature: browserExtensionSignature,
             extensionAddress: browserExtensionEOA.address.value)
     }
 
-    private func signature() throws -> MultisigWalletDomainModel.RSVSignature {
+    private func signature() throws -> EthSignature {
         let address = browserExtensionEOA.address.value
-        let (r1, s1, v1) = try encryptionService.sign(message: "GNO" + address, privateKey: deviceEOA.privateKey)
-        return RSVSignature(r: r1, s: s1, v: v1)
+        return try encryptionService.sign(message: "GNO" + address, privateKey: deviceEOA.privateKey)
     }
 
 }
