@@ -25,16 +25,6 @@ class HTTPNotificatonServiceTests: XCTestCase {
 
     }
 
-    func test_whenGoodData_thenReturnsSomething() throws {
-        let code = try browserExtensionCode(expirationDate: Date(timeIntervalSinceNow: 5 * 60))
-        let sig = try signature()
-        let pairingRequest = PairingRequest(
-            temporaryAuthorization: code,
-            signature: sig,
-            deviceOwnerAddress: deviceEOA.address.value)
-        try notificationService.pair(pairingRequest: pairingRequest)
-    }
-
     func test_whenBrowserExtensionCodeIsExpired_thenThrowsError() throws {
         let code = try browserExtensionCode(expirationDate: Date(timeIntervalSinceNow: -5 * 60))
         let sig = try signature()
@@ -56,6 +46,26 @@ class HTTPNotificatonServiceTests: XCTestCase {
                 XCTAssertTrue(responseDataString?.range(of: "Exceeded expiration date") != nil)
             }
         }
+    }
+
+    func test_notifySafeCreated() throws {
+        try makePair()
+        let message = notificationService.safeCreatedMessage(at: "0xFF")
+        let messageSignature = try encryptionService.sign(message: "GNO" + message, privateKey: deviceEOA.privateKey)
+        let request = SendNotificationRequest(message: message,
+                                              to: browserExtensionEOA.address.value,
+                                              from: messageSignature)
+        try notificationService.send(notificationRequest: request)
+    }
+
+    private func makePair() throws {
+        let code = try browserExtensionCode(expirationDate: Date(timeIntervalSinceNow: 5 * 60))
+        let sig = try signature()
+        let pairingRequest = PairingRequest(
+            temporaryAuthorization: code,
+            signature: sig,
+            deviceOwnerAddress: deviceEOA.address.value)
+        try notificationService.pair(pairingRequest: pairingRequest)
     }
 
     private func browserExtensionCode(expirationDate: Date) throws -> BrowserExtensionCode {

@@ -305,6 +305,7 @@ public class WalletApplicationService: Assertable {
         if success {
             do {
                 try removePaperWallet()
+                try? notifySafeCreated() // TODO: handle the case
                 try markDeploymentSuccess()
                 try finishDeployment()
             } catch let error {
@@ -315,6 +316,15 @@ public class WalletApplicationService: Assertable {
             ApplicationServiceRegistry.logger.fatal("Blockchain transaction failed")
             try? markDeploymentFailed()
         }
+    }
+
+    private func notifySafeCreated() throws {
+        let sender = ownerAddress(of: .thisDevice)!
+        let recipient = ownerAddress(of: .browserExtension)!
+        let message = notificationService.safeCreatedMessage(at: selectedWalletAddress!)
+        let senderSignature = try blockchainService.sign(message: "GNO" + message, by: sender)
+        let request = SendNotificationRequest(message: message, to: recipient, from: senderSignature)
+        try notificationService.send(notificationRequest: request)
     }
 
     private func fetchBalance() throws {
