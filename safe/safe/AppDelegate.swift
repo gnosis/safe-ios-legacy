@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
+        // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
         Messaging.messaging().shouldEstablishDirectChannel = true
 
         // https://firebase.google.com/docs/cloud-messaging/ios/client
@@ -187,9 +188,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         LogService.shared.error("Failed to registed to remote notifications", error: error)
     }
 
-    // TODO: remove after debugging
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("APNs token retrieved: \(deviceToken)")
+        LogService.shared.debug("APNS received")
     }
 
 }
@@ -222,15 +222,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 extension AppDelegate: MessagingDelegate {
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
-        // TODO: send token to server
+        LogService.shared.debug("Firebase registration token: \(fcmToken)")
     }
 
     // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
     // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        // TODO: check if we need it
-        print("Received data message: \(remoteMessage.appData)")
+        LogService.shared.debug("Received data message: \(remoteMessage.appData)")
     }
 
 }

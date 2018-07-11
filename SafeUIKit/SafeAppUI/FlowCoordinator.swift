@@ -65,6 +65,7 @@ open class FlowCoordinator {
     }
 
     func exitFlow() {
+        precondition(Thread.isMainThread, "Exit flow should be called on main thread")
         flowCompletion?()
     }
 
