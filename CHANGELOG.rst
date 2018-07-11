@@ -5,6 +5,12 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`0.4.1`_ - 2018-07-11
+==========
+Changed
+-------
+- Fixed bug in safe creation arised because of API response format change.
+
 `0.4.0`_ - 2018-07-09
 ==========
 Added
@@ -85,6 +91,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _0.4.1: https://github.com/gnosis/safe-ios/tree/0.4.1
 .. _0.4.0: https://github.com/gnosis/safe-ios/tree/0.4.0
 .. _0.3.0: https://github.com/gnosis/safe-ios/tree/0.3.0
 .. _0.2.0: https://github.com/gnosis/safe-ios/tree/0.2.0
