@@ -305,7 +305,7 @@ public class WalletApplicationService: Assertable {
         if success {
             do {
                 try removePaperWallet()
-                try notifySafeCreated()
+                try? notifySafeCreated() // TODO: handle the case
                 try markDeploymentSuccess()
                 try finishDeployment()
             } catch let error {
