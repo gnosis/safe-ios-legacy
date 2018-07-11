@@ -7,7 +7,7 @@ import Foundation
 public struct BrowserExtensionCode: Codable, Equatable {
 
     let expirationDate: Date
-    let signature: RSVSignature
+    let signature: EthSignature
 
     public private(set) var extensionAddress: String?
 
@@ -20,7 +20,7 @@ public struct BrowserExtensionCode: Codable, Equatable {
         case signature
     }
 
-    public init(expirationDate: Date, signature: RSVSignature, extensionAddress: String?) {
+    public init(expirationDate: Date, signature: EthSignature, extensionAddress: String?) {
         self.expirationDate = expirationDate
         self.signature = signature
         self.extensionAddress = extensionAddress

@@ -4,8 +4,8 @@
 
 import Foundation
 import IdentityAccessApplication
-import EthereumImplementations
-import EthereumDomainModel
+import MultisigWalletImplementations
+import MultisigWalletDomainModel
 import MultisigWalletDomainModel
 import MultisigWalletImplementations
 import SafeAppUI

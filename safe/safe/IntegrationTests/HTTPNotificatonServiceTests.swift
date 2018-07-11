@@ -5,8 +5,6 @@
 import XCTest
 @testable import safe
 import MultisigWalletDomainModel
-import EthereumDomainModel
-import EthereumImplementations
 import MultisigWalletImplementations
 import Common
 
@@ -25,16 +23,6 @@ class HTTPNotificatonServiceTests: XCTestCase {
         browserExtensionEOA = try! encryptionService.generateExternallyOwnedAccount()
         deviceEOA = try! encryptionService.generateExternallyOwnedAccount()
 
-    }
-
-    func test_whenGoodData_thenReturnsSomething() throws {
-        let code = try browserExtensionCode(expirationDate: Date(timeIntervalSinceNow: 5 * 60))
-        let sig = try signature()
-        let pairingRequest = PairingRequest(
-            temporaryAuthorization: code,
-            signature: sig,
-            deviceOwnerAddress: deviceEOA.address.value)
-        try notificationService.pair(pairingRequest: pairingRequest)
     }
 
     func test_whenBrowserExtensionCodeIsExpired_thenThrowsError() throws {
@@ -60,22 +48,39 @@ class HTTPNotificatonServiceTests: XCTestCase {
         }
     }
 
+    func test_notifySafeCreated() throws {
+        try makePair()
+        let message = notificationService.safeCreatedMessage(at: "0xFF")
+        let messageSignature = try encryptionService.sign(message: "GNO" + message, privateKey: deviceEOA.privateKey)
+        let request = SendNotificationRequest(message: message,
+                                              to: browserExtensionEOA.address.value,
+                                              from: messageSignature)
+        try notificationService.send(notificationRequest: request)
+    }
+
+    private func makePair() throws {
+        let code = try browserExtensionCode(expirationDate: Date(timeIntervalSinceNow: 5 * 60))
+        let sig = try signature()
+        let pairingRequest = PairingRequest(
+            temporaryAuthorization: code,
+            signature: sig,
+            deviceOwnerAddress: deviceEOA.address.value)
+        try notificationService.pair(pairingRequest: pairingRequest)
+    }
+
     private func browserExtensionCode(expirationDate: Date) throws -> BrowserExtensionCode {
         let dateStr = DateFormatter.networkDateFormatter.string(from: expirationDate)
-
-        let (r, s, v) = try encryptionService.sign(
+        let browserExtensionSignature = try encryptionService.sign(
             message: "GNO" + dateStr, privateKey: browserExtensionEOA.privateKey)
-        let browserExtensionSignature = RSVSignature(r: r, s: s, v: v)
         return BrowserExtensionCode(
             expirationDate: expirationDate,
             signature: browserExtensionSignature,
             extensionAddress: browserExtensionEOA.address.value)
     }
 
-    private func signature() throws -> MultisigWalletDomainModel.RSVSignature {
+    private func signature() throws -> EthSignature {
         let address = browserExtensionEOA.address.value
-        let (r1, s1, v1) = try encryptionService.sign(message: "GNO" + address, privateKey: deviceEOA.privateKey)
-        return RSVSignature(r: r1, s: s1, v: v1)
+        return try encryptionService.sign(message: "GNO" + address, privateKey: deviceEOA.privateKey)
     }
 
 }

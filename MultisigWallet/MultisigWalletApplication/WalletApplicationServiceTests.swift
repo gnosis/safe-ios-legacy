@@ -8,6 +8,7 @@ import MultisigWalletImplementations
 import MultisigWalletDomainModel
 import Common
 import CommonTestSupport
+import BigInt
 
 class WalletApplicationServiceTests: XCTestCase {
 
@@ -241,9 +242,9 @@ class WalletApplicationServiceTests: XCTestCase {
         try service.startDeployment()
         let account = try findAccount("ETH")
         let requiredBalance = account.minimumDeploymentTransactionAmount
-        let response1 = blockchainService.updateBalance(requiredBalance - 1)
+        let response1 = blockchainService.updateBalance(BigInt(requiredBalance - 1))
         XCTAssertEqual(response1, .continueObserving)
-        let response2 = blockchainService.updateBalance(requiredBalance)
+        let response2 = blockchainService.updateBalance(BigInt(requiredBalance))
         XCTAssertEqual(response2, .stopObserving)
     }
 
@@ -388,11 +389,30 @@ class WalletApplicationServiceTests: XCTestCase {
         }
     }
 
+
     // - MARK: Auth with Push Token
 
     func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {
         try service.authWithPushToken("token")
         XCTAssertTrue(notificationService.didAuth)
+    }
+
+    // - MARK: Notify on Safe Creation
+
+    func test_whenFinishesDeployment_thenNotifiesExtensionOfSafeCreated() throws {
+        createPortfolio()
+        try service.createNewDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        blockchainService.updateBalance(100)
+
+        let walletAddress = service.selectedWalletAddress!
+        let message = notificationService.safeCreatedMessage(at: walletAddress)
+        let extensionAddress = service.ownerAddress(of: .browserExtension)!
+        let deviceAddress = service.ownerAddress(of: .thisDevice)!
+        XCTAssertEqual(notificationService.sentMessages, ["to:\(extensionAddress) msg:\(message)"])
+        XCTAssertEqual(blockchainService.sign_input?.message, "GNO" + message)
+        XCTAssertEqual(blockchainService.sign_input?.signingAddress, deviceAddress)
     }
 
 }

@@ -124,41 +124,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A30672F20A5C7560059F521"
-               BuildableName = "EthereumApplicationTests.xctest"
-               BlueprintName = "EthereumApplicationTests"
-               ReferencedContainer = "container:../Ethereum/Ethereum.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A30671520A5C73A0059F521"
-               BuildableName = "EthereumDomainModelTests.xctest"
-               BlueprintName = "EthereumDomainModelTests"
-               ReferencedContainer = "container:../Ethereum/Ethereum.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A30674920A5C7740059F521"
-               BuildableName = "EthereumImplementationsTests.xctest"
-               BlueprintName = "EthereumImplementationsTests"
-               ReferencedContainer = "container:../Ethereum/Ethereum.xcodeproj">
-            </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "GnosisTransactionRelayServiceTests">
-               </Test>
-            </SkippedTests>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "0AEF8A9A20A088A5006A1265"
                BuildableName = "MultisigWalletApplicationTests.xctest"
                BlueprintName = "MultisigWalletApplicationTests"

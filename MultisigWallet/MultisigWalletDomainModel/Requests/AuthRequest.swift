@@ -7,9 +7,9 @@ import Foundation
 public struct AuthRequest: Codable, Equatable {
 
     public let pushToken: String
-    public let signature: RSVSignature
+    public let signature: EthSignature
 
-    public init(pushToken: String, signature: RSVSignature) {
+    public init(pushToken: String, signature: EthSignature) {
         self.pushToken = pushToken
         self.signature = signature
     }

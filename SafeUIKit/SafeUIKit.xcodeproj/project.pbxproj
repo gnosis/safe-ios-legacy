@@ -99,7 +99,6 @@
 		0A53AD5320598B5000D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD5520598B5000D713AD /* Localizable.strings */; };
 		0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */; };
 		0A59E90220AAE24A0090E89C /* TestFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */; };
-		0A59E91E20AB15E30090E89C /* libEthereumApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A59E91D20AB15E30090E89C /* libEthereumApplication.a */; };
 		0A5D2F1320D7A8E5009E9918 /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0ECF20CE678700424CEE /* SipHash.framework */; };
 		0A5D2F1420D7A8E5009E9918 /* SipHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0ECF20CE678700424CEE /* SipHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A5D2F1720D7A8FE009E9918 /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0EBA20CE62C400424CEE /* BigInt.framework */; };
@@ -484,7 +483,6 @@
 		0A53AD5420598B5000D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD5620598B5E00D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFlowCoordinator.swift; sourceTree = "<group>"; };
-		0A59E91D20AB15E30090E89C /* libEthereumApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEthereumApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A5D467420AD6D8200AC287E /* UIAlertController+Testable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Testable.swift"; sourceTree = "<group>"; };
 		0A5D467A20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbortSafeCreationAlertController.swift; sourceTree = "<group>"; };
 		0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationFailedAlertController.swift; sourceTree = "<group>"; };
@@ -626,7 +624,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AD8FD2F20CEC50500591B91 /* BlockiesSwift.framework in Frameworks */,
-				0A59E91E20AB15E30090E89C /* libEthereumApplication.a in Frameworks */,
 				0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */,
 				0A334E64209C8ED300ABC6AE /* libIdentityAccessApplication.a in Frameworks */,
 				0A334DCA209C6DEC00ABC6AE /* SafeUIKit.framework in Frameworks */,
@@ -750,7 +747,6 @@
 			isa = PBXGroup;
 			children = (
 				55A7B2B220ECE2940035EF38 /* libCommon.a */,
-				0A59E91D20AB15E30090E89C /* libEthereumApplication.a */,
 				0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */,
 				0A334E63209C8ED300ABC6AE /* libIdentityAccessApplication.a */,
 				0A334DE8209C894D00ABC6AE /* libIdentityAccessApplication.a */,

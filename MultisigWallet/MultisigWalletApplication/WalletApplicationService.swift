@@ -5,6 +5,7 @@
 import Foundation
 import MultisigWalletDomainModel
 import Common
+import BigInt
 
 public class WalletApplicationService: Assertable {
 
@@ -247,13 +248,14 @@ public class WalletApplicationService: Assertable {
         try blockchainService.observeBalance(account: address.value, observer: didUpdateBalance(account:newBalance:))
     }
 
-    private func didUpdateBalance(account: String, newBalance: Int) -> BlockchainBalanceObserverResponse {
+    private func didUpdateBalance(account: String, newBalance: BigInt) -> BlockchainBalanceObserverResponse {
         do {
             guard [WalletState.addressKnown, WalletState.notEnoughFunds, WalletState.accountFunded]
                 .contains(selectedWalletState) else {
                 return .stopObserving
             }
-            try update(account: "ETH", newBalance: newBalance) // mutates selectedWalletState
+            // TODO: BigInt support
+            try update(account: "ETH", newBalance: Int(newBalance)) // mutates selectedWalletState
             if selectedWalletState == .accountFunded {
                 try createWalletInBlockchain()
                 return .stopObserving
@@ -303,6 +305,7 @@ public class WalletApplicationService: Assertable {
         if success {
             do {
                 try removePaperWallet()
+                try? notifySafeCreated() // TODO: handle the case
                 try markDeploymentSuccess()
                 try finishDeployment()
             } catch let error {
@@ -315,10 +318,20 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    private func notifySafeCreated() throws {
+        let sender = ownerAddress(of: .thisDevice)!
+        let recipient = ownerAddress(of: .browserExtension)!
+        let message = notificationService.safeCreatedMessage(at: selectedWalletAddress!)
+        let senderSignature = try blockchainService.sign(message: "GNO" + message, by: sender)
+        let request = SendNotificationRequest(message: message, to: recipient, from: senderSignature)
+        try notificationService.send(notificationRequest: request)
+    }
+
     private func fetchBalance() throws {
         let wallet = try findSelectedWallet()
         let newBalance = try blockchainService.balance(address: wallet.address!.value)
-        try update(account: "ETH", newBalance: newBalance)
+        // TODO: BigInt support
+        try update(account: "ETH", newBalance: Int(newBalance))
     }
 
     private func removePaperWallet() throws {
@@ -545,7 +558,7 @@ public class WalletApplicationService: Assertable {
     // MARK: - Notifications
 
     public func authWithPushToken(_ token: String) throws {
-        let authRequest = AuthRequest(pushToken: token, signature: RSVSignature(r: "", s: "", v: 27))
+        let authRequest = AuthRequest(pushToken: token, signature: EthSignature(r: "", s: "", v: 27))
         try notificationService.auth(request: authRequest)        
     }
 

@@ -7,7 +7,7 @@ import Foundation
 public struct PairingRequest: Codable, Equatable {
 
     public let temporaryAuthorization: BrowserExtensionCode
-    public let signature: RSVSignature
+    public let signature: EthSignature
     public private(set) var deviceOwnerAddress: String?
 
     enum CodingKeys: String, CodingKey {
@@ -15,7 +15,7 @@ public struct PairingRequest: Codable, Equatable {
         case signature
     }
 
-    public init(temporaryAuthorization: BrowserExtensionCode, signature: RSVSignature, deviceOwnerAddress: String?) {
+    public init(temporaryAuthorization: BrowserExtensionCode, signature: EthSignature, deviceOwnerAddress: String?) {
         self.temporaryAuthorization = temporaryAuthorization
         self.signature = signature
         self.deviceOwnerAddress = deviceOwnerAddress

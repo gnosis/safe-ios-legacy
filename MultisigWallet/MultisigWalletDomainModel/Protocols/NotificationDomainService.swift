@@ -12,5 +12,7 @@ public protocol NotificationDomainService {
 
     func pair(pairingRequest: PairingRequest) throws
     func auth(request: AuthRequest) throws
+    func send(notificationRequest: SendNotificationRequest) throws
+    func safeCreatedMessage(at address: String) -> String
 
 }

@@ -16,6 +16,7 @@ public final class MockNotificationService: NotificationDomainService {
     public var shouldThrowNetworkError = false
     public var shouldThrowValidationFailedError = false
     public var delay: TimeInterval
+    public var sentMessages: [String] = []
 
     public init(delay: TimeInterval = 0) {
         self.delay = delay
@@ -40,6 +41,14 @@ public final class MockNotificationService: NotificationDomainService {
             throw NotificationDomainServiceError.validationFailed
         }
         if shouldThrow { throw TestError.error }
+    }
+
+    public func send(notificationRequest: SendNotificationRequest) throws {
+        sentMessages.append("to:\(notificationRequest.devices.first!) msg:\(notificationRequest.message)")
+    }
+
+    public func safeCreatedMessage(at address: String) -> String {
+        return "SafeCreatedMessage_\(address)"
     }
 
 }
