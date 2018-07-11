@@ -32,8 +32,8 @@ public final class MockNotificationService: NotificationDomainService {
         didPair = true
     }
 
-    public func send(message: String, to address: String, from signature: EthSignature) throws {
-        sentMessages.append("to:\(address) msg:\(message)")
+    public func send(notificationRequest: SendNotificationRequest) throws {
+        sentMessages.append("to:\(notificationRequest.devices.first!) msg:\(notificationRequest.message)")
     }
 
     public func safeCreatedMessage(at address: String) -> String {

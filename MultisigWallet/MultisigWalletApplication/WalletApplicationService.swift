@@ -323,7 +323,8 @@ public class WalletApplicationService: Assertable {
         let recipient = ownerAddress(of: .browserExtension)!
         let message = notificationService.safeCreatedMessage(at: selectedWalletAddress!)
         let senderSignature = try blockchainService.sign(message: "GNO" + message, by: sender)
-        try notificationService.send(message: message, to: recipient, from: senderSignature)
+        let request = SendNotificationRequest(message: message, to: recipient, from: senderSignature)
+        try notificationService.send(notificationRequest: request)
     }
 
     private func fetchBalance() throws {

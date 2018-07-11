@@ -52,7 +52,10 @@ class HTTPNotificatonServiceTests: XCTestCase {
         try makePair()
         let message = notificationService.safeCreatedMessage(at: "0xFF")
         let messageSignature = try encryptionService.sign(message: "GNO" + message, privateKey: deviceEOA.privateKey)
-        try notificationService.send(message: message, to: browserExtensionEOA.address.value, from: messageSignature)
+        let request = SendNotificationRequest(message: message,
+                                              to: browserExtensionEOA.address.value,
+                                              from: messageSignature)
+        try notificationService.send(notificationRequest: request)
     }
 
     private func makePair() throws {

@@ -23,9 +23,8 @@ final public class HTTPNotificationService: NotificationDomainService {
         }
     }
 
-    public func send(message: String, to address: String, from signature: EthSignature) throws {
-        let request = SendNotificationRequest(devices: [address], message: message, signature: signature)
-        try httpClient.execute(request: request)
+    public func send(notificationRequest: SendNotificationRequest) throws {
+        try httpClient.execute(request: notificationRequest)
     }
 
     public func safeCreatedMessage(at address: String) -> String {
@@ -54,20 +53,10 @@ extension PairingRequest: JSONRequest {
 
 }
 
-struct SendNotificationRequest: Encodable {
-
-    var devices: [String]
-    var message: String
-    var signature: EthSignature
-
-    struct EmptyResponse: Decodable {}
-
-}
-
 extension SendNotificationRequest: JSONRequest {
 
-    var httpMethod: String { return "POST" }
-    var urlPath: String { return "/api/v1/notifications/" }
-    typealias ResponseType = EmptyResponse
+    public var httpMethod: String { return "POST" }
+    public var urlPath: String { return "/api/v1/notifications/" }
+    public typealias ResponseType = EmptyResponse
 
 }
