@@ -24,7 +24,7 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
 
     public func safeCreationTransactionHash(address: Address) throws -> TransactionHash? {
         let response = try httpClient.execute(request: GetSafeCreationStatusRequest(safeAddress: address.value))
-        guard let hash = response.safeDeployedTxHash?.addHexPrefix() else { return nil }
+        guard let hash = response.safeDeployedTxHash else { return nil }
         return TransactionHash(hash)
     }
 
