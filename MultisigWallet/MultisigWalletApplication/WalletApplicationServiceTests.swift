@@ -387,6 +387,22 @@ class WalletApplicationServiceTests: XCTestCase {
         }
     }
 
+    func test_whenFinishesDeployment_thenNotifiesExtensionOfSafeCreated() throws {
+        createPortfolio()
+        try service.createNewDraftWallet()
+        try addAllOwners()
+        try service.startDeployment()
+        blockchainService.updateBalance(100)
+
+        let walletAddress = service.selectedWalletAddress!
+        let message = notificationService.safeCreatedMessage(at: walletAddress)
+        let extensionAddress = service.ownerAddress(of: .browserExtension)!
+        let deviceAddress = service.ownerAddress(of: .thisDevice)!
+        XCTAssertEqual(notificationService.sentMessages, ["to:\(extensionAddress) msg:\(message)"])
+        XCTAssertEqual(blockchainService.sign_input?.message, "GNO" + message)
+        XCTAssertEqual(blockchainService.sign_input?.signingAddress, deviceAddress)
+    }
+
 }
 
 class MockWalletRepository: InMemoryWalletRepository {

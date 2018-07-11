@@ -11,5 +11,8 @@ public enum NotificationDomainServiceError: String, LocalizedError, Hashable {
 public protocol NotificationDomainService {
 
     func pair(pairingRequest: PairingRequest) throws
+    func send(message: String, to address: String, from signature: EthSignature) throws
+
+    func safeCreatedMessage(at address: String) -> String
 
 }

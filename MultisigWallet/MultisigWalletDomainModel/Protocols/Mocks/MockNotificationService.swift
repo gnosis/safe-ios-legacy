@@ -14,6 +14,7 @@ public final class MockNotificationService: NotificationDomainService {
     public var shouldThrowNetworkError = false
     public var shouldThrowValidationFailedError = false
     public var delay: TimeInterval
+    public var sentMessages: [String] = []
 
     public init(delay: TimeInterval = 0) {
         self.delay = delay
@@ -29,6 +30,14 @@ public final class MockNotificationService: NotificationDomainService {
         }
         if shouldThrow { throw TestError.error }
         didPair = true
+    }
+
+    public func send(message: String, to address: String, from signature: EthSignature) throws {
+        sentMessages.append("to:\(address) msg:\(message)")
+    }
+
+    public func safeCreatedMessage(at address: String) -> String {
+        return "SafeCreatedMessage_\(address)"
     }
 
 }

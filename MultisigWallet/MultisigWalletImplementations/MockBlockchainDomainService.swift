@@ -10,8 +10,10 @@ public class MockBlockchainDomainService: BlockchainDomainService {
 
     public var generatedAccountAddress: String = "address"
     public var shouldThrow = false
-    public var didSign = false
+    public var didSign: Bool { return sign_input != nil }
     public var browserExtensionAddress: String?
+    public var signedMessage: String?
+    public var signingAddress: String?
     private var balances = [String: BigInt]()
 
     enum Error: String, LocalizedError, Hashable {
@@ -92,9 +94,12 @@ public class MockBlockchainDomainService: BlockchainDomainService {
         return balances[address] ?? 0
     }
 
+    public var sign_input: (message: String, signingAddress: String)?
+    public var sign_output = EthSignature(r: "", s: "", v: 0)
+
     public func sign(message: String, by address: String) throws -> EthSignature {
-        didSign = true
-        return EthSignature(r: "", s: "", v: 0)
+        sign_input = (message, address)
+        return sign_output
     }
 
     public func address(browserExtensionCode: String) -> String? {
