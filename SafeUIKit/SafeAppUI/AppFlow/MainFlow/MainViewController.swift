@@ -3,7 +3,10 @@
 //
 
 import UIKit
-import MultisigWalletApplication
+
+public protocol MainViewControllerDelegate: class {
+    func mainViewDidAppear()
+}
 
 public class MainViewController: UIViewController {
 
@@ -11,13 +14,17 @@ public class MainViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var receiveButton: UIButton!
 
+    private weak var delegate: MainViewControllerDelegate?
+
     private enum Strings {
         static let send = LocalizedString("main.send", comment: "Send button title")
         static let receive = LocalizedString("main.receive", comment: "Receive button title")
     }
 
-    public static func create() -> MainViewController {
-        return StoryboardScene.Main.mainViewController.instantiate()
+    public static func create(delegate: MainViewControllerDelegate) -> MainViewController {
+        let controller = StoryboardScene.Main.mainViewController.instantiate()
+        controller.delegate = delegate
+        return controller
     }
 
     public override func viewDidLoad() {
@@ -29,7 +36,7 @@ public class MainViewController: UIViewController {
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UIApplication.shared.requestRemoteNotificationsRegistration()
+        delegate?.mainViewDidAppear()
     }
 
     private func stylize(button: UIButton) {

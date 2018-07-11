@@ -365,6 +365,8 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertNotNil(blockchainService.observeBalance_input)
     }
 
+    // - MARK: Pairing with Browser Extension
+
     func test_whenAddingBrowserExtensionOwner_thenWorksProperly() throws {
         givenDraftWallet()
         try service.addBrowserExtensionOwner(
@@ -384,6 +386,13 @@ class WalletApplicationServiceTests: XCTestCase {
                 browserExtensionCode: BrowserExtensionFixture.testJSON)) { error in
                     XCTAssertEqual(error as! WalletApplicationService.Error, .unknownError)
         }
+    }
+
+    // - MARK: Auth with Push Token
+
+    func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {
+        try service.authWithPushToken("token")
+        XCTAssertTrue(notificationService.didAuth)
     }
 
 }

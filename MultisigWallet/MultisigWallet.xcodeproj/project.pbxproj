@@ -73,6 +73,7 @@
 		555C94AA20E3868900A0621D /* PairingRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94A920E3868900A0621D /* PairingRequestTests.swift */; };
 		555C94AF20E3924C00A0621D /* MockNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94AD20E3920600A0621D /* MockNotificationService.swift */; };
 		555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94BB20E4E35200A0621D /* HTTPNotificatonService.swift */; };
+		55D0773E20F62F2100EBFAB9 /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773D20F62F2100EBFAB9 /* AuthRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,6 +297,7 @@
 		555C94A920E3868900A0621D /* PairingRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingRequestTests.swift; sourceTree = "<group>"; };
 		555C94AD20E3920600A0621D /* MockNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationService.swift; sourceTree = "<group>"; };
 		555C94BB20E4E35200A0621D /* HTTPNotificatonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPNotificatonService.swift; sourceTree = "<group>"; };
+		55D0773D20F62F2100EBFAB9 /* AuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -392,6 +394,7 @@
 		0AEF8A7720A08878006A1265 /* MultisigWalletDomainModel */ = {
 			isa = PBXGroup;
 			children = (
+				55D0774620F637E000EBFAB9 /* Requests */,
 				0AEF8A8520A08889006A1265 /* Tests-Info.plist */,
 				0A76BE5920AF0CB500D07770 /* Account.swift */,
 				0A23C80E20A1B35D00C72483 /* BlockchainAddress.swift */,
@@ -400,8 +403,6 @@
 				0A76BE5420AEF31000D07770 /* DomainRegistry.swift */,
 				0A76BE5620AEF35C00D07770 /* DomainRegistryTests.swift */,
 				0A23C80C20A1B34900C72483 /* Owner.swift */,
-				555C94A720E385DB00A0621D /* PairingRequest.swift */,
-				555C94A920E3868900A0621D /* PairingRequestTests.swift */,
 				0A23C82020A1CF1D00C72483 /* Portfolio.swift */,
 				0A23C81A20A1CEDA00C72483 /* PortfolioTests.swift */,
 				555C949A20E2A62D00A0621D /* Signature.swift */,
@@ -497,6 +498,16 @@
 				555C94AD20E3920600A0621D /* MockNotificationService.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		55D0774620F637E000EBFAB9 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				555C94A720E385DB00A0621D /* PairingRequest.swift */,
+				555C94A920E3868900A0621D /* PairingRequestTests.swift */,
+				55D0773D20F62F2100EBFAB9 /* AuthRequest.swift */,
+			);
+			path = Requests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -814,6 +825,7 @@
 				0AAA174720E26E90003B35B3 /* TransactionRepository.swift in Sources */,
 				0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */,
 				555C94A820E385DB00A0621D /* PairingRequest.swift in Sources */,
+				55D0773E20F62F2100EBFAB9 /* AuthRequest.swift in Sources */,
 				555C949820E2A60F00A0621D /* SinglePortfolioRepository.swift in Sources */,
 				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,

@@ -11,6 +11,8 @@ final public class HTTPNotificationService: NotificationDomainService {
     private let httpClient = JSONHTTPClient(url: Keys.notificationServiceURL,
                                             logger: MockLogger())
 
+    public init() {}
+
     public func pair(pairingRequest: PairingRequest) throws {
         let response = try httpClient.execute(request: pairingRequest)
         let browserExtensionAddress = pairingRequest.temporaryAuthorization.extensionAddress!
@@ -21,7 +23,9 @@ final public class HTTPNotificationService: NotificationDomainService {
         }
     }
 
-    public init() {}
+    public func auth(request: AuthRequest) throws {
+        // TODO
+    }
 
 }
 

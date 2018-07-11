@@ -542,4 +542,11 @@ public class WalletApplicationService: Assertable {
         statusUpdateHandlers.values.forEach { $0() }
     }
 
+    // MARK: - Notifications
+
+    public func authWithPushToken(_ token: String) throws {
+        let authRequest = AuthRequest(pushToken: token, signature: RSVSignature(r: "", s: "", v: 27))
+        try notificationService.auth(request: authRequest)        
+    }
+
 }

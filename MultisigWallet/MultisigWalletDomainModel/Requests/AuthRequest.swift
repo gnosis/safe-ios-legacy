@@ -1,0 +1,17 @@
+//
+//  Copyright © 2018 Gnosis Ltd. All rights reserved.
+//
+
+import Foundation
+
+public struct AuthRequest: Codable, Equatable {
+
+    public let pushToken: String
+    public let signature: RSVSignature
+
+    public init(pushToken: String, signature: RSVSignature) {
+        self.pushToken = pushToken
+        self.signature = signature
+    }
+
+}

@@ -10,6 +10,8 @@ import Common
 public final class MockNotificationService: NotificationDomainService {
 
     public var didPair = false
+    public var didAuth = false
+
     public var shouldThrow = false
     public var shouldThrowNetworkError = false
     public var shouldThrowValidationFailedError = false
@@ -21,6 +23,16 @@ public final class MockNotificationService: NotificationDomainService {
 
     public func pair(pairingRequest: PairingRequest) throws {
         Timer.wait(delay)
+        try throwIfNeeded()
+        didPair = true
+    }
+
+    public func auth(request: AuthRequest) throws {
+        Timer.wait(delay)
+        didAuth = true
+    }
+
+    private func throwIfNeeded() throws {
         if shouldThrowNetworkError {
             throw JSONHTTPClient.Error.networkRequestFailed(URLRequest(url: URL(string: "http://test.url")!), nil, nil)
         }
@@ -28,7 +40,6 @@ public final class MockNotificationService: NotificationDomainService {
             throw NotificationDomainServiceError.validationFailed
         }
         if shouldThrow { throw TestError.error }
-        didPair = true
     }
 
 }
