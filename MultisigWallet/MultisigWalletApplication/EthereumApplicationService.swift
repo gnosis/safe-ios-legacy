@@ -53,16 +53,16 @@ open class EthereumApplicationService: Assertable {
 
     open func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccountData {
         let account = try encryptionService.generateExternallyOwnedAccount()
-        try eoaRepository.save(account)
+        eoaRepository.save(account)
         return account.applicationServiceData
     }
 
     open func removeExternallyOwnedAccount(address: String) throws {
-        try eoaRepository.remove(address: Address(value: address))
+        eoaRepository.remove(address: Address(value: address))
     }
 
     open func findExternallyOwnedAccount(by address: String) throws -> ExternallyOwnedAccountData? {
-        guard let account = try eoaRepository.find(by: Address(value: address)) else {
+        guard let account = eoaRepository.find(by: Address(value: address)) else {
             return nil
         }
         return account.applicationServiceData
@@ -139,7 +139,7 @@ open class EthereumApplicationService: Assertable {
     }
 
     open func sign(message: String, by address: String) throws -> (r: String, s: String, v: Int) {
-        guard let eoa = try eoaRepository.find(by: Address(value: address)) else {
+        guard let eoa = eoaRepository.find(by: Address(value: address)) else {
             throw Error.eoaNotFound
         }
         let signature = try encryptionService.sign(message: message, privateKey: eoa.privateKey)

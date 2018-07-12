@@ -14,22 +14,22 @@ public class SecureExternallyOwnedAccountRepository: ExternallyOwnedAccountRepos
         self.store = store
     }
 
-    /// throws if account already exists
-    public func save(_ account: ExternallyOwnedAccount) throws {
+    /// NOTE: will throw exception if account already exists
+    public func save(_ account: ExternallyOwnedAccount) {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .binary
-        let data = try encoder.encode(account.dataStruct)
-        try store.save(data: data, forKey: account.address.value)
+        let data = try! encoder.encode(account.dataStruct)
+        try! store.save(data: data, forKey: account.address.value)
     }
 
-    public func remove(address: Address) throws {
-        try store.removeData(forKey: address.value)
+    public func remove(address: Address) {
+        try! store.removeData(forKey: address.value)
     }
 
-    public func find(by address: Address) throws -> ExternallyOwnedAccount? {
-        guard let data = try store.data(forKey: address.value) else { return nil }
+    public func find(by address: Address) -> ExternallyOwnedAccount? {
+        guard let data = try! store.data(forKey: address.value) else { return nil }
         let decoder = PropertyListDecoder()
-        let dataStruct = try decoder.decode(ExternallyOwnedAccountData.self, from: data)
+        let dataStruct = try! decoder.decode(ExternallyOwnedAccountData.self, from: data)
         return ExternallyOwnedAccount(dataStruct: dataStruct)
     }
 

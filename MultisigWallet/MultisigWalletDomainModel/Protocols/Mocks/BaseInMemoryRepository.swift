@@ -16,7 +16,7 @@ open class BaseInMemoryRepository<T: IdentifiableEntity<U>, U: Hashable> {
     }
 
     open func remove(_ item: T) {
-        if let foundItem = try findByID(item.id) {
+        if let foundItem = findByID(item.id) {
             items.remove(foundItem)
         }
     }

@@ -6,8 +6,8 @@ import Foundation
 
 public protocol AccountRepository {
 
-    func save(_ account: Account) throws
-    func remove(_ account: Account) throws
-    func find(id: AccountID, walletID: WalletID) throws -> Account?
+    func save(_ account: Account)
+    func remove(_ account: Account)
+    func find(id: AccountID, walletID: WalletID) -> Account?
 
 }

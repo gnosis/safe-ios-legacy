@@ -105,7 +105,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
 
     func test_whenSignsMessage_thenSignatureIsCorrect() throws {
         let pk = PrivateKey(data: Data(repeating: 1, count: 32))
-        try eoaRepository.save(ExternallyOwnedAccount(
+        eoaRepository.save(ExternallyOwnedAccount(
             address: Address(value: "signer"),
             mnemonic: Mnemonic(words: ["test"]),
             privateKey: pk,
