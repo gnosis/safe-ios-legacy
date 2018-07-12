@@ -21,44 +21,31 @@ class PortfolioTests: XCTestCase {
         wallet2 = Wallet(id: WalletID(), owner: owner, kind: "kind")
     }
 
-    func test_whenCreated_thenHasID() throws {
+    func test_whenCreated_thenHasID() {
         XCTAssertNotNil(portfolio.id)
     }
 
-    func test_whenFirstWalletAdded_thenItIsSelected() throws {
-        try portfolio.addWallet(wallet.id)
+    func test_whenFirstWalletAdded_thenItIsSelected() {
+        portfolio.addWallet(wallet.id)
         XCTAssertEqual(portfolio.selectedWallet, wallet.id)
     }
 
-    func test_whenAddingExistingWallet_thenThrows() throws {
-        try portfolio.addWallet(wallet.id)
-        XCTAssertThrowsError(try portfolio.addWallet(wallet.id))
-    }
-
-    func test_whenRemovingWallet_thenRemoves() throws {
-        try portfolio.addWallet(wallet.id)
-        try portfolio.removeWallet(wallet.id)
+    func test_whenRemovingWallet_thenRemoves() {
+        portfolio.addWallet(wallet.id)
+        portfolio.removeWallet(wallet.id)
         XCTAssertNil(portfolio.selectedWallet)
     }
 
-    func test_whenAddingMultipleWallets_thenCanFetchAll() throws {
-        try portfolio.addWallet(wallet1.id)
-        try portfolio.addWallet(wallet2.id)
+    func test_whenAddingMultipleWallets_thenCanFetchAll() {
+        portfolio.addWallet(wallet1.id)
+        portfolio.addWallet(wallet2.id)
         XCTAssertEqual(portfolio.wallets, [wallet1.id, wallet2.id])
     }
 
-    func test_whenRemovingInexistingWallet_thenThrows() throws {
-        XCTAssertThrowsError(try portfolio.removeWallet(wallet.id))
-    }
-
-    func test_whenSelectingInexistingWallet_thenThrows() throws {
-        XCTAssertThrowsError(try portfolio.selectWallet(wallet.id))
-    }
-
-    func test_whenSelectingWallet_thenItIsSelected() throws {
-        try portfolio.addWallet(wallet1.id)
-        try portfolio.addWallet(wallet2.id)
-        try portfolio.selectWallet(wallet2.id)
+    func test_whenSelectingWallet_thenItIsSelected() {
+        portfolio.addWallet(wallet1.id)
+        portfolio.addWallet(wallet2.id)
+        portfolio.selectWallet(wallet2.id)
         XCTAssertEqual(portfolio.selectedWallet, wallet2.id)
     }
 
