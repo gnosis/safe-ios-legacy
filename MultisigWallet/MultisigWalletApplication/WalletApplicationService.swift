@@ -562,6 +562,7 @@ public class WalletApplicationService: Assertable {
     // MARK: - Notifications
 
     public func auth() throws {
+        precondition(!Thread.isMainThread)
         guard let pushToken = tokensService.pushToken() else { return }
         precondition(ownerAddress(of: .thisDevice) != nil,
                      "Owner device should have identity at the moment of calling auth()")

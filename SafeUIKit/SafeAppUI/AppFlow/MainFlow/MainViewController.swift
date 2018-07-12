@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import Common
 
 public protocol MainViewControllerDelegate: class {
     func mainViewDidAppear()
@@ -36,7 +37,11 @@ public class MainViewController: UIViewController {
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        delegate?.mainViewDidAppear()
+        // Without async appearing animations is not finished yet, but we call in delegate
+        // system push notifications alert. This causes wrong views displaying.
+        DispatchQueue.main.async {
+            self.delegate?.mainViewDidAppear()
+        }
     }
 
     private func stylize(button: UIButton) {

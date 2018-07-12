@@ -10,6 +10,7 @@ import CommonImplementations
 final class TokensService: TokensDomainService {
 
     func pushToken() -> String? {
+        precondition(!Thread.isMainThread)
         let semaphore = DispatchSemaphore(value: 0)
         var token: String?
         InstanceID.instanceID().instanceID { result, error in

@@ -5,6 +5,7 @@
 import UIKit
 import SafeUIKit
 import MultisigWalletApplication
+import Common
 
 public protocol PendingSafeViewControllerDelegate: class {
     func deploymentDidFail()
@@ -122,6 +123,7 @@ public class PendingSafeViewController: UIViewController {
                 self.delegate?.deploymentDidFail()
             case .deploymentSuccess:
                 self.update(progress: 1.0, status: Strings.Status.deploymentSuccess)
+                Timer.wait(0.5)
                 self.delegate?.deploymentDidSuccess()
             default: break
             }

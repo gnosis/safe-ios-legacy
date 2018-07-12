@@ -23,10 +23,12 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
 
     func mainViewDidAppear() {
         UIApplication.shared.requestRemoteNotificationsRegistration()
-        do {
-            try walletService.auth()
-        } catch let e {
-            MultisigWalletApplication.ApplicationServiceRegistry.logger.debug("Error in auth()", error: e)
+        DispatchQueue.global().async {
+            do {
+                try self.walletService.auth()
+            } catch let e {
+                MultisigWalletApplication.ApplicationServiceRegistry.logger.debug("Error in auth()", error: e)
+            }
         }
     }
 

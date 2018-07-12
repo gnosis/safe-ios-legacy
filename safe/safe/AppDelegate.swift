@@ -204,7 +204,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let userInfo = notification.request.content.userInfo
         print("userInfo: \(userInfo)")
         completionHandler([])
-
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -216,6 +215,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print("userInfo: \(userInfo)")
         completionHandler()
     }
+
 }
 
 extension AppDelegate: MessagingDelegate {
