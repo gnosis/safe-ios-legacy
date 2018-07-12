@@ -55,19 +55,12 @@ class EncryptionServiceTests: XCTestCase {
         XCTAssertNil(address)
     }
 
-    func test_whenMnemonicNotEnough_thenThrows() {
-        let ethereumService = MockEthereumService()
-        ethereumService.mnemonic = []
-        encryptionService = EncryptionService(chainId: .mainnet, ethereumService: ethereumService)
-        XCTAssertThrowsError(try encryptionService.generateExternallyOwnedAccount())
-    }
-
     func test_whenExternallyOwnedAccountCreated_thenItIsCorrect() throws {
         let expectedAccount = ExternallyOwnedAccount.testAccount
         let ethereumService = CustomWordsEthereumService(words: expectedAccount.mnemonic.words)
         encryptionService = EncryptionService(chainId: .mainnet, ethereumService: ethereumService)
 
-        let account = try encryptionService.generateExternallyOwnedAccount()
+        let account = encryptionService.generateExternallyOwnedAccount()
 
         XCTAssertEqual(account, expectedAccount)
         XCTAssertEqual(account.address, expectedAccount.address)
@@ -82,7 +75,7 @@ class EncryptionServiceTests: XCTestCase {
         let message = "Gnosis"
         encryptionService = EncryptionService(chainId: .mainnet)
 
-        let ethSignature = try encryptionService.sign(message: message, privateKey: privateKey)
+        let ethSignature = encryptionService.sign(message: message, privateKey: privateKey)
         XCTAssertEqual(ethSignature.r, "101211893217270431722518027522228002686666504049250244774157670632781156043183")
         XCTAssertEqual(ethSignature.s, "51602277827206092161359189523869407094850301206236947198082645428468309668322")
         XCTAssertEqual(ethSignature.v, 37)
@@ -105,8 +98,8 @@ class EncryptionServiceTests: XCTestCase {
 
     func test_whenExtractingContractAddress_thenVerifiesSignature() throws {
         encryptionService = EncryptionService(chainId: .any)
-        let result = try encryptionService.contractAddress(from: ContractAddressFixture.signature,
-                                                           for: ContractAddressFixture.transaction)
+        let result = encryptionService.contractAddress(from: ContractAddressFixture.signature,
+                                                       for: ContractAddressFixture.transaction)
         XCTAssertEqual(result, ContractAddressFixture.contractAddress)
     }
 
