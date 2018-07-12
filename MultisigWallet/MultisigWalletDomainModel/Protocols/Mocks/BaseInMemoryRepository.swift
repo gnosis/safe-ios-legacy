@@ -11,17 +11,17 @@ open class BaseInMemoryRepository<T: IdentifiableEntity<U>, U: Hashable> {
 
     public init() {}
 
-    open func save(_ wallet: T) throws {
+    open func save(_ wallet: T) {
         items.insert(wallet)
     }
 
-    open func remove(_ item: T) throws {
+    open func remove(_ item: T) {
         if let foundItem = try findByID(item.id) {
             items.remove(foundItem)
         }
     }
 
-    open func findByID(_ itemID: U) throws -> T? {
+    open func findByID(_ itemID: U) -> T? {
         return items.first { $0.id == itemID }
     }
 

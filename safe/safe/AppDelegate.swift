@@ -132,8 +132,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
             if !db.exists {
                 try db.create()
-                try portfolioRepo.setUp()
-                try walletRepo.setUp()
+                portfolioRepo.setUp()
+                walletRepo.setUp()
                 try accountRepo.setUp()
             }
         } catch let e {

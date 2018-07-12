@@ -181,17 +181,17 @@ public class WalletApplicationService: Assertable {
                                     kind: OwnerType.thisDevice.kind)
             let account = Account(id: AccountID(token: "ETH"), walletID: wallet.id, balance: 0, minimumAmount: 0)
             try portfolio.addWallet(wallet.id)
-            try DomainRegistry.walletRepository.save(wallet)
-            try DomainRegistry.portfolioRepository.save(portfolio)
+            DomainRegistry.walletRepository.save(wallet)
+            DomainRegistry.portfolioRepository.save(portfolio)
             try DomainRegistry.accountRepository.save(account)
         }
     }
 
     private func fetchOrCreatePortfolio() throws -> Portfolio {
-        if let result = try DomainRegistry.portfolioRepository.portfolio() {
+        if let result = DomainRegistry.portfolioRepository.portfolio() {
             return result
         } else {
-            return try Portfolio(id: DomainRegistry.portfolioRepository.nextID())
+            return Portfolio(id: DomainRegistry.portfolioRepository.nextID())
         }
     }
 
@@ -379,29 +379,16 @@ public class WalletApplicationService: Assertable {
         try notifyWalletStateChangesAfter {
             let wallet = try findSelectedWallet()
             try closure(wallet)
-            try DomainRegistry.walletRepository.save(wallet)
+            DomainRegistry.walletRepository.save(wallet)
         }
     }
 
     private func findSelectedWallet() throws -> Wallet {
-        var savedPortfolio: Portfolio?
-        do {
-            savedPortfolio = try DomainRegistry.portfolioRepository.portfolio()
-        } catch let error {
-            ApplicationServiceRegistry.logger.error("Failed to fetch portfolio: \(error)")
-            throw error
-        }
-        guard let portfolio = savedPortfolio, let walletID = portfolio.selectedWallet else {
+        guard let portfolio = DomainRegistry.portfolioRepository.portfolio(),
+            let walletID = portfolio.selectedWallet else {
             throw Error.selectedWalletNotFound
         }
-        var savedWallet: Wallet?
-        do {
-            savedWallet = try DomainRegistry.walletRepository.findByID(walletID)
-        } catch let error {
-            ApplicationServiceRegistry.logger.error("Failed to fetch wallet \(walletID): \(error)")
-            throw error
-        }
-        guard let wallet = savedWallet else {
+        guard let wallet = DomainRegistry.walletRepository.findByID(walletID) else {
             throw Error.selectedWalletNotFound
         }
         return wallet

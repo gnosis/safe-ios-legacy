@@ -6,9 +6,9 @@ import Foundation
 
 public protocol SinglePortfolioRepository {
 
-    func save(_ portfolio: Portfolio) throws
-    func remove(_ portfolio: Portfolio) throws
-    func portfolio() throws -> Portfolio?
-    func nextID() throws -> PortfolioID
+    func save(_ portfolio: Portfolio)
+    func remove(_ portfolio: Portfolio)
+    func portfolio() -> Portfolio?
+    func nextID() -> PortfolioID
 
 }

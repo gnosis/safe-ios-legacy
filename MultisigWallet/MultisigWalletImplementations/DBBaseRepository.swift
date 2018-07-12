@@ -45,36 +45,36 @@ open class DBBaseRepository<T: DBCodable>: Assertable {
         return "tbl_\(typeName)"
     }
 
-    open func setUp() throws {
+    open func setUp() {
         let sql = String(format: DBBaseRepositorySQL.createTableFormat, tableName)
         try! db.execute(sql: sql)
     }
 
-    open func save(_ item: T) throws {
+    open func save(_ item: T) {
         let sql = String(format: DBBaseRepositorySQL.insertFormat, tableName)
         try! db.execute(sql: sql, bindings: [item.id.id, item.data()])
     }
 
-    open func remove(_ item: T) throws {
+    open func remove(_ item: T) {
         let sql = String(format: DBBaseRepositorySQL.deleteFormat, tableName)
         try! db.execute(sql: sql, bindings: [item.id.id])
     }
 
-    open func findByID(_ itemID: T.ID) throws -> T? {
+    open func findByID(_ itemID: T.ID) -> T? {
         let sql = String(format: DBBaseRepositorySQL.findByID, tableName)
         let results = try! db.execute(sql: sql, bindings: [itemID.id], resultMap: itemFromResultSet)
         guard let result = results.first as? T else { return nil }
         return result
     }
 
-    open func findFirst() throws -> T? {
+    open func findFirst() -> T? {
         let sql = String(format: DBBaseRepositorySQL.findFirst, tableName)
         let results = try! db.execute(sql: sql, resultMap: itemFromResultSet)
         guard let result = results.first as? T else { return nil }
         return result
     }
 
-    private func itemFromResultSet(_ rs: ResultSet) throws -> T? {
+    private func itemFromResultSet(_ rs: ResultSet) -> T? {
         guard let id = rs.string(at: 0),
             let data = rs.data(at: 1) else {
             return nil
