@@ -9,9 +9,6 @@ import Common
 
 public final class MockNotificationService: NotificationDomainService {
 
-    public var didPair = false
-    public var didAuth = false
-
     public var shouldThrow = false
     public var shouldThrowNetworkError = false
     public var shouldThrowValidationFailedError = false
@@ -22,14 +19,17 @@ public final class MockNotificationService: NotificationDomainService {
         self.delay = delay
     }
 
+    public var didPair = false
     public func pair(pairingRequest: PairingRequest) throws {
         Timer.wait(delay)
         try throwIfNeeded()
         didPair = true
     }
 
+    public var didAuth = false
     public func auth(request: AuthRequest) throws {
         Timer.wait(delay)
+        try throwIfNeeded()
         didAuth = true
     }
 

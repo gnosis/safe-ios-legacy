@@ -563,12 +563,17 @@ public class WalletApplicationService: Assertable {
 
     public func auth() throws {
         guard let pushToken = tokensService.pushToken() else { return }
-        let signature = EthSignature(r: "", s: "", v: 27)
+        precondition(ownerAddress(of: .thisDevice) != nil,
+                     "Owner device should have identity at the moment of calling auth()")
+        let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
+        let signature = try blockchainService.sign(message: "GNO" + pushToken, by: deviceOwnerAddress)
         let authRequest = AuthRequest(pushToken: pushToken, signature: signature)
         do {
             try notificationService.auth(request: authRequest)
         } catch JSONHTTPClient.Error.networkRequestFailed(_, _, _) {
             throw Error.networkError
+        } catch {
+            throw Error.unknownError
         }
     }
 

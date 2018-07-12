@@ -394,9 +394,24 @@ class WalletApplicationServiceTests: XCTestCase {
 
     // - MARK: Auth with Push Token
 
-    func test_whenAuthWithPushTokenCalled_thenCallsTokenService() throws {
+    func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {
+        givenDraftWallet()
         try service.auth()
         XCTAssertTrue(tokensService.didCallPushToken)
+        XCTAssertTrue(notificationService.didAuth)
+    }
+
+    func test_whenAuthFailure_thenThrowsError() throws {
+        givenDraftWallet()
+        notificationService.shouldThrow = true
+        XCTAssertThrowsError(try service.auth()) { error in
+            XCTAssertEqual(error as! WalletApplicationService.Error, .unknownError)
+        }
+        notificationService.shouldThrow = false
+        notificationService.shouldThrowNetworkError = true
+        XCTAssertThrowsError(try service.auth()) { error in
+            XCTAssertEqual(error as! WalletApplicationService.Error, .networkError)
+        }
     }
 
     // - MARK: Notify on Safe Creation
