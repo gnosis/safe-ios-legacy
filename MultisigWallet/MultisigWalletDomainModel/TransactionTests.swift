@@ -68,10 +68,10 @@ class TransactionTests: XCTestCase {
 
     func test_whenInDraftOrSigningOrPending_thenCanChangeHash() {
         givenNewlyCreatedTransaction()
-        XCTAssertNoThrow(transaction.set(hash: TransactionHash("hash1")))
+        transaction.set(hash: TransactionHash("hash1"))
         XCTAssertEqual(transaction.transactionHash, TransactionHash("hash1"))
         moveToSigningStatus()
-        XCTAssertNoThrow(transaction.set(hash: TransactionHash("hash2")))
+        transaction.set(hash: TransactionHash("hash2"))
         transaction.change(status: .pending)
         transaction.change(status: .discarded)
     }
@@ -80,8 +80,8 @@ class TransactionTests: XCTestCase {
         givenNewlyCreatedTransaction()
         let date1 = Date()
         let date2 = date1.addingTimeInterval(5)
-        XCTAssertNoThrow(transaction.timestampSubmitted(at: date1)
-            .timestampProcessed(at: date2))
+        transaction.timestampSubmitted(at: date1)
+            .timestampProcessed(at: date2)
         XCTAssertEqual(transaction.submissionDate, date1)
         XCTAssertEqual(transaction.processedDate, date2)
     }
