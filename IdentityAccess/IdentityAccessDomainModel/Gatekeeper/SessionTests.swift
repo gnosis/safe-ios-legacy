@@ -18,12 +18,6 @@ class SessionTests: XCTestCase {
         XCTAssertNotNil(session.id)
     }
 
-    func test_invalidIDThrows() {
-        XCTAssertThrowsError(try SessionID("ID")) {
-            XCTAssertEqual($0 as? SessionID.Error, .invalidID)
-        }
-    }
-
     func test_createWithDuration() throws {
         XCTAssertFalse(session.isActiveAt(Date()))
     }
@@ -87,7 +81,7 @@ class SessionTests: XCTestCase {
 extension SessionTests {
 
     private func createSession(duration: TimeInterval = 1) throws {
-        session = try Session(id: try SessionID(UUID().uuidString), durationInSeconds: duration)
+        session = try Session(id: SessionID(), durationInSeconds: duration)
     }
 
     private func assertThrows<T>(_ expression: @autoclosure () throws -> T,

@@ -15,10 +15,10 @@ class PortfolioTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        XCTAssertNoThrow(portfolio = Portfolio(id: try PortfolioID()))
-        XCTAssertNoThrow(wallet = try Wallet(id: try WalletID(), owner: owner, kind: "kind"))
-        XCTAssertNoThrow(wallet1 = try Wallet(id: try WalletID(), owner: owner, kind: "kind"))
-        XCTAssertNoThrow(wallet2 = try Wallet(id: try WalletID(), owner: owner, kind: "kind"))
+        portfolio = Portfolio(id: PortfolioID())
+        XCTAssertNoThrow(wallet = try Wallet(id: WalletID(), owner: owner, kind: "kind"))
+        XCTAssertNoThrow(wallet1 = try Wallet(id: WalletID(), owner: owner, kind: "kind"))
+        XCTAssertNoThrow(wallet2 = try Wallet(id: WalletID(), owner: owner, kind: "kind"))
     }
 
     func test_whenCreated_thenHasID() throws {

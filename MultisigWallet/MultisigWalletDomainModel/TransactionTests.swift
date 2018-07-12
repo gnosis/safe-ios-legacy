@@ -140,9 +140,9 @@ class TransactionTests: XCTestCase {
 extension TransactionTests {
 
     private func givenNewlyCreatedTransaction() {
-        transaction = Transaction(id: try! TransactionID(),
+        transaction = Transaction(id: TransactionID(),
                                   type: .transfer,
-                                  walletID: try! WalletID(),
+                                  walletID: WalletID(),
                                   accountID: AccountID(token: "ETH"))
     }
 

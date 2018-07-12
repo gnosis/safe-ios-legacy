@@ -171,8 +171,8 @@ class WalletTests: XCTestCase {
         try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
         try wallet.markDeploymentAcceptedByBlockchain()
         try wallet.assignCreationTransaction(hash: "some")
-        let data = try wallet.data()
-        let otherWallet = try Wallet(data: data)
+        let data = wallet.data()
+        let otherWallet = Wallet(data: data)
         XCTAssertEqual(otherWallet.creationTransactionHash, "some")
     }
 

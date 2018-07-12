@@ -12,12 +12,11 @@ class DBSingleUserRepositoryTests: XCTestCase {
     let trace = FunctionCallTrace()
     var db: MockDatabase!
     var repository: DBSingleUserRepository!
-    var userID: UserID!
+    var userID = UserID()
     var user: User!
 
     override func setUp() {
         super.setUp()
-        XCTAssertNoThrow(userID = try UserID())
         XCTAssertNoThrow(user = try User(id: userID, password: "MyPassword1"))
         db = MockDatabase(trace)
         repository = DBSingleUserRepository(db: db)
@@ -75,7 +74,7 @@ class DBSingleUserRepositoryTests: XCTestCase {
     }
 
     func test_primaryUser_extractingValues() throws {
-        let sessionID = try SessionID()
+        let sessionID = SessionID()
         user.attachSession(id: sessionID)
         db.resultSet = [[user.id.id, user.password, user.sessionID?.id]]
         let primaryUser = repository.primaryUser()
