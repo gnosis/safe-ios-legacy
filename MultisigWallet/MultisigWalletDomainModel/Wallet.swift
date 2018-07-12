@@ -69,17 +69,17 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var address: BlockchainAddress?
     public private(set) var creationTransactionHash: String?
 
-    public required init(data: Data) throws {
+    public required init(data: Data) {
         let decoder = PropertyListDecoder()
-        let state = try decoder.decode(State.self, from: data)
-        super.init(id: try WalletID(state.id))
+        let state = try! decoder.decode(State.self, from: data)
+        super.init(id: WalletID(state.id))
         status = state.status
         ownersByKind = state.ownersByKind
         address = state.address
         creationTransactionHash = state.creationTransactionHash
     }
 
-    public func data() throws -> Data {
+    public func data() -> Data {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .binary
         let state = State(id: id.id,
@@ -87,7 +87,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
                           ownersByKind: ownersByKind,
                           address: address,
                           creationTransactionHash: creationTransactionHash)
-        return try encoder.encode(state)
+        return try! encoder.encode(state)
     }
 
     public init(id: WalletID, owner: Owner, kind: String) throws {

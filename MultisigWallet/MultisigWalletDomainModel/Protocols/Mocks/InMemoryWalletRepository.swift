@@ -8,7 +8,7 @@ import MultisigWalletDomainModel
 open class InMemoryWalletRepository: BaseInMemoryRepository<Wallet, WalletID>, WalletRepository {
 
     open func nextID() -> WalletID {
-        return try! WalletID()
+        return WalletID()
     }
 
 }

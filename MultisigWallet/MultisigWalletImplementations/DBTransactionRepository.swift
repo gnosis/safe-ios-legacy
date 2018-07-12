@@ -126,9 +126,9 @@ LIMIT 1;
             let targetTransactionStatus = TransactionStatus(rawValue: rawTransactionStatus) else {
                 return nil
         }
-        let transaction = Transaction(id: try TransactionID(id),
+        let transaction = Transaction(id: TransactionID(id),
                                       type: transactionType,
-                                      walletID: try WalletID(walletID),
+                                      walletID: WalletID(walletID),
                                       accountID: AccountID(token: accountID))
 
         if let sender = rs.string(at: 5) {
@@ -187,7 +187,7 @@ LIMIT 1;
     }
 
     public func nextID() -> TransactionID {
-        return try! TransactionID()
+        return TransactionID()
     }
 
 }

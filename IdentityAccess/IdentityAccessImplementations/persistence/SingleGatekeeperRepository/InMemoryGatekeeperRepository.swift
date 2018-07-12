@@ -25,11 +25,7 @@ public class InMemoryGatekeeperRepository: SingleGatekeeperRepository {
     }
 
     public func nextId() -> GatekeeperID {
-        do {
-            return try GatekeeperID(UUID().uuidString)
-        } catch let e {
-            preconditionFailure("Failed to create session ID: \(e)")
-        }
+        return GatekeeperID()
     }
 
 }

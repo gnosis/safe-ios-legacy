@@ -24,7 +24,7 @@ public class InMemorySinglePortfolioRepository: SinglePortfolioRepository {
     }
 
     public func nextID() throws -> PortfolioID {
-        return try PortfolioID()
+        return PortfolioID()
     }
 
 }

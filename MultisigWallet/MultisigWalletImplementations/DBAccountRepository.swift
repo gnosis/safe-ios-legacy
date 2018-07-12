@@ -63,7 +63,7 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
                 return nil
         }
         let account = Account(id: AccountID(token: token),
-                              walletID: try WalletID(walletID),
+                              walletID: WalletID(walletID),
                               balance: balance,
                               minimumAmount: minimum)
         return account
