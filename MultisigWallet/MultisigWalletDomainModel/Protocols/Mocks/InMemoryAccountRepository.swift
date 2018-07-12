@@ -16,7 +16,7 @@ public class InMemoryAccountRepository: AccountRepository {
 
     public init() {}
 
-    public func save(_ account: Account) throws {
+    public func save(_ account: Account) {
         accounts[id(of: account)] = account
     }
 
@@ -24,11 +24,11 @@ public class InMemoryAccountRepository: AccountRepository {
         return ID(accountID: account.id, walletID: account.walletID)
     }
 
-    public func remove(_ account: Account) throws {
+    public func remove(_ account: Account) {
         accounts.removeValue(forKey: id(of: account))
     }
 
-    public func find(id: AccountID, walletID: WalletID) throws -> Account? {
+    public func find(id: AccountID, walletID: WalletID) -> Account? {
         return accounts[ID(accountID: id, walletID: walletID)]
     }
 

@@ -56,7 +56,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         let wallet = try selectedWallet()
         let eth = AccountID(token: "ETH")
-        let account = try accountRepository.find(id: eth, walletID: wallet.id)
+        let account = accountRepository.find(id: eth, walletID: wallet.id)
         XCTAssertNotNil(account)
         XCTAssertEqual(account?.id, eth)
         XCTAssertEqual(account?.balance, 0)
@@ -423,7 +423,7 @@ fileprivate extension WalletApplicationServiceTests {
 
     func findAccount(_ token: String) throws -> Account {
         let wallet = try selectedWallet()
-        guard let account = try accountRepository.find(id: AccountID(token: "ETH"), walletID: wallet.id) else {
+        guard let account = accountRepository.find(id: AccountID(token: "ETH"), walletID: wallet.id) else {
             throw Error.accountNotFound
         }
         return account
@@ -450,14 +450,14 @@ fileprivate extension WalletApplicationServiceTests {
         let account = try findAccount("ETH")
         account.updateMinimumTransactionAmount(100)
         account.update(newAmount: 50)
-        try accountRepository.save(account)
+        accountRepository.save(account)
     }
 
     private func makeEnoughFunds() throws {
         let account = try findAccount("ETH")
         account.updateMinimumTransactionAmount(100)
         account.update(newAmount: 150)
-        try accountRepository.save(account)
+        accountRepository.save(account)
     }
 
     private func simulateCreationTransaction() throws {

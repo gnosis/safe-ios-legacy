@@ -33,7 +33,7 @@ public class InMemoryUserRepository: SingleUserRepository {
     }
 
     public func nextId() -> UserID {
-        return UserID(UUID().uuidString)
+        return UserID()
     }
 
     func assertEmptyOrUserExists(_ user: User, otherwise error: Error) throws {

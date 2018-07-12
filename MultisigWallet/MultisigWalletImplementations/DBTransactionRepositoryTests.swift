@@ -23,7 +23,7 @@ class DBTransactionRepositoryTests: XCTestCase {
         let repo = DBTransactionRepository(db: db)
         try repo.setUp()
 
-        let walletID = try WalletID()
+        let walletID = WalletID()
         let accountID = AccountID(token: "ETH")
         let transaction = try Transaction(id: repo.nextID(),
                                           type: .transfer,

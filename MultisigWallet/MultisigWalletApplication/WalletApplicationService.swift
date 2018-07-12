@@ -183,7 +183,7 @@ public class WalletApplicationService: Assertable {
             try portfolio.addWallet(wallet.id)
             DomainRegistry.walletRepository.save(wallet)
             DomainRegistry.portfolioRepository.save(portfolio)
-            try DomainRegistry.accountRepository.save(account)
+            DomainRegistry.accountRepository.save(account)
         }
     }
 
@@ -507,14 +507,14 @@ public class WalletApplicationService: Assertable {
         try notifyWalletStateChangesAfter {
             let account = try findAccount(token)
             try closure(account)
-            try DomainRegistry.accountRepository.save(account)
+            DomainRegistry.accountRepository.save(account)
         }
     }
 
     private func findAccount(_ token: String) throws -> Account {
         let wallet = try findSelectedWallet()
         do {
-            guard let account = try DomainRegistry
+            guard let account = DomainRegistry
                 .accountRepository.find(id: AccountID(token: token), walletID: wallet.id) else {
                     throw Error.accountNotFound
             }

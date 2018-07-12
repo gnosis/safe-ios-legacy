@@ -134,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                 try db.create()
                 portfolioRepo.setUp()
                 walletRepo.setUp()
-                try accountRepo.setUp()
+                accountRepo.setUp()
             }
         } catch let e {
             ErrorHandler.showFatalError(log: "Failed to set up multisig database", error: e)

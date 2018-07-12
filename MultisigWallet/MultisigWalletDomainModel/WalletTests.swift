@@ -13,7 +13,7 @@ class WalletTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        XCTAssertNoThrow(wallet = try Wallet(id: try WalletID(), owner: firstOwner, kind: "mean"))
+        XCTAssertNoThrow(wallet = try Wallet(id: WalletID(), owner: firstOwner, kind: "mean"))
     }
 
     func test_init_whenCreated_thenHasAllData() throws {
