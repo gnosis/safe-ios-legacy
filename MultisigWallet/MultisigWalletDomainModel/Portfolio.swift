@@ -23,23 +23,23 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
     public private(set) var selectedWallet: WalletID?
     public private(set) var wallets = [WalletID]()
 
-    public required init(data: Data) throws {
+    public required init(data: Data) {
         let decoder = PropertyListDecoder()
-        let state = try decoder.decode(State.self, from: data)
-        super.init(id: try PortfolioID(state.id))
+        let state = try! decoder.decode(State.self, from: data)
+        super.init(id: PortfolioID(state.id))
         if let id = state.selectedWallet {
-            selectedWallet = try WalletID(id)
+            selectedWallet = WalletID(id)
         }
-        wallets = try state.wallets.map { try WalletID($0) }
+        wallets = state.wallets.map { WalletID($0) }
     }
 
-    public func data() throws -> Data {
+    public func data() -> Data {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .binary
         let state = State(id: id.id,
                           selectedWallet: selectedWallet?.id,
                           wallets: wallets.map { $0.id })
-        return try encoder.encode(state)
+        return try! encoder.encode(state)
     }
 
     override public init(id: PortfolioID) {

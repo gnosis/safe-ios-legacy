@@ -10,8 +10,8 @@ public protocol DBCodable {
 
     associatedtype ID: BaseID
     var id: ID { get }
-    init(data: Data) throws
-    func data() throws -> Data
+    init(data: Data)
+    func data() -> Data
 
 }
 
@@ -45,46 +45,47 @@ open class DBBaseRepository<T: DBCodable>: Assertable {
         return "tbl_\(typeName)"
     }
 
-    open func setUp() throws {
+    open func setUp() {
         let sql = String(format: DBBaseRepositorySQL.createTableFormat, tableName)
-        try db.execute(sql: sql)
+        try! db.execute(sql: sql)
     }
 
-    open func save(_ item: T) throws {
+    open func save(_ item: T) {
         let sql = String(format: DBBaseRepositorySQL.insertFormat, tableName)
-        try db.execute(sql: sql, bindings: [item.id.id, try item.data()])
+        try! db.execute(sql: sql, bindings: [item.id.id, item.data()])
     }
 
-    open func remove(_ item: T) throws {
+    open func remove(_ item: T) {
         let sql = String(format: DBBaseRepositorySQL.deleteFormat, tableName)
-        try db.execute(sql: sql, bindings: [item.id.id])
+        try! db.execute(sql: sql, bindings: [item.id.id])
     }
 
-    open func findByID(_ itemID: T.ID) throws -> T? {
+    open func findByID(_ itemID: T.ID) -> T? {
         let sql = String(format: DBBaseRepositorySQL.findByID, tableName)
-        let results = try db.execute(sql: sql, bindings: [itemID.id], resultMap: itemFromResultSet)
+        let results = try! db.execute(sql: sql, bindings: [itemID.id], resultMap: itemFromResultSet)
         guard let result = results.first as? T else { return nil }
         return result
     }
 
-    open func findFirst() throws -> T? {
+    open func findFirst() -> T? {
         let sql = String(format: DBBaseRepositorySQL.findFirst, tableName)
-        let results = try db.execute(sql: sql, resultMap: itemFromResultSet)
+        let results = try! db.execute(sql: sql, resultMap: itemFromResultSet)
         guard let result = results.first as? T else { return nil }
         return result
     }
 
-    private func itemFromResultSet(_ rs: ResultSet) throws -> T? {
-        guard let id = rs.string(at: 0), let data = rs.data(at: 1) else {
+    private func itemFromResultSet(_ rs: ResultSet) -> T? {
+        guard let id = rs.string(at: 0),
+            let data = rs.data(at: 1) else {
             return nil
         }
-        let item = try T(data: data)
-        try assertEqual(item.id, try T.ID(id), Error.invalidDataStoredInDatabase)
+        let item = T(data: data)
+        try! assertEqual(item.id, T.ID(id), Error.invalidDataStoredInDatabase)
         return item
     }
 
     open func nextID() -> T.ID {
-        return try! T.ID()
+        return T.ID()
     }
 
 }

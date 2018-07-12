@@ -6,9 +6,9 @@ import Foundation
 
 public protocol WalletRepository {
 
-    func save(_ wallet: Wallet) throws
-    func remove(_ wallet: Wallet) throws
-    func findByID(_ walletID: WalletID) throws -> Wallet?
+    func save(_ wallet: Wallet)
+    func remove(_ wallet: Wallet)
+    func findByID(_ walletID: WalletID) -> Wallet?
     func nextID() -> WalletID
 
 }

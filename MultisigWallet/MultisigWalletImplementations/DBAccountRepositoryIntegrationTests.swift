@@ -23,7 +23,7 @@ class DBAccountRepositoryIntegrationTests: XCTestCase {
         let repo = DBAccountRepository(db: db)
         try repo.setUp()
 
-        let walletID = try WalletID()
+        let walletID = WalletID()
         let account = Account(id: AccountID(token: "ETH"),
                               walletID: walletID,
                               balance: 123,

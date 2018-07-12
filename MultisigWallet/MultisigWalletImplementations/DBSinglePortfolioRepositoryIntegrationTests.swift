@@ -19,7 +19,7 @@ class DBSinglePortfolioRepositoryIntegrationTests: XCTestCase {
         defer { try? db.destroy() }
 
         let repo = DBSinglePortfolioRepository(db: db)
-        try repo.setUp()
+        repo.setUp()
 
         let owner = Wallet.createOwner(address: "address")
 
@@ -32,14 +32,14 @@ class DBSinglePortfolioRepositoryIntegrationTests: XCTestCase {
         try portfolio.addWallet(otherWallet.id)
         try portfolio.selectWallet(otherWallet.id)
 
-        try repo.save(portfolio)
-        let saved = try repo.portfolio()
+        repo.save(portfolio)
+        let saved = repo.portfolio()
         XCTAssertEqual(saved, portfolio)
         XCTAssertEqual(saved?.selectedWallet, portfolio.selectedWallet)
         XCTAssertEqual(saved?.wallets, portfolio.wallets)
 
-        try repo.remove(portfolio)
-        XCTAssertNil(try repo.findByID(portfolio.id))
+        repo.remove(portfolio)
+        XCTAssertNil(repo.findByID(portfolio.id))
     }
 
 }

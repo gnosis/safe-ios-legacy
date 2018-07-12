@@ -38,7 +38,7 @@ public class Session: IdentifiableEntity<SessionID> {
     public convenience init(data: Data) throws {
         let decoder = PropertyListDecoder()
         let state = try decoder.decode(State.self, from: data)
-        try self.init(id: try SessionID(state.id), durationInSeconds: state.duration)
+        try self.init(id: SessionID(state.id), durationInSeconds: state.duration)
         startedAt = state.startedAt
         endedAt = state.endedAt
         updatedAt = state.updatedAt
