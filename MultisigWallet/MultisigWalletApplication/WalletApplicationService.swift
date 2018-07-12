@@ -567,7 +567,8 @@ public class WalletApplicationService: Assertable {
                      "Owner device should have identity at the moment of calling auth()")
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
         let signature = try blockchainService.sign(message: "GNO" + pushToken, by: deviceOwnerAddress)
-        let authRequest = AuthRequest(pushToken: pushToken, signature: signature)
+        let authRequest = AuthRequest(
+            pushToken: pushToken, signature: signature, deviceOwnerAddress: deviceOwnerAddress)
         do {
             try notificationService.auth(request: authRequest)
         } catch JSONHTTPClient.Error.networkRequestFailed(_, _, _) {
