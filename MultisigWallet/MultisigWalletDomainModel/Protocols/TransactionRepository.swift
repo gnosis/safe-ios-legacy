@@ -6,9 +6,9 @@ import Foundation
 
 public protocol TransactionRepository {
 
-    func save(_ transaction: Transaction) throws
-    func remove(_ transaction: Transaction) throws
-    func findByID(_ transactionID: TransactionID) throws -> Transaction?
+    func save(_ transaction: Transaction)
+    func remove(_ transaction: Transaction)
+    func findByID(_ transactionID: TransactionID) -> Transaction?
     func nextID() -> TransactionID
 
 }

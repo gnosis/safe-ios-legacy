@@ -21,7 +21,7 @@ class DBTransactionRepositoryTests: XCTestCase {
         }
 
         let repo = DBTransactionRepository(db: db)
-        try repo.setUp()
+        repo.setUp()
 
         let walletID = WalletID()
         let accountID = AccountID(token: "ETH")
@@ -40,8 +40,8 @@ class DBTransactionRepositoryTests: XCTestCase {
             .change(status: .pending)
             .change(status: .success)
 
-        try repo.save(transaction)
-        let saved = try repo.findByID(transaction.id)
+        repo.save(transaction)
+        let saved = repo.findByID(transaction.id)
 
         XCTAssertEqual(saved, transaction)
         XCTAssertEqual(saved?.type, transaction.type)
@@ -54,8 +54,8 @@ class DBTransactionRepositoryTests: XCTestCase {
         XCTAssertEqual(saved?.transactionHash, transaction.transactionHash)
         XCTAssertEqual(saved?.status, transaction.status)
 
-        try repo.remove(transaction)
-        XCTAssertNil(try repo.findByID(transaction.id))
+        repo.remove(transaction)
+        XCTAssertNil(repo.findByID(transaction.id))
     }
 
 }
