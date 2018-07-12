@@ -21,7 +21,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
 
     func test_whenMainViewDidAppeatCalled_thenAuthWithPushTokenCalled() {
         mainFlowCoordinator.mainViewDidAppear()
-        XCTAssertNotNil(walletService.tokenInput)
+        XCTAssertNotNil(walletService.authCalled)
     }
 
 }

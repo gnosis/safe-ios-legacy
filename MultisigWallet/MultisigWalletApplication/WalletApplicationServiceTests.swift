@@ -18,6 +18,7 @@ class WalletApplicationServiceTests: XCTestCase {
     let blockchainService = MockBlockchainDomainService()
     let service = WalletApplicationService()
     let notificationService = MockNotificationService()
+    let tokensService = MockTokensDomainService()
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -31,6 +32,7 @@ class WalletApplicationServiceTests: XCTestCase {
         MultisigWalletDomainModel.DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: blockchainService, for: BlockchainDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: tokensService, for: TokensDomainService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
         blockchainService.requestWalletCreationData_output = WalletCreationData(walletAddress: "address", fee: 100)
     }
@@ -392,9 +394,9 @@ class WalletApplicationServiceTests: XCTestCase {
 
     // - MARK: Auth with Push Token
 
-    func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {
-        try service.authWithPushToken("token")
-        XCTAssertTrue(notificationService.didAuth)
+    func test_whenAuthWithPushTokenCalled_thenCallsTokenService() throws {
+        try service.auth()
+        XCTAssertTrue(tokensService.didCallPushToken)
     }
 
     // - MARK: Notify on Safe Creation

@@ -147,10 +147,10 @@ public class MockWalletApplicationService: WalletApplicationService {
         addOwner(address: address, type: .browserExtension)
     }
 
-    public var tokenInput: String?
-    public override func authWithPushToken(_ token: String) throws {
+    public var authCalled = false
+    public override func auth() throws {
         try throwIfNeeded()
-        tokenInput = token
+        authCalled = true
     }
 
     private func throwIfNeeded() throws {

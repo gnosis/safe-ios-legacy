@@ -17,6 +17,10 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.notificationService
     }
 
+    private var tokensService: TokensDomainService {
+        return DomainRegistry.tokensService
+    }
+
     public enum WalletState {
         case none
         case newDraft
@@ -557,9 +561,15 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Notifications
 
-    public func authWithPushToken(_ token: String) throws {
-        let authRequest = AuthRequest(pushToken: token, signature: EthSignature(r: "", s: "", v: 27))
-        try notificationService.auth(request: authRequest)        
+    public func auth() throws {
+        guard let pushToken = tokensService.pushToken() else { return }
+        let signature = EthSignature(r: "", s: "", v: 27)
+        let authRequest = AuthRequest(pushToken: pushToken, signature: signature)
+        do {
+            try notificationService.auth(request: authRequest)
+        } catch JSONHTTPClient.Error.networkRequestFailed(_, _, _) {
+            throw Error.networkError
+        }
     }
 
 }

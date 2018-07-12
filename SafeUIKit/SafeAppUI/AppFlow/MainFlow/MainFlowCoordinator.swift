@@ -23,9 +23,11 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
 
     func mainViewDidAppear() {
         UIApplication.shared.requestRemoteNotificationsRegistration()
-        // TODO: implement
-        let fcmToken = "token"
-        try! walletService.authWithPushToken(fcmToken)
+        do {
+            try walletService.auth()
+        } catch let e {
+            MultisigWalletApplication.ApplicationServiceRegistry.logger.debug("Error in auth()", error: e)
+        }
     }
 
 }
