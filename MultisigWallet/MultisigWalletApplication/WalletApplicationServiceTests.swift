@@ -52,7 +52,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenAssigningAddress_thenCanFetchIt() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         XCTAssertEqual(try selectedWallet().address?.value, "address")
     }
@@ -69,29 +69,29 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenDeploymentStarted_thenInPendingState() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         XCTAssertEqual(service.selectedWalletState, .addressKnown)
     }
 
     func test_whenAddingOwner_thenAddressCanBeFound() throws {
         givenDraftWallet()
-        try service.addOwner(address: "testAddress", type: .paperWallet)
+        service.addOwner(address: "testAddress", type: .paperWallet)
         XCTAssertEqual(service.ownerAddress(of: .paperWallet), "testAddress")
     }
 
     func test_whenAddingAlreadyExistingTypeOfOwner_thenOldOwnerIsReplaysed() throws {
         givenDraftWallet()
-        try service.addOwner(address: "testAddress", type: .browserExtension)
-        try service.addOwner(address: "testAddress", type: .browserExtension)
+        service.addOwner(address: "testAddress", type: .browserExtension)
+        service.addOwner(address: "testAddress", type: .browserExtension)
         XCTAssertEqual(service.ownerAddress(of: .browserExtension), "testAddress")
-        try service.addOwner(address: "newTestAddress", type: .browserExtension)
+        service.addOwner(address: "newTestAddress", type: .browserExtension)
         XCTAssertEqual(service.ownerAddress(of: .browserExtension), "newTestAddress")
     }
 
     fileprivate func givenReadyToDeployWallet(line: UInt = #line) throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
     }
 
     func test_whenAddedEnoughOwners_thenWalletIsReadyToDeploy() throws {
@@ -104,25 +104,25 @@ class WalletApplicationServiceTests: XCTestCase {
         assert(state: .none)
         service.createNewDraftWallet()
         assert(state: .newDraft)
-        try addAllOwners()
+        addAllOwners()
         assert(state: .readyToDeploy)
         try service.startDeployment()
         assert(state: .addressKnown)
-        try service.update(account: "ETH", newBalance: 1)
+        service.update(account: "ETH", newBalance: 1)
         assert(state: .notEnoughFunds)
-        try service.update(account: "ETH", newBalance: 100)
+        service.update(account: "ETH", newBalance: 100)
         assert(state: .accountFunded)
-        try service.markDeploymentAcceptedByBlockchain()
+        service.markDeploymentAcceptedByBlockchain()
         assert(state: .deploymentAcceptedByBlockchain)
-        try service.markDeploymentSuccess()
+        service.markDeploymentSuccess()
         assert(state: .deploymentSuccess)
-        try service.finishDeployment()
+        service.finishDeployment()
         assert(state: .readyToUse)
     }
 
     func test_whenUpdatingMinimumAmount_thenCanRetrieveIt() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         let account = try findAccount("ETH")
         XCTAssertEqual(account.minimumDeploymentTransactionAmount, 100)
@@ -130,9 +130,9 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenUpdatingAccountBalance_thenUpdatesIt() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
-        try service.update(account: "ETH", newBalance: 100)
+        service.update(account: "ETH", newBalance: 100)
         let account = try findAccount("ETH")
         XCTAssertEqual(account.balance, 100)
     }
@@ -143,7 +143,7 @@ class WalletApplicationServiceTests: XCTestCase {
         _ = service.subscribe {
             updated = true
         }
-        try addAllOwners()
+        addAllOwners()
         XCTAssertTrue(updated)
     }
 
@@ -154,7 +154,7 @@ class WalletApplicationServiceTests: XCTestCase {
             updated = true
         }
         service.unsubscribe(subscription: handle)
-        try addAllOwners()
+        addAllOwners()
         XCTAssertFalse(updated)
     }
 
@@ -170,19 +170,19 @@ class WalletApplicationServiceTests: XCTestCase {
     func test_whenWalletIsReady_thenHasReadyState() throws {
         createPortfolio()
         service.createNewDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
-        try service.update(account: "ETH", newBalance: 1)
-        try service.update(account: "ETH", newBalance: 2)
-        try service.markDeploymentAcceptedByBlockchain()
-        try service.markDeploymentSuccess()
-        try service.finishDeployment()
+        service.update(account: "ETH", newBalance: 1)
+        service.update(account: "ETH", newBalance: 2)
+        service.markDeploymentAcceptedByBlockchain()
+        service.markDeploymentSuccess()
+        service.finishDeployment()
         XCTAssertTrue(service.hasReadyToUseWallet)
     }
 
     func test_whenStartingDeployment_thenRequestsBlockchain() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         let expectedOwners = [service.ownerAddress(of: .thisDevice)!,
                               service.ownerAddress(of: .browserExtension)!,
@@ -197,7 +197,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenRequestWalletCreationThrows_thenIsInDeployingState() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         ethereumService.shouldThrow = true
         XCTAssertThrowsError(try service.startDeployment())
         XCTAssertEqual(service.selectedWalletState, .readyToDeploy)
@@ -205,7 +205,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenRequestWalletCreationReturnsData_thenAssignsSafeAddress() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         XCTAssertEqual(service.selectedWalletState, .addressKnown)
         let account = try findAccount("ETH")
@@ -217,7 +217,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenDeploymentStarted_thenStartsObservingBalance() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         guard let input = ethereumService.observeChangesInBalance_input else {
             XCTFail("Expected to start observing balance")
@@ -229,7 +229,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenBalanceUpdated_thenUpdatesAccount() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         ethereumService.updateBalance(1)
         let account = try findAccount("ETH")
@@ -238,7 +238,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenBalanceReachesMinimum_thenStopsObserving() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         let account = try findAccount("ETH")
         let requiredBalance = account.minimumDeploymentTransactionAmount
@@ -250,7 +250,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenAccountFunded_thenStartsCreatingSafe() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         ethereumService.updateBalance(100)
         guard let input = ethereumService.startSafeCreation_input else {
@@ -263,7 +263,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenStartedCreatingSafe_thenChangesState() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         ethereumService.updateBalance(100)
         assert(state: .readyToUse)
@@ -271,7 +271,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenCreatedSafeErrors_thenFailsDeployment() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         ethereumService.startSafeCreation_shouldThrow = true
         ethereumService.updateBalance(100)
@@ -280,7 +280,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenDeploymentSuccessful_thenMarksSo() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         ethereumService.updateBalance(100)
         assert(state: .readyToUse)
@@ -288,7 +288,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenDeploymentSuccessful_thenRemovesPaperWallet() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         let paperWallet = service.ownerAddress(of: .paperWallet)!
         try service.startDeployment()
         ethereumService.updateBalance(100)
@@ -297,21 +297,21 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenAddressIsKnown_thenReturnsIt() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         XCTAssertNotNil(service.selectedWalletAddress)
     }
 
     func test_whenAccountMinimumAmountIsKnown_thenReturnsIt() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         XCTAssertNotNil(service.minimumDeploymentAmount)
     }
 
     func test_whenResumesFromStartedDeployment_thenRequestsDataAgain() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try markDeploymentStarted()
         try service.startDeployment()
         assert(state: .addressKnown)
@@ -319,7 +319,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenResumesFromNotEnoughFunds_thenStartsObservingBalance() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try markDeploymentStarted()
         try assignAddress("address")
         try makeNotEnoughFunds()
@@ -329,7 +329,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenResumingFromEnoughFunds_thenStartsWalletCreation() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try markDeploymentStarted()
         try assignAddress("address")
         try makeEnoughFunds()
@@ -339,7 +339,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenResumingFromAcceptedByBlockchain_thenStartsObserving() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try markDeploymentStarted()
         try assignAddress("address")
         try makeEnoughFunds()
@@ -351,7 +351,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenAddressKnown_thenStartsObservingBalance() throws {
         givenDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try markDeploymentStarted()
         try assignAddress("address")
         try service.startDeployment()
@@ -424,7 +424,7 @@ class WalletApplicationServiceTests: XCTestCase {
     func test_whenFinishesDeployment_thenNotifiesExtensionOfSafeCreated() throws {
         createPortfolio()
         service.createNewDraftWallet()
-        try addAllOwners()
+        addAllOwners()
         try service.startDeployment()
         ethereumService.updateBalance(100)
 
@@ -467,9 +467,9 @@ class WalletApplicationServiceTests: XCTestCase {
 
 fileprivate extension WalletApplicationServiceTests {
 
-    func addAllOwners() throws {
-        try service.addOwner(address: "address2", type: .browserExtension)
-        try service.addOwner(address: "address3", type: .paperWallet)
+    func addAllOwners() {
+        service.addOwner(address: "address2", type: .browserExtension)
+        service.addOwner(address: "address3", type: .paperWallet)
     }
 
     func createPortfolio() {

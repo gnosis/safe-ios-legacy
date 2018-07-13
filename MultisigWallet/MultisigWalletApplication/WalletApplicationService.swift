@@ -515,10 +515,8 @@ public class WalletApplicationService: Assertable {
     public func auth() throws {
         precondition(!Thread.isMainThread)
         guard let pushToken = tokensService.pushToken() else { return }
-        precondition(ownerAddress(of: .thisDevice) != nil,
-                     "Owner device should have identity at the moment of calling auth()")
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
-        let signature = try blockchainService.sign(message: "GNO" + pushToken, by: deviceOwnerAddress)
+        let signature = ethereumService.sign(message: "GNO" + pushToken, by: deviceOwnerAddress)!
         let authRequest = AuthRequest(
             pushToken: pushToken, signature: signature, deviceOwnerAddress: deviceOwnerAddress)
         do {
