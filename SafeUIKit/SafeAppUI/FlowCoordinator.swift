@@ -59,12 +59,14 @@ open class FlowCoordinator {
     }
 
     func enter(flow coordinator: FlowCoordinator, completion: (() -> Void)? = nil) {
+        precondition(Thread.isMainThread, "Enter flow should be called on main thread")
         coordinator.rootViewController = rootViewController
         coordinator.flowCompletion = completion
         coordinator.setUp()
     }
 
     func exitFlow() {
+        precondition(Thread.isMainThread, "Exit flow should be called on main thread")
         flowCompletion?()
     }
 

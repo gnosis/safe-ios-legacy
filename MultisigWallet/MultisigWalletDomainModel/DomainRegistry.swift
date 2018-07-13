@@ -23,6 +23,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: NotificationDomainService.self)
     }
 
+    public static var tokensService: TokensDomainService {
+        return service(for: TokensDomainService.self)
+    }
+
     public static var encryptionService: EncryptionDomainService {
         return service(for: EncryptionDomainService.self)
     }

@@ -98,6 +98,11 @@ class AppFlowCoordinatorTests: SafeTestCase {
         walletService.update(account: "ETH", newBalance: 100)
         walletService.assignBlockchainAddress("address")
         createFlowCoordinator()
+        guard let rootVC = rootViewControlleOnAppStartrAfterUnlocking() else {
+            XCTFail()
+            return
+        }
+        XCTAssertTrue(type(of: flowCoordinator.onboardingFlowCoordinator.rootViewController!) == type(of: rootVC))
         flowCoordinator.onboardingFlowCoordinator.exitFlow()
         XCTAssertTrue((UIApplication.rootViewController as? UINavigationController)?.topViewController
             is MainViewController)

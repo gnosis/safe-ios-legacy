@@ -9,6 +9,7 @@ import MultisigWalletApplication
 open class AppFlowCoordinator: FlowCoordinator {
 
     let onboardingFlowCoordinator = OnboardingFlowCoordinator()
+    let mainFlowCoordinator = MainFlowCoordinator()
     private var lockedViewController: UIViewController!
 
     private var authenticationService: AuthenticationApplicationService {
@@ -33,13 +34,14 @@ open class AppFlowCoordinator: FlowCoordinator {
     open override func setUp() {
         super.setUp()
         if walletService.hasReadyToUseWallet {
-            lockedViewController = mainController()
+            enter(flow: mainFlowCoordinator)
         } else {
             enter(flow: onboardingFlowCoordinator) { [unowned self] in
-                self.applicationRootViewController = self.mainController()
+                self.clearNavigationStack()
+                self.enter(flow: self.mainFlowCoordinator)
             }
-            lockedViewController = rootViewController
         }
+        lockedViewController = rootViewController
 
         if authenticationService.isUserRegistered {
             applicationRootViewController = unlockController { [unowned self] in
@@ -48,10 +50,6 @@ open class AppFlowCoordinator: FlowCoordinator {
         } else {
             applicationRootViewController = lockedViewController
         }
-    }
-
-    private func mainController() -> UIViewController {
-        return StoryboardScene.Main.mainNavigationController.instantiate()
     }
 
     func unlockController(completion: @escaping () -> Void) -> UIViewController {

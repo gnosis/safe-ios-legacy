@@ -12,9 +12,11 @@ class DomainRegistryTests: XCTestCase {
         DomainRegistry.put(service: InMemoryWalletRepository(), for: WalletRepository.self)
         DomainRegistry.put(service: InMemorySinglePortfolioRepository(), for: SinglePortfolioRepository.self)
         DomainRegistry.put(service: MockNotificationService(), for: NotificationDomainService.self)
+        DomainRegistry.put(service: MockTokensDomainService(), for: TokensDomainService.self)
         XCTAssertNotNil(DomainRegistry.walletRepository)
         XCTAssertNotNil(DomainRegistry.portfolioRepository)
         XCTAssertNotNil(DomainRegistry.notificationService)
+        XCTAssertNotNil(DomainRegistry.tokensService)
 
         DomainRegistry.put(service: EncryptionService(), for: EncryptionDomainService.self)
         DomainRegistry.put(service: InMemoryExternallyOwnedAccountRepository(),

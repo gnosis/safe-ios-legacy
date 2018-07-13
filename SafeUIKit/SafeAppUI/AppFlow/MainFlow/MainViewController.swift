@@ -3,7 +3,11 @@
 //
 
 import UIKit
-import MultisigWalletApplication
+import Common
+
+public protocol MainViewControllerDelegate: class {
+    func mainViewDidAppear()
+}
 
 public class MainViewController: UIViewController {
 
@@ -11,13 +15,17 @@ public class MainViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var receiveButton: UIButton!
 
+    private weak var delegate: MainViewControllerDelegate?
+
     private enum Strings {
         static let send = LocalizedString("main.send", comment: "Send button title")
         static let receive = LocalizedString("main.receive", comment: "Receive button title")
     }
 
-    public static func create() -> MainViewController {
-        return StoryboardScene.Main.mainViewController.instantiate()
+    public static func create(delegate: MainViewControllerDelegate) -> MainViewController {
+        let controller = StoryboardScene.Main.mainViewController.instantiate()
+        controller.delegate = delegate
+        return controller
     }
 
     public override func viewDidLoad() {
@@ -25,6 +33,15 @@ public class MainViewController: UIViewController {
         totalBalanceLabel.accessibilityIdentifier = "main.label.balance"
         stylize(button: receiveButton)
         stylize(button: sendButton)
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Without async appearing animations is not finished yet, but we call in delegate
+        // system push notifications alert. This causes wrong views displaying.
+        DispatchQueue.main.async {
+            self.delegate?.mainViewDidAppear()
+        }
     }
 
     private func stylize(button: UIButton) {

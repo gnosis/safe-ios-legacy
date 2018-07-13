@@ -17,6 +17,10 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.notificationService
     }
 
+    private var tokensService: TokensDomainService {
+        return DomainRegistry.tokensService
+    }
+
     public enum WalletState {
         case none
         case newDraft
@@ -504,6 +508,26 @@ public class WalletApplicationService: Assertable {
 
     private func notifyStatusUpdate() {
         statusUpdateHandlers.values.forEach { $0() }
+    }
+
+    // MARK: - Notifications
+
+    public func auth() throws {
+        precondition(!Thread.isMainThread)
+        guard let pushToken = tokensService.pushToken() else { return }
+        precondition(ownerAddress(of: .thisDevice) != nil,
+                     "Owner device should have identity at the moment of calling auth()")
+        let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
+        let signature = try blockchainService.sign(message: "GNO" + pushToken, by: deviceOwnerAddress)
+        let authRequest = AuthRequest(
+            pushToken: pushToken, signature: signature, deviceOwnerAddress: deviceOwnerAddress)
+        do {
+            try notificationService.auth(request: authRequest)
+        } catch JSONHTTPClient.Error.networkRequestFailed(_, _, _) {
+            throw Error.networkError
+        } catch {
+            throw Error.unknownError
+        }
     }
 
 }
