@@ -199,7 +199,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-
         // TODO: implement
         let userInfo = notification.request.content.userInfo
         print("userInfo: \(userInfo)")
@@ -209,7 +208,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-
         // TODO: implement
         let userInfo = response.notification.request.content.userInfo
         print("userInfo: \(userInfo)")
