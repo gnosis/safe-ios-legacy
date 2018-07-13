@@ -121,12 +121,8 @@ final class ConfirmMnemonicViewController: UIViewController {
     }
 
     private func confirmMnemonic() {
-        do {
-            try ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
-            delegate?.didConfirm()
-        } catch let e {
-            ErrorHandler.showFatalError(log: "Failed to add paper wallet owner \(account.address)", error: e)
-        }
+        ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
+        delegate?.didConfirm()
     }
 
     private func shakeErrors() {

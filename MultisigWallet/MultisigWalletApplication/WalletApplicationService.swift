@@ -181,12 +181,12 @@ public class WalletApplicationService: Assertable {
     public func startDeployment() throws {
         do {
             if selectedWalletState == .readyToDeploy {
-                try doStartDeployment()
+                doStartDeployment()
             }
             if selectedWalletState == .deploymentStarted {
                 let data = try requestWalletCreation()
-                try assignBlockchainAddress(data.safe)
-                try updateMinimumFunding(account: "ETH", amount: data.payment)
+                assignBlockchainAddress(data.safe)
+                updateMinimumFunding(account: "ETH", amount: data.payment)
             }
             if selectedWalletState == .notEnoughFunds || selectedWalletState == .addressKnown {
                 try startObservingWalletBalance()
@@ -198,7 +198,7 @@ public class WalletApplicationService: Assertable {
                 throw Error.invalidWalletState
             }
         } catch let error {
-            try abortDeployment()
+            abortDeployment()
             throw error
         }
     }
@@ -210,14 +210,14 @@ public class WalletApplicationService: Assertable {
         return try ethereumService.createSafeCreationTransaction(owners: owners, confirmationCount: confirmationCount)
     }
 
-    private func doStartDeployment() throws {
-        try mutateSelectedWallet { wallet in
+    private func doStartDeployment() {
+        mutateSelectedWallet { wallet in
             wallet.startDeployment()
         }
     }
 
-    private func assignBlockchainAddress(_ address: String) throws {
-        try mutateSelectedWallet { wallet in
+    private func assignBlockchainAddress(_ address: String) {
+        mutateSelectedWallet { wallet in
             wallet.changeBlockchainAddress(BlockchainAddress(value: address))
         }
     }
@@ -237,7 +237,7 @@ public class WalletApplicationService: Assertable {
                 return RepeatingShouldStop.yes
             }
             // TODO: BigInt support
-            try update(account: "ETH", newBalance: Int(newBalance)) // mutates selectedWalletState
+            update(account: "ETH", newBalance: Int(newBalance)) // mutates selectedWalletState
             if selectedWalletState == .accountFunded {
                 try createWalletInBlockchain()
                 return RepeatingShouldStop.yes
@@ -255,7 +255,7 @@ public class WalletApplicationService: Assertable {
         // TODO: if the call fails, show error in UI and possibility to retry with a button
         try ethereumService.startSafeCreation(address: address)
         guard selectedWalletState == .accountFunded else { return }
-        try markDeploymentAcceptedByBlockchain()
+        markDeploymentAcceptedByBlockchain()
         try waitForPendingTransaction()
     }
 
@@ -273,22 +273,17 @@ public class WalletApplicationService: Assertable {
     }
 
     private func storeTransactionHash(hash: String) throws {
-        try mutateSelectedWallet { wallet in
+        mutateSelectedWallet { wallet in
             wallet.assignCreationTransaction(hash: hash)
         }
     }
 
     private func didFinishDeployment(success: Bool) {
         if success {
-            do {
-                try removePaperWallet()
-                try? notifySafeCreated() // TODO: handle the case
-                try markDeploymentSuccess()
-                try finishDeployment()
-            } catch let error {
-                ApplicationServiceRegistry.logger.fatal("Failed to save success deployment state", error: error)
-                try? markDeploymentFailed()
-            }
+            removePaperWallet()
+            try? notifySafeCreated() // TODO: handle the case
+            markDeploymentSuccess()
+            finishDeployment()
         } else {
             ApplicationServiceRegistry.logger.fatal("Blockchain transaction failed")
             try? markDeploymentFailed()
@@ -308,54 +303,54 @@ public class WalletApplicationService: Assertable {
         let address = findSelectedWallet()!.address!.value
         let newBalance = try ethereumService.balance(address: address)
         // TODO: BigInt support
-        try update(account: "ETH", newBalance: Int(newBalance))
+        update(account: "ETH", newBalance: Int(newBalance))
     }
 
-    private func removePaperWallet() throws {
+    private func removePaperWallet() {
         let paperWallet = ownerAddress(of: .paperWallet)!
         ethereumService.removeExternallyOwnedAccount(address: paperWallet)
     }
 
-    private func markReadyToDeploy() throws {
-        try mutateSelectedWallet { wallet in
+    private func markReadyToDeploy() {
+        mutateSelectedWallet { wallet in
             wallet.markReadyToDeploy()
         }
     }
 
-    public func markDeploymentAcceptedByBlockchain() throws {
-        try mutateSelectedWallet { wallet in
+    public func markDeploymentAcceptedByBlockchain() {
+        mutateSelectedWallet { wallet in
             wallet.markDeploymentAcceptedByBlockchain()
         }
     }
 
     public func markDeploymentFailed() throws {
-        try mutateSelectedWallet { wallet in
+        mutateSelectedWallet { wallet in
             wallet.markDeploymentFailed()
         }
     }
 
-    public func markDeploymentSuccess() throws {
-        try mutateSelectedWallet { wallet in
+    public func markDeploymentSuccess() {
+        mutateSelectedWallet { wallet in
             wallet.markDeploymentSuccess()
         }
     }
 
-    public func abortDeployment() throws {
-        try mutateSelectedWallet { wallet in
+    public func abortDeployment() {
+        mutateSelectedWallet { wallet in
             wallet.abortDeployment()
         }
     }
 
-    public func finishDeployment() throws {
-        try mutateSelectedWallet { wallet in
+    public func finishDeployment() {
+        mutateSelectedWallet { wallet in
             wallet.finishDeployment()
         }
     }
 
-    private func mutateSelectedWallet(_ closure: (Wallet) throws -> Void) throws {
-        try notifyWalletStateChangesAfter {
+    private func mutateSelectedWallet(_ closure: (Wallet) -> Void) {
+        notifyWalletStateChangesAfter {
             let wallet = findSelectedWallet()!
-            try closure(wallet)
+            closure(wallet)
             DomainRegistry.walletRepository.save(wallet)
         }
     }
@@ -385,8 +380,8 @@ public class WalletApplicationService: Assertable {
         return true
     }
 
-    public func addOwner(address: String, type: OwnerType) throws {
-        try mutateSelectedWallet { wallet in
+    public func addOwner(address: String, type: OwnerType) {
+        mutateSelectedWallet { wallet in
             let owner = Wallet.createOwner(address: address)
             if wallet.owner(kind: type.kind) != nil {
                 wallet.replaceOwner(with: owner, kind: type.kind)
@@ -431,7 +426,7 @@ public class WalletApplicationService: Assertable {
         } catch {
             throw Error.unknownError
         }
-        try addOwner(address: address, type: .browserExtension)
+        addOwner(address: address, type: .browserExtension)
     }
 
     public func browserExtension(json: String) -> BrowserExtensionCode? {
@@ -461,28 +456,28 @@ public class WalletApplicationService: Assertable {
        return findAccount(token)?.balance
     }
 
-    private func updateMinimumFunding(account token: String, amount: Int) throws {
-        try assertCanChangeAccount()
-        try mutateAccount(token: token) { account in
+    private func updateMinimumFunding(account token: String, amount: Int) {
+        assertCanChangeAccount()
+        mutateAccount(token: token) { account in
             account.updateMinimumTransactionAmount(amount)
         }
     }
 
-    private func assertCanChangeAccount() throws {
-        try assertTrue(selectedWalletState.isValidForAccountUpdate, Error.invalidWalletState)
+    private func assertCanChangeAccount() {
+        try! assertTrue(selectedWalletState.isValidForAccountUpdate, Error.invalidWalletState)
     }
 
-    public func update(account token: String, newBalance: Int) throws {
-        try assertCanChangeAccount()
-        try mutateAccount(token: token) { account in
+    public func update(account token: String, newBalance: Int) {
+        assertCanChangeAccount()
+        mutateAccount(token: token) { account in
             account.update(newAmount: newBalance)
         }
     }
 
-    private func mutateAccount(token: String, closure: (Account) throws -> Void) throws {
-        try notifyWalletStateChangesAfter {
+    private func mutateAccount(token: String, closure: (Account) -> Void) {
+        notifyWalletStateChangesAfter {
             let account = findAccount(token)!
-            try closure(account)
+            closure(account)
             DomainRegistry.accountRepository.save(account)
         }
     }
