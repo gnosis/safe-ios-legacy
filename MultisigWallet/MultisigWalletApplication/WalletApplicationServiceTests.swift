@@ -94,11 +94,6 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(service.selectedWalletState, .readyToDeploy)
     }
 
-    func test_whenNotReadyToDeploy_thenCantStartDeployment() {
-        givenDraftWallet()
-        XCTAssertThrowsError(try service.startDeployment())
-    }
-
     func test_fullCycle() throws {
         createPortfolio()
         assert(state: .none)
@@ -436,13 +431,13 @@ fileprivate extension WalletApplicationServiceTests {
 
     private func markDeploymentStarted() throws {
         let wallet = try selectedWallet()
-        try wallet.startDeployment()
+        wallet.startDeployment()
         walletRepository.save(wallet)
     }
 
     private func assignAddress(_ address: String) throws {
         let wallet = try selectedWallet()
-        try wallet.changeBlockchainAddress(BlockchainAddress(value: address))
+        wallet.changeBlockchainAddress(BlockchainAddress(value: address))
         walletRepository.save(wallet)
     }
 
@@ -462,13 +457,13 @@ fileprivate extension WalletApplicationServiceTests {
 
     private func simulateCreationTransaction() throws {
         let wallet = try selectedWallet()
-        try wallet.assignCreationTransaction(hash: "something")
+        wallet.assignCreationTransaction(hash: "something")
         walletRepository.save(wallet)
     }
 
     private func markAcceptedByBlockchain() throws {
         let wallet = try selectedWallet()
-        try wallet.markDeploymentAcceptedByBlockchain()
+        wallet.markDeploymentAcceptedByBlockchain()
         walletRepository.save(wallet)
     }
 

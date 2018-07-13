@@ -46,26 +46,24 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
         super.init(id: id)
     }
 
-    public func addWallet(_ wallet: WalletID) throws {
-        try assertFalse(hasWallet(wallet), Error.walletAlreadyExists)
+    public func addWallet(_ wallet: WalletID) {
+        try! assertFalse(hasWallet(wallet), Error.walletAlreadyExists)
         if wallets.isEmpty {
             selectedWallet = wallet
         }
         wallets.append(wallet)
     }
 
-    public func removeWallet(_ wallet: WalletID) throws {
-        guard let index = wallets.index(of: wallet) else {
-            throw Error.walletNotFound
-        }
+    public func removeWallet(_ wallet: WalletID) {
+        let index = wallets.index(of: wallet)!
         wallets.remove(at: index)
         if wallets.isEmpty {
             selectedWallet = nil
         }
     }
 
-    public func selectWallet(_ wallet: WalletID) throws {
-        try assertTrue(hasWallet(wallet), Error.walletNotFound)
+    public func selectWallet(_ wallet: WalletID) {
+        try! assertTrue(hasWallet(wallet), Error.walletNotFound)
         selectedWallet = wallet
     }
 

@@ -173,21 +173,21 @@ public class WalletApplicationService: Assertable {
 
     public func createNewDraftWallet() throws {
         try notifyWalletStateChangesAfter {
-            let portfolio = try fetchOrCreatePortfolio()
+            let portfolio = fetchOrCreatePortfolio()
             let address = try blockchainService.generateExternallyOwnedAccount()
             let owner = Wallet.createOwner(address: address)
-            let wallet = try Wallet(id: DomainRegistry.walletRepository.nextID(),
-                                    owner: owner,
-                                    kind: OwnerType.thisDevice.kind)
+            let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(),
+                                owner: owner,
+                                kind: OwnerType.thisDevice.kind)
             let account = Account(id: AccountID(token: "ETH"), walletID: wallet.id, balance: 0, minimumAmount: 0)
-            try portfolio.addWallet(wallet.id)
+            portfolio.addWallet(wallet.id)
             DomainRegistry.walletRepository.save(wallet)
             DomainRegistry.portfolioRepository.save(portfolio)
             DomainRegistry.accountRepository.save(account)
         }
     }
 
-    private func fetchOrCreatePortfolio() throws -> Portfolio {
+    private func fetchOrCreatePortfolio() -> Portfolio {
         if let result = DomainRegistry.portfolioRepository.portfolio() {
             return result
         } else {
@@ -230,13 +230,13 @@ public class WalletApplicationService: Assertable {
 
     private func doStartDeployment() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.startDeployment()
+            wallet.startDeployment()
         }
     }
 
     private func assignBlockchainAddress(_ address: String) throws {
         try mutateSelectedWallet { wallet in
-            try wallet.changeBlockchainAddress(BlockchainAddress(value: address))
+            wallet.changeBlockchainAddress(BlockchainAddress(value: address))
         }
     }
 
@@ -297,7 +297,7 @@ public class WalletApplicationService: Assertable {
 
     private func storeTransactionHash(hash: String) throws {
         try mutateSelectedWallet { wallet in
-            try wallet.assignCreationTransaction(hash: hash)
+            wallet.assignCreationTransaction(hash: hash)
         }
     }
 
@@ -341,37 +341,37 @@ public class WalletApplicationService: Assertable {
 
     private func markReadyToDeploy() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.markReadyToDeploy()
+            wallet.markReadyToDeploy()
         }
     }
 
     public func markDeploymentAcceptedByBlockchain() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.markDeploymentAcceptedByBlockchain()
+            wallet.markDeploymentAcceptedByBlockchain()
         }
     }
 
     public func markDeploymentFailed() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.markDeploymentFailed()
+            wallet.markDeploymentFailed()
         }
     }
 
     public func markDeploymentSuccess() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.markDeploymentSuccess()
+            wallet.markDeploymentSuccess()
         }
     }
 
     public func abortDeployment() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.abortDeployment()
+            wallet.abortDeployment()
         }
     }
 
     public func finishDeployment() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.finishDeployment()
+            wallet.finishDeployment()
         }
     }
 
@@ -419,16 +419,16 @@ public class WalletApplicationService: Assertable {
         try mutateSelectedWallet { wallet in
             let owner = Wallet.createOwner(address: address)
             if wallet.owner(kind: type.kind) != nil {
-                try wallet.replaceOwner(with: owner, kind: type.kind)
+                wallet.replaceOwner(with: owner, kind: type.kind)
             } else {
-                try wallet.addOwner(owner, kind: type.kind)
+                wallet.addOwner(owner, kind: type.kind)
             }
             if wallet.status == .newDraft {
                 let enoughOwnersExist = OwnerType.all.reduce(true) { isEnough, type in
                     isEnough && wallet.owner(kind: type.kind) != nil
                 }
                 if enoughOwnersExist {
-                    try wallet.markReadyToDeploy()
+                    wallet.markReadyToDeploy()
                 }
             }
         }

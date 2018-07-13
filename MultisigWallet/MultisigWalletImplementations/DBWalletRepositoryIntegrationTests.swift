@@ -20,7 +20,7 @@ class DBWalletRepositoryIntegrationTests: XCTestCase {
         let repo = DBWalletRepository(db: db)
         repo.setUp()
         let owner = Wallet.createOwner(address: "address")
-        let wallet = try Wallet(id: repo.nextID(), owner: owner, kind: "kind")
+        let wallet = Wallet(id: repo.nextID(), owner: owner, kind: "kind")
         repo.save(wallet)
         let saved = repo.findByID(wallet.id)
         XCTAssertEqual(saved, wallet)

@@ -15,120 +15,87 @@ class TransactionTests: XCTestCase {
         XCTAssertEqual(transaction.status, .draft)
     }
 
-    func test_whenChangesAmount_thenCanQueryIt() throws {
+    func test_whenChangesAmount_thenCanQueryIt() {
         givenNewlyCreatedTransaction()
-        try transaction.change(amount: .ether(1))
+        transaction.change(amount: .ether(1))
         XCTAssertEqual(transaction.amount, TokenAmount.ether(1))
     }
 
-    func test_whenChangesAmountNotInDraftStatus_thenThrows() throws {
-        try givenSigningTransaction()
-        XCTAssertThrowsError(try transaction.change(amount: .ether(3)))
-    }
-
-    func test_whenChangingTransactionData_thenCanQueryIt() throws {
+    func test_whenChangingTransactionData_thenCanQueryIt() {
         givenNewlyCreatedTransaction()
-        try transaction.change(fee: .ether(1))
+        transaction.change(fee: .ether(1))
         XCTAssertEqual(transaction.fee, TokenAmount.ether(1))
-        try transaction.change(sender: BlockchainAddress(value: "sender"))
+        transaction.change(sender: BlockchainAddress(value: "sender"))
         XCTAssertEqual(transaction.sender, BlockchainAddress(value: "sender"))
-        try transaction.change(recipient: BlockchainAddress(value: "recipient"))
+        transaction.change(recipient: BlockchainAddress(value: "recipient"))
         XCTAssertEqual(transaction.recipient, BlockchainAddress(value: "recipient"))
     }
 
-    func test_whenTransitionsToSigningAndMissingData_thenThrowsError() {
+    func test_statusChangesFromDraftStatus() {
         givenNewlyCreatedTransaction()
-        XCTAssertThrowsError(try transaction.change(status: .signing))
+        moveToSigningStatus()
+        transaction.change(status: .draft)
+        transaction.change(status: .signing)
+        transaction.change(status: .discarded)
+        transaction.change(status: .draft)
+        transaction.change(status: .discarded)
     }
 
-    func test_statusChangesFromDraftStatus() throws {
+    func test_whenInDraft_thenCanAddSignature() {
         givenNewlyCreatedTransaction()
-        XCTAssertNoThrow(try moveToSigningStatus())
-        XCTAssertNoThrow(try transaction.change(status: .draft))
-        XCTAssertNoThrow(try transaction.change(status: .signing))
-        XCTAssertNoThrow(try transaction.change(status: .discarded))
-        XCTAssertNoThrow(try transaction.change(status: .draft))
-        XCTAssertNoThrow(try transaction.change(status: .discarded))
-    }
-
-    func test_whenInDraft_thenCanAddSignature() throws {
-        givenNewlyCreatedTransaction()
-        XCTAssertNoThrow(try transaction.add(signature: signature))
+        transaction.add(signature: signature)
         XCTAssertEqual(transaction.signatures, [signature])
     }
 
-    func test_whenAddingSignatureTwice_thenIgnoresDuplicate() throws {
+    func test_whenAddingSignatureTwice_thenIgnoresDuplicate() {
         givenNewlyCreatedTransaction()
-        try transaction.add(signature: signature)
-        try transaction.add(signature: signature)
+        transaction.add(signature: signature)
+        transaction.add(signature: signature)
         XCTAssertEqual(transaction.signatures, [signature])
     }
 
-    func test_whenInSigning_thenCanAddSignature() throws {
-        try givenSigningTransaction()
-        try transaction.add(signature: signature)
+    func test_whenInSigning_thenCanAddSignature() {
+        givenSigningTransaction()
+        transaction.add(signature: signature)
     }
 
-    func test_whenNotInDraftOrSigningAndAddsSignature_thenThrowsError() throws {
+    func test_whenAddedSignature_thenCanRemoveIt() {
         givenNewlyCreatedTransaction()
-        try transaction.change(status: .discarded)
-        XCTAssertThrowsError(try transaction.add(signature: signature))
-    }
-
-    func test_whenAddedSignature_thenCanRemoveIt() throws {
-        givenNewlyCreatedTransaction()
-        try transaction.add(signature: signature)
-        try transaction.remove(signature: signature)
+        transaction.add(signature: signature)
+        transaction.remove(signature: signature)
         XCTAssertTrue(transaction.signatures.isEmpty)
     }
 
-    func test_whenNotInDraftOrSigning_thenCanNotRemoveSignature() throws {
-        try givenSigningTransaction()
-        try transaction.change(status: .discarded)
-        XCTAssertThrowsError(try transaction.remove(signature: signature))
-    }
-
-    func test_whenInDraftOrSigningOrPending_thenCanChangeHash() throws {
+    func test_whenInDraftOrSigningOrPending_thenCanChangeHash() {
         givenNewlyCreatedTransaction()
-        XCTAssertNoThrow(try transaction.set(hash: TransactionHash("hash1")))
+        transaction.set(hash: TransactionHash("hash1"))
         XCTAssertEqual(transaction.transactionHash, TransactionHash("hash1"))
-        try moveToSigningStatus()
-        XCTAssertNoThrow(try transaction.set(hash: TransactionHash("hash2")))
-        try transaction.change(status: .pending)
-        XCTAssertThrowsError(try transaction.set(hash: TransactionHash("hash3")))
-        try transaction.change(status: .discarded)
-        XCTAssertThrowsError(try transaction.set(hash: TransactionHash("hash4")))
+        moveToSigningStatus()
+        transaction.set(hash: TransactionHash("hash2"))
+        transaction.change(status: .pending)
+        transaction.change(status: .discarded)
     }
 
-    func test_whenHashNotSetAndTransitionsToPending_thenThrowsError() throws {
-        try givenSigningTransaction()
-        XCTAssertThrowsError(try transaction.change(status: .pending))
-    }
-
-    func test_timestampingAllowedInAnyButDiscardedState() throws {
+    func test_timestampingAllowedInAnyButDiscardedState() {
         givenNewlyCreatedTransaction()
         let date1 = Date()
         let date2 = date1.addingTimeInterval(5)
-        XCTAssertNoThrow(try transaction.timestampSubmitted(at: date1)
-            .timestampProcessed(at: date2))
+        transaction.timestampSubmitted(at: date1)
+            .timestampProcessed(at: date2)
         XCTAssertEqual(transaction.submissionDate, date1)
         XCTAssertEqual(transaction.processedDate, date2)
-
-        try transaction.change(status: .discarded)
-        XCTAssertThrowsError(try transaction.timestampSubmitted(at: date2))
-        XCTAssertThrowsError(try transaction.timestampProcessed(at: date1))
     }
 
-    func test_whenGoesFromDiscardedBackToDraft_thenResetsData() throws {
-        try givenSigningTransaction()
-        try transaction.set(hash: TransactionHash("hash"))
+    func test_whenGoesFromDiscardedBackToDraft_thenResetsData() {
+        givenSigningTransaction()
+        transaction.set(hash: TransactionHash("hash"))
             .add(signature: signature)
             .change(status: .pending)
             .timestampSubmitted(at: Date())
             .change(status: .success)
             .timestampProcessed(at: Date())
             .change(status: .discarded)
-        try transaction.change(status: .draft)
+        transaction.change(status: .draft)
         XCTAssertNil(transaction.transactionHash)
         XCTAssertNil(transaction.submissionDate)
         XCTAssertNil(transaction.processedDate)
@@ -146,13 +113,13 @@ extension TransactionTests {
                                   accountID: AccountID(token: "ETH"))
     }
 
-    private func givenSigningTransaction() throws {
+    private func givenSigningTransaction() {
         givenNewlyCreatedTransaction()
-        try moveToSigningStatus()
+        moveToSigningStatus()
     }
 
-    private func moveToSigningStatus() throws {
-        try transaction.change(amount: .ether(0))
+    private func moveToSigningStatus() {
+        transaction.change(amount: .ether(0))
             .change(fee: .ether(0))
             .change(sender: BlockchainAddress(value: "sender"))
             .change(recipient: BlockchainAddress(value: "recipient"))
