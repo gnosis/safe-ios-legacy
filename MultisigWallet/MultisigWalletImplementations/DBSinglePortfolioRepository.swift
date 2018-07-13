@@ -13,8 +13,8 @@ public class DBSinglePortfolioRepository: DBBaseRepository<Portfolio>, SinglePor
         return "tbl_portfolios"
     }
 
-    public func portfolio() throws -> Portfolio? {
-        return try findFirst()
+    public func portfolio() -> Portfolio? {
+        return findFirst()
     }
 
 }

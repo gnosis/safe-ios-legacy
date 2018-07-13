@@ -14,7 +14,6 @@ public class EthereumKitEthereumService: EthereumService {
     }
 
     public func createSeed(mnemonic: [String]) -> Data {
-        // TODO: handle
         return try! Mnemonic.createSeed(mnemonic: mnemonic)
     }
 

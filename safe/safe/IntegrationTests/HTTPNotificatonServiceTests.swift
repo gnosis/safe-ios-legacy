@@ -20,8 +20,8 @@ class HTTPNotificatonServiceTests: XCTestCase {
         super.setUp()
         encryptionService = EncryptionService(chainId: .any,
                                               ethereumService: ethService)
-        browserExtensionEOA = try! encryptionService.generateExternallyOwnedAccount()
-        deviceEOA = try! encryptionService.generateExternallyOwnedAccount()
+        browserExtensionEOA = encryptionService.generateExternallyOwnedAccount()
+        deviceEOA = encryptionService.generateExternallyOwnedAccount()
 
     }
 
@@ -51,7 +51,7 @@ class HTTPNotificatonServiceTests: XCTestCase {
     func test_notifySafeCreated() throws {
         try makePair()
         let message = notificationService.safeCreatedMessage(at: "0xFF")
-        let messageSignature = try encryptionService.sign(message: "GNO" + message, privateKey: deviceEOA.privateKey)
+        let messageSignature = encryptionService.sign(message: "GNO" + message, privateKey: deviceEOA.privateKey)
         let request = SendNotificationRequest(message: message,
                                               to: browserExtensionEOA.address.value,
                                               from: messageSignature)
@@ -82,7 +82,7 @@ private extension HTTPNotificatonServiceTests {
 
     func browserExtensionCode(expirationDate: Date) throws -> BrowserExtensionCode {
         let dateStr = DateFormatter.networkDateFormatter.string(from: expirationDate)
-        let browserExtensionSignature = try encryptionService.sign(
+        let browserExtensionSignature = encryptionService.sign(
             message: "GNO" + dateStr, privateKey: browserExtensionEOA.privateKey)
         return BrowserExtensionCode(
             expirationDate: expirationDate,
@@ -92,7 +92,7 @@ private extension HTTPNotificatonServiceTests {
 
     func browserRequetSignature() throws -> EthSignature {
         let address = browserExtensionEOA.address.value
-        return try encryptionService.sign(message: "GNO" + address, privateKey: deviceEOA.privateKey)
+        return encryptionService.sign(message: "GNO" + address, privateKey: deviceEOA.privateKey)
     }
 
 }

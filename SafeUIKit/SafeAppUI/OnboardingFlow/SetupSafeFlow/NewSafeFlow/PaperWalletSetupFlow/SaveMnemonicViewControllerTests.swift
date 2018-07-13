@@ -52,14 +52,6 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
         XCTAssertTrue(delegate.pressedContinue)
     }
 
-    func test_whenEOAGenerationFails_thenShowsErrorAlert() {
-        ethereumService.shouldThrow = true
-        controller = SaveMnemonicViewController.create(delegate: delegate)
-        createWindow(controller)
-        delay(1)
-        XCTAssertAlertShown()
-    }
-
     func test_whenPaperWalletExists_thenItIsDisplayed() throws {
         try walletService.createNewDraftWallet()
         walletService.addOwner(address: "some", type: .paperWallet)

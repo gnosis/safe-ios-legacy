@@ -15,14 +15,8 @@ class UserTests: DomainTestCase {
         id = userRepository.nextId()
     }
 
-    func test_create_idLength() {
-        XCTAssertThrowsError(try UserID("ID")) {
-            XCTAssertEqual($0 as? UserID.Error, .invalidID)
-        }
-    }
-
     func test_assignSession_addsSession() throws {
-        let sessionID = try SessionID()
+        let sessionID = SessionID()
         let user = try createUser(password: password)
         user.attachSession(id: sessionID)
         XCTAssertEqual(user.sessionID, sessionID)

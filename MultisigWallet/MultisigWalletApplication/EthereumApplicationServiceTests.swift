@@ -20,27 +20,27 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
                        encryptionService.address(browserExtensionCode: "any code"))
     }
 
-    func test_whenGeneratesTwoAccounts_thenTheyAreDifferent() throws {
+    func test_whenGeneratesTwoAccounts_thenTheyAreDifferent() {
         DomainRegistry.put(service: EncryptionService(), for: EncryptionDomainService.self)
-        let one: ExternallyOwnedAccountData = try applicationService.generateExternallyOwnedAccount()
-        let two: ExternallyOwnedAccountData = try applicationService.generateExternallyOwnedAccount()
+        let one: ExternallyOwnedAccountData = applicationService.generateExternallyOwnedAccount()
+        let two: ExternallyOwnedAccountData = applicationService.generateExternallyOwnedAccount()
         XCTAssertNotEqual(one, two)
     }
 
-    func test_whenAccountGenerated_thenItIsPersisted() throws {
-        let account: ExternallyOwnedAccountData = try applicationService.generateExternallyOwnedAccount()
-        let saved = try applicationService.findExternallyOwnedAccount(by: account.address)
+    func test_whenAccountGenerated_thenItIsPersisted() {
+        let account: ExternallyOwnedAccountData = applicationService.generateExternallyOwnedAccount()
+        let saved = applicationService.findExternallyOwnedAccount(by: account.address)
         XCTAssertEqual(saved, account)
     }
 
-    func test_whenAccountRemoved_thenCannotBeFound() throws {
-        let account: ExternallyOwnedAccountData = try applicationService.generateExternallyOwnedAccount()
-        try applicationService.removeExternallyOwnedAccount(address: account.address)
-        XCTAssertNil(try applicationService.findExternallyOwnedAccount(by: account.address))
+    func test_whenAccountRemoved_thenCannotBeFound() {
+        let account: ExternallyOwnedAccountData = applicationService.generateExternallyOwnedAccount()
+        applicationService.removeExternallyOwnedAccount(address: account.address)
+        XCTAssertNil(applicationService.findExternallyOwnedAccount(by: account.address))
     }
 
     func test_whenAccountNotFound_thenReturnsNil() {
-        XCTAssertNil(try applicationService.findExternallyOwnedAccount(by: "some"))
+        XCTAssertNil(applicationService.findExternallyOwnedAccount(by: "some"))
     }
 
     func test_whenCreatingSafeTransaction_thenCallsRelayService() throws {
@@ -57,7 +57,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         XCTAssertEqual(input, Address(value: "some"))
     }
 
-    func test_whenObservingBalanceAndItChanges_thenCallsObserver() throws {
+    func test_whenObservingBalanceAndItChanges_thenCallsObserver() {
         var observedBalance: BigInt?
         var callCount = 0
         DispatchQueue.global().async {
@@ -81,7 +81,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         XCTAssertEqual(callCount, 3)
     }
 
-    func test_whenBalanceThrows_thenContinuesObserving() throws {
+    func test_whenBalanceThrows_thenContinuesObserving() {
         var callCount = 0
         DispatchQueue.global().async {
             try? self.applicationService.observeChangesInBalance(address: "address", every: 0.1) { _ in
@@ -105,7 +105,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
 
     func test_whenSignsMessage_thenSignatureIsCorrect() throws {
         let pk = PrivateKey(data: Data(repeating: 1, count: 32))
-        try eoaRepository.save(ExternallyOwnedAccount(
+        eoaRepository.save(ExternallyOwnedAccount(
             address: Address(value: "signer"),
             mnemonic: Mnemonic(words: ["test"]),
             privateKey: pk,

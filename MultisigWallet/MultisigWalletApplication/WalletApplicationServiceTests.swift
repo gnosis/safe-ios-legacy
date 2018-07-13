@@ -12,7 +12,7 @@ import BigInt
 
 class WalletApplicationServiceTests: XCTestCase {
 
-    let walletRepository = MockWalletRepository()
+    let walletRepository = InMemoryWalletRepository()
     let portfolioRepository = InMemorySinglePortfolioRepository()
     let accountRepository = InMemoryAccountRepository()
     let blockchainService = MockBlockchainDomainService()
@@ -39,7 +39,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenCreatingNewDraft_thenCreatesPortfolio() throws {
         try service.createNewDraftWallet()
-        XCTAssertNotNil(try portfolioRepository.portfolio())
+        XCTAssertNotNil(portfolioRepository.portfolio())
     }
 
     func test_whenCreatingNewDraft_thenCreatesNewWallet() throws {
@@ -58,7 +58,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         let wallet = try selectedWallet()
         let eth = AccountID(token: "ETH")
-        let account = try accountRepository.find(id: eth, walletID: wallet.id)
+        let account = accountRepository.find(id: eth, walletID: wallet.id)
         XCTAssertNotNil(account)
         XCTAssertEqual(account?.id, eth)
         XCTAssertEqual(account?.balance, 0)
@@ -87,18 +87,13 @@ class WalletApplicationServiceTests: XCTestCase {
     }
 
     fileprivate func givenReadyToDeployWallet(line: UInt = #line) throws {
-        givenDraftWallet(line: line)
+        givenDraftWallet()
         try addAllOwners()
     }
 
     func test_whenAddedEnoughOwners_thenWalletIsReadyToDeploy() throws {
         try givenReadyToDeployWallet()
         XCTAssertEqual(service.selectedWalletState, .readyToDeploy)
-    }
-
-    func test_whenNotReadyToDeploy_thenCantStartDeployment() {
-        givenDraftWallet()
-        XCTAssertThrowsError(try service.startDeployment())
     }
 
     func test_fullCycle() throws {
@@ -311,14 +306,6 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertNotNil(service.minimumDeploymentAmount)
     }
 
-    func test_whenErrorOccursDuringResumeDeployment_thenAborts() throws {
-        givenDraftWallet()
-        try addAllOwners()
-        walletRepository.shouldThrow = true
-        XCTAssertThrowsError(try service.startDeployment())
-        assert(state: .readyToDeploy)
-    }
-
     func test_whenResumesFromStartedDeployment_thenRequestsDataAgain() throws {
         givenDraftWallet()
         try addAllOwners()
@@ -434,21 +421,6 @@ class WalletApplicationServiceTests: XCTestCase {
 
 }
 
-class MockWalletRepository: InMemoryWalletRepository {
-
-    var shouldThrow = false
-
-    enum Error: String, LocalizedError, Hashable {
-        case error
-    }
-
-    override func save(_ wallet: Wallet) throws {
-        if shouldThrow { throw Error.error }
-        try super.save(wallet)
-    }
-
-}
-
 fileprivate extension WalletApplicationServiceTests {
 
     func addAllOwners() throws {
@@ -456,14 +428,14 @@ fileprivate extension WalletApplicationServiceTests {
         try service.addOwner(address: "address3", type: .paperWallet)
     }
 
-    func createPortfolio(line: UInt = #line) {
-        XCTAssertNoThrow(try portfolioRepository.save(Portfolio(id: portfolioRepository.nextID())), line: line)
+    func createPortfolio() {
+        portfolioRepository.save(Portfolio(id: portfolioRepository.nextID()))
     }
 
     func selectedWallet() throws -> Wallet {
-        guard let portfolio = try portfolioRepository.portfolio(),
+        guard let portfolio = portfolioRepository.portfolio(),
             let walletID = portfolio.selectedWallet,
-            let wallet = try walletRepository.findByID(walletID) else {
+            let wallet = walletRepository.findByID(walletID) else {
                 throw Error.walletNotFound
         }
         return wallet
@@ -475,53 +447,53 @@ fileprivate extension WalletApplicationServiceTests {
 
     func findAccount(_ token: String) throws -> Account {
         let wallet = try selectedWallet()
-        guard let account = try accountRepository.find(id: AccountID(token: "ETH"), walletID: wallet.id) else {
+        guard let account = accountRepository.find(id: AccountID(token: "ETH"), walletID: wallet.id) else {
             throw Error.accountNotFound
         }
         return account
     }
 
-    func givenDraftWallet(line: UInt = #line) {
-        createPortfolio(line: line)
-        XCTAssertNoThrow(try service.createNewDraftWallet(), line: line)
+    func givenDraftWallet() {
+        createPortfolio()
+        XCTAssertNoThrow(try service.createNewDraftWallet())
     }
 
     private func markDeploymentStarted() throws {
         let wallet = try selectedWallet()
-        try wallet.startDeployment()
-        try walletRepository.save(wallet)
+        wallet.startDeployment()
+        walletRepository.save(wallet)
     }
 
     private func assignAddress(_ address: String) throws {
         let wallet = try selectedWallet()
-        try wallet.changeBlockchainAddress(BlockchainAddress(value: address))
-        try walletRepository.save(wallet)
+        wallet.changeBlockchainAddress(BlockchainAddress(value: address))
+        walletRepository.save(wallet)
     }
 
     private func makeNotEnoughFunds() throws {
         let account = try findAccount("ETH")
         account.updateMinimumTransactionAmount(100)
         account.update(newAmount: 50)
-        try accountRepository.save(account)
+        accountRepository.save(account)
     }
 
     private func makeEnoughFunds() throws {
         let account = try findAccount("ETH")
         account.updateMinimumTransactionAmount(100)
         account.update(newAmount: 150)
-        try accountRepository.save(account)
+        accountRepository.save(account)
     }
 
     private func simulateCreationTransaction() throws {
         let wallet = try selectedWallet()
-        try wallet.assignCreationTransaction(hash: "something")
-        try walletRepository.save(wallet)
+        wallet.assignCreationTransaction(hash: "something")
+        walletRepository.save(wallet)
     }
 
     private func markAcceptedByBlockchain() throws {
         let wallet = try selectedWallet()
-        try wallet.markDeploymentAcceptedByBlockchain()
-        try walletRepository.save(wallet)
+        wallet.markDeploymentAcceptedByBlockchain()
+        walletRepository.save(wallet)
     }
 
 }

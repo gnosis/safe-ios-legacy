@@ -11,20 +11,20 @@ public class InMemorySinglePortfolioRepository: SinglePortfolioRepository {
 
     public init() {}
 
-    public func save(_ portfolio: Portfolio) throws {
+    public func save(_ portfolio: Portfolio) {
         savedValue = portfolio
     }
 
-    public func remove(_ portfolio: Portfolio) throws {
+    public func remove(_ portfolio: Portfolio) {
         savedValue = nil
     }
 
-    public func portfolio() throws -> Portfolio? {
+    public func portfolio() -> Portfolio? {
         return savedValue
     }
 
-    public func nextID() throws -> PortfolioID {
-        return try PortfolioID()
+    public func nextID() -> PortfolioID {
+        return PortfolioID()
     }
 
 }

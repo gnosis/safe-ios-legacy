@@ -23,49 +23,47 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
     public private(set) var selectedWallet: WalletID?
     public private(set) var wallets = [WalletID]()
 
-    public required init(data: Data) throws {
+    public required init(data: Data) {
         let decoder = PropertyListDecoder()
-        let state = try decoder.decode(State.self, from: data)
-        super.init(id: try PortfolioID(state.id))
+        let state = try! decoder.decode(State.self, from: data)
+        super.init(id: PortfolioID(state.id))
         if let id = state.selectedWallet {
-            selectedWallet = try WalletID(id)
+            selectedWallet = WalletID(id)
         }
-        wallets = try state.wallets.map { try WalletID($0) }
+        wallets = state.wallets.map { WalletID($0) }
     }
 
-    public func data() throws -> Data {
+    public func data() -> Data {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .binary
         let state = State(id: id.id,
                           selectedWallet: selectedWallet?.id,
                           wallets: wallets.map { $0.id })
-        return try encoder.encode(state)
+        return try! encoder.encode(state)
     }
 
     override public init(id: PortfolioID) {
         super.init(id: id)
     }
 
-    public func addWallet(_ wallet: WalletID) throws {
-        try assertFalse(hasWallet(wallet), Error.walletAlreadyExists)
+    public func addWallet(_ wallet: WalletID) {
+        try! assertFalse(hasWallet(wallet), Error.walletAlreadyExists)
         if wallets.isEmpty {
             selectedWallet = wallet
         }
         wallets.append(wallet)
     }
 
-    public func removeWallet(_ wallet: WalletID) throws {
-        guard let index = wallets.index(of: wallet) else {
-            throw Error.walletNotFound
-        }
+    public func removeWallet(_ wallet: WalletID) {
+        let index = wallets.index(of: wallet)!
         wallets.remove(at: index)
         if wallets.isEmpty {
             selectedWallet = nil
         }
     }
 
-    public func selectWallet(_ wallet: WalletID) throws {
-        try assertTrue(hasWallet(wallet), Error.walletNotFound)
+    public func selectWallet(_ wallet: WalletID) {
+        try! assertTrue(hasWallet(wallet), Error.walletNotFound)
         selectedWallet = wallet
     }
 

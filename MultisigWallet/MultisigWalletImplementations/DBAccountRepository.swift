@@ -33,29 +33,29 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
         self.db = db
     }
 
-    public func setUp() throws {
-        try db.execute(sql: SQL.createTable)
+    public func setUp() {
+        try! db.execute(sql: SQL.createTable)
     }
 
-    public func save(_ account: Account) throws {
-        try db.execute(sql: SQL.insert, bindings: [account.id.token,
-                                                   account.walletID.id,
-                                                   account.balance,
-                                                   account.minimumDeploymentTransactionAmount])
+    public func save(_ account: Account) {
+        try! db.execute(sql: SQL.insert, bindings: [account.id.token,
+                                                    account.walletID.id,
+                                                    account.balance,
+                                                    account.minimumDeploymentTransactionAmount])
     }
 
-    public func remove(_ account: Account) throws {
-        try db.execute(sql: SQL.delete, bindings: [account.id.token,
-                                                   account.walletID.id])
+    public func remove(_ account: Account) {
+        try! db.execute(sql: SQL.delete, bindings: [account.id.token,
+                                                    account.walletID.id])
     }
 
-    public func find(id: AccountID, walletID: WalletID) throws -> Account? {
-        return try db.execute(sql: SQL.find,
-                              bindings: [id.token, walletID.id],
-                              resultMap: accountFromResultSet).first as? Account
+    public func find(id: AccountID, walletID: WalletID) -> Account? {
+        return try! db.execute(sql: SQL.find,
+                               bindings: [id.token, walletID.id],
+                               resultMap: accountFromResultSet).first as? Account
     }
 
-    private func accountFromResultSet(_ rs: ResultSet) throws -> Account? {
+    private func accountFromResultSet(_ rs: ResultSet) -> Account? {
         guard let token = rs.string(at: 0),
             let walletID = rs.string(at: 1),
             let balance = rs.int(at: 2),
@@ -63,7 +63,7 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
                 return nil
         }
         let account = Account(id: AccountID(token: token),
-                              walletID: try WalletID(walletID),
+                              walletID: WalletID(walletID),
                               balance: balance,
                               minimumAmount: minimum)
         return account

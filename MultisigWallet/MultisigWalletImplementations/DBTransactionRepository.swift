@@ -64,12 +64,12 @@ LIMIT 1;
         self.db = db
     }
 
-    public func setUp() throws {
-        try db.execute(sql: SQL.createTable)
+    public func setUp() {
+        try! db.execute(sql: SQL.createTable)
     }
 
-    public func save(_ transaction: Transaction) throws {
-        try db.execute(sql: SQL.insert, bindings:
+    public func save(_ transaction: Transaction) {
+        try! db.execute(sql: SQL.insert, bindings:
             [
                 transaction.id.id,
                 transaction.walletID.id,
@@ -105,18 +105,18 @@ LIMIT 1;
         return DBTransactionRepository.dateFormatter.string(from: date)
     }
 
-    public func remove(_ transaction: Transaction) throws {
-        try db.execute(sql: SQL.delete, bindings: [transaction.id.id])
+    public func remove(_ transaction: Transaction) {
+        try! db.execute(sql: SQL.delete, bindings: [transaction.id.id])
     }
 
-    public func findByID(_ transactionID: TransactionID) throws -> Transaction? {
-        return try db.execute(sql: SQL.findByID,
-                              bindings: [transactionID.id],
-                              resultMap: transactionFromResultSet).first as? Transaction
+    public func findByID(_ transactionID: TransactionID) -> Transaction? {
+        return try! db.execute(sql: SQL.findByID,
+                               bindings: [transactionID.id],
+                               resultMap: transactionFromResultSet).first as? Transaction
     }
 
     //swiftlint:disable cyclomatic_complexity
-    private func transactionFromResultSet(_ rs: ResultSet) throws -> Transaction? {
+    private func transactionFromResultSet(_ rs: ResultSet) -> Transaction? {
         guard let id = rs.string(at: 0),
             let walletID = rs.string(at: 1),
             let accountID = rs.string(at: 2),
@@ -126,68 +126,68 @@ LIMIT 1;
             let targetTransactionStatus = TransactionStatus(rawValue: rawTransactionStatus) else {
                 return nil
         }
-        let transaction = Transaction(id: try TransactionID(id),
+        let transaction = Transaction(id: TransactionID(id),
                                       type: transactionType,
-                                      walletID: try WalletID(walletID),
+                                      walletID: WalletID(walletID),
                                       accountID: AccountID(token: accountID))
 
         if let sender = rs.string(at: 5) {
-            try transaction.change(sender: BlockchainAddress(value: sender))
+            try! transaction.change(sender: BlockchainAddress(value: sender))
         }
 
         if let recipient = rs.string(at: 6) {
-            try transaction.change(recipient: BlockchainAddress(value: recipient))
+            try! transaction.change(recipient: BlockchainAddress(value: recipient))
         }
 
         if let amountString = rs.string(at: 7), let amount = TokenAmount(amountString) {
-            try transaction.change(amount: amount)
+            try! transaction.change(amount: amount)
         }
 
         if let feeString = rs.string(at: 8), let fee = TokenAmount(feeString) {
-            try transaction.change(fee: fee)
+            try! transaction.change(fee: fee)
         }
 
         if let signaturesString = rs.string(at: 9) {
             let signatures = deserialized(signatures: signaturesString)
-            try signatures.forEach { try transaction.add(signature: $0) }
+            signatures.forEach { try! transaction.add(signature: $0) }
         }
 
         if let submissionDateString = rs.string(at: 10),
             let date = DBTransactionRepository.dateFormatter.date(from: submissionDateString) {
-            try transaction.timestampSubmitted(at: date)
+            try! transaction.timestampSubmitted(at: date)
         }
 
         if let processedDateString = rs.string(at: 11),
             let date = DBTransactionRepository.dateFormatter.date(from: processedDateString) {
-            try transaction.timestampProcessed(at: date)
+            try! transaction.timestampProcessed(at: date)
         }
 
         if let transactionHashString = rs.string(at: 12) {
-            try transaction.set(hash: TransactionHash(transactionHashString))
+            try! transaction.set(hash: TransactionHash(transactionHashString))
         }
 
         // initial status is draft
         switch targetTransactionStatus {
         case .draft: break
         case .signing:
-            try transaction.change(status: .signing)
+            try! transaction.change(status: .signing)
         case .pending:
-            try transaction.change(status: .signing).change(status: .pending)
+            try! transaction.change(status: .signing).change(status: .pending)
         case .rejected:
-            try transaction.change(status: .signing).change(status: .rejected)
+            try! transaction.change(status: .signing).change(status: .rejected)
         case .failed:
-            try transaction.change(status: .signing).change(status: .pending).change(status: .failed)
+            try! transaction.change(status: .signing).change(status: .pending).change(status: .failed)
         case .success:
-            try transaction.change(status: .signing).change(status: .pending).change(status: .success)
+            try! transaction.change(status: .signing).change(status: .pending).change(status: .success)
         case .discarded:
-            try transaction.change(status: .discarded)
+            try! transaction.change(status: .discarded)
         }
 
         return transaction
     }
 
     public func nextID() -> TransactionID {
-        return try! TransactionID()
+        return TransactionID()
     }
 
 }

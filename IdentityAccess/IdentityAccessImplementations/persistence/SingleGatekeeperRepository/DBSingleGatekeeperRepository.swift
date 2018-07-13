@@ -54,12 +54,12 @@ CREATE TABLE IF NOT EXISTS tbl_gatekeeper (
                 return nil
         }
         let gatekeeper = try Gatekeeper(data: data)
-        try self.assertEqual(gatekeeper.id, try GatekeeperID(id), Error.invalidGatekeeperIdStoredWithData)
+        try self.assertEqual(gatekeeper.id, GatekeeperID(id), Error.invalidGatekeeperIdStoredWithData)
         return gatekeeper
     }
 
     public func nextId() -> GatekeeperID {
-        return try! GatekeeperID()
+        return GatekeeperID()
     }
 
 }

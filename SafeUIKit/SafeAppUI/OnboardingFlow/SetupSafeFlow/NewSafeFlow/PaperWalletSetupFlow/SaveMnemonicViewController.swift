@@ -52,17 +52,11 @@ final class SaveMnemonicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        do {
-            if let existingAddress = ApplicationServiceRegistry.walletService.ownerAddress(of: .paperWallet),
-                let existingAccount = try ethereumService.findExternallyOwnedAccount(by: existingAddress) {
-                account = existingAccount
-            } else {
-                account = try ethereumService.generateExternallyOwnedAccount()
-            }
-        } catch let e {
-            ErrorHandler.showError(log: "Failed to generate paper wallet account", error: e)
-            dismiss(animated: true)
-            return
+        if let existingAddress = ApplicationServiceRegistry.walletService.ownerAddress(of: .paperWallet),
+            let existingAccount = ethereumService.findExternallyOwnedAccount(by: existingAddress) {
+            account = existingAccount
+        } else {
+            account = ethereumService.generateExternallyOwnedAccount()
         }
         guard !account.mnemonicWords.isEmpty else {
             mnemonicCopyableLabel.text = nil

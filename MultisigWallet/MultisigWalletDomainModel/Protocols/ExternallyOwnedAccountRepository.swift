@@ -6,8 +6,8 @@ import Foundation
 
 public protocol ExternallyOwnedAccountRepository {
 
-    func save(_ account: ExternallyOwnedAccount) throws
-    func remove(address: Address) throws
-    func find(by address: Address) throws -> ExternallyOwnedAccount?
+    func save(_ account: ExternallyOwnedAccount)
+    func remove(address: Address)
+    func find(by address: Address) -> ExternallyOwnedAccount?
 
 }

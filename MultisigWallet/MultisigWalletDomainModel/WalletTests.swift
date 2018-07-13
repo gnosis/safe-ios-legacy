@@ -13,137 +13,72 @@ class WalletTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        XCTAssertNoThrow(wallet = try Wallet(id: try WalletID(), owner: firstOwner, kind: "mean"))
+        wallet = Wallet(id: WalletID(), owner: firstOwner, kind: "mean")
     }
 
-    func test_init_whenCreated_thenHasAllData() throws {
+    func test_init_whenCreated_thenHasAllData() {
         XCTAssertNotNil(wallet.id)
         XCTAssertNotNil(wallet.owner(kind: "mean"))
     }
 
-    func test_whenAddingOwner_thenHasOwner() throws {
-        try wallet.addOwner(owner, kind: "kind")
+    func test_whenAddingOwner_thenHasOwner() {
+        wallet.addOwner(owner, kind: "kind")
         XCTAssertEqual(wallet.owner(kind: "kind"), owner)
     }
 
-    func test_whenAddingOwnerTwice_thenThrows() throws {
-        try wallet.addOwner(owner, kind: "kind")
-        XCTAssertThrowsError(try wallet.addOwner(owner, kind: "kind"))
-    }
-
-    func test_whenReplacingOwner_thenAnotherOwnerExists() throws {
+    func test_whenReplacingOwner_thenAnotherOwnerExists() {
         let otherOwner = Owner(address: BlockchainAddress(value: "Other"))
-        try wallet.addOwner(owner, kind: "kind")
-        try wallet.replaceOwner(with: otherOwner, kind: "kind")
+        wallet.addOwner(owner, kind: "kind")
+        wallet.replaceOwner(with: otherOwner, kind: "kind")
         XCTAssertEqual(wallet.owner(kind: "kind"), otherOwner)
         XCTAssertNil(wallet.owner(kind: "inexistingKind"))
     }
 
-    func test_whenReplacingNotExistingOwner_thenThrows() throws {
-        XCTAssertThrowsError(try wallet.replaceOwner(with: owner, kind: "kind"))
-    }
-
-    func test_whenReplacingExistingOwnerWithSameOwner_thenNothingChanges() throws {
-        try wallet.replaceOwner(with: firstOwner, kind: "mean")
+    func test_whenReplacingExistingOwnerWithSameOwner_thenNothingChanges() {
+        wallet.replaceOwner(with: firstOwner, kind: "mean")
         XCTAssertEqual(wallet.owner(kind: "mean"), firstOwner)
     }
 
-    func test_whenReplacingWithDuplicateOwner_thenThrows() throws {
-        try wallet.addOwner(Wallet.createOwner(address: "a"), kind: "a")
-        try wallet.addOwner(Wallet.createOwner(address: "b"), kind: "b")
-        XCTAssertThrowsError(try wallet.replaceOwner(with: Wallet.createOwner(address: "a"), kind: "b"))
-    }
-
-    func test_whenRemovingInexistingOwner_thenThrows() throws {
-        XCTAssertThrowsError(try wallet.removeOwner(kind: "kind"))
-    }
-
-    func test_whenRemovingOwner_thenItDoesNotExist() throws {
-        try wallet.addOwner(owner, kind: "kind")
-        try wallet.removeOwner(kind: "kind")
+    func test_whenRemovingOwner_thenItDoesNotExist() {
+        wallet.addOwner(owner, kind: "kind")
+        wallet.removeOwner(kind: "kind")
         XCTAssertNil(wallet.owner(kind: "kind"))
     }
 
-    func test_whenCreated_thenInDraftState() throws {
+    func test_whenCreated_thenInDraftState() {
         XCTAssertEqual(wallet.status, .newDraft)
     }
 
-    func test_whenDeploymentStarted_thenChangesState() throws {
-        try wallet.markReadyToDeploy()
-        try wallet.startDeployment()
+    func test_whenDeploymentStarted_thenChangesState() {
+        wallet.markReadyToDeploy()
+        wallet.startDeployment()
         XCTAssertEqual(wallet.status, Wallet.Status.deploymentStarted)
     }
 
-    func test_whenDeploymentCompleted_thenChangesStatus() throws {
-        try wallet.markReadyToDeploy()
-        try wallet.startDeployment()
-        try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
-        try wallet.markDeploymentAcceptedByBlockchain()
-        try wallet.markDeploymentSuccess()
-        try wallet.finishDeployment()
+    func test_whenDeploymentCompleted_thenChangesStatus() {
+        wallet.markReadyToDeploy()
+        wallet.startDeployment()
+        wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
+        wallet.markDeploymentAcceptedByBlockchain()
+        wallet.markDeploymentSuccess()
+        wallet.finishDeployment()
         XCTAssertEqual(wallet.status, Wallet.Status.readyToUse)
     }
 
-    func test_whenStartsDeploymentInWrongState_thenThrows() throws {
-        try wallet.markReadyToDeploy()
-        try wallet.startDeployment()
-        try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
-        try wallet.markDeploymentAcceptedByBlockchain()
-        try wallet.markDeploymentSuccess()
-        try wallet.finishDeployment()
-        XCTAssertThrowsError(try wallet.startDeployment())
-    }
-
-    func test_whenReadyToDeploy_thenCanChangeOwners() throws {
-        try wallet.markReadyToDeploy()
-        XCTAssertNoThrow(try wallet.addOwner(owner, kind: "kind"))
-        XCTAssertNoThrow(try wallet.replaceOwner(with: Owner(address: BlockchainAddress(value: "new")), kind: "kind"))
-        XCTAssertNoThrow(try wallet.removeOwner(kind: "kind"))
-    }
-
-    func test_whenCompletesDeploymentInWrongState_thenThrows() throws {
-        XCTAssertThrowsError(try wallet.finishDeployment())
-    }
-
-    func test_whenTryingToAddOwnerInPendingState_thenThrows() throws {
-        try wallet.markReadyToDeploy()
-        try wallet.startDeployment()
-        XCTAssertThrowsError(try wallet.addOwner(owner, kind: "kind"))
-    }
-
-    func test_whenTryingToRemoveOwnerWhenInPendingState_thenThrows() throws {
-        try wallet.addOwner(owner, kind: "kind")
-        try wallet.markReadyToDeploy()
-        try wallet.startDeployment()
-        XCTAssertThrowsError(try wallet.removeOwner(kind: "kind"))
-    }
-
-    func test_whenTryingToReplaceOwnerWhilePending_thenThrows() throws {
-        let otherOwner = Owner(address: BlockchainAddress(value: "Other"))
-        try wallet.addOwner(owner, kind: "kind")
-        try wallet.markReadyToDeploy()
-        try wallet.startDeployment()
-        XCTAssertThrowsError(try wallet.replaceOwner(with: otherOwner, kind: "kind"))
+    func test_whenReadyToDeploy_thenCanChangeOwners() {
+        wallet.markReadyToDeploy()
+        wallet.addOwner(owner, kind: "kind")
+        wallet.replaceOwner(with: Owner(address: BlockchainAddress(value: "new")), kind: "kind")
+        wallet.removeOwner(kind: "kind")
     }
 
     func test_whenCancellingDeployment_thenChangesState() throws {
-        try wallet.markReadyToDeploy()
-        try wallet.startDeployment()
-        try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
-        try wallet.markDeploymentAcceptedByBlockchain()
-        try wallet.abortDeployment()
+        wallet.markReadyToDeploy()
+        wallet.startDeployment()
+        wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
+        wallet.markDeploymentAcceptedByBlockchain()
+        wallet.abortDeployment()
         XCTAssertEqual(wallet.status, .readyToDeploy)
-    }
-
-    func test_whenTryingToCancelDeplolymentWhileNotDeploying_thenThrows() throws {
-        XCTAssertThrowsError(try wallet.abortDeployment())
-        try wallet.markReadyToDeploy()
-        try wallet.startDeployment()
-        try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
-        try wallet.markDeploymentAcceptedByBlockchain()
-        try wallet.markDeploymentSuccess()
-        try wallet.finishDeployment()
-        XCTAssertThrowsError(try wallet.abortDeployment())
     }
 
     func test_whenCreatingOwner_thenConfiguresIt() {
@@ -151,28 +86,23 @@ class WalletTests: XCTestCase {
         XCTAssertEqual(owner.address.value, "address")
     }
 
-    func test_whenAddingDuplicateOwnerAddress_thenThrows() throws {
-        try wallet.addOwner(Wallet.createOwner(address: "a"), kind: "a")
-        XCTAssertThrowsError(try wallet.addOwner(Wallet.createOwner(address: "a"), kind: "b"))
-    }
-
-    func test_whenAssigningCreationTransaction_thenCanFetchIt() throws {
-        try wallet.markReadyToDeploy()
-        try wallet.startDeployment()
-        try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
-        try wallet.markDeploymentAcceptedByBlockchain()
-        try wallet.assignCreationTransaction(hash: "some")
+    func test_whenAssigningCreationTransaction_thenCanFetchIt() {
+        wallet.markReadyToDeploy()
+        wallet.startDeployment()
+        wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
+        wallet.markDeploymentAcceptedByBlockchain()
+        wallet.assignCreationTransaction(hash: "some")
         XCTAssertEqual(wallet.creationTransactionHash, "some")
     }
 
-    func test_whenInitFromData_thenHasTransactionHash() throws {
-        try wallet.markReadyToDeploy()
-        try wallet.startDeployment()
-        try wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
-        try wallet.markDeploymentAcceptedByBlockchain()
-        try wallet.assignCreationTransaction(hash: "some")
-        let data = try wallet.data()
-        let otherWallet = try Wallet(data: data)
+    func test_whenInitFromData_thenHasTransactionHash() {
+        wallet.markReadyToDeploy()
+        wallet.startDeployment()
+        wallet.changeBlockchainAddress(BlockchainAddress(value: "address"))
+        wallet.markDeploymentAcceptedByBlockchain()
+        wallet.assignCreationTransaction(hash: "some")
+        let data = wallet.data()
+        let otherWallet = Wallet(data: data)
         XCTAssertEqual(otherWallet.creationTransactionHash, "some")
     }
 

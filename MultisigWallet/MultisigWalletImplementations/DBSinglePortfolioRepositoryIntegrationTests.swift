@@ -19,27 +19,27 @@ class DBSinglePortfolioRepositoryIntegrationTests: XCTestCase {
         defer { try? db.destroy() }
 
         let repo = DBSinglePortfolioRepository(db: db)
-        try repo.setUp()
+        repo.setUp()
 
         let owner = Wallet.createOwner(address: "address")
 
         let walletRepo = DBWalletRepository(db: db)
-        let wallet = try Wallet(id: walletRepo.nextID(), owner: owner, kind: "kind")
-        let otherWallet = try Wallet(id: walletRepo.nextID(), owner: owner, kind: "kind")
+        let wallet = Wallet(id: walletRepo.nextID(), owner: owner, kind: "kind")
+        let otherWallet = Wallet(id: walletRepo.nextID(), owner: owner, kind: "kind")
 
         let portfolio = Portfolio(id: repo.nextID())
-        try portfolio.addWallet(wallet.id)
-        try portfolio.addWallet(otherWallet.id)
-        try portfolio.selectWallet(otherWallet.id)
+        portfolio.addWallet(wallet.id)
+        portfolio.addWallet(otherWallet.id)
+        portfolio.selectWallet(otherWallet.id)
 
-        try repo.save(portfolio)
-        let saved = try repo.portfolio()
+        repo.save(portfolio)
+        let saved = repo.portfolio()
         XCTAssertEqual(saved, portfolio)
         XCTAssertEqual(saved?.selectedWallet, portfolio.selectedWallet)
         XCTAssertEqual(saved?.wallets, portfolio.wallets)
 
-        try repo.remove(portfolio)
-        XCTAssertNil(try repo.findByID(portfolio.id))
+        repo.remove(portfolio)
+        XCTAssertNil(repo.findByID(portfolio.id))
     }
 
 }

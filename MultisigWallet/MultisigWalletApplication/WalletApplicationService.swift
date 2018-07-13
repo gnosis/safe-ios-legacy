@@ -177,25 +177,25 @@ public class WalletApplicationService: Assertable {
 
     public func createNewDraftWallet() throws {
         try notifyWalletStateChangesAfter {
-            let portfolio = try fetchOrCreatePortfolio()
+            let portfolio = fetchOrCreatePortfolio()
             let address = try blockchainService.generateExternallyOwnedAccount()
             let owner = Wallet.createOwner(address: address)
-            let wallet = try Wallet(id: DomainRegistry.walletRepository.nextID(),
-                                    owner: owner,
-                                    kind: OwnerType.thisDevice.kind)
+            let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(),
+                                owner: owner,
+                                kind: OwnerType.thisDevice.kind)
             let account = Account(id: AccountID(token: "ETH"), walletID: wallet.id, balance: 0, minimumAmount: 0)
-            try portfolio.addWallet(wallet.id)
-            try DomainRegistry.walletRepository.save(wallet)
-            try DomainRegistry.portfolioRepository.save(portfolio)
-            try DomainRegistry.accountRepository.save(account)
+            portfolio.addWallet(wallet.id)
+            DomainRegistry.walletRepository.save(wallet)
+            DomainRegistry.portfolioRepository.save(portfolio)
+            DomainRegistry.accountRepository.save(account)
         }
     }
 
-    private func fetchOrCreatePortfolio() throws -> Portfolio {
-        if let result = try DomainRegistry.portfolioRepository.portfolio() {
+    private func fetchOrCreatePortfolio() -> Portfolio {
+        if let result = DomainRegistry.portfolioRepository.portfolio() {
             return result
         } else {
-            return try Portfolio(id: DomainRegistry.portfolioRepository.nextID())
+            return Portfolio(id: DomainRegistry.portfolioRepository.nextID())
         }
     }
 
@@ -234,13 +234,13 @@ public class WalletApplicationService: Assertable {
 
     private func doStartDeployment() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.startDeployment()
+            wallet.startDeployment()
         }
     }
 
     private func assignBlockchainAddress(_ address: String) throws {
         try mutateSelectedWallet { wallet in
-            try wallet.changeBlockchainAddress(BlockchainAddress(value: address))
+            wallet.changeBlockchainAddress(BlockchainAddress(value: address))
         }
     }
 
@@ -301,7 +301,7 @@ public class WalletApplicationService: Assertable {
 
     private func storeTransactionHash(hash: String) throws {
         try mutateSelectedWallet { wallet in
-            try wallet.assignCreationTransaction(hash: hash)
+            wallet.assignCreationTransaction(hash: hash)
         }
     }
 
@@ -345,37 +345,37 @@ public class WalletApplicationService: Assertable {
 
     private func markReadyToDeploy() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.markReadyToDeploy()
+            wallet.markReadyToDeploy()
         }
     }
 
     public func markDeploymentAcceptedByBlockchain() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.markDeploymentAcceptedByBlockchain()
+            wallet.markDeploymentAcceptedByBlockchain()
         }
     }
 
     public func markDeploymentFailed() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.markDeploymentFailed()
+            wallet.markDeploymentFailed()
         }
     }
 
     public func markDeploymentSuccess() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.markDeploymentSuccess()
+            wallet.markDeploymentSuccess()
         }
     }
 
     public func abortDeployment() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.abortDeployment()
+            wallet.abortDeployment()
         }
     }
 
     public func finishDeployment() throws {
         try mutateSelectedWallet { wallet in
-            try wallet.finishDeployment()
+            wallet.finishDeployment()
         }
     }
 
@@ -383,29 +383,16 @@ public class WalletApplicationService: Assertable {
         try notifyWalletStateChangesAfter {
             let wallet = try findSelectedWallet()
             try closure(wallet)
-            try DomainRegistry.walletRepository.save(wallet)
+            DomainRegistry.walletRepository.save(wallet)
         }
     }
 
     private func findSelectedWallet() throws -> Wallet {
-        var savedPortfolio: Portfolio?
-        do {
-            savedPortfolio = try DomainRegistry.portfolioRepository.portfolio()
-        } catch let error {
-            ApplicationServiceRegistry.logger.error("Failed to fetch portfolio: \(error)")
-            throw error
-        }
-        guard let portfolio = savedPortfolio, let walletID = portfolio.selectedWallet else {
+        guard let portfolio = DomainRegistry.portfolioRepository.portfolio(),
+            let walletID = portfolio.selectedWallet else {
             throw Error.selectedWalletNotFound
         }
-        var savedWallet: Wallet?
-        do {
-            savedWallet = try DomainRegistry.walletRepository.findByID(walletID)
-        } catch let error {
-            ApplicationServiceRegistry.logger.error("Failed to fetch wallet \(walletID): \(error)")
-            throw error
-        }
-        guard let wallet = savedWallet else {
+        guard let wallet = DomainRegistry.walletRepository.findByID(walletID) else {
             throw Error.selectedWalletNotFound
         }
         return wallet
@@ -436,16 +423,16 @@ public class WalletApplicationService: Assertable {
         try mutateSelectedWallet { wallet in
             let owner = Wallet.createOwner(address: address)
             if wallet.owner(kind: type.kind) != nil {
-                try wallet.replaceOwner(with: owner, kind: type.kind)
+                wallet.replaceOwner(with: owner, kind: type.kind)
             } else {
-                try wallet.addOwner(owner, kind: type.kind)
+                wallet.addOwner(owner, kind: type.kind)
             }
             if wallet.status == .newDraft {
                 let enoughOwnersExist = OwnerType.all.reduce(true) { isEnough, type in
                     isEnough && wallet.owner(kind: type.kind) != nil
                 }
                 if enoughOwnersExist {
-                    try wallet.markReadyToDeploy()
+                    wallet.markReadyToDeploy()
                 }
             }
         }
@@ -524,14 +511,14 @@ public class WalletApplicationService: Assertable {
         try notifyWalletStateChangesAfter {
             let account = try findAccount(token)
             try closure(account)
-            try DomainRegistry.accountRepository.save(account)
+            DomainRegistry.accountRepository.save(account)
         }
     }
 
     private func findAccount(_ token: String) throws -> Account {
         let wallet = try findSelectedWallet()
         do {
-            guard let account = try DomainRegistry
+            guard let account = DomainRegistry
                 .accountRepository.find(id: AccountID(token: token), walletID: wallet.id) else {
                     throw Error.accountNotFound
             }

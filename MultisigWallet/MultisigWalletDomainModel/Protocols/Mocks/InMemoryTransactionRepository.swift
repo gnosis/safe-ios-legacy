@@ -8,7 +8,7 @@ import MultisigWalletDomainModel
 open class InMemoryTransactionRepository: BaseInMemoryRepository<Transaction, TransactionID>, TransactionRepository {
 
     public func nextID() -> TransactionID {
-        return try! TransactionID()
+        return TransactionID()
     }
 
 }

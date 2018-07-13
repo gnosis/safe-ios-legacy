@@ -69,17 +69,17 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var address: BlockchainAddress?
     public private(set) var creationTransactionHash: String?
 
-    public required init(data: Data) throws {
+    public required init(data: Data) {
         let decoder = PropertyListDecoder()
-        let state = try decoder.decode(State.self, from: data)
-        super.init(id: try WalletID(state.id))
+        let state = try! decoder.decode(State.self, from: data)
+        super.init(id: WalletID(state.id))
         status = state.status
         ownersByKind = state.ownersByKind
         address = state.address
         creationTransactionHash = state.creationTransactionHash
     }
 
-    public func data() throws -> Data {
+    public func data() -> Data {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .binary
         let state = State(id: id.id,
@@ -87,12 +87,12 @@ public class Wallet: IdentifiableEntity<WalletID> {
                           ownersByKind: ownersByKind,
                           address: address,
                           creationTransactionHash: creationTransactionHash)
-        return try encoder.encode(state)
+        return try! encoder.encode(state)
     }
 
-    public init(id: WalletID, owner: Owner, kind: String) throws {
+    public init(id: WalletID, owner: Owner, kind: String) {
         super.init(id: id)
-        try addOwner(owner, kind: kind)
+        addOwner(owner, kind: kind)
     }
 
     public func owner(kind: String) -> Owner? {
@@ -103,91 +103,91 @@ public class Wallet: IdentifiableEntity<WalletID> {
         return Owner(address: BlockchainAddress(value: address))
     }
 
-    public func addOwner(_ owner: Owner, kind: String) throws {
-        try assertCanChangeOwners()
-        try assertNil(self.owner(kind: kind), Error.ownerAlreadyExists)
-        try assertFalse(contains(owner: owner), Error.ownerAlreadyExists)
+    public func addOwner(_ owner: Owner, kind: String) {
+        assertCanChangeOwners()
+        try! assertNil(self.owner(kind: kind), Error.ownerAlreadyExists)
+        try! assertFalse(contains(owner: owner), Error.ownerAlreadyExists)
         ownersByKind[kind] = owner
     }
 
-    private func assertCanChangeOwners() throws {
-        try assert(statusIsOneOf: .newDraft, .readyToUse, .readyToDeploy)
+    private func assertCanChangeOwners() {
+        assert(statusIsOneOf: .newDraft, .readyToUse, .readyToDeploy)
     }
 
     public func contains(owner: Owner) -> Bool {
         return ownersByKind.values.contains(owner)
     }
 
-    public func replaceOwner(with newOwner: Owner, kind: String) throws {
-        try assertCanChangeOwners()
-        try assertOwnerExists(kind)
+    public func replaceOwner(with newOwner: Owner, kind: String) {
+        assertCanChangeOwners()
+        assertOwnerExists(kind)
         // swiftlint:disable:next trailing_closure
-        try assertFalse(ownersByKind.filter({ $0.key != kind }).values.contains(newOwner), Error.ownerAlreadyExists)
+        try! assertFalse(ownersByKind.filter({ $0.key != kind }).values.contains(newOwner), Error.ownerAlreadyExists)
         ownersByKind[kind] = newOwner
     }
 
-    public func removeOwner(kind: String) throws {
-        try assertCanChangeOwners()
-        try assertOwnerExists(kind)
+    public func removeOwner(kind: String) {
+        assertCanChangeOwners()
+        assertOwnerExists(kind)
         ownersByKind.removeValue(forKey: kind)
     }
 
-    public func startDeployment() throws {
-        try assert(status: .readyToDeploy)
+    public func startDeployment() {
+        assert(status: .readyToDeploy)
         status = .deploymentStarted
     }
 
-    private func assert(status: Wallet.Status) throws {
-        try assertEqual(self.status, status, Error.invalidState)
+    private func assert(status: Wallet.Status) {
+        try! assertEqual(self.status, status, Error.invalidState)
     }
 
-    private func assert(statusIsOneOf statuses: Wallet.Status ...) throws {
-        try assertTrue(statuses.contains(status), Error.invalidState)
+    private func assert(statusIsOneOf statuses: Wallet.Status ...) {
+        try! assertTrue(statuses.contains(status), Error.invalidState)
     }
 
-    public func markReadyToDeploy() throws {
-        try assert(status: .newDraft)
+    public func markReadyToDeploy() {
+        assert(status: .newDraft)
         status = .readyToDeploy
     }
 
-    public func markDeploymentAcceptedByBlockchain() throws {
-        try assert(status: .addressKnown)
+    public func markDeploymentAcceptedByBlockchain() {
+        assert(status: .addressKnown)
         status = .deploymentAcceptedByBlockchain
     }
 
-    public func assignCreationTransaction(hash: String) throws {
-        try assert(status: .deploymentAcceptedByBlockchain)
+    public func assignCreationTransaction(hash: String) {
+        assert(status: .deploymentAcceptedByBlockchain)
         creationTransactionHash = hash
     }
 
-    public func markDeploymentFailed() throws {
-        try assert(statusIsOneOf: .deploymentAcceptedByBlockchain, .addressKnown)
+    public func markDeploymentFailed() {
+        assert(statusIsOneOf: .deploymentAcceptedByBlockchain, .addressKnown)
         status = .deploymentFailed
     }
 
-    public func markDeploymentSuccess() throws {
-        try assert(status: .deploymentAcceptedByBlockchain)
+    public func markDeploymentSuccess() {
+        assert(status: .deploymentAcceptedByBlockchain)
         status = .deploymentSuccess
     }
 
-    public func abortDeployment() throws {
-        try assert(statusIsOneOf: .deploymentStarted, .addressKnown, .deploymentAcceptedByBlockchain)
+    public func abortDeployment() {
+        assert(statusIsOneOf: .deploymentStarted, .addressKnown, .deploymentAcceptedByBlockchain)
         status = .readyToDeploy
     }
 
-    public func finishDeployment() throws {
-        try assert(status: .deploymentSuccess)
+    public func finishDeployment() {
+        assert(status: .deploymentSuccess)
         status = .readyToUse
     }
 
-    public func changeBlockchainAddress(_ address: BlockchainAddress) throws {
-        try assert(status: .deploymentStarted)
+    public func changeBlockchainAddress(_ address: BlockchainAddress) {
+        assert(status: .deploymentStarted)
         self.address = address
         status = .addressKnown
     }
 
-    private func assertOwnerExists(_ kind: String) throws {
-        try assertNotNil(owner(kind: kind), Error.ownerNotFound)
+    private func assertOwnerExists(_ kind: String) {
+        try! assertNotNil(owner(kind: kind), Error.ownerNotFound)
     }
 
 }

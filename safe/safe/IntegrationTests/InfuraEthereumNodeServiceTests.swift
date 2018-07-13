@@ -79,7 +79,7 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
             PrivateKey(data: Data(hex: "0x72a2a6f44f24b099f279c87548a93fd7229e5927b4f1c7209f7130d5352efa40"))
         let encryptionService = EncryptionService(chainId: .rinkeby)
         let sourceAddress = encryptionService.address(privateKey: sourcePrivateKey)
-        let destinationEOA = try encryptionService.generateExternallyOwnedAccount()
+        let destinationEOA = encryptionService.generateExternallyOwnedAccount()
         let gasPrice = try service.eth_gasPrice()
         let gas = try service.eth_estimateGas(transaction:
             TransactionCall(to: EthAddress(hex: destinationEOA.address.value),

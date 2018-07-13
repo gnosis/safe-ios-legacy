@@ -39,7 +39,7 @@ public class Gatekeeper: IdentifiableEntity<GatekeeperID> {
     public convenience init(data: Data) throws {
         let decoder = PropertyListDecoder()
         let state = try decoder.decode(State.self, from: data)
-        try self.init(id: try GatekeeperID(state.id), policy: state.policy)
+        try self.init(id: GatekeeperID(state.id), policy: state.policy)
         if let data = state.session {
             session = try Session(data: data)
         }
