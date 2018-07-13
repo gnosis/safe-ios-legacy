@@ -18,6 +18,7 @@ class WalletApplicationServiceTests: XCTestCase {
     let blockchainService = MockBlockchainDomainService()
     let service = WalletApplicationService()
     let notificationService = MockNotificationService()
+    let tokensService = MockTokensDomainService()
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -31,6 +32,7 @@ class WalletApplicationServiceTests: XCTestCase {
         MultisigWalletDomainModel.DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: blockchainService, for: BlockchainDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: tokensService, for: TokensDomainService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
         blockchainService.requestWalletCreationData_output = WalletCreationData(walletAddress: "address", fee: 100)
     }
@@ -353,6 +355,8 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertNotNil(blockchainService.observeBalance_input)
     }
 
+    // - MARK: Pairing with Browser Extension
+
     func test_whenAddingBrowserExtensionOwner_thenWorksProperly() throws {
         givenDraftWallet()
         try service.addBrowserExtensionOwner(
@@ -373,6 +377,46 @@ class WalletApplicationServiceTests: XCTestCase {
                     XCTAssertEqual(error as! WalletApplicationService.Error, .unknownError)
         }
     }
+
+
+    // - MARK: Auth with Push Token
+
+    func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {
+        givenDraftWallet()
+        try auth()
+        XCTAssertTrue(tokensService.didCallPushToken)
+        XCTAssertTrue(notificationService.didAuth)
+    }
+
+    func test_whenAuthFailure_thenThrowsError() throws {
+        givenDraftWallet()
+        notificationService.shouldThrow = true
+        XCTAssertThrowsError(try auth()) { error in
+            XCTAssertEqual(error as! WalletApplicationService.Error, .unknownError)
+        }
+        notificationService.shouldThrow = false
+        notificationService.shouldThrowNetworkError = true
+        XCTAssertThrowsError(try auth()) { error in
+            XCTAssertEqual(error as! WalletApplicationService.Error, .networkError)
+        }
+    }
+
+    private func auth() throws {
+        var error: Swift.Error?
+        let exp = expectation(description: "Auth")
+        DispatchQueue.global().async {
+            defer { exp.fulfill() }
+            do {
+                try self.service.auth()
+            } catch let e {
+                error = e
+            }
+        }
+        waitForExpectations(timeout: 2)
+        if let error = error { throw error }
+    }
+
+    // - MARK: Notify on Safe Creation
 
     func test_whenFinishesDeployment_thenNotifiesExtensionOfSafeCreated() throws {
         createPortfolio()

@@ -74,6 +74,7 @@
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
 		5527A7FC208DE9D500AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; };
 		5527A7FD208DE9D500AF3A50 /* RSBarcodes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		553A4B8C20F8B88E00F204A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55F9817F20F4DD2300E3AF47 /* GoogleService-Info.plist */; };
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
 		5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F5203C3054009C9BE3 /* Assets.xcassets */; };
 		5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F7203C3054009C9BE3 /* LaunchScreen.storyboard */; };
@@ -88,6 +89,7 @@
 		55CAA003209AF0FB009AE181 /* SaveMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */; };
 		55CAA005209AF204009AE181 /* ConfirmMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */; };
 		55CAA007209AF267009AE181 /* ConfirmMnemonicScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA006209AF267009AE181 /* ConfirmMnemonicScreen.swift */; };
+		55D3C08220F770170047004F /* TokensService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D3C08120F770170047004F /* TokensService.swift */; };
 		55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D97D7D20496E390004AEDD /* AppDelegateTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -419,6 +421,7 @@
 		55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicUITests.swift; sourceTree = "<group>"; };
 		55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicUITests.swift; sourceTree = "<group>"; };
 		55CAA006209AF267009AE181 /* ConfirmMnemonicScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicScreen.swift; sourceTree = "<group>"; };
+		55D3C08120F770170047004F /* TokensService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensService.swift; sourceTree = "<group>"; };
 		55D97D7D20496E390004AEDD /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		55F9817E20F4B4E300E3AF47 /* safe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safe.entitlements; sourceTree = "<group>"; };
 		55F9817F20F4DD2300E3AF47 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -648,6 +651,7 @@
 				5540A505203C3054009C9BE3 /* Tests-Info.plist */,
 				55F9817F20F4DD2300E3AF47 /* GoogleService-Info.plist */,
 				55F9817E20F4B4E300E3AF47 /* safe.entitlements */,
+				55D3C08120F770170047004F /* TokensService.swift */,
 			);
 			path = safe;
 			sourceTree = "<group>";
@@ -1019,6 +1023,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553A4B8C20F8B88E00F204A9 /* GoogleService-Info.plist in Resources */,
 				0A53AD3920595C2300D713AD /* Localizable.strings in Resources */,
 				5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
@@ -1138,6 +1143,7 @@
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,
 				0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
+				55D3C08220F770170047004F /* TokensService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

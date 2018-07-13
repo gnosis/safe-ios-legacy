@@ -43,7 +43,7 @@ extension SafeCreationTransactionRequest: JSONRequest {
 extension StartSafeCreationRequest: JSONRequest {
 
     public var httpMethod: String { return "PUT" }
-    public var urlPath: String { return "safes/\(safeAddress)/funded" }
+    public var urlPath: String { return "safes/\(safeAddress)/funded/" }
 
     public struct EmptyResponse: Codable {}
 
@@ -53,7 +53,7 @@ extension StartSafeCreationRequest: JSONRequest {
 extension GetSafeCreationStatusRequest: JSONRequest {
 
     public var httpMethod: String { return "GET" }
-    public var urlPath: String { return "safes/\(safeAddress)/funded" }
+    public var urlPath: String { return "safes/\(safeAddress)/funded/" }
 
     public typealias ResponseType = GetSafeCreationStatusRequest.Resposne
 

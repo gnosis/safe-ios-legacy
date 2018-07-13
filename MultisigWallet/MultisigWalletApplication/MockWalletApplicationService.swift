@@ -55,9 +55,7 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public override func createNewDraftWallet() throws {
-        if shouldThrow {
-            throw Error.error
-        }
+        try throwIfNeeded()
         _selectedWalletState = .newDraft
         didCreateNewDraft = true
     }
@@ -145,7 +143,20 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public override func addBrowserExtensionOwner(address: String, browserExtensionCode: String) throws {
+        try throwIfNeeded()
         addOwner(address: address, type: .browserExtension)
+    }
+
+    public var authCalled = false
+    public override func auth() throws {
+        try throwIfNeeded()
+        authCalled = true
+    }
+
+    private func throwIfNeeded() throws {
+        if shouldThrow {
+            throw Error.error
+        }
     }
 
 }

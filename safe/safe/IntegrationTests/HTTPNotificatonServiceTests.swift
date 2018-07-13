@@ -27,7 +27,7 @@ class HTTPNotificatonServiceTests: XCTestCase {
 
     func test_whenBrowserExtensionCodeIsExpired_thenThrowsError() throws {
         let code = try browserExtensionCode(expirationDate: Date(timeIntervalSinceNow: -5 * 60))
-        let sig = try signature()
+        let sig = try browserRequetSignature()
         let pairingRequest = PairingRequest(
             temporaryAuthorization: code,
             signature: sig,
@@ -58,9 +58,21 @@ class HTTPNotificatonServiceTests: XCTestCase {
         try notificationService.send(notificationRequest: request)
     }
 
-    private func makePair() throws {
+    func testAuth() throws {
+        let token = "test_token"
+        let signature = try encryptionService.sign(message: "GNO" + token, privateKey: deviceEOA.privateKey)
+        let request = AuthRequest(
+            pushToken: "test_token", signature: signature, deviceOwnerAddress: deviceEOA.address.value)
+        try notificationService.auth(request: request)
+    }
+
+}
+
+private extension HTTPNotificatonServiceTests {
+
+    func makePair() throws {
         let code = try browserExtensionCode(expirationDate: Date(timeIntervalSinceNow: 5 * 60))
-        let sig = try signature()
+        let sig = try browserRequetSignature()
         let pairingRequest = PairingRequest(
             temporaryAuthorization: code,
             signature: sig,
@@ -68,7 +80,7 @@ class HTTPNotificatonServiceTests: XCTestCase {
         try notificationService.pair(pairingRequest: pairingRequest)
     }
 
-    private func browserExtensionCode(expirationDate: Date) throws -> BrowserExtensionCode {
+    func browserExtensionCode(expirationDate: Date) throws -> BrowserExtensionCode {
         let dateStr = DateFormatter.networkDateFormatter.string(from: expirationDate)
         let browserExtensionSignature = encryptionService.sign(
             message: "GNO" + dateStr, privateKey: browserExtensionEOA.privateKey)
@@ -78,7 +90,7 @@ class HTTPNotificatonServiceTests: XCTestCase {
             extensionAddress: browserExtensionEOA.address.value)
     }
 
-    private func signature() throws -> EthSignature {
+    func browserRequetSignature() throws -> EthSignature {
         let address = browserExtensionEOA.address.value
         return encryptionService.sign(message: "GNO" + address, privateKey: deviceEOA.privateKey)
     }

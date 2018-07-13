@@ -5,7 +5,7 @@
 import XCTest
 @testable import MultisigWalletDomainModel
 
-class SignatureTests: XCTestCase {
+class EthSignatureTests: XCTestCase {
 
     func test_canEcnodeAndDecode() throws {
         let str =

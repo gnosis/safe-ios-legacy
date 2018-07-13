@@ -19,7 +19,15 @@ final public class HTTPNotificationService: NotificationDomainService {
         let deviceOwnerAddress = pairingRequest.deviceOwnerAddress!
         guard response.devicePair.contains(browserExtensionAddress) &&
             response.devicePair.contains(deviceOwnerAddress) else {
-            throw NotificationDomainServiceError.validationFailed
+                throw NotificationDomainServiceError.validationFailed
+        }
+    }
+
+    public func auth(request: AuthRequest) throws {
+        let response = try httpClient.execute(request: request)
+        guard response.pushToken == request.pushToken &&
+            response.owner == request.deviceOwnerAddress else {
+                throw NotificationDomainServiceError.validationFailed
         }
     }
 
@@ -42,14 +50,11 @@ extension PairingRequest: JSONRequest {
 
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v1/pairing/" }
+    public typealias ResponseType = DevicePair
 
     public struct DevicePair: Decodable {
-
         let devicePair: [String]
-
     }
-
-    public typealias ResponseType = DevicePair
 
 }
 
@@ -58,5 +63,18 @@ extension SendNotificationRequest: JSONRequest {
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v1/notifications/" }
     public typealias ResponseType = EmptyResponse
+
+}
+
+extension AuthRequest: JSONRequest {
+
+    public var httpMethod: String { return "POST" }
+    public var urlPath: String { return "/api/v1/auth/" }
+    public typealias ResponseType = AuthResponse
+
+    public struct AuthResponse: Decodable {
+        let pushToken: String
+        let owner: String
+    }
 
 }
