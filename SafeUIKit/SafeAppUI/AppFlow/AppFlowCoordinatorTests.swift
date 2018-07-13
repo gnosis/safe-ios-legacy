@@ -94,7 +94,7 @@ class AppFlowCoordinatorTests: SafeTestCase {
     func test_whenOnboardingFlowExits_thenEntersMainScreen() throws {
         authenticationService.allowAuthentication()
         _ = try Authenticator.instance.authenticate(.password(password))
-        try walletService.createNewDraftWallet()
+        walletService.createNewDraftWallet()
         walletService.update(account: "ETH", newBalance: 100)
         walletService.assignBlockchainAddress("address")
         createFlowCoordinator()

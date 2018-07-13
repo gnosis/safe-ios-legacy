@@ -16,7 +16,7 @@ class NewSafeViewControllerTests: SafeTestCase {
 
     override func setUp() {
         super.setUp()
-        XCTAssertNoThrow(try walletService.createNewDraftWallet())
+        walletService.createNewDraftWallet()
         controller = NewSafeViewController.create(delegate: delegate)
         controller.loadViewIfNeeded()
     }

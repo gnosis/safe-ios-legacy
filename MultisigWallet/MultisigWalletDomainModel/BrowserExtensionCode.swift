@@ -6,14 +6,9 @@ import Foundation
 
 public struct BrowserExtensionCode: Codable, Equatable {
 
-    let expirationDate: Date
-    let signature: EthSignature
-
-    public private(set) var extensionAddress: String?
-
-    enum Error: String, LocalizedError, Hashable {
-        case invalidJsonFormat
-    }
+    public let expirationDate: Date
+    public let signature: EthSignature
+    public var extensionAddress: String?
 
     enum CodingKeys: String, CodingKey {
         case expirationDate
@@ -24,21 +19,6 @@ public struct BrowserExtensionCode: Codable, Equatable {
         self.expirationDate = expirationDate
         self.signature = signature
         self.extensionAddress = extensionAddress
-    }
-
-    public init(json: String) throws {
-        let decoder = JSONDecoder()
-        let dateFormatter = DateFormatter.networkDateFormatter
-        decoder.dateDecodingStrategy = .formatted(dateFormatter)
-        guard let jsonData = json.data(using: .utf8) else {
-            throw Error.invalidJsonFormat
-        }
-        do {
-            self = try decoder.decode(BrowserExtensionCode.self, from: jsonData)
-            extensionAddress = DomainRegistry.blockchainService.address(browserExtensionCode: json)
-        } catch {
-            throw Error.invalidJsonFormat
-        }
     }
 
 }

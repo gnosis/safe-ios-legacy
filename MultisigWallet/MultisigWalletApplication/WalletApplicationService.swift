@@ -9,8 +9,8 @@ import BigInt
 
 public class WalletApplicationService: Assertable {
 
-    private var blockchainService: BlockchainDomainService {
-        return DomainRegistry.blockchainService
+    private var ethereumService: EthereumApplicationService {
+        return ApplicationServiceRegistry.ethereumService
     }
 
     private var notificationService: NotificationDomainService {
@@ -96,39 +96,32 @@ public class WalletApplicationService: Assertable {
     public static let requiredConfirmationCount: Int = 2
 
     public var selectedWalletState: WalletState {
-        do {
-            let wallet = try findSelectedWallet()
-            switch wallet.status {
-            case .newDraft:
-                return .newDraft
-            case .readyToDeploy:
-                return .readyToDeploy
-            case .deploymentStarted:
-                return .deploymentStarted
-            case .addressKnown:
-                let account = try findAccount("ETH")
-                if account.balance == 0 {
-                    return .addressKnown
-                } else if account.balance < account.minimumDeploymentTransactionAmount {
-                    return .notEnoughFunds
-                } else {
-                    return .accountFunded
-                }
-            case .deploymentAcceptedByBlockchain:
-                return .deploymentAcceptedByBlockchain
-            case .deploymentSuccess:
-                return .deploymentSuccess
-            case .deploymentFailed:
-                return .deploymentFailed
-            case .readyToUse:
-                return .readyToUse
+        guard let wallet = findSelectedWallet() else { return .none }
+        switch wallet.status {
+        case .newDraft:
+            return .newDraft
+        case .readyToDeploy:
+            return .readyToDeploy
+        case .deploymentStarted:
+            return .deploymentStarted
+        case .addressKnown:
+            let account = findAccount("ETH")!
+            if account.balance == 0 {
+                return .addressKnown
+            } else if account.balance < account.minimumDeploymentTransactionAmount {
+                return .notEnoughFunds
+            } else {
+                return .accountFunded
             }
-        } catch Error.selectedWalletNotFound {
-            return .none // all good
-        } catch let e {
-            ApplicationServiceRegistry.logger.error("Failed to compute selected wallet state", error: e)
+        case .deploymentAcceptedByBlockchain:
+            return .deploymentAcceptedByBlockchain
+        case .deploymentSuccess:
+            return .deploymentSuccess
+        case .deploymentFailed:
+            return .deploymentFailed
+        case .readyToUse:
+            return .readyToUse
         }
-        return .none
     }
 
     public var hasReadyToUseWallet: Bool {
@@ -148,21 +141,11 @@ public class WalletApplicationService: Assertable {
     }
 
     public var selectedWalletAddress: String? {
-        do {
-            return try findSelectedWallet().address?.value
-        } catch let error {
-            ApplicationServiceRegistry.logger.error("Error getting selected wallet: \(error)")
-            return nil
-        }
+        return findSelectedWallet()?.address?.value
     }
 
     public var minimumDeploymentAmount: Int? {
-        do {
-            let account = try findAccount("ETH")
-            return account.minimumDeploymentTransactionAmount
-        } catch {
-            return nil
-        }
+        return findAccount("ETH")?.minimumDeploymentTransactionAmount
     }
 
     private var statusUpdateHandlers = [String: () -> Void]()
@@ -171,10 +154,10 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Wallet
 
-    public func createNewDraftWallet() throws {
-        try notifyWalletStateChangesAfter {
+    public func createNewDraftWallet() {
+        notifyWalletStateChangesAfter {
             let portfolio = fetchOrCreatePortfolio()
-            let address = try blockchainService.generateExternallyOwnedAccount()
+            let address = ethereumService.generateExternallyOwnedAccount().address
             let owner = Wallet.createOwner(address: address)
             let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(),
                                 owner: owner,
@@ -202,8 +185,8 @@ public class WalletApplicationService: Assertable {
             }
             if selectedWalletState == .deploymentStarted {
                 let data = try requestWalletCreation()
-                try assignBlockchainAddress(data.walletAddress)
-                try updateMinimumFunding(account: "ETH", amount: data.fee)
+                try assignBlockchainAddress(data.safe)
+                try updateMinimumFunding(account: "ETH", amount: data.payment)
             }
             if selectedWalletState == .notEnoughFunds || selectedWalletState == .addressKnown {
                 try startObservingWalletBalance()
@@ -220,12 +203,11 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    private func requestWalletCreation() throws -> WalletCreationData {
+    private func requestWalletCreation() throws -> SafeCreationTransactionData {
         let owners: [String] = OwnerType.all.compactMap { ownerAddress(of: $0) }
         try assertEqual(owners.count, OwnerType.all.count, Error.oneOrMoreOwnersAreMissing)
         let confirmationCount = WalletApplicationService.requiredConfirmationCount
-        let data = try blockchainService.requestWalletCreationData(owners: owners, confirmationCount: confirmationCount)
-        return data
+        return try ethereumService.createSafeCreationTransaction(owners: owners, confirmationCount: confirmationCount)
     }
 
     private func doStartDeployment() throws {
@@ -241,56 +223,51 @@ public class WalletApplicationService: Assertable {
     }
 
     private func startObservingWalletBalance() throws {
-        let wallet = try findSelectedWallet()
-        guard let address = wallet.address else {
-            throw Error.missingWalletAddress
+        let address = findSelectedWallet()!.address!
+        try ethereumService.observeChangesInBalance(address: address.value, every: 2) { [weak self] newBalance in
+            guard let `self` = self else { return RepeatingShouldStop.yes }
+            return self.didUpdateBalance(account: address.value, newBalance: newBalance)
         }
-        try blockchainService.observeBalance(account: address.value, observer: didUpdateBalance(account:newBalance:))
     }
 
-    private func didUpdateBalance(account: String, newBalance: BigInt) -> BlockchainBalanceObserverResponse {
+    private func didUpdateBalance(account: String, newBalance: BigInt) -> Bool {
         do {
             guard [WalletState.addressKnown, WalletState.notEnoughFunds, WalletState.accountFunded]
                 .contains(selectedWalletState) else {
-                return .stopObserving
+                return RepeatingShouldStop.yes
             }
             // TODO: BigInt support
             try update(account: "ETH", newBalance: Int(newBalance)) // mutates selectedWalletState
             if selectedWalletState == .accountFunded {
                 try createWalletInBlockchain()
-                return .stopObserving
+                return RepeatingShouldStop.yes
             }
-            return .continueObserving
+            return RepeatingShouldStop.no
         } catch let error {
             ApplicationServiceRegistry.logger.fatal("Failed to update ETH account balance", error: error)
             try? markDeploymentFailed()
-            return .stopObserving
+            return RepeatingShouldStop.yes
         }
     }
 
     private func createWalletInBlockchain() throws {
-        let wallet = try findSelectedWallet()
-        guard let address = wallet.address else {
-            throw Error.missingWalletAddress
-        }
+        let address = findSelectedWallet()!.address!.value
         // TODO: if the call fails, show error in UI and possibility to retry with a button
-        try blockchainService.executeWalletCreationTransaction(address: address.value)
+        try ethereumService.startSafeCreation(address: address)
         guard selectedWalletState == .accountFunded else { return }
         try markDeploymentAcceptedByBlockchain()
         try waitForPendingTransaction()
     }
 
     private func waitForPendingTransaction() throws {
-        let wallet = try findSelectedWallet()
+        let wallet = findSelectedWallet()!
         var hash = wallet.creationTransactionHash
         if hash == nil {
-            guard let address = wallet.address else {
-                throw Error.missingWalletAddress
-            }
-            hash = try blockchainService.waitForCreationTransaction(address: address.value)
+            let address = wallet.address!.value
+            hash = try ethereumService.waitForCreationTransaction(address: address)
             try storeTransactionHash(hash: hash!)
         }
-        let isSuccess = try blockchainService.waitForPendingTransaction(hash: hash!)
+        let isSuccess = try ethereumService.waitForPendingTransaction(hash: hash!)
         guard selectedWalletState == .deploymentAcceptedByBlockchain else { return }
         didFinishDeployment(success: isSuccess)
     }
@@ -322,21 +299,21 @@ public class WalletApplicationService: Assertable {
         let sender = ownerAddress(of: .thisDevice)!
         let recipient = ownerAddress(of: .browserExtension)!
         let message = notificationService.safeCreatedMessage(at: selectedWalletAddress!)
-        let senderSignature = try blockchainService.sign(message: "GNO" + message, by: sender)
+        let senderSignature = ethereumService.sign(message: "GNO" + message, by: sender)!
         let request = SendNotificationRequest(message: message, to: recipient, from: senderSignature)
         try notificationService.send(notificationRequest: request)
     }
 
     private func fetchBalance() throws {
-        let wallet = try findSelectedWallet()
-        let newBalance = try blockchainService.balance(address: wallet.address!.value)
+        let address = findSelectedWallet()!.address!.value
+        let newBalance = try ethereumService.balance(address: address)
         // TODO: BigInt support
         try update(account: "ETH", newBalance: Int(newBalance))
     }
 
     private func removePaperWallet() throws {
         let paperWallet = ownerAddress(of: .paperWallet)!
-        try blockchainService.removeExternallyOwnedAccount(address: paperWallet)
+        ethereumService.removeExternallyOwnedAccount(address: paperWallet)
     }
 
     private func markReadyToDeploy() throws {
@@ -377,19 +354,17 @@ public class WalletApplicationService: Assertable {
 
     private func mutateSelectedWallet(_ closure: (Wallet) throws -> Void) throws {
         try notifyWalletStateChangesAfter {
-            let wallet = try findSelectedWallet()
+            let wallet = findSelectedWallet()!
             try closure(wallet)
             DomainRegistry.walletRepository.save(wallet)
         }
     }
 
-    private func findSelectedWallet() throws -> Wallet {
+    private func findSelectedWallet() -> Wallet? {
         guard let portfolio = DomainRegistry.portfolioRepository.portfolio(),
-            let walletID = portfolio.selectedWallet else {
-            throw Error.selectedWalletNotFound
-        }
-        guard let wallet = DomainRegistry.walletRepository.findByID(walletID) else {
-            throw Error.selectedWalletNotFound
+            let walletID = portfolio.selectedWallet,
+            let wallet = DomainRegistry.walletRepository.findByID(walletID) else {
+            return nil
         }
         return wallet
     }
@@ -406,13 +381,8 @@ public class WalletApplicationService: Assertable {
     // MARK: - Owners
 
     public func isOwnerExists(_ type: OwnerType) -> Bool {
-        do {
-            let wallet = try findSelectedWallet()
-            return wallet.owner(kind: type.kind) != nil
-        } catch let e {
-            ApplicationServiceRegistry.logger.error("Failed to check if owner exists (\(type))", error: e)
-        }
-        return false
+        guard let wallet = findSelectedWallet(), wallet.owner(kind: type.kind) != nil else { return false }
+        return true
     }
 
     public func addOwner(address: String, type: OwnerType) throws {
@@ -436,8 +406,10 @@ public class WalletApplicationService: Assertable {
 
     public func addBrowserExtensionOwner(address: String, browserExtensionCode: String) throws {
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
-        let signature = try blockchainService.sign(message: "GNO" + address, by: deviceOwnerAddress)
-        let browserExtension = try BrowserExtensionCode(json: browserExtensionCode)
+        let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress)!
+        guard let browserExtension = browserExtension(json: browserExtensionCode) else {
+            throw Error.validationFailed
+        }
         do {
             let pairingRequest = PairingRequest(
                 temporaryAuthorization: browserExtension,
@@ -462,27 +434,31 @@ public class WalletApplicationService: Assertable {
         try addOwner(address: address, type: .browserExtension)
     }
 
-    public func ownerAddress(of type: OwnerType) -> String? {
-        do {
-            let wallet = try findSelectedWallet()
-            if let owner = wallet.owner(kind: type.kind) {
-                return owner.address.value
-            }
-        } catch let e {
-            ApplicationServiceRegistry.logger.error("Failed to fetch owner's address (\(type))", error: e)
+    public func browserExtension(json: String) -> BrowserExtensionCode? {
+        let decoder = JSONDecoder()
+        let dateFormatter = DateFormatter.networkDateFormatter
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        guard let jsonData = json.data(using: .utf8) else {
+            return nil
         }
-        return nil
+        do {
+            var code = try decoder.decode(BrowserExtensionCode.self, from: jsonData)
+            code.extensionAddress = ethereumService.address(browserExtensionCode: json)
+            return code
+        } catch {
+            return nil
+        }
+    }
+
+    public func ownerAddress(of type: OwnerType) -> String? {
+        guard let wallet = findSelectedWallet(), let owner = wallet.owner(kind: type.kind) else { return nil }
+        return owner.address.value
     }
 
     // MARK: - Accounts
 
     public func accountBalance(token: String) -> Int? {
-        do {
-            let account = try findAccount(token)
-            return account.balance
-        } catch {
-            return nil
-        }
+       return findAccount(token)?.balance
     }
 
     private func updateMinimumFunding(account token: String, amount: Int) throws {
@@ -505,25 +481,18 @@ public class WalletApplicationService: Assertable {
 
     private func mutateAccount(token: String, closure: (Account) throws -> Void) throws {
         try notifyWalletStateChangesAfter {
-            let account = try findAccount(token)
+            let account = findAccount(token)!
             try closure(account)
             DomainRegistry.accountRepository.save(account)
         }
     }
 
-    private func findAccount(_ token: String) throws -> Account {
-        let wallet = try findSelectedWallet()
-        do {
-            guard let account = DomainRegistry
-                .accountRepository.find(id: AccountID(token: token), walletID: wallet.id) else {
-                    throw Error.accountNotFound
-            }
-            return account
-        } catch let error {
-            ApplicationServiceRegistry.logger
-                .error("Failed to to find account \(token) for wallet \(wallet.id) in account repository: \(error)")
-            throw error
+    private func findAccount(_ token: String) -> Account? {
+        guard let wallet = findSelectedWallet(),
+            let account = DomainRegistry.accountRepository.find(id: AccountID(token: token), walletID: wallet.id) else {
+            return nil
         }
+        return account
     }
 
     // MARK: - Wallet status update subscribing

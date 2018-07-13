@@ -42,14 +42,6 @@ class SetupSafeOptionsViewControllerTests: SafeTestCase {
         XCTAssertFalse(walletService.didCreateNewDraft)
     }
 
-    func test_whenBlockchainFails_thenErrorPresented() throws {
-        createWindow(vc)
-        walletService.shouldThrow = true
-        vc.createNewSafe(vc)
-        delay()
-        XCTAssertAlertShown()
-    }
-
 }
 
 final class MockSetupSafeOptionsDelegate: SetupSafeOptionsDelegate {
