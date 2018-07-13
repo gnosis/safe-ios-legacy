@@ -13,7 +13,7 @@ class DomainRegistryTests: XCTestCase {
         DomainRegistry.put(service: InMemorySinglePortfolioRepository(), for: SinglePortfolioRepository.self)
         DomainRegistry.put(service: MockBlockchainDomainService(), for: BlockchainDomainService.self)
         DomainRegistry.put(service: MockNotificationService(), for: NotificationDomainService.self)
-        DomainRegistry.put(service: MockTokensService(), for: TokensDomainService.self)
+        DomainRegistry.put(service: MockTokensDomainService(), for: TokensDomainService.self)
         XCTAssertNotNil(DomainRegistry.walletRepository)
         XCTAssertNotNil(DomainRegistry.portfolioRepository)
         XCTAssertNotNil(DomainRegistry.blockchainService)
