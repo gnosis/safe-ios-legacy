@@ -25,10 +25,7 @@ open class MockEthereumApplicationService: EthereumApplicationService {
         generatedAccount = ExternallyOwnedAccountData(address: address, mnemonicWords: mnemonic)
     }
 
-    open override func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccountData {
-        if shouldThrow {
-            throw Error.error
-        }
+    open override func generateExternallyOwnedAccount() -> ExternallyOwnedAccountData {
         return generatedAccount!
     }
 
@@ -36,7 +33,7 @@ open class MockEthereumApplicationService: EthereumApplicationService {
         accounts[account.address] = account
     }
 
-    open override func findExternallyOwnedAccount(by address: String) throws -> ExternallyOwnedAccountData? {
+    open override func findExternallyOwnedAccount(by address: String) -> ExternallyOwnedAccountData? {
         return accounts[address]
     }
 

@@ -51,17 +51,17 @@ open class EthereumApplicationService: Assertable {
         return encryptionService.address(browserExtensionCode: browserExtensionCode)
     }
 
-    open func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccountData {
-        let account = try encryptionService.generateExternallyOwnedAccount()
+    open func generateExternallyOwnedAccount() -> ExternallyOwnedAccountData {
+        let account = encryptionService.generateExternallyOwnedAccount()
         eoaRepository.save(account)
         return account.applicationServiceData
     }
 
-    open func removeExternallyOwnedAccount(address: String) throws {
+    open func removeExternallyOwnedAccount(address: String) {
         eoaRepository.remove(address: Address(value: address))
     }
 
-    open func findExternallyOwnedAccount(by address: String) throws -> ExternallyOwnedAccountData? {
+    open func findExternallyOwnedAccount(by address: String) -> ExternallyOwnedAccountData? {
         guard let account = eoaRepository.find(by: Address(value: address)) else {
             return nil
         }
@@ -86,12 +86,7 @@ open class EthereumApplicationService: Assertable {
                                response.tx.gas,
                                response.tx.gasPrice,
                                response.tx.nonce)
-            let safeAddress: String?
-            do {
-                safeAddress = try encryptionService.contractAddress(from: signature, for: transaction)
-            } catch {
-                throw Error.invalidSignature
-            }
+            let safeAddress: String? = encryptionService.contractAddress(from: signature, for: transaction)
             try assertEqual(safeAddress, response.safe, Error.invalidSignature)
             guard let payment = Int(response.payment) else { throw Error.invalidTransaction }
             return SafeCreationTransactionData(safe: response.safe, payment: payment)
@@ -142,7 +137,7 @@ open class EthereumApplicationService: Assertable {
         guard let eoa = eoaRepository.find(by: Address(value: address)) else {
             throw Error.eoaNotFound
         }
-        let signature = try encryptionService.sign(message: message, privateKey: eoa.privateKey)
+        let signature = encryptionService.sign(message: message, privateKey: eoa.privateKey)
         return (signature.r, signature.s, signature.v)
     }
 
@@ -180,8 +175,8 @@ extension EthereumApplicationService: BlockchainDomainService {
         return WalletCreationData(walletAddress: data.safe, fee: data.payment)
     }
 
-    public func generateExternallyOwnedAccount() throws -> String {
-        return try generateExternallyOwnedAccount().address
+    public func generateExternallyOwnedAccount() -> String {
+        return generateExternallyOwnedAccount().address
     }
 
     public func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) throws {

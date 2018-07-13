@@ -21,9 +21,9 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
     }
 
     func test_whenGoodData_thenReturnsSomething() throws {
-        let eoa1 = try encryptionService.generateExternallyOwnedAccount()
-        let eoa2 = try encryptionService.generateExternallyOwnedAccount()
-        let eoa3 = try encryptionService.generateExternallyOwnedAccount()
+        let eoa1 = encryptionService.generateExternallyOwnedAccount()
+        let eoa2 = encryptionService.generateExternallyOwnedAccount()
+        let eoa3 = encryptionService.generateExternallyOwnedAccount()
         let owners = [eoa1, eoa2, eoa3].map { $0.address.value }
         let ecdsaRandomS = encryptionService.ecdsaRandomS()
         let request = SafeCreationTransactionRequest(owners: owners, confirmationCount: 2, ecdsaRandomS: ecdsaRandomS)
@@ -39,7 +39,7 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
                            response.tx.gas,
                            response.tx.gasPrice,
                            response.tx.nonce)
-        guard let safeAddress = try encryptionService.contractAddress(from: signature, for: transaction) else {
+        guard let safeAddress = encryptionService.contractAddress(from: signature, for: transaction) else {
             XCTFail("Can't extract safe address from server response")
             return
         }

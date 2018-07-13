@@ -39,20 +39,20 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
 
     public func save(_ account: Account) {
         try! db.execute(sql: SQL.insert, bindings: [account.id.token,
-                                                   account.walletID.id,
-                                                   account.balance,
-                                                   account.minimumDeploymentTransactionAmount])
+                                                    account.walletID.id,
+                                                    account.balance,
+                                                    account.minimumDeploymentTransactionAmount])
     }
 
     public func remove(_ account: Account) {
         try! db.execute(sql: SQL.delete, bindings: [account.id.token,
-                                                   account.walletID.id])
+                                                    account.walletID.id])
     }
 
     public func find(id: AccountID, walletID: WalletID) -> Account? {
         return try! db.execute(sql: SQL.find,
-                              bindings: [id.token, walletID.id],
-                              resultMap: accountFromResultSet).first as? Account
+                               bindings: [id.token, walletID.id],
+                               resultMap: accountFromResultSet).first as? Account
     }
 
     private func accountFromResultSet(_ rs: ResultSet) -> Account? {

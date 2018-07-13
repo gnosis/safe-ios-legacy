@@ -11,10 +11,10 @@ public typealias EthRawTransaction =
 public protocol EncryptionDomainService {
 
     func address(browserExtensionCode: String) -> String?
-    func contractAddress(from: EthSignature, for transaction: EthTransaction) throws -> String?
-    func generateExternallyOwnedAccount() throws -> ExternallyOwnedAccount
+    func contractAddress(from: EthSignature, for transaction: EthTransaction) -> String?
+    func generateExternallyOwnedAccount() -> ExternallyOwnedAccount
     func ecdsaRandomS() -> String
-    func sign(message: String, privateKey: PrivateKey) throws -> EthSignature
+    func sign(message: String, privateKey: PrivateKey) -> EthSignature
 
 }
 
