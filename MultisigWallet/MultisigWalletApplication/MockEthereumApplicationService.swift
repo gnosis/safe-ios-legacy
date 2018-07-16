@@ -38,7 +38,7 @@ open class MockEthereumApplicationService: EthereumApplicationService {
     public var observeChangesInBalance_input: (account: String, observer: (BigInt) -> Bool)?
     open override func observeChangesInBalance(address: String,
                                                every interval: TimeInterval,
-                                               block didUpdateBalanceBlock: @escaping (BigInt) -> Bool) throws {
+                                               block didUpdateBalanceBlock: @escaping (BigInt) -> Bool) {
         observeChangesInBalance_input = (address, didUpdateBalanceBlock)
     }
 

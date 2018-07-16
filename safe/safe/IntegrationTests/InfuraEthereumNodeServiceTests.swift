@@ -95,16 +95,16 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
                                    nonce: Int(nonce))
         let rawTx = try encryptionService.sign(transaction: tx, privateKey: sourcePrivateKey)
         let txHash = try service.eth_sendRawTransaction(signedTransactionHash: rawTx)
-        let receipt = try waitForTransaction(txHash)!
+        let receipt = waitForTransaction(txHash)!
         XCTAssertEqual(receipt.status, .success)
         let newBalance = try service.eth_getBalance(account: destinationEOA.address)
         XCTAssertEqual(newBalance, BigInt(1))
     }
 
-    func waitForTransaction(_ transactionHash: TransactionHash) throws -> TransactionReceipt? {
+    func waitForTransaction(_ transactionHash: TransactionHash) -> TransactionReceipt? {
         var result: TransactionReceipt? = nil
         let exp = expectation(description: "Transaction Mining")
-        try Worker.start(repeating: 3) {
+        Worker.start(repeating: 3) {
             do {
                 guard let receipt = try self.service.eth_getTransactionReceipt(transaction: transactionHash) else {
                     return false

@@ -139,7 +139,7 @@ open class EthereumApplicationService: Assertable {
     }
 
     private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {
-        try Worker.start(repeating: interval) { [weak self] in
+        Worker.start(repeating: interval) { [weak self] in
             guard self != nil else {
                 return RepeatingShouldStop.yes
             }

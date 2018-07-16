@@ -20,15 +20,15 @@ public class Worker: Assertable {
     private let interval: TimeInterval
     private var shouldStop: Bool = false
 
-    public static func start(repeating interval: TimeInterval, block: @escaping () -> Bool) throws {
-        let worker = try Worker(repeating: interval, block: block)
+    public static func start(repeating interval: TimeInterval, block: @escaping () -> Bool) {
+        let worker = Worker(repeating: interval, block: block)
         worker.start()
     }
 
-    public init(repeating interval: TimeInterval, block: @escaping () -> Bool) throws {
+    public init(repeating interval: TimeInterval, block: @escaping () -> Bool) {
         self.interval = interval
         self.jobClosure = block
-        try assertTrue(interval > 0, Error.invalidRepatingTimeInterval)
+        try! assertTrue(interval > 0, Error.invalidRepatingTimeInterval)
     }
 
     func start() {

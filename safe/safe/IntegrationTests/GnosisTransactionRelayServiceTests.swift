@@ -87,7 +87,7 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
     func waitForSafeCreationTransaction(_ address: Address) throws -> TransactionHash {
         var result: TransactionHash!
         let exp = expectation(description: "Safe creation")
-        try Worker.start(repeating: 5) {
+        Worker.start(repeating: 5) {
             do {
                 guard let hash = try self.relayService.safeCreationTransactionHash(address: address) else {
                     return false
@@ -109,7 +109,7 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
     func waitForTransaction(_ transactionHash: TransactionHash) throws -> TransactionReceipt? {
         var result: TransactionReceipt? = nil
         let exp = expectation(description: "Transaction Mining")
-        try Worker.start(repeating: 3) {
+        Worker.start(repeating: 3) {
             do {
                 guard let receipt =
                     try self.infuraService.eth_getTransactionReceipt(transaction: transactionHash) else {
