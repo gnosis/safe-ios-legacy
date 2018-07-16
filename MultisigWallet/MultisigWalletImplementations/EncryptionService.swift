@@ -203,7 +203,7 @@ open class EncryptionService: EncryptionDomainService {
     public func address(privateKey: MultisigWalletDomainModel.PrivateKey) -> MultisigWalletDomainModel.Address {
         let publicKey = ethereumService.createPublicKey(privateKey: privateKey.data)
         let address = ethereumService.createAddress(publicKey: publicKey)
-        return Address(value: address)
+        return Address(address)
     }
 
     // MARK: - EOA generation
@@ -211,7 +211,7 @@ open class EncryptionService: EncryptionDomainService {
     public func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {
         let (mnemonicWords, privateKeyData, publicKeyData, address) =
             ethereumService.createExternallyOwnedAccount(chainId: chainId)
-        let account = ExternallyOwnedAccount(address: Address(value: address),
+        let account = ExternallyOwnedAccount(address: Address(address),
                                              mnemonic: Mnemonic(words: mnemonicWords),
                                              privateKey: PrivateKey(data: privateKeyData),
                                              publicKey: PublicKey(data: publicKeyData))
@@ -220,8 +220,8 @@ open class EncryptionService: EncryptionDomainService {
 
     // MARK: - random numbers
 
-    open func ecdsaRandomS() -> String {
-        return String(BigUInt.randomInteger(lessThan: ECDSASignatureBounds.sRange.upperBound))
+    open func ecdsaRandomS() -> BigUInt {
+        return BigUInt.randomInteger(lessThan: ECDSASignatureBounds.sRange.upperBound)
     }
 
     // MARK: - Signing messages
@@ -241,10 +241,10 @@ open class EncryptionService: EncryptionDomainService {
     }
 
     public func sign(transaction: EthRawTransaction,
-                     privateKey: MultisigWalletDomainModel.PrivateKey) throws -> String {
+                     privateKey: MultisigWalletDomainModel.PrivateKey) throws -> SignedRawTransaction {
         let rlpAppendix: EthSignature? = chainId == .any ? nil : EthSignature(r: "0", s: "0", v: chainId.rawValue)
         let signature = calculateRSV(from: rawSignature(of: hash(transaction, rlpAppendix), with: privateKey.data))
-        return rlp(transaction, signature: signature).toHexString().addHexPrefix()
+        return SignedRawTransaction(rlp(transaction, signature: signature).toHexString().addHexPrefix())
     }
 
     private func rawSignature(of data: Data, with privateKey: Data) -> Data {

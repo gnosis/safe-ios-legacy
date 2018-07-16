@@ -22,7 +22,7 @@ public class WalletID: BaseID {}
  |                                | replaceOwner()                       | readyToDeploy                  |                |
  |                                | removeOwner()                        | readyToDeploy                  |                |
  | deploymentStarted              | abortDeployment()                    | readyToDeploy                  |                |
- |                                | changeBlockchainAddress()            | addressKnown                   |                |
+ |                                | changeAddress()            | addressKnown                   |                |
  | addressKnown                   | markDeploymentAcceptedByBlockchain() | deploymentAcceptedByBlockchain |                |
  |                                | abortDeployment()                    | readyToDeploy                  |                |
  |                                | markDeploymentFailed()               | deploymentFailed               |                |
@@ -59,14 +59,14 @@ public class Wallet: IdentifiableEntity<WalletID> {
         fileprivate let id: String
         fileprivate let status: Status
         fileprivate let ownersByKind: [String: Owner]
-        fileprivate let address: BlockchainAddress?
+        fileprivate let address: Address?
         fileprivate let creationTransactionHash: String?
     }
 
     public private(set) var status = Status.newDraft
     private static let mutableStates: [Status] = [.newDraft, .readyToUse]
     private var ownersByKind = [String: Owner]()
-    public private(set) var address: BlockchainAddress?
+    public private(set) var address: Address?
     public private(set) var creationTransactionHash: String?
 
     public required init(data: Data) {
@@ -100,7 +100,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public static func createOwner(address: String) -> Owner {
-        return Owner(address: BlockchainAddress(value: address))
+        return Owner(address: Address(address))
     }
 
     public func addOwner(_ owner: Owner, kind: String) {
@@ -180,7 +180,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         status = .readyToUse
     }
 
-    public func changeBlockchainAddress(_ address: BlockchainAddress) {
+    public func changeAddress(_ address: Address) {
         assert(status: .deploymentStarted)
         self.address = address
         status = .addressKnown

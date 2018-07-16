@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct BlockchainAddress: Hashable, Codable {
+public struct BAddress: Hashable, Codable {
 
     public internal(set) var value: String
 

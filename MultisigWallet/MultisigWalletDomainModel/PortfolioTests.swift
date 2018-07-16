@@ -11,7 +11,7 @@ class PortfolioTests: XCTestCase {
     var wallet: Wallet!
     var wallet1: Wallet!
     var wallet2: Wallet!
-    var owner = Owner(address: BlockchainAddress(value: "address"))
+    var owner = Owner(address: Address.deviceAddress)
 
     override func setUp() {
         super.setUp()

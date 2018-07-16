@@ -21,7 +21,7 @@ class DBSinglePortfolioRepositoryIntegrationTests: XCTestCase {
         let repo = DBSinglePortfolioRepository(db: db)
         repo.setUp()
 
-        let owner = Wallet.createOwner(address: "address")
+        let owner = Wallet.createOwner(address: Address.testAccount1.value)
 
         let walletRepo = DBWalletRepository(db: db)
         let wallet = Wallet(id: walletRepo.nextID(), owner: owner, kind: "kind")

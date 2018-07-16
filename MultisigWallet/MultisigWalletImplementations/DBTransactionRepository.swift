@@ -96,7 +96,7 @@ LIMIT 1;
         return values.compactMap { value -> Signature? in
             let parts = value.components(separatedBy: ",")
             guard parts.count == 2 else { return nil }
-            return Signature(data: Data(hex: parts.last!), address: BlockchainAddress(value: parts.first!))
+            return Signature(data: Data(hex: parts.last!), address: Address(parts.first!))
         }
     }
 
@@ -132,11 +132,11 @@ LIMIT 1;
                                       accountID: AccountID(token: accountID))
 
         if let sender = rs.string(at: 5) {
-            transaction.change(sender: BlockchainAddress(value: sender))
+            transaction.change(sender: Address(sender))
         }
 
         if let recipient = rs.string(at: 6) {
-            transaction.change(recipient: BlockchainAddress(value: recipient))
+            transaction.change(recipient: Address(recipient))
         }
 
         if let amountString = rs.string(at: 7), let amount = TokenAmount(amountString) {

@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import BigInt
 
 public typealias EthTransaction = (from: String, value: Int, data: String, gas: String, gasPrice: String, nonce: Int)
 public typealias EthRawTransaction =
@@ -13,7 +14,7 @@ public protocol EncryptionDomainService {
     func address(browserExtensionCode: String) -> String?
     func contractAddress(from: EthSignature, for transaction: EthTransaction) -> String?
     func generateExternallyOwnedAccount() -> ExternallyOwnedAccount
-    func ecdsaRandomS() -> String
+    func ecdsaRandomS() -> BigUInt
     func sign(message: String, privateKey: PrivateKey) -> EthSignature
 
 }

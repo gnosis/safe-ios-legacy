@@ -12,8 +12,8 @@ import BigInt
 class InfuraEthereumNodeServiceTests: XCTestCase {
 
     let service = InfuraEthereumNodeService()
-    let testAddress = Address(value: "0x57b2573E5FA7c7C9B5Fa82F3F03A75F53A0efdF5")
-    let emptyAddress = Address(value: "0xd1776c60688a3277c7e69204849989c7dc9f5aaa")
+    let testAddress = Address("0x57b2573E5FA7c7C9B5Fa82F3F03A75F53A0efdF5")
+    let emptyAddress = Address("0xd1776c60688a3277c7e69204849989c7dc9f5aaa")
     let notExistingTransactionHash =
         TransactionHash("0xaaaad132ec7112c08c166fbdc7f87a4e17ee00aaaa4c67eb7fde3cab53c60abe")
     let successfulTransactionHash =
@@ -94,7 +94,7 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
                                    gasPrice: String(gasPrice),
                                    nonce: Int(nonce))
         let rawTx = try encryptionService.sign(transaction: tx, privateKey: sourcePrivateKey)
-        let txHash = try service.eth_sendRawTransaction(signedTransactionHash: rawTx)
+        let txHash = try service.eth_sendRawTransaction(rawTransaction: rawTx)
         let receipt = waitForTransaction(txHash)!
         XCTAssertEqual(receipt.status, .success)
         let newBalance = try service.eth_getBalance(account: destinationEOA.address)

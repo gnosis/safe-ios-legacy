@@ -189,7 +189,7 @@ public class WalletApplicationService: Assertable {
             }
             if selectedWalletState == .deploymentStarted {
                 let data = try requestWalletCreation()
-                assignBlockchainAddress(data.safe)
+                assignAddress(data.safe)
                 updateMinimumFunding(account: "ETH", amount: data.payment)
             }
             if selectedWalletState == .notEnoughFunds || selectedWalletState == .addressKnown {
@@ -208,7 +208,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func requestWalletCreation() throws -> SafeCreationTransactionData {
-        let owners: [String] = OwnerType.all.compactMap { ownerAddress(of: $0) }
+        let owners: [Address] = OwnerType.all.compactMap { Address(ownerAddress(of: $0)!) }
         try assertEqual(owners.count, OwnerType.all.count, Error.oneOrMoreOwnersAreMissing)
         let confirmationCount = WalletApplicationService.requiredConfirmationCount
         return try ethereumService.createSafeCreationTransaction(owners: owners, confirmationCount: confirmationCount)
@@ -220,9 +220,9 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    private func assignBlockchainAddress(_ address: String) {
+    private func assignAddress(_ address: String) {
         mutateSelectedWallet { wallet in
-            wallet.changeBlockchainAddress(BlockchainAddress(value: address))
+            wallet.changeAddress(Address(address))
         }
     }
 
@@ -255,7 +255,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func createWalletInBlockchain() throws {
-        let address = findSelectedWallet()!.address!.value
+        let address = findSelectedWallet()!.address!
         // TODO: if the call fails, show error in UI and possibility to retry with a button
         try ethereumService.startSafeCreation(address: address)
         guard selectedWalletState == .accountFunded else { return }
@@ -267,7 +267,7 @@ public class WalletApplicationService: Assertable {
         let wallet = findSelectedWallet()!
         var hash = wallet.creationTransactionHash
         if hash == nil {
-            let address = wallet.address!.value
+            let address = wallet.address!
             hash = try ethereumService.waitForCreationTransaction(address: address)
             try storeTransactionHash(hash: hash!)
         }
@@ -458,10 +458,11 @@ public class WalletApplicationService: Assertable {
        return findAccount(token)?.balance
     }
 
-    private func updateMinimumFunding(account token: String, amount: Int) {
+    private func updateMinimumFunding(account token: String, amount: BigInt) {
         assertCanChangeAccount()
         mutateAccount(token: token) { account in
-            account.updateMinimumTransactionAmount(amount)
+            // TODO: bigint
+            account.updateMinimumTransactionAmount(Int(amount))
         }
     }
 

@@ -49,7 +49,7 @@ public class MockWalletApplicationService: WalletApplicationService {
 
     public func createReadyToUseWallet() {
         _hasReadyToUseWallet = true
-        assignBlockchainAddress("address")
+        assignAddress("0x111ccccccccccccccccccccccccccccccccccccc")
         update(account: "ETH", newBalance: 100)
         _selectedWalletState = .readyToUse
     }
@@ -80,7 +80,7 @@ public class MockWalletApplicationService: WalletApplicationService {
         _selectedWalletState = .deploymentStarted
     }
 
-    public func assignBlockchainAddress(_ address: String) {
+    public func assignAddress(_ address: String) {
         walletAddress = address
         _selectedWalletState = .addressKnown
     }

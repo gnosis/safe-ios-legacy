@@ -27,12 +27,16 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
         return try execute(request: GetTransactionCountRequest(address, blockNumber))
     }
 
-    public func eth_sendRawTransaction(signedTransactionHash: String) throws -> TransactionHash {
-        return try execute(request: SendRawTransactionRequest(signedTransactionHash))
+    public func eth_sendRawTransaction(rawTransaction: SignedRawTransaction) throws -> TransactionHash {
+        return try execute(request: SendRawTransactionRequest(rawTransaction.value))
     }
 
     public func eth_getBalance(account: MultisigWalletDomainModel.Address) throws -> BigInt {
-        return try execute(request: GetBalanceRequest(address: account.value))
+        return try eth_getBalance(account: EthAddress(hex: account.value), blockNumber: .latest)
+    }
+
+    public func eth_getBalance(account: EthAddress, blockNumber: EthBlockNumber) throws -> BigInt {
+        return try execute(request: GetBalanceRequest(account, blockNumber))
     }
 
     public func eth_getTransactionReceipt(transaction: TransactionHash) throws -> TransactionReceipt? {

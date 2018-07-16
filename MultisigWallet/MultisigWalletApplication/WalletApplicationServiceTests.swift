@@ -36,8 +36,9 @@ class WalletApplicationServiceTests: XCTestCase {
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: ethereumService,
                                                                  for: EthereumApplicationService.self)
         ethereumService.createSafeCreationTransaction_output =
-            SafeCreationTransactionData(safe: "address", payment: 100)
-        ethereumService.prepareToGenerateExternallyOwnedAccount(address: "address", mnemonic: ["a", "b"])
+            SafeCreationTransactionData(safe: Address.safeAddress.value, payment: 100)
+        ethereumService.prepareToGenerateExternallyOwnedAccount(address: Address.deviceAddress.value,
+                                                                mnemonic: ["a", "b"])
     }
 
     func test_whenCreatingNewDraft_thenCreatesPortfolio() throws {
@@ -54,7 +55,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         addAllOwners()
         try service.startDeployment()
-        XCTAssertEqual(try selectedWallet().address?.value, "address")
+        XCTAssertEqual(try selectedWallet().address, Address.safeAddress)
     }
 
     func test_whenAddingAccount_thenCanFindIt() throws {
@@ -76,17 +77,17 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenAddingOwner_thenAddressCanBeFound() throws {
         givenDraftWallet()
-        service.addOwner(address: "testAddress", type: .paperWallet)
-        XCTAssertEqual(service.ownerAddress(of: .paperWallet), "testAddress")
+        service.addOwner(address: Address.paperWalletAddress.value, type: .paperWallet)
+        XCTAssertEqual(service.ownerAddress(of: .paperWallet), Address.paperWalletAddress.value)
     }
 
-    func test_whenAddingAlreadyExistingTypeOfOwner_thenOldOwnerIsReplaysed() throws {
+    func test_whenAddingAlreadyExistingTypeOfOwner_thenOldOwnerIsReplaced() throws {
         givenDraftWallet()
-        service.addOwner(address: "testAddress", type: .browserExtension)
-        service.addOwner(address: "testAddress", type: .browserExtension)
-        XCTAssertEqual(service.ownerAddress(of: .browserExtension), "testAddress")
-        service.addOwner(address: "newTestAddress", type: .browserExtension)
-        XCTAssertEqual(service.ownerAddress(of: .browserExtension), "newTestAddress")
+        service.addOwner(address: Address.extensionAddress.value, type: .browserExtension)
+        service.addOwner(address: Address.extensionAddress.value, type: .browserExtension)
+        XCTAssertEqual(service.ownerAddress(of: .browserExtension), Address.extensionAddress.value)
+        service.addOwner(address: Address.testAccount1.value, type: .browserExtension)
+        XCTAssertEqual(service.ownerAddress(of: .browserExtension), Address.testAccount1.value)
     }
 
     fileprivate func givenReadyToDeployWallet(line: UInt = #line) throws {
@@ -186,7 +187,7 @@ class WalletApplicationServiceTests: XCTestCase {
         try service.startDeployment()
         let expectedOwners = [service.ownerAddress(of: .thisDevice)!,
                               service.ownerAddress(of: .browserExtension)!,
-                              service.ownerAddress(of: .paperWallet)!]
+                              service.ownerAddress(of: .paperWallet)!].map { Address($0) }
         guard let input = ethereumService.createSafeCreationTransaction_input else {
             XCTFail("Wallet creation was not called")
             return
@@ -212,7 +213,7 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(account.minimumDeploymentTransactionAmount, 100)
         XCTAssertEqual(account.balance, 0)
         let wallet = try selectedWallet()
-        XCTAssertEqual(wallet.address, BlockchainAddress(value: "address"))
+        XCTAssertEqual(wallet.address, Address.safeAddress)
     }
 
     func test_whenDeploymentStarted_thenStartsObservingBalance() throws {
@@ -258,7 +259,7 @@ class WalletApplicationServiceTests: XCTestCase {
             return
         }
         let wallet = try selectedWallet()
-        XCTAssertEqual(input, wallet.address?.value)
+        XCTAssertEqual(input, wallet.address)
     }
 
     func test_whenStartedCreatingSafe_thenChangesState() throws {
@@ -321,7 +322,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         addAllOwners()
         try markDeploymentStarted()
-        try assignAddress("address")
+        try assignAddress(Address.safeAddress.value)
         try makeNotEnoughFunds()
         try service.startDeployment()
         XCTAssertNotNil(ethereumService.observeChangesInBalance_input)
@@ -331,7 +332,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         addAllOwners()
         try markDeploymentStarted()
-        try assignAddress("address")
+        try assignAddress(Address.safeAddress.value)
         try makeEnoughFunds()
         try service.startDeployment()
         XCTAssertNotNil(ethereumService.startSafeCreation_input)
@@ -341,7 +342,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         addAllOwners()
         try markDeploymentStarted()
-        try assignAddress("address")
+        try assignAddress(Address.safeAddress.value)
         try makeEnoughFunds()
         try markAcceptedByBlockchain()
         try simulateCreationTransaction()
@@ -353,7 +354,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         addAllOwners()
         try markDeploymentStarted()
-        try assignAddress("address")
+        try assignAddress(Address.safeAddress.value)
         try service.startDeployment()
         XCTAssertNotNil(ethereumService.observeChangesInBalance_input)
     }
@@ -363,7 +364,7 @@ class WalletApplicationServiceTests: XCTestCase {
     func test_whenAddingBrowserExtensionOwner_thenWorksProperly() throws {
         givenDraftWallet()
         try service.addBrowserExtensionOwner(
-            address: "test",
+            address: Address.extensionAddress.value,
             browserExtensionCode: BrowserExtensionFixture.testJSON)
         XCTAssertTrue(ethereumService.didSign)
         XCTAssertTrue(notificationService.didPair)
@@ -375,7 +376,7 @@ class WalletApplicationServiceTests: XCTestCase {
         notificationService.shouldThrow = true
         XCTAssertThrowsError(
             try service.addBrowserExtensionOwner(
-                address: "test",
+                address: Address.extensionAddress.value,
                 browserExtensionCode: BrowserExtensionFixture.testJSON)) { error in
                     XCTAssertEqual(error as! WalletApplicationService.Error, .unknownError)
         }
@@ -468,8 +469,8 @@ class WalletApplicationServiceTests: XCTestCase {
 fileprivate extension WalletApplicationServiceTests {
 
     func addAllOwners() {
-        service.addOwner(address: "address2", type: .browserExtension)
-        service.addOwner(address: "address3", type: .paperWallet)
+        service.addOwner(address: Address.extensionAddress.value, type: .browserExtension)
+        service.addOwner(address: Address.paperWalletAddress.value, type: .paperWallet)
     }
 
     func createPortfolio() {
@@ -510,7 +511,7 @@ fileprivate extension WalletApplicationServiceTests {
 
     private func assignAddress(_ address: String) throws {
         let wallet = try selectedWallet()
-        wallet.changeBlockchainAddress(BlockchainAddress(value: address))
+        wallet.changeAddress(Address(address))
         walletRepository.save(wallet)
     }
 
@@ -530,7 +531,7 @@ fileprivate extension WalletApplicationServiceTests {
 
     private func simulateCreationTransaction() throws {
         let wallet = try selectedWallet()
-        wallet.assignCreationTransaction(hash: "something")
+        wallet.assignCreationTransaction(hash: TransactionHash.test1.value)
         walletRepository.save(wallet)
     }
 

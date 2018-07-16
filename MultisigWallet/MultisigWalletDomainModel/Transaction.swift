@@ -26,8 +26,8 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     // MARK: - Querying transaction data
 
     public let type: TransactionType
-    public private(set) var sender: BlockchainAddress?
-    public private(set) var recipient: BlockchainAddress?
+    public private(set) var sender: Address?
+    public private(set) var recipient: Address?
     public private(set) var amount: TokenAmount?
     public private(set) var fee: TokenAmount?
     public private(set) var status: TransactionStatus = .draft
@@ -97,14 +97,14 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     }
 
     @discardableResult
-    public func change(sender: BlockchainAddress) -> Transaction {
+    public func change(sender: Address) -> Transaction {
         assertInDraftStatus()
         self.sender = sender
         return self
     }
 
     @discardableResult
-    public func change(recipient: BlockchainAddress) -> Transaction {
+    public func change(recipient: Address) -> Transaction {
         assertInDraftStatus()
         self.recipient = recipient
         return self
@@ -180,8 +180,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         [.draft, .signing, .pending, .rejected, .failed, .success]
 
     private func assertCanTimestamp() {
-        try! assertTrue(Transaction.timestampingStatuses.contains(status),
-                       Error.invalidStatusForTimestamp(status))
+        try! assertTrue(Transaction.timestampingStatuses.contains(status), Error.invalidStatusForTimestamp(status))
     }
 
 }
@@ -218,10 +217,10 @@ public enum TransactionType: Int {
 // TODO: confusion with EthSignature
 public struct Signature: Equatable { // signature of some owner?
 
-    public var address: BlockchainAddress
+    public var address: Address
     public var data: Data
 
-    public init(data: Data, address: BlockchainAddress) {
+    public init(data: Data, address: Address) {
         self.data = data
         self.address = address
     }
@@ -230,6 +229,8 @@ public struct Signature: Equatable { // signature of some owner?
 
 public struct TransactionHash: Equatable {
 
+    /// Number of bytes in a 256-bit transaction hash
+    public static let size = 256 / 8
     public let value: String
 
     public init(_ value: String) {

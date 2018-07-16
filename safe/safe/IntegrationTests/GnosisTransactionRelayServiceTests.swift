@@ -8,6 +8,7 @@ import MultisigWalletDomainModel
 import MultisigWalletImplementations
 import BigInt
 import Common
+import CryptoSwift
 
 class GnosisTransactionRelayServiceTests: XCTestCase {
 
@@ -20,11 +21,11 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
         case errorWhileWaitingForCreationTransactionHash
     }
 
-    func test_whenGoodData_thenReturnsSomething() throws {
+    func test_safeCreation() throws {
         let eoa1 = encryptionService.generateExternallyOwnedAccount()
         let eoa2 = encryptionService.generateExternallyOwnedAccount()
         let eoa3 = encryptionService.generateExternallyOwnedAccount()
-        let owners = [eoa1, eoa2, eoa3].map { $0.address.value }
+        let owners = [eoa1, eoa2, eoa3].map { $0.address }
         let ecdsaRandomS = encryptionService.ecdsaRandomS()
         let request = SafeCreationTransactionRequest(owners: owners, confirmationCount: 2, ecdsaRandomS: ecdsaRandomS)
         let response = try relayService.createSafeCreationTransaction(request: request)
@@ -47,8 +48,8 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
 
         try fundSafe(address: safeAddress, amount: response.payment)
 
-        try relayService.startSafeCreation(address: Address(value: safeAddress))
-        let txHash = try waitForSafeCreationTransaction(Address(value: safeAddress))
+        try relayService.startSafeCreation(address: Address(safeAddress))
+        let txHash = try waitForSafeCreationTransaction(Address(safeAddress))
         XCTAssertFalse(txHash.value.isEmpty)
         let receipt = try waitForTransaction(txHash)!
         XCTAssertEqual(receipt.status, .success)
@@ -60,7 +61,7 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
             PrivateKey(data: Data(hex: "0x72a2a6f44f24b099f279c87548a93fd7229e5927b4f1c7209f7130d5352efa40"))
         let encryptionService = EncryptionService(chainId: .rinkeby)
         let sourceAddress = encryptionService.address(privateKey: sourcePrivateKey)
-        let destination = Address(value: address)
+        let destination = MultisigWalletDomainModel.Address(address)
         let value = EthInt(BigInt(amount)!)
 
         let gasPrice = try infuraService.eth_gasPrice()
@@ -77,7 +78,7 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
                                    gasPrice: String(gasPrice),
                                    nonce: Int(nonce))
         let rawTx = try encryptionService.sign(transaction: tx, privateKey: sourcePrivateKey)
-        let txHash = try infuraService.eth_sendRawTransaction(signedTransactionHash: rawTx)
+        let txHash = try infuraService.eth_sendRawTransaction(rawTransaction: rawTx)
         let receipt = try waitForTransaction(txHash)!
         XCTAssertEqual(receipt.status, .success)
         let newBalance = try infuraService.eth_getBalance(account: destination)

@@ -8,7 +8,7 @@ import XCTest
 class TransactionTests: XCTestCase {
 
     var transaction: Transaction!
-    let signature = Signature(data: Data(), address: BlockchainAddress(value: "signer"))
+    let signature = Signature(data: Data(), address: .testAccount1)
 
     func test_whenNew_thenIsDraft() {
         givenNewlyCreatedTransaction()
@@ -25,10 +25,10 @@ class TransactionTests: XCTestCase {
         givenNewlyCreatedTransaction()
         transaction.change(fee: .ether(1))
         XCTAssertEqual(transaction.fee, TokenAmount.ether(1))
-        transaction.change(sender: BlockchainAddress(value: "sender"))
-        XCTAssertEqual(transaction.sender, BlockchainAddress(value: "sender"))
-        transaction.change(recipient: BlockchainAddress(value: "recipient"))
-        XCTAssertEqual(transaction.recipient, BlockchainAddress(value: "recipient"))
+        transaction.change(sender: .testAccount2)
+        XCTAssertEqual(transaction.sender, Address.testAccount2)
+        transaction.change(recipient: .testAccount3)
+        XCTAssertEqual(transaction.recipient, Address.testAccount3)
     }
 
     func test_statusChangesFromDraftStatus() {
@@ -68,10 +68,11 @@ class TransactionTests: XCTestCase {
 
     func test_whenInDraftOrSigningOrPending_thenCanChangeHash() {
         givenNewlyCreatedTransaction()
-        transaction.set(hash: TransactionHash("hash1"))
-        XCTAssertEqual(transaction.transactionHash, TransactionHash("hash1"))
+        transaction.set(hash: .test1)
+        XCTAssertEqual(transaction.transactionHash,
+                       TransactionHash.test1)
         moveToSigningStatus()
-        transaction.set(hash: TransactionHash("hash2"))
+        transaction.set(hash: .test2)
         transaction.change(status: .pending)
         transaction.change(status: .discarded)
     }
@@ -88,7 +89,7 @@ class TransactionTests: XCTestCase {
 
     func test_whenGoesFromDiscardedBackToDraft_thenResetsData() {
         givenSigningTransaction()
-        transaction.set(hash: TransactionHash("hash"))
+        transaction.set(hash: .test1)
             .add(signature: signature)
             .change(status: .pending)
             .timestampSubmitted(at: Date())
@@ -121,8 +122,8 @@ extension TransactionTests {
     private func moveToSigningStatus() {
         transaction.change(amount: .ether(0))
             .change(fee: .ether(0))
-            .change(sender: BlockchainAddress(value: "sender"))
-            .change(recipient: BlockchainAddress(value: "recipient"))
+            .change(sender: .testAccount1)
+            .change(recipient: .testAccount2)
             .change(status: .signing)
     }
 

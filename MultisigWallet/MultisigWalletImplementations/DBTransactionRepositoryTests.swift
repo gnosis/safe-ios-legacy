@@ -28,11 +28,13 @@ class DBTransactionRepositoryTests: XCTestCase {
         let transaction = Transaction(id: repo.nextID(), type: .transfer, walletID: walletID, accountID: accountID)
             .change(amount: .ether(3))
             .change(fee: .ether(1))
-            .change(sender: BlockchainAddress(value: "sender"))
-            .change(recipient: BlockchainAddress(value: "recipient"))
+            .change(sender: Address.testAccount1)
+            .change(recipient: Address.testAccount2)
             .change(status: .signing)
-            .add(signature: Signature(data: Data(repeating: 1, count: 7), address: BlockchainAddress(value: "signer1")))
-            .add(signature: Signature(data: Data(repeating: 2, count: 7), address: BlockchainAddress(value: "signer2")))
+            .add(signature: Signature(data: Data(repeating: 1, count: 7),
+                                      address: Address.testAccount3))
+            .add(signature: Signature(data: Data(repeating: 2, count: 7),
+                                      address: Address.testAccount4))
             .set(hash: TransactionHash("hash"))
             .change(status: .pending)
             .change(status: .success)

@@ -107,12 +107,12 @@ class EncryptionServiceTests: XCTestCase {
         encryptionService = EncryptionService(chainId: .any)
         let anyChainSignedTx = try encryptionService.sign(transaction: RawTransactionFixture.tx,
                                                           privateKey: RawTransactionFixture.privateKey)
-        XCTAssertEqual(anyChainSignedTx, RawTransactionFixture.anyChainHash)
+        XCTAssertEqual(anyChainSignedTx.value, RawTransactionFixture.anyChainHash)
 
         encryptionService = EncryptionService(chainId: .rinkeby)
         let rinkebySignedTx = try encryptionService.sign(transaction: RawTransactionFixture.tx,
                                                          privateKey: RawTransactionFixture.privateKey)
-        XCTAssertEqual(rinkebySignedTx, RawTransactionFixture.rinkebyHash)
+        XCTAssertEqual(rinkebySignedTx.value, RawTransactionFixture.rinkebyHash)
     }
 
 }
