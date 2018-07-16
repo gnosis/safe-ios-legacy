@@ -133,12 +133,9 @@ open class EthereumApplicationService: Assertable {
         return receipt!.status == .success
     }
 
-    open func sign(message: String, by address: String) throws -> (r: String, s: String, v: Int) {
-        guard let eoa = eoaRepository.find(by: Address(value: address)) else {
-            throw Error.eoaNotFound
-        }
-        let signature = encryptionService.sign(message: message, privateKey: eoa.privateKey)
-        return (signature.r, signature.s, signature.v)
+    open func sign(message: String, by address: String) -> EthSignature? {
+        guard let eoa = eoaRepository.find(by: Address(value: address)) else { return nil }
+        return encryptionService.sign(message: message, privateKey: eoa.privateKey)
     }
 
     private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {
@@ -161,39 +158,6 @@ fileprivate extension ExternallyOwnedAccount {
 
     var applicationServiceData: ExternallyOwnedAccountData {
         return ExternallyOwnedAccountData(address: address.value, mnemonicWords: mnemonic.words)
-    }
-
-}
-
-// TODO: refactor to simplify interaction between services
-extension EthereumApplicationService: BlockchainDomainService {
-
-    static let pollingInterval: TimeInterval = 3
-
-    public func requestWalletCreationData(owners: [String], confirmationCount: Int) throws -> WalletCreationData {
-        let data = try createSafeCreationTransaction(owners: owners, confirmationCount: confirmationCount)
-        return WalletCreationData(walletAddress: data.safe, fee: data.payment)
-    }
-
-    public func generateExternallyOwnedAccount() -> String {
-        return generateExternallyOwnedAccount().address
-    }
-
-    public func observeBalance(account: String, observer: @escaping BlockchainBalanceObserver) throws {
-        try observeChangesInBalance(address: account,
-                                    every: EthereumApplicationService.pollingInterval) { newBalance in
-                                        let response = observer(account, newBalance)
-                                        return response == .stopObserving
-        }
-    }
-
-    public func executeWalletCreationTransaction(address: String) throws {
-        try startSafeCreation(address: address)
-    }
-
-    public func sign(message: String, by address: String) throws -> EthSignature {
-        let signature: (r: String, s: String, v: Int) = try sign(message: message, by: address)
-        return EthSignature(r: signature.r, s: signature.s, v: signature.v)
     }
 
 }

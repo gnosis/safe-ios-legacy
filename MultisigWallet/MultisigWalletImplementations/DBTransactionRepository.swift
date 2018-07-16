@@ -132,55 +132,55 @@ LIMIT 1;
                                       accountID: AccountID(token: accountID))
 
         if let sender = rs.string(at: 5) {
-            try! transaction.change(sender: BlockchainAddress(value: sender))
+            transaction.change(sender: BlockchainAddress(value: sender))
         }
 
         if let recipient = rs.string(at: 6) {
-            try! transaction.change(recipient: BlockchainAddress(value: recipient))
+            transaction.change(recipient: BlockchainAddress(value: recipient))
         }
 
         if let amountString = rs.string(at: 7), let amount = TokenAmount(amountString) {
-            try! transaction.change(amount: amount)
+            transaction.change(amount: amount)
         }
 
         if let feeString = rs.string(at: 8), let fee = TokenAmount(feeString) {
-            try! transaction.change(fee: fee)
+            transaction.change(fee: fee)
         }
 
         if let signaturesString = rs.string(at: 9) {
             let signatures = deserialized(signatures: signaturesString)
-            signatures.forEach { try! transaction.add(signature: $0) }
+            signatures.forEach { transaction.add(signature: $0) }
         }
 
         if let submissionDateString = rs.string(at: 10),
             let date = DBTransactionRepository.dateFormatter.date(from: submissionDateString) {
-            try! transaction.timestampSubmitted(at: date)
+            transaction.timestampSubmitted(at: date)
         }
 
         if let processedDateString = rs.string(at: 11),
             let date = DBTransactionRepository.dateFormatter.date(from: processedDateString) {
-            try! transaction.timestampProcessed(at: date)
+            transaction.timestampProcessed(at: date)
         }
 
         if let transactionHashString = rs.string(at: 12) {
-            try! transaction.set(hash: TransactionHash(transactionHashString))
+            transaction.set(hash: TransactionHash(transactionHashString))
         }
 
         // initial status is draft
         switch targetTransactionStatus {
         case .draft: break
         case .signing:
-            try! transaction.change(status: .signing)
+            transaction.change(status: .signing)
         case .pending:
-            try! transaction.change(status: .signing).change(status: .pending)
+            transaction.change(status: .signing).change(status: .pending)
         case .rejected:
-            try! transaction.change(status: .signing).change(status: .rejected)
+            transaction.change(status: .signing).change(status: .rejected)
         case .failed:
-            try! transaction.change(status: .signing).change(status: .pending).change(status: .failed)
+            transaction.change(status: .signing).change(status: .pending).change(status: .failed)
         case .success:
-            try! transaction.change(status: .signing).change(status: .pending).change(status: .success)
+            transaction.change(status: .signing).change(status: .pending).change(status: .success)
         case .discarded:
-            try! transaction.change(status: .discarded)
+            transaction.change(status: .discarded)
         }
 
         return transaction

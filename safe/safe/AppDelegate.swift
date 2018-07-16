@@ -58,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         configureIdentityAccess()
         configureMultisigWallet()
         configureEthereum()
-        connectMultisigWalletWithEthereum()
     }
 
     private func configureIdentityAccess() {
@@ -100,11 +99,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                      for: ExternallyOwnedAccountRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: InfuraEthereumNodeService(),
                                                      for: EthereumNodeDomainService.self)
-    }
-
-    private func connectMultisigWalletWithEthereum() {
-        let service = MultisigWalletApplication.ApplicationServiceRegistry.ethereumService
-        MultisigWalletDomainModel.DomainRegistry.put(service: service, for: BlockchainDomainService.self)
     }
 
     private func setUpIdentityAccessDatabase() {

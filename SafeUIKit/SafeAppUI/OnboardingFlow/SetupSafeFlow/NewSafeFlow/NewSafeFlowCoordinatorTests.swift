@@ -157,8 +157,8 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         assertShowingPendingVC(shouldShow: false)
     }
 
-    func test_whenSafeIsNotReadyToUse_thenIsNotFinishedTrue() throws {
-        try walletService.createNewDraftWallet()
+    func test_whenSafeIsNotReadyToUse_thenIsNotFinishedTrue() {
+        walletService.createNewDraftWallet()
         assertNotFinished()
 
         walletService.createReadyToDeployWallet()

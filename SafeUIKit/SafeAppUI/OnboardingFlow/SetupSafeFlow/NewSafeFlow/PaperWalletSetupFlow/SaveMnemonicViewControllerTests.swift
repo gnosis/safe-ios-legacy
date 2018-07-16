@@ -33,7 +33,7 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
     }
 
     func test_whenNoPaperWalletExists_thenDisplaysGeneratedMnemonicWords() throws {
-        try walletService.createNewDraftWallet()
+        walletService.createNewDraftWallet()
         let mnemonicStr = words.joined(separator: " ")
         XCTAssertEqual(controller.mnemonicCopyableLabel.text, mnemonicStr)
     }
@@ -53,7 +53,7 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
     }
 
     func test_whenPaperWalletExists_thenItIsDisplayed() throws {
-        try walletService.createNewDraftWallet()
+        walletService.createNewDraftWallet()
         walletService.addOwner(address: "some", type: .paperWallet)
         let expectedMnemonic = ["one", "two", "three"]
         let expectedAccount = ExternallyOwnedAccountData(address: "some", mnemonicWords: expectedMnemonic)

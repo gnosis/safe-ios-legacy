@@ -25,10 +25,7 @@ class DBTransactionRepositoryTests: XCTestCase {
 
         let walletID = WalletID()
         let accountID = AccountID(token: "ETH")
-        let transaction = try Transaction(id: repo.nextID(),
-                                          type: .transfer,
-                                          walletID: walletID,
-                                          accountID: accountID)
+        let transaction = Transaction(id: repo.nextID(), type: .transfer, walletID: walletID, accountID: accountID)
             .change(amount: .ether(3))
             .change(fee: .ether(1))
             .change(sender: BlockchainAddress(value: "sender"))

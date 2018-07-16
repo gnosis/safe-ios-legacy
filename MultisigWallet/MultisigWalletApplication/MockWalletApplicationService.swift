@@ -54,8 +54,7 @@ public class MockWalletApplicationService: WalletApplicationService {
         _selectedWalletState = .readyToUse
     }
 
-    public override func createNewDraftWallet() throws {
-        try throwIfNeeded()
+    public override func createNewDraftWallet() {
         _selectedWalletState = .newDraft
         didCreateNewDraft = true
     }

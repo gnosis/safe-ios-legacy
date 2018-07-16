@@ -103,7 +103,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         XCTAssertEqual(callCount, 3)
     }
 
-    func test_whenSignsMessage_thenSignatureIsCorrect() throws {
+    func test_whenSignsMessage_thenSignatureIsCorrect() {
         let pk = PrivateKey(data: Data(repeating: 1, count: 32))
         eoaRepository.save(ExternallyOwnedAccount(
             address: Address(value: "signer"),
@@ -111,21 +111,17 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
             privateKey: pk,
             publicKey: PublicKey(data: Data())))
         encryptionService.sign_output = EthSignature(r: "r", s: "s", v: 1)
-        let (r, s, v) = try applicationService.sign(message: "Gnosis", by: "signer")
-        XCTAssertEqual(r, "r")
-        XCTAssertEqual(s, "s")
-        XCTAssertEqual(v, 1)
+        let signature = applicationService.sign(message: "Gnosis", by: "signer")!
+        XCTAssertEqual(signature.r, "r")
+        XCTAssertEqual(signature.s, "s")
+        XCTAssertEqual(signature.v, 1)
         XCTAssertEqual(encryptionService.sign_input?.message, "Gnosis")
         XCTAssertEqual(encryptionService.sign_input?.privateKey, pk)
     }
 
-    func test_whenSignMessageForUnknownAddress_thenThrows() throws {
-        do {
-            let _: (String, String, Int) = try applicationService.sign(message: "Gnosis", by: "signer")
-            XCTFail("Expected to throw")
-        } catch {
-            // pass
-        }
+    func test_whenSignMessageForUnknownAddress_thenNoSignature() {
+        let signature = applicationService.sign(message: "Gnosis", by: "signer")
+        XCTAssertNil(signature)
     }
 
 }

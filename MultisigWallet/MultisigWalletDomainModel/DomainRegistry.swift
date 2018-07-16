@@ -19,10 +19,6 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: AccountRepository.self)
     }
 
-    public static var blockchainService: BlockchainDomainService {
-        return service(for: BlockchainDomainService.self)
-    }
-
     public static var notificationService: NotificationDomainService {
         return service(for: NotificationDomainService.self)
     }

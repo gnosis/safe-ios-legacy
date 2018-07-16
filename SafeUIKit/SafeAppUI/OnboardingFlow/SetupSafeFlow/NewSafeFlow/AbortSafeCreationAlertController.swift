@@ -37,11 +37,7 @@ class AbortSafeCreationAlertController: SafeAlertController {
                                                   handler: wrap(closure: `continue`))
         controller.addAction(continueAction)
         let abortAction = UIAlertAction.create(title: Strings.abortTitle, style: .destructive) { _ in
-            do {
-                try ApplicationServiceRegistry.walletService.abortDeployment()
-            } catch let e {
-                ErrorHandler.showError(log: "Failed to abort deployment", error: e)
-            }
+            ApplicationServiceRegistry.walletService.abortDeployment()
             abort()
         }
         controller.addAction(abortAction)

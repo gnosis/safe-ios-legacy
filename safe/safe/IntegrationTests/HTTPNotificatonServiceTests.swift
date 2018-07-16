@@ -60,7 +60,7 @@ class HTTPNotificatonServiceTests: XCTestCase {
 
     func testAuth() throws {
         let token = "test_token"
-        let signature = try encryptionService.sign(message: "GNO" + token, privateKey: deviceEOA.privateKey)
+        let signature = encryptionService.sign(message: "GNO" + token, privateKey: deviceEOA.privateKey)
         let request = AuthRequest(
             pushToken: "test_token", signature: signature, deviceOwnerAddress: deviceEOA.address.value)
         try notificationService.auth(request: request)
