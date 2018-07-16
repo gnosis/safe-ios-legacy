@@ -449,7 +449,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
         ethereumService.browserExtensionAddress = "address"
 
-        let code2 = service.browserExtension(json: BrowserExtensionFixture.testJSON)
+        let code2 = service.browserExtensionCode(from: BrowserExtensionFixture.testJSON)
         XCTAssertEqual(code, code2)
 
         let encoder = JSONEncoder()

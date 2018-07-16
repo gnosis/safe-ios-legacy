@@ -27,7 +27,7 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
             do {
                 try self.walletService.auth()
             } catch let e {
-                MultisigWalletApplication.ApplicationServiceRegistry.logger.debug("Error in auth()", error: e)
+                MultisigWalletApplication.ApplicationServiceRegistry.logger.error("Error in auth()", error: e)
             }
         }
     }

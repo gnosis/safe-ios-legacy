@@ -406,10 +406,9 @@ public class WalletApplicationService: Assertable {
     public func addBrowserExtensionOwner(address: String, browserExtensionCode rawCode: String) throws {
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
         let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress)!
-        guard var code = browserExtensionCode(from: rawCode) else {
+        guard let code = browserExtensionCode(from: rawCode) else {
             throw Error.validationFailed
         }
-        code.extensionAddress = ethereumService.address(browserExtensionCode: rawCode)
         try pair(code, signature, deviceOwnerAddress)
         addOwner(address: address, type: .browserExtension)
     }
@@ -436,14 +435,16 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    private func browserExtensionCode(from json: String) -> BrowserExtensionCode? {
+    internal func browserExtensionCode(from json: String) -> BrowserExtensionCode? {
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter.networkDateFormatter
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
-        guard let jsonData = json.data(using: .utf8) else {
-            return nil
+        guard let jsonData = json.data(using: .utf8),
+            var code = try? decoder.decode(BrowserExtensionCode.self, from: jsonData) else {
+                return nil
         }
-        return try? decoder.decode(BrowserExtensionCode.self, from: jsonData)
+        code.extensionAddress = ethereumService.address(browserExtensionCode: json)
+        return code
     }
 
     public func ownerAddress(of type: OwnerType) -> String? {
@@ -514,10 +515,10 @@ public class WalletApplicationService: Assertable {
         guard let pushToken = tokensService.pushToken() else { return }
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
         let signature = ethereumService.sign(message: "GNO" + pushToken, by: deviceOwnerAddress)!
-        let authRequest = AuthRequest(
-            pushToken: pushToken, signature: signature, deviceOwnerAddress: deviceOwnerAddress)
         do {
-            try notificationService.auth(request: authRequest)
+            try notificationService.auth(request: AuthRequest(pushToken: pushToken,
+                                                              signature: signature,
+                                                              deviceOwnerAddress: deviceOwnerAddress))
         } catch JSONHTTPClient.Error.networkRequestFailed(_, _, _) {
             throw Error.networkError
         } catch {
