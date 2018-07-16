@@ -39,10 +39,7 @@ public struct SafeCreationTransactionRequest: Encodable {
         precondition(0 <= ecdsaRandomS && ecdsaRandomS < ECDSASignatureBounds.sRange.upperBound,
                      "Random s value '\(ecdsaRandomS)` is out of bounds")
         for owner in owners {
-            let value = owner.value
-            precondition(value.hasPrefix("0x"), "Owner's address '\(value)' is missing prefix 0x")
-            precondition(Data(hex: value).count == 20 && Data(hex: value) != Data(repeating: 0, count: 20),
-                         "Owner's address '\(value)' must be non-zero 20 bytes")
+            precondition(!owner.isZero, "Owner's address '\(owner.value)' must be non-zero 20 bytes")
         }
         self.owners = owners.map { $0.value }
         self.threshold = String(confirmationCount)

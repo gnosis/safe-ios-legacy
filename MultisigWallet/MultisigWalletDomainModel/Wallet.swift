@@ -22,7 +22,7 @@ public class WalletID: BaseID {}
  |                                | replaceOwner()                       | readyToDeploy                  |                |
  |                                | removeOwner()                        | readyToDeploy                  |                |
  | deploymentStarted              | abortDeployment()                    | readyToDeploy                  |                |
- |                                | changeAddress()            | addressKnown                   |                |
+ |                                | changeAddress()                      | addressKnown                   |                |
  | addressKnown                   | markDeploymentAcceptedByBlockchain() | deploymentAcceptedByBlockchain |                |
  |                                | abortDeployment()                    | readyToDeploy                  |                |
  |                                | markDeploymentFailed()               | deploymentFailed               |                |

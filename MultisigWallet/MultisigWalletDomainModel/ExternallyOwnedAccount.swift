@@ -29,6 +29,10 @@ public struct Address: Hashable, Codable {
 
     public let value: String
 
+    var isZero: Bool {
+        return Data(hex: value).isEmpty || Data(hex: value) == Data(repeating: 0, count: 20)
+    }
+
     public init(_ value: String) {
         precondition(value.hasPrefix("0x"))
         precondition(Data(hex: value).count == 20 || Data(hex: value).isEmpty)
