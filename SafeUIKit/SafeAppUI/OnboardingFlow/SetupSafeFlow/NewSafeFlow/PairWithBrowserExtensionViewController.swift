@@ -24,6 +24,8 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         static let browserExtensionExpired = LocalizedString("new_safe.extension.expired",
                                                              comment: "Browser Extension Expired Message")
         static let networkError = LocalizedString("new_safe.extension.network_error", comment: "Network error message")
+        static let invalidCode = LocalizedString("new_safe.extension.invalid_code_error",
+                                                 comment: "Invalid extension code")
 
     }
 
@@ -81,6 +83,8 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             DispatchQueue.main.async {
                 self.delegate?.didPair()
             }
+        } catch WalletApplicationService.Error.validationFailed {
+            showError(message: Strings.invalidCode, log: "Invalid browser extension code")
         } catch WalletApplicationService.Error.networkError {
             showError(message: Strings.networkError, log: "Network Error in pairing")
         } catch WalletApplicationService.Error.exceededExpirationDate {

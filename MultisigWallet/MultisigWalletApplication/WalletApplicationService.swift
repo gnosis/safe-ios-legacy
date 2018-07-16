@@ -403,50 +403,47 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public func addBrowserExtensionOwner(address: String, browserExtensionCode: String) throws {
+    public func addBrowserExtensionOwner(address: String, browserExtensionCode rawCode: String) throws {
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
         let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress)!
-        guard let browserExtension = browserExtension(json: browserExtensionCode) else {
+        guard var code = browserExtensionCode(from: rawCode) else {
             throw Error.validationFailed
         }
+        code.extensionAddress = ethereumService.address(browserExtensionCode: rawCode)
+        try pair(code, signature, deviceOwnerAddress)
+        addOwner(address: address, type: .browserExtension)
+    }
+
+    private func pair(_ browserExtension: BrowserExtensionCode,
+                      _ signature: EthSignature,
+                      _ deviceOwnerAddress: String) throws {
         do {
-            let pairingRequest = PairingRequest(
-                temporaryAuthorization: browserExtension,
-                signature: signature,
-                deviceOwnerAddress: deviceOwnerAddress)
-            try notificationService.pair(pairingRequest: pairingRequest)
+            try notificationService.pair(pairingRequest: PairingRequest(temporaryAuthorization: browserExtension,
+                                                                        signature: signature,
+                                                                        deviceOwnerAddress: deviceOwnerAddress))
         } catch NotificationDomainServiceError.validationFailed {
             throw Error.validationFailed
-        } catch let e as JSONHTTPClient.Error {
-            switch e {
-            case let .networkRequestFailed(_, _, data):
-                if let data = data,
-                    let dataStr = String(data: data, encoding: .utf8),
-                    dataStr.range(of: "Exceeded expiration date") != nil {
-                    throw Error.exceededExpirationDate
-                }
+        } catch JSONHTTPClient.Error.networkRequestFailed(_, _, let data) {
+            if let data = data, let dataStr = String(data: data, encoding: .utf8),
+                // FIXME: fragile error detection, better to have JSON code/struct
+                dataStr.range(of: "Exceeded expiration date") != nil {
+                throw Error.exceededExpirationDate
+            } else {
                 throw Error.networkError
             }
         } catch {
             throw Error.unknownError
         }
-        addOwner(address: address, type: .browserExtension)
     }
 
-    public func browserExtension(json: String) -> BrowserExtensionCode? {
+    private func browserExtensionCode(from json: String) -> BrowserExtensionCode? {
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter.networkDateFormatter
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         guard let jsonData = json.data(using: .utf8) else {
             return nil
         }
-        do {
-            var code = try decoder.decode(BrowserExtensionCode.self, from: jsonData)
-            code.extensionAddress = ethereumService.address(browserExtensionCode: json)
-            return code
-        } catch {
-            return nil
-        }
+        return try? decoder.decode(BrowserExtensionCode.self, from: jsonData)
     }
 
     public func ownerAddress(of type: OwnerType) -> String? {
