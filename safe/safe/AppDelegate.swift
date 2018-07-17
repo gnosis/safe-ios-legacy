@@ -181,10 +181,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         LogService.shared.error("Failed to registed to remote notifications", error: error)
     }
 
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        LogService.shared.debug("APNS received")
-    }
-
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
@@ -193,18 +189,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // TODO: implement
         let userInfo = notification.request.content.userInfo
-        print("userInfo: \(userInfo)")
+        LogService.shared.debug("willPresent notification with userInfo: \(userInfo)")
         completionHandler([])
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        // TODO: implement
         let userInfo = response.notification.request.content.userInfo
-        print("userInfo: \(userInfo)")
+        LogService.shared.debug("didReceive notification with userInfo: \(userInfo)")
         completionHandler()
     }
 
