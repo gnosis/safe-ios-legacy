@@ -303,6 +303,11 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
                                 <action selector="cancel:" destination="Vm7-uW-ehN" id="o5y-oL-ohr"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Retry" id="8kW-jm-fg2">
+                            <connections>
+                                <action selector="retryDeployment:" destination="Vm7-uW-ehN" id="Zc8-cz-0YQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -311,6 +316,7 @@ Please store it in a secure place and do not share it with anyone. Gnosis Safe t
                         <outlet property="infoLabel" destination="zwl-dk-2oa" id="9Zt-bs-7mA"/>
                         <outlet property="progressStatusLabel" destination="dgr-s4-dYH" id="HhO-5P-rO1"/>
                         <outlet property="progressView" destination="AXj-dN-rje" id="un7-ed-Ojr"/>
+                        <outlet property="retryButton" destination="8kW-jm-fg2" id="bCJ-YH-Vpv"/>
                         <outlet property="safeAddressLabel" destination="iNd-pS-6ri" id="0cb-y2-GB1"/>
                         <outlet property="titleLabel" destination="8cv-Bx-yOR" id="1QR-Mp-ObU"/>
                     </connections>

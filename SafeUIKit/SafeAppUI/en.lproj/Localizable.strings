@@ -157,6 +157,9 @@
 /* Info label about safe creation */
 "pending_safe.info" = "Your safe is being created. Please follow status updates below.";
 
+/* Retry button title */
+"pending_safe.retry" = "Retry";
+
 /* Account received enough funds */
 "pending_safe.status.account_funded" = "Account has enough funds. Proceeding.";
 

@@ -45,6 +45,11 @@ open class EthereumApplicationService: Assertable {
         case networkError
         case serverError
         case clientError
+
+        public var isNetworkError: Bool {
+            return self == .networkError || self == .clientError || self == .clientError
+        }
+
     }
 
     public init() {}
@@ -211,7 +216,9 @@ open class EthereumApplicationService: Assertable {
                 return RepeatingShouldStop.yes
             }
             do {
-                return try block()
+                let result = try block()
+                retryCount = 0
+                return result
             } catch let e {
                 ApplicationServiceRegistry.logger.error("Repeated action failed: \(e)")
                 error = e
