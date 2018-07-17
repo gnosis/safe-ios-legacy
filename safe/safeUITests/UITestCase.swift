@@ -167,15 +167,6 @@ class UITestCase: XCTestCase {
         }
     }
 
-    func assureFatalErrorAlertIsShown(with expectation: XCTestExpectation) {
-        errorAlertHandler = addUIInterruptionMonitor(withDescription: "Error Alert") { alert in
-            guard alert.label == LocalizedString("onboarding.fatal.title") else { return false }
-            alert.buttons[LocalizedString("onboarding.fatal.ok")].tap()
-            expectation.fulfill()
-            return true
-        }
-    }
-
     func handleCameraAlerts() {
         let cameraScreen = CameraScreen()
         delay(1)

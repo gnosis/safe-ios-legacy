@@ -21,7 +21,7 @@ public class ErrorHandler {
     // swiftlint:enable line_length
 
     public static let instance = ErrorHandler()
-    public var chashOnFatalError = true
+    public var crashOnFatalError = true
 
     private init() {}
 
@@ -32,7 +32,7 @@ public class ErrorHandler {
                                       line: UInt = #line) {
         ApplicationServiceRegistry.logger.fatal(log, error: error, file: file, line: line)
         instance.showError(title: Strings.fatalErrorTitle, message: message, log: log, error: error) {
-            if instance.chashOnFatalError {
+            if instance.crashOnFatalError {
                 fatalError(message + "; " + log)
             }
         }
