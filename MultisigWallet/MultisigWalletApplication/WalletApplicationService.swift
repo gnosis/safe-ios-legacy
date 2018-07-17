@@ -306,15 +306,14 @@ public class WalletApplicationService: Assertable {
             markDeploymentSuccess()
             finishDeployment()
         } else {
-            mutateSelectedWallet { wallet in
-                wallet.changeAddress(nil)
-                wallet.assignCreationTransaction(hash: nil)
-                wallet.abortDeployment()
-            }
-            errorHandler?(Error.walletCreationFailed)
+            let wallet = findSelectedWallet()!
+            let txHash = wallet.creationTransactionHash!
+            let address = wallet.address!
+            let message = "Transaction '\(txHash)' failed for safe creation at address '\(address)'. Crashing."
+            ApplicationServiceRegistry.logger.fatal(message, error: Error.walletCreationFailed)
+            exit(EXIT_FAILURE)
         }
     }
-
 
     private func notifySafeCreated() throws {
         let sender = ownerAddress(of: .thisDevice)!

@@ -40,6 +40,8 @@ public class PendingSafeViewController: UIViewController {
                                                             comment: "Deployment accepted by blockchain")
             static let deploymentSuccess = LocalizedString("pending_safe.status.deployment_success",
                                                            comment: "Deployment succeeded")
+            static let error = LocalizedString("pending_safe.status.error",
+                                               comment: "Error during safe creation. Retry later.")
         }
 
     }
@@ -76,7 +78,6 @@ public class PendingSafeViewController: UIViewController {
         cancelButton.title = Strings.cancel
         infoLabel.text = Strings.info
         retryButton.title = Strings.retry
-
         safeAddressLabel.text = nil
         copySafeAddressButton.isHidden = true
         progressStatusLabel.text = nil
@@ -96,7 +97,7 @@ public class PendingSafeViewController: UIViewController {
     }
 
     private func startDeployment() {
-        hideRetryButton()
+        disableRetrying()
         DispatchQueue.global().async {
             do {
                 try ApplicationServiceRegistry.walletService.startDeployment()
@@ -111,23 +112,24 @@ public class PendingSafeViewController: UIViewController {
     private func handleError(_ error: Error) {
         switch error {
         case let nsError as NSError where nsError.domain == NSURLErrorDomain:
-            showRetryButton(error: error.localizedDescription)
+            enableRetryingAfter(error: error.localizedDescription)
         case let walletError as WalletApplicationService.Error where walletError.isNetworkError:
-            showRetryButton(error: error.localizedDescription)
+            enableRetryingAfter(error: error.localizedDescription)
         case let ethError as EthereumApplicationService.Error where ethError.isNetworkError:
-            showRetryButton(error: error.localizedDescription)
+            enableRetryingAfter(error: error.localizedDescription)
         default:
             delegate?.deploymentDidFail(error.localizedDescription)
         }
     }
 
-    private func hideRetryButton() {
-        navigationItem.rightBarButtonItem = nil
+    private func disableRetrying() {
+        retryButton.isEnabled = false
     }
 
-    private func showRetryButton(error: String) {
+    private func enableRetryingAfter(error: String) {
         let controller = SafeCreationFailedAlertController.create(localizedErrorDescription: error) {
-            self.navigationItem.rightBarButtonItem = self.retryButton
+            self.retryButton.isEnabled = true
+            self.progressStatusLabel.text = Strings.Status.error
         }
         present(controller, animated: true, completion: nil)
     }
