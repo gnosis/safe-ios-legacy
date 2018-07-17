@@ -120,7 +120,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         createWindow(newSafeFlowCoordinator.rootViewController)
         newSafeFlowCoordinator.didSelectNext()
         delay(1)
-        newSafeFlowCoordinator.deploymentDidFail()
+        newSafeFlowCoordinator.deploymentDidFail("")
         delay(1)
         guard let alert = newSafeFlowCoordinator.rootViewController.presentedViewController as? UIAlertController,
             let action = alert.actions.first(where: { $0.style == .cancel }) else {

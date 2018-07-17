@@ -84,11 +84,9 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public enum Error: String, LocalizedError, Hashable {
+    public enum Error: String, Swift.Error, Hashable {
         case oneOrMoreOwnersAreMissing
-        case selectedWalletNotFound
         case invalidWalletState
-        case accountNotFound
         case missingWalletAddress
         case creationTransactionHashNotFound
         case networkError

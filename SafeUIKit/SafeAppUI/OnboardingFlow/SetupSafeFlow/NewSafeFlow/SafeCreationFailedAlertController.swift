@@ -16,9 +16,10 @@ class SafeCreationFailedAlertController: SafeAlertController {
 
     }
 
-    static func create(ok: @escaping () -> Void) -> SafeCreationFailedAlertController {
+    static func create(localizedErrorDescription message: String,
+                       ok: @escaping () -> Void) -> SafeCreationFailedAlertController {
         let controller = SafeCreationFailedAlertController(title: Strings.title,
-                                                           message: Strings.message,
+                                                           message: Strings.message + " " + message,
                                                            preferredStyle: .alert)
         let okAction = UIAlertAction.create(title: Strings.okTitle, style: .cancel, handler: wrap(closure: ok))
         controller.addAction(okAction)

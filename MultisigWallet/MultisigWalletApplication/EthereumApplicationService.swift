@@ -39,10 +39,12 @@ open class EthereumApplicationService: Assertable {
         return DomainRegistry.externallyOwnedAccountRepository
     }
 
-    public enum Error: String, LocalizedError, Hashable {
-        case eoaNotFound
+    public enum Error: String, Swift.Error, Hashable {
         case invalidSignature
         case invalidTransaction
+        case networkError
+        case serverError
+        case clientError
     }
 
     public init() {}
@@ -73,40 +75,101 @@ open class EthereumApplicationService: Assertable {
             let request = SafeCreationTransactionRequest(owners: owners,
                                                          confirmationCount: confirmationCount,
                                                          ecdsaRandomS: encryptionService.ecdsaRandomS())
-            let response = try relayService.createSafeCreationTransaction(request: request)
-            try assertEqual(response.signature.s, request.s, Error.invalidSignature)
-            guard let v = Int(response.signature.v) else { throw Error.invalidSignature }
-            try assertTrue(ECDSASignatureBounds.isWithinBounds(r: response.signature.r,
-                                                               s: response.signature.s,
-                                                               v: v), Error.invalidSignature)
-            let signature = EthSignature(r: response.signature.r, s: response.signature.s, v: v)
-            let transaction = (response.tx.from,
-                               response.tx.value,
-                               response.tx.data,
-                               response.tx.gas,
-                               response.tx.gasPrice,
-                               response.tx.nonce)
-            let safeAddress: String? = encryptionService.contractAddress(from: signature, for: transaction)
-            try assertEqual(safeAddress, response.safe, Error.invalidSignature)
+            let response = try handleRelayServiceErrors {
+                try relayService.createSafeCreationTransaction(request: request)
+            }
+            try validateSignature(in: response, for: request)
+            try validateSafeAddress(in: response)
             guard let payment = BigInt(response.payment) else { throw Error.invalidTransaction }
             return SafeCreationTransactionData(safe: response.safe, payment: payment)
     }
 
+    @discardableResult
+    private func handleNodeServiceErrors<T>(_ block: () throws -> T) throws -> T {
+        do {
+            return try block()
+        } catch let error as NetworkServiceError {
+            throw self.error(from: error)
+        } catch let JSONHTTPClient.Error.networkRequestFailed(_, response, _) {
+            throw self.error(from: response)
+        }
+    }
+
+    private func error(from response: URLResponse?) -> Error {
+        if let response = response as? HTTPURLResponse {
+            if (400..<500).contains(response.statusCode) {
+                return .clientError
+            } else {
+                return .serverError
+            }
+        }
+        return .networkError
+    }
+
+    private func validateSignature(in response: SafeCreationTransactionRequest.Response,
+                                   for request: SafeCreationTransactionRequest) throws {
+        try assertEqual(response.signature.s, request.s, Error.invalidSignature)
+        guard let v = Int(response.signature.v) else { throw Error.invalidSignature }
+        try assertTrue(ECDSASignatureBounds.isWithinBounds(r: response.signature.r,
+                                                           s: response.signature.s,
+                                                           v: v), Error.invalidSignature)
+    }
+
+    private func validateSafeAddress(in response: SafeCreationTransactionRequest.Response) throws {
+        let signature = EthSignature(r: response.signature.r, s: response.signature.s, v: Int(response.signature.v)!)
+        let transaction = (response.tx.from,
+                           response.tx.value,
+                           response.tx.data,
+                           response.tx.gas,
+                           response.tx.gasPrice,
+                           response.tx.nonce)
+        let safeAddress: String? = encryptionService.contractAddress(from: signature, for: transaction)
+        try assertEqual(safeAddress, response.safe, Error.invalidSignature)
+    }
+
     open func startSafeCreation(address: Address) throws {
-        try relayService.startSafeCreation(address: address)
+        try handleRelayServiceErrors {
+            try relayService.startSafeCreation(address: address)
+        }
     }
 
     open func waitForCreationTransaction(address: Address) throws -> String {
         var hash: String?
         try repeatBlock(every: 5) {
-            hash = try self.relayService.safeCreationTransactionHash(address: address)?.value
+            hash = try self.handleRelayServiceErrors {
+                try self.relayService.safeCreationTransactionHash(address: address)?.value
+            }
             return hash != nil ? RepeatingShouldStop.yes : RepeatingShouldStop.no
         }
         return hash!
     }
 
     open func balance(address: String) throws -> BigInt {
-        return try nodeService.eth_getBalance(account: Address(address))
+        return try handleNodeServiceErrors {
+            try nodeService.eth_getBalance(account: Address(address))
+        }
+    }
+
+    @discardableResult
+    private func handleRelayServiceErrors<T>(_ block: () throws -> T) throws -> T {
+        do {
+            return try block()
+        } catch let error as NetworkServiceError {
+            throw self.error(from: error)
+        } catch let JSONHTTPClient.Error.networkRequestFailed(_, response, _) {
+            throw self.error(from: response)
+        }
+    }
+
+    private func error(from other: NetworkServiceError) -> Error {
+        switch other {
+        case .clientError:
+            return .clientError
+        case .networkError:
+            return .networkError
+        case .serverError:
+            return .serverError
+        }
     }
 
     open func observeChangesInBalance(address: String,
@@ -127,7 +190,9 @@ open class EthereumApplicationService: Assertable {
     open func waitForPendingTransaction(hash: String) throws -> Bool {
         var receipt: TransactionReceipt?
         try repeatBlock(every: 2) {
-            receipt = try self.nodeService.eth_getTransactionReceipt(transaction: TransactionHash(hash))
+            receipt = try self.handleNodeServiceErrors {
+                try self.nodeService.eth_getTransactionReceipt(transaction: TransactionHash(hash))
+            }
             return receipt != nil ? RepeatingShouldStop.yes : RepeatingShouldStop.no
         }
         return receipt!.status == .success
@@ -139,16 +204,23 @@ open class EthereumApplicationService: Assertable {
     }
 
     private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {
+        var error: Swift.Error?
+        var retryCount = 3
         Worker.start(repeating: interval) { [weak self] in
             guard self != nil else {
                 return RepeatingShouldStop.yes
             }
             do {
                 return try block()
-            } catch let error {
-                ApplicationServiceRegistry.logger.error("Repeated action failed: \(error)")
+            } catch let e {
+                ApplicationServiceRegistry.logger.error("Repeated action failed: \(e)")
+                error = e
+                retryCount -= 1
+                return retryCount == 0 ? RepeatingShouldStop.yes : RepeatingShouldStop.no
             }
-            return RepeatingShouldStop.no
+        }
+        if let e = error {
+            throw e
         }
     }
 

@@ -2,13 +2,14 @@
 //  Copyright © 2018 Gnosis Ltd. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import SafeUIKit
 import MultisigWalletApplication
 import Common
 
 public protocol PendingSafeViewControllerDelegate: class {
-    func deploymentDidFail()
+    func deploymentDidFail(_ localizedDescription: String)
     func deploymentDidSuccess()
     func deploymentDidCancel()
 }
@@ -94,7 +95,7 @@ public class PendingSafeViewController: UIViewController {
                 try ApplicationServiceRegistry.walletService.startDeployment()
             } catch let error {
                 DispatchQueue.main.async {
-                    ErrorHandler.showFatalError(log: "Failed to restart deployment", error: error)
+                    self.delegate?.deploymentDidFail(error.localizedDescription)
                 }
             }
         }
@@ -120,7 +121,8 @@ public class PendingSafeViewController: UIViewController {
             case .deploymentAcceptedByBlockchain:
                 self.update(progress: 0.8, status: Strings.Status.deploymentAccepted)
             case .deploymentFailed:
-                self.delegate?.deploymentDidFail()
+                // TODO: what is the reason?
+                self.delegate?.deploymentDidFail("")
             case .deploymentSuccess:
                 self.update(progress: 1.0, status: Strings.Status.deploymentSuccess)
                 Timer.wait(0.5)

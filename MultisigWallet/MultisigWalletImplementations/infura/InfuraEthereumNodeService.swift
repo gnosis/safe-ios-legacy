@@ -72,8 +72,48 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
                 RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.1))
             }
         }
-        if let error = error { throw error }
+        if let error = error {
+            switch error {
+            case EthereumKitError.requestError:
+                throw NetworkServiceError.clientError
+            case EthereumKitError.responseError(let responseError):
+                throw self.error(from: responseError)
+            default:
+                throw error
+            }
+        }
         return result
+    }
+
+    private func error(from responseError: EthereumKitError.ResponseError) -> Swift.Error {
+        switch responseError {
+        case .connectionError(let networkError):
+            return networkError
+        case .jsonrpcError(let rpcError):
+            return self.error(from: rpcError)
+        case .unacceptableStatusCode(let code):
+            return self.error(httpStatusCode: code)
+        case .unexpected, .noContentProvided:
+            return NetworkServiceError.serverError
+        }
+    }
+
+    private func error(from rpcError: JSONRPCError) -> Swift.Error {
+        switch rpcError {
+        case let .responseError(code, message, _):
+            let nsError = NSError(domain: "infura", code: code, userInfo: [NSLocalizedDescriptionKey: message])
+            return nsError
+        default:
+            return NetworkServiceError.serverError
+        }
+    }
+
+    private func error(httpStatusCode code: Int) -> Swift.Error {
+        if (100..<200).contains(code) || (300..<500).contains(code) {
+            return NetworkServiceError.clientError
+        } else {
+            return NetworkServiceError.serverError
+        }
     }
 
     private func httpClient() -> HTTPClient {

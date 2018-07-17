@@ -136,7 +136,7 @@ class MockPendingSafeViewControllerDelegate: PendingSafeViewControllerDelegate {
     var success: Bool?
     var cancelled = false
 
-    func deploymentDidFail() {
+    func deploymentDidFail(_ message: String) {
         success = false
     }
 

@@ -1,8 +1,27 @@
 /* Unlock screen header */
 "app.unlock.header" = "Unlock with your master password";
 
+/* Browser extension code is expired. */
+"extension.error.expired" = "Browser extension code is expired. Please, try again.";
+
+/* Application submitted invalid request. */
+"generic.error.client_error" = "Application submitted ivnalid request to the server. Try again later.";
+
 /* Generic error message alert */
 "generic.error.message" = "Operation failed because of an error. Please try again.";
+
+/* Something wrong with network.
+   Something wrong with the network. */
+"generic.error.network_error" = "Failed to make a network call. Try again later.";
+
+/* Response is invalid or not supported. */
+"generic.error.response_validation_error" = "Server returned invalid response which will be discarded.";
+
+/* Server returned error response. */
+"generic.error.server_error" = "Server returned error, the operation is cancelled. Please, try again later.";
+
+/* Some error occurred. */
+"generic.error.unknown" = "Error occurred. Please, try again later.";
 
 /* Receive button title */
 "main.receive" = "Receive";
@@ -192,4 +211,22 @@
 
 /* Yesterday transactions group header */
 "trasnactions.group.yesterday" = "YESTERDAY";
+
+/* Blockchain address is unknown for the wallet. */
+"wallet.error.address_missing" = "Failed to find safe address. Please try again later.";
+
+/* Wallet creation transaction is not found. */
+"wallet.error.creation_tx_missing" = "Failed to find initial safe transaction. Please try again later";
+
+/* Internal wallet error. */
+"wallet.error.invalid_state" = "Encountered internal safe error.";
+
+/* Insufficient owners for wallet creation. */
+"wallet.error.owner_missing" = "Safe has insufficient number of owners.";
+
+/* Server-provided signature of creation transacion is invalid. */
+"wallet.error.response_invalid_signature" = "Server-signed response is invalid and will be discarded.";
+
+/* Server-provided transaction is invalid */
+"wallet.error.response_invalid_transaction" = "Server-provided transaction is invalid and will be discarded.";
 
