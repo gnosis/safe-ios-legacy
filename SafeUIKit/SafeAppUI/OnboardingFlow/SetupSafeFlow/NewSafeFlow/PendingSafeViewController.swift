@@ -79,6 +79,7 @@ public class PendingSafeViewController: UIViewController {
         progressStatusLabel.accessibilityIdentifier = "pending_safe.status"
         progressView.progress = 0
         updateStatus()
+        walletService.setErrorHandler(handleError)
         subscription = walletService.subscribe(updateStatus)
         startDeployment()
     }
@@ -87,6 +88,7 @@ public class PendingSafeViewController: UIViewController {
         if let subscription = subscription {
             walletService.unsubscribe(subscription: subscription)
         }
+        walletService.setErrorHandler(nil)
     }
 
     private func startDeployment() {
@@ -99,6 +101,10 @@ public class PendingSafeViewController: UIViewController {
                 }
             }
         }
+    }
+
+    private func handleError(_ error: Error) {
+        delegate?.deploymentDidFail(error.localizedDescription)
     }
 
     private func updateStatus() {
@@ -120,9 +126,6 @@ public class PendingSafeViewController: UIViewController {
                 self.update(progress: 0.5, status: Strings.Status.accountFunded)
             case .deploymentAcceptedByBlockchain:
                 self.update(progress: 0.8, status: Strings.Status.deploymentAccepted)
-            case .deploymentFailed:
-                // TODO: what is the reason?
-                self.delegate?.deploymentDidFail("")
             case .deploymentSuccess:
                 self.update(progress: 1.0, status: Strings.Status.deploymentSuccess)
                 Timer.wait(0.5)

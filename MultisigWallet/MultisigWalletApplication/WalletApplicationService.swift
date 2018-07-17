@@ -33,7 +33,6 @@ public class WalletApplicationService: Assertable {
         case deploymentAcceptedByBlockchain
         // TODO: remove deploymentSuccess state
         case deploymentSuccess
-        case deploymentFailed
         case readyToUse
 
         var isBeingCreated: Bool {
@@ -95,6 +94,7 @@ public class WalletApplicationService: Assertable {
         case validationFailed
         case exceededExpirationDate
         case unknownError
+        case walletCreationFailed
     }
 
     public static let requiredConfirmationCount: Int = 2
@@ -121,8 +121,6 @@ public class WalletApplicationService: Assertable {
             return .deploymentAcceptedByBlockchain
         case .deploymentSuccess:
             return .deploymentSuccess
-        case .deploymentFailed:
-            return .deploymentFailed
         case .readyToUse:
             return .readyToUse
         }
@@ -153,6 +151,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private var statusUpdateHandlers = [String: () -> Void]()
+    private var errorHandler: ((Swift.Error) -> Void)?
 
     public init() {}
 
@@ -202,6 +201,7 @@ public class WalletApplicationService: Assertable {
                 throw Error.invalidWalletState
             }
         } catch let error {
+            errorHandler?(error)
             abortDeployment()
             throw error
         }
@@ -248,8 +248,8 @@ public class WalletApplicationService: Assertable {
             }
             return RepeatingShouldStop.no
         } catch let error {
-            ApplicationServiceRegistry.logger.fatal("Failed to update ETH account balance", error: error)
-            markDeploymentFailed()
+            errorHandler?(error)
+            abortDeployment()
             return RepeatingShouldStop.yes
         }
     }
@@ -269,7 +269,7 @@ public class WalletApplicationService: Assertable {
         if hash == nil {
             let address = wallet.address!
             hash = try ethereumService.waitForCreationTransaction(address: address)
-            try storeTransactionHash(hash: hash!)
+            storeTransactionHash(hash: hash!)
         }
         let isSuccess = try ethereumService.waitForPendingTransaction(hash: hash!)
         guard selectedWalletState == .deploymentAcceptedByBlockchain else { return }
@@ -279,7 +279,7 @@ public class WalletApplicationService: Assertable {
         didFinishDeployment(success: isSuccess)
     }
 
-    private func storeTransactionHash(hash: String) throws {
+    private func storeTransactionHash(hash: String) {
         mutateSelectedWallet { wallet in
             wallet.assignCreationTransaction(hash: hash)
         }
@@ -291,8 +291,11 @@ public class WalletApplicationService: Assertable {
             markDeploymentSuccess()
             finishDeployment()
         } else {
-            ApplicationServiceRegistry.logger.fatal("Blockchain transaction failed")
-            markDeploymentFailed()
+            mutateSelectedWallet { wallet in
+                wallet.changeAddress(nil)
+                wallet.assignCreationTransaction(hash: nil)
+            }
+            errorHandler?(Error.walletCreationFailed)
         }
     }
 
@@ -328,12 +331,6 @@ public class WalletApplicationService: Assertable {
     public func markDeploymentAcceptedByBlockchain() {
         mutateSelectedWallet { wallet in
             wallet.markDeploymentAcceptedByBlockchain()
-        }
-    }
-
-    public func markDeploymentFailed() {
-        mutateSelectedWallet { wallet in
-            wallet.markDeploymentFailed()
         }
     }
 
@@ -514,6 +511,10 @@ public class WalletApplicationService: Assertable {
 
     public func unsubscribe(subscription: String) {
         statusUpdateHandlers.removeValue(forKey: subscription)
+    }
+
+    public func setErrorHandler(_ handler: ((Swift.Error) -> Void)?) {
+        errorHandler = handler
     }
 
     private func notifyStatusUpdate() {

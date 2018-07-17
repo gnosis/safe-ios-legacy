@@ -276,7 +276,7 @@ class WalletApplicationServiceTests: XCTestCase {
         try service.startDeployment()
         ethereumService.startSafeCreation_shouldThrow = true
         ethereumService.updateBalance(100)
-        assert(state: .deploymentFailed)
+        assert(state: .readyToDeploy)
     }
 
     func test_whenDeploymentSuccessful_thenMarksSo() throws {
@@ -378,7 +378,7 @@ class WalletApplicationServiceTests: XCTestCase {
             try service.addBrowserExtensionOwner(
                 address: Address.extensionAddress.value,
                 browserExtensionCode: BrowserExtensionFixture.testJSON)) { error in
-                    XCTAssertEqual(error as! WalletApplicationService.Error, .unknownError)
+                    XCTAssertEqual(error as! TestError, .error)
         }
     }
 
@@ -396,7 +396,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         notificationService.shouldThrow = true
         XCTAssertThrowsError(try auth()) { error in
-            XCTAssertEqual(error as! WalletApplicationService.Error, .unknownError)
+            XCTAssertEqual(error as! TestError, .error)
         }
         notificationService.shouldThrow = false
         notificationService.shouldThrowNetworkError = true

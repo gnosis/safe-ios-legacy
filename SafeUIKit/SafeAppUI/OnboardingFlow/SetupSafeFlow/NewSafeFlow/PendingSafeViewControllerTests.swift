@@ -71,13 +71,6 @@ class PendingSafeViewControllerTests: SafeTestCase {
         XCTAssertFalse(controller.cancelButton.isEnabled)
     }
 
-    func test_whenTransactionFailed_thenCallsDelegate() {
-        loadController()
-        walletService.markDeploymentFailed()
-        delay()
-        XCTAssertEqual(delegate.success, false)
-    }
-
     func test_whenTransactionSuccess_thenDisplaysStatus() {
         loadController()
         walletService.markDeploymentSuccess()
