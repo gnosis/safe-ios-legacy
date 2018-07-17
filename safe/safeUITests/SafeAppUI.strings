@@ -146,7 +146,7 @@
 "pending_safe.cancel" = "Cancel";
 
 /* Pending safe failed alert's message */
-"pending_safe.failed_alert.message" = "Safe creation failed. Please try again.";
+"pending_safe.failed_alert.message" = "Error: %@ Please try again later.";
 
 /* OK button title */
 "pending_safe.failed_alert.ok" = "OK";

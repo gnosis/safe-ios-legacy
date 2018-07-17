@@ -95,6 +95,10 @@ public class WalletApplicationService: Assertable {
         case exceededExpirationDate
         case unknownError
         case walletCreationFailed
+
+        public var isNetworkError: Bool {
+            return self == .networkError || self == .clientError || self == .clientError
+        }
     }
 
     public static let requiredConfirmationCount: Int = 2
@@ -202,9 +206,20 @@ public class WalletApplicationService: Assertable {
             }
         } catch let error {
             errorHandler?(error)
-            abortDeployment()
+            abortDeploymentIfNeeded(by: error)
             throw error
         }
+    }
+
+    private func abortDeploymentIfNeeded(by error: Swift.Error) {
+        if let walletError = error as? WalletApplicationService.Error, walletError.isNetworkError {
+            return
+        } else if let ethereumError = error as? EthereumApplicationService.Error, ethereumError.isNetworkError {
+            return
+        } else if (error as NSError).domain == NSURLErrorDomain {
+            return
+        }
+        abortDeployment()
     }
 
     private func requestWalletCreation() throws -> SafeCreationTransactionData {
@@ -249,7 +264,7 @@ public class WalletApplicationService: Assertable {
             return RepeatingShouldStop.no
         } catch let error {
             errorHandler?(error)
-            abortDeployment()
+            abortDeploymentIfNeeded(by: error)
             return RepeatingShouldStop.yes
         }
     }
@@ -291,11 +306,12 @@ public class WalletApplicationService: Assertable {
             markDeploymentSuccess()
             finishDeployment()
         } else {
-            mutateSelectedWallet { wallet in
-                wallet.changeAddress(nil)
-                wallet.assignCreationTransaction(hash: nil)
-            }
-            errorHandler?(Error.walletCreationFailed)
+            let wallet = findSelectedWallet()!
+            let txHash = wallet.creationTransactionHash!
+            let address = wallet.address!
+            let message = "Transaction '\(txHash)' failed for safe creation at address '\(address)'. Crashing."
+            ApplicationServiceRegistry.logger.fatal(message, error: Error.walletCreationFailed)
+            exit(EXIT_FAILURE)
         }
     }
 
