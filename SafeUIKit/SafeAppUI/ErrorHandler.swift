@@ -86,13 +86,17 @@ extension WalletApplicationService.Error: LocalizedError {
         case .creationTransactionHashNotFound:
             return LocalizedString("wallet.error.creation_tx_missing", comment: "Wallet creation transaction is not found.")
         case .networkError:
-            return LocalizedString("generic.error.network_error", comment: "Something wrong with network.")
+            return LocalizedString("generic.error.network_error", comment: "Something wrong with the network.")
         case .validationFailed:
             return LocalizedString("generic.error.response_validation_error", comment: "Response is invalid or not supported.")
         case .exceededExpirationDate:
             return LocalizedString("extension.error.expired", comment: "Browser extension code is expired.")
         case .unknownError:
             return LocalizedString("generic.error.unknown", comment: "Some error occurred.")
+        case .clientError:
+            return LocalizedString("generic.error.client_error", comment: "Application submitted invalid request.")
+        case .serverError:
+            return LocalizedString("generic.error.server_error", comment: "Server returned error response.")
         }
     }
 
@@ -107,11 +111,11 @@ extension EthereumApplicationService.Error: LocalizedError {
         case .invalidTransaction:
             return LocalizedString("wallet.error.response_invalid_transaction", comment: "Server-provided transaction is invalid")
         case .networkError:
-            return LocalizedString("generic.error.network_error", comment: "Something wrong with the network.")
+            return WalletApplicationService.Error.networkError.errorDescription
         case .serverError:
-            return LocalizedString("generic.error.server_error", comment: "Server returned error response.")
+            return WalletApplicationService.Error.serverError.errorDescription
         case .clientError:
-            return LocalizedString("generic.error.client_error", comment: "Application submitted invalid request.")
+            return WalletApplicationService.Error.clientError.errorDescription
         }
     }
 

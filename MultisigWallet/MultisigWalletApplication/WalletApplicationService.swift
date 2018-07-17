@@ -90,6 +90,8 @@ public class WalletApplicationService: Assertable {
         case missingWalletAddress
         case creationTransactionHashNotFound
         case networkError
+        case clientError
+        case serverError
         case validationFailed
         case exceededExpirationDate
         case unknownError
@@ -247,7 +249,7 @@ public class WalletApplicationService: Assertable {
             return RepeatingShouldStop.no
         } catch let error {
             ApplicationServiceRegistry.logger.fatal("Failed to update ETH account balance", error: error)
-            try? markDeploymentFailed()
+            markDeploymentFailed()
             return RepeatingShouldStop.yes
         }
     }
@@ -271,6 +273,9 @@ public class WalletApplicationService: Assertable {
         }
         let isSuccess = try ethereumService.waitForPendingTransaction(hash: hash!)
         guard selectedWalletState == .deploymentAcceptedByBlockchain else { return }
+        if isSuccess {
+            try notifySafeCreated()
+        }
         didFinishDeployment(success: isSuccess)
     }
 
@@ -283,12 +288,11 @@ public class WalletApplicationService: Assertable {
     private func didFinishDeployment(success: Bool) {
         if success {
             removePaperWallet()
-            try? notifySafeCreated() // TODO: handle the case
             markDeploymentSuccess()
             finishDeployment()
         } else {
             ApplicationServiceRegistry.logger.fatal("Blockchain transaction failed")
-            try? markDeploymentFailed()
+            markDeploymentFailed()
         }
     }
 
@@ -298,7 +302,9 @@ public class WalletApplicationService: Assertable {
         let message = notificationService.safeCreatedMessage(at: selectedWalletAddress!)
         let senderSignature = ethereumService.sign(message: "GNO" + message, by: sender)!
         let request = SendNotificationRequest(message: message, to: recipient, from: senderSignature)
-        try notificationService.send(notificationRequest: request)
+        try handleNotificationServiceError {
+            try notificationService.send(notificationRequest: request)
+        }
     }
 
     private func fetchBalance() throws {
@@ -325,7 +331,7 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public func markDeploymentFailed() throws {
+    public func markDeploymentFailed() {
         mutateSelectedWallet { wallet in
             wallet.markDeploymentFailed()
         }
@@ -366,9 +372,9 @@ public class WalletApplicationService: Assertable {
         return wallet
     }
 
-    private func notifyWalletStateChangesAfter(_ closure: () throws -> Void) rethrows {
+    private func notifyWalletStateChangesAfter(_ closure: () -> Void) {
         let startState = selectedWalletState
-        try closure()
+        closure()
         let endState = selectedWalletState
         if startState != endState {
             notifyStatusUpdate()
@@ -414,22 +420,29 @@ public class WalletApplicationService: Assertable {
     private func pair(_ browserExtension: BrowserExtensionCode,
                       _ signature: EthSignature,
                       _ deviceOwnerAddress: String) throws {
-        do {
+        try handleNotificationServiceError {
             try notificationService.pair(pairingRequest: PairingRequest(temporaryAuthorization: browserExtension,
                                                                         signature: signature,
                                                                         deviceOwnerAddress: deviceOwnerAddress))
+        }
+    }
+
+    @discardableResult
+    private func handleNotificationServiceError<T>(_ block: () throws -> T) throws -> T {
+        do {
+            return try block()
         } catch NotificationDomainServiceError.validationFailed {
             throw Error.validationFailed
-        } catch JSONHTTPClient.Error.networkRequestFailed(_, _, let data) {
+        } catch let JSONHTTPClient.Error.networkRequestFailed(_, response, data) {
             if let data = data, let dataStr = String(data: data, encoding: .utf8),
                 // FIXME: fragile error detection, better to have JSON code/struct
                 dataStr.range(of: "Exceeded expiration date") != nil {
                 throw Error.exceededExpirationDate
+            } else if let response = response as? HTTPURLResponse {
+                throw (400..<500).contains(response.statusCode) ? Error.clientError : Error.serverError
             } else {
                 throw Error.networkError
             }
-        } catch {
-            throw Error.unknownError
         }
     }
 
@@ -514,14 +527,10 @@ public class WalletApplicationService: Assertable {
         guard let pushToken = tokensService.pushToken() else { return }
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
         let signature = ethereumService.sign(message: "GNO" + pushToken, by: deviceOwnerAddress)!
-        do {
+        try handleNotificationServiceError {
             try notificationService.auth(request: AuthRequest(pushToken: pushToken,
                                                               signature: signature,
                                                               deviceOwnerAddress: deviceOwnerAddress))
-        } catch JSONHTTPClient.Error.networkRequestFailed(_, _, _) {
-            throw Error.networkError
-        } catch {
-            throw Error.unknownError
         }
     }
 

@@ -10,8 +10,7 @@
 /* Generic error message alert */
 "generic.error.message" = "Operation failed because of an error. Please try again.";
 
-/* Something wrong with network.
-   Something wrong with the network. */
+/* Something wrong with the network. */
 "generic.error.network_error" = "Failed to make a network call. Try again later.";
 
 /* Response is invalid or not supported. */
