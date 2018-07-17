@@ -65,7 +65,7 @@
 "onboarding.error.title" = "Error";
 
 /* Fatal error alert's message */
-"onboarding.fatal.message" = "Failed to set master password. The app will be closed.";
+"onboarding.fatal.message" = "Application failed to perform operation and will be closed.";
 
 /* Fatal error alert's Ok button title */
 "onboarding.fatal.ok" = "Ok";

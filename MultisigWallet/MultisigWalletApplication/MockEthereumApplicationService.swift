@@ -23,10 +23,10 @@ open class MockEthereumApplicationService: EthereumApplicationService {
     public var signedMessage: String?
     public var signingAddress: String?
 
-    public var createSafeCreationTransaction_input: (owners: [String], confirmationCount: Int)?
+    public var createSafeCreationTransaction_input: (owners: [Address], confirmationCount: Int)?
     public var createSafeCreationTransaction_output: SafeCreationTransactionData!
 
-    open override func createSafeCreationTransaction(owners: [String],
+    open override func createSafeCreationTransaction(owners: [Address],
                                                      confirmationCount: Int) throws -> SafeCreationTransactionData {
         createSafeCreationTransaction_input = (owners, confirmationCount)
         if shouldThrow {
@@ -38,7 +38,7 @@ open class MockEthereumApplicationService: EthereumApplicationService {
     public var observeChangesInBalance_input: (account: String, observer: (BigInt) -> Bool)?
     open override func observeChangesInBalance(address: String,
                                                every interval: TimeInterval,
-                                               block didUpdateBalanceBlock: @escaping (BigInt) -> Bool) throws {
+                                               block didUpdateBalanceBlock: @escaping (BigInt) -> Bool) {
         observeChangesInBalance_input = (address, didUpdateBalanceBlock)
     }
 
@@ -50,19 +50,19 @@ open class MockEthereumApplicationService: EthereumApplicationService {
         return nil
     }
 
-    public var waitForCreationTransaction_input: String?
+    public var waitForCreationTransaction_input: Address?
     public var waitForCreationTransaction_output: String = ""
 
-    open override func waitForCreationTransaction(address: String) throws -> String {
+    open override func waitForCreationTransaction(address: Address) throws -> String {
         if shouldThrow { throw Error.error }
         waitForCreationTransaction_input = address
         return waitForCreationTransaction_output
     }
 
-    public var startSafeCreation_input: String?
+    public var startSafeCreation_input: Address?
     public var startSafeCreation_shouldThrow: Bool = false
 
-    open override func startSafeCreation(address: String) throws {
+    open override func startSafeCreation(address: Address) throws {
         if startSafeCreation_shouldThrow { throw Error.error }
         startSafeCreation_input = address
     }

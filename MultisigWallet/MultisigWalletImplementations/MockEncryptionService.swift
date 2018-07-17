@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import BigInt
 
 public class MockEncryptionService: EncryptionDomainService {
 
@@ -25,14 +26,14 @@ public class MockEncryptionService: EncryptionDomainService {
     }
 
     public func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {
-        return ExternallyOwnedAccount(address: Address(value: "address"),
+        return ExternallyOwnedAccount(address: Address("0xcccccccccccccccccccccccccccccccccccccccc"),
                                       mnemonic: Mnemonic(words: ["one", "two", "three"]),
                                       privateKey: PrivateKey(data: Data()),
                                       publicKey: PublicKey(data: Data()))
     }
 
-    public func ecdsaRandomS() -> String {
-        return "1809251394333065553493296640760748560207343510400633813116524750123642650623"
+    public func ecdsaRandomS() -> BigUInt {
+        return BigUInt("1809251394333065553493296640760748560207343510400633813116524750123642650623")!
     }
 
     public func sign(message: String, privateKey: PrivateKey) -> EthSignature {

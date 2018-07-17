@@ -5,5 +5,5 @@
 import Foundation
 
 public struct Owner: Hashable, Codable {
-    public internal(set) var address: BlockchainAddress
+    public internal(set) var address: Address
 }

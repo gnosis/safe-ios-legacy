@@ -137,7 +137,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         walletService.startDeployment()
         assertShowingPendingVC()
 
-        walletService.assignBlockchainAddress("address")
+        walletService.assignAddress("address")
         assertShowingPendingVC()
 
         walletService.updateMinimumFunding(account: "ETH", amount: 100)
@@ -167,7 +167,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         walletService.startDeployment()
         assertNotFinished()
 
-        walletService.assignBlockchainAddress("address")
+        walletService.assignAddress("address")
         assertNotFinished()
 
         walletService.updateMinimumFunding(account: "ETH", amount: 100)

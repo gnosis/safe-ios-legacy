@@ -54,7 +54,7 @@ fileprivate extension ExternallyOwnedAccount {
     }
 
     convenience init(dataStruct: ExternallyOwnedAccountData) {
-        self.init(address: Address(value: dataStruct.address),
+        self.init(address: Address(dataStruct.address),
                   mnemonic: Mnemonic(words: dataStruct.mnemonic),
                   privateKey: PrivateKey(data: dataStruct.privateKey),
                   publicKey: PublicKey(data: dataStruct.publicKey))

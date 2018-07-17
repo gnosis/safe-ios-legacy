@@ -23,10 +23,13 @@
 "new_safe.create" = "Create";
 
 /* Browser Extension Expired Message */
-"new_safe.extension.expired" = "Browser Extinsion QR code is expired. Please, generate a new code.";
+"new_safe.extension.expired" = "Failed to pair because QR code is expired. Please, generate a new code.";
+
+/* Invalid extension code */
+"new_safe.extension.invalid_code_error" = "Failed to pair because of invalid QR code.";
 
 /* Network error message */
-"new_safe.extension.network_error" = "Internet connection error. Please try again later.";
+"new_safe.extension.network_error" = "Failed to pair because of network error. Please try again later.";
 
 /* Save button title in extension setup screen */
 "new_safe.extension.save" = "Save";
@@ -65,7 +68,7 @@
 "onboarding.error.title" = "Error";
 
 /* Fatal error alert's message */
-"onboarding.fatal.message" = "Failed to set master password. The app will be closed.";
+"onboarding.fatal.message" = "Application failed to perform operation and will be closed.";
 
 /* Fatal error alert's Ok button title */
 "onboarding.fatal.ok" = "Ok";

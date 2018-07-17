@@ -24,6 +24,8 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         static let browserExtensionExpired = LocalizedString("new_safe.extension.expired",
                                                              comment: "Browser Extension Expired Message")
         static let networkError = LocalizedString("new_safe.extension.network_error", comment: "Network error message")
+        static let invalidCode = LocalizedString("new_safe.extension.invalid_code_error",
+                                                 comment: "Invalid extension code")
 
     }
 
@@ -71,25 +73,24 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         saveButton.isEnabled = false
         activityIndicator.startAnimating()
         DispatchQueue.global().async { [weak self] in
-            guard let `self` = self else { return }
-            do {
-                try self.walletService.addBrowserExtensionOwner(address: text, browserExtensionCode: self.scannedCode!)
-                DispatchQueue.main.async {
-                    self.delegate?.didPair()
-                }
-            } catch let e as WalletApplicationService.Error {
-                switch e {
-                case .networkError:
-                    self.showError(message: Strings.networkError, log: "Network Error in pairing")
-                case .exceededExpirationDate:
-                    self.showError(message: Strings.browserExtensionExpired,
-                                   log: "Browser Extension code is expired")
-                default:
-                    self.showFatalError(text, error: e)
-                }
-            } catch let e {
-                self.showFatalError(text, error: e)
+            self?.addBrowserExtensionOwner(address: text)
+        }
+    }
+
+    private func addBrowserExtensionOwner(address: String) {
+        do {
+            try walletService.addBrowserExtensionOwner(address: address, browserExtensionCode: scannedCode!)
+            DispatchQueue.main.async {
+                self.delegate?.didPair()
             }
+        } catch WalletApplicationService.Error.validationFailed {
+            showError(message: Strings.invalidCode, log: "Invalid browser extension code")
+        } catch WalletApplicationService.Error.networkError {
+            showError(message: Strings.networkError, log: "Network Error in pairing")
+        } catch WalletApplicationService.Error.exceededExpirationDate {
+            showError(message: Strings.browserExtensionExpired, log: "Browser Extension code is expired")
+        } catch let e {
+            showFatalError(address, error: e)
         }
     }
 

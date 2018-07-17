@@ -9,7 +9,7 @@ import CryptoSwift
 public struct EthAddress: Equatable, CustomStringConvertible {
 
     public static let zero = EthAddress(Data())
-    private static let size = 20
+    public static let size = 20
     private let ethData: EthData
 
     public init(_ value: EthData) {

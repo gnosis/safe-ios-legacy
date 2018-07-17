@@ -40,28 +40,29 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
     }
 
     func test_whenAccountNotFound_thenReturnsNil() {
-        XCTAssertNil(applicationService.findExternallyOwnedAccount(by: "some"))
+        XCTAssertNil(applicationService.findExternallyOwnedAccount(by: Address.testAccount1.value))
     }
 
     func test_whenCreatingSafeTransaction_thenCallsRelayService() throws {
-        _ = try applicationService.createSafeCreationTransaction(owners: ["one"], confirmationCount: 1)
+        _ = try applicationService.createSafeCreationTransaction(owners: [Address.deviceAddress], confirmationCount: 1)
         XCTAssertNotNil(relayService.createSafeCreationTransaction_input)
     }
 
     func test_whenStartingSafeCreation_thenCallsRelayService() throws {
-        try applicationService.startSafeCreation(address: "some")
+        try applicationService.startSafeCreation(address: Address.safeAddress)
         guard let input = relayService.startSafeCreation_input else {
             XCTFail("Expected call to relay service")
             return
         }
-        XCTAssertEqual(input, Address(value: "some"))
+        XCTAssertEqual(input, Address.safeAddress)
     }
 
     func test_whenObservingBalanceAndItChanges_thenCallsObserver() {
         var observedBalance: BigInt?
         var callCount = 0
         DispatchQueue.global().async {
-            try? self.applicationService.observeChangesInBalance(address: "address", every: 0.1) { balance in
+            try? self.applicationService.observeChangesInBalance(address: Address.safeAddress.value,
+                                                                 every: 0.1) { balance in
                 if callCount == 3 {
                     return true
                 }
@@ -84,7 +85,8 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
     func test_whenBalanceThrows_thenContinuesObserving() {
         var callCount = 0
         DispatchQueue.global().async {
-            try? self.applicationService.observeChangesInBalance(address: "address", every: 0.1) { _ in
+            try? self.applicationService.observeChangesInBalance(address: Address.safeAddress.value,
+                                                                 every: 0.1) { _ in
                 if callCount == 3 {
                     return true
                 }
@@ -106,12 +108,12 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
     func test_whenSignsMessage_thenSignatureIsCorrect() {
         let pk = PrivateKey(data: Data(repeating: 1, count: 32))
         eoaRepository.save(ExternallyOwnedAccount(
-            address: Address(value: "signer"),
+            address: Address.deviceAddress,
             mnemonic: Mnemonic(words: ["test"]),
             privateKey: pk,
             publicKey: PublicKey(data: Data())))
         encryptionService.sign_output = EthSignature(r: "r", s: "s", v: 1)
-        let signature = applicationService.sign(message: "Gnosis", by: "signer")!
+        let signature = applicationService.sign(message: "Gnosis", by: Address.deviceAddress.value)!
         XCTAssertEqual(signature.r, "r")
         XCTAssertEqual(signature.s, "s")
         XCTAssertEqual(signature.v, 1)
@@ -120,7 +122,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
     }
 
     func test_whenSignMessageForUnknownAddress_thenNoSignature() {
-        let signature = applicationService.sign(message: "Gnosis", by: "signer")
+        let signature = applicationService.sign(message: "Gnosis", by: Address.deviceAddress.value)
         XCTAssertNil(signature)
     }
 

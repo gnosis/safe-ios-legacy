@@ -25,11 +25,17 @@ public class ExternallyOwnedAccount: IdentifiableEntity<Address> {
 
 }
 
-public struct Address: Hashable {
+public struct Address: Hashable, Codable {
 
     public let value: String
 
-    public init(value: String) {
+    var isZero: Bool {
+        return Data(hex: value).isEmpty || Data(hex: value) == Data(repeating: 0, count: 20)
+    }
+
+    public init(_ value: String) {
+        precondition(value.hasPrefix("0x"))
+        precondition(Data(hex: value).count == 20 || Data(hex: value).isEmpty)
         self.value = value
     }
 
@@ -63,4 +69,15 @@ public struct PublicKey: Equatable {
         self.data = data
     }
 
+}
+
+public struct SignedRawTransaction: Equatable {
+
+    public let value: String
+
+    public init(_ value: String) {
+        precondition(value.hasPrefix("0x"))
+        precondition(!Data(hex: value).isEmpty)
+        self.value = value
+    }
 }

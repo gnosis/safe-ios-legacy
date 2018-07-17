@@ -4,6 +4,7 @@
 
 import Foundation
 import BigInt
+import CryptoSwift
 
 public struct ECDSASignatureBounds {
 
@@ -31,11 +32,18 @@ public struct SafeCreationTransactionRequest: Encodable {
     public let threshold: String
     public let s: String
 
-    public init(owners: [String], confirmationCount: Int, ecdsaRandomS: String) {
-        self.owners = owners
-        threshold = String(confirmationCount)
-        precondition(BigInt(ecdsaRandomS)! < ECDSASignatureBounds.sRange.upperBound)
-        s = ecdsaRandomS
+    public init(owners: [Address], confirmationCount: Int, ecdsaRandomS: BigUInt) {
+        precondition(!owners.isEmpty, "Must have at least one owner but owners parameter is empty array")
+        precondition((1...owners.count).contains(confirmationCount),
+                     "Invalid confirmationCount parameter value: '\(confirmationCount)'")
+        precondition(0 <= ecdsaRandomS && ecdsaRandomS < ECDSASignatureBounds.sRange.upperBound,
+                     "Random s value '\(ecdsaRandomS)` is out of bounds")
+        for owner in owners {
+            precondition(!owner.isZero, "Owner's address '\(owner.value)' must be non-zero 20 bytes")
+        }
+        self.owners = owners.map { $0.value }
+        self.threshold = String(confirmationCount)
+        self.s = String(ecdsaRandomS)
     }
 
     public struct Response: Decodable {

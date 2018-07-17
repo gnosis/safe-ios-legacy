@@ -189,7 +189,7 @@ public class WalletApplicationService: Assertable {
             }
             if selectedWalletState == .deploymentStarted {
                 let data = try requestWalletCreation()
-                assignBlockchainAddress(data.safe)
+                assignAddress(data.safe)
                 updateMinimumFunding(account: "ETH", amount: data.payment)
             }
             if selectedWalletState == .notEnoughFunds || selectedWalletState == .addressKnown {
@@ -208,7 +208,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func requestWalletCreation() throws -> SafeCreationTransactionData {
-        let owners: [String] = OwnerType.all.compactMap { ownerAddress(of: $0) }
+        let owners: [Address] = OwnerType.all.compactMap { Address(ownerAddress(of: $0)!) }
         try assertEqual(owners.count, OwnerType.all.count, Error.oneOrMoreOwnersAreMissing)
         let confirmationCount = WalletApplicationService.requiredConfirmationCount
         return try ethereumService.createSafeCreationTransaction(owners: owners, confirmationCount: confirmationCount)
@@ -220,9 +220,9 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    private func assignBlockchainAddress(_ address: String) {
+    private func assignAddress(_ address: String) {
         mutateSelectedWallet { wallet in
-            wallet.changeBlockchainAddress(BlockchainAddress(value: address))
+            wallet.changeAddress(Address(address))
         }
     }
 
@@ -255,7 +255,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func createWalletInBlockchain() throws {
-        let address = findSelectedWallet()!.address!.value
+        let address = findSelectedWallet()!.address!
         // TODO: if the call fails, show error in UI and possibility to retry with a button
         try ethereumService.startSafeCreation(address: address)
         guard selectedWalletState == .accountFunded else { return }
@@ -267,7 +267,7 @@ public class WalletApplicationService: Assertable {
         let wallet = findSelectedWallet()!
         var hash = wallet.creationTransactionHash
         if hash == nil {
-            let address = wallet.address!.value
+            let address = wallet.address!
             hash = try ethereumService.waitForCreationTransaction(address: address)
             try storeTransactionHash(hash: hash!)
         }
@@ -403,50 +403,48 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public func addBrowserExtensionOwner(address: String, browserExtensionCode: String) throws {
+    public func addBrowserExtensionOwner(address: String, browserExtensionCode rawCode: String) throws {
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
         let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress)!
-        guard let browserExtension = browserExtension(json: browserExtensionCode) else {
+        guard let code = browserExtensionCode(from: rawCode) else {
             throw Error.validationFailed
         }
+        try pair(code, signature, deviceOwnerAddress)
+        addOwner(address: address, type: .browserExtension)
+    }
+
+    private func pair(_ browserExtension: BrowserExtensionCode,
+                      _ signature: EthSignature,
+                      _ deviceOwnerAddress: String) throws {
         do {
-            let pairingRequest = PairingRequest(
-                temporaryAuthorization: browserExtension,
-                signature: signature,
-                deviceOwnerAddress: deviceOwnerAddress)
-            try notificationService.pair(pairingRequest: pairingRequest)
+            try notificationService.pair(pairingRequest: PairingRequest(temporaryAuthorization: browserExtension,
+                                                                        signature: signature,
+                                                                        deviceOwnerAddress: deviceOwnerAddress))
         } catch NotificationDomainServiceError.validationFailed {
             throw Error.validationFailed
-        } catch let e as JSONHTTPClient.Error {
-            switch e {
-            case let .networkRequestFailed(_, _, data):
-                if let data = data,
-                    let dataStr = String(data: data, encoding: .utf8),
-                    dataStr.range(of: "Exceeded expiration date") != nil {
-                    throw Error.exceededExpirationDate
-                }
+        } catch JSONHTTPClient.Error.networkRequestFailed(_, _, let data) {
+            if let data = data, let dataStr = String(data: data, encoding: .utf8),
+                // FIXME: fragile error detection, better to have JSON code/struct
+                dataStr.range(of: "Exceeded expiration date") != nil {
+                throw Error.exceededExpirationDate
+            } else {
                 throw Error.networkError
             }
         } catch {
             throw Error.unknownError
         }
-        addOwner(address: address, type: .browserExtension)
     }
 
-    public func browserExtension(json: String) -> BrowserExtensionCode? {
+    internal func browserExtensionCode(from json: String) -> BrowserExtensionCode? {
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter.networkDateFormatter
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
-        guard let jsonData = json.data(using: .utf8) else {
-            return nil
+        guard let jsonData = json.data(using: .utf8),
+            var code = try? decoder.decode(BrowserExtensionCode.self, from: jsonData) else {
+                return nil
         }
-        do {
-            var code = try decoder.decode(BrowserExtensionCode.self, from: jsonData)
-            code.extensionAddress = ethereumService.address(browserExtensionCode: json)
-            return code
-        } catch {
-            return nil
-        }
+        code.extensionAddress = ethereumService.address(browserExtensionCode: json)
+        return code
     }
 
     public func ownerAddress(of type: OwnerType) -> String? {
@@ -460,10 +458,11 @@ public class WalletApplicationService: Assertable {
        return findAccount(token)?.balance
     }
 
-    private func updateMinimumFunding(account token: String, amount: Int) {
+    private func updateMinimumFunding(account token: String, amount: BigInt) {
         assertCanChangeAccount()
         mutateAccount(token: token) { account in
-            account.updateMinimumTransactionAmount(amount)
+            // TODO: bigint
+            account.updateMinimumTransactionAmount(Int(amount))
         }
     }
 
@@ -517,10 +516,10 @@ public class WalletApplicationService: Assertable {
         guard let pushToken = tokensService.pushToken() else { return }
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
         let signature = ethereumService.sign(message: "GNO" + pushToken, by: deviceOwnerAddress)!
-        let authRequest = AuthRequest(
-            pushToken: pushToken, signature: signature, deviceOwnerAddress: deviceOwnerAddress)
         do {
-            try notificationService.auth(request: authRequest)
+            try notificationService.auth(request: AuthRequest(pushToken: pushToken,
+                                                              signature: signature,
+                                                              deviceOwnerAddress: deviceOwnerAddress))
         } catch JSONHTTPClient.Error.networkRequestFailed(_, _, _) {
             throw Error.networkError
         } catch {

@@ -37,7 +37,7 @@ class PendingSafeViewControllerTests: SafeTestCase {
 
     func test_whenAddressKnown_thenDisplaysStatus() {
         loadController()
-        walletService.assignBlockchainAddress("address")
+        walletService.assignAddress("address")
         delay()
         assert(progress: 20, status: "pending_safe.status.address_known")
         XCTAssertTrue(controller.cancelButton.isEnabled)

@@ -22,9 +22,9 @@ public struct ExternallyOwnedAccountData: Equatable {
 public struct SafeCreationTransactionData: Equatable {
 
     public var safe: String
-    public var payment: Int
+    public var payment: BigInt
 
-    public init(safe: String, payment: Int) {
+    public init(safe: String, payment: BigInt) {
         self.safe = safe
         self.payment = payment
     }
@@ -58,20 +58,20 @@ open class EthereumApplicationService: Assertable {
     }
 
     open func removeExternallyOwnedAccount(address: String) {
-        eoaRepository.remove(address: Address(value: address))
+        eoaRepository.remove(address: Address(address))
     }
 
     open func findExternallyOwnedAccount(by address: String) -> ExternallyOwnedAccountData? {
-        guard let account = eoaRepository.find(by: Address(value: address)) else {
+        guard let account = eoaRepository.find(by: Address(address)) else {
             return nil
         }
         return account.applicationServiceData
     }
 
-    open func createSafeCreationTransaction(owners: [String], confirmationCount: Int) throws
+    open func createSafeCreationTransaction(owners: [Address], confirmationCount: Int) throws
         -> SafeCreationTransactionData {
             let request = SafeCreationTransactionRequest(owners: owners,
-                                                         confirmationCount: 2,
+                                                         confirmationCount: confirmationCount,
                                                          ecdsaRandomS: encryptionService.ecdsaRandomS())
             let response = try relayService.createSafeCreationTransaction(request: request)
             try assertEqual(response.signature.s, request.s, Error.invalidSignature)
@@ -88,25 +88,25 @@ open class EthereumApplicationService: Assertable {
                                response.tx.nonce)
             let safeAddress: String? = encryptionService.contractAddress(from: signature, for: transaction)
             try assertEqual(safeAddress, response.safe, Error.invalidSignature)
-            guard let payment = Int(response.payment) else { throw Error.invalidTransaction }
+            guard let payment = BigInt(response.payment) else { throw Error.invalidTransaction }
             return SafeCreationTransactionData(safe: response.safe, payment: payment)
     }
 
-    open func startSafeCreation(address: String) throws {
-        try relayService.startSafeCreation(address: Address(value: address))
+    open func startSafeCreation(address: Address) throws {
+        try relayService.startSafeCreation(address: address)
     }
 
-    open func waitForCreationTransaction(address: String) throws -> String {
+    open func waitForCreationTransaction(address: Address) throws -> String {
         var hash: String?
         try repeatBlock(every: 5) {
-            hash = try self.relayService.safeCreationTransactionHash(address: Address(value: address))?.value
+            hash = try self.relayService.safeCreationTransactionHash(address: address)?.value
             return hash != nil ? RepeatingShouldStop.yes : RepeatingShouldStop.no
         }
         return hash!
     }
 
     open func balance(address: String) throws -> BigInt {
-        return try nodeService.eth_getBalance(account: Address(value: address))
+        return try nodeService.eth_getBalance(account: Address(address))
     }
 
     open func observeChangesInBalance(address: String,
@@ -134,12 +134,12 @@ open class EthereumApplicationService: Assertable {
     }
 
     open func sign(message: String, by address: String) -> EthSignature? {
-        guard let eoa = eoaRepository.find(by: Address(value: address)) else { return nil }
+        guard let eoa = eoaRepository.find(by: Address(address)) else { return nil }
         return encryptionService.sign(message: message, privateKey: eoa.privateKey)
     }
 
     private func repeatBlock(every interval: TimeInterval, block: @escaping () throws -> Bool) throws {
-        try Worker.start(repeating: interval) { [weak self] in
+        Worker.start(repeating: interval) { [weak self] in
             guard self != nil else {
                 return RepeatingShouldStop.yes
             }

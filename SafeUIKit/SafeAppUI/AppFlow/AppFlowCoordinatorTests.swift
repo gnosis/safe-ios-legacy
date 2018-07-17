@@ -96,7 +96,7 @@ class AppFlowCoordinatorTests: SafeTestCase {
         _ = try Authenticator.instance.authenticate(.password(password))
         walletService.createNewDraftWallet()
         walletService.update(account: "ETH", newBalance: 100)
-        walletService.assignBlockchainAddress("address")
+        walletService.assignAddress("address")
         createFlowCoordinator()
         guard let rootVC = rootViewControlleOnAppStartrAfterUnlocking() else {
             XCTFail()

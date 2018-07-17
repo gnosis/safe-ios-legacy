@@ -9,7 +9,7 @@ import CryptoSwift
 extension ExternallyOwnedAccount {
 
     // swiftlint:disable line_length
-    static let testAccount = ExternallyOwnedAccount(address: MultisigWalletDomainModel.Address(value: "0x78dB469b49e153bF80B82059B0C57EE0221a3f92"),
+    static let testAccount = ExternallyOwnedAccount(address: MultisigWalletDomainModel.Address("0x78dB469b49e153bF80B82059B0C57EE0221a3f92"),
                                                     mnemonic: MultisigWalletDomainModel.Mnemonic(words: ["skirt", "subway", "absurd", "dune",
                                                                                                    "repeat", "riot", "tank", "inspire",
                                                                                                    "lazy", "extend", "valve", "pause"]),
