@@ -11,3 +11,9 @@ public protocol EthereumNodeDomainService {
     func eth_getTransactionReceipt(transaction: TransactionHash) throws -> TransactionReceipt?
 
 }
+
+public enum NetworkServiceError: Swift.Error {
+    case networkError
+    case serverError
+    case clientError
+}

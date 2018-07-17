@@ -123,6 +123,10 @@
 		0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
 		0A7AE8C92052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */; };
 		0A7AE8CA2052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
+		0A8A2BAA20FDFD2F0003BB7E /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7ED208DE87700AF3A50 /* CryptoSwift.framework */; };
+		0A8A2BAB20FDFD2F0003BB7E /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7ED208DE87700AF3A50 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A8A2BAE20FDFD2F0003BB7E /* CryptoEthereumSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0EB820CE62C400424CEE /* CryptoEthereumSwift.framework */; };
+		0A8A2BAF20FDFD2F0003BB7E /* CryptoEthereumSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0EB820CE62C400424CEE /* CryptoEthereumSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A8C962720D2B76D007D2410 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C962620D2B76D007D2410 /* ProgressView.swift */; };
 		0A8C962D20D2C3B7007D2410 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C962C20D2C3B7007D2410 /* BorderedButton.swift */; };
 		0A8C962F20D2C3E7007D2410 /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C962E20D2C3E7007D2410 /* DesignableButton.swift */; };
@@ -224,6 +228,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0AD8FD1F20CEC4BA00591B91;
 			remoteInfo = BlockiesSwift;
+		};
+		0A8A2BAC20FDFD2F0003BB7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A57F70D207E411F00AF407D;
+			remoteInfo = CryptoSwift;
+		};
+		0A8A2BB020FDFD2F0003BB7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 555B0E7920CAD34C00424CEE;
+			remoteInfo = CryptoEthereumSwift;
 		};
 		0A96708F20480C3F00445AC2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -372,11 +390,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0A8A2BAB20FDFD2F0003BB7E /* CryptoSwift.framework in Embed Frameworks */,
 				0A5D2F1C20D7A915009E9918 /* BlockiesSwift.framework in Embed Frameworks */,
 				5527A7F6208DE8B700AF3A50 /* RSBarcodes.framework in Embed Frameworks */,
 				0A5D2F1420D7A8E5009E9918 /* SipHash.framework in Embed Frameworks */,
 				0A9670C820480C5700445AC2 /* SafeUIKit.framework in Embed Frameworks */,
 				0A5D2F1820D7A8FE009E9918 /* BigInt.framework in Embed Frameworks */,
+				0A8A2BAF20FDFD2F0003BB7E /* CryptoEthereumSwift.framework in Embed Frameworks */,
 				0AF33D4B209C6BF800527D25 /* SafeAppUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -580,11 +600,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A8A2BAA20FDFD2F0003BB7E /* CryptoSwift.framework in Frameworks */,
 				0A5D2F1B20D7A915009E9918 /* BlockiesSwift.framework in Frameworks */,
 				5527A7F5208DE8B700AF3A50 /* RSBarcodes.framework in Frameworks */,
 				0A5D2F1320D7A8E5009E9918 /* SipHash.framework in Frameworks */,
 				0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */,
 				0A5D2F1720D7A8FE009E9918 /* BigInt.framework in Frameworks */,
+				0A8A2BAE20FDFD2F0003BB7E /* CryptoEthereumSwift.framework in Frameworks */,
 				0AF33D4A209C6BF800527D25 /* SafeAppUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1083,6 +1105,8 @@
 				0A5D2F1620D7A8E5009E9918 /* PBXTargetDependency */,
 				0A5D2F1A20D7A8FE009E9918 /* PBXTargetDependency */,
 				0A5D2F1E20D7A915009E9918 /* PBXTargetDependency */,
+				0A8A2BAD20FDFD2F0003BB7E /* PBXTargetDependency */,
+				0A8A2BB120FDFD2F0003BB7E /* PBXTargetDependency */,
 			);
 			name = SafeUIKitDemo;
 			productName = SafeUIKitDemo;
@@ -1668,6 +1692,16 @@
 			isa = PBXTargetDependency;
 			name = BlockiesSwift;
 			targetProxy = 0A5D2F1D20D7A915009E9918 /* PBXContainerItemProxy */;
+		};
+		0A8A2BAD20FDFD2F0003BB7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CryptoSwift;
+			targetProxy = 0A8A2BAC20FDFD2F0003BB7E /* PBXContainerItemProxy */;
+		};
+		0A8A2BB120FDFD2F0003BB7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CryptoEthereumSwift;
+			targetProxy = 0A8A2BB020FDFD2F0003BB7E /* PBXContainerItemProxy */;
 		};
 		0A96709020480C3F00445AC2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

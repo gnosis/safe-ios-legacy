@@ -85,18 +85,14 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             }
         } catch WalletApplicationService.Error.validationFailed {
             showError(message: Strings.invalidCode, log: "Invalid browser extension code")
-        } catch WalletApplicationService.Error.networkError {
-            showError(message: Strings.networkError, log: "Network Error in pairing")
+        } catch let error as WalletApplicationService.Error where [
+            WalletApplicationService.Error.networkError,
+            .clientError, .serverError].contains(error) {
+                showError(message: Strings.networkError, log: "Network Error in pairing")
         } catch WalletApplicationService.Error.exceededExpirationDate {
             showError(message: Strings.browserExtensionExpired, log: "Browser Extension code is expired")
         } catch let e {
-            showFatalError(address, error: e)
-        }
-    }
-
-    private func showFatalError(_ text: String, error: Error) {
-        DispatchQueue.main.async {
-            ErrorHandler.showFatalError(log: "Failed to add browser extension \(text)", error: error)
+            showError(message: Strings.invalidCode, log: "Failed to pair with extension: \(e)")
         }
     }
 

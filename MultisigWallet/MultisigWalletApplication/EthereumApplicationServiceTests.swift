@@ -83,15 +83,12 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
     }
 
     func test_whenBalanceThrows_thenContinuesObserving() {
-        var callCount = 0
+        var callCount = 2
         DispatchQueue.global().async {
             try? self.applicationService.observeChangesInBalance(address: Address.safeAddress.value,
                                                                  every: 0.1) { _ in
-                if callCount == 3 {
-                    return true
-                }
-                callCount += 1
-                return false
+                callCount -= 1
+                return callCount == 0
             }
         }
         delay(0.1)
@@ -102,7 +99,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         delay(0.1)
         nodeService.shouldThrow = false
         delay(0.1)
-        XCTAssertEqual(callCount, 3)
+        XCTAssertEqual(callCount, 0)
     }
 
     func test_whenSignsMessage_thenSignatureIsCorrect() {

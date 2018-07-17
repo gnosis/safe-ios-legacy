@@ -25,13 +25,12 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
 
     public func safeCreationTransactionHash(address: Address) throws -> TransactionHash? {
         let response = try httpClient.execute(request: GetSafeCreationStatusRequest(safeAddress: address.value))
-        return errorCorrectedHash(from: response.safeDeployedTxHash)
-    }
-
-    private func errorCorrectedHash(from hash: String?) -> TransactionHash? {
-        guard let hash = hash else { return nil }
+        guard let hash = response.safeDeployedTxHash else { return nil }
         let data = Data(hex: hash)
-        return data.isEmpty ? nil : TransactionHash(data.toHexString().addHexPrefix())
+        guard data.count == TransactionHash.size else {
+            throw NetworkServiceError.serverError
+        }
+        return TransactionHash(data.toHexString().addHexPrefix())
     }
 
 }

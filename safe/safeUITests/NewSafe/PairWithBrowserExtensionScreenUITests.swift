@@ -161,34 +161,24 @@ final class PairWithBrowserExtensionScreenErrorsUITests: PairWithBrowserExtensio
 
     private let networkDelay: TimeInterval = 2
 
-    enum ErrorType {
-        case regular
-        case fatal
-    }
-
     // NS-ERR-001
     func test_whenNetworkErrorInPairing_thenShowsAlert() {
         application.setMockNotificationService(delay: networkDelay, shouldThrow: .networkError)
-        handleNotificationServiceError(errorType: .regular)
+        handleNotificationServiceError()
         XCTAssertTrue(screen.saveButton.isEnabled)
     }
 
     // NS-ERR-002
     func test_whenResponseValidationErrorInPairing_thenShowsAlert() {
         application.setMockNotificationService(delay: networkDelay, shouldThrow: .validationError)
-        handleNotificationServiceError(errorType: .fatal)
+        handleNotificationServiceError()
     }
 
-    private func handleNotificationServiceError(errorType: ErrorType) {
+    private func handleNotificationServiceError() {
         givenBrowserExtensionSetup()
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
-        switch errorType {
-        case .regular:
-            handleErrorAlert(with: expectation(description: "Alert handled"))
-        case .fatal:
-            assureFatalErrorAlertIsShown(with: expectation(description: "Alert handled"))
-        }
+        handleErrorAlert(with: expectation(description: "Alert handled"))
         screen.saveButton.tap()
         XCTAssertFalse(screen.saveButton.isEnabled)
         delay(networkDelay)

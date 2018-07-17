@@ -72,18 +72,20 @@ final class TestSupport {
                 case ApplicationArguments.setMockNotificationService:
                     let notificationService = MockNotificationService()
                     var delay: TimeInterval = 0
-                    if let parametes = iterator.next()?.split(separator: ",") {
-                        let delayParameters = parametes.filter { $0.range(of: "delay=") != nil }
+                    if let parameters = iterator.next()?.split(separator: ",") {
+                        let delayParameters = parameters.filter { $0.range(of: "delay=") != nil }
                         if !delayParameters.isEmpty {
                             let delayParam = delayParameters.first!
                             delay = TimeInterval(delayParam.suffix(from: delayParam.index(of: "=")!).dropFirst())!
                             notificationService.delay = delay
                         }
-                        if parametes.contains("networkError") {
+                        if parameters.contains("networkError") {
                             notificationService.shouldThrowNetworkError = true
-                        } else if parametes.contains("validationError") {
+                        } else if parameters.contains("validationError") {
                             notificationService.shouldThrowValidationFailedError = true
-                            ErrorHandler.instance.chashOnFatalError = false
+                            ErrorHandler.instance.crashOnFatalError = false
+                        } else if parameters.contains("genericError") {
+                            notificationService.shouldThrow = true
                         }
                     }
                     DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)

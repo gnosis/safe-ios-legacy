@@ -25,8 +25,8 @@ public class WalletID: BaseID {}
  |                                | changeAddress()                      | addressKnown                   |                |
  | addressKnown                   | markDeploymentAcceptedByBlockchain() | deploymentAcceptedByBlockchain |                |
  |                                | abortDeployment()                    | readyToDeploy                  |                |
- |                                | markDeploymentFailed()               | deploymentFailed               |                |
- | deploymentAcceptedByBlockchain | markDeploymentFailed()               | deploymentFailed               | Terminal State |
+ |                                | markDeploymentFailed()               | readyToDeploy                  |                |
+ | deploymentAcceptedByBlockchain | markDeploymentFailed()               | readyToDeploy                  |                |
  |                                | markDeploymentSuccess()              | deploymentSuccess              |                |
  |                                | abortDeployment()                    | readyToDeploy                  |                |
  | deploymentSuccess              | finishDeployment()                   | readyToUse                     | Terminal State |
@@ -51,7 +51,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
         case addressKnown
         case deploymentAcceptedByBlockchain
         case deploymentSuccess
-        case deploymentFailed
         case readyToUse
     }
 
@@ -155,14 +154,9 @@ public class Wallet: IdentifiableEntity<WalletID> {
         status = .deploymentAcceptedByBlockchain
     }
 
-    public func assignCreationTransaction(hash: String) {
+    public func assignCreationTransaction(hash: String?) {
         assert(status: .deploymentAcceptedByBlockchain)
         creationTransactionHash = hash
-    }
-
-    public func markDeploymentFailed() {
-        assert(statusIsOneOf: .deploymentAcceptedByBlockchain, .addressKnown)
-        status = .deploymentFailed
     }
 
     public func markDeploymentSuccess() {
@@ -180,7 +174,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         status = .readyToUse
     }
 
-    public func changeAddress(_ address: Address) {
+    public func changeAddress(_ address: Address?) {
         assert(status: .deploymentStarted)
         self.address = address
         status = .addressKnown

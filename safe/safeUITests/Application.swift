@@ -15,6 +15,7 @@ final class Application {
         case none
         case networkError
         case validationError
+        case genericError
     }
 
     func resetAllContentAndSettings() {
@@ -53,6 +54,8 @@ final class Application {
             params += ",networkError"
         case .validationError:
             params += ",validationError"
+        case .genericError:
+            params += ",genericError"
         case .none:
             break
         }
