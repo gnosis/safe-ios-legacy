@@ -217,7 +217,8 @@ open class EthereumApplicationService: Assertable {
             }
             do {
                 let result = try block()
-                retryCount = 0
+                retryCount = 3
+                error = nil
                 return result
             } catch let e {
                 ApplicationServiceRegistry.logger.error("Repeated action failed: \(e)")
