@@ -5,6 +5,19 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`0.5.0`_ - 2018-07-18
+=====================
+Added
+-----
+- Firebase SDK integration
+- Push notification authorization and sending / receiving
+- Notification to browser extension when safe is created
+
+Changed
+-------
+- Merged Ethereum subproject with MultisigWallet subproject
+- Refactored error handling
+
 `0.4.1`_ - 2018-07-11
 ==========
 Changed
@@ -91,6 +104,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _0.5.0: https://github.com/gnosis/safe-ios/tree/0.5.0
 .. _0.4.1: https://github.com/gnosis/safe-ios/tree/0.4.1
 .. _0.4.0: https://github.com/gnosis/safe-ios/tree/0.4.0
 .. _0.3.0: https://github.com/gnosis/safe-ios/tree/0.3.0
