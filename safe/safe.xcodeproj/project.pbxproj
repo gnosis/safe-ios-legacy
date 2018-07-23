@@ -28,6 +28,8 @@
 		0A5D2F2520D7A94A009E9918 /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A12F17320D01E4E0039B3E1 /* SipHash.framework */; };
 		0A5D2F2620D7A94A009E9918 /* SipHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A12F17320D01E4E0039B3E1 /* SipHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC58A209CA2E500BA7A06 /* libCommon.a */; };
+		0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A84BBDE21060F6100708DE5 /* AppConfig.swift */; };
+		0A84BBF42106168600708DE5 /* AppConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A84BBE82106168600708DE5 /* AppConfig.json */; };
 		0A8E3BE720B41D3F00F002F6 /* libCommonImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8E3BE620B41D3F00F002F6 /* libCommonImplementations.a */; };
 		0A8E3BF620B41E7100F002F6 /* libCommonImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8E3BF520B41E7100F002F6 /* libCommonImplementations.a */; };
 		0A8E3C0B20B42C2100F002F6 /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8E3C0A20B42C2100F002F6 /* libMultisigWalletImplementations.a */; };
@@ -357,6 +359,10 @@
 		0A53AD3820595C2300D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD3A20595C2800D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A5DC58A209CA2E500BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84BBDE21060F6100708DE5 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		0A84BBE82106168600708DE5 /* AppConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AppConfig.json; path = ../AppConfig.json; sourceTree = "<group>"; };
+		0A84BBF5210616C100708DE5 /* AppConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = AppConfig.xcconfig; path = ../AppConfig.xcconfig; sourceTree = "<group>"; };
+		0A84BBFE210616E900708DE5 /* AppConfig.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = AppConfig.yml; path = ../AppConfig.yml; sourceTree = "<group>"; };
 		0A8E3BE620B41D3F00F002F6 /* libCommonImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8E3BF520B41E7100F002F6 /* libCommonImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8E3C0820B42BF200F002F6 /* libMultisigWalletImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -534,6 +540,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0A84BC0A210616F900708DE5 /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				0A84BBF5210616C100708DE5 /* AppConfig.xcconfig */,
+				0A84BBE82106168600708DE5 /* AppConfig.json */,
+			);
+			name = generated;
+			sourceTree = "<group>";
+		};
 		0ABA90EC20C57842001AEAE4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -607,7 +622,9 @@
 		0AFEDEB62073C846002F5924 /* config */ = {
 			isa = PBXGroup;
 			children = (
+				0A84BBFE210616E900708DE5 /* AppConfig.yml */,
 				0AFEDEB42073C80A002F5924 /* Config.xcconfig */,
+				0A84BC0A210616F900708DE5 /* generated */,
 			);
 			name = config;
 			sourceTree = "<group>";
@@ -652,6 +669,7 @@
 				55F9817F20F4DD2300E3AF47 /* GoogleService-Info.plist */,
 				55F9817E20F4B4E300E3AF47 /* safe.entitlements */,
 				55D3C08120F770170047004F /* TokensService.swift */,
+				0A84BBDE21060F6100708DE5 /* AppConfig.swift */,
 			);
 			path = safe;
 			sourceTree = "<group>";
@@ -750,6 +768,7 @@
 				5540A4E8203C3054009C9BE3 /* Frameworks */,
 				0A53AD5020598A0600D713AD /* Localize */,
 				0A0C873C2097526C00471885 /* Copy IdentityAccessImplementationsResources */,
+				0A84BC162106265D00708DE5 /* Copy Firebase Info.plist */,
 				5540A4E9203C3054009C9BE3 /* Resources */,
 				5554D7B820455B7800672DA8 /* Embed Frameworks */,
 				5540A520203C6077009C9BE3 /* Fabric */,
@@ -1028,6 +1047,7 @@
 				5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
 				0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,
+				0A84BBF42106168600708DE5 /* AppConfig.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1103,6 +1123,21 @@
 			shellScript = "${SRCROOT}/../scripts/localize.sh";
 			showEnvVarsInLog = 0;
 		};
+		0A84BC162106265D00708DE5 /* Copy Firebase Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Firebase Info.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp ${SRCROOT}/../encrypted_files/GoogleService-Info-${CONFIGURATION}.plist ${SRCROOT}/safe/GoogleService-Info.plist";
+			showEnvVarsInLog = 0;
+		};
 		5540A520203C6077009C9BE3 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1115,8 +1150,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ENV_VARS=${SRCROOT}/../.env.default\nif [ -e ${ENV_VARS} ]; then\n    export $(cat $ENV_VARS)\nfi\n${SRCROOT}/../Library/${PLATFORM_NAME}/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
-			showEnvVarsInLog = 0;
+			shellScript = "${SRCROOT}/../Library/${PLATFORM_NAME}/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
 		};
 		55DF6A95203C681A00DF6486 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1141,6 +1175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
+				0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */,
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,
 				0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
 				55D3C08220F770170047004F /* TokensService.swift in Sources */,
@@ -1417,8 +1452,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "eae101f8-55fb-4b14-846a-6b124457671e";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development pm.gnosis.safe";
-				SAFE_ENABLED_LOGGERS = console;
-				SAFE_LOG_LEVEL = DEBUG;
+				SAFE_ENABLED_LOGGERS = "${LOG_ADAPTERS}";
+				SAFE_LOG_LEVEL = "${LOG_LEVEL}";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1443,8 +1478,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c29000b9-f4a7-4101-9abe-92c37dbbf0ca";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore pm.gnosis.safe";
-				SAFE_ENABLED_LOGGERS = "console,crashlytics";
-				SAFE_LOG_LEVEL = ERROR;
+				SAFE_ENABLED_LOGGERS = "${LOG_ADAPTERS}";
+				SAFE_LOG_LEVEL = "${LOG_LEVEL}";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1611,8 +1646,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b6fd39c1-ffea-4d8e-bea0-0863974ca2f8";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc pm.gnosis.safe.adhoc";
-				SAFE_ENABLED_LOGGERS = "console,crashlytics";
-				SAFE_LOG_LEVEL = DEBUG;
+				SAFE_ENABLED_LOGGERS = "${LOG_ADAPTERS}";
+				SAFE_LOG_LEVEL = "${LOG_LEVEL}";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = ADHOC;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
