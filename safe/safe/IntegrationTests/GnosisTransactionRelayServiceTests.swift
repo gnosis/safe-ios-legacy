@@ -64,6 +64,13 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
         XCTAssertEqual(receipt.status, .success)
     }
 
+    func test_whenGettingGasPrice_thenReturnsIt() throws {
+        let response = try relayService.gasPrice()
+        let stringInts = [response.fast, response.fastest, response.standard, response.safeLow]
+        let ints = stringInts.map { BigInt($0) }
+        ints.forEach { XCTAssertNotNil($0, "Repsonse: \(response)") }
+    }
+
     // TODO: remove code duplication
     func fundSafe(address: String, amount: String) throws {
         let sourcePrivateKey =

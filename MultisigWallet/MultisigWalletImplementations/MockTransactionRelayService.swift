@@ -45,4 +45,9 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         return TransactionHash("0x3b9307c1473e915d04292a0f5b0f425eaf527f53852357e2c649b8c447e3246a")
     }
 
+    public func gasPrice() throws -> SafeGasPriceResponse {
+        Timer.wait(randomizedNetworkResponseDelay)
+        return SafeGasPriceResponse(safeLow: "0", standard: "0", fast: "0", fastest: "0", lowest: "0")
+    }
+
 }
