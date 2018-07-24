@@ -46,4 +46,11 @@ extension AppConfig {
         self = try JSONDecoder().decode(AppConfig.self, from: data)
     }
 
+    static func loadFromBundle() throws -> AppConfig? {
+        guard let file = Bundle.main.url(forResource: "AppConfig", withExtension: "json") else {
+            return nil
+        }
+        return try AppConfig(contentsOfFile: file)
+    }
+
 }

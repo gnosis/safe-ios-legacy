@@ -12,13 +12,22 @@ import CryptoSwift
 
 class GnosisTransactionRelayServiceTests: XCTestCase {
 
-    let relayService = GnosisTransactionRelayService()
+    var relayService: GnosisTransactionRelayService!
     let ethService = EthereumKitEthereumService()
-    lazy var encryptionService = EncryptionService(chainId: .any, ethereumService: ethService)
-    let infuraService = InfuraEthereumNodeService()
+    var encryptionService: EncryptionService!
+    var infuraService: InfuraEthereumNodeService!
 
     enum Error: String, LocalizedError, Hashable {
         case errorWhileWaitingForCreationTransactionHash
+    }
+
+    override func setUp() {
+        super.setUp()
+        let config = try! AppConfig.loadFromBundle()!
+        relayService = GnosisTransactionRelayService(url: config.relayServiceURL, logger: MockLogger())
+        encryptionService = EncryptionService(chainId: EIP155ChainId(rawValue: config.encryptionServiceChainId)!)
+        infuraService = InfuraEthereumNodeService(url: config.nodeServiceConfig.url,
+                                                  chainId: config.nodeServiceConfig.chainId)
     }
 
     func test_safeCreation() throws {

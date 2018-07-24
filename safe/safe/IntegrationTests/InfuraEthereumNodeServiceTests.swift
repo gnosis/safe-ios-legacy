@@ -11,7 +11,7 @@ import BigInt
 
 class InfuraEthereumNodeServiceTests: XCTestCase {
 
-    let service = InfuraEthereumNodeService()
+    var service: InfuraEthereumNodeService!
     let testAddress = Address("0x57b2573E5FA7c7C9B5Fa82F3F03A75F53A0efdF5")
     let emptyAddress = Address("0xd1776c60688a3277c7e69204849989c7dc9f5aaa")
     let notExistingTransactionHash =
@@ -20,6 +20,13 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
         TransactionHash("0x5b448bad86b814dc7aab866f32ffc3d22f140cdcb6c24116548ede8e6e4d343b")
     let failedTransactionHash =
         TransactionHash("0x1b6efea55bb515fd8599d543f57b54ec3ed4242c887269f1a2e9e0008c15ccaf")
+
+    override func setUp() {
+        super.setUp()
+        let config = try! AppConfig.loadFromBundle()!
+        service = InfuraEthereumNodeService(url: config.nodeServiceConfig.url,
+                                            chainId: config.nodeServiceConfig.chainId)
+    }
 
     func test_whenAccountNotExists_thenReturnsZero() throws {
         XCTAssertEqual(try service.eth_getBalance(account: emptyAddress), 0)

@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         // before your app finishes launching.
         UNUserNotificationCenter.current().delegate = self
 
-        loadConfig()
+        appConfig = try! AppConfig.loadFromBundle()!
         configureDependencyInjection()
 
         #if DEBUG
@@ -54,11 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
         createWindow()
         return true
-    }
-
-    func loadConfig() {
-        let file = Bundle.main.url(forResource: "AppConfig", withExtension: "json")!
-        appConfig = try! AppConfig(contentsOfFile: file)
     }
 
     func configureDependencyInjection() {
