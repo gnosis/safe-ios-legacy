@@ -15,10 +15,15 @@ fastlane_version "2.81.0"
 
 default_platform :ios
 
+def set_bundle_id(id)
+  ENV["FASTLANE_APP_IDENTIFIER"] = id
+end
+
 platform :ios do
 
   before_all do
-    ADHOC_APP_ID = ENV["FASTLANE_APP_IDENTIFIER_ADHOC"]
+    ADHOC_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".adhoc"
+    DEV_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".dev"
     BUILD_LOG_PATH = "Build/build_logs"
     DERIVED_DATA_PATH = "Build/DerivedData"
     BUILD_PATH = "Build"
@@ -31,6 +36,7 @@ platform :ios do
 
   desc "Runs unit tests"
   lane :test do
+    set_bundle_id DEV_APP_ID
     run_tests(scheme: "safe", 
       configuration: "Debug", 
       skip_build: true, 
@@ -41,6 +47,7 @@ platform :ios do
   
   desc "Runs UI tests"
   lane :ui_test do
+    set_bundle_id DEV_APP_ID
     run_tests(scheme: "allUITests", 
       configuration: "Debug", 
       skip_build: true, 
@@ -58,7 +65,7 @@ platform :ios do
       test
       ui_test
     end
-    ENV["FASTLANE_APP_IDENTIFIER"] = ADHOC_APP_ID
+    set_bundle_id ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
     gym(configuration: "AdHoc", 
       scheme: "safe", 
@@ -95,11 +102,13 @@ platform :ios do
     )
   end
 
-  lane :certificates do
-    match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"], readonly: true)
-    match(type: "development", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"], readonly: true)
-    ENV["FASTLANE_APP_IDENTIFIER"] = ADHOC_APP_ID
-    match(type: "adhoc", app_identifier: ADHOC_APP_ID, readonly: true)
+  lane :certificates do |options|
+    is_readonly = !options[:force]
+    match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"], readonly: is_readonly)
+    set_bundle_id DEV_APP_ID
+    match(type: "development", app_identifier: DEV_APP_ID, readonly: is_readonly)
+    set_bundle_id ADHOC_APP_ID
+    match(type: "adhoc", app_identifier: ADHOC_APP_ID, readonly: is_readonly)
   end
 
   error do |lane, exception|
