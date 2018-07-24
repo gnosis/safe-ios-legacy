@@ -1,3 +1,4 @@
+#include "../AppConfig.xcconfig"
 LIBRARY_DIR=${SRCROOT}/../Library
 PLATFORM_LIBRARY_DIR=${LIBRARY_DIR}/${PLATFORM_NAME}
 FRAMEWORK_SEARCH_PATHS=$(inherited) ${PLATFORM_LIBRARY_DIR} ${LIBRARY_DIR}/Firebase/**

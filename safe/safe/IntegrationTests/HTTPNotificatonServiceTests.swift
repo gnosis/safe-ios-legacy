@@ -10,7 +10,7 @@ import Common
 
 class HTTPNotificatonServiceTests: XCTestCase {
 
-    let notificationService = HTTPNotificationService()
+    var notificationService: HTTPNotificationService!
     let ethService = EthereumKitEthereumService()
     var encryptionService: EncryptionService!
     var browserExtensionEOA: ExternallyOwnedAccount!
@@ -18,7 +18,9 @@ class HTTPNotificatonServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        encryptionService = EncryptionService(chainId: .any,
+        let config = try! AppConfig.loadFromBundle()!
+        notificationService = HTTPNotificationService(url: config.notificationServiceURL, logger: MockLogger())
+        encryptionService = EncryptionService(chainId: EIP155ChainId(rawValue: config.encryptionServiceChainId)!,
                                               ethereumService: ethService)
         browserExtensionEOA = encryptionService.generateExternallyOwnedAccount()
         deviceEOA = encryptionService.generateExternallyOwnedAccount()
@@ -59,10 +61,10 @@ class HTTPNotificatonServiceTests: XCTestCase {
     }
 
     func testAuth() throws {
-        let token = "test_token"
+        let token = "test_token_\(UUID().uuidString)"
         let signature = encryptionService.sign(message: "GNO" + token, privateKey: deviceEOA.privateKey)
         let request = AuthRequest(
-            pushToken: "test_token", signature: signature, deviceOwnerAddress: deviceEOA.address.value)
+            pushToken: token, signature: signature, deviceOwnerAddress: deviceEOA.address.value)
         try notificationService.auth(request: request)
     }
 

@@ -8,10 +8,11 @@ import Common
 
 final public class HTTPNotificationService: NotificationDomainService {
 
-    private let httpClient = JSONHTTPClient(url: Keys.notificationServiceURL,
-                                            logger: MockLogger())
+    private let httpClient: JSONHTTPClient
 
-    public init() {}
+    public init(url: URL, logger: Logger) {
+        httpClient = JSONHTTPClient(url: url, logger: logger)
+    }
 
     public func pair(pairingRequest: PairingRequest) throws {
         let response = try httpClient.execute(request: pairingRequest)

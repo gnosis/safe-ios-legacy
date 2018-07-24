@@ -13,7 +13,13 @@ public enum JSONRPCExtendedError: Swift.Error {
 
 public class InfuraEthereumNodeService: EthereumNodeDomainService {
 
-    public init() {}
+    private let url: URL
+    private let chainId: Int
+
+    public init(url: URL, chainId: Int) {
+        self.url = url
+        self.chainId = chainId
+    }
 
     public func eth_estimateGas(transaction: TransactionCall) throws -> BigInt {
         return try execute(request: EstimateGasRequest(transaction))
@@ -117,9 +123,8 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
     }
 
     private func httpClient() -> HTTPClient {
-        let config = InfuraServiceConfiguration.rinkeby
-        let client = HTTPClient(configuration: Configuration(network: Network.private(chainID: config.chainID),
-                                                             nodeEndpoint: config.endpoint.absoluteString,
+        let client = HTTPClient(configuration: Configuration(network: Network.private(chainID: chainId),
+                                                             nodeEndpoint: url.absoluteString,
                                                              etherscanAPIKey: "",
                                                              debugPrints: true))
         return client

@@ -25,7 +25,7 @@
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string>926ce29587d471d7c91dd91350d4c22b4081cb74</string>
+		<string>$(CRASHLYTICS_API_TOKEN)</string>
 		<key>Kits</key>
 		<array>
 			<dict>

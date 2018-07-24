@@ -32,7 +32,7 @@ final class SaveMnemonicUITests: UITestCase {
         confirmScreen.firstInput.tap()
         XCUIApplication().menuItems["Paste"].tap()
         let pastedValue = confirmScreen.firstInput.value as! String
-        XCTAssertEqual(mnemonic, pastedValue)
+        XCTAssertEqual(pastedValue, mnemonic)
     }
 
 }

@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     var identityAccessDB: Database?
     var multisigWalletDB: Database?
     var secureStore: SecureStore?
+    var appConfig: AppConfig!
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -43,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         // before your app finishes launching.
         UNUserNotificationCenter.current().delegate = self
 
+        appConfig = try! AppConfig.loadFromBundle()!
         configureDependencyInjection()
 
         #if DEBUG
@@ -79,8 +81,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletApplicationService(),
                                                                  for: WalletApplicationService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
-        MultisigWalletDomainModel.DomainRegistry.put(
-            service: HTTPNotificationService(), for: NotificationDomainService.self)
+        let notificationService = HTTPNotificationService(url: appConfig.notificationServiceURL,
+                                                          logger: LogService.shared)
+        MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: TokensService(), for: TokensDomainService.self)
         setUpMultisigDatabase()
     }
@@ -89,16 +92,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: EthereumApplicationService(),
                                                                  for: EthereumApplicationService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: MultisigWalletImplementations.EncryptionService(),
+
+        let chainId = EIP155ChainId(rawValue: appConfig.encryptionServiceChainId)!
+        let encryptionService = MultisigWalletImplementations.EncryptionService(chainId: chainId)
+        MultisigWalletDomainModel.DomainRegistry.put(service: encryptionService,
                                                      for: MultisigWalletDomainModel.EncryptionDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: GnosisTransactionRelayService(),
-                                                     for: TransactionRelayDomainService.self)
+        let relayService = GnosisTransactionRelayService(url: appConfig.relayServiceURL, logger: LogService.shared)
+        MultisigWalletDomainModel.DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
+
         secureStore = KeychainService(identifier: "pm.gnosis.safe")
         MultisigWalletDomainModel.DomainRegistry.put(service:
             SecureExternallyOwnedAccountRepository(store: secureStore!),
                                                      for: ExternallyOwnedAccountRepository.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: InfuraEthereumNodeService(),
-                                                     for: EthereumNodeDomainService.self)
+
+        let nodeService = InfuraEthereumNodeService(url: appConfig.nodeServiceConfig.url,
+                                                    chainId: appConfig.nodeServiceConfig.chainId)
+        MultisigWalletDomainModel.DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
     }
 
     private func setUpIdentityAccessDatabase() {

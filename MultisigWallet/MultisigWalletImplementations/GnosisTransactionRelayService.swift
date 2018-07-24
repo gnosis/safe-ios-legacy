@@ -9,10 +9,13 @@ import CryptoSwift
 
 public class GnosisTransactionRelayService: TransactionRelayDomainService {
 
-    private let logger = MockLogger()
-    private lazy var httpClient = JSONHTTPClient(url: Keys.transactionRelayServiceURL, logger: logger)
+    private let logger: Logger
+    private let httpClient: JSONHTTPClient
 
-    public init () {}
+    public init(url: URL, logger: Logger) {
+        self.logger = logger
+        httpClient = JSONHTTPClient(url: url, logger: logger)
+    }
 
     public func createSafeCreationTransaction(request: SafeCreationTransactionRequest) throws
         -> SafeCreationTransactionRequest.Response {
@@ -38,7 +41,7 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
 extension SafeCreationTransactionRequest: JSONRequest {
 
     public var httpMethod: String { return "POST" }
-    public var urlPath: String { return "safes/" }
+    public var urlPath: String { return "/api/v1/safes/" }
 
     public typealias ResponseType = SafeCreationTransactionRequest.Response
 
@@ -48,7 +51,7 @@ extension SafeCreationTransactionRequest: JSONRequest {
 extension StartSafeCreationRequest: JSONRequest {
 
     public var httpMethod: String { return "PUT" }
-    public var urlPath: String { return "safes/\(safeAddress)/funded/" }
+    public var urlPath: String { return "/api/v1/safes/\(safeAddress)/funded/" }
 
     public struct EmptyResponse: Codable {}
 
@@ -58,7 +61,7 @@ extension StartSafeCreationRequest: JSONRequest {
 extension GetSafeCreationStatusRequest: JSONRequest {
 
     public var httpMethod: String { return "GET" }
-    public var urlPath: String { return "safes/\(safeAddress)/funded/" }
+    public var urlPath: String { return "/api/v1/safes/\(safeAddress)/funded/" }
 
     public typealias ResponseType = GetSafeCreationStatusRequest.Resposne
 

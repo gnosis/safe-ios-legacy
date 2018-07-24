@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "0940"
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "cd ${SRCROOT}/..&#10;if [ ! -e AppConfig.yml ]; then&#10;  cp encrypted_files/AppConfig.yml .&#10;fi&#10;&#10;ruby scripts/config2json.rb AppConfig.yml ${CONFIGURATION} &gt; AppConfig.json&#10;ruby scripts/config2env.rb AppConfig.yml ${CONFIGURATION} &gt; AppConfig.xcconfig">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "5540A4EA203C3054009C9BE3"
+                     BuildableName = "safe.app"
+                     BlueprintName = "safe"
+                     ReferencedContainer = "container:safe.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"

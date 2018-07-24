@@ -52,7 +52,6 @@
 		0A9E383C20F4AE510085E8D7 /* EthereumKitEthereumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37E520F4A4D10085E8D7 /* EthereumKitEthereumService.swift */; };
 		0A9E383D20F4AE510085E8D7 /* GnosisTransactionRelayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E380020F4A4D20085E8D7 /* GnosisTransactionRelayService.swift */; };
 		0A9E383E20F4AE510085E8D7 /* InfuraEthereumNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F920F4A4D20085E8D7 /* InfuraEthereumNodeService.swift */; };
-		0A9E383F20F4AE510085E8D7 /* InfuraServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F820F4A4D20085E8D7 /* InfuraServiceConfiguration.swift */; };
 		0A9E384020F4AE510085E8D7 /* EstimateGasRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F220F4A4D20085E8D7 /* EstimateGasRequest.swift */; };
 		0A9E384120F4AE510085E8D7 /* GasPriceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F320F4A4D20085E8D7 /* GasPriceRequest.swift */; };
 		0A9E384220F4AE510085E8D7 /* GetBalanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37F720F4A4D20085E8D7 /* GetBalanceRequest.swift */; };
@@ -408,7 +407,6 @@
 		0A9E37F520F4A4D20085E8D7 /* SendRawTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRawTransactionRequest.swift; sourceTree = "<group>"; };
 		0A9E37F620F4A4D20085E8D7 /* JSONRPCRequest+BigIntResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONRPCRequest+BigIntResponse.swift"; sourceTree = "<group>"; };
 		0A9E37F720F4A4D20085E8D7 /* GetBalanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBalanceRequest.swift; sourceTree = "<group>"; };
-		0A9E37F820F4A4D20085E8D7 /* InfuraServiceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfuraServiceConfiguration.swift; sourceTree = "<group>"; };
 		0A9E37F920F4A4D20085E8D7 /* InfuraEthereumNodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfuraEthereumNodeService.swift; sourceTree = "<group>"; };
 		0A9E37FA20F4A4D20085E8D7 /* SecureExternallyOwnedAccountRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureExternallyOwnedAccountRepositoryTests.swift; sourceTree = "<group>"; };
 		0A9E37FB20F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryExternallyOwnedAccountRepository.swift; sourceTree = "<group>"; };
@@ -527,7 +525,6 @@
 			isa = PBXGroup;
 			children = (
 				0A9E37F920F4A4D20085E8D7 /* InfuraEthereumNodeService.swift */,
-				0A9E37F820F4A4D20085E8D7 /* InfuraServiceConfiguration.swift */,
 				0A9E37F020F4A4D20085E8D7 /* requests */,
 				0A9E37E720F4A4D20085E8D7 /* types */,
 			);
@@ -1197,7 +1194,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A9E383E20F4AE510085E8D7 /* InfuraEthereumNodeService.swift in Sources */,
-				0A9E383F20F4AE510085E8D7 /* InfuraServiceConfiguration.swift in Sources */,
 				0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */,
 				555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */,
 				0A9E384220F4AE510085E8D7 /* GetBalanceRequest.swift in Sources */,

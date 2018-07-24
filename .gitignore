@@ -74,3 +74,7 @@ fastlane/screenshots
 fastlane/test_output
 
 safe/safe/GoogleService-Info.plist
+AppConfig.yml
+AppConfig.xcconfig
+AppConfig.json
+encrypted_files

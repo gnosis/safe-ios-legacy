@@ -21,6 +21,11 @@ if ! which rbenv > /dev/null; then
   brew install rbenv
 fi
 
+if ! which openssl > /dev/null; then
+  echo "Installing openssl"
+  brew install openssl
+fi
+
 # if rbenv versinos does not contain project's ruby version, install project ruby version
 PROJECT_RUBY_VERSION=$(cat .ruby-version)
 if ! rbenv versions | grep $PROJECT_RUBY_VERSION > /dev/null; then
