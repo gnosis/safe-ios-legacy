@@ -40,6 +40,10 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
         return try httpClient.execute(request: SafeGasPriceRequest())
     }
 
+    public func estimateTransaction(request: EstimateTransactionRequest) throws -> EstimateTransactionRequest.Response {
+        return try httpClient.execute(request: request)
+    }
+
 }
 
 extension SafeCreationTransactionRequest: JSONRequest {
@@ -47,7 +51,7 @@ extension SafeCreationTransactionRequest: JSONRequest {
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v1/safes/" }
 
-    public typealias ResponseType = SafeCreationTransactionRequest.Response
+    public typealias ResponseType = Response
 
 }
 
@@ -67,7 +71,7 @@ extension GetSafeCreationStatusRequest: JSONRequest {
     public var httpMethod: String { return "GET" }
     public var urlPath: String { return "/api/v1/safes/\(safeAddress)/funded/" }
 
-    public typealias ResponseType = GetSafeCreationStatusRequest.Resposne
+    public typealias ResponseType = Resposne
 
 }
 
@@ -77,5 +81,14 @@ struct SafeGasPriceRequest: JSONRequest {
     var urlPath: String { return "/api/v1/gas-station/" }
 
     typealias ResponseType = SafeGasPriceResponse
+
+}
+
+extension EstimateTransactionRequest: JSONRequest {
+
+    public var httpMethod: String { return "POST" }
+    public var urlPath: String { return "/api/v1/safes/\(safe)/transactions/estimate/" }
+
+    public typealias ResponseType = Response
 
 }

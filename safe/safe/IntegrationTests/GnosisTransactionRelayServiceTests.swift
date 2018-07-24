@@ -71,6 +71,20 @@ class GnosisTransactionRelayServiceTests: XCTestCase {
         ints.forEach { XCTAssertNotNil($0, "Repsonse: \(response)") }
     }
 
+    func test_whenEstimatingTransaction_thenReturnsEstimations() throws {
+        let safeAddress = Address("0x092CC1854399ADc38Dad4f846E369C40D0a40307")
+        let request = EstimateTransactionRequest(safe: safeAddress,
+                                                 to: safeAddress,
+                                                 value: "1",
+                                                 data: "",
+                                                 operation: .call)
+        let response = try relayService.estimateTransaction(request: request)
+        let ints = [response.safeTxGas, response.gasPrice, response.dataGas]
+        ints.forEach { XCTAssertNotEqual($0, 0, "Response: \(response)") }
+        let address = EthAddress(hex: response.gasToken)
+        XCTAssertEqual(address, .zero)
+    }
+
     // TODO: remove code duplication
     func fundSafe(address: String, amount: String) throws {
         let sourcePrivateKey =
