@@ -33,7 +33,7 @@ xcuserdata/
 *.hmap
 *.ipa
 *.dSYM.zip
-*.dSYM
+#*.dSYM # commented to retain dSYMs of prebuilt frameworks
 
 ## Playgrounds
 timeline.xctimeline

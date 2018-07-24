@@ -10,7 +10,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		qDuMbShRbDhdc06WpBHrIrn4qbc=
+		h1cVO+2evbvMPkZj+JkcyExs6jw=
 		</data>
 		<key>Modules/SipHash.swiftmodule/i386.swiftdoc</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>Modules/SipHash.swiftmodule/i386.swiftmodule</key>
 		<data>
-		/cLt7GmWRtqn+rv69Ae3ZF0CGQc=
+		0yuECcvdzJnLPSMqXX+cZOkLvkY=
 		</data>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		igUDAFrKEUhVKLxROOArTLgMWKQ=
+		CDr7XL3yeo3LFfTejXpUJ8HT7pY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -61,11 +61,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			/cLt7GmWRtqn+rv69Ae3ZF0CGQc=
+			0yuECcvdzJnLPSMqXX+cZOkLvkY=
 			</data>
 			<key>hash2</key>
 			<data>
-			B2SzcwjX2Z1ixK+M6ahQxK01cq/Yn42lAA3wj//vtrw=
+			Jq9HON1b38LlTo8WhWCbHXjCpVthinTzkGmRZ0wAhC0=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftdoc</key>
@@ -83,11 +83,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			igUDAFrKEUhVKLxROOArTLgMWKQ=
+			CDr7XL3yeo3LFfTejXpUJ8HT7pY=
 			</data>
 			<key>hash2</key>
 			<data>
-			Hyoi7wkehjYUkjr/AYfa8Ktb40ywgCt1utfle1TxgCA=
+			LhhGpSle1XBBrGiuewqKiXnsVj70jYZgmNp4iYIFSMY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

@@ -182,6 +182,13 @@
 			remoteGlobalIDString = 0A934D4F20B711F400F15616;
 			remoteInfo = CommonIntegration;
 		};
+		0AD1937D210738630048CBCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AD8FD2020CEC4BA00591B91;
+			remoteInfo = BlockiesSwift;
+		};
 		0ADFDD8E20A0615600423554 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
@@ -634,6 +641,7 @@
 				55DA829820CED9930080C7EF /* CryptoEthereumSwift.framework */,
 				55DA829A20CED9930080C7EF /* BigInt.framework */,
 				55DA829C20CED9930080C7EF /* SipHash.framework */,
+				0AD1937E210738630048CBCB /* BlockiesSwift.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -972,6 +980,13 @@
 			fileType = wrapper.application;
 			path = CommonIntegration.app;
 			remoteRef = 0A934D6A20B714F900F15616 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0AD1937E210738630048CBCB /* BlockiesSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BlockiesSwift.framework;
+			remoteRef = 0AD1937D210738630048CBCB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0ADFDD8F20A0615600423554 /* libCommon.a */ = {
@@ -1405,6 +1420,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessDomainModel/XcodeBuildSupport/IdentityAccessDomainModel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1441,6 +1457,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessImplementations/XcodeBuildSupport/IdentityAccessImplementations-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1476,6 +1493,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessApplication/XcodeBuildSupport/IdentityAccessApplication-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1511,6 +1529,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessDomainModel/XcodeBuildSupport/IdentityAccessDomainModel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1530,6 +1549,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessDomainModel/XcodeBuildSupport/IdentityAccessDomainModel-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
@@ -1582,6 +1602,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessImplementations/XcodeBuildSupport/IdentityAccessImplementations-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1601,6 +1622,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessImplementations/XcodeBuildSupport/IdentityAccessImplementations-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
@@ -1651,6 +1673,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessApplication/XcodeBuildSupport/IdentityAccessApplication-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1670,6 +1693,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessApplication/XcodeBuildSupport/IdentityAccessApplication-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};

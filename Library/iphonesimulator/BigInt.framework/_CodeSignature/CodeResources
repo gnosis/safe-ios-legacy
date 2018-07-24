@@ -10,7 +10,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		ZfeLAaFdp1Sy5ZApSbL/Utq3tpw=
+		/qB8DL3H/Bp60hSvYR/xwXAriF0=
 		</data>
 		<key>Modules/BigInt.swiftmodule/i386.swiftdoc</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>Modules/BigInt.swiftmodule/i386.swiftmodule</key>
 		<data>
-		tOV82M0J9ifrwgzxAdguQYwHkCM=
+		idZou/PN1FS2eZXHImC+ylACi7A=
 		</data>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		3CVV75Yj2Le99S15lmD/dh7WC3o=
+		Br7r63rChsZGnXqj1jomUaTqk2o=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -61,11 +61,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			tOV82M0J9ifrwgzxAdguQYwHkCM=
+			idZou/PN1FS2eZXHImC+ylACi7A=
 			</data>
 			<key>hash2</key>
 			<data>
-			6FP+qdlNdEGHohXRHFFlWuMyErUX/pcOmCZtcrAmfvg=
+			YDFz6Y2MHU7Yp7UuMPmS9taw4Y3qTwuYnLfR6XJ1YJs=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftdoc</key>
@@ -83,11 +83,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			3CVV75Yj2Le99S15lmD/dh7WC3o=
+			Br7r63rChsZGnXqj1jomUaTqk2o=
 			</data>
 			<key>hash2</key>
 			<data>
-			WIn5NekuoGSpWKjc76NeZYWYgbUvatGUQ9q0q5Jdp+Q=
+			VcZaY1scTJnGawDxi2fyKSooisOqKz9ZD3KF/9KNDbE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
