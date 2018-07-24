@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cd ${SRCROOT}/..&#10;ruby scripts/config2json.rb AppConfig.yml ${CONFIGURATION} &gt; AppConfig.json&#10;ruby scripts/config2env.rb AppConfig.yml ${CONFIGURATION} &gt; AppConfig.xcconfig">
+               scriptText = "cd ${SRCROOT}/..&#10;if [ ! -e AppConfig.yml ]; then&#10;  cp encrypted_files/AppConfig.yml .&#10;fi&#10;&#10;ruby scripts/config2json.rb AppConfig.yml ${CONFIGURATION} &gt; AppConfig.json&#10;ruby scripts/config2env.rb AppConfig.yml ${CONFIGURATION} &gt; AppConfig.xcconfig">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
