@@ -24,7 +24,13 @@ CREATE TABLE IF NOT EXISTS tbl_transactions (
     signatures TEXT,
     submission_date TEXT,
     processed_date TEXT,
-    transaction_hash TEXT
+    transaction_hash TEXT,
+    fee_estimate_gas INTEGER,
+    fee_estimate_data_gas INTEGER,
+    fee_estimate_gas_price TEXT,
+    data BLOB,
+    operation INTEGER,
+    nonce TEXT
 );
 """
         static let insert = """
@@ -32,7 +38,8 @@ INSERT OR REPLACE INTO tbl_transactions VALUES (
     ?, ?, ?, ?,
     ?, ?, ?, ?,
     ?, ?, ?, ?,
-    ?
+    ?, ?, ?, ?,
+    ?, ?, ?
 );
 """
         static let delete = "DELETE FROM tbl_transactions WHERE id = ?;"
@@ -50,7 +57,13 @@ SELECT
     signatures,
     submission_date,
     processed_date,
-    transaction_hash
+    transaction_hash,
+    fee_estimate_gas,
+    fee_estimate_data_gas,
+    fee_estimate_gas_price,
+    data,
+    operation,
+    nonce
 FROM tbl_transactions
 WHERE id = ?
 LIMIT 1;
@@ -83,7 +96,13 @@ LIMIT 1;
                 serialized(signatures: transaction.signatures),
                 serialized(date: transaction.submissionDate),
                 serialized(date: transaction.processedDate),
-                transaction.transactionHash?.value
+                transaction.transactionHash?.value,
+                transaction.feeEstimate?.gas,
+                transaction.feeEstimate?.dataGas,
+                transaction.feeEstimate?.gasPrice.description,
+                transaction.data,
+                transaction.operation?.rawValue,
+                transaction.nonce
             ])
     }
 
@@ -164,6 +183,27 @@ LIMIT 1;
 
         if let transactionHashString = rs.string(at: 12) {
             transaction.set(hash: TransactionHash(transactionHashString))
+        }
+
+        if let gas = rs.int(at: 13),
+            let dataGas = rs.int(at: 14),
+            let gasPriceString = rs.string(at: 15),
+            let gasPrice = TokenAmount(gasPriceString) {
+            transaction.change(feeEstimate: TransactionFeeEstimate(gas: gas,
+                                                                   dataGas: dataGas,
+                                                                   gasPrice: gasPrice))
+        }
+
+        if let data = rs.data(at: 16) {
+            transaction.change(data: data)
+        }
+
+        if let operationInt = rs.int(at: 17), let operation = WalletOperation(rawValue: operationInt) {
+            transaction.change(operation: operation)
+        }
+
+        if let nonce = rs.string(at: 18) {
+            transaction.change(nonce: nonce)
         }
 
         // initial status is draft

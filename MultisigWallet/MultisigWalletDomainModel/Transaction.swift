@@ -35,6 +35,10 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public private(set) var submissionDate: Date?
     public private(set) var processedDate: Date?
     public private(set) var transactionHash: TransactionHash?
+    public private(set) var feeEstimate: TransactionFeeEstimate?
+    public private(set) var data: Data?
+    public private(set) var operation: WalletOperation?
+    public private(set) var nonce: String?
     public let walletID: WalletID
     public let accountID: AccountID
 
@@ -90,30 +94,58 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     // MARK: - Editing Transaction draft
 
     @discardableResult
-    public func change(amount: TokenAmount) -> Transaction {
+    public func change(amount: TokenAmount?) -> Transaction {
         assertInDraftStatus()
         self.amount = amount
         return self
     }
 
     @discardableResult
-    public func change(sender: Address) -> Transaction {
+    public func change(sender: Address?) -> Transaction {
         assertInDraftStatus()
         self.sender = sender
         return self
     }
 
     @discardableResult
-    public func change(recipient: Address) -> Transaction {
+    public func change(recipient: Address?) -> Transaction {
         assertInDraftStatus()
         self.recipient = recipient
         return self
     }
 
     @discardableResult
-    public func change(fee: TokenAmount) -> Transaction {
+    public func change(fee: TokenAmount?) -> Transaction {
         assertInDraftStatus()
         self.fee = fee
+        return self
+    }
+
+    @discardableResult
+    public func change(feeEstimate: TransactionFeeEstimate?) -> Transaction {
+        assertInDraftStatus()
+        self.feeEstimate = feeEstimate
+        return self
+    }
+
+    @discardableResult
+    public func change(data: Data?) -> Transaction {
+        assertInDraftStatus()
+        self.data = data
+        return self
+    }
+
+    @discardableResult
+    public func change(operation: WalletOperation?) -> Transaction {
+        assertInDraftStatus()
+        self.operation = operation
+        return self
+    }
+
+    @discardableResult
+    public func change(nonce: String?) -> Transaction {
+        assertInDraftStatus()
+        self.nonce = nonce
         return self
     }
 
@@ -248,4 +280,26 @@ public struct TransactionReceipt: Equatable {
         self.hash = hash
         self.status = status
     }
+}
+
+public struct TransactionFeeEstimate: Equatable {
+
+    public let gas: Int
+    public let dataGas: Int
+    public let gasPrice: TokenAmount
+
+    public init(gas: Int, dataGas: Int, gasPrice: TokenAmount) {
+        self.gas = gas
+        self.dataGas = dataGas
+        self.gasPrice = gasPrice
+    }
+
+}
+
+public enum WalletOperation: Int {
+
+    case call
+    case delegateCall
+    case create
+
 }
