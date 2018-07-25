@@ -53,11 +53,7 @@ class HTTPNotificatonServiceTests: XCTestCase {
     func test_notifySafeCreated() throws {
         try makePair()
         let message = notificationService.safeCreatedMessage(at: "0xFF")
-        let messageSignature = encryptionService.sign(message: "GNO" + message, privateKey: deviceEOA.privateKey)
-        let request = SendNotificationRequest(message: message,
-                                              to: browserExtensionEOA.address.value,
-                                              from: messageSignature)
-        try notificationService.send(notificationRequest: request)
+        try send(message)
     }
 
     func testAuth() throws {
@@ -66,6 +62,24 @@ class HTTPNotificatonServiceTests: XCTestCase {
         let request = AuthRequest(
             pushToken: token, signature: signature, deviceOwnerAddress: deviceEOA.address.value)
         try notificationService.auth(request: request)
+    }
+
+    func test_notifyRequestConfirmation() throws {
+        try makePair()
+        let transaction = Transaction(id: TransactionID(),
+                                      type: .transfer,
+                                      walletID: WalletID(),
+                                      accountID: AccountID(token: "ETH"))
+        transaction
+            .change(sender: Address("0x092CC1854399ADc38Dad4f846E369C40D0a40307"))
+            .change(recipient: Address("0x8e6A5aDb2B88257A3DAc7A76A7B4EcaCdA090b66"))
+            .change(amount: TokenAmount.ether(1_000))
+            .change(operation: .call)
+            .change(feeEstimate: TransactionFeeEstimate(gas: 21_000, dataGas: 0, gasPrice: .ether(90_000_000)))
+            .change(nonce: "1")
+        let hash = encryptionService.hash(of: transaction)
+        let message = notificationService.requestConfirmationMessage(for: transaction, hash: hash)
+        try send(message)
     }
 
 }
@@ -95,6 +109,14 @@ private extension HTTPNotificatonServiceTests {
     func browserRequetSignature() throws -> EthSignature {
         let address = browserExtensionEOA.address.value
         return encryptionService.sign(message: "GNO" + address, privateKey: deviceEOA.privateKey)
+    }
+
+    func send(_ message: String) throws {
+        let messageSignature = encryptionService.sign(message: "GNO" + message, privateKey: deviceEOA.privateKey)
+        let request = SendNotificationRequest(message: message,
+                                              to: browserExtensionEOA.address.value,
+                                              from: messageSignature)
+        try notificationService.send(notificationRequest: request)
     }
 
 }

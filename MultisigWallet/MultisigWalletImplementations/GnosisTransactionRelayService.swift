@@ -29,7 +29,7 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
     public func safeCreationTransactionHash(address: Address) throws -> TransactionHash? {
         let response = try httpClient.execute(request: GetSafeCreationStatusRequest(safeAddress: address.value))
         guard let hash = response.safeDeployedTxHash else { return nil }
-        let data = Data(hex: hash)
+        let data = Data(ethHex: hash)
         guard data.count == TransactionHash.size else {
             throw NetworkServiceError.serverError
         }

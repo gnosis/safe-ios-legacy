@@ -14,7 +14,7 @@ public struct EthData: Equatable, CustomStringConvertible {
     }
 
     public init(hex: String) {
-        self.init(Data(hex: hex))
+        self.init(Data(ethHex: hex))
     }
 
     public var hexString: String {

@@ -45,6 +45,37 @@ final public class HTTPNotificationService: NotificationDomainService {
         return String(data: try! JSONEncoder().encode(Message(address)), encoding: .utf8)!
     }
 
+    public func requestConfirmationMessage(for transaction: Transaction, hash: Data) -> String {
+        struct Message: Encodable {
+            var type: String
+            var hash: String
+            var safe: String
+            var to: String
+            var value: String
+            var data: String
+            var operation: String
+            var txGas: String
+            var dataGas: String
+            var gasPrice: String
+            var gasToken: String
+            var nonce: String
+        }
+        let value = transaction.amount?.amount ?? 0
+        let message = Message(type: "requestConfirmation",
+                              hash: hash.toHexString().addHexPrefix(),
+                              safe: transaction.sender!.value,
+                              to: transaction.recipient!.value,
+                              value: String(value),
+                              data: transaction.data?.toHexString() ?? "",
+                              operation: String(transaction.operation!.rawValue),
+                              txGas: String(transaction.feeEstimate!.gas),
+                              dataGas: String(transaction.feeEstimate!.dataGas),
+                              gasPrice: String(transaction.feeEstimate!.gasPrice.amount),
+                              gasToken: transaction.feeEstimate!.gasPrice.token.address.value,
+                              nonce: transaction.nonce!)
+        return String(data: try! JSONEncoder().encode(message), encoding: .utf8)!
+    }
+
 }
 
 extension PairingRequest: JSONRequest {

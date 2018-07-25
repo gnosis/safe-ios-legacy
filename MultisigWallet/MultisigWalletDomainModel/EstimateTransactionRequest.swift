@@ -29,7 +29,7 @@ public struct EstimateTransactionRequest: Encodable {
         self.to = to.value
         precondition(BigInt(value) != nil, "value must be a valid integer base 10, as String")
         self.value = value
-        precondition(data.isEmpty || Data(hex: data) != Data(), "data must be a valid base 16 number, as String")
+        precondition(data.isEmpty || Data(ethHex: data) != Data(), "data must be a valid base 16 number, as String")
         self.data = data
         self.operation = operation
     }

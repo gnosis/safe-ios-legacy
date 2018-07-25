@@ -16,6 +16,7 @@ public protocol EncryptionDomainService {
     func generateExternallyOwnedAccount() -> ExternallyOwnedAccount
     func ecdsaRandomS() -> BigUInt
     func sign(message: String, privateKey: PrivateKey) -> EthSignature
+    func hash(of transaction: Transaction) -> Data
 
 }
 

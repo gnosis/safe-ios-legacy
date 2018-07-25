@@ -9,6 +9,7 @@ import EthereumKit
 import Common
 import MultisigWalletDomainModel
 import CryptoSwift
+import BigInt
 
 class EncryptionServiceTests: XCTestCase {
 
@@ -70,7 +71,7 @@ class EncryptionServiceTests: XCTestCase {
     }
 
     func test_whenSigningMessage_thenSignatureIsCorrect() throws {
-        let pkData = Data(hex: "d0d3ae306602070917c456b61d88bee9dc74edb5853bb87b1c13e5bfa2c3d0d9")
+        let pkData = Data(ethHex: "d0d3ae306602070917c456b61d88bee9dc74edb5853bb87b1c13e5bfa2c3d0d9")
         let privateKey = MultisigWalletDomainModel.PrivateKey(data: pkData)
         let message = "Gnosis"
         encryptionService = EncryptionService(chainId: .mainnet)
@@ -115,6 +116,34 @@ class EncryptionServiceTests: XCTestCase {
         XCTAssertEqual(rinkebySignedTx.value, RawTransactionFixture.rinkebyHash)
     }
 
+    func test_hashOfTransaction() throws {
+        let data = TransactionHashingFixture.jsonArray.data(using: .utf8)!
+        let fixtures = try JSONDecoder().decode([TransactionHashingFixture.Message].self, from: data)
+        fixtures.forEach { fixture in
+            let transaction = MultisigWalletDomainModel.Transaction(id: TransactionID(),
+                                                                    type: .transfer,
+                                                                    walletID: WalletID(),
+                                                                    accountID: AccountID(token: "ETH"))
+            let gasPrice = TokenAmount(amount: TokenInt(fixture.gasPrice)!,
+                                       token: Token(code: "SOME",
+                                                    decimals: 18,
+                                                    address: Address(fixture.gasToken)))
+            let data = Data(ethHex: fixture.data)
+            transaction
+                .change(sender: Address(fixture.safe))
+                .change(recipient: Address(fixture.to))
+                .change(amount: .ether(TokenInt(fixture.value)!))
+                .change(data: data)
+                .change(operation: WalletOperation(rawValue: Int(fixture.operation)!)!)
+                .change(nonce: fixture.nonce)
+                .change(feeEstimate: TransactionFeeEstimate(gas: Int(fixture.txGas)!,
+                                                            dataGas: Int(fixture.dataGas)!,
+                                                            gasPrice: gasPrice))
+            let hexHash = encryptionService.hash(of: transaction).toHexString().addHexPrefix()
+            XCTAssertEqual(hexHash, fixture.hash)
+        }
+    }
+
 }
 
 extension EncryptionServiceTests {
@@ -142,9 +171,89 @@ struct ContractAddressFixture {
 
 }
 
+struct TransactionHashingFixture {
+
+    // TODO: what to do with message code duplication?
+    struct Message: Codable {
+        var type: String
+        var hash: String
+        var safe: String
+        var to: String
+        var value: String
+        var data: String
+        var operation: String
+        var txGas: String
+        var dataGas: String
+        var gasPrice: String
+        var gasToken: String
+        var nonce: String
+    }
+
+    static let jsonArray = """
+[
+{
+    "type": "requestConfirmation",
+    "hash": "0x93f89f0f9c53a61cb09245a1f0958deaf01d2a89dcc9738ae4ce379da6113c5d",
+    "safe": "0x092CC1854399ADc38Dad4f846E369C40D0a40307",
+    "to": "0x8e6A5aDb2B88257A3DAc7A76A7B4EcaCdA090b66",
+    "value": "1000123",
+    "data": "",
+    "operation": "0",
+    "txGas": "21000",
+    "dataGas": "0",
+    "gasPrice": "99123001",
+    "gasToken": "0x0000000000000000000000000000000000000000",
+    "nonce": "1"
+},
+{
+    "type": "requestConfirmation",
+    "hash": "0xc65a66bd28083a9d3bad66fc3c379d88432654877f4fd4cf74ed6c706e72a791",
+    "safe": "0x092CC1854399ADc38Dad4f846E369C40D0a40307",
+    "to": "0x0000000000000000000000000000000000000000",
+    "value": "0",
+    "data": "0x608060405234801561001057600080fd5b5060405161060a38038061060a833981018060405281019080805190602001909291908051820192919060200180519060200190929190805190602001909291908051906020019092919050505084848160008173ffffffffffffffffffffffffffffffffffffffff1614151515610116576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260248152602001807f496e76616c6964206d617374657220636f707920616464726573732070726f7681526020017f696465640000000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550506000815111156101a35773ffffffffffffffffffffffffffffffffffffffff60005416600080835160208501846127105a03f46040513d6000823e600082141561019f573d81fd5b5050505b5050600081111561036d57600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614156102b7578273ffffffffffffffffffffffffffffffffffffffff166108fc829081150290604051600060405180830381858888f1935050505015156102b2576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260268152602001807f436f756c64206e6f74207061792073616665206372656174696f6e207769746881526020017f206574686572000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b61036c565b6102d1828483610377640100000000026401000000009004565b151561036b576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260268152602001807f436f756c64206e6f74207061792073616665206372656174696f6e207769746881526020017f20746f6b656e000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b5b5b5050505050610490565b600060608383604051602401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828152602001925050506040516020818303038152906040527fa9059cbb000000000000000000000000000000000000000000000000000000007bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19166020820180517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff838183161783525050505090506000808251602084016000896127105a03f16040513d6000823e3d60008114610473576020811461047b5760009450610485565b829450610485565b8151158315171594505b505050509392505050565b61016b8061049f6000396000f30060806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680634555d5c91461008b5780635c60da1b146100b6575b73ffffffffffffffffffffffffffffffffffffffff600054163660008037600080366000845af43d6000803e6000811415610086573d6000fd5b3d6000f35b34801561009757600080fd5b506100a061010d565b6040518082815260200191505060405180910390f35b3480156100c257600080fd5b506100cb610116565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60006002905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050905600a165627a7a723058206d69a7317ea208981c1c60405cb41a930548e3d5a04a8d497e29ddc5e60223f200290000000000000000000000002aab3573ecfd2950a30b75b6f3651b84f4e130da00000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000ab8c18e66135561676f0781555d05cf6b22024a30000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f905e741cb1d800000000000000000000000000000000000000000000000000000000000001440ec78d9e00000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000003000000000000000000000000268bf7a7defcbfd7defd94f25f03f04b17efda310000000000000000000000006c60434fc786dec7fb03a7421e4014fa95da3e19000000000000000000000000daff896b02ee319d0f44af1533a0f48220283ade0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "operation": "2",
+    "txGas": "21000",
+    "dataGas": "398260",
+    "gasPrice": "11000000000",
+    "gasToken": "0x0000000000000000000000000000000000000000",
+    "nonce": "2"
+},
+{
+    "type": "requestConfirmation",
+    "hash": "0xfe1c3957b9041e30fe479e09f64552ea2cd688885108cb2286f547535fb1e741",
+    "safe": "0x092CC1854399ADc38Dad4f846E369C40D0a40307",
+    "to": "0x8e6A5aDb2B88257A3DAc7A76A7B4EcaCdA090b66",
+    "value": "1000123",
+    "data": "",
+    "operation": "0",
+    "txGas": "21000",
+    "dataGas": "0",
+    "gasPrice": "99123001",
+    "gasToken": "0x1000000000000000000000000000000000000001",
+    "nonce": "3"
+},
+{
+    "type": "requestConfirmation",
+    "hash": "0xdfff8281da3187fb40d71352d11d2a6c9a82ec4111d50a3fe0fc4df2e7a4aee2",
+    "safe": "0x092CC1854399ADc38Dad4f846E369C40D0a40307",
+    "to": "0x8e6A5aDb2B88257A3DAc7A76A7B4EcaCdA090b66",
+    "value": "1000123",
+    "data": "0x561001057600080fd5b5060405161060a3803806106",
+    "operation": "1",
+    "txGas": "21000",
+    "dataGas": "29943",
+    "gasPrice": "99123001",
+    "gasToken": "0x1001230000000000000000000000000000000001",
+    "nonce": "12305734256"
+}
+]
+"""
+}
+
 struct RawTransactionFixture {
 
-    static let privateKey = MultisigWalletDomainModel.PrivateKey(data: Data(hex: "e331b6d69882b4cb4ea581d88e0b604039a3de5967688d3dcffdd2270c0fd109"))
+    static let privateKey = MultisigWalletDomainModel.PrivateKey(data: Data(ethHex: "e331b6d69882b4cb4ea581d88e0b604039a3de5967688d3dcffdd2270c0fd109"))
     static let tx = EthRawTransaction(to: "0x0000000000000000000000000000000000000000",
                                       value: 0,
                                       data: "0x7f7465737432000000000000000000000000000000000000000000000000000000600057",

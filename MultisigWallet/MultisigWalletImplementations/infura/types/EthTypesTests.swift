@@ -29,8 +29,8 @@ class EthTypesTests: XCTestCase {
         XCTAssertEqual(decoded.data, b.data)
 
         let fromHex = EthAddress(hex: "0xabcdef44556677889900abcdef44556677889900")
-        XCTAssertEqual(fromHex.data, Data(hex: "0xabcdef44556677889900abcdef44556677889900"))
-        XCTAssertEqual(fromHex.data, Data(hex: fromHex.mixedCaseChecksumEncoded))
+        XCTAssertEqual(fromHex.data, Data(ethHex: "0xabcdef44556677889900abcdef44556677889900"))
+        XCTAssertEqual(fromHex.data, Data(ethHex: fromHex.mixedCaseChecksumEncoded))
         XCTAssertEqual(fromHex.mixedCaseChecksumEncoded, "0xaBcdeF44556677889900ABcdef44556677889900")
     }
 
