@@ -11,12 +11,20 @@ public struct Token: Equatable {
     /// Number of fractional digits in one token.
     /// (10 ^ decimals) is the number of smallest token units in one token unit.
     public let decimals: Int
+    public let address: Address
 
     public static let Ether = Token(code: "ETH", decimals: 18)
 
     public init(code: String, decimals: Int) {
+        self.init(code: code,
+                  decimals: decimals,
+                  address: Address("0x" + Data(repeating: 0, count: 20).toHexString()))
+    }
+
+    public init(code: String, decimals: Int, address: Address) {
         self.decimals = decimals
         self.code = code
+        self.address = address
     }
 
 }
@@ -25,13 +33,13 @@ extension Token: CustomStringConvertible {
 
     public init?(_ value: String) {
         let components = value.components(separatedBy: "/")
-        guard components.count == 2 else { return nil }
-        guard let decimals = Int(components.last!) else { return nil }
-        self.init(code: components.first!, decimals: decimals)
+        guard components.count == 3 else { return nil }
+        guard let decimals = Int(components[1]) else { return nil }
+        self.init(code: components[0], decimals: decimals, address: Address(components[2]))
     }
 
     public var description: String {
-        return "\(code)/\(decimals)"
+        return "\(code)/\(decimals)/\(address.value)"
     }
 
 }
