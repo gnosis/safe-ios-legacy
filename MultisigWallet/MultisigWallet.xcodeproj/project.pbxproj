@@ -88,6 +88,8 @@
 		0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */; };
 		0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */; };
 		0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */; };
+		0AD1938E2107534E0048CBCB /* SafeGasPriceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */; };
+		0AD1939A21075AB70048CBCB /* EstimateTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */; };
 		0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */; };
 		0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */; };
 		0AD22D7C20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */; };
@@ -429,6 +431,8 @@
 		0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTransactionRepository.swift; sourceTree = "<group>"; };
 		0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTransactionRepository.swift; sourceTree = "<group>"; };
 		0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTransactionRepositoryTests.swift; sourceTree = "<group>"; };
+		0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeGasPriceResponse.swift; sourceTree = "<group>"; };
+		0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateTransactionRequest.swift; sourceTree = "<group>"; };
 		0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBBaseRepository.swift; sourceTree = "<group>"; };
 		0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepository.swift; sourceTree = "<group>"; };
 		0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
@@ -618,6 +622,8 @@
 				555C948820E2A60F00A0621D /* Protocols */,
 				55CC279520F667FB00AC12D6 /* Requests */,
 				0A9E37A320F4A4D10085E8D7 /* SafeCreationTransactionRequest.swift */,
+				0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */,
+				0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */,
 				0A9E379E20F4A4D10085E8D7 /* StartSafeCreationRequest.swift */,
 				0AEF8A8520A08889006A1265 /* Tests-Info.plist */,
 				0AA5D49F20E12B68006F46CD /* Token.swift */,
@@ -1135,8 +1141,10 @@
 				0A9E380B20F4A4F20085E8D7 /* StartSafeCreationRequest.swift in Sources */,
 				0A9E380A20F4A4F20085E8D7 /* EncryptionDomainService.swift in Sources */,
 				55D3C07420F75EFF0047004F /* TokensDomainService.swift in Sources */,
+				0AD1938E2107534E0048CBCB /* SafeGasPriceResponse.swift in Sources */,
 				0A76BE5A20AF0CB500D07770 /* Account.swift in Sources */,
 				555C949E20E2A62E00A0621D /* BrowserExtensionCode.swift in Sources */,
+				0AD1939A21075AB70048CBCB /* EstimateTransactionRequest.swift in Sources */,
 				55CC279A20F667FB00AC12D6 /* PairingRequest.swift in Sources */,
 				0A23C82120A1CF1D00C72483 /* Portfolio.swift in Sources */,
 				555C949520E2A60F00A0621D /* WalletRepository.swift in Sources */,

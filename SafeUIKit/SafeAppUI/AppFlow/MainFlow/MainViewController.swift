@@ -4,6 +4,7 @@
 
 import UIKit
 import Common
+import MultisigWalletApplication
 
 public protocol MainViewControllerDelegate: class {
     func mainViewDidAppear()
@@ -33,6 +34,9 @@ public class MainViewController: UIViewController {
         totalBalanceLabel.accessibilityIdentifier = "main.label.balance"
         stylize(button: receiveButton)
         stylize(button: sendButton)
+        if let address = ApplicationServiceRegistry.walletService.selectedWalletAddress {
+            ApplicationServiceRegistry.logger.info("Safe address: \(address)")
+        }
     }
 
     public override func viewDidAppear(_ animated: Bool) {
