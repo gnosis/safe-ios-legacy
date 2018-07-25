@@ -30,12 +30,12 @@ public struct Address: Hashable, Codable {
     public let value: String
 
     var isZero: Bool {
-        return Data(hex: value).isEmpty || Data(hex: value) == Data(repeating: 0, count: 20)
+        return Data(ethHex: value).isEmpty || Data(ethHex: value) == Data(repeating: 0, count: 20)
     }
 
     public init(_ value: String) {
         precondition(value.hasPrefix("0x"))
-        precondition(Data(hex: value).count == 20 || Data(hex: value).isEmpty)
+        precondition(Data(ethHex: value).count == 20 || Data(ethHex: value).isEmpty)
         self.value = value
     }
 
@@ -77,7 +77,7 @@ public struct SignedRawTransaction: Equatable {
 
     public init(_ value: String) {
         precondition(value.hasPrefix("0x"))
-        precondition(!Data(hex: value).isEmpty)
+        precondition(!Data(ethHex: value).isEmpty)
         self.value = value
     }
 }

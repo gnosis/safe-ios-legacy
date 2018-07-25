@@ -51,4 +51,8 @@ public final class MockNotificationService: NotificationDomainService {
         return "SafeCreatedMessage_\(address)"
     }
 
+    public func requestConfirmationMessage(for transaction: Transaction, hash: Data) -> String {
+        return "RequestConfirmationMessage_\(transaction)_\(hash.toHexString().addHexPrefix())"
+    }
+
 }

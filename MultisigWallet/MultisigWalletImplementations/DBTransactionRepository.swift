@@ -115,7 +115,7 @@ LIMIT 1;
         return values.compactMap { value -> Signature? in
             let parts = value.components(separatedBy: ",")
             guard parts.count == 2 else { return nil }
-            return Signature(data: Data(hex: parts.last!), address: Address(parts.first!))
+            return Signature(data: Data(ethHex: parts.last!), address: Address(parts.first!))
         }
     }
 

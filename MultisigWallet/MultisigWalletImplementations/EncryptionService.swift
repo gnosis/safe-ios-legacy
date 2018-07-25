@@ -167,9 +167,9 @@ open class EncryptionService: EncryptionDomainService {
         var toEncode: [Any] = [tx.nonce,
                                BInt(tx.gasPrice, radix: 10)!,
                                BInt(tx.gas, radix: 10)!,
-                               Data(hex: tx.to),
+                               Data(ethHex: tx.to),
                                tx.value,
-                               Data(hex: tx.data)]
+                               Data(ethHex: tx.data)]
         if let signature = signature {
             let (r, s, v) = bintSignature(from: signature)
             toEncode.append(contentsOf: [v, r, s])
@@ -191,7 +191,7 @@ open class EncryptionService: EncryptionDomainService {
 
     private func address(_ publicKey: Data) -> Data {
         let string = ethereumService.createAddress(publicKey: publicKey)
-        return Data(hex: string)
+        return Data(ethHex: string)
     }
 
     private func string(address: Data) -> String {
@@ -251,6 +251,50 @@ open class EncryptionService: EncryptionDomainService {
         return try! Crypto.sign(data, privateKey: privateKey)
     }
 
+    public func hash(of transaction: MultisigWalletDomainModel.Transaction) -> Data {
+        let ERC191MagicByte: UInt8 = 0x19
+        let ERC191Version0Byte: UInt8 = 0x00
+        let hashData =
+            [
+            ERC191MagicByte.data,
+            ERC191Version0Byte.data,
+            transaction.sender!.data,
+            transaction.recipient!.data,
+            (transaction.amount?.amount ?? 0).data,
+            transaction.data ?? Data(),
+            transaction.operation!.data,
+            transaction.feeEstimate!.gas.data,
+            transaction.feeEstimate!.dataGas.data,
+            transaction.feeEstimate!.gasPrice.amount.data,
+            transaction.feeEstimate!.gasPrice.token.address.data,
+            TokenInt(transaction.nonce!)!.data
+            ].reduce(Data()) { $0 + $1 }
+        let hash = Crypto.hashSHA3_256(hashData)
+        return hash
+    }
+
+}
+
+fileprivate extension MultisigWalletDomainModel.Address {
+    var data: Data { return Data(ethHex: value) }
+}
+
+fileprivate extension TokenInt {
+    var data: Data {
+        return EthData(hex: hexString).padded(to: 32).data
+    }
+}
+
+fileprivate extension WalletOperation {
+    var data: Data { return Data([UInt8(rawValue)]) }
+}
+
+fileprivate extension Int {
+    var data: Data { return TokenInt(self).data }
+}
+
+fileprivate extension UInt8 {
+    var data: Data { return Data([self]) }
 }
 
 extension Int {
