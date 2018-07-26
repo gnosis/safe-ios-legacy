@@ -18,6 +18,8 @@ public protocol EncryptionDomainService {
     func sign(message: String, privateKey: PrivateKey) -> EthSignature
     func hash(of transaction: Transaction) -> Data
     func address(hash: Data, signature: EthSignature) -> String?
+    func data(from signature: EthSignature) -> Data
+    func sign(transaction: Transaction, privateKey: PrivateKey) -> Data
 
 }
 

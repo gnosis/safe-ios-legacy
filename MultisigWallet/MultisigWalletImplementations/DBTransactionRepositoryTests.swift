@@ -33,6 +33,7 @@ class DBTransactionRepositoryTests: XCTestCase {
             .change(recipient: Address.testAccount2)
             .change(data: Data(repeating: 1, count: 8))
             .change(nonce: "123")
+            .change(hash: Data(repeating: 1, count: 32))
             .change(operation: .delegateCall)
             .change(status: .signing)
             .add(signature: Signature(data: Data(repeating: 1, count: 7),
@@ -45,6 +46,7 @@ class DBTransactionRepositoryTests: XCTestCase {
 
         repo.save(transaction)
         let saved = repo.findByID(transaction.id)
+        let byHash = repo.findByHash(transaction.hash!)
 
         XCTAssertEqual(saved, transaction)
         XCTAssertEqual(saved?.type, transaction.type)
@@ -55,11 +57,13 @@ class DBTransactionRepositoryTests: XCTestCase {
         XCTAssertEqual(saved?.sender, transaction.sender)
         XCTAssertEqual(saved?.recipient, transaction.recipient)
         XCTAssertEqual(saved?.data, transaction.data)
+        XCTAssertEqual(saved?.hash, transaction.hash)
         XCTAssertEqual(saved?.operation, transaction.operation)
         XCTAssertEqual(saved?.nonce, transaction.nonce)
         XCTAssertEqual(saved?.signatures, transaction.signatures)
         XCTAssertEqual(saved?.transactionHash, transaction.transactionHash)
         XCTAssertEqual(saved?.status, transaction.status)
+        XCTAssertEqual(byHash, transaction)
 
         repo.remove(transaction)
         XCTAssertNil(repo.findByID(transaction.id))

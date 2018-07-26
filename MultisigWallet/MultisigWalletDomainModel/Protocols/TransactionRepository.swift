@@ -9,6 +9,7 @@ public protocol TransactionRepository {
     func save(_ transaction: Transaction)
     func remove(_ transaction: Transaction)
     func findByID(_ transactionID: TransactionID) -> Transaction?
+    func findByHash(_ hash: Data) -> Transaction?
     func nextID() -> TransactionID
 
 }

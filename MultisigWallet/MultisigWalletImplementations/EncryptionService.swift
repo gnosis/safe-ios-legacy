@@ -177,7 +177,7 @@ open class EncryptionService: EncryptionDomainService {
         return rlp(varArgs: toEncode)
     }
 
-    private func data(from signature: EthSignature) -> Data {
+    public func data(from signature: EthSignature) -> Data {
         let r = BInt.init(signature.r, radix: 10)!
         let s = BInt.init(signature.s, radix: 10)!
         let v = BInt.init(signature.v)
@@ -271,6 +271,11 @@ open class EncryptionService: EncryptionDomainService {
             ].reduce(Data()) { $0 + $1 }
         let hash = Crypto.hashSHA3_256(hashData)
         return hash
+    }
+
+    public func sign(transaction: MultisigWalletDomainModel.Transaction,
+                     privateKey: MultisigWalletDomainModel.PrivateKey) -> Data {
+        return rawSignature(of: hash(of: transaction), with: privateKey.data)
     }
 
     public func address(hash: Data, signature: EthSignature) -> String? {

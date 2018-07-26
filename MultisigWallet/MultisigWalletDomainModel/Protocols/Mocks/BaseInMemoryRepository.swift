@@ -7,12 +7,12 @@ import Common
 
 open class BaseInMemoryRepository<T: IdentifiableEntity<U>, U: Hashable> {
 
-    private var items = Set<T>()
+    internal var items = Set<T>()
 
     public init() {}
 
-    open func save(_ wallet: T) {
-        items.insert(wallet)
+    open func save(_ item: T) {
+        items.insert(item)
     }
 
     open func remove(_ item: T) {
