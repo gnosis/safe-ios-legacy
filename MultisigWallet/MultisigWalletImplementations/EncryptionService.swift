@@ -273,6 +273,11 @@ open class EncryptionService: EncryptionDomainService {
         return hash
     }
 
+    public func address(hash: Data, signature: EthSignature) -> String? {
+        guard let publicKey = self.publicKey(signature, hash) else { return nil }
+        return string(address: address(publicKey))
+    }
+
 }
 
 fileprivate extension MultisigWalletDomainModel.Address {

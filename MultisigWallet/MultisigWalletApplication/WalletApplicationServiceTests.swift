@@ -464,6 +464,17 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(code.signature, code3.signature)
     }
 
+    func test_whenHandlesTransactionConfirmedMessage_thenValidatesSignature() {
+        let message = TransactionConfirmedMessage(hash: Data(), signature: EthSignature(r: "", s: "", v: 0))
+        let encryptionService = MockEncryptionService()
+        DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
+        // store extension address
+        // make encService return it
+        service.handle(message: message)
+        // that should add the signature to transaction found by hash.
+        // TODO: finishing this requires Transaction retain hash calculated earlier.
+    }
+
 }
 
 fileprivate extension WalletApplicationServiceTests {
