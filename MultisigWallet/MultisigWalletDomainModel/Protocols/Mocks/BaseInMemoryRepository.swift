@@ -11,8 +11,8 @@ open class BaseInMemoryRepository<T: IdentifiableEntity<U>, U: Hashable> {
 
     public init() {}
 
-    open func save(_ wallet: T) {
-        items.insert(wallet)
+    open func save(_ item: T) {
+        items.insert(item)
     }
 
     open func remove(_ item: T) {

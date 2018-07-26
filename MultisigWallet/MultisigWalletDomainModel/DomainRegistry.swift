@@ -43,4 +43,8 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: EthereumNodeDomainService.self)
     }
 
+    public static var transactionRepository: TransactionRepository {
+        return service(for: TransactionRepository.self)
+    }
+
 }

@@ -464,15 +464,59 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(code.signature, code3.signature)
     }
 
+    fileprivate func givenReadyToUseWallet() {
+        try! givenReadyToDeployWallet()
+        try! service.startDeployment()
+        service.update(account: "ETH", newBalance: 1)
+        service.update(account: "ETH", newBalance: 100)
+        service.markDeploymentAcceptedByBlockchain()
+        service.markDeploymentSuccess()
+        service.finishDeployment()
+    }
+
     func test_whenHandlesTransactionConfirmedMessage_thenValidatesSignature() {
-        let message = TransactionConfirmedMessage(hash: Data(), signature: EthSignature(r: "", s: "", v: 0))
+        let message = TransactionConfirmedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
         let encryptionService = MockEncryptionService()
+        let eoaRepo = InMemoryExternallyOwnedAccountRepository()
+        let transactionRepo = InMemoryTransactionRepository()
+        DomainRegistry.put(service: eoaRepo, for: ExternallyOwnedAccountRepository.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
-        // store extension address
-        // make encService return it
+        DomainRegistry.put(service: transactionRepo, for: TransactionRepository.self)
+
+        givenReadyToUseWallet()
+
+        let extensionAddress = Address(service.ownerAddress(of: .browserExtension)!)
+        let signatureData = Data(repeating: 1, count: 32)
+
+        let deviceAddress = Address(service.ownerAddress(of: .thisDevice)!)
+        let deviceSignatureData = Data(repeating: 2, count: 32)
+        eoaRepo.save(ExternallyOwnedAccount(address: deviceAddress,
+                                            mnemonic: Mnemonic(words: ["a", "b"]),
+                                            privateKey: PrivateKey(data: Data()),
+                                            publicKey: PublicKey(data: Data())))
+
+        encryptionService.addressFromHashSignature_output = extensionAddress.value
+        encryptionService.dataFromSignature_output = signatureData
+        encryptionService.signTransactionPrivateKey_output = deviceSignatureData
+
+        let transaction = Transaction(id: TransactionID(),
+                                      type: .transfer,
+                                      walletID: WalletID(),
+                                      accountID: AccountID(token: "ETH"))
+        transaction.change(hash: message.hash)
+            .change(sender: Address.safeAddress)
+            .change(recipient: Address.testAccount1)
+            .change(amount: TokenAmount.ether(1))
+            .change(fee: TokenAmount.ether(1))
+            .change(status: .signing)
+        transactionRepo.save(transaction)
+
         service.handle(message: message)
-        // that should add the signature to transaction found by hash.
-        // TODO: finishing this requires Transaction retain hash calculated earlier.
+
+        let signedTransaction = transactionRepo.findByID(transaction.id)!
+        XCTAssertEqual(signedTransaction.signatures,
+                       [Signature(data: signatureData, address: extensionAddress),
+                        Signature(data: deviceSignatureData, address: deviceAddress)])
     }
 
 }
