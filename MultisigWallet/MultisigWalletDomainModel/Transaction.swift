@@ -34,7 +34,10 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public private(set) var signatures = [Signature]()
     public private(set) var submissionDate: Date?
     public private(set) var processedDate: Date?
+    /// Blockchain transaction hash
     public private(set) var transactionHash: TransactionHash?
+    /// Wallet-specific transaction hash
+    public private(set) var hash: Data?
     public private(set) var feeEstimate: TransactionFeeEstimate?
     public private(set) var data: Data?
     public private(set) var operation: WalletOperation?
@@ -146,6 +149,13 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public func change(nonce: String?) -> Transaction {
         assertInDraftStatus()
         self.nonce = nonce
+        return self
+    }
+
+    @discardableResult
+    public func change(hash: Data?) -> Transaction {
+        assertInDraftStatus()
+        self.hash = hash
         return self
     }
 

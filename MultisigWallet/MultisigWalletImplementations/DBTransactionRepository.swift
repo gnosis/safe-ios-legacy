@@ -30,7 +30,8 @@ CREATE TABLE IF NOT EXISTS tbl_transactions (
     fee_estimate_gas_price TEXT,
     data BLOB,
     operation INTEGER,
-    nonce TEXT
+    nonce TEXT,
+    hash BLOB
 );
 """
         static let insert = """
@@ -39,12 +40,12 @@ INSERT OR REPLACE INTO tbl_transactions VALUES (
     ?, ?, ?, ?,
     ?, ?, ?, ?,
     ?, ?, ?, ?,
-    ?, ?, ?
+    ?, ?, ?, ?
 );
 """
         static let delete = "DELETE FROM tbl_transactions WHERE id = ?;"
-        static let findByID = """
-SELECT
+
+        static let fieldList = """
     id,
     wallet_id,
     account_id,
@@ -63,9 +64,21 @@ SELECT
     fee_estimate_gas_price,
     data,
     operation,
-    nonce
+    nonce,
+    hash
+"""
+
+        static let findByID = """
+SELECT \(fieldList)
 FROM tbl_transactions
 WHERE id = ?
+LIMIT 1;
+"""
+
+        static let findByHash = """
+SELECT \(fieldList)
+FROM tbl_transactions
+WHERE hash = ?
 LIMIT 1;
 """
     }
@@ -102,7 +115,8 @@ LIMIT 1;
                 transaction.feeEstimate?.gasPrice.description,
                 transaction.data,
                 transaction.operation?.rawValue,
-                transaction.nonce
+                transaction.nonce,
+                transaction.hash
             ])
     }
 
@@ -131,6 +145,12 @@ LIMIT 1;
     public func findByID(_ transactionID: TransactionID) -> Transaction? {
         return try! db.execute(sql: SQL.findByID,
                                bindings: [transactionID.id],
+                               resultMap: transactionFromResultSet).first as? Transaction
+    }
+
+    public func findByHash(_ hash: Data) -> Transaction? {
+        return try! db.execute(sql: SQL.findByHash,
+                               bindings: [hash],
                                resultMap: transactionFromResultSet).first as? Transaction
     }
 
@@ -204,6 +224,10 @@ LIMIT 1;
 
         if let nonce = rs.string(at: 18) {
             transaction.change(nonce: nonce)
+        }
+
+        if let data = rs.data(at: 19) {
+            transaction.change(hash: data)
         }
 
         // initial status is draft

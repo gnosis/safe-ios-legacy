@@ -7,7 +7,7 @@ import Common
 
 open class BaseInMemoryRepository<T: IdentifiableEntity<U>, U: Hashable> {
 
-    private var items = Set<T>()
+    internal var items = Set<T>()
 
     public init() {}
 
