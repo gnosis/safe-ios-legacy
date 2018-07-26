@@ -232,6 +232,11 @@ open class EthereumApplicationService: Assertable {
         }
     }
 
+    internal func address(hash: Data, signature: EthSignature) -> Address? {
+        guard let value = encryptionService.address(hash: hash, signature: signature) else { return nil }
+        return Address(value)
+    }
+
 }
 
 fileprivate extension ExternallyOwnedAccount {

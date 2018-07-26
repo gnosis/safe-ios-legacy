@@ -551,4 +551,10 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    // MARK: - Message Handling
+
+    func handle(message: TransactionConfirmedMessage) {
+        guard let sender = ethereumService.address(hash: message.hash, signature: message.signature) else { return }
+    }
+
 }

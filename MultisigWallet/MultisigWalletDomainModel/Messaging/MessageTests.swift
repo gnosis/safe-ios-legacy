@@ -22,7 +22,6 @@ class MessageTests: XCTestCase {
 
 }
 
-
 fileprivate struct Fixture {
 
     static let confirmTransactionAPNSPayload: [AnyHashable: Any] = [

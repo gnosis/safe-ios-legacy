@@ -4,12 +4,18 @@
 
 import Foundation
 
-class TransactionConfirmedMessage: Message {
+public class TransactionConfirmedMessage: Message {
 
     public let hash: Data
     public let signature: EthSignature
 
-    init?(userInfo: [AnyHashable: Any]) {
+    public init(hash: Data, signature: EthSignature) {
+        self.hash = hash
+        self.signature = signature
+        super.init(type: "confirmTransaction")
+    }
+
+    public convenience init?(userInfo: [AnyHashable: Any]) {
         guard let data = try? JSONSerialization.data(withJSONObject: userInfo, options: []),
             let json = try? JSONDecoder().decode(JSON.self, from: data),
             json.type == "confirmTransaction" else { return nil }
@@ -17,9 +23,7 @@ class TransactionConfirmedMessage: Message {
         guard !hash.isEmpty else { return nil }
         guard let v = Int(json.v) else { return nil }
         guard ECDSASignatureBounds.isWithinBounds(r: json.r, s: json.s, v: v) else { return nil }
-        self.hash = hash
-        self.signature = EthSignature(r: json.r, s: json.s, v: v)
-        super.init(type: json.type)
+        self.init(hash: hash, signature: EthSignature(r: json.r, s: json.s, v: v))
     }
 
     private struct JSON: Decodable {

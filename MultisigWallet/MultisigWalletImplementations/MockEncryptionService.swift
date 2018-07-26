@@ -45,4 +45,8 @@ public class MockEncryptionService: EncryptionDomainService {
         return Data(repeating: 1, count: 32)
     }
 
+    public func address(hash: Data, signature: EthSignature) -> String? {
+        return nil
+    }
+
 }
