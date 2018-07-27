@@ -51,6 +51,10 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
         return result
     }
 
+    public func eth_call(transaction: TransactionCall, blockNumber: EthBlockNumber) throws -> Data {
+        return try execute(request: MessageCallRequest(transaction, blockNumber))
+    }
+
     /// Executes JSONRPCRequest synchronously. This method is blocking until response or error is received.
     ///
     /// - Parameter request: JSON RPC request to send
