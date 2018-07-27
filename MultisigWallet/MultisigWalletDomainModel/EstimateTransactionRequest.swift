@@ -12,19 +12,13 @@ public struct EstimateTransactionRequest: Encodable {
     public let to: String
     public let value: String
     public let data: String
-    public let operation: Operation
-
-    public enum Operation: Int, Codable {
-        case call
-        case delegateCall
-        case create
-    }
+    public let operation: WalletOperation
 
     public init(safe: Address,
                 to: Address,
                 value: String,
                 data: String,
-                operation: Operation) {
+                operation: WalletOperation) {
         self.safe = safe.value
         self.to = to.value
         precondition(BigInt(value) != nil, "value must be a valid integer base 10, as String")

@@ -306,7 +306,7 @@ public struct TransactionFeeEstimate: Equatable {
 
 }
 
-public enum WalletOperation: Int {
+public enum WalletOperation: Int, Codable {
 
     case call
     case delegateCall
