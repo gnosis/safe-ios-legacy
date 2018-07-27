@@ -108,6 +108,17 @@ class InfuraEthereumNodeServiceTests: XCTestCase {
         XCTAssertEqual(newBalance, BigInt(1))
     }
 
+    func test_nonceFromSafeContract() throws {
+        let encryptionService = EncryptionService(chainId: .rinkeby)
+        let functionSignature = "nonce()"
+        let methodID = encryptionService.hash(functionSignature.data(using: .ascii)!)
+        let call = TransactionCall(to: EthAddress(hex: "0x092CC1854399ADc38Dad4f846E369C40D0a40307"),
+                                   data: EthData(methodID))
+        let resultData = try service.eth_call(transaction: call, blockNumber: .latest)
+        let nonce = BigInt(hex: resultData.toHexString())!
+        XCTAssertEqual(nonce, 0)
+    }
+
     func waitForTransaction(_ transactionHash: TransactionHash) -> TransactionReceipt? {
         var result: TransactionReceipt? = nil
         let exp = expectation(description: "Transaction Mining")

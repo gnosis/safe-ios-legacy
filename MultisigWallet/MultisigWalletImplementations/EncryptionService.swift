@@ -151,7 +151,7 @@ open class EncryptionService: EncryptionDomainService {
         return try! RLP.encode(varArgs)
     }
 
-    private func hash(_ value: Data) -> Data {
+    public func hash(_ value: Data) -> Data {
         return Crypto.hashSHA3_256(value)
     }
 
@@ -269,8 +269,7 @@ open class EncryptionService: EncryptionDomainService {
             transaction.feeEstimate!.gasPrice.token.address.data,
             TokenInt(transaction.nonce!)!.data
             ].reduce(Data()) { $0 + $1 }
-        let hash = Crypto.hashSHA3_256(hashData)
-        return hash
+        return hash(hashData)
     }
 
     public func sign(transaction: MultisigWalletDomainModel.Transaction,
