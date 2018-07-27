@@ -50,4 +50,8 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         return SafeGasPriceResponse(safeLow: "0", standard: "0", fast: "0", fastest: "0", lowest: "0")
     }
 
+    public func submitTransaction(request: SubmitTransactionRequest) throws -> SubmitTransactionRequest.Response {
+        return .init(transactionHash: "")
+    }
+
 }

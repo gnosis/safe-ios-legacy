@@ -44,6 +44,10 @@ public class GnosisTransactionRelayService: TransactionRelayDomainService {
         return try httpClient.execute(request: request)
     }
 
+    public func submitTransaction(request: SubmitTransactionRequest) throws -> SubmitTransactionRequest.Response {
+        return try httpClient.execute(request: request)
+    }
+
 }
 
 extension SafeCreationTransactionRequest: JSONRequest {
@@ -88,6 +92,15 @@ extension EstimateTransactionRequest: JSONRequest {
 
     public var httpMethod: String { return "POST" }
     public var urlPath: String { return "/api/v1/safes/\(safe)/transactions/estimate/" }
+
+    public typealias ResponseType = Response
+
+}
+
+extension SubmitTransactionRequest: JSONRequest {
+
+    public var httpMethod: String { return "POST" }
+    public var urlPath: String { return "/api/v1/safes/\(safe)/transactions/" }
 
     public typealias ResponseType = Response
 

@@ -11,5 +11,6 @@ public protocol TransactionRelayDomainService {
     func startSafeCreation(address: Address) throws
     func safeCreationTransactionHash(address: Address) throws -> TransactionHash?
     func gasPrice() throws -> SafeGasPriceResponse
+    func submitTransaction(request: SubmitTransactionRequest) throws -> SubmitTransactionRequest.Response
 
 }
