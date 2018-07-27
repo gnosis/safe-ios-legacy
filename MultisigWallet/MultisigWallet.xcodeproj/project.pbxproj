@@ -27,8 +27,11 @@
 		0A442DC02109DA1800F19F80 /* MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DBF2109DA1800F19F80 /* MessageHandler.swift */; };
 		0A442DC32109DADB00F19F80 /* MessagingDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DC22109DADB00F19F80 /* MessagingDomainServiceTests.swift */; };
 		0A442DC5210A05A400F19F80 /* MessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DC4210A05A400F19F80 /* MessageTests.swift */; };
-		0A442DC7210A06EA00F19F80 /* TransactionConfirmedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DC6210A06EA00F19F80 /* TransactionConfirmedMessage.swift */; };
+		0A442DC7210A06EA00F19F80 /* TransactionDecisionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DC6210A06EA00F19F80 /* TransactionDecisionMessage.swift */; };
 		0A442DC9210A088800F19F80 /* Message+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DC8210A088800F19F80 /* Message+Factory.swift */; };
+		0A442DDF210B113100F19F80 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DDE210B113100F19F80 /* OutgoingMessage.swift */; };
+		0A442DE1210B124B00F19F80 /* TransactionSentMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DE0210B124B00F19F80 /* TransactionSentMessage.swift */; };
+		0A442DE3210B15E700F19F80 /* SafeCreatedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DE2210B15E700F19F80 /* SafeCreatedMessage.swift */; };
 		0A4CF10C20F63D8D001A8687 /* SendNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CF10B20F63D8D001A8687 /* SendNotificationRequest.swift */; };
 		0A76BE4A20AEC3EB00D07770 /* WalletApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */; };
 		0A76BE4F20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */; };
@@ -378,8 +381,11 @@
 		0A442DBF2109DA1800F19F80 /* MessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHandler.swift; sourceTree = "<group>"; };
 		0A442DC22109DADB00F19F80 /* MessagingDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingDomainServiceTests.swift; sourceTree = "<group>"; };
 		0A442DC4210A05A400F19F80 /* MessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTests.swift; sourceTree = "<group>"; };
-		0A442DC6210A06EA00F19F80 /* TransactionConfirmedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConfirmedMessage.swift; sourceTree = "<group>"; };
+		0A442DC6210A06EA00F19F80 /* TransactionDecisionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDecisionMessage.swift; sourceTree = "<group>"; };
 		0A442DC8210A088800F19F80 /* Message+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+Factory.swift"; sourceTree = "<group>"; };
+		0A442DDE210B113100F19F80 /* OutgoingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
+		0A442DE0210B124B00F19F80 /* TransactionSentMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSentMessage.swift; sourceTree = "<group>"; };
+		0A442DE2210B15E700F19F80 /* SafeCreatedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreatedMessage.swift; sourceTree = "<group>"; };
 		0A4CF10B20F63D8D001A8687 /* SendNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendNotificationRequest.swift; sourceTree = "<group>"; };
 		0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySinglePortfolioRepository.swift; sourceTree = "<group>"; };
@@ -548,7 +554,10 @@
 				0A442DC22109DADB00F19F80 /* MessagingDomainServiceTests.swift */,
 				0A442DBF2109DA1800F19F80 /* MessageHandler.swift */,
 				0A442DBD2109D99D00F19F80 /* Message.swift */,
-				0A442DC6210A06EA00F19F80 /* TransactionConfirmedMessage.swift */,
+				0A442DDE210B113100F19F80 /* OutgoingMessage.swift */,
+				0A442DE0210B124B00F19F80 /* TransactionSentMessage.swift */,
+				0A442DE2210B15E700F19F80 /* SafeCreatedMessage.swift */,
+				0A442DC6210A06EA00F19F80 /* TransactionDecisionMessage.swift */,
 				0A442DC8210A088800F19F80 /* Message+Factory.swift */,
 				0A442DC4210A05A400F19F80 /* MessageTests.swift */,
 			);
@@ -1156,6 +1165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A442DE1210B124B00F19F80 /* TransactionSentMessage.swift in Sources */,
 				0AAA174720E26E90003B35B3 /* TransactionRepository.swift in Sources */,
 				0A9E380F20F4A4F20085E8D7 /* Worker.swift in Sources */,
 				0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */,
@@ -1164,6 +1174,7 @@
 				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,
 				0A9E380D20F4A4F20085E8D7 /* ExternallyOwnedAccount.swift in Sources */,
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
+				0A442DDF210B113100F19F80 /* OutgoingMessage.swift in Sources */,
 				0A442DC9210A088800F19F80 /* Message+Factory.swift in Sources */,
 				0AA5D4A020E12B68006F46CD /* Token.swift in Sources */,
 				0A9E380C20F4A4F20085E8D7 /* ExternallyOwnedAccountRepository.swift in Sources */,
@@ -1178,7 +1189,8 @@
 				0A442D8B2108B82B00F19F80 /* Data+InitWithHex.swift in Sources */,
 				55D3C07420F75EFF0047004F /* TokensDomainService.swift in Sources */,
 				0AD1938E2107534E0048CBCB /* SafeGasPriceResponse.swift in Sources */,
-				0A442DC7210A06EA00F19F80 /* TransactionConfirmedMessage.swift in Sources */,
+				0A442DE3210B15E700F19F80 /* SafeCreatedMessage.swift in Sources */,
+				0A442DC7210A06EA00F19F80 /* TransactionDecisionMessage.swift in Sources */,
 				0A76BE5A20AF0CB500D07770 /* Account.swift in Sources */,
 				555C949E20E2A62E00A0621D /* BrowserExtensionCode.swift in Sources */,
 				0AD1939A21075AB70048CBCB /* EstimateTransactionRequest.swift in Sources */,
