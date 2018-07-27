@@ -554,17 +554,25 @@ public class WalletApplicationService: Assertable {
     // MARK: - Message Handling
 
     func handle(message: TransactionConfirmedMessage) {
+        guard let transaction = self.transaction(from: message) else { return }
+        let encryptionService = DomainRegistry.encryptionService
+        transaction.add(signature: Signature(data: encryptionService.data(from: message.signature),
+                                             address: Address(ownerAddress(of: .browserExtension)!)))
+        DomainRegistry.transactionRepository.save(transaction)
+    }
+
+    private func transaction(from message: TransactionDecisionMessage) -> Transaction? {
         guard let transaction = DomainRegistry.transactionRepository.findByHash(message.hash),
             let sender = ethereumService.address(hash: message.hash, signature: message.signature),
             let extensionAddress = ownerAddress(of: .browserExtension),
-            sender.value == extensionAddress else { return }
-        let encryptionService = DomainRegistry.encryptionService
-        transaction.add(signature: Signature(data: encryptionService.data(from: message.signature),
-                                             address: sender))
-        let deviceAddress = Address(ownerAddress(of: .thisDevice)!)
-        let deviceEOA = DomainRegistry.externallyOwnedAccountRepository.find(by: deviceAddress)!
-        let signature = encryptionService.sign(transaction: transaction, privateKey: deviceEOA.privateKey)
-        transaction.add(signature: Signature(data: signature, address: deviceAddress))
+            sender.value == extensionAddress else { return nil }
+        return transaction
+    }
+
+    func handle(message: TransactionRejectedMessage) {
+        guard let transaction = self.transaction(from: message) else { return }
+        transaction.change(status: .rejected)
+        DomainRegistry.transactionRepository.save(transaction)
     }
 
 }
