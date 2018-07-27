@@ -476,6 +476,30 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenHandlesTransactionConfirmedMessage_thenValidatesSignature() {
         let message = TransactionConfirmedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
+
+        let (transaction, signatureData, extensionAddress) = prepareTransactionForSigning(basedOn: message)
+
+        service.handle(message: message)
+
+        let signedTransaction = DomainRegistry.transactionRepository.findByID(transaction.id)!
+        XCTAssertEqual(signedTransaction.signatures,
+                       [Signature(data: signatureData, address: extensionAddress)])
+    }
+
+    func test_whenHandlesTransactionRejectedMessage_thenChangesStatus() {
+        let message = TransactionRejectedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
+
+        let (transaction, _, _) = prepareTransactionForSigning(basedOn: message)
+
+        service.handle(message: message)
+
+        let rejectedTransaction = DomainRegistry.transactionRepository.findByID(transaction.id)!
+        XCTAssertTrue(rejectedTransaction.signatures.isEmpty)
+        XCTAssertEqual(rejectedTransaction.status, .rejected)
+    }
+
+    private func prepareTransactionForSigning(basedOn message: TransactionDecisionMessage)
+        -> (Transaction, Data, Address) {
         let encryptionService = MockEncryptionService()
         let eoaRepo = InMemoryExternallyOwnedAccountRepository()
         let transactionRepo = InMemoryTransactionRepository()
@@ -489,7 +513,6 @@ class WalletApplicationServiceTests: XCTestCase {
         let signatureData = Data(repeating: 1, count: 32)
 
         let deviceAddress = Address(service.ownerAddress(of: .thisDevice)!)
-        let deviceSignatureData = Data(repeating: 2, count: 32)
         eoaRepo.save(ExternallyOwnedAccount(address: deviceAddress,
                                             mnemonic: Mnemonic(words: ["a", "b"]),
                                             privateKey: PrivateKey(data: Data()),
@@ -497,7 +520,6 @@ class WalletApplicationServiceTests: XCTestCase {
 
         encryptionService.addressFromHashSignature_output = extensionAddress.value
         encryptionService.dataFromSignature_output = signatureData
-        encryptionService.signTransactionPrivateKey_output = deviceSignatureData
 
         let transaction = Transaction(id: TransactionID(),
                                       type: .transfer,
@@ -510,13 +532,7 @@ class WalletApplicationServiceTests: XCTestCase {
             .change(fee: TokenAmount.ether(1))
             .change(status: .signing)
         transactionRepo.save(transaction)
-
-        service.handle(message: message)
-
-        let signedTransaction = transactionRepo.findByID(transaction.id)!
-        XCTAssertEqual(signedTransaction.signatures,
-                       [Signature(data: signatureData, address: extensionAddress),
-                        Signature(data: deviceSignatureData, address: deviceAddress)])
+        return (transaction, signatureData, extensionAddress)
     }
 
 }
