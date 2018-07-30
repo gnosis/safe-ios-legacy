@@ -79,7 +79,7 @@ class FundsTransferTransactionViewController: UIViewController {
         override func main() {
             block(self)
         }
-        
+
     }
 }
 
@@ -89,16 +89,18 @@ extension FundsTransferTransactionViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
         let newValue = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
-        let amount = textField === amountTextField ? newValue : amountTextField.text
-        let recipient = textField === recipientTextField ? newValue : recipientTextField.text
-        updateFeeEstimation(amount: amount, recipient: recipient)
+        updateFeeEstimation(for: textField, newValue: newValue)
         return true
     }
 
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        let amount = textField === amountTextField ? nil : amountTextField.text
-        let recipient = textField === recipientTextField ? nil : recipientTextField.text
-        updateFeeEstimation(amount: amount, recipient: recipient)
+        updateFeeEstimation(for: textField, newValue: nil)
         return true
+    }
+
+    private func updateFeeEstimation(for textField: UITextField, newValue: String?) {
+        let amount = textField === amountTextField ? newValue : amountTextField.text
+        let recipient = textField === recipientTextField ? newValue : recipientTextField.text
+        updateFeeEstimation(amount: amount, recipient: recipient)
     }
 }
