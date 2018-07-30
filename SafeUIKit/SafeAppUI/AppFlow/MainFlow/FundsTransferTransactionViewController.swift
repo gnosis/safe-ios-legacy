@@ -69,13 +69,17 @@ class FundsTransferTransactionViewController: UIViewController {
     }
 
     class CancellableBlockOperation: Operation {
+
         let block: (CancellableBlockOperation) -> Void
+
         init(block: @escaping (CancellableBlockOperation) -> Void) {
             self.block = block
         }
+
         override func main() {
             block(self)
         }
+        
     }
 }
 
