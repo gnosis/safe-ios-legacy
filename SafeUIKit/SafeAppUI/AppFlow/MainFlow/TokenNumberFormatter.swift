@@ -36,26 +36,26 @@ class TokenNumberFormatter {
     private func addFractionGrouping(fraction: inout String) {
         guard usesGroupingSeparatorForFractionDigits else { return }
         var insertionIndex = fraction.index(fraction.startIndex,
-                offsetBy: groupSize,
-                limitedBy: fraction.index(before: fraction.endIndex))
+                                            offsetBy: groupSize,
+                                            limitedBy: fraction.index(before: fraction.endIndex))
         while insertionIndex != nil && insertionIndex! < fraction.index(before: fraction.endIndex) {
             fraction.insert(Character(groupingSeparator), at: insertionIndex!)
             insertionIndex = fraction.index(insertionIndex!,
-                    offsetBy: groupSize,
-                    limitedBy: fraction.endIndex)
+                                            offsetBy: groupSize,
+                                            limitedBy: fraction.endIndex)
         }
     }
 
     private func addIntegerGrouping(integer: inout String) {
         guard usesGroupingSeparator else { return }
         var insertionIndex = integer.index(integer.endIndex,
-                offsetBy: -groupSize,
-                limitedBy: integer.startIndex)
+                                           offsetBy: -groupSize,
+                                           limitedBy: integer.startIndex)
         while insertionIndex != nil && insertionIndex! > integer.startIndex {
             integer.insert(Character(groupingSeparator), at: insertionIndex!)
             insertionIndex = integer.index(insertionIndex!,
-                    offsetBy: -groupSize,
-                    limitedBy: integer.startIndex)
+                                           offsetBy: -groupSize,
+                                           limitedBy: integer.startIndex)
         }
     }
 

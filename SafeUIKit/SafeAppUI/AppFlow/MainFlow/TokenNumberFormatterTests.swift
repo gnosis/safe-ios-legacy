@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018 Gnosis Ltd. All rights reserved.
+//  Copyright © 2018 Gnosis Ltd. All rights reserved.
 //
 
 import XCTest

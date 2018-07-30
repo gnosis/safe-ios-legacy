@@ -9,10 +9,6 @@ import BigInt
 
 class FundsTransferTransactionViewControllerTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-    }
-
     func disabled_test_whenLoaded_thenShowsBalance() {
         let walletService = MockWalletApplicationService()
         let walletAddress = "0x1CBFf6551B8713296b0604705B1a3B76D238Ae14"
