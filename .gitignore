@@ -78,3 +78,4 @@ AppConfig.yml
 AppConfig.xcconfig
 AppConfig.json
 encrypted_files
+.idea/
