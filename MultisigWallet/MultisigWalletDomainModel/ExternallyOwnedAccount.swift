@@ -29,9 +29,11 @@ public struct Address: Hashable, Codable {
 
     public let value: String
 
-    var isZero: Bool {
-        return Data(ethHex: value).isEmpty || Data(ethHex: value) == Data(repeating: 0, count: 20)
+    public var isZero: Bool {
+        return self == type(of: self).zero
     }
+
+    public static let zero = Address("0x0000000000000000000000000000000000000000")
 
     public init(_ value: String) {
         precondition(value.hasPrefix("0x"))

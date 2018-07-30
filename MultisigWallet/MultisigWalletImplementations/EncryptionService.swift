@@ -206,6 +206,13 @@ open class EncryptionService: EncryptionDomainService {
         return Address(address)
     }
 
+    public func address(from string: String) -> MultisigWalletDomainModel.Address? {
+        guard !string.isEmpty else { return nil }
+        let data = Data(ethHex: string)
+        guard data.count == 20 else { return nil }
+        return Address(EIP55.encode(data).addHexPrefix())
+    }
+
     // MARK: - EOA generation
 
     public func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {

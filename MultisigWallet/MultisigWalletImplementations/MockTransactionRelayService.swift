@@ -54,4 +54,11 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         return .init(transactionHash: "")
     }
 
+    public func estimateTransaction(request: EstimateTransactionRequest) throws -> EstimateTransactionRequest.Response {
+        return .init(safeTxGas: 100,
+                     dataGas: 100,
+                     gasPrice: 100,
+                     gasToken: "0x0000000000000000000000000000000000000000")
+    }
+
 }

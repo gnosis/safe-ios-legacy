@@ -9,22 +9,26 @@ import CryptoSwift
 public struct EstimateTransactionRequest: Encodable {
 
     public let safe: String
-    public let to: String
+    public let to: String?
     public let value: String
-    public let data: String
+    public let data: String?
     public let operation: WalletOperation
 
     public init(safe: Address,
-                to: Address,
+                to: Address?,
                 value: String,
-                data: String,
+                data: String?,
                 operation: WalletOperation) {
         self.safe = safe.value
-        self.to = to.value
+        self.to = to?.value
         precondition(BigInt(value) != nil, "value must be a valid integer base 10, as String")
         self.value = value
-        precondition(data.isEmpty || Data(ethHex: data) != Data(), "data must be a valid base 16 number, as String")
-        self.data = data
+        if let data = data {
+            precondition(data.isEmpty || Data(ethHex: data) != Data(), "data must be a valid base 16 number, as String")
+            self.data = data
+        } else {
+            self.data = nil
+        }
         self.operation = operation
     }
 
