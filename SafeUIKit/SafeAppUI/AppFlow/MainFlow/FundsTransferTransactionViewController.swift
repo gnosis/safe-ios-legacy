@@ -49,7 +49,8 @@ class FundsTransferTransactionViewController: UIViewController {
 
     func updateFeeEstimation(amount: String?, recipient: String?) {
         userInputQueue.cancelAllOperations()
-        userInputQueue.addOperation(CancellableBlockOperation { op in
+        userInputQueue.addOperation(CancellableBlockOperation { [weak self] op in
+            guard let `self` = self else { return }
             if op.isCancelled { return }
             let estimation = self.estimate(amount, recipient)
             if op.isCancelled { return }
