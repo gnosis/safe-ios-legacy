@@ -13,6 +13,8 @@ class TokenNumberFormatter {
     var usesGroupingSeparator = false
     var usesGroupingSeparatorForFractionDigits = false
     var groupSize = 3
+    var tokenSymbol: String?
+    var tokenCode: String?
 
     func string(from number: BigInt) -> String {
         if number == 0 { return "0" }
@@ -22,7 +24,8 @@ class TokenNumberFormatter {
         var fraction = str.count <= decimals ? padFromBeginning(str) : String(str.suffix(decimals))
         removeTrailingZeroes(fraction: &fraction)
         addFractionGrouping(fraction: &fraction)
-        return integer + (fraction.isEmpty ? "" : decimalSeparator) + fraction
+        let token = tokenSymbol != nil ? " \(tokenSymbol!)" : (tokenCode != nil ? " \(tokenCode!)" : "")
+        return integer + (fraction.isEmpty ? "" : decimalSeparator) + fraction + token
     }
 
     private func padFromBeginning(_ str: String) -> String {

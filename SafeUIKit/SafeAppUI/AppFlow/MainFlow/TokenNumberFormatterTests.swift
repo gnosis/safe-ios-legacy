@@ -51,4 +51,14 @@ class TokenNumberFormatterTests: XCTestCase {
         assert(number: 1_000, equalTo: "0,001")
     }
 
+    func test_tokenSymbol() {
+        formatter.tokenSymbol = "$"
+        assert(number: 1, equalTo: "1 $")
+
+        formatter.tokenCode = "ETH"
+        assert(number: 1, equalTo: "1 $")
+
+        formatter.tokenSymbol = nil
+        assert(number: 1, equalTo: "1 ETH")
+    }
 }
