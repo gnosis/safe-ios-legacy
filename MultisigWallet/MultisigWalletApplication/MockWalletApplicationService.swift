@@ -161,4 +161,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         return estimatedFee_output
     }
 
+    public override func createNewDraftTransaction() -> String {
+        return "TransactionID"
+    }
+
 }

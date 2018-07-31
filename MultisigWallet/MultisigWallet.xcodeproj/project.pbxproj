@@ -41,6 +41,7 @@
 		0A76BE5720AEF35C00D07770 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5620AEF35C00D07770 /* DomainRegistryTests.swift */; };
 		0A76BE5A20AF0CB500D07770 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5920AF0CB500D07770 /* Account.swift */; };
 		0A76BE5E20AF167D00D07770 /* InMemoryAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5D20AF167D00D07770 /* InMemoryAccountRepository.swift */; };
+		0A7F7438211045E8004F1150 /* DataInitWithHexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F7437211045E8004F1150 /* DataInitWithHexTest.swift */; };
 		0A8A2B9B20FCDC540003BB7E /* TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */; };
 		0A8A2B9C20FCDC550003BB7E /* TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */; };
 		0A8A2B9D20FCDC560003BB7E /* TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */; };
@@ -400,6 +401,7 @@
 		0A76BE5620AEF35C00D07770 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
 		0A76BE5920AF0CB500D07770 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		0A76BE5D20AF167D00D07770 /* InMemoryAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryAccountRepository.swift; sourceTree = "<group>"; };
+		0A7F7437211045E8004F1150 /* DataInitWithHexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInitWithHexTest.swift; sourceTree = "<group>"; };
 		0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFixture.swift; sourceTree = "<group>"; };
 		0A8E3BF920B4254F00F002F6 /* InMemoryAccountRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryAccountRepositoryTests.swift; sourceTree = "<group>"; };
 		0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBAccountRepository.swift; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 				0A76BE5620AEF35C00D07770 /* DomainRegistryTests.swift */,
 				0A9E37A120F4A4D10085E8D7 /* ExternallyOwnedAccount.swift */,
 				0A442D8A2108B82B00F19F80 /* Data+InitWithHex.swift */,
+				0A7F7437211045E8004F1150 /* DataInitWithHexTest.swift */,
 				0A9E379C20F4A4D10085E8D7 /* GetSafeCreationStatusRequest.swift */,
 				0A23C80C20A1B34900C72483 /* Owner.swift */,
 				0A23C82020A1CF1D00C72483 /* Portfolio.swift */,
@@ -1225,6 +1228,7 @@
 				0A442DC32109DADB00F19F80 /* MessagingDomainServiceTests.swift in Sources */,
 				0A9E386120F4B46C0085E8D7 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,
 				0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */,
+				0A7F7438211045E8004F1150 /* DataInitWithHexTest.swift in Sources */,
 				0A442DC5210A05A400F19F80 /* MessageTests.swift in Sources */,
 				0A9E385F20F4B46C0085E8D7 /* BaseInMemoryRepositoryTests.swift in Sources */,
 				0A23C81B20A1CEDA00C72483 /* PortfolioTests.swift in Sources */,
