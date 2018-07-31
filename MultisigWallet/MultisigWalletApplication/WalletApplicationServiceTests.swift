@@ -19,6 +19,7 @@ class WalletApplicationServiceTests: XCTestCase {
     let service = WalletApplicationService()
     let notificationService = MockNotificationService()
     let tokensService = MockTokensDomainService()
+    let transactionRepository = InMemoryTransactionRepository()
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -27,6 +28,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        DomainRegistry.put(service: transactionRepository, for: TransactionRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
@@ -498,14 +500,23 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(rejectedTransaction.status, .rejected)
     }
 
+    func test_whenCreatesNewDraftTx_thenSavesItInRepository() {
+        givenReadyToUseWallet()
+
+        let txID = service.createNewDraftTransaction()
+        let tx: Transaction! = transactionRepository.findByID(TransactionID(txID))
+        XCTAssertNotNil(tx)
+        XCTAssertEqual(tx.accountID, AccountID(token: "ETH"))
+        XCTAssertEqual(tx.sender, try! selectedWallet().address)
+        XCTAssertEqual(tx.type, .transfer)
+    }
+
     private func prepareTransactionForSigning(basedOn message: TransactionDecisionMessage)
         -> (Transaction, Data, Address) {
         let encryptionService = MockEncryptionService()
         let eoaRepo = InMemoryExternallyOwnedAccountRepository()
-        let transactionRepo = InMemoryTransactionRepository()
         DomainRegistry.put(service: eoaRepo, for: ExternallyOwnedAccountRepository.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
-        DomainRegistry.put(service: transactionRepo, for: TransactionRepository.self)
 
         givenReadyToUseWallet()
 
@@ -531,7 +542,7 @@ class WalletApplicationServiceTests: XCTestCase {
             .change(amount: TokenAmount.ether(1))
             .change(fee: TokenAmount.ether(1))
             .change(status: .signing)
-        transactionRepo.save(transaction)
+        transactionRepository.save(transaction)
         return (transaction, signatureData, extensionAddress)
     }
 

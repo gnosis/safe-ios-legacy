@@ -525,6 +525,17 @@ public class WalletApplicationService: Assertable {
         return (BigInt(response.dataGas) + BigInt(response.safeTxGas)) * BigInt(response.gasPrice)
     }
 
+    public func createNewDraftTransaction() -> String {
+        let repository = DomainRegistry.transactionRepository
+        let transaction = Transaction(id: repository.nextID(),
+                                      type: .transfer,
+                                      walletID: findSelectedWallet()!.id,
+                                      accountID: AccountID(token: "ETH"))
+        transaction.change(sender: findSelectedWallet()!.address!)
+        repository.save(transaction)
+        return transaction.id.id
+    }
+
     private func findAccount(_ token: String) -> Account? {
         guard let wallet = findSelectedWallet(),
             let account = DomainRegistry.accountRepository.find(id: AccountID(token: token), walletID: wallet.id) else {
