@@ -5,7 +5,7 @@
 import Foundation
 import BigInt
 
-class TokenAmountValidator {
+class TokenAmountValidator: Validator {
 
     enum ValidationError: Error {
         case empty

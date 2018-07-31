@@ -4,21 +4,24 @@
 
 import Foundation
 
-class EthereumAddressValidator {
+class EthereumAddressValidator: Validator {
 
     enum ValidationError: Error, Equatable {
         case empty
-        case invalidCharacter(Int)
-        case valueTooShort(Int)
-        case valueTooLong(Int)
+        case invalidCharacter(String, Int)
+        case valueTooShort(Int, Int)
+        case valueTooLong(Int, Int)
         case zeroAddress
 
         static func ==(lhs: ValidationError, rhs: ValidationError) -> Bool {
             switch (lhs, rhs) {
             case (.empty, .empty), (.zeroAddress, .zeroAddress): return true
-            case let (.valueTooShort(lcount), .valueTooShort(rcount)): return lcount == rcount
-            case let (.valueTooLong(lcount), .valueTooLong(rcount)): return lcount == rcount
-            case let (.invalidCharacter(lpos), .invalidCharacter(rpos)): return lpos == rpos
+            case let (.valueTooShort(lcount, lrequired), .valueTooShort(rcount, rrequired)):
+                return lcount == rcount && lrequired == rrequired
+            case let (.valueTooLong(lcount, lrequired), .valueTooLong(rcount, rrequired)):
+                return lcount == rcount && lrequired == rrequired
+            case let (.invalidCharacter(lchar, lpos), .invalidCharacter(rchar, rpos)):
+                return lpos == rpos && lchar == rchar
             default: return false
             }
         }
@@ -35,10 +38,14 @@ class EthereumAddressValidator {
         if address.isEmpty { return .empty }
         let value = address.lowercased()
         let unprefixed = value.hasPrefix("0x") ? String(value.dropFirst(2)) : value
-        if unprefixed.count <= charCount && unprefixed.hasCharactersNotIn(.zeroDigit) { return .zeroAddress }
-        if let offset = offsetOfNonHexChar(in: value) { return .invalidCharacter(offset) }
-        if unprefixed.count < charCount { return .valueTooShort(unprefixed.count) }
-        if unprefixed.count > charCount { return .valueTooLong(unprefixed.count) }
+        if unprefixed.count <= charCount && unprefixed.isAllCharacters(from: .zeroDigit) { return .zeroAddress }
+        if let offset = offsetOfNonHexChar(in: value) {
+            let character = String(value[value.index(value.startIndex, offsetBy: offset)])
+            return .invalidCharacter(character, offset)
+        }
+        let requiredCount = value.hasPrefix("0x") ? charCount + 2 : charCount
+        if value.count < requiredCount { return .valueTooShort(value.count, requiredCount) }
+        if value.count > requiredCount { return .valueTooLong(value.count, requiredCount) }
         return nil
     }
 
@@ -65,7 +72,7 @@ fileprivate extension CharacterSet {
 
 fileprivate extension String {
 
-    func hasCharactersNotIn(_ set: CharacterSet) -> Bool {
+    func isAllCharacters(from set: CharacterSet) -> Bool {
         return rangeOfCharacter(from: set.inverted) == nil
     }
 

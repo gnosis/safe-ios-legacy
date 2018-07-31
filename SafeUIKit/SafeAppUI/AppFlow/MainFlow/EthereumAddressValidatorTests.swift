@@ -12,12 +12,12 @@ class EthereumAddressValidatorTests: XCTestCase {
         XCTAssertEqual(validator.validate(""), .empty)
         XCTAssertEqual(validator.validate("0x0000000000000000000000000000000000000000"), .zeroAddress)
         XCTAssertEqual(validator.validate("0000000000000000000000000000000000000000"), .zeroAddress)
-        XCTAssertEqual(validator.validate("00000000000000000000000000000000000000000"), .valueTooLong(41))
+        XCTAssertEqual(validator.validate("00000000000000000000000000000000000000000"), .valueTooLong(41, 40))
         XCTAssertEqual(validator.validate("00000"), .zeroAddress)
-        XCTAssertEqual(validator.validate("123"), .valueTooShort(3))
-        XCTAssertEqual(validator.validate("0x11111222221111122222111112222211111222221"), .valueTooLong(41))
-        XCTAssertEqual(validator.validate("z"), .invalidCharacter(0))
-        XCTAssertEqual(validator.validate("0xz"), .invalidCharacter(2))
+        XCTAssertEqual(validator.validate("123"), .valueTooShort(3, 40))
+        XCTAssertEqual(validator.validate("0x11111222221111122222111112222211111222221"), .valueTooLong(43, 42))
+        XCTAssertEqual(validator.validate("z"), .invalidCharacter("z", 0))
+        XCTAssertEqual(validator.validate("0xz"), .invalidCharacter("z", 2))
         XCTAssertNil(validator.validate("0x1111122222111112222211111222221111abcdef"))
     }
 
