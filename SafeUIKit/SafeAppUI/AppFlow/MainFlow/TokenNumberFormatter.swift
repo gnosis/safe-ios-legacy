@@ -18,14 +18,15 @@ class TokenNumberFormatter {
 
     func string(from number: BigInt) -> String {
         if number == 0 { return "0" }
-        let str = String(number)
+        let sign = number.sign == .minus ? "-" : ""
+        let str = String(number.magnitude)
         var integer = str.count <= decimals ? "0" : String(str.prefix(str.count - decimals))
         addIntegerGrouping(integer: &integer)
         var fraction = str.count <= decimals ? padFromBeginning(str) : String(str.suffix(decimals))
         removeTrailingZeroes(fraction: &fraction)
         addFractionGrouping(fraction: &fraction)
         let token = tokenSymbol != nil ? " \(tokenSymbol!)" : (tokenCode != nil ? " \(tokenCode!)" : "")
-        return integer + (fraction.isEmpty ? "" : decimalSeparator) + fraction + token
+        return sign + integer + (fraction.isEmpty ? "" : decimalSeparator) + fraction + token
     }
 
     private func padFromBeginning(_ str: String) -> String {

@@ -63,4 +63,7 @@ public class MockEncryptionService: EncryptionDomainService {
         return signTransactionPrivateKey_output
     }
 
+    public func address(from string: String) -> Address? {
+        return nil
+    }
 }

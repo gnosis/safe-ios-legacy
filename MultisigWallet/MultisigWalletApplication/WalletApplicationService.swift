@@ -509,6 +509,22 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    public func estimateTransferFee(amount: BigInt, address: String?) -> BigInt? {
+        let placeholderAddress = Address(ownerAddress(of: .thisDevice)!)
+        let formattedAddress = address == nil || address!.isEmpty ? placeholderAddress :
+            DomainRegistry.encryptionService.address(from: address!)
+        guard let recipient = formattedAddress, !recipient.isZero else { return nil }
+        let request = EstimateTransactionRequest(safe: Address(selectedWalletAddress!),
+                                                 to: recipient,
+                                                 value: String(amount),
+                                                 data: nil,
+                                                 operation: .call)
+        guard let response = try? DomainRegistry.transactionRelayService.estimateTransaction(request: request) else {
+            return nil
+        }
+        return (BigInt(response.dataGas) + BigInt(response.safeTxGas)) * BigInt(response.gasPrice)
+    }
+
     private func findAccount(_ token: String) -> Account? {
         guard let wallet = findSelectedWallet(),
             let account = DomainRegistry.accountRepository.find(id: AccountID(token: token), walletID: wallet.id) else {

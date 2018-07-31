@@ -794,6 +794,7 @@
 				0AD998AF20D3FEBD00E6F3CA /* FundsTransferTransactionViewController.swift */,
 				0A442DF8210B58BF00F19F80 /* FundsTransferTransactionViewControllerTests.swift */,
 				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
+				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
 				55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */,
 				55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */,
 				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
@@ -805,7 +806,6 @@
 				0A4EEA6B20D11109005CDAC0 /* Settings */,
 				0AF8D53A20D00FDB001E8423 /* Tokens */,
 				0AF8D53C20D00FF6001E8423 /* Transactions */,
-				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";

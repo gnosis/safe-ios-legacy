@@ -144,6 +144,16 @@ class EncryptionServiceTests: XCTestCase {
         }
     }
 
+    func test_addressFromString() {
+        XCTAssertNil(encryptionService.address(from: ""))
+        XCTAssertNil(encryptionService.address(from: "0x"))
+        XCTAssertNil(encryptionService.address(from: "0x001"))
+        XCTAssertEqual(encryptionService.address(from: "0x0000000000000000000000000000000000000000"),
+                       MultisigWalletDomainModel.Address.zero)
+        XCTAssertEqual(encryptionService.address(from: "0xF0C64662DA29EBF76C7B9BED3D7B02F2EABD52B9"),
+                       MultisigWalletDomainModel.Address("0xf0C64662da29ebF76C7B9Bed3D7B02F2EAbD52B9"))
+    }
+
 }
 
 extension EncryptionServiceTests {

@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import BigInt
 
 public class MockWalletApplicationService: WalletApplicationService {
 
@@ -152,6 +153,12 @@ public class MockWalletApplicationService: WalletApplicationService {
         if shouldThrow {
             throw Error.error
         }
+    }
+
+    public var estimatedFee_output: BigInt?
+
+    public override func estimateTransferFee(amount: BigInt, address: String?) -> BigInt? {
+        return estimatedFee_output
     }
 
 }
