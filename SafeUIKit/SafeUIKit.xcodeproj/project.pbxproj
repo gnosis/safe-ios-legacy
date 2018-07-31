@@ -148,6 +148,7 @@
 		0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D058A20CEB5C3007DED3B /* Colors.swift */; };
 		0AD50905211054FC008507CB /* EthereumAddressValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD50904211054FC008507CB /* EthereumAddressValidator.swift */; };
 		0AD5090921105514008507CB /* EthereumAddressValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5090721105511008507CB /* EthereumAddressValidatorTests.swift */; };
+		0AD5091321106900008507CB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5091221106900008507CB /* Validator.swift */; };
 		0AD8FD2F20CEC50500591B91 /* BlockiesSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; };
 		0AD8FD3020CEC51800591B91 /* BlockiesSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; };
 		0AD8FD3120CEC51E00591B91 /* BlockiesSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -555,6 +556,7 @@
 		0A9D058A20CEB5C3007DED3B /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0AD50904211054FC008507CB /* EthereumAddressValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressValidator.swift; sourceTree = "<group>"; };
 		0AD5090721105511008507CB /* EthereumAddressValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressValidatorTests.swift; sourceTree = "<group>"; };
+		0AD5091221106900008507CB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		0AD9989520D3B43200E6F3CA /* DesignableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableTests.swift; sourceTree = "<group>"; };
 		0AD9989D20D3CD0300E6F3CA /* TransactionParticipantViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionParticipantViewTests.swift; sourceTree = "<group>"; };
 		0AD998A120D3E5BA00E6F3CA /* BlockiesViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockiesViewTests.swift; sourceTree = "<group>"; };
@@ -805,6 +807,7 @@
 				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
 				0A7F74432110511A004F1150 /* TokenAmountValidatorTests.swift */,
 				0A7F744621105137004F1150 /* TokenAmountValidator.swift */,
+				0AD5091221106900008507CB /* Validator.swift */,
 				0AD50904211054FC008507CB /* EthereumAddressValidator.swift */,
 				0AD5090721105511008507CB /* EthereumAddressValidatorTests.swift */,
 				55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */,
@@ -1629,6 +1632,7 @@
 				0A334E48209C8E3800ABC6AE /* AppFlowCoordinator.swift in Sources */,
 				0A334E2C209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift in Sources */,
 				0A334E2B209C8E3800ABC6AE /* NewSafeViewController.swift in Sources */,
+				0AD5091321106900008507CB /* Validator.swift in Sources */,
 				0A4EEA6620D107B7005CDAC0 /* SelectedSafeTableViewCell.swift in Sources */,
 				0A334E37209C8E3800ABC6AE /* PendingSafeViewController.swift in Sources */,
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,

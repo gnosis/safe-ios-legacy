@@ -29,7 +29,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         XCTAssertEqual(controller.valueView.tokenAmount, "0,000000000000001 ETH")
         XCTAssertEqual(controller.valueView.fiatAmount, "")
         XCTAssertEqual(controller.balanceLabel.text, controller.valueView.tokenAmount)
-        XCTAssertEqual(controller.feeLabel.text, "n/a")
+        XCTAssertEqual(controller.feeLabel.text, "--")
     }
 
     func test_whenLoaded_thenEstimatesTransactionFee() {
@@ -55,4 +55,21 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         XCTAssertEqual(controller.feeLabel.text, "-0,0000000000000001 ETH", line: line)
     }
 
+    func test_whenInvalidAmount_thenShowsError() {
+        controller.loadViewIfNeeded()
+        controller.amountTextField.text = ""
+        _ = controller.amountTextField.delegate?.textField?(controller.amountTextField,
+                                                            shouldChangeCharactersIn: NSRange(),
+                                                            replacementString: "")
+        XCTAssertGreaterThan(controller.amountStackView.arrangedSubviews.count, 1)
+    }
+
+    func test_whenInvalidAddress_thenShowsError() {
+        controller.loadViewIfNeeded()
+        controller.recipientTextField.text = ""
+        _ = controller.recipientTextField.delegate?.textField?(controller.recipientTextField,
+                                                               shouldChangeCharactersIn: NSRange(),
+                                                               replacementString: "")
+        XCTAssertGreaterThan(controller.recipientStackView.arrangedSubviews.count, 1)
+    }
 }
