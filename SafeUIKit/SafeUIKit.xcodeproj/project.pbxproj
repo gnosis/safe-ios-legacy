@@ -149,6 +149,10 @@
 		0AD50905211054FC008507CB /* EthereumAddressValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD50904211054FC008507CB /* EthereumAddressValidator.swift */; };
 		0AD5090921105514008507CB /* EthereumAddressValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5090721105511008507CB /* EthereumAddressValidatorTests.swift */; };
 		0AD5091321106900008507CB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5091221106900008507CB /* Validator.swift */; };
+		0AD5091C211091E4008507CB /* FundsTransferTransactionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5091B211091E4008507CB /* FundsTransferTransactionViewModelTests.swift */; };
+		0AD5091F2110AABD008507CB /* FundsTransferTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5091E2110AABD008507CB /* FundsTransferTransactionViewModel.swift */; };
+		0AD509212110AAE3008507CB /* FundsValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD509202110AAE3008507CB /* FundsValidatorTests.swift */; };
+		0AD509232110AAEC008507CB /* FundsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD509222110AAEC008507CB /* FundsValidator.swift */; };
 		0AD8FD2F20CEC50500591B91 /* BlockiesSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; };
 		0AD8FD3020CEC51800591B91 /* BlockiesSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; };
 		0AD8FD3120CEC51E00591B91 /* BlockiesSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -557,6 +561,10 @@
 		0AD50904211054FC008507CB /* EthereumAddressValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressValidator.swift; sourceTree = "<group>"; };
 		0AD5090721105511008507CB /* EthereumAddressValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressValidatorTests.swift; sourceTree = "<group>"; };
 		0AD5091221106900008507CB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		0AD5091B211091E4008507CB /* FundsTransferTransactionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsTransferTransactionViewModelTests.swift; sourceTree = "<group>"; };
+		0AD5091E2110AABD008507CB /* FundsTransferTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsTransferTransactionViewModel.swift; sourceTree = "<group>"; };
+		0AD509202110AAE3008507CB /* FundsValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsValidatorTests.swift; sourceTree = "<group>"; };
+		0AD509222110AAEC008507CB /* FundsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsValidator.swift; sourceTree = "<group>"; };
 		0AD9989520D3B43200E6F3CA /* DesignableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableTests.swift; sourceTree = "<group>"; };
 		0AD9989D20D3CD0300E6F3CA /* TransactionParticipantViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionParticipantViewTests.swift; sourceTree = "<group>"; };
 		0AD998A120D3E5BA00E6F3CA /* BlockiesViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockiesViewTests.swift; sourceTree = "<group>"; };
@@ -801,6 +809,10 @@
 			isa = PBXGroup;
 			children = (
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
+				0AD509222110AAEC008507CB /* FundsValidator.swift */,
+				0AD509202110AAE3008507CB /* FundsValidatorTests.swift */,
+				0AD5091E2110AABD008507CB /* FundsTransferTransactionViewModel.swift */,
+				0AD5091B211091E4008507CB /* FundsTransferTransactionViewModelTests.swift */,
 				0AD998AF20D3FEBD00E6F3CA /* FundsTransferTransactionViewController.swift */,
 				0A442DF8210B58BF00F19F80 /* FundsTransferTransactionViewControllerTests.swift */,
 				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
@@ -1618,6 +1630,7 @@
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
 				0A334E6F209C8FB100ABC6AE /* SafeFoundationExtensions.swift in Sources */,
 				0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */,
+				0AD509232110AAEC008507CB /* FundsValidator.swift in Sources */,
 				0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */,
 				0A8C963120D2C80F007D2410 /* TransactionReviewViewController.swift in Sources */,
 				0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */,
@@ -1649,6 +1662,7 @@
 				0A5D467520AD6D8200AC287E /* UIAlertController+Testable.swift in Sources */,
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
 				0AE950D020D29D9E0099B79D /* DesignableView.swift in Sources */,
+				0AD5091F2110AABD008507CB /* FundsTransferTransactionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1679,7 +1693,9 @@
 				0AF8D55720D01A90001E8423 /* TokensTableViewControllerTests.swift in Sources */,
 				0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */,
 				0AF8D53020CFF68D001E8423 /* SegmentBarTests.swift in Sources */,
+				0AD509212110AAE3008507CB /* FundsValidatorTests.swift in Sources */,
 				0AD998A620D3E6BC00E6F3CA /* TransactionValueViewTests.swift in Sources */,
+				0AD5091C211091E4008507CB /* FundsTransferTransactionViewModelTests.swift in Sources */,
 				0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */,
 				55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */,
 				0A72D439209C92A20082C0A3 /* TestExtensionsTests.swift in Sources */,

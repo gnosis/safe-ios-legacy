@@ -938,9 +938,6 @@
                                     <constraint firstAttribute="height" constant="44" id="Cvf-gu-Mdk"/>
                                 </constraints>
                                 <state key="normal" title="Continue"/>
-                                <connections>
-                                    <segue destination="VEi-bS-7Ix" kind="show" id="6wP-at-8Np"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -993,7 +990,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bS7-8e-b6L">
-                                <rect key="frame" x="16" y="85" width="343" height="144"/>
+                                <rect key="frame" x="16" y="41" width="343" height="144"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qj9-dW-LeK" customClass="TransactionParticipantView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
@@ -1049,7 +1046,7 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IAg-eP-Pqj">
-                                <rect key="frame" x="0.0" y="250" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="206" width="375" height="60"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="lOK-0Y-R8K">
                                         <rect key="frame" x="16" y="5" width="343" height="50"/>
@@ -1117,7 +1114,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="wA7-f1-mqg">
-                                <rect key="frame" x="16" y="331" width="343" height="212.5"/>
+                                <rect key="frame" x="16" y="287" width="343" height="212.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="guT-Hz-mgV">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="34.5"/>

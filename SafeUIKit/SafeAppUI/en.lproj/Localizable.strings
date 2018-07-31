@@ -235,6 +235,9 @@
 /* Invalid character '%@' at position '%d' */
 "transaction.error.invalidAddressCharacterAt" = "Invalid character '%@' at position '%d'";
 
+/* Not enough balance for transaction. */
+"transaction.error.notEnoughFunds" = "Insufficient funds for the amount.";
+
 /* Zero address is invalid for transfer of tokens */
 "transaction.error.zeroAddressInvalidForTransfer" = "Transaction requires non-zero address for token transfer.";
 

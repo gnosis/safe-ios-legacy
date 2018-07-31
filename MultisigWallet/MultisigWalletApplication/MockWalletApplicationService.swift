@@ -86,7 +86,11 @@ public class MockWalletApplicationService: WalletApplicationService {
         _selectedWalletState = .addressKnown
     }
 
-    public override func update(account: String, newBalance: Int) {
+    public override func update(account: String, newBalance: Int?) {
+        guard let newBalance = newBalance else {
+            funds.removeValue(forKey: account)
+            return
+        }
         funds[account] = newBalance
         if let minimum = minimumFunding[account], newBalance >= minimum {
             _selectedWalletState = .accountFunded
