@@ -39,22 +39,6 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         XCTAssertEqual(controller.feeLabel.text, "-0,0000000000000001 ETH")
     }
 
-    func test_whenChangingData_thenEstimateReloads() {
-        controller.loadViewIfNeeded()
-        assertEstimateReloadsForChangesIn(controller.amountTextField)
-        assertEstimateReloadsForChangesIn(controller.recipientTextField)
-    }
-
-    private func assertEstimateReloadsForChangesIn(_ textField: UITextField, line: UInt = #line) {
-        delay()
-        walletService.estimatedFee_output = 100
-        _ = textField.delegate?.textField?(textField,
-                                           shouldChangeCharactersIn: NSRange(),
-                                           replacementString: "1")
-        delay()
-        XCTAssertEqual(controller.feeLabel.text, "-0,0000000000000001 ETH", line: line)
-    }
-
     func test_whenInvalidAmount_thenShowsError() {
         controller.loadViewIfNeeded()
         controller.amountTextField.text = ""
@@ -72,4 +56,11 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
                                                                replacementString: "")
         XCTAssertGreaterThan(controller.recipientStackView.arrangedSubviews.count, 1)
     }
+
+    func test_whenClearsText_thenRemovesError() {
+        test_whenInvalidAmount_thenShowsError()
+        _ = controller.amountTextField.delegate?.textFieldShouldClear?(controller.amountTextField)
+        XCTAssertEqual(controller.amountStackView.arrangedSubviews.count, 1)
+    }
+
 }
