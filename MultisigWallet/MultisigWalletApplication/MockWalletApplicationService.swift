@@ -165,8 +165,16 @@ public class MockWalletApplicationService: WalletApplicationService {
         return estimatedFee_output
     }
 
+    public var createNewDraftTransaction_output: String = "TransactionID"
+
     public override func createNewDraftTransaction() -> String {
-        return "TransactionID"
+        return createNewDraftTransaction_output
+    }
+
+    public var updateTransaction_input: (id: String, amount: BigInt, recipient: String)?
+
+    public override func updateTransaction(_ id: String, amount: BigInt, recipient: String) {
+        updateTransaction_input = (id, amount, recipient)
     }
 
 }

@@ -80,7 +80,6 @@ opt_in_rules:
   - leading_whitespace
   - legacy_cggeometry_functions
   - legacy_constant
-  - legacy_constructor
   - legacy_nsgeometry_functions
   - line_length
   - literal_expression_end_indentation

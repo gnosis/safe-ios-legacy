@@ -3,6 +3,11 @@
 //
 
 import UIKit
+import MultisigWalletApplication
+
+protocol FundsTransferTransactionViewControllerDelegate: class {
+    func didCreateDraftTransaction(id: String)
+}
 
 class FundsTransferTransactionViewController: UIViewController {
 
@@ -17,6 +22,8 @@ class FundsTransferTransactionViewController: UIViewController {
     @IBOutlet weak var recipientStackView: UIStackView!
     @IBOutlet weak var amountStackView: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView!
+
+    weak var delegate: FundsTransferTransactionViewControllerDelegate?
 
     private var keyboardBehavior: KeyboardAvoidingBehavior!
     internal var model: FundsTransferTransactionViewModel!
@@ -68,6 +75,10 @@ class FundsTransferTransactionViewController: UIViewController {
     }
 
     @objc func proceedToSigning(_ sender: Any) {
+        let service = ApplicationServiceRegistry.walletService
+        let transactionID = service.createNewDraftTransaction()
+        service.updateTransaction(transactionID, amount: model.intAmount!, recipient: model.recipient!)
+        delegate?.didCreateDraftTransaction(id: transactionID)
     }
 
     private func clearErrors(in stack: UIStackView) {

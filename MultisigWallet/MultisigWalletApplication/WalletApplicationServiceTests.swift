@@ -511,44 +511,53 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(tx.type, .transfer)
     }
 
-    private func prepareTransactionForSigning(basedOn message: TransactionDecisionMessage)
-        -> (Transaction, Data, Address) {
-        let encryptionService = MockEncryptionService()
-        let eoaRepo = InMemoryExternallyOwnedAccountRepository()
-        DomainRegistry.put(service: eoaRepo, for: ExternallyOwnedAccountRepository.self)
-        DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
-
+    func test_whenUpdatingTransaction_thenUpdatesFields() {
         givenReadyToUseWallet()
-
-        let extensionAddress = Address(service.ownerAddress(of: .browserExtension)!)
-        let signatureData = Data(repeating: 1, count: 32)
-
-        let deviceAddress = Address(service.ownerAddress(of: .thisDevice)!)
-        eoaRepo.save(ExternallyOwnedAccount(address: deviceAddress,
-                                            mnemonic: Mnemonic(words: ["a", "b"]),
-                                            privateKey: PrivateKey(data: Data()),
-                                            publicKey: PublicKey(data: Data())))
-
-        encryptionService.addressFromHashSignature_output = extensionAddress.value
-        encryptionService.dataFromSignature_output = signatureData
-
-        let transaction = Transaction(id: TransactionID(),
-                                      type: .transfer,
-                                      walletID: WalletID(),
-                                      accountID: AccountID(token: "ETH"))
-        transaction.change(hash: message.hash)
-            .change(sender: Address.safeAddress)
-            .change(recipient: Address.testAccount1)
-            .change(amount: TokenAmount.ether(1))
-            .change(fee: TokenAmount.ether(1))
-            .change(status: .signing)
-        transactionRepository.save(transaction)
-        return (transaction, signatureData, extensionAddress)
+        let txID = service.createNewDraftTransaction()
+        service.updateTransaction(txID, amount: 1_000, recipient: Address.testAccount1.value)
+        let tx = transactionRepository.findByID(TransactionID(txID))!
+        XCTAssertEqual(tx.amount, .ether(1_000))
+        XCTAssertEqual(tx.recipient, Address.testAccount1)
     }
 
 }
 
 fileprivate extension WalletApplicationServiceTests {
+
+    private func prepareTransactionForSigning(basedOn message: TransactionDecisionMessage)
+        -> (Transaction, Data, Address) {
+            let encryptionService = MockEncryptionService()
+            let eoaRepo = InMemoryExternallyOwnedAccountRepository()
+            DomainRegistry.put(service: eoaRepo, for: ExternallyOwnedAccountRepository.self)
+            DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
+
+            givenReadyToUseWallet()
+
+            let extensionAddress = Address(service.ownerAddress(of: .browserExtension)!)
+            let signatureData = Data(repeating: 1, count: 32)
+
+            let deviceAddress = Address(service.ownerAddress(of: .thisDevice)!)
+            eoaRepo.save(ExternallyOwnedAccount(address: deviceAddress,
+                                                mnemonic: Mnemonic(words: ["a", "b"]),
+                                                privateKey: PrivateKey(data: Data()),
+                                                publicKey: PublicKey(data: Data())))
+
+            encryptionService.addressFromHashSignature_output = extensionAddress.value
+            encryptionService.dataFromSignature_output = signatureData
+
+            let transaction = Transaction(id: TransactionID(),
+                                          type: .transfer,
+                                          walletID: WalletID(),
+                                          accountID: AccountID(token: "ETH"))
+            transaction.change(hash: message.hash)
+                .change(sender: Address.safeAddress)
+                .change(recipient: Address.testAccount1)
+                .change(amount: TokenAmount.ether(1))
+                .change(fee: TokenAmount.ether(1))
+                .change(status: .signing)
+            transactionRepository.save(transaction)
+            return (transaction, signatureData, extensionAddress)
+    }
 
     func addAllOwners() {
         service.addOwner(address: Address.extensionAddress.value, type: .browserExtension)

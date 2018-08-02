@@ -63,4 +63,50 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         XCTAssertEqual(controller.amountStackView.arrangedSubviews.count, 1)
     }
 
+    func test_whenProceedingToSigning_thenCreatesNewDraftTransaction_andUpdatesIt() {
+        let transactionID = "TxID"
+        let amount = BigInt(10).power(17)
+        let balance = BigInt(10).power(18)
+        let recipient = walletAddress
+        walletService.update(account: "ETH", newBalance: Int(balance))
+        walletService.estimatedFee_output = 100
+        walletService.createNewDraftTransaction_output = transactionID
+        let delegate = MockFundsTransferDelegate()
+
+        controller.delegate = delegate
+        controller.loadViewIfNeeded()
+        controller.amountTextField.type("0,1")
+        controller.recipientTextField.type(recipient)
+        delay()
+        controller.proceedToSigning(controller.continueButton)
+
+        XCTAssertEqual(walletService.updateTransaction_input?.id, transactionID)
+        XCTAssertEqual(delegate.didCreateDraftTransaction_input, transactionID)
+        XCTAssertEqual(walletService.updateTransaction_input?.amount, amount)
+        XCTAssertEqual(walletService.updateTransaction_input?.recipient, recipient)
+    }
+}
+
+extension UITextField {
+
+    func type(_ string: String) {
+        let originalText = text ?? ""
+        let shouldType = delegate?.textField?(self,
+                                              shouldChangeCharactersIn: NSMakeRange(originalText.count, 0),
+                                              replacementString: string) ?? true
+        if shouldType {
+            text = originalText + string
+        }
+    }
+
+}
+
+class MockFundsTransferDelegate: FundsTransferTransactionViewControllerDelegate {
+
+    var didCreateDraftTransaction_input: String?
+
+    func didCreateDraftTransaction(id: String) {
+        didCreateDraftTransaction_input = id
+    }
+
 }
