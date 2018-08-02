@@ -32,4 +32,9 @@ public class TransactionReviewViewController: UIViewController {
         return StoryboardScene.Main.transactionReviewViewController.instantiate()
     }
 
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        progressView.beginAnimating()
+    }
+
 }
