@@ -53,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         #endif
 
         createWindow()
+        UIApplication.shared.applicationIconBadgeNumber = 0
         return true
     }
 
@@ -170,6 +171,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         coordinator.appEntersForeground()
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func resetAll() {
@@ -200,6 +202,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
         LogService.shared.debug("willPresent notification with userInfo: \(userInfo)")
+        UIApplication.shared.applicationIconBadgeNumber = 0
         completionHandler([])
     }
 
