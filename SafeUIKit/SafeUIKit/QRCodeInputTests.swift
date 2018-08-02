@@ -9,7 +9,7 @@ import AVFoundation
 
 class QRCodeInputTests: XCTestCase {
 
-    //swiftlint:disable:next weak_delegate
+    // swiftlint:disable:next weak_delegate
     let delegate = MockQRCodeInputDelegate()
     let barcodeTextField = QRCodeInput()
     let captureDevice = MockAVCaptureDevice.self
