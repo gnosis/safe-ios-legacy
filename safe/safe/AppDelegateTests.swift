@@ -11,9 +11,11 @@ import CommonImplementations
 
 class AppDelegateTests: XCTestCase {
 
+    // swiftlint:disable:next weak_delegate
+    let appDelegate = AppDelegate()
+
     func test_whenAppBecomesActive_thenCallsCoordinator() {
         let coordinator = MockCoordinator()
-        let appDelegate = AppDelegate()
         appDelegate.coordinator = coordinator
         appDelegate.applicationWillEnterForeground(UIApplication.shared)
         XCTAssertTrue(coordinator.didBecomeActive)
@@ -34,6 +36,12 @@ class AppDelegateTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.identityService)
         XCTAssertNotNil(DomainRegistry.gatekeeperRepository)
         XCTAssertNotNil(DomainRegistry.gatekeeperRepository.gatekeeper())
+    }
+
+    func test_whenAppEnteresForeground_thenItInvalidatesAppIconBadge() {
+        UIApplication.shared.applicationIconBadgeNumber = 1
+        appDelegate.applicationWillEnterForeground(UIApplication.shared)
+        XCTAssertEqual(UIApplication.shared.applicationIconBadgeNumber, 0)
     }
 
 }
