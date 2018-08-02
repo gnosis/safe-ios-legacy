@@ -8,6 +8,7 @@ import MultisigWalletApplication
 
 public protocol MainViewControllerDelegate: class {
     func mainViewDidAppear()
+    func createNewTransaction()
 }
 
 public class MainViewController: UIViewController {
@@ -34,9 +35,14 @@ public class MainViewController: UIViewController {
         totalBalanceLabel.accessibilityIdentifier = "main.label.balance"
         stylize(button: receiveButton)
         stylize(button: sendButton)
+        sendButton.addTarget(self, action: #selector(send), for: .touchUpInside)
         if let address = ApplicationServiceRegistry.walletService.selectedWalletAddress {
             ApplicationServiceRegistry.logger.info("Safe address: \(address)")
         }
+    }
+
+    @objc func send(_ sender: Any) {
+        delegate?.createNewTransaction()
     }
 
     public override func viewDidAppear(_ animated: Bool) {

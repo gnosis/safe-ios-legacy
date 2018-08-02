@@ -32,4 +32,20 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
         }
     }
 
+    func createNewTransaction() {
+        let transactionVC = FundsTransferTransactionViewController.create()
+        transactionVC.delegate = self
+        push(transactionVC)
+    }
+
+}
+
+extension MainFlowCoordinator: FundsTransferTransactionViewControllerDelegate {
+
+    func didCreateDraftTransaction(id: String) {
+        let reviewVC = TransactionReviewViewController.create()
+        reviewVC.transactionID = id
+        push(reviewVC)
+    }
+
 }

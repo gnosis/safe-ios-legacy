@@ -114,6 +114,7 @@
 		0A5DC577209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5DC576209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift */; };
 		0A60B5092112F9460066821A /* KeyboardAvoidingBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */; };
 		0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */; };
+		0A60B512211315350066821A /* MainViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B5102113152F0066821A /* MainViewControllerTests.swift */; };
 		0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */; };
 		0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEC205A8D63003619EF /* LocalizedString.swift */; };
 		0A72D42C209C92700082C0A3 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */; };
@@ -526,6 +527,7 @@
 		0A5DC576209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensionsTests.swift; sourceTree = "<group>"; };
 		0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoidingBehavior.swift; sourceTree = "<group>"; };
 		0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoidingBehaviorTests.swift; sourceTree = "<group>"; };
+		0A60B5102113152F0066821A /* MainViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerTests.swift; sourceTree = "<group>"; };
 		0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+SafeUIKit.swift"; sourceTree = "<group>"; };
 		0A638BEC205A8D63003619EF /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		0A72D436209C92A20082C0A3 /* TestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
@@ -813,24 +815,11 @@
 			isa = PBXGroup;
 			children = (
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
-				0AD509222110AAEC008507CB /* FundsValidator.swift */,
-				0AD509202110AAE3008507CB /* FundsValidatorTests.swift */,
-				0AD5091E2110AABD008507CB /* FundsTransferTransactionViewModel.swift */,
-				0AD5091B211091E4008507CB /* FundsTransferTransactionViewModelTests.swift */,
-				0AD998AF20D3FEBD00E6F3CA /* FundsTransferTransactionViewController.swift */,
-				0A442DF8210B58BF00F19F80 /* FundsTransferTransactionViewControllerTests.swift */,
-				0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */,
-				0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */,
-				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
-				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
-				0A7F74432110511A004F1150 /* TokenAmountValidatorTests.swift */,
-				0A7F744621105137004F1150 /* TokenAmountValidator.swift */,
-				0AD5091221106900008507CB /* Validator.swift */,
-				0AD50904211054FC008507CB /* EthereumAddressValidator.swift */,
-				0AD5090721105511008507CB /* EthereumAddressValidatorTests.swift */,
+				0A60B50E211312C00066821A /* NewTransaction */,
 				55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */,
 				55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */,
 				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
+				0A60B5102113152F0066821A /* MainViewControllerTests.swift */,
 				0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */,
 				0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */,
 				0A8C963420D2CFD4007D2410 /* TransactionReview */,
@@ -853,6 +842,28 @@
 				0A4EEA6920D107C9005CDAC0 /* MenuItemTableViewCell.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		0A60B50E211312C00066821A /* NewTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				0AD509222110AAEC008507CB /* FundsValidator.swift */,
+				0AD509202110AAE3008507CB /* FundsValidatorTests.swift */,
+				0AD5091E2110AABD008507CB /* FundsTransferTransactionViewModel.swift */,
+				0AD5091B211091E4008507CB /* FundsTransferTransactionViewModelTests.swift */,
+				0AD998AF20D3FEBD00E6F3CA /* FundsTransferTransactionViewController.swift */,
+				0A442DF8210B58BF00F19F80 /* FundsTransferTransactionViewControllerTests.swift */,
+				0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */,
+				0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */,
+				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
+				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
+				0A7F74432110511A004F1150 /* TokenAmountValidatorTests.swift */,
+				0A7F744621105137004F1150 /* TokenAmountValidator.swift */,
+				0AD5091221106900008507CB /* Validator.swift */,
+				0AD50904211054FC008507CB /* EthereumAddressValidator.swift */,
+				0AD5090721105511008507CB /* EthereumAddressValidatorTests.swift */,
+			);
+			path = NewTransaction;
 			sourceTree = "<group>";
 		};
 		0A7AE8C22052C20A0044D5DD /* TestTools */ = {
@@ -1724,6 +1735,7 @@
 				0A334E5A209C8E6800ABC6AE /* ConfirmMnemonicViewControllerTests.swift in Sources */,
 				0A334E60209C8E6800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
 				0AD998AE20D3EDD200E6F3CA /* TransactionParameterViewTests.swift in Sources */,
+				0A60B512211315350066821A /* MainViewControllerTests.swift in Sources */,
 				0A334DC1209C6D8D00ABC6AE /* SetupSafeFlowCoordinatorTests.swift in Sources */,
 				0A442DF9210B58BF00F19F80 /* FundsTransferTransactionViewControllerTests.swift in Sources */,
 				0A7F74442110511A004F1150 /* TokenAmountValidatorTests.swift in Sources */,

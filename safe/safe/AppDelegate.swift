@@ -147,16 +147,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
             let walletRepo = DBWalletRepository(db: db)
             let portfolioRepo = DBSinglePortfolioRepository(db: db)
             let accountRepo = DBAccountRepository(db: db)
+            let transactionRepo = DBTransactionRepository(db: db)
             MultisigWalletDomainModel.DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
             MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
             MultisigWalletDomainModel.DomainRegistry.put(service: accountRepo, for: AccountRepository.self)
+            MultisigWalletDomainModel.DomainRegistry.put(service: transactionRepo, for: TransactionRepository.self)
 
             if !db.exists {
                 try db.create()
-                portfolioRepo.setUp()
-                walletRepo.setUp()
-                accountRepo.setUp()
             }
+            portfolioRepo.setUp()
+            walletRepo.setUp()
+            accountRepo.setUp()
+            transactionRepo.setUp()
         } catch let e {
             ErrorHandler.showFatalError(log: "Failed to set up multisig database", error: e)
         }

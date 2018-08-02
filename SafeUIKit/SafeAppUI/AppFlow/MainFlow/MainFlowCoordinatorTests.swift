@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import SafeAppUI
+import CommonTestSupport
 
 class MainFlowCoordinatorTests: SafeTestCase {
 
@@ -22,6 +23,23 @@ class MainFlowCoordinatorTests: SafeTestCase {
     func test_whenMainViewDidAppeatCalled_thenAuthWithPushTokenCalled() {
         mainFlowCoordinator.mainViewDidAppear()
         XCTAssertNotNil(walletService.authCalled)
+    }
+
+    func test_whenCreatingNewTransaction_thenOpensFundsTransferVC() {
+        mainFlowCoordinator.setUp()
+        mainFlowCoordinator.createNewTransaction()
+        delay()
+        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
+            is FundsTransferTransactionViewController)
+    }
+
+    func test_whenDraftTransactionCreated_thenOpensTransactionReviewVC() {
+        mainFlowCoordinator.setUp()
+        mainFlowCoordinator.didCreateDraftTransaction(id: "some")
+        delay()
+        let vc = mainFlowCoordinator.navigationController.topViewController as? TransactionReviewViewController
+        XCTAssertNotNil(vc)
+        XCTAssertEqual(vc?.transactionID, "some")
     }
 
 }

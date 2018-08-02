@@ -26,6 +26,8 @@ public class TransactionReviewViewController: UIViewController {
     @IBOutlet weak var actionButtonInfoLabel: UILabel!
     @IBOutlet weak var actionButton: BorderedButton!
 
+    var transactionID: String!
+
     public static func create() -> TransactionReviewViewController {
         return StoryboardScene.Main.transactionReviewViewController.instantiate()
     }
