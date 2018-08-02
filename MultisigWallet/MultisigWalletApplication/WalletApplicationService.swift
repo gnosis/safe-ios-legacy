@@ -509,6 +509,13 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    public func updateTransaction(_ id: String, amount: BigInt, recipient: String) {
+        let transaction = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
+        transaction.change(amount: .ether(amount))
+            .change(recipient: Address(recipient))
+        DomainRegistry.transactionRepository.save(transaction)
+    }
+
     public func estimateTransferFee(amount: BigInt, address: String?) -> BigInt? {
         let placeholderAddress = Address(ownerAddress(of: .thisDevice)!)
         let formattedAddress = address == nil || address!.isEmpty ? placeholderAddress :

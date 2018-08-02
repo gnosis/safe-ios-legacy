@@ -8,7 +8,7 @@ import BigInt
 
 class FundsTransferTransactionViewModel {
 
-    private var intAmount: BigInt?
+    private (set) var intAmount: BigInt?
     private var intBalance: BigInt?
     private var intFee: BigInt?
 
