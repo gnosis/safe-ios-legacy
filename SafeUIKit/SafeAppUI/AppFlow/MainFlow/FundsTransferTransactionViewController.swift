@@ -16,8 +16,13 @@ class FundsTransferTransactionViewController: UIViewController {
     @IBOutlet weak var continueButton: BorderedButton!
     @IBOutlet weak var recipientStackView: UIStackView!
     @IBOutlet weak var amountStackView: UIStackView!
+    @IBOutlet weak var scrollView: UIScrollView!
 
+    private var keyboardBehavior: KeyboardAvoidingBehavior!
     internal var model: FundsTransferTransactionViewModel!
+    private var textFields: [UITextField] {
+        return [amountTextField, recipientTextField]
+    }
 
     static func create() -> FundsTransferTransactionViewController {
         return StoryboardScene.Main.fundsTransferTransactionViewController.instantiate()
@@ -29,7 +34,18 @@ class FundsTransferTransactionViewController: UIViewController {
         amountTextField.delegate = self
         recipientTextField.delegate = self
         continueButton.addTarget(self, action: #selector(proceedToSigning(_:)), for: .touchUpInside)
+        keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
         model.start()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardBehavior.start()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        keyboardBehavior.stop()
     }
 
     func updateFromViewModel() {
@@ -52,7 +68,6 @@ class FundsTransferTransactionViewController: UIViewController {
     }
 
     @objc func proceedToSigning(_ sender: Any) {
-
     }
 
     private func clearErrors(in stack: UIStackView) {
@@ -82,6 +97,10 @@ class FundsTransferTransactionViewController: UIViewController {
 
 extension FundsTransferTransactionViewController: UITextFieldDelegate {
 
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        keyboardBehavior.activeTextField = textField
+    }
+
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
@@ -92,6 +111,20 @@ extension FundsTransferTransactionViewController: UITextFieldDelegate {
 
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         update(textField, newValue: nil)
+        return true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let index = textFields.index(where: { $0 === textField }) {
+            if index < textFields.count - 1 {
+                textFields[index + 1].becomeFirstResponder()
+            } else {
+                textField.resignFirstResponder()
+                if model.canProceedToSigning {
+                    proceedToSigning(textField)
+                }
+            }
+        }
         return true
     }
 
