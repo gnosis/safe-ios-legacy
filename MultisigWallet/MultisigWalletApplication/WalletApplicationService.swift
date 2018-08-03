@@ -322,8 +322,8 @@ public class WalletApplicationService: Assertable {
     private func notifyBrowserExtension(message: String) throws {
         let sender = ownerAddress(of: .thisDevice)!
         let recipient = ownerAddress(of: .browserExtension)!
-        let senderSignature = ethereumService.sign(message: "GNO" + message, by: sender)!
-        let request = SendNotificationRequest(message: message, to: recipient, from: senderSignature)
+        let signedAddress = ethereumService.sign(message: "GNO" + message, by: sender)!
+        let request = SendNotificationRequest(message: message, to: recipient, from: signedAddress)
         try handleNotificationServiceError {
             try notificationService.send(notificationRequest: request)
         }
