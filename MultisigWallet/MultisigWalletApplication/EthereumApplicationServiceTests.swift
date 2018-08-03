@@ -123,4 +123,14 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         XCTAssertNil(signature)
     }
 
+    func test_whenGettingNonce_thenCallsContract() throws {
+        nodeService.eth_call_output = Data(hex: "3")
+        let data = "nonce()".data(using: .ascii)!
+        let result = try applicationService.nonce(contractAddress: Address.safeAddress)
+        XCTAssertEqual(nodeService.eth_call_input?.to, Address.safeAddress)
+        XCTAssertEqual(encryptionService.hash_input, data)
+        XCTAssertEqual(nodeService.eth_call_input?.data, encryptionService.hash_output)
+        XCTAssertEqual(result, 3)
+    }
+
 }

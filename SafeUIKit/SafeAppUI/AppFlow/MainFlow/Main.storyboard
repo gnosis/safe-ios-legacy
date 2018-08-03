@@ -1138,7 +1138,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="wA7-f1-mqg">
-                                <rect key="frame" x="16" y="287" width="343" height="212.5"/>
+                                <rect key="frame" x="16" y="287" width="343" height="180.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="guT-Hz-mgV">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="34.5"/>
@@ -1182,16 +1182,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="LAp-sx-lba">
-                                        <rect key="frame" x="0.0" y="136.5" width="343" height="76"/>
+                                        <rect key="frame" x="0.0" y="136.5" width="343" height="44"/>
                                         <subviews>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wait 0:30s before re-sending request" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RwR-Sb-haY">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="16"/>
+                                                <rect key="frame" x="0.0" y="-423.5" width="343" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" red="0.396078431372549" green="0.4392156862745098" blue="0.49411764705882355" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-Ml-7T5" customClass="BorderedButton" customModule="SafeAppUI" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="32" width="343" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="ycD-6s-Bw0"/>
                                                 </constraints>
@@ -1229,12 +1229,13 @@
                         <outlet property="actionDescription" destination="Gdp-vI-ADS" id="hb9-Z9-vyU"/>
                         <outlet property="actionImageView" destination="wlY-C1-qDJ" id="utx-Mc-kXn"/>
                         <outlet property="actionTitleLabel" destination="wBH-mJ-MlA" id="1fx-m6-fJN"/>
+                        <outlet property="dataInfoStackView" destination="DMG-V6-BPi" id="bbo-be-76E"/>
                         <outlet property="dataTitleLabel" destination="iLy-UN-nEp" id="FbV-U3-Bcf"/>
                         <outlet property="dataValueLabel" destination="3Qd-Tf-Ihx" id="CQr-M1-w4u"/>
                         <outlet property="feeTitleLabel" destination="Ayp-Ud-UH6" id="fTY-jx-CVx"/>
                         <outlet property="feeValueLabel" destination="Go0-hl-Vbn" id="IZF-Cb-3ko"/>
                         <outlet property="progressView" destination="Ir1-xQ-ERN" id="vry-Hx-fsW"/>
-                        <outlet property="recepientView" destination="VRz-Qf-EKe" id="pZY-Pe-aaW"/>
+                        <outlet property="recipientView" destination="VRz-Qf-EKe" id="pZY-Pe-aaW"/>
                         <outlet property="safeBalanceTitleLabel" destination="RAw-SG-XUu" id="tDW-El-flq"/>
                         <outlet property="safeBalanceValueLabel" destination="DYT-wd-29p" id="hKC-q9-TOm"/>
                         <outlet property="senderView" destination="Qj9-dW-LeK" id="uFe-WP-H7y"/>

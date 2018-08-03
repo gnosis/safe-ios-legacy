@@ -20,6 +20,7 @@ class WalletApplicationServiceTests: XCTestCase {
     let notificationService = MockNotificationService()
     let tokensService = MockTokensDomainService()
     let transactionRepository = InMemoryTransactionRepository()
+    let relayService = MockTransactionRelayService(averageDelay: 0, maxDeviation: 0)
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -37,6 +38,8 @@ class WalletApplicationServiceTests: XCTestCase {
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: ethereumService,
                                                                  for: EthereumApplicationService.self)
+        DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
+
         ethereumService.createSafeCreationTransaction_output =
             SafeCreationTransactionData(safe: Address.safeAddress.value, payment: 100)
         ethereumService.prepareToGenerateExternallyOwnedAccount(address: Address.deviceAddress.value,
@@ -520,9 +523,87 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(tx.recipient, Address.testAccount1)
     }
 
+    func test_whenTransactionNotFound_returnsNil() {
+        XCTAssertNil(service.transactionData("some"))
+    }
+
+    func test_whenTransactionDraftCreated_returnsIt() {
+        givenReadyToUseWallet()
+        let txID = service.createNewDraftTransaction()
+        let data = service.transactionData(txID)!
+        XCTAssertEqual(data.sender, service.selectedWalletAddress!)
+        XCTAssertEqual(data.recipient, "")
+        XCTAssertEqual(data.amount, 0)
+        XCTAssertEqual(data.fee, 0)
+        XCTAssertEqual(data.id, txID)
+        XCTAssertEqual(data.token, "ETH")
+    }
+
+    func test_whenTransactionDataIsThere_returnsIt() {
+        givenReadyToUseWallet()
+        let txID = service.createNewDraftTransaction()
+        let tx = transactionRepository.findByID(TransactionID(txID))!
+        tx.change(recipient: Address.testAccount1)
+            .change(amount: .ether(100))
+            .change(fee: .ether(10))
+        transactionRepository.save(tx)
+        let data = service.transactionData(txID)!
+        XCTAssertEqual(data.recipient, Address.testAccount1.value)
+        XCTAssertEqual(data.amount, 100)
+        XCTAssertEqual(data.fee, 10)
+    }
+
+    func test_whenRequestingConfirmation_thenRequestingFeeEstimate() throws {
+        let tx = givenDraftTransaction()
+        _ = try service.requestTransactionConfirmation(tx.id.id)
+        XCTAssertNotNil(relayService.estimateTransaction_input)
+    }
+
+    func test_whenRequestingConfirmation_thenSavesEstimationInTransaction() throws {
+        let tx = givenDraftTransaction()
+        _ = try service.requestTransactionConfirmation(tx.id.id)
+        XCTAssertEqual(tx.fee?.amount,
+                       TokenInt(tx.feeEstimate!.dataGas + tx.feeEstimate!.gas) * tx.feeEstimate!.gasPrice.amount)
+    }
+
+    func test_whenRequestingConfirmation_thenFetchesContractNonce() throws {
+        let tx = givenDraftTransaction()
+        _ = try service.requestTransactionConfirmation(tx.id.id)
+        XCTAssertEqual(tx.nonce, String(ethereumService.nonce_output))
+    }
+
+    func test_whenRequestingConfirmation_thenCalculatesHash() throws {
+        let tx = givenDraftTransaction()
+        _ = try service.requestTransactionConfirmation(tx.id.id)
+        XCTAssertNotNil(tx.operation)
+        XCTAssertEqual(tx.hash, ethereumService.hash_of_tx_output)
+    }
+
+    func test_whenRequestingConfirmation_thenTransactionInSigningStatus() throws {
+        let tx = givenDraftTransaction()
+        _ = try service.requestTransactionConfirmation(tx.id.id)
+        XCTAssertEqual(tx.status, .signing)
+    }
+
+    func test_whenRequestingConfirmation_thenSendsConfirmatioMessage() throws {
+        let tx = givenDraftTransaction()
+        _ = try service.requestTransactionConfirmation(tx.id.id)
+        XCTAssertEqual(notificationService.sentMessages,
+                       ["to:\(service.ownerAddress(of: .browserExtension)!) " +
+                        "msg:\(notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!))"])
+    }
+
 }
 
 fileprivate extension WalletApplicationServiceTests {
+
+    private func givenDraftTransaction() -> Transaction {
+        ethereumService.nonce_output = 3
+        givenReadyToUseWallet()
+        let txID = service.createNewDraftTransaction()
+        service.updateTransaction(txID, amount: 100, recipient: Address.testAccount1.value)
+        return transactionRepository.findByID(TransactionID(txID))!
+    }
 
     private func prepareTransactionForSigning(basedOn message: TransactionDecisionMessage)
         -> (Transaction, Data, Address) {

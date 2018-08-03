@@ -18,6 +18,7 @@ class TokenNumberFormatterTests: XCTestCase {
         assert(number: BigInt(10).power(18) + BigInt(10).power(17), equalTo: "1,1")
         assert(number: BigInt(10).power(18) + 1, equalTo: "1,000000000000000001")
         assert(number: -1, equalTo: "-0,000000000000000001")
+        assert(number: -0, equalTo: "0")
     }
 
     func test_numberFromString() {
@@ -31,6 +32,7 @@ class TokenNumberFormatterTests: XCTestCase {
         assert(string: "0001,1", equalTo: 1_100)
         assert(string: "1 000", equalTo: 1_000_000)
         assert(string: "-1", equalTo: -1_000)
+        assert(string: "-0", equalTo: 0)
     }
 
     private func assert(string: String, equalTo number: BigInt, line: UInt = #line) {

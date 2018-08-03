@@ -208,6 +208,12 @@
 /* Recover Safe menu item */
 "settings.action.recover_safe" = "Recover Safe";
 
+/* Safe balance */
+"transaction.balance.title" = "Safe balance";
+
+/* Data included */
+"transaction.data.title" = "Data included";
+
 /* Address length '%d' is too long for required length '%d' */
 "transaction.error.addressIsTooLong" = "Address is too long: %d instead of %d characters.";
 
@@ -240,6 +246,27 @@
 
 /* Zero address is invalid for transfer of tokens */
 "transaction.error.zeroAddressInvalidForTransfer" = "Transaction requires non-zero address for token transfer.";
+
+/* Maximum transaction fee */
+"transaction.fee.title" = "Maximum transaction fee";
+
+/* Recipient */
+"transaction.recipient.name" = "Recipient";
+
+/* Sender */
+"transaction.sender.name" = "Sender";
+
+/* Re-send confirmation request */
+"transaction.status.waiting.actionTitle" = "Re-send confirmation request";
+
+/* Confirm this transaction with the browser extension */
+"transaction.status.waiting.description" = "Confirm this transaction with the browser extension";
+
+/* wait 0:30s before re-sending request */
+"transaction.status.waiting.info" = "wait 0:30s before re-sending request";
+
+/* AWAITING CONFIRMATION */
+"transaction.status.waiting.title" = "AWAITING CONFIRMATION";
 
 /* Pending transactions group header */
 "transactions.group.pending" = "PENDING";

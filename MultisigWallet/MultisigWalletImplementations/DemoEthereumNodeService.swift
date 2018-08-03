@@ -40,4 +40,8 @@ public class DemoEthereumNodeService: EthereumNodeDomainService {
         }
     }
 
+    public func eth_call(to: Address, data: Data) throws -> Data {
+        return Data()
+    }
+
 }

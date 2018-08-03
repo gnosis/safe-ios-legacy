@@ -71,6 +71,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         walletService.update(account: "ETH", newBalance: Int(balance))
         walletService.estimatedFee_output = 100
         walletService.createNewDraftTransaction_output = transactionID
+
         let delegate = MockFundsTransferDelegate()
 
         controller.delegate = delegate
