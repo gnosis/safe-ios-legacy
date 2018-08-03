@@ -29,6 +29,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        DomainRegistry.put(service: MockEncryptionService(), for: EncryptionDomainService.self)
         DomainRegistry.put(service: transactionRepository, for: TransactionRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)

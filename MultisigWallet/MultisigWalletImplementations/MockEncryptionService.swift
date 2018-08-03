@@ -64,7 +64,7 @@ public class MockEncryptionService: EncryptionDomainService {
     }
 
     public func address(from string: String) -> Address? {
-        return nil
+        return Address(string)
     }
 
     public var hash_output = Data(repeating: 3, count: 32)
