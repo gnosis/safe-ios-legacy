@@ -564,8 +564,6 @@ public class WalletApplicationService: Assertable {
         let fee = TokenInt(estimation.gas + estimation.dataGas) * estimation.gasPrice.amount
         tx.change(feeEstimate: estimation)
             .change(fee: TokenAmount(amount: fee, token: estimation.gasPrice.token))
-        DomainRegistry.transactionRepository.save(tx)
-
         let nonce = try ethereumService.nonce(contractAddress: tx.sender!)
         tx.change(nonce: String(nonce))
             .change(operation: .call)
