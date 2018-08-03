@@ -30,4 +30,12 @@ public class MockEthereumNodeService: EthereumNodeDomainService {
         return eth_getTransactionReceipt_output
     }
 
+    public var eth_call_input: (to: Address, data: Data)?
+    public var eth_call_output = Data()
+
+    public func eth_call(to: Address, data: Data) throws -> Data {
+        eth_call_input = (to, data)
+        return eth_call_output
+    }
+
 }

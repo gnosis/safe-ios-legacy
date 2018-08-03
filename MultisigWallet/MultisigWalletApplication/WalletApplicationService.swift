@@ -316,9 +316,12 @@ public class WalletApplicationService: Assertable {
     }
 
     private func notifySafeCreated() throws {
+        try notifyBrowserExtension(message: notificationService.safeCreatedMessage(at: selectedWalletAddress!))
+    }
+
+    private func notifyBrowserExtension(message: String) throws {
         let sender = ownerAddress(of: .thisDevice)!
         let recipient = ownerAddress(of: .browserExtension)!
-        let message = notificationService.safeCreatedMessage(at: selectedWalletAddress!)
         let senderSignature = ethereumService.sign(message: "GNO" + message, by: sender)!
         let request = SendNotificationRequest(message: message, to: recipient, from: senderSignature)
         try handleNotificationServiceError {
@@ -532,6 +535,18 @@ public class WalletApplicationService: Assertable {
         return (BigInt(response.dataGas) + BigInt(response.safeTxGas)) * BigInt(response.gasPrice)
     }
 
+    public func transactionData(_ id: String) -> TransactionData? {
+        guard let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id)) else {
+            return nil
+        }
+        return TransactionData(id: tx.id.id,
+                               sender: tx.sender?.value ?? "",
+                               recipient: tx.recipient?.value ?? "",
+                               amount: tx.amount?.amount ?? 0,
+                               token: "ETH",
+                               fee: tx.fee?.amount ?? 0)
+    }
+
     public func createNewDraftTransaction() -> String {
         let repository = DomainRegistry.transactionRepository
         let transaction = Transaction(id: repository.nextID(),
@@ -542,6 +557,42 @@ public class WalletApplicationService: Assertable {
         repository.save(transaction)
         return transaction.id.id
     }
+
+    public func requestTransactionConfirmation(_ id: String) throws -> TransactionData {
+        let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
+        let estimation = try estimateTransaction(tx)
+        let fee = TokenInt(estimation.gas + estimation.dataGas) * estimation.gasPrice.amount
+        tx.change(feeEstimate: estimation)
+            .change(fee: TokenAmount(amount: fee, token: estimation.gasPrice.token))
+        DomainRegistry.transactionRepository.save(tx)
+
+        let nonce = try ethereumService.nonce(contractAddress: tx.sender!)
+        tx.change(nonce: String(nonce))
+            .change(operation: .call)
+            .change(hash: ethereumService.hash(of: tx))
+            .change(status: .signing)
+        DomainRegistry.transactionRepository.save(tx)
+
+        try notifyBrowserExtension(message: notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!))
+
+        return transactionData(id)!
+    }
+
+    private func estimateTransaction(_ tx: Transaction) throws -> TransactionFeeEstimate {
+        let request = EstimateTransactionRequest(safe: tx.sender!,
+                                                 to: tx.recipient!,
+                                                 value: String(tx.amount!.amount),
+                                                 data: nil,
+                                                 operation: .call)
+        let estimationResponse = try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
+        let gasToken = Token(code: "ETH", decimals: 18, address: Address(estimationResponse.gasToken))
+        let feeEstimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
+                                                 dataGas: estimationResponse.dataGas,
+                                                 gasPrice: TokenAmount(amount: TokenInt(estimationResponse.gasPrice),
+                                                                       token: gasToken))
+        return feeEstimate
+    }
+
 
     private func findAccount(_ token: String) -> Account? {
         guard let wallet = findSelectedWallet(),

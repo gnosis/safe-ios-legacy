@@ -35,6 +35,7 @@
 		0A442DF5210B1DC200F19F80 /* SubmitTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DEA210B1DC200F19F80 /* SubmitTransactionRequest.swift */; };
 		0A442DF7210B25EE00F19F80 /* MessageCallRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DF6210B25EE00F19F80 /* MessageCallRequest.swift */; };
 		0A4CF10C20F63D8D001A8687 /* SendNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CF10B20F63D8D001A8687 /* SendNotificationRequest.swift */; };
+		0A60B522211343F70066821A /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B521211343F70066821A /* TransactionData.swift */; };
 		0A76BE4A20AEC3EB00D07770 /* WalletApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */; };
 		0A76BE4F20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */; };
 		0A76BE5520AEF31000D07770 /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE5420AEF31000D07770 /* DomainRegistry.swift */; };
@@ -392,6 +393,7 @@
 		0A442DEA210B1DC200F19F80 /* SubmitTransactionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitTransactionRequest.swift; sourceTree = "<group>"; };
 		0A442DF6210B25EE00F19F80 /* MessageCallRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCallRequest.swift; sourceTree = "<group>"; };
 		0A4CF10B20F63D8D001A8687 /* SendNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendNotificationRequest.swift; sourceTree = "<group>"; };
+		0A60B521211343F70066821A /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
 		0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySinglePortfolioRepository.swift; sourceTree = "<group>"; };
 		0A76BE5020AEC54900D07770 /* InMemorySinglePortfolioRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySinglePortfolioRepositoryTests.swift; sourceTree = "<group>"; };
@@ -695,6 +697,7 @@
 				0A9E379820F4A4D10085E8D7 /* EthereumApplicationTestCase.swift */,
 				0A9E379320F4A4D10085E8D7 /* MockEthereumApplicationService.swift */,
 				0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */,
+				0A60B521211343F70066821A /* TransactionData.swift */,
 				0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */,
 				0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */,
 				0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */,
@@ -1240,6 +1243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A60B522211343F70066821A /* TransactionData.swift in Sources */,
 				0A40668820A5E01D009BA7FC /* MockWalletApplicationService.swift in Sources */,
 				0A9E383320F4AC5F0085E8D7 /* MockEthereumApplicationService.swift in Sources */,
 				0A40669320A5E1C2009BA7FC /* ApplicationServiceRegistry.swift in Sources */,

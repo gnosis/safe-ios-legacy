@@ -177,4 +177,23 @@ public class MockWalletApplicationService: WalletApplicationService {
         updateTransaction_input = (id, amount, recipient)
     }
 
+    public var transactionData_output: TransactionData?
+
+    public override func transactionData(_ id: String) -> TransactionData? {
+        return transactionData_output
+    }
+
+    public var requestTransactionConfirmation_input: String?
+    public var requestTransactionConfirmation_output =
+        TransactionData(id: "id", sender: "sender", recipient: "recipient", amount: 0, token: "ETH", fee: 0)
+    public var requestTransactionConfirmation_throws = false
+
+    public override func requestTransactionConfirmation(_ id: String) throws -> TransactionData {
+        requestTransactionConfirmation_input = id
+        if requestTransactionConfirmation_throws {
+            throw Error.error
+        }
+        return requestTransactionConfirmation_output
+    }
+
 }
