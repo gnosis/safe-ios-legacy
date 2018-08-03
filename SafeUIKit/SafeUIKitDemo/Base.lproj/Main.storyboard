@@ -83,7 +83,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TextInput" textLabel="Y7h-R6-dkD" style="IBUITableViewCellStyleDefault" id="WK6-Gd-PeN">
-                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WK6-Gd-PeN" id="WoS-Nw-2EV">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -100,6 +100,26 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="F9S-dv-h3O" kind="show" id="ESz-sY-9bh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TextInput" textLabel="JDh-Eo-cXh" style="IBUITableViewCellStyleDefault" id="2Bh-QP-5Xv" userLabel="ProgressView">
+                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Bh-QP-5Xv" id="S3I-Vr-NNL">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="ProgressView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JDh-Eo-cXh">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="N3U-c6-AuC" kind="show" id="y7l-Rc-gKD"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -212,9 +232,50 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BRE-9b-pCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1340" y="735"/>
+            <point key="canvasLocation" x="1084" y="761"/>
         </scene>
-        <!--Code Input View Controller-->
+        <!--ProgressView-->
+        <scene sceneID="E5s-Ll-ea3">
+            <objects>
+                <viewController id="N3U-c6-AuC" customClass="ProgressViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Dc-Yv-z7A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mik-iB-vQp" customClass="ProgressView" customModule="SafeAppUI">
+                                <rect key="frame" x="16" y="96" width="343" height="21"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="2ke-ts-eBM"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pun-i2-N1a">
+                                <rect key="frame" x="152" y="162" width="71" height="30"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="toggle:" destination="N3U-c6-AuC" eventType="touchUpInside" id="eEB-bp-rKX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Pun-i2-N1a" firstAttribute="top" secondItem="Mik-iB-vQp" secondAttribute="bottom" constant="30" id="0Mi-1a-nL1"/>
+                            <constraint firstItem="Mik-iB-vQp" firstAttribute="top" secondItem="8lb-2f-RDB" secondAttribute="top" constant="32" id="4l4-r3-pm2"/>
+                            <constraint firstItem="8lb-2f-RDB" firstAttribute="trailing" secondItem="Mik-iB-vQp" secondAttribute="trailing" constant="16" id="Utz-cC-5dt"/>
+                            <constraint firstItem="Pun-i2-N1a" firstAttribute="centerX" secondItem="3Dc-Yv-z7A" secondAttribute="centerX" id="aAR-bs-352"/>
+                            <constraint firstItem="Mik-iB-vQp" firstAttribute="leading" secondItem="8lb-2f-RDB" secondAttribute="leading" constant="16" id="eW0-IV-E6E"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8lb-2f-RDB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="ProgressView" id="r8C-yi-jWo"/>
+                    <connections>
+                        <outlet property="progressView" destination="Mik-iB-vQp" id="W01-IK-Yi9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lTh-Tr-8Fg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1933.5999999999999" y="718.29085457271367"/>
+        </scene>
         <!--QRCodeInput-->
         <scene sceneID="bpq-FF-WHS">
             <objects>

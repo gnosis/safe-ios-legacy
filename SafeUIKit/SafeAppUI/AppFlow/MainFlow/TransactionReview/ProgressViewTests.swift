@@ -11,26 +11,16 @@ class ProgressViewTests: XCTestCase {
 
     func test_whenDataChanges_thenViewChanges() {
         view.progress = 0.6; view.isError = false; view.isIndeterminate = false
-        assert(progress: 0.6, error: false, indeterminate: false)
+        XCTAssertEqual(view.state, .progress(0.6))
 
         view.progress = 0.4; view.isError = true; view.isIndeterminate = false
-        assert(progress: 0, error: true, indeterminate: false)
+        XCTAssertEqual(view.state, .error)
 
         view.progress = 0.4; view.isError = true; view.isIndeterminate = true
-        assert(progress: 0, error: true, indeterminate: false)
+        XCTAssertEqual(view.state, .error)
 
         view.progress = 0.5; view.isError = false; view.isIndeterminate = true
-        assert(progress: 0, error: false, indeterminate: true)
-    }
-
-}
-
-extension ProgressViewTests {
-
-    private func assert(progress: Double, error: Bool, indeterminate: Bool, line: UInt = #line) {
-        XCTAssertEqual(view.state.doubleValue, progress, line: line)
-        XCTAssertEqual(view.state.isError, error, line: line)
-        XCTAssertEqual(view.state.isIndeterminate, indeterminate, line: line)
+        XCTAssertEqual(view.state, .indeterminate)
     }
 
 }

@@ -4,36 +4,36 @@
 
 import UIKit
 
-class ProgressView: DesignableView {
+public class ProgressView: DesignableView {
 
     @IBInspectable
-    var progress: Double = 0 {
+    public var progress: Double = 0 {
         didSet {
             updateState()
         }
     }
 
     @IBInspectable
-    var isError: Bool = false {
+    public var isError: Bool = false {
         didSet {
             updateState()
         }
     }
 
     @IBInspectable
-    var isIndeterminate: Bool = false {
+    public var isIndeterminate: Bool = false {
         didSet {
             updateState()
         }
     }
 
-    private(set) var state: ProgressViewState = .progress(0.5) {
+    public private(set) var state: ProgressViewState = .progress(0.5) {
         didSet {
             setNeedsUpdate()
         }
     }
 
-    func updateState() {
+    private func updateState() {
         if isError {
             state = .error
         } else if isIndeterminate {
@@ -43,20 +43,22 @@ class ProgressView: DesignableView {
         }
     }
 
-    var trackColor: UIColor {
+    public private(set) var isAnimating = false
+
+    public var trackColor: UIColor {
         switch state {
         case .error: return ColorName.tomato15.color
         default: return ColorName.paleGrey.color
         }
     }
 
-    var progressIndicatorColor: UIColor = ColorName.azure.color
+    public var progressIndicatorColor: UIColor = ColorName.azure.color
 
-    var indicatorView: UIView!
-    var indicatorLeadingConstraint: NSLayoutConstraint!
-    var indicatorWidthConstraint: NSLayoutConstraint!
+    public var indicatorView: UIView!
+    public var indicatorLeadingConstraint: NSLayoutConstraint!
+    public var indicatorWidthConstraint: NSLayoutConstraint!
 
-    override func commonInit() {
+    public override func commonInit() {
         indicatorView = UIView()
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(indicatorView)
@@ -68,12 +70,12 @@ class ProgressView: DesignableView {
                 indicatorLeadingConstraint,
                 indicatorWidthConstraint,
                 indicatorView.topAnchor.constraint(equalTo: topAnchor),
-                indicatorView.bottomAnchor.constraint(equalTo: bottomAnchor)
+                indicatorView.heightAnchor.constraint(equalTo: heightAnchor)
             ])
         didLoad()
     }
 
-    override func update() {
+    public override func update() {
         backgroundColor = trackColor
         indicatorView.backgroundColor = progressIndicatorColor
 
@@ -94,36 +96,60 @@ class ProgressView: DesignableView {
         }
     }
 
+    public func beginAnimating() {
+        guard state == .indeterminate && !isAnimating else { return }
+        let start: CGFloat = 0
+        let end = self.bounds.width - indicatorWidthConstraint.constant
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.2,
+                           delay: 0,
+                           options: [.beginFromCurrentState, .allowUserInteraction],
+                           animations: {
+                            self.indicatorLeadingConstraint.constant = start
+                            self.layoutIfNeeded()
+            }, completion: nil)
+            UIView.animate(withDuration: 0.6,
+                           delay: 0.2,
+                           options: [.beginFromCurrentState, .allowUserInteraction, .repeat, .autoreverse],
+                           animations: {
+                            self.indicatorLeadingConstraint.constant = end
+                            self.layoutIfNeeded()
+            }, completion: nil)
+        }
+        isAnimating = true
+    }
+
+    public func stopAnimating() {
+        guard state == .indeterminate && isAnimating else { return }
+        let currentPosition = indicatorView.layer.presentation()!.frame.minX
+        indicatorView.layer.removeAllAnimations()
+        indicatorLeadingConstraint.constant = currentPosition
+        layoutIfNeeded()
+        UIView.animate(withDuration: 0.6,
+                       delay: 0,
+                       options: [.beginFromCurrentState, .allowUserInteraction, .curveEaseOut],
+                       animations: {
+                        self.indicatorLeadingConstraint.constant = self.bounds.width * 0.2
+                        self.layoutIfNeeded()
+        }, completion: nil)
+        isAnimating = false
+    }
 }
 
-enum ProgressViewState {
+public enum ProgressViewState: Equatable {
 
     case error
     case indeterminate
     case progress(Double)
 
-    var doubleValue: Double {
-        switch self {
-        case .error: return 0
-        case .indeterminate: return 0
-        case let .progress(value): return value
+    public static func ==(lhs: ProgressViewState, rhs: ProgressViewState) -> Bool {
+        switch (lhs, rhs) {
+        case (.error, .error), (.indeterminate, .indeterminate):
+            return true
+        case let (.progress(lvalue), .progress(rvalue)):
+            return lvalue == rvalue
+        default:
+            return false
         }
     }
-
-    var isError: Bool {
-        switch self {
-        case .error: return true
-        case .indeterminate: return false
-        case .progress: return false
-        }
-    }
-
-    var isIndeterminate: Bool {
-        switch self {
-        case .error: return false
-        case .indeterminate: return true
-        case .progress: return false
-        }
-    }
-
 }
