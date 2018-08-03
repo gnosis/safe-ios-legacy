@@ -577,8 +577,9 @@ public class WalletApplicationService: Assertable {
     }
 
     private func estimateTransaction(_ tx: Transaction) throws -> TransactionFeeEstimate {
+        let recipient = DomainRegistry.encryptionService.address(from: tx.recipient!.value)!
         let request = EstimateTransactionRequest(safe: tx.sender!,
-                                                 to: tx.recipient!,
+                                                 to: recipient,
                                                  value: String(tx.amount!.amount),
                                                  data: nil,
                                                  operation: .call)
