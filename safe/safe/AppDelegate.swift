@@ -199,7 +199,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
 
-    // this is called in foreground
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
@@ -207,7 +206,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let userInfo = notification.request.content.userInfo
         LogService.shared.debug("willPresent notification with userInfo: \(userInfo)")
         UIApplication.shared.applicationIconBadgeNumber = 0
-        
+        coordinator.receive(message: userInfo)
         completionHandler([])
     }
 
@@ -216,6 +215,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         LogService.shared.debug("didReceive notification with userInfo: \(userInfo)")
+        coordinator.receive(message: userInfo)
         completionHandler()
     }
 
@@ -227,10 +227,10 @@ extension AppDelegate: MessagingDelegate {
         LogService.shared.debug("Firebase registration token: \(fcmToken)")
     }
 
-    // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
-    // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
+    // This is called if APNS messaging is disabled and the app is in foreground
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         LogService.shared.debug("Received data message: \(remoteMessage.appData)")
+        coordinator.receive(message: remoteMessage.appData)
     }
 
 }

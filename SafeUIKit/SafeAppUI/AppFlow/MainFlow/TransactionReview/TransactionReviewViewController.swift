@@ -67,7 +67,13 @@ public class TransactionReviewViewController: UIViewController {
         actionButtonInfoLabel.isHidden = true
         actionButton.setTitle(Strings.Status.Waiting.action, for: .normal)
 
+        actionButton.addTarget(self, action: #selector(performAction), for: .touchUpInside)
+
         update()
+        requestSignatures()
+    }
+
+    @objc func performAction(_ sender: Any) {
         requestSignatures()
     }
 

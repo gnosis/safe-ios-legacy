@@ -594,6 +594,13 @@ class WalletApplicationServiceTests: XCTestCase {
                         "msg:\(notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!))"])
     }
 
+    func test_whenTransactionConfirmationRequestedBefore_thenJustSendsNewConfirmation() throws {
+        let tx = givenDraftTransaction()
+        _ = try service.requestTransactionConfirmation(tx.id.id)
+        _ = try service.requestTransactionConfirmation(tx.id.id)
+        XCTAssertEqual(notificationService.sentMessages.count, 2)
+    }
+
 }
 
 fileprivate extension WalletApplicationServiceTests {
