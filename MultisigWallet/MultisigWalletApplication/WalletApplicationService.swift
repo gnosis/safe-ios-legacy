@@ -624,6 +624,15 @@ public class WalletApplicationService: Assertable {
 
     public func submitTransaction(_ id: String) throws -> TransactionData {
         let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
+        signTransaction(tx)
+        let hash = try submitTransaction(tx)
+        tx.set(hash: hash).change(status: .pending)
+        DomainRegistry.transactionRepository.save(tx)
+        try? notifyBrowserExtension(message: notificationService.transactionSentMessage(for: tx))
+        return transactionData(id)!
+    }
+
+    private func signTransaction(_ tx: Transaction) {
         try! assertTrue(tx.isSignedBy(address(of: .browserExtension)!), TransactionError.unsignedTransaction)
         let myAddress = address(of: .thisDevice)!
         if !tx.isSignedBy(myAddress) {
@@ -631,16 +640,15 @@ public class WalletApplicationService: Assertable {
             let signatureData = DomainRegistry.encryptionService.sign(transaction: tx, privateKey: pk)
             tx.add(signature: Signature(data: signatureData, address: myAddress))
         }
+    }
+
+    private func submitTransaction(_ tx: Transaction) throws -> TransactionHash {
         let signatures = tx.signatures.sorted { $0.address.value < $1.address.value }.map {
             DomainRegistry.encryptionService.ethSignature(from: $0)
         }
         let request = SubmitTransactionRequest(transaction: tx, signatures: signatures)
         let response = try DomainRegistry.transactionRelayService.submitTransaction(request: request)
-        tx.set(hash: TransactionHash(response.transactionHash))
-            .change(status: .pending)
-        DomainRegistry.transactionRepository.save(tx)
-        try? notifyBrowserExtension(message: notificationService.transactionSentMessage(for: tx))
-        return transactionData(id)!
+        return TransactionHash(response.transactionHash)
     }
 
     private func findAccount(_ token: String) -> Account? {
