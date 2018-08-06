@@ -637,12 +637,23 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Message Handling
 
-    func handle(message: TransactionConfirmedMessage) {
-        guard let transaction = self.transaction(from: message) else { return }
+    public func receive(message userInfo: [AnyHashable: Any]) -> String? {
+        guard let message = Message.create(userInfo: userInfo) else { return nil }
+        if let confirmation = message as? TransactionConfirmedMessage {
+            return handle(message: confirmation)
+        } else if let rejection = message as? TransactionRejectedMessage {
+            return handle(message: rejection)
+        }
+        return nil
+    }
+
+    func handle(message: TransactionConfirmedMessage) -> String? {
+        guard let transaction = self.transaction(from: message) else { return nil }
         let encryptionService = DomainRegistry.encryptionService
         transaction.add(signature: Signature(data: encryptionService.data(from: message.signature),
                                              address: Address(ownerAddress(of: .browserExtension)!)))
         DomainRegistry.transactionRepository.save(transaction)
+        return transaction.id.id
     }
 
     private func transaction(from message: TransactionDecisionMessage) -> Transaction? {
@@ -653,10 +664,11 @@ public class WalletApplicationService: Assertable {
         return transaction
     }
 
-    func handle(message: TransactionRejectedMessage) {
-        guard let transaction = self.transaction(from: message) else { return }
+    func handle(message: TransactionRejectedMessage) -> String? {
+        guard let transaction = self.transaction(from: message) else { return nil }
         transaction.change(status: .rejected)
         DomainRegistry.transactionRepository.save(transaction)
+        return transaction.id.id
     }
 
 }

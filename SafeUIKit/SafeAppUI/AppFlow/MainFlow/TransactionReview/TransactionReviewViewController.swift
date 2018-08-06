@@ -38,6 +38,7 @@ public class TransactionReviewViewController: UIViewController {
     }
 
     private func update(_ tx: TransactionData) {
+        guard isViewLoaded else { return }
         senderView.address = tx.sender
         recipientView.address = tx.recipient
         transactionValueView.tokenAmount = tokenFormatter.string(from: tx.amount)
@@ -66,9 +67,13 @@ public class TransactionReviewViewController: UIViewController {
         actionButtonInfoLabel.isHidden = true
         actionButton.setTitle(Strings.Status.Waiting.action, for: .normal)
 
+        update()
+        requestSignatures()
+    }
+
+    func update() {
         let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
         update(tx)
-        requestSignatures()
     }
 
     private func requestSignatures() {

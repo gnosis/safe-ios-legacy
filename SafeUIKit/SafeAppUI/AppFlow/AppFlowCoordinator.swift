@@ -67,4 +67,7 @@ open class AppFlowCoordinator: FlowCoordinator {
         }
     }
 
+    open func receive(message: [AnyHashable: Any]) {
+        mainFlowCoordinator.receive(message: message)
+    }
 }

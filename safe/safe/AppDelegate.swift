@@ -199,6 +199,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
 
+    // this is called in foreground
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
@@ -206,6 +207,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let userInfo = notification.request.content.userInfo
         LogService.shared.debug("willPresent notification with userInfo: \(userInfo)")
         UIApplication.shared.applicationIconBadgeNumber = 0
+        
         completionHandler([])
     }
 

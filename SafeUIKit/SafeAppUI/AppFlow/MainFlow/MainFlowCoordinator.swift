@@ -17,6 +17,22 @@ final class MainFlowCoordinator: FlowCoordinator {
         push(mainVC)
     }
 
+    func receive(message: [AnyHashable: Any]) {
+        guard let transactionID = walletService.receive(message: message) else { return }
+        if let vc = navigationController.topViewController as? TransactionReviewViewController {
+            vc.transactionID = transactionID
+            vc.update()
+        } else {
+            openTransactionReviewScreen(transactionID)
+        }
+    }
+
+    private func openTransactionReviewScreen(_ id: String) {
+        let reviewVC = TransactionReviewViewController.create()
+        reviewVC.transactionID = id
+        push(reviewVC)
+    }
+
 }
 
 extension MainFlowCoordinator: MainViewControllerDelegate {
@@ -43,9 +59,7 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
 extension MainFlowCoordinator: FundsTransferTransactionViewControllerDelegate {
 
     func didCreateDraftTransaction(id: String) {
-        let reviewVC = TransactionReviewViewController.create()
-        reviewVC.transactionID = id
-        push(reviewVC)
+        openTransactionReviewScreen(id)
     }
 
 }
