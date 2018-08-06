@@ -50,8 +50,12 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         return SafeGasPriceResponse(safeLow: "0", standard: "0", fast: "0", fastest: "0", lowest: "0")
     }
 
+    public var submitTransaction_input: SubmitTransactionRequest?
+    public var submitTransaction_output = SubmitTransactionRequest.Response(transactionHash: "")
+
     public func submitTransaction(request: SubmitTransactionRequest) throws -> SubmitTransactionRequest.Response {
-        return .init(transactionHash: "")
+        submitTransaction_input = request
+        return submitTransaction_output
     }
 
     public var estimateTransaction_input: EstimateTransactionRequest?

@@ -475,8 +475,12 @@ public class WalletApplicationService: Assertable {
     }
 
     public func ownerAddress(of type: OwnerType) -> String? {
+        return address(of: type)?.value
+    }
+
+    private func address(of type: OwnerType) -> Address? {
         guard let wallet = findSelectedWallet(), let owner = wallet.owner(kind: type.kind) else { return nil }
-        return owner.address.value
+        return owner.address
     }
 
     // MARK: - Accounts
@@ -544,7 +548,29 @@ public class WalletApplicationService: Assertable {
                                recipient: tx.recipient?.value ?? "",
                                amount: tx.amount?.amount ?? 0,
                                token: "ETH",
-                               fee: tx.fee?.amount ?? 0)
+                               fee: tx.fee?.amount ?? 0,
+                               status: status(of: tx))
+    }
+
+    private func status(of tx: Transaction) -> TransactionData.Status {
+        let defaultStatus = TransactionData.Status.waitingForConfirmation
+        switch tx.status {
+        case .signing:
+            return tx.signatures.count == 1
+                && tx.isSignedBy(address(of: .browserExtension)!) ? .readyToSubmit : defaultStatus
+        case .rejected:
+            return .rejected
+        case .pending:
+            return .pending
+        case .failed:
+            return .failed
+        case .success:
+            return .success
+        case .discarded:
+            return .discarded
+        case .draft:
+            return defaultStatus
+        }
     }
 
     public func createNewDraftTransaction() -> String {
@@ -592,6 +618,30 @@ public class WalletApplicationService: Assertable {
         return feeEstimate
     }
 
+    public enum TransactionError: Swift.Error {
+        case unsignedTransaction
+    }
+
+    public func submitTransaction(_ id: String) throws -> TransactionData {
+        let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
+        try! assertTrue(tx.isSignedBy(address(of: .browserExtension)!), TransactionError.unsignedTransaction)
+        let myAddress = address(of: .thisDevice)!
+        if !tx.isSignedBy(myAddress) {
+            let pk = DomainRegistry.externallyOwnedAccountRepository.find(by: myAddress)!.privateKey
+            let signatureData = DomainRegistry.encryptionService.sign(transaction: tx, privateKey: pk)
+            tx.add(signature: Signature(data: signatureData, address: myAddress))
+        }
+        let signatures = tx.signatures.sorted { $0.address.value < $1.address.value }.map {
+            DomainRegistry.encryptionService.ethSignature(from: $0)
+        }
+        let request = SubmitTransactionRequest(transaction: tx, signatures: signatures)
+        let response = try DomainRegistry.transactionRelayService.submitTransaction(request: request)
+        tx.set(hash: TransactionHash(response.transactionHash))
+            .change(status: .pending)
+        DomainRegistry.transactionRepository.save(tx)
+        try? notifyBrowserExtension(message: notificationService.transactionSentMessage(for: tx))
+        return transactionData(id)!
+    }
 
     private func findAccount(_ token: String) -> Account? {
         guard let wallet = findSelectedWallet(),
@@ -648,24 +698,29 @@ public class WalletApplicationService: Assertable {
     }
 
     func handle(message: TransactionConfirmedMessage) -> String? {
-        guard let transaction = self.transaction(from: message) else { return nil }
+        guard let transaction = self.transaction(from: message, hash: message.hash) else { return nil }
+        let extensionAddress = address(of: .browserExtension)!
         let encryptionService = DomainRegistry.encryptionService
         transaction.add(signature: Signature(data: encryptionService.data(from: message.signature),
-                                             address: Address(ownerAddress(of: .browserExtension)!)))
+                                             address: extensionAddress))
         DomainRegistry.transactionRepository.save(transaction)
         return transaction.id.id
     }
 
-    private func transaction(from message: TransactionDecisionMessage) -> Transaction? {
+    private func transaction(from message: TransactionDecisionMessage, hash: Data) -> Transaction? {
         guard let transaction = DomainRegistry.transactionRepository.findByHash(message.hash),
-            let sender = ethereumService.address(hash: message.hash, signature: message.signature),
+            let sender = ethereumService.address(hash: hash, signature: message.signature),
             let extensionAddress = ownerAddress(of: .browserExtension),
-            sender.value == extensionAddress else { return nil }
+            sender.value.lowercased() == extensionAddress.lowercased() else {
+                return nil
+        }
         return transaction
     }
 
     func handle(message: TransactionRejectedMessage) -> String? {
-        guard let transaction = self.transaction(from: message) else { return nil }
+        let payload = "GNO" + "0x" + message.hash.toHexString() + message.type
+        let hash = DomainRegistry.encryptionService.hash(payload.data(using: .utf8)!)
+        guard let transaction = self.transaction(from: message, hash: hash) else { return nil }
         transaction.change(status: .rejected)
         DomainRegistry.transactionRepository.save(transaction)
         return transaction.id.id

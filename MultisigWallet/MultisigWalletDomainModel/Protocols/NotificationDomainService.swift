@@ -15,5 +15,6 @@ public protocol NotificationDomainService {
     func send(notificationRequest: SendNotificationRequest) throws
     func safeCreatedMessage(at address: String) -> String
     func requestConfirmationMessage(for transaction: Transaction, hash: Data) -> String
+    func transactionSentMessage(for transaction: Transaction) -> String
 
 }

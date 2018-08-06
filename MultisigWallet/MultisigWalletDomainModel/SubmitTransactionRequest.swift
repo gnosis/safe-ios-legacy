@@ -17,7 +17,7 @@ public class SubmitTransactionRequest: Encodable {
     public let safeTxGas: String
     public let dataGas: String
     public let gasPrice: String
-    public let gasToken: String
+    public let gasToken: String?
     public let nonce: String
 
     public init(transaction: Transaction, signatures: [EthSignature]) {
@@ -30,7 +30,7 @@ public class SubmitTransactionRequest: Encodable {
         safeTxGas = String(transaction.feeEstimate!.gas)
         dataGas = String(transaction.feeEstimate!.dataGas)
         gasPrice = String(transaction.feeEstimate!.gasPrice.amount)
-        gasToken = transaction.feeEstimate!.gasPrice.token.address.value
+        gasToken = nil
         nonce = transaction.nonce!
     }
 
@@ -45,4 +45,3 @@ public class SubmitTransactionRequest: Encodable {
     }
 
 }
-

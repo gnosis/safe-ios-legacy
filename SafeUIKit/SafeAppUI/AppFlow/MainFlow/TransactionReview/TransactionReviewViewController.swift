@@ -6,6 +6,10 @@ import UIKit
 import MultisigWalletApplication
 import BigInt
 
+protocol TransactionReviewViewControllerDelegate: class {
+    func transactionReviewViewControllerDidFinish()
+}
+
 public class TransactionReviewViewController: UIViewController {
 
     @IBOutlet weak var senderView: TransactionParticipantView!
@@ -30,29 +34,19 @@ public class TransactionReviewViewController: UIViewController {
     @IBOutlet weak var actionButton: BorderedButton!
 
     var transactionID: String!
-
+    weak var delegate: TransactionReviewViewControllerDelegate?
+    
+    private var didNotRequestSignaturesYet = true
     private let tokenFormatter = TokenNumberFormatter()
 
     public static func create() -> TransactionReviewViewController {
         return StoryboardScene.Main.transactionReviewViewController.instantiate()
     }
 
-    private func update(_ tx: TransactionData) {
-        guard isViewLoaded else { return }
-        senderView.address = tx.sender
-        recipientView.address = tx.recipient
-        transactionValueView.tokenAmount = tokenFormatter.string(from: tx.amount)
-        let balance = ApplicationServiceRegistry.walletService.accountBalance(token: "ETH")!
-        safeBalanceValueLabel.text = tokenFormatter.string(from: BigInt(balance))
-        feeValueLabel.text = tokenFormatter.string(from: -tx.fee)
-    }
-
     public override func viewDidLoad() {
         super.viewDidLoad()
         tokenFormatter.decimals = 18
         tokenFormatter.tokenCode = "ETH"
-
-        progressView.beginAnimating()
 
         senderView.name = Strings.senderName
         recipientView.name = Strings.recipientName
@@ -61,31 +55,77 @@ public class TransactionReviewViewController: UIViewController {
         feeTitleLabel.text = Strings.feeTitle
         dataTitleLabel.text = Strings.dataTitle
         dataInfoStackView.isHidden = true
-        actionTitleLabel.text = Strings.Status.Waiting.title
-        actionDescription.text = Strings.Status.Waiting.description
-        actionButtonInfoLabel.text = Strings.Status.Waiting.info
         actionButtonInfoLabel.isHidden = true
-        actionButton.setTitle(Strings.Status.Waiting.action, for: .normal)
-
-        actionButton.addTarget(self, action: #selector(performAction), for: .touchUpInside)
 
         update()
-        requestSignatures()
     }
 
-    @objc func performAction(_ sender: Any) {
-        requestSignatures()
+    private func update(_ tx: TransactionData) {
+        senderView.address = tx.sender
+        recipientView.address = tx.recipient
+        transactionValueView.tokenAmount = tokenFormatter.string(from: tx.amount)
+        let balance = ApplicationServiceRegistry.walletService.accountBalance(token: "ETH")!
+        safeBalanceValueLabel.text = tokenFormatter.string(from: BigInt(balance))
+        feeValueLabel.text = tokenFormatter.string(from: -tx.fee)
+
+        actionButton.removeTarget(nil, action: nil, for: .touchUpInside)
+        progressView.stopAnimating()
+
+        switch tx.status {
+        case .waitingForConfirmation:
+            progressView.beginAnimating()
+            updateActionTitle(with: Strings.Status.waiting)
+            actionButton.addTarget(self, action: #selector(requestSignatures), for: .touchUpInside)
+        case .rejected:
+            progressView.isError = true
+            updateActionTitle(with: Strings.Status.rejected)
+        case .readyToSubmit:
+            progressView.isError = false
+            progressView.isIndeterminate = false
+            progressView.progress = 1.0
+            updateActionTitle(with: Strings.Status.readyToSubmit)
+            actionButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
+        case .pending, .failed, .success, .discarded:
+            delegate?.transactionReviewViewControllerDidFinish()
+        }
+    }
+
+    private func updateActionTitle(with status: Strings.Status) {
+        actionTitleLabel.text = status.title
+        actionDescription.text = status.description
+        if status.action == nil {
+            actionButton.isHidden = true
+        } else {
+            actionButton.setTitle(status.action, for: .normal)
+        }
     }
 
     func update() {
+        guard isViewLoaded else { return }
         let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
         update(tx)
+        if tx.status == .waitingForConfirmation && didNotRequestSignaturesYet {
+            requestSignatures()
+            didNotRequestSignaturesYet = false
+        }
     }
 
-    private func requestSignatures() {
+    @objc private func requestSignatures() {
+        performAction { [unowned self] in
+            try ApplicationServiceRegistry.walletService.requestTransactionConfirmation(self.transactionID)
+        }
+    }
+
+    @objc private func submit() {
+        performAction { [unowned self] in
+            try ApplicationServiceRegistry.walletService.submitTransaction(self.transactionID)
+        }
+    }
+
+    private func performAction(_ action: @escaping () throws -> TransactionData) {
         DispatchQueue.global().async {
             do {
-                let tx = try ApplicationServiceRegistry.walletService.requestTransactionConfirmation(self.transactionID)
+                let tx = try action()
                 DispatchQueue.main.sync {
                     self.update(tx)
                 }
@@ -109,17 +149,31 @@ public class TransactionReviewViewController: UIViewController {
 
         struct Status {
 
-            struct Waiting {
-                static let title = LocalizedString("transaction.status.waiting.title",
-                                                   comment: "AWAITING CONFIRMATION")
-                static let description = LocalizedString("transaction.status.waiting.description",
-                                                         comment: "Confirm this transaction with the browser extension")
-                static let info = LocalizedString("transaction.status.waiting.info",
-                                                  comment: "wait 0:30s before re-sending request")
-                static let action = LocalizedString("transaction.status.waiting.actionTitle",
-                                                    comment: "Re-send confirmation request")
+            var title: String?
+            var description: String?
+            var action: String?
 
-            }
+            static let waiting = Status(title: LocalizedString("transaction.status.waiting.title",
+                                                               comment: "AWAITING CONFIRMATION"),
+                                        description:
+                LocalizedString("transaction.status.waiting.description",
+                                comment: "Confirm this transaction with the browser extension"),
+                                        action: LocalizedString("transaction.status.actionTitle.resend",
+                                                                comment: "Re-send confirmation request"))
+
+            static let rejected = Status(title: LocalizedString("transaction.status.rejected.title",
+                                                                comment: "REJECTED BY EXTENSION"),
+                                         description:
+                LocalizedString("transaction.status.rejected.description",
+                                comment: "Transaction was rejected by the browser extension."),
+                                         action: nil)
+            static let readyToSubmit = Status(title: LocalizedString("transaction.status.readyToSubmit.title",
+                                                                     comment: "CONFIRMED BY EXTENSION"),
+                                              description:
+                LocalizedString("transaction.status.readyToSubmit.description",
+                                comment: "Transaction was confirmed by the browser extension. You can submit it now."),
+                                              action: LocalizedString("transaction.status.actionTitle.submit",
+                                                                      comment: "Submit"))
 
         }
 

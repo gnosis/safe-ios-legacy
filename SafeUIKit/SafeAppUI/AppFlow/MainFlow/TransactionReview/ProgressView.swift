@@ -121,7 +121,7 @@ public class ProgressView: DesignableView {
 
     public func stopAnimating() {
         guard state == .indeterminate && isAnimating else { return }
-        let currentPosition = indicatorView.layer.presentation()!.frame.minX
+        let currentPosition = indicatorView.layer.presentation()?.frame.minX ?? 0
         indicatorView.layer.removeAllAnimations()
         indicatorLeadingConstraint.constant = currentPosition
         layoutIfNeeded()

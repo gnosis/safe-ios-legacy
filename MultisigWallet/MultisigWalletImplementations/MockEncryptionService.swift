@@ -75,4 +75,8 @@ public class MockEncryptionService: EncryptionDomainService {
         return hash_output
     }
 
+    public func ethSignature(from signature: Signature) -> EthSignature {
+        return EthSignature(r: "0", s: "0", v: 27)
+    }
+
 }

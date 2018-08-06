@@ -33,7 +33,8 @@ class TransactionReviewViewControllerTests: XCTestCase {
                                                          recipient: recipient,
                                                          amount: BigInt(10).power(17),
                                                          token: "ETH",
-                                                         fee: BigInt(10).power(16))
+                                                         fee: BigInt(10).power(16),
+                                                         status: .waitingForConfirmation)
 
 
         let vc = TransactionReviewViewController.create()
@@ -60,18 +61,57 @@ class TransactionReviewViewControllerTests: XCTestCase {
                                                          recipient: "some",
                                                          amount: 100,
                                                          token: "ETH",
-                                                         fee: 0)
+                                                         fee: 0,
+                                                         status: .waitingForConfirmation)
         service.requestTransactionConfirmation_output = TransactionData(id: "some",
                                                                         sender: "some",
                                                                         recipient: "some",
                                                                         amount: 100,
                                                                         token: "ETH",
-                                                                        fee: BigInt(10).power(18))
+                                                                        fee: BigInt(10).power(18),
+                                                                        status: .waitingForConfirmation)
 
         vc.loadViewIfNeeded()
         delay()
         XCTAssertEqual(service.requestTransactionConfirmation_input, "some")
         XCTAssertEqual(vc.feeValueLabel.text, "-1 ETH")
+    }
+
+    func test_whenTransactionPending_thenCallsDelegate() {
+        service.createReadyToUseWallet()
+        let delegate = MockTransactionReviewViewControllerDelegate()
+        vc.transactionID = "some"
+        vc.delegate = delegate
+        service.transactionData_output = TransactionData(id: "some",
+                                                         sender: "some",
+                                                         recipient: "some",
+                                                         amount: 100,
+                                                         token: "ETH",
+                                                         fee: 0,
+                                                         status: .readyToSubmit)
+        vc.loadViewIfNeeded()
+        delay()
+        service.submitTransaction_output = TransactionData(id: "some",
+                                                           sender: "some",
+                                                           recipient: "some",
+                                                           amount: 100,
+                                                           token: "ETH",
+                                                           fee: 0,
+                                                           status: .pending)
+        vc.actionButton.sendActions(for: .touchUpInside)
+        delay()
+        XCTAssertEqual(service.submitTransaction_input, "some")
+        XCTAssertTrue(delegate.didCall)
+    }
+
+}
+
+class MockTransactionReviewViewControllerDelegate: TransactionReviewViewControllerDelegate {
+
+    var didCall = false
+
+    func transactionReviewViewControllerDidFinish() {
+        didCall = true
     }
 
 }

@@ -76,6 +76,14 @@ final public class HTTPNotificationService: NotificationDomainService {
         return String(data: try! JSONEncoder().encode(message), encoding: .utf8)!
     }
 
+    public func transactionSentMessage(for transaction: Transaction) -> String {
+        let message = TransactionSentMessage(to: transaction.recipient!,
+                                             from: transaction.sender!,
+                                             hash: transaction.hash!,
+                                             transactionHash: transaction.transactionHash!)
+        return message.stringValue
+    }
+
 }
 
 extension PairingRequest: JSONRequest {

@@ -30,6 +30,7 @@ final class MainFlowCoordinator: FlowCoordinator {
     private func openTransactionReviewScreen(_ id: String) {
         let reviewVC = TransactionReviewViewController.create()
         reviewVC.transactionID = id
+        reviewVC.delegate = self
         push(reviewVC)
     }
 
@@ -49,6 +50,7 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
     }
 
     func createNewTransaction() {
+        saveCheckpoint()
         let transactionVC = FundsTransferTransactionViewController.create()
         transactionVC.delegate = self
         push(transactionVC)
@@ -60,6 +62,14 @@ extension MainFlowCoordinator: FundsTransferTransactionViewControllerDelegate {
 
     func didCreateDraftTransaction(id: String) {
         openTransactionReviewScreen(id)
+    }
+
+}
+
+extension MainFlowCoordinator: TransactionReviewViewControllerDelegate {
+
+    func transactionReviewViewControllerDidFinish() {
+        popToLastCheckpoint()
     }
 
 }

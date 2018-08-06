@@ -185,7 +185,13 @@ public class MockWalletApplicationService: WalletApplicationService {
 
     public var requestTransactionConfirmation_input: String?
     public var requestTransactionConfirmation_output =
-        TransactionData(id: "id", sender: "sender", recipient: "recipient", amount: 0, token: "ETH", fee: 0)
+        TransactionData(id: "id",
+                        sender: "sender",
+                        recipient: "recipient",
+                        amount: 0,
+                        token: "ETH",
+                        fee: 0,
+                        status: .waitingForConfirmation)
     public var requestTransactionConfirmation_throws = false
 
     public override func requestTransactionConfirmation(_ id: String) throws -> TransactionData {
@@ -199,8 +205,17 @@ public class MockWalletApplicationService: WalletApplicationService {
     public var receive_input: [AnyHashable: Any]?
     public var receive_output: String?
 
-    public override func receive(message: [AnyHashable : Any]) -> String? {
+    public override func receive(message: [AnyHashable: Any]) -> String? {
         receive_input = message
         return receive_output
     }
+
+    public var submitTransaction_input: String?
+    public var submitTransaction_output: TransactionData?
+
+    public override func submitTransaction(_ id: String) throws -> TransactionData {
+        submitTransaction_input = id
+        return submitTransaction_output ?? requestTransactionConfirmation_output
+    }
+    
 }

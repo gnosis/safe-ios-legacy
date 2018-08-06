@@ -53,10 +53,11 @@ class MainFlowCoordinatorTests: SafeTestCase {
         mainFlowCoordinator.setUp()
         mainFlowCoordinator.receive(message: ["key": "value"])
         delay()
-        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
-            is TransactionReviewViewController)
-        XCTAssertEqual((mainFlowCoordinator.navigationController.topViewController
-            as? TransactionReviewViewController)?.transactionID, "id")
+        let vc = mainFlowCoordinator.navigationController.topViewController
+            as? TransactionReviewViewController
+        XCTAssertNotNil(vc)
+        XCTAssertEqual(vc?.transactionID, "id")
+        XCTAssertTrue(vc?.delegate === mainFlowCoordinator)
     }
 
     func test_whenAlreadyOpenedReviewTransaction_thenJustUpdatesIt() {
@@ -66,7 +67,8 @@ class MainFlowCoordinatorTests: SafeTestCase {
                                                                recipient: "some",
                                                                amount: 100,
                                                                token: "ETH",
-                                                               fee: 0)
+                                                               fee: 0,
+                                                               status: .waitingForConfirmation)
         mainFlowCoordinator.setUp()
         mainFlowCoordinator.receive(message: ["key": "value"])
         delay()
@@ -77,6 +79,17 @@ class MainFlowCoordinatorTests: SafeTestCase {
         XCTAssertEqual((mainFlowCoordinator.navigationController.topViewController
             as? TransactionReviewViewController)?.transactionID, "id2")
         XCTAssertEqual(mainFlowCoordinator.navigationController.viewControllers.count, controllerCount)
+    }
+
+    func test_whenReviewTransactionFinished_thenPopsBack() {
+        mainFlowCoordinator.setUp()
+        delay()
+        let vc = mainFlowCoordinator.navigationController.topViewController
+        mainFlowCoordinator.createNewTransaction()
+        delay()
+        mainFlowCoordinator.transactionReviewViewControllerDidFinish()
+        delay()
+        XCTAssertTrue(vc === mainFlowCoordinator.navigationController.topViewController)
     }
 
 }
