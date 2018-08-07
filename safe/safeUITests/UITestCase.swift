@@ -88,6 +88,18 @@ class UITestCase: XCTestCase {
         newSafeScreen.next.tap()
     }
 
+    func givenMainScreen() {
+        application.setTestSafe()
+        givenUnlockedAppSetup()
+        handlePushAlertByDenying(with: expectation(description: "Alerts handled"))
+        handleAlerts()
+    }
+
+    func givenSentEthScreen() {
+        givenMainScreen()
+        MainScreen().sendButton.tap()
+    }
+
     @discardableResult
     func confirmPaperWalletWithValidWords(withConfirmButton: Bool = false) -> String {
         let saveMnemonicScreen = SaveMnemonicScreen()
@@ -153,6 +165,17 @@ class UITestCase: XCTestCase {
             }
             XCTAssertExist(alert.buttons[LocalizedString("scanner.camera_access_required.allow")])
             alert.buttons[LocalizedString("cancel")].tap()
+            expectation.fulfill()
+            return true
+        }
+    }
+
+    func handlePushAlertByDenying(with expectation: XCTestExpectation) {
+        cameraPermissionHandler = addUIInterruptionMonitor(withDescription: "Push Notifications") { alert in
+            guard alert.label.localizedCaseInsensitiveContains("would like to send you notifications") else {
+                return false
+            }
+            alert.buttons["Don’t Allow"].tap()
             expectation.fulfill()
             return true
         }

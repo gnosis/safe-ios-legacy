@@ -63,6 +63,10 @@ final class Application {
         arguments.append(params)
     }
 
+    func setTestSafe() {
+        arguments.append(ApplicationArguments.setTestSafe)
+    }
+
     func resetArguments() {
         arguments = []
     }

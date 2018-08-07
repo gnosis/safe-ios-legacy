@@ -211,6 +211,9 @@
 /* Safe balance */
 "transaction.balance.title" = "Safe balance";
 
+/* Continue button title for New Transaction Screen */
+"transaction.continue" = "Continue";
+
 /* Data included */
 "transaction.data.title" = "Data included";
 

@@ -92,6 +92,8 @@
 		55CAA003209AF0FB009AE181 /* SaveMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */; };
 		55CAA005209AF204009AE181 /* ConfirmMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */; };
 		55CAA007209AF267009AE181 /* ConfirmMnemonicScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA006209AF267009AE181 /* ConfirmMnemonicScreen.swift */; };
+		55D20B1F21197ECC00BDD62C /* SendTokenScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D20B1E21197ECC00BDD62C /* SendTokenScreen.swift */; };
+		55D20B3E21199D5C00BDD62C /* NewTransactionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D20B3D21199D5C00BDD62C /* NewTransactionUITests.swift */; };
 		55D3C08220F770170047004F /* TokensService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D3C08120F770170047004F /* TokensService.swift */; };
 		55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D97D7D20496E390004AEDD /* AppDelegateTests.swift */; };
 /* End PBXBuildFile section */
@@ -429,6 +431,8 @@
 		55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicUITests.swift; sourceTree = "<group>"; };
 		55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicUITests.swift; sourceTree = "<group>"; };
 		55CAA006209AF267009AE181 /* ConfirmMnemonicScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicScreen.swift; sourceTree = "<group>"; };
+		55D20B1E21197ECC00BDD62C /* SendTokenScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SendTokenScreen.swift; path = safeUITests/screens/AppFlow/SendTokenScreen.swift; sourceTree = SOURCE_ROOT; };
+		55D20B3D21199D5C00BDD62C /* NewTransactionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewTransactionUITests.swift; path = safeUITests/NewTransaction/NewTransactionUITests.swift; sourceTree = SOURCE_ROOT; };
 		55D3C08120F770170047004F /* TokensService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensService.swift; sourceTree = "<group>"; };
 		55D97D7D20496E390004AEDD /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		55F9817E20F4B4E300E3AF47 /* safe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safe.entitlements; sourceTree = "<group>"; };
@@ -604,6 +608,7 @@
 			children = (
 				0ABA90EA20C56AB5001AEAE4 /* MainScreen.swift */,
 				0AA2783C205FCC1800EBB9D1 /* UnlockScreen.swift */,
+				55D20B1E21197ECC00BDD62C /* SendTokenScreen.swift */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
@@ -680,6 +685,7 @@
 		5540A50D203C3054009C9BE3 /* SafeUITests */ = {
 			isa = PBXGroup;
 			children = (
+				55D20B3121199CB600BDD62C /* NewTransaction */,
 				55A7B2C920ED22A80035EF38 /* IntegrationTests */,
 				0AA27831205FC4E600EBB9D1 /* Application.swift */,
 				0A99436B20A04C6700E36FD7 /* LocalizedString.swift */,
@@ -721,6 +727,14 @@
 				55CAA006209AF267009AE181 /* ConfirmMnemonicScreen.swift */,
 			);
 			path = PaperWalletSetupFlow;
+			sourceTree = "<group>";
+		};
+		55D20B3121199CB600BDD62C /* NewTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				55D20B3D21199D5C00BDD62C /* NewTransactionUITests.swift */,
+			);
+			path = NewTransaction;
 			sourceTree = "<group>";
 		};
 		55D6C2F72045C38D0026BC72 /* TestTools */ = {
@@ -1205,6 +1219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55CAA005209AF204009AE181 /* ConfirmMnemonicUITests.swift in Sources */,
+				55D20B1F21197ECC00BDD62C /* SendTokenScreen.swift in Sources */,
 				0ACA9C47206018C3005EC186 /* SecureTextfieldScreen.swift in Sources */,
 				0AA2783D205FCC1800EBB9D1 /* UnlockScreen.swift in Sources */,
 				0AA27832205FC4E600EBB9D1 /* Application.swift in Sources */,
@@ -1223,6 +1238,7 @@
 				0ACB1A402099EEFA00EBE267 /* UITestCase.swift in Sources */,
 				0AA0C867207B756C0019E282 /* XCTest+Assert.swift in Sources */,
 				0ACA9C41205FFEDF005EC186 /* SetPasswordScreenUITests.swift in Sources */,
+				55D20B3E21199D5C00BDD62C /* NewTransactionUITests.swift in Sources */,
 				0A99436C20A04C6700E36FD7 /* LocalizedString.swift in Sources */,
 				0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */,
 				0AA27837205FC63800EBB9D1 /* SetPasswordScreen.swift in Sources */,

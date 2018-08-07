@@ -6,8 +6,7 @@ import Foundation
 import IdentityAccessApplication
 import MultisigWalletImplementations
 import MultisigWalletDomainModel
-import MultisigWalletDomainModel
-import MultisigWalletImplementations
+import MultisigWalletApplication
 import SafeAppUI
 import BigInt
 
@@ -89,6 +88,10 @@ final class TestSupport {
                         }
                     }
                     DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
+                case ApplicationArguments.setTestSafe:
+                    let walletService = MockWalletApplicationService()
+                    walletService.createReadyToUseWallet()
+                    ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
                 default: break
                 }
             }

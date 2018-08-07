@@ -35,12 +35,17 @@ class FundsTransferTransactionViewController: UIViewController {
         return StoryboardScene.Main.fundsTransferTransactionViewController.instantiate()
     }
 
+    private enum Strings {
+        static let `continue` = LocalizedString("transaction.continue", comment: "Continue button title for New Transaction Screen")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         model = FundsTransferTransactionViewModel(senderName: "Safe", onUpdate: updateFromViewModel)
         amountTextField.delegate = self
         recipientTextField.delegate = self
         continueButton.addTarget(self, action: #selector(proceedToSigning(_:)), for: .touchUpInside)
+        continueButton.setTitle(Strings.continue, for: .normal)
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
         model.start()
     }

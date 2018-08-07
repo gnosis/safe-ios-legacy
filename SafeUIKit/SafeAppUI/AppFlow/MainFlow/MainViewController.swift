@@ -32,13 +32,14 @@ public class MainViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        totalBalanceLabel.accessibilityIdentifier = "main.label.balance"
         stylize(button: receiveButton)
         stylize(button: sendButton)
+        sendButton.setTitle(Strings.send, for: .normal)
         sendButton.addTarget(self, action: #selector(send), for: .touchUpInside)
         if let address = ApplicationServiceRegistry.walletService.selectedWalletAddress {
             ApplicationServiceRegistry.logger.info("Safe address: \(address)")
         }
+        receiveButton.setTitle(Strings.receive, for: .normal)
     }
 
     @objc func send(_ sender: Any) {
