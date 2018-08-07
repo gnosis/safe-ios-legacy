@@ -38,7 +38,7 @@ public class TransactionReviewViewController: UIViewController {
     weak var delegate: TransactionReviewViewControllerDelegate?
 
     private var didNotRequestSignaturesYet = true
-    private let tokenFormatter = TokenNumberFormatter()
+    private let tokenFormatter = TokenNumberFormatter.eth
 
     public static func create() -> TransactionReviewViewController {
         return StoryboardScene.Main.transactionReviewViewController.instantiate()
@@ -46,9 +46,6 @@ public class TransactionReviewViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        tokenFormatter.decimals = 18
-        tokenFormatter.tokenCode = "ETH"
-
         senderView.name = Strings.senderName
         recipientView.name = Strings.recipientName
         transactionValueView.isSingleValue = true

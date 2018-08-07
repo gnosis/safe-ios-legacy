@@ -23,10 +23,10 @@ class TransactionReviewViewControllerTests: XCTestCase {
     func test_whenLoaded_thenTakesDataFromTransaction() {
         let sender = "0x8f51473aa98096145a9cadc421e4d33833e47365"
         let recipient = "0xFe2149773B3513703E79Ad23D05A778A185016ee"
-        let amount = "0,1 ETH"
+        let amount = "0.1 ETH"
         let balance = "1 ETH"
         let id = "some"
-        let fee = "-0,01 ETH"
+        let fee = "-0.01 ETH"
 
         service.update(account: "ETH", newBalance: Int(BigInt(10).power(18)))
 

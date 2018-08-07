@@ -99,7 +99,7 @@ class TransactionViewModelTests: XCTestCase {
 
     func test_whenEnteredAllValidData_thenCanProceedToSigning() {
         walletService.estimatedFee_output = 100
-        model.change(amount: "0,0000000000000000001")
+        model.change(amount: "0.0000000000000000001")
         model.change(recipient: walletAddress)
         delay()
         XCTAssertTrue(model.canProceedToSigning)
