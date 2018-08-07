@@ -7,15 +7,15 @@ import MultisigWalletDomainModel
 
 extension Address {
 
-    static let safeAddress = Address("0xa49ffcf946089e47a5c488262abb2d419c7b1b6b")
-    static let deviceAddress = Address("0xb7528959e991f949e02d27ef133b99cfc85d737e")
-    static let paperWalletAddress = Address("0x89b3942192b788825734228ad3e92860cdbfc9c4")
-    static let extensionAddress = Address("0xeb031a9bb700fb609147d999de038ccfd9415def")
+    static let safeAddress = Address("0xA49FfcF946089E47a5c488262abB2d419c7b1b6B")
+    static let deviceAddress = Address("0xb7528959e991F949e02D27eF133B99cFc85d737e")
+    static let paperWalletAddress = Address("0x89b3942192B788825734228AD3E92860cdBfC9c4")
+    static let extensionAddress = Address("0xeb031a9BB700fB609147d999de038cCFd9415Def")
 
-    static let testAccount1 = Address("0x674647242239941b2d35368e66a4edc39b161da9")
-    static let testAccount2 = Address("0x97e3ba6cc43b2af2241d4cad4520da8266170988")
-    static let testAccount3 = Address("0xa8d5f9d9dfe2c61ce594030526f34331a2130095")
-    static let testAccount4 = Address("0xfe2149773b3513703e79ad23d05a778a185016ee")
+    static let testAccount1 = Address("0x674647242239941b2D35368e66A4EdC39b161Da9")
+    static let testAccount2 = Address("0x97e3bA6cC43b2aF2241d4CAD4520DA8266170988")
+    static let testAccount3 = Address("0xa8D5f9D9dFE2c61ce594030526f34331a2130095")
+    static let testAccount4 = Address("0xFe2149773B3513703E79Ad23D05A778A185016ee")
 
 }
 

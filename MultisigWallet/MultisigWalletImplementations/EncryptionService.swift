@@ -235,10 +235,14 @@ open class EncryptionService: EncryptionDomainService {
 
     public func sign(message: String, privateKey: MultisigWalletDomainModel.PrivateKey) -> EthSignature {
         let signature = rawSignature(of: hash(data(message)), with: privateKey.data)
-        return calculateRSV(from: signature)
+        return ethSignature(from: signature)
     }
 
-    private func calculateRSV(from rawSignature: Data) -> EthSignature {
+    public func ethSignature(from signature: Signature) -> EthSignature {
+        return ethSignature(from: signature.data)
+    }
+
+    private func ethSignature(from rawSignature: Data) -> EthSignature {
         var result = signature(from: signer.calculateRSV(signiture: rawSignature))
         // FIXME: contribute to EthereumKit
         if chainId == .any && result.v > 28 {
@@ -250,7 +254,7 @@ open class EncryptionService: EncryptionDomainService {
     public func sign(transaction: EthRawTransaction,
                      privateKey: MultisigWalletDomainModel.PrivateKey) throws -> SignedRawTransaction {
         let rlpAppendix: EthSignature? = chainId == .any ? nil : EthSignature(r: "0", s: "0", v: chainId.rawValue)
-        let signature = calculateRSV(from: rawSignature(of: hash(transaction, rlpAppendix), with: privateKey.data))
+        let signature = ethSignature(from: rawSignature(of: hash(transaction, rlpAppendix), with: privateKey.data))
         return SignedRawTransaction(rlp(transaction, signature: signature).toHexString().addHexPrefix())
     }
 
@@ -288,6 +292,7 @@ open class EncryptionService: EncryptionDomainService {
         guard let publicKey = self.publicKey(signature, hash) else { return nil }
         return string(address: address(publicKey))
     }
+
 
 }
 

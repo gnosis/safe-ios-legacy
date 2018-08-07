@@ -192,6 +192,10 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         return self
     }
 
+    public func isSignedBy(_ address: Address) -> Bool {
+        return signatures.contains { $0.address == address }
+    }
+
     private func assertSignaturesEditable() {
         try! assertTrue(status == .draft || status == .signing, Error.invalidStatusForSigning(status))
     }

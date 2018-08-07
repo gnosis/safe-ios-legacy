@@ -108,6 +108,11 @@ class AppFlowCoordinatorTests: SafeTestCase {
             is MainViewController)
     }
 
+    func test_whenReceivingRemoteMessage_delegatesToMainFlowCoordinator() {
+        flowCoordinator.receive(message: ["key": "value"])
+        XCTAssertNotNil(walletService.receive_input)
+    }
+
 }
 
 extension AppFlowCoordinatorTests {

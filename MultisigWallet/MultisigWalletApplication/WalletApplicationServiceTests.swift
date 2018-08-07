@@ -21,6 +21,8 @@ class WalletApplicationServiceTests: XCTestCase {
     let tokensService = MockTokensDomainService()
     let transactionRepository = InMemoryTransactionRepository()
     let relayService = MockTransactionRelayService(averageDelay: 0, maxDeviation: 0)
+    let encryptionService = MockEncryptionService()
+    let eoaRepo = InMemoryExternallyOwnedAccountRepository()
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -29,8 +31,10 @@ class WalletApplicationServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        DomainRegistry.put(service: MockEncryptionService(), for: EncryptionDomainService.self)
         DomainRegistry.put(service: transactionRepository, for: TransactionRepository.self)
+        DomainRegistry.put(service: eoaRepo, for: ExternallyOwnedAccountRepository.self)
+        DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
+
         MultisigWalletDomainModel.DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
@@ -388,7 +392,6 @@ class WalletApplicationServiceTests: XCTestCase {
         }
     }
 
-
     // - MARK: Auth with Push Token
 
     func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {
@@ -485,7 +488,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
         let (transaction, signatureData, extensionAddress) = prepareTransactionForSigning(basedOn: message)
 
-        service.handle(message: message)
+        _ = service.handle(message: message)
 
         let signedTransaction = DomainRegistry.transactionRepository.findByID(transaction.id)!
         XCTAssertEqual(signedTransaction.signatures,
@@ -497,7 +500,7 @@ class WalletApplicationServiceTests: XCTestCase {
 
         let (transaction, _, _) = prepareTransactionForSigning(basedOn: message)
 
-        service.handle(message: message)
+        _ = service.handle(message: message)
 
         let rejectedTransaction = DomainRegistry.transactionRepository.findByID(transaction.id)!
         XCTAssertTrue(rejectedTransaction.signatures.isEmpty)
@@ -594,6 +597,106 @@ class WalletApplicationServiceTests: XCTestCase {
                         "msg:\(notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!))"])
     }
 
+    func test_whenTransactionConfirmationRequestedBefore_thenJustSendsNewConfirmation() throws {
+        let tx = givenDraftTransaction()
+        _ = try service.requestTransactionConfirmation(tx.id.id)
+        _ = try service.requestTransactionConfirmation(tx.id.id)
+        XCTAssertEqual(notificationService.sentMessages.count, 2)
+    }
+
+    func test_whenTransactionCreated_thenWaitsForConfirmation() {
+        let tx = givenDraftTransaction()
+        XCTAssertEqual(service.transactionData(tx.id.id)!.status, .waitingForConfirmation)
+    }
+
+    func test_whenTransactionSignedByExtension_thenReadyToSubmit() throws {
+        let message = TransactionConfirmedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
+        _ = prepareTransactionForSigning(basedOn: message)
+        let txID = service.handle(message: message)!
+        XCTAssertEqual(service.transactionData(txID)!.status, .readyToSubmit)
+    }
+
+    func test_whenTransactionRejected_thenStatusIsRejected() throws {
+        let message = TransactionRejectedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
+        _ = prepareTransactionForSigning(basedOn: message)
+        let txID = service.handle(message: message)!
+        XCTAssertEqual(service.transactionData(txID)!.status, .rejected)
+    }
+
+    func test_whenTransactionIsPending_thenStatusIsPending() throws {
+        let tx = Transaction(id: TransactionID(),
+                             type: .transfer,
+                             walletID: WalletID(),
+                             accountID: AccountID(token: "ETH"))
+        tx.change(sender: Address.safeAddress)
+            .change(recipient: Address.testAccount1)
+            .change(amount: TokenAmount.ether(1))
+            .change(fee: TokenAmount.ether(1))
+            .change(status: .signing)
+            .set(hash: TransactionHash.test1)
+            .change(status: .pending)
+        transactionRepository.save(tx)
+        XCTAssertEqual(service.transactionData(tx.id.id)!.status, .pending)
+    }
+
+    func test_whenSubmittingTransaction_thenAddsOwnSignature() throws {
+        let message = TransactionConfirmedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
+        _ = prepareTransactionForSigning(basedOn: message)
+        let txID = service.handle(message: message)!
+        _ = try service.submitTransaction(txID)
+        let tx = transactionRepository.findByID(TransactionID(txID))!
+        XCTAssertTrue(tx.isSignedBy(Address.deviceAddress))
+    }
+
+    func test_whenSubmittingTransaction_thenSendsRequestToRelayService() throws {
+        let deviceSignature = EthSignature(r: "3", s: "4", v: 27)
+        let extensionSignature = EthSignature(r: "1", s: "2", v: 28)
+
+        let message = TransactionConfirmedMessage(hash: Data(), signature: extensionSignature)
+        _ = prepareTransactionForSigning(basedOn: message)
+        let txID = service.handle(message: message)!
+        encryptionService.sign_output = deviceSignature
+
+        _ = try service.submitTransaction(txID)
+
+        let request = relayService.submitTransaction_input
+        XCTAssertEqual(request?.signatures.count, 2)
+    }
+
+    func test_whenSubmittedTransaction_thenUpdatesTransactionHash() throws {
+        let deviceSignature = EthSignature(r: "3", s: "4", v: 27)
+        let extensionSignature = EthSignature(r: "1", s: "2", v: 28)
+
+        let message = TransactionConfirmedMessage(hash: Data(), signature: extensionSignature)
+        _ = prepareTransactionForSigning(basedOn: message)
+        let txID = service.handle(message: message)!
+        encryptionService.sign_output = deviceSignature
+        relayService.submitTransaction_output = .init(transactionHash: TransactionHash.test2.value)
+
+        _ = try service.submitTransaction(txID)
+
+        let tx = transactionRepository.findByID(TransactionID(txID))!
+        XCTAssertEqual(tx.transactionHash, TransactionHash.test2)
+        XCTAssertEqual(tx.status, .pending)
+    }
+
+    func test_whenSubmittedTransaction_thenNotifiesBrowserExtension() throws {
+        let deviceSignature = EthSignature(r: "3", s: "4", v: 27)
+        let extensionSignature = EthSignature(r: "1", s: "2", v: 28)
+
+        let message = TransactionConfirmedMessage(hash: Data(), signature: extensionSignature)
+        _ = prepareTransactionForSigning(basedOn: message)
+        let txID = service.handle(message: message)!
+        encryptionService.sign_output = deviceSignature
+        relayService.submitTransaction_output = .init(transactionHash: TransactionHash.test2.value)
+
+        _ = try service.submitTransaction(txID)
+        let tx = transactionRepository.findByID(TransactionID(txID))!
+
+        XCTAssertEqual(notificationService.sentMessages, [
+            "to:\(service.ownerAddress(of: .browserExtension)!) " +
+            "msg:\(notificationService.transactionSentMessage(for: tx))"])
+    }
 }
 
 fileprivate extension WalletApplicationServiceTests {
@@ -608,10 +711,6 @@ fileprivate extension WalletApplicationServiceTests {
 
     private func prepareTransactionForSigning(basedOn message: TransactionDecisionMessage)
         -> (Transaction, Data, Address) {
-            let encryptionService = MockEncryptionService()
-            let eoaRepo = InMemoryExternallyOwnedAccountRepository()
-            DomainRegistry.put(service: eoaRepo, for: ExternallyOwnedAccountRepository.self)
-            DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
 
             givenReadyToUseWallet()
 
@@ -624,7 +723,7 @@ fileprivate extension WalletApplicationServiceTests {
                                                 privateKey: PrivateKey(data: Data()),
                                                 publicKey: PublicKey(data: Data())))
 
-            encryptionService.addressFromHashSignature_output = extensionAddress.value
+            encryptionService.addressFromHashSignature_output = extensionAddress.value.lowercased()
             encryptionService.dataFromSignature_output = signatureData
 
             let transaction = Transaction(id: TransactionID(),
@@ -636,6 +735,13 @@ fileprivate extension WalletApplicationServiceTests {
                 .change(recipient: Address.testAccount1)
                 .change(amount: TokenAmount.ether(1))
                 .change(fee: TokenAmount.ether(1))
+                .change(operation: .call)
+                .change(feeEstimate:
+                    TransactionFeeEstimate(gas: 10,
+                                           dataGas: 10,
+                                           gasPrice:
+                        TokenAmount(amount: 10, token: Token(code: "ETH", decimals: 18))))
+                .change(nonce: "0")
                 .change(status: .signing)
             transactionRepository.save(transaction)
             return (transaction, signatureData, extensionAddress)
