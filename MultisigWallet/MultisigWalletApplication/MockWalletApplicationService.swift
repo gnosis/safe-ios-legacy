@@ -217,5 +217,5 @@ public class MockWalletApplicationService: WalletApplicationService {
         submitTransaction_input = id
         return submitTransaction_output ?? requestTransactionConfirmation_output
     }
-    
+
 }
