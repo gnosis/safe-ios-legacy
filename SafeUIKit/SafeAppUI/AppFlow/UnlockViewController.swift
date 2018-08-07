@@ -29,11 +29,13 @@ class Authenticator {
 
 final class UnlockViewController: UIViewController {
 
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var countdownLabel: CountdownLabel!
     @IBOutlet weak var headerLabel: H1Label!
     @IBOutlet weak var textInput: TextInput!
     @IBOutlet weak var loginWithBiometryButton: UIButton!
-    private var unlockCompletion: (() -> Void)!
+    var showsCancelButton: Bool = false
+    private var unlockCompletion: ((Bool) -> Void)!
     private var clockService: Clock { return ApplicationServiceRegistry.clock }
     private var authenticationService: AuthenticationApplicationService {
         return ApplicationServiceRegistry.authenticationService
@@ -41,11 +43,12 @@ final class UnlockViewController: UIViewController {
 
     private struct Strings {
         static let header = LocalizedString("app.unlock.header", comment: "Unlock screen header")
+        static let cancel = LocalizedString("app.unlock.cancel", comment: "Cancel")
     }
 
-    static func create(completion: (() -> Void)? = nil) -> UnlockViewController {
+    static func create(completion: ((Bool) -> Void)? = nil) -> UnlockViewController {
         let vc = StoryboardScene.AppFlow.unlockViewController.instantiate()
-        vc.unlockCompletion = completion ?? {}
+        vc.unlockCompletion = completion ?? { _ in }
         return vc
     }
 
@@ -62,6 +65,12 @@ final class UnlockViewController: UIViewController {
         countdownLabel.setup(time: authenticationService.blockedPeriodDuration,
                              clock: clockService)
         countdownLabel.accessibilityIdentifier = "countdown"
+
+        cancelButton.isHidden = !showsCancelButton
+        cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        cancelButton.setTitle(Strings.cancel, for: .normal)
+        cancelButton.accessibilityIdentifier = "cancel"
+
         startCountdownIfNeeded()
     }
 
@@ -100,7 +109,7 @@ final class UnlockViewController: UIViewController {
         do {
             let result = try Authenticator.instance.authenticate(.biometry())
             if result.isSuccess {
-                unlockCompletion()
+                unlockCompletion(true)
             } else {
                 focusPasswordField()
             }
@@ -114,6 +123,10 @@ final class UnlockViewController: UIViewController {
         updateBiometryButtonVisibility()
     }
 
+    @objc func cancel() {
+        unlockCompletion(false)
+    }
+
 }
 
 extension UnlockViewController: TextInputDelegate {
@@ -122,7 +135,7 @@ extension UnlockViewController: TextInputDelegate {
         do {
             let result = try Authenticator.instance.authenticate(.password(textInput.text!))
             if result.isSuccess {
-                self.unlockCompletion()
+                self.unlockCompletion(true)
             } else {
                 self.textInput.shake()
                 self.startCountdownIfNeeded()

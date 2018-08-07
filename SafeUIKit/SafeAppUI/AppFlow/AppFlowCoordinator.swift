@@ -44,7 +44,8 @@ open class AppFlowCoordinator: FlowCoordinator {
         lockedViewController = rootViewController
 
         if authenticationService.isUserRegistered {
-            applicationRootViewController = unlockController { [unowned self] in
+            applicationRootViewController = unlockController { [unowned self] success in
+                guard success else { return }
                 self.applicationRootViewController = self.lockedViewController
             }
         } else {
@@ -52,7 +53,7 @@ open class AppFlowCoordinator: FlowCoordinator {
         }
     }
 
-    func unlockController(completion: @escaping () -> Void) -> UIViewController {
+    func unlockController(completion: @escaping (Bool) -> Void) -> UIViewController {
         return UnlockViewController.create(completion: completion)
     }
 
@@ -62,7 +63,8 @@ open class AppFlowCoordinator: FlowCoordinator {
             return
         }
         lockedViewController = rootVC
-        applicationRootViewController = unlockController { [unowned self] in
+        applicationRootViewController = unlockController { [unowned self] success in
+            guard success else { return }
             self.applicationRootViewController = self.lockedViewController
         }
     }

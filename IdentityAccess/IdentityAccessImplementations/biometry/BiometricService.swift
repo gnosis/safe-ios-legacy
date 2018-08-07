@@ -26,7 +26,8 @@ public enum BiometricServiceError: LoggableError {
 
 public final class BiometricService: BiometricAuthenticationService {
 
-    private let context: LAContext
+    private let contextProvider: () -> LAContext
+    private var context: LAContext
 
     private struct Strings {
         static let activate = LocalizedString("biometry.activation.reason",
@@ -35,11 +36,16 @@ public final class BiometricService: BiometricAuthenticationService {
                                             comment: "Description of unlock with Touch ID.")
     }
 
-    public init(localAuthenticationContext: LAContext = LAContext()) {
-        context = localAuthenticationContext
+    // autoclosure here means that LAContext will be fetched every time from the closure.
+    // By default, it will be created anew when contextProvider() is called.
+    // We have to re-create LAContext so that previous biometry authentication is not reused by the system.
+    public init(localAuthenticationContext: @escaping @autoclosure () -> LAContext = LAContext()) {
+        self.contextProvider = localAuthenticationContext
+        context = contextProvider()
     }
 
     public var isAuthenticationAvailable: Bool {
+        context = contextProvider()
         return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
     }
 

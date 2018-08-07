@@ -4,11 +4,16 @@
 
 import UIKit
 import MultisigWalletApplication
+import IdentityAccessApplication
 
 final class MainFlowCoordinator: FlowCoordinator {
 
     private var walletService: WalletApplicationService {
         return MultisigWalletApplication.ApplicationServiceRegistry.walletService
+    }
+
+    private var authenticationService: AuthenticationApplicationService {
+        return IdentityAccessApplication.ApplicationServiceRegistry.authenticationService
     }
 
     override func setUp() {
@@ -44,7 +49,7 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
             do {
                 try self.walletService.auth()
             } catch let e {
-                ApplicationServiceRegistry.logger.error("Error in auth(): \(e)")
+                MultisigWalletApplication.ApplicationServiceRegistry.logger.error("Error in auth(): \(e)")
             }
         }
     }
@@ -70,6 +75,19 @@ extension MainFlowCoordinator: TransactionReviewViewControllerDelegate {
 
     func transactionReviewViewControllerDidFinish() {
         popToLastCheckpoint()
+    }
+
+    func transactionReviewViewControllerWantsToSubmitTransaction(completionHandler: @escaping (Bool) -> Void) {
+        if authenticationService.isUserAuthenticated {
+            completionHandler(true)
+        } else {
+            let unlockVC = UnlockViewController.create { [unowned self] success in
+                self.dismissModal()
+                completionHandler(success)
+            }
+            unlockVC.showsCancelButton = true
+            presentModally(unlockVC)
+        }
     }
 
 }

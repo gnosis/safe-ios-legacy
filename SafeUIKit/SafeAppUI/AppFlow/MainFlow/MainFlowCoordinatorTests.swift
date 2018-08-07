@@ -92,4 +92,34 @@ class MainFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(vc === mainFlowCoordinator.navigationController.topViewController)
     }
 
+    func test_whenUserIsAuthenticated_thenTransactionCanSubmit() throws {
+        try authenticationService.registerUser(password: "pass")
+        authenticationService.allowAuthentication()
+        _ = try authenticationService.authenticateUser(.password("pass"))
+        let exp = expectation(description: "submit")
+        mainFlowCoordinator.transactionReviewViewControllerWantsToSubmitTransaction { success in
+            XCTAssertTrue(success)
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 0.5)
+    }
+
+    func test_whenUserNotAuthenticated_thenPresentsUnlockVC() throws {
+        mainFlowCoordinator.setUp()
+        createWindow(mainFlowCoordinator.rootViewController)
+        let exp = expectation(description: "submit")
+        try authenticationService.registerUser(password: "111111A")
+        authenticationService.allowAuthentication()
+        mainFlowCoordinator.transactionReviewViewControllerWantsToSubmitTransaction { success in
+            XCTAssertTrue(success)
+            exp.fulfill()
+        }
+        delay()
+        let vc = mainFlowCoordinator.navigationController.topViewController?.presentedViewController
+            as! UnlockViewController
+        vc.textInput.text = "111111A"
+        _ = vc.textInput.textFieldShouldReturn(UITextField())
+        waitForExpectations(timeout: 1)
+    }
+
 }

@@ -12,6 +12,8 @@ class TransactionReviewViewControllerTests: XCTestCase {
 
     let service = MockWalletApplicationService()
     let vc = TransactionReviewViewController.create()
+    // swiftlint:disable weak_delegate
+    let delegate = MockTransactionReviewViewControllerDelegate()
 
     override func setUp() {
         super.setUp()
@@ -56,20 +58,8 @@ class TransactionReviewViewControllerTests: XCTestCase {
     func test_whenLoaded_thenLocksTransaction() {
         service.createReadyToUseWallet()
         vc.transactionID = "some"
-        service.transactionData_output = TransactionData(id: "some",
-                                                         sender: "some",
-                                                         recipient: "some",
-                                                         amount: 100,
-                                                         token: "ETH",
-                                                         fee: 0,
-                                                         status: .waitingForConfirmation)
-        service.requestTransactionConfirmation_output = TransactionData(id: "some",
-                                                                        sender: "some",
-                                                                        recipient: "some",
-                                                                        amount: 100,
-                                                                        token: "ETH",
-                                                                        fee: BigInt(10).power(18),
-                                                                        status: .waitingForConfirmation)
+        service.transactionData_output = TransactionData.create(status: .waitingForConfirmation)
+        service.requestTransactionConfirmation_output = TransactionData.create(status: .waitingForConfirmation)
 
         vc.loadViewIfNeeded()
         delay()
@@ -79,29 +69,52 @@ class TransactionReviewViewControllerTests: XCTestCase {
 
     func test_whenTransactionPending_thenCallsDelegate() {
         service.createReadyToUseWallet()
-        let delegate = MockTransactionReviewViewControllerDelegate()
         vc.transactionID = "some"
         vc.delegate = delegate
-        service.transactionData_output = TransactionData(id: "some",
-                                                         sender: "some",
-                                                         recipient: "some",
-                                                         amount: 100,
-                                                         token: "ETH",
-                                                         fee: 0,
-                                                         status: .readyToSubmit)
+        service.transactionData_output = TransactionData.create(status: .readyToSubmit)
         vc.loadViewIfNeeded()
         delay()
-        service.submitTransaction_output = TransactionData(id: "some",
-                                                           sender: "some",
-                                                           recipient: "some",
-                                                           amount: 100,
-                                                           token: "ETH",
-                                                           fee: 0,
-                                                           status: .pending)
+        service.submitTransaction_output = TransactionData.create(status: .pending)
         vc.actionButton.sendActions(for: .touchUpInside)
         delay()
         XCTAssertEqual(service.submitTransaction_input, "some")
         XCTAssertTrue(delegate.didCall)
+    }
+
+    func test_whenDelegateForbidsSubmission_thenDoesNotSubmit() {
+        service.createReadyToUseWallet()
+        vc.delegate = delegate
+        vc.transactionID = "some"
+        service.transactionData_output = TransactionData.create(status: .readyToSubmit)
+        delegate.shouldSubmit = false
+        vc.loadViewIfNeeded()
+        vc.actionButton.sendActions(for: .touchUpInside)
+        delay()
+        XCTAssertNil(service.submitTransaction_input)
+    }
+
+    func test_whenNoDelegate_thenSubmitsRightAway() {
+        service.createReadyToUseWallet()
+        vc.transactionID = "some"
+        service.transactionData_output = TransactionData.create(status: .readyToSubmit)
+        vc.loadViewIfNeeded()
+        vc.actionButton.sendActions(for: .touchUpInside)
+        delay()
+        XCTAssertNotNil(service.submitTransaction_input)
+    }
+
+}
+
+extension TransactionData {
+
+    static func create(status: Status) -> TransactionData {
+        return TransactionData(id: "some",
+                               sender: "some",
+                               recipient: "some",
+                               amount: 100,
+                               token: "ETH",
+                               fee: BigInt(10).power(18),
+                               status: status)
     }
 
 }
@@ -109,9 +122,14 @@ class TransactionReviewViewControllerTests: XCTestCase {
 class MockTransactionReviewViewControllerDelegate: TransactionReviewViewControllerDelegate {
 
     var didCall = false
+    var shouldSubmit = true
 
     func transactionReviewViewControllerDidFinish() {
         didCall = true
+    }
+
+    func transactionReviewViewControllerWantsToSubmitTransaction(completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(shouldSubmit)
     }
 
 }

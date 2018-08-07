@@ -7,6 +7,7 @@ import MultisigWalletApplication
 import BigInt
 
 protocol TransactionReviewViewControllerDelegate: class {
+    func transactionReviewViewControllerWantsToSubmitTransaction(completionHandler: @escaping (Bool) -> Void)
     func transactionReviewViewControllerDidFinish()
 }
 
@@ -35,7 +36,7 @@ public class TransactionReviewViewController: UIViewController {
 
     var transactionID: String!
     weak var delegate: TransactionReviewViewControllerDelegate?
-    
+
     private var didNotRequestSignaturesYet = true
     private let tokenFormatter = TokenNumberFormatter()
 
@@ -117,22 +118,37 @@ public class TransactionReviewViewController: UIViewController {
     }
 
     @objc private func submit() {
+        if let delegate = delegate {
+            delegate.transactionReviewViewControllerWantsToSubmitTransaction { [weak self] shouldSubmit in
+                if shouldSubmit {
+                    self?.doSubmit()
+                }
+            }
+        } else {
+            doSubmit()
+        }
+    }
+
+    private func doSubmit() {
         performAction { [unowned self] in
             try ApplicationServiceRegistry.walletService.submitTransaction(self.transactionID)
         }
     }
 
     private func performAction(_ action: @escaping () throws -> TransactionData) {
+        actionButton.isEnabled = false
         DispatchQueue.global().async {
             do {
                 let tx = try action()
                 DispatchQueue.main.sync {
+                    self.actionButton.isEnabled = true
                     self.update(tx)
                 }
             } catch let error {
                 DispatchQueue.main.sync {
+                    self.actionButton.isEnabled = true
                     ErrorHandler.showError(message: error.localizedDescription,
-                                           log: "request confirmation failed: \(error)",
+                                           log: "operation failed: \(error)",
                                            error: nil)
                 }
             }

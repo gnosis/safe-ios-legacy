@@ -17,7 +17,7 @@ class BiometricAuthenticationServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
-        biometricService = BiometricService(localAuthenticationContext: context)
+        biometricService = BiometricService(localAuthenticationContext: self.context)
     }
 
     func test_activate_whenBiometricIsNotAvailable_thenIsNotActivated() throws {
