@@ -122,6 +122,13 @@ class UnlockViewControllerTests: SafeTestCase {
         XCTAssertTrue(vc.textInput.isShaking)
     }
 
+    func test_whenShowsCancelButtonTrue_thenHasCancelButton() {
+        vc = UnlockViewController.create()
+        vc.showsCancelButton = true
+        vc.loadViewIfNeeded()
+        XCTAssertFalse(vc.cancelButton.isHidden)
+    }
+
 }
 
 extension UnlockViewControllerTests {
@@ -133,8 +140,8 @@ extension UnlockViewControllerTests {
 
     private func createVC(blockPeriod: TimeInterval = 15) throws {
         try authenticationService.configureBlockDuration(blockPeriod)
-        vc = UnlockViewController.create { [unowned self] in
-            self.didLogIn = true
+        vc = UnlockViewController.create { [unowned self] success in
+            self.didLogIn = success
         }
         UIApplication.shared.keyWindow?.rootViewController = vc
     }

@@ -1,3 +1,6 @@
+/* Cancel */
+"app.unlock.cancel" = "Cancel";
+
 /* Unlock screen header */
 "app.unlock.header" = "Unlock with your master password";
 
