@@ -54,8 +54,25 @@ public class TransactionReviewViewController: UIViewController {
         dataTitleLabel.text = Strings.dataTitle
         dataInfoStackView.isHidden = true
         actionButtonInfoLabel.isHidden = true
-
         update()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(resumeAnimation),
+                                               name: NSNotification.Name.UIApplicationWillEnterForeground,
+                                               object: nil)
+    }
+
+    @objc private func resumeAnimation() {
+        progressView.resumeAnimation()
+    }
+
+    func update() {
+        guard isViewLoaded else { return }
+        let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
+        update(tx)
+        if tx.status == .waitingForConfirmation && didNotRequestSignaturesYet {
+            requestSignatures()
+            didNotRequestSignaturesYet = false
+        }
     }
 
     private func update(_ tx: TransactionData) {
@@ -98,15 +115,6 @@ public class TransactionReviewViewController: UIViewController {
         }
     }
 
-    func update() {
-        guard isViewLoaded else { return }
-        let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
-        update(tx)
-        if tx.status == .waitingForConfirmation && didNotRequestSignaturesYet {
-            requestSignatures()
-            didNotRequestSignaturesYet = false
-        }
-    }
 
     @objc private func requestSignatures() {
         performAction { [unowned self] in
