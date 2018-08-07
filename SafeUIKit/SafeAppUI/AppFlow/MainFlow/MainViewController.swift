@@ -5,6 +5,7 @@
 import UIKit
 import Common
 import MultisigWalletApplication
+import BigInt
 
 public protocol MainViewControllerDelegate: class {
     func mainViewDidAppear()
@@ -18,6 +19,7 @@ public class MainViewController: UIViewController {
     @IBOutlet weak var receiveButton: UIButton!
 
     private weak var delegate: MainViewControllerDelegate?
+    private let tokenFormatter = TokenNumberFormatter()
 
     private enum Strings {
         static let send = LocalizedString("main.send", comment: "Send button title")
@@ -32,12 +34,17 @@ public class MainViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        tokenFormatter.decimals = 18
+        tokenFormatter.tokenCode = "ETH"
         totalBalanceLabel.accessibilityIdentifier = "main.label.balance"
         stylize(button: receiveButton)
         stylize(button: sendButton)
         sendButton.addTarget(self, action: #selector(send), for: .touchUpInside)
         if let address = ApplicationServiceRegistry.walletService.selectedWalletAddress {
             ApplicationServiceRegistry.logger.info("Safe address: \(address)")
+        }
+        if let balance = ApplicationServiceRegistry.walletService.accountBalance(token: "ETH") {
+            totalBalanceLabel.text = tokenFormatter.string(from: BigInt(balance))
         }
     }
 

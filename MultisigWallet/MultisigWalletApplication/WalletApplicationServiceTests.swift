@@ -697,6 +697,7 @@ class WalletApplicationServiceTests: XCTestCase {
             "to:\(service.ownerAddress(of: .browserExtension)!) " +
             "msg:\(notificationService.transactionSentMessage(for: tx))"])
     }
+
 }
 
 fileprivate extension WalletApplicationServiceTests {
