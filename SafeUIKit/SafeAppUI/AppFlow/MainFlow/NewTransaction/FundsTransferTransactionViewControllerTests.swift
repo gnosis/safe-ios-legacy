@@ -93,6 +93,7 @@ extension UITextField {
     func type(_ string: String) {
         let originalText = text ?? ""
         let shouldType = delegate?.textField?(self,
+                                              // swiftlint:disable legacy_constructor
                                               shouldChangeCharactersIn: NSMakeRange(originalText.count, 0),
                                               replacementString: string) ?? true
         if shouldType {

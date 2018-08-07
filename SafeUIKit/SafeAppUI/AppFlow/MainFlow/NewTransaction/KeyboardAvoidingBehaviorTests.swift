@@ -89,8 +89,8 @@ class KeyboardAvoidingBehaviorTests: XCTestCase {
                                                      "suppress_animation": true])
         scrollView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
 
-        let contentView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 5000))
-        let textField = UITextField(frame: CGRect(x: 0, y: 2500, width: 100, height: 40))
+        let contentView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 5_000))
+        let textField = UITextField(frame: CGRect(x: 0, y: 2_500, width: 100, height: 40))
 
         contentView.addSubview(textField)
         scrollView.addSubview(contentView)
@@ -104,7 +104,7 @@ class KeyboardAvoidingBehaviorTests: XCTestCase {
 
         behavior.didShowKeyboard(notification)
 
-        XCTAssertEqual(scrollView.contentOffset.y, 2500 - 10)
+        XCTAssertEqual(scrollView.contentOffset.y, 2_500 - 10)
     }
 
     func test_didHideKeyboard_resetsInsets() {
@@ -136,7 +136,7 @@ class StubNotificationCenter: NotificationCenter {
         if let name = aName {
             registry.removeValue(forKey: name)
         } else {
-            let tuples = registry.filter({ ($0.value as? AnyClass) === (observer as? AnyClass) })
+            let tuples = registry.filter { ($0.value as? AnyClass) === (observer as? AnyClass) }
             tuples.forEach { registry.removeValue(forKey: $0.key) }
         }
     }

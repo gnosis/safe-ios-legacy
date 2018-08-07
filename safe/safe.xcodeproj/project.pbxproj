@@ -58,6 +58,8 @@
 		0ABBDC032073CADD006D0A48 /* EthereumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBDBFA2073CACD006D0A48 /* EthereumKit.framework */; };
 		0ABCA975207E560B00E2C193 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABCA970207E560500E2C193 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA976207E560B00E2C193 /* EthereumKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABCA972207E560500E2C193 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; };
+		0AC33F1B2119CBE1009A5CFB /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */; };
 		0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */; };
 		0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C3E205FFBF1005EC186 /* StartScreenUITests.swift */; };
@@ -258,6 +260,20 @@
 			remoteGlobalIDString = 0A57F71C207E430F00AF407D;
 			remoteInfo = EthereumKit;
 		};
+		0AC33F182119CBE1009A5CFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AC33EFA2119C735009A5CFB;
+			remoteInfo = CommonCrypto;
+		};
+		0AC33F1C2119CBE1009A5CFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0AC33EF92119C735009A5CFB;
+			remoteInfo = CommonCrypto;
+		};
 		0AD8FD3A20CEC52700591B91 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
@@ -331,6 +347,7 @@
 				0ABCA975207E560B00E2C193 /* CryptoSwift.framework in Embed Frameworks */,
 				0ABCA976207E560B00E2C193 /* EthereumKit.framework in Embed Frameworks */,
 				0A160B8920A07CC200E064E1 /* SafeUIKit.framework in Embed Frameworks */,
+				0AC33F1B2119CBE1009A5CFB /* CommonCrypto.framework in Embed Frameworks */,
 				0A5D2F2620D7A94A009E9918 /* SipHash.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -447,6 +464,7 @@
 				0A5D2F2520D7A94A009E9918 /* SipHash.framework in Frameworks */,
 				555B0E8720CAD3CB00424CEE /* CryptoEthereumSwift.framework in Frameworks */,
 				0A160B8520A07C6300E064E1 /* SafeAppUI.framework in Frameworks */,
+				0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */,
 				0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */,
 				0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
 				0A5D2F2120D7A94A009E9918 /* BigInt.framework in Frameworks */,
@@ -574,6 +592,7 @@
 				0A12F17120D01E4E0039B3E1 /* BigInt.framework */,
 				0A12F17320D01E4E0039B3E1 /* SipHash.framework */,
 				0AD8FD3B20CEC52700591B91 /* BlockiesSwift.framework */,
+				0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -788,6 +807,7 @@
 				0AD8FD4320CEC53700591B91 /* PBXTargetDependency */,
 				0A5D2F2420D7A94A009E9918 /* PBXTargetDependency */,
 				0A5D2F2820D7A94A009E9918 /* PBXTargetDependency */,
+				0AC33F1D2119CBE1009A5CFB /* PBXTargetDependency */,
 			);
 			name = safe;
 			productName = safe;
@@ -1015,6 +1035,13 @@
 			fileType = wrapper.framework;
 			path = EthereumKit.framework;
 			remoteRef = 0ABCA971207E560500E2C193 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonCrypto.framework;
+			remoteRef = 0AC33F182119CBE1009A5CFB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0AD8FD3B20CEC52700591B91 /* BlockiesSwift.framework */ = {
@@ -1272,6 +1299,11 @@
 			isa = PBXTargetDependency;
 			name = SipHash;
 			targetProxy = 0A5D2F2720D7A94A009E9918 /* PBXContainerItemProxy */;
+		};
+		0AC33F1D2119CBE1009A5CFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CommonCrypto;
+			targetProxy = 0AC33F1C2119CBE1009A5CFB /* PBXContainerItemProxy */;
 		};
 		0AD8FD4320CEC53700591B91 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
