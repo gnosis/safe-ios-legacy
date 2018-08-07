@@ -154,7 +154,6 @@ LIMIT 1;
                                resultMap: transactionFromResultSet).first as? Transaction
     }
 
-    //swiftlint:disable cyclomatic_complexity
     private func transactionFromResultSet(_ rs: ResultSet) -> Transaction? {
         guard let id = rs.string(at: 0),
             let walletID = rs.string(at: 1),
@@ -170,6 +169,29 @@ LIMIT 1;
                                       walletID: WalletID(walletID),
                                       accountID: AccountID(token: accountID))
 
+        update(transaction: transaction, with: rs)
+
+        // initial status is draft
+        switch targetTransactionStatus {
+        case .draft: break
+        case .signing:
+            transaction.change(status: .signing)
+        case .pending:
+            transaction.change(status: .signing).change(status: .pending)
+        case .rejected:
+            transaction.change(status: .signing).change(status: .rejected)
+        case .failed:
+            transaction.change(status: .signing).change(status: .pending).change(status: .failed)
+        case .success:
+            transaction.change(status: .signing).change(status: .pending).change(status: .success)
+        case .discarded:
+            transaction.change(status: .discarded)
+        }
+
+        return transaction
+    }
+
+    private func update(transaction: Transaction, with rs: ResultSet) {
         if let sender = rs.string(at: 5) {
             transaction.change(sender: Address(sender))
         }
@@ -229,25 +251,6 @@ LIMIT 1;
         if let data = rs.data(at: 19) {
             transaction.change(hash: data)
         }
-
-        // initial status is draft
-        switch targetTransactionStatus {
-        case .draft: break
-        case .signing:
-            transaction.change(status: .signing)
-        case .pending:
-            transaction.change(status: .signing).change(status: .pending)
-        case .rejected:
-            transaction.change(status: .signing).change(status: .rejected)
-        case .failed:
-            transaction.change(status: .signing).change(status: .pending).change(status: .failed)
-        case .success:
-            transaction.change(status: .signing).change(status: .pending).change(status: .success)
-        case .discarded:
-            transaction.change(status: .discarded)
-        }
-
-        return transaction
     }
 
     public func nextID() -> TransactionID {
