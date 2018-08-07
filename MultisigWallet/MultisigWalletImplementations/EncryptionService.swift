@@ -243,12 +243,7 @@ open class EncryptionService: EncryptionDomainService {
     }
 
     private func ethSignature(from rawSignature: Data) -> EthSignature {
-        var result = signature(from: signer.calculateRSV(signiture: rawSignature))
-        // FIXME: contribute to EthereumKit
-        if chainId == .any && result.v > 28 {
-            result.v += -35 + 27
-        }
-        return result
+        return signature(from: signer.calculateRSV(signature: rawSignature))
     }
 
     public func sign(transaction: EthRawTransaction,

@@ -10,7 +10,7 @@ git -C <DepName> <tag>
 Then run compile script which will build and install new version:
 
 ```
-ruby compile.rb
+ruby compile.rb <DepName>
 ```
 
 # Adding 3rd party dependency as a submodule.

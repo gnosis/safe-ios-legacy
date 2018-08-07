@@ -133,7 +133,7 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
     }
 
     private func httpClient() -> HTTPClient {
-        let client = HTTPClient(configuration: Configuration(network: Network.private(chainID: chainId),
+        let client = HTTPClient(configuration: Configuration(network: Network.private(chainID: chainId, testUse: false),
                                                              nodeEndpoint: url.absoluteString,
                                                              etherscanAPIKey: "",
                                                              debugPrints: true))
