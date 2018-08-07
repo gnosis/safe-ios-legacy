@@ -183,7 +183,6 @@ struct ContractAddressFixture {
 
 struct TransactionHashingFixture {
 
-    // TODO: what to do with message code duplication?
     struct Message: Codable {
         var type: String
         var hash: String

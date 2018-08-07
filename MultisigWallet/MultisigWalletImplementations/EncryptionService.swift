@@ -38,11 +38,11 @@ struct ExtensionCode {
             let signature = json["signature"] as? [String: Any],
             let vInt = signature["v"] as? Int,
             let rStr = signature["r"] as? String,
-            let r = BInt(rStr, radix: 10), // FIXME: crashes on iOS 10.0
+            let r = BInt(rStr, radix: 10),
             let sStr = signature["s"] as? String,
             let s = BInt(sStr, radix: 10)
             else { return nil }
-        self.expirationDate = expirationDate // needs format checked?
+        self.expirationDate = expirationDate
         self.v = BInt(vInt)
         self.r = r
         self.s = s

@@ -168,9 +168,7 @@ LIMIT 1;
                                       type: transactionType,
                                       walletID: WalletID(walletID),
                                       accountID: AccountID(token: accountID))
-
-        update(transaction: transaction, with: rs)
-
+        update(rs, transaction)
         // initial status is draft
         switch targetTransactionStatus {
         case .draft: break
@@ -191,7 +189,7 @@ LIMIT 1;
         return transaction
     }
 
-    private func update(transaction: Transaction, with rs: ResultSet) {
+    private func update(_ rs: ResultSet, _ transaction: Transaction) {
         if let sender = rs.string(at: 5) {
             transaction.change(sender: Address(sender))
         }
@@ -227,6 +225,10 @@ LIMIT 1;
             transaction.set(hash: TransactionHash(transactionHashString))
         }
 
+        updateRemaining(rs, transaction)
+    }
+
+    private func updateRemaining(_ rs: ResultSet, _ transaction: Transaction) {
         if let gas = rs.int(at: 13),
             let dataGas = rs.int(at: 14),
             let gasPriceString = rs.string(at: 15),
