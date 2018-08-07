@@ -287,6 +287,13 @@
 			remoteGlobalIDString = 0A9670B120480C5700445AC2;
 			remoteInfo = SafeUIKit;
 		};
+		0A9DCE992119DD6E00953C7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AC33EFA2119C735009A5CFB;
+			remoteInfo = CommonCrypto;
+		};
 		0AD8FD2D20CEC50500591B91 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
@@ -1117,6 +1124,7 @@
 				555B0EBA20CE62C400424CEE /* BigInt.framework */,
 				555B0ECF20CE678700424CEE /* SipHash.framework */,
 				0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */,
+				0A9DCE9A2119DD6E00953C7C /* CommonCrypto.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1341,6 +1349,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0A9DCE9A2119DD6E00953C7C /* CommonCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonCrypto.framework;
+			remoteRef = 0A9DCE992119DD6E00953C7C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1910,7 +1925,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos11.4;
+				SDKROOT = iphoneos;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
@@ -1945,7 +1960,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				SDKROOT = iphoneos11.4;
+				SDKROOT = iphoneos;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
@@ -2480,7 +2495,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				SDKROOT = iphoneos11.4;
+				SDKROOT = iphoneos;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = AdHoc;

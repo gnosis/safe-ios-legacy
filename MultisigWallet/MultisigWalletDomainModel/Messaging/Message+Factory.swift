@@ -4,9 +4,9 @@
 
 import Foundation
 
-extension Message {
+public extension Message {
 
-    public static func create(userInfo: [AnyHashable: Any]) -> Message? {
+    static func create(userInfo: [AnyHashable: Any]) -> Message? {
         if let message = TransactionConfirmedMessage(userInfo: userInfo) {
             return message
         } else if let message = TransactionRejectedMessage(userInfo: userInfo) {

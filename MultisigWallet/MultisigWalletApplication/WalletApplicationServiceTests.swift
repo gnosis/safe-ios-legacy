@@ -693,9 +693,9 @@ class WalletApplicationServiceTests: XCTestCase {
         _ = try service.submitTransaction(txID)
         let tx = transactionRepository.findByID(TransactionID(txID))!
 
-        XCTAssertEqual(notificationService.sentMessages, [
-            "to:\(service.ownerAddress(of: .browserExtension)!) " +
-            "msg:\(notificationService.transactionSentMessage(for: tx))"])
+        XCTAssertEqual(notificationService.sentMessages,
+                       ["to:\(service.ownerAddress(of: .browserExtension)!) " +
+                        "msg:\(notificationService.transactionSentMessage(for: tx))"])
     }
 
 }
