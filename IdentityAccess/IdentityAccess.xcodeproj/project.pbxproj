@@ -28,7 +28,7 @@
 		0A537AF0207CF1A200921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
 		0A537B16207CF2D600921FB9 /* SystemClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537AFF207CF2D600921FB9 /* SystemClockService.swift */; };
 		0A537B19207CF2D600921FB9 /* BiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B03207CF2D600921FB9 /* BiometricService.swift */; };
-		0A537B1C207CF2D600921FB9 /* EthereumKitEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B07207CF2D600921FB9 /* EthereumKitEncryptionService.swift */; };
+		0A537B1C207CF2D600921FB9 /* CommonCryptoEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B07207CF2D600921FB9 /* CommonCryptoEncryptionService.swift */; };
 		0A537B33207CF4B000921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537ACD207CEDAE00921FB9 /* libIdentityAccessImplementations.a */; };
 		0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */; };
 		0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537B00207CF2D600921FB9 /* SystemClockServiceIntegrationTests.swift */; };
@@ -369,7 +369,7 @@
 		0A537B02207CF2D600921FB9 /* BiometricServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricServiceTests.swift; sourceTree = "<group>"; };
 		0A537B03207CF2D600921FB9 /* BiometricService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricService.swift; sourceTree = "<group>"; };
 		0A537B06207CF2D600921FB9 /* EncryptionServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionServiceTests.swift; sourceTree = "<group>"; };
-		0A537B07207CF2D600921FB9 /* EthereumKitEncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EthereumKitEncryptionService.swift; sourceTree = "<group>"; };
+		0A537B07207CF2D600921FB9 /* CommonCryptoEncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonCryptoEncryptionService.swift; sourceTree = "<group>"; };
 		0A537B2E207CF4B000921FB9 /* IdentityAccessImplementationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityAccessImplementationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537B32207CF4B000921FB9 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ImplementationsConfig.xcconfig; sourceTree = "<group>"; };
@@ -394,6 +394,8 @@
 		0A666D122087A17F0034FF66 /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
 		0A666D182087A1990034FF66 /* AuthenticationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationMethod.swift; sourceTree = "<group>"; };
 		0A666D1A2087A1A90034FF66 /* AuthenticationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResult.swift; sourceTree = "<group>"; };
+		0A77D0E1211AE8E0003582DD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0A77D0E2211AE9A7003582DD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0A934D7420B71BDA00F15616 /* EncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
 		0AA4FF902085F46900C82CFE /* AuthenticationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPolicy.swift; sourceTree = "<group>"; };
 		0AB19C5420CAA09A00A87E31 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -520,8 +522,8 @@
 		0A48A08820935BBC00B704AD /* SingleGatekeeperRepository */ = {
 			isa = PBXGroup;
 			children = (
-				0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */,
 				0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */,
+				0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */,
 				0A48A0712092003C00B704AD /* DBSingleGatekeeperRepository.swift */,
 				0A48A0782092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift */,
 				0A48A07A2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift */,
@@ -544,6 +546,7 @@
 		0A537A65207CE5BC00921FB9 /* IdentityAccessDomainModel */ = {
 			isa = PBXGroup;
 			children = (
+				0A77D0E1211AE8E0003582DD /* README.md */,
 				0A537A87207CE74100921FB9 /* DomainRegistry.swift */,
 				0A537A80207CE74000921FB9 /* DomainRegistryTests.swift */,
 				0A537A8C207CE74100921FB9 /* DomainTestCase.swift */,
@@ -568,6 +571,7 @@
 		0A537ACE207CEDAE00921FB9 /* IdentityAccessImplementations */ = {
 			isa = PBXGroup;
 			children = (
+				0A77D0E2211AE9A7003582DD /* README.md */,
 				0A0C871820974B6900471885 /* LocalizedString.swift */,
 				0AFFF40B20808BEA0030200C /* persistence */,
 				0A537B01207CF2D600921FB9 /* biometry */,
@@ -611,7 +615,7 @@
 		0A537B04207CF2D600921FB9 /* ethereum */ = {
 			isa = PBXGroup;
 			children = (
-				0A537B07207CF2D600921FB9 /* EthereumKitEncryptionService.swift */,
+				0A537B07207CF2D600921FB9 /* CommonCryptoEncryptionService.swift */,
 				0A537B06207CF2D600921FB9 /* EncryptionServiceTests.swift */,
 				0A537AE6207CF00D00921FB9 /* MockEncryptionService.swift */,
 			);
@@ -1194,7 +1198,7 @@
 				0A537AE0207CEE7300921FB9 /* MockClockService.swift in Sources */,
 				0A0C871920974B6900471885 /* LocalizedString.swift in Sources */,
 				0A44F9C520908BBD00BB7101 /* DBSingleUserRepository.swift in Sources */,
-				0A537B1C207CF2D600921FB9 /* EthereumKitEncryptionService.swift in Sources */,
+				0A537B1C207CF2D600921FB9 /* CommonCryptoEncryptionService.swift in Sources */,
 				0A537ADB207CEE1100921FB9 /* MockBiometricService.swift in Sources */,
 				0A537B16207CF2D600921FB9 /* SystemClockService.swift in Sources */,
 				0AFFF41020808C160030200C /* InMemoryUserRepository.swift in Sources */,

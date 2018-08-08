@@ -6,6 +6,7 @@ import Foundation
 import IdentityAccessDomainModel
 import Database
 
+/// Database repository for storing user entity.
 public class DBSingleUserRepository: SingleUserRepository {
 
     struct SQL {

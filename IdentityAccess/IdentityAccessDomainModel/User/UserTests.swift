@@ -15,9 +15,9 @@ class UserTests: DomainTestCase {
         id = userRepository.nextId()
     }
 
-    func test_assignSession_addsSession() throws {
+    func test_assignSession_addsSession() {
         let sessionID = SessionID()
-        let user = try createUser(password: password)
+        let user = createUser(password: password)
         user.attachSession(id: sessionID)
         XCTAssertEqual(user.sessionID, sessionID)
     }
@@ -26,8 +26,8 @@ class UserTests: DomainTestCase {
 
 extension UserTests {
 
-    func createUser(password: String) throws -> User {
-        return try User(id: id, password: password)
+    func createUser(password: String) -> User {
+        return User(id: id, password: password)
     }
 
 }

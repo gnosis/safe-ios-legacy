@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         IdentityAccessDomainModel.DomainRegistry.put(service: BiometricService(),
                                                      for: BiometricAuthenticationService.self)
         IdentityAccessDomainModel.DomainRegistry.put(service: SystemClockService(), for: Clock.self)
-        let encryptionService = IdentityAccessImplementations.EthereumKitEncryptionService()
+        let encryptionService = IdentityAccessImplementations.CommonCryptoEncryptionService()
         IdentityAccessDomainModel.DomainRegistry.put(service: encryptionService,
                                                      for: IdentityAccessDomainModel.EncryptionService.self)
         IdentityAccessDomainModel.DomainRegistry.put(service: IdentityService(), for: IdentityService.self)

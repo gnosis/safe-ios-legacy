@@ -20,6 +20,9 @@ extension BiometryType {
 
 }
 
+/// Biometric error
+///
+/// - unexpectedBiometryType: encountered unrecognized biometry type.
 public enum BiometricServiceError: LoggableError {
     case unexpectedBiometryType
 }
@@ -36,9 +39,13 @@ public final class BiometricService: BiometricAuthenticationService {
                                             comment: "Description of unlock with Touch ID.")
     }
 
-    // autoclosure here means that LAContext will be fetched every time from the closure.
-    // By default, it will be created anew when contextProvider() is called.
-    // We have to re-create LAContext so that previous biometry authentication is not reused by the system.
+    /// Creates new biometric service with LAContext provider.
+    ///
+    /// Autoclosure here means that LAContext will be fetched every time from the closure.
+    /// By default, it will be created anew when contextProvider() is called.
+    /// We have to re-create LAContext so that previous biometry authentication is not reused by the system.
+    ///
+    /// - Parameter localAuthenticationContext: closure that returns LAContext.
     public init(localAuthenticationContext: @escaping @autoclosure () -> LAContext = LAContext()) {
         self.contextProvider = localAuthenticationContext
         context = contextProvider()
