@@ -49,6 +49,7 @@ class FundsTransferTransactionViewController: UIViewController {
         recipientTextField.accessibilityIdentifier = "transaction.address"
         continueButton.addTarget(self, action: #selector(proceedToSigning(_:)), for: .touchUpInside)
         continueButton.setTitle(Strings.continue, for: .normal)
+        continueButton.accessibilityIdentifier = "transaction.continue"
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
         feeLabel.accessibilityIdentifier = "transaction.fee"
         model.start()

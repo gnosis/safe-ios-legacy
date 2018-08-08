@@ -42,4 +42,17 @@ class NewTransactionUITests: UITestCase {
         XCTAssertNotExist(screen.addressLengthError)
     }
 
+    // NT-004, NT-005
+    func test_whenNotAllDataIsFilled_thenContinueButtonIsDisabled() {
+        XCTAssertFalse(screen.continueButton.isEnabled)
+        screen.amountInput.tap()
+        screen.amountInput.typeText("0.99")
+        XCTAssertFalse(screen.continueButton.isEnabled)
+        screen.addressInput.tap()
+        screen.addressInput.typeText("0x728cafe9fb8cc2218fb12a9a2d9335193caa07")
+        XCTAssertFalse(screen.continueButton.isEnabled)
+        screen.addressInput.typeText("e0")
+        XCTAssertTrue(screen.continueButton.isEnabled)
+    }
+
 }
