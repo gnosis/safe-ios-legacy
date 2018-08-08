@@ -78,8 +78,7 @@ extension DBSingleGatekeeperRepositoryTests {
         let policy = try AuthenticationPolicy(sessionDuration: 15,
                                               maxFailedAttempts: 5,
                                               blockDuration: 10)
-        let gatekeeper = try Gatekeeper(id: repository.nextId(),
-                                        policy: policy)
+        let gatekeeper = Gatekeeper(id: repository.nextId(), policy: policy)
         return gatekeeper
     }
 

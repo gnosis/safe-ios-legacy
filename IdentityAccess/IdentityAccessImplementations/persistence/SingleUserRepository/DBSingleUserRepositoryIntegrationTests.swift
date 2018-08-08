@@ -19,7 +19,7 @@ class DBSingleUserRepositoryIntegrationTests: XCTestCase {
         defer { try? db.destroy() }
         let repo = DBSingleUserRepository(db: db)
         try repo.setUp()
-        let user = try User(id: repo.nextId(), password: "MyPassword1")
+        let user = User(id: repo.nextId(), password: "MyPassword1")
         try repo.save(user)
         XCTAssertEqual(repo.primaryUser(), user)
         XCTAssertEqual(repo.user(encryptedPassword: "MyPassword1"), user)

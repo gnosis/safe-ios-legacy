@@ -17,9 +17,7 @@ class IdentityServiceTests: DomainTestCase {
         XCTAssertNoThrow(policy = try AuthenticationPolicy(sessionDuration: 2,
                                                            maxFailedAttempts: 2,
                                                            blockDuration: 1))
-        XCTAssertNoThrow(
-            gatekeeper = try Gatekeeper(id: gatekeeperRepository.nextId(),
-                                        policy: policy))
+        gatekeeper = Gatekeeper(id: gatekeeperRepository.nextId(), policy: policy)
         XCTAssertNoThrow(try gatekeeperRepository.save(gatekeeper))
     }
 

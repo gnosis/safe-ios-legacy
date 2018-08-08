@@ -17,7 +17,7 @@ class DBSingleUserRepositoryTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        XCTAssertNoThrow(user = try User(id: userID, password: "MyPassword1"))
+        user = User(id: userID, password: "MyPassword1")
         db = MockDatabase(trace)
         repository = DBSingleUserRepository(db: db)
     }

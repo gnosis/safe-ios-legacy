@@ -90,7 +90,7 @@ public class IdentityService: Assertable {
         try assertArgument(!isRegistered, RegistrationError.userAlreadyRegistered)
         try validatePlaintextPassword(password)
         let encryptedPassword = encryptionService.encrypted(password)
-        let user = try User(id: userRepository.nextId(), password: encryptedPassword)
+        let user = User(id: userRepository.nextId(), password: encryptedPassword)
         try userRepository.save(user)
         try biometricService.activate()
         return user.id
