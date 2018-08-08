@@ -17,6 +17,9 @@ class NewTransactionUITests: UITestCase {
     // NT-001
     func test_contents() {
         XCTAssertTrue(screen.isDisplayed)
+        XCTAssertExist(screen.amountInput)
+        XCTAssertExist(screen.addressInput)
+        XCTAssertExist(screen.feeLabel)
     }
 
 }

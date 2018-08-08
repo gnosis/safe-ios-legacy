@@ -36,17 +36,21 @@ class FundsTransferTransactionViewController: UIViewController {
     }
 
     private enum Strings {
-        static let `continue` = LocalizedString("transaction.continue", comment: "Continue button title for New Transaction Screen")
+        static let `continue` = LocalizedString("transaction.continue",
+                                                comment: "Continue button title for New Transaction Screen")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         model = FundsTransferTransactionViewModel(senderName: "Safe", onUpdate: updateFromViewModel)
         amountTextField.delegate = self
+        amountTextField.accessibilityIdentifier = "transaction.amount"
         recipientTextField.delegate = self
+        recipientTextField.accessibilityIdentifier = "transaction.address"
         continueButton.addTarget(self, action: #selector(proceedToSigning(_:)), for: .touchUpInside)
         continueButton.setTitle(Strings.continue, for: .normal)
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
+        feeLabel.accessibilityIdentifier = "transaction.fee"
         model.start()
     }
 
