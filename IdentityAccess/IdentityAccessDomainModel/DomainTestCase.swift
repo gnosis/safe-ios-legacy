@@ -6,6 +6,7 @@ import XCTest
 @testable import IdentityAccessDomainModel
 import IdentityAccessImplementations
 
+/// Base test case class for domain model tests
 class DomainTestCase: XCTestCase {
 
     let biometricService = MockBiometricService()
