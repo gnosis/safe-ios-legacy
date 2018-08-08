@@ -51,7 +51,7 @@ public class MockWalletApplicationService: WalletApplicationService {
     public func createReadyToUseWallet() {
         _hasReadyToUseWallet = true
         assignAddress("0x111ccccccccccccccccccccccccccccccccccccc")
-        update(account: "ETH", newBalance: 100)
+        update(account: "ETH", newBalance: BigInt(10).power(18))
         _selectedWalletState = .readyToUse
     }
 
@@ -160,7 +160,6 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public var estimatedFee_output: BigInt?
-
     public override func estimateTransferFee(amount: BigInt, address: String?) -> BigInt? {
         return estimatedFee_output
     }
