@@ -5,6 +5,7 @@
 import Foundation
 import Common
 
+/// Service locator for domain services and repositories
 public class DomainRegistry: AbstractRegistry {
 
     public static var walletRepository: WalletRepository {
