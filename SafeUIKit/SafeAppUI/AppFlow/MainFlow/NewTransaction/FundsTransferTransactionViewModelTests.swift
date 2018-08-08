@@ -18,7 +18,7 @@ class TransactionViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         walletService.assignAddress(walletAddress)
-        walletService.update(account: "ETH", newBalance: Int(balance))
+        walletService.update(account: "ETH", newBalance: balance)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         model = FundsTransferTransactionViewModel(senderName: "safe") { /* empty */ }
         model.start()
@@ -99,7 +99,7 @@ class TransactionViewModelTests: XCTestCase {
 
     func test_whenEnteredAllValidData_thenCanProceedToSigning() {
         walletService.estimatedFee_output = 100
-        model.change(amount: "0,0000000000000000001")
+        model.change(amount: "0.0000000000000000001")
         model.change(recipient: walletAddress)
         delay()
         XCTAssertTrue(model.canProceedToSigning)

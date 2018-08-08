@@ -154,7 +154,6 @@ LIMIT 1;
                                resultMap: transactionFromResultSet).first as? Transaction
     }
 
-    //swiftlint:disable cyclomatic_complexity
     private func transactionFromResultSet(_ rs: ResultSet) -> Transaction? {
         guard let id = rs.string(at: 0),
             let walletID = rs.string(at: 1),
@@ -169,7 +168,28 @@ LIMIT 1;
                                       type: transactionType,
                                       walletID: WalletID(walletID),
                                       accountID: AccountID(token: accountID))
+        update(rs, transaction)
+        // initial status is draft
+        switch targetTransactionStatus {
+        case .draft: break
+        case .signing:
+            transaction.change(status: .signing)
+        case .pending:
+            transaction.change(status: .signing).change(status: .pending)
+        case .rejected:
+            transaction.change(status: .signing).change(status: .rejected)
+        case .failed:
+            transaction.change(status: .signing).change(status: .pending).change(status: .failed)
+        case .success:
+            transaction.change(status: .signing).change(status: .pending).change(status: .success)
+        case .discarded:
+            transaction.change(status: .discarded)
+        }
 
+        return transaction
+    }
+
+    private func update(_ rs: ResultSet, _ transaction: Transaction) {
         if let sender = rs.string(at: 5) {
             transaction.change(sender: Address(sender))
         }
@@ -205,6 +225,10 @@ LIMIT 1;
             transaction.set(hash: TransactionHash(transactionHashString))
         }
 
+        updateRemaining(rs, transaction)
+    }
+
+    private func updateRemaining(_ rs: ResultSet, _ transaction: Transaction) {
         if let gas = rs.int(at: 13),
             let dataGas = rs.int(at: 14),
             let gasPriceString = rs.string(at: 15),
@@ -229,25 +253,6 @@ LIMIT 1;
         if let data = rs.data(at: 19) {
             transaction.change(hash: data)
         }
-
-        // initial status is draft
-        switch targetTransactionStatus {
-        case .draft: break
-        case .signing:
-            transaction.change(status: .signing)
-        case .pending:
-            transaction.change(status: .signing).change(status: .pending)
-        case .rejected:
-            transaction.change(status: .signing).change(status: .rejected)
-        case .failed:
-            transaction.change(status: .signing).change(status: .pending).change(status: .failed)
-        case .success:
-            transaction.change(status: .signing).change(status: .pending).change(status: .success)
-        case .discarded:
-            transaction.change(status: .discarded)
-        }
-
-        return transaction
     }
 
     public func nextID() -> TransactionID {

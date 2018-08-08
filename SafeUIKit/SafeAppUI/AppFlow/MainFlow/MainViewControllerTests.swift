@@ -6,17 +6,33 @@ import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
 import Common
+import BigInt
 
 class MainViewControllerTests: XCTestCase {
 
-    func test_whenPressingSend_thenCallsDelegate() {
+    let walletService = MockWalletApplicationService()
+    // swiftlint:disable weak_delegate
+    let delegate = MockMainViewControllerDelegate()
+    var vc: MainViewController!
+
+    override func setUp() {
+        super.setUp()
         ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
-        ApplicationServiceRegistry.put(service: MockWalletApplicationService(), for: WalletApplicationService.self)
-        let delegate = MockMainViewControllerDelegate()
-        let vc = MainViewController.create(delegate: delegate)
+        ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
+
+        vc = MainViewController.create(delegate: delegate)
+    }
+
+    func test_whenPressingSend_thenCallsDelegate() {
         createWindow(vc)
         vc.sendButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(delegate.didCallCreateNewTransaction)
+    }
+
+    func test_whenLoaded_loadsBalance() {
+        walletService.update(account: "ETH", newBalance: BigInt(1e9))
+        vc.loadViewIfNeeded()
+        XCTAssertEqual(vc.totalBalanceLabel.text, "0,000000001 ETH")
     }
 
 }

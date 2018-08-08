@@ -13,8 +13,8 @@ public class DBAccountRepository: AccountRepository {
 CREATE TABLE IF NOT EXISTS tbl_accounts (
     token TEXT NOT NULL,
     wallet_id TEXT NOT NULL,
-    balance INTEGER NOT NULL,
-    minimum INTEGER NOT NULL,
+    balance TEXT NOT NULL,
+    minimum TEXT NOT NULL,
     PRIMARY KEY (token, wallet_id)
 );
 """
@@ -40,8 +40,8 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
     public func save(_ account: Account) {
         try! db.execute(sql: SQL.insert, bindings: [account.id.token,
                                                     account.walletID.id,
-                                                    account.balance,
-                                                    account.minimumDeploymentTransactionAmount])
+                                                    String(account.balance),
+                                                    String(account.minimumDeploymentTransactionAmount)])
     }
 
     public func remove(_ account: Account) {
@@ -58,14 +58,14 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
     private func accountFromResultSet(_ rs: ResultSet) -> Account? {
         guard let token = rs.string(at: 0),
             let walletID = rs.string(at: 1),
-            let balance = rs.int(at: 2),
-            let minimum = rs.int(at: 3) else {
+            let balance = rs.string(at: 2),
+            let minimum = rs.string(at: 3) else {
                 return nil
         }
         let account = Account(id: AccountID(token: token),
                               walletID: WalletID(walletID),
-                              balance: balance,
-                              minimumAmount: minimum)
+                              balance: TokenInt(balance)!,
+                              minimumAmount: TokenInt(minimum)!)
         return account
     }
 

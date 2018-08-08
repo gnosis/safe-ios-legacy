@@ -50,7 +50,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
         case deploymentStarted
         case addressKnown
         case deploymentAcceptedByBlockchain
-        case deploymentSuccess
         case readyToUse
     }
 
@@ -159,18 +158,13 @@ public class Wallet: IdentifiableEntity<WalletID> {
         creationTransactionHash = hash
     }
 
-    public func markDeploymentSuccess() {
-        assert(status: .deploymentAcceptedByBlockchain)
-        status = .deploymentSuccess
-    }
-
     public func abortDeployment() {
         assert(statusIsOneOf: .deploymentStarted, .addressKnown, .deploymentAcceptedByBlockchain)
         status = .readyToDeploy
     }
 
     public func finishDeployment() {
-        assert(status: .deploymentSuccess)
+        assert(status: .deploymentAcceptedByBlockchain)
         status = .readyToUse
     }
 

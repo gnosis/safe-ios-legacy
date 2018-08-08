@@ -7,6 +7,7 @@ import MultisigWalletApplication
 import BigInt
 
 protocol TransactionReviewViewControllerDelegate: class {
+    func transactionReviewViewControllerWantsToSubmitTransaction(completionHandler: @escaping (Bool) -> Void)
     func transactionReviewViewControllerDidFinish()
 }
 
@@ -35,9 +36,9 @@ public class TransactionReviewViewController: UIViewController {
 
     var transactionID: String!
     weak var delegate: TransactionReviewViewControllerDelegate?
-    
+
     private var didNotRequestSignaturesYet = true
-    private let tokenFormatter = TokenNumberFormatter()
+    private let tokenFormatter = TokenNumberFormatter.eth
 
     public static func create() -> TransactionReviewViewController {
         return StoryboardScene.Main.transactionReviewViewController.instantiate()
@@ -45,9 +46,6 @@ public class TransactionReviewViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        tokenFormatter.decimals = 18
-        tokenFormatter.tokenCode = "ETH"
-
         senderView.name = Strings.senderName
         recipientView.name = Strings.recipientName
         transactionValueView.isSingleValue = true
@@ -56,8 +54,25 @@ public class TransactionReviewViewController: UIViewController {
         dataTitleLabel.text = Strings.dataTitle
         dataInfoStackView.isHidden = true
         actionButtonInfoLabel.isHidden = true
-
         update()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(resumeAnimation),
+                                               name: NSNotification.Name.UIApplicationWillEnterForeground,
+                                               object: nil)
+    }
+
+    @objc private func resumeAnimation() {
+        progressView.resumeAnimation()
+    }
+
+    func update() {
+        guard isViewLoaded else { return }
+        let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
+        update(tx)
+        if tx.status == .waitingForConfirmation && didNotRequestSignaturesYet {
+            requestSignatures()
+            didNotRequestSignaturesYet = false
+        }
     }
 
     private func update(_ tx: TransactionData) {
@@ -100,15 +115,6 @@ public class TransactionReviewViewController: UIViewController {
         }
     }
 
-    func update() {
-        guard isViewLoaded else { return }
-        let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
-        update(tx)
-        if tx.status == .waitingForConfirmation && didNotRequestSignaturesYet {
-            requestSignatures()
-            didNotRequestSignaturesYet = false
-        }
-    }
 
     @objc private func requestSignatures() {
         performAction { [unowned self] in
@@ -117,22 +123,37 @@ public class TransactionReviewViewController: UIViewController {
     }
 
     @objc private func submit() {
+        if let delegate = delegate {
+            delegate.transactionReviewViewControllerWantsToSubmitTransaction { [weak self] shouldSubmit in
+                if shouldSubmit {
+                    self?.doSubmit()
+                }
+            }
+        } else {
+            doSubmit()
+        }
+    }
+
+    private func doSubmit() {
         performAction { [unowned self] in
             try ApplicationServiceRegistry.walletService.submitTransaction(self.transactionID)
         }
     }
 
     private func performAction(_ action: @escaping () throws -> TransactionData) {
+        actionButton.isEnabled = false
         DispatchQueue.global().async {
             do {
                 let tx = try action()
                 DispatchQueue.main.sync {
+                    self.actionButton.isEnabled = true
                     self.update(tx)
                 }
             } catch let error {
                 DispatchQueue.main.sync {
+                    self.actionButton.isEnabled = true
                     ErrorHandler.showError(message: error.localizedDescription,
-                                           log: "request confirmation failed: \(error)",
+                                           log: "operation failed: \(error)",
                                            error: nil)
                 }
             }

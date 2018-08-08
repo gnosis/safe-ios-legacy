@@ -18,7 +18,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         walletService.assignAddress(walletAddress)
-        walletService.update(account: "ETH", newBalance: Int(balance))
+        walletService.update(account: "ETH", newBalance: balance)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
     }
 
@@ -26,7 +26,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         controller.loadViewIfNeeded()
         XCTAssertEqual(controller.participantView.address, walletAddress)
         XCTAssertEqual(controller.participantView.name, "Safe")
-        XCTAssertEqual(controller.valueView.tokenAmount, "0,000000000000001 ETH")
+        XCTAssertEqual(controller.valueView.tokenAmount, "0.000000000000001 ETH")
         XCTAssertEqual(controller.valueView.fiatAmount, "")
         XCTAssertEqual(controller.balanceLabel.text, controller.valueView.tokenAmount)
         XCTAssertEqual(controller.feeLabel.text, "--")
@@ -36,7 +36,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         walletService.estimatedFee_output = 100
         controller.loadViewIfNeeded()
         delay()
-        XCTAssertEqual(controller.feeLabel.text, "-0,0000000000000001 ETH")
+        XCTAssertEqual(controller.feeLabel.text, "-0.0000000000000001 ETH")
     }
 
     func test_whenInvalidAmount_thenShowsError() {
@@ -68,7 +68,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         let amount = BigInt(10).power(17)
         let balance = BigInt(10).power(18)
         let recipient = walletAddress
-        walletService.update(account: "ETH", newBalance: Int(balance))
+        walletService.update(account: "ETH", newBalance: balance)
         walletService.estimatedFee_output = 100
         walletService.createNewDraftTransaction_output = transactionID
 
@@ -76,7 +76,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
 
         controller.delegate = delegate
         controller.loadViewIfNeeded()
-        controller.amountTextField.type("0,1")
+        controller.amountTextField.type("0.1")
         controller.recipientTextField.type(recipient)
         delay()
         controller.proceedToSigning(controller.continueButton)
@@ -93,6 +93,7 @@ extension UITextField {
     func type(_ string: String) {
         let originalText = text ?? ""
         let shouldType = delegate?.textField?(self,
+                                              // swiftlint:disable legacy_constructor
                                               shouldChangeCharactersIn: NSMakeRange(originalText.count, 0),
                                               replacementString: string) ?? true
         if shouldType {

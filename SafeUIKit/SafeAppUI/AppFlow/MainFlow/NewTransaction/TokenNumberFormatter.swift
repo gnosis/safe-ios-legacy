@@ -7,6 +7,15 @@ import BigInt
 
 class TokenNumberFormatter {
 
+    static let eth: TokenNumberFormatter = {
+        let formatter = TokenNumberFormatter()
+        formatter.decimals = 18
+        formatter.tokenCode = "ETH"
+        formatter.decimalSeparator = Locale.autoupdatingCurrent.decimalSeparator ?? ","
+        formatter.groupingSeparator = Locale.autoupdatingCurrent.groupingSeparator ?? " "
+        return formatter
+    }()
+
     var decimals: Int = 0
     var groupingSeparator = " "
     var decimalSeparator = ","

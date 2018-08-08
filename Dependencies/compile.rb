@@ -30,6 +30,8 @@ deps.each do |dependency|
             "SYMROOT='${SRCROOT}/../../Build/'", 
             "DSTROOT='${SRCROOT}/../../Library/${PLATFORM_NAME}'",
             "FRAMEWORK_SEARCH_PATHS='$(inherited) ${SRCROOT}/../../Library/${PLATFORM_NAME}'",
+            "LIBRARY_SEARCH_PATHS='$(inherited) ${SRCROOT}/../../Library/${PLATFORM_NAME}'",
+            "HEADER_SEARCH_PATHS='$(inherited) ${SRCROOT}/../../Library/${PLATFORM_NAME}/include'",
             "INSTALL_PATH=/ DWARF_DSYM_FOLDER_PATH='${DSTROOT}'",
             "DEBUG_INFORMATION_FORMAT=dwarf-with-dsym",
             "COPY_PHASE_STRIP=NO",

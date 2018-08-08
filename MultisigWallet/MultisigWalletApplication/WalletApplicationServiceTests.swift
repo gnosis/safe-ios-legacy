@@ -125,8 +125,6 @@ class WalletApplicationServiceTests: XCTestCase {
         assert(state: .accountFunded)
         service.markDeploymentAcceptedByBlockchain()
         assert(state: .deploymentAcceptedByBlockchain)
-        service.markDeploymentSuccess()
-        assert(state: .deploymentSuccess)
         service.finishDeployment()
         assert(state: .readyToUse)
     }
@@ -186,7 +184,6 @@ class WalletApplicationServiceTests: XCTestCase {
         service.update(account: "ETH", newBalance: 1)
         service.update(account: "ETH", newBalance: 2)
         service.markDeploymentAcceptedByBlockchain()
-        service.markDeploymentSuccess()
         service.finishDeployment()
         XCTAssertTrue(service.hasReadyToUseWallet)
     }
@@ -479,7 +476,6 @@ class WalletApplicationServiceTests: XCTestCase {
         service.update(account: "ETH", newBalance: 1)
         service.update(account: "ETH", newBalance: 100)
         service.markDeploymentAcceptedByBlockchain()
-        service.markDeploymentSuccess()
         service.finishDeployment()
     }
 
@@ -693,10 +689,11 @@ class WalletApplicationServiceTests: XCTestCase {
         _ = try service.submitTransaction(txID)
         let tx = transactionRepository.findByID(TransactionID(txID))!
 
-        XCTAssertEqual(notificationService.sentMessages, [
-            "to:\(service.ownerAddress(of: .browserExtension)!) " +
-            "msg:\(notificationService.transactionSentMessage(for: tx))"])
+        XCTAssertEqual(notificationService.sentMessages,
+                       ["to:\(service.ownerAddress(of: .browserExtension)!) " +
+                        "msg:\(notificationService.transactionSentMessage(for: tx))"])
     }
+
 }
 
 fileprivate extension WalletApplicationServiceTests {

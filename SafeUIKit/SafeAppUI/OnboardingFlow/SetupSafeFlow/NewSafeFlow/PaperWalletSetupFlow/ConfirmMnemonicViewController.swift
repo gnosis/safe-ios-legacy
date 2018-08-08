@@ -95,7 +95,7 @@ final class ConfirmMnemonicViewController: UIViewController {
             let kbSize = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size,
             let activeInput = activeInput else { return }
         let height = kbSize.height
-        let contentInsets = UIEdgeInsetsMake(0, 0, height + 8, 0)
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: height + 8, right: 0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
         scrollView.scrollRectToVisible(activeInput.frame, animated: true)

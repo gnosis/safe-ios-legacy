@@ -131,7 +131,7 @@ open class MockEthereumApplicationService: EthereumApplicationService {
     }
 
     public var hash_of_tx_output = Data(repeating: 1, count: 32)
-    
+
     public override func hash(of tx: Transaction) -> Data {
         return hash_of_tx_output
     }

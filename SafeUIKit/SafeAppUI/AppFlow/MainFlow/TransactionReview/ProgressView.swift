@@ -134,6 +134,13 @@ public class ProgressView: DesignableView {
         }, completion: nil)
         isAnimating = false
     }
+
+    public func resumeAnimation() {
+        guard isAnimating else { return }
+        isAnimating = false
+        beginAnimating()
+    }
+
 }
 
 public enum ProgressViewState: Equatable {

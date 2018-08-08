@@ -26,7 +26,7 @@ class FundsTransferTransactionViewModel {
     private var allErrors: [Error] { return amountErrors + recipientErrors }
     private var hasErrors: Bool { return !allErrors.isEmpty }
 
-    let tokenFormatter: TokenNumberFormatter
+    let tokenFormatter: TokenNumberFormatter = .eth
     private let amountValidator: TokenAmountValidator
     private let fundsValidator: FundsValidator
     private let addressValidator: EthereumAddressValidator
@@ -41,9 +41,6 @@ class FundsTransferTransactionViewModel {
         self.senderAddress = ApplicationServiceRegistry.walletService.selectedWalletAddress!
         canProceedToSigning = false
         updateBlock = onUpdate
-        tokenFormatter = TokenNumberFormatter()
-        tokenFormatter.decimals = 18
-        tokenFormatter.tokenCode = "ETH"
         amountValidator = TokenAmountValidator(formatter: tokenFormatter, range: BigInt(0)..<BigInt(2).power(256) - 1)
         fundsValidator = FundsValidator()
         addressValidator = EthereumAddressValidator(byteCount: 20)

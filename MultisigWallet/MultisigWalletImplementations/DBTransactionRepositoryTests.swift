@@ -23,26 +23,7 @@ class DBTransactionRepositoryTests: XCTestCase {
         let repo = DBTransactionRepository(db: db)
         repo.setUp()
 
-        let walletID = WalletID()
-        let accountID = AccountID(token: "ETH")
-        let transaction = Transaction(id: repo.nextID(), type: .transfer, walletID: walletID, accountID: accountID)
-            .change(amount: .ether(3))
-            .change(fee: .ether(1))
-            .change(feeEstimate: TransactionFeeEstimate(gas: 100, dataGas: 100, gasPrice: .ether(5)))
-            .change(sender: Address.testAccount1)
-            .change(recipient: Address.testAccount2)
-            .change(data: Data(repeating: 1, count: 8))
-            .change(nonce: "123")
-            .change(hash: Data(repeating: 1, count: 32))
-            .change(operation: .delegateCall)
-            .change(status: .signing)
-            .add(signature: Signature(data: Data(repeating: 1, count: 7),
-                                      address: Address.testAccount3))
-            .add(signature: Signature(data: Data(repeating: 2, count: 7),
-                                      address: Address.testAccount4))
-            .set(hash: TransactionHash("hash"))
-            .change(status: .pending)
-            .change(status: .success)
+        let transaction = testTransaction(repo)
 
         repo.save(transaction)
         let saved = repo.findByID(transaction.id)
@@ -67,6 +48,27 @@ class DBTransactionRepositoryTests: XCTestCase {
 
         repo.remove(transaction)
         XCTAssertNil(repo.findByID(transaction.id))
+    }
+
+    private func testTransaction(_ repo: DBTransactionRepository) -> Transaction {
+        return Transaction(id: repo.nextID(), type: .transfer, walletID: WalletID(), accountID: AccountID(token: "ETH"))
+            .change(amount: .ether(3))
+            .change(fee: .ether(1))
+            .change(feeEstimate: TransactionFeeEstimate(gas: 100, dataGas: 100, gasPrice: .ether(5)))
+            .change(sender: Address.testAccount1)
+            .change(recipient: Address.testAccount2)
+            .change(data: Data(repeating: 1, count: 8))
+            .change(nonce: "123")
+            .change(hash: Data(repeating: 1, count: 32))
+            .change(operation: .delegateCall)
+            .change(status: .signing)
+            .add(signature: Signature(data: Data(repeating: 1, count: 7),
+                                      address: Address.testAccount3))
+            .add(signature: Signature(data: Data(repeating: 2, count: 7),
+                                      address: Address.testAccount4))
+            .set(hash: TransactionHash("hash"))
+            .change(status: .pending)
+            .change(status: .success)
     }
 
 }

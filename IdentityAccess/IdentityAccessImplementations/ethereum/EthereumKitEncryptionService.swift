@@ -3,17 +3,21 @@
 //
 
 import Foundation
-import EthereumKit
 import IdentityAccessDomainModel
+import CommonCrypto
 
-// TODO: rework without dependencies
 public final class EthereumKitEncryptionService: EncryptionService {
 
     public init() {}
 
     public func encrypted(_ plainText: String) -> String {
         guard let data = plainText.data(using: .utf8) else { return plainText }
-        return Crypto.hashSHA3_256(data).base64EncodedString()
+        var hashBuffer = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+        _ = data.withUnsafeBytes {
+            CC_SHA256($0, CC_LONG(data.count), &hashBuffer)
+        }
+        let hash = Data(bytes: hashBuffer)
+        return hash.base64EncodedString()
     }
 
 }

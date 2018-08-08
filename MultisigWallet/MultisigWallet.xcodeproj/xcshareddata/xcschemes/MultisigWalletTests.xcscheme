@@ -81,6 +81,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0AEF8A7420A08878006A1265"
+            BuildableName = "libMultisigWalletDomainModel.a"
+            BlueprintName = "MultisigWalletDomainModel"
+            ReferencedContainer = "container:MultisigWallet.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
