@@ -73,20 +73,20 @@ class PendingSafeViewControllerTests: SafeTestCase {
 
     func test_whenTransactionSuccess_thenDisplaysStatus() {
         loadController()
-        walletService.markDeploymentSuccess()
+        walletService.finishDeployment()
         assertDisplayedDeploySuccessStatus()
     }
 
     func test_whenTransactionSuccess_thenCallsDelegate() {
         loadController()
-        walletService.markDeploymentSuccess()
+        walletService.finishDeployment()
         delay()
         XCTAssertEqual(delegate.success, true)
     }
 
     func test_whenStatusUpdated_thenDisplaysIt() {
         loadController()
-        walletService.markDeploymentSuccess()
+        walletService.finishDeployment()
         delay()
         assertDisplayedDeploySuccessStatus()
     }

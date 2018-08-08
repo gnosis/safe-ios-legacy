@@ -150,9 +150,6 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         walletService.markDeploymentAcceptedByBlockchain()
         assertShowingPendingVC()
 
-        walletService.markDeploymentSuccess()
-        assertShowingPendingVC()
-
         walletService.createReadyToUseWallet()
         assertShowingPendingVC(shouldShow: false)
     }
@@ -178,9 +175,6 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         assertNotFinished()
 
         walletService.markDeploymentAcceptedByBlockchain()
-        assertNotFinished()
-
-        walletService.markDeploymentSuccess()
         assertNotFinished()
 
         walletService.createReadyToUseWallet()

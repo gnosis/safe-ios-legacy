@@ -112,8 +112,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         _selectedWalletState = .deploymentAcceptedByBlockchain
     }
 
-    public override func markDeploymentSuccess() {
-        _selectedWalletState = .deploymentSuccess
+    public override func finishDeployment() {
+        _selectedWalletState = .readyToUse
     }
 
     public override func abortDeployment() {

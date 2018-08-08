@@ -157,7 +157,7 @@ public class PendingSafeViewController: UIViewController {
                 self.update(progress: 0.5, status: Strings.Status.accountFunded)
             case .deploymentAcceptedByBlockchain:
                 self.update(progress: 0.8, status: Strings.Status.deploymentAccepted)
-            case .deploymentSuccess:
+            case .readyToUse:
                 self.update(progress: 1.0, status: Strings.Status.deploymentSuccess)
                 Timer.wait(0.5)
                 self.delegate?.deploymentDidSuccess()

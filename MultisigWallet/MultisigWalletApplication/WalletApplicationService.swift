@@ -26,13 +26,10 @@ public class WalletApplicationService: Assertable {
         case newDraft
         case readyToDeploy
         case deploymentStarted
-        // TODO: remove addressKnown state
         case addressKnown
         case accountFunded
         case notEnoughFunds
         case deploymentAcceptedByBlockchain
-        // TODO: remove deploymentSuccess state
-        case deploymentSuccess
         case readyToUse
 
         var isBeingCreated: Bool {
@@ -56,8 +53,7 @@ public class WalletApplicationService: Assertable {
             .addressKnown,
             .accountFunded,
             .notEnoughFunds,
-            .deploymentAcceptedByBlockchain,
-            .deploymentSuccess
+            .deploymentAcceptedByBlockchain
         ]
 
         private static let validAccountUpdateStates: [WalletState] = [
@@ -123,8 +119,6 @@ public class WalletApplicationService: Assertable {
             }
         case .deploymentAcceptedByBlockchain:
             return .deploymentAcceptedByBlockchain
-        case .deploymentSuccess:
-            return .deploymentSuccess
         case .readyToUse:
             return .readyToUse
         }
@@ -303,7 +297,6 @@ public class WalletApplicationService: Assertable {
     private func didFinishDeployment(success: Bool) {
         if success {
             removePaperWallet()
-            markDeploymentSuccess()
             finishDeployment()
         } else {
             let wallet = findSelectedWallet()!
@@ -350,12 +343,6 @@ public class WalletApplicationService: Assertable {
     public func markDeploymentAcceptedByBlockchain() {
         mutateSelectedWallet { wallet in
             wallet.markDeploymentAcceptedByBlockchain()
-        }
-    }
-
-    public func markDeploymentSuccess() {
-        mutateSelectedWallet { wallet in
-            wallet.markDeploymentSuccess()
         }
     }
 
