@@ -6,8 +6,7 @@ import Foundation
 import IdentityAccessApplication
 import MultisigWalletImplementations
 import MultisigWalletDomainModel
-import MultisigWalletDomainModel
-import MultisigWalletImplementations
+import MultisigWalletApplication
 import SafeAppUI
 import BigInt
 
@@ -69,6 +68,22 @@ final class TestSupport {
                                            for: NotificationDomainService.self)
                         DomainRegistry.put(service: StubEncryptionService(), for: EncryptionDomainService.self)
                     }
+                case ApplicationArguments.setMockTransactionsRelayService:
+                    var transactionRelayService = MockTransactionRelayService(averageDelay: 0, maxDeviation: 0)
+                    if let parameters = iterator.next()?.split(separator: ",") {
+                        let delayParameters = parameters.filter { $0.range(of: "delay=") != nil }
+                        if !delayParameters.isEmpty {
+                            let delayParam = delayParameters.first!
+                            let delay = TimeInterval(delayParam.suffix(from: delayParam.index(of: "=")!).dropFirst())!
+                            transactionRelayService = MockTransactionRelayService(averageDelay: delay, maxDeviation: 0)
+                        }
+                        if parameters.contains("networkError") {
+                            transactionRelayService.shouldThrowNetworkError = true
+                        } else if parameters.contains("genericError") {
+                            transactionRelayService.shouldThrow = true
+                        }
+                    }
+                    DomainRegistry.put(service: transactionRelayService, for: TransactionRelayDomainService.self)
                 case ApplicationArguments.setMockNotificationService:
                     let notificationService = MockNotificationService()
                     var delay: TimeInterval = 0
@@ -89,6 +104,11 @@ final class TestSupport {
                         }
                     }
                     DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
+                case ApplicationArguments.setTestSafe:
+                    let walletService = MockWalletApplicationService()
+                    walletService.estimatedFee_output = 0
+                    walletService.createReadyToUseWallet()
+                    ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
                 default: break
                 }
             }

@@ -13,5 +13,7 @@ struct ApplicationArguments {
     static let setAccountBlockedPeriodDuration = "-setAccountBlockedPeriodDuration"
     static let setMockServerResponseDelay = "-setMockServerResponseDelay"
     static let setMockNotificationService = "-setMockNotificationService"
+    static let setMockTransactionsRelayService = "-setMockTransactionsRelayService"
+    static let setTestSafe = "-setTestSafe"
 
 }

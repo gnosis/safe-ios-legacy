@@ -5,11 +5,15 @@
 import Foundation
 import MultisigWalletDomainModel
 import Common
+import CommonTestSupport
 
 public class MockTransactionRelayService: TransactionRelayDomainService {
 
     public let averageDelay: Double
     public let maxDeviation: Double
+
+    public var shouldThrowNetworkError = false
+    public var shouldThrow = false
 
     private var randomizedNetworkResponseDelay: Double {
         return Timer.random(average: averageDelay, maxDeviation: maxDeviation)
@@ -36,16 +40,19 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
     public var startSafeCreation_input: Address?
 
     public func startSafeCreation(address: Address) throws {
+        try throwIfNeeded()
         startSafeCreation_input = address
         Timer.wait(randomizedNetworkResponseDelay)
     }
 
     public func safeCreationTransactionHash(address: Address) throws -> TransactionHash? {
+        try throwIfNeeded()
         Timer.wait(randomizedNetworkResponseDelay)
         return TransactionHash("0x3b9307c1473e915d04292a0f5b0f425eaf527f53852357e2c649b8c447e3246a")
     }
 
     public func gasPrice() throws -> SafeGasPriceResponse {
+        try throwIfNeeded()
         Timer.wait(randomizedNetworkResponseDelay)
         return SafeGasPriceResponse(safeLow: "0", standard: "0", fast: "0", fastest: "0", lowest: "0")
     }
@@ -54,6 +61,7 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
     public var submitTransaction_output = SubmitTransactionRequest.Response(transactionHash: "")
 
     public func submitTransaction(request: SubmitTransactionRequest) throws -> SubmitTransactionRequest.Response {
+        try throwIfNeeded()
         submitTransaction_input = request
         return submitTransaction_output
     }
@@ -66,8 +74,16 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
               gasToken: "0x0000000000000000000000000000000000000000")
 
     public func estimateTransaction(request: EstimateTransactionRequest) throws -> EstimateTransactionRequest.Response {
+        try throwIfNeeded()
         estimateTransaction_input = request
         return estimateTransaction_output
+    }
+
+    private func throwIfNeeded() throws {
+        if shouldThrowNetworkError {
+            throw JSONHTTPClient.Error.networkRequestFailed(URLRequest(url: URL(string: "http://test.url")!), nil, nil)
+        }
+        if shouldThrow { throw TestError.error }
     }
 
 }

@@ -63,6 +63,24 @@ final class Application {
         arguments.append(params)
     }
 
+    func setMockTransactionRelayService(delay: TimeInterval, shouldThrow: ApplicationError) {
+        var params = "delay=\(Int(delay))"
+        switch shouldThrow {
+        case .networkError:
+            params += ",networkError"
+        case .genericError:
+            params += ",genericError"
+        default:
+            break
+        }
+        arguments.append(ApplicationArguments.setMockTransactionsRelayService)
+        arguments.append(params)
+    }
+
+    func setTestSafe() {
+        arguments.append(ApplicationArguments.setTestSafe)
+    }
+
     func resetArguments() {
         arguments = []
     }
