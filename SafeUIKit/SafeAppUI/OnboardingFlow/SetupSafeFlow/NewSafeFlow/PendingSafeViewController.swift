@@ -7,6 +7,7 @@ import UIKit
 import SafeUIKit
 import MultisigWalletApplication
 import Common
+import BigInt
 
 public protocol PendingSafeViewControllerDelegate: class {
     func deploymentDidFail(_ localizedDescription: String)
@@ -166,7 +167,7 @@ public class PendingSafeViewController: UIViewController {
         }
     }
 
-    private func updateAddressLabel(address: String?, balance: Int?) {
+    private func updateAddressLabel(address: String?, balance: BigInt?) {
         var addressText = ""
         if let address = address {
             addressText += "\(Strings.addressLabel):\n\(address)"
@@ -178,7 +179,7 @@ public class PendingSafeViewController: UIViewController {
         self.safeAddressLabel.text = addressText
     }
 
-    private func notEnoughFundsStatus(payment: Int!, balance: Int!) -> String {
+    private func notEnoughFundsStatus(payment: BigInt!, balance: BigInt!) -> String {
         let requiredEth = "\(payment!) Wei"
         let balanceEth = "\(balance!) Wei"
         let status = String(format: Strings.Status.notEnoughFundsFormat, balanceEth, requiredEth)

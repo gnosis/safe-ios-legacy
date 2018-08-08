@@ -33,9 +33,9 @@ public class MockWalletApplicationService: WalletApplicationService {
         return walletAddress
     }
 
-    private var deploymentAmount: Int?
+    private var deploymentAmount: BigInt?
 
-    public override var minimumDeploymentAmount: Int? {
+    public override var minimumDeploymentAmount: BigInt? {
         return deploymentAmount
     }
 
@@ -43,9 +43,9 @@ public class MockWalletApplicationService: WalletApplicationService {
     public var shouldThrow = false
 
     private var existingOwners: [OwnerType: String] = [:]
-    private var accounts: [String: Int] = [:]
-    private var minimumFunding: [String: Int] = [:]
-    private var funds: [String: Int] = [:]
+    private var accounts: [String: BigInt] = [:]
+    private var minimumFunding: [String: BigInt] = [:]
+    private var funds: [String: BigInt] = [:]
     private var subscriptions: [String: () -> Void] = [:]
 
     public func createReadyToUseWallet() {
@@ -86,7 +86,7 @@ public class MockWalletApplicationService: WalletApplicationService {
         _selectedWalletState = .addressKnown
     }
 
-    public override func update(account: String, newBalance: Int?) {
+    public override func update(account: String, newBalance: BigInt?) {
         guard let newBalance = newBalance else {
             funds.removeValue(forKey: account)
             return
@@ -99,12 +99,12 @@ public class MockWalletApplicationService: WalletApplicationService {
         }
     }
 
-    public func updateMinimumFunding(account: String, amount: Int) {
+    public func updateMinimumFunding(account: String, amount: BigInt) {
         deploymentAmount = amount
         minimumFunding[account] = amount
     }
 
-    public override func accountBalance(token: String) -> Int? {
+    public override func accountBalance(token: String) -> BigInt? {
         return funds[token]
     }
 
