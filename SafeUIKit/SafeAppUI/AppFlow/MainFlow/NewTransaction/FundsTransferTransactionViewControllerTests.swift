@@ -18,7 +18,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         walletService.assignAddress(walletAddress)
-        walletService.update(account: "ETH", newBalance: Int(balance))
+        walletService.update(account: "ETH", newBalance: balance)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
     }
 
@@ -68,7 +68,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         let amount = BigInt(10).power(17)
         let balance = BigInt(10).power(18)
         let recipient = walletAddress
-        walletService.update(account: "ETH", newBalance: Int(balance))
+        walletService.update(account: "ETH", newBalance: balance)
         walletService.estimatedFee_output = 100
         walletService.createNewDraftTransaction_output = transactionID
 

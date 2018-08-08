@@ -260,8 +260,7 @@ public enum TransactionType: Int {
 
 }
 
-// TODO: confusion with EthSignature
-public struct Signature: Equatable { // signature of some owner?
+public struct Signature: Equatable {
 
     public var address: Address
     public var data: Data

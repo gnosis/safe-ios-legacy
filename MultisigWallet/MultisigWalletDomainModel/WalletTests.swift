@@ -60,7 +60,6 @@ class WalletTests: XCTestCase {
         wallet.startDeployment()
         wallet.changeAddress(owner.address)
         wallet.markDeploymentAcceptedByBlockchain()
-        wallet.markDeploymentSuccess()
         wallet.finishDeployment()
         XCTAssertEqual(wallet.status, Wallet.Status.readyToUse)
     }

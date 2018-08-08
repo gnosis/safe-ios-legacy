@@ -17,30 +17,30 @@ public struct AccountID: Hashable {
 
 public class Account: IdentifiableEntity<AccountID> {
 
-    public private(set) var balance: Int
+    public private(set) var balance: TokenInt
     public let walletID: WalletID
-    public private(set) var minimumDeploymentTransactionAmount: Int
+    public private(set) var minimumDeploymentTransactionAmount: TokenInt
 
-    public init(id: AccountID, walletID: WalletID, balance: Int, minimumAmount: Int) {
+    public init(id: AccountID, walletID: WalletID, balance: TokenInt, minimumAmount: TokenInt) {
         self.balance = balance
         self.walletID = walletID
         self.minimumDeploymentTransactionAmount = minimumAmount
         super.init(id: id)
     }
 
-    public func update(newAmount: Int) {
+    public func update(newAmount: TokenInt) {
         balance = newAmount
     }
 
-    public func add(amount: Int) {
-        balance += amount // overflow!
+    public func add(amount: TokenInt) {
+        balance += amount
     }
 
-    public func withdraw(amount: Int) {
+    public func withdraw(amount: TokenInt) {
         balance -= amount
     }
 
-    public func updateMinimumTransactionAmount(_ newValue: Int) {
+    public func updateMinimumTransactionAmount(_ newValue: TokenInt) {
         minimumDeploymentTransactionAmount = newValue
     }
 

@@ -6,6 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
 import Common
+import BigInt
 
 class MainViewControllerTests: XCTestCase {
 
@@ -29,7 +30,7 @@ class MainViewControllerTests: XCTestCase {
     }
 
     func test_whenLoaded_loadsBalance() {
-        walletService.update(account: "ETH", newBalance: Int(1e9))
+        walletService.update(account: "ETH", newBalance: BigInt(1e9))
         vc.loadViewIfNeeded()
         XCTAssertEqual(vc.totalBalanceLabel.text, "0,000000001 ETH")
     }

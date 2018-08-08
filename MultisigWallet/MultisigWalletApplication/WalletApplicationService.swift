@@ -26,13 +26,10 @@ public class WalletApplicationService: Assertable {
         case newDraft
         case readyToDeploy
         case deploymentStarted
-        // TODO: remove addressKnown state
         case addressKnown
         case accountFunded
         case notEnoughFunds
         case deploymentAcceptedByBlockchain
-        // TODO: remove deploymentSuccess state
-        case deploymentSuccess
         case readyToUse
 
         var isBeingCreated: Bool {
@@ -56,8 +53,7 @@ public class WalletApplicationService: Assertable {
             .addressKnown,
             .accountFunded,
             .notEnoughFunds,
-            .deploymentAcceptedByBlockchain,
-            .deploymentSuccess
+            .deploymentAcceptedByBlockchain
         ]
 
         private static let validAccountUpdateStates: [WalletState] = [
@@ -123,8 +119,6 @@ public class WalletApplicationService: Assertable {
             }
         case .deploymentAcceptedByBlockchain:
             return .deploymentAcceptedByBlockchain
-        case .deploymentSuccess:
-            return .deploymentSuccess
         case .readyToUse:
             return .readyToUse
         }
@@ -150,7 +144,7 @@ public class WalletApplicationService: Assertable {
         return findSelectedWallet()?.address?.value
     }
 
-    public var minimumDeploymentAmount: Int? {
+    public var minimumDeploymentAmount: BigInt? {
         return findAccount("ETH")?.minimumDeploymentTransactionAmount
     }
 
@@ -255,8 +249,7 @@ public class WalletApplicationService: Assertable {
                 .contains(selectedWalletState) else {
                 return RepeatingShouldStop.yes
             }
-            // TODO: BigInt support
-            update(account: "ETH", newBalance: Int(newBalance)) // mutates selectedWalletState
+            update(account: "ETH", newBalance: newBalance)
             if selectedWalletState == .accountFunded {
                 try createWalletInBlockchain()
                 return RepeatingShouldStop.yes
@@ -271,7 +264,6 @@ public class WalletApplicationService: Assertable {
 
     private func createWalletInBlockchain() throws {
         let address = findSelectedWallet()!.address!
-        // TODO: if the call fails, show error in UI and possibility to retry with a button
         try ethereumService.startSafeCreation(address: address)
         guard selectedWalletState == .accountFunded else { return }
         markDeploymentAcceptedByBlockchain()
@@ -303,7 +295,6 @@ public class WalletApplicationService: Assertable {
     private func didFinishDeployment(success: Bool) {
         if success {
             removePaperWallet()
-            markDeploymentSuccess()
             finishDeployment()
         } else {
             let wallet = findSelectedWallet()!
@@ -332,8 +323,7 @@ public class WalletApplicationService: Assertable {
     private func fetchBalance() throws {
         let address = findSelectedWallet()!.address!.value
         let newBalance = try ethereumService.balance(address: address)
-        // TODO: BigInt support
-        update(account: "ETH", newBalance: Int(newBalance))
+        update(account: "ETH", newBalance: newBalance)
     }
 
     private func removePaperWallet() {
@@ -350,12 +340,6 @@ public class WalletApplicationService: Assertable {
     public func markDeploymentAcceptedByBlockchain() {
         mutateSelectedWallet { wallet in
             wallet.markDeploymentAcceptedByBlockchain()
-        }
-    }
-
-    public func markDeploymentSuccess() {
-        mutateSelectedWallet { wallet in
-            wallet.markDeploymentSuccess()
         }
     }
 
@@ -451,7 +435,6 @@ public class WalletApplicationService: Assertable {
             throw Error.validationFailed
         } catch let JSONHTTPClient.Error.networkRequestFailed(_, response, data) {
             if let data = data, let dataStr = String(data: data, encoding: .utf8),
-                // FIXME: fragile error detection, better to have JSON code/struct
                 dataStr.range(of: "Exceeded expiration date") != nil {
                 throw Error.exceededExpirationDate
             } else if let response = response as? HTTPURLResponse {
@@ -485,15 +468,14 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Accounts
 
-    public func accountBalance(token: String) -> Int? {
+    public func accountBalance(token: String) -> BigInt? {
        return findAccount(token)?.balance
     }
 
     private func updateMinimumFunding(account token: String, amount: BigInt) {
         assertCanChangeAccount()
         mutateAccount(token: token) { account in
-            // TODO: bigint
-            account.updateMinimumTransactionAmount(Int(amount))
+            account.updateMinimumTransactionAmount(amount)
         }
     }
 
@@ -501,7 +483,7 @@ public class WalletApplicationService: Assertable {
         try! assertTrue(selectedWalletState.isValidForAccountUpdate, Error.invalidWalletState)
     }
 
-    public func update(account token: String, newBalance: Int) {
+    public func update(account token: String, newBalance: BigInt) {
         assertCanChangeAccount()
         mutateAccount(token: token) { account in
             account.update(newAmount: newBalance)
