@@ -5,6 +5,7 @@
 import Foundation
 import IdentityAccessDomainModel
 
+/// In-memory storage of a gatekeeper entity.
 public class InMemoryGatekeeperRepository: SingleGatekeeperRepository {
 
     private var _gatekeeper: Gatekeeper?

@@ -5,6 +5,7 @@
 import Foundation
 import IdentityAccessApplication
 
+/// Mock Clock implementation for testing purposes.
 open class MockClockService: Clock {
 
     open var currentTime = Date()

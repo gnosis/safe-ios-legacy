@@ -30,7 +30,7 @@ class SafeTestCase: XCTestCase {
 
     private func configureIdentityAccessModule() {
         let domainRegistry = IdentityAccessDomainModel.DomainRegistry.self
-        domainRegistry.put(service: EthereumKitEncryptionService(), for: EncryptionService.self)
+        domainRegistry.put(service: CommonCryptoEncryptionService(), for: EncryptionService.self)
         domainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
         domainRegistry.put(service: InMemoryUserRepository(), for: SingleUserRepository.self)
         domainRegistry.put(service: InMemoryGatekeeperRepository(), for: SingleGatekeeperRepository.self)

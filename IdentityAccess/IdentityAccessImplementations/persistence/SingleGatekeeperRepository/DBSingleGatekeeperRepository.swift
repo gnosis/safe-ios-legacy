@@ -7,6 +7,7 @@ import IdentityAccessDomainModel
 import Common
 import Database
 
+/// Database storage for the gatekeeper entity.
 public class DBSingleGatekeeperRepository: SingleGatekeeperRepository, Assertable {
 
     struct SQL {

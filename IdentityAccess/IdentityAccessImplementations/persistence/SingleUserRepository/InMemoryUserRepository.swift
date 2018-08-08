@@ -5,6 +5,7 @@
 import Foundation
 import IdentityAccessDomainModel
 
+/// Stores user entity in memory.
 public class InMemoryUserRepository: SingleUserRepository {
 
     private var storedUser: User?

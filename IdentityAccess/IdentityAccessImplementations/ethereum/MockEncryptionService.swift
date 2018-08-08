@@ -5,6 +5,7 @@
 import Foundation
 import IdentityAccessDomainModel
 
+/// Mock encryption service implementation for testing purposes.
 public class MockEncryptionService: EncryptionService {
 
     public init() {}

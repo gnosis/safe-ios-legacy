@@ -8,7 +8,7 @@ import IdentityAccessDomainModel
 
 class EncryptionServiceTests: XCTestCase {
 
-    let service = EthereumKitEncryptionService()
+    let service = CommonCryptoEncryptionService()
 
     func test_encryption() {
         XCTAssertNotEqual(service.encrypted("text"), "text")

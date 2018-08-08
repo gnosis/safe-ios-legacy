@@ -5,6 +5,7 @@
 import Foundation
 import IdentityAccessDomainModel
 
+/// Mock biometric service for testing purposes.
 public class MockBiometricService: BiometricAuthenticationService {
 
     public var biometryType: BiometryType = .none

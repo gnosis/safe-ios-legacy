@@ -6,7 +6,8 @@ import Foundation
 import IdentityAccessDomainModel
 import CommonCrypto
 
-public final class EthereumKitEncryptionService: EncryptionService {
+/// Hashes plainText using SHA256 digest.
+public final class CommonCryptoEncryptionService: EncryptionService {
 
     public init() {}
 
