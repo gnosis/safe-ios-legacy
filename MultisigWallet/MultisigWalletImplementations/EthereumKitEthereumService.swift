@@ -18,7 +18,7 @@ public class EthereumKitEthereumService: EthereumService {
     }
 
     public func createPrivateKey(seed: Data, network: EIP155ChainId) -> Data {
-        return HDPrivateKey(seed: seed, network: Network.private(chainID: network.rawValue)).raw
+        return HDPrivateKey(seed: seed, network: Network.private(chainID: network.rawValue, testUse: false)).raw
     }
 
     public func createPublicKey(privateKey: Data) -> Data {
@@ -26,7 +26,7 @@ public class EthereumKitEthereumService: EthereumService {
     }
 
     public func createAddress(publicKey: Data) -> String {
-        return PublicKey(raw: publicKey).generateAddress()
+        return PublicKey(raw: publicKey).address()
     }
 
 }

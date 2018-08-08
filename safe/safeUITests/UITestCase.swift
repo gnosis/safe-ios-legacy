@@ -84,7 +84,7 @@ class UITestCase: XCTestCase {
         newSafeScreen.browserExtension.element.tap()
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
-        pairWithBrowserScreen.saveButton.tap()        
+        pairWithBrowserScreen.saveButton.tap()
         newSafeScreen.next.tap()
     }
 
@@ -92,7 +92,6 @@ class UITestCase: XCTestCase {
     func confirmPaperWalletWithValidWords(withConfirmButton: Bool = false) -> String {
         let saveMnemonicScreen = SaveMnemonicScreen()
         let confirmMnemonicScreen = ConfirmMnemonicScreen()
-
         let mnemonic = saveMnemonicScreen.mnemonic.label
         let mnemonicWords = mnemonic.components(separatedBy: " ")
         saveMnemonicScreen.continueButton.tap()

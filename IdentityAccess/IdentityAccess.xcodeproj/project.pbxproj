@@ -182,6 +182,20 @@
 			remoteGlobalIDString = 0A934D4F20B711F400F15616;
 			remoteInfo = CommonIntegration;
 		};
+		0AC33F042119C851009A5CFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0AC33EF92119C735009A5CFB;
+			remoteInfo = CommonCrypto;
+		};
+		0AC33F142119C852009A5CFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AC33EFA2119C735009A5CFB;
+			remoteInfo = CommonCrypto;
+		};
 		0AD1937D210738630048CBCB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
@@ -642,6 +656,7 @@
 				55DA829A20CED9930080C7EF /* BigInt.framework */,
 				55DA829C20CED9930080C7EF /* SipHash.framework */,
 				0AD1937E210738630048CBCB /* BlockiesSwift.framework */,
+				0AC33F152119C852009A5CFB /* CommonCrypto.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -793,6 +808,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0AC33F052119C851009A5CFB /* PBXTargetDependency */,
 				0AEF8A2E20A08182006A1265 /* PBXTargetDependency */,
 				0ADFDD9C20A0616700423554 /* PBXTargetDependency */,
 				0A0C871720974B1B00471885 /* PBXTargetDependency */,
@@ -980,6 +996,13 @@
 			fileType = wrapper.application;
 			path = CommonIntegration.app;
 			remoteRef = 0A934D6A20B714F900F15616 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0AC33F152119C852009A5CFB /* CommonCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonCrypto.framework;
+			remoteRef = 0AC33F142119C852009A5CFB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0AD1937E210738630048CBCB /* BlockiesSwift.framework */ = {
@@ -1265,6 +1288,11 @@
 			isa = PBXTargetDependency;
 			target = 0A537BE0207CFADE00921FB9 /* IdentityAccessApplication */;
 			targetProxy = 0A666D07208654090034FF66 /* PBXContainerItemProxy */;
+		};
+		0AC33F052119C851009A5CFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CommonCrypto;
+			targetProxy = 0AC33F042119C851009A5CFB /* PBXContainerItemProxy */;
 		};
 		0ADFDD9A20A0616100423554 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
