@@ -433,7 +433,8 @@ public class WalletApplicationService: Assertable {
             return try block()
         } catch NotificationDomainServiceError.validationFailed {
             throw Error.validationFailed
-        } catch let JSONHTTPClient.Error.networkRequestFailed(_, response, data) {
+        } catch let JSONHTTPClient.Error.networkRequestFailed(request, response, data) {
+            logNetworkError(request, response, data)
             if let data = data, let dataStr = String(data: data, encoding: .utf8),
                 dataStr.range(of: "Exceeded expiration date") != nil {
                 throw Error.exceededExpirationDate
@@ -450,9 +451,24 @@ public class WalletApplicationService: Assertable {
             return try block()
         } catch let error as NetworkServiceError {
             throw self.error(from: error)
-        } catch let JSONHTTPClient.Error.networkRequestFailed(_, response, _) {
+        } catch let JSONHTTPClient.Error.networkRequestFailed(request, response, data) {
+            logNetworkError(request, response, data)
             throw self.error(from: response)
         }
+    }
+
+    /// TODO: remove in release
+    private func logNetworkError(_ request: URLRequest, _ response: URLResponse?, _ data: Data?) {
+        var userInfo = [String: Any]()
+        userInfo["request"] = request
+        if let response = response {
+            userInfo["response"] = response
+        }
+        if let data = data, let string = String(data: data, encoding: .utf8) {
+            userInfo["data"] = string
+        }
+        let nsError = NSError(domain: "pm.gnosis.safe", code: 1, userInfo: userInfo)
+        ApplicationServiceRegistry.logger.error("Request failed", error: nsError)
     }
 
     private func error(from response: URLResponse?) -> Error {
