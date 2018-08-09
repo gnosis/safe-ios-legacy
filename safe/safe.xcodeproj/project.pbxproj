@@ -58,7 +58,7 @@
 		0ABBDC032073CADD006D0A48 /* EthereumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBDBFA2073CACD006D0A48 /* EthereumKit.framework */; };
 		0ABCA975207E560B00E2C193 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABCA970207E560500E2C193 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ABCA976207E560B00E2C193 /* EthereumKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABCA972207E560500E2C193 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; };
+		0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		0AC33F1B2119CBE1009A5CFB /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AC33F2A2119CE7C009A5CFB /* BlockchainIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC33F292119CE7C009A5CFB /* BlockchainIntegrationTest.swift */; };
 		0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9C37205FDA75005EC186 /* ApplicationArguments.swift */; };
@@ -1197,7 +1197,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/../Library/${PLATFORM_NAME}/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
+			shellScript = "${SRCROOT}/../scripts/upload-dsyms.sh";
 		};
 		55DF6A95203C681A00DF6486 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;

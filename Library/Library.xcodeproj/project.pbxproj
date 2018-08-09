@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0AC33EFE2119C736009A5CFB /* CommonCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC33EFC2119C736009A5CFB /* CommonCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0AFC7F03211C438B00203E4D /* DummyCommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC7F02211C438B00203E4D /* DummyCommonCrypto.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		0AD8FD2020CEC4BA00591B91 /* BlockiesSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BlockiesSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD8FD2220CEC4BA00591B91 /* BlockiesSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockiesSwift.h; sourceTree = "<group>"; };
 		0AD8FD2320CEC4BA00591B91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AFC7F02211C438B00203E4D /* DummyCommonCrypto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DummyCommonCrypto.m; sourceTree = "<group>"; };
 		555B0E7A20CAD34C00424CEE /* CryptoEthereumSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CryptoEthereumSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		555B0EA920CE5EF800424CEE /* BigInt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BigInt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		555B0EC320CE66EB00424CEE /* SipHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SipHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +71,7 @@
 				0AC33EFC2119C736009A5CFB /* CommonCrypto.h */,
 				0AC33EFD2119C736009A5CFB /* Info.plist */,
 				0AC33F032119C751009A5CFB /* crypto.modulemap */,
+				0AFC7F02211C438B00203E4D /* DummyCommonCrypto.m */,
 			);
 			path = CommonCrypto;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 					};
 					0AC33EF92119C735009A5CFB = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 					0AD8FD1F20CEC4BA00591B91 = {
 						CreatedOnToolsVersion = 9.4;
@@ -410,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AFC7F03211C438B00203E4D /* DummyCommonCrypto.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1053,7 +1058,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;

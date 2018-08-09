@@ -55,4 +55,3 @@ public protocol NotificationDomainService {
     func transactionSentMessage(for transaction: Transaction) -> String
 
 }
-

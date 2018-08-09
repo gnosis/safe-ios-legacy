@@ -433,7 +433,8 @@ public class WalletApplicationService: Assertable {
             return try block()
         } catch NotificationDomainServiceError.validationFailed {
             throw Error.validationFailed
-        } catch let JSONHTTPClient.Error.networkRequestFailed(_, response, data) {
+        } catch let JSONHTTPClient.Error.networkRequestFailed(request, response, data) {
+            logNetworkError(request, response, data)
             if let data = data, let dataStr = String(data: data, encoding: .utf8),
                 dataStr.range(of: "Exceeded expiration date") != nil {
                 throw Error.exceededExpirationDate
@@ -442,6 +443,54 @@ public class WalletApplicationService: Assertable {
             } else {
                 throw Error.networkError
             }
+        }
+    }
+    @discardableResult
+    private func handleRelayServiceErrors<T>(_ block: () throws -> T) throws -> T {
+        do {
+            return try block()
+        } catch let error as NetworkServiceError {
+            throw self.error(from: error)
+        } catch let JSONHTTPClient.Error.networkRequestFailed(request, response, data) {
+            logNetworkError(request, response, data)
+            throw self.error(from: response)
+        }
+    }
+
+    private func logNetworkError(_ request: URLRequest, _ response: URLResponse?, _ data: Data?) {
+        #if DEBUG
+        var userInfo = [String: Any]()
+        userInfo["request"] = request
+        if let response = response {
+            userInfo["response"] = response
+        }
+        if let data = data, let string = String(data: data, encoding: .utf8) {
+            userInfo["data"] = string
+        }
+        let nsError = NSError(domain: "pm.gnosis.safe", code: 1, userInfo: userInfo)
+        ApplicationServiceRegistry.logger.error("Request failed", error: nsError)
+        #endif
+    }
+
+    private func error(from response: URLResponse?) -> Error {
+        if let response = response as? HTTPURLResponse {
+            if (400..<500).contains(response.statusCode) {
+                return .clientError
+            } else {
+                return .serverError
+            }
+        }
+        return .networkError
+    }
+
+    private func error(from other: NetworkServiceError) -> Error {
+        switch other {
+        case .clientError:
+            return .clientError
+        case .networkError:
+            return .networkError
+        case .serverError:
+            return .serverError
         }
     }
 
@@ -591,7 +640,10 @@ public class WalletApplicationService: Assertable {
                                                  value: String(tx.amount!.amount),
                                                  data: nil,
                                                  operation: .call)
-        let estimationResponse = try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
+
+        let estimationResponse = try handleRelayServiceErrors {
+            try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
+        }
         let gasToken = Token(code: "ETH", decimals: 18, address: Address(estimationResponse.gasToken))
         let feeEstimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
                                                  dataGas: estimationResponse.dataGas,
@@ -628,9 +680,11 @@ public class WalletApplicationService: Assertable {
         let signatures = tx.signatures.sorted { $0.address.value < $1.address.value }.map {
             DomainRegistry.encryptionService.ethSignature(from: $0)
         }
-        let request = SubmitTransactionRequest(transaction: tx, signatures: signatures)
-        let response = try DomainRegistry.transactionRelayService.submitTransaction(request: request)
-        return TransactionHash(response.transactionHash)
+        return try handleRelayServiceErrors {
+            let request = SubmitTransactionRequest(transaction: tx, signatures: signatures)
+            let response = try DomainRegistry.transactionRelayService.submitTransaction(request: request)
+            return TransactionHash(response.transactionHash)
+        }
     }
 
     private func findAccount(_ token: String) -> Account? {
