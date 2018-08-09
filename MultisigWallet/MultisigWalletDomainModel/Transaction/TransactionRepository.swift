@@ -22,11 +22,12 @@ public protocol TransactionRepository {
     /// - Parameter transactionID: transaction or nil if it was not found
     func findByID(_ transactionID: TransactionID) -> Transaction?
 
-    /// Searches a transaction by its hash
+    /// Searches a transaction by its hash and status
     ///
     /// - Parameter hash: hash of a transaction
+    /// - Parameter status: status of a transaction
     /// - Returns: transaction found or nil otherwise
-    func findByHash(_ hash: Data) -> Transaction?
+    func findBy(hash: Data, status: TransactionStatus) -> Transaction?
 
     /// Generates new transaction identifier
     ///

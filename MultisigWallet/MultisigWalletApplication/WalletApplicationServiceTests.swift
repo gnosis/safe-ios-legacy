@@ -619,6 +619,15 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(service.transactionData(txID)!.status, .rejected)
     }
 
+    func test_whenTransactionRejectedDoubleMessage_thenStatusIsRejected() throws {
+        let message = TransactionRejectedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
+        _ = prepareTransactionForSigning(basedOn: message)
+        _ = service.handle(message: message)!
+        _ = prepareTransactionForSigning(basedOn: message)
+        let txID = service.handle(message: message)!
+        XCTAssertEqual(service.transactionData(txID)!.status, .rejected)
+    }
+
     func test_whenTransactionIsPending_thenStatusIsPending() throws {
         let tx = Transaction(id: TransactionID(),
                              type: .transfer,
