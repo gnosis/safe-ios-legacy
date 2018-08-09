@@ -623,7 +623,10 @@ public class WalletApplicationService: Assertable {
                                                  value: String(tx.amount!.amount),
                                                  data: nil,
                                                  operation: .call)
-        let estimationResponse = try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
+
+        let estimationResponse = try handleRelayServiceErrors {
+            try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
+        }
         let gasToken = Token(code: "ETH", decimals: 18, address: Address(estimationResponse.gasToken))
         let feeEstimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
                                                  dataGas: estimationResponse.dataGas,
