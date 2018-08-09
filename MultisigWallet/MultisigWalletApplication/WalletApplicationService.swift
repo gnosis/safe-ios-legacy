@@ -457,8 +457,8 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    /// TODO: remove in release
     private func logNetworkError(_ request: URLRequest, _ response: URLResponse?, _ data: Data?) {
+        #if DEBUG
         var userInfo = [String: Any]()
         userInfo["request"] = request
         if let response = response {
@@ -469,6 +469,7 @@ public class WalletApplicationService: Assertable {
         }
         let nsError = NSError(domain: "pm.gnosis.safe", code: 1, userInfo: userInfo)
         ApplicationServiceRegistry.logger.error("Request failed", error: nsError)
+        #endif
     }
 
     private func error(from response: URLResponse?) -> Error {
