@@ -27,7 +27,7 @@ class DBTransactionRepositoryTests: XCTestCase {
 
         repo.save(transaction)
         let saved = repo.findByID(transaction.id)
-        let byHash = repo.findByHash(transaction.hash!)
+        let byHash = repo.findBy(hash: transaction.hash!, status: transaction.status)
 
         XCTAssertEqual(saved, transaction)
         XCTAssertEqual(saved?.type, transaction.type)

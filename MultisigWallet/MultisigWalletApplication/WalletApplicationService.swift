@@ -752,7 +752,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func transaction(from message: TransactionDecisionMessage, hash: Data) -> Transaction? {
-        guard let transaction = DomainRegistry.transactionRepository.findByHash(message.hash),
+        guard let transaction = DomainRegistry.transactionRepository.findBy(hash: message.hash, status: .signing),
             let sender = ethereumService.address(hash: hash, signature: message.signature),
             let extensionAddress = ownerAddress(of: .browserExtension),
             sender.value.lowercased() == extensionAddress.lowercased() else {

@@ -75,10 +75,10 @@ WHERE id = ?
 LIMIT 1;
 """
 
-        static let findByHash = """
+        static let findByHashStatus = """
 SELECT \(fieldList)
 FROM tbl_transactions
-WHERE hash = ?
+WHERE hash = ? AND transaction_status = ?
 LIMIT 1;
 """
     }
@@ -148,9 +148,9 @@ LIMIT 1;
                                resultMap: transactionFromResultSet).first as? Transaction
     }
 
-    public func findByHash(_ hash: Data) -> Transaction? {
-        return try! db.execute(sql: SQL.findByHash,
-                               bindings: [hash],
+    public func findBy(hash: Data, status: TransactionStatus) -> Transaction? {
+        return try! db.execute(sql: SQL.findByHashStatus,
+                               bindings: [hash, status.rawValue],
                                resultMap: transactionFromResultSet).first as? Transaction
     }
 
