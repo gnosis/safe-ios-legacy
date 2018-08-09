@@ -1197,7 +1197,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/../scripts/upload-dsyms.sh";
+			shellScript = "${SRCROOT}/../Library/${PLATFORM_NAME}/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
+			showEnvVarsInLog = 0;
 		};
 		55DF6A95203C681A00DF6486 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
