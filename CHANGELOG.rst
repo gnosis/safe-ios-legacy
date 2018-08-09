@@ -5,7 +5,20 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
-`0.5.0`_ - 2018-07-18
+`0.6.0`_ - 2018-08-09
+=====================
+Added
+-----
+- Configuration management in the AppConfig.yml file
+- Sending ETH transaction from mobile app
+- Handling incoming accept and reject transaction notifications from browser extension
+- Source code documentation of IdentityAccess* modules and MultisigWalletDomainModel module
+
+Changed
+-------
+- Fixed TODOs in code
+
+0.5.0 - 2018-07-18
 =====================
 Added
 -----
@@ -104,7 +117,7 @@ Added
 - Setting master password
 - Unlocking app
 
-.. _0.5.0: https://github.com/gnosis/safe-ios/tree/0.5.0
+.. _0.6.0: https://github.com/gnosis/safe-ios/tree/0.6.0
 .. _0.4.1: https://github.com/gnosis/safe-ios/tree/0.4.1
 .. _0.4.0: https://github.com/gnosis/safe-ios/tree/0.4.0
 .. _0.3.0: https://github.com/gnosis/safe-ios/tree/0.3.0
