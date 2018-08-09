@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS tbl_user (
         guard let id = rs.string(at: 0), let password = rs.string(at: 1) else {
                 return nil
         }
-        let user = try User(id: UserID(id), password: password)
+        let user = User(id: UserID(id), password: password)
         if let sessionID = rs.string(at: 2) {
             user.attachSession(id: SessionID(sessionID))
         }
