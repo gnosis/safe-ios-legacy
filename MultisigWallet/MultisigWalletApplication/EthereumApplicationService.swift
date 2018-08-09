@@ -100,17 +100,6 @@ open class EthereumApplicationService: Assertable {
         }
     }
 
-    private func error(from response: URLResponse?) -> Error {
-        if let response = response as? HTTPURLResponse {
-            if (400..<500).contains(response.statusCode) {
-                return .clientError
-            } else {
-                return .serverError
-            }
-        }
-        return .networkError
-    }
-
     private func validateSignature(in response: SafeCreationTransactionRequest.Response,
                                    for request: SafeCreationTransactionRequest) throws {
         try assertEqual(response.signature.s, request.s, Error.invalidSignature)
@@ -164,6 +153,17 @@ open class EthereumApplicationService: Assertable {
         } catch let JSONHTTPClient.Error.networkRequestFailed(_, response, _) {
             throw self.error(from: response)
         }
+    }
+
+    private func error(from response: URLResponse?) -> Error {
+        if let response = response as? HTTPURLResponse {
+            if (400..<500).contains(response.statusCode) {
+                return .clientError
+            } else {
+                return .serverError
+            }
+        }
+        return .networkError
     }
 
     private func error(from other: NetworkServiceError) -> Error {

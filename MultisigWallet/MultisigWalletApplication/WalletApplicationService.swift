@@ -444,6 +444,38 @@ public class WalletApplicationService: Assertable {
             }
         }
     }
+    @discardableResult
+    private func handleRelayServiceErrors<T>(_ block: () throws -> T) throws -> T {
+        do {
+            return try block()
+        } catch let error as NetworkServiceError {
+            throw self.error(from: error)
+        } catch let JSONHTTPClient.Error.networkRequestFailed(_, response, _) {
+            throw self.error(from: response)
+        }
+    }
+
+    private func error(from response: URLResponse?) -> Error {
+        if let response = response as? HTTPURLResponse {
+            if (400..<500).contains(response.statusCode) {
+                return .clientError
+            } else {
+                return .serverError
+            }
+        }
+        return .networkError
+    }
+
+    private func error(from other: NetworkServiceError) -> Error {
+        switch other {
+        case .clientError:
+            return .clientError
+        case .networkError:
+            return .networkError
+        case .serverError:
+            return .serverError
+        }
+    }
 
     internal func browserExtensionCode(from json: String) -> BrowserExtensionCode? {
         let decoder = JSONDecoder()
@@ -628,9 +660,11 @@ public class WalletApplicationService: Assertable {
         let signatures = tx.signatures.sorted { $0.address.value < $1.address.value }.map {
             DomainRegistry.encryptionService.ethSignature(from: $0)
         }
-        let request = SubmitTransactionRequest(transaction: tx, signatures: signatures)
-        let response = try DomainRegistry.transactionRelayService.submitTransaction(request: request)
-        return TransactionHash(response.transactionHash)
+        return try handleRelayServiceErrors {
+            let request = SubmitTransactionRequest(transaction: tx, signatures: signatures)
+            let response = try DomainRegistry.transactionRelayService.submitTransaction(request: request)
+            return TransactionHash(response.transactionHash)
+        }
     }
 
     private func findAccount(_ token: String) -> Account? {
