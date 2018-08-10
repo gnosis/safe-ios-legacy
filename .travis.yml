@@ -24,32 +24,13 @@ env:
   - secure: 0GDLNKt3XDc/svHNnwVndFScpekJcxeXnP56biYQyKYZApouFjt94iuFoN/f7xKEiCjvKhf3atQssgJCuHYPOWC3ZB4uxw5kNwWeS6DtOXr4W4KyJZ0O/eZyfiS2bhZCb2k/Tnv9lj1yP5wjCfCjWmc65LJylrNP6gixA+LZEkQXmRN3K9GV6CmNJKrLh5KLI91AekWXXxUKoekqNl4iBSUUd7VmLUJhWV+DcgGZAdGcNyPxBUEeF7aYImvPe7UcVnT+YnXVIriTox5XAtjPdI0v6WrlSLnWp3TFmfCCSB4lVPnkuvephjB3a4tAom8bHFD4ScVsv/zJiaTRxuid7hpOH1L9zm2N5P9wOd1oUHrWc2e481POKCHyEqDWWp3XEp8ZeEc2gGbeBMMxwDqwyZe6jfZrrvvo/eLAG7qe3N71QS8Nz2mafDdkgZbaghtowVkscM7TzQq38cUvb5ukvt08Qxvdb5T9t6HX4JDOqjGRWPytfIWmUA/O5Id0DnOw23Y/pRXaLanSUXPyViWn9OK48JPcpPb8FRr7kuN22yxawB9ftQd3JwTvfldKQXHAXVWneAl97auxemm9fwxZDFZ2fke2RGdBQPpHpBK2+O27pRN/AzSGjNYJKIrYauCzc5QNp6bg5U3v82tcjHdnq5AtJwmG0pDFLKIY3hNgCZg=
   - secure: qokt9N3r3o2QQyaBfAjSAKe8FimiZXPcywym2rGaw6DWszPF6lPLbTyFHjDlNrBf3zcRKNn/Jx0BzW5ufeeBy+daeSxOfiCkPqZoM/Xmi4lDXn+8QT3D0aOzGZcfWeP9huVviLef28yLfJ7PwZfzajDP0xP2gKtphqwT9T3pVAToPSMxQ+2jEqEUjHjjP/sgJTzTJnTBrWpvl9SlrtFF7mcFpOWm7EKswJ87J8y1GjF9GOOqVZJqD2AInKsrZHDWNy8aDEzvt92nEnzdhR2niRvx3ZmmDtxbJ9U8rkVLMNvyHC2ubiB2bGDdiUvBW+NSyo8P4bsvdBnXkybnAcwjsAsz3ClUix9ttHxwa0rR+J+rP9RL+xc3BB8vh2fMdi5ayA3lnUOg1yRu16504clTIS+iBTKqsjQ4yM8NKrmCppE0TWvcFpRli6BX6Ug8ZY+1Et8Fd39q5WdrU964vnrDyebRdWHZOUNcNuMWxkvObnyhepUTFJmP8thbCW9vKfHYbnQGrN/1AHLBM17cq4IQY0SihLdslTjEWz+tCSAPhde+pmmFGhtK7i8uFgVeMQcevSk/nnCb9eYlzW4ejUPEP7RwavWFNOBwy22HB9b2O8AkJw+yHyZpceheb2R3bV7rsapnq5uwmGL14ntA79TgW/ZSvL+0uc9P61MUGwibSkc=
   - secure: UflU5GaBowg2MTIPx2+8Gyb/rZmy15Karf5T4DWmzPhpZoubkl5OMMi4Yos5LfAteLII6GRsNEVp58JX6+ELdhIoEsWx+WZ86cE3P1qQJe7Bcl5dZFMqnqFB/kiACeJT3MZgVtBqjOf3jL599NLHTfSYudi9okRpj8DfrSeEv1co0EhfcJME7x/AkiaB96Gp4NdUzd+Ef9SI24y+0PsFsqVf7/mEjVIYvdhgmU7GCTp75/L6zepl/8vVxu6BaAYlpOxheTYlDdovi3Mx9+trbpMNHW9KMfnTdPz9ETMu4hpuZfChz6VSkDz+nkzuKlNU2lBIZeKzZqDxAAK3rrnTIULFF/xaHxsJihpuGycWLILIUv6+gsb19tA4AuEu0rPXuXiTiWICOUZYruP95eyN2QEjv9LzyqNE1Lf8AzSrhSc1yi9QenSLrRjDp9C/lGpVV2ho4I6lWPezs4EDA9DS5NwituSEYdh7FROVSHYMvy7zt0tdho2IeNq2RtFEzpdQP6uMyS0gu3LIlJnOR5Bq44MHXfHyBpumITqs44mXdcoGLcqWt5yVz/OLuAk9HTnc5A8d0l7OZjdpMJmiqTfBpRld9DbToLDzA2b4q1pHA0WKUgnl69QPVBGxe9fWwj/KY5QXZ1CbmgwnXae+vU2mbiTcHllAG2P05+qD0m2CRUs=
-matrix:
-  include:
-  - name: Common Tests
-    env:
-    - TEST_SUITE=only:CommonTests,DatabaseTess,CommonImplementationTests
-    - TEST_SUITE_NAME=Common
-  - name: IdentityAccess Tests
-    env:
-    - TEST_SUITE=only:IdentityAccessDomainModelTests,IdentityAccessApplicationTests,IdentityAccessImplementationsTests
-    - TEST_SUITE_NAME=IdentityAccess
-  - name: MultisigWallet Tests
-    env:
-    - TEST_SUITE=only:MultisigWalletDomainModelTests,MultisigWalletApplicationTests,MultisigWalletImplementationsTests
-    - TEST_SUITE_NAME=MultisigWallet
-  - name: UI Unit Tests
-    env:
-    - TEST_SUITE=only:SafeUIKitTests,SafeAppUIUnitTests,safeTests
-    - TEST_SUITE_NAME=SafeUI
-  - name: Smoke UI Tests
-    env:
-    - TEST_SUITE=only:SafeUITests/SmokeUITests
-    - TEST_SUITE_NAME=Smoke
-  - name: UI Tests
-    env:
-    - TEST_SUITE=only:SafeUITests,SafeUIKitDemoUITests skip:SafeUITests/SmokeUITests
-    - TEST_SUITE_NAME=UI
+  matrix:
+  - TEST_SUITE=only:CommonTests,DatabaseTess,CommonImplementationTests TEST_SUITE_NAME=Common
+  - TEST_SUITE=only:IdentityAccessDomainModelTests,IdentityAccessApplicationTests,IdentityAccessImplementationsTests TEST_SUITE_NAME=IdentityAccess
+  - TEST_SUITE=only:MultisigWalletDomainModelTests,MultisigWalletApplicationTests,MultisigWalletImplementationsTests TEST_SUITE_NAME=MultisigWallet
+  - TEST_SUITE=only:SafeUIKitTests,SafeAppUIUnitTests,safeTests TEST_SUITE_NAME=SafeUI
+  - TEST_SUITE=only:SafeUITests/SmokeUITests TEST_SUITE_NAME=Smoke
+  - TEST_SUITE="only:SafeUITests,SafeUIKitDemoUITests skip:SafeUITests/SmokeUITests" TEST_SUITE_NAME=UI
 git:
   depth: 3
   submodules: false
@@ -61,10 +42,10 @@ before_install:
 jobs:
   include:
   - stage: build
-    env: TEST_SUITE=only:SafeUITests/SmokeUITests
-    script: echo build | tee > ~/$TRAVIS_BUILD_NUMBER/build
+    env: TEST_SUITE=only:SafeUITests/SmokeUITests TEST_SUITE_NAME=Smoke
+    script: echo build | tee > ~/$TRAVIS_BUILD_NUMBER/buildlog
   - stage: test
-    script: cat ~/$TRAVIS_BUILD_NUMBER/build; echo $TEST_SUITE | tee > ~/$TRAVIS_BUILD_NUMBER/$TEST_SUITE_NAME
+    script: cat ~/$TRAVIS_BUILD_NUMBER/buildlog && echo $TEST_SUITE | tee > ~/$TRAVIS_BUILD_NUMBER/$TEST_SUITE_NAME
   - stage: deploy
     script: cat ~/$TRAVIS_BUILD_NUMBER/*
     after_success:
