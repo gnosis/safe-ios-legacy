@@ -64,8 +64,7 @@ jobs:
     env: TEST_SUITE=only:SafeUITests/SmokeUITests
     script: echo build | tee > ~/$TRAVIS_BUILD_NUMBER/build
   - stage: test
-    before_install: cat ~/$TRAVIS_BUILD_NUMBER/build
-    script: echo $TEST_SUITE | tee > ~/$TRAVIS_BUILD_NUMBER/$TEST_SUITE_NAME
+    script: cat ~/$TRAVIS_BUILD_NUMBER/build; echo $TEST_SUITE | tee > ~/$TRAVIS_BUILD_NUMBER/$TEST_SUITE_NAME
   - stage: deploy
     script: cat ~/$TRAVIS_BUILD_NUMBER/*
     after_success:
