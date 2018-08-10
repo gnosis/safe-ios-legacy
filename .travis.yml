@@ -1,15 +1,17 @@
 language: swift
 osx_image: xcode9.4
 cache:
-- bundler
-- pip
+  bundler: true
+  pip: true
+  directories:
+    - $HOME/.rvm/
 branches:
   only:
   - master
   - "/release\\/.*/"
 env:
   global:
-  - PATH=$HOME/.local/bin:$PATH
+  - PATH=$HOME/Library/Python/2.7/bin:$PATH
   - secure: pb8kqwa5jVqeKp/cgN+PSNZr/U5TFmR5rpvCzZrriTuKQvAH5Ytq6sDZMmzlAPSanlDFNrvFH3aKtdPLB3TYlMicXshqLWnOXfg4lzf+XBYljnn2pUUCGPU3F0FwnHoNJUHVy0rJKyDuCaAUP6TGwLENZyaiF77alAwuGYYj8/SbNB2xMk7rkYq+Zf8Ikn+wuVwDWzdXdBRki/E6Xuz0eq+5cQZXIyLGDIylwUI7A8OZ2KwOL7BbllARBipS0ttA87EGLpcrldffGfdO3tc5JqUwUuDxnkqEUd1oqdI+MyBJ9Sd3+Qjc3cMK0VxrcwY8FixuhXbI+4JXy6cpSKtE83nliNkLcJj43Zc0lkcjRVcE9DYjkwyK8+yCOJkPBFEOJm7WfwiaQ3BO4iMXvEM7gFsEU9HzpnE98KXj5xxR2cnmsNTRfKWp+KqcSV6WzOMMPlTi/KUD8c3/U3pNrWZnASVGOUiswvp0MeR6XUpbzzOW7cBrFgIr+G2Rt1QKy+Qx2xeKW0q7Wf1rWLSeDVw0TD/ic/O2U7mHJ2oMT17s1gW3rX15mF7OlCBo4LptU4ATQtbthYGgGh3RFZgPZzeS0Lz1VLi/o2gA9emFeOB1jOGv9P+Q5JGNTpkhwKFU492zmdXzECKeW+m5MLNB6iggMGTC8hKuyK/WEE5DA9DCJIE=
   - secure: W7KNWhtHB3y9OJmNI9YmA8lZ2EfwYl8UNR00H2jxoOuoGsgaS9TUIaDcLkOQhSRbNitXHSPB0H5xi10r4iWipiqexfWnfXo8vGyAeSrjFS1fuJMjBZxu4cq9/z3Ajqaqy2a0EK4FsHjBnPkgGkG92yAFEMcz1Ep0fJaAcu+CQ2QIA88DK70b4o8BJz42dRotRlk1GJMnGxwSimr+CsN5RQaxPi4L1U6kVDtIAE8YlO2QJrTBcUXHaKPnbRlXkT5YQJ6DJkC/SxP89O9+0+0tZciCdXuQ+kv6A7V7rgBWVKtQn6aT0c5zgKr7uvs8U5by4db0OjYnsyoDXn9ws2YPPdcm2xuig/NXFbc+r3Vk8kPzDp3weajwartJ6eXy9G+KBjL0GMZYycOUjAPcQocL+fvLOOHbtPxzLf//dn0FIWMnXDCn86hIk7nvgcJ1FQCRZPKRp3q4k5vnxRvsnbH1zOjeTSkKXi94Uy09iaTEqROqbY57nugQqrjEgs9GzWuVzQslyY0rwWic44x9abmHyfZ6RgAIE4dJmaewnStcDCGhHbdG5FVenuWas6+h8fZASBVL+4nwcad6BSlAslyZ2ifu8EB9MPQNwt2VjjMj2RJ6sWRRDOuhjge1b4UE/4DpSALRtZXpAGez7aBDhA8ZwKtK7JTYbijLeX8aUwT6Wx8=
   - secure: xZfCvSS1T/akzsJBY68wrT3C5kasegQlOIDZR1s1NH3PQTKY9pBaoUhZpOfRoEGTFUK00cPVoyG+Cmpckf065REPT3zppRv/wQIYQiwyajDMRx3Vx1PAKuysLHWHCZ21o8jA9+yAujeGZ7IH+O8AmqT5C60rKcjh3vbaUWta6TX7XVPHhiqs3q5raV8QFQktQ8a4MxrALdEUWl2Y4XVJNeIJXMGcwDJyOyqMBu3NPedYYB88YHdsO/UnSaojhrDdKO6xTtsw40wwv9FDiQEV1H5MK0OifQNjHku2sSz5ZLc0ZESVinHExQ/cXh8xN9vYyqDBPTKNodueeqc6Rb7VUT2cdngRcW8ZPkTycby59x70/5pDfAtlJXmj1HYq1TVjK8B1eR/jlxIUr78XRbNDu8kX3YUMplkk/90LNcM0CNpiZVf7RpGNq2ji4pTPp5ROaG0403Vay3u5FG9d//BfrtJ2OEAiN3m7ToCCzFI43/voYMf5ev+4Tu1wBa7gsChPaXGyRfoeyUfOtLD2997Mxy9caN+/+04VOvW1w4o8ZRq9K5UTv69WcTucnetWzWUBg0/jHV1tnhzJpdUE+KEZHOGZC/T8YrWOvJ3CyX3Qo0memxHIZAfabmf/8fgzzoAjP2gjXQttd229CEunbV4Qv3xoe9ROtrUr3+7WY+JLkMU=
@@ -48,6 +50,9 @@ matrix:
     env:
     - TEST_SUITE=only:SafeUITests,SafeUIKitDemoUITests skip:SafeUITests/SmokeUITests
     - TEST_SUITE_NAME=UI
+git:
+  depth: 3
+  submodules: false
 before_install:
 - sh scripts/decrypt_files.sh
 - pip install --user awscli
