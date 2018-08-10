@@ -31,8 +31,7 @@ platform :ios do
     workspace = "safe.xcworkspace"
     ENV["GYM_WORKSPACE"] = workspace
     ENV["SCAN_WORKSPACE"] = workspace
-    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "1"
-    ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "0"
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "3"
     PROJECT = "safe/safe.xcodeproj"
   end
 
