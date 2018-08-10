@@ -52,3 +52,7 @@ jobs:
     - aws s3 rm --recursive s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER
 after_success:
 - aws s3 sync ~/$TRAVIS_BUILD_NUMBER s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER
+stages:
+- build
+- test
+- deploy
