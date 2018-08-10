@@ -1,69 +1,69 @@
 language: swift
 osx_image: xcode9.4
 cache:
-  - bundler
-  - pip
-  directories:
-    - $HOME/.rvm/
+- bundler
+- pip
 branches:
   only:
   - master
   - "/release\\/.*/"
 env:
   global:
-  # include $HOME/.local/bin for `aws`
   - PATH=$HOME/.local/bin:$PATH
-
+  - secure: pb8kqwa5jVqeKp/cgN+PSNZr/U5TFmR5rpvCzZrriTuKQvAH5Ytq6sDZMmzlAPSanlDFNrvFH3aKtdPLB3TYlMicXshqLWnOXfg4lzf+XBYljnn2pUUCGPU3F0FwnHoNJUHVy0rJKyDuCaAUP6TGwLENZyaiF77alAwuGYYj8/SbNB2xMk7rkYq+Zf8Ikn+wuVwDWzdXdBRki/E6Xuz0eq+5cQZXIyLGDIylwUI7A8OZ2KwOL7BbllARBipS0ttA87EGLpcrldffGfdO3tc5JqUwUuDxnkqEUd1oqdI+MyBJ9Sd3+Qjc3cMK0VxrcwY8FixuhXbI+4JXy6cpSKtE83nliNkLcJj43Zc0lkcjRVcE9DYjkwyK8+yCOJkPBFEOJm7WfwiaQ3BO4iMXvEM7gFsEU9HzpnE98KXj5xxR2cnmsNTRfKWp+KqcSV6WzOMMPlTi/KUD8c3/U3pNrWZnASVGOUiswvp0MeR6XUpbzzOW7cBrFgIr+G2Rt1QKy+Qx2xeKW0q7Wf1rWLSeDVw0TD/ic/O2U7mHJ2oMT17s1gW3rX15mF7OlCBo4LptU4ATQtbthYGgGh3RFZgPZzeS0Lz1VLi/o2gA9emFeOB1jOGv9P+Q5JGNTpkhwKFU492zmdXzECKeW+m5MLNB6iggMGTC8hKuyK/WEE5DA9DCJIE=
+  - secure: W7KNWhtHB3y9OJmNI9YmA8lZ2EfwYl8UNR00H2jxoOuoGsgaS9TUIaDcLkOQhSRbNitXHSPB0H5xi10r4iWipiqexfWnfXo8vGyAeSrjFS1fuJMjBZxu4cq9/z3Ajqaqy2a0EK4FsHjBnPkgGkG92yAFEMcz1Ep0fJaAcu+CQ2QIA88DK70b4o8BJz42dRotRlk1GJMnGxwSimr+CsN5RQaxPi4L1U6kVDtIAE8YlO2QJrTBcUXHaKPnbRlXkT5YQJ6DJkC/SxP89O9+0+0tZciCdXuQ+kv6A7V7rgBWVKtQn6aT0c5zgKr7uvs8U5by4db0OjYnsyoDXn9ws2YPPdcm2xuig/NXFbc+r3Vk8kPzDp3weajwartJ6eXy9G+KBjL0GMZYycOUjAPcQocL+fvLOOHbtPxzLf//dn0FIWMnXDCn86hIk7nvgcJ1FQCRZPKRp3q4k5vnxRvsnbH1zOjeTSkKXi94Uy09iaTEqROqbY57nugQqrjEgs9GzWuVzQslyY0rwWic44x9abmHyfZ6RgAIE4dJmaewnStcDCGhHbdG5FVenuWas6+h8fZASBVL+4nwcad6BSlAslyZ2ifu8EB9MPQNwt2VjjMj2RJ6sWRRDOuhjge1b4UE/4DpSALRtZXpAGez7aBDhA8ZwKtK7JTYbijLeX8aUwT6Wx8=
+  - secure: xZfCvSS1T/akzsJBY68wrT3C5kasegQlOIDZR1s1NH3PQTKY9pBaoUhZpOfRoEGTFUK00cPVoyG+Cmpckf065REPT3zppRv/wQIYQiwyajDMRx3Vx1PAKuysLHWHCZ21o8jA9+yAujeGZ7IH+O8AmqT5C60rKcjh3vbaUWta6TX7XVPHhiqs3q5raV8QFQktQ8a4MxrALdEUWl2Y4XVJNeIJXMGcwDJyOyqMBu3NPedYYB88YHdsO/UnSaojhrDdKO6xTtsw40wwv9FDiQEV1H5MK0OifQNjHku2sSz5ZLc0ZESVinHExQ/cXh8xN9vYyqDBPTKNodueeqc6Rb7VUT2cdngRcW8ZPkTycby59x70/5pDfAtlJXmj1HYq1TVjK8B1eR/jlxIUr78XRbNDu8kX3YUMplkk/90LNcM0CNpiZVf7RpGNq2ji4pTPp5ROaG0403Vay3u5FG9d//BfrtJ2OEAiN3m7ToCCzFI43/voYMf5ev+4Tu1wBa7gsChPaXGyRfoeyUfOtLD2997Mxy9caN+/+04VOvW1w4o8ZRq9K5UTv69WcTucnetWzWUBg0/jHV1tnhzJpdUE+KEZHOGZC/T8YrWOvJ3CyX3Qo0memxHIZAfabmf/8fgzzoAjP2gjXQttd229CEunbV4Qv3xoe9ROtrUr3+7WY+JLkMU=
+  - secure: R9+n0eeEk38HIwUvEi86WaDeoXIsRLvvL2y698kSZg7ZQzBOBUQfsnpU9PAXZy6hnH/tlplUb3vt8tIXx5gF6l3h1mvtFo3so/YlA63EMdUpL4c5uNakneGHDH8CBnNrZPl1hnfXDHzCHWCokO6cxNnMwod0NeHAry4vJoKh09KNmB/Cn2+c0VQCuFBQGmdbm0ieE3wZxx3Y4Fp/itCZLb1rmWm5KYU5Jxl3awQwZt67HaUxmdoHcdUlnObOdyaPva1o31RlkAXqUWs7X+bLBS2ZUpRbcz2r4NMlS5bNKDAuaNwIhBdIHCue+WjoeAz0Z558hzl0fwkhDT51jMwKQQxk60qqzq3MNcqPHp4MILXpgiBHAchPYHsUpZtO2OPLyhkTP5SRJoZBeXWGOXjW5D72ATigOJfOnjtDSzowewGap2XCeoVlAEKyC7xVoHYGHgQ1xzlidJ4c/cV7G0B/Lvua7J3pUTBGnnxN+/z0cywDN7RdIjFGbKxtTgvKHICOT6Wbhwum7tdsWtWX47Alh9LbUDFiER5WjK87sTGbj7yFmRV+p2s5CfBRfvbzpszTvwEAmtWeyeNHLYBrwNb7ysxeSGI3tdo8mEELn+i11VLMcNgYUvUEa4IqUB35/OqwgXauun5QIWIX/A3RyXFoc5cU3sw22wyPqPDxvXfFD54=
+  - secure: jJ8/GsPyGhY4LIZKpiu9xjw1nSUYcNa1Oy5csuj2AmFhQnwT37iUtwO4SU/ShgHgL8YUpfEmNj5du/Jr5z1eQITVP3kcLVJm+Gk7PNgrY22zLob5/pUB9kiWqZ1Gj3YuBlaezOT2D/biHZ792HoiV8o6L8l/nnofpVPJ+KHYawHx5ZNxrfsZ7e2zILVlSvBCGsKb8IB2Cr2A2hwaMv49sl6Cw8sBw84rt+tm8U6oCnjpkc8NcxMeESlObWAgPchzhmtZSzCjV/kfTIuGV/mNK/uAW3SeYve12WfNglLt/lIWdU9+IL4wqkfhgZULpVMl8h6L4Pfx4QlorO96UrOckm7sHWxZ4EtAa+DnIiiru2WYk42i8szEx0cDaxroLjnQiNqXZw6kjvIZGnX/OylP6NQ9ALuUmwYYOFi9QFKsvpc0iFLK9gQK3Ye1z1bdfV+PJ1D2GmoNG2IFUaorjzsCRKU0rnBPiVQhhZj8J5I9uU2lFa0E4ol1mzbUUleVi/A8124EbvuiQSw5/FZgJuIbunXGtn9Mnsy8q4Xmvn6o+wc8+/DOPSr7NgQ9D9iN4zk7+mnUonsgAmmLSxhwJNIUeJJ/LOiSmkE1BfOl/DpSIY7In53BX3WhSA6WGwJsIKNtDlSYlcXz8iYw1TVfc+lkr9KW4YG5JllxD7pXl0MUUGk=
+  - secure: zeZqEY43/GIMqmS+VDxCt0kOwjbo6u2pF5JoQg4HV9mZOru1vKnp61JLAlnreTVOxLpxffVcOKt/Ta95gAwO5QRI/dqLIM/othBx/ktgsPA90+fW9jPwjWs7Mn4GWG1MDD43H0DPk3EYJOGBlzzGUfYYocImM33Xnnq/RnxHzGR/h9R1tYQOZXUsB2+0fzwLPO9fKZL+E/5Hh4wr5r9qz0lyhp5viiGLH+IAj6v6xBiTPGjWK4nS3IBny+PaDmxSqQiYKpLI44BmIGvJbwXcS6mM7pDwUdU8m76WezY9rH4etq3JhfLHucgeUatPUd0DD8BUWk/5DgXF7jkBo2Ke1AUx26nD/wMqA5zQOumbkQH/tNllqAAD1TJ/9IND8BUGa54RGZdG94FCUe1cQkxORxM4KsRCEyEtVcIWDs5MnVKmFkHU/Yl1xw9pYCGNhrbI4ewkJy+cgoP/Q7NHfTfN0oP8CspJhBiFgGfttyVzXaPzSA312RHj7Wh1NRFBF7YaX21i/vbbLFMEsSr3f75xGI4mSG1RPBHh3WEH1w9OY/5tpJbtZdxMcqObBc5eu8LL634yApfGemsjTZXv2rU8kWY0n35eZC+N2F2mxaxxAQ0iWkx4quL925lRg4SLnrWMnnyaAJkcZ2taWeEnwkLdnhTO1LlZRHC7I8fW/I68gLY=
+  - secure: TzERE1eZXlWbDEU6kIusUZDVDEVYgUcuG4Hr/OzkrQADF8c6Tw+BA4P2eNhBmTs4QpTARF/W/N6srcAdq/YDD4ByVSDbjxEyvtoqfbVqQQFx3GqgxPTGcEY2RDgK+lF7RUoxYmcCG35okSY9rxjNmam8oMk2eXI64160V1dFp69G9p/N/yn9hWlaiOMOpcZ/vDjhLtR1Fff8hHfPDR/2OKGsANn6g/6VtVLsnonIEcMDASjSk/Fc+sK4L0bimTeX1aSZGsYgqYWryDb/4sr67TIsKu1D41FGkPb/Vge1PotkFW80Yer1z24sIy4L3vvDlLZAtX9qpgWzkIP7imUCemsJdxsB4kV0NMVdhXB/2vDV3QU2Yg7DfsxidOylWw7vDN5Ga9NJB/bQH5MP1Q/OwnIhXtdw3nvFJxwrbCfwJJ1LdKsAM9Tqk81XHEJCzZW6ssmMpTgEGzm1RT2hKuaU0hgCvtaXWOKI+JeoSELDte6nc6f/lOvc5aokdFS/frI7S68KlugloysYGGWwoUzLMj4XN1DWwV29RzSTN93cHCOF8MpSChi1ahuSpD5nUePLZYWtfs6udFGA8wda9Qr5OFjIzwJxfMJWFbO8jTsI/3ClkZbsWIGKyojPcg+hGfsbtYOsIoplcKZikNYUnu/wLV+4bkGSDgbRULwiUFUbIx0=
+  - secure: XRFvkf6Q9HEDIq6NlagkiCrGPzNjq88OZKlexpwLoJ1/Qe+o6DAM6S4BfIG2upO8c13P1YBDNAiICkKzk7kYe6omne4L7lGL1jd68E7Xug2uRxXAFjjLHq6iL+dp/1LlH5xTZGx0AHlTrbTY87sZuNxCl348SjkJWfWRM6ooMEyPDV1+xlrkIgcrrjFJWx+TwgLlWV7YXGdLNIts0sWrcem6iIud4KwdxP80RUXaLIgE3zeS+bv85zp68JKun5FKXYs3eox6Ij5tGdr92tDZY8v7H31o9GROgHIg0rtRbHnBozK+5ESNUNKmLCgrEj1PbmgQKxoKrshk3fMeA+j3gFidzaCuC5m0JdNp+C1WNlGqQQ9bEGoIAcz4NwXbhwSpps0x8Z8d630uf1VU7hjxXLUJafWlow2yYiNPkwhuG5+8Jncb0rhUwqaEzNHbIAaa5cJsQOmtufp1RQFlbVR2or1xy5+rPjFyrGnkZx2j/L7qkHHrnZDYQPbmGmNMhHCIIYyF9+UQlb0ReMKPcUT0g3l9UYKrR2f1jmDqjn5rcDH/u5KFm/+REcyJcmn29IuZUl+204BIfhGCtQsdPAi222HAlT+qSXoAHb6igl0hQKgVGuoanN/ci1jbEmUNLmivta4ME45gxOcH7oJL+nb5YGGUbBJrH/KDdwngX6JAARw=
+  - secure: OmYEA9b26OCaI5NNX3FO6WVELVyy+J/r5yZYDs9DF1ocWAGhBvofcpXypG59mlWcNOcGjOUALMTamRzOCInkKFYvY9UQmfBFuyZqEFTvdVIGLcdhQ8Lx2ADIHKRtu3Iye+4b5Tzcwz/PASPD2tCXf6MHKg6Qm7y44XmJhFmRopd5gqZjaXMBvUKLj9GMvSNPEsJ4St/YUtnyisshz5z1/Gjj8T3eTAKKNTdkkuHe8GJsLdm5xZAi+FwFG2BD5vWCAjmqA9w7sLdfWRgT5TZVqAaqRd1C9+vDmauo1HV0FHXIOBuduMJImGUSCCCdalz/1hQAIlnbaN3q7ez2UKCd6tTx3gInpivKeWT4oQ7fujoKJHk1rpVf+foW1KaRjnuKnCBiOy7hcCyBohqMtogCAVVLFakzgNwF86IH4y94f1YASnFkdKHycHgBq/tg+UHvUqMy06ySEgk/BAsc+FPMJgStJZOHFSgQFXI6AYURHGVjzm7Sy1Ax9jeZSu+oUZUFphqxf8q5lpEBbGgdAKSz7ApI5JJ5nvpypTZMs/excMlUHkUqmK+GYvHTgL5wqa+cBsxsyEz7ReAh8TYeTEVJwo22k9Aa0JQ4gVAb1NltGOhcP25Y11f7dz2fc2qxQOM1b114E84w+OeDt36gmsj/jmBALhSuDVHwqNLSVpzWTqQ=
+  - secure: 0GDLNKt3XDc/svHNnwVndFScpekJcxeXnP56biYQyKYZApouFjt94iuFoN/f7xKEiCjvKhf3atQssgJCuHYPOWC3ZB4uxw5kNwWeS6DtOXr4W4KyJZ0O/eZyfiS2bhZCb2k/Tnv9lj1yP5wjCfCjWmc65LJylrNP6gixA+LZEkQXmRN3K9GV6CmNJKrLh5KLI91AekWXXxUKoekqNl4iBSUUd7VmLUJhWV+DcgGZAdGcNyPxBUEeF7aYImvPe7UcVnT+YnXVIriTox5XAtjPdI0v6WrlSLnWp3TFmfCCSB4lVPnkuvephjB3a4tAom8bHFD4ScVsv/zJiaTRxuid7hpOH1L9zm2N5P9wOd1oUHrWc2e481POKCHyEqDWWp3XEp8ZeEc2gGbeBMMxwDqwyZe6jfZrrvvo/eLAG7qe3N71QS8Nz2mafDdkgZbaghtowVkscM7TzQq38cUvb5ukvt08Qxvdb5T9t6HX4JDOqjGRWPytfIWmUA/O5Id0DnOw23Y/pRXaLanSUXPyViWn9OK48JPcpPb8FRr7kuN22yxawB9ftQd3JwTvfldKQXHAXVWneAl97auxemm9fwxZDFZ2fke2RGdBQPpHpBK2+O27pRN/AzSGjNYJKIrYauCzc5QNp6bg5U3v82tcjHdnq5AtJwmG0pDFLKIY3hNgCZg=
+  - secure: qokt9N3r3o2QQyaBfAjSAKe8FimiZXPcywym2rGaw6DWszPF6lPLbTyFHjDlNrBf3zcRKNn/Jx0BzW5ufeeBy+daeSxOfiCkPqZoM/Xmi4lDXn+8QT3D0aOzGZcfWeP9huVviLef28yLfJ7PwZfzajDP0xP2gKtphqwT9T3pVAToPSMxQ+2jEqEUjHjjP/sgJTzTJnTBrWpvl9SlrtFF7mcFpOWm7EKswJ87J8y1GjF9GOOqVZJqD2AInKsrZHDWNy8aDEzvt92nEnzdhR2niRvx3ZmmDtxbJ9U8rkVLMNvyHC2ubiB2bGDdiUvBW+NSyo8P4bsvdBnXkybnAcwjsAsz3ClUix9ttHxwa0rR+J+rP9RL+xc3BB8vh2fMdi5ayA3lnUOg1yRu16504clTIS+iBTKqsjQ4yM8NKrmCppE0TWvcFpRli6BX6Ug8ZY+1Et8Fd39q5WdrU964vnrDyebRdWHZOUNcNuMWxkvObnyhepUTFJmP8thbCW9vKfHYbnQGrN/1AHLBM17cq4IQY0SihLdslTjEWz+tCSAPhde+pmmFGhtK7i8uFgVeMQcevSk/nnCb9eYlzW4ejUPEP7RwavWFNOBwy22HB9b2O8AkJw+yHyZpceheb2R3bV7rsapnq5uwmGL14ntA79TgW/ZSvL+0uc9P61MUGwibSkc=
+  - secure: UflU5GaBowg2MTIPx2+8Gyb/rZmy15Karf5T4DWmzPhpZoubkl5OMMi4Yos5LfAteLII6GRsNEVp58JX6+ELdhIoEsWx+WZ86cE3P1qQJe7Bcl5dZFMqnqFB/kiACeJT3MZgVtBqjOf3jL599NLHTfSYudi9okRpj8DfrSeEv1co0EhfcJME7x/AkiaB96Gp4NdUzd+Ef9SI24y+0PsFsqVf7/mEjVIYvdhgmU7GCTp75/L6zepl/8vVxu6BaAYlpOxheTYlDdovi3Mx9+trbpMNHW9KMfnTdPz9ETMu4hpuZfChz6VSkDz+nkzuKlNU2lBIZeKzZqDxAAK3rrnTIULFF/xaHxsJihpuGycWLILIUv6+gsb19tA4AuEu0rPXuXiTiWICOUZYruP95eyN2QEjv9LzyqNE1Lf8AzSrhSc1yi9QenSLrRjDp9C/lGpVV2ho4I6lWPezs4EDA9DS5NwituSEYdh7FROVSHYMvy7zt0tdho2IeNq2RtFEzpdQP6uMyS0gu3LIlJnOR5Bq44MHXfHyBpumITqs44mXdcoGLcqWt5yVz/OLuAk9HTnc5A8d0l7OZjdpMJmiqTfBpRld9DbToLDzA2b4q1pHA0WKUgnl69QPVBGxe9fWwj/KY5QXZ1CbmgwnXae+vU2mbiTcHllAG2P05+qD0m2CRUs=
 matrix:
   include:
-    - name: "Common Tests"
-      env: 
-        - TEST_SUITE=only:CommonTests,DatabaseTess,CommonImplementationTests
-        - TEST_SUITE_NAME=Common
-    - name: "IdentityAccess Tests"
-      env: 
-        - TEST_SUITE=only:IdentityAccessDomainModelTests,IdentityAccessApplicationTests,IdentityAccessImplementationsTests
-        - TEST_SUITE_NAME=IdentityAccess
-    - name: "MultisigWallet Tests"
-      env: 
-        - TEST_SUITE=only:MultisigWalletDomainModelTests,MultisigWalletApplicationTests,MultisigWalletImplementationsTests
-        - TEST_SUITE_NAME=MultisigWallet
-    - name: "UI Unit Tests"
-      env: 
-        - TEST_SUITE=only:SafeUIKitTests,SafeAppUIUnitTests,safeTests
-        - TEST_SUITE_NAME=SafeUI
-    - name: "Smoke UI Tests"
-      env: 
-        - TEST_SUITE=only:SafeUITests/SmokeUITests
-        - TEST_SUITE_NAME=Smoke
-    - name: "UI Tests"
-      env: 
-        - "TEST_SUITE=only:SafeUITests,SafeUIKitDemoUITests skip:SafeUITests/SmokeUITests"
-        - TEST_SUITE_NAME=UI
-
+  - name: Common Tests
+    env:
+    - TEST_SUITE=only:CommonTests,DatabaseTess,CommonImplementationTests
+    - TEST_SUITE_NAME=Common
+  - name: IdentityAccess Tests
+    env:
+    - TEST_SUITE=only:IdentityAccessDomainModelTests,IdentityAccessApplicationTests,IdentityAccessImplementationsTests
+    - TEST_SUITE_NAME=IdentityAccess
+  - name: MultisigWallet Tests
+    env:
+    - TEST_SUITE=only:MultisigWalletDomainModelTests,MultisigWalletApplicationTests,MultisigWalletImplementationsTests
+    - TEST_SUITE_NAME=MultisigWallet
+  - name: UI Unit Tests
+    env:
+    - TEST_SUITE=only:SafeUIKitTests,SafeAppUIUnitTests,safeTests
+    - TEST_SUITE_NAME=SafeUI
+  - name: Smoke UI Tests
+    env:
+    - TEST_SUITE=only:SafeUITests/SmokeUITests
+    - TEST_SUITE_NAME=Smoke
+  - name: UI Tests
+    env:
+    - TEST_SUITE=only:SafeUITests,SafeUIKitDemoUITests skip:SafeUITests/SmokeUITests
+    - TEST_SUITE_NAME=UI
 before_install:
-  - sh scripts/decrypt_files.sh 
-  # set up awscli packages
-  - pip install --user awscli
-  - mkdir -p ~/$TRAVIS_BUILD_NUMBER
-  - aws s3 sync s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER ~/$TRAVIS_BUILD_NUMBER
-
-
+- sh scripts/decrypt_files.sh
+- pip install --user awscli
+- mkdir -p ~/$TRAVIS_BUILD_NUMBER
+- aws s3 sync s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER ~/$TRAVIS_BUILD_NUMBER
 jobs:
   include:
-    - stage: build
-      #script: "bundle exec fastlane build_for_testing"
-      # specifying env to have only one job from matrix for build stage
-      env: TEST_SUITE=only:SafeUITests/SmokeUITests
-      script: echo build | tee > ~/$TRAVIS_BUILD_NUMBER/build
-    - stage: test
-      before_install: cat ~/$TRAVIS_BUILD_NUMBER/build
-      script: echo $TEST_SUITE | tee > ~/$TRAVIS_BUILD_NUMBER/$TEST_SUITE_NAME
-    - stage: deploy
-      script: cat ~/$TRAVIS_BUILD_NUMBER/*
-      after_success:
-        - aws s3 rm --recursive s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER # clean up after ourselves
- 
+  - stage: build
+    env: TEST_SUITE=only:SafeUITests/SmokeUITests
+    script: echo build | tee > ~/$TRAVIS_BUILD_NUMBER/build
+  - stage: test
+    before_install: cat ~/$TRAVIS_BUILD_NUMBER/build
+    script: echo $TEST_SUITE | tee > ~/$TRAVIS_BUILD_NUMBER/$TEST_SUITE_NAME
+  - stage: deploy
+    script: cat ~/$TRAVIS_BUILD_NUMBER/*
+    after_success:
+    - aws s3 rm --recursive s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER
 after_success:
-#- scripts/travis_code_coverage.sh
-  - aws s3 sync ~/$TRAVIS_BUILD_NUMBER s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER
+- aws s3 sync ~/$TRAVIS_BUILD_NUMBER s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER
