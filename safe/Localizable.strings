@@ -1,0 +1,9 @@
+/* Title for request from browser extension to sign a transaction. */
+"push.signature_request" = "push.signature_request";
+
+/* Title for negative response from browser extension without signature. */
+"push.signature_response.negative" = "push.signature_response.negative";
+
+/* Title for positive response from browser extension with signature. */
+"push.signature_response.positive" = "push.signature_response.positive";
+

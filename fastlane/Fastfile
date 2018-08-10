@@ -44,6 +44,35 @@ platform :ios do
       skip_slack: true, 
       derived_data_path: DERIVED_DATA_PATH)
   end
+
+  desc "Builds without testing"
+  lane :build_for_testing do
+    run_all_tests(build_for_testing: true)
+  end
+
+  desc "Runs tests without building"
+  lane :test_all do |options|
+    run_all_tests(test_without_building: true,
+      only_testing: options[:only] || [],
+      skip_testing: options[:skip] || [])
+  end
+
+  def run_all_tests(params)
+    set_bundle_id DEV_APP_ID
+    run_tests( {scheme: "AllTests",
+      configuration: "Debug",
+      sdk: "iphonesimulator",
+      device: "iPhone X",
+      buildlog_path: BUILD_LOG_PATH,
+      derived_data_path: DERIVED_DATA_PATH,
+      skip_slack: true,
+      skip_build: true,
+      code_coverage: true,
+      output_directory: "Build/reports",
+      result_bundle: true}.merge(params))
+  end
+
+  
   
   desc "Runs UI tests"
   lane :ui_test do
