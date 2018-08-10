@@ -45,20 +45,19 @@ jobs:
     env: TEST_SUITE=only:SafeUITests/SmokeUITests TEST_SUITE_NAME=Smoke
     script: 
     - bundle exec fastlane build_for_testing
-    - mv Build ~/$TRAVIS_BUILD_NUMBER/
+    - tar -cvzf ~/$TRAVIS_BUILD_NUMBER/build_products.tar.gz ./Build/Products/ ./Build/build_logs/ ./Build/pre_build_action.log
   - stage: test
     script: 
-    - cp -R ~/$TRAVIS_BUILD_NUMBER/Build .
+    - tar -xvzf ~/$TRAVIS_BUILD_NUMBER/build_products.tar.gz
     - bundle exec fastlane test_all $TEST_SUITE
-    - mkdir -p ~/$TRAVIS_BUILD_NUMBER/$TEST_SUITE_NAME
-    - cp -R Build/build_logs Build/reports Build/pre_build_action.log ~/$TRAVIS_BUILD_NUMBER/$TEST_SUITE_NAME/
+    - tar -cvzf ~/$TRAVIS_BUILD_NUMBER/$TEST_SUITE_NAME.tar.gz ./Build/build_logs/ ./Build/reports/ ./Build/pre_build_action.log
   - stage: deploy
     script:
     - bundle exec fastlane fabric
-    - cp -R Build/build_logs Build/reports Build/pre_build_action.log ~/$TRAVIS_BUILD_NUMBER/Archive/
     after_success:
     - aws s3 rm --recursive s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER
-    - aws s3 sync Build/Archive.xcarchive s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER/Archive.xcarchive
+    - tar -cvzf archive.tar.gz ./Build/Archive.xcarchive
+    - aws s3 sync archive.tar.gz s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER/archive.tar.gz
 after_success:
 - aws s3 sync ~/$TRAVIS_BUILD_NUMBER s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER
 stages:
