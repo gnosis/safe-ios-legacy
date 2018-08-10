@@ -91,8 +91,6 @@ platform :ios do
       setup_travis
       increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"],
         xcodeproj: PROJECT)
-      test
-      ui_test
     end
     set_bundle_id ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
