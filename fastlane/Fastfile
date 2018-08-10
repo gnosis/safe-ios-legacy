@@ -25,7 +25,7 @@ platform :ios do
     ADHOC_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".adhoc"
     DEV_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".dev"
     BUILD_LOG_PATH = "Build/build_logs"
-    DERIVED_DATA_PATH = "Build/DerivedData"
+    DERIVED_DATA_PATH = "."
     BUILD_PATH = "Build"
     ARCHIVE_PATH = "Build/Archive"
     workspace = "safe.xcworkspace"
