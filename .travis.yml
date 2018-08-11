@@ -2,11 +2,11 @@ language: generic
 os: osx
 osx_image: xcode9.4
 cache:
-  bundler: true
   directories:
     - $HOME/.rvm/
     - $HOME/Library/Caches/pip/
-    - 
+    - $BUNDLE_PATH
+    - $TRAVIS_BUILD_DIR/vendor/bundle
 branches:
   only:
   - master
@@ -29,10 +29,6 @@ env:
   matrix:
   - TEST_SUITE=only:CommonTests,DatabaseTests,CommonImplementationTests,IdentityAccessDomainModelTests,IdentityAccessApplicationTests,IdentityAccessImplementationsTests,MultisigWalletDomainModelTests,MultisigWalletApplicationTests,MultisigWalletImplementationsTests,SafeUIKitTests,SafeAppUIUnitTests,safeTests TEST_SUITE_NAME=UnitTests
   - TEST_SUITE=only:SafeUITests,SafeUIKitDemoUITests TEST_SUITE_NAME=UI
-matrix:
-  include:
-    - env: TEST_SUITE=only:CommonTests,DatabaseTests,CommonImplementationTests,IdentityAccessDomainModelTests,IdentityAccessApplicationTests,IdentityAccessImplementationsTests,MultisigWalletDomainModelTests,MultisigWalletApplicationTests,MultisigWalletImplementationsTests,SafeUIKitTests,SafeAppUIUnitTests,safeTests TEST_SUITE_NAME=UnitTests
-    - env: TEST_SUITE=only:SafeUITests,SafeUIKitDemoUITests TEST_SUITE_NAME=UI
 git:
   depth: 3
   submodules: false
