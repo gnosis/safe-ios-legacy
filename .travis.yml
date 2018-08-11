@@ -41,7 +41,6 @@ before_install:
 jobs:
   include:
   - stage: build
-    env: TEST_SUITE=only:SafeUITests,SafeUIKitDemoUITests TEST_SUITE_NAME=UI
     script: 
     - bundle exec fastlane build_for_testing
     - tar -czf ~/$TRAVIS_BUILD_NUMBER/build_products.tar.gz ./Build/Products/ ./Build/build_logs/ ./Build/pre_build_action.log
