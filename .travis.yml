@@ -1,4 +1,4 @@
-language: ruby
+language: generic
 os: osx
 osx_image: xcode9.4
 cache:
@@ -26,11 +26,10 @@ env:
   - secure: qokt9N3r3o2QQyaBfAjSAKe8FimiZXPcywym2rGaw6DWszPF6lPLbTyFHjDlNrBf3zcRKNn/Jx0BzW5ufeeBy+daeSxOfiCkPqZoM/Xmi4lDXn+8QT3D0aOzGZcfWeP9huVviLef28yLfJ7PwZfzajDP0xP2gKtphqwT9T3pVAToPSMxQ+2jEqEUjHjjP/sgJTzTJnTBrWpvl9SlrtFF7mcFpOWm7EKswJ87J8y1GjF9GOOqVZJqD2AInKsrZHDWNy8aDEzvt92nEnzdhR2niRvx3ZmmDtxbJ9U8rkVLMNvyHC2ubiB2bGDdiUvBW+NSyo8P4bsvdBnXkybnAcwjsAsz3ClUix9ttHxwa0rR+J+rP9RL+xc3BB8vh2fMdi5ayA3lnUOg1yRu16504clTIS+iBTKqsjQ4yM8NKrmCppE0TWvcFpRli6BX6Ug8ZY+1Et8Fd39q5WdrU964vnrDyebRdWHZOUNcNuMWxkvObnyhepUTFJmP8thbCW9vKfHYbnQGrN/1AHLBM17cq4IQY0SihLdslTjEWz+tCSAPhde+pmmFGhtK7i8uFgVeMQcevSk/nnCb9eYlzW4ejUPEP7RwavWFNOBwy22HB9b2O8AkJw+yHyZpceheb2R3bV7rsapnq5uwmGL14ntA79TgW/ZSvL+0uc9P61MUGwibSkc=
   - secure: UflU5GaBowg2MTIPx2+8Gyb/rZmy15Karf5T4DWmzPhpZoubkl5OMMi4Yos5LfAteLII6GRsNEVp58JX6+ELdhIoEsWx+WZ86cE3P1qQJe7Bcl5dZFMqnqFB/kiACeJT3MZgVtBqjOf3jL599NLHTfSYudi9okRpj8DfrSeEv1co0EhfcJME7x/AkiaB96Gp4NdUzd+Ef9SI24y+0PsFsqVf7/mEjVIYvdhgmU7GCTp75/L6zepl/8vVxu6BaAYlpOxheTYlDdovi3Mx9+trbpMNHW9KMfnTdPz9ETMu4hpuZfChz6VSkDz+nkzuKlNU2lBIZeKzZqDxAAK3rrnTIULFF/xaHxsJihpuGycWLILIUv6+gsb19tA4AuEu0rPXuXiTiWICOUZYruP95eyN2QEjv9LzyqNE1Lf8AzSrhSc1yi9QenSLrRjDp9C/lGpVV2ho4I6lWPezs4EDA9DS5NwituSEYdh7FROVSHYMvy7zt0tdho2IeNq2RtFEzpdQP6uMyS0gu3LIlJnOR5Bq44MHXfHyBpumITqs44mXdcoGLcqWt5yVz/OLuAk9HTnc5A8d0l7OZjdpMJmiqTfBpRld9DbToLDzA2b4q1pHA0WKUgnl69QPVBGxe9fWwj/KY5QXZ1CbmgwnXae+vU2mbiTcHllAG2P05+qD0m2CRUs=
   matrix:
-  - TEST_SUITE=only:CommonTests,DatabaseTess,CommonImplementationTests TEST_SUITE_NAME=Common
+  - TEST_SUITE=only:CommonTests,DatabaseTests,CommonImplementationTests TEST_SUITE_NAME=Common
   - TEST_SUITE=only:IdentityAccessDomainModelTests,IdentityAccessApplicationTests,IdentityAccessImplementationsTests TEST_SUITE_NAME=IdentityAccess
   - TEST_SUITE=only:MultisigWalletDomainModelTests,MultisigWalletApplicationTests,MultisigWalletImplementationsTests TEST_SUITE_NAME=MultisigWallet
-  - TEST_SUITE=only:SafeUIKitTests,SafeAppUIUnitTests,safeTests TEST_SUITE_NAME=SafeUI
-  - TEST_SUITE=only:SafeUITests/SmokeUITests TEST_SUITE_NAME=Smoke
+  - TEST_SUITE=only:SafeUIKitTests,SafeAppUIUnitTests,safeTests,SafeUITests/SmokeUITests TEST_SUITE_NAME=SafeUI
   - TEST_SUITE="only:SafeUITests,SafeUIKitDemoUITests skip:SafeUITests/SmokeUITests" TEST_SUITE_NAME=UI
 git:
   depth: 3
@@ -40,24 +39,25 @@ before_install:
 - pip install --user awscli
 - mkdir -p ~/$TRAVIS_BUILD_NUMBER
 - aws s3 sync s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER ~/$TRAVIS_BUILD_NUMBER
+- bundle install --jobs=3 --retry=3 --deployment --path=${BUNDLE_PATH:-vendor/bundle}
 jobs:
   include:
   - stage: build
     env: TEST_SUITE=only:SafeUITests/SmokeUITests TEST_SUITE_NAME=Smoke
     script: 
     - bundle exec fastlane build_for_testing
-    - tar -cvzf ~/$TRAVIS_BUILD_NUMBER/build_products.tar.gz ./Build/Products/ ./Build/build_logs/ ./Build/pre_build_action.log
+    - tar -czf ~/$TRAVIS_BUILD_NUMBER/build_products.tar.gz ./Build/Products/ ./Build/build_logs/ ./Build/pre_build_action.log
   - stage: test
     script: 
-    - tar -xvzf ~/$TRAVIS_BUILD_NUMBER/build_products.tar.gz
+    - tar -xzf ~/$TRAVIS_BUILD_NUMBER/build_products.tar.gz
     - bundle exec fastlane test_all $TEST_SUITE
-    - tar -cvzf ~/$TRAVIS_BUILD_NUMBER/$TEST_SUITE_NAME.tar.gz ./Build/build_logs/ ./Build/reports/ ./Build/pre_build_action.log
+    - tar -czf ~/$TRAVIS_BUILD_NUMBER/$TEST_SUITE_NAME.tar.gz ./Build/build_logs/ ./Build/reports/ ./Build/pre_build_action.log
   - stage: deploy
     script:
     - bundle exec fastlane fabric
     after_success:
     - aws s3 rm --recursive s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER
-    - tar -cvzf archive.tar.gz ./Build/Archive.xcarchive
+    - tar -czf archive.tar.gz ./Build/Archive.xcarchive
     - aws s3 sync archive.tar.gz s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER/archive.tar.gz
 after_success:
 - aws s3 sync ~/$TRAVIS_BUILD_NUMBER s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER
