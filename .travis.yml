@@ -32,32 +32,14 @@ env:
 git:
   depth: 3
   submodules: false
-before_install:
-- sh scripts/decrypt_files.sh
-- pip install --user awscli
-- mkdir -p ~/$TRAVIS_BUILD_NUMBER
-- aws s3 sync s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER ~/$TRAVIS_BUILD_NUMBER
-- bundle install --jobs=3 --retry=3 --deployment --path=${BUNDLE_PATH:-vendor/bundle}
 jobs:
   include:
   - stage: build
-    script: 
-    - bundle exec fastlane build_for_testing
-    - tar -czf ~/$TRAVIS_BUILD_NUMBER/build_products.tar.gz ./Build/Products/ ./Build/build_logs/ ./Build/pre_build_action.log
+    script: scripts/travis_build.sh
   - stage: test
-    script: 
-    - tar -xzf ~/$TRAVIS_BUILD_NUMBER/build_products.tar.gz
-    - bundle exec fastlane test_all $TEST_SUITE
-    - tar -czf ~/$TRAVIS_BUILD_NUMBER/$TEST_SUITE_NAME.tar.gz ./Build/build_logs/ ./Build/reports/ ./Build/pre_build_action.log
+    script: scripts/travis_test.sh
   - stage: deploy
-    script:
-    - bundle exec fastlane fabric
-    after_success:
-    - aws s3 rm --recursive s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER
-    - tar -czf archive.tar.gz ./Build/Archive.xcarchive
-    - aws s3 sync archive.tar.gz s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER/archive.tar.gz
-after_success:
-- aws s3 sync ~/$TRAVIS_BUILD_NUMBER s3://safe.gnosis.travis/$TRAVIS_BUILD_NUMBER
+    script: scripts/travis_deploy.sh
 stages:
 - build
 - test
