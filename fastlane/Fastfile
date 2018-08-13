@@ -44,6 +44,7 @@ platform :ios do
       skip_build: true, 
       slack_only_on_failure: true, 
       result_bundle: true,
+      code_coverage: true,
       output_directory: REPORTS_PATH,
       buildlog_path: BUILD_LOG_PATH,
       derived_data_path: DERIVED_DATA_PATH)
