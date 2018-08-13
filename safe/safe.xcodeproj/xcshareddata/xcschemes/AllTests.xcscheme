@@ -51,34 +51,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5540A4FE203C3054009C9BE3"
-               BuildableName = "safeTests.xctest"
-               BlueprintName = "safeTests"
-               ReferencedContainer = "container:safe.xcodeproj">
-            </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "BlockchainIntegrationTest">
-               </Test>
-               <Test
-                  Identifier = "GnosisTransactionRelayServiceTests">
-               </Test>
-               <Test
-                  Identifier = "HTTPNotificatonServiceTests">
-               </Test>
-               <Test
-                  Identifier = "InfuraEthereumNodeServiceTests">
-               </Test>
-            </SkippedTests>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A9670B920480C5700445AC2"
-               BuildableName = "SafeUIKitTests.xctest"
-               BlueprintName = "SafeUIKitTests"
-               ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
+               BlueprintIdentifier = "0A8E3B9D20B419E000F002F6"
+               BuildableName = "CommonImplementationsTests.xctest"
+               BlueprintName = "CommonImplementationsTests"
+               ReferencedContainer = "container:../Common/Common.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -88,6 +64,16 @@
                BlueprintIdentifier = "0A3FADEA207B504F00F0D214"
                BuildableName = "CommonTests.xctest"
                BlueprintName = "CommonTests"
+               ReferencedContainer = "container:../Common/Common.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A160BC120A0804500E064E1"
+               BuildableName = "DatabaseTests.xctest"
+               BlueprintName = "DatabaseTests"
                ReferencedContainer = "container:../Common/Common.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -125,26 +111,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AF33D3C209C6BF800527D25"
-               BuildableName = "SafeAppUIUnitTests.xctest"
-               BlueprintName = "SafeAppUIUnitTests"
-               ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A160BC120A0804500E064E1"
-               BuildableName = "DatabaseTests.xctest"
-               BlueprintName = "DatabaseTests"
-               ReferencedContainer = "container:../Common/Common.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "0AEF8A9A20A088A5006A1265"
                BuildableName = "MultisigWalletApplicationTests.xctest"
                BlueprintName = "MultisigWalletApplicationTests"
@@ -175,10 +141,78 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A8E3B9D20B419E000F002F6"
-               BuildableName = "CommonImplementationsTests.xctest"
-               BlueprintName = "CommonImplementationsTests"
-               ReferencedContainer = "container:../Common/Common.xcodeproj">
+               BlueprintIdentifier = "5540A509203C3054009C9BE3"
+               BuildableName = "SafeUITests.xctest"
+               BlueprintName = "SafeUITests"
+               ReferencedContainer = "container:safe.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "NewTransactionUITests">
+               </Test>
+               <Test
+                  Identifier = "PairWithBrowserExtensionScreenErrorsUITests">
+               </Test>
+               <Test
+                  Identifier = "PairWithBrowserExtensionScreenSuccessUITests">
+               </Test>
+               <Test
+                  Identifier = "SafeCreationIntegrationTests">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5540A4FE203C3054009C9BE3"
+               BuildableName = "safeTests.xctest"
+               BlueprintName = "safeTests"
+               ReferencedContainer = "container:safe.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "BlockchainIntegrationTest">
+               </Test>
+               <Test
+                  Identifier = "GnosisTransactionRelayServiceTests">
+               </Test>
+               <Test
+                  Identifier = "HTTPNotificatonServiceTests">
+               </Test>
+               <Test
+                  Identifier = "InfuraEthereumNodeServiceTests">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0AF33D3C209C6BF800527D25"
+               BuildableName = "SafeAppUIUnitTests.xctest"
+               BlueprintName = "SafeAppUIUnitTests"
+               ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A96708D20480C3E00445AC2"
+               BuildableName = "SafeUIKitDemoUITests.xctest"
+               BlueprintName = "SafeUIKitDemoUITests"
+               ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A9670B920480C5700445AC2"
+               BuildableName = "SafeUIKitTests.xctest"
+               BlueprintName = "SafeUIKitTests"
+               ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -214,13 +248,6 @@
             ReferencedContainer = "container:safe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

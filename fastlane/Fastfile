@@ -25,46 +25,37 @@ platform :ios do
     ADHOC_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".adhoc"
     DEV_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".dev"
     BUILD_LOG_PATH = "Build/build_logs"
-    DERIVED_DATA_PATH = "Build/DerivedData"
+    DERIVED_DATA_PATH = "."
     BUILD_PATH = "Build"
     ARCHIVE_PATH = "Build/Archive"
+    REPORTS_PATH = "Build/reports"
     workspace = "safe.xcworkspace"
     ENV["GYM_WORKSPACE"] = workspace
     ENV["SCAN_WORKSPACE"] = workspace
     PROJECT = "safe/safe.xcodeproj"
+    if is_ci
+      setup_travis
+      increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"], xcodeproj: PROJECT)
+    end
   end
 
-  desc "Runs unit tests"
-  lane :test do
+  desc "Runs tests"
+  lane :test do |options|
     set_bundle_id DEV_APP_ID
-    run_tests(scheme: "safe", 
+    run_tests(scheme: options[:scheme],
       configuration: "Debug", 
       skip_build: true, 
-      buildlog_path: BUILD_LOG_PATH,
-      skip_slack: true, 
-      derived_data_path: DERIVED_DATA_PATH)
-  end
-  
-  desc "Runs UI tests"
-  lane :ui_test do
-    set_bundle_id DEV_APP_ID
-    run_tests(scheme: "allUITests", 
-      configuration: "Debug", 
-      skip_build: true, 
-      buildlog_path: BUILD_LOG_PATH, 
       slack_only_on_failure: true, 
+      result_bundle: true,
+      code_coverage: true,
+      output_directory: REPORTS_PATH,
+      buildlog_path: BUILD_LOG_PATH,
       derived_data_path: DERIVED_DATA_PATH)
   end
 
   desc "Build and distribute build to Fabric Beta"
   lane :fabric do
-    if is_ci
-      setup_travis
-      increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"],
-        xcodeproj: PROJECT)
-      test
-      ui_test
-    end
+    test(scheme: "AllTests")
     set_bundle_id ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
     gym(configuration: "AdHoc", 
@@ -116,7 +107,6 @@ platform :ios do
       message: exception.message,
       success: false
     )
-    puts `cat #{BUILD_LOG_PATH/safe-safe.log}`
   end
 end
 

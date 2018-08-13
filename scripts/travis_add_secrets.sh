@@ -1,4 +1,5 @@
 #! /usr/bin/env bash
+set -e
 keys=`cat .env.default`
 for line in $keys; do
   set -- `echo $line | tr '=' ' '`
