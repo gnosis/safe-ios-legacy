@@ -16,7 +16,7 @@ function archive_product() {
 }
 
 function archive_code_coverage() {
-    bash <(curl -s https://codecov.io/bash) -D Build/DerivedData -c
+    bash <(curl -s https://codecov.io/bash) -D . -c
 }
 
 function prepare_build() {
