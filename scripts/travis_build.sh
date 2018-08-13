@@ -33,7 +33,10 @@ prepare_build
 # elif [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
 #     bundle exec fastlane test scheme:allUITests || archive_logs
 # else 
-    bundle exec fastlane fabric && archive_product || archive_logs
+    if ! bundle exec fastlane fabric && archive_product ; then
+        archive_logs
+        exit 1
+    fi
 # fi
 
 archive_code_coverage
