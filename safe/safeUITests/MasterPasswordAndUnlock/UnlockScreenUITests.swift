@@ -63,9 +63,10 @@ class UnlockScreenUITests: UITestCase {
 
     // MP-105
     func test_whenAccountBlockAndAppMaximized_thenTimerContinuesFromLastValue() {
+        blockTime = 5
         block()
         application.minimize()
-        delay(blockTime)
+        delay(1)
         application.maximize()
         XCTAssertExist(screen.countdown)
     }
