@@ -28,12 +28,12 @@ function prepare_build() {
 
 prepare_build
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
-    bundle exec fastlane test scheme:safe || archive_logs
-elif [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
-    bundle exec fastlane test scheme:allUITests || archive_logs
-else 
+# if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+#     bundle exec fastlane test scheme:safe || archive_logs
+# elif [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
+#     bundle exec fastlane test scheme:allUITests || archive_logs
+# else 
     bundle exec fastlane fabric && archive_product || archive_logs
-fi
+# fi
 
 archive_code_coverage
