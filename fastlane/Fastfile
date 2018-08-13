@@ -34,6 +34,10 @@ platform :ios do
     ENV["SCAN_WORKSPACE"] = workspace
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "120"
     PROJECT = "safe/safe.xcodeproj"
+    if is_ci
+      setup_travis
+      increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"], xcodeproj: PROJECT)
+    end
   end
 
   desc "Runs tests"
@@ -52,11 +56,6 @@ platform :ios do
 
   desc "Build and distribute build to Fabric Beta"
   lane :fabric do
-    if is_ci
-      setup_travis
-      increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"],
-        xcodeproj: PROJECT)
-    end
     test(scheme: "AllTests")
     set_bundle_id ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
