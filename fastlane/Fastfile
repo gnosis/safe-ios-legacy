@@ -28,60 +28,24 @@ platform :ios do
     DERIVED_DATA_PATH = "."
     BUILD_PATH = "Build"
     ARCHIVE_PATH = "Build/Archive"
+    REPORTS_PATH = "Build/reports"
     workspace = "safe.xcworkspace"
     ENV["GYM_WORKSPACE"] = workspace
     ENV["SCAN_WORKSPACE"] = workspace
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "120"
     PROJECT = "safe/safe.xcodeproj"
   end
 
-  desc "Runs unit tests"
-  lane :test do
+  desc "Runs tests"
+  lane :test do |options|
     set_bundle_id DEV_APP_ID
-    run_tests(scheme: "safe", 
+    run_tests(scheme: options[:scheme],
       configuration: "Debug", 
       skip_build: true, 
-      buildlog_path: BUILD_LOG_PATH,
-      skip_slack: true, 
-      derived_data_path: DERIVED_DATA_PATH)
-  end
-
-  desc "Builds without testing"
-  lane :build_for_testing do
-    run_all_tests(build_for_testing: true)
-  end
-
-  desc "Runs tests without building"
-  lane :test_all do |options|
-    run_all_tests(test_without_building: true,
-      only_testing: options[:only] || [],
-      skip_testing: options[:skip] || [])
-  end
-
-  def run_all_tests(params)
-    set_bundle_id DEV_APP_ID
-    run_tests( {scheme: "AllTests",
-      configuration: "Debug",
-      sdk: "iphonesimulator",
-      device: "iPhone X",
-      buildlog_path: BUILD_LOG_PATH,
-      derived_data_path: DERIVED_DATA_PATH,
-      skip_slack: true,
-      skip_build: true,
-      code_coverage: true,
-      output_directory: "Build/reports",
-      result_bundle: true}.merge(params))
-  end
-
-  
-  
-  desc "Runs UI tests"
-  lane :ui_test do
-    set_bundle_id DEV_APP_ID
-    run_tests(scheme: "allUITests", 
-      configuration: "Debug", 
-      skip_build: true, 
-      buildlog_path: BUILD_LOG_PATH, 
       slack_only_on_failure: true, 
+      result_bundle: true,
+      output_directory: REPORTS_PATH,
+      buildlog_path: BUILD_LOG_PATH,
       derived_data_path: DERIVED_DATA_PATH)
   end
 
@@ -92,6 +56,7 @@ platform :ios do
       increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"],
         xcodeproj: PROJECT)
     end
+    test(scheme: "AllTests")
     set_bundle_id ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
     gym(configuration: "AdHoc", 
@@ -143,7 +108,6 @@ platform :ios do
       message: exception.message,
       success: false
     )
-    puts `cat #{BUILD_LOG_PATH/safe-safe.log}`
   end
 end
 

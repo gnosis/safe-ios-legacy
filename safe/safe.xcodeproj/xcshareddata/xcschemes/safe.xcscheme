@@ -58,6 +58,9 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "BlockchainIntegrationTest">
+               </Test>
+               <Test
                   Identifier = "GnosisTransactionRelayServiceTests">
                </Test>
                <Test

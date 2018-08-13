@@ -146,6 +146,20 @@
                BlueprintName = "SafeUITests"
                ReferencedContainer = "container:safe.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "NewTransactionUITests">
+               </Test>
+               <Test
+                  Identifier = "PairWithBrowserExtensionScreenErrorsUITests">
+               </Test>
+               <Test
+                  Identifier = "PairWithBrowserExtensionScreenSuccessUITests">
+               </Test>
+               <Test
+                  Identifier = "SafeCreationIntegrationTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">
@@ -156,6 +170,20 @@
                BlueprintName = "safeTests"
                ReferencedContainer = "container:safe.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "BlockchainIntegrationTest">
+               </Test>
+               <Test
+                  Identifier = "GnosisTransactionRelayServiceTests">
+               </Test>
+               <Test
+                  Identifier = "HTTPNotificatonServiceTests">
+               </Test>
+               <Test
+                  Identifier = "InfuraEthereumNodeServiceTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">
