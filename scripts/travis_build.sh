@@ -29,11 +29,21 @@ function prepare_build() {
 prepare_build
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
-    bundle exec fastlane test scheme:safe || archive_logs
+    if ! bundle exec fastlane test scheme:safe; then 
+        archive_logs
+        exit 1
+    fi
 elif [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
-    bundle exec fastlane test scheme:allUITests || archive_logs
+    if ! bundle exec fastlane test scheme:allUITests; then 
+        archive_logs
+        exit 1
+    fi
 else 
-    bundle exec fastlane fabric && archive_product || archive_logs
+    if bundle exec fastlane fabric; then
+        archive_product
+    else
+        archive_logs
+        exit 1
+    fi
 fi
-
 archive_code_coverage

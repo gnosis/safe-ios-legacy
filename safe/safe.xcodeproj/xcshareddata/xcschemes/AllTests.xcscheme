@@ -51,6 +51,40 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A96708D20480C3E00445AC2"
+               BuildableName = "SafeUIKitDemoUITests.xctest"
+               BlueprintName = "SafeUIKitDemoUITests"
+               ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5540A509203C3054009C9BE3"
+               BuildableName = "SafeUITests.xctest"
+               BlueprintName = "SafeUITests"
+               ReferencedContainer = "container:safe.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "NewTransactionUITests">
+               </Test>
+               <Test
+                  Identifier = "PairWithBrowserExtensionScreenErrorsUITests">
+               </Test>
+               <Test
+                  Identifier = "PairWithBrowserExtensionScreenSuccessUITests">
+               </Test>
+               <Test
+                  Identifier = "SafeCreationIntegrationTests">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "0A8E3B9D20B419E000F002F6"
                BuildableName = "CommonImplementationsTests.xctest"
                BlueprintName = "CommonImplementationsTests"
@@ -141,30 +175,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5540A509203C3054009C9BE3"
-               BuildableName = "SafeUITests.xctest"
-               BlueprintName = "SafeUITests"
-               ReferencedContainer = "container:safe.xcodeproj">
-            </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "NewTransactionUITests">
-               </Test>
-               <Test
-                  Identifier = "PairWithBrowserExtensionScreenErrorsUITests">
-               </Test>
-               <Test
-                  Identifier = "PairWithBrowserExtensionScreenSuccessUITests">
-               </Test>
-               <Test
-                  Identifier = "SafeCreationIntegrationTests">
-               </Test>
-            </SkippedTests>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "5540A4FE203C3054009C9BE3"
                BuildableName = "safeTests.xctest"
                BlueprintName = "safeTests"
@@ -192,16 +202,6 @@
                BlueprintIdentifier = "0AF33D3C209C6BF800527D25"
                BuildableName = "SafeAppUIUnitTests.xctest"
                BlueprintName = "SafeAppUIUnitTests"
-               ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A96708D20480C3E00445AC2"
-               BuildableName = "SafeUIKitDemoUITests.xctest"
-               BlueprintName = "SafeUIKitDemoUITests"
                ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
             </BuildableReference>
          </TestableReference>

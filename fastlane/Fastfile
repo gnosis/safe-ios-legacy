@@ -41,21 +41,38 @@ platform :ios do
 
   desc "Runs tests"
   lane :test do |options|
+    do_run_tests(scheme: options[:scheme])
+  end
+
+  def do_run_tests(params)
     set_bundle_id DEV_APP_ID
-    run_tests(scheme: options[:scheme],
-      configuration: "Debug", 
+    run_tests({configuration: "Debug", 
       skip_build: true, 
       slack_only_on_failure: true, 
       result_bundle: true,
       code_coverage: true,
       output_directory: REPORTS_PATH,
       buildlog_path: BUILD_LOG_PATH,
-      derived_data_path: DERIVED_DATA_PATH)
+      derived_data_path: DERIVED_DATA_PATH}.merge(params))
+  end
+
+  desc "Runs all tests"
+  lane :test_all do
+    scheme = "AllTests"
+    ui_tests = ["SafeUITests", "SafeUIKitDemoUITests"]
+    do_run_tests(scheme: scheme,
+      build_for_testing: true)
+    do_run_tests(scheme: scheme,
+      test_without_building: true,
+      skip_testing: ui_tests)
+    do_run_tests(scheme: scheme,
+      test_without_building: true,
+      only_testing: ui_tests)
   end
 
   desc "Build and distribute build to Fabric Beta"
   lane :fabric do
-    test(scheme: "AllTests")
+    test_all
     set_bundle_id ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID)
     gym(configuration: "AdHoc", 
