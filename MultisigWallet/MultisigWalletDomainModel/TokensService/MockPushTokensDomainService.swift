@@ -5,8 +5,8 @@
 import Foundation
 import MultisigWalletDomainModel
 
-/// Mock implementation of TokensDomainService for testing.
-public final class MockTokensDomainService: TokensDomainService {
+/// Mock implementation of PushTokensDomainService for testing.
+public final class MockPushTokensDomainService: PushTokensDomainService {
 
     public init() {}
 

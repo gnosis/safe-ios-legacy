@@ -17,8 +17,8 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.notificationService
     }
 
-    private var tokensService: TokensDomainService {
-        return DomainRegistry.tokensService
+    private var pushTokensService: PushTokensDomainService {
+        return DomainRegistry.pushTokensService
     }
 
     public enum WalletState {
@@ -719,7 +719,7 @@ public class WalletApplicationService: Assertable {
 
     public func auth() throws {
         precondition(!Thread.isMainThread)
-        guard let pushToken = tokensService.pushToken() else { return }
+        guard let pushToken = pushTokensService.pushToken() else { return }
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
         let signature = ethereumService.sign(message: "GNO" + pushToken, by: deviceOwnerAddress)!
         try handleNotificationServiceError {

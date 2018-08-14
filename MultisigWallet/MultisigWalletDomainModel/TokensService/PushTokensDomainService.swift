@@ -3,7 +3,7 @@
 //
 
 /// Used to retrieve push notification token
-public protocol TokensDomainService {
+public protocol PushTokensDomainService {
 
     /// Fetches push token, if it is available
     ///
