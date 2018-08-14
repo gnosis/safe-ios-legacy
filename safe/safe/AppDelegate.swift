@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         let notificationService = HTTPNotificationService(url: appConfig.notificationServiceURL,
                                                           logger: LogService.shared)
         MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: TokensService(), for: TokensDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: PushTokensService(), for: PushTokensDomainService.self)
         setUpMultisigDatabase()
     }
 

@@ -18,7 +18,7 @@ class WalletApplicationServiceTests: XCTestCase {
     let ethereumService = MockEthereumApplicationService()
     let service = WalletApplicationService()
     let notificationService = MockNotificationService()
-    let tokensService = MockTokensDomainService()
+    let tokensService = MockPushTokensDomainService()
     let transactionRepository = InMemoryTransactionRepository()
     let relayService = MockTransactionRelayService(averageDelay: 0, maxDeviation: 0)
     let encryptionService = MockEncryptionService()
@@ -39,7 +39,7 @@ class WalletApplicationServiceTests: XCTestCase {
         MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: tokensService, for: TokensDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: tokensService, for: PushTokensDomainService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: ethereumService,
                                                                  for: EthereumApplicationService.self)
