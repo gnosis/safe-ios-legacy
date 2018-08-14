@@ -137,6 +137,9 @@
 		55D3C08020F75F290047004F /* MockTokensDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D3C07F20F75F290047004F /* MockTokensDomainService.swift */; };
 		55FB258D2121AB3E00E81666 /* TokenListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB258C2121AB3E00E81666 /* TokenListItem.swift */; };
 		55FB258F2122F95700E81666 /* TokenListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB258E2122F95700E81666 /* TokenListItemTests.swift */; };
+		55FB2591212300D400E81666 /* TokenListItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2590212300D400E81666 /* TokenListItemRepository.swift */; };
+		55FB25932123018700E81666 /* InMemoryTokenListItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25922123018700E81666 /* InMemoryTokenListItemRepository.swift */; };
+		55FB2595212301A800E81666 /* ImMemoryTokenListItemRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2594212301A800E81666 /* ImMemoryTokenListItemRepositoryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -500,6 +503,9 @@
 		55D3C07F20F75F290047004F /* MockTokensDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTokensDomainService.swift; sourceTree = "<group>"; };
 		55FB258C2121AB3E00E81666 /* TokenListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenListItem.swift; sourceTree = "<group>"; };
 		55FB258E2122F95700E81666 /* TokenListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenListItemTests.swift; sourceTree = "<group>"; };
+		55FB2590212300D400E81666 /* TokenListItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenListItemRepository.swift; sourceTree = "<group>"; };
+		55FB25922123018700E81666 /* InMemoryTokenListItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTokenListItemRepository.swift; sourceTree = "<group>"; };
+		55FB2594212301A800E81666 /* ImMemoryTokenListItemRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImMemoryTokenListItemRepositoryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -881,6 +887,9 @@
 			children = (
 				55FB258C2121AB3E00E81666 /* TokenListItem.swift */,
 				55FB258E2122F95700E81666 /* TokenListItemTests.swift */,
+				55FB2590212300D400E81666 /* TokenListItemRepository.swift */,
+				55FB25922123018700E81666 /* InMemoryTokenListItemRepository.swift */,
+				55FB2594212301A800E81666 /* ImMemoryTokenListItemRepositoryTests.swift */,
 			);
 			path = Token;
 			sourceTree = "<group>";
@@ -1262,6 +1271,7 @@
 			files = (
 				0A442DF5210B1DC200F19F80 /* SubmitTransactionRequest.swift in Sources */,
 				0A442DE1210B124B00F19F80 /* TransactionSentMessage.swift in Sources */,
+				55FB2591212300D400E81666 /* TokenListItemRepository.swift in Sources */,
 				0AAA174720E26E90003B35B3 /* TransactionRepository.swift in Sources */,
 				0A9E380F20F4A4F20085E8D7 /* Worker.swift in Sources */,
 				0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */,
@@ -1295,6 +1305,7 @@
 				0A23C82120A1CF1D00C72483 /* Portfolio.swift in Sources */,
 				555C949520E2A60F00A0621D /* WalletRepository.swift in Sources */,
 				0A9E381020F4A4F20085E8D7 /* EthereumNodeDomainService.swift in Sources */,
+				55FB25932123018700E81666 /* InMemoryTokenListItemRepository.swift in Sources */,
 				55CC279920F667FB00AC12D6 /* AuthRequest.swift in Sources */,
 				0A9E381120F4A4F20085E8D7 /* TransactionRelayDomainService.swift in Sources */,
 				555C949720E2A60F00A0621D /* AccountRepository.swift in Sources */,
@@ -1308,6 +1319,7 @@
 				0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */,
 				0A8A2B9B20FCDC540003BB7E /* TestFixture.swift in Sources */,
 				0A9E386220F4B46C0085E8D7 /* WorkerTests.swift in Sources */,
+				55FB2595212301A800E81666 /* ImMemoryTokenListItemRepositoryTests.swift in Sources */,
 				55CC279C20F6680800AC12D6 /* PairingRequestTests.swift in Sources */,
 				55D3C02F20F668EB0047004F /* EthSignatureTests.swift in Sources */,
 				0A77D0D1211AD986003582DD /* Fixtures.swift in Sources */,
