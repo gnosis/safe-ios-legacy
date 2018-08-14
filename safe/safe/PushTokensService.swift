@@ -7,7 +7,7 @@ import MultisigWalletDomainModel
 import FirebaseInstanceID
 import CommonImplementations
 
-final class TokensService: TokensDomainService {
+final class PushTokensService: PushTokensDomainService {
 
     func pushToken() -> String? {
         precondition(!Thread.isMainThread)
