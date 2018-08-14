@@ -16,7 +16,7 @@ class DomainRegistryTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.walletRepository)
         XCTAssertNotNil(DomainRegistry.portfolioRepository)
         XCTAssertNotNil(DomainRegistry.notificationService)
-        XCTAssertNotNil(DomainRegistry.tokensService)
+        XCTAssertNotNil(DomainRegistry.pushTokensService)
 
         DomainRegistry.put(service: EncryptionService(), for: EncryptionDomainService.self)
         DomainRegistry.put(service: InMemoryExternallyOwnedAccountRepository(),
