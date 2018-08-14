@@ -135,6 +135,8 @@
 		55D3C02F20F668EB0047004F /* EthSignatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C949C20E2A62D00A0621D /* EthSignatureTests.swift */; };
 		55D3C07420F75EFF0047004F /* TokensDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D3C07320F75EFF0047004F /* TokensDomainService.swift */; };
 		55D3C08020F75F290047004F /* MockTokensDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D3C07F20F75F290047004F /* MockTokensDomainService.swift */; };
+		55FB258D2121AB3E00E81666 /* TokenListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB258C2121AB3E00E81666 /* TokenListItem.swift */; };
+		55FB258F2122F95700E81666 /* TokenListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB258E2122F95700E81666 /* TokenListItemTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -496,6 +498,8 @@
 		55CC279820F667FB00AC12D6 /* PairingRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingRequestTests.swift; sourceTree = "<group>"; };
 		55D3C07320F75EFF0047004F /* TokensDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensDomainService.swift; sourceTree = "<group>"; };
 		55D3C07F20F75F290047004F /* MockTokensDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTokensDomainService.swift; sourceTree = "<group>"; };
+		55FB258C2121AB3E00E81666 /* TokenListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenListItem.swift; sourceTree = "<group>"; };
+		55FB258E2122F95700E81666 /* TokenListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenListItemTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -767,6 +771,7 @@
 		0AEF8A7720A08878006A1265 /* MultisigWalletDomainModel */ = {
 			isa = PBXGroup;
 			children = (
+				55FB25802121AAED00E81666 /* Token */,
 				0A75D91E211B191400F5DE63 /* Account */,
 				0AAA175220E27398003B35B3 /* BaseInMemoryRepository.swift */,
 				0A23C83320A1E34700C72483 /* BaseInMemoryRepositoryTests.swift */,
@@ -869,6 +874,15 @@
 				0A4CF10B20F63D8D001A8687 /* SendNotificationRequest.swift */,
 			);
 			path = NotificationRequests;
+			sourceTree = "<group>";
+		};
+		55FB25802121AAED00E81666 /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				55FB258C2121AB3E00E81666 /* TokenListItem.swift */,
+				55FB258E2122F95700E81666 /* TokenListItemTests.swift */,
+			);
+			path = Token;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1261,6 +1275,7 @@
 				0A442DC9210A088800F19F80 /* Message+Factory.swift in Sources */,
 				0AA5D4A020E12B68006F46CD /* Token.swift in Sources */,
 				0A9E380C20F4A4F20085E8D7 /* ExternallyOwnedAccountRepository.swift in Sources */,
+				55FB258D2121AB3E00E81666 /* TokenListItem.swift in Sources */,
 				0A9E380920F4A4F20085E8D7 /* GetSafeCreationStatusRequest.swift in Sources */,
 				0A4CF10C20F63D8D001A8687 /* SendNotificationRequest.swift in Sources */,
 				0A442DBE2109D99D00F19F80 /* Message.swift in Sources */,
@@ -1304,6 +1319,7 @@
 				0A9E385F20F4B46C0085E8D7 /* BaseInMemoryRepositoryTests.swift in Sources */,
 				0A23C81B20A1CEDA00C72483 /* PortfolioTests.swift in Sources */,
 				0A9E386020F4B46C0085E8D7 /* InMemoryAccountRepositoryTests.swift in Sources */,
+				55FB258F2122F95700E81666 /* TokenListItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,10 +4,17 @@
 
 import Foundation
 import BigInt
+import Common
+
+public class TokenID: BaseID {}
 
 /// Represents a token.
 public struct Token: Equatable {
 
+    /// Token id is the same as token Address in blockchain
+    public var id: TokenID {
+        return TokenID(address.value)
+    }
     /// String code, like "ETH"
     public let code: String
     /// Number of fractional digits in one token.
