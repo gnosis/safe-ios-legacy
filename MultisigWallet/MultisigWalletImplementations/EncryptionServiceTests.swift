@@ -126,8 +126,10 @@ class EncryptionServiceTests: XCTestCase {
                                                                     accountID: AccountID("0x0"))
             let gasPrice = TokenAmount(amount: TokenInt(fixture.gasPrice)!,
                                        token: Token(code: "SOME",
+                                                    name: "SOME NAME",
                                                     decimals: 18,
-                                                    address: Address(fixture.gasToken)))
+                                                    address: Address(fixture.gasToken),
+                                                    logoUrl: ""))
             let data = Data(ethHex: fixture.data)
             transaction
                 .change(sender: Address(fixture.safe))

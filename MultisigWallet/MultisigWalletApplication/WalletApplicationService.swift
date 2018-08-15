@@ -643,11 +643,12 @@ public class WalletApplicationService: Assertable {
         let estimationResponse = try handleRelayServiceErrors {
             try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
         }
-        let gasToken = Token(code: "ETH", decimals: 18, address: Address(estimationResponse.gasToken))
+        // TODO: get token from Tokens List by estimationResponse.gasToken address and use Ether as fallback
+        let token = Token.Ether
         let feeEstimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
                                                  dataGas: estimationResponse.dataGas,
                                                  gasPrice: TokenAmount(amount: TokenInt(estimationResponse.gasPrice),
-                                                                       token: gasToken))
+                                                                       token: token))
         return feeEstimate
     }
 
