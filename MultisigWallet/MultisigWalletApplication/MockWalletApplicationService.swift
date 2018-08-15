@@ -4,6 +4,8 @@
 
 import Foundation
 import BigInt
+import MultisigWalletDomainModel
+import Common
 
 public class MockWalletApplicationService: WalletApplicationService {
 
@@ -43,15 +45,15 @@ public class MockWalletApplicationService: WalletApplicationService {
     public var shouldThrow = false
 
     private var existingOwners: [OwnerType: String] = [:]
-    private var accounts: [String: BigInt] = [:]
-    private var minimumFunding: [String: BigInt] = [:]
-    private var funds: [String: BigInt] = [:]
+    private var accounts: [BaseID: BigInt] = [:]
+    private var minimumFunding: [BaseID: BigInt] = [:]
+    private var funds: [BaseID: BigInt] = [:]
     private var subscriptions: [String: () -> Void] = [:]
 
     public func createReadyToUseWallet() {
         _hasReadyToUseWallet = true
         assignAddress("0x111ccccccccccccccccccccccccccccccccccccc")
-        update(account: "ETH", newBalance: BigInt(10).power(18))
+        update(account: Token.Ether.id, newBalance: BigInt(10).power(18))
         _selectedWalletState = .readyToUse
     }
 
@@ -86,7 +88,7 @@ public class MockWalletApplicationService: WalletApplicationService {
         _selectedWalletState = .addressKnown
     }
 
-    public override func update(account: String, newBalance: BigInt?) {
+    public override func update(account: BaseID, newBalance: BigInt?) {
         guard let newBalance = newBalance else {
             funds.removeValue(forKey: account)
             return
@@ -99,13 +101,13 @@ public class MockWalletApplicationService: WalletApplicationService {
         }
     }
 
-    public func updateMinimumFunding(account: String, amount: BigInt) {
+    public func updateMinimumFunding(account: BaseID, amount: BigInt) {
         deploymentAmount = amount
         minimumFunding[account] = amount
     }
 
-    public override func accountBalance(token: String) -> BigInt? {
-        return funds[token]
+    public override func accountBalance(tokenID: BaseID) -> BigInt? {
+        return funds[tokenID]
     }
 
     public override func markDeploymentAcceptedByBlockchain() {
@@ -171,13 +173,11 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public var updateTransaction_input: (id: String, amount: BigInt, recipient: String)?
-
     public override func updateTransaction(_ id: String, amount: BigInt, recipient: String) {
         updateTransaction_input = (id, amount, recipient)
     }
 
     public var transactionData_output: TransactionData?
-
     public override func transactionData(_ id: String) -> TransactionData? {
         return transactionData_output
     }

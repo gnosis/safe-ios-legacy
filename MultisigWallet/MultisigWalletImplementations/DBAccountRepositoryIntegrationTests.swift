@@ -24,7 +24,7 @@ class DBAccountRepositoryIntegrationTests: XCTestCase {
         repo.setUp()
 
         let walletID = WalletID()
-        let account = Account(id: AccountID(token: "ETH"),
+        let account = Account(id: AccountID("0x0"),
                               walletID: walletID,
                               balance: 123,
                               minimumAmount: 12)

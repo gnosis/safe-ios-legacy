@@ -109,7 +109,7 @@ public class WalletApplicationService: Assertable {
         case .deploymentStarted:
             return .deploymentStarted
         case .addressKnown:
-            let account = findAccount("ETH")!
+            let account = findAccount(Token.Ether.id)!
             if account.balance == 0 {
                 return .addressKnown
             } else if account.balance < account.minimumDeploymentTransactionAmount {
@@ -145,7 +145,7 @@ public class WalletApplicationService: Assertable {
     }
 
     public var minimumDeploymentAmount: BigInt? {
-        return findAccount("ETH")?.minimumDeploymentTransactionAmount
+        return findAccount(Token.Ether.id)?.minimumDeploymentTransactionAmount
     }
 
     private var statusUpdateHandlers = [String: () -> Void]()
@@ -163,7 +163,7 @@ public class WalletApplicationService: Assertable {
             let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(),
                                 owner: owner,
                                 kind: OwnerType.thisDevice.kind)
-            let account = Account(id: AccountID(token: "ETH"), walletID: wallet.id, balance: 0, minimumAmount: 0)
+            let account = Account(id: AccountID(Token.Ether.id.id), walletID: wallet.id, balance: 0, minimumAmount: 0)
             portfolio.addWallet(wallet.id)
             DomainRegistry.walletRepository.save(wallet)
             DomainRegistry.portfolioRepository.save(portfolio)
@@ -187,7 +187,7 @@ public class WalletApplicationService: Assertable {
             if selectedWalletState == .deploymentStarted {
                 let data = try requestWalletCreation()
                 assignAddress(data.safe)
-                updateMinimumFunding(account: "ETH", amount: data.payment)
+                updateMinimumFunding(account: Token.Ether.id, amount: data.payment)
             }
             if selectedWalletState == .notEnoughFunds || selectedWalletState == .addressKnown {
                 try startObservingWalletBalance()
@@ -249,7 +249,7 @@ public class WalletApplicationService: Assertable {
                 .contains(selectedWalletState) else {
                 return RepeatingShouldStop.yes
             }
-            update(account: "ETH", newBalance: newBalance)
+            update(account: Token.Ether.id, newBalance: newBalance)
             if selectedWalletState == .accountFunded {
                 try createWalletInBlockchain()
                 return RepeatingShouldStop.yes
@@ -323,7 +323,7 @@ public class WalletApplicationService: Assertable {
     private func fetchBalance() throws {
         let address = findSelectedWallet()!.address!.value
         let newBalance = try ethereumService.balance(address: address)
-        update(account: "ETH", newBalance: newBalance)
+        update(account: Token.Ether.id, newBalance: newBalance)
     }
 
     private func removePaperWallet() {
@@ -517,13 +517,13 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Accounts
 
-    public func accountBalance(token: String) -> BigInt? {
-       return findAccount(token)?.balance
+    public func accountBalance(tokenID: BaseID) -> BigInt? {
+       return findAccount(tokenID)?.balance
     }
 
-    private func updateMinimumFunding(account token: String, amount: BigInt) {
+    private func updateMinimumFunding(account tokenID: BaseID, amount: BigInt) {
         assertCanChangeAccount()
-        mutateAccount(token: token) { account in
+        mutateAccount(tokenID: tokenID) { account in
             account.updateMinimumTransactionAmount(amount)
         }
     }
@@ -532,16 +532,16 @@ public class WalletApplicationService: Assertable {
         try! assertTrue(selectedWalletState.isValidForAccountUpdate, Error.invalidWalletState)
     }
 
-    public func update(account token: String, newBalance: BigInt) {
+    public func update(account tokenID: BaseID, newBalance: BigInt) {
         assertCanChangeAccount()
-        mutateAccount(token: token) { account in
+        mutateAccount(tokenID: tokenID) { account in
             account.update(newAmount: newBalance)
         }
     }
 
-    private func mutateAccount(token: String, closure: (Account) -> Void) {
+    private func mutateAccount(tokenID: BaseID, closure: (Account) -> Void) {
         notifyWalletStateChangesAfter {
-            let account = findAccount(token)!
+            let account = findAccount(tokenID)!
             closure(account)
             DomainRegistry.accountRepository.save(account)
         }
@@ -609,7 +609,7 @@ public class WalletApplicationService: Assertable {
         let transaction = Transaction(id: repository.nextID(),
                                       type: .transfer,
                                       walletID: findSelectedWallet()!.id,
-                                      accountID: AccountID(token: "ETH"))
+                                      accountID: AccountID(Token.Ether.id.id))
         transaction.change(sender: findSelectedWallet()!.address!)
         repository.save(transaction)
         return transaction.id.id
@@ -687,9 +687,9 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    private func findAccount(_ token: String) -> Account? {
+    private func findAccount(_ tokenID: BaseID) -> Account? {
         guard let wallet = findSelectedWallet(),
-            let account = DomainRegistry.accountRepository.find(id: AccountID(token: token), walletID: wallet.id) else {
+            let account = DomainRegistry.accountRepository.find(id: AccountID(tokenID.id), walletID: wallet.id) else {
             return nil
         }
         return account

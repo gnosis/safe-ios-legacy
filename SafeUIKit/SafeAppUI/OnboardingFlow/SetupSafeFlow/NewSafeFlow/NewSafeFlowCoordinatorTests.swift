@@ -5,6 +5,7 @@
 import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
+import Common
 
 class NewSafeFlowCoordinatorTests: SafeTestCase {
 
@@ -140,11 +141,11 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         walletService.assignAddress("address")
         assertShowingPendingVC()
 
-        walletService.updateMinimumFunding(account: "ETH", amount: 100)
-        walletService.update(account: "ETH", newBalance: 50)
+        walletService.updateMinimumFunding(account: ethID, amount: 100)
+        walletService.update(account: ethID, newBalance: 50)
         assertShowingPendingVC()
 
-        walletService.update(account: "ETH", newBalance: 100)
+        walletService.update(account: ethID, newBalance: 100)
         assertShowingPendingVC()
 
         walletService.markDeploymentAcceptedByBlockchain()
@@ -167,11 +168,11 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         walletService.assignAddress("address")
         assertNotFinished()
 
-        walletService.updateMinimumFunding(account: "ETH", amount: 100)
-        walletService.update(account: "ETH", newBalance: 50)
+        walletService.updateMinimumFunding(account: ethID, amount: 100)
+        walletService.update(account: ethID, newBalance: 50)
         assertNotFinished()
 
-        walletService.update(account: "ETH", newBalance: 100)
+        walletService.update(account: ethID, newBalance: 100)
         assertNotFinished()
 
         walletService.markDeploymentAcceptedByBlockchain()

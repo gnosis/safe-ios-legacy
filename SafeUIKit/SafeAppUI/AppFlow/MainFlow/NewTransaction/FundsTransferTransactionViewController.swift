@@ -4,6 +4,7 @@
 
 import UIKit
 import MultisigWalletApplication
+import Common
 
 protocol FundsTransferTransactionViewControllerDelegate: class {
     func didCreateDraftTransaction(id: String)
@@ -31,8 +32,12 @@ class FundsTransferTransactionViewController: UIViewController {
         return [amountTextField, recipientTextField]
     }
 
-    static func create() -> FundsTransferTransactionViewController {
-        return StoryboardScene.Main.fundsTransferTransactionViewController.instantiate()
+    private var tokenID: BaseID!
+
+    static func create(tokenID: BaseID) -> FundsTransferTransactionViewController {
+        let controller = StoryboardScene.Main.fundsTransferTransactionViewController.instantiate()
+        controller.tokenID = tokenID
+        return controller
     }
 
     private enum Strings {
@@ -42,7 +47,7 @@ class FundsTransferTransactionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        model = FundsTransferTransactionViewModel(senderName: "Safe", onUpdate: updateFromViewModel)
+        model = FundsTransferTransactionViewModel(senderName: "Safe", tokenID: tokenID, onUpdate: updateFromViewModel)
         amountTextField.delegate = self
         amountTextField.accessibilityIdentifier = "transaction.amount"
         recipientTextField.delegate = self

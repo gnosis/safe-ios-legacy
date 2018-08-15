@@ -7,6 +7,7 @@ import XCTest
 import MultisigWalletApplication
 import BigInt
 import CommonTestSupport
+import Common
 
 class TransactionReviewViewControllerTests: XCTestCase {
 
@@ -28,7 +29,7 @@ class TransactionReviewViewControllerTests: XCTestCase {
         let id = "some"
         let fee = "-0.01 ETH"
 
-        service.update(account: "ETH", newBalance: BigInt(10).power(18))
+        service.update(account: ethID, newBalance: BigInt(10).power(18))
 
         service.transactionData_output = TransactionData(id: id,
                                                          sender: sender,

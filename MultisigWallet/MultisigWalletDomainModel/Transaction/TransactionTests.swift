@@ -111,7 +111,7 @@ extension TransactionTests {
         transaction = Transaction(id: TransactionID(),
                                   type: .transfer,
                                   walletID: WalletID(),
-                                  accountID: AccountID(token: "ETH"))
+                                  accountID: AccountID("0x0"))
     }
 
     private func givenSigningTransaction() {

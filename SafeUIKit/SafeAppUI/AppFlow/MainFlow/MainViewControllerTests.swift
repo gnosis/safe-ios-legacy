@@ -30,7 +30,7 @@ class MainViewControllerTests: XCTestCase {
     }
 
     func test_whenLoaded_loadsBalance() {
-        walletService.update(account: "ETH", newBalance: BigInt(1e9))
+        walletService.update(account: ethID, newBalance: BigInt(1e9))
         vc.loadViewIfNeeded()
         XCTAssertEqual(vc.totalBalanceLabel.text, "0,000000001 ETH")
     }

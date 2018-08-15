@@ -123,7 +123,7 @@ class EncryptionServiceTests: XCTestCase {
             let transaction = MultisigWalletDomainModel.Transaction(id: TransactionID(),
                                                                     type: .transfer,
                                                                     walletID: WalletID(),
-                                                                    accountID: AccountID(token: "ETH"))
+                                                                    accountID: AccountID("0x0"))
             let gasPrice = TokenAmount(amount: TokenInt(fixture.gasPrice)!,
                                        token: Token(code: "SOME",
                                                     decimals: 18,

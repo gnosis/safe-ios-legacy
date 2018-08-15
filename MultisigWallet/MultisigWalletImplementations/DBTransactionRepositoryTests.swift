@@ -51,7 +51,7 @@ class DBTransactionRepositoryTests: XCTestCase {
     }
 
     private func testTransaction(_ repo: DBTransactionRepository) -> Transaction {
-        return Transaction(id: repo.nextID(), type: .transfer, walletID: WalletID(), accountID: AccountID(token: "ETH"))
+        return Transaction(id: repo.nextID(), type: .transfer, walletID: WalletID(), accountID: AccountID("0x0"))
             .change(amount: .ether(3))
             .change(fee: .ether(1))
             .change(feeEstimate: TransactionFeeEstimate(gas: 100, dataGas: 100, gasPrice: .ether(5)))

@@ -49,7 +49,7 @@ public struct Address: Hashable, Codable {
     }
 
     /// 20-byte zero address
-    public static let zero = Address("0x0000000000000000000000000000000000000000")
+    public static let zero = Address(ethID.id)
 
     /// Creates new address with a string value.
     ///
