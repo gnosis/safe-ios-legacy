@@ -112,7 +112,7 @@ public class WalletApplicationService: Assertable {
             let account = findAccount(Token.Ether.id)!
             if account.balance == 0 {
                 return .addressKnown
-            } else if account.balance < account.minimumDeploymentTransactionAmount {
+            } else if account.balance < wallet.minimumDeploymentTransactionAmount! {
                 return .notEnoughFunds
             } else {
                 return .accountFunded
@@ -145,7 +145,7 @@ public class WalletApplicationService: Assertable {
     }
 
     public var minimumDeploymentAmount: BigInt? {
-        return findAccount(Token.Ether.id)?.minimumDeploymentTransactionAmount
+        return findSelectedWallet()?.minimumDeploymentTransactionAmount
     }
 
     private var statusUpdateHandlers = [String: () -> Void]()
@@ -163,7 +163,7 @@ public class WalletApplicationService: Assertable {
             let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(),
                                 owner: owner,
                                 kind: OwnerType.thisDevice.kind)
-            let account = Account(id: AccountID(Token.Ether.id.id), walletID: wallet.id, balance: 0, minimumAmount: 0)
+            let account = Account(id: AccountID(Token.Ether.id.id), walletID: wallet.id, balance: 0)
             portfolio.addWallet(wallet.id)
             DomainRegistry.walletRepository.save(wallet)
             DomainRegistry.portfolioRepository.save(portfolio)
@@ -187,7 +187,7 @@ public class WalletApplicationService: Assertable {
             if selectedWalletState == .deploymentStarted {
                 let data = try requestWalletCreation()
                 assignAddress(data.safe)
-                updateMinimumFunding(account: Token.Ether.id, amount: data.payment)
+                updateMinimumFunding(amount: data.payment)
             }
             if selectedWalletState == .notEnoughFunds || selectedWalletState == .addressKnown {
                 try startObservingWalletBalance()
@@ -232,6 +232,12 @@ public class WalletApplicationService: Assertable {
     private func assignAddress(_ address: String) {
         mutateSelectedWallet { wallet in
             wallet.changeAddress(Address(address))
+        }
+    }
+
+    private func updateMinimumFunding(amount: BigInt) {
+        mutateSelectedWallet { wallet in
+            wallet.updateMinimumTransactionAmount(amount)
         }
     }
 
@@ -519,13 +525,6 @@ public class WalletApplicationService: Assertable {
 
     public func accountBalance(tokenID: BaseID) -> BigInt? {
        return findAccount(tokenID)?.balance
-    }
-
-    private func updateMinimumFunding(account tokenID: BaseID, amount: BigInt) {
-        assertCanChangeAccount()
-        mutateAccount(tokenID: tokenID) { account in
-            account.updateMinimumTransactionAmount(amount)
-        }
     }
 
     private func assertCanChangeAccount() {

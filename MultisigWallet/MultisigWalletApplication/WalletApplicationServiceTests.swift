@@ -133,8 +133,8 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         addAllOwners()
         try service.startDeployment()
-        let account = try findAccount(ethID.id)
-        XCTAssertEqual(account.minimumDeploymentTransactionAmount, 100)
+        let wallet = try selectedWallet()
+        XCTAssertEqual(wallet.minimumDeploymentTransactionAmount, 100)
     }
 
     func test_whenUpdatingAccountBalance_thenUpdatesIt() throws {
@@ -216,10 +216,10 @@ class WalletApplicationServiceTests: XCTestCase {
         addAllOwners()
         try service.startDeployment()
         XCTAssertEqual(service.selectedWalletState, .addressKnown)
-        let account = try findAccount(ethID.id)
-        XCTAssertEqual(account.minimumDeploymentTransactionAmount, 100)
-        XCTAssertEqual(account.balance, 0)
         let wallet = try selectedWallet()
+        let account = try findAccount(ethID.id)
+        XCTAssertEqual(wallet.minimumDeploymentTransactionAmount, 100)
+        XCTAssertEqual(account.balance, 0)
         XCTAssertEqual(wallet.address, Address.safeAddress)
     }
 
@@ -248,8 +248,8 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         addAllOwners()
         try service.startDeployment()
-        let account = try findAccount(ethID.id)
-        let requiredBalance = account.minimumDeploymentTransactionAmount
+        let wallet = try selectedWallet()
+        let requiredBalance = wallet.minimumDeploymentTransactionAmount!
         let response1 = ethereumService.updateBalance(BigInt(requiredBalance - 1))
         XCTAssertEqual(response1, RepeatingShouldStop.no)
         let response2 = ethereumService.updateBalance(BigInt(requiredBalance))
@@ -801,15 +801,19 @@ fileprivate extension WalletApplicationServiceTests {
     }
 
     private func makeNotEnoughFunds() throws {
+        let wallet = try selectedWallet()
+        wallet.updateMinimumTransactionAmount(100)
+        walletRepository.save(wallet)
         let account = try findAccount(ethID.id)
-        account.updateMinimumTransactionAmount(100)
         account.update(newAmount: 50)
         accountRepository.save(account)
     }
 
     private func makeEnoughFunds() throws {
+        let wallet = try selectedWallet()
+        wallet.updateMinimumTransactionAmount(100)
+        walletRepository.save(wallet)
         let account = try findAccount(ethID.id)
-        account.updateMinimumTransactionAmount(100)
         account.update(newAmount: 150)
         accountRepository.save(account)
     }

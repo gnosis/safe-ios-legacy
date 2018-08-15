@@ -59,6 +59,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         fileprivate let ownersByKind: [String: Owner]
         fileprivate let address: Address?
         fileprivate let creationTransactionHash: String?
+        fileprivate let minimumDeploymentTransactionAmount: TokenInt?
     }
 
     public private(set) var status = Status.newDraft
@@ -66,6 +67,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     private var ownersByKind = [String: Owner]()
     public private(set) var address: Address?
     public private(set) var creationTransactionHash: String?
+    public private(set) var minimumDeploymentTransactionAmount: TokenInt?
 
     public required init(data: Data) {
         let decoder = PropertyListDecoder()
@@ -75,6 +77,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         ownersByKind = state.ownersByKind
         address = state.address
         creationTransactionHash = state.creationTransactionHash
+        minimumDeploymentTransactionAmount = state.minimumDeploymentTransactionAmount
     }
 
     public func data() -> Data {
@@ -84,7 +87,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
                           status: status,
                           ownersByKind: ownersByKind,
                           address: address,
-                          creationTransactionHash: creationTransactionHash)
+                          creationTransactionHash: creationTransactionHash,
+                          minimumDeploymentTransactionAmount: minimumDeploymentTransactionAmount)
         return try! encoder.encode(state)
     }
 
@@ -176,6 +180,11 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     private func assertOwnerExists(_ kind: String) {
         try! assertNotNil(owner(kind: kind), Error.ownerNotFound)
+    }
+
+    public func updateMinimumTransactionAmount(_ newValue: TokenInt) {
+        assert(status: .addressKnown)
+        minimumDeploymentTransactionAmount = newValue
     }
 
 }

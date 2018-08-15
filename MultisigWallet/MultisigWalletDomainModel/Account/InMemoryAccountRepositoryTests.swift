@@ -12,8 +12,7 @@ class InMemoryAccountRepositoryTests: XCTestCase {
         let repository = InMemoryAccountRepository()
         let account = Account(id: AccountID("0x0"),
                               walletID: WalletID(),
-                              balance: 0,
-                              minimumAmount: 0)
+                              balance: 0)
         account.add(amount: 100)
         repository.save(account)
         XCTAssertEqual(repository.find(id: AccountID("0x0"), walletID: account.walletID), account)

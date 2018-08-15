@@ -14,14 +14,13 @@ CREATE TABLE IF NOT EXISTS tbl_accounts (
     token TEXT NOT NULL,
     wallet_id TEXT NOT NULL,
     balance TEXT NOT NULL,
-    minimum TEXT NOT NULL,
     PRIMARY KEY (token, wallet_id)
 );
 """
-        static let insert = "INSERT OR REPLACE INTO tbl_accounts VALUES (?, ?, ?, ?);"
+        static let insert = "INSERT OR REPLACE INTO tbl_accounts VALUES (?, ?, ?);"
         static let delete = "DELETE FROM tbl_accounts WHERE token = ? AND wallet_id = ?;"
         static let find = """
-SELECT token, wallet_id, balance, minimum
+SELECT token, wallet_id, balance
 FROM tbl_accounts
 WHERE token = ? AND wallet_id = ? LIMIT 1;
 """
@@ -40,8 +39,7 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
     public func save(_ account: Account) {
         try! db.execute(sql: SQL.insert, bindings: [account.id.id,
                                                     account.walletID.id,
-                                                    String(account.balance),
-                                                    String(account.minimumDeploymentTransactionAmount)])
+                                                    String(account.balance)])
     }
 
     public func remove(_ account: Account) {
@@ -58,14 +56,12 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
     private func accountFromResultSet(_ rs: ResultSet) -> Account? {
         guard let tokenID = rs.string(at: 0),
             let walletID = rs.string(at: 1),
-            let balance = rs.string(at: 2),
-            let minimum = rs.string(at: 3) else {
+            let balance = rs.string(at: 2) else {
                 return nil
         }
         let account = Account(id: AccountID(tokenID),
                               walletID: WalletID(walletID),
-                              balance: TokenInt(balance)!,
-                              minimumAmount: TokenInt(minimum)!)
+                              balance: TokenInt(balance)!)
         return account
     }
 
