@@ -12,7 +12,6 @@ class PendingSafeViewControllerTests: SafeTestCase {
     //swiftlint:disable:next weak_delegate
     var delegate = MockPendingSafeViewControllerDelegate()
     var controller: PendingSafeViewController!
-    let ethID = BaseID("0x0000000000000000000000000000000000000000")
 
     override func setUp() {
         super.setUp()

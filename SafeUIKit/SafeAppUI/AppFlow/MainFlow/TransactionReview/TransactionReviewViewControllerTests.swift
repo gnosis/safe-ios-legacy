@@ -15,7 +15,6 @@ class TransactionReviewViewControllerTests: XCTestCase {
     let vc = TransactionReviewViewController.create()
     // swiftlint:disable weak_delegate
     let delegate = MockTransactionReviewViewControllerDelegate()
-    let ethID = BaseID("0x0000000000000000000000000000000000000000")
 
     override func setUp() {
         super.setUp()

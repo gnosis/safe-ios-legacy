@@ -80,7 +80,6 @@ final class TransactionReviewViewController: UIViewController {
         senderView.address = tx.sender
         recipientView.address = tx.recipient
         transactionValueView.tokenAmount = tokenFormatter.string(from: tx.amount)
-        let ethID = BaseID("0x0000000000000000000000000000000000000000")
         let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: ethID)!
         safeBalanceValueLabel.text = tokenFormatter.string(from: BigInt(balance))
         feeValueLabel.text = tokenFormatter.string(from: -tx.fee)

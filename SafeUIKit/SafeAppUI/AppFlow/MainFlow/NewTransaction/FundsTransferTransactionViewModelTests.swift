@@ -15,7 +15,6 @@ class TransactionViewModelTests: XCTestCase {
     let walletAddress = "0x1CBFf6551B8713296b0604705B1a3B76D238Ae14"
     let balance = BigInt(1_000)
     var model: FundsTransferTransactionViewModel!
-    let ethID = BaseID("0x0000000000000000000000000000000000000000")
 
     override func setUp() {
         super.setUp()

@@ -23,7 +23,6 @@ class WalletApplicationServiceTests: XCTestCase {
     let relayService = MockTransactionRelayService(averageDelay: 0, maxDeviation: 0)
     let encryptionService = MockEncryptionService()
     let eoaRepo = InMemoryExternallyOwnedAccountRepository()
-    let ethID = "0x0000000000000000000000000000000000000000"
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -72,7 +71,7 @@ class WalletApplicationServiceTests: XCTestCase {
     func test_whenAddingAccount_thenCanFindIt() throws {
         givenDraftWallet()
         let wallet = try selectedWallet()
-        let eth = AccountID(ethID)
+        let eth = AccountID(ethID.id)
         let account = accountRepository.find(id: eth, walletID: wallet.id)
         XCTAssertNotNil(account)
         XCTAssertEqual(account?.id, eth)
@@ -120,9 +119,9 @@ class WalletApplicationServiceTests: XCTestCase {
         assert(state: .readyToDeploy)
         try service.startDeployment()
         assert(state: .addressKnown)
-        service.update(account: BaseID(ethID), newBalance: 1)
+        service.update(account: ethID, newBalance: 1)
         assert(state: .notEnoughFunds)
-        service.update(account: BaseID(ethID), newBalance: 100)
+        service.update(account: ethID, newBalance: 100)
         assert(state: .accountFunded)
         service.markDeploymentAcceptedByBlockchain()
         assert(state: .deploymentAcceptedByBlockchain)
@@ -134,7 +133,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         addAllOwners()
         try service.startDeployment()
-        let account = try findAccount(ethID)
+        let account = try findAccount(ethID.id)
         XCTAssertEqual(account.minimumDeploymentTransactionAmount, 100)
     }
 
@@ -142,8 +141,8 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         addAllOwners()
         try service.startDeployment()
-        service.update(account: BaseID(ethID), newBalance: 100)
-        let account = try findAccount(ethID)
+        service.update(account: ethID, newBalance: 100)
+        let account = try findAccount(ethID.id)
         XCTAssertEqual(account.balance, 100)
     }
 
@@ -182,8 +181,8 @@ class WalletApplicationServiceTests: XCTestCase {
         service.createNewDraftWallet()
         addAllOwners()
         try service.startDeployment()
-        service.update(account: BaseID(ethID), newBalance: 1)
-        service.update(account: BaseID(ethID), newBalance: 2)
+        service.update(account: ethID, newBalance: 1)
+        service.update(account: ethID, newBalance: 2)
         service.markDeploymentAcceptedByBlockchain()
         service.finishDeployment()
         XCTAssertTrue(service.hasReadyToUseWallet)
@@ -217,7 +216,7 @@ class WalletApplicationServiceTests: XCTestCase {
         addAllOwners()
         try service.startDeployment()
         XCTAssertEqual(service.selectedWalletState, .addressKnown)
-        let account = try findAccount(ethID)
+        let account = try findAccount(ethID.id)
         XCTAssertEqual(account.minimumDeploymentTransactionAmount, 100)
         XCTAssertEqual(account.balance, 0)
         let wallet = try selectedWallet()
@@ -241,7 +240,7 @@ class WalletApplicationServiceTests: XCTestCase {
         addAllOwners()
         try service.startDeployment()
         ethereumService.updateBalance(1)
-        let account = try findAccount(ethID)
+        let account = try findAccount(ethID.id)
         XCTAssertEqual(account.balance, 1)
     }
 
@@ -249,7 +248,7 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         addAllOwners()
         try service.startDeployment()
-        let account = try findAccount(ethID)
+        let account = try findAccount(ethID.id)
         let requiredBalance = account.minimumDeploymentTransactionAmount
         let response1 = ethereumService.updateBalance(BigInt(requiredBalance - 1))
         XCTAssertEqual(response1, RepeatingShouldStop.no)
@@ -474,8 +473,8 @@ class WalletApplicationServiceTests: XCTestCase {
     fileprivate func givenReadyToUseWallet() {
         try! givenReadyToDeployWallet()
         try! service.startDeployment()
-        service.update(account: BaseID(ethID), newBalance: 1)
-        service.update(account: BaseID(ethID), newBalance: 100)
+        service.update(account: ethID, newBalance: 1)
+        service.update(account: ethID, newBalance: 100)
         service.markDeploymentAcceptedByBlockchain()
         service.finishDeployment()
     }
@@ -510,7 +509,7 @@ class WalletApplicationServiceTests: XCTestCase {
         let txID = service.createNewDraftTransaction()
         let tx: Transaction! = transactionRepository.findByID(TransactionID(txID))
         XCTAssertNotNil(tx)
-        XCTAssertEqual(tx.accountID, AccountID(ethID))
+        XCTAssertEqual(tx.accountID, AccountID(ethID.id))
         XCTAssertEqual(tx.sender, try! selectedWallet().address)
         XCTAssertEqual(tx.type, .transfer)
     }
@@ -633,7 +632,7 @@ class WalletApplicationServiceTests: XCTestCase {
         let tx = Transaction(id: TransactionID(),
                              type: .transfer,
                              walletID: WalletID(),
-                             accountID: AccountID(ethID))
+                             accountID: AccountID(ethID.id))
         tx.change(sender: Address.safeAddress)
             .change(recipient: Address.testAccount1)
             .change(amount: TokenAmount.ether(1))
@@ -736,7 +735,7 @@ fileprivate extension WalletApplicationServiceTests {
             let transaction = Transaction(id: TransactionID(),
                                           type: .transfer,
                                           walletID: WalletID(),
-                                          accountID: AccountID(ethID))
+                                          accountID: AccountID(ethID.id))
             transaction.change(hash: message.hash)
                 .change(sender: Address.safeAddress)
                 .change(recipient: Address.testAccount1)
@@ -802,14 +801,14 @@ fileprivate extension WalletApplicationServiceTests {
     }
 
     private func makeNotEnoughFunds() throws {
-        let account = try findAccount(ethID)
+        let account = try findAccount(ethID.id)
         account.updateMinimumTransactionAmount(100)
         account.update(newAmount: 50)
         accountRepository.save(account)
     }
 
     private func makeEnoughFunds() throws {
-        let account = try findAccount(ethID)
+        let account = try findAccount(ethID.id)
         account.updateMinimumTransactionAmount(100)
         account.update(newAmount: 150)
         accountRepository.save(account)

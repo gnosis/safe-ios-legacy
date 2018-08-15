@@ -11,7 +11,6 @@ class AppFlowCoordinatorTests: SafeTestCase {
 
     var flowCoordinator: AppFlowCoordinator!
     let password = "MyPassword"
-    let ethID = BaseID("0x0000000000000000000000000000000000000000")
 
     override func setUp() {
         super.setUp()

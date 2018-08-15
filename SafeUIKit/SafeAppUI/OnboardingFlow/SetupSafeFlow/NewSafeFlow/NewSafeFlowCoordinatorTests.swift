@@ -13,7 +13,6 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     let nav = UINavigationController()
     var startVC: UIViewController!
     let address = "test_address"
-    let ethID = BaseID("0x0000000000000000000000000000000000000000")
 
     var topViewController: UIViewController? {
         return newSafeFlowCoordinator.navigationController.topViewController

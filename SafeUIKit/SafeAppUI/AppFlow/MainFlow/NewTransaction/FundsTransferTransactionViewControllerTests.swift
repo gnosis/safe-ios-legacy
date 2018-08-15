@@ -14,7 +14,6 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
     let walletService = MockWalletApplicationService()
     let walletAddress = "0x1CBFf6551B8713296b0604705B1a3B76D238Ae14"
     let balance = BigInt(1_000)
-    let ethID = BaseID("0x0000000000000000000000000000000000000000")
     var controller: FundsTransferTransactionViewController!
 
     override func setUp() {

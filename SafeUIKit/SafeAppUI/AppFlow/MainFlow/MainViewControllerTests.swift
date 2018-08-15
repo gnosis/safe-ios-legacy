@@ -14,7 +14,6 @@ class MainViewControllerTests: XCTestCase {
     // swiftlint:disable weak_delegate
     let delegate = MockMainViewControllerDelegate()
     var vc: MainViewController!
-    let ethID = BaseID("0x0000000000000000000000000000000000000000")
 
     override func setUp() {
         super.setUp()

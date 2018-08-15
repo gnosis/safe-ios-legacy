@@ -21,8 +21,6 @@ public class MainViewController: UIViewController {
     private weak var delegate: MainViewControllerDelegate?
     private let tokenFormatter = TokenNumberFormatter()
 
-    private let ethID = BaseID("0x0000000000000000000000000000000000000000")
-
     private enum Strings {
         static let send = LocalizedString("main.send", comment: "Send button title")
         static let receive = LocalizedString("main.receive", comment: "Receive button title")
