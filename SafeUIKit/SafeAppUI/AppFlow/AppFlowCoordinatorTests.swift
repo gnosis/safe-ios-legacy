@@ -5,11 +5,13 @@
 import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
+import Common
 
 class AppFlowCoordinatorTests: SafeTestCase {
 
     var flowCoordinator: AppFlowCoordinator!
     let password = "MyPassword"
+    let ethID = BaseID("0x0000000000000000000000000000000000000000")
 
     override func setUp() {
         super.setUp()
@@ -95,7 +97,7 @@ class AppFlowCoordinatorTests: SafeTestCase {
         authenticationService.allowAuthentication()
         _ = try Authenticator.instance.authenticate(.password(password))
         walletService.createNewDraftWallet()
-        walletService.update(account: "ETH", newBalance: 100)
+        walletService.update(account: ethID, newBalance: 100)
         walletService.assignAddress("address")
         createFlowCoordinator()
         guard let rootVC = rootViewControlleOnAppStartrAfterUnlocking() else {

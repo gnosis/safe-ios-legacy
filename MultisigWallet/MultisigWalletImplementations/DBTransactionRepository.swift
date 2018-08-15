@@ -99,7 +99,7 @@ LIMIT 1;
             [
                 transaction.id.id,
                 transaction.walletID.id,
-                transaction.accountID.token,
+                transaction.accountID.id,
                 transaction.type.rawValue,
                 transaction.status.rawValue,
                 transaction.sender?.value,
@@ -167,7 +167,7 @@ LIMIT 1;
         let transaction = Transaction(id: TransactionID(id),
                                       type: transactionType,
                                       walletID: WalletID(walletID),
-                                      accountID: AccountID(token: accountID))
+                                      accountID: AccountID(accountID))
         update(rs, transaction)
         // initial status is draft
         switch targetTransactionStatus {

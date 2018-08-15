@@ -5,13 +5,14 @@
 import UIKit
 import MultisigWalletApplication
 import BigInt
+import Common
 
 protocol TransactionReviewViewControllerDelegate: class {
     func transactionReviewViewControllerWantsToSubmitTransaction(completionHandler: @escaping (Bool) -> Void)
     func transactionReviewViewControllerDidFinish()
 }
 
-public class TransactionReviewViewController: UIViewController {
+final class TransactionReviewViewController: UIViewController {
 
     @IBOutlet weak var senderView: TransactionParticipantView!
     @IBOutlet weak var recipientView: TransactionParticipantView!
@@ -40,7 +41,7 @@ public class TransactionReviewViewController: UIViewController {
     private var didNotRequestSignaturesYet = true
     private let tokenFormatter = TokenNumberFormatter.eth
 
-    public static func create() -> TransactionReviewViewController {
+    static func create() -> TransactionReviewViewController {
         return StoryboardScene.Main.transactionReviewViewController.instantiate()
     }
 
@@ -79,7 +80,8 @@ public class TransactionReviewViewController: UIViewController {
         senderView.address = tx.sender
         recipientView.address = tx.recipient
         transactionValueView.tokenAmount = tokenFormatter.string(from: tx.amount)
-        let balance = ApplicationServiceRegistry.walletService.accountBalance(token: "ETH")!
+        let ethID = BaseID("0x0000000000000000000000000000000000000000")
+        let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: ethID)!
         safeBalanceValueLabel.text = tokenFormatter.string(from: BigInt(balance))
         feeValueLabel.text = tokenFormatter.string(from: -tx.fee)
 

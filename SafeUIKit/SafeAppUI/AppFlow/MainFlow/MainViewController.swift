@@ -21,6 +21,8 @@ public class MainViewController: UIViewController {
     private weak var delegate: MainViewControllerDelegate?
     private let tokenFormatter = TokenNumberFormatter()
 
+    private let ethID = BaseID("0x0000000000000000000000000000000000000000")
+
     private enum Strings {
         static let send = LocalizedString("main.send", comment: "Send button title")
         static let receive = LocalizedString("main.receive", comment: "Receive button title")
@@ -45,7 +47,7 @@ public class MainViewController: UIViewController {
             ApplicationServiceRegistry.logger.info("Safe address: \(address)")
         }
         receiveButton.setTitle(Strings.receive, for: .normal)
-        if let balance = ApplicationServiceRegistry.walletService.accountBalance(token: "ETH") {
+        if let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: ethID) {
             totalBalanceLabel.text = tokenFormatter.string(from: BigInt(balance))
         }
     }

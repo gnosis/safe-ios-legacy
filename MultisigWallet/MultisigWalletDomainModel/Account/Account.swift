@@ -6,19 +6,7 @@ import Foundation
 import Common
 
 /// Identifier of a wallet token account.
-public struct AccountID: Hashable {
-
-    /// Token code, for example, "ETH"
-    public internal(set) var token: String
-
-    /// Creates new account ID with token code
-    ///
-    /// - Parameter token: token code, like "ETH"
-    public init(token: String) {
-        self.token = token
-    }
-
-}
+public class AccountID: BaseID {}
 
 /// Represents account balance for a token type. Account belongs to a wallet, which is referenced by WaleltID
 public class Account: IdentifiableEntity<AccountID> {

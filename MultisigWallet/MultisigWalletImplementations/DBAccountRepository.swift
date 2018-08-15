@@ -38,31 +38,31 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
     }
 
     public func save(_ account: Account) {
-        try! db.execute(sql: SQL.insert, bindings: [account.id.token,
+        try! db.execute(sql: SQL.insert, bindings: [account.id.id,
                                                     account.walletID.id,
                                                     String(account.balance),
                                                     String(account.minimumDeploymentTransactionAmount)])
     }
 
     public func remove(_ account: Account) {
-        try! db.execute(sql: SQL.delete, bindings: [account.id.token,
+        try! db.execute(sql: SQL.delete, bindings: [account.id.id,
                                                     account.walletID.id])
     }
 
     public func find(id: AccountID, walletID: WalletID) -> Account? {
         return try! db.execute(sql: SQL.find,
-                               bindings: [id.token, walletID.id],
+                               bindings: [id.id, walletID.id],
                                resultMap: accountFromResultSet).first as? Account
     }
 
     private func accountFromResultSet(_ rs: ResultSet) -> Account? {
-        guard let token = rs.string(at: 0),
+        guard let tokenID = rs.string(at: 0),
             let walletID = rs.string(at: 1),
             let balance = rs.string(at: 2),
             let minimum = rs.string(at: 3) else {
                 return nil
         }
-        let account = Account(id: AccountID(token: token),
+        let account = Account(id: AccountID(tokenID),
                               walletID: WalletID(walletID),
                               balance: TokenInt(balance)!,
                               minimumAmount: TokenInt(minimum)!)

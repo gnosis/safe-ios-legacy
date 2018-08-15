@@ -14,6 +14,7 @@ class MainViewControllerTests: XCTestCase {
     // swiftlint:disable weak_delegate
     let delegate = MockMainViewControllerDelegate()
     var vc: MainViewController!
+    let ethID = BaseID("0x0000000000000000000000000000000000000000")
 
     override func setUp() {
         super.setUp()
@@ -30,7 +31,7 @@ class MainViewControllerTests: XCTestCase {
     }
 
     func test_whenLoaded_loadsBalance() {
-        walletService.update(account: "ETH", newBalance: BigInt(1e9))
+        walletService.update(account: ethID, newBalance: BigInt(1e9))
         vc.loadViewIfNeeded()
         XCTAssertEqual(vc.totalBalanceLabel.text, "0,000000001 ETH")
     }

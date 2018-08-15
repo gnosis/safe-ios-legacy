@@ -5,6 +5,7 @@
 import Foundation
 import MultisigWalletApplication
 import BigInt
+import Common
 
 class FundsTransferTransactionViewModel {
 
@@ -31,13 +32,15 @@ class FundsTransferTransactionViewModel {
     private let fundsValidator: FundsValidator
     private let addressValidator: EthereumAddressValidator
     private let inputQueue: OperationQueue
+    private let tokenID: BaseID!
 
     private var walletService: WalletApplicationService { return ApplicationServiceRegistry.walletService }
 
     private let updateBlock: () -> Void
 
-    init(senderName: String, onUpdate: @escaping () -> Void) {
+    init(senderName: String, tokenID: BaseID, onUpdate: @escaping () -> Void) {
         self.senderName = senderName
+        self.tokenID = tokenID
         self.senderAddress = ApplicationServiceRegistry.walletService.selectedWalletAddress!
         canProceedToSigning = false
         updateBlock = onUpdate
@@ -56,7 +59,7 @@ class FundsTransferTransactionViewModel {
     }
 
     private func updateBalance() {
-        if let value = walletService.accountBalance(token: "ETH") {
+        if let value = walletService.accountBalance(tokenID: tokenID) {
             intBalance = BigInt(value)
             balance = tokenFormatter.string(from: intBalance!)
         } else {

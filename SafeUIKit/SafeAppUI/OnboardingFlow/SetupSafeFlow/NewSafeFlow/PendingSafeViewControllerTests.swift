@@ -5,12 +5,14 @@
 import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
+import Common
 
 class PendingSafeViewControllerTests: SafeTestCase {
 
     //swiftlint:disable:next weak_delegate
     var delegate = MockPendingSafeViewControllerDelegate()
     var controller: PendingSafeViewController!
+    let ethID = BaseID("0x0000000000000000000000000000000000000000")
 
     override func setUp() {
         super.setUp()
@@ -45,8 +47,9 @@ class PendingSafeViewControllerTests: SafeTestCase {
 
     func test_whenWalletReceivedEnoughFunds_thenDisplaysStatus() {
         loadController()
-        walletService.updateMinimumFunding(account: "ETH", amount: 100)
-        walletService.update(account: "ETH", newBalance: 100)
+
+        walletService.updateMinimumFunding(account: ethID, amount: 100)
+        walletService.update(account: ethID, newBalance: 100)
         delay()
         assert(progress: 50, status: "pending_safe.status.account_funded")
         XCTAssertFalse(controller.cancelButton.isEnabled)
@@ -54,8 +57,8 @@ class PendingSafeViewControllerTests: SafeTestCase {
 
     func test_whenNotEnoughFunds_thenDisplaysStatus() {
         loadController()
-        walletService.updateMinimumFunding(account: "ETH", amount: 100)
-        walletService.update(account: "ETH", newBalance: 90)
+        walletService.updateMinimumFunding(account: ethID, amount: 100)
+        walletService.update(account: ethID, newBalance: 90)
         delay()
         let status = String(format: XCLocalizedString("pending_safe.status.not_enough_funds"), "90 Wei", "100 Wei")
         XCTAssertEqual(controller.progressView.progress, 40.0 / 100.0)

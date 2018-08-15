@@ -5,6 +5,7 @@
 import UIKit
 import MultisigWalletApplication
 import IdentityAccessApplication
+import Common
 
 final class MainFlowCoordinator: FlowCoordinator {
 
@@ -56,7 +57,8 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
 
     func createNewTransaction() {
         saveCheckpoint()
-        let transactionVC = FundsTransferTransactionViewController.create()
+        let ethID = BaseID("0x0000000000000000000000000000000000000000")
+        let transactionVC = FundsTransferTransactionViewController.create(tokenID: ethID)
         transactionVC.delegate = self
         push(transactionVC)
     }

@@ -143,7 +143,8 @@ public class PendingSafeViewController: UIViewController {
         let state = walletService.selectedWalletState
         let address = walletService.selectedWalletAddress
         let payment = walletService.minimumDeploymentAmount
-        let balance = walletService.accountBalance(token: "ETH")
+        let ethID = BaseID("0x0000000000000000000000000000000000000000")
+        let balance = walletService.accountBalance(tokenID: ethID)
         uiUpdateQueue.addOperation { [unowned self] in
             self.updateAddressLabel(address: address, balance: balance)
             self.cancelButton.isEnabled = self.walletService.canChangeAccount

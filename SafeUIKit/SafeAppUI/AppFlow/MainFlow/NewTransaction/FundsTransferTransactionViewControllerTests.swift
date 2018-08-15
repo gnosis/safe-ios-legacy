@@ -7,18 +7,21 @@ import XCTest
 import MultisigWalletApplication
 import BigInt
 import CommonTestSupport
+import Common
 
 class FundsTransferTransactionViewControllerTests: XCTestCase {
 
     let walletService = MockWalletApplicationService()
     let walletAddress = "0x1CBFf6551B8713296b0604705B1a3B76D238Ae14"
     let balance = BigInt(1_000)
-    let controller = FundsTransferTransactionViewController.create()
+    let ethID = BaseID("0x0000000000000000000000000000000000000000")
+    var controller: FundsTransferTransactionViewController!
 
     override func setUp() {
         super.setUp()
+        controller = FundsTransferTransactionViewController.create(tokenID: ethID)
         walletService.assignAddress(walletAddress)
-        walletService.update(account: "ETH", newBalance: balance)
+        walletService.update(account: ethID, newBalance: balance)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
     }
 
@@ -68,7 +71,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         let amount = BigInt(10).power(17)
         let balance = BigInt(10).power(18)
         let recipient = walletAddress
-        walletService.update(account: "ETH", newBalance: balance)
+        walletService.update(account: ethID, newBalance: balance)
         walletService.estimatedFee_output = 100
         walletService.createNewDraftTransaction_output = transactionID
 
