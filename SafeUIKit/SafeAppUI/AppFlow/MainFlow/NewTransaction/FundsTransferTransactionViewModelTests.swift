@@ -7,6 +7,7 @@ import XCTest
 import MultisigWalletApplication
 import BigInt
 import CommonTestSupport
+import Common
 
 class TransactionViewModelTests: XCTestCase {
 
@@ -18,9 +19,9 @@ class TransactionViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         walletService.assignAddress(walletAddress)
-        walletService.update(account: "ETH", newBalance: balance)
+        walletService.update(account: ethID, newBalance: balance)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
-        model = FundsTransferTransactionViewModel(senderName: "safe") { /* empty */ }
+        model = FundsTransferTransactionViewModel(senderName: "safe", tokenID: ethID) { /* empty */ }
         model.start()
     }
 
@@ -59,14 +60,14 @@ class TransactionViewModelTests: XCTestCase {
     }
 
     func test_whenWalletBalanceNil_thenBalanceIsNil() {
-        walletService.update(account: "ETH", newBalance: nil)
+        walletService.update(account: ethID, newBalance: nil)
         model.start()
         XCTAssertNil(model.balance)
     }
 
     func test_whenAmountChangesToSameValue_nothingHappens() {
         var changed: Int = 0
-        model = FundsTransferTransactionViewModel(senderName: "") {
+        model = FundsTransferTransactionViewModel(senderName: "", tokenID: ethID) {
             changed += 1
         }
         model.start()
@@ -79,7 +80,7 @@ class TransactionViewModelTests: XCTestCase {
 
     func test_whenRecipientChangesToSameValue_nothingHappens() {
         var changed: Int = 0
-        model = FundsTransferTransactionViewModel(senderName: "") {
+        model = FundsTransferTransactionViewModel(senderName: "", tokenID: ethID) {
             changed += 1
         }
         model.start()

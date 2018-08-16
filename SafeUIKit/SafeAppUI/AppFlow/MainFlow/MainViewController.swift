@@ -45,7 +45,7 @@ public class MainViewController: UIViewController {
             ApplicationServiceRegistry.logger.info("Safe address: \(address)")
         }
         receiveButton.setTitle(Strings.receive, for: .normal)
-        if let balance = ApplicationServiceRegistry.walletService.accountBalance(token: "ETH") {
+        if let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: ethID) {
             totalBalanceLabel.text = tokenFormatter.string(from: BigInt(balance))
         }
     }
