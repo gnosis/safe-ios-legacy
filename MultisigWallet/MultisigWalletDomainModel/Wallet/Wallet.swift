@@ -210,10 +210,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
         state.proceed()
     }
 
-    public func change(deploymentFee newValue: BigInt?) {
-        self.deploymentFee = newValue
-    }
-
     private func assertOwnerExists(_ kind: String) {
         try! assertNotNil(owner(kind: kind), Error.ownerNotFound)
     }

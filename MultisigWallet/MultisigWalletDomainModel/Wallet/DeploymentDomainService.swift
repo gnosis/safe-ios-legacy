@@ -22,7 +22,7 @@ public class DeploymentDomainService {
                                                          ecdsaRandomS: s)
             let response = try DomainRegistry.transactionRelayService.createSafeCreationTransaction(request: request)
             wallet.changeAddress(response.walletAddress)
-            wallet.change(deploymentFee: response.deploymentFee)
+            wallet.updateMinimumTransactionAmount(response.deploymentFee)
             wallet.proceed()
         } catch let error {
             DomainRegistry.errorStream.post(error)
