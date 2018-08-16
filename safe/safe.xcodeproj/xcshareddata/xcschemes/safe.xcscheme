@@ -45,7 +45,101 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0A3FADDA207B501F00F0D214"
+            BuildableName = "libCommon.a"
+            BlueprintName = "Common"
+            ReferencedContainer = "container:../Common/Common.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0A8E3B9120B419CC00F002F6"
+            BuildableName = "libCommonImplementations.a"
+            BlueprintName = "CommonImplementations"
+            ReferencedContainer = "container:../Common/Common.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0AC1757F207B73A90016320A"
+            BuildableName = "libCommonTestSupport.a"
+            BlueprintName = "CommonTestSupport"
+            ReferencedContainer = "container:../Common/Common.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0A160B9120A07FE100E064E1"
+            BuildableName = "libDatabase.a"
+            BlueprintName = "Database"
+            ReferencedContainer = "container:../Common/Common.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0A537BE0207CFADE00921FB9"
+            BuildableName = "libIdentityAccessApplication.a"
+            BlueprintName = "IdentityAccessApplication"
+            ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0A537A63207CE5BC00921FB9"
+            BuildableName = "libIdentityAccessDomainModel.a"
+            BlueprintName = "IdentityAccessDomainModel"
+            ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0A537ACC207CEDAE00921FB9"
+            BuildableName = "libIdentityAccessImplementations.a"
+            BlueprintName = "IdentityAccessImplementations"
+            ReferencedContainer = "container:../IdentityAccess/IdentityAccess.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0AEF8A8F20A08899006A1265"
+            BuildableName = "libMultisigWalletApplication.a"
+            BlueprintName = "MultisigWalletApplication"
+            ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0AEF8A7420A08878006A1265"
+            BuildableName = "libMultisigWalletDomainModel.a"
+            BlueprintName = "MultisigWalletDomainModel"
+            ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0AEF8AA920A088B1006A1265"
+            BuildableName = "libMultisigWalletImplementations.a"
+            BlueprintName = "MultisigWalletImplementations"
+            ReferencedContainer = "container:../MultisigWallet/MultisigWallet.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0AF33D34209C6BF800527D25"
+            BuildableName = "SafeAppUI.framework"
+            BlueprintName = "SafeAppUI"
+            ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0A9670B120480C5700445AC2"
+            BuildableName = "SafeUIKit.framework"
+            BlueprintName = "SafeUIKit"
+            ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5540A4EA203C3054009C9BE3"
+            BuildableName = "safe.app"
+            BlueprintName = "safe"
+            ReferencedContainer = "container:safe.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">

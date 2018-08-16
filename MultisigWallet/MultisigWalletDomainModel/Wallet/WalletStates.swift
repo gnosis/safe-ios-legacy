@@ -4,6 +4,11 @@
 
 import Foundation
 
+/// Base class implementing State design pattern, where every state of the wallet expressed in a separate class.
+/// This allows to remove switches and if-else conditionals throughout the codebase and instead use polymorphism
+/// to invoke different behavior, depending on the current state.
+/// WalletState is used to represent a specific step in the wallet deployment process, so that state could be
+/// persisted and reloaded even between application launches.
 class WalletState {
 
     var canChangeOwners: Bool = false
@@ -16,7 +21,10 @@ class WalletState {
         self.wallet = wallet
     }
 
+    /// Moves wallet to the next state in the deployment process. Implemented in subclasses
     func proceed() {}
+
+    /// Cancels current state. Implemented in subclasses
     func cancel() {}
 
 }
@@ -29,7 +37,7 @@ extension WalletState: CustomStringConvertible {
 
 }
 
-class NewDraftState: WalletState {
+class DraftState: WalletState {
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
@@ -37,25 +45,15 @@ class NewDraftState: WalletState {
     }
 
     override func proceed() {
-        wallet.state = wallet.readyToDeployState
+        wallet.state = wallet.deployingState
+        DomainRegistry.eventPublisher.publish(DeploymentStarted())
     }
 
 }
 
-class ReadyToDeployState: WalletState {
+class DeploymentStarted: DomainEvent {}
 
-    override init(wallet: Wallet) {
-        super.init(wallet: wallet)
-        canChangeOwners = true
-    }
-
-    override func proceed() {
-        wallet.state = wallet.deploymentStartedState
-    }
-
-}
-
-class DeploymentStartedState: WalletState {
+class DeployingState: WalletState {
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
@@ -87,7 +85,7 @@ class NotEnoughFundsState: WalletState {
 class AccountFundedState: WalletState {
 
     override func proceed() {
-        wallet.state = wallet.deploymentAcceptedByBlockchainState
+        wallet.state = wallet.finalizingDeploymentState
     }
 
     override func cancel() {
@@ -96,7 +94,7 @@ class AccountFundedState: WalletState {
 
 }
 
-class DeploymentAcceptedByBlockchainState: WalletState {
+class FinalizingDeploymentState: WalletState {
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)

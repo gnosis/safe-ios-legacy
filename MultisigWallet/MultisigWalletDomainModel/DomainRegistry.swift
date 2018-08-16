@@ -48,4 +48,11 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: TransactionRepository.self)
     }
 
+    public static var eventPublisher: EventPublisher {
+        return service(for: EventPublisher.self)
+    }
+
+    public static var errorStream: ErrorStream {
+        return service(for: ErrorStream.self)
+    }
 }

@@ -35,6 +35,7 @@ class WalletApplicationServiceTests: XCTestCase {
         DomainRegistry.put(service: eoaRepo, for: ExternallyOwnedAccountRepository.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
 
+        MultisigWalletDomainModel.DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: accountRepository, for: AccountRepository.self)

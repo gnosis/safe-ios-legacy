@@ -55,6 +55,14 @@ public struct SafeCreationTransactionRequest: Encodable {
         public let safe: String
         public let payment: String
 
+        public var walletAddress: Address {
+            return Address(safe)
+        }
+
+        public var deploymentFee: BigInt {
+            return BigInt(payment)!
+        }
+
         public init(signature: Response.Signature,
                     tx: Response.Transaction,
                     safe: String,
