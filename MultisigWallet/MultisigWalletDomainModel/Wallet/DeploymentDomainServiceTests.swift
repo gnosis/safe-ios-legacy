@@ -30,15 +30,15 @@ class DeploymentDomainServiceTests: XCTestCase {
 
     func test_whenInDraft_thenFetchesCreationTransactionData() {
         givenDraftWalletWithAllOwners()
-        relayService.expect_createSafeCreationTransaction(.testValue(wallet, encryptionService), .testValue)
+        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), .testResponse)
         deploymentService.start()
         relayService.verify()
     }
 
     func test_whenFetchedTransactionData_thenUpdatesAddressAndFee() {
         givenDraftWalletWithAllOwners()
-        let response = SafeCreationTransactionRequest.Response.testValue
-        relayService.expect_createSafeCreationTransaction(.testValue(wallet, encryptionService), response)
+        let response = SafeCreationTransactionRequest.Response.testResponse
+        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), response)
         deploymentService.start()
         wallet = walletRepository.findByID(wallet.id)!
         XCTAssertEqual(wallet.address, response.walletAddress)
@@ -83,7 +83,7 @@ extension DeploymentDomainServiceTests {
 
 extension SafeCreationTransactionRequest {
 
-    static func testValue(_ wallet: Wallet, _ encryptionService: EncryptionDomainService) ->
+    static func testRequest(_ wallet: Wallet, _ encryptionService: EncryptionDomainService) ->
         SafeCreationTransactionRequest {
             return SafeCreationTransactionRequest(owners: wallet.allOwners().map { $0.address },
                                                   confirmationCount: wallet.confirmationCount,
@@ -97,24 +97,24 @@ extension SafeCreationTransactionRequest {
 }
 
 extension SafeCreationTransactionRequest.Response {
-    static let testValue = SafeCreationTransactionRequest.Response(signature: .testValue,
-                                                                   tx: .testValue,
-                                                                   safe: Address.safeAddress.value,
-                                                                   payment: "100")
+    static let testResponse = SafeCreationTransactionRequest.Response(signature: .testSignature,
+                                                                      tx: .testTransaction,
+                                                                      safe: Address.safeAddress.value,
+                                                                      payment: "100")
 }
 
 
 extension SafeCreationTransactionRequest.Response.Signature {
-    static let testValue = SafeCreationTransactionRequest.Response.Signature(r: "0", s: "0", v: "27")
+    static let testSignature = SafeCreationTransactionRequest.Response.Signature(r: "0", s: "0", v: "27")
 }
 
 extension SafeCreationTransactionRequest.Response.Transaction {
-    static let testValue = SafeCreationTransactionRequest.Response.Transaction(from: Address.testAccount1.value,
-                                                                               value: 100,
-                                                                               data: "0x01",
-                                                                               gas: "100",
-                                                                               gasPrice: "100",
-                                                                               nonce: 0)
+    static let testTransaction = SafeCreationTransactionRequest.Response.Transaction(from: Address.testAccount1.value,
+                                                                                     value: 100,
+                                                                                     data: "0x01",
+                                                                                     gas: "100",
+                                                                                     gasPrice: "100",
+                                                                                     nonce: 0)
 }
 
 // MARK: - Mocks
