@@ -29,8 +29,6 @@ public class DeploymentDomainService {
             wallet.cancel()
         }
         DomainRegistry.walletRepository.save(wallet)
-
     }
 
 }
-
