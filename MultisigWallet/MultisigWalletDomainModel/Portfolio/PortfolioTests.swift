@@ -11,14 +11,14 @@ class PortfolioTests: XCTestCase {
     var wallet: Wallet!
     var wallet1: Wallet!
     var wallet2: Wallet!
-    var owner = Owner(address: Address.deviceAddress)
+    var owner = Address.deviceAddress
 
     override func setUp() {
         super.setUp()
         portfolio = Portfolio(id: PortfolioID())
-        wallet = Wallet(id: WalletID(), owner: owner, kind: "kind")
-        wallet1 = Wallet(id: WalletID(), owner: owner, kind: "kind")
-        wallet2 = Wallet(id: WalletID(), owner: owner, kind: "kind")
+        wallet = Wallet(id: WalletID(), owner: owner)
+        wallet1 = Wallet(id: WalletID(), owner: owner)
+        wallet2 = Wallet(id: WalletID(), owner: owner)
     }
 
     func test_whenCreated_thenHasID() {

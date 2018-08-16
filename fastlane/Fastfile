@@ -57,16 +57,8 @@ platform :ios do
 
   desc "Runs all tests"
   lane :test_all do
-    scheme = "AllTests"
-    ui_tests = ["SafeUITests", "SafeUIKitDemoUITests"]
-    do_run_tests(scheme: scheme,
-      build_for_testing: true)
-    do_run_tests(scheme: scheme,
-      test_without_building: true,
-      only_testing: ui_tests)
-    do_run_tests(scheme: scheme,
-      test_without_building: true,
-      skip_testing: ui_tests)
+    do_run_tests(scheme: "allUITests")
+    do_run_tests(scheme: "safe")
   end
 
   desc "Build and distribute build to Fabric Beta"

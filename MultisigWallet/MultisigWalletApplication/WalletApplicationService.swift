@@ -63,20 +63,13 @@ public class WalletApplicationService: Assertable {
         ]
     }
 
-    public enum OwnerType {
+    public enum OwnerType: String {
         case thisDevice
         case browserExtension
         case paperWallet
 
         static let all: [OwnerType] = [.thisDevice, .browserExtension, .paperWallet]
 
-        var kind: String {
-            switch self {
-            case .thisDevice: return "device"
-            case .browserExtension: return "extesnion"
-            case .paperWallet: return "paperWallet"
-            }
-        }
     }
 
     public enum Error: String, Swift.Error, Hashable {
@@ -159,10 +152,7 @@ public class WalletApplicationService: Assertable {
         notifyWalletStateChangesAfter {
             let portfolio = fetchOrCreatePortfolio()
             let address = ethereumService.generateExternallyOwnedAccount().address
-            let owner = Wallet.createOwner(address: address)
-            let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(),
-                                owner: owner,
-                                kind: OwnerType.thisDevice.kind)
+            let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(), owner: Address(address))
             let account = Account(id: AccountID(Token.Ether.id.id), walletID: wallet.id, balance: 0)
             portfolio.addWallet(wallet.id)
             DomainRegistry.walletRepository.save(wallet)
@@ -390,26 +380,17 @@ public class WalletApplicationService: Assertable {
     // MARK: - Owners
 
     public func isOwnerExists(_ type: OwnerType) -> Bool {
-        guard let wallet = findSelectedWallet(), wallet.owner(kind: type.kind) != nil else { return false }
+        let role = OwnerRole(rawValue: type.rawValue)!
+        guard let wallet = findSelectedWallet(), wallet.owner(role: role) != nil else { return false }
         return true
     }
 
     public func addOwner(address: String, type: OwnerType) {
+        let role = OwnerRole(rawValue: type.rawValue)!
         mutateSelectedWallet { wallet in
-            let owner = Wallet.createOwner(address: address)
-            if wallet.owner(kind: type.kind) != nil {
-                wallet.replaceOwner(with: owner, kind: type.kind)
-            } else {
-                wallet.addOwner(owner, kind: type.kind)
-            }
-            if wallet.status == .newDraft {
-                let enoughOwnersExist = OwnerType.all.reduce(true) { isEnough, type in
-                    isEnough && wallet.owner(kind: type.kind) != nil
-                }
-                if enoughOwnersExist {
-                    wallet.markReadyToDeploy()
-                }
-            }
+            let owner = Wallet.createOwner(address: address, role: role)
+            wallet.addOwner(owner)
+            wallet.markReadyToDeployIfNeeded()
         }
     }
 
@@ -517,7 +498,8 @@ public class WalletApplicationService: Assertable {
     }
 
     private func address(of type: OwnerType) -> Address? {
-        guard let wallet = findSelectedWallet(), let owner = wallet.owner(kind: type.kind) else { return nil }
+        let role = OwnerRole(rawValue: type.rawValue)!
+        guard let wallet = findSelectedWallet(), let owner = wallet.owner(role: role) else { return nil }
         return owner.address
     }
 

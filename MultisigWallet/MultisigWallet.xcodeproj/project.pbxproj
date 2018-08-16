@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A0CEFFF2125656200772AB3 /* DeploymentDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */; };
 		0A0CF00C2125684000772AB3 /* ErrorStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CF00B2125684000772AB3 /* ErrorStream.swift */; };
+		0A0CF01421257ED000772AB3 /* DeploymentDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */; };
 		0A23C80520A1B09100C72483 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80420A1B09100C72483 /* Wallet.swift */; };
 		0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80A20A1B09900C72483 /* WalletTests.swift */; };
 		0A23C80D20A1B34900C72483 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80C20A1B34900C72483 /* Owner.swift */; };
@@ -387,6 +388,7 @@
 /* Begin PBXFileReference section */
 		0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentDomainService.swift; sourceTree = "<group>"; };
 		0A0CF00B2125684000772AB3 /* ErrorStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStream.swift; sourceTree = "<group>"; };
+		0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentDomainServiceTests.swift; sourceTree = "<group>"; };
 		0A23C80420A1B09100C72483 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		0A23C80A20A1B09900C72483 /* WalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTests.swift; sourceTree = "<group>"; };
 		0A23C80C20A1B34900C72483 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
@@ -674,6 +676,7 @@
 				555C948A20E2A60F00A0621D /* WalletRepository.swift */,
 				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
 				0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */,
+				0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */,
 				0A0CF00B2125684000772AB3 /* ErrorStream.swift */,
 			);
 			path = Wallet;
@@ -1340,6 +1343,7 @@
 			files = (
 				0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */,
 				0A8A2B9B20FCDC540003BB7E /* TestFixture.swift in Sources */,
+				0A0CF01421257ED000772AB3 /* DeploymentDomainServiceTests.swift in Sources */,
 				0A9E386220F4B46C0085E8D7 /* WorkerTests.swift in Sources */,
 				55FB2595212301A800E81666 /* ImMemoryTokenListItemRepositoryTests.swift in Sources */,
 				55CC279C20F6680800AC12D6 /* PairingRequestTests.swift in Sources */,
