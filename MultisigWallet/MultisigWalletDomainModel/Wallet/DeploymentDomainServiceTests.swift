@@ -3,11 +3,8 @@
 //
 
 import XCTest
-@testable import safe
+@testable import MultisigWalletDomainModel
 
 class DeploymentDomainServiceTests: XCTestCase {
-
-    func test_whenCondition_thenResult() {
-    }
 
 }
