@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
         createWindow()
         UIApplication.shared.applicationIconBadgeNumber = 0
+        synchronise()
         return true
     }
 
@@ -86,6 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                           logger: LogService.shared)
         MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: PushTokensService(), for: PushTokensDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: SynchronisationService(),
+                                                     for: SynchronisationDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
         setUpMultisigDatabase()
     }
@@ -176,6 +179,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     func applicationWillEnterForeground(_ application: UIApplication) {
         coordinator.appEntersForeground()
         UIApplication.shared.applicationIconBadgeNumber = 0
+        synchronise()
+    }
+
+    private func synchronise() {
+        MultisigWalletDomainModel.DomainRegistry.syncService.sync()
     }
 
     func resetAll() {

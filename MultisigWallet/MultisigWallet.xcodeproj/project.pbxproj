@@ -151,6 +151,9 @@
 		55FB25BB2124772C00E81666 /* HTTPTokenListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25BA2124772C00E81666 /* HTTPTokenListService.swift */; };
 		55FB25BD21256E0F00E81666 /* MockTokenListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25BC21256E0F00E81666 /* MockTokenListService.swift */; };
 		55FB25BF212573E400E81666 /* MockTokenListServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25BE212573E400E81666 /* MockTokenListServiceTests.swift */; };
+		55FB25E42125B3DE00E81666 /* SynchronisationDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25E32125B3DE00E81666 /* SynchronisationDomainService.swift */; };
+		55FB25E62125B42E00E81666 /* MockSynchronisationDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25E52125B42E00E81666 /* MockSynchronisationDomainService.swift */; };
+		55FB25E82125BA9800E81666 /* SynchronisationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25E72125BA9800E81666 /* SynchronisationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -528,6 +531,9 @@
 		55FB25BA2124772C00E81666 /* HTTPTokenListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTokenListService.swift; sourceTree = "<group>"; };
 		55FB25BC21256E0F00E81666 /* MockTokenListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTokenListService.swift; sourceTree = "<group>"; };
 		55FB25BE212573E400E81666 /* MockTokenListServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTokenListServiceTests.swift; sourceTree = "<group>"; };
+		55FB25E32125B3DE00E81666 /* SynchronisationDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronisationDomainService.swift; sourceTree = "<group>"; };
+		55FB25E52125B42E00E81666 /* MockSynchronisationDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSynchronisationDomainService.swift; sourceTree = "<group>"; };
+		55FB25E72125BA9800E81666 /* SynchronisationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronisationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -806,6 +812,7 @@
 		0AEF8A7720A08878006A1265 /* MultisigWalletDomainModel */ = {
 			isa = PBXGroup;
 			children = (
+				55FB25D72125B3A600E81666 /* SynchronisationService */,
 				0A75D91E211B191400F5DE63 /* Account */,
 				0AAA175220E27398003B35B3 /* BaseInMemoryRepository.swift */,
 				0A23C83320A1E34700C72483 /* BaseInMemoryRepositoryTests.swift */,
@@ -876,6 +883,8 @@
 				55FB25BA2124772C00E81666 /* HTTPTokenListService.swift */,
 				55FB25BC21256E0F00E81666 /* MockTokenListService.swift */,
 				55FB25BE212573E400E81666 /* MockTokenListServiceTests.swift */,
+				55FB25E52125B42E00E81666 /* MockSynchronisationDomainService.swift */,
+				55FB25E72125BA9800E81666 /* SynchronisationService.swift */,
 			);
 			path = MultisigWalletImplementations;
 			sourceTree = "<group>";
@@ -925,6 +934,14 @@
 				55FB25AD2124760200E81666 /* TokenListDomainService.swift */,
 			);
 			path = Token;
+			sourceTree = "<group>";
+		};
+		55FB25D72125B3A600E81666 /* SynchronisationService */ = {
+			isa = PBXGroup;
+			children = (
+				55FB25E32125B3DE00E81666 /* SynchronisationDomainService.swift */,
+			);
+			path = SynchronisationService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1303,6 +1320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A442DF5210B1DC200F19F80 /* SubmitTransactionRequest.swift in Sources */,
+				55FB25E42125B3DE00E81666 /* SynchronisationDomainService.swift in Sources */,
 				0A442DE1210B124B00F19F80 /* TransactionSentMessage.swift in Sources */,
 				55FB2591212300D400E81666 /* TokenListItemRepository.swift in Sources */,
 				0AAA174720E26E90003B35B3 /* TransactionRepository.swift in Sources */,
@@ -1406,6 +1424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55FB25E82125BA9800E81666 /* SynchronisationService.swift in Sources */,
 				0A9E383E20F4AE510085E8D7 /* InfuraEthereumNodeService.swift in Sources */,
 				0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */,
 				555C94BC20E4E35200A0621D /* HTTPNotificatonService.swift in Sources */,
@@ -1437,6 +1456,7 @@
 				0A9E383C20F4AE510085E8D7 /* EthereumKitEthereumService.swift in Sources */,
 				0A9E384C20F4AE510085E8D7 /* TransactionCall.swift in Sources */,
 				55FB25BD21256E0F00E81666 /* MockTokenListService.swift in Sources */,
+				55FB25E62125B42E00E81666 /* MockSynchronisationDomainService.swift in Sources */,
 				0A23C83220A1E30800C72483 /* InMemoryWalletRepository.swift in Sources */,
 				0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */,
 				0A9E385120F4AE510085E8D7 /* SecureExternallyOwnedAccountRepository.swift in Sources */,
