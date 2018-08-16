@@ -8,42 +8,42 @@ import XCTest
 class WalletTests: XCTestCase {
 
     var wallet: Wallet!
-    let firstOwner = Owner(address: .deviceAddress)
-    let owner = Owner(address: .extensionAddress)
+    let firstOwner = Owner(address: .deviceAddress, role: .thisDevice)
+    let owner = Owner(address: .extensionAddress, role: .browserExtension)
 
     override func setUp() {
         super.setUp()
         DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
-        wallet = Wallet(id: WalletID(), owner: firstOwner, kind: "mean")
+        wallet = Wallet(id: WalletID(), owner: firstOwner.address)
     }
 
     func test_init_whenCreated_thenHasAllData() {
         XCTAssertNotNil(wallet.id)
-        XCTAssertNotNil(wallet.owner(kind: "mean"))
+        XCTAssertNotNil(wallet.owner(kind: .thisDevice))
     }
 
     func test_whenAddingOwner_thenHasOwner() {
-        wallet.addOwner(owner, kind: "kind")
-        XCTAssertEqual(wallet.owner(kind: "kind"), owner)
+        wallet.addOwner(owner)
+        XCTAssertEqual(wallet.owner(kind: owner.role), owner)
     }
 
     func test_whenReplacingOwner_thenAnotherOwnerExists() {
-        let otherOwner = Owner(address: .testAccount1)
-        wallet.addOwner(owner, kind: "kind")
-        wallet.replaceOwner(with: otherOwner, kind: "kind")
-        XCTAssertEqual(wallet.owner(kind: "kind"), otherOwner)
-        XCTAssertNil(wallet.owner(kind: "inexistingKind"))
+        let otherOwner = Owner(address: .testAccount1, role: owner.role)
+        wallet.addOwner(owner)
+        wallet.addOwner(otherOwner)
+        XCTAssertEqual(wallet.owner(kind: .browserExtension), otherOwner)
+        XCTAssertNil(wallet.owner(kind: .paperWallet))
     }
 
     func test_whenReplacingExistingOwnerWithSameOwner_thenNothingChanges() {
-        wallet.replaceOwner(with: firstOwner, kind: "mean")
-        XCTAssertEqual(wallet.owner(kind: "mean"), firstOwner)
+        wallet.addOwner(firstOwner)
+        XCTAssertEqual(wallet.owner(kind: .thisDevice), firstOwner)
     }
 
     func test_whenRemovingOwner_thenItDoesNotExist() {
-        wallet.addOwner(owner, kind: "kind")
-        wallet.removeOwner(kind: "kind")
-        XCTAssertNil(wallet.owner(kind: "kind"))
+        wallet.addOwner(owner)
+        wallet.removeOwner(kind: owner.role)
+        XCTAssertNil(wallet.owner(kind: owner.role))
     }
 
     func test_whenCreated_thenInDraftState() {
@@ -67,9 +67,9 @@ class WalletTests: XCTestCase {
 
     func test_whenReadyToDeploy_thenCanChangeOwners() {
         wallet.markReadyToDeploy()
-        wallet.addOwner(owner, kind: "kind")
-        wallet.replaceOwner(with: Owner(address: .testAccount1), kind: "kind")
-        wallet.removeOwner(kind: "kind")
+        wallet.addOwner(owner)
+        wallet.addOwner(Owner(address: .testAccount1, role: owner.role))
+        wallet.removeOwner(kind: owner.role)
     }
 
     func test_whenCancellingDeployment_thenChangesState() throws {
@@ -82,7 +82,7 @@ class WalletTests: XCTestCase {
     }
 
     func test_whenCreatingOwner_thenConfiguresIt() {
-        let owner = Wallet.createOwner(address: Address.testAccount1.value)
+        let owner = Wallet.createOwner(address: Address.testAccount1.value, role: .thisDevice)
         XCTAssertEqual(owner.address, Address.testAccount1)
     }
 
