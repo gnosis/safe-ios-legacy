@@ -13,6 +13,7 @@ class WalletTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
         wallet = Wallet(id: WalletID(), owner: firstOwner, kind: "mean")
     }
 

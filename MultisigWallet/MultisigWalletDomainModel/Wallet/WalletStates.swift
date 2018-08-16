@@ -29,7 +29,7 @@ extension WalletState: CustomStringConvertible {
 
 }
 
-class NewDraftState: WalletState {
+class DraftState: WalletState {
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
@@ -37,25 +37,15 @@ class NewDraftState: WalletState {
     }
 
     override func proceed() {
-        wallet.state = wallet.readyToDeployState
+        wallet.state = wallet.deployingState
+        DomainRegistry.eventPublisher.publish(DeploymentStarted())
     }
 
 }
 
-class ReadyToDeployState: WalletState {
+class DeploymentStarted: DomainEvent {}
 
-    override init(wallet: Wallet) {
-        super.init(wallet: wallet)
-        canChangeOwners = true
-    }
-
-    override func proceed() {
-        wallet.state = wallet.deploymentStartedState
-    }
-
-}
-
-class DeploymentStartedState: WalletState {
+class DeployingState: WalletState {
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
@@ -87,7 +77,7 @@ class NotEnoughFundsState: WalletState {
 class AccountFundedState: WalletState {
 
     override func proceed() {
-        wallet.state = wallet.deploymentAcceptedByBlockchainState
+        wallet.state = wallet.finalizingDeploymentState
     }
 
     override func cancel() {
@@ -96,7 +86,7 @@ class AccountFundedState: WalletState {
 
 }
 
-class DeploymentAcceptedByBlockchainState: WalletState {
+class FinalizingDeploymentState: WalletState {
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)

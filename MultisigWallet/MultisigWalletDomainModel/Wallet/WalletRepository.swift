@@ -12,3 +12,12 @@ public protocol WalletRepository {
     func nextID() -> WalletID
 
 }
+
+extension WalletRepository {
+
+    func selectedWallet() -> Wallet? {
+        guard let id = DomainRegistry.portfolioRepository.portfolio()?.selectedWallet else { return nil }
+        return findByID(id)
+    }
+
+}

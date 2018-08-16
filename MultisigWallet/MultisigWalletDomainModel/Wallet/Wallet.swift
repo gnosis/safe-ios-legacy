@@ -4,37 +4,10 @@
 
 import Foundation
 import Common
+import BigInt
 
 public class WalletID: BaseID {}
 
-/*
- Wallet state transitions
- //swiftlint:disable line_length
- |          Start State           |              Operation               |           End State            |    Comment     |
- |--------------------------------|--------------------------------------|--------------------------------|----------------|
- |                                | init(id)                             | newDraft                       |                |
- | newDraft                       | markReadyToDeploy()                  | readyToDeploy                  |                |
- |                                | addOwner()                           | newDraft                       |                |
- |                                | replaceOwner()                       | newDraft                       |                |
- |                                | removeOwner()                        | newDraft                       |                |
- | readyToDeploy                  | startDeployment()                    | deploymentStarted              |                |
- |                                | addOwner()                           | readyToDeploy                  |                |
- |                                | replaceOwner()                       | readyToDeploy                  |                |
- |                                | removeOwner()                        | readyToDeploy                  |                |
- | deploymentStarted              | abortDeployment()                    | readyToDeploy                  |                |
- |                                | changeAddress()                      | addressKnown                   |                |
- | addressKnown                   | markDeploymentAcceptedByBlockchain() | deploymentAcceptedByBlockchain |                |
- |                                | abortDeployment()                    | readyToDeploy                  |                |
- |                                | markDeploymentFailed()               | readyToDeploy                  |                |
- | deploymentAcceptedByBlockchain | markDeploymentFailed()               | readyToDeploy                  |                |
- |                                | markDeploymentSuccess()              | deploymentSuccess              |                |
- |                                | abortDeployment()                    | readyToDeploy                  |                |
- | deploymentSuccess              | finishDeployment()                   | readyToUse                     | Terminal State |
- | readyToUse                     | addOwner()                           | readyToUse                     |                |
- |                                | replaceOwner()                       | readyToUse                     |                |
- |                                | removeOwner()                        | readyToUse                     |                |
- //swiftlint:enable line_length
- */
 public class Wallet: IdentifiableEntity<WalletID> {
 
     public enum Error: String, LocalizedError, Hashable {
@@ -65,15 +38,15 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     internal private(set) var newDraftState: WalletState!
     internal private(set) var readyToDeployState: WalletState!
-    internal private(set) var deploymentStartedState: WalletState!
+    internal private(set) var deployingState: WalletState!
     internal private(set) var notEnoughFundsState: WalletState!
     internal private(set) var accountFundedState: WalletState!
-    internal private(set) var deploymentAcceptedByBlockchainState: WalletState!
+    internal private(set) var finalizingDeploymentState: WalletState!
     internal private(set) var readyToUseState: WalletState!
 
     private lazy var allStates: [WalletState?] = [
-        newDraftState, readyToDeployState, deploymentStartedState,
-        notEnoughFundsState, accountFundedState, deploymentAcceptedByBlockchainState, readyToUseState
+        newDraftState, deployingState,
+        notEnoughFundsState, accountFundedState, finalizingDeploymentState, readyToUseState
     ]
 
     public private(set) var status = Status.newDraft
@@ -81,6 +54,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
     private var ownersByKind = [String: Owner]()
     public private(set) var address: Address?
     public private(set) var creationTransactionHash: String?
+    public let confirmationCount: Int = 2
+    public private(set) var deploymentFee: BigInt?
 
     public required init(data: Data) {
         let decoder = PropertyListDecoder()
@@ -101,11 +76,11 @@ public class Wallet: IdentifiableEntity<WalletID> {
         case .readyToDeploy:
             state = readyToDeployState
         case .deploymentStarted:
-            state = deploymentStartedState
+            state = deployingState
         case .addressKnown:
             state = notEnoughFundsState
         case .deploymentAcceptedByBlockchain:
-            state = deploymentAcceptedByBlockchainState
+            state = finalizingDeploymentState
         case .readyToUse:
             state = readyToUseState
         }
@@ -130,17 +105,20 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     private func initStates() {
-        newDraftState = NewDraftState(wallet: self)
-        readyToDeployState = ReadyToDeployState(wallet: self)
-        deploymentStartedState = DeploymentStartedState(wallet: self)
+        newDraftState = DraftState(wallet: self)
+        deployingState = DeployingState(wallet: self)
         notEnoughFundsState = NotEnoughFundsState(wallet: self)
         accountFundedState = AccountFundedState(wallet: self)
-        deploymentAcceptedByBlockchainState = DeploymentAcceptedByBlockchainState(wallet: self)
+        finalizingDeploymentState = FinalizingDeploymentState(wallet: self)
         readyToUseState = ReadyToUseState(wallet: self)
     }
 
     public func owner(kind: String) -> Owner? {
         return ownersByKind[kind]
+    }
+
+    public func allOwners() -> [Owner] {
+        return ownersByKind.values.sorted { $0.address.value < $1.address.value }
     }
 
     public static func createOwner(address: String) -> Owner {
@@ -194,7 +172,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func markReadyToDeploy() {
         assert(status: .newDraft)
         status = .readyToDeploy
-        state.proceed()
     }
 
     public func markDeploymentAcceptedByBlockchain() {
@@ -229,8 +206,20 @@ public class Wallet: IdentifiableEntity<WalletID> {
         state.proceed()
     }
 
+    public func change(deploymentFee newValue: BigInt?) {
+        self.deploymentFee = newValue
+    }
+
     private func assertOwnerExists(_ kind: String) {
         try! assertNotNil(owner(kind: kind), Error.ownerNotFound)
+    }
+
+    public func proceed() {
+        state.proceed()
+    }
+
+    public func cancel() {
+        state.cancel()
     }
 
 }
