@@ -99,6 +99,7 @@
 		55D20B3E21199D5C00BDD62C /* NewTransactionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D20B3D21199D5C00BDD62C /* NewTransactionUITests.swift */; };
 		55D3C08220F770170047004F /* PushTokensService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D3C08120F770170047004F /* PushTokensService.swift */; };
 		55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D97D7D20496E390004AEDD /* AppDelegateTests.swift */; };
+		55FB25C1212582EC00E81666 /* HTTPTokenListServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25C0212582EC00E81666 /* HTTPTokenListServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -456,6 +457,7 @@
 		55D97D7D20496E390004AEDD /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		55F9817E20F4B4E300E3AF47 /* safe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safe.entitlements; sourceTree = "<group>"; };
 		55F9817F20F4DD2300E3AF47 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		55FB25C0212582EC00E81666 /* HTTPTokenListServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTokenListServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -730,6 +732,7 @@
 				0AB743EA20ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift */,
 				55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */,
 				0AC33F292119CE7C009A5CFB /* BlockchainIntegrationTest.swift */,
+				55FB25C0212582EC00E81666 /* HTTPTokenListServiceTests.swift */,
 			);
 			path = IntegrationTests;
 			sourceTree = "<group>";
@@ -1241,6 +1244,7 @@
 				55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */,
 				0AC33F2A2119CE7C009A5CFB /* BlockchainIntegrationTest.swift in Sources */,
 				0AA0C866207B756C0019E282 /* XCTest+Assert.swift in Sources */,
+				55FB25C1212582EC00E81666 /* HTTPTokenListServiceTests.swift in Sources */,
 				0AA0C863207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */,
 				0AA27843205FCE2800EBB9D1 /* TestSupportTests.swift in Sources */,
 			);

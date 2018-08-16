@@ -13,11 +13,9 @@ class TokenListItemTests: XCTestCase {
 
     func test_whenCreated_thenHasAllData() {
         let eth = Token.Ether
-        let tokenListItem = TokenListItem(token: eth, sortingOrder: 1, iconUrl: nil, status: .regular)
+        let tokenListItem = TokenListItem(token: eth, status: .regular)
         XCTAssertEqual(tokenListItem.id.id, "0x0000000000000000000000000000000000000000")
         XCTAssertEqual(tokenListItem.token, eth)
-        XCTAssertEqual(tokenListItem.sortingOrder, 1)
-        XCTAssertEqual(tokenListItem.iconUrl, nil)
         XCTAssertEqual(tokenListItem.status, .regular)
     }
 

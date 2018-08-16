@@ -8,8 +8,7 @@ import Common
 public class TokenListItem: IdentifiableEntity<TokenID> {
 
     public let token: Token
-    public private(set) var sortingOrder: Int
-    public private(set) var iconUrl: URL?
+    public private(set) var sortingId: Int?
     public private(set) var status: TokenListItemStatus
     public private(set) var updated: Date
 
@@ -19,10 +18,8 @@ public class TokenListItem: IdentifiableEntity<TokenID> {
         case blacklisted
     }
 
-    public init(token: Token, sortingOrder: Int, iconUrl: URL?, status: TokenListItemStatus) {
+    public init(token: Token, status: TokenListItemStatus) {
         self.token = token
-        self.sortingOrder = sortingOrder
-        self.iconUrl = iconUrl
         self.status = status
         self.updated = Date()
         super.init(id: token.id)
