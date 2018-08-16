@@ -4,6 +4,9 @@
 
 import Foundation
 
+/// Implements business logic required to deploy a multisignature wallet. Deployment is a multi-step process,
+/// with every step could take significant amount of time. Nevertheless, the service itself is stateless and
+/// all changes in the deployment process are recorded in other domain objects and stored in repositories.
 public class DeploymentDomainService {
 
     public func start() {

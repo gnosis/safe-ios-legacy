@@ -4,6 +4,10 @@
 
 import Foundation
 
+/// This is a lightweight implementation of Observer design pattern. It is a simple Publisher - Subscriber mechanism,
+/// where interested parties are registering closures to receive DomainEvents, and then other domain objects
+/// publish events. Each subscriber is called on every publishing, in the order of subscription.
+/// All subscribers can be removed using `reset()` method.
 public class EventPublisher {
 
     private var subscribers = [String: [(DomainEvent) -> Void]]()
@@ -23,6 +27,9 @@ public class EventPublisher {
         subscribers[key]?.forEach { $0(event) }
     }
 
+    public func reset() {
+        subscribers = [:]
+    }
 }
 
 public class DomainEvent {

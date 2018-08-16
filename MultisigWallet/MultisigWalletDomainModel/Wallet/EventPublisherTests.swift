@@ -7,9 +7,11 @@ import XCTest
 
 class EventPublisherTests: XCTestCase {
 
+    class MyEvent: DomainEvent {}
+
+    let publisher = EventPublisher()
+
     func test_publishesEvent() {
-        class MyEvent: DomainEvent { }
-        let publisher = EventPublisher()
         let exp = expectation(description: "receiving event")
         publisher.subscribe { (_: MyEvent) in
             exp.fulfill()
@@ -17,5 +19,16 @@ class EventPublisherTests: XCTestCase {
         publisher.publish(MyEvent())
         waitForExpectations(timeout: 0.1)
     }
+
+    func test_whenReset_thenSubscriberRemoved() {
+        var didReceive = false
+        publisher.subscribe { (_: MyEvent) in
+            didReceive = true
+        }
+        publisher.reset()
+        publisher.publish(MyEvent())
+        XCTAssertFalse(didReceive)
+    }
+
 
 }

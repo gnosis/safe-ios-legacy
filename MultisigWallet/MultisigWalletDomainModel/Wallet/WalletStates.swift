@@ -4,6 +4,11 @@
 
 import Foundation
 
+/// Base class implementing State design pattern, where every state of the wallet expressed in a separate class.
+/// This allows to remove switches and if-else conditionals throughout the codebase and instead use polymorphism
+/// to invoke different behavior, depending on the current state.
+/// WalletState is used to represent a specific step in the wallet deployment process, so that state could be
+/// persisted and reloaded even between application launches.
 class WalletState {
 
     var canChangeOwners: Bool = false
@@ -16,7 +21,10 @@ class WalletState {
         self.wallet = wallet
     }
 
+    /// Moves wallet to the next state in the deployment process. Implemented in subclasses
     func proceed() {}
+
+    /// Cancels current state. Implemented in subclasses
     func cancel() {}
 
 }
