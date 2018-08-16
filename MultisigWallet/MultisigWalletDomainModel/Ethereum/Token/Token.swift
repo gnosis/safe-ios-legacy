@@ -9,7 +9,7 @@ import Common
 public class TokenID: BaseID {}
 
 /// Represents a token.
-public struct Token: Equatable, Codable {
+public struct Token: Equatable, Decodable {
 
     /// Token id is the same as token Address in blockchain
     public var id: TokenID {
@@ -33,6 +33,16 @@ public struct Token: Equatable, Codable {
         case decimals
         case address
         case logoUrl
+    }
+
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        code = try values.decode(String.self, forKey: .code)
+        name = try values.decode(String.self, forKey: .name)
+        decimals = try values.decode(Int.self, forKey: .decimals)
+        let addressValue = try values.decode(String.self, forKey: .address)
+        address = Address(addressValue)
+        logoUrl = try values.decode(String.self, forKey: .logoUrl)
     }
 
     /// Ether token

@@ -10,12 +10,14 @@ struct AppConfig: Codable {
     var nodeServiceConfig: NodeServiceConfig
     var relayServiceURL: URL
     var notificationServiceURL: URL
+    var tokenListServiceURL: URL
 
     enum CodingKeys: String, CodingKey {
         case encryptionServiceChainId = "encryption_service_chain_id"
         case nodeServiceConfig = "node_service"
         case relayServiceURL = "relay_service_url"
         case notificationServiceURL = "notification_service_url"
+        case tokenListServiceURL = "token_list_service_url"
     }
 
 }
