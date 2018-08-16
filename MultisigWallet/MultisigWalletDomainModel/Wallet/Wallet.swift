@@ -29,7 +29,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     private struct State: Codable {
         fileprivate let id: String
         fileprivate let status: Status
-        fileprivate let ownersByKind: [OwnerRole: Owner]
+        fileprivate let ownersByRole: [OwnerRole: Owner]
         fileprivate let address: Address?
         fileprivate let creationTransactionHash: String?
         fileprivate let minimumDeploymentTransactionAmount: TokenInt?
@@ -52,7 +52,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public private(set) var status = Status.newDraft
     private static let mutableStates: [Status] = [.newDraft, .readyToUse]
-    private var ownersByKind = [OwnerRole: Owner]()
+    private var ownersByRole = [OwnerRole: Owner]()
     public private(set) var address: Address?
     public private(set) var creationTransactionHash: String?
     public private(set) var minimumDeploymentTransactionAmount: TokenInt?
@@ -64,7 +64,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         let state = try! decoder.decode(State.self, from: data)
         super.init(id: WalletID(state.id))
         status = state.status
-        ownersByKind = state.ownersByKind
+        ownersByRole = state.ownersByRole
         address = state.address
         creationTransactionHash = state.creationTransactionHash
         minimumDeploymentTransactionAmount = state.minimumDeploymentTransactionAmount
@@ -94,7 +94,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         encoder.outputFormat = .binary
         let state = State(id: id.id,
                           status: status,
-                          ownersByKind: ownersByKind,
+                          ownersByRole: ownersByRole,
                           address: address,
                           creationTransactionHash: creationTransactionHash,
                           minimumDeploymentTransactionAmount: minimumDeploymentTransactionAmount)
@@ -117,12 +117,12 @@ public class Wallet: IdentifiableEntity<WalletID> {
         readyToUseState = ReadyToUseState(wallet: self)
     }
 
-    public func owner(kind: OwnerRole) -> Owner? {
-        return ownersByKind[kind]
+    public func owner(role: OwnerRole) -> Owner? {
+        return ownersByRole[role]
     }
 
     public func allOwners() -> [Owner] {
-        return ownersByKind.values.sorted { $0.address.value < $1.address.value }
+        return ownersByRole.values.sorted { $0.address.value < $1.address.value }
     }
 
     public static func createOwner(address: String, role: OwnerRole) -> Owner {
@@ -131,7 +131,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public func addOwner(_ owner: Owner) {
         assertCanChangeOwners()
-        ownersByKind[owner.role] = owner
+        ownersByRole[owner.role] = owner
     }
 
     private func assertCanChangeOwners() {
@@ -140,13 +140,13 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func contains(owner: Owner) -> Bool {
-        return ownersByKind.values.contains(owner)
+        return ownersByRole.values.contains(owner)
     }
 
-    public func removeOwner(kind: OwnerRole) {
+    public func removeOwner(role: OwnerRole) {
         assertCanChangeOwners()
-        assertOwnerExists(kind)
-        ownersByKind.removeValue(forKey: kind)
+        assertOwnerExists(role)
+        ownersByRole.removeValue(forKey: role)
     }
 
     public func startDeployment() {
@@ -165,7 +165,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public func markReadyToDeployIfNeeded() {
         let sorting: (OwnerRole, OwnerRole) -> Bool = { $0.rawValue < $1.rawValue }
-        let hasAllOwners = ownersByKind.keys.sorted(by: sorting) == OwnerRole.all.sorted(by: sorting)
+        let hasAllOwners = ownersByRole.keys.sorted(by: sorting) == OwnerRole.all.sorted(by: sorting)
         if status == .newDraft && hasAllOwners {
             markReadyToDeploy()
         }
@@ -208,8 +208,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
         state.proceed()
     }
 
-    private func assertOwnerExists(_ kind: OwnerRole) {
-        try! assertNotNil(owner(kind: kind), Error.ownerNotFound)
+    private func assertOwnerExists(_ role: OwnerRole) {
+        try! assertNotNil(owner(role: role), Error.ownerNotFound)
     }
 
     public func updateMinimumTransactionAmount(_ newValue: TokenInt) {

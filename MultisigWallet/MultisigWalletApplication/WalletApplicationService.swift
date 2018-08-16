@@ -70,13 +70,6 @@ public class WalletApplicationService: Assertable {
 
         static let all: [OwnerType] = [.thisDevice, .browserExtension, .paperWallet]
 
-        var kind: String {
-            switch self {
-            case .thisDevice: return "device"
-            case .browserExtension: return "extesnion"
-            case .paperWallet: return "paperWallet"
-            }
-        }
     }
 
     public enum Error: String, Swift.Error, Hashable {
@@ -388,7 +381,7 @@ public class WalletApplicationService: Assertable {
 
     public func isOwnerExists(_ type: OwnerType) -> Bool {
         let role = OwnerRole(rawValue: type.rawValue)!
-        guard let wallet = findSelectedWallet(), wallet.owner(kind: role) != nil else { return false }
+        guard let wallet = findSelectedWallet(), wallet.owner(role: role) != nil else { return false }
         return true
     }
 
@@ -506,7 +499,7 @@ public class WalletApplicationService: Assertable {
 
     private func address(of type: OwnerType) -> Address? {
         let role = OwnerRole(rawValue: type.rawValue)!
-        guard let wallet = findSelectedWallet(), let owner = wallet.owner(kind: role) else { return nil }
+        guard let wallet = findSelectedWallet(), let owner = wallet.owner(role: role) else { return nil }
         return owner.address
     }
 

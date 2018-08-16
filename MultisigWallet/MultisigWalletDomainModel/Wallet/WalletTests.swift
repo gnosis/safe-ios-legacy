@@ -19,31 +19,31 @@ class WalletTests: XCTestCase {
 
     func test_init_whenCreated_thenHasAllData() {
         XCTAssertNotNil(wallet.id)
-        XCTAssertNotNil(wallet.owner(kind: .thisDevice))
+        XCTAssertNotNil(wallet.owner(role: .thisDevice))
     }
 
     func test_whenAddingOwner_thenHasOwner() {
         wallet.addOwner(owner)
-        XCTAssertEqual(wallet.owner(kind: owner.role), owner)
+        XCTAssertEqual(wallet.owner(role: owner.role), owner)
     }
 
     func test_whenReplacingOwner_thenAnotherOwnerExists() {
         let otherOwner = Owner(address: .testAccount1, role: owner.role)
         wallet.addOwner(owner)
         wallet.addOwner(otherOwner)
-        XCTAssertEqual(wallet.owner(kind: .browserExtension), otherOwner)
-        XCTAssertNil(wallet.owner(kind: .paperWallet))
+        XCTAssertEqual(wallet.owner(role: .browserExtension), otherOwner)
+        XCTAssertNil(wallet.owner(role: .paperWallet))
     }
 
     func test_whenReplacingExistingOwnerWithSameOwner_thenNothingChanges() {
         wallet.addOwner(firstOwner)
-        XCTAssertEqual(wallet.owner(kind: .thisDevice), firstOwner)
+        XCTAssertEqual(wallet.owner(role: .thisDevice), firstOwner)
     }
 
     func test_whenRemovingOwner_thenItDoesNotExist() {
         wallet.addOwner(owner)
-        wallet.removeOwner(kind: owner.role)
-        XCTAssertNil(wallet.owner(kind: owner.role))
+        wallet.removeOwner(role: owner.role)
+        XCTAssertNil(wallet.owner(role: owner.role))
     }
 
     func test_whenCreated_thenInDraftState() {
@@ -69,7 +69,7 @@ class WalletTests: XCTestCase {
         wallet.markReadyToDeploy()
         wallet.addOwner(owner)
         wallet.addOwner(Owner(address: .testAccount1, role: owner.role))
-        wallet.removeOwner(kind: owner.role)
+        wallet.removeOwner(role: owner.role)
     }
 
     func test_whenCancellingDeployment_thenChangesState() throws {
