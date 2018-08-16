@@ -95,15 +95,25 @@ class WalletTests: XCTestCase {
         XCTAssertEqual(wallet.creationTransactionHash, TransactionHash.test1.value)
     }
 
-    func test_whenInitFromData_thenHasTransactionHash() {
+    func test_whenUpdatingMinimumTransactionAmount_thenUpdatesIt() {
         wallet.markReadyToDeploy()
         wallet.startDeployment()
         wallet.changeAddress(owner.address)
+        wallet.updateMinimumTransactionAmount(TokenInt(1_000))
+        XCTAssertEqual(wallet.minimumDeploymentTransactionAmount, TokenInt(1_000))
+    }
+
+    func test_whenInitFromData_thenHasTransactionHashAndMinimumTransactionAmount() {
+        wallet.markReadyToDeploy()
+        wallet.startDeployment()
+        wallet.changeAddress(owner.address)
+        wallet.updateMinimumTransactionAmount(TokenInt(1_000))
         wallet.markDeploymentAcceptedByBlockchain()
         wallet.assignCreationTransaction(hash: TransactionHash.test1.value)
         let data = wallet.data()
         let otherWallet = Wallet(data: data)
         XCTAssertEqual(otherWallet.creationTransactionHash, TransactionHash.test1.value)
+        XCTAssertEqual(otherWallet.minimumDeploymentTransactionAmount, TokenInt(1_000))
     }
 
 }

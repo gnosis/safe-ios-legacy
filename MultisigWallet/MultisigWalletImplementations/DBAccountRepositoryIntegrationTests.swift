@@ -24,15 +24,13 @@ class DBAccountRepositoryIntegrationTests: XCTestCase {
         repo.setUp()
 
         let walletID = WalletID()
-        let account = Account(id: AccountID(token: "ETH"),
+        let account = Account(id: AccountID("0x0"),
                               walletID: walletID,
-                              balance: 123,
-                              minimumAmount: 12)
+                              balance: 123)
         repo.save(account)
         let saved = repo.find(id: account.id, walletID: walletID)
         XCTAssertEqual(saved, account)
         XCTAssertEqual(saved?.balance, account.balance)
-        XCTAssertEqual(saved?.minimumDeploymentTransactionAmount, account.minimumDeploymentTransactionAmount)
 
         repo.remove(account)
         XCTAssertNil(repo.find(id: account.id, walletID: walletID))

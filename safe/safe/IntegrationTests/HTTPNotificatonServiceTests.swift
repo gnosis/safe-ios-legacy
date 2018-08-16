@@ -69,7 +69,7 @@ class HTTPNotificatonServiceTests: XCTestCase {
         let transaction = Transaction(id: TransactionID(),
                                       type: .transfer,
                                       walletID: WalletID(),
-                                      accountID: AccountID(token: "ETH"))
+                                      accountID: AccountID(ethID.id))
         transaction
             .change(sender: Address("0x092CC1854399ADc38Dad4f846E369C40D0a40307"))
             .change(recipient: Address("0x8e6A5aDb2B88257A3DAc7A76A7B4EcaCdA090b66"))

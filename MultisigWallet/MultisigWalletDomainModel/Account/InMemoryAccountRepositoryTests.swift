@@ -10,15 +10,14 @@ class InMemoryAccountRepositoryTests: XCTestCase {
 
     func test_saveFindRemove() throws {
         let repository = InMemoryAccountRepository()
-        let account = Account(id: AccountID(token: "ETH"),
+        let account = Account(id: AccountID("0x0"),
                               walletID: WalletID(),
-                              balance: 0,
-                              minimumAmount: 0)
+                              balance: 0)
         account.add(amount: 100)
         repository.save(account)
-        XCTAssertEqual(repository.find(id: AccountID(token: "ETH"), walletID: account.walletID), account)
+        XCTAssertEqual(repository.find(id: AccountID("0x0"), walletID: account.walletID), account)
         repository.remove(account)
-        XCTAssertNil(repository.find(id: AccountID(token: "ETH"), walletID: account.walletID))
+        XCTAssertNil(repository.find(id: AccountID("0x0"), walletID: account.walletID))
     }
 
 }
