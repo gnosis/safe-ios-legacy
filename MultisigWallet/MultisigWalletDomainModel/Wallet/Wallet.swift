@@ -181,7 +181,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public func assignCreationTransaction(hash: String?) {
         assert(status: .deploymentAcceptedByBlockchain)
-        try! assertTrue(state.canChangeTransactionHash, Error.invalidState)
+        try? assertTrue(state.canChangeTransactionHash, Error.invalidState)
         creationTransactionHash = hash
     }
 
@@ -201,8 +201,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
         assert(status: .deploymentStarted)
         self.address = address
         status = .addressKnown
-        state.proceed()
-        state.proceed()
     }
 
     private func assertOwnerExists(_ role: OwnerRole) {

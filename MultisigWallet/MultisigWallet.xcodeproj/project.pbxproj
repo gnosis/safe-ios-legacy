@@ -45,6 +45,10 @@
 		0A77D0D0211AD974003582DD /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A77D0C3211AD952003582DD /* Fixtures.swift */; };
 		0A77D0D1211AD986003582DD /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A77D0C3211AD952003582DD /* Fixtures.swift */; };
 		0A77D100211B0CD6003582DD /* EthSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A77D0FF211B0CD6003582DD /* EthSignature.swift */; };
+		0A7F3A8C2126BD890062CB1E /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F3A8B2126BD890062CB1E /* Retry.swift */; };
+		0A7F3A992126BDCA0062CB1E /* RetryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F3A982126BDCA0062CB1E /* RetryTests.swift */; };
+		0A7F3A9B2126C53E0062CB1E /* Repeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F3A9A2126C53E0062CB1E /* Repeat.swift */; };
+		0A7F3A9D2126C60A0062CB1E /* RepeatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F3A9C2126C60A0062CB1E /* RepeatTests.swift */; };
 		0A7F7438211045E8004F1150 /* DataInitWithHexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F7437211045E8004F1150 /* DataInitWithHexTest.swift */; };
 		0A8135122123122A00B0B302 /* WalletStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8135112123122A00B0B302 /* WalletStates.swift */; };
 		0A813533212315BB00B0B302 /* WalletStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A813532212315BB00B0B302 /* WalletStateTests.swift */; };
@@ -428,6 +432,10 @@
 		0A76BE5D20AF167D00D07770 /* InMemoryAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryAccountRepository.swift; sourceTree = "<group>"; };
 		0A77D0C3211AD952003582DD /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		0A77D0FF211B0CD6003582DD /* EthSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthSignature.swift; sourceTree = "<group>"; };
+		0A7F3A8B2126BD890062CB1E /* Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retry.swift; sourceTree = "<group>"; };
+		0A7F3A982126BDCA0062CB1E /* RetryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryTests.swift; sourceTree = "<group>"; };
+		0A7F3A9A2126C53E0062CB1E /* Repeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repeat.swift; sourceTree = "<group>"; };
+		0A7F3A9C2126C60A0062CB1E /* RepeatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatTests.swift; sourceTree = "<group>"; };
 		0A7F7437211045E8004F1150 /* DataInitWithHexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInitWithHexTest.swift; sourceTree = "<group>"; };
 		0A8135112123122A00B0B302 /* WalletStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStates.swift; sourceTree = "<group>"; };
 		0A813532212315BB00B0B302 /* WalletStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStateTests.swift; sourceTree = "<group>"; };
@@ -683,6 +691,10 @@
 				0A813532212315BB00B0B302 /* WalletStateTests.swift */,
 				555C948A20E2A60F00A0621D /* WalletRepository.swift */,
 				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
+				0A7F3A8B2126BD890062CB1E /* Retry.swift */,
+				0A7F3A982126BDCA0062CB1E /* RetryTests.swift */,
+				0A7F3A9A2126C53E0062CB1E /* Repeat.swift */,
+				0A7F3A9C2126C60A0062CB1E /* RepeatTests.swift */,
 				0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */,
 				0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */,
 				0A0CF00B2125684000772AB3 /* ErrorStream.swift */,
@@ -1312,9 +1324,11 @@
 				0A9E380E20F4A4F20085E8D7 /* SafeCreationTransactionRequest.swift in Sources */,
 				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,
 				0A9E380D20F4A4F20085E8D7 /* ExternallyOwnedAccount.swift in Sources */,
+				0A7F3A8C2126BD890062CB1E /* Retry.swift in Sources */,
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
 				0A77D100211B0CD6003582DD /* EthSignature.swift in Sources */,
 				0A442DDF210B113100F19F80 /* OutgoingMessage.swift in Sources */,
+				0A7F3A9B2126C53E0062CB1E /* Repeat.swift in Sources */,
 				0A442DC9210A088800F19F80 /* Message+Factory.swift in Sources */,
 				0AA5D4A020E12B68006F46CD /* Token.swift in Sources */,
 				0A9E380C20F4A4F20085E8D7 /* ExternallyOwnedAccountRepository.swift in Sources */,
@@ -1358,6 +1372,7 @@
 				0A8A2B9B20FCDC540003BB7E /* TestFixture.swift in Sources */,
 				0A0CF01421257ED000772AB3 /* DeploymentDomainServiceTests.swift in Sources */,
 				0A9E386220F4B46C0085E8D7 /* WorkerTests.swift in Sources */,
+				0A7F3A992126BDCA0062CB1E /* RetryTests.swift in Sources */,
 				55FB2595212301A800E81666 /* ImMemoryTokenListItemRepositoryTests.swift in Sources */,
 				55CC279C20F6680800AC12D6 /* PairingRequestTests.swift in Sources */,
 				55D3C02F20F668EB0047004F /* EthSignatureTests.swift in Sources */,
@@ -1367,6 +1382,7 @@
 				0A9E386120F4B46C0085E8D7 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,
 				0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */,
 				0A7F7438211045E8004F1150 /* DataInitWithHexTest.swift in Sources */,
+				0A7F3A9D2126C60A0062CB1E /* RepeatTests.swift in Sources */,
 				0A442DC5210A05A400F19F80 /* MessageTests.swift in Sources */,
 				0A9E385F20F4B46C0085E8D7 /* BaseInMemoryRepositoryTests.swift in Sources */,
 				0A813533212315BB00B0B302 /* WalletStateTests.swift in Sources */,
