@@ -38,7 +38,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
     internal var state: WalletState!
 
     internal private(set) var newDraftState: WalletState!
-    internal private(set) var readyToDeployState: WalletState!
     internal private(set) var deployingState: WalletState!
     internal private(set) var notEnoughFundsState: WalletState!
     internal private(set) var accountFundedState: WalletState!
@@ -74,10 +73,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     private func updateStateFromStatus() {
         switch status {
-        case .newDraft:
+        case .newDraft, .readyToDeploy:
             state = newDraftState
-        case .readyToDeploy:
-            state = readyToDeployState
         case .deploymentStarted:
             state = deployingState
         case .addressKnown:

@@ -13,7 +13,6 @@ public class DeploymentDomainService {
         DomainRegistry.eventPublisher.subscribe(deploymentStarted)
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         wallet.proceed()
-        DomainRegistry.walletRepository.save(wallet)
     }
 
     func deploymentStarted(_ event: DeploymentStarted) {
