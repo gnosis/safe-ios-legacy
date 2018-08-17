@@ -23,8 +23,7 @@ public class DeploymentDomainService {
     }
 
     func deploymentStarted(_ event: DeploymentStarted) {
-        let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        do {
+        handleError { wallet in
             let s = DomainRegistry.encryptionService.ecdsaRandomS()
             let request = SafeCreationTransactionRequest(owners: wallet.allOwners().map { $0.address },
                                                          confirmationCount: wallet.confirmationCount,
@@ -33,16 +32,11 @@ public class DeploymentDomainService {
             wallet.changeAddress(response.walletAddress)
             wallet.updateMinimumTransactionAmount(response.deploymentFee)
             wallet.proceed()
-        } catch let error {
-            DomainRegistry.errorStream.post(error)
-            wallet.cancel()
         }
-        DomainRegistry.walletRepository.save(wallet)
     }
 
     func walletConfigured(_ event: WalletConfigured) {
-        let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        do {
+        handleError { wallet in
             try Repeat(delay: config.balanceRepeatDelay) { [unowned self] repeater in
                 let balance = try self.balance(of: wallet.address!)
                 let accountID = AccountID(Token.Ether.id.id)
@@ -54,6 +48,13 @@ public class DeploymentDomainService {
                     wallet.proceed()
                 }
             }.start()
+        }
+    }
+
+    private func handleError(_ closure: (Wallet) throws -> Void) {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        do {
+            try closure(wallet)
         } catch let error {
             DomainRegistry.errorStream.post(error)
             wallet.cancel()
