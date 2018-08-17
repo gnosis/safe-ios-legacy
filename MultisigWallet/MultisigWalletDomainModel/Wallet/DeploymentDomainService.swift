@@ -18,6 +18,8 @@ public class DeploymentDomainService {
     public func start() {
         DomainRegistry.eventPublisher.subscribe(deploymentStarted)
         DomainRegistry.eventPublisher.subscribe(walletConfigured)
+        DomainRegistry.eventPublisher.subscribe(walletFunded)
+        DomainRegistry.eventPublisher.subscribe(creationStarted)
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         wallet.proceed()
     }
@@ -37,18 +39,57 @@ public class DeploymentDomainService {
 
     func walletConfigured(_ event: WalletConfigured) {
         handleError { wallet in
-            try Repeat(delay: config.balanceRepeatDelay) { [unowned self] repeater in
-                let balance = try self.balance(of: wallet.address!)
-                let accountID = AccountID(Token.Ether.id.id)
-                let account = DomainRegistry.accountRepository.find(id: accountID, walletID: wallet.id)!
-                account.update(newAmount: balance)
-                DomainRegistry.accountRepository.save(account)
-                if balance >= wallet.minimumDeploymentTransactionAmount! {
-                    repeater.stop()
-                    wallet.proceed()
-                }
-            }.start()
+            try waitForFunding(wallet)
         }
+    }
+
+    private func waitForFunding(_ wallet: Wallet) throws {
+        try Repeat(delay: config.balance.repeatDelay) { [unowned self] repeater in
+            let balance = try self.balance(of: wallet.address!)
+            let accountID = AccountID(Token.Ether.id.id)
+            let account = DomainRegistry.accountRepository.find(id: accountID, walletID: wallet.id)!
+            account.update(newAmount: balance)
+            DomainRegistry.accountRepository.save(account)
+            guard balance >= wallet.minimumDeploymentTransactionAmount!  else { return }
+            repeater.stop()
+            wallet.proceed()
+        }.start()
+    }
+
+    func walletFunded(_ event: DeploymentFunded) {
+        handleError { wallet in
+            try DomainRegistry.transactionRelayService.startSafeCreation(address: wallet.address!)
+            wallet.proceed()
+        }
+    }
+
+    func creationStarted(_ event: CreationStarted) {
+        handleError { wallet in
+            try waitForCreationTransactionHash(wallet)
+            try waitForCreationTransactionCompletion(wallet)
+        }
+    }
+
+    private func waitForCreationTransactionCompletion(_ wallet: Wallet) throws {
+        try Repeat(delay: config.transactionStatus.repeatDelay) { [unowned self] repeater in
+            guard let receipt = try self.receipt(of: TransactionHash(wallet.creationTransactionHash!)) else { return }
+            repeater.stop()
+            if receipt.status == .success {
+                wallet.proceed()
+            } else {
+                wallet.cancel()
+            }
+        }.start()
+    }
+
+    private func waitForCreationTransactionHash(_ wallet: Wallet) throws {
+        guard wallet.creationTransactionHash == nil else { return }
+        try Repeat(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
+            guard let hash = try self.transactionHash(of: wallet.address!) else { return }
+            wallet.assignCreationTransaction(hash: hash.value)
+            repeater.stop()
+            DomainRegistry.walletRepository.save(wallet)
+        }.start()
     }
 
     private func handleError(_ closure: (Wallet) throws -> Void) {
@@ -63,29 +104,57 @@ public class DeploymentDomainService {
     }
 
     private func balance(of address: Address) throws -> TokenInt {
-        return try Retry(maxAttempts: config.balanceRetryMaxAttempts, delay: config.balanceRetryDelay) { _ in
+        return try Retry(maxAttempts: config.balance.retryAttempts, delay: config.balance.retryDelay) { _ in
             try DomainRegistry.ethereumNodeService.eth_getBalance(account: address)
         }.start()
+    }
+
+    private func transactionHash(of wallet: Address) throws -> TransactionHash? {
+        return try Retry(maxAttempts: config.deploymentStatus.retryAttempts,
+                         delay: config.deploymentStatus.retryDelay) { _ in
+                            try DomainRegistry.transactionRelayService.safeCreationTransactionHash(address: wallet)
+            }.start()
+    }
+
+    private func receipt(of hash: TransactionHash) throws -> TransactionReceipt? {
+        return try Retry(maxAttempts: config.transactionStatus.retryAttempts,
+                         delay: config.transactionStatus.retryDelay) { _ in
+                            try DomainRegistry.ethereumNodeService.eth_getTransactionReceipt(transaction: hash)
+            }.start()
     }
 
 }
 
 public struct DeploymentDomainServiceConfiguration {
 
-    public var balanceRepeatDelay: TimeInterval
-    public var balanceRetryMaxAttempts: Int
-    public var balanceRetryDelay: TimeInterval
+    public struct Parameters {
 
-    public static let standard = DeploymentDomainServiceConfiguration(balanceRepeatDelay: 2,
-                                                                      balanceRetryMaxAttempts: 10,
-                                                                      balanceRetryDelay: 2)
+        public var repeatDelay: TimeInterval
+        public var retryAttempts: Int
+        public var retryDelay: TimeInterval
 
-    public init(balanceRepeatDelay: TimeInterval,
-                balanceRetryMaxAttempts: Int,
-                balanceRetryDelay: TimeInterval) {
-        self.balanceRepeatDelay = balanceRepeatDelay
-        self.balanceRetryDelay = balanceRetryDelay
-        self.balanceRetryMaxAttempts = balanceRetryMaxAttempts
+        public static let standard = Parameters(repeatDelay: 5, retryAttempts: 3, retryDelay: 5)
+
+        public init(repeatDelay: TimeInterval, retryAttempts: Int, retryDelay: TimeInterval) {
+            self.repeatDelay = repeatDelay
+            self.retryAttempts = retryAttempts
+            self.retryDelay = retryDelay
+        }
+        
+    }
+
+    public var balance: Parameters
+    public var deploymentStatus: Parameters
+    public var transactionStatus: Parameters
+
+    public static let standard = DeploymentDomainServiceConfiguration(balance: .standard,
+                                                                      deploymentStatus: .standard,
+                                                                      transactionStatus: .standard)
+
+    public init(balance: Parameters, deploymentStatus: Parameters, transactionStatus: Parameters) {
+        self.balance = balance
+        self.deploymentStatus = deploymentStatus
+        self.transactionStatus = transactionStatus
     }
 
 }
