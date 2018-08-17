@@ -30,6 +30,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: TransactionRepository.self)
     }
 
+    public static var tokenListItemRepository: TokenListItemRepository {
+        return service(for: TokenListItemRepository.self)
+    }
+
     // MARK: - Services
 
     public static var notificationService: NotificationDomainService {
@@ -50,6 +54,10 @@ public class DomainRegistry: AbstractRegistry {
 
     public static var ethereumNodeService: EthereumNodeDomainService {
         return service(for: EthereumNodeDomainService.self)
+    }
+
+    public static var tokenListService: TokenListDomainService {
+        return service(for: TokenListDomainService.self)
     }
 
     public static var syncService: SynchronisationDomainService {

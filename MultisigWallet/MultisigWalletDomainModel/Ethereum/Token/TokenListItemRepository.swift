@@ -4,24 +4,29 @@
 
 import Foundation
 
-/// Represents collection of all token list items
+/// Represents collection of all token list items.
 public protocol TokenListItemRepository {
 
-    /// Persists token list item
+    /// Persists token list item.
     ///
-    /// - Parameter tokenListItem: item to save
+    /// - Parameter tokenListItem: item to save.
     func save(_ tokenListItem: TokenListItem)
 
-    /// Removes tokenListItem
+    /// Removes tokenListItem.
     ///
-    /// - Parameter tokenListItem: item to remove
+    /// - Parameter tokenListItem: item to remove.
     func remove(_ tokenListItem: TokenListItem)
 
     /// Searches for token list item by token id.
     ///
     /// - Parameters:
-    ///   - id: token identifier
+    ///   - id: token identifier.
     /// - Returns: token list item if found, or nil otherwise.
     func find(id: TokenID) -> TokenListItem?
+
+    /// Return all stored token list items.
+    ///
+    /// - Returns: token list items.
+    func all() -> [TokenListItem]
 
 }

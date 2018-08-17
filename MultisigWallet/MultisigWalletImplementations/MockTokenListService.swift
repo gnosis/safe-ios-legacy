@@ -8,6 +8,8 @@ import Common
 
 public final class MockTokenListService: TokenListDomainService {
 
+    public init() {}
+
     public func items() throws -> [TokenListItem] {
         let data = TokenListTestResponse.json.data(using: .utf8)!
         Timer.wait(0.2)

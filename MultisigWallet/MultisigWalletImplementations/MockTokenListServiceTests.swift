@@ -19,6 +19,7 @@ class MockTokenListServiceTests: XCTestCase {
         XCTAssertEqual(token.decimals, 18)
         // swiftlint:disable:next line_length
         XCTAssertEqual(token.logoUrl, "https://github.com/TrustWallet/tokens/blob/master/images/0x6810e776880c02933d47db1b9fc05908e5386b96.png?raw=true")
+        XCTAssertEqual(items[1].status, .regular)
     }
 
 }

@@ -10,6 +10,7 @@ public struct RepeatingShouldStop {
     public static let no = false
 }
 
+/// Worker is used for tasks that should repeat untill an expectation is met.
 public class Worker: Assertable {
 
     enum Error: String, LocalizedError, Hashable {
@@ -20,6 +21,11 @@ public class Worker: Assertable {
     private let interval: TimeInterval
     private var shouldStop: Bool = false
 
+    /// Start a Worker repeating each interval until the block resolves to true.
+    ///
+    /// - Parameters:
+    ///   - interval: TimeInterval to repeat the task.
+    ///   - block: returns whether the Worket should contunue.
     public static func start(repeating interval: TimeInterval, block: @escaping () -> Bool) {
         let worker = Worker(repeating: interval, block: block)
         worker.start()

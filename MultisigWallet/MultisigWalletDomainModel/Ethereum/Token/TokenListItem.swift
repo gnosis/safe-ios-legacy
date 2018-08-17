@@ -8,8 +8,8 @@ import Common
 public final class TokenListItem: IdentifiableEntity<TokenID>, Decodable {
 
     public let token: Token
-    public private(set) var sortingId: Int?
     public private(set) var status: TokenListItemStatus
+    public private(set) var sortingId: Int?
     public private(set) var updated: Date
 
     public enum TokenListItemStatus: String {
@@ -32,9 +32,10 @@ public final class TokenListItem: IdentifiableEntity<TokenID>, Decodable {
         super.init(id: token.id)
     }
 
-    public init(token: Token, status: TokenListItemStatus) {
+    public init(token: Token, status: TokenListItemStatus, sortingId: Int? = nil) {
         self.token = token
         self.status = status
+        self.sortingId = sortingId
         self.updated = Date()
         super.init(id: token.id)
     }
