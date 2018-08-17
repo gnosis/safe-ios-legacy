@@ -18,8 +18,8 @@ class HTTPTokenListServiceTests: XCTestCase {
         tokenListService = HTTPTokenListService(url: config.tokenListServiceURL, logger: MockLogger())
     }
 
-    func test_canGetTokensFromService() throws {
-        let tokens = try tokenListService.tokens()
+    func test_canGetTokenItemsFromService() throws {
+        let tokens = try tokenListService.items()
         XCTAssertFalse(tokens.isEmpty)
     }
 

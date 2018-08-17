@@ -11,7 +11,7 @@ public final class HTTPTokenListService: TokenListDomainService {
     private let httpClient: JSONHTTPClient
 
     private struct TokensRequest: JSONRequest {
-        typealias ResponseType = [Token]
+        typealias ResponseType = [TokenListItem]
 
         var httpMethod: String { return "GET" }
         var urlPath: String { return "/" }
@@ -21,7 +21,7 @@ public final class HTTPTokenListService: TokenListDomainService {
         httpClient = JSONHTTPClient(url: url, logger: logger)
     }
 
-    public func tokens() throws -> [Token] {
+    public func items() throws -> [TokenListItem] {
         return try httpClient.execute(request: TokensRequest())
     }
 
