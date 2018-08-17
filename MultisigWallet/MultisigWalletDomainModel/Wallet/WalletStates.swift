@@ -46,8 +46,10 @@ class DraftState: WalletState {
 
     override func proceed() {
         wallet.state = wallet.deployingState
-        wallet.markReadyToDeploy()
-        wallet.startDeployment()
+        if wallet.status == .newDraft {
+            wallet.markReadyToDeploy()
+            wallet.startDeployment()
+        }
         DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.eventPublisher.publish(DeploymentStarted())
     }
