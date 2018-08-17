@@ -683,11 +683,11 @@
 				0A813532212315BB00B0B302 /* WalletStateTests.swift */,
 				555C948A20E2A60F00A0621D /* WalletRepository.swift */,
 				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
-				0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */,
 				0A7F3A8B2126BD890062CB1E /* Retry.swift */,
 				0A7F3A982126BDCA0062CB1E /* RetryTests.swift */,
 				0A7F3A9A2126C53E0062CB1E /* Repeat.swift */,
 				0A7F3A9C2126C60A0062CB1E /* RepeatTests.swift */,
+				0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */,
 				0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */,
 				0A0CF00B2125684000772AB3 /* ErrorStream.swift */,
 			);

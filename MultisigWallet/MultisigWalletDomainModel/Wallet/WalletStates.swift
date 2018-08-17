@@ -67,6 +67,8 @@ class DeployingState: WalletState {
 
     override func proceed() {
         wallet.state = wallet.notEnoughFundsState
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(WalletConfigured())
     }
 
     override func cancel() {
@@ -74,6 +76,8 @@ class DeployingState: WalletState {
     }
 
 }
+
+class WalletConfigured: DomainEvent {}
 
 class NotEnoughFundsState: WalletState {
 

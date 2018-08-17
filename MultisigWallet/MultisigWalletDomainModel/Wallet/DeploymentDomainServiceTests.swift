@@ -6,26 +6,43 @@ import XCTest
 @testable import MultisigWalletDomainModel
 import MultisigWalletImplementations
 import CommonTestSupport
+import BigInt
 
-class DeploymentDomainServiceTests: XCTestCase {
+class BaseDeploymentDomainServiceTests: XCTestCase {
 
-    let eventPublisher = EventPublisher()
+    let eventPublisher = MockEventPublisher()
     let walletRepository = InMemoryWalletRepository()
     let portfolioRepository = InMemorySinglePortfolioRepository()
     let encryptionService = MockEncryptionService()
     let relayService = MockTransactionRelayService1()
     let errorStream = MockErrorStream()
-    let deploymentService = DeploymentDomainService()
+    let nodeService = MockEthereumNodeService1()
+    var deploymentService: DeploymentDomainService!
+    let accountRepository = InMemoryAccountRepository()
     var wallet: Wallet!
 
     override func setUp() {
         super.setUp()
+        deploymentService = DeploymentDomainService(DeploymentDomainServiceConfiguration(balanceRepeatDelay: 0,
+                                                                                         balanceRetryMaxAttempts: 3,
+                                                                                         balanceRetryDelay: 0))
         DomainRegistry.put(service: eventPublisher, for: EventPublisher.self)
         DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
         DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
         DomainRegistry.put(service: errorStream, for: ErrorStream.self)
+        DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
+        DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
+    }
+
+}
+
+class DeployingWalletTests: BaseDeploymentDomainServiceTests {
+
+    override func setUp() {
+        super.setUp()
+        eventPublisher.addFilter(DeploymentStarted.self)
     }
 
     func test_whenInDraft_thenFetchesCreationTransactionData() {
@@ -48,26 +65,60 @@ class DeploymentDomainServiceTests: XCTestCase {
     func test_whenCreationTransactionThrows_thenErrorPosted() {
         givenDraftWalletWithAllOwners()
         relayService.expect_createSafeCreationTransaction_throw(TestError.error)
-        errorStream.expect_post(TestError.error)
-        deploymentService.start()
-        errorStream.verify()
+        assertThrows(TestError.error)
     }
 
     func test_whenCreationTransactionThrows_thenCancelsDeployment() {
         givenDraftWalletWithAllOwners()
         relayService.expect_createSafeCreationTransaction_throw(TestError.error)
+        assertDeploymentCancelled()
+    }
+
+}
+
+class ConfiguredWalletTests: BaseDeploymentDomainServiceTests {
+
+    override func setUp() {
+        super.setUp()
+        eventPublisher.addFilter(WalletConfigured.self)
+    }
+
+    func test_whenWalletConfigured_thenObservesBalance() {
+        givenConfiguredWallet()
+        nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 100)
         deploymentService.start()
-        wallet = walletRepository.findByID(wallet.id)!
-        XCTAssertTrue(wallet.state === wallet.newDraftState)
+        nodeService.verify()
+        let account = DomainRegistry.accountRepository.find(id: AccountID(Token.Ether.id.id), walletID: wallet.id)!
+        XCTAssertEqual(account.balance, 100)
+    }
+
+    func test_whenNotEnoughFundsAtFirst_thenRepeatsUntilHasFunds() {
+        givenConfiguredWallet()
+        nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 50)
+        nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 100)
+        deploymentService.start()
+        nodeService.verify()
+    }
+
+    func test_whenObservingBalanceFails_thenErrorPosted() {
+        givenConfiguredWallet()
+        nodeService.expect_eth_getBalance_throw(TestError.error)
+        assertThrows(TestError.error)
+    }
+
+    func test_whenObservingBalanceFails_thenCancels() {
+        givenConfiguredWallet()
+        nodeService.expect_eth_getBalance_throw(TestError.error)
+        assertDeploymentCancelled()
     }
 
 }
 
 // MARK: - Helpers
 
-extension DeploymentDomainServiceTests {
+extension BaseDeploymentDomainServiceTests {
 
-    private func givenDraftWalletWithAllOwners() {
+    func givenDraftWalletWithAllOwners() {
         wallet = Wallet(id: walletRepository.nextID(), owner: Address.deviceAddress)
         wallet.addOwner(Wallet.createOwner(address: Address.extensionAddress.value, role: .browserExtension))
         wallet.addOwner(Wallet.createOwner(address: Address.paperWalletAddress.value, role: .paperWallet))
@@ -75,6 +126,28 @@ extension DeploymentDomainServiceTests {
         let portfolio = Portfolio(id: portfolioRepository.nextID())
         portfolio.addWallet(wallet.id)
         portfolioRepository.save(portfolio)
+        let account = Account(id: AccountID(Token.Ether.id.id), walletID: wallet.id, balance: 0)
+        DomainRegistry.accountRepository.save(account)
+    }
+
+    func givenConfiguredWallet() {
+        givenDraftWalletWithAllOwners()
+        wallet.markReadyToDeploy()
+        wallet.startDeployment()
+        wallet.changeAddress(Address.safeAddress)
+        wallet.updateMinimumTransactionAmount(100)
+    }
+
+    func assertThrows(_ error: Error, line: UInt = #line) {
+        errorStream.expect_post(error)
+        deploymentService.start()
+        errorStream.verify(line: line)
+    }
+
+    func assertDeploymentCancelled() {
+        deploymentService.start()
+        wallet = walletRepository.findByID(wallet.id)!
+        XCTAssertTrue(wallet.state === wallet.newDraftState)
     }
 
 }
@@ -118,6 +191,61 @@ extension SafeCreationTransactionRequest.Response.Transaction {
 }
 
 // MARK: - Mocks
+
+class MockEventPublisher: EventPublisher {
+
+    private var filteredEventTypes = [String]()
+
+    func addFilter(_ event: Any.Type) {
+        filteredEventTypes.append(String(reflecting: event))
+    }
+
+    override func publish(_ event: DomainEvent) {
+        guard filteredEventTypes.isEmpty || filteredEventTypes.contains(String(reflecting: type(of: event))) else {
+            return
+        }
+        super.publish(event)
+    }
+
+}
+
+class MockEthereumNodeService1: EthereumNodeDomainService {
+
+    private var expectations_eth_getBalance = [(account: Address, balance: BigInt)]()
+    private var actual_eth_getBalance = [Address]()
+    private var eth_getBalance_throws_error: Error?
+
+    func expect_eth_getBalance(account: Address, balance: BigInt) {
+        expectations_eth_getBalance.append((account, balance))
+    }
+
+    func expect_eth_getBalance_throw(_ error: Error) {
+        eth_getBalance_throws_error = error
+    }
+
+    func eth_getBalance(account: Address) throws -> BigInt {
+        actual_eth_getBalance.append(account)
+        if let error = eth_getBalance_throws_error {
+            throw error
+        }
+        return expectations_eth_getBalance[actual_eth_getBalance.count - 1].balance
+    }
+
+    func verify(line: UInt = #line) {
+        XCTAssertEqual(actual_eth_getBalance.map { $0.value },
+                       expectations_eth_getBalance.map { $0.account.value },
+                       line: line)
+    }
+
+    func eth_getTransactionReceipt(transaction: TransactionHash) throws -> TransactionReceipt? {
+        return nil
+    }
+
+    func eth_call(to: Address, data: Data) throws -> Data {
+        return Data()
+    }
+
+}
 
 class MockTransactionRelayService1: TransactionRelayDomainService {
 
