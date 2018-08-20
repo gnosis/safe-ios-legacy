@@ -40,4 +40,16 @@ public final class TokenListItem: IdentifiableEntity<TokenID>, Decodable {
         super.init(id: token.id)
     }
 
+    public func blacklist() {
+        status = .blacklisted
+    }
+
+    public func whitelist() {
+        status = .whitelisted
+    }
+
+    public func updateSortingId(with id: Int) {
+        sortingId = id
+    }
+
 }
