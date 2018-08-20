@@ -24,7 +24,7 @@ class DomainRegistryTests: XCTestCase {
                            for: TransactionRelayDomainService.self)
         DomainRegistry.put(service: MockEthereumNodeService(), for: EthereumNodeDomainService.self)
         DomainRegistry.put(service: MockTokenListService(), for: TokenListDomainService.self)
-        DomainRegistry.put(service: MockSynchronisationDomainService(), for: SynchronisationDomainService.self)
+        DomainRegistry.put(service: MockSynchronisationService(), for: SynchronisationDomainService.self)
         DomainRegistry.put(service: MockEventPublisher(), for: EventPublisher.self)
 
         XCTAssertNotNil(DomainRegistry.walletRepository)

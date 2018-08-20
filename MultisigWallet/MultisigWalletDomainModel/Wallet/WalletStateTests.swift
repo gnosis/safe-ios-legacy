@@ -27,23 +27,10 @@ class WalletStateTests: XCTestCase {
 
 }
 
-class MockEventPublisher: EventPublisher {
-
-    var expectedToPublish = [DomainEvent.Type]()
-
-    func expectToPublish(_ event: DomainEvent.Type) {
-        expectedToPublish.append(event)
-    }
-
-    var actuallyPublished = [DomainEvent.Type]()
-
-    override func publish(_ event: DomainEvent) {
-        actuallyPublished.append(type(of: event))
-    }
+extension MockEventPublisher {
 
     func verify(_ line: UInt = #line) {
-        XCTAssertEqual(actuallyPublished.map { String(reflecting: $0) },
-                       expectedToPublish.map { String(reflecting: $0) },
-                       line: line)
+        XCTAssertTrue(publishedWhatWasExpected(), line: line)
     }
+
 }

@@ -15,7 +15,7 @@ class AppDelegateTests: XCTestCase {
 
     // swiftlint:disable:next weak_delegate
     let appDelegate = AppDelegate()
-    let mockSyncService = MockSynchronisationDomainService()
+    let mockSyncService = MockSynchronisationService()
 
     func test_whenAppBecomesActive_thenCallsCoordinator() {
         let coordinator = MockCoordinator()

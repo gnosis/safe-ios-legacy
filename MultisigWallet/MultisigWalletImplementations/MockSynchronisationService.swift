@@ -6,7 +6,7 @@ import Foundation
 import MultisigWalletDomainModel
 import Common
 
-public final class MockSynchronisationDomainService: SynchronisationDomainService {
+public final class MockSynchronisationService: SynchronisationDomainService {
 
     public init() {}
 
