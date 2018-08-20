@@ -14,11 +14,12 @@ public final class MockTokenListService: TokenListDomainService {
 
     public init() {}
 
+    public var json = TokenListTestResponse.json
     public func items() throws -> [TokenListItem] {
         if shouldThrow {
             throw TestError.error
         }
-        let data = TokenListTestResponse.json.data(using: .utf8)!
+        let data = json.data(using: .utf8)!
         Timer.wait(0.2)
         didReturnItems = true
         return try JSONDecoder().decode([TokenListItem].self, from: data)

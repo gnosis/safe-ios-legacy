@@ -7,8 +7,6 @@ import Foundation
 import Foundation
 import MultisigWalletDomainModel
 
-class TokenListMergedEvent: DomainEvent {}
-
 public final class SynchronisationService: SynchronisationDomainService {
 
     private let retryInterval: TimeInterval
@@ -26,7 +24,6 @@ public final class SynchronisationService: SynchronisationDomainService {
             do {
                 let tokenList = try DomainRegistry.tokenListService.items()
                 self?.merger.mergeStoredTokenItems(with: tokenList)
-                DomainRegistry.eventPublisher.publish(TokenListMergedEvent())
                 return true
             } catch {
                 return false
