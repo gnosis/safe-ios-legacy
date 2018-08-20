@@ -62,7 +62,7 @@ private extension SynchronisationServiceTests {
 
 }
 
-extension MockEventPublisher {
+fileprivate extension MockEventPublisher {
 
     func verify(_ line: UInt = #line) {
         XCTAssertTrue(publishedWhatWasExpected(), line: line)

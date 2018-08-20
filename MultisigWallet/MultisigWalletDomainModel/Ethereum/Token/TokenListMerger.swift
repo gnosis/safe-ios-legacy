@@ -8,7 +8,7 @@ public class TokenListMergedEvent: DomainEvent {}
 
 public final class TokenListMerger {
 
-    private let repository = DomainRegistry.tokenListItemRepository
+    private var repository: TokenListItemRepository { return DomainRegistry.tokenListItemRepository }
 
     public init() {}
 

@@ -74,16 +74,21 @@ public struct Token: Equatable, Decodable {
 // MARK: - Token to/from String serialization
 extension Token: CustomStringConvertible {
 
+    private static let separator = "~~~"
+
     public init?(_ value: String) {
-        // TODO: what if token name/code/url has this char?
-        let components = value.components(separatedBy: "~~~")
+        let components = value.components(separatedBy: Token.separator)
         guard components.count == 5 else { return nil }
         guard let decimals = Int(components[2]) else { return nil }
-        self.init(code: components[0], name: components[1], decimals: decimals, address: Address(components[3]), logoUrl: components[4])
+        self.init(code: components[0],
+                  name: components[1],
+                  decimals: decimals,
+                  address: Address(components[3]),
+                  logoUrl: components[4])
     }
 
     public var description: String {
-        return "\(code)~~~\(name)~~~\(decimals)~~~\(address.value)~~~\(logoUrl)"
+        return [code, name, String(decimals), address.value, logoUrl].joined(separator: Token.separator)
     }
 
 }

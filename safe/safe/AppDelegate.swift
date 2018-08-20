@@ -86,10 +86,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         let notificationService = HTTPNotificationService(url: appConfig.notificationServiceURL,
                                                           logger: LogService.shared)
         MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: InMemoryTokenListItemRepository(),
+                                                     for: TokenListItemRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: PushTokensService(), for: PushTokensDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: SynchronisationService(retryInterval: 5),
                                                      for: SynchronisationDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: System(), for: System.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: ErrorStream(), for: ErrorStream.self)
         setUpMultisigDatabase()
     }
 
@@ -183,7 +187,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     }
 
     private func synchronise() {
-        MultisigWalletDomainModel.DomainRegistry.syncService.sync()
+        DispatchQueue.global().async {
+            MultisigWalletDomainModel.DomainRegistry.syncService.sync()
+        }
     }
 
     func resetAll() {

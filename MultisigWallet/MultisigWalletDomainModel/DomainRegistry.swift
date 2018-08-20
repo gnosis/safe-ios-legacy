@@ -72,4 +72,8 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: ErrorStream.self)
     }
 
+    public static var system: System {
+        return service(for: System.self)
+    }
+
 }
