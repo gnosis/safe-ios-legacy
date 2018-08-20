@@ -46,12 +46,14 @@ class MockNotificationService1: NotificationDomainService {
         return expected_safeCreatedMessage[actual_safeCreatedMessage.count - 1].message
     }
 
-    func verify(line: UInt = #line) {
+    func verify(line: UInt = #line, file: StaticString = #file) {
         XCTAssertEqual(actual_send.map { $0.toString() },
                        expected_send.map { $0.toString() },
+                       file: file,
                        line: line)
         XCTAssertEqual(actual_safeCreatedMessage,
                        expected_safeCreatedMessage.map { $0.address },
+                       file: file,
                        line: line)
     }
 

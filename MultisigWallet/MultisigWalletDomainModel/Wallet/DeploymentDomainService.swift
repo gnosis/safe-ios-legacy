@@ -21,6 +21,7 @@ public class DeploymentDomainService {
         DomainRegistry.eventPublisher.subscribe(walletFunded)
         DomainRegistry.eventPublisher.subscribe(creationStarted)
         DomainRegistry.eventPublisher.subscribe(walletCreated)
+        DomainRegistry.eventPublisher.subscribe(creationFailed)
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         wallet.proceed()
     }
@@ -100,7 +101,7 @@ public class DeploymentDomainService {
         }
     }
 
-    private func notifyDidCreate(_ wallet: (Wallet)) throws {
+    private func notifyDidCreate(_ wallet: Wallet) throws {
         let sender = wallet.owner(role: .thisDevice)!.address
         let recipient = wallet.owner(role: .browserExtension)!.address
         let senderEOA = DomainRegistry.externallyOwnedAccountRepository.find(by: sender)!
@@ -109,6 +110,10 @@ public class DeploymentDomainService {
                                                                   privateKey: senderEOA.privateKey)
         let request = SendNotificationRequest(message: message, to: recipient.value, from: signedAddress)
         try DomainRegistry.notificationService.send(notificationRequest: request)
+    }
+
+    func creationFailed(_ event: WalletCreationFailed) {
+        DomainRegistry.system.exit(EXIT_FAILURE)
     }
 
     private func handleError(_ closure: (Wallet) throws -> Void) {

@@ -36,10 +36,11 @@ class MockEncryptionService1: EncryptionDomainService {
         return expected_sign[actual_sign.count - 1].signature
     }
 
-    func verify(line: UInt = #line) {
+    func verify(line: UInt = #line, file: StaticString = #file) {
         XCTAssertEqual(
             actual_sign.map { "message: \($0.message), privateKey: \($0.privateKey.data.base64EncodedString())" },
             expected_sign.map { "message: \($0.message), privateKey: \($0.privateKey.data.base64EncodedString())" },
+            file: file,
             line: line)
     }
 

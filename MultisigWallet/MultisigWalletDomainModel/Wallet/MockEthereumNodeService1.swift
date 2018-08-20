@@ -28,12 +28,14 @@ class MockEthereumNodeService1: EthereumNodeDomainService {
         return expected_eth_getBalance[actual_eth_getBalance.count - 1].balance
     }
 
-    func verify(line: UInt = #line) {
+    func verify(line: UInt = #line, file: StaticString = #file) {
         XCTAssertEqual(actual_eth_getBalance.map { $0.value },
                        expected_eth_getBalance.map { $0.account.value },
+                       file: file,
                        line: line)
         XCTAssertEqual(actual_eth_getTransactionReceipt.map { $0.value },
                        expected_eth_getTransactionReceipt.map { $0.hash.value },
+                       file: file,
                        line: line)
     }
 

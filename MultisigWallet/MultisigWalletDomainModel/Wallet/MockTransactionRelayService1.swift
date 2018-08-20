@@ -30,15 +30,18 @@ class MockTransactionRelayService1: TransactionRelayDomainService {
             return expected_createSafeCreationTransaction[actual_createSafeCreationTransaction.count - 1].response
     }
 
-    func verify(line: UInt = #line) {
+    func verify(line: UInt = #line, file: StaticString = #file) {
         XCTAssertEqual(actual_createSafeCreationTransaction.map { $0.toString() },
                        expected_createSafeCreationTransaction.map { $0.request.toString() },
+                       file: file,
                        line: line)
         XCTAssertEqual(actual_startSafeCreation.map { $0.value },
                        expected_startSafeCreation.map { $0.value },
+                       file: file,
                        line: line)
         XCTAssertEqual(actual_safeCreationTransactionHash.map { $0.value },
                        expected_safeCreationTransactionHash.map { $0.address.value },
+                       file: file,
                        line: line)
     }
 

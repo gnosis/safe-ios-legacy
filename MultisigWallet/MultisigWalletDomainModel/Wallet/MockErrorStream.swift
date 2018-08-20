@@ -18,9 +18,10 @@ class MockErrorStream: ErrorStream {
         actual_errors.append(error)
     }
 
-    func verify(line: UInt = #line) {
+    func verify(line: UInt = #line, file: StaticString = #file) {
         XCTAssertEqual(actual_errors.map { $0.localizedDescription },
                        expected_errors.map { $0.localizedDescription },
+                       file: file,
                        line: line)
     }
 

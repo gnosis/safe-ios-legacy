@@ -21,6 +21,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
     var deploymentService: DeploymentDomainService!
     let accountRepository = InMemoryAccountRepository()
     let eoaRepository = InMemoryExternallyOwnedAccountRepository()
+    let system = MockSystem()
     var wallet: Wallet!
 
     override func setUp() {
@@ -36,6 +37,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
         DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
         DomainRegistry.put(service: eoaRepository, for: ExternallyOwnedAccountRepository.self)
+        DomainRegistry.put(service: system, for: System.self)
     }
 
 }
@@ -210,6 +212,23 @@ class WalletCreatedTests: BaseDeploymentDomainServiceTests {
 
         deploymentService.start()
         XCTAssertNil(eoaRepository.find(by: wallet.owner(role: .paperWallet)!.address))
+    }
+
+}
+
+class WalletCreationFailedTests: BaseDeploymentDomainServiceTests {
+
+    override func setUp() {
+        super.setUp()
+        eventPublisher.addFilter(WalletCreationFailed.self)
+    }
+
+    func test_whenFailed_thenExits() {
+        givenDeployingWallet()
+        deploymentService.start()
+        system.expect_exit(EXIT_FAILURE)
+        wallet.cancel()
+        system.verify()
     }
 
 }
