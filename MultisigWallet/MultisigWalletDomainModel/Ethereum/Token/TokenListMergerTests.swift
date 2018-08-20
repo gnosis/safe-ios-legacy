@@ -38,7 +38,7 @@ class TokenListMergerTests: XCTestCase {
     }
 
     func test_whenMerging_thenEmmitsEvent() throws {
-        publisher.expectToPublish(TokenListMergedEvent.self)
+        publisher.expectToPublish(TokenListMerged.self)
         merger.mergeStoredTokenItems(with: try tokenListService.items())
         XCTAssertTrue(publisher.publishedWhatWasExpected())
     }

@@ -4,7 +4,7 @@
 
 import Foundation
 
-public class TokenListMergedEvent: DomainEvent {}
+public class TokenListMerged: DomainEvent {}
 
 public final class TokenListMerger {
 
@@ -19,7 +19,7 @@ public final class TokenListMerger {
         deleteStoredTokenItemsThatAreNotInList(tokenList)
         let remainingTokenList = updateWhitelistedAndBlacklistedTokenItems(with: tokenList)
         createOrUpdateTokenItems(with: remainingTokenList)
-        DomainRegistry.eventPublisher.publish(TokenListMergedEvent())
+        DomainRegistry.eventPublisher.publish(TokenListMerged())
     }
 
     /// Delete all saved token list items that are not in latest list and are not whitelisted.

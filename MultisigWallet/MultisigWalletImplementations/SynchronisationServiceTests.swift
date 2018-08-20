@@ -44,7 +44,7 @@ class SynchronisationServiceTests: XCTestCase {
 private extension SynchronisationServiceTests {
 
     func startSync() {
-        publisher.expectToPublish(TokenListMergedEvent.self)
+        publisher.expectToPublish(TokenListMerged.self)
         XCTAssertFalse(tokenListService.didReturnItems)
         DispatchQueue.global().async {
             self.syncService.sync()
