@@ -5,16 +5,19 @@
 import Foundation
 import Common
 
-public class Retry<T> {
+/// Retries a closure while it keeps throwing errors until either maxAttempts reached, or closure won't throw.
+/// Every retry is delayed by linearly increasing time interval, calculated as (attemptNumber * startDelay).
+/// When maximum attempts count is reached, while closure is still throwing, last thrown error is rethrown.
+public class RetryWithIncreasingDelay<T> {
 
     private let main: (Int) throws -> T
     private let maxAttempts: Int
     private let delay: TimeInterval
 
-    public init(maxAttempts: Int, delay: TimeInterval = 0, _ main: @escaping (Int) throws -> T) {
+    public init(maxAttempts: Int, startDelay: TimeInterval = 0, _ main: @escaping (Int) throws -> T) {
         self.main = main
         self.maxAttempts = maxAttempts
-        self.delay = delay
+        self.delay = startDelay
     }
 
     public func start() throws -> T {

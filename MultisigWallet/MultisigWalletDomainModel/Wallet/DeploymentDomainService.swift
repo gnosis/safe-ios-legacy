@@ -44,7 +44,7 @@ public class DeploymentDomainService {
     }
 
     private func waitForFunding(_ wallet: Wallet) throws {
-        try Repeat(delay: config.balance.repeatDelay) { [unowned self] repeater in
+        try Repeater(delay: config.balance.repeatDelay) { [unowned self] repeater in
             let balance = try self.balance(of: wallet.address!)
             let accountID = AccountID(Token.Ether.id.id)
             let account = DomainRegistry.accountRepository.find(id: accountID, walletID: wallet.id)!
@@ -71,7 +71,7 @@ public class DeploymentDomainService {
     }
 
     private func waitForCreationTransactionCompletion(_ wallet: Wallet) throws {
-        try Repeat(delay: config.transactionStatus.repeatDelay) { [unowned self] repeater in
+        try Repeater(delay: config.transactionStatus.repeatDelay) { [unowned self] repeater in
             guard let receipt = try self.receipt(of: TransactionHash(wallet.creationTransactionHash!)) else { return }
             repeater.stop()
             if receipt.status == .success {
@@ -84,7 +84,7 @@ public class DeploymentDomainService {
 
     private func waitForCreationTransactionHash(_ wallet: Wallet) throws {
         guard wallet.creationTransactionHash == nil else { return }
-        try Repeat(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
+        try Repeater(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
             guard let hash = try self.transactionHash(of: wallet.address!) else { return }
             wallet.assignCreationTransaction(hash: hash.value)
             repeater.stop()
@@ -104,22 +104,23 @@ public class DeploymentDomainService {
     }
 
     private func balance(of address: Address) throws -> TokenInt {
-        return try Retry(maxAttempts: config.balance.retryAttempts, delay: config.balance.retryDelay) { _ in
-            try DomainRegistry.ethereumNodeService.eth_getBalance(account: address)
-        }.start()
+        return try RetryWithIncreasingDelay(maxAttempts: config.balance.retryAttempts,
+                                            startDelay: config.balance.retryDelay) { _ in
+                try DomainRegistry.ethereumNodeService.eth_getBalance(account: address)
+            }.start()
     }
 
     private func transactionHash(of wallet: Address) throws -> TransactionHash? {
-        return try Retry(maxAttempts: config.deploymentStatus.retryAttempts,
-                         delay: config.deploymentStatus.retryDelay) { _ in
-                            try DomainRegistry.transactionRelayService.safeCreationTransactionHash(address: wallet)
+        return try RetryWithIncreasingDelay(maxAttempts: config.deploymentStatus.retryAttempts,
+                                            startDelay: config.deploymentStatus.retryDelay) { _ in
+                try DomainRegistry.transactionRelayService.safeCreationTransactionHash(address: wallet)
             }.start()
     }
 
     private func receipt(of hash: TransactionHash) throws -> TransactionReceipt? {
-        return try Retry(maxAttempts: config.transactionStatus.retryAttempts,
-                         delay: config.transactionStatus.retryDelay) { _ in
-                            try DomainRegistry.ethereumNodeService.eth_getTransactionReceipt(transaction: hash)
+        return try RetryWithIncreasingDelay(maxAttempts: config.transactionStatus.retryAttempts,
+                                            startDelay: config.transactionStatus.retryDelay) { _ in
+                try DomainRegistry.ethereumNodeService.eth_getTransactionReceipt(transaction: hash)
             }.start()
     }
 
