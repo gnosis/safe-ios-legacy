@@ -11,14 +11,18 @@ class TokenListMergedEvent: DomainEvent {}
 
 public final class SynchronisationService: SynchronisationDomainService {
 
-    private let tokenListSychronisationInterval: TimeInterval = 5 // seconds
+    private let retryInterval: TimeInterval
     private let merger = TokenListMerger()
 
-    public init() {}
+    public init(retryInterval: TimeInterval) {
+        self.retryInterval = retryInterval
+    }
 
     /// Synchronise stored data with info from services.
+    /// Should be called from a background thread.
     public func sync() {
-        Worker.start(repeating: tokenListSychronisationInterval) { [weak self] in
+        precondition(!Thread.isMainThread)
+        Worker.start(repeating: retryInterval) { [weak self] in
             do {
                 let tokenList = try DomainRegistry.tokenListService.items()
                 self?.merger.mergeStoredTokenItems(with: tokenList)

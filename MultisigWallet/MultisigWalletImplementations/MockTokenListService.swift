@@ -10,17 +10,17 @@ import CommonTestSupport
 public final class MockTokenListService: TokenListDomainService {
 
     public var shouldThrow = false
-    public var didCallItems = false
+    public var didReturnItems = false
 
     public init() {}
 
     public func items() throws -> [TokenListItem] {
-        didCallItems = true
         if shouldThrow {
             throw TestError.error
         }
         let data = TokenListTestResponse.json.data(using: .utf8)!
         Timer.wait(0.2)
+        didReturnItems = true
         return try JSONDecoder().decode([TokenListItem].self, from: data)
     }
 
