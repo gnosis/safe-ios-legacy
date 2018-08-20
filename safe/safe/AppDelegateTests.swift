@@ -8,6 +8,7 @@ import IdentityAccessImplementations
 import IdentityAccessDomainModel
 import SafeAppUI
 import CommonImplementations
+import CommonTestSupport
 import MultisigWalletDomainModel
 import MultisigWalletImplementations
 
@@ -28,6 +29,7 @@ class AppDelegateTests: XCTestCase {
         MultisigWalletDomainModel.DomainRegistry.put(service: mockSyncService, for: SynchronisationDomainService.self)
         XCTAssertFalse(mockSyncService.didSync)
         appDelegate.applicationWillEnterForeground(UIApplication.shared)
+        delay(0.25)
         XCTAssertTrue(mockSyncService.didSync)
     }
 
