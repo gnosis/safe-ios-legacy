@@ -122,14 +122,21 @@ class FinalizingDeploymentState: WalletState {
 
     override func proceed() {
         wallet.state = wallet.readyToUseState
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(WalletCreated())
 
     }
 
     override func cancel() {
         wallet.state = wallet.newDraftState
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(WalletCreationFailed())
     }
 
 }
+
+class WalletCreated: DomainEvent {}
+class WalletCreationFailed: DomainEvent {}
 
 class ReadyToUseState: WalletState {
 

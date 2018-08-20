@@ -55,4 +55,9 @@ public class DomainRegistry: AbstractRegistry {
     public static var errorStream: ErrorStream {
         return service(for: ErrorStream.self)
     }
+
+    public static var system: System {
+        return service(for: System.self)
+    }
+
 }
