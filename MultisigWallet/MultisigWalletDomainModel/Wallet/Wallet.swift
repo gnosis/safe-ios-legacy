@@ -40,13 +40,13 @@ public class Wallet: IdentifiableEntity<WalletID> {
     internal private(set) var newDraftState: WalletState!
     internal private(set) var deployingState: WalletState!
     internal private(set) var notEnoughFundsState: WalletState!
-    internal private(set) var accountFundedState: WalletState!
+    internal private(set) var creationStartedState: WalletState!
     internal private(set) var finalizingDeploymentState: WalletState!
     internal private(set) var readyToUseState: WalletState!
 
     private lazy var allStates: [WalletState?] = [
-        newDraftState, deployingState,
-        notEnoughFundsState, accountFundedState, finalizingDeploymentState, readyToUseState
+        newDraftState, deployingState, notEnoughFundsState,
+        creationStartedState, finalizingDeploymentState, readyToUseState
     ]
 
     public private(set) var status = Status.newDraft
@@ -109,7 +109,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         newDraftState = DraftState(wallet: self)
         deployingState = DeployingState(wallet: self)
         notEnoughFundsState = NotEnoughFundsState(wallet: self)
-        accountFundedState = AccountFundedState(wallet: self)
+        creationStartedState = CreationStartedState(wallet: self)
         finalizingDeploymentState = FinalizingDeploymentState(wallet: self)
         readyToUseState = ReadyToUseState(wallet: self)
     }
@@ -176,7 +176,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func markDeploymentAcceptedByBlockchain() {
         assert(status: .addressKnown)
         status = .deploymentAcceptedByBlockchain
-        state.proceed()
     }
 
     public func assignCreationTransaction(hash: String?) {

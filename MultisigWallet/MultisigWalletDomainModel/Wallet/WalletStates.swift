@@ -82,7 +82,12 @@ class WalletConfigured: DomainEvent {}
 class NotEnoughFundsState: WalletState {
 
     override func proceed() {
-        wallet.state = wallet.accountFundedState
+        wallet.state = wallet.creationStartedState
+        if wallet.status == .addressKnown {
+            wallet.markDeploymentAcceptedByBlockchain()
+        }
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(DeploymentFunded())
     }
 
     override func cancel() {
@@ -91,17 +96,22 @@ class NotEnoughFundsState: WalletState {
 
 }
 
-class AccountFundedState: WalletState {
+class DeploymentFunded: DomainEvent {}
+
+class CreationStartedState: WalletState {
 
     override func proceed() {
         wallet.state = wallet.finalizingDeploymentState
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(CreationStarted())
     }
 
     override func cancel() {
         wallet.state = wallet.newDraftState
     }
-
 }
+
+class CreationStarted: DomainEvent {}
 
 class FinalizingDeploymentState: WalletState {
 

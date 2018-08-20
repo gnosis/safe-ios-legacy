@@ -5,13 +5,14 @@
 import Foundation
 import Common
 
-public class Repeat {
+/// Repeats a closure until stopped explicitly, delaying every repetition with a configured `delay` time interval.
+public class Repeater {
 
-    private let main: (Repeat) throws -> Void
+    private let main: (Repeater) throws -> Void
     private let delay: TimeInterval
     private var stopped: Bool = false
 
-    public init (delay: TimeInterval, _ main: @escaping (Repeat) throws -> Void) {
+    public init (delay: TimeInterval, _ main: @escaping (Repeater) throws -> Void) {
         self.main = main
         self.delay = delay
     }
