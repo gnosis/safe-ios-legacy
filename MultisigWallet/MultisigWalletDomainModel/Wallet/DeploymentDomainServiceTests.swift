@@ -13,12 +13,14 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
     let eventPublisher = MockEventPublisher()
     let walletRepository = InMemoryWalletRepository()
     let portfolioRepository = InMemorySinglePortfolioRepository()
-    let encryptionService = MockEncryptionService()
+    let encryptionService = MockEncryptionService1()
     let relayService = MockTransactionRelayService1()
+    let notificationService = MockNotificationService1()
     let errorStream = MockErrorStream()
     let nodeService = MockEthereumNodeService1()
     var deploymentService: DeploymentDomainService!
     let accountRepository = InMemoryAccountRepository()
+    let eoaRepository = InMemoryExternallyOwnedAccountRepository()
     var wallet: Wallet!
 
     override func setUp() {
@@ -32,6 +34,8 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: errorStream, for: ErrorStream.self)
         DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
         DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
+        DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
+        DomainRegistry.put(service: eoaRepository, for: ExternallyOwnedAccountRepository.self)
     }
 
 }
@@ -183,6 +187,33 @@ class CreationStartedTests: BaseDeploymentDomainServiceTests {
 
 }
 
+class WalletCreatedTests: BaseDeploymentDomainServiceTests {
+
+    override func setUp() {
+        super.setUp()
+        eventPublisher.addFilter(WalletCreated.self)
+    }
+
+    func test_whenCreated_thenNotifiesExtension() {
+        givenCreatedWalletWithNotifiedExtension()
+        deploymentService.start()
+        encryptionService.verify()
+        notificationService.verify()
+    }
+
+    func test_whenCreated_thenRemovesPaperWallet() {
+        givenCreatedWalletWithNotifiedExtension()
+        eoaRepository.save(.testAccount(wallet,
+                                        role: .paperWallet,
+                                        privateKey: .testPrivateKey,
+                                        publicKey: .testPublicKey))
+
+        deploymentService.start()
+        XCTAssertNil(eoaRepository.find(by: wallet.owner(role: .paperWallet)!.address))
+    }
+
+}
+
 // MARK: - Helpers
 
 extension BaseDeploymentDomainServiceTests {
@@ -225,6 +256,29 @@ extension BaseDeploymentDomainServiceTests {
         DomainRegistry.walletRepository.save(wallet)
     }
 
+    func givenCreatedWallet() {
+        givenDeployingWallet()
+        wallet.proceed()
+        walletRepository.save(wallet)
+    }
+
+    func givenCreatedWalletWithNotifiedExtension() {
+        givenCreatedWallet()
+        eoaRepository.save(.testAccount(wallet,
+                                        role: .thisDevice,
+                                        privateKey: .testPrivateKey,
+                                        publicKey: .testPublicKey))
+        let message = "safeCreated"
+        let request = SendNotificationRequest(message: message,
+                                              to: wallet.owner(role: .browserExtension)!.address.value,
+                                              from: .testSignature)
+        encryptionService.expect_sign(message: "GNO" + message,
+                                      privateKey: .testPrivateKey,
+                                      signature: .testSignature)
+        notificationService.expect_safeCreatedMessage(at: wallet.address!.value, message: message)
+        notificationService.expect_send(notificationRequest: request)
+    }
+
     func assertThrows(_ error: Error, line: UInt = #line) {
         errorStream.expect_post(error)
         deploymentService.start()
@@ -234,6 +288,14 @@ extension BaseDeploymentDomainServiceTests {
     func assertDeploymentCancelled(line: UInt = #line) {
         wallet = walletRepository.findByID(wallet.id)!
         XCTAssertTrue(wallet.state === wallet.newDraftState, line: line)
+    }
+
+}
+
+extension SendNotificationRequest {
+
+    func toString() -> String {
+        return try! String(data: JSONEncoder().encode(self), encoding: .utf8)!
     }
 
 }
@@ -288,189 +350,24 @@ extension SafeCreationTransactionRequest.Response.Transaction {
                                                                                      nonce: 0)
 }
 
-// MARK: - Mocks
-
-class MockEventPublisher: EventPublisher {
-
-    private var filteredEventTypes = [String]()
-
-    func addFilter(_ event: Any.Type) {
-        filteredEventTypes.append(String(reflecting: event))
+extension ExternallyOwnedAccount {
+    static func testAccount(_ wallet: Wallet, role: OwnerRole, privateKey: PrivateKey, publicKey: PublicKey)
+        -> ExternallyOwnedAccount {
+            return ExternallyOwnedAccount(address: wallet.owner(role: role)!.address,
+                                          mnemonic: Mnemonic(words: ["one", "two"]),
+                                          privateKey: privateKey,
+                                          publicKey: publicKey)
     }
-
-    override func publish(_ event: DomainEvent) {
-        guard filteredEventTypes.isEmpty || filteredEventTypes.contains(String(reflecting: type(of: event))) else {
-            return
-        }
-        super.publish(event)
-    }
-
 }
 
-class MockEthereumNodeService1: EthereumNodeDomainService {
-
-    private var expectations_eth_getBalance = [(account: Address, balance: BigInt)]()
-    private var actual_eth_getBalance = [Address]()
-    private var eth_getBalance_throws_error: Error?
-
-    func expect_eth_getBalance(account: Address, balance: BigInt) {
-        expectations_eth_getBalance.append((account, balance))
-    }
-
-    func expect_eth_getBalance_throw(_ error: Error) {
-        eth_getBalance_throws_error = error
-    }
-
-    func eth_getBalance(account: Address) throws -> BigInt {
-        actual_eth_getBalance.append(account)
-        if let error = eth_getBalance_throws_error {
-            throw error
-        }
-        return expectations_eth_getBalance[actual_eth_getBalance.count - 1].balance
-    }
-
-    func verify(line: UInt = #line) {
-        XCTAssertEqual(actual_eth_getBalance.map { $0.value },
-                       expectations_eth_getBalance.map { $0.account.value },
-                       line: line)
-        XCTAssertEqual(actual_eth_getTransactionReceipt.map { $0.value },
-                       expected_eth_getTransactionReceipt.map { $0.hash.value },
-                       line: line)
-    }
-
-    private var expected_eth_getTransactionReceipt = [(hash: TransactionHash, receipt: TransactionReceipt?)]()
-    private var actual_eth_getTransactionReceipt = [(TransactionHash)]()
-    private var eth_getTransactionReceipt_throws_error: Error?
-
-    func expect_eth_getTransactionReceipt(transaction: TransactionHash, receipt: TransactionReceipt?) {
-        expected_eth_getTransactionReceipt.append((transaction, receipt))
-    }
-
-    func expect_eth_getTransactionReceipt_throw(_ error: Error) {
-        eth_getTransactionReceipt_throws_error = error
-    }
-
-    func eth_getTransactionReceipt(transaction: TransactionHash) throws -> TransactionReceipt? {
-        actual_eth_getTransactionReceipt.append(transaction)
-        if let error = eth_getTransactionReceipt_throws_error {
-            throw error
-        }
-        return expected_eth_getTransactionReceipt[actual_eth_getTransactionReceipt.count - 1].receipt
-    }
-
-    func eth_call(to: Address, data: Data) throws -> Data {
-        return Data()
-    }
-
+extension PrivateKey {
+    static let testPrivateKey = PrivateKey(data: Data(repeating: 3, count: 32))
 }
 
-class MockTransactionRelayService1: TransactionRelayDomainService {
-
-    private var expected_createSafeCreationTransaction:
-        [(request: SafeCreationTransactionRequest, response: SafeCreationTransactionRequest.Response)] = []
-    private var actual_createSafeCreationTransaction: [SafeCreationTransactionRequest] = []
-    private var createSafeCreationTransaction_throws_error: Error?
-
-    func expect_createSafeCreationTransaction(_ request: SafeCreationTransactionRequest,
-                                              _ response: SafeCreationTransactionRequest.Response) {
-        expected_createSafeCreationTransaction.append((request, response))
-    }
-
-    func expect_createSafeCreationTransaction_throw(_ error: Error) {
-        createSafeCreationTransaction_throws_error = error
-    }
-
-    func createSafeCreationTransaction(request: SafeCreationTransactionRequest) throws ->
-        SafeCreationTransactionRequest.Response {
-            actual_createSafeCreationTransaction.append(request)
-            if let error = createSafeCreationTransaction_throws_error {
-                throw error
-            }
-            return expected_createSafeCreationTransaction[actual_createSafeCreationTransaction.count - 1].response
-    }
-
-    func verify(line: UInt = #line) {
-        XCTAssertEqual(actual_createSafeCreationTransaction.map { $0.toString() },
-                       expected_createSafeCreationTransaction.map { $0.request.toString() },
-                       line: line)
-        XCTAssertEqual(actual_startSafeCreation.map { $0.value },
-                       expected_startSafeCreation.map { $0.value },
-                       line: line)
-        XCTAssertEqual(actual_safeCreationTransactionHash.map { $0.value },
-                       expected_safeCreationTransactionHash.map { $0.address.value },
-                       line: line)
-    }
-
-    private var expected_startSafeCreation = [Address]()
-    private var actual_startSafeCreation = [Address]()
-    private var startSafeCreation_throws_error: Error?
-
-    func expect_startSafeCreation_throw(_ error: Error) {
-        startSafeCreation_throws_error = error
-    }
-
-    func expect_startSafeCreation(address: Address) {
-        expected_startSafeCreation.append(address)
-    }
-
-    func startSafeCreation(address: Address) throws {
-        actual_startSafeCreation.append(address)
-        if let error = startSafeCreation_throws_error {
-            throw error
-        }
-    }
-
-    private var expected_safeCreationTransactionHash = [(address: Address, hash: TransactionHash?)]()
-    private var actual_safeCreationTransactionHash = [Address]()
-    private var safeCreationTransactionHash_throws_error: Error?
-
-    func expect_safeCreationTransactionHash_throw(_ error: Error?) {
-        safeCreationTransactionHash_throws_error = error
-    }
-
-    func expect_safeCreationTransactionHash(address: Address, hash: TransactionHash?) {
-        expected_safeCreationTransactionHash.append((address, hash))
-    }
-
-    func safeCreationTransactionHash(address: Address) throws -> TransactionHash? {
-        actual_safeCreationTransactionHash.append(address)
-        if let error = safeCreationTransactionHash_throws_error {
-            throw error
-        }
-        return expected_safeCreationTransactionHash[actual_safeCreationTransactionHash.count - 1].hash
-    }
-
-    func gasPrice() throws -> SafeGasPriceResponse {
-        preconditionFailure("not implemented")
-    }
-
-    func submitTransaction(request: SubmitTransactionRequest) throws -> SubmitTransactionRequest.Response {
-        preconditionFailure("not implemented")
-    }
-
-    func estimateTransaction(request: EstimateTransactionRequest) throws -> EstimateTransactionRequest.Response {
-        preconditionFailure("not implemented")
-    }
-
+extension PublicKey {
+    static let testPublicKey = PublicKey(data: Data(repeating: 5, count: 32))
 }
 
-class MockErrorStream: ErrorStream {
-
-    private var expected_errors = [Error]()
-    private var actual_errors = [Error]()
-
-    func expect_post(_ error: Error) {
-        expected_errors.append(error)
-    }
-
-    override func post(_ error: Error) {
-        actual_errors.append(error)
-    }
-
-    func verify(line: UInt = #line) {
-        XCTAssertEqual(actual_errors.map { $0.localizedDescription },
-                       expected_errors.map { $0.localizedDescription },
-                       line: line)
-    }
-
+extension EthSignature {
+    static let testSignature = EthSignature(r: "1", s: "2", v: 27)
 }

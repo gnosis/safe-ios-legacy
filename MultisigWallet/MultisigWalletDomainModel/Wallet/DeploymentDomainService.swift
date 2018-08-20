@@ -20,6 +20,7 @@ public class DeploymentDomainService {
         DomainRegistry.eventPublisher.subscribe(walletConfigured)
         DomainRegistry.eventPublisher.subscribe(walletFunded)
         DomainRegistry.eventPublisher.subscribe(creationStarted)
+        DomainRegistry.eventPublisher.subscribe(walletCreated)
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         wallet.proceed()
     }
@@ -70,6 +71,16 @@ public class DeploymentDomainService {
         }
     }
 
+    private func waitForCreationTransactionHash(_ wallet: Wallet) throws {
+        guard wallet.creationTransactionHash == nil else { return }
+        try Repeater(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
+            guard let hash = try self.transactionHash(of: wallet.address!) else { return }
+            wallet.assignCreationTransaction(hash: hash.value)
+            repeater.stop()
+            DomainRegistry.walletRepository.save(wallet)
+            }.start()
+    }
+
     private func waitForCreationTransactionCompletion(_ wallet: Wallet) throws {
         try Repeater(delay: config.transactionStatus.repeatDelay) { [unowned self] repeater in
             guard let receipt = try self.receipt(of: TransactionHash(wallet.creationTransactionHash!)) else { return }
@@ -82,14 +93,22 @@ public class DeploymentDomainService {
         }.start()
     }
 
-    private func waitForCreationTransactionHash(_ wallet: Wallet) throws {
-        guard wallet.creationTransactionHash == nil else { return }
-        try Repeater(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
-            guard let hash = try self.transactionHash(of: wallet.address!) else { return }
-            wallet.assignCreationTransaction(hash: hash.value)
-            repeater.stop()
-            DomainRegistry.walletRepository.save(wallet)
-        }.start()
+    func walletCreated(_ event: WalletCreated) {
+        handleError { wallet in
+            try notifyDidCreate(wallet)
+            DomainRegistry.externallyOwnedAccountRepository.remove(address: wallet.owner(role: .paperWallet)!.address)
+        }
+    }
+
+    private func notifyDidCreate(_ wallet: (Wallet)) throws {
+        let sender = wallet.owner(role: .thisDevice)!.address
+        let recipient = wallet.owner(role: .browserExtension)!.address
+        let senderEOA = DomainRegistry.externallyOwnedAccountRepository.find(by: sender)!
+        let message = DomainRegistry.notificationService.safeCreatedMessage(at: wallet.address!.value)
+        let signedAddress = DomainRegistry.encryptionService.sign(message: "GNO" + message,
+                                                                  privateKey: senderEOA.privateKey)
+        let request = SendNotificationRequest(message: message, to: recipient.value, from: signedAddress)
+        try DomainRegistry.notificationService.send(notificationRequest: request)
     }
 
     private func handleError(_ closure: (Wallet) throws -> Void) {
@@ -141,7 +160,7 @@ public struct DeploymentDomainServiceConfiguration {
             self.retryAttempts = retryAttempts
             self.retryDelay = retryDelay
         }
-        
+
     }
 
     public var balance: Parameters

@@ -114,6 +114,12 @@
 		0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */; };
 		0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */; };
 		0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */; };
+		0ACA9CF5212ACD0500E39BB6 /* MockErrorStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9CF4212ACD0500E39BB6 /* MockErrorStream.swift */; };
+		0ACA9D02212ACD4000E39BB6 /* MockTransactionRelayService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D01212ACD4000E39BB6 /* MockTransactionRelayService1.swift */; };
+		0ACA9D04212ACD6000E39BB6 /* MockEthereumNodeService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D03212ACD6000E39BB6 /* MockEthereumNodeService1.swift */; };
+		0ACA9D06212ACD9600E39BB6 /* MockEventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D05212ACD9600E39BB6 /* MockEventPublisher.swift */; };
+		0ACA9D08212ACDB100E39BB6 /* MockNotificationService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D07212ACDB100E39BB6 /* MockNotificationService1.swift */; };
+		0ACA9D0B212ACDDD00E39BB6 /* MockEncryptionService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D09212ACDD900E39BB6 /* MockEncryptionService1.swift */; };
 		0AD1938E2107534E0048CBCB /* SafeGasPriceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */; };
 		0AD1939A21075AB70048CBCB /* EstimateTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */; };
 		0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */; };
@@ -498,6 +504,12 @@
 		0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTransactionRepository.swift; sourceTree = "<group>"; };
 		0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTransactionRepository.swift; sourceTree = "<group>"; };
 		0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTransactionRepositoryTests.swift; sourceTree = "<group>"; };
+		0ACA9CF4212ACD0500E39BB6 /* MockErrorStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorStream.swift; sourceTree = "<group>"; };
+		0ACA9D01212ACD4000E39BB6 /* MockTransactionRelayService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTransactionRelayService1.swift; sourceTree = "<group>"; };
+		0ACA9D03212ACD6000E39BB6 /* MockEthereumNodeService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumNodeService1.swift; sourceTree = "<group>"; };
+		0ACA9D05212ACD9600E39BB6 /* MockEventPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventPublisher.swift; sourceTree = "<group>"; };
+		0ACA9D07212ACDB100E39BB6 /* MockNotificationService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationService1.swift; sourceTree = "<group>"; };
+		0ACA9D09212ACDD900E39BB6 /* MockEncryptionService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEncryptionService1.swift; sourceTree = "<group>"; };
 		0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeGasPriceResponse.swift; sourceTree = "<group>"; };
 		0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateTransactionRequest.swift; sourceTree = "<group>"; };
 		0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBBaseRepository.swift; sourceTree = "<group>"; };
@@ -684,6 +696,12 @@
 			children = (
 				0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */,
 				0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */,
+				0ACA9D09212ACDD900E39BB6 /* MockEncryptionService1.swift */,
+				0ACA9D07212ACDB100E39BB6 /* MockNotificationService1.swift */,
+				0ACA9D05212ACD9600E39BB6 /* MockEventPublisher.swift */,
+				0ACA9D03212ACD6000E39BB6 /* MockEthereumNodeService1.swift */,
+				0ACA9D01212ACD4000E39BB6 /* MockTransactionRelayService1.swift */,
+				0ACA9CF4212ACD0500E39BB6 /* MockErrorStream.swift */,
 				0A0CF00B2125684000772AB3 /* ErrorStream.swift */,
 				0A8272F121243B0300EB5C21 /* EventPublisher.swift */,
 				0A8272FE2124447D00EB5C21 /* EventPublisherTests.swift */,
@@ -1370,6 +1388,7 @@
 			files = (
 				0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */,
 				0A8A2B9B20FCDC540003BB7E /* TestFixture.swift in Sources */,
+				0ACA9D0B212ACDDD00E39BB6 /* MockEncryptionService1.swift in Sources */,
 				0A0CF01421257ED000772AB3 /* DeploymentDomainServiceTests.swift in Sources */,
 				0A9E386220F4B46C0085E8D7 /* WorkerTests.swift in Sources */,
 				0A7F3A992126BDCA0062CB1E /* RetryWithIncreasingDelayTests.swift in Sources */,
@@ -1377,14 +1396,19 @@
 				55CC279C20F6680800AC12D6 /* PairingRequestTests.swift in Sources */,
 				55D3C02F20F668EB0047004F /* EthSignatureTests.swift in Sources */,
 				0A77D0D1211AD986003582DD /* Fixtures.swift in Sources */,
+				0ACA9D02212ACD4000E39BB6 /* MockTransactionRelayService1.swift in Sources */,
 				0A8272FF2124447D00EB5C21 /* EventPublisherTests.swift in Sources */,
 				0A76BE5720AEF35C00D07770 /* DomainRegistryTests.swift in Sources */,
 				0A9E386120F4B46C0085E8D7 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,
 				0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */,
 				0A7F7438211045E8004F1150 /* DataInitWithHexTest.swift in Sources */,
+				0ACA9CF5212ACD0500E39BB6 /* MockErrorStream.swift in Sources */,
 				0A7F3A9D2126C60A0062CB1E /* RepeaterTests.swift in Sources */,
 				0A442DC5210A05A400F19F80 /* MessageTests.swift in Sources */,
+				0ACA9D04212ACD6000E39BB6 /* MockEthereumNodeService1.swift in Sources */,
 				0A9E385F20F4B46C0085E8D7 /* BaseInMemoryRepositoryTests.swift in Sources */,
+				0ACA9D08212ACDB100E39BB6 /* MockNotificationService1.swift in Sources */,
+				0ACA9D06212ACD9600E39BB6 /* MockEventPublisher.swift in Sources */,
 				0A813533212315BB00B0B302 /* WalletStateTests.swift in Sources */,
 				0A23C81B20A1CEDA00C72483 /* PortfolioTests.swift in Sources */,
 				0A9E386020F4B46C0085E8D7 /* InMemoryAccountRepositoryTests.swift in Sources */,
