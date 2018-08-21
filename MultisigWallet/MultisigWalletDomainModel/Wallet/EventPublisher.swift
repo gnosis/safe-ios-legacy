@@ -10,26 +10,22 @@ import Foundation
 /// All subscribers can be removed using `reset()` method.
 public class EventPublisher {
 
-    private var subscribers = [String: [(DomainEvent) -> Void]]()
+    private var subscriptions = [(type: DomainEvent.Type, closure: (DomainEvent) -> Void)]()
 
     public init () {}
 
     public func subscribe<T>(_ closure: @escaping (T) -> Void) where T: DomainEvent {
-        let key = String(reflecting: T.self)
-        if subscribers[key] == nil {
-            subscribers[key] = []
-        }
-        subscribers[key]!.append { e in closure(e as! T) }
+        subscriptions.append((T.self, { c in closure(c as! T) }))
     }
 
     public func publish(_ event: DomainEvent) {
-        let key = String(reflecting: type(of: event))
-        subscribers[key]?.forEach { $0(event) }
+        subscriptions.filter { $0.type == type(of: event) || $0.type == DomainEvent.self }.forEach { $0.closure(event) }
     }
 
     public func reset() {
-        subscribers = [:]
+        subscriptions = []
     }
+
 }
 
 open class DomainEvent {

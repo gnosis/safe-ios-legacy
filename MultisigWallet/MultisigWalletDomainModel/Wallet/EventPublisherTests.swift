@@ -8,6 +8,7 @@ import XCTest
 class EventPublisherTests: XCTestCase {
 
     class MyEvent: DomainEvent {}
+    class OtherEvent: DomainEvent {}
 
     let publisher = EventPublisher()
 
@@ -30,5 +31,14 @@ class EventPublisherTests: XCTestCase {
         XCTAssertFalse(didReceive)
     }
 
+    func test_whenSubscribingForDomainEventType_thenReceivesAllEvents() {
+        var didReceive = 0
+        publisher.subscribe { (_: DomainEvent) in
+            didReceive += 1
+        }
+        publisher.publish(MyEvent())
+        publisher.publish(OtherEvent())
+        XCTAssertEqual(didReceive, 2)
+    }
 
 }
