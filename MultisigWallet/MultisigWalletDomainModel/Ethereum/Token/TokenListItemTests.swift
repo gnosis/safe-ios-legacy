@@ -7,16 +7,33 @@ import XCTest
 
 class TokenListItemTests: XCTestCase {
 
+    var tokenListItem: TokenListItem!
+
     override func setUp() {
         super.setUp()
+        tokenListItem = TokenListItem(token: Token.Ether, status: .regular)
     }
 
     func test_whenCreated_thenHasAllData() {
-        let eth = Token.Ether
-        let tokenListItem = TokenListItem(token: eth, status: .regular)
         XCTAssertEqual(tokenListItem.id.id, "0x0000000000000000000000000000000000000000")
-        XCTAssertEqual(tokenListItem.token, eth)
+        XCTAssertEqual(tokenListItem.token, Token.Ether)
         XCTAssertEqual(tokenListItem.status, .regular)
+    }
+
+    func test_blacklisting() {
+        tokenListItem.blacklist()
+        XCTAssertEqual(tokenListItem.status, .blacklisted)
+    }
+
+    func test_whitelisting() {
+        tokenListItem.whitelist()
+        XCTAssertEqual(tokenListItem.status, .whitelisted)
+    }
+
+    func test_updatingSortingId() {
+        XCTAssertEqual(tokenListItem.sortingId, nil)
+        tokenListItem.updateSortingId(with: 10)
+        XCTAssertEqual(tokenListItem.sortingId, 10)
     }
 
 }

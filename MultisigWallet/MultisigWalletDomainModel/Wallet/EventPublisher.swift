@@ -32,7 +32,7 @@ public class EventPublisher {
     }
 }
 
-public class DomainEvent {
+open class DomainEvent {
 
     public init () {}
 

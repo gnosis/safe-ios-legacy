@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
         createWindow()
         UIApplication.shared.applicationIconBadgeNumber = 0
+        synchronise()
         return true
     }
 
@@ -85,7 +86,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         let notificationService = HTTPNotificationService(url: appConfig.notificationServiceURL,
                                                           logger: LogService.shared)
         MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(
+            service: HTTPTokenListService(url: appConfig.tokenListServiceURL, logger: LogService.shared),
+            for: TokenListDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: InMemoryTokenListItemRepository(),
+                                                     for: TokenListItemRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: PushTokensService(), for: PushTokensDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: SynchronisationService(retryInterval: 5),
+                                                     for: SynchronisationDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: System(), for: System.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: ErrorStream(), for: ErrorStream.self)
@@ -178,6 +186,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     func applicationWillEnterForeground(_ application: UIApplication) {
         coordinator.appEntersForeground()
         UIApplication.shared.applicationIconBadgeNumber = 0
+        synchronise()
+    }
+
+    private func synchronise() {
+        DispatchQueue.global().async {
+            MultisigWalletDomainModel.DomainRegistry.syncService.sync()
+        }
     }
 
     func resetAll() {
