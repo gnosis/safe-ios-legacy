@@ -24,6 +24,7 @@ SELECT token, wallet_id, balance
 FROM tbl_accounts
 WHERE token = ? AND wallet_id = ? LIMIT 1;
 """
+        static let all = "SELECT token, wallet_id, balance FROM tbl_accounts;"
     }
 
     private let db: Database
@@ -51,6 +52,10 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
         return try! db.execute(sql: SQL.find,
                                bindings: [id.id, walletID.id],
                                resultMap: accountFromResultSet).first as? Account
+    }
+
+    public func all() -> [Account] {
+        return try! db.execute(sql: SQL.all, resultMap: accountFromResultSet).compactMap { $0 }
     }
 
     private func accountFromResultSet(_ rs: ResultSet) -> Account? {
