@@ -121,6 +121,9 @@
 		0ACA9D0B212ACDDD00E39BB6 /* MockEncryptionService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D09212ACDD900E39BB6 /* MockEncryptionService1.swift */; };
 		0ACA9D0D212AD31900E39BB6 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D0C212AD31900E39BB6 /* System.swift */; };
 		0ACA9D10212AD37F00E39BB6 /* MockSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D0E212AD37C00E39BB6 /* MockSystem.swift */; };
+		0ACA9D16212AEF4700E39BB6 /* SafeCreationResponseValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D15212AEF4700E39BB6 /* SafeCreationResponseValidator.swift */; };
+		0ACA9D24212C02CD00E39BB6 /* MockSafeCreationResponseValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D22212C02CA00E39BB6 /* MockSafeCreationResponseValidator.swift */; };
+		0ACA9D26212C034200E39BB6 /* SafeCreationResponseValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D25212C034200E39BB6 /* SafeCreationResponseValidatorTests.swift */; };
 		0AD1938E2107534E0048CBCB /* SafeGasPriceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */; };
 		0AD1939A21075AB70048CBCB /* EstimateTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */; };
 		0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */; };
@@ -520,6 +523,9 @@
 		0ACA9D09212ACDD900E39BB6 /* MockEncryptionService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEncryptionService1.swift; sourceTree = "<group>"; };
 		0ACA9D0C212AD31900E39BB6 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		0ACA9D0E212AD37C00E39BB6 /* MockSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSystem.swift; sourceTree = "<group>"; };
+		0ACA9D15212AEF4700E39BB6 /* SafeCreationResponseValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationResponseValidator.swift; sourceTree = "<group>"; };
+		0ACA9D22212C02CA00E39BB6 /* MockSafeCreationResponseValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSafeCreationResponseValidator.swift; sourceTree = "<group>"; };
+		0ACA9D25212C034200E39BB6 /* SafeCreationResponseValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationResponseValidatorTests.swift; sourceTree = "<group>"; };
 		0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeGasPriceResponse.swift; sourceTree = "<group>"; };
 		0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateTransactionRequest.swift; sourceTree = "<group>"; };
 		0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBBaseRepository.swift; sourceTree = "<group>"; };
@@ -712,6 +718,9 @@
 			children = (
 				0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */,
 				0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */,
+				0ACA9D15212AEF4700E39BB6 /* SafeCreationResponseValidator.swift */,
+				0ACA9D25212C034200E39BB6 /* SafeCreationResponseValidatorTests.swift */,
+				0ACA9D22212C02CA00E39BB6 /* MockSafeCreationResponseValidator.swift */,
 				0ACA9D0E212AD37C00E39BB6 /* MockSystem.swift */,
 				0ACA9D09212ACDD900E39BB6 /* MockEncryptionService1.swift */,
 				0ACA9D07212ACDB100E39BB6 /* MockNotificationService1.swift */,
@@ -1381,6 +1390,7 @@
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
 				0A77D100211B0CD6003582DD /* EthSignature.swift in Sources */,
 				0A442DDF210B113100F19F80 /* OutgoingMessage.swift in Sources */,
+				0ACA9D16212AEF4700E39BB6 /* SafeCreationResponseValidator.swift in Sources */,
 				0A7F3A9B2126C53E0062CB1E /* Repeater.swift in Sources */,
 				0A442DC9210A088800F19F80 /* Message+Factory.swift in Sources */,
 				0AA5D4A020E12B68006F46CD /* Token.swift in Sources */,
@@ -1440,12 +1450,14 @@
 				0A9E386120F4B46C0085E8D7 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,
 				0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */,
 				0A7F7438211045E8004F1150 /* DataInitWithHexTest.swift in Sources */,
+				0ACA9D26212C034200E39BB6 /* SafeCreationResponseValidatorTests.swift in Sources */,
 				0ACA9CF5212ACD0500E39BB6 /* MockErrorStream.swift in Sources */,
 				0A7F3A9D2126C60A0062CB1E /* RepeaterTests.swift in Sources */,
 				0A442DC5210A05A400F19F80 /* MessageTests.swift in Sources */,
 				0ACA9D04212ACD6000E39BB6 /* MockEthereumNodeService1.swift in Sources */,
 				0A9E385F20F4B46C0085E8D7 /* BaseInMemoryRepositoryTests.swift in Sources */,
 				0ACA9D08212ACDB100E39BB6 /* MockNotificationService1.swift in Sources */,
+				0ACA9D24212C02CD00E39BB6 /* MockSafeCreationResponseValidator.swift in Sources */,
 				0A813533212315BB00B0B302 /* WalletStateTests.swift in Sources */,
 				0A23C81B20A1CEDA00C72483 /* PortfolioTests.swift in Sources */,
 				0A9E386020F4B46C0085E8D7 /* InMemoryAccountRepositoryTests.swift in Sources */,

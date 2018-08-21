@@ -27,6 +27,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
         deploymentService = DeploymentDomainService(.testConfiguration)
+        deploymentService.responseValidator = MockSafeCreationResponseValidator()
         DomainRegistry.put(service: eventPublisher, for: EventPublisher.self)
         DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
