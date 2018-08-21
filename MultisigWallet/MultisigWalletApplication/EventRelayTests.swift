@@ -8,13 +8,13 @@ import MultisigWalletDomainModel
 
 class EventRelayTests: XCTestCase {
 
-    let relay = EventRelay()
+    var relay: EventRelay!
     let subscriber = MockSubscriber()
     let publisher = EventPublisher()
 
     override func setUp() {
         super.setUp()
-        DomainRegistry.put(service: publisher, for: EventPublisher.self)
+        relay = EventRelay(publisher: publisher)
     }
 
     func test_api() {
@@ -88,6 +88,4 @@ class MockSubscriber: EventSubscriber {
     }
 }
 
-class MyEvent: DomainEvent {
-
-}
+class MyEvent: DomainEvent {}

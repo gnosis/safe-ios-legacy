@@ -21,14 +21,13 @@ class EventRelay {
         }
     }
 
-    private var subscribedToPublisher = false
     private var subscribers = [(type: DomainEvent.Type, subscriber: SubscriberWrapper)]()
 
+    init(publisher: EventPublisher) {
+        publisher.subscribe(handleEvent)
+    }
+
     func subscribe(_ subject: EventSubscriber, for event: DomainEvent.Type) {
-        if !subscribedToPublisher {
-            DomainRegistry.eventPublisher.subscribe(handleEvent)
-            subscribedToPublisher = true
-        }
         subscribers.append((event, SubscriberWrapper(subject)))
     }
 
