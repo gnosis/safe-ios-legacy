@@ -6,10 +6,10 @@ import Foundation
 
 public protocol TokenListDomainService {
 
-    /// Returns a list of ERC20 tokens to display to the user.
+    /// Returns a list of token items to display to the user.
     ///
-    /// - Returns: a list of ERC20 tokens
+    /// - Returns: a list of token items
     /// - Throws: errors
-    func tokens() throws -> [Token]
+    func items() throws -> [TokenListItem]
 
 }

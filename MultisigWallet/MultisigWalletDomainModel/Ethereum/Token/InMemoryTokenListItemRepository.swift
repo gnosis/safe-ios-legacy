@@ -23,4 +23,8 @@ public class InMemoryTokenListItemRepository: TokenListItemRepository {
         return items[id]
     }
 
+    public func all() -> [TokenListItem] {
+        return Array(items.values).sorted { $0.token.code < $1.token.code }
+    }
+
 }

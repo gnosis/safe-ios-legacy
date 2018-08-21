@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import MultisigWalletDomainModel
+import EthereumKit
 
 class MessageTests: XCTestCase {
 
