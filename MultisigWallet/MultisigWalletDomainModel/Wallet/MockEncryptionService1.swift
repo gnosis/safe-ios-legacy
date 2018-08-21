@@ -16,8 +16,16 @@ class MockEncryptionService1: EncryptionDomainService {
         preconditionFailure()
     }
 
+    private var expected_contractAddress = [(signature: EthSignature, transaction: EthTransaction, address: String?)]()
+    private var actual_contractAddress = [(signature: EthSignature, transaction: EthTransaction)]()
+
+    func expect_contractAddress(signature: EthSignature, transaction: EthTransaction, address: String?) {
+        expected_contractAddress.append((signature, transaction, address))
+    }
+
     func contractAddress(from: EthSignature, for transaction: EthTransaction) -> String? {
-        preconditionFailure()
+        actual_contractAddress.append((from, transaction))
+        return expected_contractAddress[actual_contractAddress.count - 1].address
     }
 
     func ecdsaRandomS() -> BigUInt {

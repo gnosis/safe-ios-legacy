@@ -10,6 +10,7 @@ import Foundation
 public class DeploymentDomainService {
 
     private let config: DeploymentDomainServiceConfiguration
+    internal var responseValidator = SafeCreationResponseValidator()
 
     public init(_ config: DeploymentDomainServiceConfiguration = .standard) {
         self.config = config
@@ -33,6 +34,7 @@ public class DeploymentDomainService {
                                                          confirmationCount: wallet.confirmationCount,
                                                          ecdsaRandomS: s)
             let response = try DomainRegistry.transactionRelayService.createSafeCreationTransaction(request: request)
+            try responseValidator.validate(response, request: request)
             wallet.changeAddress(response.walletAddress)
             wallet.updateMinimumTransactionAmount(response.deploymentFee)
             wallet.proceed()
