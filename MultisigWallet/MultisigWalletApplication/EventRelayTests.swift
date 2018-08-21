@@ -24,7 +24,7 @@ class EventRelayTests: XCTestCase {
         subscriber.verify()
     }
 
-    func test_whenSubscriberDeallocated_thenItIsNotNotified() {
+    func test_whenSubscriberDeallocated_thenNotNotified() {
         var callCount = 0
         var temp: BlockSubscriber? = BlockSubscriber {
             callCount += 1
@@ -36,7 +36,7 @@ class EventRelayTests: XCTestCase {
         XCTAssertEqual(callCount, 1)
     }
 
-    func test_whenSubscribing_thenDoes() {
+    func test_whenSubscribingTwice_thenNotifiesCorrectly() {
         let other = MockSubscriber()
         subscriber.expect_notify()
         other.expect_notify()
@@ -47,7 +47,7 @@ class EventRelayTests: XCTestCase {
         other.verify()
     }
 
-    func test_whenUnsubscribed_thenIsNotNotified() {
+    func test_whenUnsubscribed_thenNotNotified() {
         relay.subscribe(subscriber, for: DomainEvent.self)
         relay.unsubscribe(subscriber)
         publisher.publish(MyEvent())
