@@ -161,6 +161,9 @@
                   Identifier = "HTTPNotificatonServiceTests">
                </Test>
                <Test
+                  Identifier = "HTTPTokenListServiceTests">
+               </Test>
+               <Test
                   Identifier = "InfuraEthereumNodeServiceTests">
                </Test>
             </SkippedTests>
