@@ -124,6 +124,8 @@
 		0ACA9D16212AEF4700E39BB6 /* SafeCreationResponseValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D15212AEF4700E39BB6 /* SafeCreationResponseValidator.swift */; };
 		0ACA9D24212C02CD00E39BB6 /* MockSafeCreationResponseValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D22212C02CA00E39BB6 /* MockSafeCreationResponseValidator.swift */; };
 		0ACA9D26212C034200E39BB6 /* SafeCreationResponseValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D25212C034200E39BB6 /* SafeCreationResponseValidatorTests.swift */; };
+		0ACA9D39212C19C400E39BB6 /* EventRelayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D38212C19C400E39BB6 /* EventRelayTests.swift */; };
+		0ACA9D46212C469100E39BB6 /* EventRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D45212C469100E39BB6 /* EventRelay.swift */; };
 		0AD1938E2107534E0048CBCB /* SafeGasPriceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */; };
 		0AD1939A21075AB70048CBCB /* EstimateTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */; };
 		0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */; };
@@ -526,6 +528,8 @@
 		0ACA9D15212AEF4700E39BB6 /* SafeCreationResponseValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationResponseValidator.swift; sourceTree = "<group>"; };
 		0ACA9D22212C02CA00E39BB6 /* MockSafeCreationResponseValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSafeCreationResponseValidator.swift; sourceTree = "<group>"; };
 		0ACA9D25212C034200E39BB6 /* SafeCreationResponseValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationResponseValidatorTests.swift; sourceTree = "<group>"; };
+		0ACA9D38212C19C400E39BB6 /* EventRelayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRelayTests.swift; sourceTree = "<group>"; };
+		0ACA9D45212C469100E39BB6 /* EventRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRelay.swift; sourceTree = "<group>"; };
 		0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeGasPriceResponse.swift; sourceTree = "<group>"; };
 		0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateTransactionRequest.swift; sourceTree = "<group>"; };
 		0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBBaseRepository.swift; sourceTree = "<group>"; };
@@ -887,6 +891,8 @@
 			isa = PBXGroup;
 			children = (
 				0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */,
+				0ACA9D45212C469100E39BB6 /* EventRelay.swift */,
+				0ACA9D38212C19C400E39BB6 /* EventRelayTests.swift */,
 				0A9E379620F4A4D10085E8D7 /* EthereumApplicationServiceTests.swift */,
 				0A9E379820F4A4D10085E8D7 /* EthereumApplicationTestCase.swift */,
 				0A9E379320F4A4D10085E8D7 /* MockEthereumApplicationService.swift */,
@@ -1470,6 +1476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A60B522211343F70066821A /* TransactionData.swift in Sources */,
+				0ACA9D46212C469100E39BB6 /* EventRelay.swift in Sources */,
 				0A40668820A5E01D009BA7FC /* MockWalletApplicationService.swift in Sources */,
 				0A9E383320F4AC5F0085E8D7 /* MockEthereumApplicationService.swift in Sources */,
 				0A40669320A5E1C2009BA7FC /* ApplicationServiceRegistry.swift in Sources */,
@@ -1487,6 +1494,7 @@
 				0A9E383620F4AC670085E8D7 /* ApplicationServiceRegistryTests.swift in Sources */,
 				0A8A2B9C20FCDC550003BB7E /* TestFixture.swift in Sources */,
 				0A9E383720F4AC670085E8D7 /* EthereumApplicationServiceTests.swift in Sources */,
+				0ACA9D39212C19C400E39BB6 /* EventRelayTests.swift in Sources */,
 				0A77D0D0211AD974003582DD /* Fixtures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
