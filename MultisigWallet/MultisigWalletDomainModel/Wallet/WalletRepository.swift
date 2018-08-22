@@ -13,7 +13,7 @@ public protocol WalletRepository {
 
 }
 
-extension WalletRepository {
+public extension WalletRepository {
 
     func selectedWallet() -> Wallet? {
         guard let id = DomainRegistry.portfolioRepository.portfolio()?.selectedWallet else { return nil }

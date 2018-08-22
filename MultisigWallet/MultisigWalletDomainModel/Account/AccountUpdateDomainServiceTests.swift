@@ -73,7 +73,8 @@ private extension AccountUpdateDomainServiceTests {
     func assertOnlyGNOAccountExists() {
         let all = accountRepository.all()
         XCTAssertEqual(all.count, 1)
-        XCTAssertEqual(all.first?.id.id, Token.gno.id.id)
+        let accountID = AccountID(tokenID: Token.gno.id, walletID: walletRepository.selectedWallet()!.id)
+        XCTAssertEqual(all.first?.id, accountID)
     }
 
 }

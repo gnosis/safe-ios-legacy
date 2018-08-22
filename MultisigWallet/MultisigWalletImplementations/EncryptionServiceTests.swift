@@ -120,10 +120,12 @@ class EncryptionServiceTests: XCTestCase {
         let data = TransactionHashingFixture.jsonArray.data(using: .utf8)!
         let fixtures = try JSONDecoder().decode([TransactionHashingFixture.Message].self, from: data)
         fixtures.forEach { fixture in
+            let walletID = WalletID()
+            let accountID = AccountID(tokenID: Token.gno.id, walletID: walletID)
             let transaction = MultisigWalletDomainModel.Transaction(id: TransactionID(),
                                                                     type: .transfer,
-                                                                    walletID: WalletID(),
-                                                                    accountID: AccountID("0x0"))
+                                                                    walletID: walletID,
+                                                                    accountID: accountID)
             let gasPrice = TokenAmount(amount: TokenInt(fixture.gasPrice)!,
                                        token: Token(code: "SOME",
                                                     name: "SOME NAME",

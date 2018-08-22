@@ -11,22 +11,25 @@ open class AccountUpdateDomainService {
     // TODO: Should be done once a wallet is created.
     open func updateAccountsBalances() {
         precondition(!Thread.isMainThread)
-//        addMissingAccountsForWhitelistedTokenItems()
+        addMissingAccountsForWhitelistedTokenItems()
 //        updateBalancesForWhitelistedAccounts()
     }
 
-//    private func addMissingAccountsForWhitelistedTokenItems() {
-//        guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return }
-//        let allAccountsIds = DomainRegistry.accountRepository.all().map { $0.id.id }
-//        let whitelistedItemsIds = DomainRegistry.tokenListItemRepository.all().filter {
-//            $0.status == .whitelisted }.map { $0.id.id }
-//        let missingAccountsIds = Set(whitelistedItemsIds).subtracting(Set(allAccountsIds))
-//        missingAccountsIds.forEach { strId in
-//            let account = Account(id: AccountID(strId), walletID: wallet.id, balance: nil)
-//            DomainRegistry.accountRepository.save(account)
-//        }
-//    }
-//
+    private func addMissingAccountsForWhitelistedTokenItems() {
+        guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return }
+        // TODO: add tests for different wallets
+        let allWalletAccountsIds = DomainRegistry.accountRepository.all()
+            .filter { $0.walletID == wallet.id }
+            .map { $0.id.id }
+        let whitelistedItemsIds = DomainRegistry.tokenListItemRepository.all().filter {
+            $0.status == .whitelisted }.map { $0.id.id }
+        let missingAccountsIds = Set(whitelistedItemsIds).subtracting(Set(allWalletAccountsIds))
+        missingAccountsIds.forEach { strId in
+            let account = Account(tokenID: TokenID(strId))
+            DomainRegistry.accountRepository.save(account)
+        }
+    }
+
 //    private func updateBalancesForWhitelistedAccounts() {
 //        let allAccountsIds = DomainRegistry.accountRepository.all().map { $0.id.id }
 //        let whitelistedItemsIds = DomainRegistry.tokenListItemRepository.all().filter {

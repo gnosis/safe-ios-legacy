@@ -59,11 +59,12 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
     }
 
     private func accountFromResultSet(_ rs: ResultSet) -> Account? {
-        guard let tokenID = rs.string(at: 0),
-            let walletID = rs.string(at: 1) else { return nil }
+        guard let accountID_id = rs.string(at: 0),
+            let walletID_id = rs.string(at: 1) else { return nil }
         let balance = rs.string(at: 2)
-        let account = Account(id: AccountID(tokenID),
-                              walletID: WalletID(walletID),
+        let accountID = AccountID(accountID_id)
+        let account = Account(tokenID: accountID.tokenID,
+                              walletID: WalletID(walletID_id),
                               balance: balance != nil ? TokenInt(balance!)! : nil)
         return account
     }

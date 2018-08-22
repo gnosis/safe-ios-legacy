@@ -24,7 +24,7 @@ class DBAccountRepositoryIntegrationTests: XCTestCase {
         repo.setUp()
 
         let walletID = WalletID()
-        let account = Account(id: AccountID("0x0"),
+        let account = Account(tokenID: Token.gno.id,
                               walletID: walletID,
                               balance: 123)
         repo.save(account)
@@ -32,7 +32,7 @@ class DBAccountRepositoryIntegrationTests: XCTestCase {
         XCTAssertEqual(saved, account)
         XCTAssertEqual(saved?.balance, account.balance)
 
-        let account2 = Account(id: AccountID("0x1"),
+        let account2 = Account(tokenID: Token.mgn.id,
                                walletID: walletID,
                                balance: nil)
         repo.save(account2)

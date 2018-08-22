@@ -66,10 +66,11 @@ class HTTPNotificatonServiceTests: XCTestCase {
 
     func test_notifyRequestConfirmation() throws {
         try makePair()
+        let walletID = WalletID()
         let transaction = Transaction(id: TransactionID(),
                                       type: .transfer,
-                                      walletID: WalletID(),
-                                      accountID: AccountID(ethID.id))
+                                      walletID: walletID,
+                                      accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
         transaction
             .change(sender: Address("0x092CC1854399ADc38Dad4f846E369C40D0a40307"))
             .change(recipient: Address("0x8e6A5aDb2B88257A3DAc7A76A7B4EcaCdA090b66"))

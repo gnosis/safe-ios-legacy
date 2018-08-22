@@ -6,7 +6,30 @@ import Foundation
 import Common
 
 /// Identifier of a wallet token account.
-public class AccountID: BaseID {}
+public class AccountID: BaseID {
+
+    private static let idSeparator: Character = ":"
+
+    public required init(_ id: String) {
+        precondition(id.split(separator: AccountID.idSeparator).count == 2, "Wrong format of AccountID")
+        super.init(id)
+    }
+
+    public init(tokenID: TokenID, walletID: WalletID) {
+        super.init("\(tokenID.id)\(AccountID.idSeparator)\(walletID.id)")
+    }
+
+    public var walletID: WalletID {
+        let walletID = String(id.split(separator: AccountID.idSeparator)[1])
+        return WalletID(walletID)
+    }
+
+    public var tokenID: TokenID {
+        let walletID = String(id.split(separator: AccountID.idSeparator)[0])
+        return TokenID(walletID)
+    }
+
+}
 
 /// Represents account balance for a token type. Account belongs to a wallet, which is referenced by WaleltID
 public class Account: IdentifiableEntity<AccountID> {
@@ -19,13 +42,23 @@ public class Account: IdentifiableEntity<AccountID> {
     /// Creates new account with specified arguments.
     ///
     /// - Parameters:
-    ///   - id: account identifier
+    ///   - tokenID: account token identifier
     ///   - walletID: wallet identifier
     ///   - balance: balance of the account, in smallest token units
-    public init(id: AccountID, walletID: WalletID, balance: TokenInt?) {
+    public init(tokenID: TokenID,
+                walletID: WalletID? = nil,
+                balance: TokenInt? = nil) {
+        if walletID != nil {
+            self.walletID = walletID!
+        } else {
+            let selectedWallet = DomainRegistry.walletRepository.selectedWallet()
+            precondition(selectedWallet != nil,
+                         "There should be a selected wallet when creating Account without specifying walletID")
+            self.walletID = selectedWallet!.id
+        }
         self.balance = balance
-        self.walletID = walletID
-        super.init(id: id)
+        let accountID = AccountID(tokenID: tokenID, walletID: self.walletID)
+        super.init(id: accountID)
     }
 
     /// Updates balance to a new value
