@@ -17,15 +17,14 @@ open class AccountUpdateDomainService {
 
     private func addMissingAccountsForWhitelistedTokenItems() {
         guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return }
-        // TODO: add tests for different wallets
         let allWalletAccountsIds = DomainRegistry.accountRepository.all()
             .filter { $0.walletID == wallet.id }
-            .map { $0.id.id }
+            .map { $0.id.tokenID.id }
         let whitelistedItemsIds = DomainRegistry.tokenListItemRepository.all().filter {
             $0.status == .whitelisted }.map { $0.id.id }
         let missingAccountsIds = Set(whitelistedItemsIds).subtracting(Set(allWalletAccountsIds))
         missingAccountsIds.forEach { strId in
-            let account = Account(tokenID: TokenID(strId))
+            let account = Account(tokenID: TokenID(strId), walletID: wallet.id)
             DomainRegistry.accountRepository.save(account)
         }
     }

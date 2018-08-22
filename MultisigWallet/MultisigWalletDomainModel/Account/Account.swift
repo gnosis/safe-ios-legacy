@@ -84,4 +84,14 @@ public class Account: IdentifiableEntity<AccountID> {
         balance! -= amount
     }
 
+    /// Compare an account against other account. Accounts are equal when all properties are the same.
+    ///
+    /// - Parameter to: Account to compare with
+    /// - Returns: comparison result
+    public func isEqual(to: Account) -> Bool {
+        return id == to.id &&
+            balance == to.balance &&
+            walletID == to.walletID
+    }
+
 }

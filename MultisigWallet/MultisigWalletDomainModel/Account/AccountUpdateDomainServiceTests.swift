@@ -41,17 +41,52 @@ class AccountUpdateDomainServiceTests: XCTestCase {
             self.accountUpdateService.updateAccountsBalances()
         }
         delay()
-
         let gnoItem = tokenListItemRepository.find(id: Token.gno.id)!
         let mgnItem = tokenListItemRepository.find(id: Token.mgn.id)!
         tokenListItemRepository.remove(gnoItem)
         tokenListItemRepository.remove(mgnItem)
-
         DispatchQueue.global().async {
             self.accountUpdateService.updateAccountsBalances()
         }
         delay()
         assertOnlyGNOAccountExists()
+    }
+
+    func test_updateAccountsBalances_doesNotOverwriteExitingAccounts() {
+        givenWalletAndTokenItems()
+        DispatchQueue.global().async {
+            self.accountUpdateService.updateAccountsBalances()
+        }
+        delay()
+        let wallet = walletRepository.selectedWallet()!
+        let accountID = AccountID(tokenID: Token.gno.id, walletID: wallet.id)
+        let account = accountRepository.find(id: accountID, walletID: wallet.id)!
+        account.add(amount: 100)
+        accountRepository.save(account)
+        DispatchQueue.global().async {
+            self.accountUpdateService.updateAccountsBalances()
+        }
+        delay()
+        let updatedAccount = accountRepository.find(id: accountID, walletID: wallet.id)!
+        XCTAssertTrue(account.isEqual(to: updatedAccount))
+        XCTAssertEqual(accountRepository.all().count, 1)
+    }
+
+    func test_updateAccountsBalances_UpdatesBalancesForSelectedWalletOnly() {
+        givenWalletAndTokenItems()
+        let wallet = Wallet(id: walletRepository.nextID(), owner: Address.deviceAddress)
+        let portfolio = portfolioRepository.portfolio()!
+        portfolio.addWallet(wallet.id)
+        portfolioRepository.save(portfolio)
+        let account = Account(tokenID: Token.gno.id, walletID: wallet.id, balance: 100)
+        accountRepository.save(account)
+        DispatchQueue.global().async {
+            self.accountUpdateService.updateAccountsBalances()
+        }
+        delay()
+        assertOnlyGNOAccountExists()
+        let accountID = AccountID(tokenID: Token.gno.id, walletID: wallet.id)
+        XCTAssertTrue(accountRepository.find(id: accountID, walletID: wallet.id)!.isEqual(to: account))
     }
 
 }
@@ -71,10 +106,11 @@ private extension AccountUpdateDomainServiceTests {
     }
 
     func assertOnlyGNOAccountExists() {
-        let all = accountRepository.all()
-        XCTAssertEqual(all.count, 1)
-        let accountID = AccountID(tokenID: Token.gno.id, walletID: walletRepository.selectedWallet()!.id)
-        XCTAssertEqual(all.first?.id, accountID)
+        let walletID = walletRepository.selectedWallet()!.id
+        let allForSelectedWallet = accountRepository.all().filter { $0.walletID == walletID }
+        XCTAssertEqual(allForSelectedWallet.count, 1)
+        let accountID = AccountID(tokenID: Token.gno.id, walletID: walletID)
+        XCTAssertEqual(allForSelectedWallet.first?.id, accountID)
     }
 
 }
