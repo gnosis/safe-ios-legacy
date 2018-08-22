@@ -202,3 +202,15 @@ public class PendingSafeViewController: UIViewController {
     }
 
 }
+
+
+extension PendingSafeViewController {
+
+    class State {
+        var canCancel: Bool = true
+        var canRetry: Bool = false
+        var addressText: String?
+        var statusText: String?
+        var progress: Double = 0
+    }
+}

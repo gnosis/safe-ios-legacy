@@ -149,7 +149,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func startDeployment() {
         assert(status: .readyToDeploy)
         status = .deploymentStarted
-        state.proceed()
     }
 
     private func assert(status: Wallet.Status) {
@@ -193,7 +192,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func finishDeployment() {
         assert(status: .deploymentAcceptedByBlockchain)
         status = .readyToUse
-        state.proceed()
     }
 
     public func changeAddress(_ address: Address?) {
@@ -209,6 +207,10 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func updateMinimumTransactionAmount(_ newValue: TokenInt) {
         assert(status: .addressKnown)
         minimumDeploymentTransactionAmount = newValue
+    }
+
+    public func resume() {
+        state.resume()
     }
 
     public func proceed() {

@@ -21,6 +21,9 @@ class WalletState {
         self.wallet = wallet
     }
 
+    /// Republishes event that led to the current state.
+    func resume() {}
+
     /// Moves wallet to the next state in the deployment process. Implemented in subclasses
     func proceed() {}
 
@@ -44,6 +47,10 @@ class DraftState: WalletState {
         canChangeOwners = true
     }
 
+    override func resume() {
+        proceed()
+    }
+
     override func proceed() {
         wallet.state = wallet.deployingState
         if wallet.status == .newDraft {
@@ -51,7 +58,7 @@ class DraftState: WalletState {
             wallet.startDeployment()
         }
         DomainRegistry.walletRepository.save(wallet)
-        DomainRegistry.eventPublisher.publish(DeploymentStarted())
+        wallet.state.resume()
     }
 
 }
@@ -65,10 +72,14 @@ class DeployingState: WalletState {
         canChangeAddress = true
     }
 
+    override func resume() {
+        DomainRegistry.eventPublisher.publish(DeploymentStarted())
+    }
+
     override func proceed() {
         wallet.state = wallet.notEnoughFundsState
         DomainRegistry.walletRepository.save(wallet)
-        DomainRegistry.eventPublisher.publish(WalletConfigured())
+        wallet.state.resume()
     }
 
     override func cancel() {
@@ -81,13 +92,17 @@ class WalletConfigured: DomainEvent {}
 
 class NotEnoughFundsState: WalletState {
 
+    override func resume() {
+        DomainRegistry.eventPublisher.publish(WalletConfigured())
+    }
+
     override func proceed() {
         wallet.state = wallet.creationStartedState
         if wallet.status == .addressKnown {
             wallet.markDeploymentAcceptedByBlockchain()
         }
         DomainRegistry.walletRepository.save(wallet)
-        DomainRegistry.eventPublisher.publish(DeploymentFunded())
+        wallet.state.resume()
     }
 
     override func cancel() {
@@ -100,10 +115,14 @@ class DeploymentFunded: DomainEvent {}
 
 class CreationStartedState: WalletState {
 
+    override func resume() {
+        DomainRegistry.eventPublisher.publish(DeploymentFunded())
+    }
+
     override func proceed() {
         wallet.state = wallet.finalizingDeploymentState
         DomainRegistry.walletRepository.save(wallet)
-        DomainRegistry.eventPublisher.publish(CreationStarted())
+        wallet.state.resume()
     }
 
     override func cancel() {
@@ -120,11 +139,14 @@ class FinalizingDeploymentState: WalletState {
         canChangeTransactionHash = true
     }
 
+    override func resume() {
+        DomainRegistry.eventPublisher.publish(CreationStarted())
+    }
+
     override func proceed() {
         wallet.state = wallet.readyToUseState
         DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.eventPublisher.publish(WalletCreated())
-
     }
 
     override func cancel() {
