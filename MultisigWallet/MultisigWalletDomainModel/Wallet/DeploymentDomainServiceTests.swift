@@ -76,7 +76,28 @@ class DeployingWalletTests: BaseDeploymentDomainServiceTests {
     func test_whenCreationTransactionThrows_thenCancelsDeployment() {
         givenDraftWalletWithAllOwners()
         relayService.expect_createSafeCreationTransaction_throw(TestError.error)
+        deploymentService.start()
         assertDeploymentCancelled()
+    }
+
+    func test_whenNetworkError_thenDoesNotCancel() {
+        givenDraftWalletWithAllOwners()
+        assertSameStateOnError(NetworkServiceError.clientError)
+        assertSameStateOnError(NetworkServiceError.networkError)
+        assertSameStateOnError(NSError.urlError)
+    }
+
+    private func assertSameStateOnError(_ error: Error, line: UInt = #line) {
+        relayService.expect_createSafeCreationTransaction_throw(error)
+        deploymentService.start()
+        XCTAssertTrue(wallet.state === wallet.deployingState, line: line)
+    }
+
+    func test_whenResumes_thenMovesToNextState() {
+        givenDraftWalletWithAllOwners()
+        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), .testResponse)
+        deploymentService.start()
+        XCTAssertTrue(wallet.state === wallet.notEnoughFundsState)
     }
 
 }
@@ -200,6 +221,7 @@ class WalletCreatedTests: BaseDeploymentDomainServiceTests {
     func test_whenCreated_thenNotifiesExtension() {
         givenCreatedWalletWithNotifiedExtension()
         deploymentService.start()
+        wallet.proceed()
         encryptionService.verify()
         notificationService.verify()
     }
@@ -212,6 +234,7 @@ class WalletCreatedTests: BaseDeploymentDomainServiceTests {
                                         publicKey: .testPublicKey))
 
         deploymentService.start()
+        wallet.proceed()
         XCTAssertNil(eoaRepository.find(by: wallet.owner(role: .paperWallet)!.address))
     }
 
@@ -254,21 +277,22 @@ extension BaseDeploymentDomainServiceTests {
         givenDraftWalletWithAllOwners()
         wallet.markReadyToDeploy()
         wallet.startDeployment()
+        wallet.proceed()
         wallet.changeAddress(Address.safeAddress)
         wallet.updateMinimumTransactionAmount(100)
+        wallet.proceed()
     }
 
     func givenFundedWallet() {
         givenConfiguredWallet()
-        wallet.proceed()
         let account = DomainRegistry.accountRepository.find(id: AccountID(Token.Ether.id.id), walletID: wallet.id)!
         account.update(newAmount: 100)
         DomainRegistry.accountRepository.save(account)
+        wallet.proceed()
     }
 
     func givenDeployingWallet(withoutTransaction: Bool = false) {
         givenFundedWallet()
-        wallet.markDeploymentAcceptedByBlockchain()
         if !withoutTransaction {
             wallet.assignCreationTransaction(hash: TransactionHash.test1.value)
         }
@@ -283,7 +307,7 @@ extension BaseDeploymentDomainServiceTests {
     }
 
     func givenCreatedWalletWithNotifiedExtension() {
-        givenCreatedWallet()
+        givenDeployingWallet()
         eoaRepository.save(.testAccount(wallet,
                                         role: .thisDevice,
                                         privateKey: .testPrivateKey,
@@ -321,6 +345,10 @@ extension SendNotificationRequest {
 }
 
 // MARK: - Fixtures
+
+extension NSError {
+    static let urlError = NSError(domain: NSURLErrorDomain, code: 1, userInfo: nil)
+}
 
 extension DeploymentDomainServiceConfiguration {
     static let testConfiguration = DeploymentDomainServiceConfiguration(balance: .testParameters,
