@@ -76,4 +76,8 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: System.self)
     }
 
+    public static var deploymentService: DeploymentDomainService {
+        return service(for: DeploymentDomainService.self)
+    }
+
 }

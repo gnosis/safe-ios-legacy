@@ -13,4 +13,5 @@ public class ErrorStream {
 
     public func post(_ error: Error) {}
 
+    public func addHandler(_ handler: @escaping (Error) -> Void) {}
 }

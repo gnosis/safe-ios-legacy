@@ -19,4 +19,8 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: EthereumApplicationService.self)
     }
 
+    static var eventRelay: EventRelay {
+        return service(for: EventRelay.self)
+    }
+
 }

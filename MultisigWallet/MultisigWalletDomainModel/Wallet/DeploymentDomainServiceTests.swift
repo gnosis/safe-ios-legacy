@@ -326,7 +326,7 @@ extension BaseDeploymentDomainServiceTests {
     func assertThrows(_ error: Error, line: UInt = #line) {
         errorStream.expect_post(error)
         deploymentService.start()
-        errorStream.verify(line: line)
+        XCTAssertTrue(errorStream.verify(), line: line)
     }
 
     func assertDeploymentCancelled(line: UInt = #line) {

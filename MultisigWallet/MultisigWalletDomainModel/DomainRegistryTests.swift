@@ -26,6 +26,9 @@ class DomainRegistryTests: XCTestCase {
         DomainRegistry.put(service: MockTokenListService(), for: TokenListDomainService.self)
         DomainRegistry.put(service: MockSynchronisationService(), for: SynchronisationDomainService.self)
         DomainRegistry.put(service: MockEventPublisher(), for: EventPublisher.self)
+        DomainRegistry.put(service: MockErrorStream(), for: ErrorStream.self)
+        DomainRegistry.put(service: MockSystem(), for: System.self)
+        DomainRegistry.put(service: MockDeploymentDomainService(), for: DeploymentDomainService.self)
 
         XCTAssertNotNil(DomainRegistry.walletRepository)
         XCTAssertNotNil(DomainRegistry.portfolioRepository)
@@ -42,6 +45,9 @@ class DomainRegistryTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.tokenListService)
         XCTAssertNotNil(DomainRegistry.syncService)
         XCTAssertNotNil(DomainRegistry.eventPublisher)
+        XCTAssertNotNil(DomainRegistry.errorStream)
+        XCTAssertNotNil(DomainRegistry.system)
+        XCTAssertNotNil(DomainRegistry.deploymentService)
     }
 
 }

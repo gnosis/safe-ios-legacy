@@ -37,6 +37,11 @@ class EventRelay {
         }
     }
 
+    func reset(publisher: EventPublisher) {
+        subscribers = []
+        publisher.subscribe(handleEvent)
+    }
+
     private func handleEvent(_ event: DomainEvent) {
         subscribers = subscribers.filter { $0.subscriber.ref != nil }
         subscribers.filter {

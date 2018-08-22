@@ -2,27 +2,35 @@
 //  Copyright © 2018 Gnosis Ltd. All rights reserved.
 //
 
-import XCTest
-@testable import MultisigWalletDomainModel
+import Foundation
 
-class MockErrorStream: ErrorStream {
+public class MockErrorStream: ErrorStream {
 
     private var expected_errors = [Error]()
     private var actual_errors = [Error]()
 
-    func expect_post(_ error: Error) {
+    public func expect_post(_ error: Error) {
         expected_errors.append(error)
     }
 
-    override func post(_ error: Error) {
+    override public func post(_ error: Error) {
         actual_errors.append(error)
     }
 
-    func verify(line: UInt = #line, file: StaticString = #file) {
-        XCTAssertEqual(actual_errors.map { $0.localizedDescription },
-                       expected_errors.map { $0.localizedDescription },
-                       file: file,
-                       line: line)
+    public func verify() -> Bool {
+        return actual_errors.map { $0.localizedDescription } == expected_errors.map { $0.localizedDescription } &&
+            actual_addHandler == expected_addHandler
+    }
+
+    private var expected_addHandler = [String]()
+    private var actual_addHandler = [String]()
+
+    public func expect_addHandler() {
+        expected_addHandler.append("addHandler")
+    }
+
+    public override func addHandler(_ handler: @escaping (Error) -> Void) {
+        actual_addHandler.append(#function)
     }
 
 }

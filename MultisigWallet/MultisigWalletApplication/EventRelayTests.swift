@@ -54,6 +54,13 @@ class EventRelayTests: XCTestCase {
         subscriber.verify()
     }
 
+    func test_whenReset_thenNotNotified() {
+        relay.subscribe(subscriber, for: DomainEvent.self)
+        relay.reset(publisher: publisher)
+        publisher.publish(MyEvent())
+        subscriber.verify()
+    }
+
 }
 
 class BlockSubscriber: EventSubscriber {
