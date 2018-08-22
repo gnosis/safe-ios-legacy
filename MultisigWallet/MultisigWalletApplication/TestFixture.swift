@@ -40,4 +40,10 @@ extension Token {
                            address: Address("0x152Af9AD40ccEF2060CD14356647Ee1773A43437"),
                            logoUrl: "")
 
+    static let rdn = Token(code: "RDN",
+                           name: "Raiden",
+                           decimals: 18,
+                           address: Address("0x8aa852b299c748a5ab8bd2764309f8c3c756bd3b"),
+                           logoUrl: "")
+
 }

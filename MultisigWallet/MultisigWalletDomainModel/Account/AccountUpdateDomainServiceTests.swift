@@ -74,10 +74,7 @@ class AccountUpdateDomainServiceTests: XCTestCase {
 
     func test_updateAccountsBalances_UpdatesBalancesForSelectedWalletOnly() {
         givenWalletAndTokenItems()
-        let wallet = Wallet(id: walletRepository.nextID(), owner: Address.deviceAddress)
-        let portfolio = portfolioRepository.portfolio()!
-        portfolio.addWallet(wallet.id)
-        portfolioRepository.save(portfolio)
+        let wallet = addNewWalletToPortfolio()
         let account = Account(tokenID: Token.gno.id, walletID: wallet.id, balance: 100)
         accountRepository.save(account)
         DispatchQueue.global().async {
@@ -87,6 +84,26 @@ class AccountUpdateDomainServiceTests: XCTestCase {
         assertOnlyGNOAccountExists()
         let accountID = AccountID(tokenID: Token.gno.id, walletID: wallet.id)
         XCTAssertTrue(accountRepository.find(id: accountID, walletID: wallet.id)!.isEqual(to: account))
+    }
+
+    func test_updateAccountsBalances_updatesBalancesForSelectedWalletOnly() {
+        givenWalletAndTokenItems()
+        let newWallet = addNewWalletToPortfolio()
+        let account = Account(tokenID: Token.gno.id, walletID: newWallet.id)
+        accountRepository.save(account)
+        DispatchQueue.global().async {
+            self.accountUpdateService.updateAccountsBalances()
+        }
+        delay()
+        assertOnlyGNOAccountExists()
+        let selectedWallet = walletRepository.selectedWallet()!
+        let accountID = AccountID(tokenID: Token.gno.id, walletID: selectedWallet.id)
+        let updatedAccount = accountRepository.find(id: accountID, walletID: selectedWallet.id)!
+        XCTAssertNotNil(updatedAccount.balance)
+
+        let oldAccountID = AccountID(tokenID: Token.gno.id, walletID: newWallet.id)
+        let account2 = accountRepository.find(id: oldAccountID, walletID: newWallet.id)!
+        XCTAssertNil(account2.balance)
     }
 
 }
@@ -111,6 +128,14 @@ private extension AccountUpdateDomainServiceTests {
         XCTAssertEqual(allForSelectedWallet.count, 1)
         let accountID = AccountID(tokenID: Token.gno.id, walletID: walletID)
         XCTAssertEqual(allForSelectedWallet.first?.id, accountID)
+    }
+
+    private func addNewWalletToPortfolio() -> Wallet {
+        let wallet = Wallet(id: walletRepository.nextID(), owner: Address.deviceAddress)
+        let portfolio = portfolioRepository.portfolio()!
+        portfolio.addWallet(wallet.id)
+        portfolioRepository.save(portfolio)
+        return wallet
     }
 
 }

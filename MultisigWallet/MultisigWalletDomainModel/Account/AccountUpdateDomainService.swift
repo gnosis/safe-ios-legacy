@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import BigInt
 
 open class AccountUpdateDomainService {
 
@@ -12,7 +13,7 @@ open class AccountUpdateDomainService {
     open func updateAccountsBalances() {
         precondition(!Thread.isMainThread)
         addMissingAccountsForWhitelistedTokenItems()
-//        updateBalancesForWhitelistedAccounts()
+        updateBalancesForWhitelistedAccounts()
     }
 
     private func addMissingAccountsForWhitelistedTokenItems() {
@@ -29,24 +30,28 @@ open class AccountUpdateDomainService {
         }
     }
 
-//    private func updateBalancesForWhitelistedAccounts() {
-//        let allAccountsIds = DomainRegistry.accountRepository.all().map { $0.id.id }
-//        let whitelistedItemsIds = DomainRegistry.tokenListItemRepository.all().filter {
-//            $0.status == .whitelisted }.map { $0.id.id }
-//        let whitelistedAccountsIds = allAccountsIds.filter { whitelistedItemsIds.index(of: $0) != nil }
-//    }
-//
-//    private func updateAccountsBalances(_ accountIds: [String]) {
-//        guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return }
-//        let random = randomDecimal(0..<100)
-//        accountIds.forEach { id in
-//            let account = DomainRegistry.accountRepository.find(id: AccountID(id), walletID: wallet.id)
-//        }
-//    }
-//
-//    private func randomDecimal(_ range: Range<Double>) -> Double {
-//        let random0to1 = Double(arc4random_uniform(.max)) / Double(UInt32.max)
-//        return range.lowerBound + random0to1 * (range.upperBound - range.lowerBound)
-//    }
+    private func updateBalancesForWhitelistedAccounts() {
+        guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return }
+        let allWalletAccountsIds = DomainRegistry.accountRepository.all()
+            .filter { $0.walletID == wallet.id }
+            .map { $0.id }
+        let whitelistedItemsTokensIds = DomainRegistry.tokenListItemRepository.all().filter {
+            $0.status == .whitelisted }.map { $0.id }
+        let whitelistedAccountsIds = allWalletAccountsIds.filter {
+            whitelistedItemsTokensIds.index(of: $0.tokenID) != nil
+        }
+        updateAccountsBalances(whitelistedAccountsIds)
+    }
+
+    // TODO: add real implementation
+    private func updateAccountsBalances(_ accountIDs: [AccountID]) {
+        accountIDs.forEach { id in
+            let account = DomainRegistry.accountRepository.find(id: id, walletID: id.walletID)!
+            if account.balance == nil {
+                account.add(amount: TokenInt(arc4random_uniform(100)))
+                DomainRegistry.accountRepository.save(account)
+            }
+        }
+    }
 
 }
