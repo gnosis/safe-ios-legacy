@@ -34,7 +34,7 @@ public class WalletState {
 
 extension WalletState: CustomStringConvertible {
 
-    var description: String {
+    public var description: String {
         return String(describing: type(of: self))
     }
 
