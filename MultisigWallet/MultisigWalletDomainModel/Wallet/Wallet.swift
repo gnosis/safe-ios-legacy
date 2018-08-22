@@ -35,14 +35,14 @@ public class Wallet: IdentifiableEntity<WalletID> {
         fileprivate let minimumDeploymentTransactionAmount: TokenInt?
     }
 
-    internal var state: WalletState!
+    public var state: WalletState!
 
-    internal private(set) var newDraftState: WalletState!
-    internal private(set) var deployingState: WalletState!
-    internal private(set) var notEnoughFundsState: WalletState!
-    internal private(set) var creationStartedState: WalletState!
-    internal private(set) var finalizingDeploymentState: WalletState!
-    internal private(set) var readyToUseState: WalletState!
+    public private(set) var newDraftState: WalletState!
+    public private(set) var deployingState: WalletState!
+    public private(set) var notEnoughFundsState: WalletState!
+    public private(set) var creationStartedState: WalletState!
+    public private(set) var finalizingDeploymentState: WalletState!
+    public private(set) var readyToUseState: WalletState!
 
     private lazy var allStates: [WalletState?] = [
         newDraftState, deployingState, notEnoughFundsState,
