@@ -246,7 +246,7 @@ extension BaseDeploymentDomainServiceTests {
         let portfolio = Portfolio(id: portfolioRepository.nextID())
         portfolio.addWallet(wallet.id)
         portfolioRepository.save(portfolio)
-        let account = Account(id: AccountID(Token.Ether.id.id), walletID: wallet.id, balance: 0)
+        let account = Account(id: AccountID(Token.Ether.id.id), walletID: wallet.id, balance: nil)
         DomainRegistry.accountRepository.save(account)
     }
 

@@ -103,9 +103,9 @@ public class WalletApplicationService: Assertable {
             return .deploymentStarted
         case .addressKnown:
             let account = findAccount(Token.Ether.id)!
-            if account.balance == 0 {
+            if account.balance == nil {
                 return .addressKnown
-            } else if account.balance < wallet.minimumDeploymentTransactionAmount! {
+            } else if account.balance! < wallet.minimumDeploymentTransactionAmount! {
                 return .notEnoughFunds
             } else {
                 return .accountFunded
@@ -153,7 +153,7 @@ public class WalletApplicationService: Assertable {
             let portfolio = fetchOrCreatePortfolio()
             let address = ethereumService.generateExternallyOwnedAccount().address
             let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(), owner: Address(address))
-            let account = Account(id: AccountID(Token.Ether.id.id), walletID: wallet.id, balance: 0)
+            let account = Account(id: AccountID(Token.Ether.id.id), walletID: wallet.id, balance: nil)
             portfolio.addWallet(wallet.id)
             DomainRegistry.walletRepository.save(wallet)
             DomainRegistry.portfolioRepository.save(portfolio)

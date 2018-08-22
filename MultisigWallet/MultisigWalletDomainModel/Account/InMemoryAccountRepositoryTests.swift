@@ -18,8 +18,9 @@ class InMemoryAccountRepositoryTests: XCTestCase {
         XCTAssertEqual(repository.find(id: AccountID("0x0"), walletID: account.walletID), account)
         let account2 = Account(id: AccountID("0x1"),
                                walletID: WalletID(),
-                               balance: 0)
+                               balance: nil)
         repository.save(account2)
+
         let all = repository.all()
         XCTAssertEqual(all.count, 2)
         XCTAssertEqual(Set([account, account2]), Set(all))

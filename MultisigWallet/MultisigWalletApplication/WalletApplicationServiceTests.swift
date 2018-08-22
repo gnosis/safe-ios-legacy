@@ -76,7 +76,7 @@ class WalletApplicationServiceTests: XCTestCase {
         let account = accountRepository.find(id: eth, walletID: wallet.id)
         XCTAssertNotNil(account)
         XCTAssertEqual(account?.id, eth)
-        XCTAssertEqual(account?.balance, 0)
+        XCTAssertEqual(account?.balance, nil)
     }
 
     func test_whenDeploymentStarted_thenInPendingState() throws {
@@ -220,7 +220,7 @@ class WalletApplicationServiceTests: XCTestCase {
         let wallet = try selectedWallet()
         let account = try findAccount(ethID.id)
         XCTAssertEqual(wallet.minimumDeploymentTransactionAmount, 100)
-        XCTAssertEqual(account.balance, 0)
+        XCTAssertEqual(account.balance, nil)
         XCTAssertEqual(wallet.address, Address.safeAddress)
     }
 

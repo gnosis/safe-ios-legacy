@@ -12,7 +12,7 @@ public class AccountID: BaseID {}
 public class Account: IdentifiableEntity<AccountID> {
 
     /// Token balance, in smallest token units.
-    public private(set) var balance: TokenInt
+    public private(set) var balance: TokenInt?
     /// Wallet to which this account belongs to.
     public let walletID: WalletID
 
@@ -22,7 +22,7 @@ public class Account: IdentifiableEntity<AccountID> {
     ///   - id: account identifier
     ///   - walletID: wallet identifier
     ///   - balance: balance of the account, in smallest token units
-    public init(id: AccountID, walletID: WalletID, balance: TokenInt) {
+    public init(id: AccountID, walletID: WalletID, balance: TokenInt?) {
         self.balance = balance
         self.walletID = walletID
         super.init(id: id)
@@ -39,14 +39,16 @@ public class Account: IdentifiableEntity<AccountID> {
     ///
     /// - Parameter amount: amount to add to balance
     public func add(amount: TokenInt) {
-        balance += amount
+        if balance == nil { balance = 0 }
+        balance! += amount
     }
 
     /// Decreases balance by the amount
     ///
     /// - Parameter amount: amount to subtract from balance
     public func withdraw(amount: TokenInt) {
-        balance -= amount
+        precondition(balance != nil && balance! >= amount)
+        balance! -= amount
     }
 
 }
