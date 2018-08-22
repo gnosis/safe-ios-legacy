@@ -36,7 +36,7 @@ class SynchronisationServiceTests: XCTestCase {
         delay(retryInterval)
         assertTokenListSyncInProgress()
         tokenListService.shouldThrow = false
-        delay(retryInterval * 2)
+        delay(retryInterval * 3)
         assertTokenListSyncSuccess()
     }
 
