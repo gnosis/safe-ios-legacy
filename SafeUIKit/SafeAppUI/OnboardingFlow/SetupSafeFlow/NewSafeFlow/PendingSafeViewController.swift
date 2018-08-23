@@ -15,7 +15,7 @@ public protocol PendingSafeViewControllerDelegate: class {
     func deploymentDidCancel()
 }
 
-public class PendingSafeViewController: UIViewController {
+public class PendingSafeViewController: UIViewController, EventSubscriber {
 
     private struct Strings {
 
@@ -67,6 +67,9 @@ public class PendingSafeViewController: UIViewController {
         return queue
     }()
 
+    internal var state: State!
+    internal var deployingState: DeployingState!
+
     public static func create(delegate: PendingSafeViewControllerDelegate? = nil) -> PendingSafeViewController {
         let controller = StoryboardScene.NewSafe.pendingSafeViewController.instantiate()
         controller.delegate = delegate
@@ -84,6 +87,9 @@ public class PendingSafeViewController: UIViewController {
         progressStatusLabel.text = nil
         progressStatusLabel.accessibilityIdentifier = "pending_safe.status"
         progressView.progress = 0
+
+        deployingState = DeployingState()
+
         updateStatus()
         walletService.setErrorHandler(handleError)
         subscription = walletService.subscribe(updateStatus)
@@ -95,6 +101,23 @@ public class PendingSafeViewController: UIViewController {
             walletService.unsubscribe(subscription: subscription)
         }
         walletService.setErrorHandler(nil)
+    }
+
+    private func deploy() {
+        DispatchQueue.global().async { [unowned self] in
+            ApplicationServiceRegistry.walletService.deployWallet(subscriber: self) { error in
+                DispatchQueue.main.async {
+                    self.handleError(error)
+                }
+            }
+        }
+    }
+
+    public func notify() {
+        let newState = state(from: ApplicationServiceRegistry.walletService.walletState()!)
+        DispatchQueue.main.async {
+            self.state = newState
+        }
     }
 
     private func startDeployment() {
@@ -200,5 +223,27 @@ public class PendingSafeViewController: UIViewController {
     @IBAction func copySafeAddress(_ sender: Any) {
         UIPasteboard.general.string = walletService.selectedWalletAddress!
     }
+
+}
+
+
+extension PendingSafeViewController {
+
+    func state(from walletState: WalletState1) -> State {
+        switch walletState {
+        case .deploying: return deployingState
+        default: preconditionFailure()
+        }
+    }
+
+    class State {
+        var canCancel: Bool = true
+        var canRetry: Bool = false
+        var addressText: String?
+        var statusText: String?
+        var progress: Double = 0
+    }
+
+    class DeployingState: State {}
 
 }

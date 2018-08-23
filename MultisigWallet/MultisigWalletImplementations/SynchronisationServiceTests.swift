@@ -59,7 +59,7 @@ private extension SynchronisationServiceTests {
 
     private func assertTokenListSyncSuccess() {
         XCTAssertTrue(tokenListService.didReturnItems)
-        publisher.verify()
+        XCTAssertTrue(publisher.verify())
     }
 
     private func assertTokenListSyncInProgress() {

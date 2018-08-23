@@ -35,14 +35,14 @@ public class Wallet: IdentifiableEntity<WalletID> {
         fileprivate let minimumDeploymentTransactionAmount: TokenInt?
     }
 
-    internal var state: WalletState!
+    public var state: WalletState!
 
-    internal private(set) var newDraftState: WalletState!
-    internal private(set) var deployingState: WalletState!
-    internal private(set) var notEnoughFundsState: WalletState!
-    internal private(set) var creationStartedState: WalletState!
-    internal private(set) var finalizingDeploymentState: WalletState!
-    internal private(set) var readyToUseState: WalletState!
+    public private(set) var newDraftState: WalletState!
+    public private(set) var deployingState: WalletState!
+    public private(set) var notEnoughFundsState: WalletState!
+    public private(set) var creationStartedState: WalletState!
+    public private(set) var finalizingDeploymentState: WalletState!
+    public private(set) var readyToUseState: WalletState!
 
     private lazy var allStates: [WalletState?] = [
         newDraftState, deployingState, notEnoughFundsState,
@@ -149,7 +149,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func startDeployment() {
         assert(status: .readyToDeploy)
         status = .deploymentStarted
-        state.proceed()
     }
 
     private func assert(status: Wallet.Status) {
@@ -193,7 +192,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func finishDeployment() {
         assert(status: .deploymentAcceptedByBlockchain)
         status = .readyToUse
-        state.proceed()
     }
 
     public func changeAddress(_ address: Address?) {
@@ -209,6 +207,10 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func updateMinimumTransactionAmount(_ newValue: TokenInt) {
         assert(status: .addressKnown)
         minimumDeploymentTransactionAmount = newValue
+    }
+
+    public func resume() {
+        state.resume()
     }
 
     public func proceed() {

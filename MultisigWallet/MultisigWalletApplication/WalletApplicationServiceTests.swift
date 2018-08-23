@@ -24,6 +24,11 @@ class WalletApplicationServiceTests: XCTestCase {
     let encryptionService = MockEncryptionService()
     let eoaRepo = InMemoryExternallyOwnedAccountRepository()
 
+    let eventPublisher = MockEventPublisher()
+    var eventRelay: MockEventRelay!
+    let deploymentService = MockDeploymentDomainService()
+    let errorStream = MockErrorStream()
+
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
         case accountNotFound
@@ -31,25 +36,49 @@ class WalletApplicationServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        eventRelay = MockEventRelay(publisher: eventPublisher)
+
         DomainRegistry.put(service: transactionRepository, for: TransactionRepository.self)
         DomainRegistry.put(service: eoaRepo, for: ExternallyOwnedAccountRepository.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
 
-        MultisigWalletDomainModel.DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: tokensService, for: PushTokensDomainService.self)
-        MultisigWalletApplication.ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
-        MultisigWalletApplication.ApplicationServiceRegistry.put(service: ethereumService,
-                                                                 for: EthereumApplicationService.self)
+        DomainRegistry.put(service: deploymentService, for: DeploymentDomainService.self)
+        DomainRegistry.put(service: eventPublisher, for: EventPublisher.self)
+        DomainRegistry.put(service: errorStream, for: ErrorStream.self)
+
+        ApplicationServiceRegistry.put(service: eventRelay, for: EventRelay.self)
+
+        DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
+        DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
+        DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
+        DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
+        DomainRegistry.put(service: tokensService, for: PushTokensDomainService.self)
+        ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
+        ApplicationServiceRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
         DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
 
         ethereumService.createSafeCreationTransaction_output =
             SafeCreationTransactionData(safe: Address.safeAddress.value, payment: 100)
         ethereumService.prepareToGenerateExternallyOwnedAccount(address: Address.deviceAddress.value,
                                                                 mnemonic: ["a", "b"])
+    }
+
+    class MySubscriber: EventSubscriber {
+        func notify() {}
+    }
+
+    func test_whenDeployingWallet_thenResetsPublisher() {
+        let subscriber = MySubscriber()
+        eventPublisher.expect_reset()
+        eventRelay.expect_reset()
+        errorStream.expect_addHandler()
+        deploymentService.expect_start()
+        // swiftlint:disable:next trailing_closure
+        service.deployWallet(subscriber: subscriber, onError: { _ in /* empty */ })
+        XCTAssertTrue(deploymentService.verify())
+        XCTAssertTrue(eventPublisher.verify())
+        XCTAssertTrue(eventRelay.verify())
+        XCTAssertTrue(errorStream.verify())
     }
 
     func test_whenCreatingNewDraft_thenCreatesPortfolio() throws {

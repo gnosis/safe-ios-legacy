@@ -24,7 +24,7 @@ public class DeploymentDomainService {
         DomainRegistry.eventPublisher.subscribe(walletCreated)
         DomainRegistry.eventPublisher.subscribe(creationFailed)
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        wallet.proceed()
+        wallet.resume()
     }
 
     func deploymentStarted(_ event: DeploymentStarted) {
@@ -124,7 +124,17 @@ public class DeploymentDomainService {
             try closure(wallet)
         } catch let error {
             DomainRegistry.errorStream.post(error)
-            wallet.cancel()
+            switch error {
+            case NetworkServiceError.networkError, NetworkServiceError.clientError: break
+            case let e as NSError:
+                if e.domain == NSURLErrorDomain {
+                    break
+                } else {
+                    fallthrough
+                }
+            default: wallet.cancel()
+            }
+
         }
         DomainRegistry.walletRepository.save(wallet)
     }
