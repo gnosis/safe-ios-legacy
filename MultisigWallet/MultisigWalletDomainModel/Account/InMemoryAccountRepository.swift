@@ -33,4 +33,8 @@ public class InMemoryAccountRepository: AccountRepository {
         return accounts[ID(accountID: id, walletID: walletID)]
     }
 
+    public func all() -> [Account] {
+        return Array(accounts.values)
+    }
+
 }

@@ -45,9 +45,9 @@ public class MockWalletApplicationService: WalletApplicationService {
     public var shouldThrow = false
 
     private var existingOwners: [OwnerType: String] = [:]
-    private var accounts: [BaseID: BigInt] = [:]
-    private var minimumFunding: [BaseID: BigInt] = [:]
-    private var funds: [BaseID: BigInt] = [:]
+    private var accounts: [TokenID: BigInt] = [:]
+    private var minimumFunding: [TokenID: BigInt] = [:]
+    private var funds: [TokenID: BigInt] = [:]
     private var subscriptions: [String: () -> Void] = [:]
 
     public func createReadyToUseWallet() {
@@ -90,11 +90,11 @@ public class MockWalletApplicationService: WalletApplicationService {
 
     public override func update(account: BaseID, newBalance: BigInt?) {
         guard let newBalance = newBalance else {
-            funds.removeValue(forKey: account)
+            funds.removeValue(forKey: TokenID(account.id))
             return
         }
-        funds[account] = newBalance
-        if let minimum = minimumFunding[account], newBalance >= minimum {
+        funds[TokenID(account.id)] = newBalance
+        if let minimum = minimumFunding[TokenID(account.id)], newBalance >= minimum {
             _selectedWalletState = .accountFunded
         } else {
             _selectedWalletState = .notEnoughFunds
@@ -103,11 +103,11 @@ public class MockWalletApplicationService: WalletApplicationService {
 
     public func updateMinimumFunding(account: BaseID, amount: BigInt) {
         deploymentAmount = amount
-        minimumFunding[account] = amount
+        minimumFunding[TokenID(account.id)] = amount
     }
 
     public override func accountBalance(tokenID: BaseID) -> BigInt? {
-        return funds[tokenID]
+        return funds[TokenID(tokenID.id)]
     }
 
     public override func markDeploymentAcceptedByBlockchain() {

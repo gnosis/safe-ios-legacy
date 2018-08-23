@@ -25,4 +25,9 @@ public protocol AccountRepository {
     /// - Returns: account if found, or nil otherwise.
     func find(id: AccountID, walletID: WalletID) -> Account?
 
+    /// Return all accounts
+    ///
+    /// - Returns: all accounts
+    func all() -> [Account]
+
 }

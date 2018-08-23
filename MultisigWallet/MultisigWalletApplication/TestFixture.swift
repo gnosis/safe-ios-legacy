@@ -25,3 +25,25 @@ extension TransactionHash {
     static let test2 = TransactionHash("0x106ad2efd3e27f424e63b7398d10c2a63708d2a7bfb495d85704e5bf2ecacc5d")
 
 }
+
+extension Token {
+
+    static let gno = Token(code: "GNO",
+                           name: "Gnosis",
+                           decimals: 18,
+                           address: Address("0x36276f1f2cb8e9c11c508aad00556f819c5ad876"),
+                           logoUrl: "")
+
+    static let mgn = Token(code: "MGN",
+                           name: "Magnolia",
+                           decimals: 18,
+                           address: Address("0x152Af9AD40ccEF2060CD14356647Ee1773A43437"),
+                           logoUrl: "")
+
+    static let rdn = Token(code: "RDN",
+                           name: "Raiden",
+                           decimals: 18,
+                           address: Address("0x8aa852b299c748a5ab8bd2764309f8c3c756bd3b"),
+                           logoUrl: "")
+
+}
