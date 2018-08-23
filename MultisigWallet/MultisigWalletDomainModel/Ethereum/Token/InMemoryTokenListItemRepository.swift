@@ -12,6 +12,16 @@ public class InMemoryTokenListItemRepository: TokenListItemRepository {
     public init() {}
 
     public func save(_ tokenListItem: TokenListItem) {
+        if let existingItem = find(id: tokenListItem.id), existingItem.status == .whitelisted {
+            if tokenListItem.status != .whitelisted {
+                tokenListItem.updateSortingId(with: nil)
+            }
+        } else {
+            if tokenListItem.status == .whitelisted {
+                let lastWhitelistedId = whitelisted().last?.sortingId ?? -1
+                tokenListItem.updateSortingId(with: lastWhitelistedId + 1)
+            }
+        }
         items[tokenListItem.id] = tokenListItem
     }
 
@@ -28,7 +38,7 @@ public class InMemoryTokenListItemRepository: TokenListItemRepository {
     }
 
     public func whitelisted() -> [TokenListItem] {
-        return Array(items.values).filter { $0.status == .whitelisted }
+        return Array(items.values).filter { $0.status == .whitelisted }.sorted { $0.sortingId! < $1.sortingId! }
     }
 
 }
