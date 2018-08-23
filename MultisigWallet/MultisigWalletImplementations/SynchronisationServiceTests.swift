@@ -10,16 +10,20 @@ import CommonTestSupport
 class SynchronisationServiceTests: XCTestCase {
 
     var syncService: SynchronisationService!
-    let publisher = MockEventPublisher()
     let tokenListService = MockTokenListService()
     let accountService = MockAccountUpdateDomainService()
     let tokenListItemRepository = InMemoryTokenListItemRepository()
+    let portfolioRepository = InMemorySinglePortfolioRepository()
+    let walletRepository = InMemoryWalletRepository()
+    let publisher = MockEventPublisher()
     let retryInterval: TimeInterval = 0.5
 
     override func setUp() {
         super.setUp()
         DomainRegistry.put(service: tokenListService, for: TokenListDomainService.self)
         DomainRegistry.put(service: tokenListItemRepository, for: TokenListItemRepository.self)
+        DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
+        DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         DomainRegistry.put(service: publisher, for: EventPublisher.self)
         syncService = SynchronisationService(retryInterval: retryInterval, accountService: accountService)
     }

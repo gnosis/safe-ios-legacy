@@ -25,6 +25,15 @@ class AccountUpdateDomainServiceTests: XCTestCase {
 
     }
 
+    func test_updateAccountsBalances_doesNotUpdateWhenNoWalletIsCreated() {
+        DispatchQueue.global().async {
+            self.accountUpdateService.updateAccountsBalances()
+        }
+        delay()
+        XCTAssertNil(walletRepository.selectedWallet())
+        XCTAssertTrue(accountRepository.all().isEmpty)
+    }
+
     func test_updateAccountsBalances_addsMissingAccounts() {
         givenEmptyWalletAndTokenItemsWithWhitelistedGNO()
         XCTAssertEqual(accountRepository.all().count, 0)
