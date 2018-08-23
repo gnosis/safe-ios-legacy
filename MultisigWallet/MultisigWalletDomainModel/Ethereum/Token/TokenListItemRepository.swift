@@ -29,4 +29,9 @@ public protocol TokenListItemRepository {
     /// - Returns: token list items.
     func all() -> [TokenListItem]
 
+    /// Return whitelisted token list items.
+    ///
+    /// - Returns: token list items.
+    func whitelisted() -> [TokenListItem]
+
 }

@@ -27,4 +27,8 @@ public class InMemoryTokenListItemRepository: TokenListItemRepository {
         return Array(items.values).sorted { $0.token.code < $1.token.code }
     }
 
+    public func whitelisted() -> [TokenListItem] {
+        return Array(items.values).filter { $0.status == .whitelisted }
+    }
+
 }

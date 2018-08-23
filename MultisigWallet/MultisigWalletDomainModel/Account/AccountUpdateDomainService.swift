@@ -46,9 +46,7 @@ open class AccountUpdateDomainService {
     }
 
     private func whitelisteItemsTokensIds() -> [TokenID] {
-        return DomainRegistry.tokenListItemRepository.all()
-            .filter { $0.status == .whitelisted }
-            .map { $0.id }
+        return DomainRegistry.tokenListItemRepository.whitelisted().map { $0.id }
     }
 
     private func allSelectedWalletAccountsIds() -> [AccountID] {
