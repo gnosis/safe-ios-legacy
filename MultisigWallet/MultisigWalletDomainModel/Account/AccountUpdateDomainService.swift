@@ -5,6 +5,8 @@
 import Foundation
 import BigInt
 
+public class AccountsBalancesUpdated: DomainEvent {}
+
 open class AccountUpdateDomainService {
 
     public init() {}
@@ -13,6 +15,7 @@ open class AccountUpdateDomainService {
         precondition(!Thread.isMainThread)
         addMissingAccountsForWhitelistedTokenItems()
         updateBalancesForWhitelistedAccounts()
+        DomainRegistry.eventPublisher.publish(AccountsBalancesUpdated())
     }
 
     private func addMissingAccountsForWhitelistedTokenItems() {
