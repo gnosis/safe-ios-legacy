@@ -69,8 +69,15 @@ public class DeploymentDomainService {
 
     func creationStarted(_ event: CreationStarted) {
         handleError { wallet in
+            synchronise()
             try waitForCreationTransactionHash(wallet)
             try waitForCreationTransactionCompletion(wallet)
+        }
+    }
+
+    private func synchronise() {
+        DispatchQueue.global().async {
+            DomainRegistry.syncService.sync()
         }
     }
 
