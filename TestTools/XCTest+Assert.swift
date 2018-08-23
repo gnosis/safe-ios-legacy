@@ -1,4 +1,4 @@
-//
+    //
 //  Copyright © 2018 Gnosis Ltd. All rights reserved.
 //
 
@@ -48,14 +48,19 @@ func XCTAssertPredicate(_ closure: @autoclosure () throws -> XCUIElement,
 public func XCTAssertAlertShown(message expectedMessage: String? = nil, file: StaticString = #file, line: UInt = #line) {
     XCTAssertNotNil(UIApplication.shared.keyWindow?.rootViewController, file: file, line: line)
     guard let vc = UIApplication.shared.keyWindow?.rootViewController else { return }
-    XCTAssertEqual(vc.view.backgroundColor, .clear, file: file, line: line)
     XCTAssertNotNil(vc.presentedViewController, file: file, line: line)
-    guard let alertVC = vc.presentedViewController as? UIAlertController else { return }
+    let alert = (vc.presentedViewController as? UIAlertController) ??
+        (vc.presentedViewController?.presentedViewController as? UIAlertController)
+    XCTAssertNotNil(alert)
+    guard let alertVC = alert else { return }
     if let expectedMessage = expectedMessage {
         XCTAssertEqual(alertVC.message, expectedMessage, file: file, line: line)
     }
     XCTAssertEqual(alertVC.actions.count, 1, file: file, line: line)
     XCTAssertNotNil(alertVC.title, file: file, line: line)
     XCTAssertNotNil(alertVC.actions.first?.title, file: file, line: line)
+    if let action = alertVC.actions.first {
+        action.test_handler?(action)
+    }
 }
 

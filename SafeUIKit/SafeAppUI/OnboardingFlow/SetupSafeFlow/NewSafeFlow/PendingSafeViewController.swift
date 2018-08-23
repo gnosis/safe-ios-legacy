@@ -133,7 +133,9 @@ public class PendingSafeViewController: UIViewController, EventSubscriber {
     }
 
     private func notifyUser(error: String) {
-        let controller = SafeCreationFailedAlertController.create(localizedErrorDescription: error) {}
+        let controller = SafeCreationFailedAlertController.create(localizedErrorDescription: error) {
+            // empty
+        }
         present(controller, animated: true, completion: nil)
     }
 
