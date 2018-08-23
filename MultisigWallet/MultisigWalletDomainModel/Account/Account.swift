@@ -45,9 +45,7 @@ public class Account: IdentifiableEntity<AccountID> {
     ///   - tokenID: account token identifier
     ///   - walletID: wallet identifier
     ///   - balance: balance of the account, in smallest token units
-    public init(tokenID: TokenID,
-                walletID: WalletID? = nil,
-                balance: TokenInt? = nil) {
+    public init(tokenID: TokenID, walletID: WalletID? = nil, balance: TokenInt? = nil) {
         if walletID != nil {
             self.walletID = walletID!
         } else {
