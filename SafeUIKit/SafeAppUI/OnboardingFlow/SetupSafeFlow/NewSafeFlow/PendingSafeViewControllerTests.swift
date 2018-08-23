@@ -36,6 +36,15 @@ class PendingSafeViewControllerTests: SafeTestCase {
         assert(progress: 10, status: "pending_safe.status.deployment_started")
     }
 
+    func test_whenNotified_thenFetchesState() {
+        loadController()
+        walletService.expect_walletState(.deploying)
+        controller.notify()
+        delay()
+        XCTAssertTrue(walletService.verify())
+        XCTAssertTrue(controller.state === controller.deployingState)
+    }
+
     func test_whenAddressKnown_thenDisplaysStatus() {
         loadController()
         walletService.assignAddress("address")

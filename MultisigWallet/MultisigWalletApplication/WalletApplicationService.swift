@@ -169,6 +169,19 @@ public class WalletApplicationService: Assertable {
         }
     }
 
+    public func deployWallet(subscriber: EventSubscriber, onError: ((Swift.Error) -> Void)?) {
+        DomainRegistry.eventPublisher.reset()
+        ApplicationServiceRegistry.eventRelay.reset(publisher: DomainRegistry.eventPublisher)
+        if let errorHandler = onError {
+            DomainRegistry.errorStream.addHandler(errorHandler)
+        }
+        DomainRegistry.deploymentService.start()
+    }
+
+    public func walletState() -> WalletState1? {
+        return nil
+    }
+
     public func startDeployment() throws {
         do {
             if selectedWalletState == .readyToDeploy {

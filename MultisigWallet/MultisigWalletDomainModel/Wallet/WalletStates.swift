@@ -9,7 +9,7 @@ import Foundation
 /// to invoke different behavior, depending on the current state.
 /// WalletState is used to represent a specific step in the wallet deployment process, so that state could be
 /// persisted and reloaded even between application launches.
-class WalletState {
+public class WalletState {
 
     var canChangeOwners: Bool = false
     var canChangeTransactionHash: Bool = false
@@ -34,13 +34,13 @@ class WalletState {
 
 extension WalletState: CustomStringConvertible {
 
-    var description: String {
+    public var description: String {
         return String(describing: type(of: self))
     }
 
 }
 
-class DraftState: WalletState {
+public class DraftState: WalletState {
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
@@ -63,9 +63,9 @@ class DraftState: WalletState {
 
 }
 
-class DeploymentStarted: DomainEvent {}
+public class DeploymentStarted: DomainEvent {}
 
-class DeployingState: WalletState {
+public class DeployingState: WalletState {
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
@@ -88,9 +88,9 @@ class DeployingState: WalletState {
 
 }
 
-class WalletConfigured: DomainEvent {}
+public class WalletConfigured: DomainEvent {}
 
-class NotEnoughFundsState: WalletState {
+public class NotEnoughFundsState: WalletState {
 
     override func resume() {
         DomainRegistry.eventPublisher.publish(WalletConfigured())
@@ -111,9 +111,9 @@ class NotEnoughFundsState: WalletState {
 
 }
 
-class DeploymentFunded: DomainEvent {}
+public class DeploymentFunded: DomainEvent {}
 
-class CreationStartedState: WalletState {
+public class CreationStartedState: WalletState {
 
     override func resume() {
         DomainRegistry.eventPublisher.publish(DeploymentFunded())
@@ -130,9 +130,9 @@ class CreationStartedState: WalletState {
     }
 }
 
-class CreationStarted: DomainEvent {}
+public class CreationStarted: DomainEvent {}
 
-class FinalizingDeploymentState: WalletState {
+public class FinalizingDeploymentState: WalletState {
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
@@ -157,10 +157,10 @@ class FinalizingDeploymentState: WalletState {
 
 }
 
-class WalletCreated: DomainEvent {}
-class WalletCreationFailed: DomainEvent {}
+public class WalletCreated: DomainEvent {}
+public class WalletCreationFailed: DomainEvent {}
 
-class ReadyToUseState: WalletState {
+public class ReadyToUseState: WalletState {
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
