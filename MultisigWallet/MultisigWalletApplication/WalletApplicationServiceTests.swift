@@ -67,10 +67,18 @@ class WalletApplicationServiceTests: XCTestCase {
         func notify() {}
     }
 
-    func test_whenDeployingWallet_thenResetsPublisher() {
+    func test_whenDeployingWallet_thenResetsPublisherAndSubscribes() {
         let subscriber = MySubscriber()
         eventPublisher.expect_reset()
         eventRelay.expect_reset()
+
+        eventRelay.expect_subscribe(subscriber, for: DeploymentStarted.self)
+        eventRelay.expect_subscribe(subscriber, for: WalletConfigured.self)
+        eventRelay.expect_subscribe(subscriber, for: DeploymentFunded.self)
+        eventRelay.expect_subscribe(subscriber, for: CreationStarted.self)
+        eventRelay.expect_subscribe(subscriber, for: WalletCreated.self)
+        eventRelay.expect_subscribe(subscriber, for: WalletCreationFailed.self)
+
         errorStream.expect_addHandler()
         deploymentService.expect_start()
         // swiftlint:disable:next trailing_closure
@@ -79,6 +87,11 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertTrue(eventPublisher.verify())
         XCTAssertTrue(eventRelay.verify())
         XCTAssertTrue(errorStream.verify())
+    }
+
+    func test_whenWalletStateQueried_thenReturnsWalletState() {
+        service.createNewDraftWallet()
+        XCTAssertNotNil(service.walletState())
     }
 
     func test_whenCreatingNewDraft_thenCreatesPortfolio() throws {

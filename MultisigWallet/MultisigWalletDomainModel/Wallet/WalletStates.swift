@@ -55,6 +55,8 @@ public class DraftState: WalletState {
         wallet.state = wallet.deployingState
         if wallet.status == .newDraft {
             wallet.markReadyToDeploy()
+        }
+        if wallet.status == .readyToDeploy {
             wallet.startDeployment()
         }
         DomainRegistry.walletRepository.save(wallet)

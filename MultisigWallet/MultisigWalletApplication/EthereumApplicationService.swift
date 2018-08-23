@@ -47,7 +47,7 @@ open class EthereumApplicationService: Assertable {
         case clientError
 
         public var isNetworkError: Bool {
-            return self == .networkError || self == .clientError || self == .clientError
+            return self == .networkError || self == .clientError
         }
 
     }

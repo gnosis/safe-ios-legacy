@@ -86,7 +86,7 @@ public class WalletApplicationService: Assertable {
         case walletCreationFailed
 
         public var isNetworkError: Bool {
-            return self == .networkError || self == .clientError || self == .clientError
+            return self == .networkError || self == .clientError
         }
     }
 
@@ -175,11 +175,16 @@ public class WalletApplicationService: Assertable {
         if let errorHandler = onError {
             DomainRegistry.errorStream.addHandler(errorHandler)
         }
+        [DeploymentStarted.self, WalletConfigured.self, DeploymentFunded.self,
+         CreationStarted.self, WalletCreated.self, WalletCreationFailed.self].forEach {
+            ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: $0)
+        }
         DomainRegistry.deploymentService.start()
     }
 
     public func walletState() -> WalletState1? {
-        return nil
+        guard let state = DomainRegistry.walletRepository.selectedWallet()?.state else { return nil }
+        return WalletState1(state)
     }
 
     public func startDeployment() throws {
@@ -353,9 +358,9 @@ public class WalletApplicationService: Assertable {
     }
 
     public func abortDeployment() {
-        mutateSelectedWallet { wallet in
-            wallet.abortDeployment()
-        }
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        wallet.cancel()
+        DomainRegistry.walletRepository.save(wallet)
     }
 
     public func finishDeployment() {

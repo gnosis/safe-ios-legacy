@@ -29,6 +29,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     private struct State: Codable {
         fileprivate let id: String
         fileprivate let status: Status
+        fileprivate let state: String
         fileprivate let ownersByRole: [OwnerRole: Owner]
         fileprivate let address: Address?
         fileprivate let creationTransactionHash: String?
@@ -68,7 +69,19 @@ public class Wallet: IdentifiableEntity<WalletID> {
         creationTransactionHash = state.creationTransactionHash
         minimumDeploymentTransactionAmount = state.minimumDeploymentTransactionAmount
         initStates()
-        updateStateFromStatus()
+        self.state = self.state(from: state.state)
+    }
+
+    private func state(from string: String) -> WalletState {
+        switch string {
+        case newDraftState.description: return newDraftState
+        case deployingState.description: return deployingState
+        case notEnoughFundsState.description: return notEnoughFundsState
+        case creationStartedState.description: return creationStartedState
+        case finalizingDeploymentState.description: return finalizingDeploymentState
+        case readyToUseState.description: return readyToUseState
+        default: preconditionFailure("Unknown state description")
+        }
     }
 
     private func updateStateFromStatus() {
@@ -91,6 +104,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         encoder.outputFormat = .binary
         let state = State(id: id.id,
                           status: status,
+                          state: self.state.description,
                           ownersByRole: ownersByRole,
                           address: address,
                           creationTransactionHash: creationTransactionHash,
