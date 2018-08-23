@@ -60,6 +60,11 @@ class ImMemoryTokenListItemRepositoryTests: XCTestCase {
         repository.save(whitelistedRDN)
         let savedRDN_2 = repository.find(id: Token.rdn.id)!
         XCTAssertEqual(savedRDN_2.sortingId, 2)
+
+        // Whitelisted tokens should be returned sorted by sorting id
+        let whitelistedTokens = repository.whitelisted()
+        XCTAssertEqual(whitelistedTokens.count, 2)
+        XCTAssertTrue(whitelistedTokens[0].sortingId! < whitelistedTokens[1].sortingId!)
     }
 
 }

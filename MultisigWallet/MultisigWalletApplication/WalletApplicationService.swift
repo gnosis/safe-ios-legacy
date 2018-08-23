@@ -516,6 +516,24 @@ public class WalletApplicationService: Assertable {
         return owner.address
     }
 
+    // MARK: - Tokens
+
+    /// Returns selected account Eth Data together with whitelisted tokens data
+    ///
+    /// - Returns: token data array
+    public func tokens() -> [TokenData] {
+        guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return [] }
+        let tokens: [TokenData] = DomainRegistry.tokenListItemRepository.whitelisted().compactMap {
+            guard let account = DomainRegistry.accountRepository.find(
+                id: AccountID(tokenID: $0.id, walletID: wallet.id), walletID: wallet.id) else { return nil }
+            return TokenData(name: $0.token.name, balance: account.balance)
+        }
+        let ethAccount = DomainRegistry.accountRepository.find(
+            id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id), walletID: wallet.id)!
+        let ethData = TokenData(name: Token.Ether.name, balance: ethAccount.balance)
+        return [ethData] + tokens
+    }
+
     // MARK: - Accounts
 
     public func accountBalance(tokenID: BaseID) -> BigInt? {
