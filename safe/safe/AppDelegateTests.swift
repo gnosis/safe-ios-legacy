@@ -29,7 +29,7 @@ class AppDelegateTests: XCTestCase {
         MultisigWalletDomainModel.DomainRegistry.put(service: mockSyncService, for: SynchronisationDomainService.self)
         XCTAssertFalse(mockSyncService.didSync)
         appDelegate.applicationWillEnterForeground(UIApplication.shared)
-        delay(0.25)
+        delay(0.5)
         XCTAssertTrue(mockSyncService.didSync)
     }
 
