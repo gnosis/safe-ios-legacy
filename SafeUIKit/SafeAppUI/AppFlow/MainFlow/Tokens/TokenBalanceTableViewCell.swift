@@ -13,7 +13,7 @@ class TokenBalanceTableViewCell: UITableViewCell {
 
     func configure(tokenData: TokenData) {
         let bundle = Bundle(for: TokenBalanceTableViewCell.self)
-        if let image = UIImage(named: tokenData.code, in: bundle, compatibleWith: nil) { 
+        if let image = UIImage(named: tokenData.code, in: bundle, compatibleWith: nil) {
             tokenImageView.image = image
         } else {
             tokenImageView.image = Asset.TokenIcons.defaultToken.image
