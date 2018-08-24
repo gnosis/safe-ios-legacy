@@ -5,7 +5,7 @@
 import Foundation
 import MultisigWalletDomainModel
 
-public enum WalletState1 {
+public enum WalletStateId {
 
     case draft
     case deploying

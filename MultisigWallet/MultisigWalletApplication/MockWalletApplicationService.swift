@@ -198,14 +198,14 @@ public class MockWalletApplicationService: WalletApplicationService {
         return submitTransaction_output ?? requestTransactionConfirmation_output
     }
 
-    private var expected_walletState = [WalletState1]()
+    private var expected_walletState = [WalletStateId]()
     private var actual_walletState = [String]()
 
-    public func expect_walletState(_ state: WalletState1) {
+    public func expect_walletState(_ state: WalletStateId) {
         expected_walletState.append(state)
     }
 
-    public override func walletState() -> WalletState1? {
+    public override func walletState() -> WalletStateId? {
         actual_walletState.append(#function)
         return expected_walletState[actual_walletState.count - 1]
     }

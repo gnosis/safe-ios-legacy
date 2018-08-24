@@ -175,7 +175,7 @@ extension PendingSafeViewController {
 
 extension PendingSafeViewController {
 
-    func state(from walletState: WalletState1) -> State {
+    func state(from walletState: WalletStateId) -> State {
         switch walletState {
         case .deploying: return deployingState
         case .draft: return nilState

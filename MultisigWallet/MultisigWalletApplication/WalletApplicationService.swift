@@ -117,9 +117,9 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.deploymentService.start()
     }
 
-    public func walletState() -> WalletState1? {
+    public func walletState() -> WalletStateId? {
         guard let state = selectedWallet?.state else { return nil }
-        return WalletState1(state)
+        return WalletStateId(state)
     }
 
     private func notifyBrowserExtension(message: String) throws {
