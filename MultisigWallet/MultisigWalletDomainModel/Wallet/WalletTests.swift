@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import MultisigWalletDomainModel
+import MultisigWalletImplementations
 
 class WalletTests: XCTestCase {
 
@@ -132,6 +133,20 @@ class WalletTests: XCTestCase {
     func test_whenNotInDraft_thenNotDeployable() {
         wallet.state = wallet.deployingState
         XCTAssertFalse(wallet.isDeployable)
+    }
+
+    func test_whenCancelling_thenWalletResetsData() {
+        DomainRegistry.put(service: InMemoryWalletRepository(), for: WalletRepository.self)
+        DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
+        wallet.state = wallet.deployingState
+        wallet.changeAddress(Address.safeAddress)
+        wallet.updateMinimumTransactionAmount(100)
+        wallet.state = wallet.finalizingDeploymentState
+        wallet.assignCreationTransaction(hash: TransactionHash.test1.value)
+        wallet.cancel()
+        XCTAssertNil(wallet.address)
+        XCTAssertNil(wallet.minimumDeploymentTransactionAmount)
+        XCTAssertNil(wallet.creationTransactionHash)
     }
 
 }

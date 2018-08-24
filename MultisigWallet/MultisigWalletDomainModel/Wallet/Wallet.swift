@@ -238,4 +238,9 @@ public class Wallet: IdentifiableEntity<WalletID> {
         state.cancel()
     }
 
+    func reset() {
+        creationTransactionHash = nil
+        address = nil
+        minimumDeploymentTransactionAmount = nil
+    }
 }

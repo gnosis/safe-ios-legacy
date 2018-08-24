@@ -79,10 +79,6 @@ public class MockWalletApplicationService: WalletApplicationService {
         ]
     }
 
-    public override func startDeployment() {
-        _selectedWalletState = .deploymentStarted
-    }
-
     public func assignAddress(_ address: String) {
         walletAddress = address
         _selectedWalletState = .addressKnown
@@ -250,6 +246,7 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public override func deployWallet(subscriber: EventSubscriber, onError: ((Swift.Error) -> Void)?) {
+        _selectedWalletState = .deploymentStarted
         actual_deployWallet.append(subscriber)
         if let error = expected_deployWallet_error {
             onError?(error)

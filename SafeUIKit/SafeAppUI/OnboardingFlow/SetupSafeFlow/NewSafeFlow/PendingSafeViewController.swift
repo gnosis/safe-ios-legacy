@@ -15,8 +15,6 @@ public protocol PendingSafeViewControllerDelegate: class {
     func deploymentDidCancel()
 }
 
-// TODO: cancelling wallet resets address, minimum deployment and what was set before
-
 public class PendingSafeViewController: UIViewController, EventSubscriber {
 
     @IBOutlet weak var titleLabel: H1Label!

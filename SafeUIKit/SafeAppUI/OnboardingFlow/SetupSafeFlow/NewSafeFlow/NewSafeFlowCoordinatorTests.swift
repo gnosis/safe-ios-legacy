@@ -6,6 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
 import Common
+import MultisigWalletApplication
 
 class NewSafeFlowCoordinatorTests: SafeTestCase {
 
@@ -135,7 +136,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenSafeIsInAnyPendingState_thenShowingPendingController() {
-        walletService.startDeployment()
+        deploy()
         assertShowingPendingVC()
 
         walletService.assignAddress("address")
@@ -162,7 +163,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         walletService.createReadyToDeployWallet()
         assertNotFinished()
 
-        walletService.startDeployment()
+        deploy()
         assertNotFinished()
 
         walletService.assignAddress("address")
@@ -184,7 +185,15 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
 
 }
 
+class MockEventSubscriber: EventSubscriber {
+    func notify() {}
+}
+
 extension NewSafeFlowCoordinatorTests {
+
+    private func deploy() {
+        walletService.deployWallet(subscriber: MockEventSubscriber(), onError: nil)
+    }
 
     private func assertShowingPendingVC(shouldShow: Bool = true, line: UInt = #line) {
         let testFC = TestFlowCoordinator()

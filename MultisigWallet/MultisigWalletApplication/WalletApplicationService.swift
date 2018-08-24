@@ -188,33 +188,6 @@ public class WalletApplicationService: Assertable {
         return WalletState1(state)
     }
 
-    @available(*, deprecated, message: "Please use deployWallet")
-    public func startDeployment() throws {
-        do {
-            if selectedWalletState == .readyToDeploy {
-                doStartDeployment()
-            }
-            if selectedWalletState == .deploymentStarted {
-                let data = try requestWalletCreation()
-                assignAddress(data.safe)
-                updateMinimumFunding(amount: data.payment)
-            }
-            if selectedWalletState == .notEnoughFunds || selectedWalletState == .addressKnown {
-                try startObservingWalletBalance()
-            } else if selectedWalletState == .accountFunded {
-                try createWalletInBlockchain()
-            } else if selectedWalletState == .deploymentAcceptedByBlockchain {
-                try waitForPendingTransaction()
-            } else {
-                throw Error.invalidWalletState
-            }
-        } catch let error {
-            errorHandler?(error)
-            abortDeploymentIfNeeded(by: error)
-            throw error
-        }
-    }
-
     private func abortDeploymentIfNeeded(by error: Swift.Error) {
         if let walletError = error as? WalletApplicationService.Error, walletError.isNetworkError {
             return
