@@ -19,12 +19,20 @@ public class TokensTableViewController: UITableViewController {
                                  bundle: Bundle(for: AddTokenFooterView.self)),
                            forHeaderFooterViewReuseIdentifier: "AddTokenFooterView")
         tableView.contentInset = UIEdgeInsets(top: -35, left: 0, bottom: 0, right: 0)
+        let refreshControl = UIRefreshControl()
+        refreshControl.bounds = CGRect(x: refreshControl.bounds.origin.x,
+                                       y: refreshControl.bounds.origin.y + 35,
+                                       width: refreshControl.bounds.size.width,
+                                       height: refreshControl.bounds.size.height)
+        refreshControl.addTarget(self, action: #selector(update), for: .valueChanged)
+        tableView.refreshControl = refreshControl
         update()
     }
 
-    private func update() {
+    @objc private func update() {
         tokens = ApplicationServiceRegistry.walletService.tokens()
         tableView.reloadData()
+        tableView.refreshControl?.endRefreshing()
     }
 
     // MARK: - Table view data source
