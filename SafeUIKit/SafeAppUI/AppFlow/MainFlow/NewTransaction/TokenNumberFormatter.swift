@@ -7,14 +7,7 @@ import BigInt
 
 class TokenNumberFormatter {
 
-    static let eth: TokenNumberFormatter = {
-        let formatter = TokenNumberFormatter()
-        formatter.decimals = 18
-        formatter.tokenCode = "ETH"
-        formatter.decimalSeparator = Locale.autoupdatingCurrent.decimalSeparator ?? ","
-        formatter.groupingSeparator = Locale.autoupdatingCurrent.groupingSeparator ?? " "
-        return formatter
-    }()
+    static let eth: TokenNumberFormatter = TokenNumberFormatter.ERC20Token(code: "ETH", decimals: 18)
 
     static func ERC20Token(code: String? = nil, decimals: Int) -> TokenNumberFormatter {
         let formatter = TokenNumberFormatter()

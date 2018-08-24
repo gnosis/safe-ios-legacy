@@ -6,8 +6,9 @@ import UIKit
 
 class SelectedSafeTableViewCell: SafeTableViewCell {
 
-    override func configure(safe: SafeDescription) {
+    override func configure(safe: SettingsTableViewController.SafeDescription) {
         super.configure(safe: safe)
         backgroundView?.backgroundColor = .white
     }
+
 }
