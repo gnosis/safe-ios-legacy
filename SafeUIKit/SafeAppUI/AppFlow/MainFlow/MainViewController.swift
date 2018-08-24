@@ -14,7 +14,6 @@ public protocol MainViewControllerDelegate: class {
 
 public class MainViewController: UIViewController {
 
-    @IBOutlet weak var totalBalanceLabel: UILabel!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var receiveButton: UIButton!
 
@@ -36,7 +35,6 @@ public class MainViewController: UIViewController {
         super.viewDidLoad()
         tokenFormatter.decimals = 18
         tokenFormatter.tokenCode = "ETH"
-        totalBalanceLabel.accessibilityIdentifier = "main.label.balance"
         stylize(button: receiveButton)
         stylize(button: sendButton)
         sendButton.setTitle(Strings.send, for: .normal)
@@ -45,9 +43,6 @@ public class MainViewController: UIViewController {
             ApplicationServiceRegistry.logger.info("Safe address: \(address)")
         }
         receiveButton.setTitle(Strings.receive, for: .normal)
-        if let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: ethID) {
-            totalBalanceLabel.text = tokenFormatter.string(from: BigInt(balance))
-        }
     }
 
     @objc func send(_ sender: Any) {
