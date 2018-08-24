@@ -14,6 +14,7 @@ public class WalletState {
     var canChangeOwners: Bool = false
     var canChangeTransactionHash: Bool = false
     var canChangeAddress: Bool = false
+    var isDeployable: Bool { return false }
 
     internal weak var wallet: Wallet!
 
@@ -41,6 +42,10 @@ extension WalletState: CustomStringConvertible {
 }
 
 public class DraftState: WalletState {
+
+    override var isDeployable: Bool {
+        return wallet.allOwners().count >= wallet.confirmationCount
+    }
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)

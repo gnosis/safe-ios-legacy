@@ -118,7 +118,8 @@ public class WalletApplicationService: Assertable {
     }
 
     public var hasReadyToUseWallet: Bool {
-        return selectedWalletState.isReadyToUse
+        guard let wallet = findSelectedWallet() else { return false }
+        return wallet.state === wallet.readyToUseState
     }
 
     public var hasPendingWalletCreation: Bool {
@@ -187,6 +188,7 @@ public class WalletApplicationService: Assertable {
         return WalletState1(state)
     }
 
+    @available(*, deprecated, message: "Please use deployWallet")
     public func startDeployment() throws {
         do {
             if selectedWalletState == .readyToDeploy {
@@ -528,7 +530,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func assertCanChangeAccount() {
-        try! assertTrue(selectedWalletState.isValidForAccountUpdate, Error.invalidWalletState)
+        try! assertNotNil(selectedWalletAddress, Error.invalidWalletState)
     }
 
     public func update(account tokenID: BaseID, newBalance: BigInt) {

@@ -59,6 +59,10 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public let confirmationCount: Int = 2
     public private(set) var deploymentFee: BigInt?
 
+    public var isDeployable: Bool {
+        return state.isDeployable
+    }
+
     public required init(data: Data) {
         let decoder = PropertyListDecoder()
         let state = try! decoder.decode(State.self, from: data)
@@ -192,8 +196,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func assignCreationTransaction(hash: String?) {
-        assert(status: .deploymentAcceptedByBlockchain)
-        try? assertTrue(state.canChangeTransactionHash, Error.invalidState)
+        try! assertTrue(state.canChangeTransactionHash, Error.invalidState)
         creationTransactionHash = hash
     }
 
@@ -209,7 +212,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func changeAddress(_ address: Address?) {
-        assert(status: .deploymentStarted)
+        try! assertTrue(state.canChangeAddress, Error.invalidState)
         self.address = address
         status = .addressKnown
     }
@@ -219,7 +222,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func updateMinimumTransactionAmount(_ newValue: TokenInt) {
-        assert(status: .addressKnown)
+        try! assertTrue(state.canChangeAddress, Error.invalidState)
         minimumDeploymentTransactionAmount = newValue
     }
 

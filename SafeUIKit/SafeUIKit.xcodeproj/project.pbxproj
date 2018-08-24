@@ -100,6 +100,7 @@
 		0A4EEA6D20D1112F005CDAC0 /* SettingsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EEA6C20D1112F005CDAC0 /* SettingsTableViewControllerTests.swift */; };
 		0A53AD5320598B5000D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD5520598B5000D713AD /* Localizable.strings */; };
 		0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */; };
+		0A54E7BF21300D35006BAD93 /* XCTest+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54E7BA21300D2F006BAD93 /* XCTest+Alert.swift */; };
 		0A59E90220AAE24A0090E89C /* TestFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */; };
 		0A5D2F1320D7A8E5009E9918 /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0ECF20CE678700424CEE /* SipHash.framework */; };
 		0A5D2F1420D7A8E5009E9918 /* SipHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0ECF20CE678700424CEE /* SipHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -527,6 +528,7 @@
 		0A4EEA6C20D1112F005CDAC0 /* SettingsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewControllerTests.swift; sourceTree = "<group>"; };
 		0A53AD5420598B5000D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD5620598B5E00D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A54E7BA21300D2F006BAD93 /* XCTest+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+Alert.swift"; sourceTree = "<group>"; };
 		0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A5D467420AD6D8200AC287E /* UIAlertController+Testable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Testable.swift"; sourceTree = "<group>"; };
 		0A5D467A20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbortSafeCreationAlertController.swift; sourceTree = "<group>"; };
@@ -880,6 +882,7 @@
 			children = (
 				0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */,
 				0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */,
+				0A54E7BA21300D2F006BAD93 /* XCTest+Alert.swift */,
 			);
 			name = TestTools;
 			path = ../TestTools;
@@ -1722,6 +1725,7 @@
 				0AD998AA20D3E97C00E6F3CA /* ProgressViewTests.swift in Sources */,
 				0A334E56209C8E6800ABC6AE /* NewSafeViewControllerTests.swift in Sources */,
 				0AF8D53920D00E56001E8423 /* TransactionsTableViewControllerTests.swift in Sources */,
+				0A54E7BF21300D35006BAD93 /* XCTest+Alert.swift in Sources */,
 				0A72D42C209C92700082C0A3 /* XCTestCase+Extensions.swift in Sources */,
 				0A72D431209C92740082C0A3 /* XCTest+Assert.swift in Sources */,
 				0AD998AC20D3ED5E00E6F3CA /* TokenAmountTransactionParameterViewTests.swift in Sources */,

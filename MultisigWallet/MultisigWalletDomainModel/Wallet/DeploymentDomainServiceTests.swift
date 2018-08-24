@@ -257,6 +257,38 @@ class WalletCreationFailedTests: BaseDeploymentDomainServiceTests {
 
 }
 
+class AllDeploymentStatesTests: BaseDeploymentDomainServiceTests {
+
+    func test_whenSuccessfulFromService_thenArrivesAtReadyToUseState() {
+        givenDraftWalletWithAllOwners()
+
+        let response = SafeCreationTransactionRequest.Response.testResponse
+        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), response)
+
+        nodeService.expect_eth_getBalance(account: response.walletAddress, balance: response.intPayment! / 2)
+        nodeService.expect_eth_getBalance(account: response.walletAddress, balance: response.intPayment!)
+
+        relayService.expect_startSafeCreation(address: response.walletAddress)
+
+        relayService.expect_safeCreationTransactionHash(address: response.walletAddress, hash: nil)
+        relayService.expect_safeCreationTransactionHash(address: response.walletAddress, hash: nil)
+        relayService.expect_safeCreationTransactionHash(address: response.walletAddress, hash: TransactionHash.test1)
+
+        let receipt = TransactionReceipt(hash: TransactionHash.test1, status: .success)
+        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: nil)
+        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: nil)
+        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: receipt)
+
+        expectSafeCreatedNotification()
+
+        deploymentService.start()
+
+        wallet = walletRepository.findByID(wallet.id)!
+        XCTAssertTrue(wallet.state === wallet.readyToUseState)
+    }
+
+}
+
 // MARK: - Helpers
 
 extension BaseDeploymentDomainServiceTests {
@@ -293,10 +325,10 @@ extension BaseDeploymentDomainServiceTests {
 
     func givenDeployingWallet(withoutTransaction: Bool = false) {
         givenFundedWallet()
+        wallet.proceed()
         if !withoutTransaction {
             wallet.assignCreationTransaction(hash: TransactionHash.test1.value)
         }
-        wallet.proceed()
         DomainRegistry.walletRepository.save(wallet)
     }
 
@@ -306,8 +338,7 @@ extension BaseDeploymentDomainServiceTests {
         walletRepository.save(wallet)
     }
 
-    func givenCreatedWalletWithNotifiedExtension() {
-        givenDeployingWallet()
+    func expectSafeCreatedNotification() {
         eoaRepository.save(.testAccount(wallet,
                                         role: .thisDevice,
                                         privateKey: .testPrivateKey,
@@ -319,8 +350,13 @@ extension BaseDeploymentDomainServiceTests {
         encryptionService.expect_sign(message: "GNO" + message,
                                       privateKey: .testPrivateKey,
                                       signature: .testSignature)
-        notificationService.expect_safeCreatedMessage(at: wallet.address!.value, message: message)
+        notificationService.expect_safeCreatedMessage(at: Address.safeAddress.value, message: message)
         notificationService.expect_send(notificationRequest: request)
+    }
+
+    func givenCreatedWalletWithNotifiedExtension() {
+        givenDeployingWallet()
+        expectSafeCreatedNotification()
     }
 
     func assertThrows(_ error: Error, line: UInt = #line) {
