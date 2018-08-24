@@ -15,8 +15,8 @@ class TokensTableViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
-        let ethTokenData = TokenData(code: "ETH", name: "Ether", decimals: 18, balance: BigInt(10).power(16))
-        let gnoTokenData = TokenData(code: "GNO", name: "Gnosis", decimals: 18, balance: BigInt(10).power(17))
+        let ethTokenData = TokenData(code: "ETH", name: "Ether", decimals: 18, balance: BigInt(10e15))
+        let gnoTokenData = TokenData(code: "GNO", name: "Gnosis", decimals: 18, balance: BigInt(10e16))
         let mgnTokenData = TokenData(code: "MGN", name: "Magnolia", decimals: 18, balance: nil)
         walletService.tokensOutput = [ethTokenData, gnoTokenData, mgnTokenData]
     }
