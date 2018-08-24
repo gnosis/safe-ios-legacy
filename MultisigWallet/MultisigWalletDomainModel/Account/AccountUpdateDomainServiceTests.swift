@@ -15,6 +15,7 @@ class AccountUpdateDomainServiceTests: XCTestCase {
     let portfolioRepository = InMemorySinglePortfolioRepository()
     let walletRepository = InMemoryWalletRepository()
     let accountRepository = InMemoryAccountRepository()
+    let publisher = MockEventPublisher()
 
     override func setUp() {
         super.setUp()
@@ -22,7 +23,7 @@ class AccountUpdateDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
         DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
-
+        DomainRegistry.put(service: publisher, for: EventPublisher.self)
     }
 
     func test_updateAccountsBalances_doesNotUpdateWhenNoWalletIsCreated() {
@@ -36,6 +37,13 @@ class AccountUpdateDomainServiceTests: XCTestCase {
         XCTAssertEqual(accountRepository.all().count, 0)
         updateBalances()
         assertOnlyGNOAccountExistsForSelectedWallet()
+    }
+
+    func test_updateAccountsBalances_publishesEvent() {
+        givenEmptyWalletAndTokenItemsWithWhitelistedGNO()
+        publisher.expectToPublish(AccountsBalancesUpdated.self)
+        updateBalances()
+        XCTAssertTrue(publisher.publishedWhatWasExpected())
     }
 
     func test_updateAccountsBalances_otherWalletsShouldNotInfluenceSelectedWallet() {

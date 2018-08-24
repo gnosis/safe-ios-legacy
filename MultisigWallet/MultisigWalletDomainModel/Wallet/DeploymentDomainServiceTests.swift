@@ -22,6 +22,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
     let accountRepository = InMemoryAccountRepository()
     let eoaRepository = InMemoryExternallyOwnedAccountRepository()
     let system = MockSystem()
+    let syncService = MockSynchronisationService()
     var wallet: Wallet!
 
     override func setUp() {
@@ -39,6 +40,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
         DomainRegistry.put(service: eoaRepository, for: ExternallyOwnedAccountRepository.self)
         DomainRegistry.put(service: system, for: System.self)
+        DomainRegistry.put(service: syncService, for: SynchronisationDomainService.self)
     }
 
 }
@@ -179,6 +181,14 @@ class CreationStartedTests: BaseDeploymentDomainServiceTests {
     override func setUp() {
         super.setUp()
         eventPublisher.addFilter(CreationStarted.self)
+    }
+
+    func test_whenFunded_thenRunsSynchronisation() {
+        givenDeployingWallet()
+        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: successReceipt)
+        deploymentService.start()
+        delay(0.25)
+        XCTAssertTrue(syncService.didSync)
     }
 
     func test_whenFunded_thenWaitsForTransaction() {

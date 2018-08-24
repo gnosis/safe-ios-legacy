@@ -5,6 +5,8 @@
 import Foundation
 import BigInt
 
+public class AccountsBalancesUpdated: DomainEvent {}
+
 open class AccountUpdateDomainService {
 
     public init() {}
@@ -13,6 +15,7 @@ open class AccountUpdateDomainService {
         precondition(!Thread.isMainThread)
         addMissingAccountsForWhitelistedTokenItems()
         updateBalancesForWhitelistedAccounts()
+        DomainRegistry.eventPublisher.publish(AccountsBalancesUpdated())
     }
 
     private func addMissingAccountsForWhitelistedTokenItems() {
@@ -46,9 +49,7 @@ open class AccountUpdateDomainService {
     }
 
     private func whitelisteItemsTokensIds() -> [TokenID] {
-        return DomainRegistry.tokenListItemRepository.all()
-            .filter { $0.status == .whitelisted }
-            .map { $0.id }
+        return DomainRegistry.tokenListItemRepository.whitelisted().map { $0.id }
     }
 
     private func allSelectedWalletAccountsIds() -> [AccountID] {

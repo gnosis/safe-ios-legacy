@@ -23,6 +23,9 @@ class WalletApplicationServiceTests: XCTestCase {
     let relayService = MockTransactionRelayService(averageDelay: 0, maxDeviation: 0)
     let encryptionService = MockEncryptionService()
     let eoaRepo = InMemoryExternallyOwnedAccountRepository()
+    let syncService = SynchronisationService(retryInterval: 0.1)
+    let tokenItemsRepository = InMemoryTokenListItemRepository()
+    let tokenItemsService = MockTokenListService()
 
     let eventPublisher = MockEventPublisher()
     var eventRelay: MockEventRelay!
@@ -56,6 +59,8 @@ class WalletApplicationServiceTests: XCTestCase {
         ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
         ApplicationServiceRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
         DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
+        DomainRegistry.put(service: tokenItemsRepository, for: TokenListItemRepository.self)
+        DomainRegistry.put(service: tokenItemsService, for: TokenListDomainService.self)
 
         ethereumService.createSafeCreationTransaction_output =
             SafeCreationTransactionData(safe: Address.safeAddress.value, payment: 100)
@@ -500,15 +505,6 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(code.signature, code3.signature)
     }
 
-    fileprivate func givenReadyToUseWallet() {
-        try! givenReadyToDeployWallet()
-        try! service.startDeployment()
-        service.update(account: Token.Ether.id, newBalance: 1)
-        service.update(account: Token.Ether.id, newBalance: 100)
-        service.markDeploymentAcceptedByBlockchain()
-        service.finishDeployment()
-    }
-
     func test_whenHandlesTransactionConfirmedMessage_thenValidatesSignature() {
         let message = TransactionConfirmedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
 
@@ -735,9 +731,33 @@ class WalletApplicationServiceTests: XCTestCase {
                         "msg:\(notificationService.transactionSentMessage(for: tx))"])
     }
 
+    // MARK: - Tokens
+
+    func test_whenGettingTokensDataForSelectedWallet_thenReturnsIt() {
+        givenReadyToUseWallet()
+        XCTAssertEqual(accountRepository.all().count, 1)
+        DispatchQueue.global().async {
+            self.syncService.sync()
+        }
+        delay(0.25)
+        XCTAssertTrue(accountRepository.all().count > 1)
+        let tokensWithEth = service.tokens()
+        XCTAssertEqual(tokensWithEth.count, accountRepository.all().count)
+        XCTAssertEqual(tokensWithEth[0].name, Token.Ether.name)
+    }
+
 }
 
 fileprivate extension WalletApplicationServiceTests {
+
+    private func givenReadyToUseWallet() {
+        try! givenReadyToDeployWallet()
+        try! service.startDeployment()
+        service.update(account: Token.Ether.id, newBalance: 1)
+        service.update(account: Token.Ether.id, newBalance: 100)
+        service.markDeploymentAcceptedByBlockchain()
+        service.finishDeployment()
+    }
 
     private func givenDraftTransaction() -> Transaction {
         ethereumService.nonce_output = 3
