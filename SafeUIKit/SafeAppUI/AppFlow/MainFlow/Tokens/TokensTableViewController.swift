@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import MultisigWalletApplication
 
 public class TokensTableViewController: UITableViewController {
 
@@ -33,6 +34,10 @@ public class TokensTableViewController: UITableViewController {
                          balance: formattedBalance(randomDecimal(100..<500), token: token),
                          fiatBalance: formattedBalance(randomDecimal(1_000..<10_000), currency: "$"))
         }
+    }
+
+    private func update() {
+//        let tokens = ApplicationServiceRegistry.walletService.tokens()
     }
 
     private func randomDecimal(_ range: Range<Double>) -> Double {
