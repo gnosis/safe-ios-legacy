@@ -188,16 +188,7 @@ public class WalletApplicationService: Assertable {
         return WalletState1(state)
     }
 
-    private func abortDeploymentIfNeeded(by error: Swift.Error) {
-        if let walletError = error as? WalletApplicationService.Error, walletError.isNetworkError {
-            return
-        } else if let ethereumError = error as? EthereumApplicationService.Error, ethereumError.isNetworkError {
-            return
-        } else if (error as NSError).domain == NSURLErrorDomain {
-            return
-        }
-        abortDeployment()
-    }
+    // MARK: - Obsolete
 
     private func requestWalletCreation() throws -> SafeCreationTransactionData {
         let owners: [Address] = OwnerType.all.compactMap { Address(ownerAddress(of: $0)!) }
@@ -246,7 +237,6 @@ public class WalletApplicationService: Assertable {
             return RepeatingShouldStop.no
         } catch let error {
             errorHandler?(error)
-            abortDeploymentIfNeeded(by: error)
             return RepeatingShouldStop.yes
         }
     }
