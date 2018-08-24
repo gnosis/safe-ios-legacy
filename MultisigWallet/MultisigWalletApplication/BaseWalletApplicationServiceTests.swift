@@ -8,7 +8,6 @@ import MultisigWalletImplementations
 import MultisigWalletDomainModel
 import Common
 
-
 class BaseWalletApplicationServiceTests: XCTestCase {
 
     let walletRepository = InMemoryWalletRepository()
