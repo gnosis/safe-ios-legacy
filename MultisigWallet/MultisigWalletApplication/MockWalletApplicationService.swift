@@ -21,13 +21,7 @@ public class MockWalletApplicationService: WalletApplicationService {
     public override var selectedWalletState: WalletState {
         return _selectedWalletState
     }
-    private var _selectedWalletState: WalletState = .none {
-        didSet {
-            if oldValue != _selectedWalletState {
-                notifySubscribers()
-            }
-        }
-    }
+    private var _selectedWalletState: WalletState = .none
 
     private var walletAddress: String?
 
@@ -106,34 +100,12 @@ public class MockWalletApplicationService: WalletApplicationService {
         return funds[TokenID(tokenID.id)]
     }
 
-    public override func markDeploymentAcceptedByBlockchain() {
-        _selectedWalletState = .deploymentAcceptedByBlockchain
-    }
-
-    public override func finishDeployment() {
-        _selectedWalletState = .readyToUse
-    }
-
     public override func abortDeployment() {
         _selectedWalletState = .newDraft
     }
 
     public override func addOwner(address: String, type: WalletApplicationService.OwnerType) {
         existingOwners[type] = address
-    }
-
-    public override func subscribe(_ update: @escaping () -> Void) -> String {
-        let subscription = UUID().uuidString
-        subscriptions[subscription] = update
-        return subscription
-    }
-
-    public override func unsubscribe(subscription: String) {
-        subscriptions.removeValue(forKey: subscription)
-    }
-
-    private func notifySubscribers() {
-        subscriptions.values.forEach { $0() }
     }
 
     public override func ownerAddress(of type: WalletApplicationService.OwnerType) -> String? {

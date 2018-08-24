@@ -144,36 +144,6 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(service.selectedWalletState, .readyToDeploy)
     }
 
-    func test_whenSubscribesForUpdates_thenReceivesThem() throws {
-        givenDraftWallet()
-        var updated = false
-        _ = service.subscribe {
-            updated = true
-        }
-        addAllOwners()
-        XCTAssertTrue(updated)
-    }
-
-    func test_whenUnsubscribes_thenNoUpdatesReceived() throws {
-        givenDraftWallet()
-        var updated = false
-        let handle = service.subscribe {
-            updated = true
-        }
-        service.unsubscribe(subscription: handle)
-        addAllOwners()
-        XCTAssertFalse(updated)
-    }
-
-    func test_whenCreatingFirstWallet_thenCanObserveStatusUpdate() {
-        var updated = false
-        _ = service.subscribe {
-            updated = true
-        }
-        givenDraftWallet()
-        XCTAssertTrue(updated)
-    }
-
     func test_whenWalletIsReady_thenHasReadyState() throws {
         createPortfolio()
         service.createNewDraftWallet()
