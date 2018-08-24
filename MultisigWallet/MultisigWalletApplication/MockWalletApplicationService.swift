@@ -117,11 +117,11 @@ public class MockWalletApplicationService: WalletApplicationService {
         actual_abortDeployment.append(#function)
     }
 
-    public override func addOwner(address: String, type: WalletApplicationService.OwnerType) {
+    public override func addOwner(address: String, type: OwnerType) {
         existingOwners[type] = address
     }
 
-    public override func ownerAddress(of type: WalletApplicationService.OwnerType) -> String? {
+    public override func ownerAddress(of type: OwnerType) -> String? {
         return existingOwners[type]
     }
 

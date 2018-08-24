@@ -21,32 +21,6 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.pushTokensService
     }
 
-    public enum OwnerType: String {
-        case thisDevice
-        case browserExtension
-        case paperWallet
-
-        static let all: [OwnerType] = [.thisDevice, .browserExtension, .paperWallet]
-    }
-
-    public enum Error: String, Swift.Error, Hashable {
-        case oneOrMoreOwnersAreMissing
-        case invalidWalletState
-        case missingWalletAddress
-        case creationTransactionHashNotFound
-        case networkError
-        case clientError
-        case serverError
-        case validationFailed
-        case exceededExpirationDate
-        case unknownError
-        case walletCreationFailed
-
-        public var isNetworkError: Bool {
-            return self == .networkError || self == .clientError
-        }
-    }
-
     public var hasSelectedWallet: Bool { return selectedWallet != nil }
 
     public var hasReadyToUseWallet: Bool {
@@ -167,7 +141,7 @@ public class WalletApplicationService: Assertable {
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
         let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress)!
         guard let code = browserExtensionCode(from: rawCode) else {
-            throw Error.validationFailed
+            throw WalletApplicationServiceError.validationFailed
         }
         try pair(code, signature, deviceOwnerAddress)
         addOwner(address: address, type: .browserExtension)
@@ -188,16 +162,17 @@ public class WalletApplicationService: Assertable {
         do {
             return try block()
         } catch NotificationDomainServiceError.validationFailed {
-            throw Error.validationFailed
+            throw WalletApplicationServiceError.validationFailed
         } catch let JSONHTTPClient.Error.networkRequestFailed(request, response, data) {
             logNetworkError(request, response, data)
             if let data = data, let dataStr = String(data: data, encoding: .utf8),
                 dataStr.range(of: "Exceeded expiration date") != nil {
-                throw Error.exceededExpirationDate
+                throw WalletApplicationServiceError.exceededExpirationDate
             } else if let response = response as? HTTPURLResponse {
-                throw (400..<500).contains(response.statusCode) ? Error.clientError : Error.serverError
+                throw (400..<500).contains(response.statusCode) ?
+                    WalletApplicationServiceError.clientError : WalletApplicationServiceError.serverError
             } else {
-                throw Error.networkError
+                throw WalletApplicationServiceError.networkError
             }
         }
     }
@@ -228,7 +203,7 @@ public class WalletApplicationService: Assertable {
         #endif
     }
 
-    private func error(from response: URLResponse?) -> Error {
+    private func error(from response: URLResponse?) -> WalletApplicationServiceError {
         if let response = response as? HTTPURLResponse {
             if (400..<500).contains(response.statusCode) {
                 return .clientError
@@ -239,7 +214,7 @@ public class WalletApplicationService: Assertable {
         return .networkError
     }
 
-    private func error(from other: NetworkServiceError) -> Error {
+    private func error(from other: NetworkServiceError) -> WalletApplicationServiceError {
         switch other {
         case .clientError:
             return .clientError
@@ -297,7 +272,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func assertCanChangeAccount() {
-        try! assertTrue(canChangeAccount, Error.invalidWalletState)
+        try! assertTrue(canChangeAccount, WalletApplicationServiceError.invalidWalletState)
     }
 
     public func update(account tokenID: TokenID, newBalance: BigInt) {

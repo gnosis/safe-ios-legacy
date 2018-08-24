@@ -73,7 +73,7 @@ public class ErrorHandler {
 }
 
 // swiftlint:disable line_length
-extension WalletApplicationService.Error: LocalizedError {
+extension WalletApplicationServiceError: LocalizedError {
 
     public var errorDescription: String? {
         switch self {
@@ -113,11 +113,11 @@ extension EthereumApplicationService.Error: LocalizedError {
         case .invalidTransaction:
             return LocalizedString("wallet.error.response_invalid_transaction", comment: "Server-provided transaction is invalid")
         case .networkError:
-            return WalletApplicationService.Error.networkError.errorDescription
+            return WalletApplicationServiceError.networkError.errorDescription
         case .serverError:
-            return WalletApplicationService.Error.serverError.errorDescription
+            return WalletApplicationServiceError.serverError.errorDescription
         case .clientError:
-            return WalletApplicationService.Error.clientError.errorDescription
+            return WalletApplicationServiceError.clientError.errorDescription
         }
     }
 

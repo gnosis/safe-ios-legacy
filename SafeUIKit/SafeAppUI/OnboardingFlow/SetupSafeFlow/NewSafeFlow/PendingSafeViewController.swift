@@ -122,7 +122,7 @@ public class PendingSafeViewController: UIViewController, EventSubscriber {
         switch error {
         case let nsError as NSError where nsError.domain == NSURLErrorDomain:
             fallthrough
-        case WalletApplicationService.Error.clientError, WalletApplicationService.Error.networkError,
+        case WalletApplicationServiceError.clientError, WalletApplicationServiceError.networkError,
              EthereumApplicationService.Error.clientError, EthereumApplicationService.Error.networkError:
             notifyUser(error: error.localizedDescription)
         default:
