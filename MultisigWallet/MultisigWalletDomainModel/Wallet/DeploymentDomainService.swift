@@ -50,7 +50,7 @@ public class DeploymentDomainService {
     private func waitForFunding(_ wallet: Wallet) throws {
         try Repeater(delay: config.balance.repeatDelay) { [unowned self] repeater in
             let balance = try self.balance(of: wallet.address!)
-            let accountID = AccountID(Token.Ether.id.id)
+            let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
             let account = DomainRegistry.accountRepository.find(id: accountID, walletID: wallet.id)!
             account.update(newAmount: balance)
             DomainRegistry.accountRepository.save(account)
@@ -69,8 +69,15 @@ public class DeploymentDomainService {
 
     func creationStarted(_ event: CreationStarted) {
         handleError { wallet in
+            synchronise()
             try waitForCreationTransactionHash(wallet)
             try waitForCreationTransactionCompletion(wallet)
+        }
+    }
+
+    private func synchronise() {
+        DispatchQueue.global().async {
+            DomainRegistry.syncService.sync()
         }
     }
 

@@ -48,7 +48,7 @@ public final class TokenListItem: IdentifiableEntity<TokenID>, Decodable {
         status = .whitelisted
     }
 
-    public func updateSortingId(with id: Int) {
+    public func updateSortingId(with id: Int?) {
         sortingId = id
     }
 

@@ -108,10 +108,11 @@ class TransactionTests: XCTestCase {
 extension TransactionTests {
 
     private func givenNewlyCreatedTransaction() {
+        let walletID = WalletID()
         transaction = Transaction(id: TransactionID(),
                                   type: .transfer,
-                                  walletID: WalletID(),
-                                  accountID: AccountID("0x0"))
+                                  walletID: walletID,
+                                  accountID: AccountID(tokenID: Token.gno.id, walletID: walletID))
     }
 
     private func givenSigningTransaction() {

@@ -54,14 +54,13 @@ class TokenListMergerTests: XCTestCase {
         tokenListService.json = TokenListStub.json
         merger.mergeStoredTokenItems(with: try tokenListService.items())
         XCTAssertEqual(allItems.count, 4)
-        assertTokenItem(itemA, .whitelisted, "A")
+        assertTokenItem(itemA, .whitelisted, "A", 0)
         assertTokenItem(itemB, .regular, "B")
         assertTokenItem(itemC, .regular, "C")
-        assertTokenItem(itemD, .whitelisted, "D")
+        assertTokenItem(itemD, .whitelisted, "D", 1)
 
         // Blacklist token D: D+ --> D-
-        let blacklistedD = itemD
-        blacklistedD.blacklist()
+        let blacklistedD = TokenListItem(token: itemD.token, status: .blacklisted)
         tokenListItemRepository.save(blacklistedD)
         assertTokenItem(itemD, .blacklisted, "D")
 
@@ -70,8 +69,8 @@ class TokenListMergerTests: XCTestCase {
         tokenListService.json = TokenListStub.json1
         merger.mergeStoredTokenItems(with: try tokenListService.items())
         XCTAssertEqual(allItems.count, 4)
-        assertTokenItem(itemA, .whitelisted, "A_1")
-        assertTokenItem(itemB, .whitelisted, "B_1")
+        assertTokenItem(itemA, .whitelisted, "A_1", 0)
+        assertTokenItem(itemB, .whitelisted, "B_1", 1)
         assertTokenItem(itemC, .regular, "C_1")
         assertTokenItem(itemD, .blacklisted, "D_1")
 
@@ -80,9 +79,9 @@ class TokenListMergerTests: XCTestCase {
         tokenListService.json = TokenListStub.json2
         merger.mergeStoredTokenItems(with: try tokenListService.items())
         XCTAssertEqual(allItems.count, 4)
-        assertTokenItem(itemA, .whitelisted, "A_1")
-        assertTokenItem(itemB, .whitelisted, "B_1")
-        assertTokenItem(itemC, .whitelisted, "C_1")
+        assertTokenItem(itemA, .whitelisted, "A_1", 0)
+        assertTokenItem(itemB, .whitelisted, "B_1", 1)
+        assertTokenItem(itemC, .whitelisted, "C_1", 2)
         assertTokenItem(itemD, .blacklisted, "D_2")
     }
 
@@ -103,8 +102,8 @@ class TokenListMergerTests: XCTestCase {
         // Expected Result after merge: A+, D+
         merger.mergeStoredTokenItems(with: try tokenListService.items())
         XCTAssertEqual(allItems.count, 2)
-        assertTokenItem(itemA, .whitelisted, "A")
-        assertTokenItem(itemD, .whitelisted, "D")
+        assertTokenItem(itemA, .whitelisted, "A", 0)
+        assertTokenItem(itemD, .whitelisted, "D", 1)
     }
 
     func test_whenUpdatingWhitelistedTokenItem_thenItKeepsItsSortingNumber() throws {

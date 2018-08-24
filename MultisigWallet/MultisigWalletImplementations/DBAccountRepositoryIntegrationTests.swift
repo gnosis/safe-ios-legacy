@@ -24,13 +24,25 @@ class DBAccountRepositoryIntegrationTests: XCTestCase {
         repo.setUp()
 
         let walletID = WalletID()
-        let account = Account(id: AccountID("0x0"),
+        let account = Account(tokenID: Token.gno.id,
                               walletID: walletID,
                               balance: 123)
         repo.save(account)
         let saved = repo.find(id: account.id, walletID: walletID)
         XCTAssertEqual(saved, account)
         XCTAssertEqual(saved?.balance, account.balance)
+
+        let account2 = Account(tokenID: Token.mgn.id,
+                               walletID: walletID,
+                               balance: nil)
+        repo.save(account2)
+        let saved2 = repo.find(id: account2.id, walletID: walletID)
+        XCTAssertEqual(saved2, account2)
+        XCTAssertEqual(saved2?.balance, account2.balance)
+
+        let all = repo.all()
+        XCTAssertEqual(all.count, 2)
+        XCTAssertEqual(Set([account, account2]), Set(all))
 
         repo.remove(account)
         XCTAssertNil(repo.find(id: account.id, walletID: walletID))

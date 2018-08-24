@@ -103,9 +103,9 @@ public class WalletApplicationService: Assertable {
             return .deploymentStarted
         case .addressKnown:
             let account = findAccount(Token.Ether.id)!
-            if account.balance == 0 {
+            if account.balance == nil {
                 return .addressKnown
-            } else if account.balance < wallet.minimumDeploymentTransactionAmount! {
+            } else if account.balance! < wallet.minimumDeploymentTransactionAmount! {
                 return .notEnoughFunds
             } else {
                 return .accountFunded
@@ -154,10 +154,10 @@ public class WalletApplicationService: Assertable {
             let portfolio = fetchOrCreatePortfolio()
             let address = ethereumService.generateExternallyOwnedAccount().address
             let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(), owner: Address(address))
-            let account = Account(id: AccountID(Token.Ether.id.id), walletID: wallet.id, balance: 0)
             portfolio.addWallet(wallet.id)
             DomainRegistry.walletRepository.save(wallet)
             DomainRegistry.portfolioRepository.save(portfolio)
+            let account = Account(tokenID: Token.Ether.id)
             DomainRegistry.accountRepository.save(account)
         }
     }
@@ -496,24 +496,42 @@ public class WalletApplicationService: Assertable {
         return owner.address
     }
 
+    // MARK: - Tokens
+
+    /// Returns selected account Eth Data together with whitelisted tokens data
+    ///
+    /// - Returns: token data array
+    public func tokens() -> [TokenData] {
+        guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return [] }
+        let tokens: [TokenData] = DomainRegistry.tokenListItemRepository.whitelisted().compactMap {
+            guard let account = DomainRegistry.accountRepository.find(
+                id: AccountID(tokenID: $0.id, walletID: wallet.id), walletID: wallet.id) else { return nil }
+            return TokenData(name: $0.token.name, balance: account.balance)
+        }
+        let ethAccount = DomainRegistry.accountRepository.find(
+            id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id), walletID: wallet.id)!
+        let ethData = TokenData(name: Token.Ether.name, balance: ethAccount.balance)
+        return [ethData] + tokens
+    }
+
     // MARK: - Accounts
 
     public func accountBalance(tokenID: BaseID) -> BigInt? {
-       return findAccount(tokenID)?.balance
+       return findAccount(TokenID(tokenID.id))?.balance
     }
 
     private func assertCanChangeAccount() {
         try! assertNotNil(selectedWalletAddress, Error.invalidWalletState)
     }
 
-    public func update(account tokenID: BaseID, newBalance: BigInt) {
+    public func update(account tokenID: TokenID, newBalance: BigInt) {
         assertCanChangeAccount()
         mutateAccount(tokenID: tokenID) { account in
             account.update(newAmount: newBalance)
         }
     }
 
-    private func mutateAccount(tokenID: BaseID, closure: (Account) -> Void) {
+    private func mutateAccount(tokenID: TokenID, closure: (Account) -> Void) {
         notifyWalletStateChangesAfter {
             let account = findAccount(tokenID)!
             closure(account)
@@ -580,10 +598,11 @@ public class WalletApplicationService: Assertable {
 
     public func createNewDraftTransaction() -> String {
         let repository = DomainRegistry.transactionRepository
+        let wallet = findSelectedWallet()!
         let transaction = Transaction(id: repository.nextID(),
                                       type: .transfer,
-                                      walletID: findSelectedWallet()!.id,
-                                      accountID: AccountID(Token.Ether.id.id))
+                                      walletID: wallet.id,
+                                      accountID: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
         transaction.change(sender: findSelectedWallet()!.address!)
         repository.save(transaction)
         return transaction.id.id
@@ -662,9 +681,10 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    private func findAccount(_ tokenID: BaseID) -> Account? {
+    private func findAccount(_ tokenID: TokenID) -> Account? {
         guard let wallet = findSelectedWallet(),
-            let account = DomainRegistry.accountRepository.find(id: AccountID(tokenID.id), walletID: wallet.id) else {
+            let account = DomainRegistry.accountRepository.find(
+                id: AccountID(tokenID: tokenID, walletID: wallet.id), walletID: wallet.id) else {
             return nil
         }
         return account

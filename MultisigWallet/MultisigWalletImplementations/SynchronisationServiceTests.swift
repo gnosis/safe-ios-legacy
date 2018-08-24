@@ -10,33 +10,43 @@ import CommonTestSupport
 class SynchronisationServiceTests: XCTestCase {
 
     var syncService: SynchronisationService!
-    let publisher = MockEventPublisher()
     let tokenListService = MockTokenListService()
+    let accountService = MockAccountUpdateDomainService()
     let tokenListItemRepository = InMemoryTokenListItemRepository()
-    let retryInterval: TimeInterval = 1
+    let portfolioRepository = InMemorySinglePortfolioRepository()
+    let walletRepository = InMemoryWalletRepository()
+    let publisher = MockEventPublisher()
+    let retryInterval: TimeInterval = 0.5
 
     override func setUp() {
         super.setUp()
         DomainRegistry.put(service: tokenListService, for: TokenListDomainService.self)
         DomainRegistry.put(service: tokenListItemRepository, for: TokenListItemRepository.self)
+        DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
+        DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         DomainRegistry.put(service: publisher, for: EventPublisher.self)
-        syncService = SynchronisationService(retryInterval: retryInterval)
+        syncService = SynchronisationService(retryInterval: retryInterval, accountService: accountService)
     }
 
     func test_whenSync_thenCallsTokenListService() {
         startSync()
         delay(retryInterval)
-        assertSyncSuccess()
+        assertTokenListSyncSuccess()
     }
 
     func test_whenFailsToGetTokensList_thenRetries() {
         tokenListService.shouldThrow = true
         startSync()
         delay(retryInterval)
-        assertSyncInProgress()
+        assertTokenListSyncInProgress()
         tokenListService.shouldThrow = false
+        delay(retryInterval * 3)
+        assertTokenListSyncSuccess()
+    }
+
+    func test_whenSync_thenCallsAccountUpdateDomainService() {
+        startSync()
         delay(retryInterval * 2)
-        assertSyncSuccess()
     }
 
 }
@@ -51,13 +61,17 @@ private extension SynchronisationServiceTests {
         }
     }
 
-    private func assertSyncSuccess() {
+    private func assertTokenListSyncSuccess() {
         XCTAssertTrue(tokenListService.didReturnItems)
         XCTAssertTrue(publisher.verify())
     }
 
-    private func assertSyncInProgress() {
+    private func assertTokenListSyncInProgress() {
         XCTAssertFalse(tokenListService.didReturnItems)
+    }
+
+    private func assertAccountSyncSuccess() {
+        XCTAssertTrue(accountService.didCallUpdateAccounts)
     }
 
 }
@@ -66,6 +80,17 @@ fileprivate extension MockEventPublisher {
 
     func verify(_ line: UInt = #line) {
         XCTAssertTrue(publishedWhatWasExpected(), line: line)
+    }
+
+}
+
+class MockAccountUpdateDomainService: AccountUpdateDomainService {
+
+    var didCallUpdateAccounts = false
+
+    override func updateAccountsBalances() {
+        super.updateAccountsBalances()
+        didCallUpdateAccounts = true
     }
 
 }

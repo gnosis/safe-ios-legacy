@@ -22,6 +22,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
     let accountRepository = InMemoryAccountRepository()
     let eoaRepository = InMemoryExternallyOwnedAccountRepository()
     let system = MockSystem()
+    let syncService = MockSynchronisationService()
     var wallet: Wallet!
 
     override func setUp() {
@@ -39,6 +40,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
         DomainRegistry.put(service: eoaRepository, for: ExternallyOwnedAccountRepository.self)
         DomainRegistry.put(service: system, for: System.self)
+        DomainRegistry.put(service: syncService, for: SynchronisationDomainService.self)
     }
 
 }
@@ -114,7 +116,8 @@ class ConfiguredWalletTests: BaseDeploymentDomainServiceTests {
         nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 100)
         deploymentService.start()
         nodeService.verify()
-        let account = DomainRegistry.accountRepository.find(id: AccountID(Token.Ether.id.id), walletID: wallet.id)!
+        let account = DomainRegistry.accountRepository.find(
+            id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id), walletID: wallet.id)!
         XCTAssertEqual(account.balance, 100)
     }
 
@@ -178,6 +181,14 @@ class CreationStartedTests: BaseDeploymentDomainServiceTests {
     override func setUp() {
         super.setUp()
         eventPublisher.addFilter(CreationStarted.self)
+    }
+
+    func test_whenFunded_thenRunsSynchronisation() {
+        givenDeployingWallet()
+        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: successReceipt)
+        deploymentService.start()
+        delay(0.25)
+        XCTAssertTrue(syncService.didSync)
     }
 
     func test_whenFunded_thenWaitsForTransaction() {
@@ -301,7 +312,7 @@ extension BaseDeploymentDomainServiceTests {
         let portfolio = Portfolio(id: portfolioRepository.nextID())
         portfolio.addWallet(wallet.id)
         portfolioRepository.save(portfolio)
-        let account = Account(id: AccountID(Token.Ether.id.id), walletID: wallet.id, balance: 0)
+        let account = Account(tokenID: Token.Ether.id)
         DomainRegistry.accountRepository.save(account)
     }
 
@@ -317,7 +328,8 @@ extension BaseDeploymentDomainServiceTests {
 
     func givenFundedWallet() {
         givenConfiguredWallet()
-        let account = DomainRegistry.accountRepository.find(id: AccountID(Token.Ether.id.id), walletID: wallet.id)!
+        let account = DomainRegistry.accountRepository.find(
+            id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id), walletID: wallet.id)!
         account.update(newAmount: 100)
         DomainRegistry.accountRepository.save(account)
         wallet.proceed()

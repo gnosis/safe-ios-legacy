@@ -23,6 +23,9 @@ class WalletApplicationServiceTests: XCTestCase {
     let relayService = MockTransactionRelayService(averageDelay: 0, maxDeviation: 0)
     let encryptionService = MockEncryptionService()
     let eoaRepo = InMemoryExternallyOwnedAccountRepository()
+    let syncService = SynchronisationService(retryInterval: 0.1)
+    let tokenItemsRepository = InMemoryTokenListItemRepository()
+    let tokenItemsService = MockTokenListService()
 
     let eventPublisher = MockEventPublisher()
     var eventRelay: MockEventRelay!
@@ -56,6 +59,8 @@ class WalletApplicationServiceTests: XCTestCase {
         ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
         ApplicationServiceRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
         DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
+        DomainRegistry.put(service: tokenItemsRepository, for: TokenListItemRepository.self)
+        DomainRegistry.put(service: tokenItemsService, for: TokenListDomainService.self)
 
         ethereumService.createSafeCreationTransaction_output =
             SafeCreationTransactionData(safe: Address.safeAddress.value, payment: 100)
@@ -107,11 +112,11 @@ class WalletApplicationServiceTests: XCTestCase {
     func test_whenAddingAccount_thenCanFindIt() throws {
         givenDraftWallet()
         let wallet = try selectedWallet()
-        let eth = AccountID(ethID.id)
-        let account = accountRepository.find(id: eth, walletID: wallet.id)
+        let ethAccountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
+        let account = accountRepository.find(id: ethAccountID, walletID: wallet.id)
         XCTAssertNotNil(account)
-        XCTAssertEqual(account?.id, eth)
-        XCTAssertEqual(account?.balance, 0)
+        XCTAssertEqual(account?.id, ethAccountID)
+        XCTAssertEqual(account?.balance, nil)
     }
 
     func test_whenAddingOwner_thenAddressCanBeFound() throws {
@@ -284,18 +289,6 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertEqual(code.signature, code3.signature)
     }
 
-    fileprivate func givenReadyToUseWallet() {
-        try! givenReadyToDeployWallet()
-        let wallet = walletRepository.selectedWallet()!
-        wallet.state = wallet.deployingState
-        wallet.changeAddress(Address.safeAddress)
-        wallet.updateMinimumTransactionAmount(100)
-        wallet.state = wallet.readyToUseState
-        walletRepository.save(wallet)
-        service.update(account: ethID, newBalance: 1)
-        service.update(account: ethID, newBalance: 100)
-    }
-
     func test_whenHandlesTransactionConfirmedMessage_thenValidatesSignature() {
         let message = TransactionConfirmedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
 
@@ -326,7 +319,8 @@ class WalletApplicationServiceTests: XCTestCase {
         let txID = service.createNewDraftTransaction()
         let tx: Transaction! = transactionRepository.findByID(TransactionID(txID))
         XCTAssertNotNil(tx)
-        XCTAssertEqual(tx.accountID, AccountID(ethID.id))
+        let wallet = walletRepository.selectedWallet()!
+        XCTAssertEqual(tx.accountID, AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
         XCTAssertEqual(tx.sender, try! selectedWallet().address)
         XCTAssertEqual(tx.type, .transfer)
     }
@@ -446,10 +440,11 @@ class WalletApplicationServiceTests: XCTestCase {
     }
 
     func test_whenTransactionIsPending_thenStatusIsPending() throws {
+        let walletID = WalletID()
         let tx = Transaction(id: TransactionID(),
                              type: .transfer,
-                             walletID: WalletID(),
-                             accountID: AccountID(ethID.id))
+                             walletID: walletID,
+                             accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
         tx.change(sender: Address.safeAddress)
             .change(recipient: Address.testAccount1)
             .change(amount: TokenAmount.ether(1))
@@ -520,9 +515,36 @@ class WalletApplicationServiceTests: XCTestCase {
                         "msg:\(notificationService.transactionSentMessage(for: tx))"])
     }
 
+    // MARK: - Tokens
+
+    func test_whenGettingTokensDataForSelectedWallet_thenReturnsIt() {
+        givenReadyToUseWallet()
+        XCTAssertEqual(accountRepository.all().count, 1)
+        DispatchQueue.global().async {
+            self.syncService.sync()
+        }
+        delay(0.25)
+        XCTAssertTrue(accountRepository.all().count > 1)
+        let tokensWithEth = service.tokens()
+        XCTAssertEqual(tokensWithEth.count, accountRepository.all().count)
+        XCTAssertEqual(tokensWithEth[0].name, Token.Ether.name)
+    }
+
 }
 
 fileprivate extension WalletApplicationServiceTests {
+
+    private func givenReadyToUseWallet() {
+        try! givenReadyToDeployWallet()
+        let wallet = walletRepository.selectedWallet()!
+        wallet.state = wallet.deployingState
+        wallet.changeAddress(Address.safeAddress)
+        wallet.updateMinimumTransactionAmount(100)
+        wallet.state = wallet.readyToUseState
+        walletRepository.save(wallet)
+        service.update(account: Token.Ether.id, newBalance: 1)
+        service.update(account: Token.Ether.id, newBalance: 100)
+    }
 
     private func givenDraftTransaction() -> Transaction {
         ethereumService.nonce_output = 3
@@ -549,10 +571,11 @@ fileprivate extension WalletApplicationServiceTests {
             encryptionService.addressFromHashSignature_output = extensionAddress.value.lowercased()
             encryptionService.dataFromSignature_output = signatureData
 
+            let walletID = WalletID()
             let transaction = Transaction(id: TransactionID(),
                                           type: .transfer,
-                                          walletID: WalletID(),
-                                          accountID: AccountID(ethID.id))
+                                          walletID: walletID,
+                                          accountID: AccountID(tokenID: Token.Ether.id, walletID: walletID))
             transaction.change(hash: message.hash)
                 .change(sender: Address.safeAddress)
                 .change(recipient: Address.testAccount1)
@@ -594,7 +617,8 @@ fileprivate extension WalletApplicationServiceTests {
 
     func findAccount(_ tokenID: String) throws -> Account {
         let wallet = try selectedWallet()
-        guard let account = accountRepository.find(id: AccountID(tokenID), walletID: wallet.id) else {
+        let accountID = AccountID(tokenID: TokenID(tokenID), walletID: wallet.id)
+        guard let account = accountRepository.find(id: accountID, walletID: wallet.id) else {
             throw Error.accountNotFound
         }
         return account

@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         MultisigWalletDomainModel.DomainRegistry.put(service: InMemoryTokenListItemRepository(),
                                                      for: TokenListItemRepository.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: PushTokensService(), for: PushTokensDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: SynchronisationService(retryInterval: 5),
+        MultisigWalletDomainModel.DomainRegistry.put(service: SynchronisationService(retryInterval: 0.5),
                                                      for: SynchronisationDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: System(), for: System.self)

@@ -7,12 +7,12 @@ import Foundation
 /// Represents collection of all token list items.
 public protocol TokenListItemRepository {
 
-    /// Persists token list item.
+    /// Persists token list item and updated its sortingId.
     ///
     /// - Parameter tokenListItem: item to save.
     func save(_ tokenListItem: TokenListItem)
 
-    /// Removes tokenListItem.
+    /// Removes token list item.
     ///
     /// - Parameter tokenListItem: item to remove.
     func remove(_ tokenListItem: TokenListItem)
@@ -28,5 +28,10 @@ public protocol TokenListItemRepository {
     ///
     /// - Returns: token list items.
     func all() -> [TokenListItem]
+
+    /// Return whitelisted token list items sorted by sortingId.
+    ///
+    /// - Returns: token list items.
+    func whitelisted() -> [TokenListItem]
 
 }
