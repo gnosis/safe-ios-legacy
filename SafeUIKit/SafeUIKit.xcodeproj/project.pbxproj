@@ -89,7 +89,6 @@
 		0A4DF82020CE6FC70095C00D /* TokensTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */; };
 		0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4DF82320CE6FE20095C00D /* Main.storyboard */; };
 		0A4DF82720CE70B40095C00D /* TokenBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */; };
-		0A4DF82920CE80C50095C00D /* tokens.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A4DF82820CE80C50095C00D /* tokens.txt */; };
 		0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82E20CE9D5B0095C00D /* TransactionsTableViewController.swift */; };
 		0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF83020CE9D950095C00D /* TransactionTableViewCell.swift */; };
 		0A4EEA5120D02E9D005CDAC0 /* MainContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */; };
@@ -515,7 +514,6 @@
 		0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensTableViewController.swift; sourceTree = "<group>"; };
 		0A4DF82320CE6FE20095C00D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBalanceTableViewCell.swift; sourceTree = "<group>"; };
-		0A4DF82820CE80C50095C00D /* tokens.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tokens.txt; sourceTree = "<group>"; };
 		0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensTableViewControllerTests.swift; sourceTree = "<group>"; };
 		0A4DF82E20CE9D5B0095C00D /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
 		0A4DF83020CE9D950095C00D /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
@@ -1082,7 +1080,6 @@
 				0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */,
 				0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */,
 				0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */,
-				0A4DF82820CE80C50095C00D /* tokens.txt */,
 				0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */,
 				0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */,
 			);
@@ -1455,7 +1452,6 @@
 				0A321BBE20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib in Resources */,
 				0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */,
 				0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */,
-				0A4DF82920CE80C50095C00D /* tokens.txt in Resources */,
 				0A334E2F209C8E3800ABC6AE /* NewSafe.storyboard in Resources */,
 				0A334E4D209C8E3800ABC6AE /* AppFlow.storyboard in Resources */,
 				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
