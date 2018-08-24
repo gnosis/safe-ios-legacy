@@ -106,12 +106,12 @@ class WalletApplicationServiceTests: XCTestCase {
 
     func test_whenCreatingNewDraft_thenCreatesNewWallet() throws {
         givenDraftWallet()
-        XCTAssertEqual(try selectedWallet().status, .newDraft)
+        XCTAssertEqual(selectedWallet.status, .newDraft)
     }
 
     func test_whenAddingAccount_thenCanFindIt() throws {
         givenDraftWallet()
-        let wallet = try selectedWallet()
+        let wallet = selectedWallet
         let ethAccountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
         let account = accountRepository.find(id: ethAccountID, walletID: wallet.id)
         XCTAssertNotNil(account)
@@ -139,11 +139,6 @@ class WalletApplicationServiceTests: XCTestCase {
         addAllOwners()
     }
 
-    func test_whenAddedEnoughOwners_thenWalletIsReadyToDeploy() throws {
-        try givenReadyToDeployWallet()
-        XCTAssertEqual(service.selectedWalletState, .readyToDeploy)
-    }
-
     func test_whenWalletIsReady_thenHasReadyState() throws {
         createPortfolio()
         service.createNewDraftWallet()
@@ -157,8 +152,8 @@ class WalletApplicationServiceTests: XCTestCase {
         givenDraftWallet()
         let wallet = walletRepository.selectedWallet()!
         wallet.state = wallet.deployingState
+        wallet.changeAddress(Address.safeAddress)
         walletRepository.save(wallet)
-        try assignAddress(Address.safeAddress.value)
         XCTAssertEqual(service.selectedWalletAddress, Address.safeAddress.value)
     }
 
@@ -291,7 +286,7 @@ class WalletApplicationServiceTests: XCTestCase {
         XCTAssertNotNil(tx)
         let wallet = walletRepository.selectedWallet()!
         XCTAssertEqual(tx.accountID, AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
-        XCTAssertEqual(tx.sender, try! selectedWallet().address)
+        XCTAssertEqual(tx.sender, selectedWallet.address)
         XCTAssertEqual(tx.type, .transfer)
     }
 
@@ -572,21 +567,12 @@ fileprivate extension WalletApplicationServiceTests {
         portfolioRepository.save(Portfolio(id: portfolioRepository.nextID()))
     }
 
-    func selectedWallet() throws -> Wallet {
-        guard let portfolio = portfolioRepository.portfolio(),
-            let walletID = portfolio.selectedWallet,
-            let wallet = walletRepository.findByID(walletID) else {
-                throw Error.walletNotFound
-        }
-        return wallet
-    }
-
-    func assert(state: WalletApplicationService.WalletState, line: UInt = #line) {
-        XCTAssertEqual(service.selectedWalletState, state, line: line)
+    var selectedWallet: Wallet {
+        return DomainRegistry.walletRepository.selectedWallet()!
     }
 
     func findAccount(_ tokenID: String) throws -> Account {
-        let wallet = try selectedWallet()
+        let wallet = selectedWallet
         let accountID = AccountID(tokenID: TokenID(tokenID), walletID: wallet.id)
         guard let account = accountRepository.find(id: accountID, walletID: wallet.id) else {
             throw Error.accountNotFound
@@ -597,48 +583,6 @@ fileprivate extension WalletApplicationServiceTests {
     func givenDraftWallet() {
         createPortfolio()
         service.createNewDraftWallet()
-    }
-
-    private func markDeploymentStarted() throws {
-        let wallet = try selectedWallet()
-        wallet.startDeployment()
-        walletRepository.save(wallet)
-    }
-
-    private func assignAddress(_ address: String) throws {
-        let wallet = try selectedWallet()
-        wallet.changeAddress(Address(address))
-        walletRepository.save(wallet)
-    }
-
-    private func makeNotEnoughFunds() throws {
-        let wallet = try selectedWallet()
-        wallet.updateMinimumTransactionAmount(100)
-        walletRepository.save(wallet)
-        let account = try findAccount(ethID.id)
-        account.update(newAmount: 50)
-        accountRepository.save(account)
-    }
-
-    private func makeEnoughFunds() throws {
-        let wallet = try selectedWallet()
-        wallet.updateMinimumTransactionAmount(100)
-        walletRepository.save(wallet)
-        let account = try findAccount(ethID.id)
-        account.update(newAmount: 150)
-        accountRepository.save(account)
-    }
-
-    private func simulateCreationTransaction() throws {
-        let wallet = try selectedWallet()
-        wallet.assignCreationTransaction(hash: TransactionHash.test1.value)
-        walletRepository.save(wallet)
-    }
-
-    private func markAcceptedByBlockchain() throws {
-        let wallet = try selectedWallet()
-        wallet.markDeploymentAcceptedByBlockchain()
-        walletRepository.save(wallet)
     }
 
 }

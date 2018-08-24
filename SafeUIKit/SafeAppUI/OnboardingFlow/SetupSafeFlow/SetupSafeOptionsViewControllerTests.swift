@@ -31,8 +31,9 @@ class SetupSafeOptionsViewControllerTests: SafeTestCase {
     }
 
     func test_whenNewSafeButtonPressed_thenNewWalletCreated() {
+        walletService.expect_hasSelectedWallet(false)
         vc.createNewSafe(vc)
-        XCTAssertTrue(walletService.selectedWalletState == .newDraft)
+        XCTAssertTrue(walletService.didCreateNewDraft)
     }
 
     func test_whenNewSafeButtonPressedTwice_thenExistingDraftWalletIsUsed() {

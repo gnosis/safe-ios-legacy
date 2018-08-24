@@ -36,6 +36,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_pairWithBrowserExtensionCompletion_popsToStartVC() {
+        walletService.expect_hasPendingWalletCreation(true)
         let startVC = topViewController
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
         delay()
@@ -72,6 +73,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
 
     func test_whenCancellationAlertConfirmed_thenPopsBackToNewSafeScreen() {
         walletService.createReadyToDeployWallet()
+        walletService.expect_deployWallet()
         createWindow(newSafeFlowCoordinator.rootViewController)
         newSafeFlowCoordinator.didSelectNext()
         delay(1)
@@ -82,9 +84,10 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
             XCTFail("Confirm cancellation action not found")
             return
         }
+        walletService.expect_abortDeployment()
         confirmCancellationAction.test_handler?(confirmCancellationAction)
         delay(1)
-        XCTAssertEqual(walletService.selectedWalletState, .newDraft)
+        XCTAssertTrue(walletService.verify())
         XCTAssertNil(newSafeFlowCoordinator.rootViewController.presentedViewController)
         XCTAssertTrue(newSafeFlowCoordinator.navigationController.topViewController is NewSafeViewController)
     }
@@ -135,53 +138,20 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(newSafeFlowCoordinator.navigationController.topViewController is NewSafeViewController)
     }
 
-    // TODO: rework with state
     func test_whenSafeIsInAnyPendingState_thenShowingPendingController() {
-//        deploy()
-//        assertShowingPendingVC()
-//
-//        walletService.assignAddress("address")
-//        assertShowingPendingVC()
-//
-//        walletService.updateMinimumFunding(account: ethID, amount: 100)
-//        walletService.update(account: ethID, newBalance: 50)
-//        assertShowingPendingVC()
-//
-//        walletService.update(account: ethID, newBalance: 100)
-//        assertShowingPendingVC()
-//
-//        walletService.markDeploymentAcceptedByBlockchain()
-//        assertShowingPendingVC()
-//
-//        walletService.createReadyToUseWallet()
-//        assertShowingPendingVC(shouldShow: false)
+        walletService.expect_hasPendingWalletCreation(true)
+        assertShowingPendingVC()
+
+        walletService.expect_hasPendingWalletCreation(false)
+        assertShowingPendingVC(shouldShow: false)
     }
 
-    func test_whenSafeIsNotReadyToUse_thenIsNotFinishedTrue() {
-//        walletService.createNewDraftWallet()
-//        assertNotFinished()
-//
-//        walletService.createReadyToDeployWallet()
-//        assertNotFinished()
-//
-//        deploy()
-//        assertNotFinished()
-//
-//        walletService.assignAddress("address")
-//        assertNotFinished()
-//
-//        walletService.updateMinimumFunding(account: ethID, amount: 100)
-//        walletService.update(account: ethID, newBalance: 50)
-//        assertNotFinished()
-//
-//        walletService.update(account: ethID, newBalance: 100)
-//        assertNotFinished()
-//
-//        walletService.markDeploymentAcceptedByBlockchain()
-//        assertNotFinished()
-//
-//        walletService.createReadyToUseWallet()
-//        assertFinished()
+    func test_whenWalletInProgress_thenIsNotFinishedCorrect() {
+        walletService.expect_isSafeCreationInProgress(true)
+        XCTAssertTrue(newSafeFlowCoordinator.isSafeCreationInProgress)
+
+        walletService.expect_isSafeCreationInProgress(false)
+        XCTAssertFalse(newSafeFlowCoordinator.isSafeCreationInProgress)
     }
 
 }
@@ -203,14 +173,6 @@ extension NewSafeFlowCoordinatorTests {
         XCTAssertTrue((testFC.topViewController is PendingSafeViewController) == shouldShow,
                       "\(String(describing: testFC.topViewController)) is not PendingViewController",
                       line: line)
-    }
-
-    private func assertNotFinished(line: UInt = #line) {
-        XCTAssertTrue(newSafeFlowCoordinator.isSafeCreationInProgress, line: line)
-    }
-
-    private func assertFinished(line: UInt = #line) {
-        XCTAssertFalse(newSafeFlowCoordinator.isSafeCreationInProgress, line: line)
     }
 
 }

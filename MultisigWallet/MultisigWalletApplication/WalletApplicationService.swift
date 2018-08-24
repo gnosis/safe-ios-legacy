@@ -21,55 +21,12 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.pushTokensService
     }
 
-    public enum WalletState {
-        case none
-        case newDraft
-        case readyToDeploy
-        case deploymentStarted
-        case addressKnown
-        case accountFunded
-        case notEnoughFunds
-        case deploymentAcceptedByBlockchain
-        case readyToUse
-
-        var isBeingCreated: Bool {
-            return self == .newDraft || self == .readyToDeploy || isPendingDeployment
-        }
-
-        var isPendingDeployment: Bool {
-            return WalletState.pendingCreationStates.contains(self)
-        }
-
-        var isValidForAccountUpdate: Bool {
-            return WalletState.validAccountUpdateStates.contains(self)
-        }
-
-        var isReadyToUse: Bool {
-            return self == .readyToUse
-        }
-
-        private static let pendingCreationStates: [WalletState] = [
-            .deploymentStarted,
-            .addressKnown,
-            .accountFunded,
-            .notEnoughFunds,
-            .deploymentAcceptedByBlockchain
-        ]
-
-        private static let validAccountUpdateStates: [WalletState] = [
-            .deploymentStarted,
-            .addressKnown,
-            .notEnoughFunds
-        ]
-    }
-
     public enum OwnerType: String {
         case thisDevice
         case browserExtension
         case paperWallet
 
         static let all: [OwnerType] = [.thisDevice, .browserExtension, .paperWallet]
-
     }
 
     public enum Error: String, Swift.Error, Hashable {
@@ -90,32 +47,7 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public static let requiredConfirmationCount: Int = 2
-
-    public var selectedWalletState: WalletState {
-        guard let wallet = selectedWallet else { return .none }
-        switch wallet.status {
-        case .newDraft:
-            return .newDraft
-        case .readyToDeploy:
-            return .readyToDeploy
-        case .deploymentStarted:
-            return .deploymentStarted
-        case .addressKnown:
-            let account = findAccount(Token.Ether.id)!
-            if account.balance == nil {
-                return .addressKnown
-            } else if account.balance! < wallet.minimumDeploymentTransactionAmount! {
-                return .notEnoughFunds
-            } else {
-                return .accountFunded
-            }
-        case .deploymentAcceptedByBlockchain:
-            return .deploymentAcceptedByBlockchain
-        case .readyToUse:
-            return .readyToUse
-        }
-    }
+    public var hasSelectedWallet: Bool { return selectedWallet != nil }
 
     public var hasReadyToUseWallet: Bool {
         guard let wallet = selectedWallet else { return false }
@@ -123,15 +55,22 @@ public class WalletApplicationService: Assertable {
     }
 
     public var hasPendingWalletCreation: Bool {
-        return selectedWalletState.isPendingDeployment
+        guard let wallet = selectedWallet else { return false }
+        return wallet.state !== wallet.readyToUseState
+    }
+
+    public var isWalletDeployable: Bool {
+        guard let wallet = selectedWallet else { return false }
+        return wallet.isDeployable
     }
 
     public var isSafeCreationInProgress: Bool {
-        return selectedWalletState.isBeingCreated
+        guard let wallet = selectedWallet else { return false }
+        return wallet.state !== wallet.newDraftState && wallet.state !== wallet.readyToUseState
     }
 
     public var canChangeAccount: Bool {
-        return selectedWalletState.isValidForAccountUpdate
+        return selectedWalletAddress != nil
     }
 
     public var selectedWalletAddress: String? {
@@ -141,9 +80,6 @@ public class WalletApplicationService: Assertable {
     public var minimumDeploymentAmount: BigInt? {
         return selectedWallet?.minimumDeploymentTransactionAmount
     }
-
-    private var statusUpdateHandlers = [String: () -> Void]()
-    private var errorHandler: ((Swift.Error) -> Void)?
 
     public init() {}
 
@@ -361,7 +297,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func assertCanChangeAccount() {
-        try! assertNotNil(selectedWalletAddress, Error.invalidWalletState)
+        try! assertTrue(canChangeAccount, Error.invalidWalletState)
     }
 
     public func update(account tokenID: TokenID, newBalance: BigInt) {
@@ -376,6 +312,8 @@ public class WalletApplicationService: Assertable {
         closure(account)
         DomainRegistry.accountRepository.save(account)
     }
+
+    // MARK: - Transactions
 
     public func updateTransaction(_ id: String, amount: BigInt, recipient: String) {
         let transaction = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
