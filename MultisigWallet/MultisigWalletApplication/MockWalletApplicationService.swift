@@ -235,7 +235,7 @@ public class MockWalletApplicationService: WalletApplicationService {
             onError?(error)
         }
     }
-  
+
     public var tokensOutput = [TokenData]()
     public override func tokens() -> [TokenData] {
         return tokensOutput

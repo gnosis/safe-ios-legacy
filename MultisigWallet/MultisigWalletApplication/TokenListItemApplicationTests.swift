@@ -19,7 +19,9 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         XCTAssertTrue(accountRepository.all().count > 1)
         let tokensWithEth = service.tokens()
         XCTAssertEqual(tokensWithEth.count, accountRepository.all().count)
+        XCTAssertEqual(tokensWithEth[0].code, Token.Ether.code)
         XCTAssertEqual(tokensWithEth[0].name, Token.Ether.name)
+        XCTAssertEqual(tokensWithEth[0].decimals, Token.Ether.decimals)
     }
 
 }

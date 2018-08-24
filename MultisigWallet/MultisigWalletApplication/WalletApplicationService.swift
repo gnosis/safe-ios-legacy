@@ -322,9 +322,7 @@ public class WalletApplicationService: Assertable {
     }
 
     public func transactionData(_ id: String) -> TransactionData? {
-        guard let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id)) else {
-            return nil
-        }
+        guard let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id)) else { return nil }
         return TransactionData(id: tx.id.id,
                                sender: tx.sender?.value ?? "",
                                recipient: tx.recipient?.value ?? "",
@@ -337,21 +335,14 @@ public class WalletApplicationService: Assertable {
     private func status(of tx: Transaction) -> TransactionData.Status {
         let defaultStatus = TransactionData.Status.waitingForConfirmation
         switch tx.status {
-        case .signing:
-            return tx.signatures.count == 1
-                && tx.isSignedBy(address(of: .browserExtension)!) ? .readyToSubmit : defaultStatus
-        case .rejected:
-            return .rejected
-        case .pending:
-            return .pending
-        case .failed:
-            return .failed
-        case .success:
-            return .success
-        case .discarded:
-            return .discarded
-        case .draft:
-            return defaultStatus
+        case .signing: return tx.signatures.count == 1 && tx.isSignedBy(address(of: .browserExtension)!) ?
+            .readyToSubmit : defaultStatus
+        case .rejected: return .rejected
+        case .pending: return .pending
+        case .failed: return .failed
+        case .success: return .success
+        case .discarded: return .discarded
+        case .draft: return defaultStatus
         }
     }
 
