@@ -3,9 +3,10 @@
 //
 
 import XCTest
-@testable import MultisigWalletDomainModel
+@testable import MultisigWalletImplementations
+import MultisigWalletDomainModel
 
-class ImMemoryTokenListItemRepositoryTests: XCTestCase {
+class InMemoryTokenListItemRepositoryTests: XCTestCase {
 
     let repository = InMemoryTokenListItemRepository()
 

@@ -29,12 +29,6 @@ class MainViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.didCallCreateNewTransaction)
     }
 
-    func test_whenLoaded_loadsBalance() {
-        walletService.update(account: ethID, newBalance: BigInt(1e9))
-        vc.loadViewIfNeeded()
-        XCTAssertEqual(vc.totalBalanceLabel.text, "0,000000001 ETH")
-    }
-
 }
 
 class MockMainViewControllerDelegate: MainViewControllerDelegate {

@@ -42,7 +42,7 @@ open class AccountUpdateDomainService {
         accountIDs.forEach { accountID in
             let account = DomainRegistry.accountRepository.find(id: accountID, walletID: accountID.walletID)!
             if account.balance == nil {
-                account.add(amount: TokenInt(arc4random_uniform(100)))
+                account.add(amount: TokenInt(arc4random_uniform(UInt32.max)))
                 DomainRegistry.accountRepository.save(account)
             }
         }

@@ -158,6 +158,8 @@
 		552C6030212C2AE800BF973A /* AccountUpdateDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C602F212C2AE800BF973A /* AccountUpdateDomainService.swift */; };
 		552C6050212C5AF800BF973A /* AccountUpdateDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C604F212C5AF800BF973A /* AccountUpdateDomainServiceTests.swift */; };
 		552C6062212EED0C00BF973A /* TokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C6061212EED0B00BF973A /* TokenData.swift */; };
+		552C60872130047D00BF973A /* InMemoryTokenListItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25922123018700E81666 /* InMemoryTokenListItemRepository.swift */; };
+		552C60882130048300BF973A /* InMemoryTokenListItemRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2594212301A800E81666 /* InMemoryTokenListItemRepositoryTests.swift */; };
 		555C949520E2A60F00A0621D /* WalletRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C948A20E2A60F00A0621D /* WalletRepository.swift */; };
 		555C949720E2A60F00A0621D /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C948C20E2A60F00A0621D /* AccountRepository.swift */; };
 		555C949820E2A60F00A0621D /* SinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C948D20E2A60F00A0621D /* SinglePortfolioRepository.swift */; };
@@ -174,8 +176,6 @@
 		55FB258D2121AB3E00E81666 /* TokenListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB258C2121AB3E00E81666 /* TokenListItem.swift */; };
 		55FB258F2122F95700E81666 /* TokenListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB258E2122F95700E81666 /* TokenListItemTests.swift */; };
 		55FB2591212300D400E81666 /* TokenListItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2590212300D400E81666 /* TokenListItemRepository.swift */; };
-		55FB25932123018700E81666 /* InMemoryTokenListItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25922123018700E81666 /* InMemoryTokenListItemRepository.swift */; };
-		55FB2595212301A800E81666 /* ImMemoryTokenListItemRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB2594212301A800E81666 /* ImMemoryTokenListItemRepositoryTests.swift */; };
 		55FB25AE2124760200E81666 /* TokenListDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25AD2124760200E81666 /* TokenListDomainService.swift */; };
 		55FB25BB2124772C00E81666 /* HTTPTokenListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25BA2124772C00E81666 /* HTTPTokenListService.swift */; };
 		55FB25BD21256E0F00E81666 /* MockTokenListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25BC21256E0F00E81666 /* MockTokenListService.swift */; };
@@ -581,7 +581,7 @@
 		55FB258E2122F95700E81666 /* TokenListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenListItemTests.swift; sourceTree = "<group>"; };
 		55FB2590212300D400E81666 /* TokenListItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenListItemRepository.swift; sourceTree = "<group>"; };
 		55FB25922123018700E81666 /* InMemoryTokenListItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTokenListItemRepository.swift; sourceTree = "<group>"; };
-		55FB2594212301A800E81666 /* ImMemoryTokenListItemRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImMemoryTokenListItemRepositoryTests.swift; sourceTree = "<group>"; };
+		55FB2594212301A800E81666 /* InMemoryTokenListItemRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTokenListItemRepositoryTests.swift; sourceTree = "<group>"; };
 		55FB25AD2124760200E81666 /* TokenListDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenListDomainService.swift; sourceTree = "<group>"; };
 		55FB25BA2124772C00E81666 /* HTTPTokenListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTokenListService.swift; sourceTree = "<group>"; };
 		55FB25BC21256E0F00E81666 /* MockTokenListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTokenListService.swift; sourceTree = "<group>"; };
@@ -942,6 +942,8 @@
 				0A9E37E620F4A4D20085E8D7 /* infura */,
 				0A9E37FB20F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift */,
 				0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */,
+				55FB25922123018700E81666 /* InMemoryTokenListItemRepository.swift */,
+				55FB2594212301A800E81666 /* InMemoryTokenListItemRepositoryTests.swift */,
 				0A9E37FC20F4A4D20085E8D7 /* MockEncryptionService.swift */,
 				0A9E380720F4A4D20085E8D7 /* MockEthereumNodeService.swift */,
 				0A9E380120F4A4D20085E8D7 /* MockTransactionRelayService.swift */,
@@ -1015,8 +1017,6 @@
 				55FB258C2121AB3E00E81666 /* TokenListItem.swift */,
 				55FB258E2122F95700E81666 /* TokenListItemTests.swift */,
 				55FB2590212300D400E81666 /* TokenListItemRepository.swift */,
-				55FB25922123018700E81666 /* InMemoryTokenListItemRepository.swift */,
-				55FB2594212301A800E81666 /* ImMemoryTokenListItemRepositoryTests.swift */,
 				55FB25AD2124760200E81666 /* TokenListDomainService.swift */,
 			);
 			path = Token;
@@ -1447,7 +1447,6 @@
 				555C949520E2A60F00A0621D /* WalletRepository.swift in Sources */,
 				0A8272F221243B0300EB5C21 /* EventPublisher.swift in Sources */,
 				0A9E381020F4A4F20085E8D7 /* EthereumNodeDomainService.swift in Sources */,
-				55FB25932123018700E81666 /* InMemoryTokenListItemRepository.swift in Sources */,
 				0A8135122123122A00B0B302 /* WalletStates.swift in Sources */,
 				55CC279920F667FB00AC12D6 /* AuthRequest.swift in Sources */,
 				0A9E381120F4A4F20085E8D7 /* TransactionRelayDomainService.swift in Sources */,
@@ -1467,7 +1466,6 @@
 				0A9E386220F4B46C0085E8D7 /* WorkerTests.swift in Sources */,
 				0A7F3A992126BDCA0062CB1E /* RetryWithIncreasingDelayTests.swift in Sources */,
 				552C6050212C5AF800BF973A /* AccountUpdateDomainServiceTests.swift in Sources */,
-				55FB2595212301A800E81666 /* ImMemoryTokenListItemRepositoryTests.swift in Sources */,
 				55CC279C20F6680800AC12D6 /* PairingRequestTests.swift in Sources */,
 				55D3C02F20F668EB0047004F /* EthSignatureTests.swift in Sources */,
 				0A77D0D1211AD986003582DD /* Fixtures.swift in Sources */,
@@ -1557,6 +1555,7 @@
 				0A9E383D20F4AE510085E8D7 /* GnosisTransactionRelayService.swift in Sources */,
 				0A9E384820F4AE510085E8D7 /* EthAddress.swift in Sources */,
 				0A9E383920F4AE510085E8D7 /* DemoEthereumNodeService.swift in Sources */,
+				552C60872130047D00BF973A /* InMemoryTokenListItemRepository.swift in Sources */,
 				0A9E383C20F4AE510085E8D7 /* EthereumKitEthereumService.swift in Sources */,
 				0A9E384C20F4AE510085E8D7 /* TransactionCall.swift in Sources */,
 				55FB25BD21256E0F00E81666 /* MockTokenListService.swift in Sources */,
@@ -1588,6 +1587,7 @@
 				55FB25BF212573E400E81666 /* MockTokenListServiceTests.swift in Sources */,
 				0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */,
 				0A8E3C0720B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift in Sources */,
+				552C60882130048300BF973A /* InMemoryTokenListItemRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
