@@ -11,7 +11,7 @@ public protocol EventSubscriber: class {
 
 /// Relays published events from EventPublisher to EventSubscribers.
 /// When event subscriber is deallocated, it won't be notified again, therefore unsubscribing is optional.
-class EventRelay {
+public class EventRelay {
 
     private class SubscriberWrapper {
         weak var ref: EventSubscriber?
@@ -23,7 +23,7 @@ class EventRelay {
 
     private var subscribers = [(type: DomainEvent.Type, subscriber: SubscriberWrapper)]()
 
-    init(publisher: EventPublisher) {
+    public init(publisher: EventPublisher) {
         publisher.subscribe(handleEvent)
     }
 

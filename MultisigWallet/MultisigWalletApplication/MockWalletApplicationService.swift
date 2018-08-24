@@ -79,10 +79,6 @@ public class MockWalletApplicationService: WalletApplicationService {
         ]
     }
 
-    public override func startDeployment() {
-        _selectedWalletState = .deploymentStarted
-    }
-
     public func assignAddress(_ address: String) {
         walletAddress = address
         _selectedWalletState = .addressKnown
@@ -227,9 +223,33 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public func verify() -> Bool {
-        return expected_walletState.count == actual_walletState.count
+        return expected_walletState.count == actual_walletState.count &&
+            actual_deployWallet.count == expected_deployWallet.count &&
+            zip(actual_deployWallet, expected_deployWallet).reduce(true) { result, pair -> Bool in
+                result && pair.0 === pair.1
+            }
     }
 
+    private var expected_deployWallet_error: Swift.Error?
+    private var expected_deployWallet = [EventSubscriber]()
+    private var actual_deployWallet = [EventSubscriber]()
+
+    public func expect_deployWallet(subscriber: EventSubscriber) {
+        expected_deployWallet.append(subscriber)
+    }
+
+    public func expect_deployWallet_throw(_ error: Swift.Error) {
+        expected_deployWallet_error = error
+    }
+
+    public override func deployWallet(subscriber: EventSubscriber, onError: ((Swift.Error) -> Void)?) {
+        _selectedWalletState = .deploymentStarted
+        actual_deployWallet.append(subscriber)
+        if let error = expected_deployWallet_error {
+            onError?(error)
+        }
+    }
+  
     public var tokensOutput = [TokenData]()
     public override func tokens() -> [TokenData] {
         return tokensOutput

@@ -86,7 +86,7 @@ public class WalletApplicationService: Assertable {
         case walletCreationFailed
 
         public var isNetworkError: Bool {
-            return self == .networkError || self == .clientError || self == .clientError
+            return self == .networkError || self == .clientError
         }
     }
 
@@ -118,7 +118,8 @@ public class WalletApplicationService: Assertable {
     }
 
     public var hasReadyToUseWallet: Bool {
-        return selectedWalletState.isReadyToUse
+        guard let wallet = findSelectedWallet() else { return false }
+        return wallet.state === wallet.readyToUseState
     }
 
     public var hasPendingWalletCreation: Bool {
@@ -175,37 +176,16 @@ public class WalletApplicationService: Assertable {
         if let errorHandler = onError {
             DomainRegistry.errorStream.addHandler(errorHandler)
         }
+        [DeploymentStarted.self, WalletConfigured.self, DeploymentFunded.self,
+         CreationStarted.self, WalletCreated.self, WalletCreationFailed.self].forEach {
+            ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: $0)
+        }
         DomainRegistry.deploymentService.start()
     }
 
     public func walletState() -> WalletState1? {
-        return nil
-    }
-
-    public func startDeployment() throws {
-        do {
-            if selectedWalletState == .readyToDeploy {
-                doStartDeployment()
-            }
-            if selectedWalletState == .deploymentStarted {
-                let data = try requestWalletCreation()
-                assignAddress(data.safe)
-                updateMinimumFunding(amount: data.payment)
-            }
-            if selectedWalletState == .notEnoughFunds || selectedWalletState == .addressKnown {
-                try startObservingWalletBalance()
-            } else if selectedWalletState == .accountFunded {
-                try createWalletInBlockchain()
-            } else if selectedWalletState == .deploymentAcceptedByBlockchain {
-                try waitForPendingTransaction()
-            } else {
-                throw Error.invalidWalletState
-            }
-        } catch let error {
-            errorHandler?(error)
-            abortDeploymentIfNeeded(by: error)
-            throw error
-        }
+        guard let state = DomainRegistry.walletRepository.selectedWallet()?.state else { return nil }
+        return WalletState1(state)
     }
 
     private func abortDeploymentIfNeeded(by error: Swift.Error) {
@@ -353,9 +333,9 @@ public class WalletApplicationService: Assertable {
     }
 
     public func abortDeployment() {
-        mutateSelectedWallet { wallet in
-            wallet.abortDeployment()
-        }
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        wallet.cancel()
+        DomainRegistry.walletRepository.save(wallet)
     }
 
     public func finishDeployment() {
@@ -549,7 +529,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func assertCanChangeAccount() {
-        try! assertTrue(selectedWalletState.isValidForAccountUpdate, Error.invalidWalletState)
+        try! assertNotNil(selectedWalletAddress, Error.invalidWalletState)
     }
 
     public func update(account tokenID: TokenID, newBalance: BigInt) {

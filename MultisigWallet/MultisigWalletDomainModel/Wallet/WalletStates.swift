@@ -14,6 +14,7 @@ public class WalletState {
     var canChangeOwners: Bool = false
     var canChangeTransactionHash: Bool = false
     var canChangeAddress: Bool = false
+    var isDeployable: Bool { return false }
 
     internal weak var wallet: Wallet!
 
@@ -42,6 +43,10 @@ extension WalletState: CustomStringConvertible {
 
 public class DraftState: WalletState {
 
+    override var isDeployable: Bool {
+        return wallet.allOwners().count >= wallet.confirmationCount
+    }
+
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
         canChangeOwners = true
@@ -55,6 +60,8 @@ public class DraftState: WalletState {
         wallet.state = wallet.deployingState
         if wallet.status == .newDraft {
             wallet.markReadyToDeploy()
+        }
+        if wallet.status == .readyToDeploy {
             wallet.startDeployment()
         }
         DomainRegistry.walletRepository.save(wallet)
@@ -84,6 +91,7 @@ public class DeployingState: WalletState {
 
     override func cancel() {
         wallet.state = wallet.newDraftState
+        wallet.reset()
     }
 
 }
@@ -107,6 +115,7 @@ public class NotEnoughFundsState: WalletState {
 
     override func cancel() {
         wallet.state = wallet.newDraftState
+        wallet.reset()
     }
 
 }
@@ -127,6 +136,7 @@ public class CreationStartedState: WalletState {
 
     override func cancel() {
         wallet.state = wallet.newDraftState
+        wallet.reset()
     }
 }
 
@@ -151,6 +161,7 @@ public class FinalizingDeploymentState: WalletState {
 
     override func cancel() {
         wallet.state = wallet.newDraftState
+        wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.eventPublisher.publish(WalletCreationFailed())
     }

@@ -4,17 +4,19 @@
 
 import XCTest
 @testable import MultisigWalletDomainModel
+import MultisigWalletImplementations
 
 class WalletTests: XCTestCase {
 
     var wallet: Wallet!
-    let firstOwner = Owner(address: .deviceAddress, role: .thisDevice)
-    let owner = Owner(address: .extensionAddress, role: .browserExtension)
+    let deviceOwner = Owner(address: .deviceAddress, role: .thisDevice)
+    let extensionOwner = Owner(address: .extensionAddress, role: .browserExtension)
+    let paperOwner = Owner(address: .paperWalletAddress, role: .paperWallet)
 
     override func setUp() {
         super.setUp()
         DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
-        wallet = Wallet(id: WalletID(), owner: firstOwner.address)
+        wallet = Wallet(id: WalletID(), owner: deviceOwner.address)
     }
 
     func test_init_whenCreated_thenHasAllData() {
@@ -23,27 +25,27 @@ class WalletTests: XCTestCase {
     }
 
     func test_whenAddingOwner_thenHasOwner() {
-        wallet.addOwner(owner)
-        XCTAssertEqual(wallet.owner(role: owner.role), owner)
+        wallet.addOwner(extensionOwner)
+        XCTAssertEqual(wallet.owner(role: extensionOwner.role), extensionOwner)
     }
 
     func test_whenReplacingOwner_thenAnotherOwnerExists() {
-        let otherOwner = Owner(address: .testAccount1, role: owner.role)
-        wallet.addOwner(owner)
+        let otherOwner = Owner(address: .testAccount1, role: extensionOwner.role)
+        wallet.addOwner(extensionOwner)
         wallet.addOwner(otherOwner)
         XCTAssertEqual(wallet.owner(role: .browserExtension), otherOwner)
         XCTAssertNil(wallet.owner(role: .paperWallet))
     }
 
     func test_whenReplacingExistingOwnerWithSameOwner_thenNothingChanges() {
-        wallet.addOwner(firstOwner)
-        XCTAssertEqual(wallet.owner(role: .thisDevice), firstOwner)
+        wallet.addOwner(deviceOwner)
+        XCTAssertEqual(wallet.owner(role: .thisDevice), deviceOwner)
     }
 
     func test_whenRemovingOwner_thenItDoesNotExist() {
-        wallet.addOwner(owner)
-        wallet.removeOwner(role: owner.role)
-        XCTAssertNil(wallet.owner(role: owner.role))
+        wallet.addOwner(extensionOwner)
+        wallet.removeOwner(role: extensionOwner.role)
+        XCTAssertNil(wallet.owner(role: extensionOwner.role))
     }
 
     func test_whenCreated_thenInDraftState() {
@@ -59,7 +61,8 @@ class WalletTests: XCTestCase {
     func test_whenDeploymentCompleted_thenChangesStatus() {
         wallet.markReadyToDeploy()
         wallet.startDeployment()
-        wallet.changeAddress(owner.address)
+        wallet.state = wallet.deployingState
+        wallet.changeAddress(extensionOwner.address)
         wallet.markDeploymentAcceptedByBlockchain()
         wallet.finishDeployment()
         XCTAssertEqual(wallet.status, Wallet.Status.readyToUse)
@@ -67,15 +70,16 @@ class WalletTests: XCTestCase {
 
     func test_whenReadyToDeploy_thenCanChangeOwners() {
         wallet.markReadyToDeploy()
-        wallet.addOwner(owner)
-        wallet.addOwner(Owner(address: .testAccount1, role: owner.role))
-        wallet.removeOwner(role: owner.role)
+        wallet.addOwner(extensionOwner)
+        wallet.addOwner(Owner(address: .testAccount1, role: extensionOwner.role))
+        wallet.removeOwner(role: extensionOwner.role)
     }
 
     func test_whenCancellingDeployment_thenChangesState() throws {
         wallet.markReadyToDeploy()
         wallet.startDeployment()
-        wallet.changeAddress(owner.address)
+        wallet.state = wallet.deployingState
+        wallet.changeAddress(extensionOwner.address)
         wallet.markDeploymentAcceptedByBlockchain()
         wallet.abortDeployment()
         XCTAssertEqual(wallet.status, .readyToDeploy)
@@ -87,10 +91,7 @@ class WalletTests: XCTestCase {
     }
 
     func test_whenAssigningCreationTransaction_thenCanFetchIt() {
-        wallet.markReadyToDeploy()
-        wallet.startDeployment()
-        wallet.changeAddress(owner.address)
-        wallet.markDeploymentAcceptedByBlockchain()
+        wallet.state = wallet.finalizingDeploymentState
         wallet.assignCreationTransaction(hash: TransactionHash.test1.value)
         XCTAssertEqual(wallet.creationTransactionHash, TransactionHash.test1.value)
     }
@@ -98,7 +99,8 @@ class WalletTests: XCTestCase {
     func test_whenUpdatingMinimumTransactionAmount_thenUpdatesIt() {
         wallet.markReadyToDeploy()
         wallet.startDeployment()
-        wallet.changeAddress(owner.address)
+        wallet.state = wallet.deployingState
+        wallet.changeAddress(extensionOwner.address)
         wallet.updateMinimumTransactionAmount(TokenInt(1_000))
         XCTAssertEqual(wallet.minimumDeploymentTransactionAmount, TokenInt(1_000))
     }
@@ -106,14 +108,45 @@ class WalletTests: XCTestCase {
     func test_whenInitFromData_thenHasTransactionHashAndMinimumTransactionAmount() {
         wallet.markReadyToDeploy()
         wallet.startDeployment()
-        wallet.changeAddress(owner.address)
+        wallet.state = wallet.deployingState
+        wallet.changeAddress(extensionOwner.address)
         wallet.updateMinimumTransactionAmount(TokenInt(1_000))
         wallet.markDeploymentAcceptedByBlockchain()
+        wallet.state = wallet.finalizingDeploymentState
         wallet.assignCreationTransaction(hash: TransactionHash.test1.value)
         let data = wallet.data()
         let otherWallet = Wallet(data: data)
         XCTAssertEqual(otherWallet.creationTransactionHash, TransactionHash.test1.value)
         XCTAssertEqual(otherWallet.minimumDeploymentTransactionAmount, TokenInt(1_000))
+    }
+
+    func test_whenInDraftWithAllDataSet_thenIsDeployable() {
+        wallet.addOwner(extensionOwner)
+        wallet.addOwner(paperOwner)
+        XCTAssertTrue(wallet.isDeployable)
+    }
+
+    func test_whenNotEnoughOwners_thenNotDeployable() {
+        XCTAssertFalse(wallet.isDeployable)
+    }
+
+    func test_whenNotInDraft_thenNotDeployable() {
+        wallet.state = wallet.deployingState
+        XCTAssertFalse(wallet.isDeployable)
+    }
+
+    func test_whenCancelling_thenWalletResetsData() {
+        DomainRegistry.put(service: InMemoryWalletRepository(), for: WalletRepository.self)
+        DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
+        wallet.state = wallet.deployingState
+        wallet.changeAddress(Address.safeAddress)
+        wallet.updateMinimumTransactionAmount(100)
+        wallet.state = wallet.finalizingDeploymentState
+        wallet.assignCreationTransaction(hash: TransactionHash.test1.value)
+        wallet.cancel()
+        XCTAssertNil(wallet.address)
+        XCTAssertNil(wallet.minimumDeploymentTransactionAmount)
+        XCTAssertNil(wallet.creationTransactionHash)
     }
 
 }

@@ -17,7 +17,131 @@ public protocol PendingSafeViewControllerDelegate: class {
 
 public class PendingSafeViewController: UIViewController, EventSubscriber {
 
-    private struct Strings {
+    @IBOutlet weak var titleLabel: H1Label!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var safeAddressLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var progressStatusLabel: UILabel!
+    @IBOutlet weak var copySafeAddressButton: UIButton!
+    @IBOutlet var retryButton: UIBarButtonItem!
+
+    weak var delegate: PendingSafeViewControllerDelegate?
+
+    internal var state: State! {
+        didSet {
+            update()
+        }
+    }
+
+    internal var nilState: State!
+    internal var deployingState: State!
+    internal var notEnoughFundsState: State!
+    internal var creationStartedState: State!
+    internal var finalizingDeploymentState: State!
+    internal var readyToUseState: State!
+    internal var errorState: State!
+
+    public static func create(delegate: PendingSafeViewControllerDelegate? = nil) -> PendingSafeViewController {
+        let controller = StoryboardScene.NewSafe.pendingSafeViewController.instantiate()
+        controller.delegate = delegate
+        return controller
+    }
+
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        configureLabels()
+        initStates()
+        state = nilState
+        deploy()
+    }
+
+    private func configureLabels() {
+        titleLabel.text = Strings.title
+        cancelButton.title = Strings.cancel
+        infoLabel.text = Strings.info
+        retryButton.title = Strings.retry
+        progressStatusLabel.accessibilityIdentifier = "pending_safe.status"
+    }
+
+    private func initStates() {
+        nilState = NilState()
+        deployingState = DeployingState()
+        notEnoughFundsState = NotEnoughFundsState()
+        creationStartedState = CreationStartedState()
+        finalizingDeploymentState = FinalizingDeploymentState()
+        readyToUseState = ReadyToUseState()
+        errorState = ErrorState()
+    }
+
+    @IBAction func retryDeployment(_ sender: Any) {
+        deploy()
+    }
+
+    @IBAction func cancel(_ sender: Any) {
+        delegate?.deploymentDidCancel()
+    }
+
+    @IBAction func copySafeAddress(_ sender: Any) {
+        UIPasteboard.general.string = ApplicationServiceRegistry.walletService.selectedWalletAddress!
+    }
+
+    private func update() {
+        guard isViewLoaded else { return }
+        cancelButton.isEnabled = state.canCancel
+        retryButton.isEnabled = state.canRetry
+        copySafeAddressButton.isHidden = !state.canCopyAddress
+        safeAddressLabel.text = state.addressText
+        progressStatusLabel.text = state.statusText
+        progressView.setProgress(Float(state.progress), animated: true)
+        if state.isFinalState {
+            delegate?.deploymentDidSuccess()
+        }
+    }
+
+    private func deploy() {
+        DispatchQueue.global().async { [unowned self] in
+            ApplicationServiceRegistry.walletService.deployWallet(subscriber: self) { error in
+                DispatchQueue.main.async {
+                    self.state = self.errorState
+                    self.handleError(error)
+                }
+            }
+        }
+    }
+
+    // called during wallet deployment events
+    public func notify() {
+        let newState = state(from: ApplicationServiceRegistry.walletService.walletState()!)
+        DispatchQueue.main.async {
+            self.state = newState
+        }
+    }
+
+    private func handleError(_ error: Error) {
+        switch error {
+        case let nsError as NSError where nsError.domain == NSURLErrorDomain:
+            fallthrough
+        case WalletApplicationService.Error.clientError, WalletApplicationService.Error.networkError,
+             EthereumApplicationService.Error.clientError, EthereumApplicationService.Error.networkError:
+            notifyUser(error: error.localizedDescription)
+        default:
+            delegate?.deploymentDidFail(error.localizedDescription)
+        }
+    }
+
+    private func notifyUser(error: String) {
+        let controller = SafeCreationFailedAlertController.create(localizedErrorDescription: error) {
+            // empty
+        }
+        present(controller, animated: true, completion: nil)
+    }
+
+}
+
+extension PendingSafeViewController {
+
+    struct Strings {
 
         static let title = LocalizedString("pending_safe.title", comment: "Title of pending safe screen")
         static let cancel = LocalizedString("pending_safe.cancel", comment: "Cancel safe creation button")
@@ -47,203 +171,81 @@ public class PendingSafeViewController: UIViewController, EventSubscriber {
 
     }
 
-    @IBOutlet weak var titleLabel: H1Label!
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
-    @IBOutlet weak var infoLabel: UILabel!
-    @IBOutlet weak var safeAddressLabel: UILabel!
-    @IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var progressStatusLabel: UILabel!
-    @IBOutlet weak var copySafeAddressButton: UIButton!
-    @IBOutlet var retryButton: UIBarButtonItem!
-
-    weak var delegate: PendingSafeViewControllerDelegate?
-    private var subscription: String?
-    private var walletService: WalletApplicationService { return ApplicationServiceRegistry.walletService }
-    private var uiUpdateQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.underlyingQueue = DispatchQueue.main
-        queue.maxConcurrentOperationCount = 1
-        queue.qualityOfService = .userInitiated
-        return queue
-    }()
-
-    internal var state: State!
-    internal var deployingState: DeployingState!
-
-    public static func create(delegate: PendingSafeViewControllerDelegate? = nil) -> PendingSafeViewController {
-        let controller = StoryboardScene.NewSafe.pendingSafeViewController.instantiate()
-        controller.delegate = delegate
-        return controller
-    }
-
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        titleLabel.text = Strings.title
-        cancelButton.title = Strings.cancel
-        infoLabel.text = Strings.info
-        retryButton.title = Strings.retry
-        safeAddressLabel.text = nil
-        copySafeAddressButton.isHidden = true
-        progressStatusLabel.text = nil
-        progressStatusLabel.accessibilityIdentifier = "pending_safe.status"
-        progressView.progress = 0
-
-        deployingState = DeployingState()
-
-        updateStatus()
-        walletService.setErrorHandler(handleError)
-        subscription = walletService.subscribe(updateStatus)
-        startDeployment()
-    }
-
-    deinit {
-        if let subscription = subscription {
-            walletService.unsubscribe(subscription: subscription)
-        }
-        walletService.setErrorHandler(nil)
-    }
-
-    private func deploy() {
-        DispatchQueue.global().async { [unowned self] in
-            ApplicationServiceRegistry.walletService.deployWallet(subscriber: self) { error in
-                DispatchQueue.main.async {
-                    self.handleError(error)
-                }
-            }
-        }
-    }
-
-    public func notify() {
-        let newState = state(from: ApplicationServiceRegistry.walletService.walletState()!)
-        DispatchQueue.main.async {
-            self.state = newState
-        }
-    }
-
-    private func startDeployment() {
-        disableRetrying()
-        DispatchQueue.global().async {
-            do {
-                try ApplicationServiceRegistry.walletService.startDeployment()
-            } catch let error {
-                DispatchQueue.main.async {
-                    self.handleError(error)
-                }
-            }
-        }
-    }
-
-    private func handleError(_ error: Error) {
-        switch error {
-        case let nsError as NSError where nsError.domain == NSURLErrorDomain:
-            enableRetryingAfter(error: error.localizedDescription)
-        case let walletError as WalletApplicationService.Error where walletError.isNetworkError:
-            enableRetryingAfter(error: error.localizedDescription)
-        case let ethError as EthereumApplicationService.Error where ethError.isNetworkError:
-            enableRetryingAfter(error: error.localizedDescription)
-        default:
-            delegate?.deploymentDidFail(error.localizedDescription)
-        }
-    }
-
-    private func disableRetrying() {
-        retryButton.isEnabled = false
-    }
-
-    private func enableRetryingAfter(error: String) {
-        let controller = SafeCreationFailedAlertController.create(localizedErrorDescription: error) {
-            self.retryButton.isEnabled = true
-            self.progressStatusLabel.text = Strings.Status.error
-        }
-        present(controller, animated: true, completion: nil)
-    }
-
-    @IBAction func retryDeployment(_ sender: Any) {
-        startDeployment()
-    }
-
-    private func updateStatus() {
-        let state = walletService.selectedWalletState
-        let address = walletService.selectedWalletAddress
-        let payment = walletService.minimumDeploymentAmount
-        let balance = walletService.accountBalance(tokenID: ethID)
-        uiUpdateQueue.addOperation { [unowned self] in
-            self.updateAddressLabel(address: address, balance: balance)
-            self.cancelButton.isEnabled = self.walletService.canChangeAccount
-            switch state {
-            case .deploymentStarted:
-                self.update(progress: 0.1, status: Strings.Status.started)
-            case .addressKnown:
-                self.update(progress: 0.2, status: Strings.Status.addressKnown)
-            case .notEnoughFunds:
-                self.update(progress: 0.4, status: self.notEnoughFundsStatus(payment: payment, balance: balance))
-            case .accountFunded:
-                self.update(progress: 0.5, status: Strings.Status.accountFunded)
-            case .deploymentAcceptedByBlockchain:
-                self.update(progress: 0.8, status: Strings.Status.deploymentAccepted)
-            case .readyToUse:
-                self.update(progress: 1.0, status: Strings.Status.deploymentSuccess)
-                Timer.wait(0.5)
-                self.delegate?.deploymentDidSuccess()
-            default: break
-            }
-        }
-    }
-
-    private func updateAddressLabel(address: String?, balance: BigInt?) {
-        var addressText = ""
-        if let address = address {
-            addressText += "\(Strings.addressLabel):\n\(address)"
-            copySafeAddressButton.isHidden = false
-        }
-        if let balance = balance {
-            addressText += "\n\(Strings.balanceLabel): \(balance) Wei"
-        }
-        self.safeAddressLabel.text = addressText
-    }
-
-    private func notEnoughFundsStatus(payment: BigInt!, balance: BigInt!) -> String {
-        let requiredEth = "\(payment!) Wei"
-        let balanceEth = "\(balance!) Wei"
-        let status = String(format: Strings.Status.notEnoughFundsFormat, balanceEth, requiredEth)
-        return status
-    }
-
-    private func update(progress: Float, status: String) {
-        UIView.animate(withDuration: 0.2) {
-            self.progressStatusLabel.text = status
-        }
-        progressView.setProgress(progress, animated: true)
-    }
-
-    @IBAction func cancel(_ sender: Any) {
-        delegate?.deploymentDidCancel()
-    }
-
-    @IBAction func copySafeAddress(_ sender: Any) {
-        UIPasteboard.general.string = walletService.selectedWalletAddress!
-    }
-
 }
-
 
 extension PendingSafeViewController {
 
     func state(from walletState: WalletState1) -> State {
         switch walletState {
         case .deploying: return deployingState
-        default: preconditionFailure()
+        case .draft: return nilState
+        case .notEnoughFunds: return notEnoughFundsState
+        case .creationStarted: return creationStartedState
+        case .finalizingDeployment: return finalizingDeploymentState
+        case .readyToUse: return readyToUseState
         }
     }
 
     class State {
-        var canCancel: Bool = true
-        var canRetry: Bool = false
-        var addressText: String?
-        var statusText: String?
-        var progress: Double = 0
+        var canCancel: Bool { return false }
+        var canRetry: Bool { return false }
+        var canCopyAddress: Bool { return false }
+        var isFinalState: Bool { return false }
+        var addressText: String? {
+            guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return nil }
+            return "\(Strings.addressLabel): \(address)"
+        }
+        var statusText: String? { return nil }
+        var progress: Double { return 0 }
     }
 
-    class DeployingState: State {}
+    class NilState: State {
+        override var canCancel: Bool { return true }
+        override var addressText: String? { return nil }
+    }
+
+    class DeployingState: State {
+        override var statusText: String? { return Strings.Status.started }
+        override var progress: Double { return 0.1 }
+        override var canCancel: Bool { return true }
+    }
+
+    class NotEnoughFundsState: State {
+
+        override var canCancel: Bool { return true }
+        override var canCopyAddress: Bool { return true }
+
+        override var statusText: String? {
+            let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: ethID)!
+            let payment = ApplicationServiceRegistry.walletService.minimumDeploymentAmount!
+            let formatter = TokenNumberFormatter.eth
+            let formatString = Strings.Status.notEnoughFundsFormat
+            return String(format: formatString, formatter.string(from: balance), formatter.string(from: payment))
+        }
+
+        override var progress: Double { return 0.3 }
+
+    }
+
+    class CreationStartedState: State {
+        override var statusText: String? { return Strings.Status.accountFunded }
+        override var progress: Double { return 0.7 }
+    }
+
+    class FinalizingDeploymentState: State {
+        override var statusText: String? { return Strings.Status.deploymentAccepted }
+        override var progress: Double { return 0.9 }
+    }
+
+    class ReadyToUseState: State {
+        override var statusText: String? { return Strings.Status.deploymentSuccess }
+        override var progress: Double { return 1.0 }
+        override var isFinalState: Bool { return true }
+    }
+
+    class ErrorState: State {
+        override var statusText: String? { return Strings.Status.error }
+        override var canRetry: Bool { return true }
+    }
 
 }

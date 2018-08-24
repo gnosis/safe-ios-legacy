@@ -29,6 +29,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     private struct State: Codable {
         fileprivate let id: String
         fileprivate let status: Status
+        fileprivate let state: String
         fileprivate let ownersByRole: [OwnerRole: Owner]
         fileprivate let address: Address?
         fileprivate let creationTransactionHash: String?
@@ -58,6 +59,10 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public let confirmationCount: Int = 2
     public private(set) var deploymentFee: BigInt?
 
+    public var isDeployable: Bool {
+        return state.isDeployable
+    }
+
     public required init(data: Data) {
         let decoder = PropertyListDecoder()
         let state = try! decoder.decode(State.self, from: data)
@@ -68,7 +73,19 @@ public class Wallet: IdentifiableEntity<WalletID> {
         creationTransactionHash = state.creationTransactionHash
         minimumDeploymentTransactionAmount = state.minimumDeploymentTransactionAmount
         initStates()
-        updateStateFromStatus()
+        self.state = self.state(from: state.state)
+    }
+
+    private func state(from string: String) -> WalletState {
+        switch string {
+        case newDraftState.description: return newDraftState
+        case deployingState.description: return deployingState
+        case notEnoughFundsState.description: return notEnoughFundsState
+        case creationStartedState.description: return creationStartedState
+        case finalizingDeploymentState.description: return finalizingDeploymentState
+        case readyToUseState.description: return readyToUseState
+        default: preconditionFailure("Unknown state description")
+        }
     }
 
     private func updateStateFromStatus() {
@@ -91,6 +108,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         encoder.outputFormat = .binary
         let state = State(id: id.id,
                           status: status,
+                          state: self.state.description,
                           ownersByRole: ownersByRole,
                           address: address,
                           creationTransactionHash: creationTransactionHash,
@@ -178,8 +196,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func assignCreationTransaction(hash: String?) {
-        assert(status: .deploymentAcceptedByBlockchain)
-        try? assertTrue(state.canChangeTransactionHash, Error.invalidState)
+        try! assertTrue(state.canChangeTransactionHash, Error.invalidState)
         creationTransactionHash = hash
     }
 
@@ -195,7 +212,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func changeAddress(_ address: Address?) {
-        assert(status: .deploymentStarted)
+        try! assertTrue(state.canChangeAddress, Error.invalidState)
         self.address = address
         status = .addressKnown
     }
@@ -205,7 +222,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func updateMinimumTransactionAmount(_ newValue: TokenInt) {
-        assert(status: .addressKnown)
+        try! assertTrue(state.canChangeAddress, Error.invalidState)
         minimumDeploymentTransactionAmount = newValue
     }
 
@@ -221,4 +238,9 @@ public class Wallet: IdentifiableEntity<WalletID> {
         state.cancel()
     }
 
+    func reset() {
+        creationTransactionHash = nil
+        address = nil
+        minimumDeploymentTransactionAmount = nil
+    }
 }
