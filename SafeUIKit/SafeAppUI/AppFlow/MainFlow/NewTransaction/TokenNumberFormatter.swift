@@ -16,6 +16,15 @@ class TokenNumberFormatter {
         return formatter
     }()
 
+    static func ERC20Token(code: String? = nil, decimals: Int) -> TokenNumberFormatter {
+        let formatter = TokenNumberFormatter()
+        formatter.tokenCode = code
+        formatter.decimals = decimals
+        formatter.decimalSeparator = Locale.autoupdatingCurrent.decimalSeparator ?? ","
+        formatter.groupingSeparator = Locale.autoupdatingCurrent.groupingSeparator ?? " "
+        return formatter
+    }
+
     var decimals: Int = 0
     var groupingSeparator = " "
     var decimalSeparator = ","

@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import MultisigWalletDomainModel
 
 /// In-memory implementation of token list items repository, used for testing purposes.
 public class InMemoryTokenListItemRepository: TokenListItemRepository {

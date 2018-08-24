@@ -184,7 +184,6 @@ public class MockWalletApplicationService: WalletApplicationService {
 
     public var receive_input: [AnyHashable: Any]?
     public var receive_output: String?
-
     public override func receive(message: [AnyHashable: Any]) -> String? {
         receive_input = message
         return receive_output
@@ -192,7 +191,6 @@ public class MockWalletApplicationService: WalletApplicationService {
 
     public var submitTransaction_input: String?
     public var submitTransaction_output: TransactionData?
-
     public override func submitTransaction(_ id: String) throws -> TransactionData {
         submitTransaction_input = id
         return submitTransaction_output ?? requestTransactionConfirmation_output
@@ -237,4 +235,10 @@ public class MockWalletApplicationService: WalletApplicationService {
             onError?(error)
         }
     }
+  
+    public var tokensOutput = [TokenData]()
+    public override func tokens() -> [TokenData] {
+        return tokensOutput
+    }
+
 }

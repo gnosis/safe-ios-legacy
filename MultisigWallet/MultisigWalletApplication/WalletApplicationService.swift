@@ -257,11 +257,19 @@ public class WalletApplicationService: Assertable {
         let tokens: [TokenData] = DomainRegistry.tokenListItemRepository.whitelisted().compactMap {
             guard let account = DomainRegistry.accountRepository.find(
                 id: AccountID(tokenID: $0.id, walletID: wallet.id), walletID: wallet.id) else { return nil }
-            return TokenData(name: $0.token.name, balance: account.balance)
+            return TokenData(
+                code: $0.token.code,
+                name: $0.token.name,
+                decimals: $0.token.decimals,
+                balance: account.balance)
         }
         let ethAccount = DomainRegistry.accountRepository.find(
             id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id), walletID: wallet.id)!
-        let ethData = TokenData(name: Token.Ether.name, balance: ethAccount.balance)
+        let ethData = TokenData(
+            code: Token.Ether.code,
+            name: Token.Ether.name,
+            decimals: Token.Ether.decimals,
+            balance: ethAccount.balance)
         return [ethData] + tokens
     }
 

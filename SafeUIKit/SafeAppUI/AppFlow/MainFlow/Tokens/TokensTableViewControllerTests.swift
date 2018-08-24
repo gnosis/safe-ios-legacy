@@ -4,20 +4,35 @@
 
 import XCTest
 @testable import SafeAppUI
+import MultisigWalletApplication
+import BigInt
 
 class TokensTableViewControllerTests: XCTestCase {
 
     let controller = TokensTableViewController.create()
+    let walletService = MockWalletApplicationService()
 
-    func test_whenCreated_thenLoadsDummyData() {
+    override func setUp() {
+        super.setUp()
+        ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
+        let ethTokenData = TokenData(code: "ETH", name: "Ether", decimals: 18, balance: BigInt(10e15))
+        let gnoTokenData = TokenData(code: "GNO", name: "Gnosis", decimals: 18, balance: BigInt(10e16))
+        let mgnTokenData = TokenData(code: "MGN", name: "Magnolia", decimals: 18, balance: nil)
+        walletService.tokensOutput = [ethTokenData, gnoTokenData, mgnTokenData]
+    }
+
+    func test_whenCreated_thenLoadsData() {
         createWindow(controller)
-        XCTAssertGreaterThan(controller.tableView.numberOfRows(inSection: 0), 2)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 3)
         let firstCell = cell(at: 0)
         let secondCell = cell(at: 1)
-        XCTAssertNotEqual(firstCell.tokenImageView.image, secondCell.tokenImageView.image)
-        XCTAssertNotEqual(firstCell.tokenNameLabel.text, secondCell.tokenNameLabel.text)
-        XCTAssertNotEqual(firstCell.tokenBalanceLabel.text, secondCell.tokenBalanceLabel.text)
-        XCTAssertNotEqual(firstCell.fiatBalanceLabel.text, secondCell.fiatBalanceLabel.text)
+        let thirdCell = cell(at: 2)
+        XCTAssertEqual(firstCell.tokenCodeLabel.text, "ETH")
+        XCTAssertEqual(firstCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "0.01")
+        XCTAssertEqual(secondCell.tokenCodeLabel.text, "GNO")
+        XCTAssertEqual(secondCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "0.1")
+        XCTAssertEqual(thirdCell.tokenCodeLabel.text, "MGN")
+        XCTAssertEqual(thirdCell.tokenBalanceLabel.text, "--")
     }
 
     func test_whenSelectingRow_thenDeselectsIt() {
