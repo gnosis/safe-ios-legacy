@@ -4,29 +4,29 @@
 
 import UIKit
 
-protocol SettingsTableViewControllerDelegate: class {
+protocol MenuTableViewControllerDelegate: class {
     func didSelectManageTokens()
 }
 
-final class SettingsTableViewController: UITableViewController {
+final class MenuTableViewController: UITableViewController {
 
-    weak var delegate: SettingsTableViewControllerDelegate?
+    weak var delegate: MenuTableViewControllerDelegate?
 
-    private var settings = [(section: SettingsSection, items: [(item: Any, cellHeight: CGFloat)])]()
+    private var menuItems = [(section: SettingsSection, items: [(item: Any, cellHeight: CGFloat)])]()
 
     private enum Strings {
-        static let manageTokens = LocalizedString("settings.action.manage_tokens", comment: "Manage Tokens menu item")
-        static let changePassword = LocalizedString("settings.action.change_password",
+        static let manageTokens = LocalizedString("menu.action.manage_tokens", comment: "Manage Tokens menu item")
+        static let changePassword = LocalizedString("menu.action.change_password",
                                                     comment: "Change password menu item")
-        static let changeRecoveryPhrase = LocalizedString("settings.action.change_recovery_phrase",
+        static let changeRecoveryPhrase = LocalizedString("menu.action.change_recovery_phrase",
                                                           comment: "Change recovery key  menu item")
-        static let changeBrowserExtension = LocalizedString("settings.action.change_broeser_extension",
+        static let changeBrowserExtension = LocalizedString("menu.action.change_browser_extension",
                                                             comment: "Change browser extension menu item")
-        static let terms = LocalizedString("settings.action.terms",
+        static let terms = LocalizedString("menu.action.terms",
                                            comment: "Terms menu item")
-        static let privacyPolicy = LocalizedString("settings.action.privacy_policy",
+        static let privacyPolicy = LocalizedString("menu.action.privacy_policy",
                                                    comment: "Privacy policy menu item")
-        static let rateApp = LocalizedString("settings.action.rate_app",
+        static let rateApp = LocalizedString("menu.action.rate_app",
                                              comment: "Rate App menu item")
     }
 
@@ -48,8 +48,8 @@ final class SettingsTableViewController: UITableViewController {
         case rateApp
     }
 
-    static func create() -> SettingsTableViewController {
-        return StoryboardScene.Main.settingsTableViewController.instantiate()
+    static func create() -> MenuTableViewController {
+        return StoryboardScene.Main.menuTableViewController.instantiate()
     }
 
     override func viewDidLoad() {
@@ -61,7 +61,7 @@ final class SettingsTableViewController: UITableViewController {
     }
 
     private func generateData() {
-        settings = [
+        menuItems = [
             (.safe, [
                 (item: SafeDescription(
                     address: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c",
@@ -90,30 +90,30 @@ final class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return settings.count
+        return menuItems.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settings[section].items.count
+        return menuItems[section].items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch settings[indexPath.section].section {
+        switch menuItems[indexPath.section].section {
         case .safe:
-            if let safeDescription = settings[indexPath.section].items[indexPath.row].item as? SafeDescription {
+            if let safeDescription = menuItems[indexPath.section].items[indexPath.row].item as? SafeDescription {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SelectedSafeTableViewCell", for: indexPath)
                     as! SelectedSafeTableViewCell
                 cell.configure(safe: safeDescription)
                 return cell
             } else {
-                let menuItem = settings[indexPath.section].items[indexPath.row].item as! MenuItem
+                let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
                 let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
                     as! MenuItemTableViewCell
                 cell.configure(menuItem: menuItem)
                 return cell
             }
         case .owners, .legal, .rateApp:
-            let menuItem = settings[indexPath.section].items[indexPath.row].item as! MenuItem
+            let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
                 as! MenuItemTableViewCell
             cell.configure(menuItem: menuItem)
@@ -124,9 +124,9 @@ final class SettingsTableViewController: UITableViewController {
     // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch settings[indexPath.section].section {
+        switch menuItems[indexPath.section].section {
         case .safe:
-            if let manageTokensItem = settings[indexPath.section].items[indexPath.row].item as? MenuItem,
+            if let manageTokensItem = menuItems[indexPath.section].items[indexPath.row].item as? MenuItem,
                 manageTokensItem.name == Strings.manageTokens {
                 delegate?.didSelectManageTokens()
             }
@@ -136,7 +136,7 @@ final class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return settings[indexPath.section].items[indexPath.row].cellHeight
+        return menuItems[indexPath.section].items[indexPath.row].cellHeight
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

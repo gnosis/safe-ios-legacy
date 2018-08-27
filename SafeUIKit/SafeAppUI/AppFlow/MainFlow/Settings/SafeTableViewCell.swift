@@ -18,7 +18,7 @@ class SafeTableViewCell: UITableViewCell {
         backgroundView?.backgroundColor = ColorName.paleGreyThree.color
     }
 
-    func configure(safe: SettingsTableViewController.SafeDescription) {
+    func configure(safe: MenuTableViewController.SafeDescription) {
         safeIconImageView.image = safe.image
         safeNameLabel.text = safe.name
         safeAddressLabel.text = safe.address

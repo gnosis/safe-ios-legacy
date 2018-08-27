@@ -92,11 +92,11 @@
 		0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82E20CE9D5B0095C00D /* TransactionsTableViewController.swift */; };
 		0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF83020CE9D950095C00D /* TransactionTableViewCell.swift */; };
 		0A4EEA5120D02E9D005CDAC0 /* MainContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */; };
-		0A4EEA6020D107A1005CDAC0 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EEA5F20D107A1005CDAC0 /* SettingsTableViewController.swift */; };
+		0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */; };
 		0A4EEA6620D107B7005CDAC0 /* SelectedSafeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EEA6520D107B7005CDAC0 /* SelectedSafeTableViewCell.swift */; };
 		0A4EEA6820D107BF005CDAC0 /* SafeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */; };
 		0A4EEA6A20D107C9005CDAC0 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EEA6920D107C9005CDAC0 /* MenuItemTableViewCell.swift */; };
-		0A4EEA6D20D1112F005CDAC0 /* SettingsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EEA6C20D1112F005CDAC0 /* SettingsTableViewControllerTests.swift */; };
+		0A4EEA6D20D1112F005CDAC0 /* MenuTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */; };
 		0A53AD5320598B5000D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD5520598B5000D713AD /* Localizable.strings */; };
 		0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */; };
 		0A54E7BF21300D35006BAD93 /* XCTest+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54E7BA21300D2F006BAD93 /* XCTest+Alert.swift */; };
@@ -523,11 +523,11 @@
 		0A4DF82E20CE9D5B0095C00D /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
 		0A4DF83020CE9D950095C00D /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentViewController.swift; sourceTree = "<group>"; };
-		0A4EEA5F20D107A1005CDAC0 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		0A4EEA6520D107B7005CDAC0 /* SelectedSafeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedSafeTableViewCell.swift; sourceTree = "<group>"; };
 		0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTableViewCell.swift; sourceTree = "<group>"; };
 		0A4EEA6920D107C9005CDAC0 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
-		0A4EEA6C20D1112F005CDAC0 /* SettingsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewControllerTests.swift; sourceTree = "<group>"; };
+		0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewControllerTests.swift; sourceTree = "<group>"; };
 		0A53AD5420598B5000D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD5620598B5E00D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A54E7BA21300D2F006BAD93 /* XCTest+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+Alert.swift"; sourceTree = "<group>"; };
@@ -853,8 +853,8 @@
 			isa = PBXGroup;
 			children = (
 				550D1ED32133E6420035109A /* ManageTokens */,
-				0A4EEA5F20D107A1005CDAC0 /* SettingsTableViewController.swift */,
-				0A4EEA6C20D1112F005CDAC0 /* SettingsTableViewControllerTests.swift */,
+				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
+				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
 				0A4EEA6520D107B7005CDAC0 /* SelectedSafeTableViewCell.swift */,
 				0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */,
 				0A4EEA6920D107C9005CDAC0 /* MenuItemTableViewCell.swift */,
@@ -1681,7 +1681,7 @@
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
-				0A4EEA6020D107A1005CDAC0 /* SettingsTableViewController.swift in Sources */,
+				0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */,
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
 				0A334E6F209C8FB100ABC6AE /* SafeFoundationExtensions.swift in Sources */,
@@ -1748,7 +1748,7 @@
 				0A72D42C209C92700082C0A3 /* XCTestCase+Extensions.swift in Sources */,
 				0A72D431209C92740082C0A3 /* XCTest+Assert.swift in Sources */,
 				0AD998AC20D3ED5E00E6F3CA /* TokenAmountTransactionParameterViewTests.swift in Sources */,
-				0A4EEA6D20D1112F005CDAC0 /* SettingsTableViewControllerTests.swift in Sources */,
+				0A4EEA6D20D1112F005CDAC0 /* MenuTableViewControllerTests.swift in Sources */,
 				0A334E57209C8E6800ABC6AE /* PendingSafeViewControllerTests.swift in Sources */,
 				0AF8D55720D01A90001E8423 /* TokensTableViewControllerTests.swift in Sources */,
 				0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */,

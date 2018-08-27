@@ -37,6 +37,27 @@
 /* Send button title */
 "main.send" = "Send";
 
+/* Change browser extension menu item */
+"menu.action.change_browser_extension" = "Change Browser Extension";
+
+/* Change password menu item */
+"menu.action.change_password" = "Change Password";
+
+/* Change recovery key  menu item */
+"menu.action.change_recovery_phrase" = "Change Recovery Phrase";
+
+/* Manage Tokens menu item */
+"menu.action.manage_tokens" = "Manage Tokens";
+
+/* Privacy policy menu item */
+"menu.action.privacy_policy" = "Privacy Policy";
+
+/* Rate App menu item */
+"menu.action.rate_app" = "Rate App";
+
+/* Terms menu item */
+"menu.action.terms" = "Terms";
+
 /* Browser extension Button */
 "new_safe.browser_extension" = "Browser Extension";
 

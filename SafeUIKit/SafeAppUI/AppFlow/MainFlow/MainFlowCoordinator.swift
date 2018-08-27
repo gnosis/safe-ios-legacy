@@ -63,7 +63,7 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
     }
 
     func openMenu() {
-        let settingsVC = SettingsTableViewController.create()
+        let settingsVC = MenuTableViewController.create()
         push(settingsVC)
     }
 

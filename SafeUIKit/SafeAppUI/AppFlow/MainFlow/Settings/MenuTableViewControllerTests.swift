@@ -5,11 +5,11 @@
 import XCTest
 @testable import SafeAppUI
 
-class SettingsTableViewControllerTests: XCTestCase {
+class MenuTableViewControllerTests: XCTestCase {
 
-    let controller = SettingsTableViewController.create()
+    let controller = MenuTableViewController.create()
     // swiftlint:disable:next weak_delegate
-    let delegate = MockSettingsTableViewControllerDelegate()
+    let delegate = MockMenuTableViewControllerDelegate()
 
     override func setUp() {
         super.setUp()
@@ -64,7 +64,7 @@ class SettingsTableViewControllerTests: XCTestCase {
 
 }
 
-extension SettingsTableViewControllerTests {
+extension MenuTableViewControllerTests {
 
     private func cellHeight(row: Int, section: Int) -> CGFloat {
         return controller.tableView(controller.tableView, heightForRowAt: IndexPath(row: row, section: section))
@@ -80,7 +80,7 @@ extension SettingsTableViewControllerTests {
 
 }
 
-final class MockSettingsTableViewControllerDelegate: SettingsTableViewControllerDelegate {
+final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate {
 
     var manageTokensSelected = false
     func didSelectManageTokens() {

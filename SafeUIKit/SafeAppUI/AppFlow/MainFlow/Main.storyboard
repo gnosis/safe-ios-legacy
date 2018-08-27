@@ -139,7 +139,7 @@
         <!--Settings-->
         <scene sceneID="SGv-WH-2Db">
             <objects>
-                <tableViewController storyboardIdentifier="SettingsTableViewController" id="OK1-XP-V50" customClass="SettingsTableViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MenuTableViewController" id="OK1-XP-V50" customClass="MenuTableViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SG4-LR-cIf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

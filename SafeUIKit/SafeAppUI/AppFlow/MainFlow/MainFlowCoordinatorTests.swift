@@ -37,7 +37,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         mainFlowCoordinator.openMenu()
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
-            is SettingsTableViewController)
+            is MenuTableViewController)
     }
 
     func test_whenDraftTransactionCreated_thenOpensTransactionReviewVC() {
