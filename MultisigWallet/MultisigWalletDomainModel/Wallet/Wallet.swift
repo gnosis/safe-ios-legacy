@@ -17,7 +17,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         case accountAlreadyExists
     }
 
-    private struct State: Codable {
+    private struct Serialized: Codable {
         fileprivate let id: String
         fileprivate let state: String
         fileprivate let ownersByRole: [OwnerRole: Owner]
@@ -53,7 +53,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public required init(data: Data) {
         let decoder = PropertyListDecoder()
-        let state = try! decoder.decode(State.self, from: data)
+        let state = try! decoder.decode(Serialized.self, from: data)
         super.init(id: WalletID(state.id))
         ownersByRole = state.ownersByRole
         address = state.address
@@ -78,7 +78,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func data() -> Data {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .binary
-        let state = State(id: id.id,
+        let state = Serialized(id: id.id,
                           state: self.state.description,
                           ownersByRole: ownersByRole,
                           address: address,
