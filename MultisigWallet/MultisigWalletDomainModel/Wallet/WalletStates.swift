@@ -92,6 +92,7 @@ public class DeployingState: WalletState {
     override func cancel() {
         wallet.state = wallet.newDraftState
         wallet.reset()
+        DomainRegistry.walletRepository.save(wallet)
     }
 
 }
@@ -116,6 +117,7 @@ public class NotEnoughFundsState: WalletState {
     override func cancel() {
         wallet.state = wallet.newDraftState
         wallet.reset()
+        DomainRegistry.walletRepository.save(wallet)
     }
 
 }
@@ -137,6 +139,7 @@ public class CreationStartedState: WalletState {
     override func cancel() {
         wallet.state = wallet.newDraftState
         wallet.reset()
+        DomainRegistry.walletRepository.save(wallet)
     }
 }
 

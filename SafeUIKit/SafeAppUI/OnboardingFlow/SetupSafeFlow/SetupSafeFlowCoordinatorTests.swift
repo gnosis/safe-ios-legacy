@@ -23,12 +23,14 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenDraftAlreadyExists_thenShowsNewSafeFlow() {
-        walletService.expect_isSafeCreationInProgress(true)
+        walletService.expect_isSafeCreationInProgress(false)
+        walletService.expect_isWalletDeployable(true)
 
         let testFC = TestFlowCoordinator()
         testFC.enter(flow: setupSafeFlowCoordinator)
         delay()
 
+        print(String(reflecting: testFC.navigationController.viewControllers.last))
         XCTAssertEqual(testFC.navigationController.viewControllers.count, 2)
         XCTAssertTrue(testFC.navigationController.viewControllers.last is NewSafeViewController)
     }
