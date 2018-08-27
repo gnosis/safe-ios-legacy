@@ -83,11 +83,11 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             DispatchQueue.main.async {
                 self.delegate?.didPair()
             }
-        } catch WalletApplicationService.Error.validationFailed {
+        } catch WalletApplicationServiceError.validationFailed {
             showError(message: Strings.invalidCode, log: "Invalid browser extension code")
-        } catch let error as WalletApplicationService.Error where error.isNetworkError {
+        } catch let error as WalletApplicationServiceError where error == .networkError || error == .clientError {
             showError(message: Strings.networkError, log: "Network Error in pairing")
-        } catch WalletApplicationService.Error.exceededExpirationDate {
+        } catch WalletApplicationServiceError.exceededExpirationDate {
             showError(message: Strings.browserExtensionExpired, log: "Browser Extension code is expired")
         } catch let e {
             showError(message: Strings.invalidCode, log: "Failed to pair with extension: \(e)")

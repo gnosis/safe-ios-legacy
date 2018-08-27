@@ -87,8 +87,8 @@ class PendingSafeViewControllerTests: SafeTestCase {
     }
 
     func test_whenDeploymentThrowsNetworkError_thenShowsAlert() {
-        assertAlertOnError(WalletApplicationService.Error.networkError)
-        assertAlertOnError(WalletApplicationService.Error.clientError)
+        assertAlertOnError(WalletApplicationServiceError.networkError)
+        assertAlertOnError(WalletApplicationServiceError.clientError)
         assertAlertOnError(EthereumApplicationService.Error.networkError)
         assertAlertOnError(EthereumApplicationService.Error.clientError)
         assertAlertOnError(NSError(domain: NSURLErrorDomain, code: 1, userInfo: nil))

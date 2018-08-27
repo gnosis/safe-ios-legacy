@@ -122,7 +122,7 @@ public class PendingSafeViewController: UIViewController, EventSubscriber {
         switch error {
         case let nsError as NSError where nsError.domain == NSURLErrorDomain:
             fallthrough
-        case WalletApplicationService.Error.clientError, WalletApplicationService.Error.networkError,
+        case WalletApplicationServiceError.clientError, WalletApplicationServiceError.networkError,
              EthereumApplicationService.Error.clientError, EthereumApplicationService.Error.networkError:
             notifyUser(error: error.localizedDescription)
         default:
@@ -175,7 +175,7 @@ extension PendingSafeViewController {
 
 extension PendingSafeViewController {
 
-    func state(from walletState: WalletState1) -> State {
+    func state(from walletState: WalletStateId) -> State {
         switch walletState {
         case .deploying: return deployingState
         case .draft: return nilState

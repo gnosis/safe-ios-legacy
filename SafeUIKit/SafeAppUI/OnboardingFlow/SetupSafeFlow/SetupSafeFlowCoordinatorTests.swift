@@ -23,7 +23,7 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenDraftAlreadyExists_thenShowsNewSafeFlow() {
-        walletService.createNewDraftWallet()
+        walletService.expect_isSafeCreationInProgress(true)
 
         let testFC = TestFlowCoordinator()
         testFC.enter(flow: setupSafeFlowCoordinator)
@@ -45,7 +45,7 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenNewSafeFlowExits_thenSetupSafeFlowExits() {
-        walletService.createNewDraftWallet()
+        walletService.expect_isSafeCreationInProgress(true)
         let testFC = TestFlowCoordinator()
         var finished = false
         testFC.enter(flow: setupSafeFlowCoordinator) {

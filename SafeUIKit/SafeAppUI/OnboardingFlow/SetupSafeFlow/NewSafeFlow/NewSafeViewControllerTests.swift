@@ -42,7 +42,7 @@ class NewSafeViewControllerTests: SafeTestCase {
     }
 
     func test_viewDidLoad_whenNoDraftSafe_thenDismissesAndLogs() {
-        walletService.removeSelectedWallet()
+        walletService.expect_hasSelectedWallet(false)
         controller = NewSafeViewController.create(delegate: delegate)
         createWindow(controller)
         controller.viewDidLoad()
