@@ -4,7 +4,13 @@
 
 import UIKit
 
-public class SettingsTableViewController: UITableViewController {
+protocol SettingsTableViewControllerDelegate: class {
+    func didSelectManageTokens()
+}
+
+final class SettingsTableViewController: UITableViewController {
+
+    weak var delegate: SettingsTableViewControllerDelegate?
 
     private var settings = [(section: SettingsSection, items: [(item: Any, cellHeight: CGFloat)])]()
 
@@ -42,11 +48,11 @@ public class SettingsTableViewController: UITableViewController {
         case rateApp
     }
 
-    public static func create() -> SettingsTableViewController {
+    static func create() -> SettingsTableViewController {
         return StoryboardScene.Main.settingsTableViewController.instantiate()
     }
 
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = ColorName.paleGreyThree.color
@@ -83,15 +89,15 @@ public class SettingsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override public func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return settings.count
     }
 
-    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings[section].items.count
     }
 
-    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch settings[indexPath.section].section {
         case .safe:
             if let safeDescription = settings[indexPath.section].items[indexPath.row].item as? SafeDescription {
@@ -117,19 +123,27 @@ public class SettingsTableViewController: UITableViewController {
 
     // MARK: - Table view delegate
 
-    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch settings[indexPath.section].section {
+        case .safe:
+            if let manageTokensItem = settings[indexPath.section].items[indexPath.row].item as? MenuItem,
+                manageTokensItem.name == Strings.manageTokens {
+                delegate?.didSelectManageTokens()
+            }
+            fallthrough
+        default:tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 
-    public override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return settings[indexPath.section].items[indexPath.row].cellHeight
     }
 
-    public override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 25
     }
 
-    public override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = .clear
         return view
