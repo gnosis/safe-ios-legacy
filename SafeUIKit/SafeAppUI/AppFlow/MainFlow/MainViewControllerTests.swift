@@ -33,6 +33,11 @@ class MainViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.didCallOpenMenu)
     }
 
+    func test_whenPressingManageTokens_thenCallsDelegate() {
+        vc.manageTokens(self)
+        XCTAssertTrue(delegate.didCallManageTokens)
+    }
+
 }
 
 class MockMainViewControllerDelegate: MainViewControllerDelegate {
@@ -47,6 +52,11 @@ class MockMainViewControllerDelegate: MainViewControllerDelegate {
     var didCallOpenMenu = false
     func openMenu() {
         didCallOpenMenu = true
+    }
+
+    var didCallManageTokens = false
+    func manageTokens() {
+        didCallManageTokens = true
     }
 
 }

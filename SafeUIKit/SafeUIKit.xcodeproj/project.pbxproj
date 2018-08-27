@@ -202,6 +202,7 @@
 		550D1ED92133FD2E0035109A /* ManageTokensFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1ED82133FD2E0035109A /* ManageTokensFlowCoordinator.swift */; };
 		550D1EDB213406380035109A /* ManageTokensTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1EDA213406380035109A /* ManageTokensTableViewControllerTests.swift */; };
 		550D1EDD213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1EDC213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift */; };
+		550D1EDF213426F00035109A /* AddTokenFooterViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */; };
 		5527A7F4208DE8A300AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
 		5527A7F5208DE8B700AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
 		5527A7F6208DE8B700AF3A50 /* RSBarcodes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -623,6 +624,7 @@
 		550D1ED82133FD2E0035109A /* ManageTokensFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensFlowCoordinator.swift; sourceTree = "<group>"; };
 		550D1EDA213406380035109A /* ManageTokensTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensTableViewControllerTests.swift; sourceTree = "<group>"; };
 		550D1EDC213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenFooterViewTests.swift; sourceTree = "<group>"; };
 		5527A7E0208DE87600AF3A50 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 		5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewControllerTests.swift; sourceTree = "<group>"; };
 		5527A806208E357B00AF3A50 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -1090,6 +1092,7 @@
 			isa = PBXGroup;
 			children = (
 				0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */,
+				550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */,
 				0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */,
 				0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */,
 				0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */,
@@ -1767,6 +1770,7 @@
 				0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */,
 				0A334E5D209C8E6800ABC6AE /* PairWithBrowserExtensionViewControllerTests.swift in Sources */,
 				0A334E61209C8E6800ABC6AE /* ConfirmPaswordViewControllerTests.swift in Sources */,
+				550D1EDF213426F00035109A /* AddTokenFooterViewTests.swift in Sources */,
 				0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */,
 				0A8C963320D2C820007D2410 /* TransactionReviewViewControllerTests.swift in Sources */,
 				0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */,

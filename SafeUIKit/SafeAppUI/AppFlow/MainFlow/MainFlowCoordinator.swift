@@ -64,7 +64,12 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
 
     func openMenu() {
         let settingsVC = MenuTableViewController.create()
+        settingsVC.delegate = self
         push(settingsVC)
+    }
+
+    func manageTokens() {
+        enter(flow: ManageTokensFlowCoordinator())
     }
 
 }
@@ -94,6 +99,14 @@ extension MainFlowCoordinator: TransactionReviewViewControllerDelegate {
             unlockVC.showsCancelButton = true
             presentModally(unlockVC)
         }
+    }
+
+}
+
+extension MainFlowCoordinator: MenuTableViewControllerDelegate {
+
+    func didSelectManageTokens() {
+        enter(flow: ManageTokensFlowCoordinator())
     }
 
 }

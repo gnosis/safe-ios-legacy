@@ -5,15 +5,15 @@
 import UIKit
 import MultisigWalletApplication
 
-public class TokensTableViewController: UITableViewController {
+final class TokensTableViewController: UITableViewController {
 
     private var tokens = [TokenData]()
 
-    public static func create() -> TokensTableViewController {
+    static func create() -> TokensTableViewController {
         return StoryboardScene.Main.tokensTableViewController.instantiate()
     }
 
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "AddTokenFooterView",
                                  bundle: Bundle(for: AddTokenFooterView.self)),
@@ -37,22 +37,22 @@ public class TokensTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tokens.count
     }
 
-    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TokenBalanceTableViewCell",
                                                  for: indexPath) as! TokenBalanceTableViewCell
         cell.configure(tokenData: tokens[indexPath.row])
         return cell
     }
 
-    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    public override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return tableView.dequeueReusableHeaderFooterView(withIdentifier: "AddTokenFooterView")
     }
 
