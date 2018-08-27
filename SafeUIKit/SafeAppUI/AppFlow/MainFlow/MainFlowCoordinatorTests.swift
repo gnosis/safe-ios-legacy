@@ -120,6 +120,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
             as! UnlockViewController
         vc.textInput.text = "111111A"
         _ = vc.textInput.textFieldShouldReturn(UITextField())
+        authenticationService.blockAuthentication() // otherwise tries to auth on viewDidAppear
         waitForExpectations(timeout: 1)
     }
 
