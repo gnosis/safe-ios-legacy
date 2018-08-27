@@ -127,9 +127,7 @@ public class WalletApplicationService: Assertable {
     public func addOwner(address: String, type: OwnerType) {
         let role = OwnerRole(rawValue: type.rawValue)!
         mutateSelectedWallet { wallet in
-            let owner = Wallet.createOwner(address: address, role: role)
-            wallet.addOwner(owner)
-            wallet.markReadyToDeployIfNeeded()
+            wallet.addOwner(Wallet.createOwner(address: address, role: role))
         }
     }
 

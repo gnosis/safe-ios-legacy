@@ -11,24 +11,12 @@ public class WalletID: BaseID {}
 public class Wallet: IdentifiableEntity<WalletID> {
 
     public enum Error: String, LocalizedError, Hashable {
-        case ownerAlreadyExists
         case ownerNotFound
         case invalidState
-        case accountAlreadyExists
     }
 
-    public enum Status: String, Hashable, Codable {
-        case newDraft
-        case readyToDeploy
-        case deploymentStarted
-        case addressKnown
-        case deploymentAcceptedByBlockchain
-        case readyToUse
-    }
-
-    private struct State: Codable {
+    private struct Serialized: Codable {
         fileprivate let id: String
-        fileprivate let status: Status
         fileprivate let state: String
         fileprivate let ownersByRole: [OwnerRole: Owner]
         fileprivate let address: Address?
@@ -50,8 +38,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
         creationStartedState, finalizingDeploymentState, readyToUseState
     ]
 
-    public private(set) var status = Status.newDraft
-    private static let mutableStates: [Status] = [.newDraft, .readyToUse]
     private var ownersByRole = [OwnerRole: Owner]()
     public private(set) var address: Address?
     public private(set) var creationTransactionHash: String?
@@ -65,9 +51,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public required init(data: Data) {
         let decoder = PropertyListDecoder()
-        let state = try! decoder.decode(State.self, from: data)
+        let state = try! decoder.decode(Serialized.self, from: data)
         super.init(id: WalletID(state.id))
-        status = state.status
         ownersByRole = state.ownersByRole
         address = state.address
         creationTransactionHash = state.creationTransactionHash
@@ -91,13 +76,12 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func data() -> Data {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .binary
-        let state = State(id: id.id,
-                          status: status,
-                          state: self.state.description,
-                          ownersByRole: ownersByRole,
-                          address: address,
-                          creationTransactionHash: creationTransactionHash,
-                          minimumDeploymentTransactionAmount: minimumDeploymentTransactionAmount)
+        let state = Serialized(id: id.id,
+                               state: self.state.description,
+                               ownersByRole: ownersByRole,
+                               address: address,
+                               creationTransactionHash: creationTransactionHash,
+                               minimumDeploymentTransactionAmount: minimumDeploymentTransactionAmount)
         return try! encoder.encode(state)
     }
 
@@ -135,8 +119,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     private func assertCanChangeOwners() {
-        assert(statusIsOneOf: .newDraft, .readyToUse, .readyToDeploy)
-        try? assertTrue(state.canChangeOwners, Error.invalidState)
+        try! assertTrue(state.canChangeOwners, Error.invalidState)
     }
 
     public func contains(owner: Owner) -> Bool {
@@ -149,57 +132,14 @@ public class Wallet: IdentifiableEntity<WalletID> {
         ownersByRole.removeValue(forKey: role)
     }
 
-    public func startDeployment() {
-        assert(status: .readyToDeploy)
-        status = .deploymentStarted
-    }
-
-    private func assert(status: Wallet.Status) {
-        try! assertEqual(self.status, status, Error.invalidState)
-    }
-
-    private func assert(statusIsOneOf statuses: Wallet.Status ...) {
-        try! assertTrue(statuses.contains(status), Error.invalidState)
-    }
-
-    public func markReadyToDeployIfNeeded() {
-        let sorting: (OwnerRole, OwnerRole) -> Bool = { $0.rawValue < $1.rawValue }
-        let hasAllOwners = ownersByRole.keys.sorted(by: sorting) == OwnerRole.all.sorted(by: sorting)
-        if status == .newDraft && hasAllOwners {
-            markReadyToDeploy()
-        }
-    }
-
-    public func markReadyToDeploy() {
-        assert(status: .newDraft)
-        status = .readyToDeploy
-    }
-
-    public func markDeploymentAcceptedByBlockchain() {
-        assert(status: .addressKnown)
-        status = .deploymentAcceptedByBlockchain
-    }
-
     public func assignCreationTransaction(hash: String?) {
         try! assertTrue(state.canChangeTransactionHash, Error.invalidState)
         creationTransactionHash = hash
     }
 
-    public func abortDeployment() {
-        assert(statusIsOneOf: .deploymentStarted, .addressKnown, .deploymentAcceptedByBlockchain)
-        status = .readyToDeploy
-        state.cancel()
-    }
-
-    public func finishDeployment() {
-        assert(status: .deploymentAcceptedByBlockchain)
-        status = .readyToUse
-    }
-
     public func changeAddress(_ address: Address?) {
         try! assertTrue(state.canChangeAddress, Error.invalidState)
         self.address = address
-        status = .addressKnown
     }
 
     private func assertOwnerExists(_ role: OwnerRole) {

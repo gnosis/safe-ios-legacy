@@ -43,7 +43,8 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
 
     func test_whenCreatingNewDraft_thenCreatesNewWallet() throws {
         givenDraftWallet()
-        XCTAssertEqual(selectedWallet.status, .newDraft)
+        let wallet = selectedWallet
+        XCTAssertTrue(wallet.state === wallet.newDraftState)
     }
 
     func test_whenAddingAccount_thenCanFindIt() throws {
