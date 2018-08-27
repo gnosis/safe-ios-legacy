@@ -11,10 +11,8 @@ public class WalletID: BaseID {}
 public class Wallet: IdentifiableEntity<WalletID> {
 
     public enum Error: String, LocalizedError, Hashable {
-        case ownerAlreadyExists
         case ownerNotFound
         case invalidState
-        case accountAlreadyExists
     }
 
     private struct Serialized: Codable {
@@ -79,11 +77,11 @@ public class Wallet: IdentifiableEntity<WalletID> {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .binary
         let state = Serialized(id: id.id,
-                          state: self.state.description,
-                          ownersByRole: ownersByRole,
-                          address: address,
-                          creationTransactionHash: creationTransactionHash,
-                          minimumDeploymentTransactionAmount: minimumDeploymentTransactionAmount)
+                               state: self.state.description,
+                               ownersByRole: ownersByRole,
+                               address: address,
+                               creationTransactionHash: creationTransactionHash,
+                               minimumDeploymentTransactionAmount: minimumDeploymentTransactionAmount)
         return try! encoder.encode(state)
     }
 
