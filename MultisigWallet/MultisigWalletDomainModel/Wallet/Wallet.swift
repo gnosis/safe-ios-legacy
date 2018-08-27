@@ -88,21 +88,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
         }
     }
 
-    private func updateStateFromStatus() {
-        switch status {
-        case .newDraft, .readyToDeploy:
-            state = newDraftState
-        case .deploymentStarted:
-            state = deployingState
-        case .addressKnown:
-            state = notEnoughFundsState
-        case .deploymentAcceptedByBlockchain:
-            state = finalizingDeploymentState
-        case .readyToUse:
-            state = readyToUseState
-        }
-    }
-
     public func data() -> Data {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .binary

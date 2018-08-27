@@ -20,6 +20,7 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         eventRelay.expect_subscribe(subscriber, for: WalletCreated.self)
         eventRelay.expect_subscribe(subscriber, for: WalletCreationFailed.self)
 
+        errorStream.expect_reset()
         errorStream.expect_addHandler()
         deploymentService.expect_start()
         // swiftlint:disable:next trailing_closure

@@ -154,9 +154,6 @@ extension PendingSafeViewController {
 
             static let started = LocalizedString("pending_safe.status.deployment_started",
                                                  comment: "Deployment started status")
-            static let addressKnown = LocalizedString("pending_safe.status.address_known",
-                                                      comment: "Address is known status")
-
             static let accountFunded = LocalizedString("pending_safe.status.account_funded",
                                                        comment: "Account received enough funds")
             static let notEnoughFundsFormat = LocalizedString("pending_safe.status.not_enough_funds",
@@ -216,7 +213,7 @@ extension PendingSafeViewController {
         override var canCopyAddress: Bool { return true }
 
         override var statusText: String? {
-            let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: ethID)!
+            let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: ethID) ?? 0
             let payment = ApplicationServiceRegistry.walletService.minimumDeploymentAmount!
             let formatter = TokenNumberFormatter.eth
             let formatString = Strings.Status.notEnoughFundsFormat

@@ -141,9 +141,7 @@ public class DeploymentDomainService {
                 }
             default: wallet.cancel()
             }
-
         }
-        DomainRegistry.walletRepository.save(wallet)
     }
 
     private func balance(of address: Address) throws -> TokenInt {

@@ -21,7 +21,7 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
         }
         push(NewSafeViewController.create(delegate: self))
         saveCheckpoint()
-        if ApplicationServiceRegistry.walletService.hasPendingWalletCreation {
+        if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
             push(PendingSafeViewController.create(delegate: self))
         }
     }

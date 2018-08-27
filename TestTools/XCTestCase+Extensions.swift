@@ -27,22 +27,29 @@ extension XCTestCase {
 
 extension XCTestCase {
 
-    func waitUntil(_ condition: @autoclosure () -> Bool,
+    func waitUntil(closure: () -> Bool,
                    timeout: TimeInterval = 1,
                    file: String = #file,
                    line: Int = #line) {
         var time: TimeInterval = 0
         let step: TimeInterval = 0.1
         let loop = RunLoop.current
-        var result = condition()
+        var result = closure()
         while !result && time < timeout {
             loop.run(until: Date().addingTimeInterval(step))
             time += step
-            result = condition()
+            result = closure()
         }
         if !result {
             recordFailure(withDescription: "Waiting failed", inFile: file, atLine: line, expected: true)
         }
+    }
+
+    func waitUntil(_ condition: @autoclosure () -> Bool,
+                   timeout: TimeInterval = 1,
+                   file: String = #file,
+                   line: Int = #line) {
+        waitUntil(closure: condition, timeout: timeout, file: file, line: line)
     }
 
     func waitUntil(_ element: XCUIElement,
