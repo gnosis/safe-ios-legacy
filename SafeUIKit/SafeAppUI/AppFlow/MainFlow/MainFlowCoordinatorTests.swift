@@ -14,10 +14,10 @@ class MainFlowCoordinatorTests: SafeTestCase {
     override func setUp() {
         super.setUp()
         mainFlowCoordinator = MainFlowCoordinator(rootViewController: UINavigationController())
+        mainFlowCoordinator.setUp()
     }
 
     func test_whenSetupCalled_thenShowsMainScreen() {
-        mainFlowCoordinator.setUp()
         XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController is MainViewController)
     }
 
@@ -27,15 +27,20 @@ class MainFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenCreatingNewTransaction_thenOpensFundsTransferVC() {
-        mainFlowCoordinator.setUp()
         mainFlowCoordinator.createNewTransaction()
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
             is FundsTransferTransactionViewController)
     }
 
+    func test_whenOpenMenuRequested_thenOpensIt() {
+        mainFlowCoordinator.openMenu()
+        delay()
+        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
+            is MenuTableViewController)
+    }
+
     func test_whenDraftTransactionCreated_thenOpensTransactionReviewVC() {
-        mainFlowCoordinator.setUp()
         mainFlowCoordinator.didCreateDraftTransaction(id: "some")
         delay()
         let vc = mainFlowCoordinator.navigationController.topViewController as? TransactionReviewViewController
@@ -50,7 +55,6 @@ class MainFlowCoordinatorTests: SafeTestCase {
 
     func test_whenReceivingRemoteMessageAndReviewScreenNotOpened_thenOpensIt() {
         walletService.receive_output = "id"
-        mainFlowCoordinator.setUp()
         mainFlowCoordinator.receive(message: ["key": "value"])
         delay()
         let vc = mainFlowCoordinator.navigationController.topViewController
@@ -69,7 +73,6 @@ class MainFlowCoordinatorTests: SafeTestCase {
                                                                token: "ETH",
                                                                fee: 0,
                                                                status: .waitingForConfirmation)
-        mainFlowCoordinator.setUp()
         mainFlowCoordinator.receive(message: ["key": "value"])
         delay()
         let controllerCount = mainFlowCoordinator.navigationController.viewControllers.count
@@ -82,7 +85,6 @@ class MainFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenReviewTransactionFinished_thenPopsBack() {
-        mainFlowCoordinator.setUp()
         delay()
         let vc = mainFlowCoordinator.navigationController.topViewController
         mainFlowCoordinator.createNewTransaction()
@@ -105,7 +107,6 @@ class MainFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenUserNotAuthenticated_thenPresentsUnlockVC() throws {
-        mainFlowCoordinator.setUp()
         createWindow(mainFlowCoordinator.rootViewController)
         let exp = expectation(description: "submit")
         try authenticationService.registerUser(password: "111111A")
@@ -119,6 +120,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
             as! UnlockViewController
         vc.textInput.text = "111111A"
         _ = vc.textInput.textFieldShouldReturn(UITextField())
+        authenticationService.blockAuthentication() // otherwise tries to auth on viewDidAppear
         waitForExpectations(timeout: 1)
     }
 

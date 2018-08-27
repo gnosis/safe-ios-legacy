@@ -62,6 +62,11 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
         push(transactionVC)
     }
 
+    func openMenu() {
+        let settingsVC = MenuTableViewController.create()
+        push(settingsVC)
+    }
+
 }
 
 extension MainFlowCoordinator: FundsTransferTransactionViewControllerDelegate {

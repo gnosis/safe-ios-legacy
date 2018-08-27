@@ -10,6 +10,7 @@ import BigInt
 public protocol MainViewControllerDelegate: class {
     func mainViewDidAppear()
     func createNewTransaction()
+    func openMenu()
 }
 
 public class MainViewController: UIViewController {
@@ -47,6 +48,10 @@ public class MainViewController: UIViewController {
 
     @objc func send(_ sender: Any) {
         delegate?.createNewTransaction()
+    }
+
+    @IBAction func openMenu(_ sender: Any) {
+        delegate?.openMenu()
     }
 
     public override func viewDidAppear(_ animated: Bool) {

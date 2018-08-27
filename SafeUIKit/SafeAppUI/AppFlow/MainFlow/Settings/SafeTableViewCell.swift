@@ -14,17 +14,14 @@ class SafeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         safeIconImageView.layer.cornerRadius = safeIconImageView.frame.width / 2
         safeIconImageView.clipsToBounds = true
-
         backgroundView = UIView()
         backgroundView?.backgroundColor = ColorName.paleGreyThree.color
     }
 
-    func configure(safe: SafeDescription) {
+    func configure(safe: MenuTableViewController.SafeDescription) {
         safeIconImageView.image = safe.image
-
         safeNameLabel.text = safe.name
         safeAddressLabel.text = safe.address
-
     }
 
 }
