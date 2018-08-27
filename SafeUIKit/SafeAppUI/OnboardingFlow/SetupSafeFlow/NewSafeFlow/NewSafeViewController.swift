@@ -54,7 +54,7 @@ class NewSafeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard walletService.selectedWalletState != .none else {
+        guard walletService.hasSelectedWallet else {
             dismiss(animated: true)
             logger.error("Draft wallet not found")
             return
@@ -72,7 +72,7 @@ class NewSafeViewController: UIViewController {
         super.viewWillAppear(animated)
         paperWalletButton.checkmarkStatus = walletService.isOwnerExists(.paperWallet) ? .selected : .normal
         browserExtensionButton.checkmarkStatus = walletService.isOwnerExists(.browserExtension) ? .selected : .normal
-        nextButton.isEnabled = walletService.selectedWalletState == .readyToDeploy
+        nextButton.isEnabled = walletService.isWalletDeployable
     }
 
     @IBAction func setupPaperWallet(_ sender: Any) {

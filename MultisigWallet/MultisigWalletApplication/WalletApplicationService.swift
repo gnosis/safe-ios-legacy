@@ -21,144 +21,53 @@ public class WalletApplicationService: Assertable {
         return DomainRegistry.pushTokensService
     }
 
-    public enum WalletState {
-        case none
-        case newDraft
-        case readyToDeploy
-        case deploymentStarted
-        case addressKnown
-        case accountFunded
-        case notEnoughFunds
-        case deploymentAcceptedByBlockchain
-        case readyToUse
-
-        var isBeingCreated: Bool {
-            return self == .newDraft || self == .readyToDeploy || isPendingDeployment
-        }
-
-        var isPendingDeployment: Bool {
-            return WalletState.pendingCreationStates.contains(self)
-        }
-
-        var isValidForAccountUpdate: Bool {
-            return WalletState.validAccountUpdateStates.contains(self)
-        }
-
-        var isReadyToUse: Bool {
-            return self == .readyToUse
-        }
-
-        private static let pendingCreationStates: [WalletState] = [
-            .deploymentStarted,
-            .addressKnown,
-            .accountFunded,
-            .notEnoughFunds,
-            .deploymentAcceptedByBlockchain
-        ]
-
-        private static let validAccountUpdateStates: [WalletState] = [
-            .deploymentStarted,
-            .addressKnown,
-            .notEnoughFunds
-        ]
-    }
-
-    public enum OwnerType: String {
-        case thisDevice
-        case browserExtension
-        case paperWallet
-
-        static let all: [OwnerType] = [.thisDevice, .browserExtension, .paperWallet]
-
-    }
-
-    public enum Error: String, Swift.Error, Hashable {
-        case oneOrMoreOwnersAreMissing
-        case invalidWalletState
-        case missingWalletAddress
-        case creationTransactionHashNotFound
-        case networkError
-        case clientError
-        case serverError
-        case validationFailed
-        case exceededExpirationDate
-        case unknownError
-        case walletCreationFailed
-
-        public var isNetworkError: Bool {
-            return self == .networkError || self == .clientError || self == .clientError
-        }
-    }
-
-    public static let requiredConfirmationCount: Int = 2
-
-    public var selectedWalletState: WalletState {
-        guard let wallet = findSelectedWallet() else { return .none }
-        switch wallet.status {
-        case .newDraft:
-            return .newDraft
-        case .readyToDeploy:
-            return .readyToDeploy
-        case .deploymentStarted:
-            return .deploymentStarted
-        case .addressKnown:
-            let account = findAccount(Token.Ether.id)!
-            if account.balance == nil {
-                return .addressKnown
-            } else if account.balance! < wallet.minimumDeploymentTransactionAmount! {
-                return .notEnoughFunds
-            } else {
-                return .accountFunded
-            }
-        case .deploymentAcceptedByBlockchain:
-            return .deploymentAcceptedByBlockchain
-        case .readyToUse:
-            return .readyToUse
-        }
-    }
+    public var hasSelectedWallet: Bool { return selectedWallet != nil }
 
     public var hasReadyToUseWallet: Bool {
-        return selectedWalletState.isReadyToUse
+        guard let wallet = selectedWallet else { return false }
+        return wallet.state === wallet.readyToUseState
     }
 
     public var hasPendingWalletCreation: Bool {
-        return selectedWalletState.isPendingDeployment
+        guard let wallet = selectedWallet else { return false }
+        return wallet.state !== wallet.readyToUseState
+    }
+
+    public var isWalletDeployable: Bool {
+        guard let wallet = selectedWallet else { return false }
+        return wallet.isDeployable
     }
 
     public var isSafeCreationInProgress: Bool {
-        return selectedWalletState.isBeingCreated
+        guard let wallet = selectedWallet else { return false }
+        return wallet.state !== wallet.newDraftState && wallet.state !== wallet.readyToUseState
     }
 
     public var canChangeAccount: Bool {
-        return selectedWalletState.isValidForAccountUpdate
+        return selectedWalletAddress != nil
     }
 
     public var selectedWalletAddress: String? {
-        return findSelectedWallet()?.address?.value
+        return selectedWallet?.address?.value
     }
 
     public var minimumDeploymentAmount: BigInt? {
-        return findSelectedWallet()?.minimumDeploymentTransactionAmount
+        return selectedWallet?.minimumDeploymentTransactionAmount
     }
-
-    private var statusUpdateHandlers = [String: () -> Void]()
-    private var errorHandler: ((Swift.Error) -> Void)?
 
     public init() {}
 
     // MARK: - Wallet
 
     public func createNewDraftWallet() {
-        notifyWalletStateChangesAfter {
-            let portfolio = fetchOrCreatePortfolio()
-            let address = ethereumService.generateExternallyOwnedAccount().address
-            let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(), owner: Address(address))
-            portfolio.addWallet(wallet.id)
-            DomainRegistry.walletRepository.save(wallet)
-            DomainRegistry.portfolioRepository.save(portfolio)
-            let account = Account(tokenID: Token.Ether.id)
-            DomainRegistry.accountRepository.save(account)
-        }
+        let portfolio = fetchOrCreatePortfolio()
+        let address = ethereumService.generateExternallyOwnedAccount().address
+        let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(), owner: Address(address))
+        portfolio.addWallet(wallet.id)
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.portfolioRepository.save(portfolio)
+        let account = Account(tokenID: Token.Ether.id)
+        DomainRegistry.accountRepository.save(account)
     }
 
     private func fetchOrCreatePortfolio() -> Portfolio {
@@ -175,148 +84,16 @@ public class WalletApplicationService: Assertable {
         if let errorHandler = onError {
             DomainRegistry.errorStream.addHandler(errorHandler)
         }
+        [DeploymentStarted.self, WalletConfigured.self, DeploymentFunded.self,
+         CreationStarted.self, WalletCreated.self, WalletCreationFailed.self].forEach {
+            ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: $0)
+        }
         DomainRegistry.deploymentService.start()
     }
 
-    public func walletState() -> WalletState1? {
-        return nil
-    }
-
-    public func startDeployment() throws {
-        do {
-            if selectedWalletState == .readyToDeploy {
-                doStartDeployment()
-            }
-            if selectedWalletState == .deploymentStarted {
-                let data = try requestWalletCreation()
-                assignAddress(data.safe)
-                updateMinimumFunding(amount: data.payment)
-            }
-            if selectedWalletState == .notEnoughFunds || selectedWalletState == .addressKnown {
-                try startObservingWalletBalance()
-            } else if selectedWalletState == .accountFunded {
-                try createWalletInBlockchain()
-            } else if selectedWalletState == .deploymentAcceptedByBlockchain {
-                try waitForPendingTransaction()
-            } else {
-                throw Error.invalidWalletState
-            }
-        } catch let error {
-            errorHandler?(error)
-            abortDeploymentIfNeeded(by: error)
-            throw error
-        }
-    }
-
-    private func abortDeploymentIfNeeded(by error: Swift.Error) {
-        if let walletError = error as? WalletApplicationService.Error, walletError.isNetworkError {
-            return
-        } else if let ethereumError = error as? EthereumApplicationService.Error, ethereumError.isNetworkError {
-            return
-        } else if (error as NSError).domain == NSURLErrorDomain {
-            return
-        }
-        abortDeployment()
-    }
-
-    private func requestWalletCreation() throws -> SafeCreationTransactionData {
-        let owners: [Address] = OwnerType.all.compactMap { Address(ownerAddress(of: $0)!) }
-        try assertEqual(owners.count, OwnerType.all.count, Error.oneOrMoreOwnersAreMissing)
-        let confirmationCount = WalletApplicationService.requiredConfirmationCount
-        return try ethereumService.createSafeCreationTransaction(owners: owners, confirmationCount: confirmationCount)
-    }
-
-    private func doStartDeployment() {
-        mutateSelectedWallet { wallet in
-            wallet.startDeployment()
-        }
-    }
-
-    private func assignAddress(_ address: String) {
-        mutateSelectedWallet { wallet in
-            wallet.changeAddress(Address(address))
-        }
-    }
-
-    private func updateMinimumFunding(amount: BigInt) {
-        mutateSelectedWallet { wallet in
-            wallet.updateMinimumTransactionAmount(amount)
-        }
-    }
-
-    private func startObservingWalletBalance() throws {
-        let address = findSelectedWallet()!.address!
-        try ethereumService.observeChangesInBalance(address: address.value, every: 2) { [weak self] newBalance in
-            guard let `self` = self else { return RepeatingShouldStop.yes }
-            return self.didUpdateBalance(account: address.value, newBalance: newBalance)
-        }
-    }
-
-    private func didUpdateBalance(account: String, newBalance: BigInt) -> Bool {
-        do {
-            guard [WalletState.addressKnown, WalletState.notEnoughFunds, WalletState.accountFunded]
-                .contains(selectedWalletState) else {
-                return RepeatingShouldStop.yes
-            }
-            update(account: Token.Ether.id, newBalance: newBalance)
-            if selectedWalletState == .accountFunded {
-                try createWalletInBlockchain()
-                return RepeatingShouldStop.yes
-            }
-            return RepeatingShouldStop.no
-        } catch let error {
-            errorHandler?(error)
-            abortDeploymentIfNeeded(by: error)
-            return RepeatingShouldStop.yes
-        }
-    }
-
-    private func createWalletInBlockchain() throws {
-        let address = findSelectedWallet()!.address!
-        try ethereumService.startSafeCreation(address: address)
-        guard selectedWalletState == .accountFunded else { return }
-        markDeploymentAcceptedByBlockchain()
-        try waitForPendingTransaction()
-    }
-
-    private func waitForPendingTransaction() throws {
-        let wallet = findSelectedWallet()!
-        var hash = wallet.creationTransactionHash
-        if hash == nil {
-            let address = wallet.address!
-            hash = try ethereumService.waitForCreationTransaction(address: address)
-            storeTransactionHash(hash: hash!)
-        }
-        let isSuccess = try ethereumService.waitForPendingTransaction(hash: hash!)
-        guard selectedWalletState == .deploymentAcceptedByBlockchain else { return }
-        if isSuccess {
-            try notifySafeCreated()
-        }
-        didFinishDeployment(success: isSuccess)
-    }
-
-    private func storeTransactionHash(hash: String) {
-        mutateSelectedWallet { wallet in
-            wallet.assignCreationTransaction(hash: hash)
-        }
-    }
-
-    private func didFinishDeployment(success: Bool) {
-        if success {
-            removePaperWallet()
-            finishDeployment()
-        } else {
-            let wallet = findSelectedWallet()!
-            let txHash = wallet.creationTransactionHash!
-            let address = wallet.address!
-            let message = "Transaction '\(txHash)' failed for safe creation at address '\(address)'. Crashing."
-            ApplicationServiceRegistry.logger.fatal(message, error: Error.walletCreationFailed)
-            exit(EXIT_FAILURE)
-        }
-    }
-
-    private func notifySafeCreated() throws {
-        try notifyBrowserExtension(message: notificationService.safeCreatedMessage(at: selectedWalletAddress!))
+    public func walletState() -> WalletStateId? {
+        guard let state = selectedWallet?.state else { return nil }
+        return WalletStateId(state)
     }
 
     private func notifyBrowserExtension(message: String) throws {
@@ -329,72 +106,25 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    private func fetchBalance() throws {
-        let address = findSelectedWallet()!.address!.value
-        let newBalance = try ethereumService.balance(address: address)
-        update(account: Token.Ether.id, newBalance: newBalance)
-    }
-
-    private func removePaperWallet() {
-        let paperWallet = ownerAddress(of: .paperWallet)!
-        ethereumService.removeExternallyOwnedAccount(address: paperWallet)
-    }
-
-    private func markReadyToDeploy() {
-        mutateSelectedWallet { wallet in
-            wallet.markReadyToDeploy()
-        }
-    }
-
-    public func markDeploymentAcceptedByBlockchain() {
-        mutateSelectedWallet { wallet in
-            wallet.markDeploymentAcceptedByBlockchain()
-        }
-    }
-
     public func abortDeployment() {
-        mutateSelectedWallet { wallet in
-            wallet.abortDeployment()
-        }
-    }
-
-    public func finishDeployment() {
-        mutateSelectedWallet { wallet in
-            wallet.finishDeployment()
-        }
+        mutateSelectedWallet { $0.cancel() }
     }
 
     private func mutateSelectedWallet(_ closure: (Wallet) -> Void) {
-        notifyWalletStateChangesAfter {
-            let wallet = findSelectedWallet()!
-            closure(wallet)
-            DomainRegistry.walletRepository.save(wallet)
-        }
+        let wallet = selectedWallet!
+        closure(wallet)
+        DomainRegistry.walletRepository.save(wallet)
     }
 
-    private func findSelectedWallet() -> Wallet? {
-        guard let portfolio = DomainRegistry.portfolioRepository.portfolio(),
-            let walletID = portfolio.selectedWallet,
-            let wallet = DomainRegistry.walletRepository.findByID(walletID) else {
-            return nil
-        }
-        return wallet
-    }
-
-    private func notifyWalletStateChangesAfter(_ closure: () -> Void) {
-        let startState = selectedWalletState
-        closure()
-        let endState = selectedWalletState
-        if startState != endState {
-            notifyStatusUpdate()
-        }
+    private var selectedWallet: Wallet? {
+        return DomainRegistry.walletRepository.selectedWallet()
     }
 
     // MARK: - Owners
 
     public func isOwnerExists(_ type: OwnerType) -> Bool {
         let role = OwnerRole(rawValue: type.rawValue)!
-        guard let wallet = findSelectedWallet(), wallet.owner(role: role) != nil else { return false }
+        guard let wallet = selectedWallet, wallet.owner(role: role) != nil else { return false }
         return true
     }
 
@@ -411,7 +141,7 @@ public class WalletApplicationService: Assertable {
         let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
         let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress)!
         guard let code = browserExtensionCode(from: rawCode) else {
-            throw Error.validationFailed
+            throw WalletApplicationServiceError.validationFailed
         }
         try pair(code, signature, deviceOwnerAddress)
         addOwner(address: address, type: .browserExtension)
@@ -432,16 +162,17 @@ public class WalletApplicationService: Assertable {
         do {
             return try block()
         } catch NotificationDomainServiceError.validationFailed {
-            throw Error.validationFailed
+            throw WalletApplicationServiceError.validationFailed
         } catch let JSONHTTPClient.Error.networkRequestFailed(request, response, data) {
             logNetworkError(request, response, data)
             if let data = data, let dataStr = String(data: data, encoding: .utf8),
                 dataStr.range(of: "Exceeded expiration date") != nil {
-                throw Error.exceededExpirationDate
+                throw WalletApplicationServiceError.exceededExpirationDate
             } else if let response = response as? HTTPURLResponse {
-                throw (400..<500).contains(response.statusCode) ? Error.clientError : Error.serverError
+                throw (400..<500).contains(response.statusCode) ?
+                    WalletApplicationServiceError.clientError : WalletApplicationServiceError.serverError
             } else {
-                throw Error.networkError
+                throw WalletApplicationServiceError.networkError
             }
         }
     }
@@ -472,7 +203,7 @@ public class WalletApplicationService: Assertable {
         #endif
     }
 
-    private func error(from response: URLResponse?) -> Error {
+    private func error(from response: URLResponse?) -> WalletApplicationServiceError {
         if let response = response as? HTTPURLResponse {
             if (400..<500).contains(response.statusCode) {
                 return .clientError
@@ -483,7 +214,7 @@ public class WalletApplicationService: Assertable {
         return .networkError
     }
 
-    private func error(from other: NetworkServiceError) -> Error {
+    private func error(from other: NetworkServiceError) -> WalletApplicationServiceError {
         switch other {
         case .clientError:
             return .clientError
@@ -512,7 +243,7 @@ public class WalletApplicationService: Assertable {
 
     private func address(of type: OwnerType) -> Address? {
         let role = OwnerRole(rawValue: type.rawValue)!
-        guard let wallet = findSelectedWallet(), let owner = wallet.owner(role: role) else { return nil }
+        guard let wallet = selectedWallet, let owner = wallet.owner(role: role) else { return nil }
         return owner.address
     }
 
@@ -522,7 +253,7 @@ public class WalletApplicationService: Assertable {
     ///
     /// - Returns: token data array
     public func tokens() -> [TokenData] {
-        guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return [] }
+        guard let wallet = selectedWallet else { return [] }
         let tokens: [TokenData] = DomainRegistry.tokenListItemRepository.whitelisted().compactMap {
             guard let account = DomainRegistry.accountRepository.find(
                 id: AccountID(tokenID: $0.id, walletID: wallet.id), walletID: wallet.id) else { return nil }
@@ -549,7 +280,7 @@ public class WalletApplicationService: Assertable {
     }
 
     private func assertCanChangeAccount() {
-        try! assertTrue(selectedWalletState.isValidForAccountUpdate, Error.invalidWalletState)
+        try! assertTrue(canChangeAccount, WalletApplicationServiceError.invalidWalletState)
     }
 
     public func update(account tokenID: TokenID, newBalance: BigInt) {
@@ -560,12 +291,12 @@ public class WalletApplicationService: Assertable {
     }
 
     private func mutateAccount(tokenID: TokenID, closure: (Account) -> Void) {
-        notifyWalletStateChangesAfter {
-            let account = findAccount(tokenID)!
-            closure(account)
-            DomainRegistry.accountRepository.save(account)
-        }
+        let account = findAccount(tokenID)!
+        closure(account)
+        DomainRegistry.accountRepository.save(account)
     }
+
+    // MARK: - Transactions
 
     public func updateTransaction(_ id: String, amount: BigInt, recipient: String) {
         let transaction = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
@@ -591,9 +322,7 @@ public class WalletApplicationService: Assertable {
     }
 
     public func transactionData(_ id: String) -> TransactionData? {
-        guard let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id)) else {
-            return nil
-        }
+        guard let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id)) else { return nil }
         return TransactionData(id: tx.id.id,
                                sender: tx.sender?.value ?? "",
                                recipient: tx.recipient?.value ?? "",
@@ -606,32 +335,25 @@ public class WalletApplicationService: Assertable {
     private func status(of tx: Transaction) -> TransactionData.Status {
         let defaultStatus = TransactionData.Status.waitingForConfirmation
         switch tx.status {
-        case .signing:
-            return tx.signatures.count == 1
-                && tx.isSignedBy(address(of: .browserExtension)!) ? .readyToSubmit : defaultStatus
-        case .rejected:
-            return .rejected
-        case .pending:
-            return .pending
-        case .failed:
-            return .failed
-        case .success:
-            return .success
-        case .discarded:
-            return .discarded
-        case .draft:
-            return defaultStatus
+        case .signing: return tx.signatures.count == 1 && tx.isSignedBy(address(of: .browserExtension)!) ?
+            .readyToSubmit : defaultStatus
+        case .rejected: return .rejected
+        case .pending: return .pending
+        case .failed: return .failed
+        case .success: return .success
+        case .discarded: return .discarded
+        case .draft: return defaultStatus
         }
     }
 
     public func createNewDraftTransaction() -> String {
         let repository = DomainRegistry.transactionRepository
-        let wallet = findSelectedWallet()!
+        let wallet = selectedWallet!
         let transaction = Transaction(id: repository.nextID(),
                                       type: .transfer,
                                       walletID: wallet.id,
                                       accountID: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
-        transaction.change(sender: findSelectedWallet()!.address!)
+        transaction.change(sender: selectedWallet!.address!)
         repository.save(transaction)
         return transaction.id.id
     }
@@ -710,32 +432,12 @@ public class WalletApplicationService: Assertable {
     }
 
     private func findAccount(_ tokenID: TokenID) -> Account? {
-        guard let wallet = findSelectedWallet(),
+        guard let wallet = selectedWallet,
             let account = DomainRegistry.accountRepository.find(
                 id: AccountID(tokenID: tokenID, walletID: wallet.id), walletID: wallet.id) else {
             return nil
         }
         return account
-    }
-
-    // MARK: - Wallet status update subscribing
-
-    public func subscribe(_ update: @escaping () -> Void) -> String {
-        let key = UUID().uuidString
-        statusUpdateHandlers[key] = update
-        return key
-    }
-
-    public func unsubscribe(subscription: String) {
-        statusUpdateHandlers.removeValue(forKey: subscription)
-    }
-
-    public func setErrorHandler(_ handler: ((Swift.Error) -> Void)?) {
-        errorHandler = handler
-    }
-
-    private func notifyStatusUpdate() {
-        statusUpdateHandlers.values.forEach { $0() }
     }
 
     // MARK: - Notifications

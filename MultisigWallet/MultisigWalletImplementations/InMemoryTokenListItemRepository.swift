@@ -39,7 +39,15 @@ public class InMemoryTokenListItemRepository: TokenListItemRepository {
     }
 
     public func whitelisted() -> [TokenListItem] {
-        return Array(items.values).filter { $0.status == .whitelisted }.sorted { $0.sortingId! < $1.sortingId! }
+        return Array(items.values).filter { $0.status == .whitelisted }.sorted {
+            let a = $0.sortingId
+            let b = $1.sortingId
+            if a != nil && b != nil {
+                return a! < b!
+            } else {
+                return a != nil && b == nil
+            }
+        }
     }
 
 }

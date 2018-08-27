@@ -18,17 +18,6 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
     private var _hasReadyToUseWallet = false
 
-    public override var selectedWalletState: WalletState {
-        return _selectedWalletState
-    }
-    private var _selectedWalletState: WalletState = .none {
-        didSet {
-            if oldValue != _selectedWalletState {
-                notifySubscribers()
-            }
-        }
-    }
-
     private var walletAddress: String?
 
     public override var selectedWalletAddress: String? {
@@ -50,20 +39,38 @@ public class MockWalletApplicationService: WalletApplicationService {
     private var funds: [TokenID: BigInt] = [:]
     private var subscriptions: [String: () -> Void] = [:]
 
+    public func expect_hasPendingWalletCreation(_ value: Bool) {
+        _hasPendingWalletCreation = value
+    }
+    private var _hasPendingWalletCreation: Bool = false
+
+    public override var hasPendingWalletCreation: Bool { return _hasPendingWalletCreation }
+
+    private var _isSafeCreationInProgress: Bool = false
+
+    public func expect_isSafeCreationInProgress(_ value: Bool) {
+        _isSafeCreationInProgress = value
+    }
+
+    public override var isSafeCreationInProgress: Bool { return _isSafeCreationInProgress }
+
+    private var _hasSelectedWallet: Bool = true
+
+    public func expect_hasSelectedWallet(_ value: Bool) {
+        _hasSelectedWallet = value
+    }
+
+    public override var hasSelectedWallet: Bool { return _hasSelectedWallet }
+    public override var isWalletDeployable: Bool { return true }
+
     public func createReadyToUseWallet() {
         _hasReadyToUseWallet = true
         assignAddress("0x111ccccccccccccccccccccccccccccccccccccc")
         update(account: Token.Ether.id, newBalance: BigInt(10).power(18))
-        _selectedWalletState = .readyToUse
     }
 
     public override func createNewDraftWallet() {
-        _selectedWalletState = .newDraft
         didCreateNewDraft = true
-    }
-
-    public func removeSelectedWallet() {
-        _selectedWalletState = .none
     }
 
     public override func isOwnerExists(_ type: OwnerType) -> Bool {
@@ -71,7 +78,6 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public func createReadyToDeployWallet() {
-        _selectedWalletState = .readyToDeploy
         existingOwners = [
             .thisDevice: "thisDeviceAddress",
             .browserExtension: "browserExtensionAddress",
@@ -79,13 +85,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         ]
     }
 
-    public override func startDeployment() {
-        _selectedWalletState = .deploymentStarted
-    }
-
     public func assignAddress(_ address: String) {
         walletAddress = address
-        _selectedWalletState = .addressKnown
     }
 
     public override func update(account: BaseID, newBalance: BigInt?) {
@@ -94,11 +95,6 @@ public class MockWalletApplicationService: WalletApplicationService {
             return
         }
         funds[TokenID(account.id)] = newBalance
-        if let minimum = minimumFunding[TokenID(account.id)], newBalance >= minimum {
-            _selectedWalletState = .accountFunded
-        } else {
-            _selectedWalletState = .notEnoughFunds
-        }
     }
 
     public func updateMinimumFunding(account: BaseID, amount: BigInt) {
@@ -110,37 +106,22 @@ public class MockWalletApplicationService: WalletApplicationService {
         return funds[TokenID(tokenID.id)]
     }
 
-    public override func markDeploymentAcceptedByBlockchain() {
-        _selectedWalletState = .deploymentAcceptedByBlockchain
-    }
+    private var expected_abortDeployment = [String]()
+    private var actual_abortDeployment = [String]()
 
-    public override func finishDeployment() {
-        _selectedWalletState = .readyToUse
+    public func expect_abortDeployment() {
+        expected_abortDeployment.append("abortDeployment()")
     }
 
     public override func abortDeployment() {
-        _selectedWalletState = .newDraft
+        actual_abortDeployment.append(#function)
     }
 
-    public override func addOwner(address: String, type: WalletApplicationService.OwnerType) {
+    public override func addOwner(address: String, type: OwnerType) {
         existingOwners[type] = address
     }
 
-    public override func subscribe(_ update: @escaping () -> Void) -> String {
-        let subscription = UUID().uuidString
-        subscriptions[subscription] = update
-        return subscription
-    }
-
-    public override func unsubscribe(subscription: String) {
-        subscriptions.removeValue(forKey: subscription)
-    }
-
-    private func notifySubscribers() {
-        subscriptions.values.forEach { $0() }
-    }
-
-    public override func ownerAddress(of type: WalletApplicationService.OwnerType) -> String? {
+    public override func ownerAddress(of type: OwnerType) -> String? {
         return existingOwners[type]
     }
 
@@ -215,19 +196,44 @@ public class MockWalletApplicationService: WalletApplicationService {
         return submitTransaction_output ?? requestTransactionConfirmation_output
     }
 
-    private var expected_walletState = [WalletState1]()
+    private var expected_walletState = [WalletStateId]()
     private var actual_walletState = [String]()
-    public func expect_walletState(_ state: WalletState1) {
+
+    public func expect_walletState(_ state: WalletStateId) {
         expected_walletState.append(state)
     }
 
-    public override func walletState() -> WalletState1? {
+    public override func walletState() -> WalletStateId? {
         actual_walletState.append(#function)
         return expected_walletState[actual_walletState.count - 1]
     }
 
     public func verify() -> Bool {
-        return expected_walletState.count == actual_walletState.count
+        return expected_walletState.count == actual_walletState.count &&
+            actual_deployWallet.count == expected_deployWallet.count &&
+            zip(actual_deployWallet, expected_deployWallet).reduce(true) { result, pair -> Bool in
+                result && (pair.1 == nil || pair.0 === pair.1)
+            } &&
+            actual_abortDeployment == expected_abortDeployment
+    }
+
+    private var expected_deployWallet_error: Swift.Error?
+    private var expected_deployWallet = [EventSubscriber?]()
+    private var actual_deployWallet = [EventSubscriber]()
+
+    public func expect_deployWallet(subscriber: EventSubscriber? = nil) {
+        expected_deployWallet.append(subscriber)
+    }
+
+    public func expect_deployWallet_throw(_ error: Swift.Error) {
+        expected_deployWallet_error = error
+    }
+
+    public override func deployWallet(subscriber: EventSubscriber, onError: ((Swift.Error) -> Void)?) {
+        actual_deployWallet.append(subscriber)
+        if let error = expected_deployWallet_error {
+            onError?(error)
+        }
     }
 
     public var tokensOutput = [TokenData]()
