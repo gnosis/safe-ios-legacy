@@ -318,8 +318,6 @@ extension BaseDeploymentDomainServiceTests {
 
     func givenConfiguredWallet() {
         givenDraftWalletWithAllOwners()
-        wallet.markReadyToDeploy()
-        wallet.startDeployment()
         wallet.proceed()
         wallet.changeAddress(Address.safeAddress)
         wallet.updateMinimumTransactionAmount(100)
