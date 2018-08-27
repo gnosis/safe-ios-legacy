@@ -121,9 +121,9 @@
                                 <constraint firstItem="Fpc-0E-fts" firstAttribute="centerY" secondItem="ux2-ns-LJ7" secondAttribute="centerY" id="W91-RP-Z8x"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" image="settings-button-icon" id="Gcm-iD-UgQ">
+                        <barButtonItem key="rightBarButtonItem" title="Menu" image="settings-button-icon" id="Gcm-iD-UgQ">
                             <connections>
-                                <segue destination="OK1-XP-V50" kind="show" id="Aoj-Fs-qDz"/>
+                                <action selector="openMenu:" destination="tu4-59-ha9" id="pEG-EP-CHu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

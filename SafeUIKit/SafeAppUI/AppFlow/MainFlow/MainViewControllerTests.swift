@@ -24,21 +24,29 @@ class MainViewControllerTests: XCTestCase {
     }
 
     func test_whenPressingSend_thenCallsDelegate() {
-        createWindow(vc)
-        vc.sendButton.sendActions(for: .touchUpInside)
+        vc.send(self)
         XCTAssertTrue(delegate.didCallCreateNewTransaction)
+    }
+
+    func test_whenPressingMenu_thenCallsDelegate() {
+        vc.openMenu(self)
+        XCTAssertTrue(delegate.didCallOpenMenu)
     }
 
 }
 
 class MockMainViewControllerDelegate: MainViewControllerDelegate {
 
-    var didCallCreateNewTransaction = false
-
     func mainViewDidAppear() {}
 
+    var didCallCreateNewTransaction = false
     func createNewTransaction() {
         didCallCreateNewTransaction = true
+    }
+
+    var didCallOpenMenu = false
+    func openMenu() {
+        didCallOpenMenu = true
     }
 
 }
