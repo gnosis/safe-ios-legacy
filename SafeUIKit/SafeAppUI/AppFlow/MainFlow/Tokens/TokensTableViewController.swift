@@ -30,7 +30,7 @@ final class TokensTableViewController: UITableViewController {
     }
 
     @objc private func update() {
-        tokens = ApplicationServiceRegistry.walletService.tokens()
+        tokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: true)
         tableView.reloadData()
         tableView.refreshControl?.endRefreshing()
     }
