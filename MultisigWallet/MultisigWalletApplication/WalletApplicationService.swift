@@ -81,6 +81,7 @@ public class WalletApplicationService: Assertable {
     public func deployWallet(subscriber: EventSubscriber, onError: ((Swift.Error) -> Void)?) {
         DomainRegistry.eventPublisher.reset()
         ApplicationServiceRegistry.eventRelay.reset(publisher: DomainRegistry.eventPublisher)
+        DomainRegistry.errorStream.reset()
         if let errorHandler = onError {
             DomainRegistry.errorStream.addHandler(errorHandler)
         }
