@@ -36,7 +36,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_pairWithBrowserExtensionCompletion_popsToStartVC() {
-        walletService.expect_hasPendingWalletCreation(true)
+        walletService.expect_isSafeCreationInProgress(true)
         let startVC = topViewController
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
         delay()
@@ -139,19 +139,11 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenSafeIsInAnyPendingState_thenShowingPendingController() {
-        walletService.expect_hasPendingWalletCreation(true)
+        walletService.expect_isSafeCreationInProgress(true)
         assertShowingPendingVC()
 
-        walletService.expect_hasPendingWalletCreation(false)
-        assertShowingPendingVC(shouldShow: false)
-    }
-
-    func test_whenWalletInProgress_thenIsNotFinishedCorrect() {
-        walletService.expect_isSafeCreationInProgress(true)
-        XCTAssertTrue(newSafeFlowCoordinator.isSafeCreationInProgress)
-
         walletService.expect_isSafeCreationInProgress(false)
-        XCTAssertFalse(newSafeFlowCoordinator.isSafeCreationInProgress)
+        assertShowingPendingVC(shouldShow: false)
     }
 
 }

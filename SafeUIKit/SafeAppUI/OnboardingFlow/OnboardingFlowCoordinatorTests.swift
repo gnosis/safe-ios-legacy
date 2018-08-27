@@ -51,6 +51,7 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
 
     func test_whenDidConfirmPassword_thenSetupSafeIsShown() {
         authenticationService.unregisterUser()
+        walletService.expect_isWalletDeployable(false)
         flowCoordinator.setUp()
         flowCoordinator.didStart()
         delay(0.25)

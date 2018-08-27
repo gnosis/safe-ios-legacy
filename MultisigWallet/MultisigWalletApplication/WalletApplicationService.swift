@@ -28,11 +28,6 @@ public class WalletApplicationService: Assertable {
         return wallet.state === wallet.readyToUseState
     }
 
-    public var hasPendingWalletCreation: Bool {
-        guard let wallet = selectedWallet else { return false }
-        return wallet.state !== wallet.readyToUseState
-    }
-
     public var isWalletDeployable: Bool {
         guard let wallet = selectedWallet else { return false }
         return wallet.isDeployable
@@ -81,6 +76,7 @@ public class WalletApplicationService: Assertable {
     public func deployWallet(subscriber: EventSubscriber, onError: ((Swift.Error) -> Void)?) {
         DomainRegistry.eventPublisher.reset()
         ApplicationServiceRegistry.eventRelay.reset(publisher: DomainRegistry.eventPublisher)
+        DomainRegistry.errorStream.reset()
         if let errorHandler = onError {
             DomainRegistry.errorStream.addHandler(errorHandler)
         }
@@ -131,9 +127,7 @@ public class WalletApplicationService: Assertable {
     public func addOwner(address: String, type: OwnerType) {
         let role = OwnerRole(rawValue: type.rawValue)!
         mutateSelectedWallet { wallet in
-            let owner = Wallet.createOwner(address: address, role: role)
-            wallet.addOwner(owner)
-            wallet.markReadyToDeployIfNeeded()
+            wallet.addOwner(Wallet.createOwner(address: address, role: role))
         }
     }
 
@@ -281,7 +275,8 @@ public class WalletApplicationService: Assertable {
     // MARK: - Accounts
 
     public func accountBalance(tokenID: BaseID) -> BigInt? {
-       return findAccount(TokenID(tokenID.id))?.balance
+        let account = findAccount(TokenID(tokenID.id))
+        return account?.balance
     }
 
     private func assertCanChangeAccount() {

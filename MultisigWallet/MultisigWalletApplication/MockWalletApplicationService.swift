@@ -39,13 +39,6 @@ public class MockWalletApplicationService: WalletApplicationService {
     private var funds: [TokenID: BigInt] = [:]
     private var subscriptions: [String: () -> Void] = [:]
 
-    public func expect_hasPendingWalletCreation(_ value: Bool) {
-        _hasPendingWalletCreation = value
-    }
-    private var _hasPendingWalletCreation: Bool = false
-
-    public override var hasPendingWalletCreation: Bool { return _hasPendingWalletCreation }
-
     private var _isSafeCreationInProgress: Bool = false
 
     public func expect_isSafeCreationInProgress(_ value: Bool) {
@@ -61,7 +54,14 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public override var hasSelectedWallet: Bool { return _hasSelectedWallet }
-    public override var isWalletDeployable: Bool { return true }
+
+    private var _isWalletDeployable: Bool = true
+
+    public func expect_isWalletDeployable(_ value: Bool) {
+        _isWalletDeployable = value
+    }
+
+    public override var isWalletDeployable: Bool { return _isWalletDeployable }
 
     public func createReadyToUseWallet() {
         _hasReadyToUseWallet = true

@@ -49,40 +49,20 @@ class WalletTests: XCTestCase {
     }
 
     func test_whenCreated_thenInDraftState() {
-        XCTAssertEqual(wallet.status, .newDraft)
-    }
-
-    func test_whenDeploymentStarted_thenChangesState() {
-        wallet.markReadyToDeploy()
-        wallet.startDeployment()
-        XCTAssertEqual(wallet.status, Wallet.Status.deploymentStarted)
-    }
-
-    func test_whenDeploymentCompleted_thenChangesStatus() {
-        wallet.markReadyToDeploy()
-        wallet.startDeployment()
-        wallet.state = wallet.deployingState
-        wallet.changeAddress(extensionOwner.address)
-        wallet.markDeploymentAcceptedByBlockchain()
-        wallet.finishDeployment()
-        XCTAssertEqual(wallet.status, Wallet.Status.readyToUse)
+        XCTAssertTrue(wallet.state === wallet.newDraftState)
     }
 
     func test_whenReadyToDeploy_thenCanChangeOwners() {
-        wallet.markReadyToDeploy()
         wallet.addOwner(extensionOwner)
         wallet.addOwner(Owner(address: .testAccount1, role: extensionOwner.role))
         wallet.removeOwner(role: extensionOwner.role)
     }
 
     func test_whenCancellingDeployment_thenChangesState() throws {
-        wallet.markReadyToDeploy()
-        wallet.startDeployment()
         wallet.state = wallet.deployingState
         wallet.changeAddress(extensionOwner.address)
-        wallet.markDeploymentAcceptedByBlockchain()
-        wallet.abortDeployment()
-        XCTAssertEqual(wallet.status, .readyToDeploy)
+        wallet.cancel()
+        XCTAssertTrue(wallet.state === wallet.newDraftState)
     }
 
     func test_whenCreatingOwner_thenConfiguresIt() {
@@ -97,8 +77,6 @@ class WalletTests: XCTestCase {
     }
 
     func test_whenUpdatingMinimumTransactionAmount_thenUpdatesIt() {
-        wallet.markReadyToDeploy()
-        wallet.startDeployment()
         wallet.state = wallet.deployingState
         wallet.changeAddress(extensionOwner.address)
         wallet.updateMinimumTransactionAmount(TokenInt(1_000))
@@ -106,12 +84,9 @@ class WalletTests: XCTestCase {
     }
 
     func test_whenInitFromData_thenHasTransactionHashAndMinimumTransactionAmount() {
-        wallet.markReadyToDeploy()
-        wallet.startDeployment()
         wallet.state = wallet.deployingState
         wallet.changeAddress(extensionOwner.address)
         wallet.updateMinimumTransactionAmount(TokenInt(1_000))
-        wallet.markDeploymentAcceptedByBlockchain()
         wallet.state = wallet.finalizingDeploymentState
         wallet.assignCreationTransaction(hash: TransactionHash.test1.value)
         let data = wallet.data()

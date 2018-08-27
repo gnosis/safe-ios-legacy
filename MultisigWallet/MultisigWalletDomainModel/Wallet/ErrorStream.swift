@@ -9,9 +9,19 @@ import Foundation
 /// here the Error is published (posted), so that other parties could handle it or log it.
 public class ErrorStream {
 
+    private var handlers = [(Error) -> Void]()
+
     public init () {}
 
-    public func post(_ error: Error) {}
+    public func post(_ error: Error) {
+        handlers.forEach { $0(error) }
+    }
 
-    public func addHandler(_ handler: @escaping (Error) -> Void) {}
+    public func addHandler(_ handler: @escaping (Error) -> Void) {
+        handlers.append(handler)
+    }
+
+    public func reset() {
+        handlers = []
+    }
 }

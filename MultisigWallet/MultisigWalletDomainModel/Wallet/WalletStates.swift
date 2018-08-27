@@ -58,12 +58,6 @@ public class DraftState: WalletState {
 
     override func proceed() {
         wallet.state = wallet.deployingState
-        if wallet.status == .newDraft {
-            wallet.markReadyToDeploy()
-        }
-        if wallet.status == .readyToDeploy {
-            wallet.startDeployment()
-        }
         DomainRegistry.walletRepository.save(wallet)
         wallet.state.resume()
     }
@@ -92,6 +86,7 @@ public class DeployingState: WalletState {
     override func cancel() {
         wallet.state = wallet.newDraftState
         wallet.reset()
+        DomainRegistry.walletRepository.save(wallet)
     }
 
 }
@@ -106,9 +101,6 @@ public class NotEnoughFundsState: WalletState {
 
     override func proceed() {
         wallet.state = wallet.creationStartedState
-        if wallet.status == .addressKnown {
-            wallet.markDeploymentAcceptedByBlockchain()
-        }
         DomainRegistry.walletRepository.save(wallet)
         wallet.state.resume()
     }
@@ -116,6 +108,7 @@ public class NotEnoughFundsState: WalletState {
     override func cancel() {
         wallet.state = wallet.newDraftState
         wallet.reset()
+        DomainRegistry.walletRepository.save(wallet)
     }
 
 }
@@ -137,6 +130,7 @@ public class CreationStartedState: WalletState {
     override func cancel() {
         wallet.state = wallet.newDraftState
         wallet.reset()
+        DomainRegistry.walletRepository.save(wallet)
     }
 }
 
