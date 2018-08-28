@@ -37,6 +37,9 @@
 /* Send button title */
 "main.send" = "Send";
 
+/* Title for Manage Tokens Screen. */
+"manage_tokens.title" = "Tokens";
+
 /* Change browser extension menu item */
 "menu.action.change_browser_extension" = "Change Browser Extension";
 
