@@ -11,20 +11,18 @@ public class DBAccountRepository: AccountRepository {
     struct SQL {
         static let createTable = """
 CREATE TABLE IF NOT EXISTS tbl_accounts (
-    token TEXT NOT NULL,
-    wallet_id TEXT NOT NULL,
-    balance TEXT,
-    PRIMARY KEY (token, wallet_id)
+    id TEXT NOT NULL PRIMARY KEY,
+    balance TEXT
 );
 """
-        static let insert = "INSERT OR REPLACE INTO tbl_accounts VALUES (?, ?, ?);"
-        static let delete = "DELETE FROM tbl_accounts WHERE token = ? AND wallet_id = ?;"
+        static let insert = "INSERT OR REPLACE INTO tbl_accounts VALUES (?, ?);"
+        static let delete = "DELETE FROM tbl_accounts WHERE id = ?;"
         static let find = """
-SELECT token, wallet_id, balance
+SELECT id, balance
 FROM tbl_accounts
-WHERE token = ? AND wallet_id = ? LIMIT 1;
+WHERE id = ? LIMIT 1;
 """
-        static let all = "SELECT token, wallet_id, balance FROM tbl_accounts;"
+        static let all = "SELECT id, balance FROM tbl_accounts;"
     }
 
     private let db: Database
@@ -39,18 +37,16 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
 
     public func save(_ account: Account) {
         try! db.execute(sql: SQL.insert, bindings: [account.id.id,
-                                                    account.walletID.id,
                                                     account.balance != nil ? String(account.balance!) : nil])
     }
 
     public func remove(_ account: Account) {
-        try! db.execute(sql: SQL.delete, bindings: [account.id.id,
-                                                    account.walletID.id])
+        try! db.execute(sql: SQL.delete, bindings: [account.id.id])
     }
 
-    public func find(id: AccountID, walletID: WalletID) -> Account? {
+    public func find(id: AccountID) -> Account? {
         return try! db.execute(sql: SQL.find,
-                               bindings: [id.id, walletID.id],
+                               bindings: [id.id],
                                resultMap: accountFromResultSet).first as? Account
     }
 
@@ -59,12 +55,11 @@ WHERE token = ? AND wallet_id = ? LIMIT 1;
     }
 
     private func accountFromResultSet(_ rs: ResultSet) -> Account? {
-        guard let accountID_id = rs.string(at: 0),
-            let walletID_id = rs.string(at: 1) else { return nil }
-        let balance = rs.string(at: 2)
+        guard let accountID_id = rs.string(at: 0) else { return nil }
+        let balance = rs.string(at: 1)
         let accountID = AccountID(accountID_id)
         let account = Account(tokenID: accountID.tokenID,
-                              walletID: WalletID(walletID_id),
+                              walletID: accountID.walletID,
                               balance: balance != nil ? TokenInt(balance!)! : nil)
         return account
     }

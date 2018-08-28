@@ -28,7 +28,7 @@ class DBAccountRepositoryIntegrationTests: XCTestCase {
                               walletID: walletID,
                               balance: 123)
         repo.save(account)
-        let saved = repo.find(id: account.id, walletID: walletID)
+        let saved = repo.find(id: account.id)
         XCTAssertEqual(saved, account)
         XCTAssertEqual(saved?.balance, account.balance)
 
@@ -36,7 +36,7 @@ class DBAccountRepositoryIntegrationTests: XCTestCase {
                                walletID: walletID,
                                balance: nil)
         repo.save(account2)
-        let saved2 = repo.find(id: account2.id, walletID: walletID)
+        let saved2 = repo.find(id: account2.id)
         XCTAssertEqual(saved2, account2)
         XCTAssertEqual(saved2?.balance, account2.balance)
 
@@ -45,7 +45,7 @@ class DBAccountRepositoryIntegrationTests: XCTestCase {
         XCTAssertEqual(Set([account, account2]), Set(all))
 
         repo.remove(account)
-        XCTAssertNil(repo.find(id: account.id, walletID: walletID))
+        XCTAssertNil(repo.find(id: account.id))
     }
 
 }

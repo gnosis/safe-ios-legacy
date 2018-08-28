@@ -40,11 +40,21 @@ open class AccountUpdateDomainService {
 
     private func updateAccountsBalances(_ accountIDs: [AccountID]) {
         accountIDs.forEach { accountID in
-            let account = DomainRegistry.accountRepository.find(id: accountID, walletID: accountID.walletID)!
-            if account.balance == nil {
-                account.add(amount: TokenInt(arc4random_uniform(UInt32.max)))
-                DomainRegistry.accountRepository.save(account)
-            }
+            guard let balance = self.balance(of: accountID) else { return }
+            let account = DomainRegistry.accountRepository.find(id: accountID)!
+            account.update(newAmount: balance)
+            DomainRegistry.accountRepository.save(account)
+        }
+    }
+
+    private func balance(of accountID: AccountID) -> TokenInt? {
+        let wallet = DomainRegistry.walletRepository.findByID(accountID.walletID)!
+        if accountID.tokenID == Token.Ether.id {
+            return try? DomainRegistry.ethereumNodeService.eth_getBalance(account: wallet.address!)
+        } else {
+            let token = DomainRegistry.tokenListItemRepository.find(id: accountID.tokenID)!
+            let proxy = ERC20TokenContractProxy()
+            return try? proxy.balance(of: wallet.address!, contract: token.token.address)
         }
     }
 
