@@ -6,7 +6,7 @@ import UIKit
 
 class MainContentViewController: SegmentBarController {
 
-    let tokensController = TokensTableViewController.create()
+    let tokensController = TokensTableViewController()
     let transactionsController = TransactionsTableViewController.create()
 
     override func viewDidLoad() {

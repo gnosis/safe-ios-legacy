@@ -243,10 +243,11 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Tokens
 
-    /// Returns selected account Eth Data together with whitelisted tokens data
+    /// Returns selected account Eth Data together with whitelisted tokens data.
     ///
-    /// - Returns: token data array
-    public func tokens() -> [TokenData] {
+    /// - Parameter withEth: should the Eth be amoung Token Data returned or not.
+    /// - Returns: token data array.
+    public func visibleTokens(withEth: Bool) -> [TokenData] {
         guard let wallet = selectedWallet else { return [] }
         let tokens: [TokenData] = DomainRegistry.tokenListItemRepository.whitelisted().compactMap {
             guard let account = DomainRegistry.accountRepository.find(
@@ -257,14 +258,18 @@ public class WalletApplicationService: Assertable {
                 decimals: $0.token.decimals,
                 balance: account.balance)
         }
-        let ethAccount = DomainRegistry.accountRepository.find(
-            id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id), walletID: wallet.id)!
-        let ethData = TokenData(
-            code: Token.Ether.code,
-            name: Token.Ether.name,
-            decimals: Token.Ether.decimals,
-            balance: ethAccount.balance)
-        return [ethData] + tokens
+        if withEth {
+            let ethAccount = DomainRegistry.accountRepository.find(
+                id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id), walletID: wallet.id)!
+            let ethData = TokenData(
+                code: Token.Ether.code,
+                name: Token.Ether.name,
+                decimals: Token.Ether.decimals,
+                balance: ethAccount.balance)
+            return [ethData] + tokens
+        } else {
+            return tokens
+        }
     }
 
     // MARK: - Accounts

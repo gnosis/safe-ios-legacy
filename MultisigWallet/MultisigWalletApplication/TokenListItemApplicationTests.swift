@@ -17,11 +17,13 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         }
         delay(0.25)
         XCTAssertTrue(accountRepository.all().count > 1)
-        let tokensWithEth = service.tokens()
+        let tokensWithEth = service.visibleTokens(withEth: true)
         XCTAssertEqual(tokensWithEth.count, accountRepository.all().count)
         XCTAssertEqual(tokensWithEth[0].code, Token.Ether.code)
         XCTAssertEqual(tokensWithEth[0].name, Token.Ether.name)
         XCTAssertEqual(tokensWithEth[0].decimals, Token.Ether.decimals)
+        let tokensWithoutEth = service.visibleTokens(withEth: false)
+        XCTAssertEqual(tokensWithoutEth.count, accountRepository.all().count - 1)
     }
 
 }

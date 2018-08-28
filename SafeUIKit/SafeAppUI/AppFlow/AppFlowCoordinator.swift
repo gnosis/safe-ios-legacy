@@ -28,7 +28,7 @@ open class AppFlowCoordinator: FlowCoordinator {
     }
 
     public init() {
-        super.init(rootViewController: TransparentNavigationController())
+        super.init(rootViewController: SafeNavigationController())
     }
 
     open override func setUp() {

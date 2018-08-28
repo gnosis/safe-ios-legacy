@@ -11,6 +11,8 @@ class TokenBalanceTableViewCell: UITableViewCell {
     @IBOutlet weak var tokenCodeLabel: UILabel!
     @IBOutlet weak var tokenBalanceLabel: UILabel!
 
+    static let height: CGFloat = 60
+
     func configure(tokenData: TokenData) {
         let bundle = Bundle(for: TokenBalanceTableViewCell.self)
         if let image = UIImage(named: tokenData.code, in: bundle, compatibleWith: nil) {
