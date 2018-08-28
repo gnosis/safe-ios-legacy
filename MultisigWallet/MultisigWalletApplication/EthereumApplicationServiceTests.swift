@@ -129,7 +129,7 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         let result = try applicationService.nonce(contractAddress: Address.safeAddress)
         XCTAssertEqual(nodeService.eth_call_input?.to, Address.safeAddress)
         XCTAssertEqual(encryptionService.hash_input, data)
-        XCTAssertEqual(nodeService.eth_call_input?.data, encryptionService.hash_output)
+        XCTAssertEqual(nodeService.eth_call_input?.data, encryptionService.hash_output.prefix(4))
         XCTAssertEqual(result, 3)
     }
 

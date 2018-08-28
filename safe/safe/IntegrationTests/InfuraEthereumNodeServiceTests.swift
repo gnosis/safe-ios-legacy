@@ -89,12 +89,20 @@ class InfuraEthereumNodeServiceTests: BlockchainIntegrationTest {
     func test_nonceFromSafeContract() throws {
         let encryptionService = EncryptionService(chainId: .rinkeby)
         let functionSignature = "nonce()"
-        let methodID = encryptionService.hash(functionSignature.data(using: .ascii)!)
+        let methodID = encryptionService.hash(functionSignature.data(using: .ascii)!).prefix(4)
         let call = TransactionCall(to: EthAddress(hex: "0x092CC1854399ADc38Dad4f846E369C40D0a40307"),
                                    data: EthData(methodID))
         let resultData = try service.eth_call(transaction: call, blockNumber: .latest)
         let nonce = BigInt(hex: resultData.toHexString())!
         XCTAssertEqual(nonce, 0)
+    }
+
+    func test_balanceFromERC20Contract() throws {
+        DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
+        let proxy = ERC20TokenContractProxy()
+        let balance = try proxy.balance(of: Address("0x0ddc793680ff4f5793849c8c6992be1695cbe72a"),
+                                        contract: Address("0x36276f1f2cb8e9c11c508aad00556f819c5ad876"))
+        XCTAssertEqual(balance, TokenInt("20000000000000000000000"))
     }
 
 }
