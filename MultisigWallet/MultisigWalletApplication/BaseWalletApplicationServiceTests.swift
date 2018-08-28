@@ -145,7 +145,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     func findAccount(_ tokenID: String) throws -> Account {
         let wallet = selectedWallet
         let accountID = AccountID(tokenID: TokenID(tokenID), walletID: wallet.id)
-        guard let account = accountRepository.find(id: accountID, walletID: wallet.id) else {
+        guard let account = accountRepository.find(id: accountID) else {
             throw Error.accountNotFound
         }
         return account

@@ -23,7 +23,7 @@ public protocol AccountRepository {
     ///   - id: account identifier
     ///   - walletID: wallet identifier
     /// - Returns: account if found, or nil otherwise.
-    func find(id: AccountID, walletID: WalletID) -> Account?
+    func find(id: AccountID) -> Account?
 
     /// Return all accounts
     ///

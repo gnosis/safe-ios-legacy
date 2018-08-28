@@ -51,7 +51,7 @@ public class DeploymentDomainService {
         try Repeater(delay: config.balance.repeatDelay) { [unowned self] repeater in
             let balance = try self.balance(of: wallet.address!)
             let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
-            let account = DomainRegistry.accountRepository.find(id: accountID, walletID: wallet.id)!
+            let account = DomainRegistry.accountRepository.find(id: accountID)!
             account.update(newAmount: balance)
             DomainRegistry.accountRepository.save(account)
             guard balance >= wallet.minimumDeploymentTransactionAmount!  else { return }
