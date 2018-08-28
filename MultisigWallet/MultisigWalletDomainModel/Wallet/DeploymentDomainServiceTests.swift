@@ -116,8 +116,8 @@ class ConfiguredWalletTests: BaseDeploymentDomainServiceTests {
         nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 100)
         deploymentService.start()
         nodeService.verify()
-        let account = DomainRegistry.accountRepository.find(
-            id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id), walletID: wallet.id)!
+        let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
+        let account = DomainRegistry.accountRepository.find(id: accountID)!
         XCTAssertEqual(account.balance, 100)
     }
 
@@ -326,8 +326,8 @@ extension BaseDeploymentDomainServiceTests {
 
     func givenFundedWallet() {
         givenConfiguredWallet()
-        let account = DomainRegistry.accountRepository.find(
-            id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id), walletID: wallet.id)!
+        let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
+        let account = DomainRegistry.accountRepository.find(id: accountID)!
         account.update(newAmount: 100)
         DomainRegistry.accountRepository.save(account)
         wallet.proceed()

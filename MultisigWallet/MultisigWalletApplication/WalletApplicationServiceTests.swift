@@ -51,7 +51,7 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         givenDraftWallet()
         let wallet = selectedWallet
         let ethAccountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
-        let account = accountRepository.find(id: ethAccountID, walletID: wallet.id)
+        let account = accountRepository.find(id: ethAccountID)
         XCTAssertNotNil(account)
         XCTAssertEqual(account?.id, ethAccountID)
         XCTAssertEqual(account?.balance, nil)

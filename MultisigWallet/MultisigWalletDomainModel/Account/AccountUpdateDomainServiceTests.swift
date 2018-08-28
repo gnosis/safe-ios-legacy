@@ -16,6 +16,8 @@ class AccountUpdateDomainServiceTests: XCTestCase {
     let walletRepository = InMemoryWalletRepository()
     let accountRepository = InMemoryAccountRepository()
     let publisher = MockEventPublisher()
+    let encryptionService = MockEncryptionService()
+    let nodeService = MockEthereumNodeService()
 
     override func setUp() {
         super.setUp()
@@ -24,6 +26,8 @@ class AccountUpdateDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
         DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
         DomainRegistry.put(service: publisher, for: EventPublisher.self)
+        DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
+        DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
     }
 
     func test_updateAccountsBalances_doesNotUpdateWhenNoWalletIsCreated() {
@@ -69,10 +73,10 @@ class AccountUpdateDomainServiceTests: XCTestCase {
         updateBalances()
         let wallet = walletRepository.selectedWallet()!
         let accountID = AccountID(tokenID: Token.gno.id, walletID: wallet.id)
-        let account = accountRepository.find(id: accountID, walletID: wallet.id)!
+        let account = accountRepository.find(id: accountID)!
         let existingBalance = account.balance
         updateBalances()
-        let updatedAccount = accountRepository.find(id: accountID, walletID: wallet.id)!
+        let updatedAccount = accountRepository.find(id: accountID)!
         XCTAssertTrue(account.isEqual(to: updatedAccount))
         XCTAssertEqual(updatedAccount.balance, existingBalance)
         XCTAssertEqual(accountRepository.all().count, 1)
@@ -86,7 +90,7 @@ class AccountUpdateDomainServiceTests: XCTestCase {
         updateBalances()
         assertOnlyGNOAccountExistsForSelectedWallet()
         let accountID = AccountID(tokenID: Token.gno.id, walletID: wallet.id)
-        let updatedAccount = accountRepository.find(id: accountID, walletID: wallet.id)!
+        let updatedAccount = accountRepository.find(id: accountID)!
         XCTAssertTrue(updatedAccount.isEqual(to: account))
         XCTAssertEqual(updatedAccount.balance, 100)
     }
@@ -99,12 +103,36 @@ class AccountUpdateDomainServiceTests: XCTestCase {
         assertOnlyGNOAccountExistsForSelectedWallet()
         let selectedWallet = walletRepository.selectedWallet()!
         let accountID = AccountID(tokenID: Token.gno.id, walletID: selectedWallet.id)
-        let updatedAccount = accountRepository.find(id: accountID, walletID: selectedWallet.id)!
+        let updatedAccount = accountRepository.find(id: accountID)!
         XCTAssertNotNil(updatedAccount.balance)
 
         let otherWalletAccountID = AccountID(tokenID: Token.gno.id, walletID: otherWallet.id)
-        let otherWalletAccount = accountRepository.find(id: otherWalletAccountID, walletID: otherWallet.id)!
+        let otherWalletAccount = accountRepository.find(id: otherWalletAccountID)!
         XCTAssertNil(otherWalletAccount.balance)
+    }
+
+    func test_whenEtherAccount_thenGetsBalance() {
+        givenEmptyWalletAndTokenItemsWithWhitelistedGNO()
+        var account = Account(tokenID: Token.Ether.id, walletID: walletRepository.selectedWallet()!.id, balance: 0)
+        accountRepository.save(account)
+        let ethItem = TokenListItem(token: Token.Ether, status: .whitelisted)
+        tokenListItemRepository.save(ethItem)
+        nodeService.eth_getBalance_output = 100
+
+        updateBalances()
+
+        account = accountRepository.find(id: account.id)!
+        XCTAssertEqual(account.balance, 100)
+    }
+
+    func test_whenNonEtherAccount_thenGetsTokenBalance() {
+        givenEmptyWalletAndTokenItemsWithWhitelistedGNO()
+        nodeService.eth_call_output = Data(ethHex: TokenInt(100).hexString).leftPadded(to: 32)
+        updateBalances()
+        let walletID = walletRepository.selectedWallet()!.id
+        let accountID = AccountID(tokenID: Token.gno.id, walletID: walletID)
+        let account = accountRepository.find(id: accountID)!
+        XCTAssertEqual(account.balance, 100)
     }
 
 }
@@ -116,6 +144,9 @@ private extension AccountUpdateDomainServiceTests {
         let portfolio = Portfolio(id: portfolioRepository.nextID())
         portfolio.addWallet(wallet.id)
         portfolioRepository.save(portfolio)
+        wallet.state = wallet.deployingState
+        wallet.changeAddress(Address.safeAddress)
+        wallet.state = wallet.readyToUseState
         walletRepository.save(wallet)
         let tokenItem1 = TokenListItem(token: Token.gno, status: .whitelisted)
         tokenListItemRepository.save(tokenItem1)

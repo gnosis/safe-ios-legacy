@@ -15,7 +15,7 @@ class InMemoryAccountRepositoryTests: XCTestCase {
         account.add(amount: 100)
         repository.save(account)
         let gnoAccountId = AccountID(tokenID: Token.gno.id, walletID: walletID)
-        XCTAssertEqual(repository.find(id: gnoAccountId, walletID: walletID), account)
+        XCTAssertEqual(repository.find(id: gnoAccountId), account)
         let account2 = Account(tokenID: Token.mgn.id, walletID: walletID, balance: nil)
         repository.save(account2)
 
@@ -24,7 +24,7 @@ class InMemoryAccountRepositoryTests: XCTestCase {
         XCTAssertEqual(Set([account, account2]), Set(all))
 
         repository.remove(account)
-        XCTAssertNil(repository.find(id: gnoAccountId, walletID: walletID))
+        XCTAssertNil(repository.find(id: gnoAccountId))
     }
 
 }
