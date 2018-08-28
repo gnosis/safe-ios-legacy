@@ -9,23 +9,26 @@ final class TokensTableViewController: UITableViewController {
 
     private var tokens = [TokenData]()
 
-    static func create() -> TokensTableViewController {
-        return StoryboardScene.Main.tokensTableViewController.instantiate()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "AddTokenFooterView",
-                                 bundle: Bundle(for: AddTokenFooterView.self)),
+
+        let bundle = Bundle(for: TokensTableViewController.self)
+        tableView.register(UINib(nibName: "AddTokenFooterView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "AddTokenFooterView")
-        tableView.contentInset = UIEdgeInsets(top: -35, left: 0, bottom: 0, right: 0)
+        tableView.register(UINib(nibName: "TokenBalanceTableViewCell", bundle: bundle),
+                           forCellReuseIdentifier: "TokenBalanceTableViewCell")
+        tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
+        tableView.rowHeight = UITableViewAutomaticDimension
+
         let refreshControl = UIRefreshControl()
         refreshControl.bounds = CGRect(x: refreshControl.bounds.origin.x,
-                                       y: refreshControl.bounds.origin.y + 35,
+                                       y: refreshControl.bounds.origin.y,
                                        width: refreshControl.bounds.size.width,
                                        height: refreshControl.bounds.size.height)
         refreshControl.addTarget(self, action: #selector(update), for: .valueChanged)
         tableView.refreshControl = refreshControl
+        tableView.backgroundColor = ColorName.paleGreyThree.color
+
         update()
     }
 
@@ -48,12 +51,18 @@ final class TokensTableViewController: UITableViewController {
         return cell
     }
 
+    // MARK: - Table view delegate
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "AddTokenFooterView")
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "AddTokenFooterView")
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return AddTokenFooterView.height
     }
 
 }

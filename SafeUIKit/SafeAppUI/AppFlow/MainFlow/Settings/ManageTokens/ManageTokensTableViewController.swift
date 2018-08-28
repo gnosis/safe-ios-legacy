@@ -7,7 +7,7 @@ import MultisigWalletApplication
 
 class ManageTokensTableViewController: UITableViewController {
 
-    var tokens: [TokenData] {
+    private var tokens: [TokenData] {
         return ApplicationServiceRegistry.walletService.visibleTokens(withEth: false)
     }
 
@@ -28,6 +28,7 @@ class ManageTokensTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.backgroundColor = ColorName.paleGreyThree.color
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
