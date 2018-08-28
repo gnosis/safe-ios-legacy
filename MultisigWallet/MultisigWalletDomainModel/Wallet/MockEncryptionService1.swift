@@ -50,6 +50,10 @@ class MockEncryptionService1: EncryptionDomainService {
             expected_sign.map { "message: \($0.message), privateKey: \($0.privateKey.data.base64EncodedString())" },
             file: file,
             line: line)
+        XCTAssertEqual(actual_hash.map { $0.toHexString() },
+                       expected_hash.map { $0.data.toHexString() },
+                       file: file,
+                       line: line)
     }
 
     func ethSignature(from signature: Signature) -> EthSignature {
@@ -60,8 +64,16 @@ class MockEncryptionService1: EncryptionDomainService {
         preconditionFailure()
     }
 
+    private var expected_hash = [(data: Data, result: Data)]()
+    private var actual_hash = [Data]()
+
+    func expect_hash(_ data: Data, result: Data) {
+        expected_hash.append((data, result))
+    }
+
     func hash(_ data: Data) -> Data {
-        preconditionFailure()
+        actual_hash.append(data)
+        return expected_hash[actual_hash.count - 1].result
     }
 
     func address(hash: Data, signature: EthSignature) -> String? {
