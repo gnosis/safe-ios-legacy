@@ -856,7 +856,6 @@
 		0A4EEA6B20D11109005CDAC0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				550D1ED32133E6420035109A /* ManageTokens */,
 				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
 				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
 				0A4EEA6520D107B7005CDAC0 /* SelectedSafeTableViewCell.swift */,
@@ -1093,6 +1092,7 @@
 		0AF8D53A20D00FDB001E8423 /* Tokens */ = {
 			isa = PBXGroup;
 			children = (
+				550D1ED32133E6420035109A /* ManageTokens */,
 				0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */,
 				550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */,
 				0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */,
