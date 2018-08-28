@@ -214,27 +214,6 @@
 /* Title for confirm mnemonic view controller */
 "recovery.confirm_mnemonic.title" = "Confirmation";
 
-/* Change browser extension menu item */
-"settings.action.change_broeser_extension" = "Change Browser Extension";
-
-/* Change password menu item */
-"settings.action.change_password" = "Change Password";
-
-/* Change recovery key  menu item */
-"settings.action.change_recovery_phrase" = "Change Recovery Phrase";
-
-/* Manage Tokens menu item */
-"settings.action.manage_tokens" = "Manage Tokens";
-
-/* Privacy policy menu item */
-"settings.action.privacy_policy" = "Privacy Policy";
-
-/* Rate App menu item */
-"settings.action.rate_app" = "Rate App";
-
-/* Terms menu item */
-"settings.action.terms" = "Terms";
-
 /* Safe balance */
 "transaction.balance.title" = "Safe balance";
 

@@ -37,6 +37,10 @@ class MockEthereumNodeService1: EthereumNodeDomainService {
                        expected_eth_getTransactionReceipt.map { $0.hash.value },
                        file: file,
                        line: line)
+        XCTAssertEqual(actual_eth_call.map { $0.to.value + "," + $0.data.toHexString() },
+                       expected_eth_call.map { $0.to.value + "," + $0.data.toHexString() },
+                       file: file,
+                       line: line)
     }
 
     private var expected_eth_getTransactionReceipt = [(hash: TransactionHash, receipt: TransactionReceipt?)]()
@@ -59,8 +63,17 @@ class MockEthereumNodeService1: EthereumNodeDomainService {
         return expected_eth_getTransactionReceipt[actual_eth_getTransactionReceipt.count - 1].receipt
     }
 
+
+    private var expected_eth_call = [(to: Address, data: Data, result: Data)]()
+    private var actual_eth_call = [(to: Address, data: Data)]()
+
+    func expect_eth_call(to: Address, data: Data, result: Data) {
+        expected_eth_call.append((to, data, result))
+    }
+
     func eth_call(to: Address, data: Data) throws -> Data {
-        return Data()
+        actual_eth_call.append((to, data))
+        return expected_eth_call[actual_eth_call.count - 1].result
     }
 
 }
