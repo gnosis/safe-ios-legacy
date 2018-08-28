@@ -114,15 +114,15 @@ open class FlowCoordinator {
 
 }
 
-public final class TransparentNavigationController: UINavigationController {
+public final class SafeNavigationController: UINavigationController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        makeNavBarTransparent()
+        styleNavBarTransparent()
     }
 
-    func makeNavBarTransparent() {
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
+    func styleNavBarTransparent() {
+        navigationBar.barTintColor = .white
         navigationBar.shadowImage = UIImage()
     }
 
