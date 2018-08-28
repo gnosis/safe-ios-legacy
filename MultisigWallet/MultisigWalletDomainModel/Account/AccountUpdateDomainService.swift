@@ -48,13 +48,14 @@ open class AccountUpdateDomainService {
     }
 
     private func balance(of accountID: AccountID) -> TokenInt? {
-        let wallet = DomainRegistry.walletRepository.findByID(accountID.walletID)!
+        guard let wallet = DomainRegistry.walletRepository.findByID(accountID.walletID),
+            let address = wallet.address else { return nil }
         if accountID.tokenID == Token.Ether.id {
-            return try? DomainRegistry.ethereumNodeService.eth_getBalance(account: wallet.address!)
+            return try? DomainRegistry.ethereumNodeService.eth_getBalance(account: address)
         } else {
             let token = DomainRegistry.tokenListItemRepository.find(id: accountID.tokenID)!
             let proxy = ERC20TokenContractProxy()
-            return try? proxy.balance(of: wallet.address!, contract: token.token.address)
+            return try? proxy.balance(of: address, contract: token.token.address)
         }
     }
 
