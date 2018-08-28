@@ -118,10 +118,10 @@ public final class SafeNavigationController: UINavigationController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        styleNavBarTransparent()
+        styleNavBar()
     }
 
-    func styleNavBarTransparent() {
+    func styleNavBar() {
         navigationBar.barTintColor = .white
         navigationBar.shadowImage = UIImage()
     }
