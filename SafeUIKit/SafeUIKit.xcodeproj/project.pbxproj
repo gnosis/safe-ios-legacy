@@ -223,6 +223,7 @@
 		55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */; };
 		55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */; };
 		55DFBCEE21355470004B2AC4 /* TokenBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */; };
+		55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */; };
 		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
 		55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F558208A298200889C9F /* QRCodeInputTests.swift */; };
 		55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */; };
@@ -640,6 +641,7 @@
 		55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
 		55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenBalanceTableViewCell.xib; sourceTree = "<group>"; };
+		55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenTableViewController.swift; sourceTree = "<group>"; };
 		55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputViewController.swift; sourceTree = "<group>"; };
 		55E9F558208A298200889C9F /* QRCodeInputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputTests.swift; sourceTree = "<group>"; };
 		55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
@@ -807,10 +809,7 @@
 				0A334E26209C8E3800ABC6AE /* AppFlow.storyboard */,
 				0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */,
 				0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */,
-				0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */,
-				0A334E28209C8E3800ABC6AE /* CountdownLabelTests.swift */,
-				0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */,
-				0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */,
+				55DFBCF52135901D004B2AC4 /* Unlock */,
 				0A4DF82520CE701E0095C00D /* MainFlow */,
 			);
 			path = AppFlow;
@@ -876,10 +875,6 @@
 				0A442DF8210B58BF00F19F80 /* FundsTransferTransactionViewControllerTests.swift */,
 				0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */,
 				0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */,
-				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
-				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
-				0A7F74432110511A004F1150 /* TokenAmountValidatorTests.swift */,
-				0A7F744621105137004F1150 /* TokenAmountValidator.swift */,
 				0AD5091221106900008507CB /* Validator.swift */,
 				0AD50904211054FC008507CB /* EthereumAddressValidator.swift */,
 				0AD5090721105511008507CB /* EthereumAddressValidatorTests.swift */,
@@ -1100,6 +1095,10 @@
 				55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */,
 				0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */,
 				0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */,
+				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
+				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
+				0A7F74432110511A004F1150 /* TokenAmountValidatorTests.swift */,
+				0A7F744621105137004F1150 /* TokenAmountValidator.swift */,
 			);
 			path = Tokens;
 			sourceTree = "<group>";
@@ -1136,6 +1135,7 @@
 				550D1EDA213406380035109A /* ManageTokensTableViewControllerTests.swift */,
 				550D1ED82133FD2E0035109A /* ManageTokensFlowCoordinator.swift */,
 				550D1EDC213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift */,
+				55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */,
 			);
 			path = ManageTokens;
 			sourceTree = "<group>";
@@ -1153,6 +1153,17 @@
 				0A9DCE9A2119DD6E00953C7C /* CommonCrypto.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		55DFBCF52135901D004B2AC4 /* Unlock */ = {
+			isa = PBXGroup;
+			children = (
+				0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */,
+				0A334E28209C8E3800ABC6AE /* CountdownLabelTests.swift */,
+				0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */,
+				0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */,
+			);
+			path = Unlock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1665,6 +1676,7 @@
 				0AD50905211054FC008507CB /* EthereumAddressValidator.swift in Sources */,
 				0A4DF82720CE70B40095C00D /* TokenBalanceTableViewCell.swift in Sources */,
 				0AD998B020D3FEBD00E6F3CA /* FundsTransferTransactionViewController.swift in Sources */,
+				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
 				0A8C962720D2B76D007D2410 /* ProgressView.swift in Sources */,
 				0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */,
 				0A00293020CFCBA3009A4BFE /* SegmentBarController.swift in Sources */,

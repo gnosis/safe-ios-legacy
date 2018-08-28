@@ -13,15 +13,15 @@ class TokenBalanceTableViewCell: UITableViewCell {
 
     static let height: CGFloat = 60
 
-    func configure(tokenData: TokenData) {
+    func configure(tokenData: TokenData, withBalance: Bool = true, withTokenName: Bool = false) {
         let bundle = Bundle(for: TokenBalanceTableViewCell.self)
         if let image = UIImage(named: tokenData.code, in: bundle, compatibleWith: nil) {
             tokenImageView.image = image
         } else {
             tokenImageView.image = Asset.TokenIcons.defaultToken.image
         }
-        tokenCodeLabel.text = tokenData.code
-        tokenBalanceLabel.text = formattedBalance(tokenData)
+        tokenCodeLabel.text = withTokenName ? "\(tokenData.code), \(tokenData.name)" : tokenData.code
+        tokenBalanceLabel.text = withBalance ? formattedBalance(tokenData) : nil
     }
 
     private func formattedBalance(_ tokenData: TokenData) -> String {

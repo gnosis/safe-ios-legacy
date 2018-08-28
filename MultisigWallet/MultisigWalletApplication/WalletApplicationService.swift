@@ -258,17 +258,23 @@ public class WalletApplicationService: Assertable {
                 decimals: $0.token.decimals,
                 balance: account.balance)
         }
-        if withEth {
-            let ethAccount = DomainRegistry.accountRepository.find(
-                id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id), walletID: wallet.id)!
-            let ethData = TokenData(
-                code: Token.Ether.code,
-                name: Token.Ether.name,
-                decimals: Token.Ether.decimals,
-                balance: ethAccount.balance)
-            return [ethData] + tokens
-        } else {
-            return tokens
+        guard withEth else { return tokens }
+        let ethAccount = DomainRegistry.accountRepository.find(
+            id: AccountID(tokenID: Token.Ether.id, walletID: wallet.id), walletID: wallet.id)!
+        let ethData = TokenData(
+            code: Token.Ether.code,
+            name: Token.Ether.name,
+            decimals: Token.Ether.decimals,
+            balance: ethAccount.balance)
+        return [ethData] + tokens
+    }
+
+    /// Returns all tokens.
+    ///
+    /// - Returns: token data array.
+    public func tokens() -> [TokenData] {
+        return DomainRegistry.tokenListItemRepository.all().compactMap {
+            TokenData(code: $0.token.code, name: $0.token.name, decimals: $0.token.decimals, balance: nil)
         }
     }
 
