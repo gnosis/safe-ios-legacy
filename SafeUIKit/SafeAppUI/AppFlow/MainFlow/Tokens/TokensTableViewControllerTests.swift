@@ -9,7 +9,7 @@ import BigInt
 
 class TokensTableViewControllerTests: XCTestCase {
 
-    let controller = TokensTableViewController.create()
+    let controller = TokensTableViewController()
     let walletService = MockWalletApplicationService()
 
     override func setUp() {
