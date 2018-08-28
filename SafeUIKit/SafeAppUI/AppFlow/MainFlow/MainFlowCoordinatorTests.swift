@@ -124,4 +124,18 @@ class MainFlowCoordinatorTests: SafeTestCase {
         waitForExpectations(timeout: 1)
     }
 
+    func test_didSelectManageTokens_entersManageTokensFlow() {
+        mainFlowCoordinator.didSelectManageTokens()
+        delay()
+        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
+            is ManageTokensTableViewController)
+    }
+
+    func test_whenManageTokensCalled_thenEntersManageTokensFlow() {
+        mainFlowCoordinator.manageTokens()
+        delay()
+        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
+            is ManageTokensTableViewController)
+    }
+
 }

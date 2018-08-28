@@ -7,35 +7,33 @@ import Common
 import MultisigWalletApplication
 import BigInt
 
-public protocol MainViewControllerDelegate: class {
+protocol MainViewControllerDelegate: class {
     func mainViewDidAppear()
     func createNewTransaction()
     func openMenu()
+    func manageTokens()
 }
 
-public class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
 
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var receiveButton: UIButton!
 
     private weak var delegate: MainViewControllerDelegate?
-    private let tokenFormatter = TokenNumberFormatter()
 
     private enum Strings {
         static let send = LocalizedString("main.send", comment: "Send button title")
         static let receive = LocalizedString("main.receive", comment: "Receive button title")
     }
 
-    public static func create(delegate: MainViewControllerDelegate) -> MainViewController {
+    static func create(delegate: MainViewControllerDelegate) -> MainViewController {
         let controller = StoryboardScene.Main.mainViewController.instantiate()
         controller.delegate = delegate
         return controller
     }
 
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        tokenFormatter.decimals = 18
-        tokenFormatter.tokenCode = "ETH"
         stylize(button: receiveButton)
         stylize(button: sendButton)
         sendButton.setTitle(Strings.send, for: .normal)
@@ -54,7 +52,12 @@ public class MainViewController: UIViewController {
         delegate?.openMenu()
     }
 
-    public override func viewDidAppear(_ animated: Bool) {
+    // Called from AddTokenFooterView by responder chain
+    @IBAction func manageTokens(_ sender: Any) {
+        delegate?.manageTokens()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Without async appearing animations is not finished yet, but we call in delegate
         // system push notifications alert. This causes wrong views displaying.
