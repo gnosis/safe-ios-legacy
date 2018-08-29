@@ -5,7 +5,7 @@
 import UIKit
 import MultisigWalletApplication
 
-final class TokensTableViewController: UITableViewController {
+final class TokensTableViewController: UITableViewController, EventSubscriber {
 
     private var tokens = [TokenData]()
 
@@ -21,10 +21,6 @@ final class TokensTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
 
         let refreshControl = UIRefreshControl()
-        refreshControl.bounds = CGRect(x: refreshControl.bounds.origin.x,
-                                       y: refreshControl.bounds.origin.y,
-                                       width: refreshControl.bounds.size.width,
-                                       height: refreshControl.bounds.size.height)
         refreshControl.addTarget(self, action: #selector(update), for: .valueChanged)
         tableView.refreshControl = refreshControl
         tableView.backgroundColor = ColorName.paleGreyThree.color
@@ -33,9 +29,17 @@ final class TokensTableViewController: UITableViewController {
     }
 
     @objc private func update() {
+        DispatchQueue.global().async {
+            ApplicationServiceRegistry.walletService.syncBalances(subscriber: self)
+        }
+    }
+
+    func notify() {
         tokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: true)
-        tableView.reloadData()
-        tableView.refreshControl?.endRefreshing()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.tableView.refreshControl?.endRefreshing()
+        }
     }
 
     // MARK: - Table view data source
