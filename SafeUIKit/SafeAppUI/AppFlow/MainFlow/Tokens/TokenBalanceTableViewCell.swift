@@ -14,14 +14,16 @@ class TokenBalanceTableViewCell: UITableViewCell {
 
     static let height: CGFloat = 60
 
-    func configure(tokenData: TokenData) {
-        if let url = tokenData.logoURL {
+    func configure(tokenData: TokenData, withBalance: Bool = true, withTokenName: Bool = false) {
+        if tokenData.code == "ETH" {
+            tokenImageView.image = Asset.TokenIcons.eth.image
+        } else if let url = tokenData.logoURL {
             tokenImageView.kf.setImage(with: url, placeholder: Asset.TokenIcons.defaultToken.image)
         } else {
             tokenImageView.image = Asset.TokenIcons.defaultToken.image
         }
-        tokenCodeLabel.text = tokenData.code
-        tokenBalanceLabel.text = formattedBalance(tokenData)
+        tokenCodeLabel.text = withTokenName ? "\(tokenData.code) (\(tokenData.name))" : tokenData.code
+        tokenBalanceLabel.text = withBalance ? formattedBalance(tokenData) : nil
     }
 
     private func formattedBalance(_ tokenData: TokenData) -> String {

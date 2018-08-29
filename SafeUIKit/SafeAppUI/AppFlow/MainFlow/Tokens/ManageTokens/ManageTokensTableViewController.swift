@@ -42,7 +42,8 @@ class ManageTokensTableViewController: UITableViewController {
     }
 
     @objc private func addToken() {
-        // TODO
+        let controller = AddTokenTableViewController.create()
+        present(controller, animated: true)
     }
 
     // MARK: - Table view data source
