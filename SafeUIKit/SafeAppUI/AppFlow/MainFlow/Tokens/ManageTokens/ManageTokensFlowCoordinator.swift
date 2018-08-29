@@ -36,7 +36,7 @@ extension ManageTokensFlowCoordinator: AddTokenTableViewControllerDelegate {
 
     func didSelectToken(_ tokenData: TokenData) {
         addTokenNavigationController.dismiss(animated: true)
-        // TODO: update manageTokensVC
+        // TODO: update manageTokensVC; do not add if already added
     }
 
 }

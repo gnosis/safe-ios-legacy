@@ -9,6 +9,8 @@ import Common
 
 final class MainFlowCoordinator: FlowCoordinator {
 
+    private let manageTokensFlowCoordinator = ManageTokensFlowCoordinator()
+
     private var walletService: WalletApplicationService {
         return MultisigWalletApplication.ApplicationServiceRegistry.walletService
     }
@@ -69,7 +71,7 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
     }
 
     func manageTokens() {
-        enter(flow: ManageTokensFlowCoordinator())
+        enter(flow: manageTokensFlowCoordinator)
     }
 
 }
@@ -106,7 +108,7 @@ extension MainFlowCoordinator: TransactionReviewViewControllerDelegate {
 extension MainFlowCoordinator: MenuTableViewControllerDelegate {
 
     func didSelectManageTokens() {
-        enter(flow: ManageTokensFlowCoordinator())
+        enter(flow: manageTokensFlowCoordinator)
     }
 
 }
