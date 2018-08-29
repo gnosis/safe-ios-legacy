@@ -241,6 +241,13 @@
 			remoteGlobalIDString = 0A4A1D202136B0C10088F9EC;
 			remoteInfo = Kingfisher;
 		};
+		0A4A1D522136BA400088F9EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A4A1D1F2136B0C10088F9EC;
+			remoteInfo = Kingfisher;
+		};
 		0A5D2F1520D7A8E5009E9918 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
@@ -1205,6 +1212,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0A4A1D532136BA400088F9EC /* PBXTargetDependency */,
 				0A9670C620480C5700445AC2 /* PBXTargetDependency */,
 				5527A7F8208DE8B700AF3A50 /* PBXTargetDependency */,
 				0AF33D49209C6BF800527D25 /* PBXTargetDependency */,
@@ -1820,6 +1828,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0A4A1D532136BA400088F9EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Kingfisher;
+			targetProxy = 0A4A1D522136BA400088F9EC /* PBXContainerItemProxy */;
+		};
 		0A5D2F1620D7A8E5009E9918 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SipHash;
