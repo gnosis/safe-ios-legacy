@@ -24,7 +24,6 @@ public final class MockTokenListService: TokenListDomainService {
         didReturnItems = true
         return try JSONDecoder().decode([TokenListItem].self, from: data)
     }
-
 }
 
 // swiftlint:disable line_length
