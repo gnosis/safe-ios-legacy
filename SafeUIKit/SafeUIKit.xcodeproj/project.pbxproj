@@ -86,6 +86,12 @@
 		0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */; };
 		0A442DF9210B58BF00F19F80 /* FundsTransferTransactionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DF8210B58BF00F19F80 /* FundsTransferTransactionViewControllerTests.swift */; };
 		0A442DFC210B5F8A00F19F80 /* TokenNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */; };
+		0A4A1D2F2136B27B0088F9EC /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; };
+		0A4A1D4F2136B3630088F9EC /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; };
+		0A4A1D502136B3680088F9EC /* Kingfisher.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A4A1D512136B3CC0088F9EC /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; };
+		0A4A1D542136BA8D0088F9EC /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; };
+		0A4A1D552136BA8D0088F9EC /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A4DF82020CE6FC70095C00D /* TokensTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */; };
 		0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4DF82320CE6FE20095C00D /* Main.storyboard */; };
 		0A4DF82720CE70B40095C00D /* TokenBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */; };
@@ -230,6 +236,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0A4A1D2D2136B27B0088F9EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A4A1D202136B0C10088F9EC;
+			remoteInfo = Kingfisher;
+		};
+		0A4A1D522136BA400088F9EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A4A1D1F2136B0C10088F9EC;
+			remoteInfo = Kingfisher;
+		};
+		0A4A1D562136BA8D0088F9EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A4A1D1F2136B0C10088F9EC;
+			remoteInfo = Kingfisher;
+		};
 		0A5D2F1520D7A8E5009E9918 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5527A7E0208DE87600AF3A50 /* Library.xcodeproj */;
@@ -407,6 +434,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0A4A1D502136B3680088F9EC /* Kingfisher.framework in CopyFiles */,
 				0AD8FD3120CEC51E00591B91 /* BlockiesSwift.framework in CopyFiles */,
 				0A72D43D209C934B0082C0A3 /* CryptoSwift.framework in CopyFiles */,
 				0A72D43E209C934B0082C0A3 /* EthereumKit.framework in CopyFiles */,
@@ -423,6 +451,7 @@
 				0A5D2F1C20D7A915009E9918 /* BlockiesSwift.framework in Embed Frameworks */,
 				5527A7F6208DE8B700AF3A50 /* RSBarcodes.framework in Embed Frameworks */,
 				0A5D2F1420D7A8E5009E9918 /* SipHash.framework in Embed Frameworks */,
+				0A4A1D552136BA8D0088F9EC /* Kingfisher.framework in Embed Frameworks */,
 				0A9670C820480C5700445AC2 /* SafeUIKit.framework in Embed Frameworks */,
 				0A5D2F1820D7A8FE009E9918 /* BigInt.framework in Embed Frameworks */,
 				0A8A2BAF20FDFD2F0003BB7E /* CryptoEthereumSwift.framework in Embed Frameworks */,
@@ -655,6 +684,7 @@
 				0A5D2F1B20D7A915009E9918 /* BlockiesSwift.framework in Frameworks */,
 				5527A7F5208DE8B700AF3A50 /* RSBarcodes.framework in Frameworks */,
 				0A5D2F1320D7A8E5009E9918 /* SipHash.framework in Frameworks */,
+				0A4A1D542136BA8D0088F9EC /* Kingfisher.framework in Frameworks */,
 				0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */,
 				0A5D2F1720D7A8FE009E9918 /* BigInt.framework in Frameworks */,
 				0A8A2BAE20FDFD2F0003BB7E /* CryptoEthereumSwift.framework in Frameworks */,
@@ -685,6 +715,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A4A1D512136B3CC0088F9EC /* Kingfisher.framework in Frameworks */,
 				555B0ED420CE682E00424CEE /* SipHash.framework in Frameworks */,
 				555B0ED320CE682900424CEE /* BigInt.framework in Frameworks */,
 				5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */,
@@ -696,6 +727,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A4A1D2F2136B27B0088F9EC /* Kingfisher.framework in Frameworks */,
 				0AD8FD2F20CEC50500591B91 /* BlockiesSwift.framework in Frameworks */,
 				0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */,
 				0A334E64209C8ED300ABC6AE /* libIdentityAccessApplication.a in Frameworks */,
@@ -707,6 +739,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A4A1D4F2136B3630088F9EC /* Kingfisher.framework in Frameworks */,
 				0AD8FD3020CEC51800591B91 /* BlockiesSwift.framework in Frameworks */,
 				0A334DED209C894D00ABC6AE /* libIdentityAccessImplementations.a in Frameworks */,
 				0A334DC9209C6DD800ABC6AE /* libCommonTestSupport.a in Frameworks */,
@@ -1151,6 +1184,7 @@
 				555B0ECF20CE678700424CEE /* SipHash.framework */,
 				0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */,
 				0A9DCE9A2119DD6E00953C7C /* CommonCrypto.framework */,
+				0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1189,6 +1223,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0A4A1D532136BA400088F9EC /* PBXTargetDependency */,
 				0A9670C620480C5700445AC2 /* PBXTargetDependency */,
 				5527A7F8208DE8B700AF3A50 /* PBXTargetDependency */,
 				0AF33D49209C6BF800527D25 /* PBXTargetDependency */,
@@ -1197,6 +1232,7 @@
 				0A5D2F1E20D7A915009E9918 /* PBXTargetDependency */,
 				0A8A2BAD20FDFD2F0003BB7E /* PBXTargetDependency */,
 				0A8A2BB120FDFD2F0003BB7E /* PBXTargetDependency */,
+				0A4A1D572136BA8D0088F9EC /* PBXTargetDependency */,
 			);
 			name = SafeUIKitDemo;
 			productName = SafeUIKitDemo;
@@ -1375,6 +1411,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Kingfisher.framework;
+			remoteRef = 0A4A1D2D2136B27B0088F9EC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0A9DCE9A2119DD6E00953C7C /* CommonCrypto.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1797,6 +1840,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0A4A1D532136BA400088F9EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Kingfisher;
+			targetProxy = 0A4A1D522136BA400088F9EC /* PBXContainerItemProxy */;
+		};
+		0A4A1D572136BA8D0088F9EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Kingfisher;
+			targetProxy = 0A4A1D562136BA8D0088F9EC /* PBXContainerItemProxy */;
+		};
 		0A5D2F1620D7A8E5009E9918 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SipHash;

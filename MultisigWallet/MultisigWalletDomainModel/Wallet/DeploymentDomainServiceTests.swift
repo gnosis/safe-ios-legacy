@@ -308,11 +308,11 @@ extension BaseDeploymentDomainServiceTests {
         wallet = Wallet(id: walletRepository.nextID(), owner: Address.deviceAddress)
         wallet.addOwner(Wallet.createOwner(address: Address.extensionAddress.value, role: .browserExtension))
         wallet.addOwner(Wallet.createOwner(address: Address.paperWalletAddress.value, role: .paperWallet))
+        let account = Account(tokenID: Token.Ether.id, walletID: wallet.id)
         walletRepository.save(wallet)
         let portfolio = Portfolio(id: portfolioRepository.nextID())
         portfolio.addWallet(wallet.id)
         portfolioRepository.save(portfolio)
-        let account = Account(tokenID: Token.Ether.id)
         DomainRegistry.accountRepository.save(account)
     }
 

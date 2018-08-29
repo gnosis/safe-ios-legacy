@@ -45,18 +45,9 @@ public class Account: IdentifiableEntity<AccountID> {
     ///   - tokenID: account token identifier
     ///   - walletID: wallet identifier
     ///   - balance: balance of the account, in smallest token units
-    public init(tokenID: TokenID, walletID: WalletID? = nil, balance: TokenInt? = nil) {
-        var _walletID: WalletID
-        if walletID != nil {
-            _walletID = walletID!
-        } else {
-            let selectedWallet = DomainRegistry.walletRepository.selectedWallet()
-            precondition(selectedWallet != nil,
-                         "There should be a selected wallet when creating Account without specifying walletID")
-            _walletID = selectedWallet!.id
-        }
+    public init(tokenID: TokenID, walletID: WalletID, balance: TokenInt? = nil) {
         self.balance = balance
-        super.init(id: AccountID(tokenID: tokenID, walletID: _walletID))
+        super.init(id: AccountID(tokenID: tokenID, walletID: walletID))
     }
 
     /// Updates balance to a new value

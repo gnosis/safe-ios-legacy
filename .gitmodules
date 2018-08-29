@@ -19,3 +19,6 @@
 [submodule "BlockiesSwift"]
 	path = Dependencies/BlockiesSwift
 	url = https://github.com/gnosis/BlockiesSwift.git
+[submodule "Kingfisher"]
+	path = Dependencies/Kingfisher
+	url = https://github.com/onevcat/Kingfisher.git

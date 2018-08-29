@@ -58,10 +58,10 @@ public class WalletApplicationService: Assertable {
         let portfolio = fetchOrCreatePortfolio()
         let address = ethereumService.generateExternallyOwnedAccount().address
         let wallet = Wallet(id: DomainRegistry.walletRepository.nextID(), owner: Address(address))
+        let account = Account(tokenID: Token.Ether.id, walletID: wallet.id)
         portfolio.addWallet(wallet.id)
         DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.portfolioRepository.save(portfolio)
-        let account = Account(tokenID: Token.Ether.id)
         DomainRegistry.accountRepository.save(account)
     }
 
@@ -255,6 +255,7 @@ public class WalletApplicationService: Assertable {
             return TokenData(
                 code: $0.token.code,
                 name: $0.token.name,
+                logoURL: $0.token.logoUrl,
                 decimals: $0.token.decimals,
                 balance: account.balance)
         }
@@ -264,6 +265,7 @@ public class WalletApplicationService: Assertable {
             let ethData = TokenData(
                 code: Token.Ether.code,
                 name: Token.Ether.name,
+                logoURL: Token.Ether.logoUrl,
                 decimals: Token.Ether.decimals,
                 balance: ethAccount.balance)
             return [ethData] + tokens
