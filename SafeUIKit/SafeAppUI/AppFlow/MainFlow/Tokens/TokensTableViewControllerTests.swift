@@ -18,7 +18,7 @@ class TokensTableViewControllerTests: XCTestCase {
         let ethTokenData = TokenData(code: "ETH", name: "Ether", decimals: 18, balance: BigInt(10e15))
         let gnoTokenData = TokenData(code: "GNO", name: "Gnosis", decimals: 18, balance: BigInt(10e16))
         let mgnTokenData = TokenData(code: "MGN", name: "Magnolia", decimals: 18, balance: nil)
-        walletService.tokensOutput = [ethTokenData, gnoTokenData, mgnTokenData]
+        walletService.visibleTokensOutput = [ethTokenData, gnoTokenData, mgnTokenData]
     }
 
     func test_whenCreated_thenLoadsData() {

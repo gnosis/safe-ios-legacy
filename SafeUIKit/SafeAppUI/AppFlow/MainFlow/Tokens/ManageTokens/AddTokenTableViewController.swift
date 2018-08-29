@@ -9,8 +9,24 @@ class AddTokenTableViewController: UITableViewController {
 
     let searchController = UISearchController(searchResultsController: nil)
 
-    private let tokens = ApplicationServiceRegistry.walletService.tokens()
-    private var filteredTokens = [TokenData]()
+    private let tokens = ApplicationServiceRegistry.walletService.tokens() // already sorted
+    private var sectionedTokens = [String: [TokenData]]()
+    private var filteredTokens = [TokenData]() {
+        didSet {
+            sectionedTokens = [:]
+            filteredTokens.forEach {
+                let sectionTitle = String($0.code.first!).uppercased()
+                if sectionedTokens[sectionTitle] != nil {
+                    sectionedTokens[sectionTitle]!.append($0)
+                } else {
+                    sectionedTokens[sectionTitle] = [$0]
+                }
+            }
+            sectionTokensTitles = [String](sectionedTokens.keys).sorted()
+            tableView.reloadData()
+        }
+    }
+    private var sectionTokensTitles = [String]()
 
     private enum Strings {
         static let title = LocalizedString("add_token.title", comment: "Title for Add Token screen.")
@@ -46,9 +62,8 @@ class AddTokenTableViewController: UITableViewController {
     }
 
     private func configureTableView() {
-        tableView.sectionIndexMinimumDisplayRowCount = 20
+        tableView.sectionIndexMinimumDisplayRowCount = 15
         tableView.tableFooterView = UIView()
-
         let bundle = Bundle(for: TokenBalanceTableViewCell.self)
         tableView.register(UINib(nibName: "TokenBalanceTableViewCell", bundle: bundle),
                            forCellReuseIdentifier: "TokenBalanceTableViewCell")
@@ -58,21 +73,28 @@ class AddTokenTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionTokensTitles.count
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredTokens.count
+        return sectionedTokens[sectionTokensTitles[section]]!.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TokenBalanceTableViewCell",
                                                  for: indexPath) as! TokenBalanceTableViewCell
-        cell.configure(tokenData: filteredTokens[indexPath.row], withBalance: false, withTokenName: true)
+        let tokenData = sectionedTokens[sectionTokensTitles[indexPath.section]]![indexPath.row]
+        cell.configure(tokenData: tokenData, withBalance: false, withTokenName: true)
         return cell
     }
 
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        let availableIndexes = Set(tokens.map { String($0.code.first!).uppercased() })
-            .union(Set(tokens.map { String($0.name.first!).uppercased() }))
-        return Array(availableIndexes).sorted()
+        return sectionTokensTitles
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTokensTitles[section]
     }
 
 }
@@ -87,7 +109,6 @@ extension AddTokenTableViewController: UISearchResultsUpdating {
         filteredTokens = tokens.filter {
             $0.code.lowercased().contains(text) || $0.name.lowercased().contains(text)
         }
-        tableView.reloadData()
     }
 
 }
@@ -95,7 +116,7 @@ extension AddTokenTableViewController: UISearchResultsUpdating {
 extension AddTokenTableViewController: UISearchBarDelegate {
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        dismiss(animated: true)
+        dismiss(animated: false)
     }
 
 }

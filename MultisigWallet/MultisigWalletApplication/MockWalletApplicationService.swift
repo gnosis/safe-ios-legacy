@@ -236,8 +236,13 @@ public class MockWalletApplicationService: WalletApplicationService {
         }
     }
 
-    public var tokensOutput = [TokenData]()
+    public var visibleTokensOutput = [TokenData]()
     public override func visibleTokens(withEth: Bool) -> [TokenData] {
+        return visibleTokensOutput
+    }
+
+    public var tokensOutput = [TokenData]()
+    public override func tokens() -> [TokenData] {
         return tokensOutput
     }
 

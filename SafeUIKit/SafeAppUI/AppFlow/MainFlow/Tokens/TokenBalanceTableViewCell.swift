@@ -20,7 +20,7 @@ class TokenBalanceTableViewCell: UITableViewCell {
         } else {
             tokenImageView.image = Asset.TokenIcons.defaultToken.image
         }
-        tokenCodeLabel.text = withTokenName ? "\(tokenData.code), \(tokenData.name)" : tokenData.code
+        tokenCodeLabel.text = withTokenName ? "\(tokenData.code) (\(tokenData.name))" : tokenData.code
         tokenBalanceLabel.text = withBalance ? formattedBalance(tokenData) : nil
     }
 

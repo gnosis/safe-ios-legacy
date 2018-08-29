@@ -1,3 +1,6 @@
+/* Title for Add Token screen. */
+"add_token.title" = "Add Token";
+
 /* Cancel */
 "app.unlock.cancel" = "Cancel";
 
