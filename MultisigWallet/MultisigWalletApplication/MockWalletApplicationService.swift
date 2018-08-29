@@ -214,7 +214,11 @@ public class MockWalletApplicationService: WalletApplicationService {
             zip(actual_deployWallet, expected_deployWallet).reduce(true) { result, pair -> Bool in
                 result && (pair.1 == nil || pair.0 === pair.1)
             } &&
-            actual_abortDeployment == expected_abortDeployment
+            actual_abortDeployment == expected_abortDeployment &&
+            actual_syncBalances.count == expected_syncBalances.count &&
+            zip(actual_syncBalances, expected_syncBalances).reduce(true) { result, pair -> Bool in
+                result && pair.0 === pair.1
+            }
     }
 
     private var expected_deployWallet_error: Swift.Error?
@@ -241,4 +245,15 @@ public class MockWalletApplicationService: WalletApplicationService {
         return tokensOutput
     }
 
+    private var expected_syncBalances = [EventSubscriber]()
+    private var actual_syncBalances = [EventSubscriber]()
+
+    public func expect_syncBalances(subscriber: EventSubscriber) {
+        expected_syncBalances.append(subscriber)
+    }
+
+    public override func syncBalances(subscriber: EventSubscriber) {
+        actual_syncBalances.append(subscriber)
+        subscriber.notify()
+    }
 }

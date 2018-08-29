@@ -6,6 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
 import BigInt
+import CommonTestSupport
 
 class TokensTableViewControllerTests: XCTestCase {
 
@@ -34,6 +35,7 @@ class TokensTableViewControllerTests: XCTestCase {
     }
 
     func test_whenCreated_thenLoadsData() {
+        walletService.expect_syncBalances(subscriber: controller)
         createWindow(controller)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 3)
         let firstCell = cell(at: 0)
@@ -45,6 +47,7 @@ class TokensTableViewControllerTests: XCTestCase {
         XCTAssertEqual(secondCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "0.1")
         XCTAssertEqual(thirdCell.tokenCodeLabel.text, "MGN")
         XCTAssertEqual(thirdCell.tokenBalanceLabel.text, "--")
+        XCTAssertTrue(walletService.verify())
     }
 
     func test_whenSelectingRow_thenDeselectsIt() {
