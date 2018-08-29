@@ -4,6 +4,7 @@
 
 import UIKit
 import MultisigWalletApplication
+import Kingfisher
 
 class TokenBalanceTableViewCell: UITableViewCell {
 
@@ -15,7 +16,9 @@ class TokenBalanceTableViewCell: UITableViewCell {
 
     func configure(tokenData: TokenData) {
         let bundle = Bundle(for: TokenBalanceTableViewCell.self)
-        if let image = UIImage(named: tokenData.code, in: bundle, compatibleWith: nil) {
+        if let url = tokenData.logoURL {
+            tokenImageView.kf.setImage(with: url)
+        } else if let image = UIImage(named: tokenData.code, in: bundle, compatibleWith: nil) {
             tokenImageView.image = image
         } else {
             tokenImageView.image = Asset.TokenIcons.defaultToken.image
