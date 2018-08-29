@@ -35,7 +35,6 @@ class TokensTableViewControllerTests: XCTestCase {
     }
 
     func test_whenCreated_thenLoadsData() {
-        walletService.expect_syncBalances(subscriber: controller)
         createWindow(controller)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 3)
         let firstCell = cell(at: 0)
@@ -47,6 +46,11 @@ class TokensTableViewControllerTests: XCTestCase {
         XCTAssertEqual(secondCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "0.1")
         XCTAssertEqual(thirdCell.tokenCodeLabel.text, "MGN")
         XCTAssertEqual(thirdCell.tokenBalanceLabel.text, "--")
+    }
+
+    func test_whenCreated_thenSyncs() {
+        walletService.expect_syncBalances(subscriber: controller)
+        createWindow(controller)
         XCTAssertTrue(walletService.verify())
     }
 
