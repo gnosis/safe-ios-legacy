@@ -43,6 +43,6 @@ For added framework
 
 You need to add the new framework to all dependent projects like safe, SafeUIKIt, unit tests and UI test targets where it needed.
 
-For example, if you link the framework to SafeAppUI target, then you have to embed or link it to everywhere the SafeAppUI is used: in SafeUIKitDemo target, safe target in safe project, and unit test target SafeAppUIUintTests.
+For example, if you link the framework to SafeAppUI target, then you have to embed or link it to everywhere the SafeAppUI is used: in SafeUIKitDemo target (embed framework), safe target in safe project, and unit test target SafeAppUIUintTests.
 Also, for unit test target, remember to add the framework to 'Copy Files' phase so that framework is present when unit test target executes. Also add the framework to linked frameworks in SafeUIKitTests. Finally, add your library as a Target Dependency to SafeUIKitDemo target so that it builds before the demo app.
 
