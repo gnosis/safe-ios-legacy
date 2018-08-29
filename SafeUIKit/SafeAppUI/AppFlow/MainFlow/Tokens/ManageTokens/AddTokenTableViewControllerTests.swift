@@ -15,10 +15,10 @@ class AddTokenTableViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
-        let gnoTokenData = TokenData(code: "GNO", name: "Gnosis", decimals: 18, balance: BigInt(10e16))
-        let gno2TokenData = TokenData(code: "GNO2", name: "Gnosis2", decimals: 18, balance: BigInt(10e16))
-        let mgnTokenData = TokenData(code: "MGN", name: "Magnolia", decimals: 18, balance: nil)
-        let rdnTokenData = TokenData(code: "RDN", name: "Raiden", decimals: 18, balance: BigInt(10e15))
+        let gnoTokenData = TokenData(code: "GNO", name: "Gnosis", logoURL: "", decimals: 18, balance: BigInt(10e16))
+        let gno2TokenData = TokenData(code: "GNO2", name: "Gnosis2", logoURL: "", decimals: 18, balance: BigInt(10e16))
+        let mgnTokenData = TokenData(code: "MGN", name: "Magnolia", logoURL: "", decimals: 18, balance: nil)
+        let rdnTokenData = TokenData(code: "RDN", name: "Raiden", logoURL: "", decimals: 18, balance: BigInt(10e15))
         walletService.tokensOutput = [gnoTokenData, gno2TokenData, mgnTokenData, rdnTokenData]
         controller = AddTokenTableViewController()
     }
