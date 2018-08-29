@@ -5,7 +5,13 @@
 import UIKit
 import MultisigWalletApplication
 
+protocol AddTokenTableViewControllerDelegate: class {
+    func didSelectToken(_ tokenData: TokenData)
+}
+
 class AddTokenTableViewController: UITableViewController {
+
+    weak var delegate: AddTokenTableViewControllerDelegate?
 
     let searchController = UISearchController(searchResultsController: nil)
 
@@ -84,8 +90,7 @@ class AddTokenTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TokenBalanceTableViewCell",
                                                  for: indexPath) as! TokenBalanceTableViewCell
-        let tokenData = sectionedTokens[sectionTokensTitles[indexPath.section]]![indexPath.row]
-        cell.configure(tokenData: tokenData, withBalance: false, withTokenName: true)
+        cell.configure(tokenData: token(for: indexPath), withBalance: false, withTokenName: true)
         return cell
     }
 
@@ -95,6 +100,16 @@ class AddTokenTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTokensTitles[section]
+    }
+
+    // MARK: - Table view delegate
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didSelectToken(token(for: indexPath))
+    }
+
+    private func token(for indexPath: IndexPath) -> TokenData {
+        return sectionedTokens[sectionTokensTitles[indexPath.section]]![indexPath.row]
     }
 
 }

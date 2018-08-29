@@ -11,16 +11,24 @@ class AddTokenTableViewControllerTests: XCTestCase {
 
     var controller: AddTokenTableViewController!
     let walletService = MockWalletApplicationService()
+    // swiftlint:disable:next weak_delegate
+    let delegate = MockAddTokenTableViewControllerDelegate()
+
+    let gnoTokenData = TokenData(
+        address: "1", code: "GNO", name: "Gnosis", logoURL: "", decimals: 18, balance: BigInt(10e16))
+    let gno2TokenData = TokenData(
+        address: "2", code: "GNO2", name: "Gnosis2", logoURL: "", decimals: 18, balance: BigInt(10e16))
+    let mgnTokenData = TokenData(
+        address: "3", code: "MGN", name: "Magnolia", logoURL: "", decimals: 18, balance: nil)
+    let rdnTokenData = TokenData(
+        address: "4", code: "RDN", name: "Raiden", logoURL: "", decimals: 18, balance: BigInt(10e15))
 
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
-        let gnoTokenData = TokenData(code: "GNO", name: "Gnosis", logoURL: "", decimals: 18, balance: BigInt(10e16))
-        let gno2TokenData = TokenData(code: "GNO2", name: "Gnosis2", logoURL: "", decimals: 18, balance: BigInt(10e16))
-        let mgnTokenData = TokenData(code: "MGN", name: "Magnolia", logoURL: "", decimals: 18, balance: nil)
-        let rdnTokenData = TokenData(code: "RDN", name: "Raiden", logoURL: "", decimals: 18, balance: BigInt(10e15))
         walletService.tokensOutput = [gnoTokenData, gno2TokenData, mgnTokenData, rdnTokenData]
         controller = AddTokenTableViewController()
+        controller.delegate = delegate
     }
 
     func test_whenCreated_thenLoadsData() {
@@ -39,8 +47,34 @@ class AddTokenTableViewControllerTests: XCTestCase {
         XCTAssertEqual(thirdCell.tokenCodeLabel.text, "RDN (Raiden)")
     }
 
-    private func cell(at row: Int, _ section: Int) -> TokenBalanceTableViewCell {
+    func test_whenCellIsSelected_thenDelegateIsCalled() {
+        selectSell(at: 0, 0)
+        XCTAssertTrue(delegate.didSelect)
+        XCTAssertEqual(delegate.didSelectToken_input!, gnoTokenData)
+    }
+
+}
+
+
+private extension AddTokenTableViewControllerTests {
+
+    func cell(at row: Int, _ section: Int) -> TokenBalanceTableViewCell {
         return controller.tableView.cellForRow(at: IndexPath(row: row, section: section)) as! TokenBalanceTableViewCell
+    }
+
+    func selectSell(at row: Int, _ section: Int) {
+        controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: row, section: section))
+    }
+
+}
+
+class MockAddTokenTableViewControllerDelegate: AddTokenTableViewControllerDelegate {
+
+    var didSelect = false
+    var didSelectToken_input: TokenData?
+    func didSelectToken(_ tokenData: TokenData) {
+        didSelect = true
+        didSelectToken_input = tokenData
     }
 
 }
