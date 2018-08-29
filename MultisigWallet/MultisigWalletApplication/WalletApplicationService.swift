@@ -276,7 +276,12 @@ public class WalletApplicationService: Assertable {
     /// - Returns: token data array.
     public func tokens() -> [TokenData] {
         return DomainRegistry.tokenListItemRepository.all().compactMap {
-            TokenData(code: $0.token.code, name: $0.token.name, decimals: $0.token.decimals, balance: nil)
+            TokenData(
+                code: $0.token.code,
+                name: $0.token.name,
+                logoURL: $0.token.logoUrl,
+                decimals: $0.token.decimals,
+                balance: nil)
         }
     }
 
