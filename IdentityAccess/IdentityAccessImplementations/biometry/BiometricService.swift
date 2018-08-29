@@ -57,19 +57,15 @@ public final class BiometricService: BiometricAuthenticationService {
     }
 
     public var biometryType: BiometryType {
-        if #available(iOS 11.0, *) {
-            guard isAuthenticationAvailable else { return .none }
-            // biometryType available from iOS 11.0
-            switch context.biometryType {
-            case .faceID: return .faceID
-            case .touchID: return .touchID
-            case .none:
-                ApplicationServiceRegistry.logger.error("Received unexpected biometry type: none",
-                                                        error: BiometricServiceError.unexpectedBiometryType)
-                return .none
-            }
-        } else {
-            return isAuthenticationAvailable ? .touchID : .none
+        guard isAuthenticationAvailable else { return .none }
+        // biometryType available from iOS 11.0
+        switch context.biometryType {
+        case .faceID: return .faceID
+        case .touchID: return .touchID
+        case .none:
+            ApplicationServiceRegistry.logger.error("Received unexpected biometry type: none",
+                                                    error: BiometricServiceError.unexpectedBiometryType)
+            return .none
         }
     }
 

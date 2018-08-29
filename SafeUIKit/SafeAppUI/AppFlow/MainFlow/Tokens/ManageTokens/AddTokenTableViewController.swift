@@ -12,6 +12,10 @@ class AddTokenTableViewController: UITableViewController {
     private let tokens = ApplicationServiceRegistry.walletService.tokens()
     private var filteredTokens = [TokenData]()
 
+    private enum Strings {
+        static let title = LocalizedString("add_token.title", comment: "Title for Add Token screen.")
+    }
+
     static func create() -> UINavigationController {
         return StoryboardScene.Main.addTokenNavigationController.instantiate()
     }
@@ -27,11 +31,9 @@ class AddTokenTableViewController: UITableViewController {
     }
 
     private func configureNavigationItem() {
-        title = "Add Token"
-        if #available(iOS 11.0, *) { // TODO: how about to increase min verstion to 11?
-            navigationItem.searchController = searchController
-            navigationItem.hidesSearchBarWhenScrolling = false
-        }
+        title = Strings.title
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 
     private func configureSearchController() {
@@ -44,7 +46,7 @@ class AddTokenTableViewController: UITableViewController {
     }
 
     private func configureTableView() {
-        tableView.sectionIndexMinimumDisplayRowCount = 3 // TODO: change
+        tableView.sectionIndexMinimumDisplayRowCount = 20
         tableView.tableFooterView = UIView()
 
         let bundle = Bundle(for: TokenBalanceTableViewCell.self)
