@@ -15,19 +15,33 @@ ruby compile.rb <DepName>
 
 # Adding 3rd party dependency as a submodule.
 
+- Add submodule:
+
+```
+cd Dependencies
+git submodule add --name <name> <link>
+```
+
 - Add new framework to Library project targets
 - Remove added framework folder from Library project
 
 For added framework 
 
 - Remove in build settings:
-	- Reference to info.plist 
-	- Code Signing Identity
-	- Code Signing Style
+  - iOS deployment target
+  - Debug information format
+  - Info.plist
+  - Defines module
 - Remove all build phases
+- Remove build settings from the framework target
+- Target -> General -> Uncheck 'Automatically manage signing'
 - Add runscript build phase:
-	- Add Shell script `bash ${SRCROOT}/copy-framework.sh`
-	- Add Input Files `$(SRCROOT)/${PLATFORM_NAME}/${PRODUCT_NAME}.framework`
-	- Add Output Files `${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework`
+  - Add Shell script `bash ${SRCROOT}/copy-framework.sh`
+  - Add Input File `$(SRCROOT)/${PLATFORM_NAME}/${PRODUCT_NAME}.framework`
+  - Add Output File `${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework`
+  - Add Output File `${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework.dSYM`
 
 You need to add the new framework to all dependent projects like safe, SafeUIKIt, unit tests and UI test targets where it needed.
+
+For example, if you link the framework to SafeAppUI target, then you have to embed or link it to everywhere the SafeAppUI is used: in SafeUIKitDemo target, safe target in safe project, and unit test target SafeAppUIUintTests.
+Also, for unit test target, remember to add the framework to 'Copy Files' phase so that framework is present when unit test target executes. Also add the framework to linked frameworks in SafeUIKitTests. 
