@@ -32,11 +32,11 @@ public final class TokenListItem: IdentifiableEntity<TokenID>, Decodable {
         super.init(id: token.id)
     }
 
-    public init(token: Token, status: TokenListItemStatus, sortingId: Int? = nil) {
+    public init(token: Token, status: TokenListItemStatus, sortingId: Int? = nil, updated: Date = Date()) {
         self.token = token
         self.status = status
         self.sortingId = sortingId
-        self.updated = Date()
+        self.updated = updated
         super.init(id: token.id)
     }
 

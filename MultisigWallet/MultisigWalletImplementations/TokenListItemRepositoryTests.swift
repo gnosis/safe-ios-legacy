@@ -5,12 +5,13 @@
 import XCTest
 @testable import MultisigWalletImplementations
 import MultisigWalletDomainModel
+import Database
 
-class InMemoryTokenListItemRepositoryTests: XCTestCase {
+class BaseTokenListItemRepositoryTests: XCTestCase {
 
-    let repository = InMemoryTokenListItemRepository()
+    var repository: TokenListItemRepository!
 
-    func test_Find_Remove_All_Save() {
+    func do_test_Find_Remove_All_Save() {
         let eth = Token.Ether
         let item = TokenListItem(token: eth, status: .whitelisted)
         repository.save(item)
@@ -29,7 +30,7 @@ class InMemoryTokenListItemRepositoryTests: XCTestCase {
         XCTAssertEqual(repository.all().count, 1)
     }
 
-    func test_whenSavingWhitelistedItem_thenAssignsProperSortingOrder() {
+    func do_test_whenSavingWhitelistedItem_thenAssignsProperSortingOrder() {
         let gno = TokenListItem(token: Token.gno, status: .whitelisted)
         let rdn = TokenListItem(token: Token.rdn, status: .regular)
         let mgn = TokenListItem(token: Token.mgn, status: .whitelisted)
@@ -66,6 +67,58 @@ class InMemoryTokenListItemRepositoryTests: XCTestCase {
         let whitelistedTokens = repository.whitelisted()
         XCTAssertEqual(whitelistedTokens.count, 2)
         XCTAssertTrue(whitelistedTokens[0].sortingId! < whitelistedTokens[1].sortingId!)
+    }
+
+}
+
+
+class InMemoryTokenListItemRepositoryTests: BaseTokenListItemRepositoryTests {
+
+    override func setUp() {
+        super.setUp()
+        repository = InMemoryTokenListItemRepository()
+    }
+
+    func test_Find_Remove_All_Save() {
+        do_test_Find_Remove_All_Save()
+    }
+
+    func test_whenSavingWhitelistedItem_thenAssignsProperSortingOrder() {
+        do_test_whenSavingWhitelistedItem_thenAssignsProperSortingOrder()
+    }
+
+}
+
+class DBTokenListItemRepositoryTests: BaseTokenListItemRepositoryTests {
+
+    var db: Database!
+
+    override func setUp() {
+        super.setUp()
+        db = SQLiteDatabase(name: String(reflecting: self),
+                            fileManager: FileManager.default,
+                            sqlite: CSQLite3(),
+                            bundleId: String(reflecting: self))
+        try? db.destroy()
+        try! db.create()
+
+        let repository = DBTokenListItemRepository(db: db)
+        repository.setUp()
+        self.repository = repository
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        try? db.destroy()
+    }
+
+
+    func test_Find_Remove_All_Save() {
+        do_test_Find_Remove_All_Save()
+    }
+
+    func test_whenSavingWhitelistedItem_thenAssignsProperSortingOrder() {
+        do_test_whenSavingWhitelistedItem_thenAssignsProperSortingOrder()
     }
 
 }

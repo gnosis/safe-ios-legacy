@@ -5,7 +5,7 @@
 import UIKit
 import MultisigWalletApplication
 
-final class TokensTableViewController: UITableViewController, EventSubscriber {
+final class TokensTableViewController: UITableViewController {
 
     private var tokens = [TokenData]()
 
@@ -34,14 +34,6 @@ final class TokensTableViewController: UITableViewController, EventSubscriber {
         }
     }
 
-    func notify() {
-        tokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: true)
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.tableView.refreshControl?.endRefreshing()
-        }
-    }
-
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,6 +59,18 @@ final class TokensTableViewController: UITableViewController, EventSubscriber {
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return AddTokenFooterView.height
+    }
+
+}
+
+extension TokensTableViewController: EventSubscriber {
+
+    func notify() {
+        tokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: true)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.tableView.refreshControl?.endRefreshing()
+        }
     }
 
 }
