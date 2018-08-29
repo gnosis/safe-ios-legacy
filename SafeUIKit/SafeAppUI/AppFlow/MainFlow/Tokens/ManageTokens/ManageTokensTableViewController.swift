@@ -5,11 +5,25 @@
 import UIKit
 import MultisigWalletApplication
 
+protocol ManageTokensTableViewControllerDelegate: class {
+    func addToken()
+    func endEditing(tokens: [TokenData])
+}
+
+extension Array {
+
+    mutating func rearrange(from: Int, to: Int) {
+        precondition(from != to && indices.contains(from) && indices.contains(to), "invalid indexes")
+        insert(remove(at: from), at: to)
+    }
+
+}
+
 class ManageTokensTableViewController: UITableViewController {
 
-    private var tokens: [TokenData] {
-        return ApplicationServiceRegistry.walletService.visibleTokens(withEth: false)
-    }
+    weak var delegate: ManageTokensTableViewControllerDelegate?
+
+    private var tokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: false)
 
     private enum Strings {
         static let title = LocalizedString("manage_tokens.title",
@@ -29,6 +43,7 @@ class ManageTokensTableViewController: UITableViewController {
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.backgroundColor = ColorName.paleGreyThree.color
+
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -38,12 +53,12 @@ class ManageTokensTableViewController: UITableViewController {
             navigationItem.setLeftBarButton(addButton, animated: animated)
         } else {
             navigationItem.setLeftBarButton(nil, animated: animated)
+            delegate?.endEditing(tokens: tokens)
         }
     }
 
-    @objc private func addToken() {
-        let controller = AddTokenTableViewController.create()
-        present(controller, animated: true)
+    @objc internal func addToken() {
+        delegate?.addToken()
     }
 
     // MARK: - Table view data source
@@ -66,7 +81,7 @@ class ManageTokensTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             moveRowAt sourceIndexPath: IndexPath,
                             to destinationIndexPath: IndexPath) {
-        // TODO
+        tokens.rearrange(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
 
 }

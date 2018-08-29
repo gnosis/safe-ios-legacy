@@ -58,7 +58,6 @@ public final class BiometricService: BiometricAuthenticationService {
 
     public var biometryType: BiometryType {
         guard isAuthenticationAvailable else { return .none }
-        // biometryType available from iOS 11.0
         switch context.biometryType {
         case .faceID: return .faceID
         case .touchID: return .touchID

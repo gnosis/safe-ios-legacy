@@ -5,7 +5,6 @@
 import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
-import BigInt
 
 class AddTokenTableViewControllerTests: XCTestCase {
 
@@ -14,19 +13,10 @@ class AddTokenTableViewControllerTests: XCTestCase {
     // swiftlint:disable:next weak_delegate
     let delegate = MockAddTokenTableViewControllerDelegate()
 
-    let gnoTokenData = TokenData(
-        address: "1", code: "GNO", name: "Gnosis", logoURL: "", decimals: 18, balance: BigInt(10e16))
-    let gno2TokenData = TokenData(
-        address: "2", code: "GNO2", name: "Gnosis2", logoURL: "", decimals: 18, balance: BigInt(10e16))
-    let mgnTokenData = TokenData(
-        address: "3", code: "MGN", name: "Magnolia", logoURL: "", decimals: 18, balance: nil)
-    let rdnTokenData = TokenData(
-        address: "4", code: "RDN", name: "Raiden", logoURL: "", decimals: 18, balance: BigInt(10e15))
-
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
-        walletService.tokensOutput = [gnoTokenData, gno2TokenData, mgnTokenData, rdnTokenData]
+        walletService.tokensOutput = [TokenData.gno, TokenData.gno2, TokenData.mgn, TokenData.rdn]
         controller = AddTokenTableViewController()
         controller.delegate = delegate
     }
@@ -50,7 +40,7 @@ class AddTokenTableViewControllerTests: XCTestCase {
     func test_whenCellIsSelected_thenDelegateIsCalled() {
         selectSell(at: 0, 0)
         XCTAssertTrue(delegate.didSelect)
-        XCTAssertEqual(delegate.didSelectToken_input!, gnoTokenData)
+        XCTAssertEqual(delegate.didSelectToken_input!, TokenData.gno)
     }
 
 }
