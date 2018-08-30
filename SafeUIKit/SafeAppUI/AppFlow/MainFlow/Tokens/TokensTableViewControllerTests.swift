@@ -31,6 +31,12 @@ class TokensTableViewControllerTests: XCTestCase {
         XCTAssertEqual(thirdCell.tokenBalanceLabel.text, "--")
     }
 
+    func test_whenCreated_thenSyncs() {
+        walletService.expect_syncBalances(subscriber: controller)
+        createWindow(controller)
+        XCTAssertTrue(walletService.verify())
+    }
+
     func test_whenSelectingRow_thenDeselectsIt() {
         createWindow(controller)
         controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))

@@ -74,17 +74,21 @@ public class WalletApplicationService: Assertable {
     }
 
     public func deployWallet(subscriber: EventSubscriber, onError: ((Swift.Error) -> Void)?) {
+        resetSubscribers(onError: onError)
+        [DeploymentStarted.self, WalletConfigured.self, DeploymentFunded.self,
+         CreationStarted.self, WalletCreated.self, WalletCreationFailed.self].forEach {
+            ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: $0)
+        }
+        DomainRegistry.deploymentService.start()
+    }
+
+    private func resetSubscribers(onError: ((Swift.Error) -> Void)? = nil) {
         DomainRegistry.eventPublisher.reset()
         ApplicationServiceRegistry.eventRelay.reset(publisher: DomainRegistry.eventPublisher)
         DomainRegistry.errorStream.reset()
         if let errorHandler = onError {
             DomainRegistry.errorStream.addHandler(errorHandler)
         }
-        [DeploymentStarted.self, WalletConfigured.self, DeploymentFunded.self,
-         CreationStarted.self, WalletCreated.self, WalletCreationFailed.self].forEach {
-            ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: $0)
-        }
-        DomainRegistry.deploymentService.start()
     }
 
     public func walletState() -> WalletStateId? {
@@ -242,6 +246,12 @@ public class WalletApplicationService: Assertable {
     }
 
     // MARK: - Tokens
+
+    public func syncBalances(subscriber: EventSubscriber) {
+        resetSubscribers()
+        ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: AccountsBalancesUpdated.self)
+        DomainRegistry.syncService.sync()
+    }
 
     /// Returns selected account Eth Data together with whitelisted tokens data.
     ///
