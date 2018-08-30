@@ -9,9 +9,14 @@ import CommonTestSupport
 
 class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
 
-    func test_whenGettingTokensDataForSelectedWallet_thenReturnsIt() {
+    override func setUp() {
+        super.setUp()
+        tokenItemsService.json = TokensResponse.json
         syncTokens()
-        XCTAssertTrue(accountRepository.all().count > 1)
+    }
+
+    func test_whenGettingTokensDataForSelectedWallet_thenReturnsIt() {
+        XCTAssertEqual(accountRepository.all().count, 3)
         let tokensWithEth = service.visibleTokens(withEth: true)
         // there should be accounts for visible tokens
         XCTAssertEqual(tokensWithEth.count, accountRepository.all().count)
@@ -23,14 +28,22 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
     }
 
     func test_whenGettingHiddenTokens_thenReturnsIt() {
-        tokenItemsService.json = TokensResponse.json
-        syncTokens()
-        XCTAssertEqual(accountRepository.all().count, 3)
         let hiddenTokens = service.hiddenTokens()
         XCTAssertEqual(hiddenTokens.count, 2)
         // should be sorted by code
         XCTAssertEqual(hiddenTokens.first!.code, "<3")
         XCTAssertEqual(hiddenTokens[1].code, "OMG")
+    }
+
+    func test_whenWhitelistingToken_thenItIsWhitelisted() {
+        let oldWhitelisted = service.visibleTokens(withEth: false)
+        let oldHidden = service.hiddenTokens()
+        service.whitelistToken(oldHidden.first!)
+        let newWhitelisted = service.visibleTokens(withEth: false)
+        let newHidden = service.hiddenTokens()
+        XCTAssertEqual(oldWhitelisted.count, newWhitelisted.count - 1)
+        XCTAssertEqual(oldHidden.count - 1, newHidden.count)
+        XCTAssertEqual(newWhitelisted.last!.code, "<3")
     }
 
     private func syncTokens() {

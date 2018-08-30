@@ -34,4 +34,13 @@ public struct TokenData: Equatable {
             balance: balance)
     }
 
+    func token() -> Token {
+        return Token(
+            code: code,
+            name: name,
+            decimals: decimals,
+            address: Address(address),
+            logoUrl: logoURL?.absoluteString ?? "")
+    }
+
 }

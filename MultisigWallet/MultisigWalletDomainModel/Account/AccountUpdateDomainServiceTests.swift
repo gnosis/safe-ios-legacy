@@ -30,6 +30,8 @@ class AccountUpdateDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
     }
 
+    // MARK: - Update All Accounts
+
     func test_updateAccountsBalances_doesNotUpdateWhenNoWalletIsCreated() {
         updateBalances()
         XCTAssertNil(walletRepository.selectedWallet())
@@ -135,6 +137,64 @@ class AccountUpdateDomainServiceTests: XCTestCase {
         XCTAssertEqual(account.balance, 100)
     }
 
+    // MARK: - Update Selected Account
+
+    func test_updateAccountBalance_doesNotUpdateWhenNoWalletIsCreated() {
+        updateBalance(Token.gno)
+        XCTAssertNil(walletRepository.selectedWallet())
+        XCTAssertTrue(accountRepository.all().isEmpty)
+    }
+
+    func test_updateAccountBalance_addsMissingAccount() {
+        givenEmptyWalletAndTokenItemsWithWhitelistedGNO()
+        XCTAssertEqual(accountRepository.all().count, 0)
+        updateBalance(Token.gno)
+        assertOnlyGNOAccountExistsForSelectedWallet()
+    }
+
+    func test_updateAccountBalance_publishesEvent() {
+        givenEmptyWalletAndTokenItemsWithWhitelistedGNO()
+        publisher.expectToPublish(AccountsBalancesUpdated.self)
+        updateBalance(Token.gno)
+        XCTAssertTrue(publisher.publishedWhatWasExpected())
+    }
+
+    func test_updateAccountBalance_otherWalletsShouldNotInfluenceSelectedWallet() {
+        givenEmptyWalletAndTokenItemsWithWhitelistedGNO()
+        _ = addSecondWalletWithNewGnoTokenAccount()
+        updateBalance(Token.gno)
+        assertOnlyGNOAccountExistsForSelectedWallet()
+    }
+
+    func test_updateAccountBalance_UpdatesBalanceForSelectedWalletOnly() {
+        givenEmptyWalletAndTokenItemsWithWhitelistedGNO()
+        let wallet = addNewWalletToPortfolio()
+        let account = Account(tokenID: Token.gno.id, walletID: wallet.id, balance: 100)
+        accountRepository.save(account)
+        updateBalance(Token.gno)
+        assertOnlyGNOAccountExistsForSelectedWallet()
+        let accountID = AccountID(tokenID: Token.gno.id, walletID: wallet.id)
+        let updatedAccount = accountRepository.find(id: accountID)!
+        XCTAssertTrue(updatedAccount.isEqual(to: account))
+        XCTAssertEqual(updatedAccount.balance, 100)
+    }
+
+    func test_updateAccountBalance_updatesBalanceForSelectedWalletOnly() {
+        givenEmptyWalletAndTokenItemsWithWhitelistedGNO()
+        let otherWallet = addSecondWalletWithNewGnoTokenAccount()
+        updateBalance(Token.gno)
+
+        assertOnlyGNOAccountExistsForSelectedWallet()
+        let selectedWallet = walletRepository.selectedWallet()!
+        let accountID = AccountID(tokenID: Token.gno.id, walletID: selectedWallet.id)
+        let updatedAccount = accountRepository.find(id: accountID)!
+        XCTAssertNotNil(updatedAccount.balance)
+
+        let otherWalletAccountID = AccountID(tokenID: Token.gno.id, walletID: otherWallet.id)
+        let otherWalletAccount = accountRepository.find(id: otherWalletAccountID)!
+        XCTAssertNil(otherWalletAccount.balance)
+    }
+
 }
 
 private extension AccountUpdateDomainServiceTests {
@@ -180,6 +240,13 @@ private extension AccountUpdateDomainServiceTests {
     private func updateBalances() {
         DispatchQueue.global().async {
             self.accountUpdateService.updateAccountsBalances()
+        }
+        delay()
+    }
+
+    private func updateBalance(_ token: Token) {
+        DispatchQueue.global().async {
+            self.accountUpdateService.updateAccountBalance(token: token)
         }
         delay()
     }

@@ -270,6 +270,15 @@ public class WalletApplicationService: Assertable {
             .compactMap { TokenData(token: $0.token, balance: nil) }
     }
 
+    /// Whitelist a token.
+    ///
+    /// - Parameter tokenData: necessary token data
+    public func whitelistToken(_ tokenData: TokenData) {
+        let tokenListItem = TokenListItem(token: tokenData.token(), status: .whitelisted)
+        DomainRegistry.tokenListItemRepository.save(tokenListItem)
+        AccountUpdateDomainService().updateAccountBalance(token: tokenListItem.token)
+    }
+
     // MARK: - Accounts
 
     public func accountBalance(tokenID: BaseID) -> BigInt? {
