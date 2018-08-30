@@ -50,7 +50,6 @@ class ManageTokensTableViewController: UITableViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
         navigationItem.setRightBarButton(addButton, animated: false)
         setEditing(true, animated: false)
-
     }
 
     @objc internal func addToken() {

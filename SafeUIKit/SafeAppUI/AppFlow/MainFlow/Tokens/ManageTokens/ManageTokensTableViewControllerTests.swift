@@ -21,32 +21,14 @@ class ManageTokensTableViewControllerTests: XCTestCase {
         controller.delegate = delegate
     }
 
-    func test_whenEndsEditing_thenCallsDelegate() {
-        controller.setEditing(false, animated: false)
-        XCTAssertTrue(delegate.didEndEditing)
-        XCTAssertEqual(delegate.endEditing_input, walletService.visibleTokensOutput)
-    }
-
     func test_whenAddsToken_thenCallsDelegate() {
         controller.addToken()
         XCTAssertTrue(delegate.didAddToken)
     }
 
-    func test_whenRowsMoved_thenTokensAreSwapped() {
+    func test_whenRowsMoved_thenDelegateIsCalled() {
         moveRow(from: 0, to: 2)
-        controller.setEditing(false, animated: false)
-        XCTAssertEqual(delegate.endEditing_input, [TokenData.gno2, TokenData.mgn, TokenData.gno, TokenData.rdn])
-
-        moveRow(from: 3, to: 0)
-        controller.setEditing(false, animated: false)
-        XCTAssertEqual(delegate.endEditing_input, [TokenData.rdn, TokenData.gno2, TokenData.mgn, TokenData.gno])
-    }
-
-    func test_whenTokenAdded_thenShowsItAsLastInList() {
-        controller.tokenAdded(tokenData: TokenData.eth)
-        XCTAssertEqual(controller.tableView(controller.tableView, numberOfRowsInSection: 0), 5)
-        let lastCell = cell(at: 4)
-        XCTAssertEqual(lastCell.tokenCodeLabel.text, TokenData.eth.code)
+        XCTAssertEqual(delegate.rearrange_input, [TokenData.gno2, TokenData.mgn, TokenData.gno, TokenData.rdn])
     }
 
 }
@@ -58,10 +40,6 @@ private extension ManageTokensTableViewControllerTests {
             controller.tableView, moveRowAt: IndexPath(row: from, section: 0), to: IndexPath(row: to, section: 0))
     }
 
-    func cell(at row: Int) -> TokenBalanceTableViewCell {
-        return controller.tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! TokenBalanceTableViewCell
-    }
-
 }
 
 class MockManageTokensTableViewControllerDelegate: ManageTokensTableViewControllerDelegate {
@@ -71,11 +49,9 @@ class MockManageTokensTableViewControllerDelegate: ManageTokensTableViewControll
         didAddToken = true
     }
 
-    var didEndEditing = false
-    var endEditing_input: [TokenData]?
-    func endEditing(tokens: [TokenData]) {
-        didEndEditing = true
-        endEditing_input = tokens
+    var rearrange_input: [TokenData]?
+    func rearrange(tokens: [TokenData]) {
+        rearrange_input = tokens
     }
 
 }

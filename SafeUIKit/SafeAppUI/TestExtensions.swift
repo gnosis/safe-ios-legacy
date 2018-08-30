@@ -18,14 +18,43 @@ extension UIApplication {
 extension TokenData {
 
     static let eth = TokenData(
-        address: "0", code: "ETH", name: "Ether", logoURL: "", decimals: 18, balance: BigInt(10e15))
+        address: "0x0000000000000000000000000000000000000000",
+        code: "ETH",
+        name: "Ether",
+        logoURL: "",
+        decimals: 18,
+        balance: BigInt(10e15))
+
     static let gno = TokenData(
-        address: "1", code: "GNO", name: "Gnosis", logoURL: "", decimals: 18, balance: BigInt(10e17))
+        address: "0x36276f1f2cb8e9c11c508aad00556f819c5ad876",
+        code: "GNO",
+        name: "Gnosis",
+        logoURL: "",
+        decimals: 18,
+        balance: BigInt(10e17))
+
     static let gno2 = TokenData(
-        address: "2", code: "GNO2", name: "Gnosis2", logoURL: "", decimals: 18, balance: BigInt(10e16))
+        address: "0x36276f1f2cb8e9c11c508aad00556f819c5ad877",
+        code: "GNO2",
+        name: "Gnosis2",
+        logoURL: "",
+        decimals: 18,
+        balance: BigInt(10e16))
+
     static let mgn = TokenData(
-        address: "3", code: "MGN", name: "Magnolia", logoURL: "", decimals: 18, balance: nil)
+        address: "0x152Af9AD40ccEF2060CD14356647Ee1773A43437",
+        code: "MGN",
+        name: "Magnolia",
+        logoURL: "",
+        decimals: 18,
+        balance: nil)
+
     static let rdn = TokenData(
-        address: "4", code: "RDN", name: "Raiden", logoURL: "", decimals: 18, balance: BigInt(10e15))
+        address: "0x8aa852b299c748a5ab8bd2764309f8c3c756bd3b",
+        code: "RDN",
+        name: "Raiden",
+        logoURL: "",
+        decimals: 18,
+        balance: BigInt(10e15))
 
 }

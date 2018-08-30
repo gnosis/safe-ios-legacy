@@ -246,4 +246,6 @@ public class MockWalletApplicationService: WalletApplicationService {
         return tokensOutput
     }
 
+    public override func whitelist(token tokenData: TokenData) {}
+
 }
