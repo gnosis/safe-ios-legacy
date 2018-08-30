@@ -42,6 +42,13 @@ class ManageTokensTableViewControllerTests: XCTestCase {
         XCTAssertEqual(delegate.endEditing_input, [TokenData.rdn, TokenData.gno2, TokenData.mgn, TokenData.gno])
     }
 
+    func test_whenTokenAdded_thenShowsItAsLastInList() {
+        controller.tokenAdded(tokenData: TokenData.eth)
+        XCTAssertEqual(controller.tableView(controller.tableView, numberOfRowsInSection: 0), 5)
+        let lastCell = cell(at: 4)
+        XCTAssertEqual(lastCell.tokenCodeLabel.text, TokenData.eth.code)
+    }
+
 }
 
 private extension ManageTokensTableViewControllerTests {
@@ -49,6 +56,10 @@ private extension ManageTokensTableViewControllerTests {
     func moveRow(from: Int, to: Int) {
         controller.tableView(
             controller.tableView, moveRowAt: IndexPath(row: from, section: 0), to: IndexPath(row: to, section: 0))
+    }
+
+    func cell(at row: Int) -> TokenBalanceTableViewCell {
+        return controller.tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! TokenBalanceTableViewCell
     }
 
 }

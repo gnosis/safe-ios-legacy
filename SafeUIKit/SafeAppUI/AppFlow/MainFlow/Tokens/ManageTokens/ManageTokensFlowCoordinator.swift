@@ -28,6 +28,7 @@ extension ManageTokensFlowCoordinator: ManageTokensTableViewControllerDelegate {
 
     func endEditing(tokens: [TokenData]) {
         // TODO: In Application Service: whitelist new, blacklist old, new sorting ids, update balances
+        print(tokens.map { $0.code }.joined(separator: ", "))
     }
 
 }
@@ -36,7 +37,7 @@ extension ManageTokensFlowCoordinator: AddTokenTableViewControllerDelegate {
 
     func didSelectToken(_ tokenData: TokenData) {
         addTokenNavigationController.dismiss(animated: true)
-        // TODO: update manageTokensVC; do not add if already added
+        manageTokensVC.tokenAdded(tokenData: tokenData)
     }
 
 }

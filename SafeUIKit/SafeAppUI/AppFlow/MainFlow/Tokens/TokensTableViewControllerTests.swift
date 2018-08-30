@@ -43,7 +43,11 @@ class TokensTableViewControllerTests: XCTestCase {
         XCTAssertTrue(footer is AddTokenFooterView)
     }
 
-    private func cell(at row: Int) -> TokenBalanceTableViewCell {
+}
+
+private extension TokensTableViewControllerTests {
+
+    func cell(at row: Int) -> TokenBalanceTableViewCell {
         return controller.tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! TokenBalanceTableViewCell
     }
 

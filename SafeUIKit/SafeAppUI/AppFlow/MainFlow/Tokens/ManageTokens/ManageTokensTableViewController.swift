@@ -61,6 +61,11 @@ class ManageTokensTableViewController: UITableViewController {
         delegate?.addToken()
     }
 
+    func tokenAdded(tokenData: TokenData) {
+        tokens.append(tokenData)
+        tableView.reloadData()
+    }
+
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,7 +75,7 @@ class ManageTokensTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "TokenBalanceTableViewCell", for: indexPath) as! TokenBalanceTableViewCell
-        cell.configure(tokenData: tokens[indexPath.row])
+        cell.configure(tokenData: tokens[indexPath.row], withBalance: false)
         return cell
     }
 
