@@ -15,7 +15,7 @@ class AddTokenTableViewController: UITableViewController {
 
     let searchController = UISearchController(searchResultsController: nil)
 
-    private let tokens = ApplicationServiceRegistry.walletService.tokens() // already sorted
+    private let tokens = ApplicationServiceRegistry.walletService.hiddenTokens() // already sorted
     private var sectionedTokens = [String: [TokenData]]()
     private var filteredTokens = [TokenData]() {
         didSet {

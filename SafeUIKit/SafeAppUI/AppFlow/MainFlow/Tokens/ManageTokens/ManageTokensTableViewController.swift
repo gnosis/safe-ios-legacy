@@ -13,7 +13,8 @@ protocol ManageTokensTableViewControllerDelegate: class {
 extension Array {
 
     mutating func rearrange(from: Int, to: Int) {
-        precondition(from != to && indices.contains(from) && indices.contains(to), "invalid indexes")
+        guard from != to else { return }
+        precondition(indices.contains(from) && indices.contains(to), "invalid indexes")
         insert(remove(at: from), at: to)
     }
 
@@ -44,15 +45,15 @@ class ManageTokensTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.backgroundColor = ColorName.paleGreyThree.color
 
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
+        navigationItem.setRightBarButton(addButton, animated: false)
+        setEditing(true, animated: false)
+
     }
 
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        if isEditing {
-            let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
-            navigationItem.setLeftBarButton(addButton, animated: animated)
-        } else {
-            navigationItem.setLeftBarButton(nil, animated: animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isMovingFromParentViewController {
             delegate?.endEditing(tokens: tokens)
         }
     }

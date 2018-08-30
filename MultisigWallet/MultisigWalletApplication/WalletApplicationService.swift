@@ -261,13 +261,13 @@ public class WalletApplicationService: Assertable {
         return [ethData] + tokens
     }
 
-    /// Returns all tokens.
+    /// Returns all tokens that are not whitelisted.
     ///
     /// - Returns: token data array.
-    public func tokens() -> [TokenData] {
-        return DomainRegistry.tokenListItemRepository.all().compactMap {
-            TokenData(token: $0.token, balance: nil)
-        }
+    public func hiddenTokens() -> [TokenData] {
+        return DomainRegistry.tokenListItemRepository.all()
+            .filter { $0.status != .whitelisted }
+            .compactMap { TokenData(token: $0.token, balance: nil) }
     }
 
     // MARK: - Accounts

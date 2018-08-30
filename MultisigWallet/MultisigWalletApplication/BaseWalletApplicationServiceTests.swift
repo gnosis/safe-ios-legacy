@@ -24,6 +24,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     let syncService = SynchronisationService(retryInterval: 0.1)
     let tokenItemsRepository = InMemoryTokenListItemRepository()
     let tokenItemsService = MockTokenListService()
+    let ethereumNodeService = MockEthereumNodeService()
 
     let eventPublisher = MockEventPublisher()
     var eventRelay: MockEventRelay!
@@ -59,6 +60,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
         DomainRegistry.put(service: tokenItemsRepository, for: TokenListItemRepository.self)
         DomainRegistry.put(service: tokenItemsService, for: TokenListDomainService.self)
+        DomainRegistry.put(service: ethereumNodeService, for: EthereumNodeDomainService.self)
 
         ethereumService.createSafeCreationTransaction_output =
             SafeCreationTransactionData(safe: Address.safeAddress.value, payment: 100)
