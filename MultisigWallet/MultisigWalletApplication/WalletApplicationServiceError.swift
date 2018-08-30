@@ -16,4 +16,5 @@ public enum WalletApplicationServiceError: String, Swift.Error, Hashable {
     case exceededExpirationDate
     case unknownError
     case walletCreationFailed
+    case inconsistentData
 }

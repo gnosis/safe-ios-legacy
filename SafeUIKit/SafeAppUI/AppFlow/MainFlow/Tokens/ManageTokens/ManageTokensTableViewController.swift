@@ -7,7 +7,7 @@ import MultisigWalletApplication
 
 protocol ManageTokensTableViewControllerDelegate: class {
     func addToken()
-    func endEditing(tokens: [TokenData])
+    func rearrange(tokens: [TokenData])
 }
 
 extension Array {
@@ -24,7 +24,9 @@ class ManageTokensTableViewController: UITableViewController {
 
     weak var delegate: ManageTokensTableViewControllerDelegate?
 
-    private var tokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: false)
+    private var tokens: [TokenData] {
+        return ApplicationServiceRegistry.walletService.visibleTokens(withEth: false)
+    }
 
     private enum Strings {
         static let title = LocalizedString("manage_tokens.title",
@@ -51,19 +53,11 @@ class ManageTokensTableViewController: UITableViewController {
 
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if isMovingFromParentViewController {
-            delegate?.endEditing(tokens: tokens)
-        }
-    }
-
     @objc internal func addToken() {
         delegate?.addToken()
     }
 
-    func tokenAdded(tokenData: TokenData) {
-        tokens.append(tokenData)
+    func tokenAdded() {
         tableView.reloadData()
     }
 
@@ -87,7 +81,10 @@ class ManageTokensTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             moveRowAt sourceIndexPath: IndexPath,
                             to destinationIndexPath: IndexPath) {
-        tokens.rearrange(from: sourceIndexPath.row, to: destinationIndexPath.row)
+        guard sourceIndexPath.row != destinationIndexPath.row else { return }
+        var newTokens = tokens
+        newTokens.rearrange(from: sourceIndexPath.row, to: destinationIndexPath.row)
+        delegate?.rearrange(tokens: newTokens)
     }
 
 }

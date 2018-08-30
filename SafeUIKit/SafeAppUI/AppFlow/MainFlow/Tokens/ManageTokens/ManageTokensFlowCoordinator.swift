@@ -19,6 +19,7 @@ final class ManageTokensFlowCoordinator: FlowCoordinator {
 
 }
 
+// TODO: In Application Service: blacklist old
 extension ManageTokensFlowCoordinator: ManageTokensTableViewControllerDelegate {
 
     func addToken() {
@@ -26,9 +27,8 @@ extension ManageTokensFlowCoordinator: ManageTokensTableViewControllerDelegate {
         presentModally(addTokenNavigationController)
     }
 
-    func endEditing(tokens: [TokenData]) {
-        // TODO: In Application Service: whitelist new, blacklist old, new sorting ids, update balances
-        print(tokens.map { $0.code }.joined(separator: ", "))
+    func rearrange(tokens: [TokenData]) {
+        ApplicationServiceRegistry.walletService.rearrange(tokens: tokens)
     }
 
 }
@@ -36,8 +36,9 @@ extension ManageTokensFlowCoordinator: ManageTokensTableViewControllerDelegate {
 extension ManageTokensFlowCoordinator: AddTokenTableViewControllerDelegate {
 
     func didSelectToken(_ tokenData: TokenData) {
+        ApplicationServiceRegistry.walletService.whitelist(token: tokenData)
         addTokenNavigationController.dismiss(animated: true)
-        manageTokensVC.tokenAdded(tokenData: tokenData)
+        manageTokensVC.tokenAdded()
     }
 
 }

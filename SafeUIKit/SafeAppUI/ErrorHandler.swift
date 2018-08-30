@@ -99,6 +99,8 @@ extension WalletApplicationServiceError: LocalizedError {
             return LocalizedString("generic.error.server_error", comment: "Server returned error response.")
         case .walletCreationFailed:
             return LocalizedString("wallet.error.deployment_failed", comment: "Failed to deploy new safe. All funds are lost.")
+        case .inconsistentData:
+            return LocalizedString("wallet.error.inconsistent_data", comment: "Inconsistent data.")
         }
     }
 

@@ -38,7 +38,8 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
     func test_whenWhitelistingToken_thenItIsWhitelisted() {
         let oldWhitelisted = service.visibleTokens(withEth: false)
         let oldHidden = service.hiddenTokens()
-        service.whitelistToken(oldHidden.first!)
+        service.whitelist(token: oldHidden.first!)
+        delay()
         let newWhitelisted = service.visibleTokens(withEth: false)
         let newHidden = service.hiddenTokens()
         XCTAssertEqual(oldWhitelisted.count, newWhitelisted.count - 1)
@@ -46,13 +47,50 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(newWhitelisted.last!.code, "<3")
     }
 
-    private func syncTokens() {
+    func test_whenRearrangingTokens_thenTheyAreRearranged() {
+        let whitelisted = service.visibleTokens(withEth: false)
+        let reversed = [TokenData](whitelisted.reversed())
+        service.rearrange(tokens: reversed)
+        let newWhitelisted = service.visibleTokens(withEth: false)
+        XCTAssertEqual(newWhitelisted, reversed)
+    }
+
+    func test_whenRearrangingWithNotEqualCountToWhitelisted_thenErrorIsLogged() {
+        let whitelisted = service.visibleTokens(withEth: false)
+        var reversed = [TokenData](whitelisted.reversed())
+        _ = reversed.popLast()
+        service.rearrange(tokens: reversed)
+        XCTAssertTrue(logger.errorLogged)
+        assertWhitelistedDidNotChange(whitelisted)
+    }
+
+    func test_whenRearrangingWithDifferentTokensFromWhitelisted_thenErrorIsLogged() {
+        let whitelisted = service.visibleTokens(withEth: false)
+        var reversed = [TokenData](whitelisted.reversed())
+        _ = reversed.popLast()
+        reversed.append(TokenData(token: Token.rdn, balance: nil))
+        service.rearrange(tokens: reversed)
+        XCTAssertTrue(logger.errorLogged)
+        assertWhitelistedDidNotChange(whitelisted)
+    }
+
+}
+
+private extension TokenListItemApplicationTests {
+
+    func syncTokens() {
         givenReadyToUseWallet()
         XCTAssertEqual(accountRepository.all().count, 1)
         DispatchQueue.global().async {
             self.syncService.sync()
         }
         delay(0.25)
+    }
+
+    func assertWhitelistedDidNotChange(_ whitelisted: [TokenData]) {
+        let newWhitelisted = service.visibleTokens(withEth: false)
+        XCTAssertEqual(newWhitelisted.map { $0.token().id.id }.sorted { $0 < $1 },
+                       whitelisted.map { $0.token().id.id }.sorted { $0 < $1 })
     }
 
 }
