@@ -3,6 +3,8 @@
 //
 
 import UIKit
+import MultisigWalletApplication
+import BigInt
 
 extension UIApplication {
 
@@ -10,5 +12,49 @@ extension UIApplication {
         get { return UIApplication.shared.keyWindow?.rootViewController }
         set { UIApplication.shared.keyWindow?.rootViewController = newValue }
     }
+
+}
+
+extension TokenData {
+
+    static let eth = TokenData(
+        address: "0x0000000000000000000000000000000000000000",
+        code: "ETH",
+        name: "Ether",
+        logoURL: "",
+        decimals: 18,
+        balance: BigInt(10e15))
+
+    static let gno = TokenData(
+        address: "0x36276f1f2cb8e9c11c508aad00556f819c5ad876",
+        code: "GNO",
+        name: "Gnosis",
+        logoURL: "",
+        decimals: 18,
+        balance: BigInt(10e17))
+
+    static let gno2 = TokenData(
+        address: "0x36276f1f2cb8e9c11c508aad00556f819c5ad877",
+        code: "GNO2",
+        name: "Gnosis2",
+        logoURL: "",
+        decimals: 18,
+        balance: BigInt(10e16))
+
+    static let mgn = TokenData(
+        address: "0x152Af9AD40ccEF2060CD14356647Ee1773A43437",
+        code: "MGN",
+        name: "Magnolia",
+        logoURL: "",
+        decimals: 18,
+        balance: nil)
+
+    static let rdn = TokenData(
+        address: "0x8aa852b299c748a5ab8bd2764309f8c3c756bd3b",
+        code: "RDN",
+        name: "Raiden",
+        logoURL: "",
+        decimals: 18,
+        balance: BigInt(10e15))
 
 }

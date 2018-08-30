@@ -24,11 +24,13 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     let syncService = SynchronisationService(retryInterval: 0.1)
     let tokenItemsRepository = InMemoryTokenListItemRepository()
     let tokenItemsService = MockTokenListService()
+    let ethereumNodeService = MockEthereumNodeService()
 
     let eventPublisher = MockEventPublisher()
     var eventRelay: MockEventRelay!
     let deploymentService = MockDeploymentDomainService()
     let errorStream = MockErrorStream()
+    let logger = MockLogger()
 
     enum Error: String, LocalizedError, Hashable {
         case walletNotFound
@@ -42,23 +44,22 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         DomainRegistry.put(service: transactionRepository, for: TransactionRepository.self)
         DomainRegistry.put(service: eoaRepo, for: ExternallyOwnedAccountRepository.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
-
         DomainRegistry.put(service: deploymentService, for: DeploymentDomainService.self)
         DomainRegistry.put(service: eventPublisher, for: EventPublisher.self)
         DomainRegistry.put(service: errorStream, for: ErrorStream.self)
-
-        ApplicationServiceRegistry.put(service: eventRelay, for: EventRelay.self)
-
         DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
         DomainRegistry.put(service: accountRepository, for: AccountRepository.self)
         DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
         DomainRegistry.put(service: tokensService, for: PushTokensDomainService.self)
-        ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
-        ApplicationServiceRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
         DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
         DomainRegistry.put(service: tokenItemsRepository, for: TokenListItemRepository.self)
         DomainRegistry.put(service: tokenItemsService, for: TokenListDomainService.self)
+        DomainRegistry.put(service: ethereumNodeService, for: EthereumNodeDomainService.self)
+
+        ApplicationServiceRegistry.put(service: eventRelay, for: EventRelay.self)
+        ApplicationServiceRegistry.put(service: logger, for: Logger.self)
+        ApplicationServiceRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
 
         ethereumService.createSafeCreationTransaction_output =
             SafeCreationTransactionData(safe: Address.safeAddress.value, payment: 100)

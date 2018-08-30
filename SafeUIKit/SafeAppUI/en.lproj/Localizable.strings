@@ -313,6 +313,9 @@
 /* Failed to deploy new safe. All funds are lost. */
 "wallet.error.deployment_failed" = "Failed to create safe. Your account will be refunded.";
 
+/* Inconsistent data. */
+"wallet.error.inconsistent_data" = "Inconsistent data.";
+
 /* Internal wallet error. */
 "wallet.error.invalid_state" = "Encountered internal safe error.";
 

@@ -5,8 +5,6 @@
 import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
-import BigInt
-import CommonTestSupport
 
 class TokensTableViewControllerTests: XCTestCase {
 
@@ -16,25 +14,7 @@ class TokensTableViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
-        let ethTokenData = TokenData(address: "1",
-                                     code: "ETH",
-                                     name: "Ether",
-                                     logoURL: "https://test.com/",
-                                     decimals: 18,
-                                     balance: BigInt(10e15))
-        let gnoTokenData = TokenData(address: "2",
-                                     code: "GNO",
-                                     name: "Gnosis",
-                                     logoURL: "https://test.com/",
-                                     decimals: 18,
-                                     balance: BigInt(10e16))
-        let mgnTokenData = TokenData(address: "3",
-                                     code: "MGN",
-                                     name: "Magnolia",
-                                     logoURL: "https://test.com/",
-                                     decimals: 18,
-                                     balance: nil)
-        walletService.visibleTokensOutput = [ethTokenData, gnoTokenData, mgnTokenData]
+        walletService.visibleTokensOutput = [TokenData.eth, TokenData.gno, TokenData.mgn]
     }
 
     func test_whenCreated_thenLoadsData() {
@@ -46,7 +26,7 @@ class TokensTableViewControllerTests: XCTestCase {
         XCTAssertEqual(firstCell.tokenCodeLabel.text, "ETH")
         XCTAssertEqual(firstCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "0.01")
         XCTAssertEqual(secondCell.tokenCodeLabel.text, "GNO")
-        XCTAssertEqual(secondCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "0.1")
+        XCTAssertEqual(secondCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "1")
         XCTAssertEqual(thirdCell.tokenCodeLabel.text, "MGN")
         XCTAssertEqual(thirdCell.tokenBalanceLabel.text, "--")
     }
@@ -69,7 +49,11 @@ class TokensTableViewControllerTests: XCTestCase {
         XCTAssertTrue(footer is AddTokenFooterView)
     }
 
-    private func cell(at row: Int) -> TokenBalanceTableViewCell {
+}
+
+private extension TokensTableViewControllerTests {
+
+    func cell(at row: Int) -> TokenBalanceTableViewCell {
         return controller.tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! TokenBalanceTableViewCell
     }
 

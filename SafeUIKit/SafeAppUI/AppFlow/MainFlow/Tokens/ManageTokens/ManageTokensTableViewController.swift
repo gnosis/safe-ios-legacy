@@ -5,7 +5,24 @@
 import UIKit
 import MultisigWalletApplication
 
+protocol ManageTokensTableViewControllerDelegate: class {
+    func addToken()
+    func rearrange(tokens: [TokenData])
+}
+
+extension Array {
+
+    mutating func rearrange(from: Int, to: Int) {
+        guard from != to else { return }
+        precondition(indices.contains(from) && indices.contains(to), "invalid indexes")
+        insert(remove(at: from), at: to)
+    }
+
+}
+
 class ManageTokensTableViewController: UITableViewController {
+
+    weak var delegate: ManageTokensTableViewControllerDelegate?
 
     private var tokens: [TokenData] {
         return ApplicationServiceRegistry.walletService.visibleTokens(withEth: false)
@@ -29,21 +46,18 @@ class ManageTokensTableViewController: UITableViewController {
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.backgroundColor = ColorName.paleGreyThree.color
+
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
+        navigationItem.setRightBarButton(addButton, animated: false)
+        setEditing(true, animated: false)
     }
 
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        if isEditing {
-            let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
-            navigationItem.setLeftBarButton(addButton, animated: animated)
-        } else {
-            navigationItem.setLeftBarButton(nil, animated: animated)
-        }
+    @objc internal func addToken() {
+        delegate?.addToken()
     }
 
-    @objc private func addToken() {
-        let controller = AddTokenTableViewController.create()
-        present(controller, animated: true)
+    func tokenAdded() {
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -55,7 +69,7 @@ class ManageTokensTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "TokenBalanceTableViewCell", for: indexPath) as! TokenBalanceTableViewCell
-        cell.configure(tokenData: tokens[indexPath.row])
+        cell.configure(tokenData: tokens[indexPath.row], withBalance: false)
         return cell
     }
 
@@ -66,7 +80,10 @@ class ManageTokensTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             moveRowAt sourceIndexPath: IndexPath,
                             to destinationIndexPath: IndexPath) {
-        // TODO
+        guard sourceIndexPath.row != destinationIndexPath.row else { return }
+        var newTokens = tokens
+        newTokens.rearrange(from: sourceIndexPath.row, to: destinationIndexPath.row)
+        delegate?.rearrange(tokens: newTokens)
     }
 
 }

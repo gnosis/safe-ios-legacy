@@ -246,9 +246,11 @@ public class MockWalletApplicationService: WalletApplicationService {
     }
 
     public var tokensOutput = [TokenData]()
-    public override func tokens() -> [TokenData] {
+    public override func hiddenTokens() -> [TokenData] {
         return tokensOutput
     }
+
+    public override func whitelist(token tokenData: TokenData) {}
 
     private var expected_syncBalances = [EventSubscriber]()
     private var actual_syncBalances = [EventSubscriber]()
@@ -261,4 +263,5 @@ public class MockWalletApplicationService: WalletApplicationService {
         actual_syncBalances.append(subscriber)
         subscriber.notify()
     }
+
 }

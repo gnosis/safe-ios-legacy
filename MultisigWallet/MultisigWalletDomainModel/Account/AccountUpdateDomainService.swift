@@ -11,6 +11,18 @@ open class AccountUpdateDomainService {
 
     public init() {}
 
+    public func updateAccountBalance(token: Token) {
+        precondition(!Thread.isMainThread)
+        guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return }
+        let accountID = AccountID(tokenID: token.id, walletID: wallet.id)
+        if DomainRegistry.accountRepository.find(id: accountID) == nil {
+            let account = Account(tokenID: token.id, walletID: wallet.id)
+            DomainRegistry.accountRepository.save(account)
+        }
+        updateAccountsBalances([accountID])
+        DomainRegistry.eventPublisher.publish(AccountsBalancesUpdated())
+    }
+
     open func updateAccountsBalances() {
         precondition(!Thread.isMainThread)
         addMissingAccountsForWhitelistedTokenItems()

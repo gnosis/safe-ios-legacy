@@ -11,11 +11,11 @@ protocol AddTokenTableViewControllerDelegate: class {
 
 class AddTokenTableViewController: UITableViewController {
 
-    weak var delegate: AddTokenTableViewControllerDelegate?
+    weak var delegate: AddTokenTableViewControllerDelegate!
 
     let searchController = UISearchController(searchResultsController: nil)
 
-    private let tokens = ApplicationServiceRegistry.walletService.tokens() // already sorted
+    private let tokens = ApplicationServiceRegistry.walletService.hiddenTokens() // already sorted
     private var sectionedTokens = [String: [TokenData]]()
     private var filteredTokens = [TokenData]() {
         didSet {
@@ -38,8 +38,11 @@ class AddTokenTableViewController: UITableViewController {
         static let title = LocalizedString("add_token.title", comment: "Title for Add Token screen.")
     }
 
-    static func create() -> UINavigationController {
-        return StoryboardScene.Main.addTokenNavigationController.instantiate()
+    static func create(delegate: AddTokenTableViewControllerDelegate) -> UINavigationController {
+        let navControllet = StoryboardScene.Main.addTokenNavigationController.instantiate()
+        let controller = navControllet.childViewControllers[0] as! AddTokenTableViewController
+        controller.delegate = delegate
+        return navControllet
     }
 
     override func viewDidLoad() {
@@ -105,7 +108,7 @@ class AddTokenTableViewController: UITableViewController {
     // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectToken(token(for: indexPath))
+        delegate.didSelectToken(token(for: indexPath))
     }
 
     private func token(for indexPath: IndexPath) -> TokenData {
@@ -117,7 +120,7 @@ class AddTokenTableViewController: UITableViewController {
 extension AddTokenTableViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text?.lowercased(), text != "" else {
+        guard let text = searchController.searchBar.text?.lowercased(), !text.isEmpty else {
             filteredTokens = tokens
             return
         }

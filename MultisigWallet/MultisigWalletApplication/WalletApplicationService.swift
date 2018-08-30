@@ -271,12 +271,44 @@ public class WalletApplicationService: Assertable {
         return [ethData] + tokens
     }
 
-    /// Returns all tokens.
+    /// Returns all tokens that are not whitelisted.
     ///
     /// - Returns: token data array.
-    public func tokens() -> [TokenData] {
-        return DomainRegistry.tokenListItemRepository.all().compactMap {
-            TokenData(token: $0.token, balance: nil)
+    public func hiddenTokens() -> [TokenData] {
+        return DomainRegistry.tokenListItemRepository.all()
+            .filter { $0.status != .whitelisted }
+            .compactMap { TokenData(token: $0.token, balance: nil) }
+    }
+
+    /// Whitelist a token.
+    ///
+    /// - Parameter tokenData: necessary token data
+    public func whitelist(token tokenData: TokenData) {
+        let tokenListItem = TokenListItem(token: tokenData.token(), status: .whitelisted)
+        DomainRegistry.tokenListItemRepository.save(tokenListItem)
+        DispatchQueue.global().async {
+            AccountUpdateDomainService().updateAccountBalance(token: tokenListItem.token)
+        }
+    }
+
+    /// Rearrange whitelisted tokens with new sorting ids.
+    ///
+    /// - Parameter tokens: new sorting order of tokens.
+    public func rearrange(tokens: [TokenData]) {
+        let whitelisted = DomainRegistry.tokenListItemRepository.whitelisted()
+        if tokens.count != whitelisted.count {
+            ApplicationServiceRegistry.logger.error("Trying to rearrange not equalt to whitelisted amount tokens",
+                                                    error: WalletApplicationServiceError.inconsistentData)
+        }
+        for (index, token) in tokens.enumerated() {
+            if let item = whitelisted.first(where: { $0.token.id == token.token().id }) {
+                if item.sortingId == index { continue }
+                item.updateSortingId(with: index)
+                DomainRegistry.tokenListItemRepository.save(item)
+            } else {
+                ApplicationServiceRegistry.logger.error("Trying to rearrange token that is not among whitelisted",
+                                                        error: WalletApplicationServiceError.inconsistentData)
+            }
         }
     }
 
