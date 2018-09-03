@@ -5,20 +5,21 @@
 import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
+import CommonTestSupport
 
-class TokensTableViewControllerTests: XCTestCase {
+class TokensTableViewControllerTests: SafeTestCase {
 
     let controller = TokensTableViewController()
-    let walletService = MockWalletApplicationService()
 
     override func setUp() {
         super.setUp()
-        ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         walletService.visibleTokensOutput = [TokenData.eth, TokenData.gno, TokenData.mgn]
     }
 
     func test_whenCreated_thenLoadsData() {
         createWindow(controller)
+        controller.notify()
+        delay()
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 3)
         let firstCell = cell(at: 0)
         let secondCell = cell(at: 1)
@@ -32,9 +33,8 @@ class TokensTableViewControllerTests: XCTestCase {
     }
 
     func test_whenCreated_thenSyncs() {
-        walletService.expect_syncBalances(subscriber: controller)
         createWindow(controller)
-        XCTAssertTrue(walletService.verify())
+        XCTAssertTrue(walletService.didSync)
     }
 
     func test_whenSelectingRow_thenDeselectsIt() {

@@ -44,7 +44,7 @@ class ManageTokensFlowCoordinatorTests: XCTestCase {
 
     func test_whenRearranginTokens_thenApplicationServiceIsCalled() {
         flowCoordinator.rearrange(tokens: [])
-        XCTAssertNotNil(walletService.whitelistInput)
+        XCTAssertTrue(walletService.didRearrange)
     }
 
     func test_whenHidingToken_thenApplicationServiceIsCalled() {

@@ -43,6 +43,9 @@ public enum TokensListError: String, LocalizedError {
     case inconsistentData_notAmongWhitelistedToken
 }
 
+
+// MARK: - Domain Logic for TokenListItemRepository
+
 public extension TokenListItemRepository {
 
     /// Whitelist a token.

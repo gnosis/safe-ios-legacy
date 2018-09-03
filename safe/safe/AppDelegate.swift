@@ -90,6 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
             service: HTTPTokenListService(url: appConfig.tokenListServiceURL, logger: LogService.shared),
             for: TokenListDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: PushTokensService(), for: PushTokensDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: AccountUpdateDomainService(),
+                                                     for: AccountUpdateDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: SynchronisationService(retryInterval: 0.5),
                                                      for: SynchronisationDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)

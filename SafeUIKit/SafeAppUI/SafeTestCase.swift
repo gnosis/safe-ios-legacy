@@ -20,6 +20,7 @@ class SafeTestCase: XCTestCase {
     let authenticationService = MockAuthenticationService()
     let clock = MockClockService()
     let logger = MockLogger()
+    let eventPublisher = MockEventPublisher()
 
     override func setUp() {
         super.setUp()
@@ -40,6 +41,11 @@ class SafeTestCase: XCTestCase {
         applicationRegistry.put(service: logger, for: Logger.self)
         applicationRegistry.put(service: authenticationService, for: AuthenticationApplicationService.self)
         applicationRegistry.put(service: clock, for: Clock.self)
+
+        MultisigWalletDomainModel.DomainRegistry.put(service: eventPublisher, for: EventPublisher.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: EventRelay(publisher: eventPublisher),
+                                                     for: EventRelay.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: ErrorStream(), for: ErrorStream.self)
     }
 
     private func configureMultisigWalletModule() {
