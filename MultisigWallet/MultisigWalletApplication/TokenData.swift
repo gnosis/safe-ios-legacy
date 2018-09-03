@@ -6,7 +6,7 @@ import Foundation
 import BigInt
 import MultisigWalletDomainModel
 
-public struct TokenData: Equatable {
+public struct TokenData: Equatable, Hashable {
 
     public let address: String
     public let code: String
@@ -41,6 +41,10 @@ public struct TokenData: Equatable {
             decimals: decimals,
             address: Address(address),
             logoUrl: logoURL?.absoluteString ?? "")
+    }
+
+    public var hashValue: Int {
+        return address.hashValue
     }
 
 }

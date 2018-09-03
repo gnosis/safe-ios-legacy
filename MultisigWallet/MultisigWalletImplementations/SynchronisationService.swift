@@ -15,7 +15,7 @@ public final class SynchronisationService: SynchronisationDomainService {
 
     public init(retryInterval: TimeInterval,
                 merger: TokenListMerger = TokenListMerger(),
-                accountService: AccountUpdateDomainService = AccountUpdateDomainService()) {
+                accountService: AccountUpdateDomainService = DomainRegistry.accountUpdateService) {
         self.retryInterval = retryInterval
         self.merger = merger
         self.accountService = accountService

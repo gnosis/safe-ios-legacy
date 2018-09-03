@@ -80,4 +80,8 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: DeploymentDomainService.self)
     }
 
+    public static var accountUpdateService: AccountUpdateDomainService {
+        return service(for: AccountUpdateDomainService.self)
+    }
+
 }

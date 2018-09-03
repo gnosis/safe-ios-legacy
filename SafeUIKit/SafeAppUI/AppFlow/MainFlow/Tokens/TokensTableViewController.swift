@@ -25,12 +25,14 @@ final class TokensTableViewController: UITableViewController {
         tableView.refreshControl = refreshControl
         tableView.backgroundColor = ColorName.paleGreyThree.color
 
+        ApplicationServiceRegistry.walletService.subscribeOnTokensUpdates(subscriber: self)
+
         update()
     }
 
     @objc private func update() {
         DispatchQueue.global().async {
-            ApplicationServiceRegistry.walletService.syncBalances(subscriber: self)
+            ApplicationServiceRegistry.walletService.syncBalances()
         }
     }
 

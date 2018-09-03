@@ -9,13 +9,35 @@ import CommonTestSupport
 
 class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
 
-    func test_whenGettingTokensDataForSelectedWallet_thenReturnsIt() {
+    func test_whenSubscribesOnTokensUpdates_thenResetsPublisherAndSubscribesForEvents() {
+        let subscriber = MySubscriber()
+        eventPublisher.expect_reset()
+        eventRelay.expect_reset()
+        errorStream.expect_reset()
+        eventRelay.expect_subscribe(subscriber, for: AccountsBalancesUpdated.self)
+        eventRelay.expect_subscribe(subscriber, for: TokensDisplayListChanged.self)
+        errorStream.expect_addHandler()
+
+        service.subscribeOnTokensUpdates(subscriber: subscriber)
+
+        XCTAssertTrue(eventPublisher.verify())
+        XCTAssertTrue(eventRelay.verify())
+        XCTAssertTrue(errorStream.verify())
+    }
+
+    func test_whenTokenListErrorHappens_thenItIsHandled() {
+        subscribeOnErrors()
+        DomainRegistry.errorStream.post(TokensListError.inconsistentData_notAmongWhitelistedToken)
+        XCTAssertTrue(logger.errorLogged)
+        logger.errorLogged = false
+        DomainRegistry.errorStream.post(TokensListError.inconsistentData_notEqualToWhitelistedAmount)
+        XCTAssertTrue(logger.errorLogged)
+    }
+
+    func test_whenGettingVisibleTokensForSelectedWallet_thenReturnsIt() {
         givenReadyToUseWallet()
         XCTAssertEqual(accountRepository.all().count, 1)
-        DispatchQueue.global().async {
-            self.syncService.sync()
-        }
-        delay(0.25)
+        sync()
         XCTAssertTrue(accountRepository.all().count > 1)
         let tokensWithEth = service.visibleTokens(withEth: true)
         XCTAssertEqual(tokensWithEth.count, accountRepository.all().count)
@@ -26,24 +48,84 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(tokensWithoutEth.count, accountRepository.all().count - 1)
     }
 
-
-    func test_whenSyncingBalances_thenResetsPublisherAndSubscribesForEvent() {
-        let syncService = MockSyncService()
-        DomainRegistry.put(service: syncService, for: SynchronisationDomainService.self)
+    func test_whenGettingHiddenTokens_thenReturnsThem() {
         givenReadyToUseWallet()
+        sync()
+        let hiddenTokens = service.hiddenTokens()
+        XCTAssertFalse(hiddenTokens.isEmpty)
+        let visibleTokens = service.visibleTokens(withEth: false)
+        XCTAssertFalse(visibleTokens.isEmpty)
+        XCTAssertEqual(hiddenTokens.count, tokenItemsRepository.all().count - visibleTokens.count)
+        XCTAssertTrue(Set<TokenData>(hiddenTokens).isDisjoint(with: Set<TokenData>(visibleTokens)))
+    }
+
+    func test_whenWhitelisting_thenWorks() {
+        sync()
+        let hiddenTokens = service.hiddenTokens()
+        service.whitelist(token: hiddenTokens.first!)
+        let newHidden = service.hiddenTokens()
+        XCTAssertEqual(newHidden.count, hiddenTokens.count - 1)
+    }
+
+    func test_whenBlacklisting_thenWorks() {
+        givenReadyToUseWallet()
+        sync()
+        let visibleTokens = service.visibleTokens(withEth: false)
+        service.blacklist(token: visibleTokens.first!)
+        let newVisibleTokens = service.visibleTokens(withEth: false)
+        XCTAssertEqual(newVisibleTokens.count, visibleTokens.count - 1)
+    }
+
+    func test_whenRearranging_thenWorks() {
+        givenReadyToUseWallet()
+        sync()
+        let visibleTokens = service.visibleTokens(withEth: false)
+        let rearranged: [TokenData] = visibleTokens.reversed()
+        XCTAssertNotEqual(visibleTokens, rearranged)
+        service.rearrange(tokens: rearranged)
+        let newVisibleTokens = service.visibleTokens(withEth: false)
+        XCTAssertEqual(newVisibleTokens, rearranged)
+    }
+
+    func test_whenErrorInRearrangingNotEqualToWhitelistedAmount_thenErrorIsReceived() {
+        subscribeOnErrors()
+        givenReadyToUseWallet()
+        sync()
+        let visibleTokens = service.visibleTokens(withEth: false)
+        let rearranged = [TokenData](visibleTokens.reversed().dropLast())
+        XCTAssertFalse(logger.errorLogged)
+        service.rearrange(tokens: rearranged)
+        XCTAssertTrue(logger.errorLogged)
+        XCTAssertEqual(logger.loggedError as? TokensListError, .inconsistentData_notEqualToWhitelistedAmount)
+    }
+
+    func test_whenErrorInRearrangingNotAmongWhitelistedToken_thenErrorIsReceived() {
+        subscribeOnErrors()
+        givenReadyToUseWallet()
+        sync()
+        let visibleTokens = service.visibleTokens(withEth: false)
+        var rearranged = [TokenData](visibleTokens.reversed().dropLast())
+        rearranged.append(TokenData(token: Token.Ether, balance: nil))
+        service.rearrange(tokens: rearranged)
+        XCTAssertTrue(logger.errorLogged)
+        XCTAssertEqual(logger.loggedError as? TokensListError, .inconsistentData_notAmongWhitelistedToken)
+    }
+
+}
+
+private extension TokenListItemApplicationTests {
+
+    func sync() {
+        DispatchQueue.global().async {
+            self.syncService.sync()
+        }
+        delay(0.25) // because of delays in sync job
+    }
+
+    func subscribeOnErrors() {
         let subscriber = MySubscriber()
-        eventPublisher.expect_reset()
-        eventRelay.expect_reset()
-        errorStream.expect_reset()
-        eventRelay.expect_subscribe(subscriber, for: AccountsBalancesUpdated.self)
-        syncService.expect_sync()
-
-        service.syncBalances(subscriber: subscriber)
-
-        XCTAssertTrue(syncService.verify())
-        XCTAssertTrue(eventPublisher.verify())
-        XCTAssertTrue(eventRelay.verify())
-        XCTAssertTrue(errorStream.verify())
+        DomainRegistry.put(service: ErrorStream(), for: ErrorStream.self)
+        service.subscribeOnTokensUpdates(subscriber: subscriber)
     }
 
 }

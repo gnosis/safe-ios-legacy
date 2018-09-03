@@ -11,7 +11,7 @@ class SynchronisationServiceTests: XCTestCase {
 
     var syncService: SynchronisationService!
     let tokenListService = MockTokenListService()
-    let accountService = MockAccountUpdateDomainService()
+    let accountService = MockAccountUpdateService()
     let tokenListItemRepository = InMemoryTokenListItemRepository()
     let portfolioRepository = InMemorySinglePortfolioRepository()
     let walletRepository = InMemoryWalletRepository()
@@ -71,7 +71,7 @@ private extension SynchronisationServiceTests {
     }
 
     private func assertAccountSyncSuccess() {
-        XCTAssertTrue(accountService.didCallUpdateAccounts)
+        XCTAssertTrue(accountService.didUpdateBalances)
     }
 
 }
@@ -80,17 +80,6 @@ fileprivate extension MockEventPublisher {
 
     func verify(_ line: UInt = #line) {
         XCTAssertTrue(publishedWhatWasExpected(), line: line)
-    }
-
-}
-
-class MockAccountUpdateDomainService: AccountUpdateDomainService {
-
-    var didCallUpdateAccounts = false
-
-    override func updateAccountsBalances() {
-        super.updateAccountsBalances()
-        didCallUpdateAccounts = true
     }
 
 }
