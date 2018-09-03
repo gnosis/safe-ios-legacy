@@ -8,6 +8,7 @@ import MultisigWalletApplication
 protocol ManageTokensTableViewControllerDelegate: class {
     func addToken()
     func rearrange(tokens: [TokenData])
+    func hide(token: TokenData)
 }
 
 extension Array {
@@ -31,6 +32,7 @@ class ManageTokensTableViewController: UITableViewController {
     private enum Strings {
         static let title = LocalizedString("manage_tokens.title",
                                            comment: "Title for Manage Tokens Screen.")
+        static let hide = LocalizedString("manage_tokens.hide", comment: "Hide displayed token action.")
     }
 
     override func viewDidLoad() {
@@ -84,6 +86,19 @@ class ManageTokensTableViewController: UITableViewController {
         var newTokens = tokens
         newTokens.rearrange(from: sourceIndexPath.row, to: destinationIndexPath.row)
         delegate?.rearrange(tokens: newTokens)
+    }
+
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCellEditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        delegate?.hide(token: tokens[indexPath.row])
+    }
+
+    // MARK: - Table view delegate
+
+    override func tableView(_ tableView: UITableView,
+                            titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return Strings.hide
     }
 
 }

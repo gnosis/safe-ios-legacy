@@ -42,4 +42,14 @@ class ManageTokensFlowCoordinatorTests: XCTestCase {
         XCTAssertNil(flowCoordinator.rootViewController.presentedViewController)
     }
 
+    func test_whenRearranginTokens_thenApplicationServiceIsCalled() {
+        flowCoordinator.rearrange(tokens: [])
+        XCTAssertNotNil(walletService.whitelistInput)
+    }
+
+    func test_whenHidingToken_thenApplicationServiceIsCalled() {
+        flowCoordinator.hide(token: TokenData.gno)
+        XCTAssertEqual(walletService.blacklistInput, TokenData.gno)
+    }
+
 }

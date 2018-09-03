@@ -40,6 +40,9 @@
 /* Send button title */
 "main.send" = "Send";
 
+/* Hide displayed token action. */
+"manage_tokens.hide" = "Hide";
+
 /* Title for Manage Tokens Screen. */
 "manage_tokens.title" = "Tokens";
 

@@ -250,7 +250,15 @@ public class MockWalletApplicationService: WalletApplicationService {
         return tokensOutput
     }
 
-    public override func whitelist(token tokenData: TokenData) {}
+    public var whitelistInput: TokenData?
+    public override func whitelist(token tokenData: TokenData) {
+        whitelistInput = tokenData
+    }
+
+    public var blacklistInput: TokenData?
+    public override func blacklist(token tokenData: TokenData) {
+        blacklistInput = tokenData
+    }
 
     private var expected_syncBalances = [EventSubscriber]()
     private var actual_syncBalances = [EventSubscriber]()
@@ -259,9 +267,9 @@ public class MockWalletApplicationService: WalletApplicationService {
         expected_syncBalances.append(subscriber)
     }
 
-    public override func syncBalances(subscriber: EventSubscriber) {
-        actual_syncBalances.append(subscriber)
-        subscriber.notify()
+    public override func syncBalances() {
+//        actual_syncBalances.append(subscriber)
+//        subscriber.notify()
     }
 
 }
