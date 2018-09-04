@@ -44,7 +44,7 @@
                         <constraint firstItem="rdg-vr-Eia" firstAttribute="centerY" secondItem="Hvn-Xg-BaP" secondAttribute="centerY" id="nJ4-uV-eih"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQN-YF-XQW">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQN-YF-XQW" customClass="DashedSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="77" width="333" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -65,7 +65,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="dashedSeparatorView" destination="qQN-YF-XQW" id="Hnh-IQ-KZY"/>
+                <outlet property="dashedSeparatorView" destination="qQN-YF-XQW" id="qcM-2x-euu"/>
                 <outlet property="tokensLabel" destination="5TC-Fd-NpA" id="Bf2-3v-ieb"/>
             </connections>
             <point key="canvasLocation" x="-60.5" y="-236"/>

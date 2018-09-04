@@ -44,6 +44,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#0888cb"></span>
   /// Alpha: 100% <br/> (0x0888cbff)
   static let darkAzure = ColorName(rgbaValue: 0x0888cbff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#a2a8ba"></span>
+  /// Alpha: 100% <br/> (0xa2a8baff)
+  static let darkGrey = ColorName(rgbaValue: 0xa2a8baff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#21435a"></span>
   /// Alpha: 100% <br/> (0x21435aff)
   static let darkSlateBlue = ColorName(rgbaValue: 0x21435aff)
