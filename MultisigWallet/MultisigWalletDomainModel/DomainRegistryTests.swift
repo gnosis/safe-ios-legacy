@@ -29,6 +29,7 @@ class DomainRegistryTests: XCTestCase {
         DomainRegistry.put(service: MockErrorStream(), for: ErrorStream.self)
         DomainRegistry.put(service: MockSystem(), for: System.self)
         DomainRegistry.put(service: MockDeploymentDomainService(), for: DeploymentDomainService.self)
+        DomainRegistry.put(service: MockAccountUpdateService(), for: AccountUpdateDomainService.self)
 
         XCTAssertNotNil(DomainRegistry.walletRepository)
         XCTAssertNotNil(DomainRegistry.portfolioRepository)
@@ -48,6 +49,7 @@ class DomainRegistryTests: XCTestCase {
         XCTAssertNotNil(DomainRegistry.errorStream)
         XCTAssertNotNil(DomainRegistry.system)
         XCTAssertNotNil(DomainRegistry.deploymentService)
+        XCTAssertNotNil(DomainRegistry.accountUpdateService)
     }
 
 }

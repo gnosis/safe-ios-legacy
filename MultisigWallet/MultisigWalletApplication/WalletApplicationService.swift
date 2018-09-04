@@ -247,9 +247,32 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Tokens
 
-    public func syncBalances(subscriber: EventSubscriber) {
-        resetSubscribers()
+    /// Subscribe on updates about token balances changes and other changes influencing tokens list presentation.
+    ///
+    /// - Parameter subscriber: subscriber.
+    public func subscribeOnTokensUpdates(subscriber: EventSubscriber) {
+        resetSubscribers(onError: tokensListUpdatesErrorHandler)
         ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: AccountsBalancesUpdated.self)
+        ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: TokensDisplayListChanged.self)
+    }
+
+    private func tokensListUpdatesErrorHandler(error: Error) {
+        if let err = error as? TokensListError {
+            switch err {
+            case .inconsistentData_notAmongWhitelistedToken:
+                ApplicationServiceRegistry.logger.error(
+                    "Trying to rearrange not equalt to whitelisted amount tokens",
+                    error: err)
+            case .inconsistentData_notEqualToWhitelistedAmount:
+                ApplicationServiceRegistry.logger.error(
+                    "Trying to rearrange token that is not among whitelisted",
+                    error: err)
+            }
+        }
+    }
+
+    public func syncBalances() {
+        precondition(!Thread.isMainThread)
         DomainRegistry.syncService.sync()
     }
 
@@ -284,32 +307,21 @@ public class WalletApplicationService: Assertable {
     ///
     /// - Parameter tokenData: necessary token data
     public func whitelist(token tokenData: TokenData) {
-        let tokenListItem = TokenListItem(token: tokenData.token(), status: .whitelisted)
-        DomainRegistry.tokenListItemRepository.save(tokenListItem)
-        DispatchQueue.global().async {
-            AccountUpdateDomainService().updateAccountBalance(token: tokenListItem.token)
-        }
+        DomainRegistry.tokenListItemRepository.whitelist(tokenData.token())
+    }
+
+    /// Blacklist a token.
+    ///
+    /// - Parameter tokenData: necessary token data
+    public func blacklist(token tokenData: TokenData) {
+        DomainRegistry.tokenListItemRepository.blacklist(tokenData.token())
     }
 
     /// Rearrange whitelisted tokens with new sorting ids.
     ///
     /// - Parameter tokens: new sorting order of tokens.
     public func rearrange(tokens: [TokenData]) {
-        let whitelisted = DomainRegistry.tokenListItemRepository.whitelisted()
-        if tokens.count != whitelisted.count {
-            ApplicationServiceRegistry.logger.error("Trying to rearrange not equalt to whitelisted amount tokens",
-                                                    error: WalletApplicationServiceError.inconsistentData)
-        }
-        for (index, token) in tokens.enumerated() {
-            if let item = whitelisted.first(where: { $0.token.id == token.token().id }) {
-                if item.sortingId == index { continue }
-                item.updateSortingId(with: index)
-                DomainRegistry.tokenListItemRepository.save(item)
-            } else {
-                ApplicationServiceRegistry.logger.error("Trying to rearrange token that is not among whitelisted",
-                                                        error: WalletApplicationServiceError.inconsistentData)
-            }
-        }
+        DomainRegistry.tokenListItemRepository.rearrange(tokens: tokens.map { $0.token() })
     }
 
     // MARK: - Accounts

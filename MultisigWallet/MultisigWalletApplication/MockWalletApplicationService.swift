@@ -214,11 +214,7 @@ public class MockWalletApplicationService: WalletApplicationService {
             zip(actual_deployWallet, expected_deployWallet).reduce(true) { result, pair -> Bool in
                 result && (pair.1 == nil || pair.0 === pair.1)
             } &&
-            actual_abortDeployment == expected_abortDeployment &&
-            actual_syncBalances.count == expected_syncBalances.count &&
-            zip(actual_syncBalances, expected_syncBalances).reduce(true) { result, pair -> Bool in
-                result && pair.0 === pair.1
-            }
+            actual_abortDeployment == expected_abortDeployment
     }
 
     private var expected_deployWallet_error: Swift.Error?
@@ -240,6 +236,13 @@ public class MockWalletApplicationService: WalletApplicationService {
         }
     }
 
+    // MARK: - Tokens
+
+    public var didSync = false
+    public override func syncBalances() {
+        didSync = true
+    }
+
     public var visibleTokensOutput = [TokenData]()
     public override func visibleTokens(withEth: Bool) -> [TokenData] {
         return visibleTokensOutput
@@ -250,18 +253,19 @@ public class MockWalletApplicationService: WalletApplicationService {
         return tokensOutput
     }
 
-    public override func whitelist(token tokenData: TokenData) {}
-
-    private var expected_syncBalances = [EventSubscriber]()
-    private var actual_syncBalances = [EventSubscriber]()
-
-    public func expect_syncBalances(subscriber: EventSubscriber) {
-        expected_syncBalances.append(subscriber)
+    public var whitelistInput: TokenData?
+    public override func whitelist(token tokenData: TokenData) {
+        whitelistInput = tokenData
     }
 
-    public override func syncBalances(subscriber: EventSubscriber) {
-        actual_syncBalances.append(subscriber)
-        subscriber.notify()
+    public var blacklistInput: TokenData?
+    public override func blacklist(token tokenData: TokenData) {
+        blacklistInput = tokenData
+    }
+
+    public var didRearrange = false
+    public override func rearrange(tokens: [TokenData]) {
+        didRearrange = true
     }
 
 }

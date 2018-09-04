@@ -90,6 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
             service: HTTPTokenListService(url: appConfig.tokenListServiceURL, logger: LogService.shared),
             for: TokenListDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: PushTokensService(), for: PushTokensDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: AccountUpdateDomainService(),
+                                                     for: AccountUpdateDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: SynchronisationService(retryInterval: 0.5),
                                                      for: SynchronisationDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
@@ -97,6 +99,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         MultisigWalletDomainModel.DomainRegistry.put(service: ErrorStream(), for: ErrorStream.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: DeploymentDomainService(),
                                                      for: DeploymentDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: InMemoryTokenListItemRepository(),
+                                                     for: TokenListItemRepository.self)
         let relay = EventRelay(publisher: MultisigWalletDomainModel.DomainRegistry.eventPublisher)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)
 
@@ -163,12 +167,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
             let portfolioRepo = DBSinglePortfolioRepository(db: db)
             let accountRepo = DBAccountRepository(db: db)
             let transactionRepo = DBTransactionRepository(db: db)
-            let tokenListItemRepo = DBTokenListItemRepository(db: db)
+//            let tokenListItemRepo = DBTokenListItemRepository(db: db)
             MultisigWalletDomainModel.DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
             MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
             MultisigWalletDomainModel.DomainRegistry.put(service: accountRepo, for: AccountRepository.self)
             MultisigWalletDomainModel.DomainRegistry.put(service: transactionRepo, for: TransactionRepository.self)
-            MultisigWalletDomainModel.DomainRegistry.put(service: tokenListItemRepo, for: TokenListItemRepository.self)
+//            MultisigWalletDomainModel.DomainRegistry.put(service: tokenListItemRepo, for: TokenListItemRepository.self)
 
             if !db.exists {
                 try db.create()
@@ -177,7 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
             walletRepo.setUp()
             accountRepo.setUp()
             transactionRepo.setUp()
-            tokenListItemRepo.setUp()
+//            tokenListItemRepo.setUp()
         } catch let e {
             ErrorHandler.showFatalError(log: "Failed to set up multisig database", error: e)
         }

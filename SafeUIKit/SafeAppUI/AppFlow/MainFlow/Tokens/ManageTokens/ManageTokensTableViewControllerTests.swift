@@ -31,6 +31,11 @@ class ManageTokensTableViewControllerTests: XCTestCase {
         XCTAssertEqual(delegate.rearrange_input, [TokenData.gno2, TokenData.mgn, TokenData.gno, TokenData.rdn])
     }
 
+    func test_whenHidesToken_thenDeleateIsCalled() {
+        hideRow(0, 0)
+        XCTAssertTrue(delegate.didHide)
+    }
+
 }
 
 private extension ManageTokensTableViewControllerTests {
@@ -38,6 +43,10 @@ private extension ManageTokensTableViewControllerTests {
     func moveRow(from: Int, to: Int) {
         controller.tableView(
             controller.tableView, moveRowAt: IndexPath(row: from, section: 0), to: IndexPath(row: to, section: 0))
+    }
+
+    func hideRow(_ row: Int, _ section: Int) {
+        controller.tableView(controller.tableView, commit: .delete, forRowAt: IndexPath(row: row, section: section))
     }
 
 }
@@ -52,6 +61,11 @@ class MockManageTokensTableViewControllerDelegate: ManageTokensTableViewControll
     var rearrange_input: [TokenData]?
     func rearrange(tokens: [TokenData]) {
         rearrange_input = tokens
+    }
+
+    var didHide = false
+    func hide(token: TokenData) {
+        didHide = true
     }
 
 }

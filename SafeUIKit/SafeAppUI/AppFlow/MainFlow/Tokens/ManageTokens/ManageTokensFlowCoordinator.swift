@@ -19,7 +19,6 @@ final class ManageTokensFlowCoordinator: FlowCoordinator {
 
 }
 
-// TODO: In Application Service: blacklist old
 extension ManageTokensFlowCoordinator: ManageTokensTableViewControllerDelegate {
 
     func addToken() {
@@ -29,6 +28,10 @@ extension ManageTokensFlowCoordinator: ManageTokensTableViewControllerDelegate {
 
     func rearrange(tokens: [TokenData]) {
         ApplicationServiceRegistry.walletService.rearrange(tokens: tokens)
+    }
+
+    func hide(token: TokenData) {
+        ApplicationServiceRegistry.walletService.blacklist(token: token)
     }
 
 }

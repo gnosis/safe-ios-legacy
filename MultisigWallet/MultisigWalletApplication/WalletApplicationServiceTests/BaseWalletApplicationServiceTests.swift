@@ -21,11 +21,11 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     let relayService = MockTransactionRelayService(averageDelay: 0, maxDeviation: 0)
     let encryptionService = MockEncryptionService()
     let eoaRepo = InMemoryExternallyOwnedAccountRepository()
-    let syncService = SynchronisationService(retryInterval: 0.1)
+    let accountUpdateService = MockAccountUpdateService()
+    var syncService: SynchronisationService!
     let tokenItemsRepository = InMemoryTokenListItemRepository()
     let tokenItemsService = MockTokenListService()
     let ethereumNodeService = MockEthereumNodeService()
-
     let eventPublisher = MockEventPublisher()
     var eventRelay: MockEventRelay!
     let deploymentService = MockDeploymentDomainService()
@@ -40,6 +40,9 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
         eventRelay = MockEventRelay(publisher: eventPublisher)
+
+        DomainRegistry.put(service: accountUpdateService, for: AccountUpdateDomainService.self)
+        syncService = SynchronisationService(retryInterval: 0.1)
 
         DomainRegistry.put(service: transactionRepository, for: TransactionRepository.self)
         DomainRegistry.put(service: eoaRepo, for: ExternallyOwnedAccountRepository.self)
