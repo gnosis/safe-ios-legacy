@@ -20,7 +20,7 @@ class MainContentViewController: SegmentBarController {
 extension TokensTableViewController: SegmentController {
 
     public var segmentItem: SegmentBarItem {
-        return SegmentBarItem(title: LocalizedString("main.segment.tokens", comment: "Tokens tab title"),
+        return SegmentBarItem(title: LocalizedString("main.segment.assets", comment: "Assets tab title"),
                               image: Asset.MainScreenHeader.coins.image)
     }
 

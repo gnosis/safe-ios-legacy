@@ -20,10 +20,11 @@ class TokensTableViewControllerTests: SafeTestCase {
         createWindow(controller)
         controller.notify()
         delay()
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 3)
-        let firstCell = cell(at: 0)
-        let secondCell = cell(at: 1)
-        let thirdCell = cell(at: 2)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 1)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 1), 2)
+        let firstCell = cell(at: 0, 0)
+        let secondCell = cell(at: 0, 1)
+        let thirdCell = cell(at: 1, 1)
         XCTAssertEqual(firstCell.tokenCodeLabel.text, "ETH")
         XCTAssertEqual(firstCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "0.01")
         XCTAssertEqual(secondCell.tokenCodeLabel.text, "GNO")
@@ -45,16 +46,24 @@ class TokensTableViewControllerTests: SafeTestCase {
 
     func test_whenCreatingFooter_thenDequeuesIt() {
         createWindow(controller)
-        let footer = controller.tableView(controller.tableView, viewForFooterInSection: 0)
+        controller.notify()
+        let footer = controller.tableView(controller.tableView, viewForFooterInSection: 1)
         XCTAssertTrue(footer is AddTokenFooterView)
+    }
+
+    func test_whenCreatingHeader_thenDequeuesIt() {
+        createWindow(controller)
+        controller.notify()
+        let footer = controller.tableView(controller.tableView, viewForHeaderInSection: 1)
+        XCTAssertTrue(footer is TokensHeaderView)
     }
 
 }
 
 private extension TokensTableViewControllerTests {
 
-    func cell(at row: Int) -> TokenBalanceTableViewCell {
-        return controller.tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! TokenBalanceTableViewCell
+    func cell(at row: Int, _ section: Int) -> TokenBalanceTableViewCell {
+        return controller.tableView.cellForRow(at: IndexPath(row: row, section: section)) as! TokenBalanceTableViewCell
     }
 
 }

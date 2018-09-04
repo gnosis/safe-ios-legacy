@@ -22,6 +22,7 @@ final class MainViewController: UIViewController {
     private weak var delegate: MainViewControllerDelegate?
 
     private enum Strings {
+        static let menu = LocalizedString("main.menu", comment: "Menu button title")
         static let send = LocalizedString("main.send", comment: "Send button title")
         static let receive = LocalizedString("main.receive", comment: "Receive button title")
     }
@@ -34,6 +35,9 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let menuButton = UIBarButtonItem(title: Strings.menu, style: .done, target: self, action: #selector(openMenu))
+        navigationItem.setRightBarButton(menuButton, animated: false)
         stylize(button: receiveButton)
         stylize(button: sendButton)
         sendButton.setTitle(Strings.send, for: .normal)
@@ -48,7 +52,7 @@ final class MainViewController: UIViewController {
         delegate?.createNewTransaction()
     }
 
-    @IBAction func openMenu(_ sender: Any) {
+    @objc func openMenu(_ sender: Any) {
         delegate?.openMenu()
     }
 

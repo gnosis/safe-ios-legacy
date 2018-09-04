@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -121,11 +120,6 @@
                                 <constraint firstItem="Fpc-0E-fts" firstAttribute="centerY" secondItem="ux2-ns-LJ7" secondAttribute="centerY" id="W91-RP-Z8x"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" title="Menu" image="settings-button-icon" id="Gcm-iD-UgQ">
-                            <connections>
-                                <action selector="openMenu:" destination="tu4-59-ha9" id="pEG-EP-CHu"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="receiveButton" destination="i4u-Fv-fEm" id="qXi-1O-g5b"/>
@@ -1205,7 +1199,6 @@
         <image name="qrcode-scan" width="14" height="14"/>
         <image name="scan_qr_copy" width="20" height="20"/>
         <image name="send" width="14" height="12"/>
-        <image name="settings-button-icon" width="44" height="44"/>
         <image name="shape" width="16" height="20"/>
         <image name="switch" width="12" height="18"/>
     </resources>
