@@ -12,13 +12,13 @@ class TokenNumberFormatterTests: XCTestCase {
 
     func test_stringFromNumber() {
         formatter.decimals = 18
-        assert(number: 0, equalTo: "0")
+        assert(number: 0, equalTo: "0,00")
         assert(number: 1, equalTo: "0,000000000000000001")
-        assert(number: BigInt(10).power(18), equalTo: "1")
-        assert(number: BigInt(10).power(18) + BigInt(10).power(17), equalTo: "1,1")
+        assert(number: BigInt(10).power(18), equalTo: "1,00")
+        assert(number: BigInt(10).power(18) + BigInt(10).power(17), equalTo: "1,10")
         assert(number: BigInt(10).power(18) + 1, equalTo: "1,000000000000000001")
         assert(number: -1, equalTo: "-0,000000000000000001")
-        assert(number: -0, equalTo: "0")
+        assert(number: -0, equalTo: "0,00")
     }
 
     func test_numberFromString() {
@@ -45,9 +45,9 @@ class TokenNumberFormatterTests: XCTestCase {
 
     func test_groupingSeparator() {
         formatter.usesGroupingSeparator = true
-        assert(number: 1_000, equalTo: "1 000")
-        assert(number: 1_000_000, equalTo: "1 000 000")
-        assert(number: 100, equalTo: "100")
+        assert(number: 1_000, equalTo: "1 000,00")
+        assert(number: 1_000_000, equalTo: "1 000 000,00")
+        assert(number: 100, equalTo: "100,00")
 
         formatter.usesGroupingSeparatorForFractionDigits = true
         formatter.decimals = 6
@@ -57,12 +57,12 @@ class TokenNumberFormatterTests: XCTestCase {
 
     func test_tokenSymbol() {
         formatter.tokenSymbol = "$"
-        assert(number: 1, equalTo: "1 $")
+        assert(number: 1, equalTo: "1,00 $")
 
         formatter.tokenCode = "ETH"
-        assert(number: 1, equalTo: "1 $")
+        assert(number: 1, equalTo: "1,00 $")
 
         formatter.tokenSymbol = nil
-        assert(number: 1, equalTo: "1 ETH")
+        assert(number: 1, equalTo: "1,00 ETH")
     }
 }

@@ -36,7 +36,7 @@ class TokenBalanceTableViewCell: UITableViewCell {
 
     private func formattedBalance(_ tokenData: TokenData) -> String {
         guard let balance = tokenData.balance else { return "--" }
-        let formatter = TokenNumberFormatter.ERC20Token(decimals: tokenData.decimals)
+        let formatter = TokenNumberFormatter.ERC20Token(code: tokenData.code, decimals: tokenData.decimals)
         return formatter.string(from: balance)
     }
 
