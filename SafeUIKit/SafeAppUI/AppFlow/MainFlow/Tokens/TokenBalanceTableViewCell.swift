@@ -12,9 +12,17 @@ class TokenBalanceTableViewCell: UITableViewCell {
     @IBOutlet weak var tokenCodeLabel: UILabel!
     @IBOutlet weak var tokenBalanceLabel: UILabel!
 
-    static let height: CGFloat = 60
+    static let height: CGFloat = 44
 
-    func configure(tokenData: TokenData, withBalance: Bool = true, withTokenName: Bool = false) {
+    func configure(tokenData: TokenData,
+                   withBalance: Bool = true,
+                   withTokenName: Bool = false,
+                   withDisclosure: Bool = true) {
+        if withDisclosure {
+            accessoryType = .disclosureIndicator
+        } else {
+            accessoryType = .none
+        }
         if tokenData.code == "ETH" {
             tokenImageView.image = Asset.TokenIcons.eth.image
         } else if let url = tokenData.logoURL {
