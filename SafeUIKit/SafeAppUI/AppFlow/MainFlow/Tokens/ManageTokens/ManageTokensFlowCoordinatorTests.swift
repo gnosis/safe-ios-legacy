@@ -20,15 +20,21 @@ class ManageTokensFlowCoordinatorTests: XCTestCase {
     }
 
     func test_whenSetupCalled_thenShowsManageTokensScreen() {
-        XCTAssertTrue(flowCoordinator.navigationController.topViewController is ManageTokensTableViewController)
+        createWindow(flowCoordinator.rootViewController)
+        flowCoordinator.setUp()
+        let presented = flowCoordinator.rootViewController.presentedViewController
+        XCTAssertTrue(presented is UINavigationController)
+        let topVC = presented?.childViewControllers[0]
+        XCTAssertTrue(topVC is ManageTokensTableViewController)
     }
 
     func test_whenAddsToken_thenShowsAddTokenVC() {
         createWindow(flowCoordinator.rootViewController)
         flowCoordinator.addToken()
         delay()
-        XCTAssertTrue(flowCoordinator.rootViewController.presentedViewController is UINavigationController)
-        let topVC = flowCoordinator.rootViewController.presentedViewController?.childViewControllers[0]
+        let presented = flowCoordinator.rootViewController.presentedViewController
+        XCTAssertTrue(presented is UINavigationController)
+        let topVC = presented?.childViewControllers[0]
         XCTAssertTrue(topVC is AddTokenTableViewController)
     }
 

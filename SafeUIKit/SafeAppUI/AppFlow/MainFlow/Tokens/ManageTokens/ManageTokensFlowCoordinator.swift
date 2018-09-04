@@ -14,7 +14,8 @@ final class ManageTokensFlowCoordinator: FlowCoordinator {
         super.setUp()
         manageTokensVC = ManageTokensTableViewController()
         manageTokensVC.delegate = self
-        push(manageTokensVC)
+        let navController = UINavigationController(rootViewController: manageTokensVC)
+        presentModally(navController)
     }
 
 }
