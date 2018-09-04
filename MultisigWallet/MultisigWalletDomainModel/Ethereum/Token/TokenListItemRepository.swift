@@ -48,6 +48,22 @@ public enum TokensListError: String, LocalizedError {
 
 public extension TokenListItemRepository {
 
+    /// Domain logic regarding sorting Ids to be executed before saving in repo.
+    ///
+    /// - Parameter tokenListItem: token list item to save
+    func prepareToSave(_ tokenListItem: TokenListItem) {
+        if let existingItem = find(id: tokenListItem.id), existingItem.status == .whitelisted {
+            if tokenListItem.status != .whitelisted {
+                tokenListItem.updateSortingId(with: nil)
+            }
+        } else {
+            if tokenListItem.status == .whitelisted {
+                let lastWhitelistedId = whitelisted().last?.sortingId ?? -1
+                tokenListItem.updateSortingId(with: lastWhitelistedId + 1)
+            }
+        }
+    }
+
     /// Whitelist a token.
     ///
     /// - Parameter token: necessary token.
