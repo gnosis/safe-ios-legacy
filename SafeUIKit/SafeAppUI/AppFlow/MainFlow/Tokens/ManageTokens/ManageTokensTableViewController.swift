@@ -92,6 +92,7 @@ class ManageTokensTableViewController: UITableViewController {
                             commit editingStyle: UITableViewCellEditingStyle,
                             forRowAt indexPath: IndexPath) {
         delegate?.hide(token: tokens[indexPath.row])
+        tableView.reloadData()
     }
 
     // MARK: - Table view delegate
