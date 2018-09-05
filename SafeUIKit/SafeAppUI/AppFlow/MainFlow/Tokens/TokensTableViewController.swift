@@ -32,8 +32,8 @@ final class TokensTableViewController: UITableViewController {
         sections.append((
             headerViewIdentifier: nil,
             headerHeight: 0,
-            footerViewIdentifier: nil,
-            footerHeight: 0,
+            footerViewIdentifier: "EmptyFooter",
+            footerHeight: 16,
             elements: [tokens.first!]
         ))
         // Tokens section
@@ -46,6 +46,20 @@ final class TokensTableViewController: UITableViewController {
         ))
     }
 
+    private class EmptyFooter: UITableViewHeaderFooterView {
+
+        override init(reuseIdentifier: String?) {
+            super.init(reuseIdentifier: reuseIdentifier)
+            backgroundView = UIView()
+            backgroundView?.backgroundColor = .white
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+        }
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,6 +68,7 @@ final class TokensTableViewController: UITableViewController {
                            forHeaderFooterViewReuseIdentifier: "AddTokenFooterView")
         tableView.register(UINib(nibName: "TokensHeaderView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "TokensHeaderView")
+        tableView.register(EmptyFooter.self, forHeaderFooterViewReuseIdentifier: "EmptyFooter")
         tableView.register(UINib(nibName: "TokenBalanceTableViewCell", bundle: bundle),
                            forCellReuseIdentifier: "TokenBalanceTableViewCell")
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
