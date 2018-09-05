@@ -37,11 +37,12 @@ final class TokensTableViewController: UITableViewController {
             elements: [tokens.first!]
         ))
         // Tokens section
+        let shouldShowTokensFooter = tokens.count == 1
         sections.append((
             headerViewIdentifier: "TokensHeaderView",
             headerHeight: TokensHeaderView.height,
-            footerViewIdentifier: "AddTokenFooterView",
-            footerHeight: AddTokenFooterView.height,
+            footerViewIdentifier: shouldShowTokensFooter ? "AddTokenFooterView" : nil,
+            footerHeight: shouldShowTokensFooter ? AddTokenFooterView.height : 0,
             elements: [TokenData](tokens.dropFirst())
         ))
     }

@@ -44,7 +44,15 @@ class TokensTableViewControllerTests: SafeTestCase {
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
     }
 
-    func test_whenCreatingFooter_thenDequeuesIt() {
+    func test_whenThereAreTokens_thenWeDontShowTokensFooter() {
+        createWindow(controller)
+        controller.notify()
+        let footer = controller.tableView(controller.tableView, viewForFooterInSection: 1)
+        XCTAssertNil(footer)
+    }
+
+    func test_whenThereAreNoTokens_thenTokensFooterIsShown() {
+        walletService.visibleTokensOutput = [TokenData.eth]
         createWindow(controller)
         controller.notify()
         let footer = controller.tableView(controller.tableView, viewForFooterInSection: 1)
