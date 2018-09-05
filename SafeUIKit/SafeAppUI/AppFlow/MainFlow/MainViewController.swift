@@ -16,15 +16,13 @@ protocol MainViewControllerDelegate: class {
 
 final class MainViewController: UIViewController {
 
-    @IBOutlet weak var sendButton: UIButton!
-    @IBOutlet weak var receiveButton: UIButton!
+    @IBOutlet weak var safeImageView: UIImageView!
+    @IBOutlet weak var safeAddressLabel: UILabel!
 
     private weak var delegate: MainViewControllerDelegate?
 
     private enum Strings {
         static let menu = LocalizedString("main.menu", comment: "Menu button title")
-        static let send = LocalizedString("main.send", comment: "Send button title")
-        static let receive = LocalizedString("main.receive", comment: "Receive button title")
     }
 
     static func create(delegate: MainViewControllerDelegate) -> MainViewController {
@@ -36,20 +34,15 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
+        ApplicationServiceRegistry.logger.info("Safe address: \(address)")
+
         let menuButton = UIBarButtonItem(title: Strings.menu, style: .done, target: self, action: #selector(openMenu))
         navigationItem.setRightBarButton(menuButton, animated: false)
-        stylize(button: receiveButton)
-        stylize(button: sendButton)
-        sendButton.setTitle(Strings.send, for: .normal)
-        sendButton.addTarget(self, action: #selector(send), for: .touchUpInside)
-        if let address = ApplicationServiceRegistry.walletService.selectedWalletAddress {
-            ApplicationServiceRegistry.logger.info("Safe address: \(address)")
-        }
-        receiveButton.setTitle(Strings.receive, for: .normal)
-    }
-
-    @objc func send(_ sender: Any) {
-        delegate?.createNewTransaction()
+        safeAddressLabel.text = address
+        safeImageView.layer.cornerRadius = safeImageView.bounds.width / 2
+        safeImageView.clipsToBounds = true
+        safeImageView.image = UIImage.createBlockiesImage(seed: address)
     }
 
     @objc func openMenu(_ sender: Any) {
@@ -70,10 +63,12 @@ final class MainViewController: UIViewController {
         }
     }
 
-    private func stylize(button: UIButton) {
-        button.layer.borderColor = ColorName.borderGrey.color.cgColor
-        button.layer.borderWidth = 1
-        button.layer.cornerRadius = 4
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == StoryboardSegue.Main.mainContentViewControllerSeague.rawValue {
+            let controller = segue.destination as! MainContentViewController
+            controller.delegate = delegate
+        }
     }
 
 }

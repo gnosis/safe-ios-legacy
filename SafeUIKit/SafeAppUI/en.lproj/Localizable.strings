@@ -31,17 +31,11 @@
 /* Menu button title */
 "main.menu" = "Menu";
 
-/* Receive button title */
-"main.receive" = "Receive";
-
 /* Assets tab title */
 "main.segment.assets" = "Assets";
 
 /* Transactions tab title */
 "main.segment.transactions" = "Transactions";
-
-/* Send button title */
-"main.send" = "Send";
 
 /* Hide displayed token action. */
 "manage_tokens.hide" = "Hide";

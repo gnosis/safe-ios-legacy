@@ -6,11 +6,14 @@ import UIKit
 
 class MainContentViewController: SegmentBarController {
 
+    weak var delegate: MainViewControllerDelegate?
+
     let tokensController = TokensTableViewController()
     let transactionsController = TransactionsTableViewController.create()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tokensController.delegate = delegate
         viewControllers = [tokensController, transactionsController]
         selectedViewController = tokensController
     }

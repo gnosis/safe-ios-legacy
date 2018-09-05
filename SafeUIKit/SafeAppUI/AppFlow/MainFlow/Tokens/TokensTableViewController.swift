@@ -7,6 +7,8 @@ import MultisigWalletApplication
 
 final class TokensTableViewController: UITableViewController {
 
+    weak var delegate: MainViewControllerDelegate?
+
     typealias Section = (
         headerViewIdentifier: String?,
         headerHeight: CGFloat,
@@ -127,6 +129,7 @@ final class TokensTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        delegate?.createNewTransaction()
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

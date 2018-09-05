@@ -44,6 +44,14 @@ class TokensTableViewControllerTests: SafeTestCase {
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
     }
 
+    func test_whenSelectingRow_thenCallsDelegate() {
+        let delegate = MockMainViewControllerDelegate()
+        controller.delegate = delegate
+        createWindow(controller)
+        controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        XCTAssertTrue(delegate.didCallCreateNewTransaction)
+    }
+
     func test_whenThereAreTokens_thenWeDontShowTokensFooter() {
         createWindow(controller)
         controller.notify()
