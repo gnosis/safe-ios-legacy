@@ -127,6 +127,7 @@ public final class SafeNavigationController: UINavigationController {
 
     func styleNavBar() {
         navigationBar.barTintColor = .white
+        navigationBar.isTranslucent = false
         navigationBar.shadowImage = UIImage()
     }
 

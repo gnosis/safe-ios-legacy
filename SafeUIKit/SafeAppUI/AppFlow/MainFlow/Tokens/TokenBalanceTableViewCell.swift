@@ -12,7 +12,7 @@ class TokenBalanceTableViewCell: UITableViewCell {
     @IBOutlet weak var tokenCodeLabel: UILabel!
     @IBOutlet weak var tokenBalanceLabel: UILabel!
 
-    static let height: CGFloat = 44
+    static let height: CGFloat = 60
 
     func configure(tokenData: TokenData,
                    withBalance: Bool = true,
