@@ -57,6 +57,7 @@ public final class TextInput: UIView {
         super.init(frame: frame)
         configure()
     }
+
     public override func awakeFromNib() {
         super.awakeFromNib()
         configure()

@@ -28,17 +28,14 @@
 /* Some error occurred. */
 "generic.error.unknown" = "Error occurred. Please, try again later.";
 
-/* Receive button title */
-"main.receive" = "Receive";
+/* Menu button title */
+"main.menu" = "Menu";
 
-/* Tokens tab title */
-"main.segment.tokens" = "Tokens";
+/* Assets tab title */
+"main.segment.assets" = "Assets";
 
 /* Transactions tab title */
 "main.segment.transactions" = "Transactions";
-
-/* Send button title */
-"main.send" = "Send";
 
 /* Hide displayed token action. */
 "manage_tokens.hide" = "Hide";
@@ -222,6 +219,9 @@
 
 /* Title for confirm mnemonic view controller */
 "recovery.confirm_mnemonic.title" = "Confirmation";
+
+/* Label for Tokens header on main screen. */
+"tokens.label" = "Tokens";
 
 /* Safe balance */
 "transaction.balance.title" = "Safe balance";

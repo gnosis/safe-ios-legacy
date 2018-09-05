@@ -8,13 +8,17 @@ import CommonTestSupport
 
 class FlowCoordinatorTests: XCTestCase {
 
+    let fc = FlowCoordinator(rootViewController: UINavigationController())
+
+    override func setUp() {
+        super.setUp()
+    }
+
     func test_whenCreated_thenHasRootController() {
-        let fc = FlowCoordinator(rootViewController: UIViewController())
         XCTAssertNotNil(fc.rootViewController)
     }
 
     func test_whenRootIsNavigationController_thenCanAccessIt() {
-        let fc = FlowCoordinator(rootViewController: UINavigationController())
         XCTAssertTrue(fc.navigationController === fc.rootViewController)
     }
 
@@ -25,7 +29,6 @@ class FlowCoordinatorTests: XCTestCase {
     }
 
     func test_whenTransitionsToAnotherFlow_thenReusesRootController() {
-        let fc = FlowCoordinator(rootViewController: UINavigationController())
         let other = FlowCoordinator()
         fc.enter(flow: other)
         XCTAssertTrue(other.rootViewController === fc.rootViewController)
@@ -58,14 +61,12 @@ class FlowCoordinatorTests: XCTestCase {
     }
 
     func test_whenPushingController_thenItGoesToNavigationController() {
-        let fc = FlowCoordinator(rootViewController: UINavigationController())
         let vc = UIViewController()
         fc.push(vc)
         XCTAssertTrue(fc.navigationController.topViewController === vc)
     }
 
     func test_whenPushingMultipleControllers_thenAllAreInStack() {
-        let fc = FlowCoordinator(rootViewController: UINavigationController())
         fc.push(UIViewController())
         fc.push(UIViewController())
         delay()
@@ -73,7 +74,6 @@ class FlowCoordinatorTests: XCTestCase {
     }
 
     func test_whenPoppingController_thenRemovesFromNavigation() {
-        let fc = FlowCoordinator(rootViewController: UINavigationController())
         let vc = UIViewController()
         fc.push(vc)
         fc.push(UIViewController())
@@ -82,7 +82,6 @@ class FlowCoordinatorTests: XCTestCase {
     }
 
     func test_whenPopping_thenPopsTopmostController() {
-        let fc = FlowCoordinator(rootViewController: UINavigationController())
         let vc = UIViewController()
         fc.push(vc)
         fc.push(UIViewController())
@@ -92,11 +91,22 @@ class FlowCoordinatorTests: XCTestCase {
 
 
     func test_whenClearingNavigationStack_thenNoControllerPresentInNavigation() {
-        let fc = FlowCoordinator(rootViewController: UINavigationController())
         fc.push(UIViewController())
         fc.push(UIViewController())
         fc.clearNavigationStack()
         XCTAssertTrue(fc.navigationController.viewControllers.isEmpty)
+    }
+
+    func test_whenPresentingModally_thenPresents() {
+        createWindow(fc.navigationController)
+        let vc = UIViewController()
+        fc.presentModally(vc)
+        XCTAssertTrue(fc.navigationController.presentedViewController === vc)
+        let vc2 = UIViewController()
+        fc.presentModally(vc2)
+        delay(0.6) // fails with 0.5 delay
+        XCTAssertTrue(fc.rootViewController.presentedViewController === vc)
+        XCTAssertTrue(vc.presentedViewController === vc2)
     }
 
 }

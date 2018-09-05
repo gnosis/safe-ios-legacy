@@ -125,17 +125,19 @@ class MainFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_didSelectManageTokens_entersManageTokensFlow() {
+        createWindow(mainFlowCoordinator.rootViewController)
         mainFlowCoordinator.didSelectManageTokens()
         delay()
-        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
-            is ManageTokensTableViewController)
+        let presented = mainFlowCoordinator.navigationController.presentedViewController
+        XCTAssertTrue(presented?.childViewControllers[0] is ManageTokensTableViewController)
     }
 
     func test_whenManageTokensCalled_thenEntersManageTokensFlow() {
+        createWindow(mainFlowCoordinator.rootViewController)
         mainFlowCoordinator.manageTokens()
         delay()
-        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
-            is ManageTokensTableViewController)
+        let presented = mainFlowCoordinator.navigationController.presentedViewController
+        XCTAssertTrue(presented?.childViewControllers[0] is ManageTokensTableViewController)
     }
 
 }

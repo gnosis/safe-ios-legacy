@@ -209,6 +209,9 @@
 		550D1EDB213406380035109A /* ManageTokensTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1EDA213406380035109A /* ManageTokensTableViewControllerTests.swift */; };
 		550D1EDD213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1EDC213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift */; };
 		550D1EDF213426F00035109A /* AddTokenFooterViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */; };
+		55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55247302213E8D7600A77557 /* TokensHeaderView.swift */; };
+		55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55247304213E8EC600A77557 /* TokensHeaderView.xib */; };
+		5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524730E213FDEB400A77557 /* BackgroundImageView.swift */; };
 		5527A7F4208DE8A300AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
 		5527A7F5208DE8B700AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
 		5527A7F6208DE8B700AF3A50 /* RSBarcodes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -657,6 +660,9 @@
 		550D1EDA213406380035109A /* ManageTokensTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensTableViewControllerTests.swift; sourceTree = "<group>"; };
 		550D1EDC213406AC0035109A /* ManageTokensFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTokensFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenFooterViewTests.swift; sourceTree = "<group>"; };
+		55247302213E8D7600A77557 /* TokensHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensHeaderView.swift; sourceTree = "<group>"; };
+		55247304213E8EC600A77557 /* TokensHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokensHeaderView.xib; sourceTree = "<group>"; };
+		5524730E213FDEB400A77557 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		5527A7E0208DE87600AF3A50 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 		5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewControllerTests.swift; sourceTree = "<group>"; };
 		5527A806208E357B00AF3A50 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -1050,6 +1056,7 @@
 				55071BC2209313F800297D1C /* UIDevice+Extensions.swift */,
 				55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */,
 				550954F120C966CF00F5F25F /* UIView+Extensions.swift */,
+				5524730E213FDEB400A77557 /* BackgroundImageView.swift */,
 			);
 			path = SafeUIKit;
 			sourceTree = "<group>";
@@ -1134,6 +1141,8 @@
 				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
 				0A7F74432110511A004F1150 /* TokenAmountValidatorTests.swift */,
 				0A7F744621105137004F1150 /* TokenAmountValidator.swift */,
+				55247302213E8D7600A77557 /* TokensHeaderView.swift */,
+				55247304213E8EC600A77557 /* TokensHeaderView.xib */,
 			);
 			path = Tokens;
 			sourceTree = "<group>";
@@ -1541,6 +1550,7 @@
 				0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */,
 				0A334E2F209C8E3800ABC6AE /* NewSafe.storyboard in Resources */,
 				0A334E4D209C8E3800ABC6AE /* AppFlow.storyboard in Resources */,
+				55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */,
 				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
 				0A00291720CEDDD0009A4BFE /* transactions.txt in Resources */,
 			);
@@ -1689,6 +1699,7 @@
 				0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */,
 				5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */,
 				0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */,
+				5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */,
 				550954EA20C9590000F5F25F /* TokenInput.swift in Sources */,
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
 				550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */,
@@ -1720,6 +1731,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AD50905211054FC008507CB /* EthereumAddressValidator.swift in Sources */,
+				55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */,
 				0A4DF82720CE70B40095C00D /* TokenBalanceTableViewCell.swift in Sources */,
 				0AD998B020D3FEBD00E6F3CA /* FundsTransferTransactionViewController.swift in Sources */,
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,

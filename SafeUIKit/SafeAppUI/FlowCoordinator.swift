@@ -103,7 +103,11 @@ open class FlowCoordinator {
     }
 
     func presentModally(_ controller: UIViewController) {
-        rootViewController.present(controller, animated: true, completion: nil)
+        if let presented = rootViewController.presentedViewController {
+            presented.present(controller, animated: true, completion: nil)
+        } else {
+            rootViewController.present(controller, animated: true, completion: nil)
+        }
     }
 
     func dismissModal() {
@@ -123,6 +127,7 @@ public final class SafeNavigationController: UINavigationController {
 
     func styleNavBar() {
         navigationBar.barTintColor = .white
+        navigationBar.isTranslucent = false
         navigationBar.shadowImage = UIImage()
     }
 

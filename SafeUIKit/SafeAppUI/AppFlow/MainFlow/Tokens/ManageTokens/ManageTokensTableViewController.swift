@@ -50,7 +50,7 @@ class ManageTokensTableViewController: UITableViewController {
         tableView.backgroundColor = ColorName.paleGreyThree.color
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
-        navigationItem.setRightBarButton(addButton, animated: false)
+        navigationItem.setLeftBarButton(addButton, animated: false)
         setEditing(true, animated: false)
     }
 
@@ -60,6 +60,14 @@ class ManageTokensTableViewController: UITableViewController {
 
     func tokenAdded() {
         tableView.reloadData()
+    }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        if editing {
+            super.setEditing(editing, animated: animated)
+        } else {
+            dismiss(animated: true)
+        }
     }
 
     // MARK: - Table view data source

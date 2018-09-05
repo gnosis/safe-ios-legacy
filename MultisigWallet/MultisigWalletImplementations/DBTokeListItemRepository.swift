@@ -46,16 +46,7 @@ ORDER BY sorting_id;
     }
 
     public func save(_ tokenListItem: TokenListItem) {
-        if let existingItem = find(id: tokenListItem.id), existingItem.status == .whitelisted {
-            if tokenListItem.status != .whitelisted {
-                tokenListItem.updateSortingId(with: nil)
-            }
-        } else {
-            if tokenListItem.status == .whitelisted {
-                let lastWhitelistedId = whitelisted().last?.sortingId ?? -1
-                tokenListItem.updateSortingId(with: lastWhitelistedId + 1)
-            }
-        }
+        prepareToSave(tokenListItem)
         doSave(tokenListItem)
     }
 

@@ -24,8 +24,8 @@ class TransactionReviewViewControllerTests: XCTestCase {
     func test_whenLoaded_thenTakesDataFromTransaction() {
         let sender = "0x8f51473aa98096145a9cadc421e4d33833e47365"
         let recipient = "0xFe2149773B3513703E79Ad23D05A778A185016ee"
-        let amount = "0.1 ETH"
-        let balance = "1 ETH"
+        let amount = "0.10 ETH"
+        let balance = "1.00 ETH"
         let id = "some"
         let fee = "-0.01 ETH"
 
@@ -65,7 +65,7 @@ class TransactionReviewViewControllerTests: XCTestCase {
         vc.loadViewIfNeeded()
         delay()
         XCTAssertEqual(service.requestTransactionConfirmation_input, "some")
-        XCTAssertEqual(vc.feeValueLabel.text, "-1 ETH")
+        XCTAssertEqual(vc.feeValueLabel.text, "-1.00 ETH")
     }
 
     func test_whenTransactionPending_thenCallsDelegate() {

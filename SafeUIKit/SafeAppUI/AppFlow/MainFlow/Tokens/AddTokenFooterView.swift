@@ -13,7 +13,7 @@ class AddTokenFooterView: UITableViewHeaderFooterView {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundView = UIView()
-        backgroundView?.backgroundColor = ColorName.paleGreyThree.color
+        backgroundView?.backgroundColor = .white
     }
 
 }

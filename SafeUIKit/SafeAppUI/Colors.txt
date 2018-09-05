@@ -3,6 +3,7 @@ green_teal: #09a862
 battleship_grey: #65707e
 bluey_grey: #a2a8ba
 dark_slate_blue: #21435a
+dark_grey: #a2a8ba
 pale_grey_three: #f4f5f9
 pale_grey_four: #e3e5ec
 transparent_white_on_grey: #F9FAFC

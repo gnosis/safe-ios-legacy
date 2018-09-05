@@ -14,7 +14,15 @@ class TokenBalanceTableViewCell: UITableViewCell {
 
     static let height: CGFloat = 60
 
-    func configure(tokenData: TokenData, withBalance: Bool = true, withTokenName: Bool = false) {
+    func configure(tokenData: TokenData,
+                   withBalance: Bool = true,
+                   withTokenName: Bool = false,
+                   withDisclosure: Bool = true) {
+        if withDisclosure {
+            accessoryType = .disclosureIndicator
+        } else {
+            accessoryType = .none
+        }
         if tokenData.code == "ETH" {
             tokenImageView.image = Asset.TokenIcons.eth.image
         } else if let url = tokenData.logoURL {
@@ -28,7 +36,7 @@ class TokenBalanceTableViewCell: UITableViewCell {
 
     private func formattedBalance(_ tokenData: TokenData) -> String {
         guard let balance = tokenData.balance else { return "--" }
-        let formatter = TokenNumberFormatter.ERC20Token(decimals: tokenData.decimals)
+        let formatter = TokenNumberFormatter.ERC20Token(code: tokenData.code, decimals: tokenData.decimals)
         return formatter.string(from: balance)
     }
 

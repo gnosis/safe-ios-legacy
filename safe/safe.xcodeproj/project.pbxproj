@@ -79,6 +79,7 @@
 		0AEF8A3D20A08262006A1265 /* libDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A3C20A08262006A1265 /* libDatabase.a */; };
 		0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */; };
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
+		55247322213FF7A100A77557 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55247321213FF7A000A77557 /* Montserrat-SemiBold.ttf */; };
 		5527A7FC208DE9D500AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; };
 		5527A7FD208DE9D500AF3A50 /* RSBarcodes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		553A4B8C20F8B88E00F204A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55F9817F20F4DD2300E3AF47 /* GoogleService-Info.plist */; };
@@ -449,6 +450,7 @@
 		0AFEDEAE2073C79C002F5924 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../lib/Fabric.framework; sourceTree = "<group>"; };
 		0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SafeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFEDEB42073C80A002F5924 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		55247321213FF7A000A77557 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		5540A4EB203C3054009C9BE3 /* safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540A4EE203C3054009C9BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5540A4F5203C3054009C9BE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -678,9 +680,18 @@
 			name = config;
 			sourceTree = "<group>";
 		};
+		55247315213FF79100A77557 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				55247321213FF7A000A77557 /* Montserrat-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		5540A4E2203C3054009C9BE3 = {
 			isa = PBXGroup;
 			children = (
+				55247315213FF79100A77557 /* Fonts */,
 				0A160B6320A07C3E00E064E1 /* IdentityAccess.xcodeproj */,
 				0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */,
 				0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */,
@@ -1122,6 +1133,7 @@
 				553A4B8C20F8B88E00F204A9 /* GoogleService-Info.plist in Resources */,
 				0A53AD3920595C2300D713AD /* Localizable.strings in Resources */,
 				5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */,
+				55247322213FF7A100A77557 /* Montserrat-SemiBold.ttf in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
 				0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,
 				0A84BBF42106168600708DE5 /* AppConfig.json in Resources */,

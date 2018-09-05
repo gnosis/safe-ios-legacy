@@ -23,11 +23,6 @@ class MainViewControllerTests: XCTestCase {
         vc = MainViewController.create(delegate: delegate)
     }
 
-    func test_whenPressingSend_thenCallsDelegate() {
-        vc.send(self)
-        XCTAssertTrue(delegate.didCallCreateNewTransaction)
-    }
-
     func test_whenPressingMenu_thenCallsDelegate() {
         vc.openMenu(self)
         XCTAssertTrue(delegate.didCallOpenMenu)

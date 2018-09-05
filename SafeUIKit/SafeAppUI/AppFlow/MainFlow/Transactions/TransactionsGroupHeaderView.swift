@@ -11,6 +11,8 @@ class TransactionsGroupHeaderView: UITableViewHeaderFooterView {
     func configure(group: TransactionGroup) {
         headerLabel.text = group.name
         headerLabel.textColor = group.isPending ? ColorName.blueyGrey.color : ColorName.battleshipGrey.color
+        backgroundView = UIView()
+        backgroundView?.backgroundColor = .white
     }
 
 }

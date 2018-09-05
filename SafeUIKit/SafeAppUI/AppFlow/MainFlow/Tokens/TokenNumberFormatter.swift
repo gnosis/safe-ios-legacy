@@ -28,7 +28,8 @@ class TokenNumberFormatter {
     var tokenCode: String?
 
     func string(from number: BigInt) -> String {
-        if number == 0 { return "0" }
+        let tokenCurrency = tokenSymbol != nil ? " \(tokenSymbol!)" : (tokenCode != nil ? " \(tokenCode!)" : "")
+        if number == 0 { return "0,00" + tokenCurrency }
         let sign = number.sign == .minus ? "-" : ""
         let str = String(number.magnitude)
         var integer = str.count <= decimals ? "0" : String(str.prefix(str.count - decimals))
@@ -36,8 +37,8 @@ class TokenNumberFormatter {
         var fraction = str.count <= decimals ? padFromBeginning(str) : String(str.suffix(decimals))
         removeTrailingZeroes(fraction: &fraction)
         addFractionGrouping(fraction: &fraction)
-        let token = tokenSymbol != nil ? " \(tokenSymbol!)" : (tokenCode != nil ? " \(tokenCode!)" : "")
-        return sign + integer + (fraction.isEmpty ? "" : decimalSeparator) + fraction + token
+        let adjustedFraction = (fraction.isEmpty ? "00" : fraction) + (fraction.count == 1 ? "0" : "")
+        return sign + integer + decimalSeparator + adjustedFraction + tokenCurrency
     }
 
     private func padFromBeginning(_ str: String) -> String {
