@@ -78,7 +78,7 @@ final class TokensTableViewController: UITableViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(update), for: .valueChanged)
         tableView.refreshControl = refreshControl
-        tableView.backgroundColor = ColorName.paleGreyThree.color
+        tableView.backgroundColor = .clear
         tableView.tableFooterView = UIView()
 
         ApplicationServiceRegistry.walletService.subscribeOnTokensUpdates(subscriber: self)

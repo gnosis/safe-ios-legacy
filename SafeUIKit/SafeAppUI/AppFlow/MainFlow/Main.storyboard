@@ -15,7 +15,7 @@
         <scene sceneID="5vs-bY-fCF">
             <objects>
                 <viewController storyboardIdentifier="MainViewController" id="tu4-59-ha9" customClass="MainViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eOZ-6r-5G0">
+                    <view key="view" contentMode="scaleToFill" id="eOZ-6r-5G0" customClass="BackgroundImageView" customModule="SafeUIKit">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -298,7 +298,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="68" estimatedRowHeight="68" sectionHeaderHeight="46" sectionFooterHeight="1" id="Yyv-2N-gW7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.95686274509803915" green="0.96078431372549022" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionTableViewCell" id="Pfq-cF-5BS" customClass="TransactionTableViewCell" customModule="SafeAppUI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="68"/>
@@ -628,7 +628,7 @@
                     <view key="view" contentMode="scaleToFill" id="gf2-V3-xE2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Cql-Ui-XQ6"/>
                     </view>
                 </viewController>

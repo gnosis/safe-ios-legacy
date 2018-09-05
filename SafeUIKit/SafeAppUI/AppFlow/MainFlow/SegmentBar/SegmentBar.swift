@@ -60,6 +60,7 @@ public class SegmentBar: UIControl {
             button.setTitleColor(ColorName.darkSlateBlue.color, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium)
             button.setImage(item.image, for: .normal)
+            button.backgroundColor = .white
             button.tag = index
             button.addTarget(self, action: #selector(didTapButton(sender:)), for: .touchUpInside)
             return button
