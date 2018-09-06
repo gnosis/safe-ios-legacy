@@ -25,11 +25,12 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         relayService = GnosisTransactionRelayService(url: config.relayServiceURL, logger: MockLogger())
     }
 
-    func test_safeCreation() throws {
-        let eoa1 = encryptionService.generateExternallyOwnedAccount()
-        let eoa2 = encryptionService.generateExternallyOwnedAccount()
-        let eoa3 = encryptionService.generateExternallyOwnedAccount()
-        let owners = [eoa1, eoa2, eoa3].map { $0.address }
+    func test_safeCreationAndRecovery() throws {
+        let deviceKey = encryptionService.generateExternallyOwnedAccount()
+        let browserExtensionKey = encryptionService.generateExternallyOwnedAccount()
+        let recoveryKey = encryptionService.generateExternallyOwnedAccount()
+
+        let owners = [deviceKey, browserExtensionKey, recoveryKey].map { $0.address }
         let ecdsaRandomS = encryptionService.ecdsaRandomS()
         let request = SafeCreationTransactionRequest(owners: owners, confirmationCount: 2, ecdsaRandomS: ecdsaRandomS)
         let response = try relayService.createSafeCreationTransaction(request: request)
