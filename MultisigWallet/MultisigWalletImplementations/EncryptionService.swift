@@ -54,7 +54,7 @@ public protocol EthereumService: Assertable {
 
     func createMnemonic() -> [String]
     func createSeed(mnemonic: [String]) -> Data
-    func createPrivateKey(seed: Data, network: EIP155ChainId) -> Data
+    func createHDPrivateKey(seed: Data, network: EIP155ChainId, derivedAt: Int) -> Data
     func createPublicKey(privateKey: Data) -> Data
     func createAddress(publicKey: Data) -> String
 
@@ -71,11 +71,12 @@ public extension EthereumService {
         let words = createMnemonic()
         try! assertEqual(words.count, 12, EthereumServiceError.invalidMnemonicWordsCount)
         let seed = createSeed(mnemonic: words)
-        let privateKey = createPrivateKey(seed: seed, network: chainId)
+        let privateKey = createHDPrivateKey(seed: seed, network: chainId, derivedAt: 0)
         let publicKey = createPublicKey(privateKey: privateKey)
         let address = createAddress(publicKey: publicKey)
         return (words, privateKey, publicKey, address)
     }
+
 }
 
 open class EncryptionService: EncryptionDomainService {

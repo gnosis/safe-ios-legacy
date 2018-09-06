@@ -66,7 +66,9 @@ class EncryptionServiceTests: XCTestCase {
         XCTAssertEqual(account, expectedAccount)
         XCTAssertEqual(account.address, expectedAccount.address)
         XCTAssertEqual(account.mnemonic, expectedAccount.mnemonic)
+        print(account.privateKey.data.toHexString())
         XCTAssertEqual(account.privateKey, expectedAccount.privateKey)
+        print(account.publicKey.data.toHexString())
         XCTAssertEqual(account.publicKey, expectedAccount.publicKey)
     }
 
@@ -355,7 +357,7 @@ class MockEthereumService: EthereumService {
         return seed
     }
 
-    func createPrivateKey(seed: Data, network: EIP155ChainId) -> Data {
+    func createHDPrivateKey(seed: Data, network: EIP155ChainId, derivedAt: Int) -> Data {
         return privateKey
     }
 
