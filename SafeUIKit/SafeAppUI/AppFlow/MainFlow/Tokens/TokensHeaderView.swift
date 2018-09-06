@@ -13,12 +13,12 @@ final class DashedSeparatorView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         let line = layer as! CAShapeLayer
-        line.strokeColor = ColorName.darkGrey.color.cgColor
+        line.strokeColor = ColorName.blueyGrey.color.cgColor
         line.lineWidth = bounds.height
         line.lineDashPattern = [2, 2]
         let path = CGMutablePath()
         let p0 = CGPoint(x: 0, y: 0)
-        let p1 = CGPoint(x: 5_000, y: 0) // TODO: how to improve?
+        let p1 = CGPoint(x: 5_000, y: 0)
         path.addLines(between: [p0, p1])
         line.path = path
     }
