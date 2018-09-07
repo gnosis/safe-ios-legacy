@@ -26,11 +26,17 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
     }
 
     func test_safeCreationAndRecovery() throws {
+        let (_, _) = try createNewSafe()
+    }
+
+    private func createNewSafe() throws -> (address: Address, recoveryKey: ExternallyOwnedAccount)! {
         let deviceKey = encryptionService.generateExternallyOwnedAccount()
         let browserExtensionKey = encryptionService.generateExternallyOwnedAccount()
         let recoveryKey = encryptionService.generateExternallyOwnedAccount()
+        let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccountFrom(
+            mnemonic: recoveryKey.mnemonic.words, at: 1)
 
-        let owners = [deviceKey, browserExtensionKey, recoveryKey].map { $0.address }
+        let owners = [deviceKey, browserExtensionKey, recoveryKey, derivedKeyFromRecovery].map { $0.address }
         let ecdsaRandomS = encryptionService.ecdsaRandomS()
         let request = SafeCreationTransactionRequest(owners: owners, confirmationCount: 2, ecdsaRandomS: ecdsaRandomS)
         let response = try relayService.createSafeCreationTransaction(request: request)
@@ -47,7 +53,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
                            response.tx.nonce)
         guard let safeAddress = encryptionService.contractAddress(from: signature, for: transaction) else {
             XCTFail("Can't extract safe address from server response")
-            return
+            return nil
         }
         XCTAssertEqual(safeAddress, response.safe)
 
@@ -58,6 +64,34 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         XCTAssertFalse(txHash.value.isEmpty)
         let receipt = try waitForTransaction(txHash)!
         XCTAssertEqual(receipt.status, .success)
+        return (Address(safeAddress), recoveryKey)
+    }
+
+    func test_recoveryOnly() {
+        let address = Address("0xE2BC19Be4cDEf0D68D82c0C86E97234708Cf6c07")
+        let mnemonic = ["tiger", "over", "fabric", "diary", "subway", "quick", "sheriff", "team", "step", "develop", "wife", "afford"]
+        recoverSafe(address, mnemonic)
+    }
+
+    private func recoverSafe(_ safeAddress: Address, _ mnemonic: [String]) {
+        let recoveryKey = encryptionService.deriveExternallyOwnedAccountFrom(
+            mnemonic: mnemonic, at: 0)
+        let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccountFrom(
+            mnemonic: mnemonic, at: 1)
+
+        // Get Safe info and assure that 2 keys are among owners
+
+
+        // Generate 2 new owners
+        // Form Transaction
+        // Get Fee Estimate and update transaction
+        // Fund safe with missing amount of Ether
+        // Form Signatures for a transaction
+        // Form SubmitTransactionRequest(transaction, signatures)
+        // DomainRegistry.transactionRelayService.submitTransaction(request: request)
+        // Monitor transaction
+        // Get safe info and assure that new safe owners are there
+
     }
 
     func test_whenGettingGasPrice_thenReturnsIt() throws {
