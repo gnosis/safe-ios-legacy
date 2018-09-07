@@ -266,12 +266,16 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yGw-m7-AFl" customClass="IdenticonView" customModule="SafeUIKit">
-                                <rect key="frame" x="137.5" y="164" width="100" height="100"/>
+                                <rect key="frame" x="137" y="164" width="100" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yGw-m7-AFl" secondAttribute="height" multiplier="1:1" id="eVK-0Z-6Ce"/>
                                     <constraint firstAttribute="height" constant="100" id="uzR-vX-Dd0"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="displayShadow" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="seed" value="Yo!"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

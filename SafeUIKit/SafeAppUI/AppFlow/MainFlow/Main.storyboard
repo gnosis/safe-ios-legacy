@@ -33,21 +33,12 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="1Zd-Bn-saN">
                                                 <rect key="frame" x="142.5" y="8.5" width="90" height="113.5"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FU0-Jm-jDT">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FU0-Jm-jDT" customClass="IdenticonView" customModule="SafeUIKit">
                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
-                                                        <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mbm-DQ-Yym">
-                                                                <rect key="frame" x="-0.5" y="0.0" width="90" height="90"/>
-                                                            </imageView>
-                                                        </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="90" id="8A6-Nw-kqG"/>
                                                             <constraint firstAttribute="width" constant="90" id="9ii-vV-EH1"/>
-                                                            <constraint firstItem="mbm-DQ-Yym" firstAttribute="top" secondItem="FU0-Jm-jDT" secondAttribute="top" id="Wol-6y-Zhh"/>
-                                                            <constraint firstAttribute="bottom" secondItem="mbm-DQ-Yym" secondAttribute="bottom" id="b7o-Bx-Pdb"/>
-                                                            <constraint firstItem="mbm-DQ-Yym" firstAttribute="leading" secondItem="FU0-Jm-jDT" secondAttribute="leading" id="eFd-oq-Skg"/>
-                                                            <constraint firstAttribute="trailing" secondItem="mbm-DQ-Yym" secondAttribute="trailing" id="n2t-cg-FwV"/>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HvK-Ud-0Mg">
@@ -133,8 +124,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="safeAddressLabel" destination="Pqu-Ky-gxa" id="ufY-ti-E7Q"/>
-                        <outlet property="safeImageContainerView" destination="FU0-Jm-jDT" id="PrM-kO-dSU"/>
-                        <outlet property="safeImageView" destination="mbm-DQ-Yym" id="oyn-NC-k5T"/>
+                        <outlet property="safeIdenticonView" destination="FU0-Jm-jDT" id="hYM-tg-bhS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="snj-aA-zwf" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -20,7 +20,7 @@ public class IdenticonView: DesignableView {
         }
     }
 
-    private let imageView = UIImageView()
+    internal let imageView = UIImageView()
 
     private let shadowOpacity: Float = 0.8
     private let shadowOffset = CGSize(width: 0, height: 2)
@@ -30,9 +30,6 @@ public class IdenticonView: DesignableView {
         imageView.frame = bounds
         imageView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         addSubview(imageView)
-
-        imageView.layer.cornerRadius = bounds.width / 2
-        imageView.clipsToBounds = true
 
         backgroundColor = .clear
         layer.shadowColor = shadowColor.cgColor
@@ -45,6 +42,16 @@ public class IdenticonView: DesignableView {
 
     override public func update() {
         imageView.image = UIImage.createBlockiesImage(seed: seed)
+    }
+
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        makeCircleBounds()
+    }
+
+    private func makeCircleBounds() {
+        imageView.layer.cornerRadius = min(bounds.width, bounds.height) / 2
+        imageView.clipsToBounds = true
     }
 
 }

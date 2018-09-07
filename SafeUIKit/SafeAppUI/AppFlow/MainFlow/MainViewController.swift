@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SafeUIKit
 import Common
 import MultisigWalletApplication
 import BigInt
@@ -16,8 +17,7 @@ protocol MainViewControllerDelegate: class {
 
 final class MainViewController: UIViewController {
 
-    @IBOutlet weak var safeImageContainerView: UIView!
-    @IBOutlet weak var safeImageView: UIImageView!
+    @IBOutlet weak var safeIdenticonView: IdenticonView!
     @IBOutlet weak var safeAddressLabel: UILabel!
 
     private weak var delegate: MainViewControllerDelegate?
@@ -41,19 +41,8 @@ final class MainViewController: UIViewController {
         let menuButton = UIBarButtonItem(title: Strings.menu, style: .done, target: self, action: #selector(openMenu))
         navigationItem.setRightBarButton(menuButton, animated: false)
         safeAddressLabel.text = address
-        configureIdenticon(seed: address)
-    }
-
-    private func configureIdenticon(seed: String) {
-        safeImageView.layer.cornerRadius = safeImageView.bounds.width / 2
-        safeImageView.clipsToBounds = true
-        safeImageView.image = UIImage.createBlockiesImage(seed: seed)
-
-        safeImageContainerView.layer.shadowPath =
-            UIBezierPath(roundedRect: safeImageContainerView.bounds, cornerRadius: 100).cgPath
-        safeImageContainerView.layer.shadowColor = UIColor.black.cgColor
-        safeImageContainerView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        safeImageContainerView.layer.shadowOpacity = 0.8
+        safeIdenticonView.seed = address
+        safeIdenticonView.displayShadow = true
     }
 
     @objc func openMenu(_ sender: Any) {
