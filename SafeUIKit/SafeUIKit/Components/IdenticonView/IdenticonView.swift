@@ -27,6 +27,7 @@ public class IdenticonView: DesignableView {
     private let shadowColor = UIColor.black
 
     override public func commonInit() {
+        imageView.accessibilityIdentifier = "identicon"
         imageView.frame = bounds
         imageView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         addSubview(imageView)

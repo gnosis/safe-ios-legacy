@@ -7,8 +7,8 @@ import XCTest
 
 class MainScreen {
 
-    var isDisplayed: Bool { return sendButton.exists }
-    var sendButton: XCUIElement { return XCUIApplication().buttons[LocalizedString("main.send")] }
-    var receiveButton: XCUIElement { return XCUIApplication().buttons[LocalizedString("main.receive")] }
+    var isDisplayed: Bool { return identiconView.exists }
+    var ethCell: XCUIElement { return XCUIApplication().cells["Ether"] }
+    var identiconView: XCUIElement { return XCUIApplication().images["identicon"] }
 
 }

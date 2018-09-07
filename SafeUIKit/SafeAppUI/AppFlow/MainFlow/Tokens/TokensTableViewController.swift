@@ -85,7 +85,7 @@ final class TokensTableViewController: UITableViewController {
 
         ApplicationServiceRegistry.walletService.subscribeOnTokensUpdates(subscriber: self)
 
-        update()
+        update(); notify()
     }
 
     @objc private func update() {

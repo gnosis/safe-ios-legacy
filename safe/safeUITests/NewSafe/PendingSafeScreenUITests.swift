@@ -126,7 +126,7 @@ extension PendingSafeScreenUITests {
     }
 
     private func notEnoughFundsLabel() -> String {
-        let balanceEth = "0"
+        let balanceEth = "0,00 ETH"
         let requiredEth = "0.0000000000000001 ETH"
         let status = String(format: LocalizedString("pending_safe.status.not_enough_funds"), balanceEth, requiredEth)
         return status

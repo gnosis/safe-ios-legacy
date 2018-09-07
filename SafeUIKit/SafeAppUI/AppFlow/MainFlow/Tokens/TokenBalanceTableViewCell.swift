@@ -19,6 +19,7 @@ class TokenBalanceTableViewCell: UITableViewCell {
                    withBalance: Bool = true,
                    withTokenName: Bool = false,
                    withDisclosure: Bool = true) {
+        accessibilityIdentifier = tokenData.name
         if withDisclosure {
             accessoryType = .disclosureIndicator
         } else {
