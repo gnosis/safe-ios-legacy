@@ -49,7 +49,7 @@ final class MainViewController: UIViewController {
         safeImageView.clipsToBounds = true
         safeImageView.image = UIImage.createBlockiesImage(seed: seed)
 
-        safeImageView.layer.shadowPath =
+        safeImageContainerView.layer.shadowPath =
             UIBezierPath(roundedRect: safeImageContainerView.bounds, cornerRadius: 100).cgPath
         safeImageContainerView.layer.shadowColor = UIColor.black.cgColor
         safeImageContainerView.layer.shadowOffset = CGSize(width: 0, height: 2)

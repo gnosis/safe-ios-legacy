@@ -212,6 +212,12 @@
 		55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55247302213E8D7600A77557 /* TokensHeaderView.swift */; };
 		55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55247304213E8EC600A77557 /* TokensHeaderView.xib */; };
 		5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524730E213FDEB400A77557 /* BackgroundImageView.swift */; };
+		5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524735A21428FDD00A77557 /* IdenticonView.swift */; };
+		5524735C214292AE00A77557 /* BlockiesSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; };
+		5524735E2142930A00A77557 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524735D2142930A00A77557 /* UIImage+Extensions.swift */; };
+		55247360214293D500A77557 /* IdenticonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524735F214293D500A77557 /* IdenticonViewController.swift */; };
+		552473612142A07300A77557 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950CF20D29D9E0099B79D /* DesignableView.swift */; };
+		552473622142AC2B00A77557 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7ED208DE87700AF3A50 /* CryptoSwift.framework */; };
 		5527A7F4208DE8A300AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
 		5527A7F5208DE8B700AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; };
 		5527A7F6208DE8B700AF3A50 /* RSBarcodes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7F1208DE87700AF3A50 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -663,6 +669,9 @@
 		55247302213E8D7600A77557 /* TokensHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensHeaderView.swift; sourceTree = "<group>"; };
 		55247304213E8EC600A77557 /* TokensHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokensHeaderView.xib; sourceTree = "<group>"; };
 		5524730E213FDEB400A77557 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
+		5524735A21428FDD00A77557 /* IdenticonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonView.swift; sourceTree = "<group>"; };
+		5524735D2142930A00A77557 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		5524735F214293D500A77557 /* IdenticonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonViewController.swift; sourceTree = "<group>"; };
 		5527A7E0208DE87600AF3A50 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 		5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewControllerTests.swift; sourceTree = "<group>"; };
 		5527A806208E357B00AF3A50 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -714,6 +723,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5524735C214292AE00A77557 /* BlockiesSwift.framework in Frameworks */,
 				55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */,
 				555B0ED020CE678700424CEE /* SipHash.framework in Frameworks */,
 				555B0EBB20CE62C400424CEE /* BigInt.framework in Frameworks */,
@@ -737,6 +747,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552473622142AC2B00A77557 /* CryptoSwift.framework in Frameworks */,
 				0A4A1D2F2136B27B0088F9EC /* Kingfisher.framework in Frameworks */,
 				0AD8FD2F20CEC50500591B91 /* BlockiesSwift.framework in Frameworks */,
 				0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */,
@@ -1003,6 +1014,7 @@
 				555B0E6620CA83DF00424CEE /* TokenInputViewController.swift */,
 				0A00293120CFD75E009A4BFE /* MySegmentViewController.swift */,
 				0A60B515211333620066821A /* ProgressViewController.swift */,
+				5524735F214293D500A77557 /* IdenticonViewController.swift */,
 			);
 			path = SafeUIKitDemo;
 			sourceTree = "<group>";
@@ -1020,10 +1032,7 @@
 		0A9670B320480C5700445AC2 /* SafeUIKit */ = {
 			isa = PBXGroup;
 			children = (
-				5506395720D17CAC000F2A82 /* ApproximateCurrencyFormatter.swift */,
-				5506395D20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift */,
-				558FD80920765C53004F070E /* BigButton.swift */,
-				0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */,
+				5524734F21428E4C00A77557 /* Components */,
 				0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */,
 				556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */,
 				556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */,
@@ -1031,32 +1040,19 @@
 				5506395F20D17CDB000F2A82 /* Double+BigInt.swift */,
 				0A9670D220480C7B00445AC2 /* Fonts.swift */,
 				0A9670D920480C7B00445AC2 /* generated */,
-				0A7AE8BE205284180044D5DD /* H1Label.swift */,
 				0A9670B520480C5700445AC2 /* Info.plist */,
 				0A53AD5520598B5000D713AD /* Localizable.strings */,
 				0A638BEC205A8D63003619EF /* LocalizedString.swift */,
-				55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */,
-				55E9F558208A298200889C9F /* QRCodeInputTests.swift */,
-				0A9670D320480C7B00445AC2 /* RuleLabel.swift */,
-				0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */,
 				0A0974EB20480E45005753DF /* SafeUIKit.h */,
 				0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */,
-				5527A806208E357B00AF3A50 /* ScannerViewController.swift */,
-				5527A807208E357B00AF3A50 /* ScannerViewController.xib */,
-				5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */,
 				0A99436820A0485300E36FD7 /* swiftgen.yml */,
 				0A99436A20A0489800E36FD7 /* swiftlint.yml */,
 				0A9670C320480C5700445AC2 /* Tests-Info.plist */,
-				0A9670D420480C7B00445AC2 /* TextInput.swift */,
-				0A9670D020480C7A00445AC2 /* TextInput.xib */,
-				0A9670D520480C7B00445AC2 /* TextInputTests.swift */,
-				550954E920C9590000F5F25F /* TokenInput.swift */,
-				550954EF20C9594700F5F25F /* TokenInput.xib */,
-				550954ED20C9592900F5F25F /* TokenInputTests.swift */,
 				55071BC2209313F800297D1C /* UIDevice+Extensions.swift */,
 				55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */,
 				550954F120C966CF00F5F25F /* UIView+Extensions.swift */,
-				5524730E213FDEB400A77557 /* BackgroundImageView.swift */,
+				5524735D2142930A00A77557 /* UIImage+Extensions.swift */,
+				0AE950CF20D29D9E0099B79D /* DesignableView.swift */,
 			);
 			path = SafeUIKit;
 			sourceTree = "<group>";
@@ -1077,7 +1073,6 @@
 				0AD998A120D3E5BA00E6F3CA /* BlockiesViewTests.swift */,
 				0A8C962E20D2C3E7007D2410 /* DesignableButton.swift */,
 				0AD9989520D3B43200E6F3CA /* DesignableTests.swift */,
-				0AE950CF20D29D9E0099B79D /* DesignableView.swift */,
 				0AE950CC20D29CAF0099B79D /* HorizontalSeparatorView.swift */,
 				0AD998A320D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift */,
 				0AE950C320D29C920099B79D /* TransactionParticipantView.swift */,
@@ -1183,6 +1178,97 @@
 				55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */,
 			);
 			path = ManageTokens;
+			sourceTree = "<group>";
+		};
+		5524734F21428E4C00A77557 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5524735921428FA300A77557 /* IdenticonView */,
+				5524735821428F5000A77557 /* H1Label */,
+				5524735721428F2500A77557 /* BackgroundImageView */,
+				5524735621428EC400A77557 /* ScannerViewController */,
+				5524735521428E9000A77557 /* BigButton */,
+				5524735421428E7600A77557 /* QRCodeInput */,
+				5524735321428E6500A77557 /* TokenInput */,
+				5524735221428E5600A77557 /* TextInput */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5524735221428E5600A77557 /* TextInput */ = {
+			isa = PBXGroup;
+			children = (
+				0A9670D420480C7B00445AC2 /* TextInput.swift */,
+				0A9670D020480C7A00445AC2 /* TextInput.xib */,
+				0A9670D520480C7B00445AC2 /* TextInputTests.swift */,
+				0A9670D320480C7B00445AC2 /* RuleLabel.swift */,
+				0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */,
+			);
+			path = TextInput;
+			sourceTree = "<group>";
+		};
+		5524735321428E6500A77557 /* TokenInput */ = {
+			isa = PBXGroup;
+			children = (
+				5506395720D17CAC000F2A82 /* ApproximateCurrencyFormatter.swift */,
+				5506395D20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift */,
+				550954E920C9590000F5F25F /* TokenInput.swift */,
+				550954EF20C9594700F5F25F /* TokenInput.xib */,
+				550954ED20C9592900F5F25F /* TokenInputTests.swift */,
+			);
+			path = TokenInput;
+			sourceTree = "<group>";
+		};
+		5524735421428E7600A77557 /* QRCodeInput */ = {
+			isa = PBXGroup;
+			children = (
+				55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */,
+				55E9F558208A298200889C9F /* QRCodeInputTests.swift */,
+			);
+			path = QRCodeInput;
+			sourceTree = "<group>";
+		};
+		5524735521428E9000A77557 /* BigButton */ = {
+			isa = PBXGroup;
+			children = (
+				558FD80920765C53004F070E /* BigButton.swift */,
+				0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */,
+			);
+			path = BigButton;
+			sourceTree = "<group>";
+		};
+		5524735621428EC400A77557 /* ScannerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5527A806208E357B00AF3A50 /* ScannerViewController.swift */,
+				5527A807208E357B00AF3A50 /* ScannerViewController.xib */,
+				5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */,
+			);
+			path = ScannerViewController;
+			sourceTree = "<group>";
+		};
+		5524735721428F2500A77557 /* BackgroundImageView */ = {
+			isa = PBXGroup;
+			children = (
+				5524730E213FDEB400A77557 /* BackgroundImageView.swift */,
+			);
+			path = BackgroundImageView;
+			sourceTree = "<group>";
+		};
+		5524735821428F5000A77557 /* H1Label */ = {
+			isa = PBXGroup;
+			children = (
+				0A7AE8BE205284180044D5DD /* H1Label.swift */,
+			);
+			path = H1Label;
+			sourceTree = "<group>";
+		};
+		5524735921428FA300A77557 /* IdenticonView */ = {
+			isa = PBXGroup;
+			children = (
+				5524735A21428FDD00A77557 /* IdenticonView.swift */,
+			);
+			path = IdenticonView;
 			sourceTree = "<group>";
 		};
 		5527A7E1208DE87600AF3A50 /* Products */ = {
@@ -1667,6 +1753,7 @@
 				55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */,
 				0A0974D620480CEB005753DF /* ViewController.swift in Sources */,
 				0A60B516211333620066821A /* ProgressViewController.swift in Sources */,
+				55247360214293D500A77557 /* IdenticonViewController.swift in Sources */,
 				555B0E6720CA83DF00424CEE /* TokenInputViewController.swift in Sources */,
 				0A0974D720480CEB005753DF /* TextInputViewController.swift in Sources */,
 				0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */,
@@ -1689,6 +1776,8 @@
 			files = (
 				5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */,
 				0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */,
+				5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */,
+				5524735E2142930A00A77557 /* UIImage+Extensions.swift in Sources */,
 				55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */,
 				0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */,
 				0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */,
@@ -1699,6 +1788,7 @@
 				0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */,
 				5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */,
 				0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */,
+				552473612142A07300A77557 /* DesignableView.swift in Sources */,
 				5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */,
 				550954EA20C9590000F5F25F /* TokenInput.swift in Sources */,
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,

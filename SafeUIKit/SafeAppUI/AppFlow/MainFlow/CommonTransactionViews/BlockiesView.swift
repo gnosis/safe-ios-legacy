@@ -4,6 +4,7 @@
 
 import UIKit
 
+// TODO: delete and use IdenticonView
 class BlockiesView: DesignableView {
 
     @IBInspectable

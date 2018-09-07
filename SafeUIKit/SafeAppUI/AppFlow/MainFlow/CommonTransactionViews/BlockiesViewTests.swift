@@ -5,6 +5,7 @@
 import XCTest
 @testable import SafeAppUI
 
+// TODO: move to UI Kit
 class BlockiesViewTests: XCTestCase {
 
     func test_whenChangingAddress_thenImageChanges() {

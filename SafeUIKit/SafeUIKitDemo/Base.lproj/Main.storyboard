@@ -4,8 +4,8 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -122,6 +122,26 @@
                                             <segue destination="N3U-c6-AuC" kind="show" id="y7l-Rc-gKD"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TextInput" textLabel="jtx-Lz-SiR" style="IBUITableViewCellStyleDefault" id="ODS-Jh-Lb9" userLabel="IdenticonView">
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ODS-Jh-Lb9" id="enU-5c-mYO">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="IdenticonView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jtx-Lz-SiR">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="5Eb-Xs-Xpt" kind="show" id="fDV-jR-c6W"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -218,6 +238,60 @@
             </objects>
             <point key="canvasLocation" x="1882" y="-576"/>
         </scene>
+        <!--Identicon-->
+        <scene sceneID="5Dg-Om-Jpv">
+            <objects>
+                <viewController title="Identicon" id="5Eb-Xs-Xpt" customClass="IdenticonViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ClP-KF-b12">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="McX-wR-fh4">
+                                <rect key="frame" x="12" y="84" width="351" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNS-24-MXj">
+                                        <rect key="frame" x="0.0" y="0.0" width="171.5" height="30"/>
+                                        <state key="normal" title="With Shadow"/>
+                                        <connections>
+                                            <action selector="addShadow:" destination="5Eb-Xs-Xpt" eventType="touchUpInside" id="7I5-gg-Di9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Zu-qp-byV">
+                                        <rect key="frame" x="179.5" y="0.0" width="171.5" height="30"/>
+                                        <state key="normal" title="Without Shadow"/>
+                                        <connections>
+                                            <action selector="removeShadow:" destination="5Eb-Xs-Xpt" eventType="touchUpInside" id="3sR-vH-kq6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yGw-m7-AFl" customClass="IdenticonView" customModule="SafeUIKit">
+                                <rect key="frame" x="137.5" y="164" width="100" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yGw-m7-AFl" secondAttribute="height" multiplier="1:1" id="eVK-0Z-6Ce"/>
+                                    <constraint firstAttribute="height" constant="100" id="uzR-vX-Dd0"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yGw-m7-AFl" firstAttribute="centerX" secondItem="efR-GB-y0W" secondAttribute="centerX" id="5Qw-gk-juz"/>
+                            <constraint firstItem="McX-wR-fh4" firstAttribute="top" secondItem="efR-GB-y0W" secondAttribute="top" constant="20" id="NRP-nl-0nu"/>
+                            <constraint firstItem="McX-wR-fh4" firstAttribute="leading" secondItem="efR-GB-y0W" secondAttribute="leading" constant="12" id="pL8-4A-p6z"/>
+                            <constraint firstItem="efR-GB-y0W" firstAttribute="trailing" secondItem="McX-wR-fh4" secondAttribute="trailing" constant="12" id="s0r-wV-ran"/>
+                            <constraint firstItem="yGw-m7-AFl" firstAttribute="top" secondItem="QNS-24-MXj" secondAttribute="bottom" constant="50" id="wok-sR-VRx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="efR-GB-y0W"/>
+                    </view>
+                    <connections>
+                        <outlet property="identiconView" destination="yGw-m7-AFl" id="sZL-7o-NA2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IUN-61-Ui6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="191" y="758"/>
+        </scene>
         <!--Segments-->
         <scene sceneID="VYb-TI-mvB">
             <objects>
@@ -242,15 +316,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mik-iB-vQp" customClass="ProgressView" customModule="SafeAppUI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mik-iB-vQp" customClass="ProgressView" customModule="SafeAppUI">
                                 <rect key="frame" x="16" y="96" width="343" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="2ke-ts-eBM"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pun-i2-N1a">
-                                <rect key="frame" x="152" y="162" width="71" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pun-i2-N1a">
+                                <rect key="frame" x="170.5" y="147" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="toggle:" destination="N3U-c6-AuC" eventType="touchUpInside" id="eEB-bp-rKX"/>
