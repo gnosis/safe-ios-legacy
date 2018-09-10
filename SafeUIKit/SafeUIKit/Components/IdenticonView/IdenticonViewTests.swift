@@ -3,12 +3,13 @@
 //
 
 import XCTest
-@testable import SafeAppUI
+@testable import SafeUIKit
 
-class BlockiesViewTests: XCTestCase {
+class IdenticonViewTests: XCTestCase {
+
+    let view = IdenticonView()
 
     func test_whenChangingAddress_thenImageChanges() {
-        let view = BlockiesView()
         view.seed = "a"
         let imageA = view.imageView.image
         view.seed = "b"
@@ -17,14 +18,14 @@ class BlockiesViewTests: XCTestCase {
     }
 
     func test_whenShown_thenHasCircleShape() {
-        let view = BlockiesView()
         let controller = UIViewController()
         controller.view.frame = UIScreen.main.bounds
         view.frame = controller.view.bounds
         controller.view.addSubview(view)
         createWindow(controller)
-        XCTAssertTrue(view.clipsToBounds)
-        XCTAssertEqual(view.layer.cornerRadius, view.frame.width / 2)
+        let subview = view.subviews[0]
+        XCTAssertTrue(subview.clipsToBounds)
+        XCTAssertEqual(subview.layer.cornerRadius, subview.bounds.width / 2)
     }
 
 }

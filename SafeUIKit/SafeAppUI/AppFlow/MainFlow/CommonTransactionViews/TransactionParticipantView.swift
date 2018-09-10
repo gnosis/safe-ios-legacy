@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SafeUIKit
 
 class TransactionParticipantView: DesignableView {
 
@@ -27,7 +28,7 @@ class TransactionParticipantView: DesignableView {
 
     var nameLabel: UILabel!
     var addressLabel: UILabel!
-    var blockiesView: BlockiesView!
+    var identiconView: IdenticonView!
     var textLabel: UILabel!
     var nonTextStack: UIStackView!
 
@@ -41,13 +42,13 @@ class TransactionParticipantView: DesignableView {
         addressLabel.textColor = ColorName.blueyGrey.color
         addressLabel.lineBreakMode = .byTruncatingMiddle
 
-        blockiesView = BlockiesView()
-        blockiesView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+        identiconView = IdenticonView()
+        identiconView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
 
         let nameStack = UIStackView(arrangedSubviews: [nameLabel, addressLabel])
         nameStack.axis = .vertical
 
-        nonTextStack = UIStackView(arrangedSubviews: [blockiesView, nameStack])
+        nonTextStack = UIStackView(arrangedSubviews: [identiconView, nameStack])
         nonTextStack.axis = .horizontal
         nonTextStack.distribution = .fill
         nonTextStack.alignment = .center
@@ -68,8 +69,8 @@ class TransactionParticipantView: DesignableView {
 
         NSLayoutConstraint.activate(
             [
-                blockiesView.widthAnchor.constraint(equalToConstant: 32),
-                blockiesView.heightAnchor.constraint(equalToConstant: 32)
+                identiconView.widthAnchor.constraint(equalToConstant: 32),
+                identiconView.heightAnchor.constraint(equalToConstant: 32)
             ])
         didLoad()
     }
@@ -82,7 +83,7 @@ class TransactionParticipantView: DesignableView {
         nonTextStack.isHidden = text != nil
         nameLabel.text = name
         addressLabel.text = address
-        blockiesView.seed = address
+        identiconView.seed = address
     }
 
 

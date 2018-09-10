@@ -26,9 +26,11 @@ class TokensTableViewControllerTests: SafeTestCase {
         let secondCell = cell(at: 0, 1)
         let thirdCell = cell(at: 1, 1)
         XCTAssertEqual(firstCell.tokenCodeLabel.text, "ETH")
-        XCTAssertEqual(firstCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "0.01 ETH")
+        XCTAssertEqual(firstCell.tokenBalanceCodeLabel.text, "ETH")
+        XCTAssertEqual(firstCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "0.01")
         XCTAssertEqual(secondCell.tokenCodeLabel.text, "GNO")
-        XCTAssertEqual(secondCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "1.00 GNO")
+        XCTAssertEqual(secondCell.tokenBalanceCodeLabel.text, "GNO")
+        XCTAssertEqual(secondCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "1.00")
         XCTAssertEqual(thirdCell.tokenCodeLabel.text, "MGN")
         XCTAssertEqual(thirdCell.tokenBalanceLabel.text, "--")
     }

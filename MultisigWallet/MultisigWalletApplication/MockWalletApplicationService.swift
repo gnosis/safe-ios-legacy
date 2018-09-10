@@ -67,6 +67,9 @@ public class MockWalletApplicationService: WalletApplicationService {
         _hasReadyToUseWallet = true
         assignAddress("0x111ccccccccccccccccccccccccccccccccccccc")
         update(account: Token.Ether.id, newBalance: BigInt(10).power(18))
+        visibleTokensOutput = [
+            TokenData(token: Token.Ether, balance: BigInt(10e17))
+        ]
     }
 
     public override func createNewDraftWallet() {

@@ -33,13 +33,14 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="1Zd-Bn-saN">
                                                 <rect key="frame" x="142.5" y="8.5" width="90" height="113.5"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mbm-DQ-Yym">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FU0-Jm-jDT" customClass="IdenticonView" customModule="SafeUIKit">
                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="90" id="YXx-Tm-vQI"/>
-                                                            <constraint firstAttribute="width" constant="90" id="gkV-vZ-bEb"/>
+                                                            <constraint firstAttribute="height" constant="90" id="8A6-Nw-kqG"/>
+                                                            <constraint firstAttribute="width" constant="90" id="9ii-vV-EH1"/>
                                                         </constraints>
-                                                    </imageView>
+                                                    </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HvK-Ud-0Mg">
                                                         <rect key="frame" x="0.0" y="93" width="90" height="20.5"/>
                                                         <subviews>
@@ -123,7 +124,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="safeAddressLabel" destination="Pqu-Ky-gxa" id="ufY-ti-E7Q"/>
-                        <outlet property="safeImageView" destination="mbm-DQ-Yym" id="oyn-NC-k5T"/>
+                        <outlet property="safeIdenticonView" destination="FU0-Jm-jDT" id="hYM-tg-bhS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="snj-aA-zwf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -454,11 +455,11 @@
                                                     <constraint firstAttribute="height" constant="20" id="KCu-OE-i97"/>
                                                 </constraints>
                                             </imageView>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kOV-v2-loh" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
-                                                <rect key="frame" x="42" y="0.0" width="0.0" height="44"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOV-v2-loh" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
+                                                <rect key="frame" x="42" y="21.5" width="50" height="1"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EZC-qM-B0L" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
-                                                <rect key="frame" x="52" y="0.0" width="291" height="44"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZC-qM-B0L" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
+                                                <rect key="frame" x="102" y="0.0" width="241" height="44"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tokenAmount" value="-1.10000 ETH"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="IBStyle">
@@ -487,14 +488,14 @@
                                     <constraint firstItem="9bO-C5-2MI" firstAttribute="leading" secondItem="5wW-Om-Ydr" secondAttribute="leading" id="ikp-DU-ip1"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a3a-bg-PE7" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3a-bg-PE7" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="248" width="375" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6Wu-8Y-uAW">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6Wu-8Y-uAW">
                                 <rect key="frame" x="16" y="270" width="343" height="236"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DPa-hP-BFi" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPa-hP-BFi" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="A8M-Jk-kZx"/>
@@ -504,14 +505,14 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="value" value="Outgoing Transfer"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fJ-ed-qN7" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fJ-ed-qN7" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="48" width="343" height="32"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="name" value="Submitted"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="value" value="May 6, 2018 - 3:34PM (2 months ago)"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQu-Qj-qJQ" customClass="StatusTransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQu-Qj-qJQ" customClass="StatusTransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="96" width="343" height="32"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="name" value="Status"/>
@@ -521,7 +522,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5am-MD-ipW" customClass="TokenAmountTransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5am-MD-ipW" customClass="TokenAmountTransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="144" width="343" height="32"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="name" value="Transaction fee"/>
@@ -531,7 +532,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maA-2G-VbL">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maA-2G-VbL">
                                         <rect key="frame" x="0.0" y="192" width="343" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="rPx-QS-Mq6"/>
@@ -962,11 +963,11 @@
                                                     <constraint firstAttribute="width" constant="32" id="fHa-AS-C6Z"/>
                                                 </constraints>
                                             </imageView>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Sq-rj-dxu" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
-                                                <rect key="frame" x="42" y="0.0" width="0.0" height="44"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Sq-rj-dxu" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
+                                                <rect key="frame" x="42" y="21.5" width="50" height="1"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dzu-pH-JMu" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
-                                                <rect key="frame" x="52" y="0.0" width="291" height="44"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dzu-pH-JMu" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
+                                                <rect key="frame" x="102" y="0.0" width="241" height="44"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tokenAmount" value="-1.10000 ETH"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="IBStyle">

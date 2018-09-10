@@ -44,9 +44,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#0888cb"></span>
   /// Alpha: 100% <br/> (0x0888cbff)
   static let darkAzure = ColorName(rgbaValue: 0x0888cbff)
-  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#a2a8ba"></span>
-  /// Alpha: 100% <br/> (0xa2a8baff)
-  static let darkGrey = ColorName(rgbaValue: 0xa2a8baff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#5856d6"></span>
+  /// Alpha: 100% <br/> (0x5856d6ff)
+  static let darkPeriwinkle = ColorName(rgbaValue: 0x5856d6ff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#21435a"></span>
   /// Alpha: 100% <br/> (0x21435aff)
   static let darkSlateBlue = ColorName(rgbaValue: 0x21435aff)
@@ -62,6 +62,12 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f4f5f9"></span>
   /// Alpha: 100% <br/> (0xf4f5f9ff)
   static let paleGreyThree = ColorName(rgbaValue: 0xf4f5f9ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#5ac8fa"></span>
+  /// Alpha: 100% <br/> (0x5ac8faff)
+  static let skyBlue = ColorName(rgbaValue: 0x5ac8faff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff9500"></span>
+  /// Alpha: 100% <br/> (0xff9500ff)
+  static let tangerine = ColorName(rgbaValue: 0xff9500ff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f02525"></span>
   /// Alpha: 100% <br/> (0xf02525ff)
   static let tomato = ColorName(rgbaValue: 0xf02525ff)
