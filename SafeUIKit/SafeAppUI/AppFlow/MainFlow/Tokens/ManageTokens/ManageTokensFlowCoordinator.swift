@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletApplication
+import Common
 
 final class ManageTokensFlowCoordinator: FlowCoordinator {
 

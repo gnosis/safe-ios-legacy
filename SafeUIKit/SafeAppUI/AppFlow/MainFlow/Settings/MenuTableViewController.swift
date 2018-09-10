@@ -38,7 +38,7 @@ final class MenuTableViewController: UITableViewController {
 
     struct MenuItem {
         var name: String
-        var icon: UIImage
+        var icon: UIImage?
     }
 
     enum SettingsSection: Hashable {
@@ -68,21 +68,21 @@ final class MenuTableViewController: UITableViewController {
                     name: "Gnosis Safe",
                     image: UIImage.createBlockiesImage(seed: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c")),
                  cellHeight: 90),
-                (item: MenuItem(name: Strings.manageTokens, icon: Asset.TokenIcons.eth.image),
+                (item: MenuItem(name: Strings.manageTokens, icon: nil),
                  cellHeight: 54)
             ]),
             (.owners, [
-                (item: MenuItem(name: Strings.changePassword, icon: Asset.TokenIcons.eth.image), cellHeight: 54),
-                (item: MenuItem(name: Strings.changeRecoveryPhrase, icon: Asset.TokenIcons.btc.image), cellHeight: 54),
-                (item: MenuItem(name: Strings.changeBrowserExtension, icon: Asset.TokenIcons.gnt.image),
+                (item: MenuItem(name: Strings.changePassword, icon: nil), cellHeight: 54),
+                (item: MenuItem(name: Strings.changeRecoveryPhrase, icon: nil), cellHeight: 54),
+                (item: MenuItem(name: Strings.changeBrowserExtension, icon: nil),
                  cellHeight: 54)
             ]),
             (.legal, [
-                (item: MenuItem(name: Strings.terms, icon: Asset.TokenIcons.eth.image), cellHeight: 54),
-                (item: MenuItem(name: Strings.privacyPolicy, icon: Asset.TokenIcons.btc.image), cellHeight: 54)
+                (item: MenuItem(name: Strings.terms, icon: nil), cellHeight: 54),
+                (item: MenuItem(name: Strings.privacyPolicy, icon: nil), cellHeight: 54)
             ]),
             (.rateApp, [
-                (item: MenuItem(name: Strings.rateApp, icon: Asset.TokenIcons.eth.image), cellHeight: 54)
+                (item: MenuItem(name: Strings.rateApp, icon: nil), cellHeight: 54)
             ])
         ]
     }

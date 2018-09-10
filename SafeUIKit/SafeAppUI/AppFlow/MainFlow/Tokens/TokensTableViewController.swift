@@ -3,7 +3,9 @@
 //
 
 import UIKit
+import SafeUIKit
 import MultisigWalletApplication
+import Common
 
 final class TokensTableViewController: UITableViewController {
 
@@ -72,7 +74,8 @@ final class TokensTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "TokensHeaderView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "TokensHeaderView")
         tableView.register(EmptyFooter.self, forHeaderFooterViewReuseIdentifier: "EmptyFooter")
-        tableView.register(UINib(nibName: "TokenBalanceTableViewCell", bundle: bundle),
+        tableView.register(UINib(nibName: "TokenBalanceTableViewCell",
+                                 bundle: Bundle(for: TokenBalanceTableViewCell.self)),
                            forCellReuseIdentifier: "TokenBalanceTableViewCell")
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
         tableView.rowHeight = UITableViewAutomaticDimension

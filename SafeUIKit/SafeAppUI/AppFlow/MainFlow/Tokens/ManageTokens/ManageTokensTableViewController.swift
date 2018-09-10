@@ -3,7 +3,9 @@
 //
 
 import UIKit
+import SafeUIKit
 import MultisigWalletApplication
+import Common
 
 protocol ManageTokensTableViewControllerDelegate: class {
     func addToken()

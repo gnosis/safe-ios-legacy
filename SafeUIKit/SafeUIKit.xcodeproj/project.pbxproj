@@ -85,8 +85,6 @@
 		0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */; };
 		0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0B20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift */; };
 		0A442DF9210B58BF00F19F80 /* FundsTransferTransactionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DF8210B58BF00F19F80 /* FundsTransferTransactionViewControllerTests.swift */; };
-		0A442DFC210B5F8A00F19F80 /* TokenNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */; };
-		0A4A1D2F2136B27B0088F9EC /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; };
 		0A4A1D4F2136B3630088F9EC /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; };
 		0A4A1D502136B3680088F9EC /* Kingfisher.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A4A1D512136B3CC0088F9EC /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; };
@@ -94,7 +92,6 @@
 		0A4A1D552136BA8D0088F9EC /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A4DF82020CE6FC70095C00D /* TokensTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */; };
 		0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4DF82320CE6FE20095C00D /* Main.storyboard */; };
-		0A4DF82720CE70B40095C00D /* TokenBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */; };
 		0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82E20CE9D5B0095C00D /* TransactionsTableViewController.swift */; };
 		0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF83020CE9D950095C00D /* TransactionTableViewCell.swift */; };
 		0A4EEA5120D02E9D005CDAC0 /* MainContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */; };
@@ -163,7 +160,6 @@
 		0AD5091F2110AABD008507CB /* FundsTransferTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5091E2110AABD008507CB /* FundsTransferTransactionViewModel.swift */; };
 		0AD509212110AAE3008507CB /* FundsValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD509202110AAE3008507CB /* FundsValidatorTests.swift */; };
 		0AD509232110AAEC008507CB /* FundsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD509222110AAEC008507CB /* FundsValidator.swift */; };
-		0AD8FD2F20CEC50500591B91 /* BlockiesSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; };
 		0AD8FD3020CEC51800591B91 /* BlockiesSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; };
 		0AD8FD3120CEC51E00591B91 /* BlockiesSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0AD8FD2E20CEC50500591B91 /* BlockiesSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AD93E0820481442008C38CA /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D520480C7B00445AC2 /* TextInputTests.swift */; };
@@ -229,6 +225,11 @@
 		555B0ED020CE678700424CEE /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0ECF20CE678700424CEE /* SipHash.framework */; };
 		555B0ED320CE682900424CEE /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0EBA20CE62C400424CEE /* BigInt.framework */; };
 		555B0ED420CE682E00424CEE /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0ECF20CE678700424CEE /* SipHash.framework */; };
+		556251D2214671B800F569EE /* TokenBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */; };
+		556251D3214671BE00F569EE /* TokenBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */; };
+		556251D42146721600F569EE /* TokenNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */; };
+		556251D52146721A00F569EE /* TokenNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */; };
+		556251D62146722E00F569EE /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
 		558FD80A20765C53004F070E /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* BigButton.swift */; };
@@ -236,13 +237,11 @@
 		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
 		55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */; };
 		55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */; };
-		55DFBCEE21355470004B2AC4 /* TokenBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */; };
 		55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */; };
 		55DFBD1A2136A883004B2AC4 /* AddTokenTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */; };
 		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
 		55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F558208A298200889C9F /* QRCodeInputTests.swift */; };
 		55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */; };
-		B0D619F00611FCC65F839484 /* TokenNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -721,6 +720,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				556251D62146722E00F569EE /* Kingfisher.framework in Frameworks */,
 				5524735C214292AE00A77557 /* BlockiesSwift.framework in Frameworks */,
 				55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */,
 				555B0ED020CE678700424CEE /* SipHash.framework in Frameworks */,
@@ -746,8 +746,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				552473622142AC2B00A77557 /* CryptoSwift.framework in Frameworks */,
-				0A4A1D2F2136B27B0088F9EC /* Kingfisher.framework in Frameworks */,
-				0AD8FD2F20CEC50500591B91 /* BlockiesSwift.framework in Frameworks */,
 				0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */,
 				0A334E64209C8ED300ABC6AE /* libIdentityAccessApplication.a in Frameworks */,
 				0A334DCA209C6DEC00ABC6AE /* SafeUIKit.framework in Frameworks */,
@@ -1051,6 +1049,8 @@
 				550954F120C966CF00F5F25F /* UIView+Extensions.swift */,
 				5524735D2142930A00A77557 /* UIImage+Extensions.swift */,
 				0AE950CF20D29D9E0099B79D /* DesignableView.swift */,
+				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
+				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
 			);
 			path = SafeUIKit;
 			sourceTree = "<group>";
@@ -1124,12 +1124,8 @@
 				0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */,
 				550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */,
 				0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */,
-				0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */,
-				55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */,
 				0A4DF81F20CE6FC70095C00D /* TokensTableViewController.swift */,
 				0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */,
-				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
-				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
 				0A7F74432110511A004F1150 /* TokenAmountValidatorTests.swift */,
 				0A7F744621105137004F1150 /* TokenAmountValidator.swift */,
 				55247302213E8D7600A77557 /* TokensHeaderView.swift */,
@@ -1179,6 +1175,7 @@
 		5524734F21428E4C00A77557 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				556251CF2146710800F569EE /* TokenBalanceCell */,
 				5524735921428FA300A77557 /* IdenticonView */,
 				5524735821428F5000A77557 /* H1Label */,
 				5524735721428F2500A77557 /* BackgroundImageView */,
@@ -1282,6 +1279,15 @@
 				0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		556251CF2146710800F569EE /* TokenBalanceCell */ = {
+			isa = PBXGroup;
+			children = (
+				0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */,
+				55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */,
+			);
+			path = TokenBalanceCell;
 			sourceTree = "<group>";
 		};
 		55DFBCF52135901D004B2AC4 /* Unlock */ = {
@@ -1607,6 +1613,7 @@
 			files = (
 				0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */,
 				0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */,
+				556251D3214671BE00F569EE /* TokenBalanceTableViewCell.xib in Resources */,
 				0A53AD5320598B5000D713AD /* Localizable.strings in Resources */,
 				550954F020C9594700F5F25F /* TokenInput.xib in Resources */,
 				5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */,
@@ -1629,7 +1636,6 @@
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
 				0A321BBE20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib in Resources */,
 				0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */,
-				55DFBCEE21355470004B2AC4 /* TokenBalanceTableViewCell.xib in Resources */,
 				0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */,
 				0A334E2F209C8E3800ABC6AE /* NewSafe.storyboard in Resources */,
 				0A334E4D209C8E3800ABC6AE /* AppFlow.storyboard in Resources */,
@@ -1789,6 +1795,8 @@
 				5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */,
 				550954EA20C9590000F5F25F /* TokenInput.swift in Sources */,
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
+				556251D2214671B800F569EE /* TokenBalanceTableViewCell.swift in Sources */,
+				556251D42146721600F569EE /* TokenNumberFormatter.swift in Sources */,
 				550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */,
 				558FD80A20765C53004F070E /* BigButton.swift in Sources */,
 				5506395C20D17CAD000F2A82 /* ApproximateCurrencyFormatter.swift in Sources */,
@@ -1807,6 +1815,7 @@
 				0A9BA3C9207F6B6A001DC22F /* BigButtonTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
 				550954EE20C9592900F5F25F /* TokenInputTests.swift in Sources */,
+				556251D52146721A00F569EE /* TokenNumberFormatterTests.swift in Sources */,
 				0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
 				5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */,
@@ -1820,7 +1829,6 @@
 			files = (
 				0AD50905211054FC008507CB /* EthereumAddressValidator.swift in Sources */,
 				55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */,
-				0A4DF82720CE70B40095C00D /* TokenBalanceTableViewCell.swift in Sources */,
 				0AD998B020D3FEBD00E6F3CA /* FundsTransferTransactionViewController.swift in Sources */,
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
 				0A8C962720D2B76D007D2410 /* ProgressView.swift in Sources */,
@@ -1870,7 +1878,6 @@
 				0A4EEA6620D107B7005CDAC0 /* SelectedSafeTableViewCell.swift in Sources */,
 				0A334E37209C8E3800ABC6AE /* PendingSafeViewController.swift in Sources */,
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
-				0A442DFC210B5F8A00F19F80 /* TokenNumberFormatter.swift in Sources */,
 				550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */,
 				0A5D467B20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift in Sources */,
 				0A334E3B209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift in Sources */,
@@ -1947,7 +1954,6 @@
 				0A334DC1209C6D8D00ABC6AE /* SetupSafeFlowCoordinatorTests.swift in Sources */,
 				0A442DF9210B58BF00F19F80 /* FundsTransferTransactionViewControllerTests.swift in Sources */,
 				0A7F74442110511A004F1150 /* TokenAmountValidatorTests.swift in Sources */,
-				B0D619F00611FCC65F839484 /* TokenNumberFormatterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

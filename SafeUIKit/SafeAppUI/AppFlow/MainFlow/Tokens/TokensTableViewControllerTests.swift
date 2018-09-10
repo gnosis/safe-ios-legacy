@@ -6,6 +6,8 @@ import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
 import CommonTestSupport
+import Common
+import SafeUIKit
 
 class TokensTableViewControllerTests: SafeTestCase {
 

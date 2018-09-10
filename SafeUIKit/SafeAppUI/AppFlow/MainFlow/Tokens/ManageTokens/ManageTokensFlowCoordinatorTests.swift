@@ -6,6 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
 import CommonTestSupport
+import Common
 
 class ManageTokensFlowCoordinatorTests: XCTestCase {
 

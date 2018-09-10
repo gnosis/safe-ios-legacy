@@ -6,6 +6,7 @@ import Foundation
 import MultisigWalletApplication
 import BigInt
 import Common
+import SafeUIKit
 
 class FundsTransferTransactionViewModel {
 
