@@ -67,7 +67,8 @@ public class SegmentBar: UIControl {
             let button = UIButton(type: UIButtonType.custom)
             button.setTitle(" " + item.title, for: .normal)
             button.setTitleColor(.black, for: .normal)
-            button.setImage(item.image, for: .normal)
+            button.setImage(item.selectedImage, for: .normal)
+            button.setImage(item.selectedImage, for: .highlighted)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
             button.backgroundColor = .white
             button.tag = index
@@ -87,7 +88,8 @@ public class SegmentBar: UIControl {
         buttons.enumerated().forEach { indx, button in
             if indx == index {
                 button.setTitleColor(.black, for: .normal)
-                button.tintColor = .black
+                button.setImage(items[indx].selectedImage, for: .normal)
+                button.setImage(items[indx].selectedImage, for: .highlighted)
                 selectionMarker.translatesAutoresizingMaskIntoConstraints = false
                 addSubview(selectionMarker)
                 NSLayoutConstraint.activate(
@@ -99,7 +101,8 @@ public class SegmentBar: UIControl {
                     ])
             } else {
                 button.setTitleColor(ColorName.blueyGrey.color, for: .normal)
-                button.tintColor = ColorName.blueyGrey.color
+                 button.setImage(items[indx].deselectedImage, for: .normal)
+                button.setImage(items[indx].deselectedImage, for: .highlighted)
             }
         }
         setNeedsUpdateConstraints()
@@ -113,23 +116,16 @@ public class SegmentBar: UIControl {
 
 }
 
-extension UIImage {
-    func withColor(_ color: UIColor) -> UIImage {
-        let imageView = UIImageView()
-        imageView.image = self
-        imageView.tintColor = color
-        return imageView.ren
-    }
-}
-
 public struct SegmentBarItem: Equatable {
 
     public var title: String
-    public var image: UIImage?
+    public var selectedImage: UIImage?
+    public var deselectedImage: UIImage?
 
-    public init(title: String, image: UIImage? = nil) {
+    public init(title: String, selectedImage: UIImage? = nil, deselectedImage: UIImage? = nil) {
         self.title = title
-        self.image = image
+        self.selectedImage = selectedImage
+        self.deselectedImage = deselectedImage
     }
 
 }

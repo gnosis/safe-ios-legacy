@@ -46,14 +46,10 @@ struct ColorAsset {
 enum Asset {
   static let faceIdIcon = ImageAsset(name: "face-id-icon")
   enum MainScreenHeader {
-    static let arrows = ImageAsset(name: "arrows")
-    static let arrowsGrey = ImageAsset(name: "arrows_grey")
-    static let coins = ImageAsset(name: "coins")
-    static let coinsGrey = ImageAsset(name: "coins_grey")
-    static let gnosisSafeLogo = ImageAsset(name: "gnosis-safe-logo")
-    static let qrcodeScan = ImageAsset(name: "qrcode-scan")
-    static let send = ImageAsset(name: "send")
-    static let settingsButtonIcon = ImageAsset(name: "settings-button-icon")
+    static let arrowsDeselected = ImageAsset(name: "arrows-deselected")
+    static let arrowsSelected = ImageAsset(name: "arrows-selected")
+    static let coinsDeselected = ImageAsset(name: "coins-deselected")
+    static let coinsSelected = ImageAsset(name: "coins-selected")
   }
   static let touchIdIcon = ImageAsset(name: "touch-id-icon")
   enum TransactionDetails {
@@ -82,14 +78,10 @@ enum Asset {
   ]
   static let allImages: [ImageAsset] = [
     faceIdIcon,
-    MainScreenHeader.arrows,
-    MainScreenHeader.arrowsGrey,
-    MainScreenHeader.coins,
-    MainScreenHeader.coinsGrey,
-    MainScreenHeader.gnosisSafeLogo,
-    MainScreenHeader.qrcodeScan,
-    MainScreenHeader.send,
-    MainScreenHeader.settingsButtonIcon,
+    MainScreenHeader.arrowsDeselected,
+    MainScreenHeader.arrowsSelected,
+    MainScreenHeader.coinsDeselected,
+    MainScreenHeader.coinsSelected,
     touchIdIcon,
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,
