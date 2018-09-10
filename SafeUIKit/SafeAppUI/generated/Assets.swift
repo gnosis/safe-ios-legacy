@@ -46,10 +46,8 @@ struct ColorAsset {
 enum Asset {
   static let faceIdIcon = ImageAsset(name: "face-id-icon")
   enum MainScreenHeader {
-    static let arrowsDeselected = ImageAsset(name: "arrows-deselected")
-    static let arrowsSelected = ImageAsset(name: "arrows-selected")
-    static let coinsDeselected = ImageAsset(name: "coins-deselected")
-    static let coinsSelected = ImageAsset(name: "coins-selected")
+    static let arrows = ImageAsset(name: "arrows")
+    static let coins = ImageAsset(name: "coins")
   }
   static let touchIdIcon = ImageAsset(name: "touch-id-icon")
   enum TransactionDetails {
@@ -78,10 +76,8 @@ enum Asset {
   ]
   static let allImages: [ImageAsset] = [
     faceIdIcon,
-    MainScreenHeader.arrowsDeselected,
-    MainScreenHeader.arrowsSelected,
-    MainScreenHeader.coinsDeselected,
-    MainScreenHeader.coinsSelected,
+    MainScreenHeader.arrows,
+    MainScreenHeader.coins,
     touchIdIcon,
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,

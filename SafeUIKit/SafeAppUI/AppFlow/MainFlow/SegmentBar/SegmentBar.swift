@@ -68,8 +68,8 @@ public class SegmentBar: UIControl {
             button.setTitle(" " + item.title, for: .normal)
             button.setTitleColor(.black, for: .normal)
             button.setTitleColor(.black, for: .highlighted)
-            button.setImage(item.selectedImage, for: .normal)
-            button.setImage(item.selectedImage, for: .highlighted)
+            button.setImage(item.image, for: .normal)
+            button.tintColor = .black
             button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
             button.backgroundColor = .white
             button.tag = index
@@ -89,7 +89,7 @@ public class SegmentBar: UIControl {
         buttons.enumerated().forEach { indx, button in
             if indx == index {
                 button.setTitleColor(.black, for: .normal)
-                button.setImage(items[indx].selectedImage, for: .normal)
+                button.tintColor = .black
                 selectionMarker.translatesAutoresizingMaskIntoConstraints = false
                 addSubview(selectionMarker)
                 NSLayoutConstraint.activate(
@@ -101,7 +101,7 @@ public class SegmentBar: UIControl {
                     ])
             } else {
                 button.setTitleColor(ColorName.blueyGrey.color, for: .normal)
-                button.setImage(items[indx].deselectedImage, for: .normal)
+                button.tintColor = ColorName.blueyGrey.color
             }
         }
         setNeedsUpdateConstraints()
@@ -118,13 +118,11 @@ public class SegmentBar: UIControl {
 public struct SegmentBarItem: Equatable {
 
     public var title: String
-    public var selectedImage: UIImage?
-    public var deselectedImage: UIImage?
+    public var image: UIImage?
 
-    public init(title: String, selectedImage: UIImage? = nil, deselectedImage: UIImage? = nil) {
+    public init(title: String, image: UIImage? = nil) {
         self.title = title
-        self.selectedImage = selectedImage
-        self.deselectedImage = deselectedImage
+        self.image = image
     }
 
 }

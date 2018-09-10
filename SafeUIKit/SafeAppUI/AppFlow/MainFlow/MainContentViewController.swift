@@ -24,8 +24,7 @@ extension TokensTableViewController: SegmentController {
 
     public var segmentItem: SegmentBarItem {
         return SegmentBarItem(title: LocalizedString("main.segment.assets", comment: "Assets tab title"),
-                              selectedImage: Asset.MainScreenHeader.coinsSelected.image,
-                              deselectedImage: Asset.MainScreenHeader.coinsDeselected.image)
+                              image: Asset.MainScreenHeader.coins.image)
     }
 
 }
@@ -34,8 +33,7 @@ extension TransactionsTableViewController: SegmentController {
 
     public var segmentItem: SegmentBarItem {
         return SegmentBarItem(title: LocalizedString("main.segment.transactions", comment: "Transactions tab title"),
-                              selectedImage: Asset.MainScreenHeader.arrowsSelected.image,
-                              deselectedImage: Asset.MainScreenHeader.arrowsDeselected.image)
+                              image: Asset.MainScreenHeader.arrows.image)
     }
 
 }
