@@ -65,31 +65,6 @@ final class TokensTableViewController: UITableViewController {
 
     }
 
-    private class GradientFooterView: UITableViewHeaderFooterView {
-
-        override class var layerClass: AnyClass {
-            return CAGradientLayer.classForCoder()
-        }
-
-        override init(reuseIdentifier: String?) {
-            super.init(reuseIdentifier: reuseIdentifier)
-            commonInit()
-        }
-
-        required init?(coder aDecoder: NSCoder) {
-            super.init(coder: aDecoder)
-            commonInit()
-        }
-
-        private func commonInit() {
-            backgroundView = UIView()
-            backgroundView?.backgroundColor = .clear
-            let gradientLayer = layer as! CAGradientLayer
-            gradientLayer.colors = [UIColor.black.withAlphaComponent(0.2).cgColor, UIColor.clear.cgColor]
-        }
-
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

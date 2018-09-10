@@ -56,11 +56,11 @@ class TokensTableViewControllerTests: SafeTestCase {
         XCTAssertTrue(delegate.didCallCreateNewTransaction)
     }
 
-    func test_whenThereAreTokens_thenWeDontShowTokensFooter() {
+    func test_whenThereAreTokens_thenWeShowGradientFooter() {
         createWindow(controller)
         controller.notify()
         let footer = controller.tableView(controller.tableView, viewForFooterInSection: 1)
-        XCTAssertNil(footer)
+        XCTAssertTrue(footer is GradientFooterView)
     }
 
     func test_whenThereAreNoTokens_thenTokensFooterIsShown() {
