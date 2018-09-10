@@ -45,8 +45,8 @@ final class TokensTableViewController: UITableViewController {
         sections.append((
             headerViewIdentifier: "TokensHeaderView",
             headerHeight: TokensHeaderView.height,
-            footerViewIdentifier: shouldShowTokensFooter ? "AddTokenFooterView" : nil,
-            footerHeight: shouldShowTokensFooter ? AddTokenFooterView.height : 0,
+            footerViewIdentifier: shouldShowTokensFooter ? "AddTokenFooterView" : "GradientFooterView",
+            footerHeight: shouldShowTokensFooter ? AddTokenFooterView.height : 4,
             elements: [TokenData](tokens.dropFirst())
         ))
     }
@@ -65,12 +65,38 @@ final class TokensTableViewController: UITableViewController {
 
     }
 
+    private class GradientFooterView: UITableViewHeaderFooterView {
+
+        override class var layerClass: AnyClass {
+            return CAGradientLayer.classForCoder()
+        }
+
+        override init(reuseIdentifier: String?) {
+            super.init(reuseIdentifier: reuseIdentifier)
+            commonInit()
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+            commonInit()
+        }
+
+        private func commonInit() {
+            backgroundView = UIView()
+            backgroundView?.backgroundColor = .clear
+            let gradientLayer = layer as! CAGradientLayer
+            gradientLayer.colors = [UIColor.black.withAlphaComponent(0.2).cgColor, UIColor.clear.cgColor]
+        }
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let bundle = Bundle(for: TokensTableViewController.self)
         tableView.register(UINib(nibName: "AddTokenFooterView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "AddTokenFooterView")
+        tableView.register(GradientFooterView.self, forHeaderFooterViewReuseIdentifier: "GradientFooterView")
         tableView.register(UINib(nibName: "TokensHeaderView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "TokensHeaderView")
         tableView.register(EmptyFooter.self, forHeaderFooterViewReuseIdentifier: "EmptyFooter")
