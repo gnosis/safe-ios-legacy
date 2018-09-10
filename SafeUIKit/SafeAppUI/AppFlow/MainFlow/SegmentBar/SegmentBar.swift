@@ -67,6 +67,7 @@ public class SegmentBar: UIControl {
             let button = UIButton(type: UIButtonType.custom)
             button.setTitle(" " + item.title, for: .normal)
             button.setTitleColor(.black, for: .normal)
+            button.setTitleColor(.black, for: .highlighted)
             button.setImage(item.selectedImage, for: .normal)
             button.setImage(item.selectedImage, for: .highlighted)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
@@ -89,7 +90,6 @@ public class SegmentBar: UIControl {
             if indx == index {
                 button.setTitleColor(.black, for: .normal)
                 button.setImage(items[indx].selectedImage, for: .normal)
-                button.setImage(items[indx].selectedImage, for: .highlighted)
                 selectionMarker.translatesAutoresizingMaskIntoConstraints = false
                 addSubview(selectionMarker)
                 NSLayoutConstraint.activate(
@@ -101,8 +101,7 @@ public class SegmentBar: UIControl {
                     ])
             } else {
                 button.setTitleColor(ColorName.blueyGrey.color, for: .normal)
-                 button.setImage(items[indx].deselectedImage, for: .normal)
-                button.setImage(items[indx].deselectedImage, for: .highlighted)
+                button.setImage(items[indx].deselectedImage, for: .normal)
             }
         }
         setNeedsUpdateConstraints()
