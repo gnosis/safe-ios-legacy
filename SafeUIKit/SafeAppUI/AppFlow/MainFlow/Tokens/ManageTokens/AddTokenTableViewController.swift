@@ -42,6 +42,7 @@ class AddTokenTableViewController: UITableViewController {
 
     static func create(delegate: AddTokenTableViewControllerDelegate) -> UINavigationController {
         let navControllet = StoryboardScene.Main.addTokenNavigationController.instantiate()
+        navControllet.navigationBar.isTranslucent = false
         let controller = navControllet.childViewControllers[0] as! AddTokenTableViewController
         controller.delegate = delegate
         return navControllet
@@ -73,13 +74,20 @@ class AddTokenTableViewController: UITableViewController {
     }
 
     private func configureTableView() {
-        tableView.sectionIndexMinimumDisplayRowCount = 15
         tableView.tableFooterView = UIView()
         let bundle = Bundle(for: TokenBalanceTableViewCell.self)
         tableView.register(UINib(nibName: "TokenBalanceTableViewCell", bundle: bundle),
                            forCellReuseIdentifier: "TokenBalanceTableViewCell")
+        tableView.register(AddTokenHeaderView.self, forHeaderFooterViewReuseIdentifier: "AddTokenHeaderView")
+
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
         tableView.rowHeight = UITableViewAutomaticDimension
+        let backgroundView = BackgroundImageView(frame: tableView.frame)
+        backgroundView.isDimmed = true
+        tableView.backgroundView = backgroundView
+
+        tableView.sectionIndexMinimumDisplayRowCount = 15
+        tableView.sectionIndexColor = .white
     }
 
     // MARK: - Table view data source
@@ -103,10 +111,6 @@ class AddTokenTableViewController: UITableViewController {
         return sectionTokensTitles
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTokensTitles[section]
-    }
-
     // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -115,6 +119,17 @@ class AddTokenTableViewController: UITableViewController {
 
     private func token(for indexPath: IndexPath) -> TokenData {
         return sectionedTokens[sectionTokensTitles[indexPath.section]]![indexPath.row]
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view =
+            tableView.dequeueReusableHeaderFooterView(withIdentifier: "AddTokenHeaderView") as! AddTokenHeaderView
+        view.label.text = sectionTokensTitles[section]
+        return view
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return AddTokenHeaderView.height
     }
 
 }

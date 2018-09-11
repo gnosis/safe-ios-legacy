@@ -45,6 +45,16 @@ class AddTokenTableViewControllerTests: XCTestCase {
         XCTAssertEqual(delegate.didSelectToken_input!, TokenData.gno)
     }
 
+    func test_whenViewForHeaderIsCalled_thenReturnsProperView() {
+        let view = controller.tableView(controller.tableView, viewForHeaderInSection: 0)
+        XCTAssertTrue(view is AddTokenHeaderView)
+    }
+
+    func test_whenHeightForHeaderIsCalled_thenRetuensProperHeight() {
+        let height = controller.tableView(controller.tableView, heightForHeaderInSection: 0)
+        XCTAssertEqual(height, AddTokenHeaderView.height)
+    }
+
 }
 
 
