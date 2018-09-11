@@ -29,12 +29,12 @@ public final class BackgroundImageView: UIImageView {
         dimmedView.backgroundColor = .clear
         dimmedView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         dimmedView.frame = frame
-        addSubview(dimmedView)
+        insertSubview(dimmedView, at: 0)
     }
 
     public var isDimmed = false {
         didSet {
-            dimmedView.backgroundColor = isDimmed ? UIColor.black.withAlphaComponent(0.1) : .clear
+            dimmedView.backgroundColor = isDimmed ? UIColor.black.withAlphaComponent(0.15) : .clear
         }
     }
 
