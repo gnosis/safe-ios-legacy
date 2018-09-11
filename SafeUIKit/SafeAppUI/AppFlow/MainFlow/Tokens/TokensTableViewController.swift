@@ -113,6 +113,7 @@ final class TokensTableViewController: UITableViewController {
                                                  for: indexPath) as! TokenBalanceTableViewCell
         cell.configure(tokenData: tokenData(for: indexPath))
         cell.displayName = .nameOnly
+        cell.withDisclosure = true
         return cell
     }
 

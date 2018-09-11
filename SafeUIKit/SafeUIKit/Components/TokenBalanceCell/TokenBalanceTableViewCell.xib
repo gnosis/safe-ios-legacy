@@ -33,13 +33,13 @@
                         <rect key="frame" x="72" y="20.5" width="290" height="20.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mle-uh-e48">
-                                <rect key="frame" x="0.0" y="0.0" width="188" height="20.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="179.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Sa7-JZ-Luj">
-                                <rect key="frame" x="196" y="0.0" width="94" height="20.5"/>
+                                <rect key="frame" x="187.5" y="0.0" width="102.5" height="20.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.49358" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gua-sL-z1D">
                                         <rect key="frame" x="0.0" y="0.0" width="55.5" height="20.5"/>
@@ -48,9 +48,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBk-mm-sVy">
-                                        <rect key="frame" x="58.5" y="0.0" width="35.5" height="20.5"/>
+                                        <rect key="frame" x="58.5" y="0.0" width="44" height="20.5"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="36" id="bRD-pI-Qvu"/>
+                                            <constraint firstAttribute="width" constant="44" id="bRD-pI-Qvu"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
