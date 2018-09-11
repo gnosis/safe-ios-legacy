@@ -6,6 +6,8 @@ import UIKit
 
 final class GradientFooterView: UITableViewHeaderFooterView {
 
+    static let height: CGFloat = 4
+
     override class var layerClass: AnyClass {
         return CAGradientLayer.classForCoder()
     }

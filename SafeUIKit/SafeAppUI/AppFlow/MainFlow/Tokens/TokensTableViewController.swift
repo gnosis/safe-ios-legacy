@@ -46,7 +46,7 @@ final class TokensTableViewController: UITableViewController {
             headerViewIdentifier: "TokensHeaderView",
             headerHeight: TokensHeaderView.height,
             footerViewIdentifier: shouldShowTokensFooter ? "AddTokenFooterView" : "GradientFooterView",
-            footerHeight: shouldShowTokensFooter ? AddTokenFooterView.height : 4,
+            footerHeight: shouldShowTokensFooter ? AddTokenFooterView.height : GradientFooterView.height,
             elements: [TokenData](tokens.dropFirst())
         ))
     }
