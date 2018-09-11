@@ -5,6 +5,8 @@
 import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
+import Common
+import SafeUIKit
 
 class AddTokenTableViewControllerTests: XCTestCase {
 
@@ -41,6 +43,16 @@ class AddTokenTableViewControllerTests: XCTestCase {
         selectSell(at: 0, 0)
         XCTAssertTrue(delegate.didSelect)
         XCTAssertEqual(delegate.didSelectToken_input!, TokenData.gno)
+    }
+
+    func test_whenViewForHeaderIsCalled_thenReturnsProperView() {
+        let view = controller.tableView(controller.tableView, viewForHeaderInSection: 0)
+        XCTAssertTrue(view is AddTokenHeaderView)
+    }
+
+    func test_whenHeightForHeaderIsCalled_thenRetuensProperHeight() {
+        let height = controller.tableView(controller.tableView, heightForHeaderInSection: 0)
+        XCTAssertEqual(height, AddTokenHeaderView.height)
     }
 
 }

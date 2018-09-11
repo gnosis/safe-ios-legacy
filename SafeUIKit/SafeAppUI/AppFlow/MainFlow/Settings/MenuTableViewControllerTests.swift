@@ -47,7 +47,7 @@ class MenuTableViewControllerTests: XCTestCase {
     func test_whenConfiguredMenuItemRow_thenAllSet() {
         let cell = self.cell(row: 0, section: 2) as! MenuItemTableViewCell
         XCTAssertNotNil(cell.itemNameLabel.text)
-        XCTAssertNotNil(cell.menuIconImageView.image)
+        XCTAssertNil(cell.menuIconImageView.image)
     }
 
     // MARK: - Did select row

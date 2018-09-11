@@ -4,6 +4,7 @@
 
 import Foundation
 import BigInt
+import SafeUIKit
 
 class TokenAmountValidator: Validator {
 

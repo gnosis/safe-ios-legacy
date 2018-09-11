@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SafeUIKit
 import MultisigWalletApplication
 import BigInt
 import Common

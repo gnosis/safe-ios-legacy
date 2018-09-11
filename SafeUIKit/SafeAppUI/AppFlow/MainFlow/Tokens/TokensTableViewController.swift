@@ -3,7 +3,9 @@
 //
 
 import UIKit
+import SafeUIKit
 import MultisigWalletApplication
+import Common
 
 final class TokensTableViewController: UITableViewController {
 
@@ -43,8 +45,8 @@ final class TokensTableViewController: UITableViewController {
         sections.append((
             headerViewIdentifier: "TokensHeaderView",
             headerHeight: TokensHeaderView.height,
-            footerViewIdentifier: shouldShowTokensFooter ? "AddTokenFooterView" : nil,
-            footerHeight: shouldShowTokensFooter ? AddTokenFooterView.height : 0,
+            footerViewIdentifier: shouldShowTokensFooter ? "AddTokenFooterView" : "GradientFooterView",
+            footerHeight: shouldShowTokensFooter ? AddTokenFooterView.height : GradientFooterView.height,
             elements: [TokenData](tokens.dropFirst())
         ))
     }
@@ -69,10 +71,12 @@ final class TokensTableViewController: UITableViewController {
         let bundle = Bundle(for: TokensTableViewController.self)
         tableView.register(UINib(nibName: "AddTokenFooterView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "AddTokenFooterView")
+        tableView.register(GradientFooterView.self, forHeaderFooterViewReuseIdentifier: "GradientFooterView")
         tableView.register(UINib(nibName: "TokensHeaderView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "TokensHeaderView")
         tableView.register(EmptyFooter.self, forHeaderFooterViewReuseIdentifier: "EmptyFooter")
-        tableView.register(UINib(nibName: "TokenBalanceTableViewCell", bundle: bundle),
+        tableView.register(UINib(nibName: "TokenBalanceTableViewCell",
+                                 bundle: Bundle(for: TokenBalanceTableViewCell.self)),
                            forCellReuseIdentifier: "TokenBalanceTableViewCell")
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -108,6 +112,8 @@ final class TokensTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TokenBalanceTableViewCell",
                                                  for: indexPath) as! TokenBalanceTableViewCell
         cell.configure(tokenData: tokenData(for: indexPath))
+        cell.displayName = .nameOnly
+        cell.withDisclosure = true
         return cell
     }
 

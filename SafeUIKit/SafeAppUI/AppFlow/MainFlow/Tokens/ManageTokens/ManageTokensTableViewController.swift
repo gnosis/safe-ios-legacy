@@ -3,7 +3,9 @@
 //
 
 import UIKit
+import SafeUIKit
 import MultisigWalletApplication
+import Common
 
 protocol ManageTokensTableViewControllerDelegate: class {
     func addToken()
@@ -21,7 +23,7 @@ extension Array {
 
 }
 
-class ManageTokensTableViewController: UITableViewController {
+final class ManageTokensTableViewController: UITableViewController {
 
     weak var delegate: ManageTokensTableViewControllerDelegate?
 
@@ -44,10 +46,11 @@ class ManageTokensTableViewController: UITableViewController {
         let bundle = Bundle(for: TokenBalanceTableViewCell.self)
         tableView.register(UINib(nibName: "TokenBalanceTableViewCell", bundle: bundle),
                            forCellReuseIdentifier: "TokenBalanceTableViewCell")
-        tableView.tableFooterView = UIView()
+        tableView.register(GradientFooterView.self, forHeaderFooterViewReuseIdentifier: "GradientFooterView")
+
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.backgroundColor = ColorName.paleGreyThree.color
+        tableView.backgroundView = BackgroundImageView(frame: tableView.frame)
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
         navigationItem.setLeftBarButton(addButton, animated: false)
@@ -79,7 +82,8 @@ class ManageTokensTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "TokenBalanceTableViewCell", for: indexPath) as! TokenBalanceTableViewCell
-        cell.configure(tokenData: tokens[indexPath.row], withBalance: false)
+        cell.configure(tokenData: tokens[indexPath.row])
+        cell.displayBalance = false
         return cell
     }
 
@@ -108,6 +112,14 @@ class ManageTokensTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return Strings.hide
+    }
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "GradientFooterView")
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return GradientFooterView.height
     }
 
 }
