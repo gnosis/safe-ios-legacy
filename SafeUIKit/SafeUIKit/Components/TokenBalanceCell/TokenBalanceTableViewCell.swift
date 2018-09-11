@@ -18,13 +18,16 @@ public final class TokenBalanceTableViewCell: UITableViewCell {
     public func configure(tokenData: TokenData,
                           withBalance: Bool = true,
                           withTokenName: Bool = false,
-                          withDisclosure: Bool = true) {
+                          withDisclosure: Bool = true,
+                          withTrailingSpace: Bool = false) {
         accessibilityIdentifier = tokenData.name
+
         if withDisclosure {
             accessoryType = .disclosureIndicator
         } else {
             accessoryType = .none
         }
+
         if tokenData.code == "ETH" {
             tokenImageView.image = Asset.TokenIcons.eth.image
         } else if let url = tokenData.logoURL {
@@ -32,9 +35,14 @@ public final class TokenBalanceTableViewCell: UITableViewCell {
         } else {
             tokenImageView.image = Asset.TokenIcons.defaultToken.image
         }
+
         tokenCodeLabel.text = withTokenName ? "\(tokenData.code) (\(tokenData.name))" : tokenData.code
         tokenBalanceLabel.text = withBalance ? formattedBalance(tokenData) : nil
         tokenBalanceCodeLabel.text = withBalance ? tokenData.code : nil
+
+        if withTrailingSpace {
+            backgroundColor = .clear
+        }
     }
 
     private func formattedBalance(_ tokenData: TokenData) -> String {

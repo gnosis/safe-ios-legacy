@@ -588,10 +588,10 @@
         <scene sceneID="BV9-w0-iMh">
             <objects>
                 <tableViewController storyboardIdentifier="AddTokenTableViewController" id="xvq-HX-D8P" customClass="AddTokenTableViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="npX-Ng-CNy" customClass="Add">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="npX-Ng-CNy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <connections>
                             <outlet property="dataSource" destination="xvq-HX-D8P" id="oZr-uB-4lP"/>
                             <outlet property="delegate" destination="xvq-HX-D8P" id="jpP-bW-Ke0"/>

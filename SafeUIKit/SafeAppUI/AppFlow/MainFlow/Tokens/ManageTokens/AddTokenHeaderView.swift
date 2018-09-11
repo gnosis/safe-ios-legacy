@@ -31,7 +31,7 @@ final class AddTokenHeaderView: UITableViewHeaderFooterView {
             [
                 label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
                 label.topAnchor.constraint(equalTo: topAnchor, constant: 3),
-                label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 3)
+                label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -3)
             ])
     }
 
