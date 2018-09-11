@@ -15,19 +15,49 @@ public final class TokenBalanceTableViewCell: UITableViewCell {
 
     public static let height: CGFloat = 60
 
-    public func configure(tokenData: TokenData,
-                          withBalance: Bool = true,
-                          withTokenName: Bool = false,
-                          withDisclosure: Bool = true,
-                          withTrailingSpace: Bool = false) {
-        accessibilityIdentifier = tokenData.name
+    public enum TokenDisplayName {
+        case codeOnly
+        case nameOnly
+        case full
+    }
 
-        if withDisclosure {
-            accessoryType = .disclosureIndicator
-        } else {
-            accessoryType = .none
+    private(set) var tokenData: TokenData!
+
+    public var displayBalance: Bool = true {
+        didSet {
+            tokenBalanceLabel.text = displayBalance ? formattedBalance(tokenData) : nil
+            tokenBalanceCodeLabel.text = displayBalance ? tokenData.code : nil
         }
+    }
 
+    public var displayName: TokenDisplayName = .codeOnly {
+        didSet {
+            switch displayName {
+            case .codeOnly:
+                tokenCodeLabel.text = tokenData.code
+            case .nameOnly:
+                tokenCodeLabel.text = tokenData.name
+            case .full:
+                tokenCodeLabel.text = "\(tokenData.code) (\(tokenData.name))"
+            }
+        }
+    }
+
+    public var withDisclosure: Bool = false {
+        didSet {
+            accessoryType = withDisclosure ? .disclosureIndicator : .none
+        }
+    }
+
+    public var withTrailingSpace: Bool = false {
+        didSet {
+            backgroundColor = withTrailingSpace ? .clear : .white
+        }
+    }
+
+    public func configure(tokenData: TokenData) {
+        self.tokenData = tokenData
+        accessibilityIdentifier = tokenData.name
         if tokenData.code == "ETH" {
             tokenImageView.image = Asset.TokenIcons.eth.image
         } else if let url = tokenData.logoURL {
@@ -35,14 +65,8 @@ public final class TokenBalanceTableViewCell: UITableViewCell {
         } else {
             tokenImageView.image = Asset.TokenIcons.defaultToken.image
         }
-
-        tokenCodeLabel.text = withTokenName ? "\(tokenData.code) (\(tokenData.name))" : tokenData.code
-        tokenBalanceLabel.text = withBalance ? formattedBalance(tokenData) : nil
-        tokenBalanceCodeLabel.text = withBalance ? tokenData.code : nil
-
-        if withTrailingSpace {
-            backgroundColor = .clear
-        }
+        displayName = .codeOnly
+        displayBalance = true
     }
 
     private func formattedBalance(_ tokenData: TokenData) -> String {

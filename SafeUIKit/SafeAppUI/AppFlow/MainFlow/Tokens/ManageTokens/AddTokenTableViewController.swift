@@ -105,12 +105,11 @@ class AddTokenTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TokenBalanceTableViewCell",
                                                  for: indexPath) as! TokenBalanceTableViewCell
-        cell.configure(
-            tokenData: token(for: indexPath),
-            withBalance: false,
-            withTokenName: true,
-            withDisclosure: false,
-            withTrailingSpace: true)
+        cell.configure(tokenData: token(for: indexPath))
+        cell.displayBalance = false
+        cell.displayName = .full
+        cell.withDisclosure = false
+        cell.withTrailingSpace = true
         return cell
     }
 

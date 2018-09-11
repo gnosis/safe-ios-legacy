@@ -112,6 +112,7 @@ final class TokensTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TokenBalanceTableViewCell",
                                                  for: indexPath) as! TokenBalanceTableViewCell
         cell.configure(tokenData: tokenData(for: indexPath))
+        cell.displayName = .nameOnly
         return cell
     }
 

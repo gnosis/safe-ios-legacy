@@ -82,7 +82,8 @@ final class ManageTokensTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "TokenBalanceTableViewCell", for: indexPath) as! TokenBalanceTableViewCell
-        cell.configure(tokenData: tokens[indexPath.row], withBalance: false)
+        cell.configure(tokenData: tokens[indexPath.row])
+        cell.displayBalance = false
         return cell
     }
 
