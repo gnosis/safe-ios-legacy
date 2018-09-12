@@ -232,6 +232,8 @@
 		556251D62146722E00F569EE /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D2E2136B27B0088F9EC /* Kingfisher.framework */; };
 		556251EA2146D38000F569EE /* GradientFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251E92146D38000F569EE /* GradientFooterView.swift */; };
 		556251F42147C34600F569EE /* AddTokenHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251F32147C34600F569EE /* AddTokenHeaderView.swift */; };
+		556251F9214912AA00F569EE /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251F8214912AA00F569EE /* QRCodeView.swift */; };
+		556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251FA2149135F00F569EE /* QRCodeViewController.swift */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
 		558FD80A20765C53004F070E /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* BigButton.swift */; };
@@ -679,6 +681,8 @@
 		555B0E6620CA83DF00424CEE /* TokenInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInputViewController.swift; sourceTree = "<group>"; };
 		556251E92146D38000F569EE /* GradientFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientFooterView.swift; sourceTree = "<group>"; };
 		556251F32147C34600F569EE /* AddTokenHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenHeaderView.swift; sourceTree = "<group>"; };
+		556251F8214912AA00F569EE /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		556251FA2149135F00F569EE /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
@@ -1015,6 +1019,7 @@
 				0A00293120CFD75E009A4BFE /* MySegmentViewController.swift */,
 				0A60B515211333620066821A /* ProgressViewController.swift */,
 				5524735F214293D500A77557 /* IdenticonViewController.swift */,
+				556251FA2149135F00F569EE /* QRCodeViewController.swift */,
 			);
 			path = SafeUIKitDemo;
 			sourceTree = "<group>";
@@ -1181,6 +1186,7 @@
 		5524734F21428E4C00A77557 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				556251F72149119200F569EE /* QRCodeView */,
 				556251CF2146710800F569EE /* TokenBalanceCell */,
 				5524735921428FA300A77557 /* IdenticonView */,
 				5524735821428F5000A77557 /* H1Label */,
@@ -1294,6 +1300,14 @@
 				55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */,
 			);
 			path = TokenBalanceCell;
+			sourceTree = "<group>";
+		};
+		556251F72149119200F569EE /* QRCodeView */ = {
+			isa = PBXGroup;
+			children = (
+				556251F8214912AA00F569EE /* QRCodeView.swift */,
+			);
+			path = QRCodeView;
 			sourceTree = "<group>";
 		};
 		55DFBCF52135901D004B2AC4 /* Unlock */ = {
@@ -1764,6 +1778,7 @@
 				0A60B516211333620066821A /* ProgressViewController.swift in Sources */,
 				55247360214293D500A77557 /* IdenticonViewController.swift in Sources */,
 				555B0E6720CA83DF00424CEE /* TokenInputViewController.swift in Sources */,
+				556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */,
 				0A0974D720480CEB005753DF /* TextInputViewController.swift in Sources */,
 				0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */,
 			);
@@ -1790,6 +1805,7 @@
 				55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */,
 				0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */,
 				0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */,
+				556251F9214912AA00F569EE /* QRCodeView.swift in Sources */,
 				0A9670DB20480C7B00445AC2 /* Fonts.swift in Sources */,
 				556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */,
 				0AD93E0920481461008C38CA /* Colors.swift in Sources */,
