@@ -15,6 +15,18 @@ final public class QRCodeView: DesignableView {
         }
     }
 
+    @IBInspectable
+    public var padding: CGFloat = 0 {
+        didSet {
+            guard padding > 0 && padding < bounds.width / 2 else { return }
+            imageView.frame = CGRect(
+                x: bounds.minX + padding,
+                y: bounds.minY + padding,
+                width: bounds.width - 2 * padding,
+                height: bounds.height - 2 * padding)
+        }
+    }
+
     internal let imageView = UIImageView()
 
     override public func commonInit() {
