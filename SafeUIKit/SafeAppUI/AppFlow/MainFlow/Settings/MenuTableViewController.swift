@@ -8,13 +8,25 @@ protocol MenuTableViewControllerDelegate: class {
     func didSelectManageTokens()
 }
 
+final class MenuItemTableViewCell: UITableViewCell {
+    static let height: CGFloat = 44
+}
+
 final class MenuTableViewController: UITableViewController {
 
     weak var delegate: MenuTableViewControllerDelegate?
 
-    private var menuItems = [(section: SettingsSection, items: [(item: Any, cellHeight: CGFloat)])]()
+    private var menuItems = [(section: SettingsSection, items: [(item: Any, cellHeight: CGFloat)], title: String)]()
 
     private enum Strings {
+        static let safeAddressSectionTitle = LocalizedString("menu.section.safe.title",
+                                                             comment: "Title for safe address section.")
+        static let portfolioSectionTitle = LocalizedString("menu.section.portfolio.title",
+                                                           comment: "Title for portfolio section.")
+        static let securitySectionTitle = LocalizedString("menu.section.security.title",
+                                                          comment: "Title for security section.")
+        static let supportSectionTitle = LocalizedString("menu.section.support.title",
+                                                         comment: "Title for support section.")
         static let manageTokens = LocalizedString("menu.action.manage_tokens", comment: "Manage Tokens menu item")
         static let changePassword = LocalizedString("menu.action.change_password",
                                                     comment: "Change password menu item")
@@ -22,6 +34,7 @@ final class MenuTableViewController: UITableViewController {
                                                           comment: "Change recovery key  menu item")
         static let changeBrowserExtension = LocalizedString("menu.action.change_browser_extension",
                                                             comment: "Change browser extension menu item")
+        static let feedback = LocalizedString("menu.action.feedback_and_faq", comment: "Feedback and FAQ menu item")
         static let terms = LocalizedString("menu.action.terms",
                                            comment: "Terms menu item")
         static let privacyPolicy = LocalizedString("menu.action.privacy_policy",
@@ -38,14 +51,13 @@ final class MenuTableViewController: UITableViewController {
 
     struct MenuItem {
         var name: String
-        var icon: UIImage?
     }
 
     enum SettingsSection: Hashable {
         case safe
-        case owners
-        case legal
-        case rateApp
+        case portfolio
+        case security
+        case support
     }
 
     static func create() -> MenuTableViewController {
@@ -57,34 +69,44 @@ final class MenuTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = ColorName.paleGreyThree.color
         tableView.separatorStyle = .singleLine
+        tableView.sectionHeaderHeight = 38
+        tableView.register(MenuItemTableViewCell.self, forCellReuseIdentifier: "MenuItemTableViewCell")
         generateData()
     }
 
     private func generateData() {
         menuItems = [
-            (.safe, [
+            (section: .safe,
+             items: [
                 (item: SafeDescription(
                     address: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c",
                     name: "Gnosis Safe",
-                    image: UIImage.createBlockiesImage(seed: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c")),
-                 cellHeight: 90),
-                (item: MenuItem(name: Strings.manageTokens, icon: nil),
-                 cellHeight: 54)
-            ]),
-            (.owners, [
-                (item: MenuItem(name: Strings.changePassword, icon: nil), cellHeight: 54),
-                (item: MenuItem(name: Strings.changeRecoveryPhrase, icon: nil), cellHeight: 54),
-                (item: MenuItem(name: Strings.changeBrowserExtension, icon: nil),
-                 cellHeight: 54)
-            ]),
-            (.legal, [
-                (item: MenuItem(name: Strings.terms, icon: nil), cellHeight: 54),
-                (item: MenuItem(name: Strings.privacyPolicy, icon: nil), cellHeight: 54)
-            ]),
-            (.rateApp, [
-                (item: MenuItem(name: Strings.rateApp, icon: nil), cellHeight: 54)
-            ])
+                    image: UIImage.createBlockiesImage(
+                        seed: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c")), cellHeight: 90)
+             ],
+             title: Strings.safeAddressSectionTitle),
+            (section: .portfolio,
+             items: [menuItem(Strings.manageTokens)],
+             title: Strings.portfolioSectionTitle),
+            (section: .security,
+             items: [
+                menuItem(Strings.changePassword),
+                menuItem(Strings.changeRecoveryPhrase),
+                menuItem(Strings.changeBrowserExtension)],
+             title: Strings.securitySectionTitle),
+            (section: .support,
+             items: [
+                menuItem(Strings.feedback, 0),
+                menuItem(Strings.terms),
+                menuItem(Strings.privacyPolicy),
+                menuItem(Strings.rateApp)],
+             title: Strings.supportSectionTitle)
         ]
+    }
+
+    private func menuItem(_ name: String, _ height: CGFloat = MenuItemTableViewCell.height) ->
+        (item: Any, cellHeight: CGFloat) {
+        return (item: MenuItem(name: name), cellHeight: height)
     }
 
     // MARK: - Table view data source
@@ -100,53 +122,39 @@ final class MenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch menuItems[indexPath.section].section {
         case .safe:
-            if let safeDescription = menuItems[indexPath.section].items[indexPath.row].item as? SafeDescription {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SelectedSafeTableViewCell", for: indexPath)
-                    as! SelectedSafeTableViewCell
-                cell.configure(safe: safeDescription)
-                return cell
-            } else {
-                let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
-                let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
-                    as! MenuItemTableViewCell
-                cell.configure(menuItem: menuItem)
-                return cell
-            }
-        case .owners, .legal, .rateApp:
+            let safeDescription = menuItems[indexPath.section].items[indexPath.row].item as! SafeDescription
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SelectedSafeTableViewCell", for: indexPath)
+                as! SelectedSafeTableViewCell
+            cell.configure(safe: safeDescription)
+            return cell
+        case .portfolio, .security, .support:
             let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
-                as! MenuItemTableViewCell
-            cell.configure(menuItem: menuItem)
+            cell.textLabel?.text = menuItem.name
             return cell
         }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return menuItems[section].title
     }
 
     // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch menuItems[indexPath.section].section {
-        case .safe:
+        case .portfolio:
             if let manageTokensItem = menuItems[indexPath.section].items[indexPath.row].item as? MenuItem,
                 manageTokensItem.name == Strings.manageTokens {
                 delegate?.didSelectManageTokens()
             }
             fallthrough
-        default:tableView.deselectRow(at: indexPath, animated: true)
+        default: tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return menuItems[indexPath.section].items[indexPath.row].cellHeight
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : 25
-    }
-
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
     }
 
 }

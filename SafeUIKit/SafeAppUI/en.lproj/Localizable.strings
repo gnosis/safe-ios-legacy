@@ -44,13 +44,16 @@
 "manage_tokens.title" = "Tokens";
 
 /* Change browser extension menu item */
-"menu.action.change_browser_extension" = "Change Browser Extension";
+"menu.action.change_browser_extension" = "Replace Browser Extension";
 
 /* Change password menu item */
 "menu.action.change_password" = "Change Password";
 
 /* Change recovery key  menu item */
-"menu.action.change_recovery_phrase" = "Change Recovery Phrase";
+"menu.action.change_recovery_phrase" = "Replace Recovery Phrase";
+
+/* Feedback and FAQ menu item */
+"menu.action.feedback_and_faq" = "Feedback and FAQs";
 
 /* Manage Tokens menu item */
 "menu.action.manage_tokens" = "Manage Tokens";
@@ -63,6 +66,18 @@
 
 /* Terms menu item */
 "menu.action.terms" = "Terms";
+
+/* Title for portfolio section. */
+"menu.section.portfolio.title" = "Portfolio";
+
+/* Title for safe address section. */
+"menu.section.safe.title" = "Address";
+
+/* Title for security section. */
+"menu.section.security.title" = "Security";
+
+/* Title for support section. */
+"menu.section.support.title" = "Support";
 
 /* Browser extension Button */
 "new_safe.browser_extension" = "Browser Extension";
