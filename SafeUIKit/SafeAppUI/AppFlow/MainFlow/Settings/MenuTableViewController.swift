@@ -19,6 +19,7 @@ final class MenuTableViewController: UITableViewController {
     private var menuItems = [(section: SettingsSection, items: [(item: Any, cellHeight: CGFloat)], title: String)]()
 
     private enum Strings {
+        static let title = LocalizedString("menu.title", comment: "Title for menu screen.")
         static let safeAddressSectionTitle = LocalizedString("menu.section.safe.title",
                                                              comment: "Title for safe address section.")
         static let portfolioSectionTitle = LocalizedString("menu.section.portfolio.title",
@@ -45,7 +46,6 @@ final class MenuTableViewController: UITableViewController {
 
     struct SafeDescription {
         var address: String
-        var name: String
         var image: UIImage
     }
 
@@ -66,11 +66,14 @@ final class MenuTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = Strings.title
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = ColorName.paleGreyThree.color
         tableView.separatorStyle = .singleLine
         tableView.sectionHeaderHeight = 38
         tableView.register(MenuItemTableViewCell.self, forCellReuseIdentifier: "MenuItemTableViewCell")
+
         generateData()
     }
 
@@ -80,7 +83,6 @@ final class MenuTableViewController: UITableViewController {
              items: [
                 (item: SafeDescription(
                     address: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c",
-                    name: "Gnosis Safe",
                     image: UIImage.createBlockiesImage(
                         seed: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c")), cellHeight: 90)
              ],
@@ -96,7 +98,7 @@ final class MenuTableViewController: UITableViewController {
              title: Strings.securitySectionTitle),
             (section: .support,
              items: [
-                menuItem(Strings.feedback, 0),
+                menuItem(Strings.feedback),
                 menuItem(Strings.terms),
                 menuItem(Strings.privacyPolicy),
                 menuItem(Strings.rateApp)],
@@ -123,14 +125,15 @@ final class MenuTableViewController: UITableViewController {
         switch menuItems[indexPath.section].section {
         case .safe:
             let safeDescription = menuItems[indexPath.section].items[indexPath.row].item as! SafeDescription
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SelectedSafeTableViewCell", for: indexPath)
-                as! SelectedSafeTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SafeTableViewCell", for: indexPath)
+                as! SafeTableViewCell
             cell.configure(safe: safeDescription)
             return cell
         case .portfolio, .security, .support:
             let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
             cell.textLabel?.text = menuItem.name
+            cell.accessoryType = .disclosureIndicator
             return cell
         }
     }

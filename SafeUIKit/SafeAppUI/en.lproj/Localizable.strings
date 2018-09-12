@@ -79,6 +79,9 @@
 /* Title for support section. */
 "menu.section.support.title" = "Support";
 
+/* Title for menu screen. */
+"menu.title" = "Menu";
+
 /* Browser extension Button */
 "new_safe.browser_extension" = "Browser Extension";
 
