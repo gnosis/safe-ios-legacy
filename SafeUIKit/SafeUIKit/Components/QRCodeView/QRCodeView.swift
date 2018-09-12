@@ -11,7 +11,7 @@ final public class QRCodeView: DesignableView {
     @IBInspectable
     public var value: String? {
         didSet {
-            update()
+            setNeedsUpdate()
         }
     }
 
