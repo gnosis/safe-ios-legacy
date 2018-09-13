@@ -16,7 +16,6 @@ public class DesignableView: UIView {
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInit()
     }
 
     public override func awakeFromNib() {
