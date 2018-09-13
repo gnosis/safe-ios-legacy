@@ -29,6 +29,15 @@ open class AppFlowCoordinator: FlowCoordinator {
 
     public init() {
         super.init(rootViewController: SafeNavigationController())
+        configureGloabalAppearance()
+    }
+
+    private func configureGloabalAppearance() {
+        let barButtonAppearance = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
+        barButtonAppearance.tintColor = ColorName.indigoBlue.color
+
+        let buttonAppearance = UIButton.appearance()
+        buttonAppearance.tintColor = ColorName.indigoBlue.color
     }
 
     open override func setUp() {

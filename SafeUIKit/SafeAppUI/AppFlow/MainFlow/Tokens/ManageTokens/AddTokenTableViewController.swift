@@ -71,6 +71,7 @@ class AddTokenTableViewController: UITableViewController {
         searchController.searchBar.showsCancelButton = true
         searchController.searchBar.delegate = self
         searchController.searchBar.searchBarStyle = .prominent
+        searchController.searchBar.tintColor = ColorName.indigoBlue.color
     }
 
     private func configureTableView() {

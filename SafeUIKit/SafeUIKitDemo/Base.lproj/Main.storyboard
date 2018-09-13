@@ -142,6 +142,26 @@
                                             <segue destination="5Eb-Xs-Xpt" kind="show" id="fDV-jR-c6W"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="QRCodeView" textLabel="obH-3H-nc4" style="IBUITableViewCellStyleDefault" id="wV1-EB-PGc">
+                                        <rect key="frame" x="0.0" y="264" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wV1-EB-PGc" id="0GZ-n6-EFO">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="QRCodeView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="obH-3H-nc4">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="b3o-ac-0tl" kind="show" id="wUJ-zW-l6E"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -294,7 +314,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUN-61-Ui6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="191" y="758"/>
+            <point key="canvasLocation" x="172" y="1040"/>
         </scene>
         <!--Segments-->
         <scene sceneID="VYb-TI-mvB">
@@ -310,7 +330,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BRE-9b-pCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1084" y="761"/>
+            <point key="canvasLocation" x="865" y="1106"/>
         </scene>
         <!--ProgressView-->
         <scene sceneID="E5s-Ll-ea3">
@@ -352,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lTh-Tr-8Fg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1933.5999999999999" y="718.29085457271367"/>
+            <point key="canvasLocation" x="1558" y="1243"/>
         </scene>
         <!--QRCodeInput-->
         <scene sceneID="bpq-FF-WHS">
@@ -407,6 +427,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hy9-Nk-nb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2604" y="-380"/>
+        </scene>
+        <!--QRCodeView-->
+        <scene sceneID="oYY-i3-60S">
+            <objects>
+                <viewController title="QRCodeView" id="b3o-ac-0tl" customClass="QRCodeViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fOq-oa-Yuu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Encoded string:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maJ-3k-xDa">
+                                <rect key="frame" x="12" y="84" width="121" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qfa-fu-h3h">
+                                <rect key="frame" x="12" y="117" width="351" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xko-XR-r5S" customClass="QRCodeView" customModule="SafeUIKit">
+                                <rect key="frame" x="127" y="197" width="120" height="120"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="NM2-uh-KLq"/>
+                                    <constraint firstAttribute="width" constant="120" id="h2t-nq-DiS"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="value" value="Gnosis Safe"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="padding">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9FN-OI-132" firstAttribute="trailing" secondItem="Qfa-fu-h3h" secondAttribute="trailing" constant="12" id="2hP-R3-B39"/>
+                            <constraint firstItem="xko-XR-r5S" firstAttribute="top" secondItem="Qfa-fu-h3h" secondAttribute="bottom" constant="50" id="4p3-Yc-rQl"/>
+                            <constraint firstItem="maJ-3k-xDa" firstAttribute="leading" secondItem="9FN-OI-132" secondAttribute="leading" constant="12" id="Mfi-7r-eCh"/>
+                            <constraint firstItem="maJ-3k-xDa" firstAttribute="top" secondItem="9FN-OI-132" secondAttribute="top" constant="20" id="T04-ew-eay"/>
+                            <constraint firstItem="xko-XR-r5S" firstAttribute="centerX" secondItem="9FN-OI-132" secondAttribute="centerX" id="XGB-zs-c9J"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="maJ-3k-xDa" secondAttribute="trailing" constant="20" symbolic="YES" id="dHL-7s-wKX"/>
+                            <constraint firstItem="Qfa-fu-h3h" firstAttribute="leading" secondItem="9FN-OI-132" secondAttribute="leading" constant="12" id="fKr-Z7-5bf"/>
+                            <constraint firstItem="Qfa-fu-h3h" firstAttribute="top" secondItem="maJ-3k-xDa" secondAttribute="bottom" constant="12" id="jHR-zH-vAf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9FN-OI-132"/>
+                    </view>
+                    <connections>
+                        <outlet property="input" destination="Qfa-fu-h3h" id="Bat-mZ-I5j"/>
+                        <outlet property="qrCodeView" destination="xko-XR-r5S" id="gjH-gR-Zxw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zkd-UM-84y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2328.8000000000002" y="507.79610194902551"/>
         </scene>
         <!--TokenInput-->
         <scene sceneID="ctb-rB-S28">
@@ -475,7 +552,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQ5-Zp-4ct" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2597.5999999999999" y="297.30134932533736"/>
+            <point key="canvasLocation" x="3247" y="32"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KwY-5H-yHZ">
