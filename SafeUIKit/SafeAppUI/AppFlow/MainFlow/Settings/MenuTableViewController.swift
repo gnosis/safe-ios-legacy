@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import MultisigWalletApplication
 
 protocol MenuTableViewControllerDelegate: class {
     func didSelectManageTokens()
@@ -80,22 +81,20 @@ final class MenuTableViewController: UITableViewController {
         tableView.separatorStyle = .singleLine
         tableView.sectionHeaderHeight = 38
         tableView.register(MenuItemTableViewCell.self, forCellReuseIdentifier: "MenuItemTableViewCell")
-        tableView.register(SafeQRCodeTableViewCell.self, forCellReuseIdentifier: "SafeQRCodeTableViewCell")
 
         generateData()
     }
 
     private func generateData() {
+        guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
+
         menuItems = [
             (section: .safe,
              items: [
-                (item: SafeDescription(
-                    address: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c", // TODO: provide real address
-                    image: UIImage.createBlockiesImage(
-                        seed: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c")),
+                (item: SafeDescription(address: address, image: UIImage.createBlockiesImage(seed: address)),
                  cellHeight: { return SafeTableViewCell.height }),
-                (item: SafeQRCode(address: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c"),
-                 cellHeight: { return self.showQRCode ? 250 : 0 })
+                (item: SafeQRCode(address: address),
+                 cellHeight: { return self.showQRCode ? SafeQRCodeTableViewCell.height : 0 })
              ],
              title: Strings.safeAddressSectionTitle),
             (section: .portfolio,
