@@ -67,6 +67,9 @@
 /* Terms menu item */
 "menu.action.terms" = "Terms";
 
+/* App Version */
+"menu.app_version" = "App Version";
+
 /* Title for portfolio section. */
 "menu.section.portfolio.title" = "Portfolio";
 

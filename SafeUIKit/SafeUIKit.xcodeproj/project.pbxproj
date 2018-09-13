@@ -243,6 +243,7 @@
 		55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */; };
 		55DEBC0C214A85E10017CD4B /* SafeQRCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */; };
 		55DEBC13214AA6660017CD4B /* BackgroundHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */; };
+		55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */; };
 		55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */; };
 		55DFBD1A2136A883004B2AC4 /* AddTokenTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */; };
 		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
@@ -694,6 +695,7 @@
 		55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeQRCodeTableViewCell.swift; sourceTree = "<group>"; };
 		55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundHeaderFooterView.swift; sourceTree = "<group>"; };
+		55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionTableViewCell.swift; sourceTree = "<group>"; };
 		55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenBalanceTableViewCell.xib; sourceTree = "<group>"; };
 		55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenTableViewController.swift; sourceTree = "<group>"; };
 		55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenTableViewControllerTests.swift; sourceTree = "<group>"; };
@@ -905,14 +907,14 @@
 				0A8C963420D2CFD4007D2410 /* TransactionReview */,
 				0A8C961920D2A783007D2410 /* TransactionDetails */,
 				0AF8D53D20D01002001E8423 /* SegmentBar */,
-				0A4EEA6B20D11109005CDAC0 /* Settings */,
+				0A4EEA6B20D11109005CDAC0 /* Menu */,
 				0AF8D53A20D00FDB001E8423 /* Tokens */,
 				0AF8D53C20D00FF6001E8423 /* Transactions */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
 		};
-		0A4EEA6B20D11109005CDAC0 /* Settings */ = {
+		0A4EEA6B20D11109005CDAC0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
 				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
@@ -920,8 +922,9 @@
 				0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */,
 				55625213214A601900F569EE /* SafeTableViewCellTests.swift */,
 				55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */,
+				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
 			);
-			path = Settings;
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		0A60B50E211312C00066821A /* NewTransaction */ = {
@@ -1871,6 +1874,7 @@
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
 				0A8C962720D2B76D007D2410 /* ProgressView.swift in Sources */,
 				556251EA2146D38000F569EE /* GradientFooterView.swift in Sources */,
+				55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */,
 				0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */,
 				0A00293020CFCBA3009A4BFE /* SegmentBarController.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,

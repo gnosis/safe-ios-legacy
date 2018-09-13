@@ -60,6 +60,8 @@ final class MenuTableViewController: UITableViewController {
         var name: String
     }
 
+    struct AppVersion {}
+
     enum SettingsSection: Hashable {
         case safe
         case portfolio
@@ -118,7 +120,8 @@ final class MenuTableViewController: UITableViewController {
                 menuItem(Strings.feedback),
                 menuItem(Strings.terms),
                 menuItem(Strings.privacyPolicy),
-                menuItem(Strings.rateApp)],
+                menuItem(Strings.rateApp),
+                (item: AppVersion(), cellHeight: { return AppVersionTableViewCell.height })],
              title: Strings.supportSectionTitle)
         ]
     }
@@ -164,6 +167,10 @@ final class MenuTableViewController: UITableViewController {
             }
 
         case .portfolio, .security, .support:
+            if menuItems[indexPath.section].items[indexPath.row].item is AppVersion {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "AppVersionTableViewCell", for: indexPath)
+                return cell
+            }
             let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
             cell.textLabel?.text = menuItem.name
