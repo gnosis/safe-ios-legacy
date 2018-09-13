@@ -44,15 +44,15 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#0888cb"></span>
   /// Alpha: 100% <br/> (0x0888cbff)
   static let darkAzure = ColorName(rgbaValue: 0x0888cbff)
-  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#5856d6"></span>
-  /// Alpha: 100% <br/> (0x5856d6ff)
-  static let darkPeriwinkle = ColorName(rgbaValue: 0x5856d6ff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#21435a"></span>
   /// Alpha: 100% <br/> (0x21435aff)
   static let darkSlateBlue = ColorName(rgbaValue: 0x21435aff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#09a862"></span>
   /// Alpha: 100% <br/> (0x09a862ff)
   static let greenTeal = ColorName(rgbaValue: 0x09a862ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#401d9c"></span>
+  /// Alpha: 100% <br/> (0x401d9cff)
+  static let indigoBlue = ColorName(rgbaValue: 0x401d9cff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e4e8f1"></span>
   /// Alpha: 100% <br/> (0xe4e8f1ff)
   static let paleGrey = ColorName(rgbaValue: 0xe4e8f1ff)
