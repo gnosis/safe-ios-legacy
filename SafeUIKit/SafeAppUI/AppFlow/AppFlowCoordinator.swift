@@ -29,6 +29,15 @@ open class AppFlowCoordinator: FlowCoordinator {
 
     public init() {
         super.init(rootViewController: SafeNavigationController())
+        configureGloabalAppearance()
+    }
+
+    private func configureGloabalAppearance() {
+        let barButtonAppearance = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
+        barButtonAppearance.tintColor = ColorName.darkPeriwinkle.color
+
+        let buttonAppearance = UIButton.appearance()
+        buttonAppearance.tintColor = ColorName.darkPeriwinkle.color
     }
 
     open override func setUp() {
