@@ -11,6 +11,9 @@ final class SafeTableViewCell: UITableViewCell {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var qrCodeButton: UIButton!
     @IBOutlet weak var tappableChevronView: UIView!
+    @IBOutlet weak var chevronImageView: UIImageView!
+
+    static let height: CGFloat = 110
 
     var onShare: (() -> Void)?
     var onShowQRCode: (() -> Void)?
@@ -23,9 +26,12 @@ final class SafeTableViewCell: UITableViewCell {
             UITapGestureRecognizer(target: self, action: #selector(showQRCode(_:))))
     }
 
-    func configure(safe: MenuTableViewController.SafeDescription) {
+    func configure(safe: MenuTableViewController.SafeDescription, qrCodeShown: Bool) {
         safeIconImageView.image = safe.image
         safeAddressLabel.text = safe.address
+        if qrCodeShown {
+            chevronImageView.transform = CGAffineTransform(rotationAngle: .pi)
+        }
     }
 
     @IBAction func share(_ sender: Any) {

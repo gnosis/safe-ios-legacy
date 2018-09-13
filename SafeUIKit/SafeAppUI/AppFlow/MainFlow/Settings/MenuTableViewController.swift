@@ -16,7 +16,8 @@ final class MenuTableViewController: UITableViewController {
 
     weak var delegate: MenuTableViewControllerDelegate?
 
-    private var menuItems = [(section: SettingsSection, items: [(item: Any, cellHeight: CGFloat)], title: String)]()
+    private var menuItems =
+        [(section: SettingsSection, items: [(item: Any, cellHeight: () -> CGFloat)], title: String)]()
 
     private enum Strings {
         static let title = LocalizedString("menu.title", comment: "Title for menu screen.")
@@ -49,6 +50,10 @@ final class MenuTableViewController: UITableViewController {
         var image: UIImage
     }
 
+    struct SafeQRCode {
+        var address: String
+    }
+
     struct MenuItem {
         var name: String
     }
@@ -59,6 +64,8 @@ final class MenuTableViewController: UITableViewController {
         case security
         case support
     }
+
+    private var showQRCode = false
 
     static func create() -> MenuTableViewController {
         return StoryboardScene.Main.menuTableViewController.instantiate()
@@ -73,6 +80,7 @@ final class MenuTableViewController: UITableViewController {
         tableView.separatorStyle = .singleLine
         tableView.sectionHeaderHeight = 38
         tableView.register(MenuItemTableViewCell.self, forCellReuseIdentifier: "MenuItemTableViewCell")
+        tableView.register(SafeQRCodeTableViewCell.self, forCellReuseIdentifier: "SafeQRCodeTableViewCell")
 
         generateData()
     }
@@ -82,9 +90,12 @@ final class MenuTableViewController: UITableViewController {
             (section: .safe,
              items: [
                 (item: SafeDescription(
-                    address: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c",
+                    address: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c", // TODO: provide real address
                     image: UIImage.createBlockiesImage(
-                        seed: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c")), cellHeight: 90)
+                        seed: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c")),
+                 cellHeight: { return SafeTableViewCell.height }),
+                (item: SafeQRCode(address: "0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c"),
+                 cellHeight: { return self.showQRCode ? 250 : 0 })
              ],
              title: Strings.safeAddressSectionTitle),
             (section: .portfolio,
@@ -107,8 +118,8 @@ final class MenuTableViewController: UITableViewController {
     }
 
     private func menuItem(_ name: String, _ height: CGFloat = MenuItemTableViewCell.height) ->
-        (item: Any, cellHeight: CGFloat) {
-        return (item: MenuItem(name: name), cellHeight: height)
+        (item: Any, cellHeight: () -> CGFloat) {
+            return (item: MenuItem(name: name), cellHeight: { return height })
     }
 
     // MARK: - Table view data source
@@ -124,19 +135,28 @@ final class MenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch menuItems[indexPath.section].section {
         case .safe:
-            let safeDescription = menuItems[indexPath.section].items[indexPath.row].item as! SafeDescription
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SafeTableViewCell", for: indexPath)
-                as! SafeTableViewCell
-            cell.configure(safe: safeDescription)
-            cell.onShare = { [unowned self] in
-                let activityController = UIActivityViewController(
-                    activityItems: [safeDescription.address], applicationActivities: nil)
-                self.present(activityController, animated: true)
+            if let safeDescription = menuItems[indexPath.section].items[indexPath.row].item as? SafeDescription {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SafeTableViewCell", for: indexPath)
+                    as! SafeTableViewCell
+                cell.configure(safe: safeDescription, qrCodeShown: showQRCode)
+                cell.onShare = { [unowned self] in
+                    let activityController = UIActivityViewController(
+                        activityItems: [safeDescription.address], applicationActivities: nil)
+                    self.present(activityController, animated: true)
+                }
+                cell.onShowQRCode = { [unowned self] in
+                    self.showQRCode = !self.showQRCode
+                    self.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
+                }
+                return cell
+            } else {
+                let qrCodeItem = menuItems[indexPath.section].items[indexPath.row].item as! SafeQRCode
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SafeQRCodeTableViewCell", for: indexPath)
+                    as! SafeQRCodeTableViewCell
+                cell.configure(code: qrCodeItem)
+                return cell
             }
-            cell.onShowQRCode = {
-                print("Show QR Code")
-            }
-            return cell
+
         case .portfolio, .security, .support:
             let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
@@ -165,7 +185,7 @@ final class MenuTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return menuItems[indexPath.section].items[indexPath.row].cellHeight
+        return menuItems[indexPath.section].items[indexPath.row].cellHeight()
     }
 
 }

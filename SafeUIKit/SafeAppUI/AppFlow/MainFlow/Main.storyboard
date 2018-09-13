@@ -140,11 +140,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SafeTableViewCell" rowHeight="108" id="32T-9J-bO1" customClass="SafeTableViewCell" customModule="SafeAppUI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="108"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SafeTableViewCell" rowHeight="110" id="32T-9J-bO1" customClass="SafeTableViewCell" customModule="SafeAppUI" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="32T-9J-bO1" id="td6-vb-L72">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zt0-d6-B3N">
@@ -184,7 +184,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Js1-gG-VxO">
-                                            <rect key="frame" x="331" y="64" width="44" height="44"/>
+                                            <rect key="frame" x="331" y="66" width="44" height="44"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron" translatesAutoresizingMaskIntoConstraints="NO" id="qFE-Ie-COH">
                                                     <rect key="frame" x="14.5" y="26" width="16" height="10"/>
@@ -203,14 +203,16 @@
                                             </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fg2-r8-VQO">
-                                            <rect key="frame" x="269" y="78" width="62" height="30"/>
+                                            <rect key="frame" x="269" y="80" width="62" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <state key="normal" title="QR Code"/>
                                             <connections>
                                                 <action selector="showQRCode:" destination="32T-9J-bO1" eventType="touchUpInside" id="IQM-TP-zSZ"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2x-JK-Ftr">
-                                            <rect key="frame" x="209" y="78" width="40" height="30"/>
+                                            <rect key="frame" x="209" y="80" width="40" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <state key="normal" title="Share"/>
                                             <connections>
                                                 <action selector="share:" destination="32T-9J-bO1" eventType="touchUpInside" id="iUb-ES-7qB"/>
@@ -234,12 +236,21 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="chevronImageView" destination="qFE-Ie-COH" id="5HY-pg-eis"/>
                                     <outlet property="qrCodeButton" destination="fg2-r8-VQO" id="Dbp-ju-myE"/>
                                     <outlet property="safeAddressLabel" destination="vK8-Bb-AnF" id="04W-s3-5pf"/>
                                     <outlet property="safeIconImageView" destination="Zt0-d6-B3N" id="zgK-V5-Qsb"/>
                                     <outlet property="shareButton" destination="R2x-JK-Ftr" id="9Wf-Se-oV2"/>
                                     <outlet property="tappableChevronView" destination="Js1-gG-VxO" id="BAa-7O-hAz"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SafeQRCodeTableViewCell" rowHeight="250" id="Tec-9r-2nO" customClass="SafeQRCodeTableViewCell" customModule="SafeAppUI" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="138" width="375" height="250"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tec-9r-2nO" id="XTU-j7-llh">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -241,6 +241,7 @@
 		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
 		55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */; };
 		55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */; };
+		55DEBC0C214A85E10017CD4B /* SafeQRCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */; };
 		55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */; };
 		55DFBD1A2136A883004B2AC4 /* AddTokenTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */; };
 		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
@@ -690,6 +691,7 @@
 		55A7B2B220ECE2940035EF38 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
 		55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeQRCodeTableViewCell.swift; sourceTree = "<group>"; };
 		55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenBalanceTableViewCell.xib; sourceTree = "<group>"; };
 		55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenTableViewController.swift; sourceTree = "<group>"; };
 		55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenTableViewControllerTests.swift; sourceTree = "<group>"; };
@@ -915,6 +917,7 @@
 				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
 				0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */,
 				55625213214A601900F569EE /* SafeTableViewCellTests.swift */,
+				55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1870,6 +1873,7 @@
 				0A7F744721105137004F1150 /* TokenAmountValidator.swift in Sources */,
 				0A4EEA5120D02E9D005CDAC0 /* MainContentViewController.swift in Sources */,
 				0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */,
+				55DEBC0C214A85E10017CD4B /* SafeQRCodeTableViewCell.swift in Sources */,
 				0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
 				0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */,
