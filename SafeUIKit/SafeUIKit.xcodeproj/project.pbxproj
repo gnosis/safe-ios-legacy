@@ -242,6 +242,7 @@
 		55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */; };
 		55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */; };
 		55DEBC0C214A85E10017CD4B /* SafeQRCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */; };
+		55DEBC13214AA6660017CD4B /* BackgroundHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */; };
 		55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */; };
 		55DFBD1A2136A883004B2AC4 /* AddTokenTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */; };
 		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
@@ -692,6 +693,7 @@
 		55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
 		55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeQRCodeTableViewCell.swift; sourceTree = "<group>"; };
+		55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundHeaderFooterView.swift; sourceTree = "<group>"; };
 		55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenBalanceTableViewCell.xib; sourceTree = "<group>"; };
 		55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenTableViewController.swift; sourceTree = "<group>"; };
 		55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenTableViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1193,6 +1195,7 @@
 				5524735921428FA300A77557 /* IdenticonView */,
 				5524735821428F5000A77557 /* H1Label */,
 				5524735721428F2500A77557 /* BackgroundImageView */,
+				55DEBC11214AA59F0017CD4B /* BackgroundHeaderFooterView */,
 				5524735621428EC400A77557 /* ScannerViewController */,
 				5524735521428E9000A77557 /* BigButton */,
 				5524735421428E7600A77557 /* QRCodeInput */,
@@ -1311,6 +1314,14 @@
 				556252052149201500F569EE /* QRCodeViewTests.swift */,
 			);
 			path = QRCodeView;
+			sourceTree = "<group>";
+		};
+		55DEBC11214AA59F0017CD4B /* BackgroundHeaderFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */,
+			);
+			path = BackgroundHeaderFooterView;
 			sourceTree = "<group>";
 		};
 		55DFBCF52135901D004B2AC4 /* Unlock */ = {
@@ -1813,6 +1824,7 @@
 				556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */,
 				0AD93E0920481461008C38CA /* Colors.swift in Sources */,
 				55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */,
+				55DEBC13214AA6660017CD4B /* BackgroundHeaderFooterView.swift in Sources */,
 				0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */,
 				5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */,
 				0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */,

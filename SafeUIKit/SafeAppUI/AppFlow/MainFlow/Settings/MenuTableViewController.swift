@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SafeUIKit
 import MultisigWalletApplication
 
 protocol MenuTableViewControllerDelegate: class {
@@ -76,11 +77,17 @@ final class MenuTableViewController: UITableViewController {
         super.viewDidLoad()
 
         title = Strings.title
+
+        let backgroundView = BackgroundImageView(frame: tableView.frame)
+        backgroundView.isDimmed = true
+        tableView.backgroundView = backgroundView
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = ColorName.paleGreyThree.color
         tableView.separatorStyle = .singleLine
-        tableView.sectionHeaderHeight = 38
         tableView.register(MenuItemTableViewCell.self, forCellReuseIdentifier: "MenuItemTableViewCell")
+        tableView.register(BackgroundHeaderFooterView.self,
+                           forHeaderFooterViewReuseIdentifier: "BackgroundHeaderFooterView")
+        tableView.sectionFooterHeight = 0
 
         generateData()
     }
@@ -165,10 +172,6 @@ final class MenuTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return menuItems[section].title
-    }
-
     // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -185,6 +188,16 @@ final class MenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return menuItems[indexPath.section].items[indexPath.row].cellHeight()
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = BackgroundHeaderFooterView()
+        view.label.text = menuItems[section].title.uppercased()
+        return view
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return BackgroundHeaderFooterView.height
     }
 
 }
