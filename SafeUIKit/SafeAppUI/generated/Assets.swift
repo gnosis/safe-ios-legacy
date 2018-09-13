@@ -49,6 +49,9 @@ enum Asset {
     static let arrows = ImageAsset(name: "arrows")
     static let coins = ImageAsset(name: "coins")
   }
+  enum Menu {
+    static let chevron = ImageAsset(name: "chevron")
+  }
   static let touchIdIcon = ImageAsset(name: "touch-id-icon")
   enum TransactionDetails {
     static let arrowTransaction = ImageAsset(name: "arrow_transaction")
@@ -78,6 +81,7 @@ enum Asset {
     faceIdIcon,
     MainScreenHeader.arrows,
     MainScreenHeader.coins,
+    Menu.chevron,
     touchIdIcon,
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,

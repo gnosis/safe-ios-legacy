@@ -233,6 +233,7 @@
 		556251F9214912AA00F569EE /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251F8214912AA00F569EE /* QRCodeView.swift */; };
 		556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251FA2149135F00F569EE /* QRCodeViewController.swift */; };
 		556252062149201500F569EE /* QRCodeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556252052149201500F569EE /* QRCodeViewTests.swift */; };
+		55625214214A601900F569EE /* SafeTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55625213214A601900F569EE /* SafeTableViewCellTests.swift */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
 		558FD80A20765C53004F070E /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* BigButton.swift */; };
@@ -681,6 +682,7 @@
 		556251F8214912AA00F569EE /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		556251FA2149135F00F569EE /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		556252052149201500F569EE /* QRCodeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewTests.swift; sourceTree = "<group>"; };
+		55625213214A601900F569EE /* SafeTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTableViewCellTests.swift; sourceTree = "<group>"; };
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
@@ -912,6 +914,7 @@
 				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
 				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
 				0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */,
+				55625213214A601900F569EE /* SafeTableViewCellTests.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1955,6 +1958,7 @@
 				0AD5090921105514008507CB /* EthereumAddressValidatorTests.swift in Sources */,
 				0A334E5F209C8E6800ABC6AE /* SetPasswordViewControllerTests.swift in Sources */,
 				0AD998A820D3E7DC00E6F3CA /* BorderedButtonTests.swift in Sources */,
+				55625214214A601900F569EE /* SafeTableViewCellTests.swift in Sources */,
 				0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */,
 				0A334E5D209C8E6800ABC6AE /* PairWithBrowserExtensionViewControllerTests.swift in Sources */,
 				0A334E61209C8E6800ABC6AE /* ConfirmPaswordViewControllerTests.swift in Sources */,

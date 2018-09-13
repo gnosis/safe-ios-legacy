@@ -128,6 +128,14 @@ final class MenuTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SafeTableViewCell", for: indexPath)
                 as! SafeTableViewCell
             cell.configure(safe: safeDescription)
+            cell.onShare = { [unowned self] in
+                let activityController = UIActivityViewController(
+                    activityItems: [safeDescription.address], applicationActivities: nil)
+                self.present(activityController, animated: true)
+            }
+            cell.onShowQRCode = {
+                print("Show QR Code")
+            }
             return cell
         case .portfolio, .security, .support:
             let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem

@@ -183,19 +183,62 @@
                                             <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Js1-gG-VxO">
+                                            <rect key="frame" x="331" y="64" width="44" height="44"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron" translatesAutoresizingMaskIntoConstraints="NO" id="qFE-Ie-COH">
+                                                    <rect key="frame" x="14.5" y="26" width="16" height="10"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="10" id="X2h-5Z-1SB"/>
+                                                        <constraint firstAttribute="width" constant="16" id="ybU-1S-oQj"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="4Iq-Cr-phf"/>
+                                                <constraint firstAttribute="height" constant="44" id="LsP-LF-rGe"/>
+                                                <constraint firstAttribute="bottom" secondItem="qFE-Ie-COH" secondAttribute="bottom" constant="8" id="kw2-8p-mMI"/>
+                                                <constraint firstItem="qFE-Ie-COH" firstAttribute="centerX" secondItem="Js1-gG-VxO" secondAttribute="centerX" id="zwH-48-bLU"/>
+                                            </constraints>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fg2-r8-VQO">
+                                            <rect key="frame" x="269" y="78" width="62" height="30"/>
+                                            <state key="normal" title="QR Code"/>
+                                            <connections>
+                                                <action selector="showQRCode:" destination="32T-9J-bO1" eventType="touchUpInside" id="IQM-TP-zSZ"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2x-JK-Ftr">
+                                            <rect key="frame" x="209" y="78" width="40" height="30"/>
+                                            <state key="normal" title="Share"/>
+                                            <connections>
+                                                <action selector="share:" destination="32T-9J-bO1" eventType="touchUpInside" id="iUb-ES-7qB"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="vK8-Bb-AnF" firstAttribute="top" secondItem="43X-yf-mzg" secondAttribute="bottom" id="0GD-WS-yGL"/>
+                                        <constraint firstAttribute="bottom" secondItem="Js1-gG-VxO" secondAttribute="bottom" id="4Vl-6o-pz0"/>
                                         <constraint firstItem="zQp-an-Qdf" firstAttribute="leading" secondItem="Zt0-d6-B3N" secondAttribute="trailing" constant="12" id="Bnv-B6-pO4"/>
+                                        <constraint firstItem="Js1-gG-VxO" firstAttribute="leading" secondItem="fg2-r8-VQO" secondAttribute="trailing" id="CQq-z2-NAe"/>
+                                        <constraint firstAttribute="bottom" secondItem="R2x-JK-Ftr" secondAttribute="bottom" id="Cpp-2t-YOj"/>
+                                        <constraint firstAttribute="bottom" secondItem="fg2-r8-VQO" secondAttribute="bottom" id="HY9-1t-8Kr"/>
+                                        <constraint firstAttribute="trailing" secondItem="Js1-gG-VxO" secondAttribute="trailing" id="QDj-Z1-BcX"/>
                                         <constraint firstItem="Zt0-d6-B3N" firstAttribute="top" secondItem="zQp-an-Qdf" secondAttribute="top" constant="-2" id="RdV-Yd-7gD"/>
                                         <constraint firstItem="Zt0-d6-B3N" firstAttribute="top" secondItem="td6-vb-L72" secondAttribute="top" constant="18" id="Thu-Ib-CqU"/>
+                                        <constraint firstAttribute="bottom" secondItem="fg2-r8-VQO" secondAttribute="bottom" id="eGy-dk-L3i"/>
                                         <constraint firstItem="Zt0-d6-B3N" firstAttribute="leading" secondItem="td6-vb-L72" secondAttribute="leading" constant="18" id="fRJ-19-qR1"/>
+                                        <constraint firstItem="fg2-r8-VQO" firstAttribute="leading" secondItem="R2x-JK-Ftr" secondAttribute="trailing" constant="20" id="l8x-lo-ati"/>
                                         <constraint firstItem="vK8-Bb-AnF" firstAttribute="leading" secondItem="43X-yf-mzg" secondAttribute="leading" id="z5Q-Ok-Qfy"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="qrCodeButton" destination="fg2-r8-VQO" id="Dbp-ju-myE"/>
                                     <outlet property="safeAddressLabel" destination="vK8-Bb-AnF" id="04W-s3-5pf"/>
                                     <outlet property="safeIconImageView" destination="Zt0-d6-B3N" id="zgK-V5-Qsb"/>
+                                    <outlet property="shareButton" destination="R2x-JK-Ftr" id="9Wf-Se-oV2"/>
+                                    <outlet property="tappableChevronView" destination="Js1-gG-VxO" id="BAa-7O-hAz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -373,10 +416,10 @@
                                                     <constraint firstAttribute="height" constant="20" id="KCu-OE-i97"/>
                                                 </constraints>
                                             </imageView>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kOV-v2-loh" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
-                                                <rect key="frame" x="42" y="0.0" width="50" height="44"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOV-v2-loh" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
+                                                <rect key="frame" x="42" y="21.5" width="50" height="1"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EZC-qM-B0L" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZC-qM-B0L" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
                                                 <rect key="frame" x="102" y="0.0" width="241" height="44"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tokenAmount" value="-1.10000 ETH"/>
@@ -406,14 +449,14 @@
                                     <constraint firstItem="9bO-C5-2MI" firstAttribute="leading" secondItem="5wW-Om-Ydr" secondAttribute="leading" id="ikp-DU-ip1"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a3a-bg-PE7" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3a-bg-PE7" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="248" width="375" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6Wu-8Y-uAW">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6Wu-8Y-uAW">
                                 <rect key="frame" x="16" y="270" width="343" height="236"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DPa-hP-BFi" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPa-hP-BFi" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="A8M-Jk-kZx"/>
@@ -423,14 +466,14 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="value" value="Outgoing Transfer"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fJ-ed-qN7" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fJ-ed-qN7" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="48" width="343" height="32"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="name" value="Submitted"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="value" value="May 6, 2018 - 3:34PM (2 months ago)"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQu-Qj-qJQ" customClass="StatusTransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQu-Qj-qJQ" customClass="StatusTransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="96" width="343" height="32"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="name" value="Status"/>
@@ -440,7 +483,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5am-MD-ipW" customClass="TokenAmountTransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5am-MD-ipW" customClass="TokenAmountTransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="144" width="343" height="32"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="name" value="Transaction fee"/>
@@ -450,7 +493,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maA-2G-VbL">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maA-2G-VbL">
                                         <rect key="frame" x="0.0" y="192" width="343" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="rPx-QS-Mq6"/>
@@ -881,10 +924,10 @@
                                                     <constraint firstAttribute="width" constant="32" id="fHa-AS-C6Z"/>
                                                 </constraints>
                                             </imageView>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Sq-rj-dxu" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
-                                                <rect key="frame" x="42" y="0.0" width="50" height="44"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Sq-rj-dxu" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
+                                                <rect key="frame" x="42" y="21.5" width="50" height="1"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dzu-pH-JMu" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dzu-pH-JMu" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
                                                 <rect key="frame" x="102" y="0.0" width="241" height="44"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tokenAmount" value="-1.10000 ETH"/>
@@ -1112,6 +1155,7 @@
     </scenes>
     <resources>
         <image name="arrow_transaction" width="13" height="20"/>
+        <image name="chevron" width="16" height="10"/>
         <image name="extension_window" width="62" height="46"/>
         <image name="external_link" width="12" height="12"/>
         <image name="scan_qr_copy" width="20" height="20"/>
