@@ -4,25 +4,29 @@
 
 import XCTest
 @testable import SafeAppUI
+import MultisigWalletApplication
 
 class MenuTableViewControllerTests: XCTestCase {
 
     let controller = MenuTableViewController.create()
     // swiftlint:disable:next weak_delegate
     let delegate = MockMenuTableViewControllerDelegate()
+    let walletService = MockWalletApplicationService()
 
     override func setUp() {
         super.setUp()
+        walletService.assignAddress("test_address")
+        ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         controller.delegate = delegate
         createWindow(controller)
     }
 
     func test_whenCreated_thenConfigured() {
         XCTAssertEqual(controller.tableView.numberOfSections, 4)
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 1)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 2)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 1), 1)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 2), 3)
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 3), 4)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 3), 5)
     }
 
     func test_whenCreated_thenRowHeightsAreProvided() {
@@ -44,7 +48,7 @@ class MenuTableViewControllerTests: XCTestCase {
     }
 
     func test_whenConfiguredMenuItemRow_thenAllSet() {
-        let cell = self.cell(row: 0, section: 2) as! MenuItemTableViewCell
+        let cell = self.cell(row: 0, section: 1) as! MenuItemTableViewCell
         XCTAssertNotNil(cell.textLabel?.text)
     }
 
