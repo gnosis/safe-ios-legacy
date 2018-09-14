@@ -241,6 +241,9 @@
 /* Title for confirm mnemonic view controller */
 "recovery.confirm_mnemonic.title" = "Confirmation";
 
+/* Title for Address Details screen. */
+"safe_address.title" = "Safe Address";
+
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";
 

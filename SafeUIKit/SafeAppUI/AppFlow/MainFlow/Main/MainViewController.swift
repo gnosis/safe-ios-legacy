@@ -13,6 +13,7 @@ protocol MainViewControllerDelegate: class {
     func createNewTransaction()
     func openMenu()
     func manageTokens()
+    func openAddressDetails()
 }
 
 final class MainViewController: UIViewController {
@@ -43,6 +44,9 @@ final class MainViewController: UIViewController {
         safeAddressLabel.text = address
         safeIdenticonView.seed = address
         safeIdenticonView.displayShadow = true
+        safeIdenticonView.tapAction = {
+            self.delegate?.openAddressDetails()
+        }
     }
 
     @objc func openMenu(_ sender: Any) {

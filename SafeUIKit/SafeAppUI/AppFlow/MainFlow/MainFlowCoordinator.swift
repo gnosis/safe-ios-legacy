@@ -65,13 +65,18 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
     }
 
     func openMenu() {
-        let settingsVC = MenuTableViewController.create()
-        settingsVC.delegate = self
-        push(settingsVC)
+        let menuVC = MenuTableViewController.create()
+        menuVC.delegate = self
+        push(menuVC)
     }
 
     func manageTokens() {
         enter(flow: manageTokensFlowCoordinator)
+    }
+
+    func openAddressDetails() {
+        let addressDetailsVC = SafeAddressViewController.create()
+        push(addressDetailsVC)
     }
 
 }
