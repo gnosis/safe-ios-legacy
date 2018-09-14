@@ -28,4 +28,13 @@ class IdenticonViewTests: XCTestCase {
         XCTAssertEqual(subview.layer.cornerRadius, subview.bounds.width / 2)
     }
 
+    func test_whenTap_thenCallsCompletion() {
+        var didTap = false
+        view.tapAction = {
+            didTap = true
+        }
+        view.didTap()
+        XCTAssertTrue(didTap)
+    }
+
 }

@@ -9,7 +9,13 @@ public class IdenticonView: DesignableView {
     @IBInspectable
     public var displayShadow: Bool = false {
         didSet {
-            layer.shadowOpacity = displayShadow ? shadowOpacity : 0
+            _displayShadow = displayShadow
+        }
+    }
+
+    private var _displayShadow: Bool! {
+        didSet {
+            layer.shadowOpacity = _displayShadow ? shadowOpacity : 0
         }
     }
 
@@ -20,10 +26,13 @@ public class IdenticonView: DesignableView {
         }
     }
 
+    public var tapAction: (() -> Void)?
+
     internal let imageView = UIImageView()
 
-    private let shadowOpacity: Float = 0.8
-    private let shadowOffset = CGSize(width: 0, height: 2)
+    private static let shadowOffset: CGFloat = 1
+    private let shadowOpacity: Float = 0.7
+    private let shadowOffsetSize = CGSize(width: 0, height: IdenticonView.shadowOffset)
     private let shadowColor = UIColor.black
 
     override public func commonInit() {
@@ -34,10 +43,35 @@ public class IdenticonView: DesignableView {
 
         backgroundColor = .clear
         layer.shadowColor = shadowColor.cgColor
-        layer.shadowOffset = shadowOffset
+        layer.shadowOffset = shadowOffsetSize
         layer.shadowOpacity = shadowOpacity
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 100).cgPath
-        displayShadow = false
+        _displayShadow = displayShadow
+
+        let identiconControl = IdenticonControl()
+        identiconControl.frame = bounds
+        identiconControl.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        identiconControl.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+        identiconControl.onBeginTracking = {
+            guard self.displayShadow else { return }
+            let frame = self.imageView.frame
+            self.imageView.frame = CGRect(x: frame.minX,
+                                          y: frame.minY + IdenticonView.shadowOffset,
+                                          width: frame.width,
+                                          height: frame.height)
+            self._displayShadow = false
+        }
+        identiconControl.onEndTracking = {
+            guard self.displayShadow else { return }
+            let frame = self.imageView.frame
+            self.imageView.frame = CGRect(x: frame.minX,
+                                          y: frame.minY - IdenticonView.shadowOffset,
+                                          width: frame.width,
+                                          height: frame.height)
+            self._displayShadow = true
+        }
+        addSubview(identiconControl)
+
         didLoad()
     }
 
@@ -53,6 +87,26 @@ public class IdenticonView: DesignableView {
     private func makeCircleBounds() {
         imageView.layer.cornerRadius = min(bounds.width, bounds.height) / 2
         imageView.clipsToBounds = true
+    }
+
+    @objc func didTap() {
+        tapAction?()
+    }
+
+}
+
+fileprivate final class IdenticonControl: UIControl {
+
+    var onBeginTracking: (() -> Void)?
+    var onEndTracking: (() -> Void)?
+
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        onBeginTracking?()
+        return true
+    }
+
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        onEndTracking?()
     }
 
 }
