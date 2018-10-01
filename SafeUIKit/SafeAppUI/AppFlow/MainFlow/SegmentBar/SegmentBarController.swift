@@ -84,18 +84,18 @@ open class SegmentBarController: UIViewController {
     }
 
     private func removeChild(_ controller: UIViewController) {
-        controller.willMove(toParentViewController: nil)
+        controller.willMove(toParent: nil)
         controller.view.removeFromSuperview()
-        controller.removeFromParentViewController()
+        controller.removeFromParent()
         view.setNeedsLayout()
     }
 
     private func addChildContent(_ controller: UIViewController) {
-        addChildViewController(controller)
+        addChild(controller)
         controller.view.frame = contentView.bounds
         controller.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         contentView.addSubview(controller.view)
-        controller.didMove(toParentViewController: self)
+        controller.didMove(toParent: self)
         view.setNeedsLayout()
     }
 

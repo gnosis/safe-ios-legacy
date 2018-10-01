@@ -129,7 +129,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         mainFlowCoordinator.didSelectManageTokens()
         delay()
         let presented = mainFlowCoordinator.navigationController.presentedViewController
-        XCTAssertTrue(presented?.childViewControllers[0] is ManageTokensTableViewController)
+        XCTAssertTrue(presented?.children[0] is ManageTokensTableViewController)
     }
 
     func test_whenManageTokensCalled_thenEntersManageTokensFlow() {
@@ -137,7 +137,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         mainFlowCoordinator.manageTokens()
         delay()
         let presented = mainFlowCoordinator.navigationController.presentedViewController
-        XCTAssertTrue(presented?.childViewControllers[0] is ManageTokensTableViewController)
+        XCTAssertTrue(presented?.children[0] is ManageTokensTableViewController)
     }
 
 }

@@ -31,7 +31,7 @@ class StatusTransactionParameterView: TransactionParameterView {
         let statusString = NSAttributedString(string: status.stringValue,
                                               attributes:
             [
-                NSAttributedStringKey.foregroundColor: status.colorValue
+                NSAttributedString.Key.foregroundColor: status.colorValue
             ])
         let otherString = NSAttributedString(string: " - \(value)")
         let valueString = NSMutableAttributedString()

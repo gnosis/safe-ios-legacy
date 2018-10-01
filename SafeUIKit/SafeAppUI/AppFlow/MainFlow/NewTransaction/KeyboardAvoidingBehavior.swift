@@ -24,11 +24,11 @@ class KeyboardAvoidingBehavior {
     func start() {
         notificationCenter.addObserver(self,
                                        selector: #selector(didShowKeyboard(_:)),
-                                       name: NSNotification.Name.UIKeyboardDidShow,
+                                       name: UIResponder.keyboardDidShowNotification,
                                        object: nil)
         notificationCenter.addObserver(self,
                                        selector: #selector(didHideKeyboard(_:)),
-                                       name: NSNotification.Name.UIKeyboardWillHide,
+                                       name: UIResponder.keyboardWillHideNotification,
                                        object: nil)
 
     }
@@ -45,7 +45,9 @@ class KeyboardAvoidingBehavior {
 
     @objc func didShowKeyboard(_ notification: NSNotification) {
         guard let view = scrollView.superview else { return }
-        guard let screenValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
+        guard let screenValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
         let keyboardScreen = screenValue.cgRectValue
         let keyboardFrame = view.convert(keyboardScreen, from: UIScreen.main.coordinateSpace)
         scrollView.contentInset.bottom = keyboardFrame.height

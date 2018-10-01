@@ -64,7 +64,7 @@ public class SegmentBar: UIControl {
 
     private func update() {
         buttons = items.enumerated().map { index, item -> UIButton in
-            let button = UIButton(type: UIButtonType.custom)
+            let button = UIButton(type: UIButton.ButtonType.custom)
             button.setTitle(" " + item.title, for: .normal)
             button.setTitleColor(.black, for: .normal)
             button.setTitleColor(.black, for: .highlighted)
