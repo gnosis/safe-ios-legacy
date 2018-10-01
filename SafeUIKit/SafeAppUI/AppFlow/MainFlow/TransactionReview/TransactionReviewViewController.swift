@@ -59,7 +59,7 @@ final class TransactionReviewViewController: UIViewController {
         update()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(resumeAnimation),
-                                               name: NSNotification.Name.UIApplicationWillEnterForeground,
+                                               name: UIApplication.willEnterForegroundNotification,
                                                object: nil)
     }
 

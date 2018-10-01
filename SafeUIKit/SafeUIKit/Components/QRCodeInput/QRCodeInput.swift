@@ -107,11 +107,11 @@ public final class QRCodeInput: UITextField {
     }
 
     private func cameraRequiredAlert() -> UIAlertController {
-        let settingsAppURL = URL(string: UIApplicationOpenSettingsURLString)!
+        let settingsAppURL = URL(string: UIApplication.openSettingsURLString)!
         let alert = UIAlertController(
             title: Strings.cameraAlertTitle,
             message: Strings.cameraAlertMessage,
-            preferredStyle: UIAlertControllerStyle.alert
+            preferredStyle: UIAlertController.Style.alert
         )
         alert.addAction(UIAlertAction(title: Strings.cameraAlertAllow, style: .cancel) { _ in
             UIApplication.shared.open(settingsAppURL, options: [:], completionHandler: nil)

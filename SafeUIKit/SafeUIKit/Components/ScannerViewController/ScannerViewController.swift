@@ -45,10 +45,10 @@ final class ScannerViewController: UIViewController {
             (codeReaderVC as! RSCodeReaderViewController).barcodesHandler = barcodesHandler
         }
 
-        addChildViewController(codeReaderVC)
+        addChild(codeReaderVC)
         codeReaderVC.view.frame = view.frame
         view.insertSubview(codeReaderVC.view, at: 0)
-        codeReaderVC.didMove(toParentViewController: self)
+        codeReaderVC.didMove(toParent: self)
 
         closeButton.accessibilityLabel = LocalizedString("camera.close", comment: "Close button on camera")
     }

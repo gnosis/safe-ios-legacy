@@ -6,31 +6,31 @@
 	<dict>
 		<key>Headers/SipHash-Swift.h</key>
 		<data>
-		HfDTo1xSjfroaa/lXJ2Lfx8lW08=
+		k9G8wPuvI3XtwrYE9iDZgCxuiBg=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		h1cVO+2evbvMPkZj+JkcyExs6jw=
+		WqL2zJV9NxLJ9Nw8gMzgJuqo2bQ=
 		</data>
 		<key>Modules/SipHash.swiftmodule/i386.swiftdoc</key>
 		<data>
-		U6fU1d67h/zTdtEzvi+nW+0Z1EM=
+		G0j/q9xUABlX4Qzt8Lr1PCPlEqE=
 		</data>
 		<key>Modules/SipHash.swiftmodule/i386.swiftmodule</key>
 		<data>
-		0yuECcvdzJnLPSMqXX+cZOkLvkY=
+		ycPVVX9H1HMWvncra5cPm0AAStM=
 		</data>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		nHCMffkylOZW5lSpHosZcwMcK30=
+		ytdfeLgaKNhdPZ5SR8FY4AhBJ9M=
 		</data>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		CDr7XL3yeo3LFfTejXpUJ8HT7pY=
+		PjNRqHLlbjz26EbQ4FEx+G36FXw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		hPpEEmT4qqvg39++XUMhHpMwAxI=
+		FWzVWbkl0XEHOayklCWTBP3pbfw=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -39,66 +39,66 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			HfDTo1xSjfroaa/lXJ2Lfx8lW08=
+			k9G8wPuvI3XtwrYE9iDZgCxuiBg=
 			</data>
 			<key>hash2</key>
 			<data>
-			N20cP8f1u2RGE6W5UFgf/vdcZfgnEb7ObFGIERBGkc0=
+			pmBIKw1XR0/ENB6gR67hww/LlCpNZv+VYipxpJzsp4w=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			U6fU1d67h/zTdtEzvi+nW+0Z1EM=
+			G0j/q9xUABlX4Qzt8Lr1PCPlEqE=
 			</data>
 			<key>hash2</key>
 			<data>
-			L/GcU2mCy1tLRVV8dAWkdk85pQzsNhQw8cIh/VPvuBg=
+			GxXJ1ZgpC+tEOtMzhBfhUCmOA2rWlwrO1v+GNZx9r3c=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			0yuECcvdzJnLPSMqXX+cZOkLvkY=
+			ycPVVX9H1HMWvncra5cPm0AAStM=
 			</data>
 			<key>hash2</key>
 			<data>
-			Jq9HON1b38LlTo8WhWCbHXjCpVthinTzkGmRZ0wAhC0=
+			tNwW2zPgXnCpzQ4RqNYHZS2/PfY9Y09AqWgD4huONqs=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			nHCMffkylOZW5lSpHosZcwMcK30=
+			ytdfeLgaKNhdPZ5SR8FY4AhBJ9M=
 			</data>
 			<key>hash2</key>
 			<data>
-			Nlhgf37LRXQn7RUw5R7VrXvJAa6U4l96n0kpTQ9SBoU=
+			gYZ2UmiaseTIL0MSXYGZeTVUFv84zqcRWdnwKudzR2o=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			CDr7XL3yeo3LFfTejXpUJ8HT7pY=
+			PjNRqHLlbjz26EbQ4FEx+G36FXw=
 			</data>
 			<key>hash2</key>
 			<data>
-			LhhGpSle1XBBrGiuewqKiXnsVj70jYZgmNp4iYIFSMY=
+			iXpIabYR/0HjEelg0QNSK3rBEax1B1a8KtpDBNiXYc8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			hPpEEmT4qqvg39++XUMhHpMwAxI=
+			FWzVWbkl0XEHOayklCWTBP3pbfw=
 			</data>
 			<key>hash2</key>
 			<data>
-			2Q84c2ptVzdW9A7v6HwWDtrDLLxw5ziQ4KIVg+bYCTA=
+			aVrNyEhgyWZm0VYIEpXwTZivYEnmV1fVZkk2+isIBnA=
 			</data>
 		</dict>
 	</dict>

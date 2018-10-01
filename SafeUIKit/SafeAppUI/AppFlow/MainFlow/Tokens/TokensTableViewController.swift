@@ -79,7 +79,7 @@ final class TokensTableViewController: UITableViewController {
                                  bundle: Bundle(for: TokenBalanceTableViewCell.self)),
                            forCellReuseIdentifier: "TokenBalanceTableViewCell")
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
 
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(update), for: .valueChanged)

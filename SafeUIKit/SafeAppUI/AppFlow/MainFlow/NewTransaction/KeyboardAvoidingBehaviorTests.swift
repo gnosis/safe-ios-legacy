@@ -18,8 +18,9 @@ class KeyboardAvoidingBehaviorTests: XCTestCase {
     }
 
     func test_onStart_observesNotification() {
-        let didShowObserver = stubCenter.registry[NSNotification.Name.UIKeyboardDidShow] as? KeyboardAvoidingBehavior
-        let willHideObserver = stubCenter.registry[NSNotification.Name.UIKeyboardWillHide] as? KeyboardAvoidingBehavior
+        let didShowObserver = stubCenter.registry[UIResponder.keyboardDidShowNotification] as? KeyboardAvoidingBehavior
+        let willHideObserver = stubCenter.registry[UIResponder.keyboardWillHideNotification]
+            as? KeyboardAvoidingBehavior
 
         XCTAssertNotNil(didShowObserver)
         XCTAssertTrue(didShowObserver === willHideObserver)
@@ -30,8 +31,9 @@ class KeyboardAvoidingBehaviorTests: XCTestCase {
 
         behavior.stop()
 
-        let didShowObserver = stubCenter.registry[NSNotification.Name.UIKeyboardDidShow] as? KeyboardAvoidingBehavior
-        let willHideObserver = stubCenter.registry[NSNotification.Name.UIKeyboardWillHide] as? KeyboardAvoidingBehavior
+        let didShowObserver = stubCenter.registry[UIResponder.keyboardDidShowNotification] as? KeyboardAvoidingBehavior
+        let willHideObserver = stubCenter.registry[UIResponder.keyboardWillHideNotification]
+            as? KeyboardAvoidingBehavior
 
         XCTAssertNil(didShowObserver)
         XCTAssertNil(willHideObserver)
@@ -39,9 +41,10 @@ class KeyboardAvoidingBehaviorTests: XCTestCase {
 
     func test_whenKeyboardShown_updatesScrollViewInsets() {
         let keyboardFrame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        let notification = NSNotification(name: NSNotification.Name.UIKeyboardDidShow,
+        let notification = NSNotification(name: UIResponder.keyboardDidShowNotification,
                                           object: nil,
-                                          userInfo: [UIKeyboardFrameEndUserInfoKey: NSValue(cgRect: keyboardFrame)])
+                                          userInfo: [UIResponder.keyboardFrameEndUserInfoKey:
+                                            NSValue(cgRect: keyboardFrame)])
         if let window = UIApplication.shared.keyWindow {
             window.addSubview(scrollView)
         }
@@ -53,7 +56,7 @@ class KeyboardAvoidingBehaviorTests: XCTestCase {
     }
 
     func test_whenKeyboardFrameIsMissingFromNotification_doesNothing() {
-        let notification = NSNotification(name: NSNotification.Name.UIKeyboardDidShow,
+        let notification = NSNotification(name: UIResponder.keyboardDidShowNotification,
                                           object: nil,
                                           userInfo: [:])
         if let window = UIApplication.shared.keyWindow {
@@ -70,9 +73,10 @@ class KeyboardAvoidingBehaviorTests: XCTestCase {
 
     func test_whenScrollViewOffScreen_doesNothing() {
         let keyboardFrame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        let notification = NSNotification(name: NSNotification.Name.UIKeyboardDidShow,
+        let notification = NSNotification(name: UIResponder.keyboardDidShowNotification,
                                           object: nil,
-                                          userInfo: [UIKeyboardFrameEndUserInfoKey: NSValue(cgRect: keyboardFrame)])
+                                          userInfo: [UIResponder.keyboardFrameEndUserInfoKey:
+                                            NSValue(cgRect: keyboardFrame)])
         scrollView.contentInset.bottom = 15
 
         behavior.didShowKeyboard(notification)
@@ -83,9 +87,10 @@ class KeyboardAvoidingBehaviorTests: XCTestCase {
 
     func test_whenActiveFieldPresentAndOutOfVisibleArea_scrollsToIt() {
         let keyboardFrame = CGRect(x: 0, y: 0, width: 100, height: 50)
-        let notification = NSNotification(name: NSNotification.Name.UIKeyboardDidShow,
+        let notification = NSNotification(name: UIResponder.keyboardDidShowNotification,
                                           object: nil,
-                                          userInfo: [UIKeyboardFrameEndUserInfoKey: NSValue(cgRect: keyboardFrame),
+                                          userInfo: [UIResponder.keyboardFrameEndUserInfoKey:
+                                            NSValue(cgRect: keyboardFrame),
                                                      "suppress_animation": true])
         scrollView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
 
@@ -111,7 +116,7 @@ class KeyboardAvoidingBehaviorTests: XCTestCase {
         scrollView.contentInset.bottom = 1
         scrollView.scrollIndicatorInsets.bottom = 1
 
-        behavior.didHideKeyboard(NSNotification(name: NSNotification.Name.UIKeyboardWillHide, object: nil))
+        behavior.didHideKeyboard(NSNotification(name: UIResponder.keyboardWillHideNotification, object: nil))
 
         XCTAssertEqual(scrollView.contentInset.bottom, 0)
         XCTAssertEqual(scrollView.scrollIndicatorInsets.bottom, 0)

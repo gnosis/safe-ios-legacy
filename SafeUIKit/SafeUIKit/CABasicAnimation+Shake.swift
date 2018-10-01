@@ -12,7 +12,7 @@ extension CABasicAnimation {
         animation.duration = 0.09
         animation.repeatCount = 2
         animation.autoreverses = true
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         animation.fromValue = CGPoint(x: center.x - amplitude, y: center.y)
         animation.toValue = CGPoint(x: center.x + amplitude, y: center.y)
         return animation

@@ -9,7 +9,7 @@ public final class SetupSafeFlowCoordinator: FlowCoordinator {
 
     let newSafeFlowCoordinator = NewSafeFlowCoordinator()
 
-    open override func setUp() {
+    public override func setUp() {
         super.setUp()
         push(SetupSafeOptionsViewController.create(delegate: self))
         if newSafeFlowCoordinator.isSafeCreationInProgress ||
