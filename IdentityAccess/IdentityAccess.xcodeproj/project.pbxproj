@@ -91,6 +91,13 @@
 			remoteGlobalIDString = 0A160B9220A07FE100E064E1;
 			remoteInfo = Database;
 		};
+		0A30EBC921622000006855B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A4A1D202136B0C10088F9EC;
+			remoteInfo = Kingfisher;
+		};
 		0A48A06D2091CBCA00B704AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
@@ -661,6 +668,7 @@
 				55DA829C20CED9930080C7EF /* SipHash.framework */,
 				0AD1937E210738630048CBCB /* BlockiesSwift.framework */,
 				0AC33F152119C852009A5CFB /* CommonCrypto.framework */,
+				0A30EBCA21622000006855B2 /* Kingfisher.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -958,6 +966,13 @@
 			fileType = archive.ar;
 			path = libDatabase.a;
 			remoteRef = 0A160B9F20A0801A00E064E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A30EBCA21622000006855B2 /* Kingfisher.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Kingfisher.framework;
+			remoteRef = 0A30EBC921622000006855B2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0A48A06E2091CBCA00B704AD /* RSBarcodes.framework */ = {
@@ -1435,7 +1450,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = AdHoc;
 		};
@@ -1822,7 +1836,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -1879,7 +1892,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};
