@@ -1,4 +1,4 @@
 framework module SipHash {
-    header "SipHash-Swift.h"
-    requires objc
+  header "SipHash-Swift.h"
+  requires objc
 }

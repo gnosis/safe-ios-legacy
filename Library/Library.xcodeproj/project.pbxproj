@@ -19,7 +19,6 @@
 		0AC33EFA2119C735009A5CFB /* CommonCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CommonCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC33EFC2119C736009A5CFB /* CommonCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonCrypto.h; sourceTree = "<group>"; };
 		0AC33EFD2119C736009A5CFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0AC33F032119C751009A5CFB /* crypto.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = crypto.modulemap; sourceTree = "<group>"; };
 		0AD8FD2020CEC4BA00591B91 /* BlockiesSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BlockiesSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFC7F02211C438B00203E4D /* DummyCommonCrypto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DummyCommonCrypto.m; sourceTree = "<group>"; };
 		555B0E7A20CAD34C00424CEE /* CryptoEthereumSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CryptoEthereumSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,7 +68,6 @@
 			children = (
 				0AC33EFC2119C736009A5CFB /* CommonCrypto.h */,
 				0AC33EFD2119C736009A5CFB /* Info.plist */,
-				0AC33F032119C751009A5CFB /* crypto.modulemap */,
 				0AFC7F02211C438B00203E4D /* DummyCommonCrypto.m */,
 			);
 			path = CommonCrypto;
@@ -365,7 +363,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bash ${SRCROOT}/copy-framework.sh";
+			shellScript = "bash ${SRCROOT}/copy-framework.sh\n";
 			showEnvVarsInLog = 0;
 		};
 		5527A7DF208DE7D100AF3A50 /* ShellScript */ = {
@@ -1226,7 +1224,6 @@
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1247,7 +1244,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "$(SRCROOT)/CommonCrypto/crypto.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.CommonCrypto;
@@ -1282,7 +1278,6 @@
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1298,7 +1293,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "$(SRCROOT)/CommonCrypto/crypto.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.CommonCrypto;
@@ -1334,7 +1328,6 @@
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1350,7 +1343,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "$(SRCROOT)/CommonCrypto/crypto.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.CommonCrypto;

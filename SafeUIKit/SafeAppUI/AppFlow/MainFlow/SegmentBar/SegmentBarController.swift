@@ -75,7 +75,7 @@ open class SegmentBarController: UIViewController {
             removeChild(controller)
         }
         if let controller = selectedViewController {
-            addChild(controller)
+            addChildContent(controller)
             let index = viewControllers.index { $0 === controller }!
             segmentBar.selectedItem = segmentBar.items[index]
         } else {
@@ -90,7 +90,7 @@ open class SegmentBarController: UIViewController {
         view.setNeedsLayout()
     }
 
-    private func addChild(_ controller: UIViewController) {
+    private func addChildContent(_ controller: UIViewController) {
         addChildViewController(controller)
         controller.view.frame = contentView.bounds
         controller.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
