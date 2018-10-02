@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,16 +19,10 @@
 		0A160B8820A07CC200E064E1 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B5C20A07C2D00E064E1 /* SafeUIKit.framework */; };
 		0A160B8920A07CC200E064E1 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B5C20A07C2D00E064E1 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A34BC60207B808800636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC5F207B808800636560 /* libCommonTestSupport.a */; };
-		0A4A1D352136B3170088F9EC /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D342136B3170088F9EC /* Kingfisher.framework */; };
-		0A4A1D362136B3170088F9EC /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4A1D342136B3170088F9EC /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A4B004520977266006343EB /* SetupSafeOptionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */; };
 		0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1A207D019800921FB9 /* libIdentityAccessImplementations.a */; };
 		0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */; };
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
-		0A5D2F2120D7A94A009E9918 /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A12F17120D01E4E0039B3E1 /* BigInt.framework */; };
-		0A5D2F2220D7A94A009E9918 /* BigInt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A12F17120D01E4E0039B3E1 /* BigInt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A5D2F2520D7A94A009E9918 /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A12F17320D01E4E0039B3E1 /* SipHash.framework */; };
-		0A5D2F2620D7A94A009E9918 /* SipHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A12F17320D01E4E0039B3E1 /* SipHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC58A209CA2E500BA7A06 /* libCommon.a */; };
 		0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A84BBDE21060F6100708DE5 /* AppConfig.swift */; };
 		0A84BBF42106168600708DE5 /* AppConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A84BBE82106168600708DE5 /* AppConfig.json */; };
@@ -56,10 +50,6 @@
 		0AB743F620ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB743EA20ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift */; };
 		0ABA90DE20C567CE001AEAE4 /* PendingSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90DD20C567CE001AEAE4 /* PendingSafeScreenUITests.swift */; };
 		0ABA90EB20C56AB5001AEAE4 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90EA20C56AB5001AEAE4 /* MainScreen.swift */; };
-		0ABBDC012073CADD006D0A48 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBDBF82073CACD006D0A48 /* CryptoSwift.framework */; };
-		0ABBDC032073CADD006D0A48 /* EthereumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBDBFA2073CACD006D0A48 /* EthereumKit.framework */; };
-		0ABCA975207E560B00E2C193 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABCA970207E560500E2C193 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0ABCA976207E560B00E2C193 /* EthereumKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABCA972207E560500E2C193 /* EthereumKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		0AC33F1B2119CBE1009A5CFB /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AC33F2A2119CE7C009A5CFB /* BlockchainIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC33F292119CE7C009A5CFB /* BlockchainIntegrationTest.swift */; };
@@ -74,20 +64,14 @@
 		0ACB1A402099EEFA00EBE267 /* UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A3F2099EEFA00EBE267 /* UITestCase.swift */; };
 		0ACB1A422099EF2300EBE267 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A412099EF2300EBE267 /* Springboard.swift */; };
 		0ACB1A442099F3F500EBE267 /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A432099F3F500EBE267 /* CameraScreen.swift */; };
-		0AD8FD4020CEC53700591B91 /* BlockiesSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD3B20CEC52700591B91 /* BlockiesSwift.framework */; };
-		0AD8FD4120CEC53700591B91 /* BlockiesSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD8FD3B20CEC52700591B91 /* BlockiesSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AEF8A3D20A08262006A1265 /* libDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A3C20A08262006A1265 /* libDatabase.a */; };
 		0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */; };
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
 		55247322213FF7A100A77557 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55247321213FF7A000A77557 /* Montserrat-SemiBold.ttf */; };
-		5527A7FC208DE9D500AF3A50 /* RSBarcodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; };
-		5527A7FD208DE9D500AF3A50 /* RSBarcodes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A7FB208DE9D500AF3A50 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		553A4B8C20F8B88E00F204A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55F9817F20F4DD2300E3AF47 /* GoogleService-Info.plist */; };
 		5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540A4EE203C3054009C9BE3 /* AppDelegate.swift */; };
 		5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F5203C3054009C9BE3 /* Assets.xcassets */; };
 		5540A4F9203C3054009C9BE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F7203C3054009C9BE3 /* LaunchScreen.storyboard */; };
-		555B0E8720CAD3CB00424CEE /* CryptoEthereumSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0E8620CAD3CB00424CEE /* CryptoEthereumSwift.framework */; };
-		555B0E8820CAD3CB00424CEE /* CryptoEthereumSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 555B0E8620CAD3CB00424CEE /* CryptoEthereumSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		555C94F120E537E900A0621D /* HTTPNotificatonServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94EF20E533E000A0621D /* HTTPNotificatonServiceTests.swift */; };
 		555C94F320E53BEF00A0621D /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 555C94F220E53BEF00A0621D /* libMultisigWalletImplementations.a */; };
 		555D33FE2110BD810055D87C /* LocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D33FD2110BD810055D87C /* LocalizationStrings.swift */; };
@@ -225,47 +209,12 @@
 			remoteGlobalIDString = 0A9670B120480C5700445AC2;
 			remoteInfo = SafeUIKit;
 		};
-		0A46703E207E596700F55ADE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A57F70D207E411F00AF407D;
-			remoteInfo = CryptoSwift;
-		};
-		0A467040207E596700F55ADE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A57F71B207E430F00AF407D;
-			remoteInfo = EthereumKit;
-		};
 		0A4A1D332136B3170088F9EC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0A4A1D202136B0C10088F9EC;
 			remoteInfo = Kingfisher;
-		};
-		0A4A1D372136B3170088F9EC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A4A1D1F2136B0C10088F9EC;
-			remoteInfo = Kingfisher;
-		};
-		0A5D2F2320D7A94A009E9918 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 555B0EA820CE5EF800424CEE;
-			remoteInfo = BigInt;
-		};
-		0A5D2F2720D7A94A009E9918 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 555B0EC220CE66EB00424CEE;
-			remoteInfo = SipHash;
 		};
 		0ABCA96F207E560500E2C193 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -302,25 +251,11 @@
 			remoteGlobalIDString = 0AD8FD2020CEC4BA00591B91;
 			remoteInfo = BlockiesSwift;
 		};
-		0AD8FD4220CEC53700591B91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0AD8FD1F20CEC4BA00591B91;
-			remoteInfo = BlockiesSwift;
-		};
 		5527A7FA208DE9D500AF3A50 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 555B9CF3208DE6B9001F0CB2;
-			remoteInfo = RSBarcodes;
-		};
-		5527A7FE208DE9D500AF3A50 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 555B9CF2208DE6B9001F0CB2;
 			remoteInfo = RSBarcodes;
 		};
 		5540A500203C3054009C9BE3 /* PBXContainerItemProxy */ = {
@@ -344,13 +279,6 @@
 			remoteGlobalIDString = 555B0E7A20CAD34C00424CEE;
 			remoteInfo = CryptoEthereumSwift;
 		};
-		555B0E8920CAD3CB00424CEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 555B0E7920CAD34C00424CEE;
-			remoteInfo = CryptoEthereumSwift;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -360,17 +288,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				555B0E8820CAD3CB00424CEE /* CryptoEthereumSwift.framework in Embed Frameworks */,
-				0A5D2F2220D7A94A009E9918 /* BigInt.framework in Embed Frameworks */,
-				0AD8FD4120CEC53700591B91 /* BlockiesSwift.framework in Embed Frameworks */,
 				0A160B8620A07C7300E064E1 /* SafeAppUI.framework in Embed Frameworks */,
-				5527A7FD208DE9D500AF3A50 /* RSBarcodes.framework in Embed Frameworks */,
-				0ABCA975207E560B00E2C193 /* CryptoSwift.framework in Embed Frameworks */,
-				0ABCA976207E560B00E2C193 /* EthereumKit.framework in Embed Frameworks */,
 				0A160B8920A07CC200E064E1 /* SafeUIKit.framework in Embed Frameworks */,
 				0AC33F1B2119CBE1009A5CFB /* CommonCrypto.framework in Embed Frameworks */,
-				0A4A1D362136B3170088F9EC /* Kingfisher.framework in Embed Frameworks */,
-				0A5D2F2620D7A94A009E9918 /* SipHash.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +342,7 @@
 		0AA27840205FCDFA00EBB9D1 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
 		0AA27842205FCE2800EBB9D1 /* TestSupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupportTests.swift; sourceTree = "<group>"; };
 		0AA27847205FD97600EBB9D1 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
+		0AB0B57D2163910200FB2435 /* safe.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = safe.xcfilelist; sourceTree = "<group>"; };
 		0AB743EA20ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfuraEthereumNodeServiceTests.swift; sourceTree = "<group>"; };
 		0ABA90DD20C567CE001AEAE4 /* PendingSafeScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PendingSafeScreenUITests.swift; path = SafeUITests/NewSafe/PendingSafeScreenUITests.swift; sourceTree = SOURCE_ROOT; };
 		0ABA90EA20C56AB5001AEAE4 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainScreen.swift; path = SafeUITests/screens/AppFlow/MainScreen.swift; sourceTree = SOURCE_ROOT; };
@@ -484,23 +405,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AD8FD4020CEC53700591B91 /* BlockiesSwift.framework in Frameworks */,
 				0A8E3C0B20B42C2100F002F6 /* libMultisigWalletImplementations.a in Frameworks */,
 				0A8E3BE720B41D3F00F002F6 /* libCommonImplementations.a in Frameworks */,
 				0AEF8A3D20A08262006A1265 /* libDatabase.a in Frameworks */,
-				0A4A1D352136B3170088F9EC /* Kingfisher.framework in Frameworks */,
-				0A5D2F2520D7A94A009E9918 /* SipHash.framework in Frameworks */,
-				555B0E8720CAD3CB00424CEE /* CryptoEthereumSwift.framework in Frameworks */,
 				0A160B8520A07C6300E064E1 /* SafeAppUI.framework in Frameworks */,
 				0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */,
 				0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */,
 				0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */,
-				0A5D2F2120D7A94A009E9918 /* BigInt.framework in Frameworks */,
 				0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */,
-				5527A7FC208DE9D500AF3A50 /* RSBarcodes.framework in Frameworks */,
 				0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */,
-				0ABBDC032073CADD006D0A48 /* EthereumKit.framework in Frameworks */,
-				0ABBDC012073CADD006D0A48 /* CryptoSwift.framework in Frameworks */,
 				0A160B8820A07CC200E064E1 /* SafeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -673,6 +586,7 @@
 		0AFEDEB62073C846002F5924 /* config */ = {
 			isa = PBXGroup;
 			children = (
+				0AB0B57D2163910200FB2435 /* safe.xcfilelist */,
 				0A84BBFE210616E900708DE5 /* AppConfig.yml */,
 				0AFEDEB42073C80A002F5924 /* Config.xcconfig */,
 				0A84BC0A210616F900708DE5 /* generated */,
@@ -843,22 +757,15 @@
 				0A84BC162106265D00708DE5 /* Copy Firebase Info.plist */,
 				5540A4E9203C3054009C9BE3 /* Resources */,
 				5554D7B820455B7800672DA8 /* Embed Frameworks */,
+				0AB0B571216390D200FB2435 /* Embed Third Party Frameworks */,
 				5540A520203C6077009C9BE3 /* Fabric */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				0A12F17920D01E530039B3E1 /* PBXTargetDependency */,
-				0A46703F207E596700F55ADE /* PBXTargetDependency */,
-				0A467041207E596700F55ADE /* PBXTargetDependency */,
-				5527A7FF208DE9D500AF3A50 /* PBXTargetDependency */,
 				0A160B8B20A07CC200E064E1 /* PBXTargetDependency */,
-				555B0E8A20CAD3CB00424CEE /* PBXTargetDependency */,
-				0AD8FD4320CEC53700591B91 /* PBXTargetDependency */,
-				0A5D2F2420D7A94A009E9918 /* PBXTargetDependency */,
-				0A5D2F2820D7A94A009E9918 /* PBXTargetDependency */,
 				0AC33F1D2119CBE1009A5CFB /* PBXTargetDependency */,
-				0A4A1D382136B3170088F9EC /* PBXTargetDependency */,
 			);
 			name = safe;
 			productName = safe;
@@ -1229,6 +1136,26 @@
 			shellScript = "cp ${SRCROOT}/../encrypted_files/GoogleService-Info-${CONFIGURATION}.plist ${SRCROOT}/safe/GoogleService-Info.plist";
 			showEnvVarsInLog = 0;
 		};
+		0AB0B571216390D200FB2435 /* Embed Third Party Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/safe.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "Embed Third Party Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/xcode_embed_frameworks.sh\n";
+			showEnvVarsInLog = 0;
+		};
 		5540A520203C6077009C9BE3 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1241,7 +1168,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/../Library/${PLATFORM_NAME}/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}";
+			shellScript = "if [ \"$CONFIGURATION\" != \"Debug\" ]; then\n    ${SRCROOT}/../Library/${PLATFORM_NAME}/Fabric.framework/run ${CRASHLYTICS_API_TOKEN} ${CRASHLYTICS_BUILD_SECRET}\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		55DF6A95203C681A00DF6486 /* Lint */ = {
@@ -1346,45 +1273,10 @@
 			name = SafeUIKit;
 			targetProxy = 0A160B8A20A07CC200E064E1 /* PBXContainerItemProxy */;
 		};
-		0A46703F207E596700F55ADE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CryptoSwift;
-			targetProxy = 0A46703E207E596700F55ADE /* PBXContainerItemProxy */;
-		};
-		0A467041207E596700F55ADE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = EthereumKit;
-			targetProxy = 0A467040207E596700F55ADE /* PBXContainerItemProxy */;
-		};
-		0A4A1D382136B3170088F9EC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Kingfisher;
-			targetProxy = 0A4A1D372136B3170088F9EC /* PBXContainerItemProxy */;
-		};
-		0A5D2F2420D7A94A009E9918 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BigInt;
-			targetProxy = 0A5D2F2320D7A94A009E9918 /* PBXContainerItemProxy */;
-		};
-		0A5D2F2820D7A94A009E9918 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SipHash;
-			targetProxy = 0A5D2F2720D7A94A009E9918 /* PBXContainerItemProxy */;
-		};
 		0AC33F1D2119CBE1009A5CFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CommonCrypto;
 			targetProxy = 0AC33F1C2119CBE1009A5CFB /* PBXContainerItemProxy */;
-		};
-		0AD8FD4320CEC53700591B91 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BlockiesSwift;
-			targetProxy = 0AD8FD4220CEC53700591B91 /* PBXContainerItemProxy */;
-		};
-		5527A7FF208DE9D500AF3A50 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RSBarcodes;
-			targetProxy = 5527A7FE208DE9D500AF3A50 /* PBXContainerItemProxy */;
 		};
 		5540A501203C3054009C9BE3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1395,11 +1287,6 @@
 			isa = PBXTargetDependency;
 			target = 5540A4EA203C3054009C9BE3 /* safe */;
 			targetProxy = 5540A50B203C3054009C9BE3 /* PBXContainerItemProxy */;
-		};
-		555B0E8A20CAD3CB00424CEE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CryptoEthereumSwift;
-			targetProxy = 555B0E8920CAD3CB00424CEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1533,7 +1420,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1550,7 +1438,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = safe/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d84b5606-5087-4f32-8480-2bf1207b0897";
@@ -1576,7 +1467,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = safe/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5f5d2866-6c2f-4972-b03b-b441785533bc";
@@ -1598,7 +1492,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = "safe/Tests-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1617,7 +1515,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = "safe/Tests-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1636,7 +1538,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = SafeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.SafeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1657,7 +1563,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = SafeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.SafeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1742,7 +1652,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = safe/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0ace297f-3081-47d4-81fa-74065d7a8761";
@@ -1765,7 +1678,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = "safe/Tests-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1784,7 +1701,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = SafeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.SafeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
