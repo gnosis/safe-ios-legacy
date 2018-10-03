@@ -241,6 +241,21 @@
 /* Title for confirm mnemonic view controller */
 "recovery.confirm_mnemonic.title" = "Confirmation";
 
+/* Safe Address label. */
+"safe_address.address" = "Address";
+
+/* Description for Address Details screen. */
+"safe_address.description" = "Share your address with contacts or enable senders to scan your QR code.";
+
+/* Header for Address Details screen. */
+"safe_address.header" = "Receive Ether and Tokens";
+
+/* Identicon label. */
+"safe_address.identicon" = "Identicon";
+
+/* QR Code label. */
+"safe_address.qr_code" = "QR Code";
+
 /* Title for Address Details screen. */
 "safe_address.title" = "Safe Address";
 
