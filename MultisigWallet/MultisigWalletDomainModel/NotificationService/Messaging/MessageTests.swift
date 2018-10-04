@@ -34,9 +34,9 @@ class MessageTests: XCTestCase {
                                              transactionHash: txHash)
         assert(message: message, equalToJSON:
             [
-            "type": "sendTransactionHash",
-            "hash": hash.toHexString().addHexPrefix(),
-            "chainHash": txHash.value
+                "type": "sendTransactionHash",
+                "hash": hash.toHexString().addHexPrefix(),
+                "chainHash": txHash.value
             ])
     }
 
@@ -51,10 +51,13 @@ class MessageTests: XCTestCase {
             ])
     }
 
-    private func assert(message: OutgoingMessage, equalToJSON jsonObject: Any) {
+    private func assert(message: OutgoingMessage,
+                        equalToJSON jsonObject: Any,
+                        file: StaticString = #file,
+                        line: UInt = #line) {
         let expectedJSONString = try! String(data: JSONSerialization.data(withJSONObject: jsonObject,
-                                                                          options: []), encoding: .utf8)!
-        XCTAssertEqual(message.stringValue, expectedJSONString)
+                                                                          options: [.sortedKeys]), encoding: .utf8)!
+        XCTAssertEqual(message.stringValue, expectedJSONString, file: file, line: line)
     }
 }
 

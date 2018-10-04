@@ -1,0 +1,3 @@
+
+FIREBASE_FRAMEWORKS=-framework "FirebaseCore" -framework "FirebaseMessaging" -framework "Protobuf" -framework "FirebaseInstanceID"
+OTHER_LDFLAGS=$(inherited) -lsqlite3 -lsecp256k1 -lcrypto -ObjC ${FIREBASE_FRAMEWORKS} -framework "CryptoEthereumSwift" -framework "BigInt" -framework "BlockiesSwift" -framework "RSBarcodes" -framework "CryptoSwift" -framework "EthereumKit" -framework "Kingfisher" -framework "SipHash"
