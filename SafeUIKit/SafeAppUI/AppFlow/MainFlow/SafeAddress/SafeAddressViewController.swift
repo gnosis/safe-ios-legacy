@@ -35,27 +35,40 @@ final class SafeAddressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureTexts()
+        configureWrapperView()
+
+        guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
+        identiconView.seed = address
+        configureQRCode(address)
+        configureAddressLabel(address)
+    }
+
+    private func configureTexts() {
         title = Strings.title
         headerLabel.text = Strings.header
         descriptionLabel.text = Strings.description
         identiconLabel.text = Strings.identicon
         addressLabel.text = Strings.address
         qrCodeLabel.text = Strings.qrCode
+    }
 
+    private func configureWrapperView() {
         wrapperView.layer.cornerRadius = 9
         wrapperView.layer.shadowColor = UIColor.black.cgColor
         wrapperView.layer.shadowOffset = CGSize(width: 0, height: 2)
         wrapperView.layer.shadowOpacity = 0.7
+    }
 
-        guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
-        identiconView.seed = address
-
+    private func configureQRCode(_ address: String) {
         qrCodeView.value = address
         qrCodeView.padding = 12
         qrCodeView.layer.borderWidth = 1
         qrCodeView.layer.borderColor = UIColor.black.cgColor
         qrCodeView.layer.cornerRadius = 9
+    }
 
+    private func configureAddressLabel(_ address: String) {
         let attrStr = NSMutableAttributedString(string: address)
         attrStr.addAttribute(
             NSAttributedStringKey.foregroundColor,

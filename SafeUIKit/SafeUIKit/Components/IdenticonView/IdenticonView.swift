@@ -36,18 +36,31 @@ public class IdenticonView: DesignableView {
     private let shadowColor = UIColor.black
 
     override public func commonInit() {
+
+        configureImageView()
+        configureLayer()
+        configureIdenticon()
+
+        didLoad()
+    }
+
+    private func configureImageView() {
         imageView.accessibilityIdentifier = "identicon"
         imageView.frame = bounds
         imageView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         addSubview(imageView)
+    }
 
+    private func configureLayer() {
         backgroundColor = .clear
         layer.shadowColor = shadowColor.cgColor
         layer.shadowOffset = shadowOffsetSize
         layer.shadowOpacity = shadowOpacity
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 100).cgPath
         _displayShadow = displayShadow
+    }
 
+    private func configureIdenticon() {
         let identiconControl = IdenticonControl()
         identiconControl.frame = bounds
         identiconControl.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -71,8 +84,6 @@ public class IdenticonView: DesignableView {
             self._displayShadow = true
         }
         addSubview(identiconControl)
-
-        didLoad()
     }
 
     override public func update() {
