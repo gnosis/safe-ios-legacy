@@ -4,5 +4,3 @@ PLATFORM_LIBRARY_DIR=${LIBRARY_DIR}/${PLATFORM_NAME}
 FRAMEWORK_SEARCH_PATHS=$(inherited) ${PLATFORM_LIBRARY_DIR} ${LIBRARY_DIR}/Firebase/**
 LIBRARY_SEARCH_PATHS=$(inherited) ${PLATFORM_LIBRARY_DIR}
 HEADER_SEARCH_PATHS=$(inherited) ${PLATFORM_LIBRARY_DIR}/include
-FIREBASE_FRAMEWORKS=-framework "FirebaseCore" -framework "FirebaseMessaging" -framework "Protobuf" -framework "FirebaseInstanceID"
-OTHER_LDFLAGS=$(inherited) -lsqlite3 -lsecp256k1 -lcrypto -ObjC ${FIREBASE_FRAMEWORKS} -framework "CryptoEthereumSwift" -framework "BigInt" -framework "BlockiesSwift" -framework "RSBarcodes" -framework "CryptoSwift" -framework "EthereumKit" -framework "Kingfisher" -framework "SipHash"
