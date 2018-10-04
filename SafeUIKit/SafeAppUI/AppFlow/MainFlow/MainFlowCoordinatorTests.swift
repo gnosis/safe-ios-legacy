@@ -140,4 +140,11 @@ class MainFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(presented?.children[0] is ManageTokensTableViewController)
     }
 
+    func test_whenOpenAddressDetailsRequested_thenOpensIt() {
+        mainFlowCoordinator.openAddressDetails()
+        delay()
+        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
+            is SafeAddressViewController)
+    }
+
 }

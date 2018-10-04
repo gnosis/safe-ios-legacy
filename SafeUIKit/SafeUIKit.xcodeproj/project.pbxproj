@@ -215,6 +215,8 @@
 		55DEBC0C214A85E10017CD4B /* SafeQRCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */; };
 		55DEBC13214AA6660017CD4B /* BackgroundHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */; };
 		55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */; };
+		55DEBC28214BD7AB0017CD4B /* SafeAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC27214BD7AB0017CD4B /* SafeAddressViewController.swift */; };
+		55DEBC2A214BD7C60017CD4B /* SafeAddressViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEBC29214BD7C60017CD4B /* SafeAddressViewControllerTests.swift */; };
 		55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */; };
 		55DFBD1A2136A883004B2AC4 /* AddTokenTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */; };
 		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
@@ -496,6 +498,8 @@
 		55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeQRCodeTableViewCell.swift; sourceTree = "<group>"; };
 		55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundHeaderFooterView.swift; sourceTree = "<group>"; };
 		55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionTableViewCell.swift; sourceTree = "<group>"; };
+		55DEBC27214BD7AB0017CD4B /* SafeAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAddressViewController.swift; sourceTree = "<group>"; };
+		55DEBC29214BD7C60017CD4B /* SafeAddressViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAddressViewControllerTests.swift; sourceTree = "<group>"; };
 		55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenBalanceTableViewCell.xib; sourceTree = "<group>"; };
 		55DFBCF32135790E004B2AC4 /* AddTokenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenTableViewController.swift; sourceTree = "<group>"; };
 		55DFBD192136A883004B2AC4 /* AddTokenTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenTableViewControllerTests.swift; sourceTree = "<group>"; };
@@ -679,12 +683,11 @@
 			isa = PBXGroup;
 			children = (
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
-				0A60B50E211312C00066821A /* NewTransaction */,
 				55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */,
 				55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */,
-				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
-				0A60B5102113152F0066821A /* MainViewControllerTests.swift */,
-				0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */,
+				55DEBC25214BD74B0017CD4B /* Main */,
+				55DEBC26214BD78B0017CD4B /* SafeAddress */,
+				0A60B50E211312C00066821A /* NewTransaction */,
 				0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */,
 				0A8C963420D2CFD4007D2410 /* TransactionReview */,
 				0A8C961920D2A783007D2410 /* TransactionDetails */,
@@ -1102,6 +1105,25 @@
 				55DEBC12214AA6660017CD4B /* BackgroundHeaderFooterView.swift */,
 			);
 			path = BackgroundHeaderFooterView;
+			sourceTree = "<group>";
+		};
+		55DEBC25214BD74B0017CD4B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0A40668C20A5E059009BA7FC /* MainViewController.swift */,
+				0A60B5102113152F0066821A /* MainViewControllerTests.swift */,
+				0A4EEA5020D02E9D005CDAC0 /* MainContentViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		55DEBC26214BD78B0017CD4B /* SafeAddress */ = {
+			isa = PBXGroup;
+			children = (
+				55DEBC27214BD7AB0017CD4B /* SafeAddressViewController.swift */,
+				55DEBC29214BD7C60017CD4B /* SafeAddressViewControllerTests.swift */,
+			);
+			path = SafeAddress;
 			sourceTree = "<group>";
 		};
 		55DFBCF52135901D004B2AC4 /* Unlock */ = {
@@ -1626,6 +1648,7 @@
 				0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */,
 				0A7F744721105137004F1150 /* TokenAmountValidator.swift in Sources */,
 				0A4EEA5120D02E9D005CDAC0 /* MainContentViewController.swift in Sources */,
+				55DEBC28214BD7AB0017CD4B /* SafeAddressViewController.swift in Sources */,
 				0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */,
 				55DEBC0C214A85E10017CD4B /* SafeQRCodeTableViewCell.swift in Sources */,
 				0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */,
@@ -1728,6 +1751,7 @@
 				0A5DC575209C9AB600BA7A06 /* AppFlowCoordinatorTests.swift in Sources */,
 				0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */,
 				0A334DC2209C6D8D00ABC6AE /* SetupSafeOptionsViewControllerTests.swift in Sources */,
+				55DEBC2A214BD7C60017CD4B /* SafeAddressViewControllerTests.swift in Sources */,
 				0A334E5B209C8E6800ABC6AE /* NewSafeFlowCoordinatorTests.swift in Sources */,
 				0A334E5A209C8E6800ABC6AE /* ConfirmMnemonicViewControllerTests.swift in Sources */,
 				0A334E60209C8E6800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift in Sources */,

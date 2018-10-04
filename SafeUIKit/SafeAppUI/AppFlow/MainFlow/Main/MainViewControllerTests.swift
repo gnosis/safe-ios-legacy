@@ -8,18 +8,15 @@ import MultisigWalletApplication
 import Common
 import BigInt
 
-class MainViewControllerTests: XCTestCase {
+class MainViewControllerTests: SafeTestCase {
 
-    let walletService = MockWalletApplicationService()
     // swiftlint:disable weak_delegate
     let delegate = MockMainViewControllerDelegate()
     var vc: MainViewController!
 
     override func setUp() {
         super.setUp()
-        ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
-        ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
-
+        walletService.assignAddress("test_address")
         vc = MainViewController.create(delegate: delegate)
     }
 
@@ -31,6 +28,12 @@ class MainViewControllerTests: XCTestCase {
     func test_whenPressingManageTokens_thenCallsDelegate() {
         vc.manageTokens(self)
         XCTAssertTrue(delegate.didCallManageTokens)
+    }
+
+    func test_whenPressingIdenticon_thenCallsDelegate() {
+        createWindow(vc)
+        vc.safeIdenticonView.tapAction?()
+        XCTAssertTrue(delegate.didOpenAddressDetails)
     }
 
 }
@@ -52,6 +55,11 @@ class MockMainViewControllerDelegate: MainViewControllerDelegate {
     var didCallManageTokens = false
     func manageTokens() {
         didCallManageTokens = true
+    }
+
+    var didOpenAddressDetails = false
+    func openAddressDetails() {
+        didOpenAddressDetails = true
     }
 
 }
