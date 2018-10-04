@@ -71,7 +71,7 @@ final class SafeAddressViewController: UIViewController {
     private func configureAddressLabel(_ address: String) {
         let attrStr = NSMutableAttributedString(string: address)
         attrStr.addAttribute(
-            NSAttributedStringKey.foregroundColor,
+            NSAttributedString.Key.foregroundColor,
             value: ColorName.blueyGrey.color,
             range: NSRange(location: 4, length: attrStr.length - 8))
         safeAddressLabel.attributedText = attrStr
