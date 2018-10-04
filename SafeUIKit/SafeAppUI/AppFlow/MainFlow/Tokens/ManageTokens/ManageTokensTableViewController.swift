@@ -49,7 +49,7 @@ final class ManageTokensTableViewController: UITableViewController {
         tableView.register(GradientFooterView.self, forHeaderFooterViewReuseIdentifier: "GradientFooterView")
 
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundView = BackgroundImageView(frame: tableView.frame)
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
@@ -101,7 +101,7 @@ final class ManageTokensTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView,
-                            commit editingStyle: UITableViewCellEditingStyle,
+                            commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         delegate?.hide(token: tokens[indexPath.row])
         tableView.reloadData()

@@ -82,17 +82,17 @@ final class ConfirmMnemonicViewController: UIViewController {
     private func registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWasShown(_:)),
-                                               name: .UIKeyboardDidShow,
+                                               name: UIResponder.keyboardDidShowNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillBeHidden(_:)),
-                                               name: .UIKeyboardWillHide,
+                                               name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
 
     @objc private func keyboardWasShown(_ notification: Notification) {
         guard let info = (notification as NSNotification).userInfo,
-            let kbSize = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size,
+            let kbSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size,
             let activeInput = activeInput else { return }
         let height = kbSize.height
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: height + 8, right: 0)

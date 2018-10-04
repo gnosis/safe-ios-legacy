@@ -65,7 +65,7 @@ platform :ios do
   lane :fabric do
     test_all
     set_bundle_id ADHOC_APP_ID
-    match(type: "adhoc", app_identifier: ADHOC_APP_ID)
+    match(type: "adhoc", app_identifier: ADHOC_APP_ID, clone_branch_directly: true)
     gym(configuration: "AdHoc", 
       scheme: "safe", 
       buildlog_path: BUILD_LOG_PATH,

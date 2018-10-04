@@ -34,7 +34,9 @@ public class OutgoingMessage: Message {
     /// - Parameter json: object to convert
     /// - Returns: serialized json object
     internal func jsonString<T: Encodable>(from json: T) -> String {
-        let data = try! JSONEncoder().encode(json)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .sortedKeys
+        let data = try! encoder.encode(json)
         return String(data: data, encoding: .utf8)!
     }
 

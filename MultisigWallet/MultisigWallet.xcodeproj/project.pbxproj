@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -201,13 +201,6 @@
 			remoteGlobalIDString = 0A160B9120A07FE100E064E1;
 			remoteInfo = Database;
 		};
-		0A4A1D762136C4990088F9EC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A4A1D202136B0C10088F9EC;
-			remoteInfo = Kingfisher;
-		};
 		0A59E8F320AADD510090E89C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0AEF8A6B20A08868006A1265 /* Project object */;
@@ -242,76 +235,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 0A8E3B9E20B419E000F002F6;
 			remoteInfo = CommonImplementationsTests;
-		};
-		0A9DCEA62119DD9900953C7C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0AC33EFA2119C735009A5CFB;
-			remoteInfo = CommonCrypto;
-		};
-		0A9E381F20F4A56D0085E8D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A57F70E207E411F00AF407D;
-			remoteInfo = CryptoSwift;
-		};
-		0A9E382120F4A56D0085E8D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A57F71C207E430F00AF407D;
-			remoteInfo = EthereumKit;
-		};
-		0A9E382320F4A56D0085E8D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 555B9CF3208DE6B9001F0CB2;
-			remoteInfo = RSBarcodes;
-		};
-		0A9E382520F4A56D0085E8D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 555B0E7A20CAD34C00424CEE;
-			remoteInfo = CryptoEthereumSwift;
-		};
-		0A9E382720F4A56D0085E8D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 555B0EA920CE5EF800424CEE;
-			remoteInfo = BigInt;
-		};
-		0A9E382920F4A56D0085E8D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 555B0EC320CE66EB00424CEE;
-			remoteInfo = SipHash;
-		};
-		0A9E382B20F4A56D0085E8D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0AD8FD2020CEC4BA00591B91;
-			remoteInfo = BlockiesSwift;
-		};
-		0A9E382D20F4A5830085E8D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 555B0EA820CE5EF800424CEE;
-			remoteInfo = BigInt;
-		};
-		0A9E382F20F4A5830085E8D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 555B0EC220CE66EB00424CEE;
-			remoteInfo = SipHash;
 		};
 		0A9E383120F4A5830085E8D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -542,7 +465,6 @@
 		0A9E380620F4A4D20085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryExternallyOwnedAccountRepositoryTests.swift; sourceTree = "<group>"; };
 		0A9E380720F4A4D20085E8D7 /* MockEthereumNodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumNodeService.swift; sourceTree = "<group>"; };
 		0A9E380820F4A4D20085E8D7 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
-		0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
 		0AA5D49520E113EE006F46CD /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		0AA5D49F20E12B68006F46CD /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
@@ -552,6 +474,7 @@
 		0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTransactionRepository.swift; sourceTree = "<group>"; };
 		0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTransactionRepositoryTests.swift; sourceTree = "<group>"; };
 		0AB08751212D9851002F969C /* MockEventRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventRelay.swift; sourceTree = "<group>"; };
+		0AB0B5692163881300FB2435 /* TestDependencies.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = TestDependencies.xcfilelist; sourceTree = "<group>"; };
 		0ACA9CF4212ACD0500E39BB6 /* MockErrorStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorStream.swift; sourceTree = "<group>"; };
 		0ACA9D01212ACD4000E39BB6 /* MockTransactionRelayService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTransactionRelayService1.swift; sourceTree = "<group>"; };
 		0ACA9D03212ACD6000E39BB6 /* MockEthereumNodeService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumNodeService1.swift; sourceTree = "<group>"; };
@@ -877,29 +800,21 @@
 			path = requests;
 			sourceTree = "<group>";
 		};
-		0A9E381620F4A56D0085E8D7 /* Products */ = {
+		0AB0B5802163929200FB2435 /* config */ = {
 			isa = PBXGroup;
 			children = (
-				0A9E382020F4A56D0085E8D7 /* CryptoSwift.framework */,
-				0A9E382220F4A56D0085E8D7 /* EthereumKit.framework */,
-				0A9E382420F4A56D0085E8D7 /* RSBarcodes.framework */,
-				0A9E382620F4A56D0085E8D7 /* CryptoEthereumSwift.framework */,
-				0A9E382820F4A56D0085E8D7 /* BigInt.framework */,
-				0A9E382A20F4A56D0085E8D7 /* SipHash.framework */,
-				0A9E382C20F4A56D0085E8D7 /* BlockiesSwift.framework */,
-				0A9DCEA72119DD9900953C7C /* CommonCrypto.framework */,
-				0A4A1D772136C4990088F9EC /* Kingfisher.framework */,
+				0AB0B5692163881300FB2435 /* TestDependencies.xcfilelist */,
+				0A76BE5220AEC5CC00D07770 /* CommonConfig.xcconfig */,
+				0A76BE5320AEC5CC00D07770 /* ImplementationsConfig.xcconfig */,
+				0AEF8AF620A08F7D006A1265 /* swiftlint.yml */,
 			);
-			name = Products;
+			name = config;
 			sourceTree = "<group>";
 		};
 		0AEF8A6A20A08868006A1265 = {
 			isa = PBXGroup;
 			children = (
-				0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */,
-				0A76BE5220AEC5CC00D07770 /* CommonConfig.xcconfig */,
-				0A76BE5320AEC5CC00D07770 /* ImplementationsConfig.xcconfig */,
-				0AEF8AF620A08F7D006A1265 /* swiftlint.yml */,
+				0AB0B5802163929200FB2435 /* config */,
 				0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */,
 				0AEF8A7720A08878006A1265 /* MultisigWalletDomainModel */,
 				0AEF8A9120A08899006A1265 /* MultisigWalletApplication */,
@@ -1086,8 +1001,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				0A9E382E20F4A5830085E8D7 /* PBXTargetDependency */,
-				0A9E383020F4A5830085E8D7 /* PBXTargetDependency */,
 				0A9E383220F4A5830085E8D7 /* PBXTargetDependency */,
 				0AEF8ADA20A08A4D006A1265 /* PBXTargetDependency */,
 			);
@@ -1103,6 +1016,7 @@
 				0AEF8A7D20A08889006A1265 /* Sources */,
 				0AEF8A7E20A08889006A1265 /* Frameworks */,
 				0AEF8A7F20A08889006A1265 /* Resources */,
+				0AB0B5642163841000FB2435 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1141,6 +1055,7 @@
 				0AEF8A9720A088A5006A1265 /* Sources */,
 				0AEF8A9820A088A5006A1265 /* Frameworks */,
 				0AEF8A9920A088A5006A1265 /* Resources */,
+				0AB0B567216386E000FB2435 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1181,6 +1096,7 @@
 				0AEF8AB120A088C3006A1265 /* Sources */,
 				0AEF8AB220A088C3006A1265 /* Frameworks */,
 				0AEF8AB320A088C3006A1265 /* Resources */,
+				0AB0B568216386FB00FB2435 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1204,21 +1120,27 @@
 				TargetAttributes = {
 					0AEF8A7420A08878006A1265 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 					};
 					0AEF8A8020A08889006A1265 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 					};
 					0AEF8A8F20A08899006A1265 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 					};
 					0AEF8A9A20A088A5006A1265 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 					};
 					0AEF8AA920A088B1006A1265 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 					};
 					0AEF8AB420A088C3006A1265 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -1237,10 +1159,6 @@
 					ProductGroup = 0AEF8AC820A08A3F006A1265 /* Products */;
 					ProjectRef = 0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */;
 				},
-				{
-					ProductGroup = 0A9E381620F4A56D0085E8D7 /* Products */;
-					ProjectRef = 0A9E381520F4A56D0085E8D7 /* Library.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1255,13 +1173,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		0A4A1D772136C4990088F9EC /* Kingfisher.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Kingfisher.framework;
-			remoteRef = 0A4A1D762136C4990088F9EC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		0A8E3C0120B4254F00F002F6 /* libCommonImplementations.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1274,62 +1185,6 @@
 			fileType = wrapper.cfbundle;
 			path = CommonImplementationsTests.xctest;
 			remoteRef = 0A8E3C0220B4254F00F002F6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A9DCEA72119DD9900953C7C /* CommonCrypto.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CommonCrypto.framework;
-			remoteRef = 0A9DCEA62119DD9900953C7C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A9E382020F4A56D0085E8D7 /* CryptoSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CryptoSwift.framework;
-			remoteRef = 0A9E381F20F4A56D0085E8D7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A9E382220F4A56D0085E8D7 /* EthereumKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = EthereumKit.framework;
-			remoteRef = 0A9E382120F4A56D0085E8D7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A9E382420F4A56D0085E8D7 /* RSBarcodes.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = RSBarcodes.framework;
-			remoteRef = 0A9E382320F4A56D0085E8D7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A9E382620F4A56D0085E8D7 /* CryptoEthereumSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CryptoEthereumSwift.framework;
-			remoteRef = 0A9E382520F4A56D0085E8D7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A9E382820F4A56D0085E8D7 /* BigInt.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = BigInt.framework;
-			remoteRef = 0A9E382720F4A56D0085E8D7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A9E382A20F4A56D0085E8D7 /* SipHash.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SipHash.framework;
-			remoteRef = 0A9E382920F4A56D0085E8D7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A9E382C20F4A56D0085E8D7 /* BlockiesSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = BlockiesSwift.framework;
-			remoteRef = 0A9E382B20F4A56D0085E8D7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0AA5D49E20E113EF006F46CD /* CommonIntegration.app */ = {
@@ -1401,6 +1256,66 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0AB0B5642163841000FB2435 /* Embed Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/TestDependencies.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "Embed Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/xcode_embed_frameworks.sh\n";
+			showEnvVarsInLog = 0;
+		};
+		0AB0B567216386E000FB2435 /* Embed Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/TestDependencies.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "Embed Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/xcode_embed_frameworks.sh\n";
+			showEnvVarsInLog = 0;
+		};
+		0AB0B568216386FB00FB2435 /* Embed Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/TestDependencies.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "Embed Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/xcode_embed_frameworks.sh\n";
+			showEnvVarsInLog = 0;
+		};
 		0AEF8AF120A08EC1006A1265 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1681,16 +1596,6 @@
 			target = 0AEF8A8F20A08899006A1265 /* MultisigWalletApplication */;
 			targetProxy = 0A59E8FA20AADD570090E89C /* PBXContainerItemProxy */;
 		};
-		0A9E382E20F4A5830085E8D7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BigInt;
-			targetProxy = 0A9E382D20F4A5830085E8D7 /* PBXContainerItemProxy */;
-		};
-		0A9E383020F4A5830085E8D7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SipHash;
-			targetProxy = 0A9E382F20F4A5830085E8D7 /* PBXContainerItemProxy */;
-		};
 		0A9E383220F4A5830085E8D7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CommonTestSupport;
@@ -1790,7 +1695,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -1849,7 +1753,6 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};
@@ -1915,7 +1818,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1975,7 +1878,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2048,7 +1951,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2113,7 +2016,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2181,7 +2084,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2241,7 +2144,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2314,7 +2217,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2379,7 +2282,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2447,7 +2350,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2507,7 +2410,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2580,7 +2483,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2645,7 +2548,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2711,7 +2614,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = AdHoc;
 		};
@@ -2776,7 +2678,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = AdHoc;
@@ -2847,7 +2749,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = AdHoc;
@@ -2913,7 +2815,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = AdHoc;
@@ -2984,7 +2886,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = AdHoc;
@@ -3050,7 +2952,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = AdHoc;
@@ -3121,7 +3023,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = AdHoc;

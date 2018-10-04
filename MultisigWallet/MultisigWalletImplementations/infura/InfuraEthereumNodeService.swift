@@ -6,6 +6,7 @@ import Foundation
 import MultisigWalletDomainModel
 import EthereumKit
 import BigInt
+import Common
 
 public enum JSONRPCExtendedError: Swift.Error {
     case unexpectedValue(String)
@@ -85,7 +86,7 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
             semaphore.wait()
         } else {
             while error == nil && result == nil {
-                RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.1))
+                Timer.wait(0.1)
             }
         }
         if let error = error {

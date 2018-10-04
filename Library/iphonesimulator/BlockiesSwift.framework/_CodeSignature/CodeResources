@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/BlockiesSwift-Swift.h</key>
 		<data>
-		kHZ6AICqOzMBrumCii39mGUjquw=
+		WzDAK5p1sTv4pyHWwl+HZjO78X0=
 		</data>
 		<key>Headers/BlockiesSwift.h</key>
 		<data>
@@ -14,23 +14,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		BipgfKQlxtVpRSjSecVKsM4Zq3M=
+		KKUbB3LuTAXFOPh/8cuq/SS7VEE=
 		</data>
 		<key>Modules/BlockiesSwift.swiftmodule/i386.swiftdoc</key>
 		<data>
-		fOvn0U32OLJFfxIyYoIi/dLiXAk=
+		0/LltQ9Tpqfeg6+DcsaEuIyDUSk=
 		</data>
 		<key>Modules/BlockiesSwift.swiftmodule/i386.swiftmodule</key>
 		<data>
-		kh+bcHkJGYJRgFMTZq+jc6GnHbQ=
+		B5j4nx0DTd5OG5xg7ySdbtnlz5g=
 		</data>
 		<key>Modules/BlockiesSwift.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		vDjBWv6eHRzVB56qL9+x0ADirKA=
+		pHr/EjckBJHFcGdKi0UcuVmf/MY=
 		</data>
 		<key>Modules/BlockiesSwift.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		ROqqc9MKx7YLyPwO3lLZ5fj4SwI=
+		EsBm38XpxYdlwK9iT7K3AyYvxrY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,11 +43,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			kHZ6AICqOzMBrumCii39mGUjquw=
+			WzDAK5p1sTv4pyHWwl+HZjO78X0=
 			</data>
 			<key>hash2</key>
 			<data>
-			8nG0iw3xp8ZN7yrLvsHGZCADndw/oe3Qfi6SS2p04eI=
+			2h/MY7iYAQsDb4MQsnBjrJ6N76urBnSDCCIyqaLsEXo=
 			</data>
 		</dict>
 		<key>Headers/BlockiesSwift.h</key>
@@ -65,44 +65,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			fOvn0U32OLJFfxIyYoIi/dLiXAk=
+			0/LltQ9Tpqfeg6+DcsaEuIyDUSk=
 			</data>
 			<key>hash2</key>
 			<data>
-			dStWb3gSIpvpXnQa05uuPrt+wIwCPggMjIwePW/kz5c=
+			rlRiAK2bcohPgXaYl5WxfHYqVF+Ta67kw1NEfuNpClA=
 			</data>
 		</dict>
 		<key>Modules/BlockiesSwift.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			kh+bcHkJGYJRgFMTZq+jc6GnHbQ=
+			B5j4nx0DTd5OG5xg7ySdbtnlz5g=
 			</data>
 			<key>hash2</key>
 			<data>
-			KIQFmaouqZkV59GHVrf7AYmRfx2yEy057W15RfAKj60=
+			iKkLxML7dqwo0Bpmx2ufaeDptf0udJBjRtFGnZylKc8=
 			</data>
 		</dict>
 		<key>Modules/BlockiesSwift.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			vDjBWv6eHRzVB56qL9+x0ADirKA=
+			pHr/EjckBJHFcGdKi0UcuVmf/MY=
 			</data>
 			<key>hash2</key>
 			<data>
-			TPEjmHBjHVv6jfD5H4zHsDCR08WGNFmY4ZQJPBT1A94=
+			oYJtvwr4hlHDIdAotywdvvY/RkoAIIpD3h0cQIXXxac=
 			</data>
 		</dict>
 		<key>Modules/BlockiesSwift.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ROqqc9MKx7YLyPwO3lLZ5fj4SwI=
+			EsBm38XpxYdlwK9iT7K3AyYvxrY=
 			</data>
 			<key>hash2</key>
 			<data>
-			tAWMaSS4rBRVxj48WUmyGGTVrh9l1vCB1UTmb22Cb2A=
+			rmAUd5omkrvHL1dg4m5gKcHKs8YApIU/IfogSBnzqkM=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

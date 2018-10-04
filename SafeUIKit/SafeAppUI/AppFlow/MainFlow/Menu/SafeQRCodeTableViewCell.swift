@@ -25,7 +25,7 @@ final class SafeQRCodeTableViewCell: UITableViewCell {
         qrCodeView.layer.cornerRadius = 6
         let attrStr = NSMutableAttributedString(string: code.address)
         attrStr.addAttribute(
-            NSAttributedStringKey.foregroundColor,
+            NSAttributedString.Key.foregroundColor,
             value: ColorName.blueyGrey.color,
             range: NSRange(location: 4, length: attrStr.length - 8))
         addressLabel.attributedText = attrStr

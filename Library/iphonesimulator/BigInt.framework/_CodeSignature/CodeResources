@@ -6,31 +6,31 @@
 	<dict>
 		<key>Headers/BigInt-Swift.h</key>
 		<data>
-		5dvw3nqWKyaNMUuNdJJY8QUazL0=
+		mDthvzF48t3tMmyz83oADIT7IaM=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		/qB8DL3H/Bp60hSvYR/xwXAriF0=
+		n75W6wgn/g59RCHuDVfJU2AE5hc=
 		</data>
 		<key>Modules/BigInt.swiftmodule/i386.swiftdoc</key>
 		<data>
-		06ifMeyHMG9k9BfqyDTtQhXxBqQ=
+		zGO0EA1j0iVL+wGS6rtxMpwljoc=
 		</data>
 		<key>Modules/BigInt.swiftmodule/i386.swiftmodule</key>
 		<data>
-		idZou/PN1FS2eZXHImC+ylACi7A=
+		nU0RdLfzZlvcdGpLz/NxYFgFsds=
 		</data>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		PdIruScTMX7QYWoManrjkXbXBlw=
+		ALCMYrHvde5kMuG+fVDULbYvSt4=
 		</data>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		Br7r63rChsZGnXqj1jomUaTqk2o=
+		lnuQY/cqDoa3QiS6cmHwu00mq7k=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		lw88WwJp0hyZwIgi9L6Rlu0aj3M=
+		+LKgrLBuf9oVedV96sBpcGpjSPg=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -39,66 +39,66 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5dvw3nqWKyaNMUuNdJJY8QUazL0=
+			mDthvzF48t3tMmyz83oADIT7IaM=
 			</data>
 			<key>hash2</key>
 			<data>
-			BiMjuszb8DzMvsmzk5p0cFOb8g65piLlhgGr1M+lgrg=
+			c9OSFIwcEp+OdI4z47pzk707q2sWQ4hV76jnZGyDq6M=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			06ifMeyHMG9k9BfqyDTtQhXxBqQ=
+			zGO0EA1j0iVL+wGS6rtxMpwljoc=
 			</data>
 			<key>hash2</key>
 			<data>
-			pQGBA8Rqlb6oIBFd5XaKzamfDcQp+clnBCxyR32787Q=
+			Hhs9X8W5+vD6d6BbhZm3HqtqFIm9fAlOiHsNCKxZxx0=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			idZou/PN1FS2eZXHImC+ylACi7A=
+			nU0RdLfzZlvcdGpLz/NxYFgFsds=
 			</data>
 			<key>hash2</key>
 			<data>
-			YDFz6Y2MHU7Yp7UuMPmS9taw4Y3qTwuYnLfR6XJ1YJs=
+			TgBTH4LbKG46xz8FkLRCfWcQtzcEbrpHUFJTpIXH7iY=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			PdIruScTMX7QYWoManrjkXbXBlw=
+			ALCMYrHvde5kMuG+fVDULbYvSt4=
 			</data>
 			<key>hash2</key>
 			<data>
-			OEDBvta+m70UyTbO9JoLhxzCRYw6VrOEF6P3ez1RM94=
+			P2ooHNGmWyfp/GnfV0JbfoHYw+pZ+GYkcDKE1DDuNqM=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Br7r63rChsZGnXqj1jomUaTqk2o=
+			lnuQY/cqDoa3QiS6cmHwu00mq7k=
 			</data>
 			<key>hash2</key>
 			<data>
-			VcZaY1scTJnGawDxi2fyKSooisOqKz9ZD3KF/9KNDbE=
+			sQ4HzT+oXl0qPtpL8CeFAh2mGWHknI/pQxwW0ITUm+g=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			lw88WwJp0hyZwIgi9L6Rlu0aj3M=
+			+LKgrLBuf9oVedV96sBpcGpjSPg=
 			</data>
 			<key>hash2</key>
 			<data>
-			HMyXROI580a1rwN93UAwu2pv3eBkJCUz4VF5/713LOU=
+			9JqPjEbto4aNugHPlO21kmd46NJFeqPwFqs5DGejvTk=
 			</data>
 		</dict>
 	</dict>

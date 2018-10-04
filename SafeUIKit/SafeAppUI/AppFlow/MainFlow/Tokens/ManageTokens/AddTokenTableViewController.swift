@@ -43,7 +43,7 @@ class AddTokenTableViewController: UITableViewController {
     static func create(delegate: AddTokenTableViewControllerDelegate) -> UINavigationController {
         let navControllet = StoryboardScene.Main.addTokenNavigationController.instantiate()
         navControllet.navigationBar.isTranslucent = false
-        let controller = navControllet.childViewControllers[0] as! AddTokenTableViewController
+        let controller = navControllet.children[0] as! AddTokenTableViewController
         controller.delegate = delegate
         return navControllet
     }
@@ -84,7 +84,7 @@ class AddTokenTableViewController: UITableViewController {
         tableView.separatorStyle = .none
 
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         let backgroundView = BackgroundImageView(frame: tableView.frame)
         backgroundView.isDimmed = true
         tableView.backgroundView = backgroundView
