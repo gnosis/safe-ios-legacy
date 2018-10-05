@@ -52,7 +52,8 @@ platform :ios do
       result_bundle: true,
       output_directory: REPORTS_PATH,
       buildlog_path: BUILD_LOG_PATH,
-      derived_data_path: DERIVED_DATA_PATH}.merge(params))
+      derived_data_path: DERIVED_DATA_PATH,
+      devices: ['iPhone X']}.merge(params))
   end
 
   desc "Runs all tests"
