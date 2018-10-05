@@ -5,6 +5,26 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`0.7.0`_ - 2018-10-05
+=====================
+Added
+-----
+- Manage tokens functionality:
+    - Display tokens on Main screen
+    - Manage tokens screen
+    - Add new token screen
+    - Syncronization of tokens with service
+    - Syncronization of balances with blockchain
+- Share address
+- Design adjustments for main screen and menu
+
+Changed
+-------
+- Updated to swift 4.2
+- Dropped iOS 10 support
+- Optimized Travis build time
+- WalletApplicationService refactored
+
 `0.6.0`_ - 2018-08-09
 =====================
 Added
@@ -117,6 +137,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _0.7.0: https://github.com/gnosis/safe-ios/tree/0.7.0
 .. _0.6.0: https://github.com/gnosis/safe-ios/tree/0.6.0
 .. _0.4.1: https://github.com/gnosis/safe-ios/tree/0.4.1
 .. _0.4.0: https://github.com/gnosis/safe-ios/tree/0.4.0
