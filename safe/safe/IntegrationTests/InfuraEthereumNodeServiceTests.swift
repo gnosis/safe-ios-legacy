@@ -105,4 +105,15 @@ class InfuraEthereumNodeServiceTests: BlockchainIntegrationTest {
         XCTAssertEqual(balance, TokenInt("20000000000000000000000"))
     }
 
+    func test_safe_getOwners() throws {
+        DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
+        let proxy = SafeOwnerManagerContractProxy(Address("0x092CC1854399ADc38Dad4f846E369C40D0a40307"))
+        let expected = ["0xd06ab3c0d8094791f8f3bdb6b66cb82a68b6d846",
+                        "0xb952005d631d4892430144a2d5850b1cd0efc981",
+                        "0x41b152984f80c4017d3640662727c263e2073780"].map { Address($0) }
+        let owners = try proxy.getOwners()
+        print(owners)
+        XCTAssertEqual(owners, expected)
+    }
+
 }

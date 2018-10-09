@@ -19,17 +19,37 @@ public class EthereumContractProxy {
     }
 
     func decodeUInt(_ value: Data) -> BigUInt {
-        let bigEndianValue = value.prefix(32)
+        let bigEndianValue = value[value.startIndex..<value.startIndex + 32]
         return BigUInt(bigEndianValue)
     }
 
+    /// NOTE: resulting address is NOT formatted according to EIP-55
+    func decodeAddress(_ value: Data) -> Address {
+        let uintValue = decodeUInt(value)
+        return Address(uintValue)
+    }
+
+    func encodeAddress(_ value: Address) -> Data {
+        return encodeUInt(BigUInt(Data(ethHex: value.value)))
+    }
+
     func decodeArrayUInt(_ value: Data) -> [BigUInt] {
-        let count = decodeUInt(value)
-        return decodeTupleUInt(value.suffix(from: 32), Int(count))
+        let offset = decodeUInt(value)
+        let data = value[Int(offset)..<value.endIndex]
+        let count = decodeUInt(data)
+        return decodeTupleUInt(data[data.startIndex + 32..<data.endIndex], Int(count))
     }
 
     func encodeArrayUInt(_ value: [BigUInt]) -> Data {
-        return encodeUInt(BigUInt(value.count)) + encodeTupleUInt(value)
+        return encodeUInt(32) + encodeUInt(BigUInt(value.count)) + encodeTupleUInt(value)
+    }
+
+    func encodeArrayAddress(_ value: [Address]) -> Data {
+        return encodeArrayUInt(value.map { BigUInt(Data(ethHex: $0.value)) })
+    }
+
+    func decodeArrayAddress(_ value: Data) -> [Address] {
+        return decodeArrayUInt(value).map { Address($0) }
     }
 
     func decodeTupleUInt(_ value: Data, _ count: Int) -> [BigUInt] {
@@ -49,6 +69,14 @@ public class EthereumContractProxy {
 
     func tailUInt(_ value: BigUInt) -> Data {
         return Data()
+    }
+
+}
+
+fileprivate extension Address {
+
+    init(_ value: BigUInt) {
+        self.init("0x" + String(value, radix: 16))
     }
 
 }

@@ -63,14 +63,32 @@ class EthereumContractProxyTests: EthereumContractProxyBaseTests {
 
     func test_whenEncodingArrayUInt_thenEncodesToData() {
         let values = (0..<3).map { i in BigUInt(2) ^ (1 + i) }
-        let count = proxy.encodeUInt(BigUInt(3))
-        let rawValues = count + values.map { proxy.encodeUInt($0) }.reduce(into: Data()) { $0.append($1) }
+        let offsetToData = proxy.encodeUInt(32)
+        let count = proxy.encodeUInt(3)
+        let items = values.map { proxy.encodeUInt($0) }.reduce(into: Data()) { $0.append($1) }
+        let rawValues = offsetToData + count + items
         XCTAssertEqual(proxy.encodeArrayUInt(values), rawValues)
     }
 
     func test_whenDecodingArrayOfUInts_thenReturnsArray() {
-        let values = (0..<3).map { i in BigUInt(2) ^ (1 + i) }
+        let values = [BigUInt(1), BigUInt(2), BigUInt(3)]
         XCTAssertEqual(proxy.decodeArrayUInt(proxy.encodeArrayUInt(values)), values)
+    }
+
+    func test_whenEncodesDecodesAddress_thenUsesUInt() {
+        let values = [Address.testAccount1, Address.testAccount2]
+        let uints = values.map { BigUInt(Data(ethHex: $0.value)) }
+        XCTAssertEqual(proxy.encodeArrayAddress(values), proxy.encodeArrayUInt(uints))
+    }
+
+    func test_whenDecodesAddress_thenReturnsIt() {
+        let rawValue = proxy.encodeUInt(BigUInt(Data(ethHex: Address.testAccount1.value)))
+        XCTAssertEqual(proxy.decodeAddress(rawValue).value.lowercased(), Address.testAccount1.value.lowercased())
+    }
+
+    func test_whenEncodesAddress_thenReturnsData() {
+        XCTAssertEqual(proxy.encodeAddress(Address.testAccount1),
+                       proxy.encodeUInt(BigUInt(Data(ethHex: Address.testAccount1.value))))
     }
 
 }
