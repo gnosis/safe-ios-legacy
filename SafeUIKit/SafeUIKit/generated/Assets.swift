@@ -49,6 +49,10 @@ enum Asset {
   static let checkmarkSelected = ImageAsset(name: "checkmark-selected")
   static let closeIcon = ImageAsset(name: "close-icon")
   static let qrCode = ImageAsset(name: "qr-code")
+  enum TextInputs {
+    static let tmpCloseGray = ImageAsset(name: "tmp-close-gray")
+    static let tmpClose = ImageAsset(name: "tmp-close")
+  }
   enum TokenIcons {
     static let eth = ImageAsset(name: "ETH")
     static let defaultToken = ImageAsset(name: "default-token")
@@ -63,6 +67,8 @@ enum Asset {
     checkmarkSelected,
     closeIcon,
     qrCode,
+    TextInputs.tmpCloseGray,
+    TextInputs.tmpClose,
     TokenIcons.eth,
     TokenIcons.defaultToken,
   ]

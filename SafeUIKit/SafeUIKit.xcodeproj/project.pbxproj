@@ -195,6 +195,9 @@
 		5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5527A807208E357B00AF3A50 /* ScannerViewController.xib */; };
 		5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */; };
 		555B0E6720CA83DF00424CEE /* TokenInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B0E6620CA83DF00424CEE /* TokenInputViewController.swift */; };
+		555EB6EC216CA42100E06553 /* TextInputsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6EB216CA42100E06553 /* TextInputsViewController.swift */; };
+		555EB6F0216CA5CF00E06553 /* TextInput1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6EF216CA5CF00E06553 /* TextInput1.swift */; };
+		555EB6F2216CA5E900E06553 /* TextInput1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6F1216CA5E900E06553 /* TextInput1Tests.swift */; };
 		556251D2214671B800F569EE /* TokenBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */; };
 		556251D3214671BE00F569EE /* TokenBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */; };
 		556251D42146721600F569EE /* TokenNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */; };
@@ -482,6 +485,9 @@
 		5527A807208E357B00AF3A50 /* ScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
 		5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		555B0E6620CA83DF00424CEE /* TokenInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInputViewController.swift; sourceTree = "<group>"; };
+		555EB6EB216CA42100E06553 /* TextInputsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputsViewController.swift; sourceTree = "<group>"; };
+		555EB6EF216CA5CF00E06553 /* TextInput1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput1.swift; sourceTree = "<group>"; };
+		555EB6F1216CA5E900E06553 /* TextInput1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput1Tests.swift; sourceTree = "<group>"; };
 		556251E92146D38000F569EE /* GradientFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientFooterView.swift; sourceTree = "<group>"; };
 		556251F32147C34600F569EE /* AddTokenHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenHeaderView.swift; sourceTree = "<group>"; };
 		556251F8214912AA00F569EE /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
@@ -812,6 +818,7 @@
 				0A60B515211333620066821A /* ProgressViewController.swift */,
 				5524735F214293D500A77557 /* IdenticonViewController.swift */,
 				556251FA2149135F00F569EE /* QRCodeViewController.swift */,
+				555EB6EB216CA42100E06553 /* TextInputsViewController.swift */,
 			);
 			path = SafeUIKitDemo;
 			sourceTree = "<group>";
@@ -989,6 +996,7 @@
 		5524734F21428E4C00A77557 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				555EB6ED216CA55000E06553 /* TextInputs */,
 				556251F72149119200F569EE /* QRCodeView */,
 				556251CF2146710800F569EE /* TokenBalanceCell */,
 				5524735921428FA300A77557 /* IdenticonView */,
@@ -999,12 +1007,12 @@
 				5524735521428E9000A77557 /* BigButton */,
 				5524735421428E7600A77557 /* QRCodeInput */,
 				5524735321428E6500A77557 /* TokenInput */,
-				5524735221428E5600A77557 /* TextInput */,
+				5524735221428E5600A77557 /* TextInputOld */,
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
-		5524735221428E5600A77557 /* TextInput */ = {
+		5524735221428E5600A77557 /* TextInputOld */ = {
 			isa = PBXGroup;
 			children = (
 				0A9670D420480C7B00445AC2 /* TextInput.swift */,
@@ -1013,7 +1021,7 @@
 				0A9670D320480C7B00445AC2 /* RuleLabel.swift */,
 				0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */,
 			);
-			path = TextInput;
+			path = TextInputOld;
 			sourceTree = "<group>";
 		};
 		5524735321428E6500A77557 /* TokenInput */ = {
@@ -1079,6 +1087,23 @@
 				0AD998A120D3E5BA00E6F3CA /* IdenticonViewTests.swift */,
 			);
 			path = IdenticonView;
+			sourceTree = "<group>";
+		};
+		555EB6ED216CA55000E06553 /* TextInputs */ = {
+			isa = PBXGroup;
+			children = (
+				555EB6EE216CA56300E06553 /* TextInput */,
+			);
+			path = TextInputs;
+			sourceTree = "<group>";
+		};
+		555EB6EE216CA56300E06553 /* TextInput */ = {
+			isa = PBXGroup;
+			children = (
+				555EB6EF216CA5CF00E06553 /* TextInput1.swift */,
+				555EB6F1216CA5E900E06553 /* TextInput1Tests.swift */,
+			);
+			path = TextInput;
 			sourceTree = "<group>";
 		};
 		556251CF2146710800F569EE /* TokenBalanceCell */ = {
@@ -1549,6 +1574,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				555EB6EC216CA42100E06553 /* TextInputsViewController.swift in Sources */,
 				0A00293220CFD75F009A4BFE /* MySegmentViewController.swift in Sources */,
 				55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */,
 				0A0974D620480CEB005753DF /* ViewController.swift in Sources */,
@@ -1593,6 +1619,7 @@
 				0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */,
 				552473612142A07300A77557 /* DesignableView.swift in Sources */,
 				5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */,
+				555EB6F0216CA5CF00E06553 /* TextInput1.swift in Sources */,
 				550954EA20C9590000F5F25F /* TokenInput.swift in Sources */,
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
 				556251D2214671B800F569EE /* TokenBalanceTableViewCell.swift in Sources */,
@@ -1619,6 +1646,7 @@
 				556251D52146721A00F569EE /* TokenNumberFormatterTests.swift in Sources */,
 				0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
+				555EB6F2216CA5E900E06553 /* TextInput1Tests.swift in Sources */,
 				5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */,
 				55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */,
 			);
