@@ -36,4 +36,21 @@ class SafeOwnerManagerContractProxyTests: EthereumContractProxyBaseTests {
         XCTAssertTrue(result)
     }
 
+    func test_getThreshold() throws {
+        nodeService.expect_eth_call(to: Address.testAccount1,
+                                    data: proxy.method("getThreshold()"),
+                                    result: proxy.encodeUInt(3))
+        XCTAssertEqual(try proxy.getThreshold(), 3)
+        nodeService.verify()
+    }
+
+    func test_nonce() throws {
+        nodeService.expect_eth_call(to: Address.testAccount1,
+                                    data: proxy.method("nonce()"),
+                                    result: proxy.encodeUInt(100))
+        XCTAssertEqual(try proxy.nonce(), 100)
+        nodeService.verify()
+    }
+
+
 }

@@ -21,7 +21,7 @@ class EthereumContractProxyBaseTests: XCTestCase {
 
 class EthereumContractProxyTests: EthereumContractProxyBaseTests {
 
-    let proxy = EthereumContractProxy()
+    let proxy = EthereumContractProxy(Address.testAccount1)
 
     func test_selectorToMethodId() {
         let selector = "abc()".data(using: .ascii)!

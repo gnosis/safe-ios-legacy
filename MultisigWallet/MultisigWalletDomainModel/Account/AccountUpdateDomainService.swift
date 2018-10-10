@@ -66,8 +66,8 @@ open class AccountUpdateDomainService {
             return try? DomainRegistry.ethereumNodeService.eth_getBalance(account: address)
         } else {
             let token = DomainRegistry.tokenListItemRepository.find(id: accountID.tokenID)!
-            let proxy = ERC20TokenContractProxy()
-            return try? proxy.balance(of: address, contract: token.token.address)
+            let proxy = ERC20TokenContractProxy(token.token.address)
+            return try? proxy.balance(of: address)
         }
     }
 

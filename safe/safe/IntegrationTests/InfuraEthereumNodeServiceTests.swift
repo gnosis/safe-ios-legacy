@@ -88,20 +88,15 @@ class InfuraEthereumNodeServiceTests: BlockchainIntegrationTest {
     }
 
     func test_nonceFromSafeContract() throws {
-        let encryptionService = EncryptionService(chainId: .rinkeby)
-        let functionSignature = "nonce()"
-        let methodID = encryptionService.hash(functionSignature.data(using: .ascii)!).prefix(4)
-        let call = TransactionCall(to: EthAddress(hex: contract.address), data: EthData(methodID))
-        let resultData = try service.eth_call(transaction: call, blockNumber: .latest)
-        let nonce = BigInt(hex: resultData.toHexString())!
-        XCTAssertEqual(nonce, 0)
+        DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
+        let proxy = SafeOwnerManagerContractProxy(Address(contract.address))
+        XCTAssertEqual(try proxy.nonce(), 0)
     }
 
     func test_balanceFromERC20Contract() throws {
         DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
-        let proxy = ERC20TokenContractProxy()
-        let balance = try proxy.balance(of: Address("0x0ddc793680ff4f5793849c8c6992be1695cbe72a"),
-                                        contract: Address("0x36276f1f2cb8e9c11c508aad00556f819c5ad876"))
+        let proxy = ERC20TokenContractProxy(Address("0x36276f1f2cb8e9c11c508aad00556f819c5ad876"))
+        let balance = try proxy.balance(of: Address("0x0ddc793680ff4f5793849c8c6992be1695cbe72a"))
         XCTAssertEqual(balance, TokenInt("20000000000000000000000"))
     }
 
@@ -120,6 +115,12 @@ class InfuraEthereumNodeServiceTests: BlockchainIntegrationTest {
             XCTAssertTrue(try proxy.isOwner(Address(owner)))
         }
         XCTAssertFalse(try proxy.isOwner(testAddress))
+    }
+
+    func test_safe_getThreshold() throws {
+        DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
+        let proxy = SafeOwnerManagerContractProxy(Address(contract.address))
+        XCTAssertEqual(try proxy.getThreshold(), 2)
     }
 
 }
