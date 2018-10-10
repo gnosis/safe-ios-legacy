@@ -52,5 +52,11 @@ class SafeOwnerManagerContractProxyTests: EthereumContractProxyBaseTests {
         nodeService.verify()
     }
 
+    func test_addOwner() {
+        let data = proxy.invocation("addOwnerWithThreshold(address,uint256)",
+                                    proxy.encodeAddress(Address.testAccount2),
+                                    proxy.encodeUInt(2))
+        XCTAssertEqual(proxy.addOwner(Address.testAccount2, newThreshold: 2), data)
+    }
 
 }
