@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VerifiableInput" customModule="SafeUIKit" customModuleProvider="target">
+            <connections>
+                <outlet property="stackView" destination="B9g-Cf-zzp" id="3lb-sM-8pn"/>
+                <outlet property="textInput" destination="crR-JC-7Pb" id="atT-bX-VV0"/>
+                <outlet property="wrapperView" destination="Peu-F4-85W" id="7wf-SU-Jcj"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Peu-F4-85W">
+            <rect key="frame" x="0.0" y="0.0" width="432" height="59"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="B9g-Cf-zzp">
+                    <rect key="frame" x="0.0" y="0.0" width="432" height="30"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="crR-JC-7Pb" customClass="TextInput1" customModule="SafeUIKit" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="432" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="qcW-NK-UPR" firstAttribute="trailing" secondItem="B9g-Cf-zzp" secondAttribute="trailing" id="5iv-PN-mGE"/>
+                <constraint firstItem="B9g-Cf-zzp" firstAttribute="top" secondItem="qcW-NK-UPR" secondAttribute="top" id="ClF-cs-l03"/>
+                <constraint firstItem="B9g-Cf-zzp" firstAttribute="leading" secondItem="qcW-NK-UPR" secondAttribute="leading" id="eur-pj-qET"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="qcW-NK-UPR"/>
+            <point key="canvasLocation" x="43" y="-200.5"/>
+        </view>
+    </objects>
+</document>

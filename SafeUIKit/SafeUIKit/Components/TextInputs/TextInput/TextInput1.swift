@@ -63,7 +63,9 @@ final public class TextInput1: UITextField {
     }
 
     @objc private func clearText() {
-        text = ""
+        if delegate?.textFieldShouldClear?(self) ?? true {
+            text = ""
+        }
     }
 
     private func updateAdjustableUI() {
