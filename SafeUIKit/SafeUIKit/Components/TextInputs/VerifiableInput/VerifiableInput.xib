@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="432" height="59"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="B9g-Cf-zzp">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="B9g-Cf-zzp">
                     <rect key="frame" x="0.0" y="0.0" width="432" height="30"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="crR-JC-7Pb" customClass="TextInput1" customModule="SafeUIKit" customModuleProvider="target">

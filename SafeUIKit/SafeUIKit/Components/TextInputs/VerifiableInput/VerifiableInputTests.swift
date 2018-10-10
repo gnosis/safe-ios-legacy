@@ -19,7 +19,7 @@ class VerifiableInputTests: XCTestCase {
     func test_whenAddingRule_addsLabel() {
         input.addRule("test") { _ in true }
         XCTAssertEqual(input.ruleLabelCount, 1)
-        XCTAssertEqual(input.ruleLabel(at: 0).text, "test")
+        XCTAssertEqual(input.ruleLabel(at: 0).label.text, "test")
     }
 
     func test_whenInitiated_containsNoRules() {

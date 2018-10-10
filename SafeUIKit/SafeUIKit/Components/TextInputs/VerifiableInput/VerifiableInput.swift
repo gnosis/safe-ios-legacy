@@ -58,15 +58,15 @@ public final class VerifiableInput: UIView {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        commonInit()
     }
 
     public override func awakeFromNib() {
         super.awakeFromNib()
-        configure()
+        commonInit()
     }
 
-    private func configure() {
+    private func commonInit() {
         loadContentsFromNib()
         backgroundColor = .clear
         wrapperView.backgroundColor = .clear

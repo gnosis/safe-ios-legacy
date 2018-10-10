@@ -5,6 +5,7 @@
 import UIKit
 
 public enum RuleStatus {
+
     case error
     case success
     case inactive
@@ -16,38 +17,56 @@ public enum RuleStatus {
         case .inactive: return LocalizedString("rule.inactive", comment: "Inactive status of a rule")
         }
     }
+
 }
 
-final class RuleLabel: UILabel {
+final class RuleLabel: UIView {
+
+    @IBOutlet var wrapperView: UIView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var label: UILabel!
 
     private var rule: ((String) -> Bool)?
-
-    convenience init(text: String, rule: ((String) -> Bool)? = nil) {
-        self.init(frame: .zero)
-        self.text = text
-        self.rule = rule
-        update()
-    }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        configure()
-    }
-
-    private func configure() {
-        font = FontName.body
-        status = .inactive
-    }
-
     private (set) var status: RuleStatus = .inactive {
         didSet {
             update()
         }
+    }
+
+    convenience init(text: String, rule: ((String) -> Bool)? = nil) {
+        self.init(frame: .zero)
+        self.label.text = text
+        self.rule = rule
+        update()
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+
+    private func commonInit() {
+        loadContentsFromNib()
+        backgroundColor = .clear
+        wrapperView.backgroundColor = .clear
+    }
+
+    private func loadContentsFromNib() {
+        safeUIKit_loadFromNib()
+        pinWrapperToSelf()
+    }
+
+    private func pinWrapperToSelf() {
+        NSLayoutConstraint.activate([
+            wrapperView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            wrapperView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            wrapperView.topAnchor.constraint(equalTo: topAnchor),
+            wrapperView.bottomAnchor.constraint(equalTo: bottomAnchor)])
+        wrapperView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func validate(_ text: String) {
@@ -60,18 +79,18 @@ final class RuleLabel: UILabel {
     }
 
     private func update() {
-        textColor = color(for: status)
-        accessibilityValue = [status.localizedDescription, text].compactMap { $0 }.joined(separator: " ")
+        imageView.image = image(for: status)
+        accessibilityValue = [status.localizedDescription, label.text].compactMap { $0 }.joined(separator: " ")
     }
 
-    private func color(for status: RuleStatus) -> UIColor {
+    private func image(for status: RuleStatus) -> UIImage {
         switch status {
         case .error:
-            return ColorName.red.color
+            return Asset.TextInputs.errorIcon.image
         case .inactive:
-            return ColorName.gray.color
+            return Asset.closeIcon.image
         case .success:
-            return ColorName.green.color
+            return Asset.checkmarkSelected.image
         }
     }
 

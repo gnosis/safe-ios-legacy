@@ -9,16 +9,16 @@ class RuleLabelTests: XCTestCase {
 
     var label: RuleLabel!
 
-    func test_whenStatusChanged_thenTextColorChanged() {
+    func test_whenStatusChanged_thenImageChanged() {
         label = .alwaysTrue()
-        let initialColor = label.textColor
+        let initialImage = label.imageView.image
         validate()
-        let changedColor = label.textColor
-        XCTAssertNotEqual(changedColor, initialColor)
+        let changedImage = label.imageView.image
+        XCTAssertNotEqual(initialImage, changedImage)
     }
 
     func test_whenInitWithText_thenSetsText() {
-        XCTAssertEqual(RuleLabel.withText().text, RuleLabel.defaultText)
+        XCTAssertEqual(RuleLabel.withText().label.text, RuleLabel.defaultText)
     }
 
     func test_whenRulePasses_thenStatusSuccess() {
