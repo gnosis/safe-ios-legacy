@@ -4,7 +4,7 @@
 
 import UIKit
 
-final public class TextInput1: UITextField {
+final public class TextInput: UITextField {
 
     private let clearButton = UIButton(type: .custom)
     private let padding: CGFloat = 14

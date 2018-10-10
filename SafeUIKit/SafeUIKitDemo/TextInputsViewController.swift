@@ -7,7 +7,7 @@ import SafeUIKit
 
 class TextInputsViewController: UIViewController {
 
-    @IBOutlet weak var simpleTextInput: TextInput1!
+    @IBOutlet weak var simpleTextInput: TextInput!
 
     override func viewDidLoad() {
         super.viewDidLoad()
