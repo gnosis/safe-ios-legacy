@@ -80,7 +80,7 @@ final class RuleLabel: UIView {
 
     private func update() {
         imageView.image = image(for: status)
-        accessibilityValue = [status.localizedDescription, label.text].compactMap { $0 }.joined(separator: " ")
+        label.accessibilityValue = [status.localizedDescription, label.text].compactMap { $0 }.joined(separator: " ")
     }
 
     private func image(for status: RuleStatus) -> UIImage {

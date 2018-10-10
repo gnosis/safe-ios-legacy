@@ -56,6 +56,7 @@ final public class TextInput: UITextField {
     }
 
     private func addCustomClearButton() {
+        clearButton.accessibilityIdentifier = "Clear text"
         clearButton.frame = CGRect(x: 0, y: 0, width: 14, height: 14)
         clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
         rightView = clearButton
