@@ -5,17 +5,9 @@
 import XCTest
 @testable import MultisigWalletDomainModel
 
-class ERC20TokenContractProxyTests: XCTestCase {
+class ERC20TokenContractProxyTests: EthereumContractProxyBaseTests {
 
-    let nodeService = MockEthereumNodeService1()
-    let encryptionService = MockEncryptionService1()
     let proxy = ERC20TokenContractProxy()
-
-    override func setUp() {
-        super.setUp()
-        DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
-        DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
-    }
 
     func test_encodesSelectorAndParams() throws {
         let expectedBalance = TokenInt(150)

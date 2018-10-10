@@ -71,6 +71,11 @@ class MockEncryptionService1: EncryptionDomainService {
         expected_hash.append((data, result))
     }
 
+    func always_return_hash(_ data: Data) {
+        let expectations = (0..<500).map { _ in (Data(), data) }
+        expected_hash.append(contentsOf: expectations)
+    }
+
     func hash(_ data: Data) -> Data {
         actual_hash.append(data)
         return expected_hash[actual_hash.count - 1].result
