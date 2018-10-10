@@ -83,7 +83,7 @@ class ConfirmMnemonicViewControllerTests: SafeTestCase {
 
     func test_textInputDidReturn_whenTriggeredByFirstInput_thenSetsSecondInputAsFirstResponder() {
         createWindow(controller)
-        controller.textInputDidReturn(controller.firstWordTextInput)
+        controller.verifiableInputDidReturn(controller.firstWordTextInput)
         XCTAssertTrue(controller.secondWordTextInput.isActive)
     }
 
@@ -100,7 +100,7 @@ extension ConfirmMnemonicViewControllerTests {
     private func setTextInputs(_ first: String, _ second: String) {
         controller.firstWordTextInput.text = first
         controller.secondWordTextInput.text = second
-        controller.textInputDidReturn(controller.secondWordTextInput)
+        controller.verifiableInputDidReturn(controller.secondWordTextInput)
     }
 
     private func createController(words: [String]) {
