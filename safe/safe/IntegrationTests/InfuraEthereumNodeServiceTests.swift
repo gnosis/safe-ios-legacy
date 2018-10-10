@@ -95,9 +95,8 @@ class InfuraEthereumNodeServiceTests: BlockchainIntegrationTest {
 
     func test_balanceFromERC20Contract() throws {
         DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
-        let proxy = ERC20TokenContractProxy()
-        let balance = try proxy.balance(of: Address("0x0ddc793680ff4f5793849c8c6992be1695cbe72a"),
-                                        contract: Address("0x36276f1f2cb8e9c11c508aad00556f819c5ad876"))
+        let proxy = ERC20TokenContractProxy(Address("0x36276f1f2cb8e9c11c508aad00556f819c5ad876"))
+        let balance = try proxy.balance(of: Address("0x0ddc793680ff4f5793849c8c6992be1695cbe72a"))
         XCTAssertEqual(balance, TokenInt("20000000000000000000000"))
     }
 

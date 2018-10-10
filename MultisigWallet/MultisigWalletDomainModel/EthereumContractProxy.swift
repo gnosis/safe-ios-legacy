@@ -9,6 +9,11 @@ public class EthereumContractProxy {
 
     var nodeService: EthereumNodeDomainService { return DomainRegistry.ethereumNodeService }
     var encryptionService: EncryptionDomainService { return DomainRegistry.encryptionService }
+    var contract: Address
+
+    public init(_ contract: Address) {
+        self.contract = contract
+    }
 
     func method(_ selector: String) -> Data {
         return encryptionService.hash(selector.data(using: .ascii)!).prefix(4)
@@ -82,6 +87,18 @@ public class EthereumContractProxy {
 
     func decodeBool(_ value: Data) -> Bool {
         return decodeUInt(value) == 0 ? false : true
+    }
+
+    func invoke(_ selector: String, _ args: Data ...) throws -> Data {
+        return try nodeService.eth_call(to: contract, data: invocation(selector, args: args))
+    }
+
+    func invocation(_ selector: String, _ args: Data ...) -> Data {
+        return invocation(selector, args: args)
+    }
+
+    func invocation(_ selector: String, args: [Data]) -> Data {
+        return method(selector) + args.reduce(into: Data()) { $0.append($1) }
     }
 }
 
