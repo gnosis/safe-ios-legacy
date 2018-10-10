@@ -101,4 +101,13 @@ class EthereumContractProxyTests: EthereumContractProxyBaseTests {
                        proxy.encodeUInt(BigUInt(Data(ethHex: Address.testAccount1.value))))
     }
 
+    func test_whenEncodesDecodesBool_thenDoesItCorrectly() {
+        XCTAssertEqual(proxy.encodeBool(true), proxy.encodeUInt(1))
+        XCTAssertEqual(proxy.encodeBool(false), proxy.encodeUInt(0))
+        XCTAssertEqual(proxy.decodeBool(Data()), false)
+        XCTAssertEqual(proxy.decodeBool(proxy.encodeUInt(123)), true)
+        XCTAssertEqual(proxy.decodeBool(proxy.encodeUInt(1)), true)
+        XCTAssertEqual(proxy.decodeBool(proxy.encodeUInt(0)), false)
+    }
+
 }
