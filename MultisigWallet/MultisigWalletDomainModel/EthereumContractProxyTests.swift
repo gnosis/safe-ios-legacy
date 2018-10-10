@@ -47,6 +47,9 @@ class EthereumContractProxyTests: EthereumContractProxyBaseTests {
         let expectedValue = BigUInt(2).power(160) - 1
         XCTAssertEqual(proxy.decodeUInt(proxy.encodeUInt(expectedValue)), expectedValue)
     }
+    func test_whenDecodingUIntEmptyData_thenReturns0() {
+        XCTAssertEqual(proxy.decodeUInt(Data()), 0)
+    }
 
     func test_whenEncodingTupleUInt_thenEncodesToData() {
         let values = (0..<3).map { i in BigUInt(2) ^ (1 + i) }
@@ -54,6 +57,13 @@ class EthereumContractProxyTests: EthereumContractProxyBaseTests {
         XCTAssertEqual(rawValues.count, 3 * 32)
 
         XCTAssertEqual(proxy.encodeTupleUInt(values), rawValues)
+    }
+
+    func test_whenDataIsEmpty_thenDecodingReturnsEmptyValue() {
+        XCTAssertEqual(proxy.decodeArrayAddress(Data()), [])
+        XCTAssertEqual(proxy.decodeArrayUInt(Data()), [])
+        XCTAssertEqual(proxy.decodeTupleUInt(Data(), 0), [])
+        XCTAssertEqual(proxy.decodeTupleUInt(Data(), 1), [])
     }
 
     func test_whenDecodingTupleOfStaticTypes_thenDecodesAsArray() {

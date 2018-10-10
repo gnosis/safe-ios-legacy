@@ -19,7 +19,7 @@ public class EthereumContractProxy {
     }
 
     func decodeUInt(_ value: Data) -> BigUInt {
-        let bigEndianValue = value[value.startIndex..<value.startIndex + 32]
+        let bigEndianValue = value.count > 32 ? value.prefix(32) : value
         return BigUInt(bigEndianValue)
     }
 
@@ -34,10 +34,14 @@ public class EthereumContractProxy {
     }
 
     func decodeArrayUInt(_ value: Data) -> [BigUInt] {
+        if value.isEmpty { return [] }
         let offset = decodeUInt(value)
-        let data = value[Int(offset)..<value.endIndex]
+        guard offset < value.count else { return [] }
+        let data = value.suffix(from: Int(offset))
         let count = decodeUInt(data)
-        return decodeTupleUInt(data[data.startIndex + 32..<data.endIndex], Int(count))
+        // 1 for the 'count' value itself + <count> number of items, each 32 bytes long
+        guard (1 + count) * 32 >= data.count else { return [] }
+        return decodeTupleUInt(data.suffix(from: data.startIndex + 32), Int(count))
     }
 
     func encodeArrayUInt(_ value: [BigUInt]) -> Data {
@@ -53,6 +57,7 @@ public class EthereumContractProxy {
     }
 
     func decodeTupleUInt(_ value: Data, _ count: Int) -> [BigUInt] {
+        if value.count < count * 32 { return [] }
         let rawValues = stride(from: value.startIndex, to: value.startIndex + count * 32, by: 32).map { i in
             value[i..<i + 32]
         }
