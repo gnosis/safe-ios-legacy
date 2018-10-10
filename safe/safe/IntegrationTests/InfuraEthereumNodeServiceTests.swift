@@ -88,13 +88,9 @@ class InfuraEthereumNodeServiceTests: BlockchainIntegrationTest {
     }
 
     func test_nonceFromSafeContract() throws {
-        let encryptionService = EncryptionService(chainId: .rinkeby)
-        let functionSignature = "nonce()"
-        let methodID = encryptionService.hash(functionSignature.data(using: .ascii)!).prefix(4)
-        let call = TransactionCall(to: EthAddress(hex: contract.address), data: EthData(methodID))
-        let resultData = try service.eth_call(transaction: call, blockNumber: .latest)
-        let nonce = BigInt(hex: resultData.toHexString())!
-        XCTAssertEqual(nonce, 0)
+        DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
+        let proxy = SafeOwnerManagerContractProxy(Address(contract.address))
+        XCTAssertEqual(try proxy.nonce(), 0)
     }
 
     func test_balanceFromERC20Contract() throws {
@@ -120,6 +116,12 @@ class InfuraEthereumNodeServiceTests: BlockchainIntegrationTest {
             XCTAssertTrue(try proxy.isOwner(Address(owner)))
         }
         XCTAssertFalse(try proxy.isOwner(testAddress))
+    }
+
+    func test_safe_getThreshold() throws {
+        DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
+        let proxy = SafeOwnerManagerContractProxy(Address(contract.address))
+        XCTAssertEqual(try proxy.getThreshold(), 2)
     }
 
 }
