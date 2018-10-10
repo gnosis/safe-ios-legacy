@@ -33,11 +33,12 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
         archive_logs
         exit 1
     fi
-elif [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
-    if ! bundle exec fastlane test scheme:allUITests; then 
-        archive_logs
-        exit 1
-    fi
+# NOTE: disabled until CI migration
+#elif [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
+#    if ! bundle exec fastlane test scheme:allUITests; then 
+#        archive_logs
+#        exit 1
+#    fi
 else 
     if bundle exec fastlane fabric; then
         archive_product

@@ -14,8 +14,8 @@ public class SafeOwnerManagerContractProxy: EthereumContractProxy {
 
     public func getOwners() throws -> [Address] {
         let invocation = method("getOwners()")
-        _ = try nodeService.eth_call(to: contract, data: invocation)
-        return []
+        let data = try nodeService.eth_call(to: contract, data: invocation)
+        return decodeArrayAddress(data)
     }
 
 }
