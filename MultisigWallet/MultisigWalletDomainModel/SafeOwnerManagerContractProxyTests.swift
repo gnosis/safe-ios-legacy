@@ -14,7 +14,7 @@ class SafeOwnerManagerContractProxyTests: EthereumContractProxyBaseTests {
         encryptionService.always_return_hash(Data())
     }
 
-    func test_encodesMethodCallDecodesResult() throws {
+    func test_getOwners() throws {
         let methodCall = proxy.method("getOwners()")
         let addresses = [Address.testAccount2, Address.testAccount3, Address.testAccount4]
         nodeService.expect_eth_call(to: Address.testAccount1,
@@ -25,6 +25,15 @@ class SafeOwnerManagerContractProxyTests: EthereumContractProxyBaseTests {
         XCTAssertEqual(result, addresses.map { Address($0.value.lowercased()) })
     }
 
-
+    func test_isOwner() throws {
+        let methodCall = proxy.method("isOnwer(address)")
+        let input = Address.testAccount1
+        nodeService.expect_eth_call(to: Address.testAccount1,
+                                    data: methodCall + proxy.encodeAddress(input),
+                                    result: proxy.encodeBool(true))
+        let result = try proxy.isOwner(input)
+        nodeService.verify()
+        XCTAssertTrue(result)
+    }
 
 }

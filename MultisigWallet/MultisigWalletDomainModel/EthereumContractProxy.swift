@@ -76,6 +76,13 @@ public class EthereumContractProxy {
         return Data()
     }
 
+    func encodeBool(_ value: Bool) -> Data {
+        return encodeUInt(value ? 1 : 0)
+    }
+
+    func decodeBool(_ value: Data) -> Bool {
+        return decodeUInt(value) == 0 ? false : true
+    }
 }
 
 fileprivate extension Address {

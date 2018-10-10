@@ -13,9 +13,16 @@ public class SafeOwnerManagerContractProxy: EthereumContractProxy {
     }
 
     public func getOwners() throws -> [Address] {
-        let invocation = method("getOwners()")
-        let data = try nodeService.eth_call(to: contract, data: invocation)
-        return decodeArrayAddress(data)
+        return try decodeArrayAddress(invoke("getOwners()"))
+    }
+
+    public func isOwner(_ address: Address) throws -> Bool {
+        return try decodeBool(invoke("isOwner(address)", encodeAddress(address)))
+    }
+
+    private func invoke(_ selector: String, _ args: Data ...) throws -> Data {
+        let invocation = method(selector) + args.reduce(into: Data()) { $0.append($1) }
+        return try nodeService.eth_call(to: contract, data: invocation)
     }
 
 }
