@@ -5,11 +5,11 @@
 import XCTest
 @testable import SafeUIKit
 
-class TextInputTests: XCTestCase {
+class VerifiableInputTests: XCTestCase {
 
-    let input = TextInput()
+    let input = VerifiableInput()
     // swiftlint:disable:next weak_delegate
-    let delegate = MockTextInputDelegate()
+    let delegate = MockVerifiableInputDelegate()
 
     override func setUp() {
         super.setUp()
@@ -19,7 +19,7 @@ class TextInputTests: XCTestCase {
     func test_whenAddingRule_addsLabel() {
         input.addRule("test") { _ in true }
         XCTAssertEqual(input.ruleLabelCount, 1)
-        XCTAssertEqual(input.ruleLabel(at: 0).text, "test")
+        XCTAssertEqual(input.ruleLabel(at: 0).label.text, "test")
     }
 
     func test_whenInitiated_containsNoRules() {
@@ -84,7 +84,7 @@ class TextInputTests: XCTestCase {
     }
 
     func test_whenTypingText_thenTextInputHasText() {
-        input.textField.text = "a"
+        input.textInput.text = "a"
         XCTAssertEqual(input.text, "a")
     }
 
@@ -100,7 +100,7 @@ class TextInputTests: XCTestCase {
 
     func test_whenIsEnabledFalse_thenInputFieldDisabled() {
         input.isEnabled = false
-        XCTAssertFalse(input.textField.isEnabled)
+        XCTAssertFalse(input.textInput.isEnabled)
     }
 
     func test_shake_whenCalled_thenAddsShakeAnimation() {
@@ -121,8 +121,8 @@ class TextInputTests: XCTestCase {
 
     func test_whenTryingToTypeMoreThanLength_thenTakesFirstNChars() {
         input.maxLength = 1
-        input.textField.text = "abc"
-        input.textField.sendActions(for: .editingChanged)
+        input.textInput.text = "abc"
+        input.textInput.sendActions(for: .editingChanged)
         XCTAssertEqual(input.text, "a")
     }
 
@@ -138,14 +138,14 @@ class TextInputTests: XCTestCase {
 
 }
 
-fileprivate extension TextInput {
+fileprivate extension VerifiableInput {
 
     var ruleLabelCount: Int {
         return stackView.arrangedSubviews.count - 1
     }
 
     var isReturnKeyEnabled: Bool {
-        return textFieldShouldReturn(textField)
+        return textFieldShouldReturn(textInput)
     }
 
     func ruleLabel(at index: Int) -> RuleLabel {
@@ -153,42 +153,42 @@ fileprivate extension TextInput {
     }
 
     func type(_ text: String) {
-        _ = textField(textField, shouldChangeCharactersIn: NSRange(), replacementString: text)
+        _ = textField(textInput, shouldChangeCharactersIn: NSRange(), replacementString: text)
     }
 
     func beginEditing() {
-        _ = textFieldDidBeginEditing(textField)
+        _ = textFieldDidBeginEditing(textInput)
     }
 
     func endEditing() {
-        _ = textFieldDidEndEditing(textField)
+        _ = textFieldDidEndEditing(textInput)
     }
 
     func clear() {
-        _ = textFieldShouldClear(textField)
+        _ = textFieldShouldClear(textInput)
     }
 
     func hitReturn() {
-        _ = textFieldShouldReturn(textField)
+        _ = textFieldShouldReturn(textInput)
     }
 
 }
 
-class MockTextInputDelegate: TextInputDelegate {
+class MockVerifiableInputDelegate: VerifiableInputDelegate {
 
     var didReturnWasCalled = false
     var didBeginEditingWasCalled = false
     var didEndEditing = false
 
-    func textInputDidReturn(_ textInput: TextInput) {
+    func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
         didReturnWasCalled = true
     }
 
-    func textInputDidBeginEditing(_ textInput: TextInput) {
+    func verifiableInputDidBeginEditing(_ verifiableInput: VerifiableInput) {
         didBeginEditingWasCalled = true
     }
 
-    func textInputDidEndEditing(_ textInput: TextInput) {
+    func verifiableInputDidEndEditing(_ verifiableInput: VerifiableInput) {
         didEndEditing = true
     }
 

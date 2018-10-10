@@ -20,22 +20,22 @@ class ConfirmPaswordViewControllerTests: SafeTestCase {
     }
 
     func test_whenCreated_hasAllElements() {
-        XCTAssertNotNil(vc.textInput)
+        XCTAssertNotNil(vc.verifiableInput)
     }
 
     func test_whenCreated_thenTextInputIsSecure() {
-        XCTAssertTrue(vc.textInput.isSecure)
+        XCTAssertTrue(vc.verifiableInput.isSecure)
     }
 
     func test_whenDidConfirmPassword_thenUserRegistered() {
         XCTAssertNotNil(ApplicationServiceRegistry.authenticationService)
-        vc.textInputDidReturn(vc.textInput)
+        vc.verifiableInputDidReturn(vc.verifiableInput)
         XCTAssertTrue(authenticationService.isUserRegistered)
     }
 
     func test_whenRegistrationCompleted_thenCallsDelegate() {
         delegate.didConfirm = false
-        vc.textInputDidReturn(vc.textInput)
+        vc.verifiableInputDidReturn(vc.verifiableInput)
         delay()
         XCTAssertTrue(delegate.didConfirm)
     }
@@ -43,14 +43,14 @@ class ConfirmPaswordViewControllerTests: SafeTestCase {
     func test_whenRegistrationThrows_thenDelegateNotCalled() {
         delegate.didConfirm = false
         authenticationService.prepareToThrowWhenRegisteringUser()
-        vc.textInputDidReturn(vc.textInput)
+        vc.verifiableInputDidReturn(vc.verifiableInput)
         XCTAssertFalse(delegate.didConfirm)
     }
 
     func test_whenRegistrationThrows_thenAlertIsShown() {
         createWindow(vc)
         authenticationService.prepareToThrowWhenRegisteringUser()
-        vc.textInputDidReturn(vc.textInput)
+        vc.verifiableInputDidReturn(vc.verifiableInput)
         delay()
         XCTAssertNotNil(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController)
         XCTAssertTrue(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController is UIAlertController)

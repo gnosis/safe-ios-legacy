@@ -5,9 +5,9 @@
 import XCTest
 @testable import SafeUIKit
 
-class TextInput1Tests: XCTestCase {
+class TextInputTests: XCTestCase {
 
-    let textInput = TextInput1()
+    let textInput = TextInput()
 
     func test_whenInitialized_thenDefaultValuesAreCorrect() {
         XCTAssertEqual(textInput.placeholder, nil)

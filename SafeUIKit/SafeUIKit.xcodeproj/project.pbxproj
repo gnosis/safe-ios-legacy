@@ -15,7 +15,6 @@
 		0A0974D220480CEB005753DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974C820480CEB005753DF /* Assets.xcassets */; };
 		0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974C920480CEB005753DF /* AppDelegate.swift */; };
 		0A0974D620480CEB005753DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974CF20480CEB005753DF /* ViewController.swift */; };
-		0A0974D720480CEB005753DF /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974D020480CEB005753DF /* TextInputViewController.swift */; };
 		0A0974DC20480D03005753DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974D820480D03005753DF /* Main.storyboard */; };
 		0A0974DD20480D03005753DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974DA20480D03005753DF /* LaunchScreen.storyboard */; };
 		0A0974EA20480E11005753DF /* SafeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */; };
@@ -128,8 +127,6 @@
 		0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C820480C5700445AC2 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A9670DB20480C7B00445AC2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D220480C7B00445AC2 /* Fonts.swift */; };
-		0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D420480C7B00445AC2 /* TextInput.swift */; };
-		0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D320480C7B00445AC2 /* RuleLabel.swift */; };
 		0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C6207F69FD001DC22F /* SafeUIKitMedia.xcassets */; };
 		0A9BA3C9207F6B6A001DC22F /* BigButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C8207F6B6A001DC22F /* BigButtonTests.swift */; };
 		0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3CA207F6BB6001DC22F /* Assets.swift */; };
@@ -141,9 +138,7 @@
 		0AD5091F2110AABD008507CB /* FundsTransferTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5091E2110AABD008507CB /* FundsTransferTransactionViewModel.swift */; };
 		0AD509212110AAE3008507CB /* FundsValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD509202110AAE3008507CB /* FundsValidatorTests.swift */; };
 		0AD509232110AAEC008507CB /* FundsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD509222110AAEC008507CB /* FundsValidator.swift */; };
-		0AD93E0820481442008C38CA /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D520480C7B00445AC2 /* TextInputTests.swift */; };
 		0AD93E0920481461008C38CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9670D820480C7B00445AC2 /* Colors.swift */; };
-		0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9670D020480C7A00445AC2 /* TextInput.xib */; };
 		0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD9989D20D3CD0300E6F3CA /* TransactionParticipantViewTests.swift */; };
 		0AD998A020D3CDA000E6F3CA /* DesignableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD9989520D3B43200E6F3CA /* DesignableTests.swift */; };
 		0AD998A420D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD998A320D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift */; };
@@ -196,8 +191,12 @@
 		5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */; };
 		555B0E6720CA83DF00424CEE /* TokenInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B0E6620CA83DF00424CEE /* TokenInputViewController.swift */; };
 		555EB6EC216CA42100E06553 /* TextInputsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6EB216CA42100E06553 /* TextInputsViewController.swift */; };
-		555EB6F0216CA5CF00E06553 /* TextInput1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6EF216CA5CF00E06553 /* TextInput1.swift */; };
-		555EB6F2216CA5E900E06553 /* TextInput1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6F1216CA5E900E06553 /* TextInput1Tests.swift */; };
+		555EB6F0216CA5CF00E06553 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6EF216CA5CF00E06553 /* TextInput.swift */; };
+		555EB6F2216CA5E900E06553 /* TextInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6F1216CA5E900E06553 /* TextInputTests.swift */; };
+		555EB719216DF15700E06553 /* VerifiableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB718216DF15700E06553 /* VerifiableInput.swift */; };
+		555EB71B216DF19800E06553 /* VerifiableInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB71A216DF19800E06553 /* VerifiableInputTests.swift */; };
+		555EB71D216DF23700E06553 /* VerifiableInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB71C216DF23700E06553 /* VerifiableInputViewController.swift */; };
+		555EB71F216DF48900E06553 /* VerifiableInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 555EB71E216DF48900E06553 /* VerifiableInput.xib */; };
 		556251D2214671B800F569EE /* TokenBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82620CE70B40095C00D /* TokenBalanceTableViewCell.swift */; };
 		556251D3214671BE00F569EE /* TokenBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55DFBCED2135546F004B2AC4 /* TokenBalanceTableViewCell.xib */; };
 		556251D42146721600F569EE /* TokenNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */; };
@@ -208,6 +207,8 @@
 		556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556251FA2149135F00F569EE /* QRCodeViewController.swift */; };
 		556252062149201500F569EE /* QRCodeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556252052149201500F569EE /* QRCodeViewTests.swift */; };
 		55625214214A601900F569EE /* SafeTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55625213214A601900F569EE /* SafeTableViewCellTests.swift */; };
+		5562E64E216E1C0F00C54D57 /* RuleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562E64D216E1C0F00C54D57 /* RuleLabel.swift */; };
+		5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562E64F216E1CF500C54D57 /* RuleLabel.xib */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
 		558FD80A20765C53004F070E /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* BigButton.swift */; };
@@ -289,7 +290,6 @@
 		0A0974C820480CEB005753DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A0974C920480CEB005753DF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A0974CF20480CEB005753DF /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0A0974D020480CEB005753DF /* TextInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
 		0A0974D920480D03005753DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A0974DB20480D03005753DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeUIKitDemoUITests.swift; sourceTree = "<group>"; };
@@ -410,12 +410,8 @@
 		0A9670BA20480C5700445AC2 /* SafeUIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeUIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A9670C320480C5700445AC2 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		0A9670CF20480C7A00445AC2 /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
-		0A9670D020480C7A00445AC2 /* TextInput.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInput.xib; sourceTree = "<group>"; };
 		0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabelTests.swift; sourceTree = "<group>"; };
 		0A9670D220480C7B00445AC2 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		0A9670D320480C7B00445AC2 /* RuleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabel.swift; sourceTree = "<group>"; };
-		0A9670D420480C7B00445AC2 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
-		0A9670D520480C7B00445AC2 /* TextInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTests.swift; sourceTree = "<group>"; };
 		0A9670D820480C7B00445AC2 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0A99436820A0485300E36FD7 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
 		0A99436A20A0489800E36FD7 /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftlint.yml; sourceTree = "<group>"; };
@@ -486,14 +482,20 @@
 		5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		555B0E6620CA83DF00424CEE /* TokenInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInputViewController.swift; sourceTree = "<group>"; };
 		555EB6EB216CA42100E06553 /* TextInputsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputsViewController.swift; sourceTree = "<group>"; };
-		555EB6EF216CA5CF00E06553 /* TextInput1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput1.swift; sourceTree = "<group>"; };
-		555EB6F1216CA5E900E06553 /* TextInput1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput1Tests.swift; sourceTree = "<group>"; };
+		555EB6EF216CA5CF00E06553 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
+		555EB6F1216CA5E900E06553 /* TextInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTests.swift; sourceTree = "<group>"; };
+		555EB718216DF15700E06553 /* VerifiableInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiableInput.swift; sourceTree = "<group>"; };
+		555EB71A216DF19800E06553 /* VerifiableInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiableInputTests.swift; sourceTree = "<group>"; };
+		555EB71C216DF23700E06553 /* VerifiableInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiableInputViewController.swift; sourceTree = "<group>"; };
+		555EB71E216DF48900E06553 /* VerifiableInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerifiableInput.xib; sourceTree = "<group>"; };
 		556251E92146D38000F569EE /* GradientFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientFooterView.swift; sourceTree = "<group>"; };
 		556251F32147C34600F569EE /* AddTokenHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenHeaderView.swift; sourceTree = "<group>"; };
 		556251F8214912AA00F569EE /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		556251FA2149135F00F569EE /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		556252052149201500F569EE /* QRCodeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewTests.swift; sourceTree = "<group>"; };
 		55625213214A601900F569EE /* SafeTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTableViewCellTests.swift; sourceTree = "<group>"; };
+		5562E64D216E1C0F00C54D57 /* RuleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleLabel.swift; sourceTree = "<group>"; };
+		5562E64F216E1CF500C54D57 /* RuleLabel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RuleLabel.xib; sourceTree = "<group>"; };
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
@@ -810,7 +812,6 @@
 				0A0974DA20480D03005753DF /* LaunchScreen.storyboard */,
 				0A0974D820480D03005753DF /* Main.storyboard */,
 				0A0974C720480CEB005753DF /* Info.plist */,
-				0A0974D020480CEB005753DF /* TextInputViewController.swift */,
 				0A0974CF20480CEB005753DF /* ViewController.swift */,
 				55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */,
 				555B0E6620CA83DF00424CEE /* TokenInputViewController.swift */,
@@ -819,6 +820,7 @@
 				5524735F214293D500A77557 /* IdenticonViewController.swift */,
 				556251FA2149135F00F569EE /* QRCodeViewController.swift */,
 				555EB6EB216CA42100E06553 /* TextInputsViewController.swift */,
+				555EB71C216DF23700E06553 /* VerifiableInputViewController.swift */,
 			);
 			path = SafeUIKitDemo;
 			sourceTree = "<group>";
@@ -1007,21 +1009,8 @@
 				5524735521428E9000A77557 /* BigButton */,
 				5524735421428E7600A77557 /* QRCodeInput */,
 				5524735321428E6500A77557 /* TokenInput */,
-				5524735221428E5600A77557 /* TextInputOld */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		5524735221428E5600A77557 /* TextInputOld */ = {
-			isa = PBXGroup;
-			children = (
-				0A9670D420480C7B00445AC2 /* TextInput.swift */,
-				0A9670D020480C7A00445AC2 /* TextInput.xib */,
-				0A9670D520480C7B00445AC2 /* TextInputTests.swift */,
-				0A9670D320480C7B00445AC2 /* RuleLabel.swift */,
-				0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */,
-			);
-			path = TextInputOld;
 			sourceTree = "<group>";
 		};
 		5524735321428E6500A77557 /* TokenInput */ = {
@@ -1093,6 +1082,7 @@
 			isa = PBXGroup;
 			children = (
 				555EB6EE216CA56300E06553 /* TextInput */,
+				555EB717216DF11A00E06553 /* VerifiableInput */,
 			);
 			path = TextInputs;
 			sourceTree = "<group>";
@@ -1100,10 +1090,23 @@
 		555EB6EE216CA56300E06553 /* TextInput */ = {
 			isa = PBXGroup;
 			children = (
-				555EB6EF216CA5CF00E06553 /* TextInput1.swift */,
-				555EB6F1216CA5E900E06553 /* TextInput1Tests.swift */,
+				555EB6EF216CA5CF00E06553 /* TextInput.swift */,
+				555EB6F1216CA5E900E06553 /* TextInputTests.swift */,
 			);
 			path = TextInput;
+			sourceTree = "<group>";
+		};
+		555EB717216DF11A00E06553 /* VerifiableInput */ = {
+			isa = PBXGroup;
+			children = (
+				555EB718216DF15700E06553 /* VerifiableInput.swift */,
+				555EB71A216DF19800E06553 /* VerifiableInputTests.swift */,
+				555EB71E216DF48900E06553 /* VerifiableInput.xib */,
+				0A9670D120480C7A00445AC2 /* RuleLabelTests.swift */,
+				5562E64D216E1C0F00C54D57 /* RuleLabel.swift */,
+				5562E64F216E1CF500C54D57 /* RuleLabel.xib */,
+			);
+			path = VerifiableInput;
 			sourceTree = "<group>";
 		};
 		556251CF2146710800F569EE /* TokenBalanceCell */ = {
@@ -1393,10 +1396,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AD93E0A2048158F008C38CA /* TextInput.xib in Resources */,
 				0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */,
+				555EB71F216DF48900E06553 /* VerifiableInput.xib in Resources */,
 				556251D3214671BE00F569EE /* TokenBalanceTableViewCell.xib in Resources */,
 				0A53AD5320598B5000D713AD /* Localizable.strings in Resources */,
+				5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */,
 				550954F020C9594700F5F25F /* TokenInput.xib in Resources */,
 				5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */,
 			);
@@ -1577,12 +1581,12 @@
 				555EB6EC216CA42100E06553 /* TextInputsViewController.swift in Sources */,
 				0A00293220CFD75F009A4BFE /* MySegmentViewController.swift in Sources */,
 				55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */,
+				555EB71D216DF23700E06553 /* VerifiableInputViewController.swift in Sources */,
 				0A0974D620480CEB005753DF /* ViewController.swift in Sources */,
 				0A60B516211333620066821A /* ProgressViewController.swift in Sources */,
 				55247360214293D500A77557 /* IdenticonViewController.swift in Sources */,
 				555B0E6720CA83DF00424CEE /* TokenInputViewController.swift in Sources */,
 				556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */,
-				0A0974D720480CEB005753DF /* TextInputViewController.swift in Sources */,
 				0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1613,13 +1617,13 @@
 				556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */,
 				0AD93E0920481461008C38CA /* Colors.swift in Sources */,
 				55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */,
+				5562E64E216E1C0F00C54D57 /* RuleLabel.swift in Sources */,
 				55DEBC13214AA6660017CD4B /* BackgroundHeaderFooterView.swift in Sources */,
-				0A9670DD20480C7B00445AC2 /* RuleLabel.swift in Sources */,
+				555EB719216DF15700E06553 /* VerifiableInput.swift in Sources */,
 				5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */,
-				0A9670DC20480C7B00445AC2 /* TextInput.swift in Sources */,
 				552473612142A07300A77557 /* DesignableView.swift in Sources */,
 				5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */,
-				555EB6F0216CA5CF00E06553 /* TextInput1.swift in Sources */,
+				555EB6F0216CA5CF00E06553 /* TextInput.swift in Sources */,
 				550954EA20C9590000F5F25F /* TokenInput.swift in Sources */,
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
 				556251D2214671B800F569EE /* TokenBalanceTableViewCell.swift in Sources */,
@@ -1636,17 +1640,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				556252062149201500F569EE /* QRCodeViewTests.swift in Sources */,
-				0AD93E0820481442008C38CA /* TextInputTests.swift in Sources */,
 				0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */,
 				5506395E20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift in Sources */,
 				552473642142AD6900A77557 /* IdenticonViewTests.swift in Sources */,
+				555EB71B216DF19800E06553 /* VerifiableInputTests.swift in Sources */,
 				0A9BA3C9207F6B6A001DC22F /* BigButtonTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
 				550954EE20C9592900F5F25F /* TokenInputTests.swift in Sources */,
 				556251D52146721A00F569EE /* TokenNumberFormatterTests.swift in Sources */,
 				0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
-				555EB6F2216CA5E900E06553 /* TextInput1Tests.swift in Sources */,
+				555EB6F2216CA5E900E06553 /* TextInputTests.swift in Sources */,
 				5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */,
 				55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */,
 			);

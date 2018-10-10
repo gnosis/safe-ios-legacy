@@ -13,7 +13,7 @@ protocol ConfirmPasswordViewControllerDelegate: class {
 final class ConfirmPaswordViewController: UIViewController {
 
     @IBOutlet weak var headerLabel: H1Label!
-    @IBOutlet weak var textInput: TextInput!
+    @IBOutlet weak var verifiableInput: VerifiableInput!
     private var referencePassword: String!
     private weak var delegate: ConfirmPasswordViewControllerDelegate?
 
@@ -34,21 +34,21 @@ final class ConfirmPaswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        textInput.delegate = self
-        textInput.isSecure = true
-        textInput.addRule(Strings.matchPassword) { [unowned self] input in
+        verifiableInput.delegate = self
+        verifiableInput.isSecure = true
+        verifiableInput.addRule(Strings.matchPassword) { [unowned self] input in
             PasswordValidator.validate(input: input, equals: self.referencePassword)
         }
-        _ = textInput.becomeFirstResponder()
+        _ = verifiableInput.becomeFirstResponder()
     }
 
 }
 
 
-extension ConfirmPaswordViewController: TextInputDelegate {
+extension ConfirmPaswordViewController: VerifiableInputDelegate {
 
-    func textInputDidReturn(_ textInput: TextInput) {
-        let password = textInput.text!
+    func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
+        let password = verifiableInput.text!
         do {
             try Authenticator.instance.registerUser(password: password)
             self.delegate?.didConfirmPassword()

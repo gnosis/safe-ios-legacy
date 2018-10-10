@@ -21,15 +21,15 @@ class SetPasswordViewControllerTests: XCTestCase {
 
     func test_whenLoaded_thenHasAllElements() {
         XCTAssertNotNil(vc.headerLabel)
-        XCTAssertNotNil(vc.textInput)
+        XCTAssertNotNil(vc.verifiableInput)
     }
 
     func test_whenLoaded_thenTextInputIsSecure() {
-        XCTAssertTrue(vc.textInput.isSecure)
+        XCTAssertTrue(vc.verifiableInput.isSecure)
     }
 
     func test_whenPasswordSet_thenDelegateCalled() {
-        vc.textInputDidReturn(vc.textInput)
+        vc.verifiableInputDidReturn(vc.verifiableInput)
         XCTAssertTrue(delegate.wasCalled)
     }
 
