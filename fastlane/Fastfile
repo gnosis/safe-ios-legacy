@@ -52,7 +52,8 @@ platform :ios do
       result_bundle: true,
       output_directory: REPORTS_PATH,
       buildlog_path: BUILD_LOG_PATH,
-      derived_data_path: DERIVED_DATA_PATH}.merge(params))
+      derived_data_path: DERIVED_DATA_PATH,
+      devices: ['iPhone X']}.merge(params))
   end
 
   desc "Runs all tests"
@@ -63,7 +64,8 @@ platform :ios do
 
   desc "Build and distribute build to Fabric Beta"
   lane :fabric do
-    test_all
+    #NOTE: disabled until CI migration
+    #test_all
     set_bundle_id ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID, clone_branch_directly: true)
     gym(configuration: "AdHoc", 
