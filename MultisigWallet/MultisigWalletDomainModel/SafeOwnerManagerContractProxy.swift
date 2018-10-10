@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import BigInt
 
 public class SafeOwnerManagerContractProxy: EthereumContractProxy {
 
@@ -18,6 +19,14 @@ public class SafeOwnerManagerContractProxy: EthereumContractProxy {
 
     public func isOwner(_ address: Address) throws -> Bool {
         return try decodeBool(invoke("isOwner(address)", encodeAddress(address)))
+    }
+
+    public func getThreshold() throws -> Int {
+        return try Int(decodeUInt(invoke("getThreshold()")))
+    }
+
+    public func nonce() throws -> BigUInt {
+        return try decodeUInt(invoke("nonce()"))
     }
 
     private func invoke(_ selector: String, _ args: Data ...) throws -> Data {
