@@ -4,6 +4,7 @@
 
 import Foundation
 import BigInt
+
 public class ERC20TokenContractProxy: EthereumContractProxy {
 
     public override init() {}
