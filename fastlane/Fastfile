@@ -64,7 +64,8 @@ platform :ios do
 
   desc "Build and distribute build to Fabric Beta"
   lane :fabric do
-    test_all
+    #NOTE: disabled until CI migration
+    #test_all
     set_bundle_id ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID, clone_branch_directly: true)
     gym(configuration: "AdHoc", 
