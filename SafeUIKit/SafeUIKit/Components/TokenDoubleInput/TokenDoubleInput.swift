@@ -132,7 +132,7 @@ public class TokenDoubleInput: UIView {
     }
 
     private func configure() {
-        safeUIKit_loadFromNib()
+        safeUIKit_loadFromNib(forClass: TokenDoubleInput.self)
         integerTextField.delegate = self
         integerTextField.tag = Field.integer.rawValue
         fractionalTextField.delegate = self

@@ -10,7 +10,7 @@ import UIKit
     @objc optional func verifiableInputDidEndEditing(_ verifiableInput: VerifiableInput)
 }
 
-public final class VerifiableInput: UIView {
+public class VerifiableInput: UIView {
 
     @IBOutlet var wrapperView: UIView!
     @IBOutlet weak var textInput: TextInput!
@@ -75,7 +75,7 @@ public final class VerifiableInput: UIView {
     }
 
     private func loadContentsFromNib() {
-        safeUIKit_loadFromNib()
+        safeUIKit_loadFromNib(forClass: VerifiableInput.self)
         self.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
         wrapperView.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
         pinWrapperToSelf()

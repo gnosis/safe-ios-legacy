@@ -56,7 +56,7 @@ final class RuleLabel: UIView {
     }
 
     private func loadContentsFromNib() {
-        safeUIKit_loadFromNib()
+        safeUIKit_loadFromNib(forClass: RuleLabel.self)
         pinWrapperToSelf()
     }
 
