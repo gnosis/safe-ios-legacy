@@ -4,15 +4,17 @@
 
 import XCTest
 @testable import SafeUIKit
+import CommonTestSupport
 
 class TextInputTests: XCTestCase {
 
-    let textInput = TextInput()
+    let textInput = StubTextInput()
 
     func test_whenInitialized_thenDefaultValuesAreCorrect() {
         XCTAssertEqual(textInput.placeholder, nil)
         XCTAssertEqual(textInput.isDimmed, false)
         XCTAssertEqual(textInput.leftImage, nil)
+        XCTAssertEqual(textInput.leftImageURL, nil)
         XCTAssertEqual(textInput.font, UIFont.systemFont(ofSize: 17))
         XCTAssertEqual(textInput.layer.borderColor, UIColor.white.cgColor)
         XCTAssertEqual(textInput.layer.cornerRadius, 6)
@@ -26,10 +28,31 @@ class TextInputTests: XCTestCase {
         XCTAssertNotNil(textInput.leftView)
     }
 
+    func test_whenLeftImageIsNotSet_thenLeftImageURLDoesNothing() {
+        textInput.leftImageURL = URL(string: "")
+        XCTAssertFalse(textInput.didUpdate)
+    }
+
+    func test_whenLeftImageIsSet_thenLeftImageURLSetsANewImage() {
+        textInput.leftImage = UIImage()
+        textInput.leftImageURL = URL(string: "")
+        XCTAssertTrue(textInput.didUpdate)
+    }
+
     func test_whenPlaceholderIsSet_thenDiplaysIt() {
         XCTAssertNil(textInput.attributedPlaceholder)
         textInput.placeholder = "placeholder"
         XCTAssertNotNil(textInput.attributedPlaceholder)
+    }
+
+}
+
+class StubTextInput: TextInput {
+
+    var didUpdate = false
+
+    override func updateImageView(url: URL?) {
+        didUpdate = true
     }
 
 }

@@ -5,7 +5,7 @@
 import UIKit
 import Kingfisher
 
-final public class TextInput: UITextField {
+public class TextInput: UITextField {
 
     private let clearButton = UIButton(type: .custom)
     private let padding: CGFloat = 14
@@ -22,11 +22,19 @@ final public class TextInput: UITextField {
         }
     }
 
+    /// To use this property the one should set leftImage first containing image placeholder.
     public var leftImageURL: URL? {
         didSet {
-            updateImage()
+            guard imageView != nil else { return }
+            updateImageView(url: leftImageURL)
         }
     }
+
+    func updateImageView(url: URL?) {
+        imageView?.kf.setImage(with: url)
+    }
+
+    private var imageView: UIImageView?
 
     public override var placeholder: String? {
         didSet {
@@ -108,21 +116,19 @@ final public class TextInput: UITextField {
 
     private func updateImage() {
         if let image = leftImage {
-            setLeftImageView().image = image
-        } else if let imageURL = leftImageURL {
-            setLeftImageView().kf.setImage(with: imageURL)
+            setLeftImageView(with: image)
         } else {
             leftViewMode = UITextField.ViewMode.never
             leftView = nil
         }
     }
 
-    private func setLeftImageView() -> UIImageView {
+    private func setLeftImageView(with image: UIImage) {
         leftViewMode = UITextField.ViewMode.always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
-        imageView.contentMode = .scaleAspectFit
-        leftView = imageView
-        return imageView
+        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
+        imageView!.contentMode = .scaleAspectFit
+        imageView!.image = image
+        leftView = imageView!
     }
 
     override public func leftViewRect(forBounds bounds: CGRect) -> CGRect {

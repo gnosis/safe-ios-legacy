@@ -28,8 +28,8 @@ class TextInputViewController: UIViewController {
     }
 
     @IBAction func setIconFromURL(_ sender: Any) {
-        simpleTextInput.leftImage = nil
-        simpleTextInput.leftImageURL = URL(string: "https://github.com/TrustWallet/tokens/blob/master/images/0x6810e776880c02933d47db1b9fc05908e5386b96.png?raw=true")
+        simpleTextInput.leftImage = UIImage(named: "default-token")
+        simpleTextInput.leftImageURL = URL(string: "https://raw.githubusercontent.com/rmeissner/crypto_resources/master/tokens/rinkeby/icons/0x979861dF79C7408553aAF20c01Cfb3f81CCf9341.png")
     }
 
     @IBAction func setDimmed(_ sender: Any) {

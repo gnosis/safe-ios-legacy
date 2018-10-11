@@ -32,6 +32,7 @@ public final class TokenInput: VerifiableInput {
 
     private func commonInit() {
         textInput.placeholder = Strings.amount
+        textInput.leftImage = Asset.TokenIcons.defaultToken.image
     }
 
 }
