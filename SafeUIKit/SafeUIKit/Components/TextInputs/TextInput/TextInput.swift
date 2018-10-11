@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final public class TextInput: UITextField {
 
@@ -16,6 +17,12 @@ final public class TextInput: UITextField {
     }
 
     public var leftImage: UIImage? {
+        didSet {
+            updateImage()
+        }
+    }
+
+    public var leftImageURL: URL? {
         didSet {
             updateImage()
         }
@@ -101,15 +108,21 @@ final public class TextInput: UITextField {
 
     private func updateImage() {
         if let image = leftImage {
-            leftViewMode = UITextField.ViewMode.always
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = image
-            leftView = imageView
+            setLeftImageView().image = image
+        } else if let imageURL = leftImageURL {
+            setLeftImageView().kf.setImage(with: imageURL)
         } else {
             leftViewMode = UITextField.ViewMode.never
             leftView = nil
         }
+    }
+
+    private func setLeftImageView() -> UIImageView {
+        leftViewMode = UITextField.ViewMode.always
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
+        imageView.contentMode = .scaleAspectFit
+        leftView = imageView
+        return imageView
     }
 
     override public func leftViewRect(forBounds bounds: CGRect) -> CGRect {

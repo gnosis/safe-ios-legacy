@@ -6,6 +6,16 @@ import UIKit
 
 public final class TokenInput: VerifiableInput {
 
+    enum Strings {
+        static let amount = LocalizedString("token_input.amount", comment: "Amount placeholder for token input.")
+    }
+
+    public var imageURL: URL? {
+        didSet {
+            textInput.leftImageURL = imageURL
+        }
+    }
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -21,7 +31,7 @@ public final class TokenInput: VerifiableInput {
     }
 
     private func commonInit() {
-        // TODO
+        textInput.placeholder = Strings.amount
     }
 
 }
