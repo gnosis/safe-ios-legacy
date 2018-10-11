@@ -23,4 +23,10 @@ public class SafeOwnerManagerContractProxy: EthereumContractProxy {
         return try decodeUInt(invoke("nonce()"))
     }
 
+    public func addOwner(_ address: Address, newThreshold threshold: Int) -> Data {
+        return invocation("addOwnerWithThreshold(address,uint256)",
+                          encodeAddress(address),
+                          encodeUInt(BigUInt(threshold)))
+    }
+
 }
