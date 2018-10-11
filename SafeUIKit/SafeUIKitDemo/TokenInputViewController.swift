@@ -8,7 +8,7 @@ import BigInt
 
 class TokenInputViewController: UIViewController {
 
-    @IBOutlet var tokenInput: TokenInput!
+    @IBOutlet var tokenInput: TokenDoubleInput!
 
     @IBAction func zeroDecimals(_ sender: Any) {
         setup(decimals: 0)

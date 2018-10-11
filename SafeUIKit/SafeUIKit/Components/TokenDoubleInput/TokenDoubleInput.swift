@@ -6,11 +6,11 @@ import UIKit
 import BigInt
 
 
-/// Token Input component contains separate inputs for integer and fractional part of a Token.
+/// Token Double Input component contains separate inputs for integer and fractional part of a Token.
 /// - It validates user inputs taking into account decimal part of a Token and maximum possible value.
 /// - Call setup(value:decimals:fiatConversionRate:locale) before usage.
 /// - Needs BigInt as a dependency.
-public class TokenInput: UIView {
+public class TokenDoubleInput: UIView {
 
     @IBOutlet weak var integerTextField: UITextField!
     @IBOutlet weak var fractionalTextField: UITextField!
@@ -201,11 +201,11 @@ fileprivate extension String {
 fileprivate extension UITextField {
 
     var isIntegerField: Bool {
-        return tag == TokenInput.Field.integer.rawValue
+        return tag == TokenDoubleInput.Field.integer.rawValue
     }
 
     var isFractionalField: Bool {
-        return tag == TokenInput.Field.fractional.rawValue
+        return tag == TokenDoubleInput.Field.fractional.rawValue
     }
 
     var nonNilText: String {
@@ -213,7 +213,7 @@ fileprivate extension UITextField {
     }
 }
 
-extension TokenInput: UITextFieldDelegate {
+extension TokenDoubleInput: UITextFieldDelegate {
 
     public func textField(_ textField: UITextField,
                           shouldChangeCharactersIn rangeToReplace: NSRange,

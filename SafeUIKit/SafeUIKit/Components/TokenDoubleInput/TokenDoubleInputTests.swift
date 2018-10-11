@@ -7,14 +7,14 @@ import XCTest
 import BigInt
 import CommonTestSupport
 
-class TokenInputTests: XCTestCase {
+class TokenDoubleInputTests: XCTestCase {
 
-    var tokenInput: TokenInput!
+    var tokenInput: TokenDoubleInput!
     let germanLocale = Locale(identifier: "de_DE")
 
     override func setUp() {
         super.setUp()
-        tokenInput = TokenInput()
+        tokenInput = TokenDoubleInput()
     }
 
     func test_whenCreated_thenAllElementsAreThere() {
@@ -29,7 +29,7 @@ class TokenInputTests: XCTestCase {
     }
 
     func test_maxTokenValue() {
-        XCTAssertEqual(TokenInput.Bounds.maxTokenValue, BigInt(2).power(256) - 1)
+        XCTAssertEqual(TokenDoubleInput.Bounds.maxTokenValue, BigInt(2).power(256) - 1)
     }
 
     func test_whenSettingUpWithIntialValue_thenDisplayedProperly() {
@@ -41,12 +41,12 @@ class TokenInputTests: XCTestCase {
         assertUI(1_001_000, 3, "1001.", "")
         assertUI(1_000_100, 3, "1000.", "1")
         assertUI(1_000_100, 7, "", "10001")
-        assertUI(TokenInput.Bounds.maxTokenValue,
-                 TokenInput.Bounds.minDigitsCount,
+        assertUI(TokenDoubleInput.Bounds.maxTokenValue,
+                 TokenDoubleInput.Bounds.minDigitsCount,
                  "115792089237316195423570985008687907853269984665640564039457584007913129639935.",
                  "")
-        assertUI(TokenInput.Bounds.maxTokenValue,
-                 TokenInput.Bounds.maxDigitsCount,
+        assertUI(TokenDoubleInput.Bounds.maxTokenValue,
+                 TokenDoubleInput.Bounds.maxDigitsCount,
                  "",
                  "115792089237316195423570985008687907853269984665640564039457584007913129639935")
     }
@@ -61,12 +61,12 @@ class TokenInputTests: XCTestCase {
     }
 
     func test_whenNoDecimals_thenFractionalPartIsDisabled() {
-        assertUI(1, TokenInput.Bounds.minDigitsCount, "1.", "")
+        assertUI(1, TokenDoubleInput.Bounds.minDigitsCount, "1.", "")
         XCTAssertFalse(tokenInput.fractionalTextField.isEnabled)
     }
 
     func test_whenMaxDecimalsAllowed_thenIntegerPartIsDisabled() {
-        assertUI(0, TokenInput.Bounds.maxDigitsCount, "", "")
+        assertUI(0, TokenDoubleInput.Bounds.maxDigitsCount, "", "")
         XCTAssertFalse(tokenInput.integerTextField.isEnabled)
     }
 
@@ -82,7 +82,7 @@ class TokenInputTests: XCTestCase {
     }
 
     func test_whenTryingToTypeMoreThanAllowedValue_thenNotPossible() {
-        tokenInput.setUp(value: 0, decimals: TokenInput.Bounds.maxDigitsCount)
+        tokenInput.setUp(value: 0, decimals: TokenDoubleInput.Bounds.maxDigitsCount)
         XCTAssertTrue(tokenInput.canType(
             "115792089237316195423570985008687907853269984665640564039457584007913129639935",
             field: .fractional))
@@ -119,17 +119,17 @@ class TokenInputTests: XCTestCase {
         tokenInput.endEditing(finalValue: "1", field: .fractional)
         XCTAssertEqual(tokenInput.value, 1)
 
-        tokenInput.setUp(value: 0, decimals: TokenInput.Bounds.maxDigitsCount)
+        tokenInput.setUp(value: 0, decimals: TokenDoubleInput.Bounds.maxDigitsCount)
         tokenInput.endEditing(
             finalValue: "115792089237316195423570985008687907853269984665640564039457584007913129639935",
             field: .fractional)
-        XCTAssertEqual(tokenInput.value, TokenInput.Bounds.maxTokenValue)
+        XCTAssertEqual(tokenInput.value, TokenDoubleInput.Bounds.maxTokenValue)
 
         tokenInput.setUp(value: 0, decimals: 0)
         tokenInput.endEditing(
             finalValue: "115792089237316195423570985008687907853269984665640564039457584007913129639935",
             field: .integer)
-        XCTAssertEqual(tokenInput.value, TokenInput.Bounds.maxTokenValue)
+        XCTAssertEqual(tokenInput.value, TokenDoubleInput.Bounds.maxTokenValue)
 
         tokenInput.setUp(value: 0, decimals: 18)
         tokenInput.endEditing(finalValue: "1", field: .integer)
@@ -232,7 +232,7 @@ class TokenInputTests: XCTestCase {
 
 }
 
-private extension TokenInputTests {
+private extension TokenDoubleInputTests {
 
     func assertUI(_ value: BigInt,
                   _ decimals: Int,
@@ -248,7 +248,7 @@ private extension TokenInputTests {
         XCTAssertEqual(tokenInput.fiatValueLabel.text, expected == "" ? "" : "≈ \(expected) €")
     }
 
-    func addToWindow(_ tokenInput: TokenInput) {
+    func addToWindow(_ tokenInput: TokenDoubleInput) {
         guard let window = UIApplication.shared.keyWindow else {
             XCTFail("Must have active window")
             return
@@ -258,27 +258,27 @@ private extension TokenInputTests {
 
 }
 
-private extension TokenInput {
+private extension TokenDoubleInput {
 
     @discardableResult
-    func canType(_ text: String, field: TokenInput.Field, range: NSRange = NSRange()) -> Bool {
+    func canType(_ text: String, field: TokenDoubleInput.Field, range: NSRange = NSRange()) -> Bool {
         let tokenTextField = tokenField(for: field)
         if range.length == 0 { tokenTextField.text = "" }
         return textField(tokenTextField, shouldChangeCharactersIn: range, replacementString: text)
     }
 
-    func endEditing(finalValue: String, field: TokenInput.Field) {
+    func endEditing(finalValue: String, field: TokenDoubleInput.Field) {
         let tokenTextField = tokenField(for: field)
         tokenTextField.text = finalValue
         _ = textFieldDidEndEditing(tokenTextField)
     }
 
-    func beginEditing(field: TokenInput.Field) {
+    func beginEditing(field: TokenDoubleInput.Field) {
         let tokenTextField = tokenField(for: field)
         _ = textFieldShouldBeginEditing(tokenTextField)
     }
 
-    func tokenField(for field: TokenInput.Field) -> UITextField {
+    func tokenField(for field: TokenDoubleInput.Field) -> UITextField {
         var textField: UITextField
         switch field {
         case .integer:
