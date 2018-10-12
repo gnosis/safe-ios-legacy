@@ -49,6 +49,15 @@ class VerifiableInputTests: XCTestCase {
         XCTAssertEqual(input.ruleLabel(at: 1).status, .error)
     }
 
+    func test_whenShouldShowErrorRulesOnly_thenWorks() {
+        input.showErrorsOnly = true
+        input.addRule("test") { _ in true }
+        input.addRule("test2") { _ in false }
+        input.type("a")
+        XCTAssertEqual(input.ruleLabel(at: 0).isHidden, true)
+        XCTAssertEqual(input.ruleLabel(at: 1).isHidden, false)
+    }
+
     func test_whenLastSymbolErased_thenAllRuleLabelsBecomeInactive() {
         input.addRule("test") { _ in true }
         input.addRule("test2") { _ in false }

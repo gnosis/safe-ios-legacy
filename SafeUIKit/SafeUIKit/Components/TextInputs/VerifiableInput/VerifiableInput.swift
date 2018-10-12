@@ -29,6 +29,8 @@ public class VerifiableInput: UIView {
         return allRules.reduce(true) { $0 && $1.status == .success }
     }
 
+    public var showErrorsOnly: Bool = false
+
     public var maxLength: Int = Int.max
 
     public var text: String? {
@@ -95,9 +97,10 @@ public class VerifiableInput: UIView {
     public func addRule(_ localizedDescription: String,
                         identifier: String? = nil,
                         validation: ((String) -> Bool)? = nil) {
-        let label = RuleLabel(text: localizedDescription, rule: validation)
-        label.accessibilityIdentifier = identifier
-        stackView.addArrangedSubview(label)
+        let ruleLabel = RuleLabel(text: localizedDescription, rule: validation)
+        ruleLabel.accessibilityIdentifier = identifier
+        hideRuleIfNeeded(ruleLabel)
+        stackView.addArrangedSubview(ruleLabel)
     }
 
     public override func becomeFirstResponder() -> Bool {
@@ -127,7 +130,10 @@ extension VerifiableInput: UITextFieldDelegate {
             resetRules()
             return true
         }
-        allRules.forEach { $0.validate(newText) }
+        allRules.forEach {
+            $0.validate(newText)
+            hideRuleIfNeeded($0)
+        }
         return true
     }
 
@@ -153,7 +159,14 @@ extension VerifiableInput: UITextFieldDelegate {
     }
 
     private func resetRules() {
-        allRules.forEach { $0.reset() }
+        allRules.forEach {
+            $0.reset()
+            hideRuleIfNeeded($0)
+        }
+    }
+
+    private func hideRuleIfNeeded(_ rule: RuleLabel) {
+        rule.isHidden = showErrorsOnly ? rule.status != .error : false
     }
 
 }
