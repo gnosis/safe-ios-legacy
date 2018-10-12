@@ -153,66 +153,6 @@ public class TokenDoubleInput: UIView {
 
 }
 
-fileprivate extension String {
-
-    var removingTrailingZeroes: String {
-        var result = self
-        while result.last == "0" {
-            result.removeLast()
-        }
-        return result
-    }
-
-    var removingLeadingZeroes: String {
-        var result = self
-        while result.first == "0" {
-            result.removeFirst()
-        }
-        return result
-    }
-
-    var removingDecimalSeparator: String {
-        guard let decimalSeparator = Locale.current.decimalSeparator else { return self }
-        return self.replacingOccurrences(of: decimalSeparator, with: "")
-    }
-
-    var hasNonDecimalDigitCharacters: Bool {
-        return rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) != nil
-    }
-
-    func paddingWithTrailingZeroes(to width: Int) -> String {
-        return self + String(repeating: "0", count: width - self.count)
-    }
-
-    func paddingWithLeadingZeroes(to width: Int) -> String {
-        return String(repeating: "0", count: width - self.count) + self
-    }
-
-    func integerPart(_ decimals: Int) -> String {
-        return String(prefix(count - decimals))
-    }
-
-    func fractionalPart(_ decimals: Int) -> String {
-        return String(suffix(decimals))
-    }
-
-}
-
-fileprivate extension UITextField {
-
-    var isIntegerField: Bool {
-        return tag == TokenDoubleInput.Field.integer.rawValue
-    }
-
-    var isFractionalField: Bool {
-        return tag == TokenDoubleInput.Field.fractional.rawValue
-    }
-
-    var nonNilText: String {
-        return text ?? ""
-    }
-}
-
 extension TokenDoubleInput: UITextFieldDelegate {
 
     public func textField(_ textField: UITextField,
