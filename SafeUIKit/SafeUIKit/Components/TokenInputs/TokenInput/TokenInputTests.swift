@@ -9,7 +9,11 @@ import BigInt
 class TokenInputTests: XCTestCase {
 
     let tokenInput = TokenInput()
-    let decimalSeparator: String = (Locale.current as NSLocale).decimalSeparator
+
+    override func setUp() {
+        super.setUp()
+        tokenInput.locale = Locale(identifier: "de_DE")
+    }
 
     func test_whenTryingToTypeNonDigit_thenNotPossible() {
         XCTAssertTrue(tokenInput.canType("101"))
@@ -18,20 +22,18 @@ class TokenInputTests: XCTestCase {
     }
 
     func test_whenTryingToTypeSeveralSeparators_thenNotPossible() {
-        let s = decimalSeparator
-        XCTAssertTrue(tokenInput.canType("101\(s)001"))
-        XCTAssertFalse(tokenInput.canType("101\(s)001\(s)01"))
-        XCTAssertFalse(tokenInput.canType("101\(s)00a"))
+        XCTAssertTrue(tokenInput.canType("101,001"))
+        XCTAssertFalse(tokenInput.canType("101,001,01"))
+        XCTAssertFalse(tokenInput.canType("101,00a"))
     }
 
     func test_whenSetup_thenTextFieldUpdatedProperly() {
-        let s = decimalSeparator
         tokenInput.setUp(value: 0, decimals: 3)
         XCTAssertEqual(tokenInput.text, "")
         tokenInput.setUp(value: 1, decimals: 3)
-        XCTAssertEqual(tokenInput.text, "0\(s)001")
+        XCTAssertEqual(tokenInput.text, "0,001")
         tokenInput.setUp(value: BigInt(10).power(18) + 1, decimals: 18)
-        XCTAssertEqual(tokenInput.text, "1\(s)000000000000000001")
+        XCTAssertEqual(tokenInput.text, "1,000000000000000001")
     }
 
     func test_whenEnteingTooBigNumber_thenProperErrorMessageIsDisplayed() {
@@ -40,6 +42,16 @@ class TokenInputTests: XCTestCase {
         XCTAssertEqual(tokenInput.ruleLabel(by: "valueIsTooBig")!.status, .success)
         tokenInput.canType("11")
         XCTAssertEqual(tokenInput.ruleLabel(by: "valueIsTooBig")!.status, .error)
+    }
+
+    func test_whenFractionalPartHasTooManyDigits_thenProperErrorMessageIsDisplayed() {
+        tokenInput.setUp(value: 0, decimals: 3)
+        tokenInput.canType("1,001")
+        XCTAssertEqual(tokenInput.ruleLabel(by: "excededAmountOfFractionalDigits")!.status, .success)
+        tokenInput.canType("1,00100")
+        XCTAssertEqual(tokenInput.ruleLabel(by: "excededAmountOfFractionalDigits")!.status, .success)
+        tokenInput.canType("1,0001")
+        XCTAssertEqual(tokenInput.ruleLabel(by: "excededAmountOfFractionalDigits")!.status, .error)
     }
 
 }

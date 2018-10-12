@@ -11,7 +11,11 @@ public final class TokenInput: VerifiableInput {
     public private(set) var value: BigInt = 0
     public private(set) var formatter = TokenNumberFormatter()
 
-    private let decimalSeparator: String = (Locale.current as NSLocale).decimalSeparator
+    var locale = Locale.autoupdatingCurrent {
+        didSet {
+            formatter.locale = locale
+        }
+    }
 
     enum Strings {
         static let amount = LocalizedString("token_input.amount", comment: "Amount placeholder for token input.")
@@ -58,11 +62,21 @@ public final class TokenInput: VerifiableInput {
 
     private func addDefaultValidationsRules() {
         addRule(Strings.Rules.valueIsTooBig, identifier: "valueIsTooBig") { self.valueIsTooBig($0) }
+        addRule(Strings.Rules.excededAmountOfFractionalDigits, identifier: "excededAmountOfFractionalDigits") {
+            self.excededAmountOfFractionalDigits($0)
+        }
     }
 
     private func valueIsTooBig(_ value: String) -> Bool {
         guard let number = formatter.number(from: value) else { return false }
         return TokenBounds.isWithinBounds(value: number)
+    }
+
+    private func excededAmountOfFractionalDigits(_ value: String) -> Bool {
+        let components = value.components(separatedBy: formatter.decimalSeparator)
+        guard components.count == 2 else { return true }
+        let fractionalPart = components[1].removingTrailingZeroes
+        return fractionalPart.count <= decimals
     }
 
     /// Configut TokenInput with initial value and decimals. Default values are value = 0, decimals = 18.
@@ -76,6 +90,7 @@ public final class TokenInput: VerifiableInput {
         self.decimals = decimals
         self.value = value
         formatter = TokenNumberFormatter.ERC20Token(decimals: decimals)
+        formatter.locale = locale
         guard value != 0 else {
             textInput.text = nil
             return
@@ -96,7 +111,7 @@ public extension TokenInput {
             return false
         }
         let updatedText = (textField.nonNilText as NSString).replacingCharacters(in: range, with: string)
-        let components = updatedText.components(separatedBy: decimalSeparator)
+        let components = updatedText.components(separatedBy: formatter.decimalSeparator)
         guard components.count < 3 else { return false }
         guard components.reduce(true, { $0 && !$1.hasNonDecimalDigitCharacters }) else { return false }
         return true
