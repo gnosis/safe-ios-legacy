@@ -21,6 +21,14 @@ extension XCTestCase {
         XCTAssertNotNil(controller.view.window)
     }
 
+    func addToWindow(_ view: UIView) {
+        guard let window = UIApplication.shared.keyWindow else {
+            XCTFail("Must have active window")
+            return
+        }
+        window.addSubview(view)
+    }
+
 }
 
 // MARK: - Wait Extensions

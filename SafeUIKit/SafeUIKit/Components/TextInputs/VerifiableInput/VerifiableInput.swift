@@ -25,6 +25,10 @@ public class VerifiableInput: UIView {
         return stackView.arrangedSubviews.compactMap { $0 as? RuleLabel }
     }
 
+    public var isValidated: Bool {
+        return allRules.reduce(true) { $0 && $1.status == .success }
+    }
+
     public var maxLength: Int = Int.max
 
     public var text: String? {
@@ -133,7 +137,7 @@ extension VerifiableInput: UITextFieldDelegate {
     }
 
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let shouldReturn = !allRules.contains { $0.status != .success }
+        let shouldReturn = isValidated
         if shouldReturn {
             delegate?.verifiableInputDidReturn(self)
         }

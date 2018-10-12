@@ -248,14 +248,6 @@ private extension TokenDoubleInputTests {
         XCTAssertEqual(tokenInput.fiatValueLabel.text, expected == "" ? "" : "≈ \(expected) €")
     }
 
-    func addToWindow(_ tokenInput: TokenDoubleInput) {
-        guard let window = UIApplication.shared.keyWindow else {
-            XCTFail("Must have active window")
-            return
-        }
-        window.addSubview(tokenInput)
-    }
-
 }
 
 private extension TokenDoubleInput {

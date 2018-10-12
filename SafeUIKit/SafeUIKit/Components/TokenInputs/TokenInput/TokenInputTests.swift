@@ -5,6 +5,7 @@
 import XCTest
 @testable import SafeUIKit
 import BigInt
+import Common
 
 class TokenInputTests: XCTestCase {
 
@@ -54,6 +55,44 @@ class TokenInputTests: XCTestCase {
         XCTAssertEqual(tokenInput.ruleLabel(by: "excededAmountOfFractionalDigits")!.status, .error)
     }
 
+    func test_whenResignsFirstResponder_thenTextInputResigns() {
+        addToWindow(tokenInput)
+        _ = tokenInput.becomeFirstResponder()
+        XCTAssertTrue(tokenInput.isFirstResponder)
+        XCTAssertTrue(tokenInput.textInput.isFirstResponder)
+        _ = tokenInput.resignFirstResponder()
+        XCTAssertFalse(tokenInput.isFirstResponder)
+        XCTAssertFalse(tokenInput.textInput.isFirstResponder)
+    }
+
+    func test_whenEndsEditing_thenValueIsUpdatedAndVisibleValueIsFormatted() {
+        tokenInput.setUp(value: 0, decimals: 3)
+
+        tokenInput.endEditing("1")
+        XCTAssertEqual(tokenInput.value, 1_000)
+        XCTAssertEqual(tokenInput.text, "1,00")
+
+        tokenInput.endEditing("1,01")
+        XCTAssertEqual(tokenInput.value, 1_010)
+        XCTAssertEqual(tokenInput.text, "1,01")
+
+        tokenInput.endEditing("01,010")
+        XCTAssertEqual(tokenInput.value, 1_010)
+        XCTAssertEqual(tokenInput.text, "1,01")
+
+        tokenInput.endEditing("1,")
+        XCTAssertEqual(tokenInput.value, 1_000)
+        XCTAssertEqual(tokenInput.text, "1,00")
+    }
+
+    func test_whenEndsEditingWithErrors_thenValueIsSetToZero() {
+        tokenInput.setUp(value: 0, decimals: 3)
+        let invalidValue = "001,000100"
+        tokenInput.endEditing(invalidValue)
+        XCTAssertEqual(tokenInput.value, 0)
+        XCTAssertEqual(tokenInput.text, invalidValue)
+    }
+
 }
 
 private extension TokenInput {
@@ -62,6 +101,12 @@ private extension TokenInput {
     func canType(_ text: String, range: NSRange = NSRange()) -> Bool {
         if range.length == 0 { textInput.text = "" }
         return textField(textInput, shouldChangeCharactersIn: range, replacementString: text)
+    }
+
+    func endEditing(_ value: String) {
+        canType(value)
+        text = value
+        textFieldDidEndEditing(textInput)
     }
 
 }

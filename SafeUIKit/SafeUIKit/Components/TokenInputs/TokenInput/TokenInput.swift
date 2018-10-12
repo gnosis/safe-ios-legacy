@@ -25,9 +25,6 @@ public final class TokenInput: VerifiableInput {
             static let excededAmountOfFractionalDigits =
                 LocalizedString("token_input.exceded_amount_of_fractional_digits",
                                 comment: "Error display if amount of fractional digits is exceded.")
-            static let excededAmountOfIntegerDigits =
-                LocalizedString("token_input.exceded_amount_of_integer_digits",
-                                comment: "Error display if amount of integer digits is exceded.")
         }
     }
 
@@ -98,6 +95,18 @@ public final class TokenInput: VerifiableInput {
         textInput.text = formatter.string(from: value)
     }
 
+    public override func becomeFirstResponder() -> Bool {
+        return textInput.becomeFirstResponder()
+    }
+
+    public override var isFirstResponder: Bool {
+        return textInput.isFirstResponder
+    }
+
+    public override func resignFirstResponder() -> Bool {
+        return textInput.resignFirstResponder()
+    }
+
 }
 
 // MARK: - UITextFieldDelegate
@@ -115,6 +124,16 @@ public extension TokenInput {
         guard components.count < 3 else { return false }
         guard components.reduce(true, { $0 && !$1.hasNonDecimalDigitCharacters }) else { return false }
         return true
+    }
+
+    override func textFieldDidEndEditing(_ textField: UITextField) {
+        guard textField === textInput else { return }
+        guard isValidated else {
+            value = 0
+            return
+        }
+        value = formatter.number(from: textInput.text ?? "") ?? 0
+        textInput.text = formatter.string(from: value)
     }
 
 }
