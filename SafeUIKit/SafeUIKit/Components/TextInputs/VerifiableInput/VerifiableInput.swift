@@ -25,7 +25,6 @@ public class VerifiableInput: UIView {
         return stackView.arrangedSubviews.compactMap { $0 as? RuleLabel }
     }
 
-    @IBInspectable
     public var maxLength: Int = Int.max
 
     public var text: String? {

@@ -65,4 +65,5 @@ class TokenNumberFormatterTests: XCTestCase {
         formatter.tokenSymbol = nil
         assert(number: 1, equalTo: "1,00 ETH")
     }
+
 }

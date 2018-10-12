@@ -3,10 +3,12 @@
 //
 
 import UIKit
+import BigInt
 
 public final class TokenInput: VerifiableInput {
 
     public private(set) var decimals: Int = 18
+    public private(set) var value: BigInt = 0
 
     private let decimalSeparator: String = (Locale.current as NSLocale).decimalSeparator
 
@@ -39,6 +41,24 @@ public final class TokenInput: VerifiableInput {
         textInput.leftImage = Asset.TokenIcons.defaultToken.image
         textInput.keyboardType = .decimalPad
         textInput.delegate = self
+    }
+
+    /// Configut TokenInput with initial value and decimals. Default values are value = 0, decimals = 18.
+    ///
+    /// - Parameters:
+    ///   - value: Initital BigInt value
+    ///   - decimals: Decimals of a ERC20 Token. https://theethereum.wiki/w/index.php/ERC20_Token_Standard
+    public func setUp(value: BigInt, decimals: Int) {
+        precondition(TokenBounds.hasCorrectDigitCount(decimals))
+        precondition(TokenBounds.isWithinBounds(value: value))
+        self.decimals = decimals
+        self.value = value
+        guard value != 0 else {
+            textInput.text = nil
+            return
+        }
+        let formatter = TokenNumberFormatter.ERC20Token(decimals: decimals)
+        textInput.text = formatter.string(from: value)
     }
 
 }

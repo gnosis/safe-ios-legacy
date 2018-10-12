@@ -32,30 +32,12 @@ public class TokenDoubleInput: UIView {
         }
     }
 
-    struct Bounds {
-
-        static let maxTokenValue = BigInt(2).power(256) - 1
-        static let minTokenValue = BigInt(0)
-
-        static let maxDigitsCount = String(maxTokenValue).count
-        static let minDigitsCount = 0
-
-        static func isWithinBounds(value: BigInt) -> Bool {
-            return value >= Bounds.minTokenValue && value <= Bounds.maxTokenValue
-        }
-
-        static func hasCorrectDigitCount(_ value: Int) -> Bool {
-            return value >= Bounds.minDigitsCount && value <= Bounds.maxDigitsCount
-        }
-
-    }
-
     enum Field: Int {
         case integer
         case fractional
     }
 
-    /// Configut TokenInput. Call this method before component usage.
+    /// Configut TokenDoubleInput. Call this method before component usage.
     ///
     /// - Parameters:
     ///   - value: Initital BigInt value
@@ -68,14 +50,14 @@ public class TokenDoubleInput: UIView {
         setUp(value: value, decimals: decimals)
     }
 
-    /// Configut TokenInput. Call this method before component usage.
+    /// Configut TokenDoubleInput. Call this method before component usage.
     ///
     /// - Parameters:
     ///   - value: Initital BigInt value
     ///   - decimals: Decimals of a ERC20 Token. https://theethereum.wiki/w/index.php/ERC20_Token_Standard
     public func setUp(value: BigInt, decimals: Int) {
-        precondition(Bounds.hasCorrectDigitCount(decimals))
-        precondition(Bounds.isWithinBounds(value: value))
+        precondition(TokenBounds.hasCorrectDigitCount(decimals))
+        precondition(TokenBounds.isWithinBounds(value: value))
         self.decimals = decimals
         self.value = value
         updateUIOnInitialLoad()
@@ -92,8 +74,8 @@ public class TokenDoubleInput: UIView {
             fractionalTextField.text = bigIntFractionalPartStringToUIText(str.fractionalPart(decimals))
         }
 
-        integerTextField.isEnabled = decimals < Bounds.maxDigitsCount
-        fractionalTextField.isEnabled = decimals > Bounds.minDigitsCount
+        integerTextField.isEnabled = decimals < TokenBounds.maxDigitsCount
+        fractionalTextField.isEnabled = decimals > TokenBounds.minDigitsCount
 
         fiatValueLabel.text = approximateFiatValue(for: value)
     }
@@ -161,7 +143,7 @@ extension TokenDoubleInput: UITextFieldDelegate {
         let updatedText = (textField.nonNilText as NSString)
             .replacingCharacters(in: rangeToReplace, with: enteredString)
 
-        guard updatedText.count <= Bounds.maxDigitsCount else {
+        guard updatedText.count <= TokenBounds.maxDigitsCount else {
             return false
         }
 
@@ -201,7 +183,7 @@ extension TokenDoubleInput: UITextFieldDelegate {
     private func validBigIntValue(integerPart: String, fractionalPart: String) -> BigInt? {
         let bigIntStringValue = uiTextToBigIntIntegerPartString(integerPart) +
                                 uiTextToBigIntFractionalPartString(fractionalPart)
-        guard let result = BigInt(bigIntStringValue), Bounds.isWithinBounds(value: result) else {
+        guard let result = BigInt(bigIntStringValue), TokenBounds.isWithinBounds(value: result) else {
             return nil
         }
         return result

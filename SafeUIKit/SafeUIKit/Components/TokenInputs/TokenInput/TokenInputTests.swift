@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import SafeUIKit
+import BigInt
 
 class TokenInputTests: XCTestCase {
 
@@ -21,6 +22,16 @@ class TokenInputTests: XCTestCase {
         XCTAssertTrue(tokenInput.canType("101\(s)001"))
         XCTAssertFalse(tokenInput.canType("101\(s)001\(s)01"))
         XCTAssertFalse(tokenInput.canType("101\(s)00a"))
+    }
+
+    func test_whenSetup_thenTextFieldUpdatedProperly() {
+        let s = decimalSeparator
+        tokenInput.setUp(value: 0, decimals: 3)
+        XCTAssertEqual(tokenInput.text, "")
+        tokenInput.setUp(value: 1, decimals: 3)
+        XCTAssertEqual(tokenInput.text, "0\(s)001")
+        tokenInput.setUp(value: BigInt(10).power(18) + 1, decimals: 18)
+        XCTAssertEqual(tokenInput.text, "1\(s)000000000000000001")
     }
 
 }

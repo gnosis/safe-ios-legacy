@@ -13,14 +13,12 @@ public final class TokenNumberFormatter {
         let formatter = TokenNumberFormatter()
         formatter.tokenCode = code
         formatter.decimals = decimals
-        formatter.decimalSeparator = Locale.autoupdatingCurrent.decimalSeparator ?? ","
-        formatter.groupingSeparator = Locale.autoupdatingCurrent.groupingSeparator ?? " "
         return formatter
     }
 
-    var decimals: Int = 0
-    var groupingSeparator = " "
-    var decimalSeparator = ","
+    var decimals: Int = 18
+    var groupingSeparator = Locale.autoupdatingCurrent.groupingSeparator ?? " "
+    var decimalSeparator = Locale.autoupdatingCurrent.decimalSeparator ?? ","
     var usesGroupingSeparator = false
     var usesGroupingSeparatorForFractionDigits = false
     var groupSize = 3
@@ -41,6 +39,17 @@ public final class TokenNumberFormatter {
         addFractionGrouping(fraction: &fraction)
         let adjustedFraction = (fraction.isEmpty ? "00" : fraction) + (fraction.count == 1 ? "0" : "")
         return sign + integer + decimalSeparator + adjustedFraction + tokenCurrency
+    }
+
+    public func number(from string: String) -> BigInt? {
+        let input = string.replacingOccurrences(of: groupingSeparator, with: "")
+        if input == "0" { return 0 }
+        let parts = input.components(separatedBy: decimalSeparator)
+        guard !parts.isEmpty, let integer = BigInt(parts[0]) else { return nil }
+        var fractionString = parts.count > 1 ? parts[1] : ""
+        removeTrailingZeroes(fraction: &fractionString)
+        guard let fraction = BigInt(fractionString) else { return nil }
+        return integer * BigInt(10).power(decimals) + fraction * BigInt(10).power(decimals - fractionString.count)
     }
 
     private func padFromBeginning(_ str: String) -> String {
@@ -75,17 +84,6 @@ public final class TokenNumberFormatter {
                                            offsetBy: -groupSize,
                                            limitedBy: integer.startIndex)
         }
-    }
-
-    public func number(from string: String) -> BigInt? {
-        let input = string.replacingOccurrences(of: groupingSeparator, with: "")
-        if input == "0" { return 0 }
-        let parts = input.components(separatedBy: decimalSeparator)
-        guard !parts.isEmpty, let integer = BigInt(parts[0]) else { return nil }
-        var fractionString = parts.count > 1 ? parts[1] : ""
-        removeTrailingZeroes(fraction: &fractionString)
-        guard let fraction = BigInt(fractionString) else { return nil }
-        return integer * BigInt(10).power(decimals) + fraction * BigInt(10).power(decimals - fractionString.count)
     }
 
 }

@@ -179,6 +179,7 @@
 		550D1EDF213426F00035109A /* AddTokenFooterViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */; };
 		550E7CDC21708E1F0032DE6C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550E7CDB21708E1E0032DE6C /* String+Extensions.swift */; };
 		550E7CDE21708E540032DE6C /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550E7CDD21708E540032DE6C /* UITextField+Extensions.swift */; };
+		550E7CE121708FBC0032DE6C /* TokenBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550E7CE021708FBC0032DE6C /* TokenBounds.swift */; };
 		55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55247302213E8D7600A77557 /* TokensHeaderView.swift */; };
 		55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55247304213E8EC600A77557 /* TokensHeaderView.xib */; };
 		5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524730E213FDEB400A77557 /* BackgroundImageView.swift */; };
@@ -477,6 +478,7 @@
 		550D1EDE213426F00035109A /* AddTokenFooterViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenFooterViewTests.swift; sourceTree = "<group>"; };
 		550E7CDB21708E1E0032DE6C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		550E7CDD21708E540032DE6C /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		550E7CE021708FBC0032DE6C /* TokenBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBounds.swift; sourceTree = "<group>"; };
 		55247302213E8D7600A77557 /* TokensHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensHeaderView.swift; sourceTree = "<group>"; };
 		55247304213E8EC600A77557 /* TokensHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokensHeaderView.xib; sourceTree = "<group>"; };
 		5524730E213FDEB400A77557 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
@@ -870,8 +872,6 @@
 				550954F120C966CF00F5F25F /* UIView+Extensions.swift */,
 				5524735D2142930A00A77557 /* UIImage+Extensions.swift */,
 				0AE950CF20D29D9E0099B79D /* DesignableView.swift */,
-				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
-				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
 				550E7CDB21708E1E0032DE6C /* String+Extensions.swift */,
 				550E7CDD21708E540032DE6C /* UITextField+Extensions.swift */,
 			);
@@ -1008,10 +1008,20 @@
 			path = ManageTokens;
 			sourceTree = "<group>";
 		};
+		550E7CDF21708F800032DE6C /* TokenInput */ = {
+			isa = PBXGroup;
+			children = (
+				55D0EC5D216F6F70003D9A53 /* TokenInput.swift */,
+				55D0EC5F216F6F8B003D9A53 /* TokenInputTests.swift */,
+				550E7CE021708FBC0032DE6C /* TokenBounds.swift */,
+			);
+			path = TokenInput;
+			sourceTree = "<group>";
+		};
 		5524734F21428E4C00A77557 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				55D0EC5C216F6DB9003D9A53 /* TokenInput */,
+				55D0EC5C216F6DB9003D9A53 /* TokenInputs */,
 				555EB6ED216CA55000E06553 /* TextInputs */,
 				556251F72149119200F569EE /* QRCodeView */,
 				556251CF2146710800F569EE /* TokenBalanceCell */,
@@ -1022,7 +1032,6 @@
 				5524735621428EC400A77557 /* ScannerViewController */,
 				5524735521428E9000A77557 /* BigButton */,
 				5524735421428E7600A77557 /* QRCodeInput */,
-				5524735321428E6500A77557 /* TokenDoubleInput */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1141,13 +1150,15 @@
 			path = QRCodeView;
 			sourceTree = "<group>";
 		};
-		55D0EC5C216F6DB9003D9A53 /* TokenInput */ = {
+		55D0EC5C216F6DB9003D9A53 /* TokenInputs */ = {
 			isa = PBXGroup;
 			children = (
-				55D0EC5D216F6F70003D9A53 /* TokenInput.swift */,
-				55D0EC5F216F6F8B003D9A53 /* TokenInputTests.swift */,
+				550E7CDF21708F800032DE6C /* TokenInput */,
+				5524735321428E6500A77557 /* TokenDoubleInput */,
+				0A442DFB210B5F8A00F19F80 /* TokenNumberFormatter.swift */,
+				B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */,
 			);
-			path = TokenInput;
+			path = TokenInputs;
 			sourceTree = "<group>";
 		};
 		55DEBC11214AA59F0017CD4B /* BackgroundHeaderFooterView */ = {
@@ -1648,6 +1659,7 @@
 				5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */,
 				552473612142A07300A77557 /* DesignableView.swift in Sources */,
 				5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */,
+				550E7CE121708FBC0032DE6C /* TokenBounds.swift in Sources */,
 				555EB6F0216CA5CF00E06553 /* TextInput.swift in Sources */,
 				550954EA20C9590000F5F25F /* TokenDoubleInput.swift in Sources */,
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
