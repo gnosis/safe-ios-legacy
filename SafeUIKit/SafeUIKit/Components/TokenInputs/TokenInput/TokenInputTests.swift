@@ -34,10 +34,19 @@ class TokenInputTests: XCTestCase {
         XCTAssertEqual(tokenInput.text, "1\(s)000000000000000001")
     }
 
+    func test_whenEnteingTooBigNumber_thenProperErrorMessageIsDisplayed() {
+        tokenInput.setUp(value: 0, decimals: TokenBounds.maxDigitsCount - 1)
+        tokenInput.canType("1")
+        XCTAssertEqual(tokenInput.ruleLabel(by: "valueIsTooBig")!.status, .success)
+        tokenInput.canType("11")
+        XCTAssertEqual(tokenInput.ruleLabel(by: "valueIsTooBig")!.status, .error)
+    }
+
 }
 
 private extension TokenInput {
 
+    @discardableResult
     func canType(_ text: String, range: NSRange = NSRange()) -> Bool {
         if range.length == 0 { textInput.text = "" }
         return textField(textInput, shouldChangeCharactersIn: range, replacementString: text)

@@ -9,11 +9,22 @@ public final class TokenInput: VerifiableInput {
 
     public private(set) var decimals: Int = 18
     public private(set) var value: BigInt = 0
+    public private(set) var formatter = TokenNumberFormatter()
 
     private let decimalSeparator: String = (Locale.current as NSLocale).decimalSeparator
 
     enum Strings {
         static let amount = LocalizedString("token_input.amount", comment: "Amount placeholder for token input.")
+        enum Rules {
+            static let valueIsTooBig = LocalizedString("token_input.value_is_too_big",
+                                                       comment: "Error display if entered value is too big.")
+            static let excededAmountOfFractionalDigits =
+                LocalizedString("token_input.exceded_amount_of_fractional_digits",
+                                comment: "Error display if amount of fractional digits is exceded.")
+            static let excededAmountOfIntegerDigits =
+                LocalizedString("token_input.exceded_amount_of_integer_digits",
+                                comment: "Error display if amount of integer digits is exceded.")
+        }
     }
 
     public var imageURL: URL? {
@@ -41,6 +52,17 @@ public final class TokenInput: VerifiableInput {
         textInput.leftImage = Asset.TokenIcons.defaultToken.image
         textInput.keyboardType = .decimalPad
         textInput.delegate = self
+        maxLength = TokenBounds.maxDigitsCount
+        addDefaultValidationsRules()
+    }
+
+    private func addDefaultValidationsRules() {
+        addRule(Strings.Rules.valueIsTooBig, identifier: "valueIsTooBig") { self.valueIsTooBig($0) }
+    }
+
+    private func valueIsTooBig(_ value: String) -> Bool {
+        guard let number = formatter.number(from: value) else { return false }
+        return TokenBounds.isWithinBounds(value: number)
     }
 
     /// Configut TokenInput with initial value and decimals. Default values are value = 0, decimals = 18.
@@ -53,11 +75,11 @@ public final class TokenInput: VerifiableInput {
         precondition(TokenBounds.isWithinBounds(value: value))
         self.decimals = decimals
         self.value = value
+        formatter = TokenNumberFormatter.ERC20Token(decimals: decimals)
         guard value != 0 else {
             textInput.text = nil
             return
         }
-        let formatter = TokenNumberFormatter.ERC20Token(decimals: decimals)
         textInput.text = formatter.string(from: value)
     }
 

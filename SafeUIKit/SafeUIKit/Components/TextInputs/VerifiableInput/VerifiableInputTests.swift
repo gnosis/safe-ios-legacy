@@ -138,7 +138,7 @@ class VerifiableInputTests: XCTestCase {
 
 }
 
-fileprivate extension VerifiableInput {
+extension VerifiableInput {
 
     var ruleLabelCount: Int {
         return stackView.arrangedSubviews.count - 1
@@ -150,6 +150,14 @@ fileprivate extension VerifiableInput {
 
     func ruleLabel(at index: Int) -> RuleLabel {
         return stackView.arrangedSubviews[index + 1] as! RuleLabel
+    }
+
+    func ruleLabel(by indentifier: String) -> RuleLabel? {
+        return stackView.arrangedSubviews.reduce([String: RuleLabel]()) { result, value in
+            var r = result
+            r[value.accessibilityIdentifier ?? ""] = value as? RuleLabel
+            return r
+        }[indentifier]
     }
 
     func type(_ text: String) {

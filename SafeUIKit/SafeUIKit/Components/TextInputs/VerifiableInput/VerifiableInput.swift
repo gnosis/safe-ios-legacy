@@ -88,8 +88,11 @@ public class VerifiableInput: UIView {
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    public func addRule(_ localizedDescription: String, validation: ((String) -> Bool)? = nil) {
+    public func addRule(_ localizedDescription: String,
+                        identifier: String? = nil,
+                        validation: ((String) -> Bool)? = nil) {
         let label = RuleLabel(text: localizedDescription, rule: validation)
+        label.accessibilityIdentifier = identifier
         stackView.addArrangedSubview(label)
     }
 
