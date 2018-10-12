@@ -276,8 +276,8 @@ class AllDeploymentStatesTests: BaseDeploymentDomainServiceTests {
         let response = SafeCreationTransactionRequest.Response.testResponse
         relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), response)
 
-        nodeService.expect_eth_getBalance(account: response.walletAddress, balance: response.intPayment! / 2)
-        nodeService.expect_eth_getBalance(account: response.walletAddress, balance: response.intPayment!)
+        nodeService.expect_eth_getBalance(account: response.walletAddress, balance: response.deploymentFee / 2)
+        nodeService.expect_eth_getBalance(account: response.walletAddress, balance: response.deploymentFee)
 
         relayService.expect_startSafeCreation(address: response.walletAddress)
 

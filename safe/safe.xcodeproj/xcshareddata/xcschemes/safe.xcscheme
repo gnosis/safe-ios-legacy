@@ -155,6 +155,9 @@
                   Identifier = "BlockchainIntegrationTest">
                </Test>
                <Test
+                  Identifier = "GnosisSafeOwnersIntegrationTests">
+               </Test>
+               <Test
                   Identifier = "GnosisTransactionRelayServiceTests">
                </Test>
                <Test

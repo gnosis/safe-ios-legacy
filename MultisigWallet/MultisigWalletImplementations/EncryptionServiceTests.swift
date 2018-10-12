@@ -116,36 +116,101 @@ class EncryptionServiceTests: XCTestCase {
         XCTAssertEqual(rinkebySignedTx.value, RawTransactionFixture.rinkebyHash)
     }
 
+    // swiftlint:disable:next function_body_length
+    func test_transactionHash_byParts() throws {
+        let dataHashInput = oneline("561001057600080fd5b5060405161060a3803806106")
+        let dataHash = keccak(dataHashInput)
+        print(dataHashInput, dataHash)
+
+        let domainHashInput = oneline("""
+035aff83d86937d35b32e04f0ddc6ff469290eef2f1b692d8a815c89404d4749
+000000000000000000000000092CC1854399ADc38Dad4f846E369C40D0a40307
+""")
+        let domainHash = keccak(domainHashInput)
+        print(domainHashInput, domainHash)
+
+        let valueHashInput = oneline("""
+14d461bc7412367e924637b363c7bf29b8f47e2f84869f4426e5633d8af47b20
+0000000000000000000000008e6A5aDb2B88257A3DAc7A76A7B4EcaCdA090b66
+00000000000000000000000000000000000000000000000000000000000F42BB
+ef8553f949acc5f0cb8002523b7a4f8e02664b6637eddc74ad72bb8e38588309
+0000000000000000000000000000000000000000000000000000000000000001
+0000000000000000000000000000000000000000000000000000000000005208
+00000000000000000000000000000000000000000000000000000000000074F7
+0000000000000000000000000000000000000000000000000000000005E87F39
+0000000000000000000000001001230000000000000000000000000000000001
+0000000000000000000000000000000000000000000000000000000000000000
+00000000000000000000000000000000000000000000000000000002DD7A9A70
+""")
+        let valueHash = keccak(valueHashInput)
+        print(valueHashInput, valueHash)
+
+        let txHashInput = "1901" + domainHash + valueHash
+        let txHash = keccak(txHashInput)
+        print(txHashInput, txHash)
+
+        let data = TransactionHashingFixture.jsonArray.data(using: .utf8)!
+        let fixtures = try JSONDecoder().decode([TransactionHashingFixture.Message].self, from: data)
+
+        let tx = transaction(from: fixtures.last!)
+        XCTAssertEqual(keccak(tx.data ?? Data()), dataHash)
+        XCTAssertEqual(encryptionService.valueData(tx).toHexString().lowercased(), valueHashInput.lowercased())
+        XCTAssertEqual(encryptionService.domainData(tx).toHexString().lowercased(), domainHashInput.lowercased())
+        XCTAssertEqual(encryptionService.hashData(tx).toHexString().lowercased(), txHashInput.lowercased())
+        XCTAssertEqual(encryptionService.hash(of: tx).toHexString().lowercased(), txHash.lowercased())
+    }
+
+    private func oneline(_ str: String) -> String {
+        return str.replacingOccurrences(of: "\n", with: "")
+    }
+
+    private func keccak(_ v: String) -> String {
+        return keccak(Data(ethHex: v))
+    }
+
+    private func keccak(_ v: Data) -> String {
+        return encryptionService.hash(v).toHexString()
+    }
+
     func test_hashOfTransaction() throws {
         let data = TransactionHashingFixture.jsonArray.data(using: .utf8)!
         let fixtures = try JSONDecoder().decode([TransactionHashingFixture.Message].self, from: data)
         fixtures.forEach { fixture in
-            let walletID = WalletID()
-            let accountID = AccountID(tokenID: Token.gno.id, walletID: walletID)
-            let transaction = MultisigWalletDomainModel.Transaction(id: TransactionID(),
-                                                                    type: .transfer,
-                                                                    walletID: walletID,
-                                                                    accountID: accountID)
-            let gasPrice = TokenAmount(amount: TokenInt(fixture.gasPrice)!,
-                                       token: Token(code: "SOME",
-                                                    name: "SOME NAME",
-                                                    decimals: 18,
-                                                    address: Address(fixture.gasToken),
-                                                    logoUrl: ""))
-            let data = Data(ethHex: fixture.data)
-            transaction
-                .change(sender: Address(fixture.safe))
-                .change(recipient: Address(fixture.to))
-                .change(amount: .ether(TokenInt(fixture.value)!))
-                .change(data: data)
-                .change(operation: WalletOperation(rawValue: Int(fixture.operation)!)!)
-                .change(nonce: fixture.nonce)
-                .change(feeEstimate: TransactionFeeEstimate(gas: Int(fixture.txGas)!,
-                                                            dataGas: Int(fixture.dataGas)!,
-                                                            gasPrice: gasPrice))
+            let transaction = self.transaction(from: fixture)
             let hexHash = encryptionService.hash(of: transaction).toHexString().addHexPrefix()
             XCTAssertEqual(hexHash, fixture.hash)
         }
+    }
+
+    private func transaction(from fixture: TransactionHashingFixture.Message) -> MultisigWalletDomainModel.Transaction {
+        return newTransaction()
+            .change(sender: Address(fixture.safe))
+            .change(recipient: Address(fixture.to))
+            .change(amount: .ether(TokenInt(fixture.value)!))
+            .change(data: Data(ethHex: fixture.data))
+            .change(operation: WalletOperation(rawValue: Int(fixture.operation)!)!)
+            .change(nonce: fixture.nonce)
+            .change(feeEstimate: TransactionFeeEstimate(gas: Int(fixture.txGas)!,
+                                                        dataGas: Int(fixture.dataGas)!,
+                                                        gasPrice: newGasPrice(fixture.gasPrice, fixture.gasToken)))
+    }
+
+    private func newTransaction() -> MultisigWalletDomainModel.Transaction {
+        let walletID = WalletID()
+        let accountID = AccountID(tokenID: Token.gno.id, walletID: walletID)
+        return MultisigWalletDomainModel.Transaction(id: TransactionID(),
+                                                     type: .transfer,
+                                                     walletID: walletID,
+                                                     accountID: accountID)
+    }
+
+    private func newGasPrice(_ price: String, _ token: String) -> TokenAmount {
+        return TokenAmount(amount: TokenInt(price)!,
+                           token: Token(code: "SOME",
+                                        name: "SOME NAME",
+                                        decimals: 18,
+                                        address: Address(token),
+                                        logoUrl: ""))
     }
 
     func test_addressFromString() {
@@ -206,7 +271,7 @@ struct TransactionHashingFixture {
 [
 {
     "type": "requestConfirmation",
-    "hash": "0x93f89f0f9c53a61cb09245a1f0958deaf01d2a89dcc9738ae4ce379da6113c5d",
+    "hash": "0xddb1eadbe8d01cee43bc1756b16f8cfcd04c455fa1dec329890d39dd1f0c63d9",
     "safe": "0x092CC1854399ADc38Dad4f846E369C40D0a40307",
     "to": "0x8e6A5aDb2B88257A3DAc7A76A7B4EcaCdA090b66",
     "value": "1000123",
@@ -220,7 +285,7 @@ struct TransactionHashingFixture {
 },
 {
     "type": "requestConfirmation",
-    "hash": "0xc65a66bd28083a9d3bad66fc3c379d88432654877f4fd4cf74ed6c706e72a791",
+    "hash": "0x238b92e31ae74f0dd353b3a1fb3e014469e0a0fc09cb1d60f23bf098c929c97b",
     "safe": "0x092CC1854399ADc38Dad4f846E369C40D0a40307",
     "to": "0x0000000000000000000000000000000000000000",
     "value": "0",
@@ -234,7 +299,7 @@ struct TransactionHashingFixture {
 },
 {
     "type": "requestConfirmation",
-    "hash": "0xfe1c3957b9041e30fe479e09f64552ea2cd688885108cb2286f547535fb1e741",
+    "hash": "0x9fbfde51c1132c2a28fa482d30c66348e8cd139de98ba5bfee4e68fb853b5484",
     "safe": "0x092CC1854399ADc38Dad4f846E369C40D0a40307",
     "to": "0x8e6A5aDb2B88257A3DAc7A76A7B4EcaCdA090b66",
     "value": "1000123",
@@ -248,7 +313,7 @@ struct TransactionHashingFixture {
 },
 {
     "type": "requestConfirmation",
-    "hash": "0xdfff8281da3187fb40d71352d11d2a6c9a82ec4111d50a3fe0fc4df2e7a4aee2",
+    "hash": "0x73131ee03daae3e0cbd1bce81ae50291562539ee5c806506eebd0aaa33d0fbe3",
     "safe": "0x092CC1854399ADc38Dad4f846E369C40D0a40307",
     "to": "0x8e6A5aDb2B88257A3DAc7A76A7B4EcaCdA090b66",
     "value": "1000123",
