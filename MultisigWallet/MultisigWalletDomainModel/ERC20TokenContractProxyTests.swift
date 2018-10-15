@@ -9,6 +9,7 @@ class ERC20TokenContractProxyTests: EthereumContractProxyBaseTests {
 
     let proxy = ERC20TokenContractProxy(Address.testAccount1)
 
+
     func test_encodesSelectorAndParams() throws {
         let expectedBalance = TokenInt(150)
         let selector = "balanceOf(address)".data(using: .ascii)!
@@ -38,6 +39,14 @@ class ERC20TokenContractProxyTests: EthereumContractProxyBaseTests {
         nodeService.expect_eth_call(to: Address.testAccount1, data: Data(), result: Data(repeating: 1, count: 64))
         XCTAssertEqual(try proxy.balance(of: Address.safeAddress),
                        TokenInt(Data(repeating: 1, count: 32).toHexString(), radix: 16)!)
+    }
+
+    func test_whenTransferring_thenReturnsEncodedCall() {
+        encryptionService.always_return_hash(Data())
+        let data = proxy.invocation("transfer(address,uint256)",
+                                    proxy.encodeAddress(Address.testAccount2),
+                                    proxy.encodeUInt(20))
+        XCTAssertEqual(proxy.transfer(to: Address.testAccount2, amount: 20), data)
     }
 
 }

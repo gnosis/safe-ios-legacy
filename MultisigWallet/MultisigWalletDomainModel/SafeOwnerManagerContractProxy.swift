@@ -5,6 +5,8 @@
 import Foundation
 import BigInt
 
+// swiftlint:disable:next line_length
+// see https://github.com/gnosis/safe-contracts/blob/6db7ce0f600d391bc6f34b144d7845bf5f227d81/contracts/base/ModuleManager.sol#L11
 public class SafeOwnerManagerContractProxy: EthereumContractProxy {
 
     public let sentinelAddress = Address("0x" + Data([0x1]).leftPadded(to: 20).toHexString())

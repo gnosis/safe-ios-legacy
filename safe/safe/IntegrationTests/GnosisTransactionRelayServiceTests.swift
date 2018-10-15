@@ -206,6 +206,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
     }
 
     func provisionFundingAccount() -> ExternallyOwnedAccount {
+        // funder address: 0x2333b4CC1F89a0B4C43e9e733123C124aAE977EE
         let privateKey =
             PrivateKey(data: Data(ethHex: "0x72a2a6f44f24b099f279c87548a93fd7229e5927b4f1c7209f7130d5352efa40"))
         let publicKey = PublicKey(data: ethService.createPublicKey(privateKey: privateKey.data))
@@ -232,9 +233,13 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         return safe
     }
 
-    func pay(from sender: ExternallyOwnedAccount, to recipient: Address, amount: TokenInt) throws {
+    func pay(from sender: ExternallyOwnedAccount, to recipient: Address, amount: TokenInt, data: Data? = nil) throws {
         let gasPrice = try infuraService.eth_gasPrice()
-        let callTx = TransactionCall(sender: sender.address, recipient: recipient, gasPrice: gasPrice, amount: amount)
+        let callTx = TransactionCall(sender: sender.address,
+                                     recipient: recipient,
+                                     gasPrice: gasPrice,
+                                     amount: amount,
+                                     data: data)
         let gas = try infuraService.eth_estimateGas(transaction: callTx)
         let balance = try infuraService.eth_getBalance(account: sender.address)
         assert(balance >= gas * gasPrice + amount, "Not enough balance \(sender.address)")
@@ -253,6 +258,22 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
                                  gas: String(gas),
                                  gasPrice: String(callTx.gasPrice!.value),
                                  nonce: Int(nonce))
+    }
+
+    func test_tokenTransfer() throws {
+        let context = try deployNewSafe()
+
+        let erc20Proxy = ERC20TokenContractProxy(Address("0x3d5f63756C1979C596D6c9267Ee5b82935687AD9"))
+        try pay(from: context.funder,
+                to: erc20Proxy.contract,
+                amount: 0,
+                data: erc20Proxy.transfer(to: context.safe.address, amount: 1))
+        XCTAssertEqual(try erc20Proxy.balance(of: context.safe.address), 1)
+
+        let tx = try context.safe.prepareTx(to: erc20Proxy.contract,
+                                            data: erc20Proxy.transfer(to: context.funder.address, amount: 1))
+        try execute(transaction: tx, context: context)
+        XCTAssertEqual(try erc20Proxy.balance(of: context.safe.address), 0)
     }
 
 }
@@ -340,11 +361,12 @@ struct Safe {
 
 extension TransactionCall {
 
-    init(sender: Address, recipient: Address, gasPrice: BigInt, amount: TokenInt) {
+    init(sender: Address, recipient: Address, gasPrice: BigInt, amount: TokenInt, data: Data? = nil) {
         self.init(from: EthAddress(hex: sender.value),
                   to: EthAddress(hex: recipient.value),
                   gasPrice: EthInt(gasPrice),
-                  value: EthInt(amount))
+                  value: EthInt(amount),
+                  data: data == nil ? nil : EthData(data!))
     }
 
 }
