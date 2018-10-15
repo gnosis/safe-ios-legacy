@@ -100,5 +100,4 @@ class SafeOwnerManagerContractProxyTests: EthereumContractProxyBaseTests {
                                          newThreshold: 1), data)
     }
 
-
 }

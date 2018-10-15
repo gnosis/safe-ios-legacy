@@ -9,7 +9,7 @@ public class EthereumContractProxy {
 
     var nodeService: EthereumNodeDomainService { return DomainRegistry.ethereumNodeService }
     var encryptionService: EncryptionDomainService { return DomainRegistry.encryptionService }
-    var contract: Address
+    public private(set) var contract: Address
 
     public init(_ contract: Address) {
         self.contract = contract
