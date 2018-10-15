@@ -17,13 +17,13 @@ class UnlockViewControllerTests: SafeTestCase {
     }
 
     func test_whenCreated_hasAllElements() {
-        XCTAssertNotNil(vc.textInput)
+        XCTAssertNotNil(vc.verifiableInput)
         XCTAssertNotNil(vc.loginWithBiometryButton)
         XCTAssertNotNil(vc.headerLabel)
     }
 
     func test_whenCreated_thenTextInputIsSecure() {
-        XCTAssertTrue(vc.textInput.isSecure)
+        XCTAssertTrue(vc.verifiableInput.isSecure)
     }
 
     func test_whenAppeared_thenRequestsBiometricAuthentication() {
@@ -44,7 +44,7 @@ class UnlockViewControllerTests: SafeTestCase {
     func test_whenBiometryFails_thenFocusesOnPasswordField() {
         createWindow(vc)
         authenticateWithBiometryResult(false)
-        XCTAssertTrue(vc.textInput.isActive)
+        XCTAssertTrue(vc.verifiableInput.isActive)
     }
 
     func test_whenBiometryButtonTapped_thenAuthenticatesWithBiometry() {
@@ -100,8 +100,8 @@ class UnlockViewControllerTests: SafeTestCase {
         createWindow(vc)
         clock.countdownTickBlock!(0)
         delay()
-        XCTAssertTrue(vc.textInput.isEnabled)
-        XCTAssertTrue(vc.textInput.isActive)
+        XCTAssertTrue(vc.verifiableInput.isEnabled)
+        XCTAssertTrue(vc.verifiableInput.isActive)
     }
 
     func test_whenWasBlockedBeforeEnteringPassword_thenBlocksPasswordEntry() {
@@ -119,7 +119,7 @@ class UnlockViewControllerTests: SafeTestCase {
     func test_whenPasswordFails_thenInputShakes() {
         authenticationService.invalidateAuthentication()
         hitReturn()
-        XCTAssertTrue(vc.textInput.isShaking)
+        XCTAssertTrue(vc.verifiableInput.isShaking)
     }
 
     func test_whenShowsCancelButtonTrue_thenHasCancelButton() {
@@ -134,7 +134,7 @@ class UnlockViewControllerTests: SafeTestCase {
 extension UnlockViewControllerTests {
 
     private func hitReturn() {
-        vc.textInputDidReturn(vc.textInput)
+        vc.verifiableInputDidReturn(vc.verifiableInput)
         delay()
     }
 
@@ -159,7 +159,7 @@ extension UnlockViewControllerTests {
     private func assertShowsCountdown(line: UInt = #line) {
         XCTAssertNotNil(vc.countdownLabel, line: line)
         XCTAssertTrue(vc.loginWithBiometryButton.isHidden, line: line)
-        XCTAssertFalse(vc.textInput.isEnabled, line: line)
+        XCTAssertFalse(vc.verifiableInput.isEnabled, line: line)
     }
 
 }

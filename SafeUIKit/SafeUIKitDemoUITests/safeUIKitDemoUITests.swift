@@ -16,7 +16,7 @@ class SafeUIKitDemoUITests: XCTestCase {
     }
 
     var textInput: XCUIElement {
-        return app.otherElements["testTextInput"]
+        return app.otherElements["testVerifiableInput"]
     }
 
     var textField: XCUIElement {
@@ -27,7 +27,7 @@ class SafeUIKitDemoUITests: XCTestCase {
         super.setUp()
         continueAfterFailure = false
         app.launch()
-        app.staticTexts["TextInput"].tap()
+        app.staticTexts["VerifiableInput"].tap()
     }
 
     func test_textInput() {

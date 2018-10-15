@@ -4,7 +4,7 @@
 
 import UIKit
 
-final public class TextInput1: UITextField {
+final public class TextInput: UITextField {
 
     private let clearButton = UIButton(type: .custom)
     private let padding: CGFloat = 14
@@ -56,6 +56,7 @@ final public class TextInput1: UITextField {
     }
 
     private func addCustomClearButton() {
+        clearButton.accessibilityIdentifier = "Clear text"
         clearButton.frame = CGRect(x: 0, y: 0, width: 14, height: 14)
         clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
         rightView = clearButton
@@ -63,7 +64,9 @@ final public class TextInput1: UITextField {
     }
 
     @objc private func clearText() {
-        text = ""
+        if delegate?.textFieldShouldClear?(self) ?? true {
+            text = ""
+        }
     }
 
     private func updateAdjustableUI() {

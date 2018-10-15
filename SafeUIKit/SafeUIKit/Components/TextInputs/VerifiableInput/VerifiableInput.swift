@@ -4,21 +4,19 @@
 
 import UIKit
 
-@objc public protocol TextInputDelegate: class {
-
-    func textInputDidReturn(_ textInput: TextInput)
-    @objc optional func textInputDidBeginEditing(_ textInput: TextInput)
-    @objc optional func textInputDidEndEditing(_ textInput: TextInput)
-
+@objc public protocol VerifiableInputDelegate: class {
+    func verifiableInputDidReturn(_ verifiableInput: VerifiableInput)
+    @objc optional func verifiableInputDidBeginEditing(_ verifiableInput: VerifiableInput)
+    @objc optional func verifiableInputDidEndEditing(_ verifiableInput: VerifiableInput)
 }
 
-public final class TextInput: UIView {
+public final class VerifiableInput: UIView {
 
-    @IBOutlet weak var wrapperView: UIView!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet var wrapperView: UIView!
+    @IBOutlet weak var textInput: TextInput!
     @IBOutlet weak var stackView: UIStackView!
 
-    public weak var delegate: TextInputDelegate?
+    public weak var delegate: VerifiableInputDelegate?
     /// Indicates whether the view has user input focus
     public private(set) var isActive: Bool = false
     private static let shakeAnimationKey = "shake"
@@ -31,22 +29,27 @@ public final class TextInput: UIView {
     public var maxLength: Int = Int.max
 
     public var text: String? {
-        get { return textField.text }
-        set { textField.text = newValue != nil ? String(newValue!.prefix(maxLength)) : nil }
+        get { return textInput.text }
+        set { textInput.text = newValue != nil ? String(newValue!.prefix(maxLength)) : nil }
     }
 
     public var isEnabled: Bool {
-        get { return textField.isEnabled }
-        set { textField.isEnabled = newValue }
+        get { return textInput.isEnabled }
+        set { textInput.isEnabled = newValue }
     }
 
     public var isSecure: Bool {
-        get { return textField.isSecureTextEntry }
-        set { textField.isSecureTextEntry = newValue }
+        get { return textInput.isSecureTextEntry }
+        set { textInput.isSecureTextEntry = newValue }
     }
 
     public var isShaking: Bool {
-        return layer.animation(forKey: TextInput.shakeAnimationKey) != nil
+        return layer.animation(forKey: VerifiableInput.shakeAnimationKey) != nil
+    }
+
+    public var isDimmed: Bool {
+        get { return textInput.isDimmed }
+        set { textInput.isDimmed = newValue }
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -55,19 +58,20 @@ public final class TextInput: UIView {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        commonInit()
     }
 
     public override func awakeFromNib() {
         super.awakeFromNib()
-        configure()
+        commonInit()
     }
 
-    private func configure() {
+    private func commonInit() {
         loadContentsFromNib()
-        textField.delegate = self
-        textField.clearButtonMode = .whileEditing
-        textField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
+        backgroundColor = .clear
+        wrapperView.backgroundColor = .clear
+        textInput.delegate = self
+        textInput.addTarget(self, action: #selector(textChanged), for: .editingChanged)
     }
 
     private func loadContentsFromNib() {
@@ -92,21 +96,21 @@ public final class TextInput: UIView {
 
     public override func becomeFirstResponder() -> Bool {
         super.becomeFirstResponder()
-        isActive = textField.becomeFirstResponder()
+        isActive = textInput.becomeFirstResponder()
         return isActive
     }
 
     public func shake() {
-        layer.add(CABasicAnimation.shake(center: center), forKey: TextInput.shakeAnimationKey)
+        layer.add(CABasicAnimation.shake(center: center), forKey: VerifiableInput.shakeAnimationKey)
     }
 
     @objc private func textChanged(_ sender: Any) {
-        text = textField.text // validation
+        text = textInput.text // validation
     }
 
 }
 
-extension TextInput: UITextFieldDelegate {
+extension VerifiableInput: UITextFieldDelegate {
 
     public func textField(_ textField: UITextField,
                           shouldChangeCharactersIn range: NSRange,
@@ -129,17 +133,17 @@ extension TextInput: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let shouldReturn = !allRules.contains { $0.status != .success }
         if shouldReturn {
-            delegate?.textInputDidReturn(self)
+            delegate?.verifiableInputDidReturn(self)
         }
         return shouldReturn
     }
 
     public func textFieldDidBeginEditing(_ textField: UITextField) {
-        delegate?.textInputDidBeginEditing?(self)
+        delegate?.verifiableInputDidBeginEditing?(self)
     }
 
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        delegate?.textInputDidEndEditing?(self)
+        delegate?.verifiableInputDidEndEditing?(self)
     }
 
     private func resetRules() {
