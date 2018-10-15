@@ -572,6 +572,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Snj-OC-CIv"/>
                     </view>
+                    <connections>
+                        <outlet property="addressInput" destination="m1N-qU-qng" id="OgA-sk-DKt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w12-Lz-WpS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

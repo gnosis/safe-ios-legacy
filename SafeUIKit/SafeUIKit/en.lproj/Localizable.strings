@@ -1,6 +1,15 @@
 /* Recipient's address in address input. */
 "address_input.address_placeholder" = "Recipient's address";
 
+/* Cancel alert item. */
+"address_input.alert.cancel" = "Cancel";
+
+/* Paste from clipboard alert item. */
+"address_input.alert.paste" = "Paste from clipboard";
+
+/* Scan QR code alert item. */
+"address_input.alert.scan" = "Scan QR code";
+
 /* Error to display if address is invalid. */
 "address_input.invalid_address" = "Address is invalid";
 

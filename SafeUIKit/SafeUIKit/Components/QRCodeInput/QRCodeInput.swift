@@ -78,6 +78,7 @@ public final class QRCodeInput: UITextField {
         delegate = self
     }
 
+    // TODO: refactor
     @objc private func openBarcodeSacenner() {
         checkCameraAvailability { [unowned self] success in
             DispatchQueue.main.async {

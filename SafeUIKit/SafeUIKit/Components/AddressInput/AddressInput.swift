@@ -4,9 +4,15 @@
 
 import UIKit
 
+public protocol AddressInputDelegate: class {
+    func presentController(_ controller: UIViewController)
+}
+
 public final class AddressInput: VerifiableInput {
 
+    public weak var addressInputDelegate: AddressInputDelegate?
     private let addressLabel = UILabel()
+    private var scanHandler: ScanQRCodeHandler!
 
     enum Strings {
         static let addressPlaceholder =
@@ -14,6 +20,11 @@ public final class AddressInput: VerifiableInput {
         enum Rules {
             static let invalidAddress =
                 LocalizedString("address_input.invalid_address", comment: "Error to display if address is invalid.")
+        }
+        enum AlertActions {
+            static let paste = LocalizedString("address_input.alert.paste", comment: "Paste from clipboard alert item.")
+            static let scan = LocalizedString("address_input.alert.scan", comment: "Scan QR code alert item.")
+            static let cancel = LocalizedString("address_input.alert.cancel", comment: "Cancel alert item.")
         }
     }
 
@@ -39,6 +50,7 @@ public final class AddressInput: VerifiableInput {
         textInput.delegate = self
         showErrorsOnly = true
         addAddressLabel()
+        scanHandler = ScanQRCodeHandler(delegate: self)
 //        addDefaultValidationsRules()
     }
 
@@ -75,7 +87,20 @@ public final class AddressInput: VerifiableInput {
 public extension AddressInput {
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        displayAddress("0xf1511FAB6b7347899f51f9db027A32b39caE3910")
+        let alertController = UIAlertController()
+        alertController.addAction(
+            UIAlertAction(title: Strings.AlertActions.paste, style: .default) { _ in
+                if let value = UIPasteboard.general.string {
+                    self.displayAddress(value)
+                }
+            })
+        alertController.addAction(
+            UIAlertAction(title: Strings.AlertActions.scan, style: .default) { _ in
+                self.scanHandler.scan()
+
+        })
+        alertController.addAction(UIAlertAction(title: Strings.AlertActions.cancel, style: .cancel, handler: nil))
+        addressInputDelegate?.presentController(alertController)
         return false
     }
 
@@ -87,6 +112,18 @@ public extension AddressInput {
             textInput.placeholder = Strings.addressPlaceholder
         }
         return shouldClear
+    }
+
+}
+
+extension AddressInput: ScanQRCodeHandlerDelegate {
+
+    func presentController(_ controller: UIViewController) {
+        addressInputDelegate?.presentController(controller)
+    }
+
+    func didScanCode(_ code: String) {
+        displayAddress(code)
     }
 
 }
