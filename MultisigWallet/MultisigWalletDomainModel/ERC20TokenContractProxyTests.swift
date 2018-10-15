@@ -9,10 +9,6 @@ class ERC20TokenContractProxyTests: EthereumContractProxyBaseTests {
 
     let proxy = ERC20TokenContractProxy(Address.testAccount1)
 
-    override func setUp() {
-        super.setUp()
-        encryptionService.always_return_hash(Data())
-    }
 
     func test_encodesSelectorAndParams() throws {
         let expectedBalance = TokenInt(150)
@@ -46,6 +42,7 @@ class ERC20TokenContractProxyTests: EthereumContractProxyBaseTests {
     }
 
     func test_whenTransferring_thenReturnsEncodedCall() {
+        encryptionService.always_return_hash(Data())
         let data = proxy.invocation("transfer(address,uint256)",
                                     proxy.encodeAddress(Address.testAccount2),
                                     proxy.encodeUInt(20))
