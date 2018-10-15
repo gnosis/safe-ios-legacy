@@ -1,8 +1,3 @@
 bluey_grey: #a2a8ba
 lightish_blue: #426bf2
 battleship_grey: #65707e
-
-red: #e74c3c
-gray: #8e8e8e
-green: #72ae60
-black: #000000

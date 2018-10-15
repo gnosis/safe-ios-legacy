@@ -4,41 +4,31 @@
 
 import UIKit
 import SafeUIKit
-import BigInt
 
+// swiftlint:disable line_length
 class TokenInputViewController: UIViewController {
 
-    @IBOutlet var tokenInput: TokenInput!
-
-    @IBAction func zeroDecimals(_ sender: Any) {
-        setup(decimals: 0)
-    }
-
-    @IBAction func fiveDecimals(_ sender: Any) {
-        setup(decimals: 5)
-    }
-
-    @IBAction func eighteenDecimals(_ sender: Any) {
-        setup(decimals: 18)
-    }
-
-    @IBAction func seventyEightDecimals(_ sender: Any) {
-        setup(decimals: 78)
-    }
+    @IBOutlet weak var tokenInput: TokenInput!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tokenInput.setUp(value: 0, decimals: 5, fiatConversionRate: 0.1, locale: Locale.current)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        view.addGestureRecognizer(tapGesture)
+        tokenInput.imageURL = URL(string: "https://github.com/TrustWallet/tokens/blob/master/images/0x6810e776880c02933d47db1b9fc05908e5386b96.png?raw=true")
     }
 
-    @objc func hideKeyboard() {        
-        _ = tokenInput.resignFirstResponder()
+    @IBAction func set18deciamlDigits(_ sender: Any) {
+        tokenInput.setUp(value: 0, decimals: 18)
     }
 
-    private func setup(decimals: Int) {
-        tokenInput.setUp(value: 0, decimals: decimals, fiatConversionRate: 0.1, locale: Locale.current)
+    @IBAction func set5deciamlDdigits(_ sender: Any) {
+        tokenInput.setUp(value: 0, decimals: 5)
+    }
+
+    @IBAction func set0deciamlDdigits(_ sender: Any) {
+        tokenInput.setUp(value: 0, decimals: 0)
+    }
+
+    @IBAction func resign(_ sender: Any) {
+        tokenInput.resignFirstResponder()
     }
 
 }

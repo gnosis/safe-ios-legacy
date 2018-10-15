@@ -6,11 +6,11 @@ import UIKit
 import BigInt
 
 
-/// Token Input component contains separate inputs for integer and fractional part of a Token.
+/// Token Double Input component contains separate inputs for integer and fractional part of a Token.
 /// - It validates user inputs taking into account decimal part of a Token and maximum possible value.
 /// - Call setup(value:decimals:fiatConversionRate:locale) before usage.
 /// - Needs BigInt as a dependency.
-public class TokenInput: UIView {
+public class TokenDoubleInput: UIView {
 
     @IBOutlet weak var integerTextField: UITextField!
     @IBOutlet weak var fractionalTextField: UITextField!
@@ -32,30 +32,12 @@ public class TokenInput: UIView {
         }
     }
 
-    struct Bounds {
-
-        static let maxTokenValue = BigInt(2).power(256) - 1
-        static let minTokenValue = BigInt(0)
-
-        static let maxDigitsCount = String(maxTokenValue).count
-        static let minDigitsCount = 0
-
-        static func isWithinBounds(value: BigInt) -> Bool {
-            return value >= Bounds.minTokenValue && value <= Bounds.maxTokenValue
-        }
-
-        static func hasCorrectDigitCount(_ value: Int) -> Bool {
-            return value >= Bounds.minDigitsCount && value <= Bounds.maxDigitsCount
-        }
-
-    }
-
     enum Field: Int {
         case integer
         case fractional
     }
 
-    /// Configut TokenInput. Call this method before component usage.
+    /// Configut TokenDoubleInput. Call this method before component usage.
     ///
     /// - Parameters:
     ///   - value: Initital BigInt value
@@ -68,14 +50,14 @@ public class TokenInput: UIView {
         setUp(value: value, decimals: decimals)
     }
 
-    /// Configut TokenInput. Call this method before component usage.
+    /// Configut TokenDoubleInput. Call this method before component usage.
     ///
     /// - Parameters:
     ///   - value: Initital BigInt value
     ///   - decimals: Decimals of a ERC20 Token. https://theethereum.wiki/w/index.php/ERC20_Token_Standard
     public func setUp(value: BigInt, decimals: Int) {
-        precondition(Bounds.hasCorrectDigitCount(decimals))
-        precondition(Bounds.isWithinBounds(value: value))
+        precondition(TokenBounds.hasCorrectDigitCount(decimals))
+        precondition(TokenBounds.isWithinBounds(value: value))
         self.decimals = decimals
         self.value = value
         updateUIOnInitialLoad()
@@ -92,8 +74,8 @@ public class TokenInput: UIView {
             fractionalTextField.text = bigIntFractionalPartStringToUIText(str.fractionalPart(decimals))
         }
 
-        integerTextField.isEnabled = decimals < Bounds.maxDigitsCount
-        fractionalTextField.isEnabled = decimals > Bounds.minDigitsCount
+        integerTextField.isEnabled = decimals < TokenBounds.maxDigitsCount
+        fractionalTextField.isEnabled = decimals > TokenBounds.minDigitsCount
 
         fiatValueLabel.text = approximateFiatValue(for: value)
     }
@@ -132,7 +114,7 @@ public class TokenInput: UIView {
     }
 
     private func configure() {
-        safeUIKit_loadFromNib()
+        safeUIKit_loadFromNib(forClass: TokenDoubleInput.self)
         integerTextField.delegate = self
         integerTextField.tag = Field.integer.rawValue
         fractionalTextField.delegate = self
@@ -153,67 +135,7 @@ public class TokenInput: UIView {
 
 }
 
-fileprivate extension String {
-
-    var removingTrailingZeroes: String {
-        var result = self
-        while result.last == "0" {
-            result.removeLast()
-        }
-        return result
-    }
-
-    var removingLeadingZeroes: String {
-        var result = self
-        while result.first == "0" {
-            result.removeFirst()
-        }
-        return result
-    }
-
-    var removingDecimalSeparator: String {
-        guard let decimalSeparator = Locale.current.decimalSeparator else { return self }
-        return self.replacingOccurrences(of: decimalSeparator, with: "")
-    }
-
-    var hasNonDecimalDigitCharacters: Bool {
-        return rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) != nil
-    }
-
-    func paddingWithTrailingZeroes(to width: Int) -> String {
-        return self + String(repeating: "0", count: width - self.count)
-    }
-
-    func paddingWithLeadingZeroes(to width: Int) -> String {
-        return String(repeating: "0", count: width - self.count) + self
-    }
-
-    func integerPart(_ decimals: Int) -> String {
-        return String(prefix(count - decimals))
-    }
-
-    func fractionalPart(_ decimals: Int) -> String {
-        return String(suffix(decimals))
-    }
-
-}
-
-fileprivate extension UITextField {
-
-    var isIntegerField: Bool {
-        return tag == TokenInput.Field.integer.rawValue
-    }
-
-    var isFractionalField: Bool {
-        return tag == TokenInput.Field.fractional.rawValue
-    }
-
-    var nonNilText: String {
-        return text ?? ""
-    }
-}
-
-extension TokenInput: UITextFieldDelegate {
+extension TokenDoubleInput: UITextFieldDelegate {
 
     public func textField(_ textField: UITextField,
                           shouldChangeCharactersIn rangeToReplace: NSRange,
@@ -221,7 +143,7 @@ extension TokenInput: UITextFieldDelegate {
         let updatedText = (textField.nonNilText as NSString)
             .replacingCharacters(in: rangeToReplace, with: enteredString)
 
-        guard updatedText.count <= Bounds.maxDigitsCount else {
+        guard updatedText.count <= TokenBounds.maxDigitsCount else {
             return false
         }
 
@@ -261,7 +183,7 @@ extension TokenInput: UITextFieldDelegate {
     private func validBigIntValue(integerPart: String, fractionalPart: String) -> BigInt? {
         let bigIntStringValue = uiTextToBigIntIntegerPartString(integerPart) +
                                 uiTextToBigIntFractionalPartString(fractionalPart)
-        guard let result = BigInt(bigIntStringValue), Bounds.isWithinBounds(value: result) else {
+        guard let result = BigInt(bigIntStringValue), TokenBounds.isWithinBounds(value: result) else {
             return nil
         }
         return result

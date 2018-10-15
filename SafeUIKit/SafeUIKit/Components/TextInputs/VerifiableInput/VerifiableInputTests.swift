@@ -49,6 +49,15 @@ class VerifiableInputTests: XCTestCase {
         XCTAssertEqual(input.ruleLabel(at: 1).status, .error)
     }
 
+    func test_whenShouldShowErrorRulesOnly_thenWorks() {
+        input.showErrorsOnly = true
+        input.addRule("test") { _ in true }
+        input.addRule("test2") { _ in false }
+        input.type("a")
+        XCTAssertEqual(input.ruleLabel(at: 0).isHidden, true)
+        XCTAssertEqual(input.ruleLabel(at: 1).isHidden, false)
+    }
+
     func test_whenLastSymbolErased_thenAllRuleLabelsBecomeInactive() {
         input.addRule("test") { _ in true }
         input.addRule("test2") { _ in false }
@@ -138,7 +147,7 @@ class VerifiableInputTests: XCTestCase {
 
 }
 
-fileprivate extension VerifiableInput {
+extension VerifiableInput {
 
     var ruleLabelCount: Int {
         return stackView.arrangedSubviews.count - 1
@@ -150,6 +159,14 @@ fileprivate extension VerifiableInput {
 
     func ruleLabel(at index: Int) -> RuleLabel {
         return stackView.arrangedSubviews[index + 1] as! RuleLabel
+    }
+
+    func ruleLabel(by indentifier: String) -> RuleLabel? {
+        return stackView.arrangedSubviews.reduce([String: RuleLabel]()) { result, value in
+            var r = result
+            r[value.accessibilityIdentifier ?? ""] = value as? RuleLabel
+            return r
+        }[indentifier]
     }
 
     func type(_ text: String) {

@@ -10,7 +10,7 @@ import UIKit
     @objc optional func verifiableInputDidEndEditing(_ verifiableInput: VerifiableInput)
 }
 
-public final class VerifiableInput: UIView {
+public class VerifiableInput: UIView {
 
     @IBOutlet var wrapperView: UIView!
     @IBOutlet weak var textInput: TextInput!
@@ -25,7 +25,12 @@ public final class VerifiableInput: UIView {
         return stackView.arrangedSubviews.compactMap { $0 as? RuleLabel }
     }
 
-    @IBInspectable
+    public var isValidated: Bool {
+        return allRules.reduce(true) { $0 && $1.status == .success }
+    }
+
+    public var showErrorsOnly: Bool = false
+
     public var maxLength: Int = Int.max
 
     public var text: String? {
@@ -75,7 +80,7 @@ public final class VerifiableInput: UIView {
     }
 
     private func loadContentsFromNib() {
-        safeUIKit_loadFromNib()
+        safeUIKit_loadFromNib(forClass: VerifiableInput.self)
         self.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
         wrapperView.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
         pinWrapperToSelf()
@@ -89,9 +94,13 @@ public final class VerifiableInput: UIView {
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    public func addRule(_ localizedDescription: String, validation: ((String) -> Bool)? = nil) {
-        let label = RuleLabel(text: localizedDescription, rule: validation)
-        stackView.addArrangedSubview(label)
+    public func addRule(_ localizedDescription: String,
+                        identifier: String? = nil,
+                        validation: ((String) -> Bool)? = nil) {
+        let ruleLabel = RuleLabel(text: localizedDescription, rule: validation)
+        ruleLabel.accessibilityIdentifier = identifier
+        hideRuleIfNeeded(ruleLabel)
+        stackView.addArrangedSubview(ruleLabel)
     }
 
     public override func becomeFirstResponder() -> Bool {
@@ -121,7 +130,10 @@ extension VerifiableInput: UITextFieldDelegate {
             resetRules()
             return true
         }
-        allRules.forEach { $0.validate(newText) }
+        allRules.forEach {
+            $0.validate(newText)
+            hideRuleIfNeeded($0)
+        }
         return true
     }
 
@@ -131,7 +143,7 @@ extension VerifiableInput: UITextFieldDelegate {
     }
 
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let shouldReturn = !allRules.contains { $0.status != .success }
+        let shouldReturn = isValidated
         if shouldReturn {
             delegate?.verifiableInputDidReturn(self)
         }
@@ -147,7 +159,14 @@ extension VerifiableInput: UITextFieldDelegate {
     }
 
     private func resetRules() {
-        allRules.forEach { $0.reset() }
+        allRules.forEach {
+            $0.reset()
+            hideRuleIfNeeded($0)
+        }
+    }
+
+    private func hideRuleIfNeeded(_ rule: RuleLabel) {
+        rule.isHidden = showErrorsOnly ? rule.status != .error : false
     }
 
 }

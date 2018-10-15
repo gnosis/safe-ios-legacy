@@ -7,9 +7,9 @@ import UIKit
 extension UIView {
 
     /// Load contents of xib file with same name as caller type into the view of caller.
-    func safeUIKit_loadFromNib() {
-        let bundle = Bundle(for: type(of: self) as AnyClass)
-        let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
+    func safeUIKit_loadFromNib(forClass _class: AnyClass) {
+        let bundle = Bundle(for: _class)
+        let nib = UINib(nibName: String(describing: _class), bundle: bundle)
         let contents = nib.instantiate(withOwner: self)
         contents.compactMap { $0 as? UIView }.forEach { subview in
             subview.frame = self.bounds

@@ -28,3 +28,12 @@
 /* Title for alert if camera is not accessable. */
 "scanner.camera_access_required.title" = "Camera Access";
 
+/* Amount placeholder for token input. */
+"token_input.amount" = "Amount";
+
+/* Error display if amount of fractional digits is exceded. */
+"token_input.exceded_amount_of_fractional_digits" = "Exceded amount of fractional digits.";
+
+/* Error display if entered value is too big. */
+"token_input.value_is_too_big" = "Value is too big.";
+
