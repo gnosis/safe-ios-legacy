@@ -21,10 +21,10 @@ public final class TokenInput: VerifiableInput {
         static let amount = LocalizedString("token_input.amount", comment: "Amount placeholder for token input.")
         enum Rules {
             static let valueIsTooBig = LocalizedString("token_input.value_is_too_big",
-                                                       comment: "Error display if entered value is too big.")
+                                                       comment: "Error to display if entered value is too big.")
             static let excededAmountOfFractionalDigits =
                 LocalizedString("token_input.exceded_amount_of_fractional_digits",
-                                comment: "Error display if amount of fractional digits is exceded.")
+                                comment: "Error to display if amount of fractional digits is exceded.")
         }
     }
 

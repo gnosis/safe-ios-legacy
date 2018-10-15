@@ -44,6 +44,9 @@ struct ColorAsset {
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 enum Asset {
+  enum AddressInput {
+    static let addressIconTmp = ImageAsset(name: "address-icon-tmp")
+  }
   static let backgroundImage = ImageAsset(name: "background-image")
   static let checkmarkNormal = ImageAsset(name: "checkmark-normal")
   static let checkmarkSelected = ImageAsset(name: "checkmark-selected")
@@ -63,6 +66,7 @@ enum Asset {
   static let allColors: [ColorAsset] = [
   ]
   static let allImages: [ImageAsset] = [
+    AddressInput.addressIconTmp,
     backgroundImage,
     checkmarkNormal,
     checkmarkSelected,

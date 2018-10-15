@@ -1,3 +1,9 @@
+/* Recipient's address in address input. */
+"address_input.address_placeholder" = "Recipient's address";
+
+/* Error to display if address is invalid. */
+"address_input.invalid_address" = "Address is invalid";
+
 /* Checkmark is checked */
 "button.checked" = "Checked";
 
@@ -31,9 +37,9 @@
 /* Amount placeholder for token input. */
 "token_input.amount" = "Amount";
 
-/* Error display if amount of fractional digits is exceded. */
+/* Error to display if amount of fractional digits is exceded. */
 "token_input.exceded_amount_of_fractional_digits" = "Exceded amount of fractional digits.";
 
-/* Error display if entered value is too big. */
+/* Error to display if entered value is too big. */
 "token_input.value_is_too_big" = "Value is too big.";
 
