@@ -32,4 +32,9 @@ public extension Data {
         return Data(repeating: value, count: count - self.count) + self
     }
 
+    func rightPadded(to count: Int, with value: UInt8 = 0) -> Data {
+        if self.count >= count { return self }
+        return self + Data(repeating: value, count: count - self.count)
+    }
+
 }

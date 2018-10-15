@@ -54,7 +54,7 @@ public class DeploymentDomainService {
             let account = DomainRegistry.accountRepository.find(id: accountID)!
             account.update(newAmount: balance)
             DomainRegistry.accountRepository.save(account)
-            guard balance >= wallet.minimumDeploymentTransactionAmount!  else { return }
+            guard balance >= wallet.minimumDeploymentTransactionAmount! else { return }
             repeater.stop()
             wallet.proceed()
         }.start()

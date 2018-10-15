@@ -25,6 +25,22 @@ class SafeOwnerManagerContractProxyTests: EthereumContractProxyBaseTests {
         XCTAssertEqual(result, addresses.map { Address($0.value.lowercased()) })
     }
 
+    func test_whenFindingPrevOwner_thenReturnsCorrectOne() throws {
+        let methodCall = proxy.method("getOwners()")
+        let addresses = [Address.testAccount2, Address.testAccount3, Address.testAccount4]
+        for _ in (0..<4) {
+            nodeService.expect_eth_call(to: Address.testAccount1,
+                                        data: methodCall,
+                                        result: proxy.encodeArrayAddress(addresses))
+        }
+        let expectedResults = [proxy.sentinelAddress, Address.testAccount2, Address.testAccount3]
+        for i in (0..<addresses.count) {
+            XCTAssertEqual(try proxy.previousOwner(to: addresses[i])?.value.lowercased(),
+                           expectedResults[i].value.lowercased())
+        }
+        XCTAssertNil(try proxy.previousOwner(to: Address.testAccount1))
+    }
+
     func test_isOwner() throws {
         let methodCall = proxy.method("isOnwer(address)")
         let input = Address.testAccount1
@@ -58,5 +74,31 @@ class SafeOwnerManagerContractProxyTests: EthereumContractProxyBaseTests {
                                     proxy.encodeUInt(2))
         XCTAssertEqual(proxy.addOwner(Address.testAccount2, newThreshold: 2), data)
     }
+
+    func test_changeThreshold() {
+        let data = proxy.invocation("changeThreshold(uint256)", proxy.encodeUInt(1))
+        XCTAssertEqual(proxy.changeThreshold(1), data)
+    }
+
+    func test_swapOwner() {
+        let data = proxy.invocation("swapOwner(address,address,address)",
+                                    proxy.encodeAddress(Address.testAccount1),
+                                    proxy.encodeAddress(Address.testAccount2),
+                                    proxy.encodeAddress(Address.testAccount3))
+        XCTAssertEqual(proxy.swapOwner(prevOwner: Address.testAccount1,
+                                       old: Address.testAccount2,
+                                       new: Address.testAccount3), data)
+    }
+
+    func test_removeOwner() {
+        let data = proxy.invocation("removeOwner(address,address,uint256)",
+                                    proxy.encodeAddress(Address.testAccount1),
+                                    proxy.encodeAddress(Address.testAccount2),
+                                    proxy.encodeUInt(1))
+        XCTAssertEqual(proxy.removeOwner(prevOwner: Address.testAccount1,
+                                         owner: Address.testAccount2,
+                                         newThreshold: 1), data)
+    }
+
 
 }

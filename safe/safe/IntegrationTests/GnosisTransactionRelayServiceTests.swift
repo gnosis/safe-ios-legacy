@@ -103,21 +103,106 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         return hash
     }
 
+    private func testPrint(funder: ExternallyOwnedAccount, owners: [ExternallyOwnedAccount], safe: Safe) {
+        print()
+        print("Funder:")
+        let addressLength = funder.address.value.count
+        let privateKeyLength = funder.privateKey.data.toHexString().count
+        print("Address", String(repeating: " ", count: addressLength + 1 - "Address".count), "Private Key")
+        print(String(repeating: "=", count: addressLength), String(repeating: "=", count: privateKeyLength))
+        print(funder.address.value, funder.privateKey.data.toHexString())
+        print()
+        print("Safe Owners:")
+        print("Address", String(repeating: " ", count: addressLength + 1 - "Address".count), "Private Key")
+        print(String(repeating: "=", count: addressLength), String(repeating: "=", count: privateKeyLength))
+        for owner in owners {
+            print(owner.address.value, owner.privateKey.data.toHexString())
+        }
+        print()
+        let feeLength = String(safe.creationFee).count
+        print("Safe:")
+        print("Address", String(repeating: " ", count: addressLength + 1 - "Address".count), "Fee")
+        print(String(repeating: "=", count: addressLength), String(repeating: "=", count: feeLength))
+        print(safe.address.value, String(safe.creationFee))
+        print()
+    }
+
     func test_whenAddingOwner_thenNewOwnerExists() throws {
-        let fundingEOA = provisionFundingAccount()
-        var owners = createEOA(count: 3)
-        let safe = try prepareSafeCreation(owners)
-        try pay(from: fundingEOA, to: safe.address, amount: safe.creationFee)
-        try safe.deploy()
-        owners.append(contentsOf: createEOA())
-        let addOwnerTx = try safe.prepareAddOwnerTx(owners.last!, threshold: owners.count - 1)
-        owners[0..<2].forEach { safe.sign(addOwnerTx, by: $0) }
-        try pay(from: fundingEOA, to: safe.address, amount: addOwnerTx.fee!.amount * 2) // TODO: fee is too high
-        try safe.executeTransaction(addOwnerTx)
-        let newOwners = try SafeOwnerManagerContractProxy(safe.address).getOwners()
-        XCTAssertTrue(newOwners.contains { $0.value.lowercased() == owners.last!.address.value.lowercased() })
-        XCTAssertTrue(try safe.isOwner(owners.last!.address))
-        XCTAssertEqual(try safe.getThreshold(), owners.count - 1)
+        let context = try deployNewSafe()
+
+        let newOwner = createEOA()[0]
+        let newThreshold = context.owners.count
+        let tx = try context.safe.prepareAddOwnerTx(newOwner, threshold: newThreshold)
+        try execute(transaction: tx, context: context)
+
+        let newOwners = try context.safe.proxy.getOwners()
+        XCTAssertTrue(newOwners.contains { $0.value.lowercased() == newOwner.address.value.lowercased() })
+        XCTAssertTrue(try context.safe.isOwner(newOwner.address))
+        XCTAssertEqual(try context.safe.getThreshold(), newThreshold)
+    }
+
+    func test_whenChangingThreshold_thenChangesIt() throws {
+        let context = try deployNewSafe()
+
+        let tx = try context.safe.prepareTx(to: context.safe.address, data: context.safe.proxy.changeThreshold(1))
+        try execute(transaction: tx, context: context)
+
+        XCTAssertEqual(try context.safe.getThreshold(), 1)
+    }
+
+    func test_whenSwappingOwner_thenSwaps() throws {
+        let context = try deployNewSafe()
+
+        let newOwner = createEOA()[0].address
+
+        // NOTE: do not assume that local owner list is the same as remote owner list!
+        let oldOwner = context.owners[1].address
+        let prevOwner = try context.safe.proxy.previousOwner(to: oldOwner)!
+        let tx = try context.safe.prepareTx(to: context.safe.address,
+                                            data: context.safe.proxy.swapOwner(prevOwner: prevOwner,
+                                                                               old: oldOwner,
+                                                                               new: newOwner))
+        try execute(transaction: tx, context: context)
+
+        XCTAssertTrue(try context.safe.isOwner(newOwner))
+        XCTAssertFalse(try context.safe.isOwner(oldOwner))
+    }
+
+    func test_whenRemovingOwner_thenRemoves() throws {
+        let context = try deployNewSafe()
+
+        let firstOwner = context.owners.first!.address
+        // NOTE: do not assume that local owner list is the same as remote owner list!
+        let prevOwner = try context.safe.proxy.previousOwner(to: firstOwner)!
+
+        let tx = try context.safe.prepareTx(to: context.safe.address,
+                                            data: context.safe.proxy.removeOwner(prevOwner: prevOwner,
+                                                                                 owner: firstOwner,
+                                                                                 newThreshold: 1))
+        try execute(transaction: tx, context: context)
+
+        XCTAssertFalse(try context.safe.isOwner(firstOwner))
+        XCTAssertEqual(try context.safe.getThreshold(), 1)
+    }
+
+    // TODO: implement corner & error cases testing
+
+    typealias SafeContext = (funder: ExternallyOwnedAccount, owners: [ExternallyOwnedAccount], safe: Safe)
+
+    private func deployNewSafe() throws -> SafeContext {
+            let fundingEOA = provisionFundingAccount()
+            let owners = createEOA(count: 3)
+            let safe = try prepareSafeCreation(owners)
+            testPrint(funder: fundingEOA, owners: owners, safe: safe)
+            try pay(from: fundingEOA, to: safe.address, amount: safe.creationFee)
+            try safe.deploy()
+            return (fundingEOA, owners, safe)
+    }
+
+    private func execute(transaction tx: Transaction, context: SafeContext) throws {
+        context.owners[0..<2].forEach { context.safe.sign(tx, by: $0) }
+        try pay(from: context.funder, to: context.safe.address, amount: tx.fee!.amount)
+        try context.safe.executeTransaction(tx)
     }
 
     func provisionFundingAccount() -> ExternallyOwnedAccount {
@@ -151,6 +236,8 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         let gasPrice = try infuraService.eth_gasPrice()
         let callTx = TransactionCall(sender: sender.address, recipient: recipient, gasPrice: gasPrice, amount: amount)
         let gas = try infuraService.eth_estimateGas(transaction: callTx)
+        let balance = try infuraService.eth_getBalance(account: sender.address)
+        assert(balance >= gas * gasPrice + amount, "Not enough balance \(sender.address)")
         let nonce = try infuraService.eth_getTransactionCount(address: callTx.from!, blockNumber: .latest)
         let tx = ethRawTx(callTx: callTx, gas: gas, nonce: nonce)
         let rawTx = try encryptionService.sign(transaction: tx, privateKey: sender.privateKey)
@@ -177,22 +264,27 @@ struct Safe {
 
     var _test: GnosisTransactionRelayServiceTests!
 
+    var proxy: SafeOwnerManagerContractProxy { return SafeOwnerManagerContractProxy(address) }
+
     func prepareAddOwnerTx(_ owner: ExternallyOwnedAccount, threshold: Int) throws -> Transaction {
-        let proxy = SafeOwnerManagerContractProxy(address)
         let data = proxy.addOwner(owner.address, newThreshold: threshold)
+        return try prepareTx(to: address, data: data)
+    }
+
+    func prepareTx(to recipient: Address, amount: TokenInt = 0, data: Data? = nil) throws -> Transaction {
         let request = EstimateTransactionRequest(safe: address,
-                                                 to: address,
-                                                 value: String(0),
-                                                 data: data.toHexString(),
+                                                 to: recipient,
+                                                 value: String(amount),
+                                                 data: data == nil ? "" : data!.toHexString().addHexPrefix(),
                                                  operation: .call)
         let response = try _test.relayService.estimateTransaction(request: request)
-        let fee = BigInt(response.gasPrice) * (BigInt(response.dataGas) + BigInt(response.safeTxGas))
+        // FIXME: fees are doubled because of the server-side gas estimation bug
+        let fee = BigInt(response.gasPrice) * (BigInt(response.dataGas) + BigInt(response.safeTxGas)) * 2
         let nonce = try proxy.nonce()
         let tx = Transaction(id: TransactionID(),
                              type: .transfer,
                              walletID: WalletID(),
-                             accountID: AccountID(tokenID: Token.Ether.id,
-                                                  walletID: WalletID()))
+                             accountID: AccountID(tokenID: Token.Ether.id, walletID: WalletID()))
         tx.change(sender: address)
             .change(feeEstimate: TransactionFeeEstimate(gas: response.safeTxGas,
                                                         dataGas: response.dataGas,
@@ -200,9 +292,9 @@ struct Safe {
                                                                               token: Token.Ether)))
             .change(fee: TokenAmount(amount: TokenInt(fee), token: Token.Ether))
             .change(nonce: String(nonce))
-            .change(recipient: address)
+            .change(recipient: recipient)
             .change(data: data)
-            .change(amount: TokenAmount(amount: 0, token: Token.Ether))
+            .change(amount: TokenAmount(amount: amount, token: Token.Ether))
             .change(operation: .call)
             .change(hash: _test.encryptionService.hash(of: tx))
             .change(status: .signing)
@@ -224,9 +316,9 @@ struct Safe {
     }
 
     func executeTransaction(_ tx: Transaction) throws {
-        let signatures = tx.signatures.sorted { $0.address.value < $1.address.value }
-            .map { _test.encryptionService.ethSignature(from: $0) }
-        let request = SubmitTransactionRequest(transaction: tx, signatures: signatures)
+        let sortedSigs = tx.signatures.sorted { $0.address.value < $1.address.value }
+        let ethSigs = sortedSigs.map { _test.encryptionService.ethSignature(from: $0) }
+        let request = SubmitTransactionRequest(transaction: tx, signatures: ethSigs)
         let response = try _test.relayService.submitTransaction(request: request)
         let hash = TransactionHash(response.transactionHash)
         tx.set(hash: hash).change(status: .pending)

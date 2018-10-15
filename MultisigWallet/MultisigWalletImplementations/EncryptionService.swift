@@ -257,25 +257,49 @@ open class EncryptionService: EncryptionDomainService {
         return try! Crypto.sign(data, privateKey: privateKey)
     }
 
+    let ERC191MagicByte = Data([0x19])
+    let ERC191Version1Byte = Data([0x01])
+    let EIP712SafeAppDomainSeparatorTypeHash =
+        Data(ethHex: "0x035aff83d86937d35b32e04f0ddc6ff469290eef2f1b692d8a815c89404d4749")
+    let EIP712SafeAppTxTypeHash =
+        Data(ethHex: "0x14d461bc7412367e924637b363c7bf29b8f47e2f84869f4426e5633d8af47b20")
+
+
     public func hash(of transaction: MultisigWalletDomainModel.Transaction) -> Data {
-        let ERC191MagicByte: UInt8 = 0x19
-        let ERC191Version0Byte: UInt8 = 0x00
-        let hashData =
-            [
-            ERC191MagicByte.data,
-            ERC191Version0Byte.data,
-            transaction.sender!.data,
+        return hash(hashData(transaction))
+    }
+
+    func hashData(_ transaction: MultisigWalletDomainModel.Transaction) -> Data {
+        return [
+            ERC191MagicByte,
+            ERC191Version1Byte,
+            hash(domainData(transaction)),
+            hash(valueData(transaction))
+        ].reduce(Data()) { $0 + $1 }
+    }
+
+    func valueData(_ transaction: MultisigWalletDomainModel.Transaction) -> Data {
+        let shouldRefundReceiver = false
+        return [
+            EIP712SafeAppTxTypeHash,
             transaction.recipient!.data,
             (transaction.amount?.amount ?? 0).data,
-            transaction.data ?? Data(),
+            hash(transaction.data ?? Data()),
             transaction.operation!.data,
             transaction.feeEstimate!.gas.data,
             transaction.feeEstimate!.dataGas.data,
             transaction.feeEstimate!.gasPrice.amount.data,
             transaction.feeEstimate!.gasPrice.token.address.data,
+            shouldRefundReceiver.data,
             TokenInt(transaction.nonce!)!.data
-            ].reduce(Data()) { $0 + $1 }
-        return hash(hashData)
+        ].reduce(Data()) { $0 + $1 }
+    }
+
+    func domainData(_ transaction: MultisigWalletDomainModel.Transaction) -> Data {
+        return [
+            EIP712SafeAppDomainSeparatorTypeHash,
+            transaction.sender!.data
+        ].reduce(Data()) { $0 + $1 }
     }
 
     public func sign(transaction: MultisigWalletDomainModel.Transaction,
@@ -292,25 +316,44 @@ open class EncryptionService: EncryptionDomainService {
 }
 
 fileprivate extension MultisigWalletDomainModel.Address {
-    var data: Data { return Data(ethHex: value) }
+
+    var data: Data { return TokenInt(hex: value)!.data }
+
 }
 
 fileprivate extension TokenInt {
+
     var data: Data {
-        return EthData(hex: hexString).padded(to: 32).data
+        return EthData(hex: hexString).data.leftPadded(to: 32)
     }
+    var signedData: Data {
+        return EthData(hex: hexString).data.leftPadded(to: 32, with: self < 0 ? 0xff : 0x00)
+    }
+
 }
 
 fileprivate extension WalletOperation {
-    var data: Data { return Data([UInt8(rawValue)]) }
+
+    var data: Data { return TokenInt(rawValue).data }
+
 }
 
 fileprivate extension Int {
+
     var data: Data { return TokenInt(self).data }
+
 }
 
 fileprivate extension UInt8 {
-    var data: Data { return Data([self]) }
+
+    var data: Data { return TokenInt(self).data }
+
+}
+
+fileprivate extension Bool {
+
+    var data: Data { return TokenInt(self ? 1 : 0).data }
+
 }
 
 extension Int {
