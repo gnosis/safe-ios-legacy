@@ -13,11 +13,11 @@ protocol ScanQRCodeHandlerDelegate: class {
 class ScanQRCodeHandler {
 
     typealias CameraAvailabilityCompletion = (_ available: Bool) -> Void
-    typealias ScanValidator = (String) -> String?
+    typealias ScanValidatedConverter = (String) -> String?
 
     weak var delegate: ScanQRCodeHandlerDelegate!
-    private var captureDevice: AVCaptureDevice.Type = AVCaptureDevice.self
-    private var scanValidator: ScanValidator?
+    var captureDevice: AVCaptureDevice.Type = AVCaptureDevice.self
+    private var scanValidatedConverter: ScanValidatedConverter?
     private var scannerController: UIViewController?
 
     enum Strings {
@@ -30,9 +30,9 @@ class ScanQRCodeHandler {
                                                       comment: "Button name to allow camera access")
     }
 
-    init(delegate: ScanQRCodeHandlerDelegate, scanValidator: ScanValidator? = nil) {
+    init(delegate: ScanQRCodeHandlerDelegate, scanValidatedConverter: ScanValidatedConverter? = nil) {
         self.delegate = delegate
-        self.scanValidator = scanValidator
+        self.scanValidatedConverter = scanValidatedConverter
     }
 
     func scan() {
@@ -83,8 +83,8 @@ class ScanQRCodeHandler {
 extension ScanQRCodeHandler: ScannerDelegate {
 
     func didScan(_ code: String) {
-        if let scanValidator = scanValidator {
-            if let result = scanValidator(code) {
+        if let scanValidatedConverter = scanValidatedConverter {
+            if let result = scanValidatedConverter(code) {
                 didScanValidatedCode(result)
             }
         } else {
