@@ -60,7 +60,7 @@ public struct SafeCreationTransactionRequest: Encodable {
         }
 
         public var deploymentFee: BigInt {
-            return BigInt(payment)! + 9 // FIXME: server-side bug with rounding of payment value
+            return BigInt(payment)!
         }
 
         public init(signature: Response.Signature,
