@@ -64,7 +64,8 @@ class ScanQRCodeHandlerTests: XCTestCase {
         }
         handler.didScan("test")
         XCTAssertTrue(didCallValidatedConverter)
-        XCTAssertEqual(delegate.scannedCode, "test_validated")
+        XCTAssertEqual(delegate.scannedCode, "test")
+        XCTAssertEqual(delegate.convertedCode, "test_validated")
     }
 
     func test_didScan_whenCodeIsNotValid_thenDoesNotModifyInput() {
@@ -97,8 +98,10 @@ class MockScanQRCodeHandlerDelegate: ScanQRCodeHandlerDelegate {
     }
 
     var scannedCode: String?
-    func didScanCode(_ code: String) {
-        scannedCode = code
+    var convertedCode: String?
+    func didScanCode(raw: String, converted: String?) {
+        scannedCode = raw
+        convertedCode = converted
     }
 
 }

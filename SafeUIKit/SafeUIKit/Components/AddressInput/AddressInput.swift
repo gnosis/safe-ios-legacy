@@ -122,8 +122,8 @@ extension AddressInput: ScanQRCodeHandlerDelegate {
         addressInputDelegate?.presentController(controller)
     }
 
-    func didScanCode(_ code: String) {
-        displayAddress(code)
+    func didScanCode(raw: String, converted: String?) {
+        displayAddress(raw)
     }
 
 }

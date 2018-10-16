@@ -45,7 +45,6 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         return MultisigWalletApplication.ApplicationServiceRegistry.ethereumService
     }
 
-    private var scannerController: UIViewController?
     private var scannedCode: String?
 
     static func create(delegate: PairWithBrowserDelegate) -> PairWithBrowserExtensionViewController {
@@ -59,7 +58,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         extensionAddressInput.text = walletService.ownerAddress(of: .browserExtension)
         extensionAddressInput.editingMode = .scanOnly
         extensionAddressInput.qrCodeDelegate = self
-        extensionAddressInput.qrCodeConverter = ethereumService.address(browserExtensionCode:)
+        extensionAddressInput.scanValidatedConverter = ethereumService.address(browserExtensionCode:)
         let buttonTitle = walletService.isOwnerExists(.browserExtension) ? Strings.update : Strings.save
         saveButton.setTitle(buttonTitle, for: .normal)
         saveButton.isEnabled = false
@@ -107,17 +106,11 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
 extension PairWithBrowserExtensionViewController: QRCodeInputDelegate {
 
-    func presentScannerController(_ controller: UIViewController) {
-        scannerController = controller
+    func presentController(_ controller: UIViewController) {
         present(controller, animated: true)
     }
 
-    func presentCameraRequiredAlert(_ alert: UIAlertController) {
-        present(alert, animated: true)
-    }
-
     func didScanValidCode(_ code: String) {
-        scannerController?.dismiss(animated: true)
         saveButton.isEnabled = true
         scannedCode = code
     }

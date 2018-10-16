@@ -7,8 +7,6 @@ import SafeUIKit
 
 class QRCodeInputViewController: UIViewController {
 
-    private var scannerController: UIViewController?
-
     @IBOutlet weak var barcodeInput: QRCodeInput!
 
     @IBAction func enable(_ sender: Any) {
@@ -22,24 +20,17 @@ class QRCodeInputViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         barcodeInput.qrCodeDelegate = self
-        barcodeInput.qrCodeConverter = { $0 }
+        barcodeInput.scanValidatedConverter = { $0 }
     }
 
 }
 
 extension QRCodeInputViewController: QRCodeInputDelegate {
 
-    func didScanValidCode(_ code: String) {
-        scannerController?.dismiss(animated: true)
-    }
-
-    func presentScannerController(_ controller: UIViewController) {
-        scannerController = controller
+    func presentController(_ controller: UIViewController) {
         present(controller, animated: true)
     }
 
-    func presentCameraRequiredAlert(_ alert: UIAlertController) {
-        present(alert, animated: true)
-    }
+    func didScanValidCode(_ code: String) {}
 
 }

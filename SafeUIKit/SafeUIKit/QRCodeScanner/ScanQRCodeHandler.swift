@@ -7,13 +7,14 @@ import AVFoundation
 
 protocol ScanQRCodeHandlerDelegate: class {
     func presentController(_ controller: UIViewController)
-    func didScanCode(_ code: String)
+    func didScanCode(raw: String, converted: String?)
 }
+
+public typealias ScanValidatedConverter = (String) -> String?
 
 class ScanQRCodeHandler {
 
     typealias CameraAvailabilityCompletion = (_ available: Bool) -> Void
-    typealias ScanValidatedConverter = (String) -> String?
 
     weak var delegate: ScanQRCodeHandlerDelegate!
     var captureDevice: AVCaptureDevice.Type = AVCaptureDevice.self
@@ -85,15 +86,15 @@ extension ScanQRCodeHandler: ScannerDelegate {
     func didScan(_ code: String) {
         if let scanValidatedConverter = scanValidatedConverter {
             if let result = scanValidatedConverter(code) {
-                didScanValidatedCode(result)
+                didScanCode(raw: code, converted: result)
             }
         } else {
-            didScanValidatedCode(code)
+            didScanCode(raw: code)
         }
     }
 
-    private func didScanValidatedCode(_ code: String) {
-        delegate.didScanCode(code)
+    private func didScanCode(raw: String, converted: String? = nil) {
+        delegate.didScanCode(raw: raw, converted: converted)
         scannerController?.dismiss(animated: true)
     }
 
