@@ -8,10 +8,16 @@ import SafeUIKit
 class AddressInputViewController: UIViewController {
 
     @IBOutlet weak var addressInput: AddressInput!
+    @IBOutlet weak var inputValueLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addressInput.addressInputDelegate = self
+        inputValueLabel.text = addressInput.text
+    }
+
+    @IBAction func showValue(_ sender: Any) {
+        inputValueLabel.text = addressInput.text
     }
 
 }

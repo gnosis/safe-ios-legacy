@@ -33,9 +33,19 @@ public class VerifiableInput: UIView {
 
     public var maxLength: Int = Int.max
 
+    /// When setting this property textInput.text value is formatted and validated.
     public var text: String? {
-        get { return textInput.text }
-        set { textInput.text = newValue != nil ? String(newValue!.prefix(maxLength)) : nil }
+        get {
+            return textInput.text
+        }
+        set {
+            if newValue != nil {
+                textInput.text = String(newValue!.prefix(maxLength))
+                validateRules(for: textInput.text!)
+            } else {
+                textInput.text = nil
+            }
+        }
     }
 
     public var isEnabled: Bool {
@@ -130,10 +140,7 @@ extension VerifiableInput: UITextFieldDelegate {
             resetRules()
             return true
         }
-        allRules.forEach {
-            $0.validate(newText)
-            hideRuleIfNeeded($0)
-        }
+        validateRules(for: newText)
         return true
     }
 
@@ -161,6 +168,13 @@ extension VerifiableInput: UITextFieldDelegate {
     private func resetRules() {
         allRules.forEach {
             $0.reset()
+            hideRuleIfNeeded($0)
+        }
+    }
+
+    private func validateRules(for text: String) {
+        allRules.forEach {
+            $0.validate(text)
             hideRuleIfNeeded($0)
         }
     }

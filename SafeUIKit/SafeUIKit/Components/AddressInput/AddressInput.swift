@@ -16,9 +16,6 @@ public final class AddressInput: VerifiableInput {
                                                "a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F"]
 
     public weak var addressInputDelegate: AddressInputDelegate?
-    public var value: String? {
-        return addressLabel.text
-    }
 
     enum Strings {
         static let addressPlaceholder =
@@ -49,30 +46,42 @@ public final class AddressInput: VerifiableInput {
     }
 
     private func commonInit() {
+        scanHandler = ScanQRCodeHandler(delegate: self, scanValidatedConverter: validatedAddress)
+        configureTextInput()
+        addAddressLabel()
+        showErrorsOnly = true
+        addRule(Strings.Rules.invalidAddress, identifier: "invalidAddress", validation: isValid)
+    }
+
+    private func configureTextInput() {
         textInput.heightConstraint.constant = 60
         textInput.rightViewMode = .never
         textInput.placeholder = Strings.addressPlaceholder
         textInput.leftImage = Asset.AddressInput.addressIconTmp.image
         textInput.delegate = self
-        showErrorsOnly = true
-        addAddressLabel()
-        scanHandler = ScanQRCodeHandler(delegate: self, scanValidatedConverter: validatedAddress)
-//        addDefaultValidationsRules()
+        textInput.textColor = .clear
     }
 
     private func addAddressLabel() {
+        configureAddressLabel()
+        pinAddressLabel()
+    }
+
+    private func configureAddressLabel() {
         addressLabel.font = UIFont.systemFont(ofSize: 18)
         addressLabel.backgroundColor = .clear
         addressLabel.textColor = Color.gray
         addressLabel.numberOfLines = 2
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
-        textInput.addSubview(addressLabel)
+    }
 
+    private func pinAddressLabel() {
         let leftViewRect = textInput.leftViewRect(forBounds: textInput.bounds)
         let rightViewRect = textInput.rightViewRect(forBounds: textInput.bounds)
         let padding: CGFloat = 12
         let absoluteLeftPadding = leftViewRect.maxX + padding
         let absoluteRightPadding = textInput.bounds.width - rightViewRect.maxX + rightViewRect.width + padding
+        textInput.addSubview(addressLabel)
         NSLayoutConstraint.activate([
             addressLabel.leadingAnchor.constraint(equalTo: textInput.leadingAnchor, constant: absoluteLeftPadding),
             addressLabel.trailingAnchor.constraint(equalTo: textInput.trailingAnchor, constant: -absoluteRightPadding),
@@ -80,9 +89,9 @@ public final class AddressInput: VerifiableInput {
             addressLabel.bottomAnchor.constraint(equalTo: textInput.bottomAnchor)])
     }
 
-    private func displayAddress(_ address: String) {
+    func displayAddress(_ address: String) {
         textInput.rightViewMode = .always
-        textInput.placeholder = nil
+        text = address
         addressLabel.text = address
     }
 
@@ -91,7 +100,6 @@ public final class AddressInput: VerifiableInput {
     }
 
     private func isValid(_ address: String) -> Bool {
-        print("SUFF " + address.suffix(40))
         guard ((address.count == 42 && address.hasPrefix("0x")) || (address.count == 40)) &&
             address.suffix(40).reduce(true, { $0 && hexCharsSet.contains($1) }) else {
             return false
@@ -123,12 +131,12 @@ public extension AddressInput {
         return false
     }
 
+    // TODO: think how to improve. Maybe listner on textInputValueChange
     override func textFieldShouldClear(_ textField: UITextField) -> Bool {
         let shouldClear = super.textFieldShouldClear(textField)
         if shouldClear {
-            addressLabel.text = nil
             textInput.rightViewMode = .never
-            textInput.placeholder = Strings.addressPlaceholder
+            addressLabel.text = nil
         }
         return shouldClear
     }
