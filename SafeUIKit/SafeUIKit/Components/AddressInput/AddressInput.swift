@@ -10,9 +10,15 @@ public protocol AddressInputDelegate: class {
 
 public final class AddressInput: VerifiableInput {
 
-    public weak var addressInputDelegate: AddressInputDelegate?
+    var scanHandler: ScanQRCodeHandler!
     private let addressLabel = UILabel()
-    private var scanHandler: ScanQRCodeHandler!
+    private let hexCharsSet: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                                               "a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F"]
+
+    public weak var addressInputDelegate: AddressInputDelegate?
+    public var value: String? {
+        return addressLabel.text
+    }
 
     enum Strings {
         static let addressPlaceholder =
@@ -50,7 +56,7 @@ public final class AddressInput: VerifiableInput {
         textInput.delegate = self
         showErrorsOnly = true
         addAddressLabel()
-        scanHandler = ScanQRCodeHandler(delegate: self)
+        scanHandler = ScanQRCodeHandler(delegate: self, scanValidatedConverter: validatedAddress)
 //        addDefaultValidationsRules()
     }
 
@@ -78,6 +84,19 @@ public final class AddressInput: VerifiableInput {
         textInput.rightViewMode = .always
         textInput.placeholder = nil
         addressLabel.text = address
+    }
+
+    private func validatedAddress(_ address: String) -> String? {
+        return isValid(address) ? address : nil
+    }
+
+    private func isValid(_ address: String) -> Bool {
+        print("SUFF " + address.suffix(40))
+        guard ((address.count == 42 && address.hasPrefix("0x")) || (address.count == 40)) &&
+            address.suffix(40).reduce(true, { $0 && hexCharsSet.contains($1) }) else {
+            return false
+        }
+        return true
     }
 
 }
