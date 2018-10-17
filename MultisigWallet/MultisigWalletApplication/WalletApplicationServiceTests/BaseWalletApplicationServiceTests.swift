@@ -128,7 +128,9 @@ class BaseWalletApplicationServiceTests: XCTestCase {
                                            gasPrice:
                         TokenAmount(amount: 10, token: Token.Ether)))
                 .change(nonce: "0")
+                .timestampCreated(at: Date())
                 .change(status: .signing)
+                .timestampUpdated(at: Date())
             transactionRepository.save(transaction)
             return (transaction, signatureData, extensionAddress)
     }

@@ -354,6 +354,7 @@ public class WalletApplicationService: Assertable {
         let transaction = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
         transaction.change(amount: .ether(amount))
             .change(recipient: Address(recipient))
+            .timestampUpdated(at: Date())
         DomainRegistry.transactionRepository.save(transaction)
     }
 
@@ -410,6 +411,8 @@ public class WalletApplicationService: Assertable {
                                       walletID: wallet.id,
                                       accountID: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
         transaction.change(sender: selectedWallet!.address!)
+            .timestampCreated(at: Date())
+            .timestampUpdated(at: Date())
         repository.save(transaction)
         return transaction.id.id
     }
@@ -426,6 +429,7 @@ public class WalletApplicationService: Assertable {
                 .change(operation: .call)
                 .change(hash: ethereumService.hash(of: tx))
                 .change(status: .signing)
+                .timestampUpdated(at: Date())
             DomainRegistry.transactionRepository.save(tx)
         }
         try notifyBrowserExtension(message: notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!))
@@ -460,7 +464,10 @@ public class WalletApplicationService: Assertable {
         let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
         signTransaction(tx)
         let hash = try submitTransaction(tx)
-        tx.set(hash: hash).change(status: .pending)
+        tx.set(hash: hash)
+            .change(status: .pending)
+            .timestampSubmitted(at: Date())
+            .timestampUpdated(at: Date())
         DomainRegistry.transactionRepository.save(tx)
         try? notifyBrowserExtension(message: notificationService.transactionSentMessage(for: tx))
         return transactionData(id)!
@@ -528,6 +535,7 @@ public class WalletApplicationService: Assertable {
         let encryptionService = DomainRegistry.encryptionService
         transaction.add(signature: Signature(data: encryptionService.data(from: message.signature),
                                              address: extensionAddress))
+            .timestampUpdated(at: Date())
         DomainRegistry.transactionRepository.save(transaction)
         return transaction.id.id
     }
@@ -547,6 +555,8 @@ public class WalletApplicationService: Assertable {
         let hash = DomainRegistry.encryptionService.hash(payload.data(using: .utf8)!)
         guard let transaction = self.transaction(from: message, hash: hash) else { return nil }
         transaction.change(status: .rejected)
+            .timestampRejected(at: Date())
+            .timestampUpdated(at: Date())
         DomainRegistry.transactionRepository.save(transaction)
         return transaction.id.id
     }

@@ -22,6 +22,9 @@ CREATE TABLE IF NOT EXISTS tbl_transactions (
     amount TEXT,
     fee TEXT,
     signatures TEXT,
+    created_date TEXT,
+    updated_date TEXT,
+    rejected_date TEXT,
     submission_date TEXT,
     processed_date TEXT,
     transaction_hash TEXT,
@@ -40,7 +43,8 @@ INSERT OR REPLACE INTO tbl_transactions VALUES (
     ?, ?, ?, ?,
     ?, ?, ?, ?,
     ?, ?, ?, ?,
-    ?, ?, ?, ?
+    ?, ?, ?, ?,
+    ?, ?, ?
 );
 """
         static let delete = "DELETE FROM tbl_transactions WHERE id = ?;"
@@ -56,6 +60,9 @@ INSERT OR REPLACE INTO tbl_transactions VALUES (
     amount,
     fee,
     signatures,
+    created_date,
+    updated_date,
+    rejected_date,
     submission_date,
     processed_date,
     transaction_hash,
@@ -84,7 +91,6 @@ LIMIT 1;
     }
 
     private let db: Database
-    private static let dateFormatter = ISO8601DateFormatter()
 
     public init(db: Database) {
         self.db = db
@@ -107,7 +113,10 @@ LIMIT 1;
                 transaction.amount?.description,
                 transaction.fee?.description,
                 serialized(signatures: transaction.signatures),
-                serialized(date: transaction.submissionDate),
+                serialized(date: transaction.createdDate),
+                serialized(date: transaction.updatedDate),
+                serialized(date: transaction.rejectedDate),
+                serialized(date: transaction.submittedDate),
                 serialized(date: transaction.processedDate),
                 transaction.transactionHash?.value,
                 transaction.feeEstimate?.gas,
@@ -135,7 +144,12 @@ LIMIT 1;
 
     private func serialized(date: Date?) -> String? {
         guard let date = date else { return nil }
-        return DBTransactionRepository.dateFormatter.string(from: date)
+        return String(date.timeIntervalSinceReferenceDate)
+    }
+
+    private func deserializedDate(_ string: String?) -> Date? {
+        guard let string = string, let interval = TimeInterval(string) else { return nil }
+        return Date(timeIntervalSinceReferenceDate: interval)
     }
 
     public func remove(_ transaction: Transaction) {
@@ -155,12 +169,13 @@ LIMIT 1;
     }
 
     private func transactionFromResultSet(_ rs: ResultSet) -> Transaction? {
-        guard let id = rs.string(at: 0),
-            let walletID = rs.string(at: 1),
-            let accountID = rs.string(at: 2),
-            let rawTransactionType = rs.int(at: 3),
+        let it = rs.rowIterator()
+        guard let id = it.nextString(),
+            let walletID = it.nextString(),
+            let accountID = it.nextString(),
+            let rawTransactionType = it.nextInt(),
             let transactionType = TransactionType(rawValue: rawTransactionType),
-            let rawTransactionStatus = rs.int(at: 4),
+            let rawTransactionStatus = it.nextInt(),
             let targetTransactionStatus = TransactionStatus(rawValue: rawTransactionStatus) else {
                 return nil
         }
@@ -168,7 +183,7 @@ LIMIT 1;
                                       type: transactionType,
                                       walletID: WalletID(walletID),
                                       accountID: AccountID(accountID))
-        update(rs, transaction)
+        update(it, transaction)
         // initial status is draft
         switch targetTransactionStatus {
         case .draft: break
@@ -189,68 +204,82 @@ LIMIT 1;
         return transaction
     }
 
-    private func update(_ rs: ResultSet, _ transaction: Transaction) {
-        if let sender = rs.string(at: 5) {
+    private func update(_ it: ResultSetRowIterator, _ transaction: Transaction) {
+        if let sender = it.nextString() {
             transaction.change(sender: Address(sender))
         }
 
-        if let recipient = rs.string(at: 6) {
+        if let recipient = it.nextString() {
             transaction.change(recipient: Address(recipient))
         }
 
-        if let amountString = rs.string(at: 7), let amount = TokenAmount(amountString) {
+        if let amountString = it.nextString(), let amount = TokenAmount(amountString) {
             transaction.change(amount: amount)
         }
 
-        if let feeString = rs.string(at: 8), let fee = TokenAmount(feeString) {
+        if let feeString = it.nextString(), let fee = TokenAmount(feeString) {
             transaction.change(fee: fee)
         }
 
-        if let signaturesString = rs.string(at: 9) {
+        if let signaturesString = it.nextString() {
             let signatures = deserialized(signatures: signaturesString)
             signatures.forEach { transaction.add(signature: $0) }
         }
 
-        if let submissionDateString = rs.string(at: 10),
-            let date = DBTransactionRepository.dateFormatter.date(from: submissionDateString) {
-            transaction.timestampSubmitted(at: date)
-        }
+        updateTimestamps(it, transaction)
 
-        if let processedDateString = rs.string(at: 11),
-            let date = DBTransactionRepository.dateFormatter.date(from: processedDateString) {
-            transaction.timestampProcessed(at: date)
-        }
-
-        if let transactionHashString = rs.string(at: 12) {
+        if let transactionHashString = it.nextString() {
             transaction.set(hash: TransactionHash(transactionHashString))
         }
 
-        updateRemaining(rs, transaction)
+        updateRemaining(it, transaction)
     }
 
-    private func updateRemaining(_ rs: ResultSet, _ transaction: Transaction) {
-        if let gas = rs.int(at: 13),
-            let dataGas = rs.int(at: 14),
-            let gasPriceString = rs.string(at: 15),
+    private func updateTimestamps(_ it: ResultSetRowIterator, _ transaction: Transaction) {
+        if let date = deserializedDate(it.nextString()) {
+            transaction.timestampCreated(at: date)
+        }
+
+        if let date = deserializedDate(it.nextString()) {
+            transaction.timestampUpdated(at: date)
+        }
+
+        if let date = deserializedDate(it.nextString()) {
+            transaction.timestampRejected(at: date)
+        }
+
+        if let date = deserializedDate(it.nextString()) {
+            transaction.timestampSubmitted(at: date)
+        }
+
+        if let date = deserializedDate(it.nextString()) {
+            transaction.timestampProcessed(at: date)
+        }
+    }
+
+    private func updateRemaining(_ it: ResultSetRowIterator, _ transaction: Transaction) {
+        if let gas = it.nextInt(),
+            let dataGas = it.nextInt(),
+            let gasPriceString = it.nextString(),
             let gasPrice = TokenAmount(gasPriceString) {
             transaction.change(feeEstimate: TransactionFeeEstimate(gas: gas,
                                                                    dataGas: dataGas,
                                                                    gasPrice: gasPrice))
         }
 
-        if let data = rs.data(at: 16) {
+        if let data = it.nextData() {
             transaction.change(data: data)
         }
 
-        if let operationInt = rs.int(at: 17), let operation = WalletOperation(rawValue: operationInt) {
+        if let operationInt = it.nextInt(), let operation = WalletOperation(rawValue: operationInt) {
             transaction.change(operation: operation)
         }
 
-        if let nonce = rs.string(at: 18) {
+        if let nonce = it.nextString() {
             transaction.change(nonce: nonce)
         }
 
-        if let data = rs.data(at: 19) {
+        if let data = it.nextData() {
             transaction.change(hash: data)
         }
     }

@@ -632,6 +632,7 @@
 		0A4A1D692136C4990088F9EC /* WalletApplicationServiceTests */ = {
 			isa = PBXGroup;
 			children = (
+				0A54E7DF2130540C006BAD93 /* SendTransactionTests.swift */,
 				0A54E7D92130531E006BAD93 /* BaseWalletApplicationServiceTests.swift */,
 				0A54E7DC213053E1006BAD93 /* PairingWithBrowserExtensionTests.swift */,
 				0A54E7E42130543E006BAD93 /* TokenListItemApplicationTests.swift */,
@@ -701,8 +702,8 @@
 			children = (
 				0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */,
 				0AA5D49520E113EE006F46CD /* Transaction.swift */,
-				0AAA174620E26E90003B35B3 /* TransactionRepository.swift */,
 				0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */,
+				0AAA174620E26E90003B35B3 /* TransactionRepository.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -895,7 +896,6 @@
 				0AB08751212D9851002F969C /* MockEventRelay.swift */,
 				0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */,
 				0A54E7D721305282006BAD93 /* OwnerType.swift */,
-				0A54E7DF2130540C006BAD93 /* SendTransactionTests.swift */,
 				0A8A2B8F20FCDC4F0003BB7E /* TestFixture.swift */,
 				0AEF8A9F20A088A5006A1265 /* Tests-Info.plist */,
 				0A60B521211343F70066821A /* TransactionData.swift */,
