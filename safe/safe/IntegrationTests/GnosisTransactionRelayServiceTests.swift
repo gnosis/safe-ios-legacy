@@ -67,7 +67,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         return (Address(safeAddress), recoveryKey)
     }
 
-    func test_recoveryOnly() {
+    private func test_recoveryOnly() {
         let address = Address("0xE2BC19Be4cDEf0D68D82c0C86E97234708Cf6c07")
         let mnemonic = ["tiger", "over", "fabric", "diary", "subway", "quick", "sheriff", "team", "step", "develop", "wife", "afford"]
         recoverSafe(address, mnemonic)
@@ -80,18 +80,14 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
             mnemonic: mnemonic, at: 1)
 
         // Get Safe info and assure that 2 keys are among owners
-
-
-        // Generate 2 new owners
-        // Form Transaction
-        // Get Fee Estimate and update transaction
+        // Form a transaction to remove all keys after 3rd
+        // Form a transaction to swap 3rd key and this device key
+        // Batch transactions with MultiSend
+        // Get Fee Estimate for batch transaction
         // Fund safe with missing amount of Ether
-        // Form Signatures for a transaction
-        // Form SubmitTransactionRequest(transaction, signatures)
-        // DomainRegistry.transactionRelayService.submitTransaction(request: request)
+        // Submit transaction
         // Monitor transaction
         // Get safe info and assure that new safe owners are there
-
     }
 
 
