@@ -128,6 +128,8 @@
 		0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */; };
 		0AB08755212D9857002F969C /* MockEventRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB08751212D9851002F969C /* MockEventRelay.swift */; };
 		0AB08757212D9A0B002F969C /* MockErrorStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9CF4212ACD0500E39BB6 /* MockErrorStream.swift */; };
+		0ABCC0F52177290F00E60E9F /* TransactionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCC0F42177290F00E60E9F /* TransactionDomainService.swift */; };
+		0ABCC0FC2177291D00E60E9F /* TransactionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCC0FB2177291D00E60E9F /* TransactionDomainServiceTests.swift */; };
 		0ACA9D02212ACD4000E39BB6 /* MockTransactionRelayService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D01212ACD4000E39BB6 /* MockTransactionRelayService1.swift */; };
 		0ACA9D04212ACD6000E39BB6 /* MockEthereumNodeService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D03212ACD6000E39BB6 /* MockEthereumNodeService1.swift */; };
 		0ACA9D08212ACDB100E39BB6 /* MockNotificationService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D07212ACDB100E39BB6 /* MockNotificationService1.swift */; };
@@ -481,6 +483,8 @@
 		0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTransactionRepositoryTests.swift; sourceTree = "<group>"; };
 		0AB08751212D9851002F969C /* MockEventRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventRelay.swift; sourceTree = "<group>"; };
 		0AB0B5692163881300FB2435 /* TestDependencies.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = TestDependencies.xcfilelist; sourceTree = "<group>"; };
+		0ABCC0F42177290F00E60E9F /* TransactionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDomainService.swift; sourceTree = "<group>"; };
+		0ABCC0FB2177291D00E60E9F /* TransactionDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDomainServiceTests.swift; sourceTree = "<group>"; };
 		0ACA9CF4212ACD0500E39BB6 /* MockErrorStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorStream.swift; sourceTree = "<group>"; };
 		0ACA9D01212ACD4000E39BB6 /* MockTransactionRelayService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTransactionRelayService1.swift; sourceTree = "<group>"; };
 		0ACA9D03212ACD6000E39BB6 /* MockEthereumNodeService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEthereumNodeService1.swift; sourceTree = "<group>"; };
@@ -735,6 +739,8 @@
 				0A8135112123122A00B0B302 /* WalletStates.swift */,
 				0A813532212315BB00B0B302 /* WalletStateTests.swift */,
 				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
+				0ABCC0F42177290F00E60E9F /* TransactionDomainService.swift */,
+				0ABCC0FB2177291D00E60E9F /* TransactionDomainServiceTests.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -1399,6 +1405,7 @@
 				0A7F3A8C2126BD890062CB1E /* RetryWithIncreasingDelay.swift in Sources */,
 				552C6010212B0D0C00BF973A /* TokenListMerger.swift in Sources */,
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
+				0ABCC0F52177290F00E60E9F /* TransactionDomainService.swift in Sources */,
 				0A77D100211B0CD6003582DD /* EthSignature.swift in Sources */,
 				0A442DDF210B113100F19F80 /* OutgoingMessage.swift in Sources */,
 				0AB08757212D9A0B002F969C /* MockErrorStream.swift in Sources */,
@@ -1463,6 +1470,7 @@
 				0ACA9D02212ACD4000E39BB6 /* MockTransactionRelayService1.swift in Sources */,
 				0A8272FF2124447D00EB5C21 /* EventPublisherTests.swift in Sources */,
 				0A76BE5720AEF35C00D07770 /* DomainRegistryTests.swift in Sources */,
+				0ABCC0FC2177291D00E60E9F /* TransactionDomainServiceTests.swift in Sources */,
 				0A9E386120F4B46C0085E8D7 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,
 				0AAA173D20E22B8B003B35B3 /* TransactionTests.swift in Sources */,
 				0A7F7438211045E8004F1150 /* DataInitWithHexTest.swift in Sources */,

@@ -85,9 +85,18 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
 
         XCTAssertEqual(walletService.updateTransaction_input?.id, transactionID)
         XCTAssertEqual(delegate.didCreateDraftTransaction_input, transactionID)
+        XCTAssertEqual(controller.transactionID, transactionID)
         XCTAssertEqual(walletService.updateTransaction_input?.amount, amount)
         XCTAssertEqual(walletService.updateTransaction_input?.recipient, recipient)
     }
+
+    func test_whenControllerWillBeRemoved_thenDraftTransactionRemoved() {
+        controller.transactionID = "some"
+        walletService.expect_removeDraftTransaction("some")
+        controller.willBeRemoved()
+        XCTAssertTrue(walletService.verify())
+    }
+
 }
 
 extension UITextField {

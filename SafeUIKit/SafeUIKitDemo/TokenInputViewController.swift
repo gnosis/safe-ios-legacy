@@ -28,7 +28,7 @@ class TokenInputViewController: UIViewController {
     }
 
     @IBAction func resign(_ sender: Any) {
-        tokenInput.resignFirstResponder()
+        _ = tokenInput.resignFirstResponder()
     }
 
 }

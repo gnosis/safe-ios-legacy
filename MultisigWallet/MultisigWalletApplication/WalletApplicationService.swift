@@ -357,6 +357,10 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.transactionRepository.save(transaction)
     }
 
+    public func removeDraftTransaction(_ id: String) {
+        DomainRegistry.transactionService.removeDraftTransaction(TransactionID(id))
+    }
+
     public func estimateTransferFee(amount: BigInt, address: String?) -> BigInt? {
         let placeholderAddress = Address(ownerAddress(of: .thisDevice)!)
         let formattedAddress = address == nil || address!.isEmpty ? placeholderAddress :
