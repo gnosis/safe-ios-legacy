@@ -79,27 +79,38 @@ class TransactionTests: XCTestCase {
 
     func test_timestampingAllowedInAnyButDiscardedState() {
         givenNewlyCreatedTransaction()
-        let date1 = Date()
-        let date2 = date1.addingTimeInterval(5)
-        transaction.timestampSubmitted(at: date1)
-            .timestampProcessed(at: date2)
-        XCTAssertEqual(transaction.submittedDate, date1)
-        XCTAssertEqual(transaction.processedDate, date2)
+        let dates = (0..<5).map { Date(timeIntervalSinceNow: TimeInterval($0 * 5)) }
+        transaction
+            .timestampCreated(at: dates[0])
+            .timestampUpdated(at: dates[1])
+            .timestampRejected(at: dates[2])
+            .timestampSubmitted(at: dates[3])
+            .timestampProcessed(at: dates[4])
+        let actual = [transaction.createdDate, transaction.updatedDate, transaction.rejectedDate,
+                      transaction.submittedDate, transaction.processedDate].compactMap { $0 }
+        XCTAssertEqual(actual, dates)
     }
 
     func test_whenGoesFromDiscardedBackToDraft_thenResetsData() {
         givenSigningTransaction()
-        transaction.set(hash: .test1)
+        transaction
+            .timestampCreated(at: Date())
+            .set(hash: .test1)
+            .timestampUpdated(at: Date())
             .add(signature: signature)
             .change(status: .pending)
             .timestampSubmitted(at: Date())
             .change(status: .success)
             .timestampProcessed(at: Date())
+            .timestampRejected(at: Date())
             .change(status: .discarded)
         transaction.change(status: .draft)
         XCTAssertNil(transaction.transactionHash)
         XCTAssertNil(transaction.submittedDate)
         XCTAssertNil(transaction.processedDate)
+        XCTAssertNil(transaction.createdDate)
+        XCTAssertNil(transaction.updatedDate)
+        XCTAssertNil(transaction.rejectedDate)
         XCTAssertTrue(transaction.signatures.isEmpty)
     }
 

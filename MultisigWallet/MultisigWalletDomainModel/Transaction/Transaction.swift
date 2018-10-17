@@ -47,7 +47,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public private(set) var signatures = [Signature]()
     public private(set) var createdDate: Date!
     public private(set) var updatedDate: Date!
-    public private(set) var rejectednDate: Date?
+    public private(set) var rejectedDate: Date?
     public private(set) var submittedDate: Date?
     public private(set) var processedDate: Date?
     /// Blockchain transaction hash
@@ -96,6 +96,9 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         }
         if self.status == .discarded && status == .draft {
             transactionHash = nil
+            createdDate = nil
+            updatedDate = nil
+            rejectedDate = nil
             submittedDate = nil
             processedDate = nil
             signatures = []
@@ -218,6 +221,35 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
     // MARK: - Recording transaction's state in the blockchain
 
+    /// Records date of transaction creation date
+    ///
+    /// - Parameter at: timestamp of transaction creation
+    @discardableResult
+    public func timestampCreated(at date: Date) -> Transaction {
+        assertCanTimestamp()
+        createdDate = date
+        return self
+    }
+
+    /// Records date of changing a transaction
+    ///
+    /// - Parameter at: timestamp of submission event
+    @discardableResult
+    public func timestampUpdated(at date: Date) -> Transaction {
+        assertCanTimestamp()
+        updatedDate = date
+        return self
+    }
+
+    /// Records date of transaction rejection
+    ///
+    /// - Parameter at: timestamp of transaction rejection
+    @discardableResult
+    public func timestampRejected(at date: Date) -> Transaction {
+        assertCanTimestamp()
+        rejectedDate = date
+        return self
+    }
     /// Records date of submission to a blockchain
     ///
     /// - Parameter at: timestamp of submission event
