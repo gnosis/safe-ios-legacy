@@ -36,6 +36,7 @@ import UIKit
 open class FlowCoordinator {
 
     private var flowCompletion: (() -> Void)?
+    private let navigationTracker = NavigationControllerTransitionTracker()
     public private(set) var rootViewController: UIViewController!
     private var checkpoints: [UIViewController] = []
 
@@ -70,9 +71,15 @@ open class FlowCoordinator {
         flowCompletion?()
     }
 
-    func push(_ controller: UIViewController) {
+    func push(_ controller: UIViewController, onPop action: (() -> Void)? = nil) {
         let isAnythingInNavigationStack = !navigationController.viewControllers.isEmpty
         navigationController.pushViewController(controller, animated: isAnythingInNavigationStack)
+        guard let action = action else { return }
+        navigationController.delegate = navigationTracker
+        navigationTracker.trackOnce(navigationController: navigationController,
+                                    operation: .pop,
+                                    from: controller,
+                                    action: action)
     }
 
     func pop(to controller: UIViewController? = nil) {
@@ -117,6 +124,41 @@ open class FlowCoordinator {
     }
 
 }
+
+class NavigationControllerTransitionTracker: NSObject, UINavigationControllerDelegate {
+
+    var observers = [(nav: UINavigationController?,
+                      operation: UINavigationController.Operation?,
+                      fromVC: UIViewController?,
+                      toVC: UIViewController?,
+                      action: () -> Void)]()
+
+    func trackOnce(navigationController: UINavigationController? = nil,
+                   operation: UINavigationController.Operation? = nil,
+                   from fromVC: UIViewController? = nil,
+                   to toVC: UIViewController? = nil,
+                   action: @escaping () -> Void) {
+        observers.append((navigationController, operation, fromVC, toVC, action))
+    }
+
+    func navigationController(_ navigationController: UINavigationController,
+                              animationControllerFor operation: UINavigationController.Operation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let index = observers.firstIndex { observer in
+            (observer.nav == navigationController || observer.nav == nil) &&
+            (observer.operation == operation || observer.operation == nil) &&
+            (observer.fromVC == fromVC || observer.fromVC == nil) &&
+            (observer.toVC == toVC || observer.toVC == nil)
+        }
+        if let index = index {
+            observers[index].action()
+            observers.remove(at: index)
+        }
+        return nil
+    }
+}
+
 
 public final class SafeNavigationController: UINavigationController {
 
