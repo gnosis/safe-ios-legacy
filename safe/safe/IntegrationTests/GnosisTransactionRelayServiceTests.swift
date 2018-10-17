@@ -69,15 +69,16 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
 
     private func test_recoveryOnly() {
         let address = Address("0xE2BC19Be4cDEf0D68D82c0C86E97234708Cf6c07")
-        let mnemonic = ["tiger", "over", "fabric", "diary", "subway", "quick", "sheriff", "team", "step", "develop", "wife", "afford"]
+        let mnemonic = ["tiger", "over", "fabric", "diary", "subway", "quick",
+                        "sheriff", "team", "step", "develop", "wife", "afford"]
         recoverSafe(address, mnemonic)
     }
 
     private func recoverSafe(_ safeAddress: Address, _ mnemonic: [String]) {
-        let recoveryKey = encryptionService.deriveExternallyOwnedAccountFrom(
-            mnemonic: mnemonic, at: 0)
-        let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccountFrom(
-            mnemonic: mnemonic, at: 1)
+//        let recoveryKey = encryptionService.deriveExternallyOwnedAccountFrom(
+//            mnemonic: mnemonic, at: 0)
+//        let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccountFrom(
+//            mnemonic: mnemonic, at: 1)
 
         // Get Safe info and assure that 2 keys are among owners
         // Form a transaction to remove all keys after 3rd

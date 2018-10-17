@@ -66,9 +66,7 @@ class EncryptionServiceTests: XCTestCase {
         XCTAssertEqual(account, expectedAccount)
         XCTAssertEqual(account.address, expectedAccount.address)
         XCTAssertEqual(account.mnemonic, expectedAccount.mnemonic)
-        print(account.privateKey.data.toHexString())
         XCTAssertEqual(account.privateKey, expectedAccount.privateKey)
-        print(account.publicKey.data.toHexString())
         XCTAssertEqual(account.publicKey, expectedAccount.publicKey)
     }
 
