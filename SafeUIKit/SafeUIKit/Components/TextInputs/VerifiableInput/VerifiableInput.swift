@@ -25,7 +25,7 @@ public class VerifiableInput: UIView {
         return stackView.arrangedSubviews.compactMap { $0 as? RuleLabel }
     }
 
-    public var isValidated: Bool {
+    public var isValid: Bool {
         return allRules.reduce(true) { $0 && $1.status == .success }
     }
 
@@ -127,6 +127,13 @@ public class VerifiableInput: UIView {
         text = textInput.text // validation
     }
 
+    func validateRules(for text: String) {
+        allRules.forEach {
+            $0.validate(text)
+            hideRuleIfNeeded($0)
+        }
+    }
+
 }
 
 extension VerifiableInput: UITextFieldDelegate {
@@ -150,7 +157,7 @@ extension VerifiableInput: UITextFieldDelegate {
     }
 
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let shouldReturn = isValidated
+        let shouldReturn = isValid
         if shouldReturn {
             delegate?.verifiableInputDidReturn(self)
         }
@@ -168,13 +175,6 @@ extension VerifiableInput: UITextFieldDelegate {
     private func resetRules() {
         allRules.forEach {
             $0.reset()
-            hideRuleIfNeeded($0)
-        }
-    }
-
-    private func validateRules(for text: String) {
-        allRules.forEach {
-            $0.validate(text)
             hideRuleIfNeeded($0)
         }
     }

@@ -49,7 +49,7 @@ class AddressInputTests: XCTestCase {
 
     private func assertInvalidAddress(_ address: String) {
         input.scanHandler.didScan(address)
-        XCTAssertEqual(input.text, "")
+        XCTAssertEqual(input.text, nil)
     }
 
     private func assertValidAddress(_ address: String) {

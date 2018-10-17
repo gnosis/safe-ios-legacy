@@ -192,6 +192,7 @@
 		5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527A806208E357B00AF3A50 /* ScannerViewController.swift */; };
 		5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5527A807208E357B00AF3A50 /* ScannerViewController.xib */; };
 		5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */; };
+		552D1DF02177668E003FBE2D /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D1DEF2177668E003FBE2D /* UILabel+Extension.swift */; };
 		5541586521748BC400A3CEA4 /* AddressInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586421748BC400A3CEA4 /* AddressInputViewController.swift */; };
 		5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586721748C3700A3CEA4 /* AddressInput.swift */; };
 		5541586A21748C5200A3CEA4 /* AddressInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586921748C5200A3CEA4 /* AddressInputTests.swift */; };
@@ -495,6 +496,7 @@
 		5527A806208E357B00AF3A50 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		5527A807208E357B00AF3A50 /* ScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
 		5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		552D1DEF2177668E003FBE2D /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		5541586421748BC400A3CEA4 /* AddressInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputViewController.swift; sourceTree = "<group>"; };
 		5541586721748C3700A3CEA4 /* AddressInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInput.swift; sourceTree = "<group>"; };
 		5541586921748C5200A3CEA4 /* AddressInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputTests.swift; sourceTree = "<group>"; };
@@ -888,6 +890,7 @@
 				0AE950CF20D29D9E0099B79D /* DesignableView.swift */,
 				550E7CDB21708E1E0032DE6C /* String+Extensions.swift */,
 				550E7CDD21708E540032DE6C /* UITextField+Extensions.swift */,
+				552D1DEF2177668E003FBE2D /* UILabel+Extension.swift */,
 			);
 			path = SafeUIKit;
 			sourceTree = "<group>";
@@ -1667,6 +1670,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552D1DF02177668E003FBE2D /* UILabel+Extension.swift in Sources */,
 				5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */,
 				0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */,
 				5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */,

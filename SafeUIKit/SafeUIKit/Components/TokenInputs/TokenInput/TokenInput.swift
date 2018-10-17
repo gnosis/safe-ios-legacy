@@ -139,7 +139,7 @@ public extension TokenInput {
 
     override func textFieldDidEndEditing(_ textField: UITextField) {
         guard textField === textInput else { return }
-        guard isValidated else {
+        guard isValid else {
             value = 0
             return
         }

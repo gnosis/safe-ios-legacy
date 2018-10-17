@@ -17,6 +17,26 @@ public final class AddressInput: VerifiableInput {
 
     public weak var addressInputDelegate: AddressInputDelegate?
 
+    public override var text: String? {
+        get {
+            return addressLabel.text
+        }
+        set {
+            if newValue != nil {
+                let displayAddress = String(newValue!.prefix(maxLength))
+                addressLabel.text = displayAddress
+                textInput.placeholder = nil
+                validateRules(for: addressLabel.text!)
+                if isValid {
+                    addressLabel.setEthereumAddress(displayAddress)
+                }
+            } else {
+                addressLabel.text = nil
+                textInput.placeholder = Strings.addressPlaceholder
+            }
+        }
+    }
+
     enum Strings {
         static let addressPlaceholder =
             LocalizedString("address_input.address_placeholder", comment: "Recipient's address in address input.")
@@ -51,16 +71,18 @@ public final class AddressInput: VerifiableInput {
         configureTextInput()
         addAddressLabel()
         showErrorsOnly = true
+        maxLength = 43 // if user scans >42 chars value, the error will be displayed.
+        text = nil
         addRule(Strings.Rules.invalidAddress, identifier: "invalidAddress", validation: isValid)
+        scanHandler.addDebugButtonToScannerController(title: "Test Address",
+                                                      scanValue: "0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0")
     }
 
     private func configureTextInput() {
         textInput.heightConstraint.constant = 60
         textInput.rightViewMode = .never
-        textInput.placeholder = Strings.addressPlaceholder
         textInput.leftImage = Asset.AddressInput.addressIconTmp.image
         textInput.delegate = self
-        textInput.textColor = .clear
     }
 
     private func addAddressLabel() {
@@ -71,7 +93,6 @@ public final class AddressInput: VerifiableInput {
     private func configureAddressLabel() {
         addressLabel.font = UIFont.systemFont(ofSize: 18)
         addressLabel.backgroundColor = .clear
-        addressLabel.textColor = Color.gray
         addressLabel.numberOfLines = 2
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -93,7 +114,6 @@ public final class AddressInput: VerifiableInput {
     func displayAddress(_ address: String) {
         textInput.rightViewMode = .always
         text = address
-        addressLabel.text = address
     }
 
     private func validatedAddress(_ address: String) -> String? {
@@ -132,12 +152,11 @@ public extension AddressInput {
         return false
     }
 
-    // TODO: think how to improve. Maybe listner on textInputValueChange
     override func textFieldShouldClear(_ textField: UITextField) -> Bool {
         let shouldClear = super.textFieldShouldClear(textField)
         if shouldClear {
             textInput.rightViewMode = .never
-            addressLabel.text = nil
+            text = nil
         }
         return shouldClear
     }

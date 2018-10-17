@@ -11,11 +11,11 @@ class ScanQRCodeHandlerTests: XCTestCase {
     // swiftlint:disable:next weak_delegate
     let delegate = MockScanQRCodeHandlerDelegate()
     let captureDevice = MockAVCaptureDevice.self
-    var handler: ScanQRCodeHandler!
+    let handler = ScanQRCodeHandler()
 
     override func setUp() {
         super.setUp()
-        handler = ScanQRCodeHandler(delegate: delegate)
+        handler.delegate = delegate
         handler.captureDevice = captureDevice
     }
 
@@ -58,7 +58,7 @@ class ScanQRCodeHandlerTests: XCTestCase {
 
     func test_didScan_callsValidatedConverter() {
         var didCallValidatedConverter = false
-        handler = ScanQRCodeHandler(delegate: delegate) { str in
+        handler.scanValidatedConverter = { str in
             didCallValidatedConverter = true
             return str + "_validated"
         }
@@ -69,7 +69,7 @@ class ScanQRCodeHandlerTests: XCTestCase {
     }
 
     func test_didScan_whenCodeIsNotValid_thenDoesNotModifyInput() {
-        handler = ScanQRCodeHandler(delegate: delegate) { str in
+        handler.scanValidatedConverter = { _ in
             return nil
         }
         handler.didScan("test")
