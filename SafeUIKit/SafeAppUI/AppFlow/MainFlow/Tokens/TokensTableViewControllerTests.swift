@@ -6,6 +6,8 @@ import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
 import CommonTestSupport
+import Common
+import SafeUIKit
 
 class TokensTableViewControllerTests: SafeTestCase {
 
@@ -25,11 +27,13 @@ class TokensTableViewControllerTests: SafeTestCase {
         let firstCell = cell(at: 0, 0)
         let secondCell = cell(at: 0, 1)
         let thirdCell = cell(at: 1, 1)
-        XCTAssertEqual(firstCell.tokenCodeLabel.text, "ETH")
-        XCTAssertEqual(firstCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "0.01 ETH")
-        XCTAssertEqual(secondCell.tokenCodeLabel.text, "GNO")
-        XCTAssertEqual(secondCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "1.00 GNO")
-        XCTAssertEqual(thirdCell.tokenCodeLabel.text, "MGN")
+        XCTAssertEqual(firstCell.tokenCodeLabel.text, "Ether")
+        XCTAssertEqual(firstCell.tokenBalanceCodeLabel.text, "ETH")
+        XCTAssertEqual(firstCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "0.01")
+        XCTAssertEqual(secondCell.tokenCodeLabel.text, "Gnosis")
+        XCTAssertEqual(secondCell.tokenBalanceCodeLabel.text, "GNO")
+        XCTAssertEqual(secondCell.tokenBalanceLabel.text?.replacingOccurrences(of: ",", with: "."), "1.00")
+        XCTAssertEqual(thirdCell.tokenCodeLabel.text, "Magnolia")
         XCTAssertEqual(thirdCell.tokenBalanceLabel.text, "--")
     }
 
@@ -52,11 +56,11 @@ class TokensTableViewControllerTests: SafeTestCase {
         XCTAssertTrue(delegate.didCallCreateNewTransaction)
     }
 
-    func test_whenThereAreTokens_thenWeDontShowTokensFooter() {
+    func test_whenThereAreTokens_thenWeShowGradientFooter() {
         createWindow(controller)
         controller.notify()
         let footer = controller.tableView(controller.tableView, viewForFooterInSection: 1)
-        XCTAssertNil(footer)
+        XCTAssertTrue(footer is GradientFooterView)
     }
 
     func test_whenThereAreNoTokens_thenTokensFooterIsShown() {

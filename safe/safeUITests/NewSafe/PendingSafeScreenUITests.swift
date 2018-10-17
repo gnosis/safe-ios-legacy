@@ -13,7 +13,7 @@ class PendingSafeScreenUITests: UITestCase {
 
     override func setUp() {
         super.setUp()
-        application.setMockServerResponseDelay(3)
+        application.setMockServerResponseDelay(2)
         application.setMockNotificationService(delay: 0, shouldThrow: .none)
         givenDeploymentStarted()
     }
@@ -24,7 +24,7 @@ class PendingSafeScreenUITests: UITestCase {
         waitUntilNotEnoughFundsStatus()
         waitUntilAccountFundedStatus()
         waitUntilDeploymentAcceptedByBlockchainStatus()
-        waitUntil(mainScreen.isDisplayed, timeout: 15)
+        waitUntil(mainScreen.isDisplayed, timeout: 30)
         delay(1)
         restartTheApp()
         XCTAssertTrue(mainScreen.isDisplayed)
@@ -33,11 +33,11 @@ class PendingSafeScreenUITests: UITestCase {
     // NS-202
     func test_whenDismissesAbort_thenContinuesDeployment() {
         waitUntil(pendingScreen.title, .exists)
-        let (alertMonitor, alertExpectation) = addAbortAlertMonitor(cancellingAlert: true)
+        let (alertMonitor, expectation) = addAbortAlertMonitor(cancellingAlert: true)
         defer { removeUIInterruptionMonitor(alertMonitor) }
         pendingScreen.cancel.tap()
-        handleAlert()
-        waitUntil(mainScreen.isDisplayed, timeout: 30)
+        handleAlert(expectation)
+        waitUntil(mainScreen.isDisplayed, timeout: 40)
     }
 
     // NS-202
@@ -46,7 +46,7 @@ class PendingSafeScreenUITests: UITestCase {
         let (monitor, expectation) = addAbortAlertMonitor(cancellingAlert: false)
         defer { removeUIInterruptionMonitor(monitor) }
         pendingScreen.cancel.tap()
-        handleAlert()
+        handleAlert(expectation)
         waitUntil(newSafeScreen.isDisplayed)
         restartTheApp()
         newSafeScreen.next.tap()
@@ -63,11 +63,11 @@ class PendingSafeScreenUITests: UITestCase {
     // NS-205
     func test_whenCancellingDuringNotEnoughFunds_thenContinuesDeployment() {
         waitUntilNotEnoughFundsStatus()
-        let (alertMonitor, alertExpectation) = addAbortAlertMonitor(cancellingAlert: true)
+        let (alertMonitor, expectation) = addAbortAlertMonitor(cancellingAlert: true)
         defer { removeUIInterruptionMonitor(alertMonitor) }
         pendingScreen.cancel.tap()
-        handleAlert()
-        waitUntil(mainScreen.isDisplayed, timeout: 30)
+        handleAlert(expectation)
+        waitUntil(mainScreen.isDisplayed, timeout: 60)
     }
 
     // NS-205
@@ -76,7 +76,7 @@ class PendingSafeScreenUITests: UITestCase {
         let (monitor, expectation) = addAbortAlertMonitor(cancellingAlert: false)
         defer { removeUIInterruptionMonitor(monitor) }
         pendingScreen.cancel.tap()
-        handleAlert()
+        handleAlert(expectation)
         waitUntil(newSafeScreen.isDisplayed)
     }
 
@@ -103,10 +103,10 @@ extension PendingSafeScreenUITests {
         UnlockScreen().enterPassword(password)
     }
 
-    private func handleAlert() {
+    private func handleAlert(_ expectation: XCTestExpectation) {
         delay(1)
         XCUIApplication().swipeUp() // without it, alert monitors are not firing up.
-        waitForExpectations(timeout: 1)
+        wait(for: [expectation], timeout: 1)
     }
 
     private func waitUntilNotEnoughFundsStatus() {
@@ -114,11 +114,11 @@ extension PendingSafeScreenUITests {
     }
 
     private func waitUntilAccountFundedStatus() {
-        waitUntilStatus(LocalizedString("pending_safe.status.account_funded"))
+        waitUntilStatus(LocalizedString("pending_safe.status.account_funded"), timeout: 30)
     }
 
-    private func waitUntilStatus(_ label: String) {
-        waitUntil(pendingScreen.status.label == label, timeout: 10)
+    private func waitUntilStatus(_ label: String, timeout: TimeInterval = 10) {
+        waitUntil(pendingScreen.status.label == label, timeout: timeout)
     }
 
     private func waitUntilDeploymentAcceptedByBlockchainStatus() {
@@ -126,7 +126,7 @@ extension PendingSafeScreenUITests {
     }
 
     private func notEnoughFundsLabel() -> String {
-        let balanceEth = "0"
+        let balanceEth = "0,00 ETH"
         let requiredEth = "0.0000000000000001 ETH"
         let status = String(format: LocalizedString("pending_safe.status.not_enough_funds"), balanceEth, requiredEth)
         return status

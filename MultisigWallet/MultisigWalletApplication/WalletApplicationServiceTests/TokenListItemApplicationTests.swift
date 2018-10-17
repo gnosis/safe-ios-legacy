@@ -6,6 +6,7 @@ import XCTest
 @testable import MultisigWalletApplication
 import MultisigWalletDomainModel
 import CommonTestSupport
+import Common
 
 class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
 

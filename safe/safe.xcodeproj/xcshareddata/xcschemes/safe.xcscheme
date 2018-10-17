@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "sh ${SRCROOT}/../scripts/pre_build_action.sh &gt;&gt; ${SRCROOT}/../Build/pre_build_action.log 2&gt;&amp;1">
+               scriptText = "sh ${SRCROOT}/../scripts/pre_build_action.sh &gt;&gt; ${SRCROOT}/../Build/pre_build_action.log 2&gt;&amp;1&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -153,6 +153,9 @@
             <SkippedTests>
                <Test
                   Identifier = "BlockchainIntegrationTest">
+               </Test>
+               <Test
+                  Identifier = "GnosisSafeOwnersIntegrationTests">
                </Test>
                <Test
                   Identifier = "GnosisTransactionRelayServiceTests">

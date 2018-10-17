@@ -44,13 +44,16 @@
 "manage_tokens.title" = "Tokens";
 
 /* Change browser extension menu item */
-"menu.action.change_browser_extension" = "Change Browser Extension";
+"menu.action.change_browser_extension" = "Replace Browser Extension";
 
 /* Change password menu item */
 "menu.action.change_password" = "Change Password";
 
 /* Change recovery key  menu item */
-"menu.action.change_recovery_phrase" = "Change Recovery Phrase";
+"menu.action.change_recovery_phrase" = "Replace Recovery Phrase";
+
+/* Feedback and FAQ menu item */
+"menu.action.feedback_and_faq" = "Feedback and FAQs";
 
 /* Manage Tokens menu item */
 "menu.action.manage_tokens" = "Manage Tokens";
@@ -63,6 +66,24 @@
 
 /* Terms menu item */
 "menu.action.terms" = "Terms";
+
+/* App Version */
+"menu.app_version" = "App Version";
+
+/* Title for portfolio section. */
+"menu.section.portfolio.title" = "Portfolio";
+
+/* Title for safe address section. */
+"menu.section.safe.title" = "Address";
+
+/* Title for security section. */
+"menu.section.security.title" = "Security";
+
+/* Title for support section. */
+"menu.section.support.title" = "Support";
+
+/* Title for menu screen. */
+"menu.title" = "Menu";
 
 /* Browser extension Button */
 "new_safe.browser_extension" = "Browser Extension";
@@ -219,6 +240,24 @@
 
 /* Title for confirm mnemonic view controller */
 "recovery.confirm_mnemonic.title" = "Confirmation";
+
+/* Safe Address label. */
+"safe_address.address" = "Address";
+
+/* Description for Address Details screen. */
+"safe_address.description" = "Share your address with contacts or enable senders to scan your QR code.";
+
+/* Header for Address Details screen. */
+"safe_address.header" = "Receive Ether and Tokens";
+
+/* Identicon label. */
+"safe_address.identicon" = "Identicon";
+
+/* QR Code label. */
+"safe_address.qr_code" = "QR Code";
+
+/* Title for Address Details screen. */
+"safe_address.title" = "Safe Address";
 
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";

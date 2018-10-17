@@ -32,7 +32,7 @@ final class UnlockViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var countdownLabel: CountdownLabel!
     @IBOutlet weak var headerLabel: H1Label!
-    @IBOutlet weak var textInput: TextInput!
+    @IBOutlet weak var verifiableInput: VerifiableInput!
     @IBOutlet weak var loginWithBiometryButton: UIButton!
     var showsCancelButton: Bool = false
     private var unlockCompletion: ((Bool) -> Void)!
@@ -55,8 +55,8 @@ final class UnlockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         headerLabel.text = Strings.header
-        textInput.delegate = self
-        textInput.isSecure = true
+        verifiableInput.delegate = self
+        verifiableInput.isSecure = true
 
         let biometryIcon = authenticationService
             .isAuthenticationMethodSupported(.faceID) ? Asset.faceIdIcon.image : Asset.touchIdIcon.image
@@ -76,11 +76,11 @@ final class UnlockViewController: UIViewController {
 
     private func startCountdownIfNeeded() {
         guard authenticationService.isAuthenticationBlocked else { return }
-        textInput.isEnabled = false
+        verifiableInput.isEnabled = false
         updateBiometryButtonVisibility()
         countdownLabel.start { [weak self] in
             guard let `self` = self else { return }
-            self.textInput.isEnabled = true
+            self.verifiableInput.isEnabled = true
             self.focusPasswordField()
         }
     }
@@ -119,7 +119,7 @@ final class UnlockViewController: UIViewController {
     }
 
     private func focusPasswordField() {
-        _ = textInput.becomeFirstResponder()
+        _ = verifiableInput.becomeFirstResponder()
         updateBiometryButtonVisibility()
     }
 
@@ -129,15 +129,15 @@ final class UnlockViewController: UIViewController {
 
 }
 
-extension UnlockViewController: TextInputDelegate {
+extension UnlockViewController: VerifiableInputDelegate {
 
-    func textInputDidReturn(_ textInput: TextInput) {
+    func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
         do {
-            let result = try Authenticator.instance.authenticate(.password(textInput.text!))
+            let result = try Authenticator.instance.authenticate(.password(verifiableInput.text!))
             if result.isSuccess {
                 self.unlockCompletion(true)
             } else {
-                self.textInput.shake()
+                self.verifiableInput.shake()
                 self.startCountdownIfNeeded()
             }
         } catch let e {

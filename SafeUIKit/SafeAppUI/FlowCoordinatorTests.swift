@@ -10,10 +10,6 @@ class FlowCoordinatorTests: XCTestCase {
 
     let fc = FlowCoordinator(rootViewController: UINavigationController())
 
-    override func setUp() {
-        super.setUp()
-    }
-
     func test_whenCreated_thenHasRootController() {
         XCTAssertNotNil(fc.rootViewController)
     }
@@ -89,7 +85,6 @@ class FlowCoordinatorTests: XCTestCase {
         XCTAssertTrue(fc.navigationController.topViewController === vc)
     }
 
-
     func test_whenClearingNavigationStack_thenNoControllerPresentInNavigation() {
         fc.push(UIViewController())
         fc.push(UIViewController())
@@ -107,6 +102,19 @@ class FlowCoordinatorTests: XCTestCase {
         delay(0.6) // fails with 0.5 delay
         XCTAssertTrue(fc.rootViewController.presentedViewController === vc)
         XCTAssertTrue(vc.presentedViewController === vc2)
+    }
+
+    func test_whenHasPopClosure_thenFiresWhenPoppedFromThatController() {
+        createWindow(fc.navigationController)
+        fc.push(UIViewController())
+        let vc = UIViewController()
+        let expectation = self.expectation(description: "Popped")
+        fc.push(vc) {
+            expectation.fulfill()
+        }
+        delay(0.6)
+        fc.pop()
+        waitForExpectations(timeout: 0.1)
     }
 
 }

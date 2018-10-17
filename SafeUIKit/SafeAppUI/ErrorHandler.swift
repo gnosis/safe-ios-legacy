@@ -53,7 +53,7 @@ public class ErrorHandler {
         let vc = UIViewController()
         vc.view.backgroundColor = .clear
         window.rootViewController = vc
-        window.windowLevel = UIWindowLevelAlert + 1
+        window.windowLevel = UIWindow.Level.alert + 1
         window.makeKeyAndVisible()
         let controller = alertController(title: title, message: message, log: log, action: action)
         vc.show(controller, sender: vc)

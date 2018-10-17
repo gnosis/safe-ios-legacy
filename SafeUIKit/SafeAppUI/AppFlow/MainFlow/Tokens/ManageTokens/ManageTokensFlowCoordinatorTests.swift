@@ -6,6 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
 import CommonTestSupport
+import Common
 
 class ManageTokensFlowCoordinatorTests: XCTestCase {
 
@@ -24,7 +25,7 @@ class ManageTokensFlowCoordinatorTests: XCTestCase {
         flowCoordinator.setUp()
         let presented = flowCoordinator.rootViewController.presentedViewController
         XCTAssertTrue(presented is UINavigationController)
-        let topVC = presented?.childViewControllers[0]
+        let topVC = presented?.children[0]
         XCTAssertTrue(topVC is ManageTokensTableViewController)
     }
 
@@ -34,7 +35,7 @@ class ManageTokensFlowCoordinatorTests: XCTestCase {
         delay()
         let presented = flowCoordinator.rootViewController.presentedViewController
         XCTAssertTrue(presented is UINavigationController)
-        let topVC = presented?.childViewControllers[0]
+        let topVC = presented?.children[0]
         XCTAssertTrue(topVC is AddTokenTableViewController)
     }
 

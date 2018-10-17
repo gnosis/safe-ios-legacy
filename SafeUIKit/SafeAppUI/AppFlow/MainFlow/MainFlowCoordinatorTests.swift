@@ -118,8 +118,8 @@ class MainFlowCoordinatorTests: SafeTestCase {
         delay()
         let vc = mainFlowCoordinator.navigationController.topViewController?.presentedViewController
             as! UnlockViewController
-        vc.textInput.text = "111111A"
-        _ = vc.textInput.textFieldShouldReturn(UITextField())
+        vc.verifiableInput.text = "111111A"
+        _ = vc.verifiableInput.textFieldShouldReturn(UITextField())
         authenticationService.blockAuthentication() // otherwise tries to auth on viewDidAppear
         waitForExpectations(timeout: 1)
     }
@@ -129,7 +129,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         mainFlowCoordinator.didSelectManageTokens()
         delay()
         let presented = mainFlowCoordinator.navigationController.presentedViewController
-        XCTAssertTrue(presented?.childViewControllers[0] is ManageTokensTableViewController)
+        XCTAssertTrue(presented?.children[0] is ManageTokensTableViewController)
     }
 
     func test_whenManageTokensCalled_thenEntersManageTokensFlow() {
@@ -137,7 +137,14 @@ class MainFlowCoordinatorTests: SafeTestCase {
         mainFlowCoordinator.manageTokens()
         delay()
         let presented = mainFlowCoordinator.navigationController.presentedViewController
-        XCTAssertTrue(presented?.childViewControllers[0] is ManageTokensTableViewController)
+        XCTAssertTrue(presented?.children[0] is ManageTokensTableViewController)
+    }
+
+    func test_whenOpenAddressDetailsRequested_thenOpensIt() {
+        mainFlowCoordinator.openAddressDetails()
+        delay()
+        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
+            is SafeAddressViewController)
     }
 
 }

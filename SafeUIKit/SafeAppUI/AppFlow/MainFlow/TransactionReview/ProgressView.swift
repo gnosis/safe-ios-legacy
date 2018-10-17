@@ -52,7 +52,7 @@ public class ProgressView: DesignableView {
         }
     }
 
-    public var progressIndicatorColor: UIColor = ColorName.azure.color
+    public var progressIndicatorColor: UIColor = ColorName.aquaBlue.color
 
     public var indicatorView: UIView!
     public var indicatorLeadingConstraint: NSLayoutConstraint!

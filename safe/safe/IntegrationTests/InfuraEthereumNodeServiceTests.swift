@@ -20,6 +20,7 @@ class InfuraEthereumNodeServiceTests: BlockchainIntegrationTest {
         TransactionHash("0x5b448bad86b814dc7aab866f32ffc3d22f140cdcb6c24116548ede8e6e4d343b")
     let failedTransactionHash =
         TransactionHash("0x1b6efea55bb515fd8599d543f57b54ec3ed4242c887269f1a2e9e0008c15ccaf")
+    let contract = SafeContractInfo.test
 
     override func setUp() {
         super.setUp()
@@ -87,22 +88,51 @@ class InfuraEthereumNodeServiceTests: BlockchainIntegrationTest {
     }
 
     func test_nonceFromSafeContract() throws {
-        let encryptionService = EncryptionService(chainId: .rinkeby)
-        let functionSignature = "nonce()"
-        let methodID = encryptionService.hash(functionSignature.data(using: .ascii)!).prefix(4)
-        let call = TransactionCall(to: EthAddress(hex: "0x092CC1854399ADc38Dad4f846E369C40D0a40307"),
-                                   data: EthData(methodID))
-        let resultData = try service.eth_call(transaction: call, blockNumber: .latest)
-        let nonce = BigInt(hex: resultData.toHexString())!
-        XCTAssertEqual(nonce, 0)
+        DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
+        let proxy = SafeOwnerManagerContractProxy(Address(contract.address))
+        XCTAssertEqual(try proxy.nonce(), 0)
     }
 
     func test_balanceFromERC20Contract() throws {
         DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
-        let proxy = ERC20TokenContractProxy()
-        let balance = try proxy.balance(of: Address("0x0ddc793680ff4f5793849c8c6992be1695cbe72a"),
-                                        contract: Address("0x36276f1f2cb8e9c11c508aad00556f819c5ad876"))
+        let proxy = ERC20TokenContractProxy(Address("0x36276f1f2cb8e9c11c508aad00556f819c5ad876"))
+        let balance = try proxy.balance(of: Address("0x0ddc793680ff4f5793849c8c6992be1695cbe72a"))
         XCTAssertEqual(balance, TokenInt("20000000000000000000000"))
     }
+
+    func test_safe_getOwners() throws {
+        DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
+        let proxy = SafeOwnerManagerContractProxy(Address(contract.address))
+        let expected = contract.owners.map { Address($0) }
+        let owners = try proxy.getOwners()
+        XCTAssertEqual(owners, expected)
+    }
+
+    func test_safe_isOwner() throws {
+        DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
+        let proxy = SafeOwnerManagerContractProxy(Address(contract.address))
+        for owner in contract.owners {
+            XCTAssertTrue(try proxy.isOwner(Address(owner)))
+        }
+        XCTAssertFalse(try proxy.isOwner(testAddress))
+    }
+
+    func test_safe_getThreshold() throws {
+        DomainRegistry.put(service: service, for: EthereumNodeDomainService.self)
+        let proxy = SafeOwnerManagerContractProxy(Address(contract.address))
+        XCTAssertEqual(try proxy.getThreshold(), 2)
+    }
+
+}
+
+struct SafeContractInfo {
+
+    static var test = SafeContractInfo(address: "0x092CC1854399ADc38Dad4f846E369C40D0a40307",
+                                       owners: ["0xd06ab3c0d8094791f8f3bdb6b66cb82a68b6d846",
+                                                "0xb952005d631d4892430144a2d5850b1cd0efc981",
+                                                "0x41b152984f80c4017d3640662727c263e2073780"])
+
+    var address: String
+    var owners: [String]
 
 }

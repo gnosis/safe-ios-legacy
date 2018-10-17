@@ -67,6 +67,9 @@ public class MockWalletApplicationService: WalletApplicationService {
         _hasReadyToUseWallet = true
         assignAddress("0x111ccccccccccccccccccccccccccccccccccccc")
         update(account: Token.Ether.id, newBalance: BigInt(10).power(18))
+        visibleTokensOutput = [
+            TokenData(token: Token.Ether, balance: BigInt(10e17))
+        ]
     }
 
     public override func createNewDraftWallet() {
@@ -196,6 +199,17 @@ public class MockWalletApplicationService: WalletApplicationService {
         return submitTransaction_output ?? requestTransactionConfirmation_output
     }
 
+    private var expected_removeDraftTransaction = [String]()
+    private var actual_removeDraftTransaction = [String]()
+
+    public func expect_removeDraftTransaction(_ id: String) {
+        expected_removeDraftTransaction.append(id)
+    }
+
+    public override func removeDraftTransaction(_ id: String) {
+        actual_removeDraftTransaction.append(id)
+    }
+
     private var expected_walletState = [WalletStateId]()
     private var actual_walletState = [String]()
 
@@ -214,7 +228,8 @@ public class MockWalletApplicationService: WalletApplicationService {
             zip(actual_deployWallet, expected_deployWallet).reduce(true) { result, pair -> Bool in
                 result && (pair.1 == nil || pair.0 === pair.1)
             } &&
-            actual_abortDeployment == expected_abortDeployment
+            actual_abortDeployment == expected_abortDeployment &&
+            actual_removeDraftTransaction == expected_removeDraftTransaction
     }
 
     private var expected_deployWallet_error: Swift.Error?

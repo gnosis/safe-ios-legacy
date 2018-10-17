@@ -5,6 +5,7 @@
 import UIKit
 import MultisigWalletApplication
 import BigInt
+import Common
 
 extension UIApplication {
 

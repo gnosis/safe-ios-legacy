@@ -7,6 +7,8 @@ if [ ! -e AppConfig.yml ]; then
   cp encrypted_files/AppConfig.yml .
 fi
 
+
 ruby scripts/config2json.rb AppConfig.yml ${CONFIGURATION} > AppConfig.json
 ruby scripts/config2env.rb AppConfig.yml ${CONFIGURATION} > AppConfig.xcconfig
 
+cp encrypted_files/GoogleService-Info-${CONFIGURATION}.plist ${SRCROOT}/safe/GoogleService-Info.plist

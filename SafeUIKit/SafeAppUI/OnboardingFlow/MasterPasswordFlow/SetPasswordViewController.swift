@@ -12,7 +12,7 @@ protocol SetPasswordViewControllerDelegate: class {
 final class SetPasswordViewController: UIViewController {
 
     @IBOutlet weak var headerLabel: H1Label!
-    @IBOutlet weak var textInput: TextInput!
+    @IBOutlet weak var verifiableInput: VerifiableInput!
     private weak var delegate: SetPasswordViewControllerDelegate?
 
     private struct LocalizedStrings {
@@ -35,20 +35,20 @@ final class SetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         headerLabel.text = LocalizedStrings.header
-        textInput.delegate = self
-        textInput.isSecure = true
-        textInput.addRule(LocalizedStrings.length) { PasswordValidator.validateMinLength($0) }
-        textInput.addRule(LocalizedStrings.capital) { PasswordValidator.validateAtLeastOneCapitalLetter($0) }
-        textInput.addRule(LocalizedStrings.digit) { PasswordValidator.validateAtLeastOneDigit($0) }
-        _ = textInput.becomeFirstResponder()
+        verifiableInput.delegate = self
+        verifiableInput.isSecure = true
+        verifiableInput.addRule(LocalizedStrings.length) { PasswordValidator.validateMinLength($0) }
+        verifiableInput.addRule(LocalizedStrings.capital) { PasswordValidator.validateAtLeastOneCapitalLetter($0) }
+        verifiableInput.addRule(LocalizedStrings.digit) { PasswordValidator.validateAtLeastOneDigit($0) }
+        _ = verifiableInput.becomeFirstResponder()
     }
 
 }
 
-extension SetPasswordViewController: TextInputDelegate {
+extension SetPasswordViewController: VerifiableInputDelegate {
 
-    func textInputDidReturn(_ textInput: TextInput) {
-        delegate?.didSetPassword(textInput.text!)
+    func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
+        delegate?.didSetPassword(verifiableInput.text!)
     }
 
 }

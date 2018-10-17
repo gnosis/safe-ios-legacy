@@ -84,4 +84,8 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: AccountUpdateDomainService.self)
     }
 
+    public static var transactionService: TransactionDomainService {
+        return service(for: TransactionDomainService.self)
+    }
+
 }

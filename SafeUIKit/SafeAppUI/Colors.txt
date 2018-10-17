@@ -1,13 +1,16 @@
+tangerine: #ff9500
 tomato: #f02525
+sky_blue: #5ac8fa
+indigo_blue: #401d9c
 green_teal: #09a862
-battleship_grey: #65707e
 bluey_grey: #a2a8ba
+battleship_grey: #65707e
 dark_slate_blue: #21435a
-dark_grey: #a2a8ba
+aqua_blue: #00b8e0
+
 pale_grey_three: #f4f5f9
 pale_grey_four: #e3e5ec
 transparent_white_on_grey: #F9FAFC
-azure: #28b2fa
 border_grey: #c8ced4
 tomato_15: #f0252527
 pale_grey: #e4e8f1

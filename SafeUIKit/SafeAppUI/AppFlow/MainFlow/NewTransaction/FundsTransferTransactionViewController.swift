@@ -28,6 +28,7 @@ class FundsTransferTransactionViewController: UIViewController {
 
     private var keyboardBehavior: KeyboardAvoidingBehavior!
     internal var model: FundsTransferTransactionViewModel!
+    internal var transactionID: String?
     private var textFields: [UITextField] {
         return [amountTextField, recipientTextField]
     }
@@ -91,9 +92,15 @@ class FundsTransferTransactionViewController: UIViewController {
 
     @objc func proceedToSigning(_ sender: Any) {
         let service = ApplicationServiceRegistry.walletService
-        let transactionID = service.createNewDraftTransaction()
-        service.updateTransaction(transactionID, amount: model.intAmount!, recipient: model.recipient!)
-        delegate?.didCreateDraftTransaction(id: transactionID)
+        transactionID = service.createNewDraftTransaction()
+        service.updateTransaction(transactionID!, amount: model.intAmount!, recipient: model.recipient!)
+        delegate?.didCreateDraftTransaction(id: transactionID!)
+    }
+
+    func willBeRemoved() {
+        if let id = transactionID {
+            ApplicationServiceRegistry.walletService.removeDraftTransaction(id)
+        }
     }
 
     private func clearErrors(in stack: UIStackView) {

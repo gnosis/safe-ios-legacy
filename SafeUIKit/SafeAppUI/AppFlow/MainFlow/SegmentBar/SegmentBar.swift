@@ -28,9 +28,7 @@ public class SegmentBar: UIControl {
 
     private let stackView = UIStackView()
     private let selectionMarker = UIView()
-    var buttons: [UIButton] {
-        return stackView.arrangedSubviews.compactMap { $0 as? UIButton }
-    }
+    var buttons = [UIButton]()
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,17 +47,30 @@ public class SegmentBar: UIControl {
         stackView.distribution = .fillEqually
         addSubview(stackView)
 
-        selectionMarker.frame = CGRect(x: 0, y: 0, width: 10, height: 2)
-        selectionMarker.backgroundColor = ColorName.azure.color
+        let bottomLine = UIView()
+        bottomLine.backgroundColor = ColorName.aquaBlue.color
+        bottomLine.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(bottomLine)
+        NSLayoutConstraint.activate(
+            [
+                bottomLine.bottomAnchor.constraint(equalTo: bottomAnchor),
+                bottomLine.leadingAnchor.constraint(equalTo: leadingAnchor),
+                bottomLine.trailingAnchor.constraint(equalTo: trailingAnchor),
+                bottomLine.heightAnchor.constraint(equalToConstant: 2)
+            ])
+
+        selectionMarker.backgroundColor = ColorName.aquaBlue.color
     }
 
     private func update() {
-        let buttons = items.enumerated().map { index, item -> UIButton in
-            let button = UIButton(type: UIButtonType.custom)
+        buttons = items.enumerated().map { index, item -> UIButton in
+            let button = UIButton(type: UIButton.ButtonType.custom)
             button.setTitle(" " + item.title, for: .normal)
-            button.setTitleColor(ColorName.darkSlateBlue.color, for: .normal)
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium)
+            button.setTitleColor(.black, for: .normal)
+            button.setTitleColor(.black, for: .highlighted)
             button.setImage(item.image, for: .normal)
+            button.tintColor = .black
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
             button.backgroundColor = .white
             button.tag = index
             button.addTarget(self, action: #selector(didTapButton(sender:)), for: .touchUpInside)
@@ -75,16 +86,24 @@ public class SegmentBar: UIControl {
     private func updateSelection() {
         selectionMarker.removeFromSuperview()
         guard let selected = selectedItem, let index = items.index(of: selected) else { return }
-        let view = stackView.arrangedSubviews[index]
-        selectionMarker.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(selectionMarker)
-        NSLayoutConstraint.activate(
-            [
-            selectionMarker.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            selectionMarker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            selectionMarker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            selectionMarker.heightAnchor.constraint(equalToConstant: 2)
-            ])
+        buttons.enumerated().forEach { indx, button in
+            if indx == index {
+                button.setTitleColor(.black, for: .normal)
+                button.tintColor = .black
+                selectionMarker.translatesAutoresizingMaskIntoConstraints = false
+                addSubview(selectionMarker)
+                NSLayoutConstraint.activate(
+                    [
+                        selectionMarker.bottomAnchor.constraint(equalTo: button.bottomAnchor),
+                        selectionMarker.leadingAnchor.constraint(equalTo: button.leadingAnchor),
+                        selectionMarker.trailingAnchor.constraint(equalTo: button.trailingAnchor),
+                        selectionMarker.heightAnchor.constraint(equalToConstant: 4)
+                    ])
+            } else {
+                button.setTitleColor(ColorName.blueyGrey.color, for: .normal)
+                button.tintColor = ColorName.blueyGrey.color
+            }
+        }
         setNeedsUpdateConstraints()
         setNeedsLayout()
     }

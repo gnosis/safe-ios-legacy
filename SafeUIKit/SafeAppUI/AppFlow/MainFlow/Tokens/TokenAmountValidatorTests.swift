@@ -5,6 +5,7 @@
 import XCTest
 @testable import SafeAppUI
 import BigInt
+import SafeUIKit
 
 class TokenAmountValidatorTests: XCTestCase {
 

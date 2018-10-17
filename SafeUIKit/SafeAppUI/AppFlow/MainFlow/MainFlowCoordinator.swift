@@ -61,17 +61,22 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
         saveCheckpoint()
         let transactionVC = FundsTransferTransactionViewController.create(tokenID: ethID)
         transactionVC.delegate = self
-        push(transactionVC)
+        push(transactionVC) { transactionVC.willBeRemoved() }
     }
 
     func openMenu() {
-        let settingsVC = MenuTableViewController.create()
-        settingsVC.delegate = self
-        push(settingsVC)
+        let menuVC = MenuTableViewController.create()
+        menuVC.delegate = self
+        push(menuVC)
     }
 
     func manageTokens() {
         enter(flow: manageTokensFlowCoordinator)
+    }
+
+    func openAddressDetails() {
+        let addressDetailsVC = SafeAddressViewController.create()
+        push(addressDetailsVC)
     }
 
 }

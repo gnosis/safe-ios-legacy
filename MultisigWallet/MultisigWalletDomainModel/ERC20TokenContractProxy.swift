@@ -3,20 +3,17 @@
 //
 
 import Foundation
+import BigInt
 
-public class ERC20TokenContractProxy {
+// see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md
+public class ERC20TokenContractProxy: EthereumContractProxy {
 
-    private var nodeService: EthereumNodeDomainService { return DomainRegistry.ethereumNodeService }
-    private var encryptionService: EncryptionDomainService { return DomainRegistry.encryptionService }
+    public func balance(of address: Address) throws -> TokenInt {
+        return try TokenInt(decodeUInt(invoke("balanceOf(address)", encodeAddress(address))))
+    }
 
-    public init() {}
-
-    public func balance(of address: Address, contract: Address) throws -> TokenInt {
-        let method = encryptionService.hash("balanceOf(address)".data(using: .ascii)!).prefix(4)
-        let args = Data(ethHex: address.value).leftPadded(to: 32)
-        let data = try nodeService.eth_call(to: contract, data: method + args).prefix(32)
-        let result = TokenInt(data.toHexString(), radix: 16)!
-        return result
+    public func transfer(to recipient: Address, amount: TokenInt) -> Data {
+        return invocation("transfer(address,uint256)", encodeAddress(recipient), encodeUInt(BigUInt(amount)))
     }
 
 }

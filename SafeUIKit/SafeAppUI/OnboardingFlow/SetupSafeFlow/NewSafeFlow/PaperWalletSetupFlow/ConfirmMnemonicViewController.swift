@@ -18,11 +18,11 @@ final class ConfirmMnemonicViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var firstWordNumberLabel: UILabel!
     @IBOutlet weak var secondWordNumberLabel: UILabel!
-    @IBOutlet weak var firstWordTextInput: TextInput!
-    @IBOutlet weak var secondWordTextInput: TextInput!
+    @IBOutlet weak var firstWordTextInput: VerifiableInput!
+    @IBOutlet weak var secondWordTextInput: VerifiableInput!
     @IBOutlet weak var confirmButton: UIButton!
 
-    private var activeInput: TextInput?
+    private var activeInput: VerifiableInput?
 
     private(set) weak var delegate: ConfirmMnemonicDelegate?
     var words: [String] { return account.mnemonicWords }
@@ -82,17 +82,17 @@ final class ConfirmMnemonicViewController: UIViewController {
     private func registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWasShown(_:)),
-                                               name: .UIKeyboardDidShow,
+                                               name: UIResponder.keyboardDidShowNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillBeHidden(_:)),
-                                               name: .UIKeyboardWillHide,
+                                               name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
 
     @objc private func keyboardWasShown(_ notification: Notification) {
         guard let info = (notification as NSNotification).userInfo,
-            let kbSize = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size,
+            let kbSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size,
             let activeInput = activeInput else { return }
         let height = kbSize.height
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: height + 8, right: 0)
@@ -131,20 +131,20 @@ final class ConfirmMnemonicViewController: UIViewController {
 
 }
 
-extension ConfirmMnemonicViewController: TextInputDelegate {
+extension ConfirmMnemonicViewController: VerifiableInputDelegate {
 
-    func textInputDidBeginEditing(_ textInput: TextInput) {
-        activeInput = textInput
+    func verifiableInputDidBeginEditing(_ verifiableInput: VerifiableInput) {
+        activeInput = verifiableInput
     }
 
-    func textInputDidEndEditing(_ textInput: TextInput) {
+    func verifiableInputDidEndEditing(_ verifiableInput: VerifiableInput) {
         activeInput = nil
     }
 
-    func textInputDidReturn(_ textInput: TextInput) {
+    func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
         if isValid() {
             confirmMnemonic()
-        } else if textInput == firstWordTextInput {
+        } else if verifiableInput == firstWordTextInput {
             _ = secondWordTextInput.becomeFirstResponder()
         } else {
             shakeErrors()

@@ -97,7 +97,7 @@ class UITestCase: XCTestCase {
 
     func givenSentEthScreen() {
         givenMainScreen()
-        MainScreen().sendButton.tap()
+        MainScreen().ethCell.tap()
     }
 
     @discardableResult

@@ -9,7 +9,7 @@ private var TestHandlerHandle: UInt8 = 0
 public extension UIAlertAction {
 
     static func create(title: String?,
-                       style: UIAlertActionStyle,
+                       style: UIAlertAction.Style,
                        handler: @escaping (UIAlertAction) -> Void) -> UIAlertAction {
         let action = UIAlertAction(title: title, style: style, handler: handler)
         #if DEBUG
