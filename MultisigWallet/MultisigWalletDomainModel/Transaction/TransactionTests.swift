@@ -83,7 +83,7 @@ class TransactionTests: XCTestCase {
         let date2 = date1.addingTimeInterval(5)
         transaction.timestampSubmitted(at: date1)
             .timestampProcessed(at: date2)
-        XCTAssertEqual(transaction.submissionDate, date1)
+        XCTAssertEqual(transaction.submittedDate, date1)
         XCTAssertEqual(transaction.processedDate, date2)
     }
 
@@ -98,7 +98,7 @@ class TransactionTests: XCTestCase {
             .change(status: .discarded)
         transaction.change(status: .draft)
         XCTAssertNil(transaction.transactionHash)
-        XCTAssertNil(transaction.submissionDate)
+        XCTAssertNil(transaction.submittedDate)
         XCTAssertNil(transaction.processedDate)
         XCTAssertTrue(transaction.signatures.isEmpty)
     }

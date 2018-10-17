@@ -45,7 +45,10 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public private(set) var fee: TokenAmount?
     public private(set) var status: TransactionStatus = .draft
     public private(set) var signatures = [Signature]()
-    public private(set) var submissionDate: Date?
+    public private(set) var createdDate: Date!
+    public private(set) var updatedDate: Date!
+    public private(set) var rejectednDate: Date?
+    public private(set) var submittedDate: Date?
     public private(set) var processedDate: Date?
     /// Blockchain transaction hash
     public private(set) var transactionHash: TransactionHash?
@@ -93,7 +96,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         }
         if self.status == .discarded && status == .draft {
             transactionHash = nil
-            submissionDate = nil
+            submittedDate = nil
             processedDate = nil
             signatures = []
         }
@@ -221,7 +224,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     @discardableResult
     public func timestampSubmitted(at date: Date) -> Transaction {
         assertCanTimestamp()
-        submissionDate = date
+        submittedDate = date
         return self
     }
 

@@ -701,8 +701,8 @@
 			children = (
 				0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */,
 				0AA5D49520E113EE006F46CD /* Transaction.swift */,
-				0AAA174620E26E90003B35B3 /* TransactionRepository.swift */,
 				0AAA173C20E22B8B003B35B3 /* TransactionTests.swift */,
+				0AAA174620E26E90003B35B3 /* TransactionRepository.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";

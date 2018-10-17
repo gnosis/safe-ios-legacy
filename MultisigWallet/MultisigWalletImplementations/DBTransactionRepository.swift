@@ -107,7 +107,7 @@ LIMIT 1;
                 transaction.amount?.description,
                 transaction.fee?.description,
                 serialized(signatures: transaction.signatures),
-                serialized(date: transaction.submissionDate),
+                serialized(date: transaction.submittedDate),
                 serialized(date: transaction.processedDate),
                 transaction.transactionHash?.value,
                 transaction.feeEstimate?.gas,
