@@ -17,10 +17,10 @@ public final class QRCodeInput: UITextField {
     public weak var qrCodeDelegate: QRCodeInputDelegate?
     public var scanValidatedConverter: ScanValidatedConverter? {
         didSet {
-            scanHandler = ScanQRCodeHandler(delegate: self, scanValidatedConverter: scanValidatedConverter)
+            scanHandler.scanValidatedConverter = scanValidatedConverter
         }
     }
-    var scanHandler: ScanQRCodeHandler!
+    var scanHandler = ScanQRCodeHandler()
 
     public enum EditingMode {
         case scanOnly
@@ -55,7 +55,7 @@ public final class QRCodeInput: UITextField {
     }
 
     private func commonInit() {
-        scanHandler = ScanQRCodeHandler(delegate: self)
+        scanHandler.delegate = self
         heightAnchor.constraint(equalToConstant: Constants.inputHeight).isActive = true
         minimumFontSize = Constants.minFontSize
         borderStyle = .roundedRect
@@ -75,6 +75,10 @@ public final class QRCodeInput: UITextField {
 
     @objc private func openBarcodeSacenner() {
         scanHandler.scan()
+    }
+
+    public func addDebugButtonToScannerController(title: String, scanValue: String) {
+        scanHandler.addDebugButtonToScannerController(title: title, scanValue: scanValue)
     }
 
 }

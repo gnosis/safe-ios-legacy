@@ -10,7 +10,7 @@ public protocol AddressInputDelegate: class {
 
 public final class AddressInput: VerifiableInput {
 
-    var scanHandler: ScanQRCodeHandler!
+    var scanHandler = ScanQRCodeHandler()
     private let addressLabel = UILabel()
     private let hexCharsSet: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                                                "a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F"]
@@ -46,7 +46,8 @@ public final class AddressInput: VerifiableInput {
     }
 
     private func commonInit() {
-        scanHandler = ScanQRCodeHandler(delegate: self, scanValidatedConverter: validatedAddress)
+        scanHandler.delegate = self
+        scanHandler.scanValidatedConverter = validatedAddress
         configureTextInput()
         addAddressLabel()
         showErrorsOnly = true

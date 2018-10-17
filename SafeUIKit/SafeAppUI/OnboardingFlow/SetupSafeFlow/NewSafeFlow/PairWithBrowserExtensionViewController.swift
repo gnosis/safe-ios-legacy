@@ -55,10 +55,19 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureBrowserExtensionInput()
+        configureSaveButton()
+        addDebugButtons()
+    }
+
+    private func configureBrowserExtensionInput() {
         extensionAddressInput.text = walletService.ownerAddress(of: .browserExtension)
         extensionAddressInput.editingMode = .scanOnly
         extensionAddressInput.qrCodeDelegate = self
         extensionAddressInput.scanValidatedConverter = ethereumService.address(browserExtensionCode:)
+    }
+
+    private func configureSaveButton() {
         let buttonTitle = walletService.isOwnerExists(.browserExtension) ? Strings.update : Strings.save
         saveButton.setTitle(buttonTitle, for: .normal)
         saveButton.isEnabled = false
@@ -99,7 +108,33 @@ final class PairWithBrowserExtensionViewController: UIViewController {
             self.activityIndicator.stopAnimating()
             ErrorHandler.showError(message: message, log: log, error: nil)
         }
+    }
 
+    // MARK: - Debug Buttons
+
+    private let validCodeTemplate = """
+        {
+            "expirationDate" : "%@",
+            "signature": {
+                "v" : 27,
+                "r" : "15823297914388465068645274956031579191506355248080856511104898257696315269079",
+                "s" : "38724157826109967392954642570806414877371763764993427831319914375642632707148"
+            }
+        }
+        """
+
+    private func addDebugButtons() {
+        extensionAddressInput.addDebugButtonToScannerController(
+            title: "Scan Valid Code", scanValue: validCode(timeIntervalSinceNow: 5 * 60))
+        extensionAddressInput.addDebugButtonToScannerController(
+            title: "Scan Invalid Code", scanValue: "invalid_code")
+        extensionAddressInput.addDebugButtonToScannerController(
+            title: "Scan Expired Code", scanValue: validCode(timeIntervalSinceNow: -5 * 60))
+    }
+
+    private func validCode(timeIntervalSinceNow: TimeInterval) -> String {
+        let dateStr = DateFormatter.networkDateFormatter.string(from: Date(timeIntervalSinceNow: timeIntervalSinceNow))
+        return String(format: validCodeTemplate, dateStr)
     }
 
 }

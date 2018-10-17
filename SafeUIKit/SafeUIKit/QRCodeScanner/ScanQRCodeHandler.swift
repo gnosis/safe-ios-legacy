@@ -15,11 +15,13 @@ public typealias ScanValidatedConverter = (String) -> String?
 class ScanQRCodeHandler {
 
     typealias CameraAvailabilityCompletion = (_ available: Bool) -> Void
+    typealias DebugButton = (title: String, scanValue: String)
 
     weak var delegate: ScanQRCodeHandlerDelegate!
     var captureDevice: AVCaptureDevice.Type = AVCaptureDevice.self
-    private var scanValidatedConverter: ScanValidatedConverter?
-    private var scannerController: UIViewController?
+    var scanValidatedConverter: ScanValidatedConverter?
+    private var scannerController: ScannerViewController?
+    private var debugButtons = [DebugButton]()
 
     enum Strings {
         static let cameraAlertTitle = LocalizedString("scanner.camera_access_required.title",
@@ -31,22 +33,29 @@ class ScanQRCodeHandler {
                                                       comment: "Button name to allow camera access")
     }
 
-    init(delegate: ScanQRCodeHandlerDelegate, scanValidatedConverter: ScanValidatedConverter? = nil) {
-        self.delegate = delegate
-        self.scanValidatedConverter = scanValidatedConverter
-    }
-
     func scan() {
         checkCameraAvailability { [unowned self] success in
             DispatchQueue.main.async {
                 if success {
-                    self.scannerController = ScannerViewController.create(delegate: self)
+                    self.scannerController = self.createScannerController()
                     self.delegate.presentController(self.scannerController!)
                 } else {
                     self.delegate.presentController(self.cameraRequiredAlert())
                 }
             }
         }
+    }
+
+    private func createScannerController() -> ScannerViewController {
+        let controller = ScannerViewController.create(delegate: self)
+        debugButtons.forEach {
+            controller.addDebugButton(title: $0.title, scanValue: $0.scanValue)
+        }
+        return controller
+    }
+
+    func addDebugButtonToScannerController(title: String, scanValue: String) {
+        debugButtons.append((title: title, scanValue: scanValue))
     }
 
     private func checkCameraAvailability(_ completion: @escaping CameraAvailabilityCompletion) {
