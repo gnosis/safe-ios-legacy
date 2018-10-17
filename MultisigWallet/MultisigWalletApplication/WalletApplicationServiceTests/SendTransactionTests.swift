@@ -12,24 +12,29 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         let message = TransactionConfirmedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
 
         let (transaction, signatureData, extensionAddress) = prepareTransactionForSigning(basedOn: message)
+        let oldUpdateDate = transaction.updatedDate!
 
         _ = service.handle(message: message)
 
         let signedTransaction = DomainRegistry.transactionRepository.findByID(transaction.id)!
         XCTAssertEqual(signedTransaction.signatures,
                        [Signature(data: signatureData, address: extensionAddress)])
+        XCTAssertGreaterThan(signedTransaction.updatedDate, oldUpdateDate)
     }
 
     func test_whenHandlesTransactionRejectedMessage_thenChangesStatus() {
         let message = TransactionRejectedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
 
         let (transaction, _, _) = prepareTransactionForSigning(basedOn: message)
+        let oldUpdatedDate = transaction.updatedDate!
 
         _ = service.handle(message: message)
 
         let rejectedTransaction = DomainRegistry.transactionRepository.findByID(transaction.id)!
         XCTAssertTrue(rejectedTransaction.signatures.isEmpty)
         XCTAssertEqual(rejectedTransaction.status, .rejected)
+        XCTAssertGreaterThan(rejectedTransaction.updatedDate, oldUpdatedDate)
+        XCTAssertNotNil(transaction.rejectedDate)
     }
 
     func test_whenCreatesNewDraftTx_thenSavesItInRepository() {
@@ -42,15 +47,20 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(tx.accountID, AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
         XCTAssertEqual(tx.sender, selectedWallet.address)
         XCTAssertEqual(tx.type, .transfer)
+        XCTAssertNotNil(tx.createdDate)
+        XCTAssertNotNil(tx.updatedDate)
     }
 
     func test_whenUpdatingTransaction_thenUpdatesFields() {
         givenReadyToUseWallet()
         let txID = service.createNewDraftTransaction()
+        let beforeUpdateTx = transactionRepository.findByID(TransactionID(txID))!
+        let oldUpdateDate = beforeUpdateTx.updatedDate
         service.updateTransaction(txID, amount: 1_000, recipient: Address.testAccount1.value)
         let tx = transactionRepository.findByID(TransactionID(txID))!
         XCTAssertEqual(tx.amount, .ether(1_000))
         XCTAssertEqual(tx.recipient, Address.testAccount1)
+        XCTAssertGreaterThan(tx.updatedDate, oldUpdateDate!)
     }
 
     func test_whenTransactionNotFound_returnsNil() {
@@ -113,6 +123,14 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         let tx = givenDraftTransaction()
         _ = try service.requestTransactionConfirmation(tx.id.id)
         XCTAssertEqual(tx.status, .signing)
+    }
+
+    func test_whenRequestingConfirmation_thenTransactionTimestampUpdated() throws {
+        let tx = givenDraftTransaction()
+        let oldDate = tx.updatedDate!
+        _ = try service.requestTransactionConfirmation(tx.id.id)
+        let updatedTx = transactionRepository.findByID(tx.id)!
+        XCTAssertGreaterThan(updatedTx.updatedDate, oldDate)
     }
 
     func test_whenRequestingConfirmation_thenSendsConfirmatioMessage() throws {
@@ -182,6 +200,19 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         _ = try service.submitTransaction(txID)
         let tx = transactionRepository.findByID(TransactionID(txID))!
         XCTAssertTrue(tx.isSignedBy(Address.deviceAddress))
+    }
+
+    func test_whenSubmittingTransaction_thenTimestamps() throws {
+        let message = TransactionConfirmedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
+        _ = prepareTransactionForSigning(basedOn: message)
+        let txID = service.handle(message: message)!
+        let oldTx = transactionRepository.findByID(TransactionID(txID))!
+        let oldUpdatedDate = oldTx.updatedDate!
+        XCTAssertNil(oldTx.submittedDate)
+        _ = try service.submitTransaction(txID)
+        let tx = transactionRepository.findByID(TransactionID(txID))!
+        XCTAssertGreaterThan(tx.updatedDate, oldUpdatedDate)
+        XCTAssertNotNil(tx.submittedDate)
     }
 
     func test_whenSubmittingTransaction_thenSendsRequestToRelayService() throws {
