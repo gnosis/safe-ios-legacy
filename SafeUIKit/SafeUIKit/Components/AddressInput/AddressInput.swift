@@ -25,6 +25,7 @@ public final class AddressInput: VerifiableInput {
             if newValue != nil {
                 let displayAddress = String(newValue!.prefix(maxLength))
                 addressLabel.text = displayAddress
+                textInput.rightViewMode = .always
                 textInput.placeholder = nil
                 validateRules(for: addressLabel.text!)
                 if isValid {
@@ -32,6 +33,7 @@ public final class AddressInput: VerifiableInput {
                 }
             } else {
                 addressLabel.text = nil
+                textInput.rightViewMode = .never
                 textInput.placeholder = Strings.addressPlaceholder
             }
         }
@@ -111,11 +113,6 @@ public final class AddressInput: VerifiableInput {
             addressLabel.bottomAnchor.constraint(equalTo: textInput.bottomAnchor)])
     }
 
-    func displayAddress(_ address: String) {
-        textInput.rightViewMode = .always
-        text = address
-    }
-
     private func validatedAddress(_ address: String) -> String? {
         return isValid(address) ? address : nil
     }
@@ -139,7 +136,7 @@ public extension AddressInput {
         alertController.addAction(
             UIAlertAction(title: Strings.AlertActions.paste, style: .default) { _ in
                 if let value = UIPasteboard.general.string {
-                    self.displayAddress(value)
+                    self.text = value
                 }
             })
         alertController.addAction(
@@ -155,7 +152,6 @@ public extension AddressInput {
     override func textFieldShouldClear(_ textField: UITextField) -> Bool {
         let shouldClear = super.textFieldShouldClear(textField)
         if shouldClear {
-            textInput.rightViewMode = .never
             text = nil
         }
         return shouldClear
@@ -170,7 +166,7 @@ extension AddressInput: ScanQRCodeHandlerDelegate {
     }
 
     func didScanCode(raw: String, converted: String?) {
-        displayAddress(raw)
+        text = raw
     }
 
 }

@@ -8,6 +8,8 @@ import XCTest
 class AddressInputTests: XCTestCase {
 
     let input = AddressInput()
+    // swiftlint:disable:next weak_delegate
+    let delegate = MockAddressInputDelegate()
 
     let validAddress_withPrefix = "0xf1511FAB6b7347899f51f9db027A32b39caE3910"
     let validAddress_withoutPrefix = "f1511FAB6b7347899f51f9db027A32b39caE3910"
@@ -21,16 +23,24 @@ class AddressInputTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        input.addressInputDelegate = delegate
     }
 
     func test_whenPastingValidAddress_thenNoErrorIsDisplayed() {
-        input.displayAddress(validAddress_withPrefix)
+        input.text = validAddress_withPrefix
         XCTAssertEqual(input.ruleLabel(by: "invalidAddress")!.status, .success)
     }
 
     func test_whenPastingInvalidAddress_thenErrorIsDisplayed() {
-        input.displayAddress(invalidAddress_tooLong_withPrefix)
+        input.text = invalidAddress_tooLong_withPrefix
         XCTAssertEqual(input.ruleLabel(by: "invalidAddress")!.status, .error)
+    }
+
+    func test_whenClearingInput_thenTextIsSetToNil() {
+        input.text = invalidAddress_tooLong_withPrefix
+        _ = input.textFieldShouldClear(input.textInput)
+        XCTAssertNil(input.text)
+        XCTAssertEqual(input.ruleLabel(by: "invalidAddress")!.status, .inactive)
     }
 
     func test_whenScanningValidAddress_thenReturnsIt() {
@@ -47,6 +57,15 @@ class AddressInputTests: XCTestCase {
         assertInvalidAddress(invalidAddress_wrongChar_withoutPrefix)
     }
 
+    func test_whenSelectionInput_thenCallsDelegateToShowAlertController() {
+        _ = input.textFieldShouldBeginEditing(input.textInput)
+        XCTAssertTrue(delegate.presentedController is UIAlertController)
+    }
+
+}
+
+private extension AddressInputTests {
+
     private func assertInvalidAddress(_ address: String) {
         input.scanHandler.didScan(address)
         XCTAssertEqual(input.text, nil)
@@ -55,6 +74,15 @@ class AddressInputTests: XCTestCase {
     private func assertValidAddress(_ address: String) {
         input.scanHandler.didScan(address)
         XCTAssertEqual(input.text, address)
+    }
+
+}
+
+class MockAddressInputDelegate: AddressInputDelegate {
+
+    var presentedController: UIViewController?
+    func presentController(_ controller: UIViewController) {
+        presentedController = controller
     }
 
 }
