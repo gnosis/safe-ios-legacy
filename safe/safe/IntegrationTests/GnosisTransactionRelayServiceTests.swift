@@ -25,7 +25,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         relayService = GnosisTransactionRelayService(url: config.relayServiceURL, logger: MockLogger())
     }
 
-    func test_safeCreationAndRecovery() throws {
+    func test_safeCreation() throws {
         let (_, _) = try createNewSafe()
     }
 
@@ -66,31 +66,6 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         XCTAssertEqual(receipt.status, .success)
         return (Address(safeAddress), recoveryKey)
     }
-
-    private func test_recoveryOnly() {
-        let address = Address("0xE2BC19Be4cDEf0D68D82c0C86E97234708Cf6c07")
-        let mnemonic = ["tiger", "over", "fabric", "diary", "subway", "quick",
-                        "sheriff", "team", "step", "develop", "wife", "afford"]
-        recoverSafe(address, mnemonic)
-    }
-
-    private func recoverSafe(_ safeAddress: Address, _ mnemonic: [String]) {
-//        let recoveryKey = encryptionService.deriveExternallyOwnedAccountFrom(
-//            mnemonic: mnemonic, at: 0)
-//        let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccountFrom(
-//            mnemonic: mnemonic, at: 1)
-
-        // Get Safe info and assure that 2 keys are among owners
-        // Form a transaction to remove all keys after 3rd
-        // Form a transaction to swap 3rd key and this device key
-        // Batch transactions with MultiSend
-        // Get Fee Estimate for batch transaction
-        // Fund safe with missing amount of Ether
-        // Submit transaction
-        // Monitor transaction
-        // Get safe info and assure that new safe owners are there
-    }
-
 
     func test_whenGettingGasPrice_thenReturnsIt() throws {
         let response = try relayService.gasPrice()
