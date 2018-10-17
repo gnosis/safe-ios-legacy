@@ -22,6 +22,9 @@ CREATE TABLE IF NOT EXISTS tbl_transactions (
     amount TEXT,
     fee TEXT,
     signatures TEXT,
+    created_date TEXT,
+    updated_date TEXT,
+    rejected_date TEXT,
     submission_date TEXT,
     processed_date TEXT,
     transaction_hash TEXT,
@@ -40,7 +43,8 @@ INSERT OR REPLACE INTO tbl_transactions VALUES (
     ?, ?, ?, ?,
     ?, ?, ?, ?,
     ?, ?, ?, ?,
-    ?, ?, ?, ?
+    ?, ?, ?, ?,
+    ?, ?, ?
 );
 """
         static let delete = "DELETE FROM tbl_transactions WHERE id = ?;"
@@ -56,6 +60,9 @@ INSERT OR REPLACE INTO tbl_transactions VALUES (
     amount,
     fee,
     signatures,
+    created_date,
+    updated_date,
+    rejected_date,
     submission_date,
     processed_date,
     transaction_hash,
@@ -84,7 +91,6 @@ LIMIT 1;
     }
 
     private let db: Database
-    private static let dateFormatter = ISO8601DateFormatter()
 
     public init(db: Database) {
         self.db = db
@@ -107,6 +113,9 @@ LIMIT 1;
                 transaction.amount?.description,
                 transaction.fee?.description,
                 serialized(signatures: transaction.signatures),
+                serialized(date: transaction.createdDate),
+                serialized(date: transaction.updatedDate),
+                serialized(date: transaction.rejectedDate),
                 serialized(date: transaction.submittedDate),
                 serialized(date: transaction.processedDate),
                 transaction.transactionHash?.value,
@@ -135,7 +144,12 @@ LIMIT 1;
 
     private func serialized(date: Date?) -> String? {
         guard let date = date else { return nil }
-        return DBTransactionRepository.dateFormatter.string(from: date)
+        return String(date.timeIntervalSinceReferenceDate)
+    }
+
+    private func deserializedDate(_ string: String?) -> Date? {
+        guard let string = string, let interval = TimeInterval(string) else { return nil }
+        return Date(timeIntervalSinceReferenceDate: interval)
     }
 
     public func remove(_ transaction: Transaction) {
@@ -222,13 +236,23 @@ LIMIT 1;
     }
 
     private func updateTimestamps(_ it: ResultSetRowIterator, _ transaction: Transaction) {
-        if let submissionDateString = it.nextString(),
-            let date = DBTransactionRepository.dateFormatter.date(from: submissionDateString) {
+        if let date = deserializedDate(it.nextString()) {
+            transaction.timestampCreated(at: date)
+        }
+
+        if let date = deserializedDate(it.nextString()) {
+            transaction.timestampUpdated(at: date)
+        }
+
+        if let date = deserializedDate(it.nextString()) {
+            transaction.timestampRejected(at: date)
+        }
+
+        if let date = deserializedDate(it.nextString()) {
             transaction.timestampSubmitted(at: date)
         }
 
-        if let processedDateString = it.nextString(),
-            let date = DBTransactionRepository.dateFormatter.date(from: processedDateString) {
+        if let date = deserializedDate(it.nextString()) {
             transaction.timestampProcessed(at: date)
         }
     }

@@ -42,6 +42,11 @@ class DBTransactionRepositoryTests: XCTestCase {
         XCTAssertEqual(saved?.operation, transaction.operation)
         XCTAssertEqual(saved?.nonce, transaction.nonce)
         XCTAssertEqual(saved?.signatures, transaction.signatures)
+        XCTAssertEqual(saved?.createdDate, transaction.createdDate)
+        XCTAssertEqual(saved?.updatedDate, transaction.updatedDate)
+        XCTAssertEqual(saved?.rejectedDate, transaction.rejectedDate)
+        XCTAssertEqual(saved?.submittedDate, transaction.submittedDate)
+        XCTAssertEqual(saved?.processedDate, transaction.processedDate)
         XCTAssertEqual(saved?.transactionHash, transaction.transactionHash)
         XCTAssertEqual(saved?.status, transaction.status)
         XCTAssertEqual(byHash, transaction)
@@ -71,6 +76,11 @@ class DBTransactionRepositoryTests: XCTestCase {
             .set(hash: TransactionHash("hash"))
             .change(status: .pending)
             .change(status: .success)
+            .timestampCreated(at: Date())
+            .timestampUpdated(at: Date())
+            .timestampRejected(at: Date())
+            .timestampSubmitted(at: Date())
+            .timestampProcessed(at: Date())
     }
 
 }
