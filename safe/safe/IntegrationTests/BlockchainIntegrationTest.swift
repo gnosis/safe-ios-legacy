@@ -46,6 +46,7 @@ class BlockchainIntegrationTest: XCTestCase {
     }
 
     func transfer(to address: String, amount: String) throws {
+        // TODO: take this key from App Config
         let sourcePrivateKey =
             PrivateKey(data: Data(ethHex: "0x72a2a6f44f24b099f279c87548a93fd7229e5927b4f1c7209f7130d5352efa40"))
         let encryptionService = EncryptionService(chainId: .rinkeby)
@@ -71,4 +72,5 @@ class BlockchainIntegrationTest: XCTestCase {
         let newBalance = try infuraService.eth_getBalance(account: destination)
         XCTAssertEqual(newBalance, BigInt(value.value))
     }
+
 }
