@@ -145,17 +145,23 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
 
-/* At least one capital letter rule for password field */
-"onboarding.set_password.capital" = "• Should have a capital letter";
+/* At least 1 number and 1 letter. */
+"onboarding.set_password.capital_and_number" = "At least 1 number and 1 letter";
 
-/* At least one digit rule for password field */
-"onboarding.set_password.digit" = "• Should have a digit";
+/* Set password screen description. */
+"onboarding.set_password.description" = "Your confidential password is used to unlock the Safe and confirm transactions.";
 
-/* Set password screen header label */
-"onboarding.set_password.header" = "Set your master password";
+/* Set password screen header. */
+"onboarding.set_password.header" = "Set your password";
 
-/* Minimum length rule for password field */
-"onboarding.set_password.length" = "• Minimum 6 charachters";
+/* Use a minimum of 8 characters. */
+"onboarding.set_password.length" = "Use a minimum of 8 characters";
+
+/* No triple characters. */
+"onboarding.set_password.no_tripple_chars" = "No triple characters";
+
+/* Set password screen title. */
+"onboarding.set_password.title" = "Create Password";
 
 /* Set up safe options screen title */
 "onboarding.setup_safe.info" = "Setup your Safe";

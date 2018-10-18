@@ -6,18 +6,18 @@ import Foundation
 
 final class PasswordValidator {
 
-    static let minInputLength = 6
+    static let minInputLength = 8
 
     static func validateMinLength(_ input: String) -> Bool {
         return input.count >= minInputLength
     }
 
-    static func validateAtLeastOneCapitalLetter(_ input: String) -> Bool {
-        return input.containsCapitalLetter()
+    static func validateAtLeastOneCapitalLetterAndOneDigit(_ input: String) -> Bool {
+        return input.containsCapitalLetter() && input.containsDigit()
     }
 
-    static func validateAtLeastOneDigit(_ input: String) -> Bool {
-        return input.containsDigit()
+    static func validateNoTrippleChar(_ input: String) -> Bool {
+        return input.noTrippleChar()
     }
 
     static func validate(input: String, equals other: String) -> Bool {
