@@ -369,3 +369,22 @@ public enum WalletOperation: Int, Codable {
     case create
 
 }
+
+public struct TransactionGroup: Equatable {
+
+    public enum GroupType: Int, Equatable {
+        case pending
+        case processed
+    }
+
+    public let type: GroupType
+    public let date: Date?
+    public var transactions: [Transaction]
+
+    public init(type: GroupType, date: Date?, transactions: [Transaction]) {
+        self.type = type
+        self.date = date
+        self.transactions = transactions
+    }
+
+}

@@ -20,6 +20,10 @@ public class TransactionsTableViewController: UITableViewController {
                                  bundle: Bundle(for: TransactionsGroupHeaderView.self)),
                            forHeaderFooterViewReuseIdentifier: "TransactionsGroupHeaderView")
         tableView.estimatedSectionHeaderHeight = tableView.sectionHeaderHeight
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         reloadData()
     }
 

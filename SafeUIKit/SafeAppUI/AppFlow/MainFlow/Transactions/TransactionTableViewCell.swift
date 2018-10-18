@@ -54,7 +54,7 @@ class TransactionTableViewCell: UITableViewCell {
         tokenAmountLabel.textColor = valueColor(transaction)
 
         progressView.isHidden = true
-        
+
         backgroundView?.backgroundColor = transaction.status == .failed ? ColorName.transparentWhiteOnGrey.color :
             UIColor.white
 

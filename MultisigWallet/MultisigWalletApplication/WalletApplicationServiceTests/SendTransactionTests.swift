@@ -77,6 +77,8 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(data.fee, 0)
         XCTAssertEqual(data.id, txID)
         XCTAssertEqual(data.token, "ETH")
+        XCTAssertNotNil(data.created)
+        XCTAssertNotNil(data.updated)
     }
 
     func test_whenTransactionDataIsThere_returnsIt() {

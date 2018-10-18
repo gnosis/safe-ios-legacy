@@ -46,12 +46,41 @@ public class TransactionDomainService {
                 }
         }
     }
+
+    public func grouppedTransactions() -> [TransactionGroup] {
+        var result = [TransactionGroup]()
+        var pending = TransactionGroup(type: .pending, date: nil, transactions: [])
+        for tx in allTransactions() {
+            if tx.status == .pending {
+                pending.transactions.append(tx)
+                continue
+            }
+            precondition(tx.allEventDates.first != nil, "Transaction must be timestamped: \(tx)")
+            let txDate = tx.allEventDates.first!.withoutTime
+            if result.last == nil || result.last!.date != txDate {
+                let group = TransactionGroup(type: .processed, date: txDate, transactions: [])
+                result.append(group)
+            }
+            result[result.count - 1].transactions.append(tx)
+        }
+        return ([pending] + result).filter { !$0.transactions.isEmpty }
+    }
+
 }
 
 fileprivate extension Transaction {
 
     var allEventDates: [Date] {
         return [processedDate, submittedDate, rejectedDate, updatedDate, createdDate].compactMap { $0 }
+    }
+
+}
+
+public extension Date {
+
+    var withoutTime: Date {
+        let calendar = Calendar.autoupdatingCurrent
+        return calendar.date(from: calendar.dateComponents([.era, .year, .month, .day], from: self))!
     }
 
 }

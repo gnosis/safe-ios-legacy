@@ -99,6 +99,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         MultisigWalletDomainModel.DomainRegistry.put(service: ErrorStream(), for: ErrorStream.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: DeploymentDomainService(),
                                                      for: DeploymentDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: TransactionDomainService(),
+                                                     for: TransactionDomainService.self)
         let relay = EventRelay(publisher: MultisigWalletDomainModel.DomainRegistry.eventPublisher)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)
 
