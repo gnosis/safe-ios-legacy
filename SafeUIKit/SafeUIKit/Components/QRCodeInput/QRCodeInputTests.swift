@@ -32,14 +32,14 @@ class QRCodeInputTests: XCTestCase {
     func test_textFieldShouldBeginEditing_whenScanOnly_thenCallsDelegateAndReturnsFalse() {
         barcodeTextField.editingMode = .scanOnly
         XCTAssertFalse(barcodeTextField.textFieldShouldBeginEditing(barcodeTextField))
-        delay(0.25)
+        delay(0.5)
         assertScannerPresented()
     }
 
     func test_openBarcodeSacenner_callsDelegate() {
         let button = barcodeTextField.rightView as! UIButton
         button.sendActions(for: .touchUpInside)
-        delay(0.25)
+        delay(0.5)
         assertScannerPresented()
     }
 
