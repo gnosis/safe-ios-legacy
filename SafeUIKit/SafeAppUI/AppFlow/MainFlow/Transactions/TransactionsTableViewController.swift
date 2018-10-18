@@ -4,18 +4,11 @@
 
 import UIKit
 import BlockiesSwift
+import MultisigWalletApplication
 
 public class TransactionsTableViewController: UITableViewController {
 
-    private var groups = [TransactionGroup]()
-
-    private enum Strings {
-        // Note: these are not used yet, just for localization for now.
-        static let pending = LocalizedString("transactions.group.pending", comment: "Pending transactions group header")
-        static let today = LocalizedString("transactions.group.today", comment: "Today transactions group header")
-        static let yesterday = LocalizedString("trasnactions.group.yesterday",
-                                               comment: "Yesterday transactions group header")
-    }
+    private var groups = [TransactionGroupData]()
 
     public static func create() -> TransactionsTableViewController {
         return StoryboardScene.Main.transactionsTableViewController.instantiate()
@@ -27,7 +20,13 @@ public class TransactionsTableViewController: UITableViewController {
                                  bundle: Bundle(for: TransactionsGroupHeaderView.self)),
                            forHeaderFooterViewReuseIdentifier: "TransactionsGroupHeaderView")
         tableView.estimatedSectionHeaderHeight = tableView.sectionHeaderHeight
-        groups = generateTransactions()
+        reloadData()
+    }
+
+    func reloadData() {
+//        groups = generateTransactions()
+        groups = ApplicationServiceRegistry.walletService.grouppedTransactions()
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -50,7 +49,7 @@ public class TransactionsTableViewController: UITableViewController {
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell",
                                                  for: indexPath) as! TransactionTableViewCell
-        cell.configure(transaction: groups[indexPath.section].transactions[indexPath.row])
+//        cell.configure(transaction: groups[indexPath.section].transactions[indexPath.row])
         return cell
     }
 

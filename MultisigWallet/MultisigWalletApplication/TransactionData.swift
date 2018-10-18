@@ -5,6 +5,24 @@
 import Foundation
 import BigInt
 
+public struct TransactionGroupData {
+
+    public enum GroupType: String {
+        case pending
+        case processed
+    }
+
+    public let type: GroupType
+    public let date: Date?
+    public let transactions: [TransactionData]
+
+    public init(type: GroupType, date: Date?, transactions: [TransactionData]) {
+        self.type = type
+        self.date = date
+        self.transactions = transactions
+    }
+}
+
 public struct TransactionData {
 
     public let id: String

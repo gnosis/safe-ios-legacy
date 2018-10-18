@@ -340,12 +340,6 @@
 /* Pending transactions group header */
 "transactions.group.pending" = "PENDING";
 
-/* Today transactions group header */
-"transactions.group.today" = "TODAY";
-
-/* Yesterday transactions group header */
-"trasnactions.group.yesterday" = "YESTERDAY";
-
 /* Blockchain address is unknown for the wallet. */
 "wallet.error.address_missing" = "Failed to find safe address. Please try again later.";
 

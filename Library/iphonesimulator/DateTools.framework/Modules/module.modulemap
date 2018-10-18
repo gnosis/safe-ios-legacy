@@ -1,0 +1,4 @@
+framework module DateTools {
+  header "DateTools-Swift.h"
+  requires objc
+}
