@@ -34,4 +34,6 @@ public protocol TransactionRepository {
     /// - Returns: new transaction identifier
     func nextID() -> TransactionID
 
+    func findAll() -> [Transaction]
+
 }
