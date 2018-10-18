@@ -56,8 +56,6 @@ enum StoryboardScene {
   enum AppFlow: StoryboardType {
     static let storyboardName = "AppFlow"
 
-    static let mainViewController = SceneType<SafeAppUI.MainViewController>(storyboard: AppFlow.self, identifier: "MainViewController")
-
     static let unlockViewController = SceneType<SafeAppUI.UnlockViewController>(storyboard: AppFlow.self, identifier: "UnlockViewController")
   }
   enum Main: StoryboardType {

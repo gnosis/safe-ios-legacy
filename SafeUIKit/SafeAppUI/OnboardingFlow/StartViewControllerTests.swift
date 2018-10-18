@@ -19,11 +19,11 @@ class StartViewControllerTests: XCTestCase {
     }
 
     func test_canCreate() {
-        XCTAssertNotNil(vc.headerLabel)
+        XCTAssertNotNil(vc.descriptionLabel)
     }
 
-    func test_whenStartActionSent_thenDelegateCalled() {
-        vc.start(self)
+    func test_whenSetupPasswordActionSent_thenDelegateCalled() {
+        vc.setupPassword(self)
         XCTAssertTrue(delegate.wasCalled)
     }
 

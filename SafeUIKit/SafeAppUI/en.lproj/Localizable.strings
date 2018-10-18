@@ -167,13 +167,10 @@
 "onboarding.setup_safe.restore" = "Restore Safe";
 
 /* App slogan */
-"onboarding.start.description" = "Your secure crypto wallet with 2-factor authentication.";
+"onboarding.start.description" = "Safely store Ether and ERC20\n tokens with 2-factor authentication.";
 
-/* App name */
-"onboarding.start.header" = "Gnosis Safe";
-
-/* Start button title */
-"onboarding.start.start" = "Start";
+/* Setup password button title */
+"onboarding.start.setup_password" = "Setup password";
 
 /* Abort safe creation button title */
 "pending_safe.abort_alert.abort" = "Abort";

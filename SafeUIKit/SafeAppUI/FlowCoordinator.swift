@@ -171,6 +171,7 @@ public final class SafeNavigationController: UINavigationController {
         navigationBar.barTintColor = .white
         navigationBar.isTranslucent = false
         navigationBar.shadowImage = UIImage()
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
 
 }
