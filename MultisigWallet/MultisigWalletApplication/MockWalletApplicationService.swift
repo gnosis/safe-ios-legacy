@@ -173,8 +173,17 @@ public class MockWalletApplicationService: WalletApplicationService {
                         recipient: "recipient",
                         amount: 0,
                         token: "ETH",
+                        tokenDecimals: 18,
                         fee: 0,
-                        status: .waitingForConfirmation)
+                        feeToken: "ETH",
+                        feeTokenDecimals: 18,
+                        status: .waitingForConfirmation,
+                        type: .outgoing,
+                        created: nil,
+                        updated: nil,
+                        submitted: nil,
+                        rejected: nil,
+                        processed: nil)
     public var requestTransactionConfirmation_throws = false
 
     public override func requestTransactionConfirmation(_ id: String) throws -> TransactionData {
