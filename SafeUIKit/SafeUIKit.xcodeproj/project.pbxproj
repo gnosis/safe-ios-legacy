@@ -192,6 +192,10 @@
 		5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527A806208E357B00AF3A50 /* ScannerViewController.swift */; };
 		5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5527A807208E357B00AF3A50 /* ScannerViewController.xib */; };
 		5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */; };
+		552D1DF02177668E003FBE2D /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D1DEF2177668E003FBE2D /* UILabel+Extension.swift */; };
+		5541586521748BC400A3CEA4 /* AddressInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586421748BC400A3CEA4 /* AddressInputViewController.swift */; };
+		5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586721748C3700A3CEA4 /* AddressInput.swift */; };
+		5541586A21748C5200A3CEA4 /* AddressInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586921748C5200A3CEA4 /* AddressInputTests.swift */; };
 		555B0E6720CA83DF00424CEE /* TokenDoubleInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B0E6620CA83DF00424CEE /* TokenDoubleInputViewController.swift */; };
 		555EB6EC216CA42100E06553 /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6EB216CA42100E06553 /* TextInputViewController.swift */; };
 		555EB6F0216CA5CF00E06553 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6EF216CA5CF00E06553 /* TextInput.swift */; };
@@ -217,6 +221,9 @@
 		558FD80A20765C53004F070E /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* BigButton.swift */; };
 		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
 		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
+		55C3C6232174CB6E00FA5B4F /* ScanQRCodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6222174CB6E00FA5B4F /* ScanQRCodeHandler.swift */; };
+		55C3C6272175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6262175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift */; };
+		55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6282175CC2800FA5B4F /* MockAVCaptureDevice.swift */; };
 		55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */; };
 		55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */; };
 		55D0EC5E216F6F70003D9A53 /* TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC5D216F6F70003D9A53 /* TokenInput.swift */; };
@@ -489,6 +496,10 @@
 		5527A806208E357B00AF3A50 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		5527A807208E357B00AF3A50 /* ScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
 		5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		552D1DEF2177668E003FBE2D /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		5541586421748BC400A3CEA4 /* AddressInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputViewController.swift; sourceTree = "<group>"; };
+		5541586721748C3700A3CEA4 /* AddressInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInput.swift; sourceTree = "<group>"; };
+		5541586921748C5200A3CEA4 /* AddressInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputTests.swift; sourceTree = "<group>"; };
 		555B0E6620CA83DF00424CEE /* TokenDoubleInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDoubleInputViewController.swift; sourceTree = "<group>"; };
 		555EB6EB216CA42100E06553 /* TextInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
 		555EB6EF216CA5CF00E06553 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
@@ -510,6 +521,9 @@
 		558FD80920765C53004F070E /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
 		55A7B2B220ECE2940035EF38 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55C3C6222174CB6E00FA5B4F /* ScanQRCodeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeHandler.swift; sourceTree = "<group>"; };
+		55C3C6262175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeHandlerTests.swift; sourceTree = "<group>"; };
+		55C3C6282175CC2800FA5B4F /* MockAVCaptureDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAVCaptureDevice.swift; sourceTree = "<group>"; };
 		55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
 		55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55D0EC5D216F6F70003D9A53 /* TokenInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInput.swift; sourceTree = "<group>"; };
@@ -834,6 +848,7 @@
 				555EB6EB216CA42100E06553 /* TextInputViewController.swift */,
 				555EB71C216DF23700E06553 /* VerifiableInputViewController.swift */,
 				55D0EC61216F7383003D9A53 /* TokenInputViewController.swift */,
+				5541586421748BC400A3CEA4 /* AddressInputViewController.swift */,
 			);
 			path = SafeUIKitDemo;
 			sourceTree = "<group>";
@@ -852,6 +867,7 @@
 			isa = PBXGroup;
 			children = (
 				5524734F21428E4C00A77557 /* Components */,
+				5524735621428EC400A77557 /* QRCodeScanner */,
 				0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */,
 				556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */,
 				556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */,
@@ -874,6 +890,7 @@
 				0AE950CF20D29D9E0099B79D /* DesignableView.swift */,
 				550E7CDB21708E1E0032DE6C /* String+Extensions.swift */,
 				550E7CDD21708E540032DE6C /* UITextField+Extensions.swift */,
+				552D1DEF2177668E003FBE2D /* UILabel+Extension.swift */,
 			);
 			path = SafeUIKit;
 			sourceTree = "<group>";
@@ -1023,13 +1040,13 @@
 			children = (
 				55D0EC5C216F6DB9003D9A53 /* TokenInputs */,
 				555EB6ED216CA55000E06553 /* TextInputs */,
+				5541586621748C0200A3CEA4 /* AddressInput */,
 				556251F72149119200F569EE /* QRCodeView */,
 				556251CF2146710800F569EE /* TokenBalanceCell */,
 				5524735921428FA300A77557 /* IdenticonView */,
 				5524735821428F5000A77557 /* H1Label */,
 				5524735721428F2500A77557 /* BackgroundImageView */,
 				55DEBC11214AA59F0017CD4B /* BackgroundHeaderFooterView */,
-				5524735621428EC400A77557 /* ScannerViewController */,
 				5524735521428E9000A77557 /* BigButton */,
 				5524735421428E7600A77557 /* QRCodeInput */,
 			);
@@ -1066,14 +1083,17 @@
 			path = BigButton;
 			sourceTree = "<group>";
 		};
-		5524735621428EC400A77557 /* ScannerViewController */ = {
+		5524735621428EC400A77557 /* QRCodeScanner */ = {
 			isa = PBXGroup;
 			children = (
+				55C3C6222174CB6E00FA5B4F /* ScanQRCodeHandler.swift */,
+				55C3C6262175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift */,
+				5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */,
 				5527A806208E357B00AF3A50 /* ScannerViewController.swift */,
 				5527A807208E357B00AF3A50 /* ScannerViewController.xib */,
-				5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */,
+				55C3C6282175CC2800FA5B4F /* MockAVCaptureDevice.swift */,
 			);
-			path = ScannerViewController;
+			path = QRCodeScanner;
 			sourceTree = "<group>";
 		};
 		5524735721428F2500A77557 /* BackgroundImageView */ = {
@@ -1099,6 +1119,15 @@
 				0AD998A120D3E5BA00E6F3CA /* IdenticonViewTests.swift */,
 			);
 			path = IdenticonView;
+			sourceTree = "<group>";
+		};
+		5541586621748C0200A3CEA4 /* AddressInput */ = {
+			isa = PBXGroup;
+			children = (
+				5541586721748C3700A3CEA4 /* AddressInput.swift */,
+				5541586921748C5200A3CEA4 /* AddressInputTests.swift */,
+			);
+			path = AddressInput;
 			sourceTree = "<group>";
 		};
 		555EB6ED216CA55000E06553 /* TextInputs */ = {
@@ -1616,6 +1645,7 @@
 				555EB6EC216CA42100E06553 /* TextInputViewController.swift in Sources */,
 				0A00293220CFD75F009A4BFE /* MySegmentViewController.swift in Sources */,
 				55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */,
+				5541586521748BC400A3CEA4 /* AddressInputViewController.swift in Sources */,
 				555EB71D216DF23700E06553 /* VerifiableInputViewController.swift in Sources */,
 				0A0974D620480CEB005753DF /* ViewController.swift in Sources */,
 				0A60B516211333620066821A /* ProgressViewController.swift in Sources */,
@@ -1640,9 +1670,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552D1DF02177668E003FBE2D /* UILabel+Extension.swift in Sources */,
 				5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */,
 				0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */,
 				5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */,
+				5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */,
 				550E7CDE21708E540032DE6C /* UITextField+Extensions.swift in Sources */,
 				5524735E2142930A00A77557 /* UIImage+Extensions.swift in Sources */,
 				55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */,
@@ -1671,6 +1703,7 @@
 				558FD80A20765C53004F070E /* BigButton.swift in Sources */,
 				5506395C20D17CAD000F2A82 /* ApproximateCurrencyFormatter.swift in Sources */,
 				55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */,
+				55C3C6232174CB6E00FA5B4F /* ScanQRCodeHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1679,9 +1712,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				556252062149201500F569EE /* QRCodeViewTests.swift in Sources */,
+				55C3C6272175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift in Sources */,
 				0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */,
 				5506395E20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift in Sources */,
 				552473642142AD6900A77557 /* IdenticonViewTests.swift in Sources */,
+				55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */,
 				555EB71B216DF19800E06553 /* VerifiableInputTests.swift in Sources */,
 				0A9BA3C9207F6B6A001DC22F /* BigButtonTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
@@ -1689,6 +1724,7 @@
 				550954EE20C9592900F5F25F /* TokenDoubleInputTests.swift in Sources */,
 				556251D52146721A00F569EE /* TokenNumberFormatterTests.swift in Sources */,
 				0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
+				5541586A21748C5200A3CEA4 /* AddressInputTests.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
 				555EB6F2216CA5E900E06553 /* TextInputTests.swift in Sources */,
 				5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */,

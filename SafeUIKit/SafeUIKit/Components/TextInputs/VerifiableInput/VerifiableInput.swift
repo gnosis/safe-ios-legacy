@@ -25,7 +25,7 @@ public class VerifiableInput: UIView {
         return stackView.arrangedSubviews.compactMap { $0 as? RuleLabel }
     }
 
-    public var isValidated: Bool {
+    public var isValid: Bool {
         return allRules.reduce(true) { $0 && $1.status == .success }
     }
 
@@ -33,9 +33,19 @@ public class VerifiableInput: UIView {
 
     public var maxLength: Int = Int.max
 
+    /// When setting this property textInput.text value is formatted and validated.
     public var text: String? {
-        get { return textInput.text }
-        set { textInput.text = newValue != nil ? String(newValue!.prefix(maxLength)) : nil }
+        get {
+            return textInput.text
+        }
+        set {
+            if newValue != nil {
+                textInput.text = String(newValue!.prefix(maxLength))
+                validateRules(for: textInput.text!)
+            } else {
+                textInput.text = nil
+            }
+        }
     }
 
     public var isEnabled: Bool {
@@ -117,6 +127,13 @@ public class VerifiableInput: UIView {
         text = textInput.text // validation
     }
 
+    func validateRules(for text: String) {
+        allRules.forEach {
+            $0.validate(text)
+            hideRuleIfNeeded($0)
+        }
+    }
+
 }
 
 extension VerifiableInput: UITextFieldDelegate {
@@ -130,10 +147,7 @@ extension VerifiableInput: UITextFieldDelegate {
             resetRules()
             return true
         }
-        allRules.forEach {
-            $0.validate(newText)
-            hideRuleIfNeeded($0)
-        }
+        validateRules(for: newText)
         return true
     }
 
@@ -143,7 +157,7 @@ extension VerifiableInput: UITextFieldDelegate {
     }
 
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let shouldReturn = isValidated
+        let shouldReturn = isValid
         if shouldReturn {
             delegate?.verifiableInputDidReturn(self)
         }

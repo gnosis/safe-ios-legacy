@@ -18,6 +18,9 @@ final class ScannerViewController: UIViewController {
     @IBOutlet weak var debugButtonsStackView: UIStackView!
     @IBOutlet weak var closeButton: UIButton!
 
+    private var debugButtonReturnCodes = [String]()
+    private var debugButtons = [UIButton]()
+
     static func create(delegate: ScannerDelegate) -> ScannerViewController {
         let bundle = Bundle(for: ScannerViewController.self)
         let controller = ScannerViewController(nibName: "ScannerViewController", bundle: bundle)
@@ -33,7 +36,11 @@ final class ScannerViewController: UIViewController {
         super.viewDidLoad()
 
         #if !DEBUG
-            debugButtonsStackView.removeFromSuperview()
+        debugButtonsStackView.removeFromSuperview()
+        #else
+        debugButtons.forEach {
+            debugButtonsStackView.addArrangedSubview($0)
+        }
         #endif
 
         var codeReaderVC: UIViewController
@@ -59,39 +66,19 @@ final class ScannerViewController: UIViewController {
         }
     }
 
-    // MARK: - Debug Buttons
-
-    private let validCodeTemplate = """
-        {
-            "expirationDate" : "%@",
-            "signature": {
-                "v" : 27,
-                "r" : "15823297914388465068645274956031579191506355248080856511104898257696315269079",
-                "s" : "38724157826109967392954642570806414877371763764993427831319914375642632707148"
-            }
-        }
-        """
-
-    private func validCode(timeIntervalSinceNow: TimeInterval) -> String {
-        let dateStr = DateFormatter.networkDateFormatter.string(from: Date(timeIntervalSinceNow: timeIntervalSinceNow))
-        return String(format: validCodeTemplate, dateStr)
+    func addDebugButton(title: String, scanValue: String) {
+        let button = UIButton()
+        button.tag = debugButtonReturnCodes.count
+        button.setTitleColor(.red, for: .normal)
+        button.setTitle(title, for: .normal)
+        button.addTarget(self, action: #selector(scanDebugCode), for: .touchUpInside)
+        debugButtonReturnCodes.append(scanValue)
+        debugButtons.append(button)
     }
 
-    @IBAction func debugScanRandomValidCode(_ sender: Any) {
-        delegate?.didScan(validCode(timeIntervalSinceNow: 5 * 60))
-    }
-
-    @IBAction func debugScanInvalidCode(_ sender: Any) {
-        delegate?.didScan("invalid_code")
-    }
-
-    @IBAction func debugScanExpiredCode(_ sender: Any) {
-        delegate?.didScan(validCode(timeIntervalSinceNow: -5 * 60))
-    }
-
-    @IBAction func debugScanTwoValidCodes(_ sender: Any) {
-        delegate?.didScan(validCode(timeIntervalSinceNow: 5 * 60))
-        delegate?.didScan(validCode(timeIntervalSinceNow: 6 * 60))
+    @objc private func scanDebugCode(_ sender: UIButton) {
+        let code = debugButtonReturnCodes[sender.tag]
+        delegate?.didScan(code)
     }
 
 }

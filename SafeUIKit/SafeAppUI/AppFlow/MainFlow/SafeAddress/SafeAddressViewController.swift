@@ -41,7 +41,7 @@ final class SafeAddressViewController: UIViewController {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
         identiconView.seed = address
         configureQRCode(address)
-        configureAddressLabel(address)
+        safeAddressLabel.setEthereumAddress(address)
     }
 
     private func configureTexts() {
@@ -66,15 +66,6 @@ final class SafeAddressViewController: UIViewController {
         qrCodeView.layer.borderWidth = 1
         qrCodeView.layer.borderColor = UIColor.black.cgColor
         qrCodeView.layer.cornerRadius = 9
-    }
-
-    private func configureAddressLabel(_ address: String) {
-        let attrStr = NSMutableAttributedString(string: address)
-        attrStr.addAttribute(
-            NSAttributedString.Key.foregroundColor,
-            value: ColorName.blueyGrey.color,
-            range: NSRange(location: 4, length: attrStr.length - 8))
-        safeAddressLabel.attributedText = attrStr
     }
 
 }
