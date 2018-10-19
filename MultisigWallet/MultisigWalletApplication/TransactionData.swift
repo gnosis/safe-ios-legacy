@@ -46,6 +46,10 @@ public struct TransactionData {
     public let rejected: Date?
     public let processed: Date?
 
+    public var displayDate: Date? {
+        return [processed, rejected, submitted, updated, created].compactMap { $0 }.first
+    }
+
     public init(id: String,
                 sender: String,
                 recipient: String,

@@ -20,6 +20,7 @@ public class TransactionsTableViewController: UITableViewController {
                                  bundle: Bundle(for: TransactionsGroupHeaderView.self)),
                            forHeaderFooterViewReuseIdentifier: "TransactionsGroupHeaderView")
         tableView.estimatedSectionHeaderHeight = tableView.sectionHeaderHeight
+        ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +63,14 @@ public class TransactionsTableViewController: UITableViewController {
 
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+}
+
+extension TransactionsTableViewController: EventSubscriber {
+
+    public func notify() {
+        reloadData()
     }
 
 }

@@ -43,7 +43,7 @@ class TransactionTableViewCell: UITableViewCell {
         transactionDescriptionLabel.textColor = transaction.status == .failed ? ColorName.tomato.color :
             ColorName.darkSlateBlue.color
 
-        transactionDateLabel.text = transaction.submitted?.timeAgoSinceNow
+        transactionDateLabel.text = transaction.displayDate?.timeAgoSinceNow
         transactionDateLabel.textColor = ColorName.blueyGrey.color
 
         pairValueStackView.isHidden = false
@@ -53,6 +53,7 @@ class TransactionTableViewCell: UITableViewCell {
             .string(from: transaction.amount)
         tokenAmountLabel.textColor = valueColor(transaction)
 
+        fiatAmountLabel.text = nil
         singleValueLabelStackView.isHidden = true
         progressView.isHidden = true
 

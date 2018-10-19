@@ -76,6 +76,7 @@ public class TransactionDomainService {
             if let receipt = receipt {
                 let status = receipt.status == .success ? TransactionStatus.success : .failed
                 tx.change(status: status).timestampProcessed(at: Date())
+                DomainRegistry.transactionRepository.save(tx)
                 hasUpdates = true
             }
         }
