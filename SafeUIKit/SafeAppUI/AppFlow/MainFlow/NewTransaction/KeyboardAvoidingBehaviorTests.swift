@@ -4,6 +4,7 @@
 
 @testable import SafeAppUI
 import XCTest
+import CommonTestSupport
 
 class KeyboardAvoidingBehaviorTests: XCTestCase {
 
@@ -108,8 +109,8 @@ class KeyboardAvoidingBehaviorTests: XCTestCase {
         }
 
         behavior.didShowKeyboard(notification)
-
-        XCTAssertEqual(scrollView.contentOffset.y, 2_500 - 10)
+        delay()
+        XCTAssertEqual(scrollView.contentOffset.y, 2_520)
     }
 
     func test_didHideKeyboard_resetsInsets() {
