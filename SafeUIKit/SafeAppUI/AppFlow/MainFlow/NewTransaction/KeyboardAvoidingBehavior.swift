@@ -12,6 +12,7 @@ class KeyboardAvoidingBehavior {
 
     /// Set this variable to reference active text field when a text field gets focus
     var activeTextField: UITextField?
+    var useTextFieldSuperviewFrame = false
 
     init(scrollView: UIScrollView, notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.scrollView = scrollView
@@ -52,15 +53,25 @@ class KeyboardAvoidingBehavior {
         let keyboardFrame = view.convert(keyboardScreen, from: UIScreen.main.coordinateSpace)
         scrollView.contentInset.bottom = keyboardFrame.height
         scrollView.scrollIndicatorInsets = scrollView.contentInset
-        var rect = view.frame
+        var rect = view.bounds
         rect.size.height -= keyboardFrame.height
-        if let field = activeTextField, !rect.contains(field.frame.origin) {
+        if let frame = textFieldFrame(in: view), !rect.contains(frame) {
             var animated = true
             if let isSuppressing = notification.userInfo?["suppress_animation"] as? Bool {
                 animated = !isSuppressing
             }
-            scrollView.scrollRectToVisible(field.frame, animated: animated)
+            DispatchQueue.main.async {
+                self.scrollView.scrollRectToVisible(frame, animated: animated)
+            }
         }
+    }
+
+    private func textFieldFrame(in parent: UIView) -> CGRect? {
+        guard let field = activeTextField else { return nil }
+        let frame = useTextFieldSuperviewFrame ?
+            parent.convert(field.superview!.bounds, from: field.superview!) :
+            parent.convert(field.bounds, from: field)
+        return frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: -10, right: 0))
     }
 
     @objc func didHideKeyboard(_ notification: NSNotification) {

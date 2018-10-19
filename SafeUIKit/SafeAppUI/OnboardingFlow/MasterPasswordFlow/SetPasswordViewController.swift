@@ -11,16 +11,16 @@ protocol SetPasswordViewControllerDelegate: class {
 
 final class SetPasswordViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var verifiableInput: VerifiableInput!
+
     private weak var delegate: SetPasswordViewControllerDelegate?
+    private var keyboardBehavior: KeyboardAvoidingBehavior!
 
     enum Strings {
         static let title = LocalizedString("onboarding.set_password.title",
                                            comment: "Set password screen title.")
-        static let header = LocalizedString("onboarding.set_password.header",
-                                            comment: "Set password screen header.")
         static let description = LocalizedString("onboarding.set_password.description",
                                                  comment: "Set password screen description.")
         static let length = LocalizedString("onboarding.set_password.length",
@@ -40,15 +40,36 @@ final class SetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = Strings.title
-        headerLabel.text = Strings.header
+        configureKeyboardBehavior()
+        configureInput()
+    }
+
+    private func configureInput() {
         verifiableInput.delegate = self
         verifiableInput.isSecure = true
+        verifiableInput.isDimmed = true
         verifiableInput.addRule(Strings.length) { PasswordValidator.validateMinLength($0) }
         verifiableInput.addRule(Strings.capitalAndDigit) {
             PasswordValidator.validateAtLeastOneCapitalLetterAndOneDigit($0)
         }
         verifiableInput.addRule(Strings.trippleChars) { PasswordValidator.validateNoTrippleChar($0) }
         _ = verifiableInput.becomeFirstResponder()
+    }
+
+    private func configureKeyboardBehavior() {
+        keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
+        keyboardBehavior.activeTextField = verifiableInput.textInput
+        keyboardBehavior.useTextFieldSuperviewFrame = true
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardBehavior.start()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        keyboardBehavior.stop()
     }
 
 }

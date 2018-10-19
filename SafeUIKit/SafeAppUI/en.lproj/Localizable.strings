@@ -151,9 +151,6 @@
 /* Set password screen description. */
 "onboarding.set_password.description" = "Your confidential password is used to unlock the Safe and confirm transactions.";
 
-/* Set password screen header. */
-"onboarding.set_password.header" = "Set your password";
-
 /* Use a minimum of 8 characters. */
 "onboarding.set_password.length" = "Use a minimum of 8 characters";
 

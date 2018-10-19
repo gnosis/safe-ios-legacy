@@ -13,7 +13,7 @@ import UIKit
 public class VerifiableInput: UIView {
 
     @IBOutlet var wrapperView: UIView!
-    @IBOutlet weak var textInput: TextInput!
+    @IBOutlet public private(set) weak var textInput: TextInput!
     @IBOutlet weak var stackView: UIStackView!
 
     public weak var delegate: VerifiableInputDelegate?
