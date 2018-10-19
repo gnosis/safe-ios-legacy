@@ -271,6 +271,36 @@
 /* Data included */
 "transaction.data.title" = "Data included";
 
+/* 'View on Etherscan' button name */
+"transaction.details.externalViewer" = "transaction.details.externalViewer";
+
+/* 'Fee' parameter name */
+"transaction.details.fee" = "transaction.details.fee";
+
+/* 'Status' parameter name */
+"transaction.details.status" = "transaction.details.status";
+
+/* 'Failed' status */
+"transaction.details.status.failed" = "transaction.details.status.failed";
+
+/* 'Pending' status */
+"transaction.details.status.pending" = "transaction.details.status.pending";
+
+/* 'Rejected' status */
+"transaction.details.status.rejected" = "transaction.details.status.rejected";
+
+/* 'Success' status */
+"transaction.details.status.success" = "transaction.details.status.success";
+
+/* 'Submitted' parameter name */
+"transaction.details.submitted" = "transaction.details.submitted";
+
+/* 'Type' parameter name */
+"transaction.details.type" = "transaction.details.type";
+
+/* 'Outgoing' transaction type */
+"transaction.details.type.outgoing" = "transaction.details.type.outgoing";
+
 /* Address length '%d' is too long for required length '%d' */
 "transaction.error.addressIsTooLong" = "Address is too long: %d instead of %d characters.";
 

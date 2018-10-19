@@ -46,18 +46,20 @@ enum TransactionStatusParameter: Int {
     case failed = -1
     case pending
     case success
+    case rejected
 
     var stringValue: String {
         switch self {
-        case .failed: return "Failed"
-        case .pending: return "Pending"
-        case .success: return "Success"
+        case .failed: return LocalizedString("transaction.details.status.failed", comment: "'Failed' status")
+        case .pending: return LocalizedString("transaction.details.status.pending", comment: "'Pending' status")
+        case .success: return LocalizedString("transaction.details.status.success", comment: "'Success' status")
+        case .rejected: return LocalizedString("transaction.details.status.rejected", comment: "'Rejected' status")
         }
     }
 
     var colorValue: UIColor {
         switch self {
-        case .failed: return ColorName.tomato.color
+        case .failed, .rejected: return ColorName.tomato.color
         case .pending: return ColorName.battleshipGrey.color
         case .success: return ColorName.greenTeal.color
         }
