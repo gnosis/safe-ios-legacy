@@ -7,6 +7,10 @@ import DateTools
 import MultisigWalletApplication
 import SafeUIKit
 
+public protocol TransactionDetailsViewControllerDelegate: class {
+    func showTransactionInExternalApp(from controller: TransactionDetailsViewController)
+}
+
 public class TransactionDetailsViewController: UIViewController {
 
     struct Strings {
@@ -30,6 +34,7 @@ public class TransactionDetailsViewController: UIViewController {
     @IBOutlet weak var transactionFeeView: TokenAmountTransactionParameterView!
     @IBOutlet weak var viewInExternalAppButton: UIButton!
 
+    public weak var delegate: TransactionDetailsViewControllerDelegate?
     public private(set) var transactionID: String!
     private var transaction: TransactionData!
 
@@ -87,17 +92,17 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func configureStatus() {
         transactionStatusView.name = Strings.status
-        switch transaction.status {
-        case .rejected:
-            transactionStatusView.status = .rejected
-        case .failed:
-            transactionStatusView.status = .failed
-        case .success:
-            transactionStatusView.status = .success
-        default:
-            transactionStatusView.status = .pending
-        }
+        transactionStatusView.status = statusViewStatus(from: transaction.status)
         transactionStatusView.value = string(from: transaction.displayDate!)
+    }
+
+    func statusViewStatus(from status: TransactionData.Status) -> TransactionStatusParameter {
+        switch status {
+        case .rejected: return .rejected
+        case .failed: return .failed
+        case .success: return .success
+        default: return .pending
+        }
     }
 
     private func configureFee() {
@@ -110,6 +115,11 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func configureViewInOtherApp() {
         viewInExternalAppButton.setTitle(Strings.externalApp, for: .normal)
+        viewInExternalAppButton.addTarget(self, action: #selector(viewInExternalApp), for: .touchUpInside)
+    }
+
+    @objc private func viewInExternalApp() {
+        delegate?.showTransactionInExternalApp(from: self)
     }
 
     func string(from date: Date) -> String {
