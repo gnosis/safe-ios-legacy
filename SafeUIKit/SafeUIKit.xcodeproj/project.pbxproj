@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A00291720CEDDD0009A4BFE /* transactions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A00291620CEDDD0009A4BFE /* transactions.txt */; };
 		0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A00292B20CFC118009A4BFE /* SegmentBar.swift */; };
 		0A00293020CFCBA3009A4BFE /* SegmentBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A00292F20CFCBA3009A4BFE /* SegmentBarController.swift */; };
 		0A00293220CFD75F009A4BFE /* MySegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A00293120CFD75E009A4BFE /* MySegmentViewController.swift */; };
@@ -288,7 +287,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0A00291620CEDDD0009A4BFE /* transactions.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = transactions.txt; sourceTree = "<group>"; };
 		0A00292B20CFC118009A4BFE /* SegmentBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBar.swift; sourceTree = "<group>"; };
 		0A00292F20CFCBA3009A4BFE /* SegmentBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBarController.swift; sourceTree = "<group>"; };
 		0A00293120CFD75E009A4BFE /* MySegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySegmentViewController.swift; sourceTree = "<group>"; };
@@ -972,7 +970,6 @@
 		0AF8D53C20D00FF6001E8423 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
-				0A00291620CEDDD0009A4BFE /* transactions.txt */,
 				0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */,
 				0A321BBD20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib */,
 				0A4DF82E20CE9D5B0095C00D /* TransactionsTableViewController.swift */,
@@ -1461,7 +1458,6 @@
 				0A334E4D209C8E3800ABC6AE /* AppFlow.storyboard in Resources */,
 				55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */,
 				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
-				0A00291720CEDDD0009A4BFE /* transactions.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
