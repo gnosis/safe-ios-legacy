@@ -3,6 +3,8 @@
 //
 
 import UIKit
+import MultisigWalletApplication
+import SafeUIKit
 
 class TransactionTableViewCell: UITableViewCell {
 
@@ -30,6 +32,32 @@ class TransactionTableViewCell: UITableViewCell {
         transactionTypeIconImageView.layer.borderWidth = 2
         transactionTypeIconImageView.layer.borderColor = UIColor.white.cgColor
         transactionTypeIconImageView.clipsToBounds = true
+    }
+
+    func configure(transaction: TransactionData) {
+        transactionIconImageView.image = UIImage.createBlockiesImage(seed: transaction.recipient)
+
+        transactionTypeIconImageView.image = typeIcon(transaction)
+
+        transactionDescriptionLabel.text = transaction.recipient
+        transactionDescriptionLabel.textColor = transaction.status == .failed ? ColorName.tomato.color :
+            ColorName.darkSlateBlue.color
+
+        transactionDateLabel.text = transaction.submitted?.timeAgoSinceNow
+        transactionDateLabel.textColor = ColorName.blueyGrey.color
+
+        pairValueStackView.isHidden = false
+
+        tokenAmountLabel.text = TokenNumberFormatter
+            .ERC20Token(code: transaction.token, decimals: transaction.tokenDecimals)
+            .string(from: transaction.amount)
+        tokenAmountLabel.textColor = valueColor(transaction)
+
+        progressView.isHidden = true
+        
+        backgroundView?.backgroundColor = transaction.status == .failed ? ColorName.transparentWhiteOnGrey.color :
+            UIColor.white
+
     }
 
     func configure(transaction: TransactionOverview) {
@@ -74,6 +102,19 @@ class TransactionTableViewCell: UITableViewCell {
         case .incoming: return Asset.TransactionOverviewIcons.receive.image
         case .outgoing: return Asset.TransactionOverviewIcons.sent.image
         case .settings: return Asset.TransactionOverviewIcons.settingTransactionIcon.image
+        }
+    }
+
+    private func typeIcon(_ transaction: TransactionData) -> UIImage {
+        switch transaction.type {
+        case .outgoing: return Asset.TransactionOverviewIcons.sent.image
+        }
+    }
+
+    private func valueColor(_ transaction: TransactionData) -> UIColor {
+        if transaction.status == .failed { return ColorName.battleshipGrey.color }
+        switch transaction.type {
+        case .outgoing: return ColorName.tomato.color
         }
     }
 

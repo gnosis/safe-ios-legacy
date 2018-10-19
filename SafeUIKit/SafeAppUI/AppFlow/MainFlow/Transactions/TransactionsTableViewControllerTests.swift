@@ -7,6 +7,7 @@ import XCTest
 import MultisigWalletApplication
 import MultisigWalletImplementations
 import DateTools
+import SafeUIKit
 
 class TransactionsTableViewControllerTests: XCTestCase {
 
@@ -93,6 +94,49 @@ class TransactionsTableViewControllerTests: XCTestCase {
         XCTAssertEqual(headerView.headerLabel.text, string, file: file, line: line)
     }
 
+    func test_whenPendingTransaction_thenDisplaysPendingData() {
+        let now = Date()
+        let transaction = TransactionData(id: UUID().uuidString,
+                                          sender: "0x674647242239941b2D35368e66A4EdC39b161Da9",
+                                          recipient: "0x97e3bA6cC43b2aF2241d4CAD4520DA8266170988",
+                                          amount: 3,
+                                          token: "GNO",
+                                          tokenDecimals: 18,
+                                          fee: 0,
+                                          feeToken: "ETH",
+                                          feeTokenDecimals: 18,
+                                          status: .pending,
+                                          type: .outgoing,
+                                          created: now - 5.seconds,
+                                          updated: now - 2.seconds,
+                                          submitted: now - 1.seconds,
+                                          rejected: nil,
+                                          processed: nil)
+        service.expect_grouppedTransactions(result: [TransactionGroupData(type: .pending,
+                                                                          date: nil,
+                                                                          transactions: [transaction])])
+        createWindow(controller)
+        let cell = self.cell(at: 0)
+
+        assertEqual(cell.transactionIconImageView.image,
+                    UIImage.createBlockiesImage(seed: transaction.recipient))
+        assertEqual(cell.transactionTypeIconImageView.image,
+                    Asset.TransactionOverviewIcons.sent.image)
+
+        XCTAssertEqual(cell.transactionDescriptionLabel.text, transaction.recipient)
+
+        XCTAssertEqual(cell.transactionDateLabel.text, transaction.submitted?.timeAgoSinceNow)
+
+        XCTAssertFalse(cell.pairValueStackView.isHidden)
+
+        let formatter = TokenNumberFormatter.ERC20Token(code: transaction.token, decimals: transaction.tokenDecimals)
+        XCTAssertEqual(cell.tokenAmountLabel.text, formatter.string(from: transaction.amount))
+    }
+
+    private func assertEqual(_ lhs: UIImage?, _ rhs: UIImage?, file: StaticString = #file, line: UInt = #line) {
+        XCTAssertEqual(lhs?.pngData(), rhs?.pngData(), file: file, line: line)
+    }
+
 }
 
 extension TransactionGroupData {
@@ -103,9 +147,18 @@ extension TransactionGroupData {
                             sender: "sender",
                             recipient: "recipient",
                             amount: 0,
-                            token: "eth",
+                            token: "ETH",
+                            tokenDecimals: 18,
                             fee: 0,
-                            status: .success)
+                            feeToken: "ETH",
+                            feeTokenDecimals: 18,
+                            status: .success,
+                            type: .outgoing,
+                            created: nil,
+                            updated: nil,
+                            submitted: nil,
+                            rejected: nil,
+                            processed: nil)
         }
         return TransactionGroupData(type: type, date: date, transactions: transactions)
     }

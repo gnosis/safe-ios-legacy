@@ -389,8 +389,17 @@ public class WalletApplicationService: Assertable {
                                recipient: tx.recipient?.value ?? "",
                                amount: tx.amount?.amount ?? 0,
                                token: "ETH",
+                               tokenDecimals: 18,
                                fee: tx.fee?.amount ?? 0,
-                               status: status(of: tx))
+                               feeToken: "ETH",
+                               feeTokenDecimals: 18,
+                               status: status(of: tx),
+                               type: .outgoing,
+                               created: nil,
+                               updated: nil,
+                               submitted: nil,
+                               rejected: nil,
+                               processed: nil)
     }
 
     private func status(of tx: Transaction) -> TransactionData.Status {

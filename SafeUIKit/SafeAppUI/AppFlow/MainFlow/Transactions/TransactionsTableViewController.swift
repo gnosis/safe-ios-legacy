@@ -24,7 +24,6 @@ public class TransactionsTableViewController: UITableViewController {
     }
 
     func reloadData() {
-//        groups = generateTransactions()
         groups = ApplicationServiceRegistry.walletService.grouppedTransactions()
         tableView.reloadData()
     }
@@ -49,7 +48,7 @@ public class TransactionsTableViewController: UITableViewController {
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell",
                                                  for: indexPath) as! TransactionTableViewCell
-//        cell.configure(transaction: groups[indexPath.section].transactions[indexPath.row])
+        cell.configure(transaction: groups[indexPath.section].transactions[indexPath.row])
         return cell
     }
 
