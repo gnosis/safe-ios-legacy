@@ -53,11 +53,11 @@ class TransactionTableViewCell: UITableViewCell {
             .string(from: transaction.amount)
         tokenAmountLabel.textColor = valueColor(transaction)
 
+        singleValueLabelStackView.isHidden = true
         progressView.isHidden = true
-        
+
         backgroundView?.backgroundColor = transaction.status == .failed ? ColorName.transparentWhiteOnGrey.color :
             UIColor.white
-
     }
 
     func configure(transaction: TransactionOverview) {

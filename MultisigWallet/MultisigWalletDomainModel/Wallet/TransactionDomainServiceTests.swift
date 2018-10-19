@@ -6,6 +6,7 @@ import XCTest
 @testable import MultisigWalletDomainModel
 import MultisigWalletImplementations
 import CommonTestSupport
+import DateTools
 
 class TransactionDomainServiceTests: XCTestCase {
 
@@ -119,6 +120,53 @@ class TransactionDomainServiceTests: XCTestCase {
         for t in repo.findAll() {
             repo.remove(t)
         }
+    }
+
+    func test_whenSingleProcessedTransactionWithDate_thenSingleGroup() {
+        let now = Date()
+        let stored = [
+            Transaction.success().timestampProcessed(at: now)
+        ]
+        save(stored)
+        let expected = [
+            TransactionGroup(type: .processed, date: now.dateForGrouping, transactions: stored)
+        ]
+        XCTAssertEqual(service.grouppedTransactions(), expected)
+    }
+
+    func test_whenSinglePendingTransaction_thenSingleGroup() {
+        let now = Date()
+        let stored = [
+            Transaction.pending().timestampSubmitted(at: now)
+        ]
+        save(stored)
+        let expected = [
+            TransactionGroup(type: .pending, date: nil, transactions: stored)
+        ]
+        XCTAssertEqual(service.grouppedTransactions(), expected)
+    }
+
+    func test_whenMultipleDates_thenMultipleGroups() {
+        let dates = (0..<5).map { i in Date() - i.days }
+        let stored = dates.map { d in Transaction.success().timestampProcessed(at: d) }
+        save(stored)
+        let groups = stored.map { t in
+            TransactionGroup(type: .processed,
+                             date: t.processedDate?.dateForGrouping,
+                             transactions: [t]) }
+        XCTAssertEqual(service.grouppedTransactions(), groups)
+    }
+
+    func test_whenMultipleInOneDay_thenOneGroup() {
+        let dates = (0..<5).map { i in Date(timeIntervalSince1970: 10) - i.seconds }
+        let stored = dates.map { d in Transaction.success().timestampProcessed(at: d) }
+        save(stored)
+        let groups = [
+            TransactionGroup(type: .processed,
+                             date: dates.first?.dateForGrouping,
+                             transactions: stored)
+        ]
+        XCTAssertEqual(service.grouppedTransactions(), groups)
     }
 
 }

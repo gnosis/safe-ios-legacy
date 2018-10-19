@@ -19,27 +19,8 @@ class TransactionsTableViewControllerTests: XCTestCase {
         ApplicationServiceRegistry.put(service: service, for: WalletApplicationService.self)
     }
 
-    func work_in_progress_disabled_test_hasContent() {
-        service.expect_grouppedTransactions(result: [])
-        createWindow(controller)
-        XCTAssertGreaterThan(controller.tableView.numberOfSections, 0)
-        XCTAssertGreaterThan(controller.tableView.numberOfRows(inSection: 0), 1)
-        let firstCell = cell(at: 0)
-        XCTAssertNotNil(firstCell.transactionIconImageView.image)
-        XCTAssertNotNil(firstCell.transactionTypeIconImageView.image)
-        XCTAssertNotNil(firstCell.transactionDescriptionLabel.text)
-        XCTAssertNotNil(firstCell.transactionDateLabel.text)
-        XCTAssertNotNil(firstCell.fiatAmountLabel.text)
-        XCTAssertNotNil(firstCell.tokenAmountLabel.text)
-        XCTAssertFalse(firstCell.pairValueStackView.isHidden)
-        XCTAssertNil(firstCell.singleValueLabel.text)
-        XCTAssertTrue(firstCell.singleValueLabelStackView.isHidden)
-        XCTAssertNotNil(firstCell.progressView)
-        XCTAssertGreaterThan(firstCell.progressView.progress, 0)
-        XCTAssertFalse(firstCell.progressView.isHidden)
-    }
-
-    func work_in_progress_disabled_test_whenSelectingRow_thenDeselectsIt() {
+    func test_whenSelectingRow_thenDeselectsIt() {
+        service.expect_grouppedTransactions(result: [.group(count: 1)])
         createWindow(controller)
         controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
@@ -131,6 +112,8 @@ class TransactionsTableViewControllerTests: XCTestCase {
 
         let formatter = TokenNumberFormatter.ERC20Token(code: transaction.token, decimals: transaction.tokenDecimals)
         XCTAssertEqual(cell.tokenAmountLabel.text, formatter.string(from: transaction.amount))
+
+        XCTAssertTrue(cell.singleValueLabelStackView.isHidden)
     }
 
     private func assertEqual(_ lhs: UIImage?, _ rhs: UIImage?, file: StaticString = #file, line: UInt = #line) {
