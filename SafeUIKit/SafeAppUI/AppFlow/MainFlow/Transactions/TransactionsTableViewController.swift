@@ -28,8 +28,12 @@ public class TransactionsTableViewController: UITableViewController {
     }
 
     func reloadData() {
-        groups = ApplicationServiceRegistry.walletService.grouppedTransactions()
-        tableView.reloadData()
+        DispatchQueue.global().async {
+            self.groups = ApplicationServiceRegistry.walletService.grouppedTransactions()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - Table view data source

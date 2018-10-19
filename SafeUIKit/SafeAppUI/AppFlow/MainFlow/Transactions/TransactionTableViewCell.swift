@@ -58,7 +58,6 @@ class TransactionTableViewCell: UITableViewCell {
 
         backgroundView?.backgroundColor = transaction.status == .failed ? ColorName.transparentWhiteOnGrey.color :
             UIColor.white
-
     }
 
     func configure(transaction: TransactionOverview) {
