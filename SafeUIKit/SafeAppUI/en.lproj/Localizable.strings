@@ -272,34 +272,34 @@
 "transaction.data.title" = "Data included";
 
 /* 'View on Etherscan' button name */
-"transaction.details.externalViewer" = "transaction.details.externalViewer";
+"transaction.details.externalViewer" = "View on Etherscan.io";
 
 /* 'Fee' parameter name */
-"transaction.details.fee" = "transaction.details.fee";
+"transaction.details.fee" = "Transaction fee";
 
 /* 'Status' parameter name */
-"transaction.details.status" = "transaction.details.status";
+"transaction.details.status" = "Status";
 
 /* 'Failed' status */
-"transaction.details.status.failed" = "transaction.details.status.failed";
+"transaction.details.status.failed" = "Failed";
 
 /* 'Pending' status */
-"transaction.details.status.pending" = "transaction.details.status.pending";
+"transaction.details.status.pending" = "Pending";
 
 /* 'Rejected' status */
-"transaction.details.status.rejected" = "transaction.details.status.rejected";
+"transaction.details.status.rejected" = "Rejected";
 
 /* 'Success' status */
-"transaction.details.status.success" = "transaction.details.status.success";
+"transaction.details.status.success" = "Success";
 
 /* 'Submitted' parameter name */
-"transaction.details.submitted" = "transaction.details.submitted";
+"transaction.details.submitted" = "Submitted";
 
 /* 'Type' parameter name */
-"transaction.details.type" = "transaction.details.type";
+"transaction.details.type" = "Type";
 
 /* 'Outgoing' transaction type */
-"transaction.details.type.outgoing" = "transaction.details.type.outgoing";
+"transaction.details.type.outgoing" = "Outgoing Transfer";
 
 /* Address length '%d' is too long for required length '%d' */
 "transaction.error.addressIsTooLong" = "Address is too long: %d instead of %d characters.";

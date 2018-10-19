@@ -605,7 +605,6 @@
                                     <outlet property="transactionDescriptionLabel" destination="Wsc-kl-wv7" id="Sxh-T2-gEB"/>
                                     <outlet property="transactionIconImageView" destination="ALb-Di-C54" id="wZt-Xk-iyN"/>
                                     <outlet property="transactionTypeIconImageView" destination="zfz-Sd-Eah" id="1n4-Pi-ARK"/>
-                                    <segue destination="hMI-YP-Is6" kind="show" id="8cO-dM-YYU"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
