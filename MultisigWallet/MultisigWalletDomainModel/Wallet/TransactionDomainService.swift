@@ -47,23 +47,24 @@ public class TransactionDomainService {
         }
     }
 
+    /// Groups transactions by day, in reverse chronologic order, with pending transaction as 1st group.
     public func grouppedTransactions() -> [TransactionGroup] {
-        var result = [TransactionGroup]()
-        var pending = TransactionGroup(type: .pending, date: nil, transactions: [])
+        var groups = [TransactionGroup]()
+        var pendingGroup = TransactionGroup(type: .pending, date: nil, transactions: [])
         for tx in allTransactions() {
             if tx.status == .pending {
-                pending.transactions.append(tx)
+                pendingGroup.transactions.append(tx)
                 continue
             }
             precondition(tx.allEventDates.first != nil, "Transaction must be timestamped: \(tx)")
-            let txDate = tx.allEventDates.first!.withoutTime
-            if result.last == nil || result.last!.date != txDate {
-                let group = TransactionGroup(type: .processed, date: txDate, transactions: [])
-                result.append(group)
+            let txDate = tx.allEventDates.first!.dateForGrouping
+            if groups.last?.date != txDate {
+                let newGroup = TransactionGroup(type: .processed, date: txDate, transactions: [])
+                groups.append(newGroup)
             }
-            result[result.count - 1].transactions.append(tx)
+            groups[groups.count - 1].transactions.append(tx)
         }
-        return ([pending] + result).filter { !$0.transactions.isEmpty }
+        return ([pendingGroup] + groups).filter { !$0.transactions.isEmpty }
     }
 
     public func updatePendingTransactions() throws {
@@ -99,7 +100,7 @@ fileprivate extension Transaction {
 
 public extension Date {
 
-    var withoutTime: Date {
+    var dateForGrouping: Date {
         let calendar = Calendar.autoupdatingCurrent
         return calendar.date(from: calendar.dateComponents([.era, .year, .month, .day], from: self))!
     }

@@ -133,7 +133,7 @@ class TransactionDomainServiceTests: XCTestCase {
         ]
         save(stored)
         let expected = [
-            TransactionGroup(type: .processed, date: now.withoutTime, transactions: stored)
+            TransactionGroup(type: .processed, date: now.dateForGrouping, transactions: stored)
         ]
         XCTAssertEqual(service.grouppedTransactions(), expected)
     }
@@ -156,7 +156,7 @@ class TransactionDomainServiceTests: XCTestCase {
         save(stored)
         let groups = stored.map { t in
             TransactionGroup(type: .processed,
-                             date: t.processedDate?.withoutTime,
+                             date: t.processedDate?.dateForGrouping,
                              transactions: [t]) }
         XCTAssertEqual(service.grouppedTransactions(), groups)
     }
@@ -167,7 +167,7 @@ class TransactionDomainServiceTests: XCTestCase {
         save(stored)
         let groups = [
             TransactionGroup(type: .processed,
-                             date: dates.first?.withoutTime,
+                             date: dates.first?.dateForGrouping,
                              transactions: stored)
         ]
         XCTAssertEqual(service.grouppedTransactions(), groups)
