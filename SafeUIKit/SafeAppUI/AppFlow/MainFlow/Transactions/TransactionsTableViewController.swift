@@ -6,9 +6,14 @@ import UIKit
 import BlockiesSwift
 import MultisigWalletApplication
 
+public protocol TransactionsTableViewControllerDelegate: class {
+    func didSelectTransaction(id: String)
+}
+
 public class TransactionsTableViewController: UITableViewController {
 
     private var groups = [TransactionGroupData]()
+    public weak var delegate: TransactionsTableViewControllerDelegate?
 
     public static func create() -> TransactionsTableViewController {
         return StoryboardScene.Main.transactionsTableViewController.instantiate()
@@ -63,6 +68,7 @@ public class TransactionsTableViewController: UITableViewController {
 
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        delegate?.didSelectTransaction(id: groups[indexPath.section].transactions[indexPath.row].id)
     }
 
 }

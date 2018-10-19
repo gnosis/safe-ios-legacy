@@ -243,6 +243,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         return expected_walletState[actual_walletState.count - 1]
     }
 
+    public override func subscribeForTransactionUpdates(subscriber: EventSubscriber) {}
+
     public func verify() -> Bool {
         return expected_walletState.count == actual_walletState.count &&
             actual_deployWallet.count == expected_deployWallet.count &&
