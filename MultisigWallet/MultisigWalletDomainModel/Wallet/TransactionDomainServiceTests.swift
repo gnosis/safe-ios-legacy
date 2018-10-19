@@ -199,49 +199,6 @@ class TransactionDomainServiceTests: XCTestCase {
         XCTAssertNotNil(tx.processedDate)
     }
 
-    func test_whenNetworkThrows_thenRetries() throws {
-        
-    }
-
-
-//
-//    func test_whenFunded_thenRunsSynchronisation() {
-//        givenDeployingWallet()
-//        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: successReceipt)
-//        deploymentService.start()
-//        delay(0.25)
-//        XCTAssertTrue(syncService.didSync)
-//    }
-//
-//    func test_whenFunded_thenWaitsForTransaction() {
-//        givenDeployingWallet(withoutTransaction: true)
-//        relayService.expect_safeCreationTransactionHash(address: wallet.address!, hash: nil)
-//        relayService.expect_safeCreationTransactionHash(address: wallet.address!, hash: TransactionHash.test1)
-//        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: successReceipt)
-//        deploymentService.start()
-//        relayService.verify()
-//        wallet = DomainRegistry.walletRepository.selectedWallet()!
-//        XCTAssertEqual(wallet.creationTransactionHash, TransactionHash.test1.value)
-//    }
-//
-//
-//    func test_whenTransactionKnown_thenWaitsForItsStatus() {
-//        givenDeployingWallet()
-//        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: successReceipt)
-//        deploymentService.start()
-//        relayService.verify()
-//        nodeService.verify()
-//        wallet = DomainRegistry.walletRepository.selectedWallet()!
-//        XCTAssertTrue(wallet.state === wallet.readyToUseState)
-//    }
-//
-//    func test_whenTransactionFailed_thenCancels() {
-//        givenDeployingWallet()
-//        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: failedReceipt)
-//        deploymentService.start()
-//        assertDeploymentCancelled()
-//    }
-
 }
 
 extension TransactionReceipt {
