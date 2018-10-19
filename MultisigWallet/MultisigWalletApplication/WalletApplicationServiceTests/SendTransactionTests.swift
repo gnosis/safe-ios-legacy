@@ -76,7 +76,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(data.amount, 0)
         XCTAssertEqual(data.fee, 0)
         XCTAssertEqual(data.id, txID)
-        XCTAssertEqual(data.token, "ETH")
+        XCTAssertEqual(data.token, "")
         XCTAssertNotNil(data.created)
         XCTAssertNotNil(data.updated)
     }
