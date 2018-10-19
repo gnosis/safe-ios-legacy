@@ -66,7 +66,27 @@ public class TransactionDomainService {
         return ([pending] + result).filter { !$0.transactions.isEmpty }
     }
 
+    public func updatePendingTransactions() throws {
+        let transactions = DomainRegistry.transactionRepository.findAll().filter { $0.status == .pending }
+        var hasUpdates = false
+        for tx in transactions {
+            precondition(tx.transactionHash != nil, "Transaction must have a blockchain hash: \(tx)")
+            let receipt = try DomainRegistry.ethereumNodeService
+                .eth_getTransactionReceipt(transaction: tx.transactionHash!)
+            if let receipt = receipt {
+                let status = receipt.status == .success ? TransactionStatus.success : .failed
+                tx.change(status: status).timestampProcessed(at: Date())
+                hasUpdates = true
+            }
+        }
+        if hasUpdates {
+            DomainRegistry.eventPublisher.publish(TransactionStatusUpdated())
+        }
+    }
+
 }
+
+public class TransactionStatusUpdated: DomainEvent {}
 
 fileprivate extension Transaction {
 

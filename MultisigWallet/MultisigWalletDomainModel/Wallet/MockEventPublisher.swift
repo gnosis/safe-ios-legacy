@@ -7,15 +7,15 @@ import Foundation
 public class MockEventPublisher: EventPublisher {
 
     private var filteredEventTypes = [String]()
-    private var expectedToPublish = [DomainEvent.Type]()
-    private var actuallyPublished = [DomainEvent.Type]()
+    private var expectedToPublish = [String]()
+    private var actuallyPublished = [String]()
 
     public func addFilter(_ event: Any.Type) {
         filteredEventTypes.append(String(reflecting: event))
     }
 
     public func expectToPublish(_ event: DomainEvent.Type) {
-        expectedToPublish.append(event)
+        expectedToPublish.append(String(reflecting: event))
     }
 
     public func publishedWhatWasExpected() -> Bool {
@@ -27,7 +27,7 @@ public class MockEventPublisher: EventPublisher {
             return
         }
         super.publish(event)
-        actuallyPublished.append(type(of: event))
+        actuallyPublished.append(String(reflecting: type(of: event)))
     }
 
     private var expected_reset = [String]()
@@ -42,7 +42,8 @@ public class MockEventPublisher: EventPublisher {
     }
 
     public func verify() -> Bool {
-        return actual_reset == expected_reset
+        return actual_reset == expected_reset &&
+            expectedToPublish == actuallyPublished
     }
 
 }
