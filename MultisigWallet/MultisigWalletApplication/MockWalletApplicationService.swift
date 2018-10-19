@@ -210,6 +210,18 @@ public class MockWalletApplicationService: WalletApplicationService {
         actual_removeDraftTransaction.append(id)
     }
 
+    private var expected_grouppedTransactions = [[TransactionGroupData]]()
+    private var actual_grouppedTransactions = [String]()
+
+    public func expect_grouppedTransactions(result: [TransactionGroupData]) {
+        expected_grouppedTransactions.append(result)
+    }
+
+    public override func grouppedTransactions() -> [TransactionGroupData] {
+        actual_grouppedTransactions.append(#function)
+        return expected_grouppedTransactions[actual_grouppedTransactions.count - 1]
+    }
+
     private var expected_walletState = [WalletStateId]()
     private var actual_walletState = [String]()
 
@@ -229,7 +241,8 @@ public class MockWalletApplicationService: WalletApplicationService {
                 result && (pair.1 == nil || pair.0 === pair.1)
             } &&
             actual_abortDeployment == expected_abortDeployment &&
-            actual_removeDraftTransaction == expected_removeDraftTransaction
+            actual_removeDraftTransaction == expected_removeDraftTransaction &&
+            actual_grouppedTransactions.count == expected_grouppedTransactions.count
     }
 
     private var expected_deployWallet_error: Swift.Error?

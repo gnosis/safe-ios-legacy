@@ -350,6 +350,10 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Transactions
 
+    public func grouppedTransactions() -> [TransactionGroupData] {
+        return []
+    }
+
     public func updateTransaction(_ id: String, amount: BigInt, recipient: String) {
         let transaction = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
         transaction.change(amount: .ether(amount))

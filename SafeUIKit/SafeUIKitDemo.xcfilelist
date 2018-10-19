@@ -10,3 +10,4 @@ ${SRCROOT}/../Library/${PLATFORM_NAME}/SipHash.framework
 ${SRCROOT}/../Library/${PLATFORM_NAME}/Kingfisher.framework
 ${SRCROOT}/../Library/${PLATFORM_NAME}/BigInt.framework
 ${SRCROOT}/../Library/${PLATFORM_NAME}/CryptoEthereumSwift.framework
+${SRCROOT}/../Library/${PLATFORM_NAME}/DateTools.framework
