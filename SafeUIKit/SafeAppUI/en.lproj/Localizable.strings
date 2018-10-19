@@ -127,11 +127,11 @@
 /* Title for new safe screen */
 "new_safe.title" = "Configure three Safe owners.";
 
-/* Confirm password screen header */
-"onboarding.confirm_password.header" = "Repeat your master password";
+/* Passwords must match. */
+"onboarding.confirm_password.match" = "Passwords must match";
 
-/* Password confirmation must match set password rule */
-"onboarding.confirm_password.match" = "• Passwords must match";
+/* Confirm password screen title. */
+"onboarding.confirm_password.title" = "Confirm Password";
 
 /* Error alert's title */
 "onboarding.error.title" = "Error";

@@ -29,7 +29,7 @@ import UIKit
  calls `setUp()` on a child flow coordinator.
 
  During `setUp()`, flow coordinator creates necessary view controllers and uses navigation-related methods
- for presenting view controllers. For example, `MasterPasswordFlowCoordinator` creates SetPasswordViewController and
+ for presenting view controllers. For example, `MasterPasswordFlowCoordinator` creates PasswordViewController and
  pushes it onto navigation stack using `push()` method.
 
 */

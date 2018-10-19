@@ -7,6 +7,7 @@ import SafeUIKit
 import IdentityAccessApplication
 
 class Authenticator {
+
     var user: String?
 
     static let instance = Authenticator()

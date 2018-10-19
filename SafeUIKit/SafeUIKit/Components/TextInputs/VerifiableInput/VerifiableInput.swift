@@ -160,6 +160,8 @@ extension VerifiableInput: UITextFieldDelegate {
         let shouldReturn = isValid
         if shouldReturn {
             delegate?.verifiableInputDidReturn(self)
+        } else {
+            shake()
         }
         return shouldReturn
     }
