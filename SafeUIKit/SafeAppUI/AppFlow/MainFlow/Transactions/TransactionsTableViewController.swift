@@ -20,6 +20,7 @@ public class TransactionsTableViewController: UITableViewController {
                                  bundle: Bundle(for: TransactionsGroupHeaderView.self)),
                            forHeaderFooterViewReuseIdentifier: "TransactionsGroupHeaderView")
         tableView.estimatedSectionHeaderHeight = tableView.sectionHeaderHeight
+        ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +67,14 @@ public class TransactionsTableViewController: UITableViewController {
 
 }
 
+extension TransactionsTableViewController: EventSubscriber {
+
+    public func notify() {
+        reloadData()
+    }
+
+}
+
 extension UIImage {
 
     static func createBlockiesImage(seed: String) -> UIImage {
@@ -73,47 +82,5 @@ extension UIImage {
                                 size: 8,
                                 scale: 5)
         return blockies.createImage(customScale: 3)!
-    }
-}
-
-@available(*, deprecated, message: "Please use TransactionGroupData instead")
-struct TransactionGroup {
-    var name: String
-    var transactions: [TransactionOverview]
-    var isPending: Bool
-}
-
-@available(*, deprecated, message: "Please use TransactionData instead")
-struct TransactionOverview {
-
-    var transactionDescription: String
-    var formattedDate: String
-    var status: TransactionStatus
-    var tokenAmount: String?
-    var fiatAmount: String?
-    var type: TransactionType
-    var actionDescription: String?
-    var icon: UIImage
-
-}
-
-@available(*, deprecated, message: "Please use TransactionData.TransactionType instead")
-enum TransactionType {
-    case incoming
-    case outgoing
-    case settings
-}
-
-@available(*, deprecated, message: "Please use TransactionData.TransactionStatus instead")
-enum TransactionStatus {
-    case pending(Double)
-    case success
-    case failed
-
-    var isFailed: Bool {
-        switch self {
-        case .failed: return true
-        default: return false
-        }
     }
 }

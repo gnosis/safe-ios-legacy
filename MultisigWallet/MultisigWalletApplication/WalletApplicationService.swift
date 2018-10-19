@@ -261,7 +261,7 @@ public class WalletApplicationService: Assertable {
             switch err {
             case .inconsistentData_notAmongWhitelistedToken:
                 ApplicationServiceRegistry.logger.error(
-                    "Trying to rearrange not equalt to whitelisted amount tokens",
+                    "Trying to rearrange not equal to whitelisted amount tokens",
                     error: err)
             case .inconsistentData_notEqualToWhitelistedAmount:
                 ApplicationServiceRegistry.logger.error(
@@ -349,6 +349,11 @@ public class WalletApplicationService: Assertable {
     }
 
     // MARK: - Transactions
+
+    public func subscribeForTransactionUpdates(subscriber: EventSubscriber) {
+        resetSubscribers()
+        ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: TransactionStatusUpdated.self)
+    }
 
     public func grouppedTransactions() -> [TransactionGroupData] {
         return DomainRegistry.transactionService.grouppedTransactions().map { group in

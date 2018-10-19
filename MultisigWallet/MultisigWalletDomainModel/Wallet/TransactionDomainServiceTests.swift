@@ -13,9 +13,13 @@ class TransactionDomainServiceTests: XCTestCase {
     let repo = InMemoryTransactionRepository()
     let service = TransactionDomainService()
     var tx: Transaction!
+    let nodeService = MockEthereumNodeService1()
+    let eventPublisher = MockEventPublisher()
 
     override func setUp() {
         super.setUp()
+        DomainRegistry.put(service: nodeService, for: EthereumNodeDomainService.self)
+        DomainRegistry.put(service: eventPublisher, for: EventPublisher.self)
         DomainRegistry.put(service: repo, for: TransactionRepository.self)
         tx = Transaction(id: repo.nextID(),
                          type: .transfer,
@@ -169,6 +173,39 @@ class TransactionDomainServiceTests: XCTestCase {
         XCTAssertEqual(service.grouppedTransactions(), groups)
     }
 
+    func test_whenUpdatingPendingStatus_thenRequestsReciept() throws {
+        let stored = [Transaction.pending()]
+        save(stored)
+        nodeService.expect_eth_getTransactionReceipt(transaction: stored[0].transactionHash!, receipt: .success)
+        eventPublisher.expectToPublish(TransactionStatusUpdated.self)
+
+        try service.updatePendingTransactions()
+
+        XCTAssertTrue(eventPublisher.verify())
+        nodeService.verify()
+        let tx = repo.findByID(stored[0].id)!
+        XCTAssertNotNil(tx.processedDate)
+    }
+
+    func test_whenFailedStatus_thenUpdatesTxStatusAndTimestamp() throws {
+        let stored = [Transaction.pending()]
+        save(stored)
+        nodeService.expect_eth_getTransactionReceipt(transaction: stored[0].transactionHash!, receipt: .failed)
+
+        try service.updatePendingTransactions()
+
+        let tx = repo.findByID(stored[0].id)!
+        XCTAssertEqual(tx.status, .failed)
+        XCTAssertNotNil(tx.processedDate)
+    }
+
+}
+
+extension TransactionReceipt {
+
+    static let success = TransactionReceipt(hash: TransactionHash.test1, status: .success)
+    static let failed = TransactionReceipt(hash: TransactionHash.test1, status: .failed)
+
 }
 
 extension Transaction {
@@ -193,7 +230,7 @@ extension Transaction {
         return draft()
             .change(status: .signing)
             .add(signature: Signature(data: Data(), address: Address.testAccount1))
-            .set(hash: TransactionHash("some"))
+            .set(hash: TransactionHash.test1)
     }
 
     static func draft() -> Transaction {

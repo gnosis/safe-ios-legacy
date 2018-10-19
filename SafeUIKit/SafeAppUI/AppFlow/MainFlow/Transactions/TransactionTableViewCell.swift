@@ -43,7 +43,7 @@ class TransactionTableViewCell: UITableViewCell {
         transactionDescriptionLabel.textColor = transaction.status == .failed ? ColorName.tomato.color :
             ColorName.darkSlateBlue.color
 
-        transactionDateLabel.text = transaction.submitted?.timeAgoSinceNow
+        transactionDateLabel.text = transaction.displayDate?.timeAgoSinceNow
         transactionDateLabel.textColor = ColorName.blueyGrey.color
 
         pairValueStackView.isHidden = false
@@ -53,56 +53,12 @@ class TransactionTableViewCell: UITableViewCell {
             .string(from: transaction.amount)
         tokenAmountLabel.textColor = valueColor(transaction)
 
+        fiatAmountLabel.text = nil
         singleValueLabelStackView.isHidden = true
         progressView.isHidden = true
 
         backgroundView?.backgroundColor = transaction.status == .failed ? ColorName.transparentWhiteOnGrey.color :
             UIColor.white
-    }
-
-    func configure(transaction: TransactionOverview) {
-        transactionIconImageView.image = transaction.status.isFailed ? Asset.TransactionOverviewIcons.error.image :
-            transaction.icon
-
-        transactionTypeIconImageView.image = typeIcon(transaction)
-
-        transactionDescriptionLabel.text = transaction.transactionDescription
-        transactionDescriptionLabel.textColor = transaction.status.isFailed ? ColorName.tomato.color :
-            ColorName.darkSlateBlue.color
-
-        transactionDateLabel.text = transaction.formattedDate
-        transactionDateLabel.textColor = ColorName.blueyGrey.color
-
-        pairValueStackView.isHidden = transaction.tokenAmount == nil && transaction.fiatAmount == nil
-
-        tokenAmountLabel.text = transaction.tokenAmount
-        tokenAmountLabel.textColor = valueColor(transaction)
-
-        fiatAmountLabel.text = transaction.fiatAmount
-        fiatAmountLabel.textColor = ColorName.blueyGrey.color
-
-        singleValueLabel.text = transaction.actionDescription
-        singleValueLabel.textColor = valueColor(transaction)
-
-        singleValueLabelStackView.isHidden = transaction.actionDescription == nil
-
-        if case TransactionStatus.pending(let progress) = transaction.status {
-            progressView.isHidden = false
-            progressView.setProgress(Float(progress), animated: true)
-        } else {
-            progressView.isHidden = true
-        }
-
-        backgroundView?.backgroundColor = transaction.status.isFailed ? ColorName.transparentWhiteOnGrey.color :
-            UIColor.white
-    }
-
-    private func typeIcon(_ transaction: TransactionOverview) -> UIImage {
-        switch transaction.type {
-        case .incoming: return Asset.TransactionOverviewIcons.receive.image
-        case .outgoing: return Asset.TransactionOverviewIcons.sent.image
-        case .settings: return Asset.TransactionOverviewIcons.settingTransactionIcon.image
-        }
     }
 
     private func typeIcon(_ transaction: TransactionData) -> UIImage {
@@ -115,15 +71,6 @@ class TransactionTableViewCell: UITableViewCell {
         if transaction.status == .failed { return ColorName.battleshipGrey.color }
         switch transaction.type {
         case .outgoing: return ColorName.tomato.color
-        }
-    }
-
-    private func valueColor(_ transaction: TransactionOverview) -> UIColor {
-        if transaction.status.isFailed { return ColorName.battleshipGrey.color }
-        switch transaction.type {
-        case .incoming: return ColorName.greenTeal.color
-        case .outgoing: return ColorName.tomato.color
-        case .settings: return ColorName.darkSlateBlue.color
         }
     }
 

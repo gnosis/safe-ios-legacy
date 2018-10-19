@@ -47,39 +47,33 @@ class SynchronisationServiceTests: XCTestCase {
     func test_whenSync_thenCallsAccountUpdateDomainService() {
         startSync()
         delay(retryInterval * 2)
+        assertAccountSyncSuccess()
     }
 
 }
 
 private extension SynchronisationServiceTests {
 
-    func startSync() {
+    func startSync(line: UInt = #line) {
         publisher.expectToPublish(TokenListMerged.self)
-        XCTAssertFalse(tokenListService.didReturnItems)
+        publisher.expectToPublish(AccountsBalancesUpdated.self)
+        XCTAssertFalse(tokenListService.didReturnItems, line: line)
         DispatchQueue.global().async {
             self.syncService.sync()
         }
     }
 
-    private func assertTokenListSyncSuccess() {
-        XCTAssertTrue(tokenListService.didReturnItems)
-        XCTAssertTrue(publisher.verify())
+    private func assertTokenListSyncSuccess(line: UInt = #line) {
+        XCTAssertTrue(tokenListService.didReturnItems, "Service returned no items", line: line)
+        XCTAssertTrue(publisher.verify(), "Publisher not verified", line: line)
     }
 
-    private func assertTokenListSyncInProgress() {
-        XCTAssertFalse(tokenListService.didReturnItems)
+    private func assertTokenListSyncInProgress(line: UInt = #line) {
+        XCTAssertFalse(tokenListService.didReturnItems, line: line)
     }
 
-    private func assertAccountSyncSuccess() {
-        XCTAssertTrue(accountService.didUpdateBalances)
-    }
-
-}
-
-fileprivate extension MockEventPublisher {
-
-    func verify(_ line: UInt = #line) {
-        XCTAssertTrue(publishedWhatWasExpected(), line: line)
+    private func assertAccountSyncSuccess(line: UInt = #line) {
+        XCTAssertTrue(accountService.didUpdateBalances, line: line)
     }
 
 }

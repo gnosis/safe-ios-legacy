@@ -203,6 +203,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         DispatchQueue.global().async {
             MultisigWalletDomainModel.DomainRegistry.syncService.sync()
         }
+        DispatchQueue.global().async {
+            MultisigWalletDomainModel.DomainRegistry.syncService.syncTransactions()
+        }
     }
 
     func resetAll() {

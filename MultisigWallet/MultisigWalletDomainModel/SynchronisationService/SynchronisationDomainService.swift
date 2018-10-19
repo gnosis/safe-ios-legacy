@@ -7,5 +7,7 @@ import Foundation
 public protocol SynchronisationDomainService {
 
     func sync()
+    func syncTransactions()
+    func stopSyncTransactions()
 
 }

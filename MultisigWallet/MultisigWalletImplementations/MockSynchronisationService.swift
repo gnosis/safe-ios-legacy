@@ -7,7 +7,6 @@ import MultisigWalletDomainModel
 import Common
 
 public final class MockSynchronisationService: SynchronisationDomainService {
-
     public init() {}
 
     public var didSync = false
@@ -16,5 +15,9 @@ public final class MockSynchronisationService: SynchronisationDomainService {
         Timer.wait(0.2)
         didSync = true
     }
+
+    public func syncTransactions() {}
+
+    public func stopSyncTransactions() {}
 
 }

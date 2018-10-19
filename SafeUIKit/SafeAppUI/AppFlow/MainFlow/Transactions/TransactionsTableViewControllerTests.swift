@@ -57,7 +57,6 @@ class TransactionsTableViewControllerTests: XCTestCase {
     }
 
     func test_whenGroupTypeProcessedInFuture_thenNameIsRelativeToGroupDate() {
-        template_testGroupHeader(for: Date() + 1.days, string: TransactionsGroupHeaderView.Strings.future)
         template_testGroupHeader(for: Date(), string: TransactionsGroupHeaderView.Strings.today)
         template_testGroupHeader(for: Date() - 1.days, string: TransactionsGroupHeaderView.Strings.yesterday)
         let past = Date() - 2.days
@@ -92,7 +91,7 @@ class TransactionsTableViewControllerTests: XCTestCase {
                                           updated: now - 2.seconds,
                                           submitted: now - 1.seconds,
                                           rejected: nil,
-                                          processed: nil)
+                                          processed: now)
         service.expect_grouppedTransactions(result: [TransactionGroupData(type: .pending,
                                                                           date: nil,
                                                                           transactions: [transaction])])
@@ -106,7 +105,7 @@ class TransactionsTableViewControllerTests: XCTestCase {
 
         XCTAssertEqual(cell.transactionDescriptionLabel.text, transaction.recipient)
 
-        XCTAssertEqual(cell.transactionDateLabel.text, transaction.submitted?.timeAgoSinceNow)
+        XCTAssertEqual(cell.transactionDateLabel.text, transaction.processed?.timeAgoSinceNow)
 
         XCTAssertFalse(cell.pairValueStackView.isHidden)
 
@@ -114,6 +113,7 @@ class TransactionsTableViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.tokenAmountLabel.text, formatter.string(from: transaction.amount))
 
         XCTAssertTrue(cell.singleValueLabelStackView.isHidden)
+        XCTAssertNil(cell.fiatAmountLabel.text)
     }
 
     private func assertEqual(_ lhs: UIImage?, _ rhs: UIImage?, file: StaticString = #file, line: UInt = #line) {
