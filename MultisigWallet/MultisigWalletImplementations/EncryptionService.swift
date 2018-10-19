@@ -54,7 +54,7 @@ public protocol EthereumService: Assertable {
 
     func createMnemonic() -> [String]
     func createSeed(mnemonic: [String]) -> Data
-    func createPrivateKey(seed: Data, network: EIP155ChainId) -> Data
+    func createHDPrivateKey(seed: Data, network: EIP155ChainId, derivedAt: Int) -> Data
     func createPublicKey(privateKey: Data) -> Data
     func createAddress(publicKey: Data) -> String
 
@@ -66,16 +66,23 @@ public enum EthereumServiceError: String, LocalizedError, Hashable {
 
 public extension EthereumService {
 
-    func createExternallyOwnedAccount(chainId: EIP155ChainId) ->
-        (mnemonic: [String], privateKey: Data, publicKey: Data, address: String) {
-        let words = createMnemonic()
-        try! assertEqual(words.count, 12, EthereumServiceError.invalidMnemonicWordsCount)
-        let seed = createSeed(mnemonic: words)
-        let privateKey = createPrivateKey(seed: seed, network: chainId)
+    typealias EOA = (mnemonic: [String], privateKey: Data, publicKey: Data, address: String)
+
+    func createExternallyOwnedAccount(chainId: EIP155ChainId) -> EOA {
+        let mnemonic = createMnemonic()
+        try! assertEqual(mnemonic.count, 12, EthereumServiceError.invalidMnemonicWordsCount)
+        let masterEOA = derivedExternallyOwnedAccountFrom(mnemonic: mnemonic, chainId: chainId, at: 0)
+        return (mnemonic, masterEOA.privateKey, masterEOA.publicKey, masterEOA.address)
+    }
+
+    func derivedExternallyOwnedAccountFrom(mnemonic: [String], chainId: EIP155ChainId, at index: Int) -> EOA {
+        let seed = createSeed(mnemonic: mnemonic)
+        let privateKey = createHDPrivateKey(seed: seed, network: chainId, derivedAt: index)
         let publicKey = createPublicKey(privateKey: privateKey)
         let address = createAddress(publicKey: publicKey)
-        return (words, privateKey, publicKey, address)
+        return ([], privateKey, publicKey, address) // derived address can not be recovered with mnemonic
     }
+
 }
 
 open class EncryptionService: EncryptionDomainService {
@@ -216,13 +223,20 @@ open class EncryptionService: EncryptionDomainService {
     // MARK: - EOA generation
 
     public func generateExternallyOwnedAccount() -> ExternallyOwnedAccount {
-        let (mnemonicWords, privateKeyData, publicKeyData, address) =
-            ethereumService.createExternallyOwnedAccount(chainId: chainId)
-        let account = ExternallyOwnedAccount(address: Address(address),
-                                             mnemonic: Mnemonic(words: mnemonicWords),
-                                             privateKey: PrivateKey(data: privateKeyData),
-                                             publicKey: PublicKey(data: publicKeyData))
-        return account
+        let eoaData = ethereumService.createExternallyOwnedAccount(chainId: chainId)
+        return externallyOwnedAccount(from: eoaData)
+    }
+
+    public func deriveExternallyOwnedAccountFrom(mnemonic: [String], at index: Int) -> ExternallyOwnedAccount {
+        let eoaData = ethereumService.derivedExternallyOwnedAccountFrom(mnemonic: mnemonic, chainId: chainId, at: index)
+        return externallyOwnedAccount(from: eoaData)
+    }
+
+    private func externallyOwnedAccount(from data: EthereumService.EOA) -> ExternallyOwnedAccount {
+        return ExternallyOwnedAccount(address: Address(data.address),
+                                      mnemonic: Mnemonic(words: data.mnemonic),
+                                      privateKey: PrivateKey(data: data.privateKey),
+                                      publicKey: PublicKey(data: data.publicKey))
     }
 
     // MARK: - random numbers

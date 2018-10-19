@@ -44,33 +44,16 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
                        XCLocalizedString(PairWithBrowserExtensionViewController.Strings.update))
     }
 
-    func test_presentScannerController() {
+    func test_canPresentController() {
         createWindow(controller)
         let presentedController = UIViewController()
-        controller.presentScannerController(presentedController)
+        controller.presentController(presentedController)
         XCTAssertTrue(controller.presentedViewController === presentedController)
     }
 
     func test_didScanValidCode_makesSaveButtonEnabled() {
         controller.didScanValidCode("code")
         XCTAssertTrue(controller.saveButton.isEnabled)
-    }
-
-    func test_didScanValidCode_dismissesScannerController() {
-        createWindow(controller)
-        let presentedController = UIViewController()
-        controller.presentScannerController(presentedController)
-        delay(1)
-        controller.didScanValidCode("code")
-        delay(1)
-        XCTAssertFalse(controller.presentedViewController === presentedController)
-    }
-
-    func test_invalidCode_presentsAlert() {
-        createWindow(controller)
-        let presentedController = UIAlertController(title: "some", message: "ok", preferredStyle: .alert)
-        controller.presentCameraRequiredAlert(presentedController)
-        XCTAssertTrue(controller.presentedViewController === presentedController)
     }
 
     func test_finish_whenNoAddress_thenLogsError() {

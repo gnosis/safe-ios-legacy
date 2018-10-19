@@ -17,8 +17,9 @@ public class EthereumKitEthereumService: EthereumService {
         return try! Mnemonic.createSeed(mnemonic: mnemonic)
     }
 
-    public func createPrivateKey(seed: Data, network: EIP155ChainId) -> Data {
-        return HDPrivateKey(seed: seed, network: Network.private(chainID: network.rawValue, testUse: false)).raw
+    public func createHDPrivateKey(seed: Data, network: EIP155ChainId, derivedAt: Int) -> Data {
+        let hdWallet = HDWallet(seed: seed, network: Network.private(chainID: network.rawValue, testUse: false))
+        return try! hdWallet.privateKey(at: UInt32(derivedAt)).raw
     }
 
     public func createPublicKey(privateKey: Data) -> Data {
