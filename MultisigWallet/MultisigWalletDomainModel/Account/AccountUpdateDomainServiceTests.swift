@@ -239,14 +239,14 @@ private extension AccountUpdateDomainServiceTests {
 
     private func updateBalances() {
         DispatchQueue.global().async {
-            self.accountUpdateService.updateAccountsBalances()
+            try? self.accountUpdateService.updateAccountsBalances()
         }
         delay()
     }
 
     private func updateBalance(_ token: Token) {
         DispatchQueue.global().async {
-            self.accountUpdateService.updateAccountBalance(token: token)
+            try? self.accountUpdateService.updateAccountBalance(token: token)
         }
         delay()
     }

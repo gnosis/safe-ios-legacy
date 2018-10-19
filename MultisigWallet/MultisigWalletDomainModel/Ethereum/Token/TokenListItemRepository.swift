@@ -72,7 +72,7 @@ public extension TokenListItemRepository {
         save(tokenListItem)
         DomainRegistry.eventPublisher.publish(TokensDisplayListChanged())
         DispatchQueue.global().async {
-            DomainRegistry.accountUpdateService.updateAccountBalance(token: tokenListItem.token)
+            try? DomainRegistry.accountUpdateService.updateAccountBalance(token: tokenListItem.token)
         }
     }
 

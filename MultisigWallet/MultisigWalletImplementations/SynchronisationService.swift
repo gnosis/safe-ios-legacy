@@ -45,8 +45,7 @@ public final class SynchronisationService: SynchronisationDomainService {
 
     private func syncAccounts() {
         try! RetryWithIncreasingDelay(maxAttempts: Int.max, startDelay: retryInterval) { [weak self] _ in
-            // FIXME: this will never error out...
-            self?.accountService.updateAccountsBalances()
+            try self?.accountService.updateAccountsBalances()
         }.start()
     }
 
