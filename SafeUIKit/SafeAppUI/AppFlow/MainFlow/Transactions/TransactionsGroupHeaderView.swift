@@ -13,7 +13,6 @@ class TransactionsGroupHeaderView: UITableViewHeaderFooterView {
         static let pending = LocalizedString("transactions.group.pending", comment: "Pending transactions group header")
         static let today = DateToolsLocalizedString("Today").uppercased()
         static let yesterday = DateToolsLocalizedString("Yesterday").uppercased()
-        static let future = LocalizedString("transactions.group.future", comment: "Future group header name")
     }
 
     @IBOutlet weak var headerLabel: UILabel!
@@ -36,15 +35,12 @@ class TransactionsGroupHeaderView: UITableViewHeaderFooterView {
             return Strings.today
         } else if date.isYesterday {
             return Strings.yesterday
-        } else if date.timeIntervalSinceNow > 0 {
-            return Strings.future
         } else {
             return date.format(with: .short)
         }
     }
 
 }
-
 
 fileprivate extension Bundle {
     static let DateToolsBundle = Bundle(for: DateTools.Constants.self)

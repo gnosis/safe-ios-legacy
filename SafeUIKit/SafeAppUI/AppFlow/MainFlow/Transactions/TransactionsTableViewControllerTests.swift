@@ -57,7 +57,6 @@ class TransactionsTableViewControllerTests: XCTestCase {
     }
 
     func test_whenGroupTypeProcessedInFuture_thenNameIsRelativeToGroupDate() {
-        template_testGroupHeader(for: Date() + 1.days, string: TransactionsGroupHeaderView.Strings.future)
         template_testGroupHeader(for: Date(), string: TransactionsGroupHeaderView.Strings.today)
         template_testGroupHeader(for: Date() - 1.days, string: TransactionsGroupHeaderView.Strings.yesterday)
         let past = Date() - 2.days
