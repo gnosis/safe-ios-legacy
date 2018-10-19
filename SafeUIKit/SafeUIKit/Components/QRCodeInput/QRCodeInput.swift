@@ -6,31 +6,21 @@ import UIKit
 import AVFoundation
 
 public protocol QRCodeInputDelegate: class {
-    func presentScannerController(_ controller: UIViewController)
-    func presentCameraRequiredAlert(_ alert: UIAlertController)
+    func presentController(_ controller: UIViewController)
     func didScanValidCode(_ code: String)
 }
 
 public typealias QRCodeConverter = (String) -> String?
 
-@IBDesignable
 public final class QRCodeInput: UITextField {
 
-    typealias CameraAvailabilityCompletion = (_ available: Bool) -> Void
-
-    private struct Strings {
-        static let cameraAlertTitle = LocalizedString("scanner.camera_access_required.title",
-                                                      comment: "Title for alert if camera is not accessable.")
-        static let cameraAlertMessage = LocalizedString("scanner.camera_access_required.message",
-                                                        comment: "Message for alert if camera is not accessable.")
-        static let cameraAlertCancel = LocalizedString("cancel", comment: "Cancel button title")
-        static let cameraAlertAllow = LocalizedString("scanner.camera_access_required.allow",
-                                                      comment: "Button name to allow camera access")
-    }
-
     public weak var qrCodeDelegate: QRCodeInputDelegate?
-    public var qrCodeConverter: QRCodeConverter?
-    public var captureDevice: AVCaptureDevice.Type = AVCaptureDevice.self
+    public var scanValidatedConverter: ScanValidatedConverter? {
+        didSet {
+            scanHandler.scanValidatedConverter = scanValidatedConverter
+        }
+    }
+    var scanHandler = ScanQRCodeHandler()
 
     public enum EditingMode {
         case scanOnly
@@ -41,22 +31,22 @@ public final class QRCodeInput: UITextField {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        commonInit()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        configure()
+        commonInit()
     }
 
     public override func awakeFromNib() {
         super.awakeFromNib()
-        configure()
+        commonInit()
     }
 
     public override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        configure()
+        commonInit()
     }
 
     private struct Constants {
@@ -64,10 +54,16 @@ public final class QRCodeInput: UITextField {
         static let minFontSize: CGFloat = 17
     }
 
-    private func configure() {
+    private func commonInit() {
+        scanHandler.delegate = self
         heightAnchor.constraint(equalToConstant: Constants.inputHeight).isActive = true
         minimumFontSize = Constants.minFontSize
         borderStyle = .roundedRect
+        delegate = self
+        addScanButton()
+    }
+
+    private func addScanButton() {
         let overlayButton = UIButton(type: .custom)
         overlayButton.setImage(UIImage(asset: Asset.qrCode), for: .normal)
         overlayButton.addTarget(self, action: #selector(openBarcodeSacenner), for: .touchUpInside)
@@ -75,49 +71,29 @@ public final class QRCodeInput: UITextField {
         overlayButton.accessibilityIdentifier = "QRCodeButton"
         rightView = overlayButton
         rightViewMode = .always
-        delegate = self
     }
 
     @objc private func openBarcodeSacenner() {
-        checkCameraAvailability { [unowned self] success in
-            DispatchQueue.main.async {
-                if success {
-                    self.qrCodeDelegate?.presentScannerController(self.scannerController())
-                } else {
-                    self.qrCodeDelegate?.presentCameraRequiredAlert(self.cameraRequiredAlert())
-                }
-            }
+        scanHandler.scan()
+    }
+
+    public func addDebugButtonToScannerController(title: String, scanValue: String) {
+        scanHandler.addDebugButtonToScannerController(title: title, scanValue: scanValue)
+    }
+
+}
+
+extension QRCodeInput: ScanQRCodeHandlerDelegate {
+
+    func presentController(_ controller: UIViewController) {
+        qrCodeDelegate?.presentController(controller)
+    }
+
+    func didScanCode(raw: String, converted: String?) {
+        DispatchQueue.main.async {
+            self.text = converted
+            self.qrCodeDelegate?.didScanValidCode(raw)
         }
-    }
-
-    private func checkCameraAvailability(_ completion: @escaping CameraAvailabilityCompletion) {
-        let cameraAuthorizationStatus = captureDevice.authorizationStatus(for: .video)
-        switch cameraAuthorizationStatus {
-        case .authorized:
-            completion(true)
-        case .denied, .restricted:
-            completion(false)
-        case .notDetermined:
-            askForCameraAccess(completion)
-        }
-    }
-
-    private func askForCameraAccess(_ completion: @escaping CameraAvailabilityCompletion) {
-        captureDevice.requestAccess(for: .video, completionHandler: completion)
-    }
-
-    private func cameraRequiredAlert() -> UIAlertController {
-        let settingsAppURL = URL(string: UIApplication.openSettingsURLString)!
-        let alert = UIAlertController(
-            title: Strings.cameraAlertTitle,
-            message: Strings.cameraAlertMessage,
-            preferredStyle: UIAlertController.Style.alert
-        )
-        alert.addAction(UIAlertAction(title: Strings.cameraAlertAllow, style: .cancel) { _ in
-            UIApplication.shared.open(settingsAppURL, options: [:], completionHandler: nil)
-        })
-        alert.addAction(UIAlertAction(title: Strings.cameraAlertCancel, style: .default))
-        return alert
     }
 
 }
@@ -130,23 +106,6 @@ extension QRCodeInput: UITextFieldDelegate {
             return false
         }
         return true
-    }
-
-    private func scannerController() -> UIViewController {
-        return ScannerViewController.create(delegate: self)
-    }
-
-}
-
-extension QRCodeInput: ScannerDelegate {
-
-    func didScan(_ code: String) {
-        if let result = qrCodeConverter?(code) {
-            DispatchQueue.main.async {
-                self.text = result
-                self.qrCodeDelegate?.didScanValidCode(code)
-            }
-        }
     }
 
 }

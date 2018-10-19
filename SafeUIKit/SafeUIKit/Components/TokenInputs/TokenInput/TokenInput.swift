@@ -21,10 +21,13 @@ public final class TokenInput: VerifiableInput {
         static let amount = LocalizedString("token_input.amount", comment: "Amount placeholder for token input.")
         enum Rules {
             static let valueIsTooBig = LocalizedString("token_input.value_is_too_big",
-                                                       comment: "Error display if entered value is too big.")
+                                                       comment: "Error to display if entered value is too big.")
             static let excededAmountOfFractionalDigits =
                 LocalizedString("token_input.exceded_amount_of_fractional_digits",
-                                comment: "Error display if amount of fractional digits is exceded.")
+                                comment: "Error to display if amount of fractional digits is exceded.")
+            static let valueIsNotANumber =
+                LocalizedString("token_input.value_is_not_a_number",
+                                comment: "Error to display if entered value is not a number.")
         }
     }
 
@@ -59,18 +62,25 @@ public final class TokenInput: VerifiableInput {
     }
 
     private func addDefaultValidationsRules() {
-        addRule(Strings.Rules.valueIsTooBig, identifier: "valueIsTooBig") { self.valueIsTooBig($0) }
+        addRule(Strings.Rules.valueIsTooBig, identifier: "valueIsTooBig") { self.valueIsNotTooBig($0) }
         addRule(Strings.Rules.excededAmountOfFractionalDigits, identifier: "excededAmountOfFractionalDigits") {
-            self.excededAmountOfFractionalDigits($0)
+            self.notExcededAmountOfFractionalDigits($0)
         }
+        addRule(Strings.Rules.valueIsNotANumber, identifier: "valueIsNotANumber") { self.valueIsANumber($0) }
     }
 
-    private func valueIsTooBig(_ value: String) -> Bool {
-        guard let number = formatter.number(from: value) else { return false }
+    private func valueIsANumber(_ value: String) -> Bool {
+        guard formatter.number(from: value) != nil else { return false }
+        return true
+    }
+
+    private func valueIsNotTooBig(_ value: String) -> Bool {
+        guard let number = formatter.number(from: value) else { return true }
         return TokenBounds.isWithinBounds(value: number)
     }
 
-    private func excededAmountOfFractionalDigits(_ value: String) -> Bool {
+    private func notExcededAmountOfFractionalDigits(_ value: String) -> Bool {
+        guard formatter.number(from: value) != nil else { return true }
         let components = value.components(separatedBy: formatter.decimalSeparator)
         guard components.count == 2 else { return true }
         let fractionalPart = components[1].removingTrailingZeroes
@@ -129,7 +139,7 @@ public extension TokenInput {
 
     override func textFieldDidEndEditing(_ textField: UITextField) {
         guard textField === textInput else { return }
-        guard isValidated else {
+        guard isValid else {
             value = 0
             return
         }

@@ -23,12 +23,7 @@ final class SafeQRCodeTableViewCell: UITableViewCell {
         qrCodeView.layer.borderWidth = 1
         qrCodeView.layer.borderColor = UIColor.black.cgColor
         qrCodeView.layer.cornerRadius = 6
-        let attrStr = NSMutableAttributedString(string: code.address)
-        attrStr.addAttribute(
-            NSAttributedString.Key.foregroundColor,
-            value: ColorName.blueyGrey.color,
-            range: NSRange(location: 4, length: attrStr.length - 8))
-        addressLabel.attributedText = attrStr
+        addressLabel.setEthereumAddress(code.address)
     }
 
 }
