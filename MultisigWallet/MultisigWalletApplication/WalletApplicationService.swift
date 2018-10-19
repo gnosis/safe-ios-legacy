@@ -50,6 +50,8 @@ public class WalletApplicationService: Assertable {
         return selectedWallet?.minimumDeploymentTransactionAmount
     }
 
+    public var transactionWebURLFormat: String!
+
     public init() {}
 
     // MARK: - Wallet
@@ -353,6 +355,11 @@ public class WalletApplicationService: Assertable {
     public func subscribeForTransactionUpdates(subscriber: EventSubscriber) {
         resetSubscribers()
         ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: TransactionStatusUpdated.self)
+    }
+
+    public func transactionURL(_ id: String) -> URL {
+        let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
+        return URL(string: String(format: transactionWebURLFormat, tx.transactionHash!.value))!
     }
 
     public func grouppedTransactions() -> [TransactionGroupData] {

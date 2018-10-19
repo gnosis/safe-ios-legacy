@@ -11,6 +11,7 @@ struct AppConfig: Codable {
     var relayServiceURL: URL
     var notificationServiceURL: URL
     var tokenListServiceURL: URL
+    var transactionWebURLFormat: String
 
     enum CodingKeys: String, CodingKey {
         case encryptionServiceChainId = "encryption_service_chain_id"
@@ -18,6 +19,7 @@ struct AppConfig: Codable {
         case relayServiceURL = "relay_service_url"
         case notificationServiceURL = "notification_service_url"
         case tokenListServiceURL = "token_list_service_url"
+        case transactionWebURLFormat = "transaction_web_url_format"
     }
 
 }

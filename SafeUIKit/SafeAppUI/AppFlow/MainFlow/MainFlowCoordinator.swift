@@ -6,6 +6,7 @@ import UIKit
 import MultisigWalletApplication
 import IdentityAccessApplication
 import Common
+import SafariServices
 
 final class MainFlowCoordinator: FlowCoordinator {
 
@@ -77,6 +78,27 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
     func openAddressDetails() {
         let addressDetailsVC = SafeAddressViewController.create()
         push(addressDetailsVC)
+    }
+
+}
+
+extension MainFlowCoordinator: TransactionsTableViewControllerDelegate {
+
+    func didSelectTransaction(id: String) {
+        let controller = TransactionDetailsViewController.create(transactionID: id)
+        controller.delegate = self
+        push(controller)
+    }
+
+}
+
+extension MainFlowCoordinator: TransactionDetailsViewControllerDelegate {
+
+    func showTransactionInExternalApp(from controller: TransactionDetailsViewController) {
+        let transactionID = controller.transactionID!
+        let url = ApplicationServiceRegistry.walletService.transactionURL(transactionID)
+        let safari = SFSafariViewController(url: url)
+        presentModally(safari)
     }
 
 }

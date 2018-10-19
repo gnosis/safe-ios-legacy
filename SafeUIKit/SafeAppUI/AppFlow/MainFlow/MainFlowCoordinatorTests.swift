@@ -6,6 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
 import MultisigWalletApplication
+import SafariServices
 
 class MainFlowCoordinatorTests: SafeTestCase {
 
@@ -154,6 +155,23 @@ class MainFlowCoordinatorTests: SafeTestCase {
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
             is SafeAddressViewController)
+    }
+
+    func test_whenSelectingTransaction_thenPushesTransactionDetailController() {
+        walletService.transactionData_output = TransactionData.pending
+        mainFlowCoordinator.didSelectTransaction(id: "some")
+        delay()
+        XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
+            is TransactionDetailsViewController)
+    }
+
+    func test_whenShowsInExternalApp_thenOpensSafariController() {
+        createWindow(mainFlowCoordinator.rootViewController)
+        let controller = TransactionDetailsViewController.create(transactionID: "some")
+        mainFlowCoordinator.showTransactionInExternalApp(from: controller)
+        delay()
+        XCTAssertTrue(mainFlowCoordinator.navigationController.presentedViewController
+            is SFSafariViewController)
     }
 
 }

@@ -307,4 +307,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         didRearrange = true
     }
 
+    public override func transactionURL(_ id: String) -> URL {
+        return URL(string: "https://gnosis.pm")!
+    }
+
 }
