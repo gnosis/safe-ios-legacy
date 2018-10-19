@@ -70,6 +70,25 @@ class EncryptionServiceTests: XCTestCase {
         XCTAssertEqual(account.publicKey, expectedAccount.publicKey)
     }
 
+    func test_whenDerivedExternallyOwnedAccountCreated_thenItIsCorrect() {
+        let expectedMasterAccount = ExternallyOwnedAccount.testAccount
+        let ethereumService = CustomWordsEthereumService(words: expectedMasterAccount.mnemonic.words)
+        encryptionService = EncryptionService(chainId: .mainnet, ethereumService: ethereumService)
+        let account = encryptionService.generateExternallyOwnedAccount()
+
+        let derivedAccount = encryptionService.deriveExternallyOwnedAccountFrom(mnemonic: account.mnemonic.words, at: 1)
+        let expectedAccount = ExternallyOwnedAccount.testAccountAt1
+
+        XCTAssertEqual(derivedAccount, expectedAccount)
+        XCTAssertEqual(derivedAccount.address, expectedAccount.address)
+        XCTAssertEqual(derivedAccount.mnemonic, expectedAccount.mnemonic)
+        print(derivedAccount.privateKey.data.toHexString())
+        XCTAssertEqual(derivedAccount.privateKey, expectedAccount.privateKey)
+        print(derivedAccount.publicKey.data.toHexString())
+        XCTAssertEqual(derivedAccount.publicKey, expectedAccount.publicKey)
+
+    }
+
     func test_whenSigningMessage_thenSignatureIsCorrect() throws {
         let pkData = Data(ethHex: "d0d3ae306602070917c456b61d88bee9dc74edb5853bb87b1c13e5bfa2c3d0d9")
         let privateKey = MultisigWalletDomainModel.PrivateKey(data: pkData)
@@ -420,7 +439,7 @@ class MockEthereumService: EthereumService {
         return seed
     }
 
-    func createPrivateKey(seed: Data, network: EIP155ChainId) -> Data {
+    func createHDPrivateKey(seed: Data, network: EIP155ChainId, derivedAt: Int) -> Data {
         return privateKey
     }
 

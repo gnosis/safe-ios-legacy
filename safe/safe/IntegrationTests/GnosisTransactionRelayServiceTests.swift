@@ -26,10 +26,17 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
     }
 
     func test_safeCreation() throws {
-        let eoa1 = encryptionService.generateExternallyOwnedAccount()
-        let eoa2 = encryptionService.generateExternallyOwnedAccount()
-        let eoa3 = encryptionService.generateExternallyOwnedAccount()
-        let owners = [eoa1, eoa2, eoa3].map { $0.address }
+        let (_, _) = try createNewSafe()
+    }
+
+    private func createNewSafe() throws -> (address: Address, recoveryKey: ExternallyOwnedAccount)! {
+        let deviceKey = encryptionService.generateExternallyOwnedAccount()
+        let browserExtensionKey = encryptionService.generateExternallyOwnedAccount()
+        let recoveryKey = encryptionService.generateExternallyOwnedAccount()
+        let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccountFrom(
+            mnemonic: recoveryKey.mnemonic.words, at: 1)
+
+        let owners = [deviceKey, browserExtensionKey, recoveryKey, derivedKeyFromRecovery].map { $0.address }
         let ecdsaRandomS = encryptionService.ecdsaRandomS()
         let request = SafeCreationTransactionRequest(owners: owners, confirmationCount: 2, ecdsaRandomS: ecdsaRandomS)
         let response = try relayService.createSafeCreationTransaction(request: request)
@@ -46,7 +53,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
                            response.tx.nonce)
         guard let safeAddress = encryptionService.contractAddress(from: signature, for: transaction) else {
             XCTFail("Can't extract safe address from server response")
-            return
+            return nil
         }
         XCTAssertEqual(safeAddress, response.safe)
 
@@ -57,8 +64,8 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         XCTAssertFalse(txHash.value.isEmpty)
         let receipt = try waitForTransaction(txHash)!
         XCTAssertEqual(receipt.status, .success)
+        return (Address(safeAddress), recoveryKey)
     }
-
 
     func test_whenGettingGasPrice_thenReturnsIt() throws {
         let response = try relayService.gasPrice()

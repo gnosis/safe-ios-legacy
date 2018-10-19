@@ -37,6 +37,13 @@ class TokenInputTests: XCTestCase {
         XCTAssertEqual(tokenInput.text, "1,000000000000000001")
     }
 
+    func test_whenInsertedValueIsNotANumber_thenProperErrorMessageIsDisplayed() {
+        tokenInput.text = "test"
+        XCTAssertEqual(tokenInput.ruleLabel(by: "valueIsNotANumber")!.status, .error)
+        XCTAssertEqual(tokenInput.ruleLabel(by: "valueIsTooBig")!.status, .success)
+        XCTAssertEqual(tokenInput.ruleLabel(by: "excededAmountOfFractionalDigits")!.status, .success)
+    }
+
     func test_whenEnteingTooBigNumber_thenProperErrorMessageIsDisplayed() {
         tokenInput.setUp(value: 0, decimals: TokenBounds.maxDigitsCount - 1)
         tokenInput.canType("1")

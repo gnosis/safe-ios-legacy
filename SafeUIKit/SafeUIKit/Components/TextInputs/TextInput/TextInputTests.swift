@@ -20,6 +20,7 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(textInput.layer.cornerRadius, 6)
         XCTAssertEqual(textInput.layer.borderWidth, 1)
         XCTAssertTrue(textInput.rightView is UIButton)
+        XCTAssertEqual(textInput.text, "")
     }
 
     func test_whenLeftImageIsSet_thenLeftViewIsDisplayed() {

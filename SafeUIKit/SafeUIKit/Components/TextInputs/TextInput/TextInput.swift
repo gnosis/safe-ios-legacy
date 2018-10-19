@@ -10,6 +10,8 @@ public class TextInput: UITextField {
     private let clearButton = UIButton(type: .custom)
     private let padding: CGFloat = 14
 
+    public var heightConstraint: NSLayoutConstraint!
+
     public var isDimmed: Bool = false {
         didSet {
             updateAdjustableUI()
@@ -57,7 +59,8 @@ public class TextInput: UITextField {
     }
 
     private func commonInit() {
-        heightAnchor.constraint(equalToConstant: 50).isActive = true
+        heightConstraint = heightAnchor.constraint(equalToConstant: 50)
+        heightConstraint.isActive = true
         font = UIFont.systemFont(ofSize: 17)
         configureBorder()
         addCustomClearButton()
