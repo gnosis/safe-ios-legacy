@@ -4,7 +4,7 @@
 
 import UIKit
 
-public final class CheckmarkButton: UIButton {
+public class CheckmarkButton: UIButton {
 
     public enum CheckmarkStatus {
         case disabled
