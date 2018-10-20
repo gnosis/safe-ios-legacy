@@ -60,6 +60,7 @@ class KeyboardAvoidingBehavior {
             if let isSuppressing = notification.userInfo?["suppress_animation"] as? Bool {
                 animated = !isSuppressing
             }
+            // Otherwise, the scrolling interferes with default textfield behavior provided by iOS.
             DispatchQueue.main.async {
                 self.scrollView.scrollRectToVisible(frame, animated: animated)
             }
