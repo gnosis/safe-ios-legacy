@@ -81,9 +81,9 @@ class NewSafeViewControllerTests: SafeTestCase {
 
 extension NewSafeViewControllerTests {
 
-    private func assertButtonCheckmarks(_ thisDeviceCheckmark: BigButton.CheckmarkStatus,
-                                        _ paperWalletCheckmark: BigButton.CheckmarkStatus,
-                                        _ browserExtensionCheckmark: BigButton.CheckmarkStatus,
+    private func assertButtonCheckmarks(_ thisDeviceCheckmark: CheckmarkButton.CheckmarkStatus,
+                                        _ paperWalletCheckmark: CheckmarkButton.CheckmarkStatus,
+                                        _ browserExtensionCheckmark: CheckmarkButton.CheckmarkStatus,
                                         line: UInt = #line) {
         XCTAssertEqual(controller.thisDeviceButton.checkmarkStatus, thisDeviceCheckmark, line: line)
         XCTAssertEqual(controller.paperWalletButton.checkmarkStatus, paperWalletCheckmark, line: line)

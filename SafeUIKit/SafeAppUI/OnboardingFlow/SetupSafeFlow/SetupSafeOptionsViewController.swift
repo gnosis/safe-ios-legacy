@@ -19,8 +19,8 @@ class SetupSafeOptionsViewController: UIViewController {
     }
 
     @IBOutlet weak var headerLabel: H1Label!
-    @IBOutlet weak var newSafeButton: BigButton!
-    @IBOutlet weak var restoreSafeButton: BigButton!
+    @IBOutlet weak var newSafeButton: CheckmarkButton!
+    @IBOutlet weak var restoreSafeButton: CheckmarkButton!
 
     private weak var delegate: SetupSafeOptionsDelegate?
 

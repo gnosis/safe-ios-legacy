@@ -4,8 +4,7 @@
 
 import UIKit
 
-@IBDesignable
-public final class BigButton: UIButton {
+public final class CheckmarkButton: UIButton {
 
     public enum CheckmarkStatus {
         case disabled
