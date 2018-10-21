@@ -1,0 +1,57 @@
+/* Recipient's address in address input. */
+"address_input.address_placeholder" = "address_input.address_placeholder";
+
+/* Cancel alert item. */
+"address_input.alert.cancel" = "address_input.alert.cancel";
+
+/* Paste from clipboard alert item. */
+"address_input.alert.paste" = "address_input.alert.paste";
+
+/* Scan QR code alert item. */
+"address_input.alert.scan" = "address_input.alert.scan";
+
+/* Error to display if address is invalid. */
+"address_input.invalid_address" = "address_input.invalid_address";
+
+/* Checkmark is checked */
+"button.checked" = "button.checked";
+
+/* Checkmark is not checked */
+"button.unchecked" = "button.unchecked";
+
+/* Close button on camera */
+"camera.close" = "camera.close";
+
+/* Cancel button title */
+"cancel" = "cancel";
+
+/* Error status of a rule */
+"rule.error" = "rule.error";
+
+/* Inactive status of a rule */
+"rule.inactive" = "rule.inactive";
+
+/* Success status of a rule */
+"rule.success" = "rule.success";
+
+/* Button name to allow camera access */
+"scanner.camera_access_required.allow" = "scanner.camera_access_required.allow";
+
+/* Message for alert if camera is not accessable. */
+"scanner.camera_access_required.message" = "scanner.camera_access_required.message";
+
+/* Title for alert if camera is not accessable. */
+"scanner.camera_access_required.title" = "scanner.camera_access_required.title";
+
+/* Amount placeholder for token input. */
+"token_input.amount" = "token_input.amount";
+
+/* Error to display if amount of fractional digits is exceded. */
+"token_input.exceded_amount_of_fractional_digits" = "token_input.exceded_amount_of_fractional_digits";
+
+/* Error to display if entered value is not a number. */
+"token_input.value_is_not_a_number" = "token_input.value_is_not_a_number";
+
+/* Error to display if entered value is too big. */
+"token_input.value_is_too_big" = "token_input.value_is_too_big";
+

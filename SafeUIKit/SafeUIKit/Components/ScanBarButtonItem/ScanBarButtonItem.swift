@@ -4,14 +4,14 @@
 
 import UIKit
 
-public protocol ScanButtonDelegate: class {
+public protocol ScanBarButtonItemDelegate: class {
     func presentController(_ controller: UIViewController)
-    func didScanValidCode(_ button: ScanButton, code: String)
+    func didScanValidCode(_ button: ScanBarButtonItem, code: String)
 }
 
-public final class ScanButton: CheckmarkButton {
+public final class ScanBarButtonItem: UIBarButtonItem {
 
-    public weak var delegate: ScanButtonDelegate?
+    public weak var delegate: ScanBarButtonItemDelegate?
     public var scanValidatedConverter: ScanValidatedConverter? {
         didSet {
             scanHandler.scanValidatedConverter = scanValidatedConverter
@@ -19,13 +19,9 @@ public final class ScanButton: CheckmarkButton {
     }
     var scanHandler = ScanQRCodeHandler()
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    public convenience init(title: String) {
+        self.init()
+        self.title = title
         commonInit()
     }
 
@@ -36,7 +32,7 @@ public final class ScanButton: CheckmarkButton {
 
     private func commonInit() {
         scanHandler.delegate = self
-        addTarget(self, action: #selector(scan), for: .touchUpInside)
+        action = #selector(scan)
     }
 
     @objc private func scan() {
@@ -49,7 +45,7 @@ public final class ScanButton: CheckmarkButton {
 
 }
 
-extension ScanButton: ScanQRCodeHandlerDelegate {
+extension ScanBarButtonItem: ScanQRCodeHandlerDelegate {
 
     func presentController(_ controller: UIViewController) {
         delegate?.presentController(controller)

@@ -224,8 +224,8 @@
 		55C3C6232174CB6E00FA5B4F /* ScanQRCodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6222174CB6E00FA5B4F /* ScanQRCodeHandler.swift */; };
 		55C3C6272175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6262175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift */; };
 		55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6282175CC2800FA5B4F /* MockAVCaptureDevice.swift */; };
-		55C428FA217B426D00BF8922 /* ScanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C428F9217B426D00BF8922 /* ScanButton.swift */; };
-		55C428FC217B428100BF8922 /* ScanButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C428FB217B428100BF8922 /* ScanButtonTests.swift */; };
+		55C428FA217B426D00BF8922 /* ScanBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C428F9217B426D00BF8922 /* ScanBarButtonItem.swift */; };
+		55C428FC217B428100BF8922 /* ScanBarButtonItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C428FB217B428100BF8922 /* ScanBarButtonItemTests.swift */; };
 		55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */; };
 		55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */; };
 		55D0EC5E216F6F70003D9A53 /* TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC5D216F6F70003D9A53 /* TokenInput.swift */; };
@@ -527,8 +527,8 @@
 		55C3C6222174CB6E00FA5B4F /* ScanQRCodeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeHandler.swift; sourceTree = "<group>"; };
 		55C3C6262175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeHandlerTests.swift; sourceTree = "<group>"; };
 		55C3C6282175CC2800FA5B4F /* MockAVCaptureDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAVCaptureDevice.swift; sourceTree = "<group>"; };
-		55C428F9217B426D00BF8922 /* ScanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanButton.swift; sourceTree = "<group>"; };
-		55C428FB217B428100BF8922 /* ScanButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanButtonTests.swift; sourceTree = "<group>"; };
+		55C428F9217B426D00BF8922 /* ScanBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBarButtonItem.swift; sourceTree = "<group>"; };
+		55C428FB217B428100BF8922 /* ScanBarButtonItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBarButtonItemTests.swift; sourceTree = "<group>"; };
 		55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
 		55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55D0EC5D216F6F70003D9A53 /* TokenInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInput.swift; sourceTree = "<group>"; };
@@ -1043,7 +1043,7 @@
 		5524734F21428E4C00A77557 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				55C428F8217B424C00BF8922 /* ScanButton */,
+				55C428F8217B424C00BF8922 /* ScanBarButtonItem */,
 				55BAB0E221789285007539CF /* BorderedButton */,
 				55D0EC5C216F6DB9003D9A53 /* TokenInputs */,
 				555EB6ED216CA55000E06553 /* TextInputs */,
@@ -1195,13 +1195,13 @@
 			path = BorderedButton;
 			sourceTree = "<group>";
 		};
-		55C428F8217B424C00BF8922 /* ScanButton */ = {
+		55C428F8217B424C00BF8922 /* ScanBarButtonItem */ = {
 			isa = PBXGroup;
 			children = (
-				55C428F9217B426D00BF8922 /* ScanButton.swift */,
-				55C428FB217B428100BF8922 /* ScanButtonTests.swift */,
+				55C428F9217B426D00BF8922 /* ScanBarButtonItem.swift */,
+				55C428FB217B428100BF8922 /* ScanBarButtonItemTests.swift */,
 			);
-			path = ScanButton;
+			path = ScanBarButtonItem;
 			sourceTree = "<group>";
 		};
 		55D0EC5C216F6DB9003D9A53 /* TokenInputs */ = {
@@ -1724,7 +1724,7 @@
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
 				556251D2214671B800F569EE /* TokenBalanceTableViewCell.swift in Sources */,
 				556251D42146721600F569EE /* TokenNumberFormatter.swift in Sources */,
-				55C428FA217B426D00BF8922 /* ScanButton.swift in Sources */,
+				55C428FA217B426D00BF8922 /* ScanBarButtonItem.swift in Sources */,
 				550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */,
 				550E7CDC21708E1F0032DE6C /* String+Extensions.swift in Sources */,
 				55D0EC5E216F6F70003D9A53 /* TokenInput.swift in Sources */,
@@ -1747,7 +1747,7 @@
 				55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */,
 				555EB71B216DF19800E06553 /* VerifiableInputTests.swift in Sources */,
 				0A9BA3C9207F6B6A001DC22F /* CheckmarkButtonTests.swift in Sources */,
-				55C428FC217B428100BF8922 /* ScanButtonTests.swift in Sources */,
+				55C428FC217B428100BF8922 /* ScanBarButtonItemTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
 				55BAB0E8217894F8007539CF /* BigBorderedButtonTests.swift in Sources */,
 				55D0EC60216F6F8B003D9A53 /* TokenInputTests.swift in Sources */,

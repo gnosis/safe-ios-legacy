@@ -5,38 +5,38 @@
 import XCTest
 @testable import SafeUIKit
 
-class ScanButtonTests: XCTestCase {
+class ScanBarButtonItemTests: XCTestCase {
 
-    let scanButton = ScanButton()
+    let scanBarButtonItem = ScanBarButtonItem()
     // swiftlint:disable:next weak_delegate
-    let delegate = MockScanButtonDelegate()
+    let delegate = MockScanBarButtonItemDelegate()
 
     override func setUp() {
         super.setUp()
-        scanButton.delegate = delegate
+        scanBarButtonItem.delegate = delegate
     }
 
     func test_whenSettingScanValidatedConverter_thenValueForHandlerIsSet() {
         let converter: ScanValidatedConverter = { $0 }
-        XCTAssertNil(scanButton.scanHandler.scanValidatedConverter)
-        scanButton.scanValidatedConverter = converter
-        XCTAssertNotNil(scanButton.scanHandler.scanValidatedConverter)
+        XCTAssertNil(scanBarButtonItem.scanHandler.scanValidatedConverter)
+        scanBarButtonItem.scanValidatedConverter = converter
+        XCTAssertNotNil(scanBarButtonItem.scanHandler.scanValidatedConverter)
     }
 
     func test_whenPresentControllerIsTriggered_thenDelegateIsCalled() {
         let controller = UIViewController()
-        scanButton.presentController(controller)
+        scanBarButtonItem.presentController(controller)
         XCTAssertEqual(controller, delegate.presentedController)
     }
 
     func test_whenScanCodeIsTriggered_thenDelegateIsCalled() {
-        scanButton.didScanCode(raw: "raw", converted: "converted")
+        scanBarButtonItem.didScanCode(raw: "raw", converted: "converted")
         XCTAssertEqual(delegate.scannedCode, "raw")
     }
 
 }
 
-class MockScanButtonDelegate: ScanButtonDelegate {
+class MockScanBarButtonItemDelegate: ScanBarButtonItemDelegate {
 
     var presentedController: UIViewController?
     func presentController(_ controller: UIViewController) {
@@ -44,7 +44,7 @@ class MockScanButtonDelegate: ScanButtonDelegate {
     }
 
     var scannedCode: String?
-    func didScanValidCode(_ button: ScanButton, code: String) {
+    func didScanValidCode(_ button: ScanBarButtonItem, code: String) {
         scannedCode = code
     }
 
