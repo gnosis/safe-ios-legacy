@@ -127,11 +127,11 @@
 /* Title for new safe screen */
 "new_safe.title" = "Configure three Safe owners.";
 
-/* Confirm password screen header */
-"onboarding.confirm_password.header" = "Repeat your master password";
+/* Passwords must match. */
+"onboarding.confirm_password.match" = "Passwords must match";
 
-/* Password confirmation must match set password rule */
-"onboarding.confirm_password.match" = "• Passwords must match";
+/* Confirm password screen title. */
+"onboarding.confirm_password.title" = "Confirm Password";
 
 /* Error alert's title */
 "onboarding.error.title" = "Error";
@@ -145,17 +145,20 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
 
-/* At least one capital letter rule for password field */
-"onboarding.set_password.capital" = "• Should have a capital letter";
+/* At least 1 number and 1 letter. */
+"onboarding.set_password.capital_and_number" = "At least 1 number and 1 letter";
 
-/* At least one digit rule for password field */
-"onboarding.set_password.digit" = "• Should have a digit";
+/* Set password screen description. */
+"onboarding.set_password.description" = "Your confidential password is used to unlock the Safe and confirm transactions.";
 
-/* Set password screen header label */
-"onboarding.set_password.header" = "Set your master password";
+/* Use a minimum of 8 characters. */
+"onboarding.set_password.length" = "Use a minimum of 8 characters";
 
-/* Minimum length rule for password field */
-"onboarding.set_password.length" = "• Minimum 6 charachters";
+/* No triple characters. */
+"onboarding.set_password.no_tripple_chars" = "No triple characters";
+
+/* Set password screen title. */
+"onboarding.set_password.title" = "Create Password";
 
 /* Set up safe options screen title */
 "onboarding.setup_safe.info" = "Setup your Safe";
@@ -167,13 +170,10 @@
 "onboarding.setup_safe.restore" = "Restore Safe";
 
 /* App slogan */
-"onboarding.start.description" = "Your secure crypto wallet with 2-factor authentication.";
+"onboarding.start.description" = "Safely store Ether and ERC20\n tokens with 2-factor authentication.";
 
-/* App name */
-"onboarding.start.header" = "Gnosis Safe";
-
-/* Start button title */
-"onboarding.start.start" = "Start";
+/* Setup password button title */
+"onboarding.start.setup_password" = "Setup password";
 
 /* Abort safe creation button title */
 "pending_safe.abort_alert.abort" = "Abort";

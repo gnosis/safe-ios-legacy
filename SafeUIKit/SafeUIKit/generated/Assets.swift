@@ -47,6 +47,7 @@ enum Asset {
   enum AddressInput {
     static let addressIconTmp = ImageAsset(name: "address-icon-tmp")
   }
+  static let backgroundDarkImage = ImageAsset(name: "background-dark-image")
   static let backgroundImage = ImageAsset(name: "background-image")
   static let checkmarkNormal = ImageAsset(name: "checkmark-normal")
   static let checkmarkSelected = ImageAsset(name: "checkmark-selected")
@@ -67,6 +68,7 @@ enum Asset {
   ]
   static let allImages: [ImageAsset] = [
     AddressInput.addressIconTmp,
+    backgroundDarkImage,
     backgroundImage,
     checkmarkNormal,
     checkmarkSelected,

@@ -18,7 +18,6 @@ class StartScreenUITests: XCTestCase {
 
     // MP-001
     func test_contents() {
-        XCTAssertExist(screen.title)
         XCTAssertExist(screen.description)
         XCTAssertExist(screen.startButton)
     }
