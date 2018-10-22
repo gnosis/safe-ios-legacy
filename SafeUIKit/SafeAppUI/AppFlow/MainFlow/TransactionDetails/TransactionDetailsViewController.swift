@@ -50,6 +50,11 @@ public class TransactionDetailsViewController: UIViewController {
         super.viewDidLoad()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .medium
+        ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
+        reloadData()
+    }
+
+    private func reloadData() {
         transaction = ApplicationServiceRegistry.walletService.transactionData(transactionID)
         configureSender()
         configureRecipient()
@@ -115,6 +120,7 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func configureViewInOtherApp() {
         viewInExternalAppButton.setTitle(Strings.externalApp, for: .normal)
+        viewInExternalAppButton.removeTarget(self, action: nil, for: .touchUpInside)
         viewInExternalAppButton.addTarget(self, action: #selector(viewInExternalApp), for: .touchUpInside)
     }
 
@@ -124,6 +130,14 @@ public class TransactionDetailsViewController: UIViewController {
 
     func string(from date: Date) -> String {
         return "\(dateFormatter.string(from: date)) (\(date.timeAgoSinceNow))"
+    }
+
+}
+
+extension TransactionDetailsViewController: EventSubscriber {
+
+    public func notify() {
+        reloadData()
     }
 
 }

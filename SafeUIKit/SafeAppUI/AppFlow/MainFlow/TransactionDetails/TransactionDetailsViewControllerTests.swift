@@ -70,6 +70,12 @@ class TransactionDetailsViewControllerTests: XCTestCase {
         }
     }
 
+    func test_whenLoaded_thenSubscribesForTxUpdates() {
+        service.transactionData_output = .pending
+        service.expect_subscribeForTransactionUpdates(subscriber: controller)
+        controller.loadViewIfNeeded()
+        XCTAssertTrue(service.verify())
+    }
 
 }
 

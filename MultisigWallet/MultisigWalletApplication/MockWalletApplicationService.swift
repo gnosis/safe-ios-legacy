@@ -263,6 +263,7 @@ public class MockWalletApplicationService: WalletApplicationService {
             actual_abortDeployment == expected_abortDeployment &&
             actual_removeDraftTransaction == expected_removeDraftTransaction &&
             actual_grouppedTransactions.count == expected_grouppedTransactions.count &&
+            actual_subscribeForTransactionUpdates.count == expected_subscribeForTransactionUpdates.count
             zip(actual_subscribeForTransactionUpdates, expected_subscribeForTransactionUpdates).reduce(true) {
                 $0 && $1.0 === $1.1
         }
