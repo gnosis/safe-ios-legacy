@@ -102,11 +102,24 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         let attrStr = NSMutableAttributedString(string: "1. \(Strings.downloadExtension)")
         let range = attrStr.mutableString.range(of: Strings.chromeExtension)
         attrStr.addAttribute(.foregroundColor, value: ColorName.aquaBlue.color, range: range)
+        addLinkIcon(to: attrStr)
         step1Label.attributedText = attrStr
         step1Label.isUserInteractionEnabled = true
         step1Label.addGestureRecognizer(UITapGestureRecognizer(
             target: self, action: #selector(downloadBrowserExtension)))
         step2Label.text = "2. \(Strings.scanQRCode)"
+    }
+
+    private func addLinkIcon(to str: NSMutableAttributedString) {
+        let textAttachment = NSTextAttachment()
+        textAttachment.image = Asset.TransactionDetails.externalLink.image
+            .withRenderingMode(.alwaysTemplate)
+        let textAttachmentStr = NSAttributedString(attachment: textAttachment)
+        let iconAttrStr = NSMutableAttributedString(string: " ")
+        iconAttrStr.append(textAttachmentStr)
+        let iconRange = NSRange(location: 0, length: iconAttrStr.length)
+        iconAttrStr.addAttribute(.foregroundColor, value: ColorName.aquaBlue.color, range: iconRange)
+        str.append(iconAttrStr)
     }
 
     @objc private func downloadBrowserExtension() {
