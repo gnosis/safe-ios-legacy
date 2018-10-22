@@ -10,7 +10,7 @@ public class Repeater {
 
     private let main: (Repeater) throws -> Void
     private let delay: TimeInterval
-    private var stopped: Bool = false
+    public private(set) var stopped: Bool = false
 
     public init (delay: TimeInterval, _ main: @escaping (Repeater) throws -> Void) {
         self.main = main

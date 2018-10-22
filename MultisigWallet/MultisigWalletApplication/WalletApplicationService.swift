@@ -50,6 +50,8 @@ public class WalletApplicationService: Assertable {
         return selectedWallet?.minimumDeploymentTransactionAmount
     }
 
+    public var transactionWebURLFormat: String!
+
     public init() {}
 
     // MARK: - Wallet
@@ -261,7 +263,7 @@ public class WalletApplicationService: Assertable {
             switch err {
             case .inconsistentData_notAmongWhitelistedToken:
                 ApplicationServiceRegistry.logger.error(
-                    "Trying to rearrange not equalt to whitelisted amount tokens",
+                    "Trying to rearrange not equal to whitelisted amount tokens",
                     error: err)
             case .inconsistentData_notEqualToWhitelistedAmount:
                 ApplicationServiceRegistry.logger.error(
@@ -350,6 +352,24 @@ public class WalletApplicationService: Assertable {
 
     // MARK: - Transactions
 
+    public func subscribeForTransactionUpdates(subscriber: EventSubscriber) {
+        resetSubscribers()
+        ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: TransactionStatusUpdated.self)
+    }
+
+    public func transactionURL(_ id: String) -> URL {
+        let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
+        return URL(string: String(format: transactionWebURLFormat, tx.transactionHash!.value))!
+    }
+
+    public func grouppedTransactions() -> [TransactionGroupData] {
+        return DomainRegistry.transactionService.grouppedTransactions().map { group in
+            TransactionGroupData(type: .init(group.type),
+                                 date: group.date,
+                                 transactions: group.transactions.map { transactionData($0) })
+        }
+    }
+
     public func updateTransaction(_ id: String, amount: BigInt, recipient: String) {
         let transaction = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
         transaction.change(amount: .ether(amount))
@@ -380,13 +400,26 @@ public class WalletApplicationService: Assertable {
 
     public func transactionData(_ id: String) -> TransactionData? {
         guard let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id)) else { return nil }
+        return transactionData(tx)
+    }
+
+    private func transactionData(_ tx: Transaction) -> TransactionData {
         return TransactionData(id: tx.id.id,
                                sender: tx.sender?.value ?? "",
                                recipient: tx.recipient?.value ?? "",
                                amount: tx.amount?.amount ?? 0,
-                               token: "ETH",
+                               token: tx.amount?.token.code ?? "",
+                               tokenDecimals: tx.amount?.token.decimals ?? Token.Ether.decimals,
                                fee: tx.fee?.amount ?? 0,
-                               status: status(of: tx))
+                               feeToken: tx.feeEstimate?.gasPrice.token.code ?? Token.Ether.code,
+                               feeTokenDecimals: tx.feeEstimate?.gasPrice.token.decimals ?? Token.Ether.decimals,
+                               status: status(of: tx),
+                               type: .outgoing,
+                               created: tx.createdDate,
+                               updated: tx.updatedDate,
+                               submitted: tx.submittedDate,
+                               rejected: tx.rejectedDate,
+                               processed: tx.processedDate)
     }
 
     private func status(of tx: Transaction) -> TransactionData.Status {
@@ -561,4 +594,14 @@ public class WalletApplicationService: Assertable {
         return transaction.id.id
     }
 
+}
+
+extension TransactionGroupData.GroupType {
+
+    init(_ type: TransactionGroup.GroupType) {
+        switch type {
+        case .pending: self = .pending
+        case .processed: self = .processed
+        }
+    }
 }

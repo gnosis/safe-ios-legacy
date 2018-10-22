@@ -80,7 +80,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     }
 
     private func configureMultisigWallet() {
-        MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletApplicationService(),
+        let walletService = WalletApplicationService()
+        walletService.transactionWebURLFormat = appConfig.transactionWebURLFormat
+        MultisigWalletApplication.ApplicationServiceRegistry.put(service: walletService,
                                                                  for: WalletApplicationService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
         let notificationService = HTTPNotificationService(url: appConfig.notificationServiceURL,
@@ -99,6 +101,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         MultisigWalletDomainModel.DomainRegistry.put(service: ErrorStream(), for: ErrorStream.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: DeploymentDomainService(),
                                                      for: DeploymentDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: TransactionDomainService(),
+                                                     for: TransactionDomainService.self)
         let relay = EventRelay(publisher: MultisigWalletDomainModel.DomainRegistry.eventPublisher)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)
 
@@ -200,6 +204,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     private func synchronise() {
         DispatchQueue.global().async {
             MultisigWalletDomainModel.DomainRegistry.syncService.sync()
+        }
+        DispatchQueue.global().async {
+            MultisigWalletDomainModel.DomainRegistry.syncService.syncTransactions()
         }
     }
 

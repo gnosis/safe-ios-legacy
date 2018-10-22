@@ -286,6 +286,36 @@
 /* Data included */
 "transaction.data.title" = "Data included";
 
+/* 'View on Etherscan' button name */
+"transaction.details.externalViewer" = "View on Etherscan.io";
+
+/* 'Fee' parameter name */
+"transaction.details.fee" = "Transaction fee";
+
+/* 'Status' parameter name */
+"transaction.details.status" = "Status";
+
+/* 'Failed' status */
+"transaction.details.status.failed" = "Failed";
+
+/* 'Pending' status */
+"transaction.details.status.pending" = "Pending";
+
+/* 'Rejected' status */
+"transaction.details.status.rejected" = "Rejected";
+
+/* 'Success' status */
+"transaction.details.status.success" = "Success";
+
+/* 'Submitted' parameter name */
+"transaction.details.submitted" = "Submitted";
+
+/* 'Type' parameter name */
+"transaction.details.type" = "Type";
+
+/* 'Outgoing' transaction type */
+"transaction.details.type.outgoing" = "Outgoing Transfer";
+
 /* Address length '%d' is too long for required length '%d' */
 "transaction.error.addressIsTooLong" = "Address is too long: %d instead of %d characters.";
 
@@ -354,12 +384,6 @@
 
 /* Pending transactions group header */
 "transactions.group.pending" = "PENDING";
-
-/* Today transactions group header */
-"transactions.group.today" = "TODAY";
-
-/* Yesterday transactions group header */
-"trasnactions.group.yesterday" = "YESTERDAY";
 
 /* Blockchain address is unknown for the wallet. */
 "wallet.error.address_missing" = "Failed to find safe address. Please try again later.";

@@ -16,4 +16,8 @@ open class InMemoryTransactionRepository: BaseInMemoryRepository<Transaction, Tr
         return TransactionID()
     }
 
+    public func findAll() -> [Transaction] {
+        return Array(items)
+    }
+
 }

@@ -7,8 +7,12 @@ import UIKit
 class MainContentViewController: SegmentBarController {
 
     weak var delegate: MainViewControllerDelegate?
-
     let tokensController = TokensTableViewController()
+
+    var transactionsControllerDelegate: TransactionsTableViewControllerDelegate? {
+        get { return transactionsController.delegate }
+        set { transactionsController.delegate = newValue }
+    }
     let transactionsController = TransactionsTableViewController.create()
 
     override func viewDidLoad() {

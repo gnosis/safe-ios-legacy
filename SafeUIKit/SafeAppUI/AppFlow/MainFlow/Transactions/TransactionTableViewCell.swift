@@ -3,6 +3,8 @@
 //
 
 import UIKit
+import MultisigWalletApplication
+import SafeUIKit
 
 class TransactionTableViewCell: UITableViewCell {
 
@@ -32,57 +34,43 @@ class TransactionTableViewCell: UITableViewCell {
         transactionTypeIconImageView.clipsToBounds = true
     }
 
-    func configure(transaction: TransactionOverview) {
-        transactionIconImageView.image = transaction.status.isFailed ? Asset.TransactionOverviewIcons.error.image :
-            transaction.icon
+    func configure(transaction: TransactionData) {
+        transactionIconImageView.image = UIImage.createBlockiesImage(seed: transaction.recipient)
 
         transactionTypeIconImageView.image = typeIcon(transaction)
 
-        transactionDescriptionLabel.text = transaction.transactionDescription
-        transactionDescriptionLabel.textColor = transaction.status.isFailed ? ColorName.tomato.color :
+        transactionDescriptionLabel.text = transaction.recipient
+        transactionDescriptionLabel.textColor = transaction.status == .failed ? ColorName.tomato.color :
             ColorName.darkSlateBlue.color
 
-        transactionDateLabel.text = transaction.formattedDate
+        transactionDateLabel.text = transaction.displayDate?.timeAgoSinceNow
         transactionDateLabel.textColor = ColorName.blueyGrey.color
 
-        pairValueStackView.isHidden = transaction.tokenAmount == nil && transaction.fiatAmount == nil
+        pairValueStackView.isHidden = false
 
-        tokenAmountLabel.text = transaction.tokenAmount
+        tokenAmountLabel.text = TokenNumberFormatter
+            .ERC20Token(code: transaction.token, decimals: transaction.tokenDecimals)
+            .string(from: transaction.amount)
         tokenAmountLabel.textColor = valueColor(transaction)
 
-        fiatAmountLabel.text = transaction.fiatAmount
-        fiatAmountLabel.textColor = ColorName.blueyGrey.color
+        fiatAmountLabel.text = nil
+        singleValueLabelStackView.isHidden = true
+        progressView.isHidden = true
 
-        singleValueLabel.text = transaction.actionDescription
-        singleValueLabel.textColor = valueColor(transaction)
-
-        singleValueLabelStackView.isHidden = transaction.actionDescription == nil
-
-        if case TransactionStatus.pending(let progress) = transaction.status {
-            progressView.isHidden = false
-            progressView.setProgress(Float(progress), animated: true)
-        } else {
-            progressView.isHidden = true
-        }
-
-        backgroundView?.backgroundColor = transaction.status.isFailed ? ColorName.transparentWhiteOnGrey.color :
+        backgroundView?.backgroundColor = transaction.status == .failed ? ColorName.transparentWhiteOnGrey.color :
             UIColor.white
     }
 
-    private func typeIcon(_ transaction: TransactionOverview) -> UIImage {
+    private func typeIcon(_ transaction: TransactionData) -> UIImage {
         switch transaction.type {
-        case .incoming: return Asset.TransactionOverviewIcons.receive.image
         case .outgoing: return Asset.TransactionOverviewIcons.sent.image
-        case .settings: return Asset.TransactionOverviewIcons.settingTransactionIcon.image
         }
     }
 
-    private func valueColor(_ transaction: TransactionOverview) -> UIColor {
-        if transaction.status.isFailed { return ColorName.battleshipGrey.color }
+    private func valueColor(_ transaction: TransactionData) -> UIColor {
+        if transaction.status == .failed { return ColorName.battleshipGrey.color }
         switch transaction.type {
-        case .incoming: return ColorName.greenTeal.color
         case .outgoing: return ColorName.tomato.color
-        case .settings: return ColorName.darkSlateBlue.color
         }
     }
 

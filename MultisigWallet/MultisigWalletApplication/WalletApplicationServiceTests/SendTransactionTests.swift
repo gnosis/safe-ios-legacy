@@ -76,7 +76,9 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(data.amount, 0)
         XCTAssertEqual(data.fee, 0)
         XCTAssertEqual(data.id, txID)
-        XCTAssertEqual(data.token, "ETH")
+        XCTAssertEqual(data.token, "")
+        XCTAssertNotNil(data.created)
+        XCTAssertNotNil(data.updated)
     }
 
     func test_whenTransactionDataIsThere_returnsIt() {
@@ -263,6 +265,20 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(notificationService.sentMessages,
                        ["to:\(service.ownerAddress(of: .browserExtension)!) " +
                         "msg:\(notificationService.transactionSentMessage(for: tx))"])
+    }
+
+    func test_whenSubscribesForTransactionUpdates_thenResetsPublisherAndSubscribes() {
+        let subscriber = MySubscriber()
+        eventPublisher.expect_reset()
+        eventRelay.expect_reset()
+        errorStream.expect_reset()
+        eventRelay.expect_subscribe(subscriber, for: TransactionStatusUpdated.self)
+
+        service.subscribeForTransactionUpdates(subscriber: subscriber)
+
+        XCTAssertTrue(eventPublisher.verify())
+        XCTAssertTrue(eventRelay.verify())
+        XCTAssertTrue(errorStream.verify())
     }
 
 }

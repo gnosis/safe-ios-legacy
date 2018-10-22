@@ -173,8 +173,17 @@ public class MockWalletApplicationService: WalletApplicationService {
                         recipient: "recipient",
                         amount: 0,
                         token: "ETH",
+                        tokenDecimals: 18,
                         fee: 0,
-                        status: .waitingForConfirmation)
+                        feeToken: "ETH",
+                        feeTokenDecimals: 18,
+                        status: .waitingForConfirmation,
+                        type: .outgoing,
+                        created: nil,
+                        updated: nil,
+                        submitted: nil,
+                        rejected: nil,
+                        processed: nil)
     public var requestTransactionConfirmation_throws = false
 
     public override func requestTransactionConfirmation(_ id: String) throws -> TransactionData {
@@ -210,6 +219,18 @@ public class MockWalletApplicationService: WalletApplicationService {
         actual_removeDraftTransaction.append(id)
     }
 
+    private var expected_grouppedTransactions = [[TransactionGroupData]]()
+    private var actual_grouppedTransactions = [String]()
+
+    public func expect_grouppedTransactions(result: [TransactionGroupData]) {
+        expected_grouppedTransactions.append(result)
+    }
+
+    public override func grouppedTransactions() -> [TransactionGroupData] {
+        actual_grouppedTransactions.append(#function)
+        return expected_grouppedTransactions[actual_grouppedTransactions.count - 1]
+    }
+
     private var expected_walletState = [WalletStateId]()
     private var actual_walletState = [String]()
 
@@ -222,6 +243,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         return expected_walletState[actual_walletState.count - 1]
     }
 
+    public override func subscribeForTransactionUpdates(subscriber: EventSubscriber) {}
+
     public func verify() -> Bool {
         return expected_walletState.count == actual_walletState.count &&
             actual_deployWallet.count == expected_deployWallet.count &&
@@ -229,7 +252,8 @@ public class MockWalletApplicationService: WalletApplicationService {
                 result && (pair.1 == nil || pair.0 === pair.1)
             } &&
             actual_abortDeployment == expected_abortDeployment &&
-            actual_removeDraftTransaction == expected_removeDraftTransaction
+            actual_removeDraftTransaction == expected_removeDraftTransaction &&
+            actual_grouppedTransactions.count == expected_grouppedTransactions.count
     }
 
     private var expected_deployWallet_error: Swift.Error?
@@ -281,6 +305,10 @@ public class MockWalletApplicationService: WalletApplicationService {
     public var didRearrange = false
     public override func rearrange(tokens: [TokenData]) {
         didRearrange = true
+    }
+
+    public override func transactionURL(_ id: String) -> URL {
+        return URL(string: "https://gnosis.pm")!
     }
 
 }

@@ -21,16 +21,17 @@ final class MainViewController: UIViewController {
     @IBOutlet weak var safeIdenticonView: IdenticonView!
     @IBOutlet weak var safeAddressLabel: UILabel!
 
-    private weak var delegate: MainViewControllerDelegate?
+    private weak var delegate: (MainViewControllerDelegate & TransactionsTableViewControllerDelegate)?
 
     private enum Strings {
         static let menu = LocalizedString("main.menu", comment: "Menu button title")
     }
 
-    static func create(delegate: MainViewControllerDelegate) -> MainViewController {
-        let controller = StoryboardScene.Main.mainViewController.instantiate()
-        controller.delegate = delegate
-        return controller
+    static func create(delegate: MainViewControllerDelegate & TransactionsTableViewControllerDelegate)
+        -> MainViewController {
+            let controller = StoryboardScene.Main.mainViewController.instantiate()
+            controller.delegate = delegate
+            return controller
     }
 
     override func viewDidLoad() {
@@ -72,6 +73,7 @@ final class MainViewController: UIViewController {
         if segue.identifier == StoryboardSegue.Main.mainContentViewControllerSeague.rawValue {
             let controller = segue.destination as! MainContentViewController
             controller.delegate = delegate
+            controller.transactionsControllerDelegate = delegate
         }
     }
 

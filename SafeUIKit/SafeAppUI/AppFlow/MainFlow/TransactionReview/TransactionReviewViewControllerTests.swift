@@ -36,8 +36,17 @@ class TransactionReviewViewControllerTests: XCTestCase {
                                                          recipient: recipient,
                                                          amount: BigInt(10).power(17),
                                                          token: "ETH",
+                                                         tokenDecimals: 18,
                                                          fee: BigInt(10).power(16),
-                                                         status: .waitingForConfirmation)
+                                                         feeToken: "ETH",
+                                                         feeTokenDecimals: 18,
+                                                         status: .waitingForConfirmation,
+                                                         type: .outgoing,
+                                                         created: nil,
+                                                         updated: nil,
+                                                         submitted: nil,
+                                                         rejected: nil,
+                                                         processed: nil)
 
 
         let vc = TransactionReviewViewController.create()
@@ -114,8 +123,17 @@ extension TransactionData {
                                recipient: "some",
                                amount: 100,
                                token: "ETH",
+                               tokenDecimals: 18,
                                fee: BigInt(10).power(18),
-                               status: status)
+                               feeToken: "ETH",
+                               feeTokenDecimals: 18,
+                               status: status,
+                               type: .outgoing,
+                               created: nil,
+                               updated: nil,
+                               submitted: nil,
+                               rejected: nil,
+                               processed: nil)
     }
 
 }

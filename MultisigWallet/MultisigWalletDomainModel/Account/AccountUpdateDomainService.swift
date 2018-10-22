@@ -11,7 +11,7 @@ open class AccountUpdateDomainService {
 
     public init() {}
 
-    public func updateAccountBalance(token: Token) {
+    public func updateAccountBalance(token: Token) throws {
         precondition(!Thread.isMainThread)
         guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return }
         let accountID = AccountID(tokenID: token.id, walletID: wallet.id)
@@ -19,14 +19,14 @@ open class AccountUpdateDomainService {
             let account = Account(tokenID: token.id, walletID: wallet.id)
             DomainRegistry.accountRepository.save(account)
         }
-        updateAccountsBalances([accountID])
+        try updateAccountsBalances([accountID])
         DomainRegistry.eventPublisher.publish(AccountsBalancesUpdated())
     }
 
-    open func updateAccountsBalances() {
+    open func updateAccountsBalances() throws {
         precondition(!Thread.isMainThread)
         addMissingAccountsForWhitelistedTokenItems()
-        updateBalancesForWhitelistedAccounts()
+        try updateBalancesForWhitelistedAccounts()
         DomainRegistry.eventPublisher.publish(AccountsBalancesUpdated())
     }
 
@@ -41,33 +41,33 @@ open class AccountUpdateDomainService {
         }
     }
 
-    private func updateBalancesForWhitelistedAccounts() {
+    private func updateBalancesForWhitelistedAccounts() throws {
         let allWalletAccountsIds = allSelectedWalletAccountsIds()
         let whitelistedIds = whitelisteItemsTokensIds()
         let whitelistedAccountsIds = allWalletAccountsIds.filter {
             $0.tokenID == Token.Ether.id || whitelistedIds.index(of: $0.tokenID) != nil
         }
-        updateAccountsBalances(whitelistedAccountsIds)
+        try updateAccountsBalances(whitelistedAccountsIds)
     }
 
-    private func updateAccountsBalances(_ accountIDs: [AccountID]) {
-        accountIDs.forEach { accountID in
-            guard let balance = self.balance(of: accountID) else { return }
+    private func updateAccountsBalances(_ accountIDs: [AccountID]) throws {
+        try accountIDs.forEach { accountID in
+            guard let balance = try self.balance(of: accountID) else { return }
             let account = DomainRegistry.accountRepository.find(id: accountID)!
             account.update(newAmount: balance)
             DomainRegistry.accountRepository.save(account)
         }
     }
 
-    private func balance(of accountID: AccountID) -> TokenInt? {
+    private func balance(of accountID: AccountID) throws -> TokenInt? {
         guard let wallet = DomainRegistry.walletRepository.findByID(accountID.walletID),
             let address = wallet.address else { return nil }
         if accountID.tokenID == Token.Ether.id {
-            return try? DomainRegistry.ethereumNodeService.eth_getBalance(account: address)
+            return try DomainRegistry.ethereumNodeService.eth_getBalance(account: address)
         } else {
             let token = DomainRegistry.tokenListItemRepository.find(id: accountID.tokenID)!
             let proxy = ERC20TokenContractProxy(token.token.address)
-            return try? proxy.balance(of: address)
+            return try proxy.balance(of: address)
         }
     }
 
