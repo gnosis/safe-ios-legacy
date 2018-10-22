@@ -17,31 +17,12 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
         super.setUp()
         controller = PairWithBrowserExtensionViewController.create(delegate: delegate)
         controller.loadViewIfNeeded()
+        ethereumService.browserExtensionAddress = "address"
     }
 
     func test_canCreate() {
         XCTAssertNotNil(controller)
         XCTAssertTrue(controller.delegate === delegate)
-    }
-
-    func test_viewDidLoad() {
-        XCTAssertTrue(controller.extensionAddressInput.qrCodeDelegate === controller)
-        XCTAssertEqual(controller.extensionAddressInput.editingMode, .scanOnly)
-    }
-
-    func test_viewDidLoad_whenNoInitialAddress_thenSaveButtonIsDisabled() {
-        XCTAssertFalse(controller.saveButton.isEnabled)
-        XCTAssertEqual(controller.saveButton.title(for: .normal),
-                       XCLocalizedString(PairWithBrowserExtensionViewController.Strings.save))
-    }
-
-    func test_viewDidLoad_whenInitialAddressProvided_thenUpdateButtonIsDisabled() {
-        walletService.addOwner(address: "address", type: .browserExtension)
-        controller = PairWithBrowserExtensionViewController.create(delegate: delegate)
-        controller.loadViewIfNeeded()
-        XCTAssertFalse(controller.saveButton.isEnabled)
-        XCTAssertEqual(controller.saveButton.title(for: .normal),
-                       XCLocalizedString(PairWithBrowserExtensionViewController.Strings.update))
     }
 
     func test_canPresentController() {
@@ -51,32 +32,24 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
         XCTAssertTrue(controller.presentedViewController === presentedController)
     }
 
-    func test_didScanValidCode_makesSaveButtonEnabled() {
-        controller.didScanValidCode("code")
-        XCTAssertTrue(controller.saveButton.isEnabled)
+    func test_whenScansValidCode_thenAddsBowserExtension() {
+        XCTAssertFalse(walletService.isOwnerExists(.browserExtension))
+        controller.didScanValidCode(controller.scanBarButtonItem, code: "valid_code")
+        delay()
+        XCTAssertTrue(walletService.isOwnerExists(.browserExtension))
     }
 
-    func test_finish_whenNoAddress_thenLogsError() {
-        controller.finish(self)
-        XCTAssertFalse(delegate.paired)
-        XCTAssertTrue(logger.errorLogged)
-    }
-
-    func test_finish_whenAddressIsThere_thenCallsDelegate() {
-        controller.extensionAddressInput.text = "test_address"
-        controller.didScanValidCode("code")
-        controller.finish(self)
+    func test_whenScansValidCode_thenCallsTheDelegare() {
+        controller.didScanValidCode(controller.scanBarButtonItem, code: "valid_code")
         delay()
         XCTAssertTrue(delegate.paired)
     }
 
-    func test_whenFinishing_thenCreatesOwner() {
-        walletService.createNewDraftWallet()
-        controller.extensionAddressInput.text = "address"
-        controller.didScanValidCode("code")
-        controller.finish(self)
+    func test_whenWalletServiceThrows_thenAlertIsShown() {
+        walletService.shouldThrow = true
+        controller.didScanValidCode(controller.scanBarButtonItem, code: "valid_code")
         delay()
-        XCTAssertTrue(walletService.isOwnerExists(.browserExtension))
+        XCTAssertAlertShown(message: PairWithBrowserExtensionViewController.Strings.invalidCode)
     }
 
 }
@@ -84,11 +57,8 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
 class MockPairWithBrowserDelegate: PairWithBrowserDelegate {
 
     var paired = false
-    var address = ""
-
     func didPair() {
         paired = true
-        address = "address"
     }
 
 }
