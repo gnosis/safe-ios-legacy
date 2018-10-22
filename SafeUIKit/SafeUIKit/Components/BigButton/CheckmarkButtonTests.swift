@@ -5,9 +5,9 @@
 import XCTest
 @testable import SafeUIKit
 
-class BigButtonTests: XCTestCase {
+class CheckmarkButtonTests: XCTestCase {
 
-    let button = BigButton()
+    let button = CheckmarkButton()
 
     func test_whenCheckEnabled_showsUncheckedImage() {
         button.checkmarkStatus = .normal

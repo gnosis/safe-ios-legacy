@@ -44,11 +44,6 @@ public final class QRCodeInput: UITextField {
         commonInit()
     }
 
-    public override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        commonInit()
-    }
-
     private struct Constants {
         static let inputHeight: CGFloat = 34
         static let minFontSize: CGFloat = 17

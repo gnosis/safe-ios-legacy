@@ -29,9 +29,9 @@ class NewSafeViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var nextButton: UIBarButtonItem!
-    @IBOutlet weak var thisDeviceButton: BigButton!
-    @IBOutlet weak var browserExtensionButton: BigButton!
-    @IBOutlet weak var paperWalletButton: BigButton!
+    @IBOutlet weak var thisDeviceButton: CheckmarkButton!
+    @IBOutlet weak var browserExtensionButton: CheckmarkButton!
+    @IBOutlet weak var paperWalletButton: CheckmarkButton!
 
     weak var delegate: NewSafeDelegate?
 
