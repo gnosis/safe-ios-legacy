@@ -12,16 +12,14 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
 
     func test_whenSubscribesOnTokensUpdates_thenResetsPublisherAndSubscribesForEvents() {
         let subscriber = MySubscriber()
-        eventPublisher.expect_reset()
-        eventRelay.expect_reset()
-        errorStream.expect_reset()
+        eventRelay.expect_unsubscribe(subscriber)
+        errorStream.expect_removeHandler(subscriber)
         eventRelay.expect_subscribe(subscriber, for: AccountsBalancesUpdated.self)
         eventRelay.expect_subscribe(subscriber, for: TokensDisplayListChanged.self)
         errorStream.expect_addHandler()
 
         service.subscribeOnTokensUpdates(subscriber: subscriber)
 
-        XCTAssertTrue(eventPublisher.verify())
         XCTAssertTrue(eventRelay.verify())
         XCTAssertTrue(errorStream.verify())
     }
@@ -29,9 +27,11 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
     func test_whenTokenListErrorHappens_thenItIsHandled() {
         subscribeOnErrors()
         DomainRegistry.errorStream.post(TokensListError.inconsistentData_notAmongWhitelistedToken)
+        delay()
         XCTAssertTrue(logger.errorLogged)
         logger.errorLogged = false
         DomainRegistry.errorStream.post(TokensListError.inconsistentData_notEqualToWhitelistedAmount)
+        delay()
         XCTAssertTrue(logger.errorLogged)
     }
 
@@ -96,6 +96,7 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         let rearranged = [TokenData](visibleTokens.reversed().dropLast())
         XCTAssertFalse(logger.errorLogged)
         service.rearrange(tokens: rearranged)
+        delay()
         XCTAssertTrue(logger.errorLogged)
         XCTAssertEqual(logger.loggedError as? TokensListError, .inconsistentData_notEqualToWhitelistedAmount)
     }
@@ -108,6 +109,7 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         var rearranged = [TokenData](visibleTokens.reversed().dropLast())
         rearranged.append(TokenData(token: Token.Ether, balance: nil))
         service.rearrange(tokens: rearranged)
+        delay()
         XCTAssertTrue(logger.errorLogged)
         XCTAssertEqual(logger.loggedError as? TokensListError, .inconsistentData_notAmongWhitelistedToken)
     }

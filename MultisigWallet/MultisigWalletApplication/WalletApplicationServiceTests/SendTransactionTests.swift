@@ -269,16 +269,12 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
 
     func test_whenSubscribesForTransactionUpdates_thenResetsPublisherAndSubscribes() {
         let subscriber = MySubscriber()
-        eventPublisher.expect_reset()
-        eventRelay.expect_reset()
-        errorStream.expect_reset()
+        eventRelay.expect_unsubscribe(subscriber)
         eventRelay.expect_subscribe(subscriber, for: TransactionStatusUpdated.self)
 
         service.subscribeForTransactionUpdates(subscriber: subscriber)
 
-        XCTAssertTrue(eventPublisher.verify())
         XCTAssertTrue(eventRelay.verify())
-        XCTAssertTrue(errorStream.verify())
     }
 
 }

@@ -21,6 +21,7 @@ class TransactionDetailsViewControllerTests: XCTestCase {
     func test_whenTransactionDataProvided_thenPutsItOnTheScreen() {
         let tx = TransactionData.pending
         service.transactionData_output = tx
+        controller.clock = TestClock()
         createWindow(controller)
         XCTAssertEqual(controller.senderView.address, tx.sender)
         XCTAssertEqual(controller.recipientView.address, tx.recipient)
@@ -70,6 +71,20 @@ class TransactionDetailsViewControllerTests: XCTestCase {
         }
     }
 
+    func test_whenLoaded_thenSubscribesForTxUpdates() {
+        service.transactionData_output = .pending
+        service.expect_subscribeForTransactionUpdates(subscriber: controller)
+        controller.loadViewIfNeeded()
+        XCTAssertTrue(service.verify())
+    }
+
+}
+
+class TestClock: ClockService {
+
+    var frozenTime = Date()
+
+    override var currentTime: Date { return frozenTime }
 
 }
 

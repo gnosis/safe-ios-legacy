@@ -42,6 +42,7 @@ class TransactionsTableViewControllerTests: XCTestCase {
 
     func test_whenLoading_thenLoadsFromAppService() {
         service.expect_grouppedTransactions(result: [])
+        service.expect_subscribeForTransactionUpdates(subscriber: controller)
         createWindow(controller)
         XCTAssertTrue(service.verify())
     }
@@ -128,6 +129,12 @@ class TransactionsTableViewControllerTests: XCTestCase {
 
     private func assertEqual(_ lhs: UIImage?, _ rhs: UIImage?, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(lhs?.pngData(), rhs?.pngData(), file: file, line: line)
+    }
+
+    func test_whenLoaded_thenSubscribesForTxUpdates() {
+        service.expect_subscribeForTransactionUpdates(subscriber: controller)
+        controller.loadViewIfNeeded()
+        XCTAssertTrue(service.verify())
     }
 
 }

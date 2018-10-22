@@ -11,6 +11,12 @@ public protocol TransactionDetailsViewControllerDelegate: class {
     func showTransactionInExternalApp(from controller: TransactionDetailsViewController)
 }
 
+internal class ClockService {
+    var currentTime: Date {
+        return Date()
+    }
+}
+
 public class TransactionDetailsViewController: UIViewController {
 
     struct Strings {
@@ -37,6 +43,7 @@ public class TransactionDetailsViewController: UIViewController {
     public weak var delegate: TransactionDetailsViewControllerDelegate?
     public private(set) var transactionID: String!
     private var transaction: TransactionData!
+    internal var clock = ClockService()
 
     private let dateFormatter = DateFormatter()
 
@@ -50,6 +57,11 @@ public class TransactionDetailsViewController: UIViewController {
         super.viewDidLoad()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .medium
+        ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
+        reloadData()
+    }
+
+    private func reloadData() {
         transaction = ApplicationServiceRegistry.walletService.transactionData(transactionID)
         configureSender()
         configureRecipient()
@@ -115,6 +127,7 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func configureViewInOtherApp() {
         viewInExternalAppButton.setTitle(Strings.externalApp, for: .normal)
+        viewInExternalAppButton.removeTarget(self, action: nil, for: .touchUpInside)
         viewInExternalAppButton.addTarget(self, action: #selector(viewInExternalApp), for: .touchUpInside)
     }
 
@@ -123,7 +136,15 @@ public class TransactionDetailsViewController: UIViewController {
     }
 
     func string(from date: Date) -> String {
-        return "\(dateFormatter.string(from: date)) (\(date.timeAgoSinceNow))"
+        return "\(dateFormatter.string(from: date)) (\(date.timeAgo(since: clock.currentTime)))"
+    }
+
+}
+
+extension TransactionDetailsViewController: EventSubscriber {
+
+    public func notify() {
+        reloadData()
     }
 
 }
