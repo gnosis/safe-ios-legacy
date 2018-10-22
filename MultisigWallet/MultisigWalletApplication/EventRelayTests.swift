@@ -5,6 +5,7 @@
 import XCTest
 @testable import MultisigWalletApplication
 import MultisigWalletDomainModel
+import CommonTestSupport
 
 class EventRelayTests: XCTestCase {
 
@@ -21,6 +22,7 @@ class EventRelayTests: XCTestCase {
         relay.subscribe(subscriber, for: MyEvent.self)
         subscriber.expect_notify()
         publisher.publish(MyEvent())
+        delay()
         subscriber.verify()
     }
 
@@ -31,8 +33,10 @@ class EventRelayTests: XCTestCase {
         }
         relay.subscribe(temp!, for: DomainEvent.self)
         publisher.publish(MyEvent())
+        delay()
         temp = nil
         publisher.publish(MyEvent())
+        delay()
         XCTAssertEqual(callCount, 1)
     }
 
@@ -43,6 +47,7 @@ class EventRelayTests: XCTestCase {
         relay.subscribe(subscriber, for: DomainEvent.self)
         relay.subscribe(other, for: DomainEvent.self)
         publisher.publish(MyEvent())
+        delay()
         subscriber.verify()
         other.verify()
     }
@@ -56,7 +61,7 @@ class EventRelayTests: XCTestCase {
 
     func test_whenReset_thenNotNotified() {
         relay.subscribe(subscriber, for: DomainEvent.self)
-        relay.reset(publisher: publisher)
+        relay.unsubscribe(subscriber)
         publisher.publish(MyEvent())
         subscriber.verify()
     }

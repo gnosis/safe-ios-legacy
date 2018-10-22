@@ -37,10 +37,6 @@ public class MockEventPublisher: EventPublisher {
         expected_reset.append("reset()")
     }
 
-    public override func reset() {
-        actual_reset.append(#function)
-    }
-
     public func verify() -> Bool {
         return actual_reset == expected_reset &&
             expectedToPublish == actuallyPublished

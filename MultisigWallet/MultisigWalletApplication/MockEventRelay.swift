@@ -8,17 +8,6 @@ import MultisigWalletDomainModel
 
 class MockEventRelay: EventRelay {
 
-    private var expected_reset = [String]()
-    private var actual_reset = [String]()
-
-    public func expect_reset() {
-        expected_reset.append("reset(publisher:)")
-    }
-
-    public override func reset(publisher: EventPublisher) {
-        actual_reset.append(#function)
-    }
-
     private var expected_subscribe = [(subject: EventSubscriber, event: DomainEvent.Type)]()
     private var actual_subscribe = [(subject: EventSubscriber, event: DomainEvent.Type)]()
 
@@ -30,12 +19,25 @@ class MockEventRelay: EventRelay {
         actual_subscribe.append((subject, event))
     }
 
+    private var expected_unsubscribe = [EventSubscriber]()
+    private var actual_unsubscribe = [EventSubscriber]()
+
+    public func expect_unsubscribe(_ subject: EventSubscriber) {
+        expected_unsubscribe.append(subject)
+    }
+
+    override func unsubscribe(_ subject: EventSubscriber) {
+        actual_unsubscribe.append(subject)
+    }
+
     public func verify() -> Bool {
         return actual_reset == expected_reset &&
             actual_subscribe.count == expected_subscribe.count &&
             zip(actual_subscribe, expected_subscribe).reduce(true) { result, pair -> Bool in
                 result && pair.0.subject === pair.1.subject && pair.0.event == pair.1.event
-            }
+            } &&
+            actual_unsubscribe.count == expected_unsubscribe.count &&
+            zip(actual_unsubscribe, expected_unsubscribe).reduce(true) { $0 && $1.0 === $1.1 }
     }
 
 }

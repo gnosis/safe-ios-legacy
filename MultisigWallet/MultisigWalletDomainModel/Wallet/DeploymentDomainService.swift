@@ -17,12 +17,13 @@ public class DeploymentDomainService {
     }
 
     public func start() {
-        DomainRegistry.eventPublisher.subscribe(deploymentStarted)
-        DomainRegistry.eventPublisher.subscribe(walletConfigured)
-        DomainRegistry.eventPublisher.subscribe(walletFunded)
-        DomainRegistry.eventPublisher.subscribe(creationStarted)
-        DomainRegistry.eventPublisher.subscribe(walletCreated)
-        DomainRegistry.eventPublisher.subscribe(creationFailed)
+        DomainRegistry.eventPublisher.unsubscribe(self)
+        DomainRegistry.eventPublisher.subscribe(self, deploymentStarted)
+        DomainRegistry.eventPublisher.subscribe(self, walletConfigured)
+        DomainRegistry.eventPublisher.subscribe(self, walletFunded)
+        DomainRegistry.eventPublisher.subscribe(self, creationStarted)
+        DomainRegistry.eventPublisher.subscribe(self, walletCreated)
+        DomainRegistry.eventPublisher.subscribe(self, creationFailed)
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         wallet.resume()
     }

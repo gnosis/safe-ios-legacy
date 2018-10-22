@@ -13,17 +13,19 @@ class ErrorStreamTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        stream.addHandler { [unowned self] in self.receivedError = $0 }
+        stream.addHandler(self) { [unowned self] in self.receivedError = $0 }
     }
 
     func test_whenPostingError_thenCallsHandler() {
         stream.post(TestError.error)
+        delay()
         XCTAssertEqual(receivedError?.localizedDescription, TestError.error.localizedDescription)
     }
 
     func test_whenResetting_thenNoErrorReceived() {
-        stream.reset()
+        stream.removeHandler(self)
         stream.post(TestError.error)
+        delay()
         XCTAssertNil(receivedError)
     }
 

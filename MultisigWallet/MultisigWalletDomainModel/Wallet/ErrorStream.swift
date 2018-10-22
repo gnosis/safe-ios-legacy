@@ -9,19 +9,33 @@ import Foundation
 /// here the Error is published (posted), so that other parties could handle it or log it.
 public class ErrorStream {
 
-    private var handlers = [(Error) -> Void]()
+    private var handlers = [(handler: WeakWrapper, closure: (Error) -> Void)]()
+    private var queue: OperationQueue
 
-    public init () {}
+    public init () {
+        queue = OperationQueue()
+        queue.name = "ErrorStreamSerialQueue"
+        queue.maxConcurrentOperationCount = 1
+    }
 
     public func post(_ error: Error) {
-        handlers.forEach { $0(error) }
+        removeWeakNils()
+        let snapshotHandlers = handlers
+        queue.addOperation {
+            snapshotHandlers.forEach { $0.closure(error) }
+        }
     }
 
-    public func addHandler(_ handler: @escaping (Error) -> Void) {
-        handlers.append(handler)
+    private func removeWeakNils() {
+        handlers = handlers.filter { $0.handler.ref != nil }
     }
 
-    public func reset() {
-        handlers = []
+    public func addHandler(_ handler: AnyObject, _ closure: @escaping (Error) -> Void) {
+        handlers.append((WeakWrapper(handler), closure))
     }
+
+    public func removeHandler(_ handler: AnyObject) {
+        handlers.removeAll { $0.handler.ref === handler }
+    }
+
 }

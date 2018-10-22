@@ -42,6 +42,7 @@ class TransactionsTableViewControllerTests: XCTestCase {
 
     func test_whenLoading_thenLoadsFromAppService() {
         service.expect_grouppedTransactions(result: [])
+        service.expect_subscribeForTransactionUpdates(subscriber: controller)
         createWindow(controller)
         XCTAssertTrue(service.verify())
     }

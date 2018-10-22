@@ -13,22 +13,14 @@ public protocol EventSubscriber: class {
 /// When event subscriber is deallocated, it won't be notified again, therefore unsubscribing is optional.
 public class EventRelay {
 
-    private class SubscriberWrapper {
-        weak var ref: EventSubscriber?
-
-        init(_ ref: EventSubscriber) {
-            self.ref = ref
-        }
-    }
-
-    private var subscribers = [(type: DomainEvent.Type, subscriber: SubscriberWrapper)]()
+    private var subscribers = [(type: DomainEvent.Type, subscriber: WeakWrapper)]()
 
     public init(publisher: EventPublisher) {
-        publisher.subscribe(handleEvent)
+        publisher.subscribe(self, handleEvent)
     }
 
     func subscribe(_ subject: EventSubscriber, for event: DomainEvent.Type) {
-        subscribers.append((event, SubscriberWrapper(subject)))
+        subscribers.append((event, WeakWrapper(subject)))
     }
 
     func unsubscribe(_ subject: EventSubscriber) {
@@ -37,18 +29,17 @@ public class EventRelay {
         }
     }
 
-    func reset(publisher: EventPublisher) {
-        subscribers = []
-        publisher.subscribe(handleEvent)
-    }
-
     private func handleEvent(_ event: DomainEvent) {
-        subscribers = subscribers.filter { $0.subscriber.ref != nil }
+        removeWeakNils()
         subscribers.filter {
             $0.type == type(of: event) || $0.type == DomainEvent.self
         }.forEach {
-            $0.subscriber.ref!.notify()
+            ($0.subscriber.ref as! EventSubscriber).notify()
         }
+    }
+
+    private func removeWeakNils() {
+        subscribers = subscribers.filter { $0.subscriber.ref != nil }
     }
 
 }

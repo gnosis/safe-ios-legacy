@@ -14,7 +14,7 @@ class EventPublisherTests: XCTestCase {
 
     func test_publishesEvent() {
         let exp = expectation(description: "receiving event")
-        publisher.subscribe { (_: MyEvent) in
+        publisher.subscribe(self) { (_: MyEvent) in
             exp.fulfill()
         }
         publisher.publish(MyEvent())
@@ -23,22 +23,23 @@ class EventPublisherTests: XCTestCase {
 
     func test_whenReset_thenSubscriberRemoved() {
         var didReceive = false
-        publisher.subscribe { (_: MyEvent) in
+        publisher.subscribe(self) { (_: MyEvent) in
             didReceive = true
         }
-        publisher.reset()
+        publisher.unsubscribe(self)
         publisher.publish(MyEvent())
         XCTAssertFalse(didReceive)
     }
 
     func test_whenSubscribingForDomainEventType_thenReceivesAllEvents() {
-        var didReceive = 0
-        publisher.subscribe { (_: DomainEvent) in
-            didReceive += 1
+        let exp = self.expectation(description: "event")
+        exp.expectedFulfillmentCount = 2
+        publisher.subscribe(self) { (_: DomainEvent) in
+            exp.fulfill()
         }
         publisher.publish(MyEvent())
         publisher.publish(OtherEvent())
-        XCTAssertEqual(didReceive, 2)
+        waitForExpectations(timeout: 0.1)
     }
 
 }

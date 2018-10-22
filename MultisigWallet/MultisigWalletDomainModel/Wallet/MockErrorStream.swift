@@ -20,7 +20,8 @@ public class MockErrorStream: ErrorStream {
     public func verify() -> Bool {
         return actual_errors.map { $0.localizedDescription } == expected_errors.map { $0.localizedDescription } &&
             actual_addHandler == expected_addHandler &&
-            actual_reset == expected_reset
+            actual_removeHandler.count == expected_removeHandler.count &&
+            zip(actual_removeHandler, expected_removeHandler).reduce(true) { $0 && $1.0 === $1.1 }
     }
 
     private var expected_addHandler = [String]()
@@ -30,19 +31,19 @@ public class MockErrorStream: ErrorStream {
         expected_addHandler.append("addHandler")
     }
 
-    public override func addHandler(_ handler: @escaping (Error) -> Void) {
-        actual_addHandler.append(#function)
+    public override func addHandler(_ handler: AnyObject, _ closure: @escaping (Error) -> Void) {
+        actual_addHandler.append("addHandler")
     }
 
-    private var expected_reset = [String]()
-    private var actual_reset = [String]()
+    private var expected_removeHandler = [AnyObject]()
+    private var actual_removeHandler = [AnyObject]()
 
-    public func expect_reset() {
-        expected_reset.append("reset()")
+    public func expect_removeHandler(_ handler: AnyObject) {
+        expected_removeHandler.append(handler)
     }
 
-    public override func reset() {
-        actual_reset.append(#function)
+    public override func removeHandler(_ handler: AnyObject) {
+        actual_removeHandler.append(handler)
     }
 
 }

@@ -76,21 +76,20 @@ public class WalletApplicationService: Assertable {
     }
 
     public func deployWallet(subscriber: EventSubscriber, onError: ((Swift.Error) -> Void)?) {
-        resetSubscribers(onError: onError)
-        [DeploymentStarted.self, WalletConfigured.self, DeploymentFunded.self,
-         CreationStarted.self, WalletCreated.self, WalletCreationFailed.self].forEach {
+        if let errorHandler = onError {
+            DomainRegistry.errorStream.removeHandler(subscriber)
+            DomainRegistry.errorStream.addHandler(subscriber, errorHandler)
+        }
+        ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
+        [DeploymentStarted.self,
+         WalletConfigured.self,
+         DeploymentFunded.self,
+         CreationStarted.self,
+         WalletCreated.self,
+         WalletCreationFailed.self].forEach {
             ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: $0)
         }
         DomainRegistry.deploymentService.start()
-    }
-
-    private func resetSubscribers(onError: ((Swift.Error) -> Void)? = nil) {
-        DomainRegistry.eventPublisher.reset()
-        ApplicationServiceRegistry.eventRelay.reset(publisher: DomainRegistry.eventPublisher)
-        DomainRegistry.errorStream.reset()
-        if let errorHandler = onError {
-            DomainRegistry.errorStream.addHandler(errorHandler)
-        }
     }
 
     public func walletState() -> WalletStateId? {
@@ -253,7 +252,9 @@ public class WalletApplicationService: Assertable {
     ///
     /// - Parameter subscriber: subscriber.
     public func subscribeOnTokensUpdates(subscriber: EventSubscriber) {
-        resetSubscribers(onError: tokensListUpdatesErrorHandler)
+        DomainRegistry.errorStream.removeHandler(subscriber)
+        DomainRegistry.errorStream.addHandler(subscriber, tokensListUpdatesErrorHandler)
+        ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
         ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: AccountsBalancesUpdated.self)
         ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: TokensDisplayListChanged.self)
     }
@@ -353,7 +354,7 @@ public class WalletApplicationService: Assertable {
     // MARK: - Transactions
 
     public func subscribeForTransactionUpdates(subscriber: EventSubscriber) {
-        resetSubscribers()
+        ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
         ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: TransactionStatusUpdated.self)
     }
 
