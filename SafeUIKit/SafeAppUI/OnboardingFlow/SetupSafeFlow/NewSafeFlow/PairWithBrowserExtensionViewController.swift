@@ -15,6 +15,18 @@ protocol PairWithBrowserDelegate: class {
 final class PairWithBrowserExtensionViewController: UIViewController {
 
     enum Strings {
+        static let title = LocalizedString("new_safe.browser_extension.title",
+                                           comment: "Title for add browser extension screen")
+        static let header = LocalizedString("new_safe.browser_extension.header",
+                                            comment: "Header for add browser extension screen")
+        static let description = LocalizedString("new_safe.browser_extension.description",
+                                                 comment: "Description for add browser extension screen")
+        static let downloadThe = LocalizedString("new_safe.browser_extension.download_chrome_extension",
+                                                 comment: "'Download the' Gnosis Safe Chrome browser exntension.")
+        static let chromeExtension = LocalizedString("new_safe.browser_extension.chrome_extension_substring",
+                                                     comment: "Download the 'Gnosis Safe Chrome browser exntension.'")
+        static let scanQRCode = LocalizedString("new_safe.browser_extension.scan_qr",
+                                                comment: "Scan its QR code.")
         static let scan = LocalizedString("new_safe.browser_extension.scan",
                                           comment: "Scan button title in extension setup screen")
         static let browserExtensionExpired = LocalizedString("new_safe.browser_extension.expired",
@@ -25,7 +37,11 @@ final class PairWithBrowserExtensionViewController: UIViewController {
                                                  comment: "Invalid extension code")
     }
 
-    @IBOutlet weak var titleLabel: H1Label!
+    @IBOutlet weak var wrapperView: UIView!
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var step1Label: UILabel!
+    @IBOutlet weak var step2Label: UILabel!
 
     private(set) weak var delegate: PairWithBrowserDelegate?
     private var logger: Logger {
@@ -49,8 +65,11 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Strings.title
         configureScanButton()
         configureActivityIndicator()
+        configureWrapperView()
+        configureTexts()
     }
 
     private func configureScanButton() {
@@ -64,6 +83,20 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         activityIndicator.color = ColorName.aquaBlue.color
+    }
+
+    private func configureWrapperView() {
+        wrapperView.layer.shadowColor = UIColor.black.cgColor
+        wrapperView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        wrapperView.layer.shadowOpacity = 0.4
+    }
+
+    private func configureTexts() {
+        headerLabel.text = Strings.header
+        descriptionLabel.text = Strings.description
+        // TODO: open in Safari
+        step1Label.text = "1. \(Strings.downloadThe)"
+        step2Label.text = "2. \(Strings.scanQRCode)"
     }
 
     private func addBrowserExtensionOwner(code: String) {

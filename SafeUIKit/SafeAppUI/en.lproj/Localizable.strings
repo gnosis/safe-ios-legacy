@@ -88,8 +88,20 @@
 /* Browser extension Button */
 "new_safe.browser_extension" = "Browser Extension";
 
+/* Download the 'Gnosis Safe Chrome browser exntension.' */
+"new_safe.browser_extension.chrome_extension_substring" = "Gnosis Safe Chrome browser extension.";
+
+/* Description for add browser extension screen */
+"new_safe.browser_extension.description" = "All transactions need to be approved by both this device and the browser extension.";
+
+/* 'Download the' Gnosis Safe Chrome browser exntension. */
+"new_safe.browser_extension.download_chrome_extension" = "Download the Gnosis Safe Chrome browser extension.";
+
 /* Browser Extension Expired Message */
 "new_safe.browser_extension.expired" = "Failed to pair because QR code is expired. Please, generate a new code.";
+
+/* Header for add browser extension screen */
+"new_safe.browser_extension.header" = "Add browser extension";
 
 /* Invalid extension code */
 "new_safe.browser_extension.invalid_code_error" = "Failed to pair because of invalid QR code.";
@@ -99,6 +111,12 @@
 
 /* Scan button title in extension setup screen */
 "new_safe.browser_extension.scan" = "Scan";
+
+/* Scan its QR code. */
+"new_safe.browser_extension.scan_qr" = "Scan its QR code.";
+
+/* Title for add browser extension screen */
+"new_safe.browser_extension.title" = "Setup";
 
 /* Create button */
 "new_safe.create" = "Create";
