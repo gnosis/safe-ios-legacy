@@ -88,23 +88,20 @@
 /* Browser extension Button */
 "new_safe.browser_extension" = "Browser Extension";
 
-/* Create button */
-"new_safe.create" = "Create";
-
 /* Browser Extension Expired Message */
-"new_safe.extension.expired" = "Failed to pair because QR code is expired. Please, generate a new code.";
+"new_safe.browser_extension.expired" = "Failed to pair because QR code is expired. Please, generate a new code.";
 
 /* Invalid extension code */
-"new_safe.extension.invalid_code_error" = "Failed to pair because of invalid QR code.";
+"new_safe.browser_extension.invalid_code_error" = "Failed to pair because of invalid QR code.";
 
 /* Network error message */
-"new_safe.extension.network_error" = "Failed to pair because of network error. Please try again later.";
+"new_safe.browser_extension.network_error" = "Failed to pair because of network error. Please try again later.";
 
-/* Save button title in extension setup screen */
-"new_safe.extension.save" = "Save";
+/* Scan button title in extension setup screen */
+"new_safe.browser_extension.scan" = "Scan";
 
-/* Update button title in extension setup screen */
-"new_safe.extension.update" = "Update";
+/* Create button */
+"new_safe.create" = "Create";
 
 /* Paper Wallet Button */
 "new_safe.paper_wallet" = "Paper Wallet";

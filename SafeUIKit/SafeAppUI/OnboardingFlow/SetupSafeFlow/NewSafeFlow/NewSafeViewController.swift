@@ -60,12 +60,24 @@ class NewSafeViewController: UIViewController {
             return
         }
         titleLabel.text = Strings.title
+        nextButton.title = Strings.next
+        configureThisDeviceButton()
+        configureConnectBorwserExtensionButton()
+        configureSetupRecoveryPhraseButton()
+    }
+
+    private func configureThisDeviceButton() {
         thisDeviceButton.setTitle(Strings.thisDevice, for: .normal)
         thisDeviceButton.isEnabled = false
         thisDeviceButton.checkmarkStatus = .selected
-        paperWalletButton.setTitle(Strings.paperWallet, for: .normal)
+    }
+
+    private func configureConnectBorwserExtensionButton() {
         browserExtensionButton.setTitle(Strings.browserExtension, for: .normal)
-        nextButton.title = Strings.next
+    }
+
+    private func configureSetupRecoveryPhraseButton() {
+        paperWalletButton.setTitle(Strings.paperWallet, for: .normal)
     }
 
     override func viewWillAppear(_ animated: Bool) {
