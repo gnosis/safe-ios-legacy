@@ -7,6 +7,7 @@ import SafeUIKit
 import IdentityAccessApplication
 import MultisigWalletApplication
 import Common
+import SafariServices
 
 protocol PairWithBrowserDelegate: class {
     func didPair()
@@ -21,8 +22,8 @@ final class PairWithBrowserExtensionViewController: UIViewController {
                                             comment: "Header for add browser extension screen")
         static let description = LocalizedString("new_safe.browser_extension.description",
                                                  comment: "Description for add browser extension screen")
-        static let downloadThe = LocalizedString("new_safe.browser_extension.download_chrome_extension",
-                                                 comment: "'Download the' Gnosis Safe Chrome browser exntension.")
+        static let downloadExtension = LocalizedString("new_safe.browser_extension.download_chrome_extension",
+                                                       comment: "'Download the' Gnosis Safe Chrome browser exntension.")
         static let chromeExtension = LocalizedString("new_safe.browser_extension.chrome_extension_substring",
                                                      comment: "Download the 'Gnosis Safe Chrome browser exntension.'")
         static let scanQRCode = LocalizedString("new_safe.browser_extension.scan_qr",
@@ -94,9 +95,24 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     private func configureTexts() {
         headerLabel.text = Strings.header
         descriptionLabel.text = Strings.description
-        // TODO: open in Safari
-        step1Label.text = "1. \(Strings.downloadThe)"
+        configureStepsLabels()
+    }
+
+    private func configureStepsLabels() {
+        let attrStr = NSMutableAttributedString(string: "1. \(Strings.downloadExtension)")
+        let range = attrStr.mutableString.range(of: Strings.chromeExtension)
+        attrStr.addAttribute(.foregroundColor, value: ColorName.aquaBlue.color, range: range)
+        step1Label.attributedText = attrStr
+        step1Label.isUserInteractionEnabled = true
+        step1Label.addGestureRecognizer(UITapGestureRecognizer(
+            target: self, action: #selector(downloadBrowserExtension)))
         step2Label.text = "2. \(Strings.scanQRCode)"
+    }
+
+    @objc private func downloadBrowserExtension() {
+        let safariVC = SFSafariViewController(url: URL(string: walletService.chromeExtensionURL)!)
+        safariVC.modalPresentationStyle = .popover
+        present(safariVC, animated: true)
     }
 
     private func addBrowserExtensionOwner(code: String) {
