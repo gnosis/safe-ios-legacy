@@ -231,6 +231,17 @@ public class MockWalletApplicationService: WalletApplicationService {
         return expected_grouppedTransactions[actual_grouppedTransactions.count - 1]
     }
 
+    private var expected_subscribeForTransactionUpdates = [EventSubscriber]()
+    private var actual_subscribeForTransactionUpdates = [EventSubscriber]()
+
+    public func expect_subscribeForTransactionUpdates(subscriber: EventSubscriber) {
+        expected_subscribeForTransactionUpdates.append(subscriber)
+    }
+
+    public override func subscribeForTransactionUpdates(subscriber: EventSubscriber) {
+        actual_subscribeForTransactionUpdates.append(subscriber)
+    }
+
     private var expected_walletState = [WalletStateId]()
     private var actual_walletState = [String]()
 
@@ -243,8 +254,6 @@ public class MockWalletApplicationService: WalletApplicationService {
         return expected_walletState[actual_walletState.count - 1]
     }
 
-    public override func subscribeForTransactionUpdates(subscriber: EventSubscriber) {}
-
     public func verify() -> Bool {
         return expected_walletState.count == actual_walletState.count &&
             actual_deployWallet.count == expected_deployWallet.count &&
@@ -253,7 +262,10 @@ public class MockWalletApplicationService: WalletApplicationService {
             } &&
             actual_abortDeployment == expected_abortDeployment &&
             actual_removeDraftTransaction == expected_removeDraftTransaction &&
-            actual_grouppedTransactions.count == expected_grouppedTransactions.count
+            actual_grouppedTransactions.count == expected_grouppedTransactions.count &&
+            zip(actual_subscribeForTransactionUpdates, expected_subscribeForTransactionUpdates).reduce(true) {
+                $0 && $1.0 === $1.1
+        }
     }
 
     private var expected_deployWallet_error: Swift.Error?

@@ -130,6 +130,12 @@ class TransactionsTableViewControllerTests: XCTestCase {
         XCTAssertEqual(lhs?.pngData(), rhs?.pngData(), file: file, line: line)
     }
 
+    func test_whenLoaded_thenSubscribesForTxUpdates() {
+        service.expect_subscribeForTransactionUpdates(subscriber: controller)
+        controller.loadViewIfNeeded()
+        XCTAssertTrue(service.verify())
+    }
+
 }
 
 extension TransactionGroupData {
