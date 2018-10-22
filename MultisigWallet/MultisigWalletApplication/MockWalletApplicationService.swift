@@ -243,6 +243,8 @@ public class MockWalletApplicationService: WalletApplicationService {
         return expected_walletState[actual_walletState.count - 1]
     }
 
+    public override func subscribeForTransactionUpdates(subscriber: EventSubscriber) {}
+
     public func verify() -> Bool {
         return expected_walletState.count == actual_walletState.count &&
             actual_deployWallet.count == expected_deployWallet.count &&
@@ -303,6 +305,10 @@ public class MockWalletApplicationService: WalletApplicationService {
     public var didRearrange = false
     public override func rearrange(tokens: [TokenData]) {
         didRearrange = true
+    }
+
+    public override func transactionURL(_ id: String) -> URL {
+        return URL(string: "https://gnosis.pm")!
     }
 
 }

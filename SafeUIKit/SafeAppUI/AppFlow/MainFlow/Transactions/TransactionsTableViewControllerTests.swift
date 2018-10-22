@@ -26,6 +26,16 @@ class TransactionsTableViewControllerTests: XCTestCase {
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
     }
 
+    func test_whenSelectingRow_thenCallsDelegate() {
+        service.expect_grouppedTransactions(result: [.group(count: 1)])
+        let testDelegate = TestTransactionTableViewControllerDelegate()
+        controller.delegate = testDelegate
+        createWindow(controller)
+        testDelegate.expect_didSelectTransaction(id: "0")
+        controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        XCTAssertTrue(testDelegate.verify())
+    }
+
     private func cell(at row: Int) -> TransactionTableViewCell {
         return controller.tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! TransactionTableViewCell
     }
@@ -144,6 +154,25 @@ extension TransactionGroupData {
                             processed: nil)
         }
         return TransactionGroupData(type: type, date: date, transactions: transactions)
+    }
+
+}
+
+class TestTransactionTableViewControllerDelegate: TransactionsTableViewControllerDelegate {
+
+    private var expected_didSelect = [String]()
+    private var actual_didSelect = [String]()
+
+    func expect_didSelectTransaction(id: String) {
+        expected_didSelect.append(id)
+    }
+
+    func didSelectTransaction(id: String) {
+        actual_didSelect.append(id)
+    }
+
+    func verify() -> Bool {
+        return actual_didSelect == expected_didSelect
     }
 
 }
