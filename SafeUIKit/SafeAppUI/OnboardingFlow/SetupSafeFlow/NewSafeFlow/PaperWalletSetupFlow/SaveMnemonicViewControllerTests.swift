@@ -24,18 +24,18 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
 
     func test_canCreate() {
         XCTAssertNotNil(controller)
-        XCTAssertNotNil(controller.titleLabel)
-        XCTAssertNotNil(controller.mnemonicCopyableLabel)
-        XCTAssertNotNil(controller.copyToClipboardButton)
+        XCTAssertNotNil(controller.headerLabel)
+        XCTAssertNotNil(controller.mnemonicLabel)
+        XCTAssertNotNil(controller.copyButton)
         XCTAssertNotNil(controller.descriptionLabel)
-        XCTAssertNotNil(controller.continueButton)
+        XCTAssertNotNil(controller.warningLabel)
         XCTAssertTrue(controller.delegate === delegate)
     }
 
     func test_whenNoPaperWalletExists_thenDisplaysGeneratedMnemonicWords() throws {
         walletService.createNewDraftWallet()
         let mnemonicStr = words.joined(separator: " ")
-        XCTAssertEqual(controller.mnemonicCopyableLabel.text, mnemonicStr)
+        XCTAssertEqual(controller.mnemonicLabel.text, mnemonicStr)
     }
 
     func test_viewDidLoad_dismissesIfNoWordsProvided() {
@@ -47,8 +47,8 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
         XCTAssertNil(controller.view.window)
     }
 
-    func test_continuePressed_callsDelegate() throws {
-        controller.continuePressed(self)
+    func test_continuePressed_callsDelegate() {
+        controller.confirmMnemonic()
         XCTAssertTrue(delegate.pressedContinue)
     }
 
@@ -70,7 +70,6 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
 final class MockSaveMnemonicDelegate: SaveMnemonicDelegate {
 
     var pressedContinue = false
-
     func didPressContinue() {
         pressedContinue = true
     }

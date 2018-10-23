@@ -124,17 +124,23 @@
 /* Paper Wallet Button */
 "new_safe.paper_wallet" = "Paper Wallet";
 
-/* Continue button for store paper wallet screen */
-"new_safe.paper_wallet.continue" = "I understand, continue";
+/* Make a copy button */
+"new_safe.setup_recovery.copy" = "Make a copy";
 
-/* Copy Button */
-"new_safe.paper_wallet.copy" = "Copy";
+/* Description for setup recovery phrase screen. */
+"new_safe.setup_recovery.description" = "If you need to recover your Safe on a new phone, use this recovery phrase and your Safe address.";
 
-/* Description for store paper wallet screen */
-"new_safe.paper_wallet.description" = "This phrase is one of your Safe secret keys.\n\nPlease store it in a secure place and do not share it with anyone. Gnosis Safe team will never ask you to reveal your secret phrase.";
+/* Header for setup recovery phrase screen. */
+"new_safe.setup_recovery.header" = "Stay secure.\nSave this recovery phrase.";
 
-/* Title for store paper wallet screen */
-"new_safe.paper_wallet.title" = "Store paper wallet secret phrase";
+/* Next button. */
+"new_safe.setup_recovery.next" = "Next";
+
+/* Title for setup recovery phrase screen. */
+"new_safe.setup_recovery.title" = "Recovery Phrase";
+
+/* Warning for setup recovery phrase screen. */
+"new_safe.setup_recovery.warning" = "Without these, you won’t be able to recover your Safe and its assets.";
 
 /* This device button */
 "new_safe.this_device" = "This Device";

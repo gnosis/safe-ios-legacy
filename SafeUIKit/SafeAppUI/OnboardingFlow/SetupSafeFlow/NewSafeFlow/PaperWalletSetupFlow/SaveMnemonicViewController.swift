@@ -14,21 +14,25 @@ protocol SaveMnemonicDelegate: class {
 
 final class SaveMnemonicViewController: UIViewController {
 
-    private struct Strings {
-        static let title = LocalizedString("new_safe.paper_wallet.title",
-                                           comment: "Title for store paper wallet screen")
-        static let copy = LocalizedString("new_safe.paper_wallet.copy", comment: "Copy Button")
-        static let description = LocalizedString("new_safe.paper_wallet.description",
-                                                 comment: "Description for store paper wallet screen")
-        static let `continue` = LocalizedString("new_safe.paper_wallet.continue",
-                                                comment: "Continue button for store paper wallet screen")
+    enum Strings {
+        static let title = LocalizedString("new_safe.setup_recovery.title",
+                                           comment: "Title for setup recovery phrase screen.")
+        static let header = LocalizedString("new_safe.setup_recovery.header",
+                                           comment: "Header for setup recovery phrase screen.")
+        static let copy = LocalizedString("new_safe.setup_recovery.copy", comment: "Make a copy button")
+        static let description = LocalizedString("new_safe.setup_recovery.description",
+                                                 comment: "Description for setup recovery phrase screen.")
+        static let warning = LocalizedString("new_safe.setup_recovery.warning",
+                                             comment: "Warning for setup recovery phrase screen.")
+        static let next = LocalizedString("new_safe.setup_recovery.next",
+                                          comment: "Next button.")
     }
 
-    @IBOutlet weak var titleLabel: H1Label!
-    @IBOutlet weak var mnemonicCopyableLabel: UILabel!
-    @IBOutlet weak var copyToClipboardButton: UIButton!
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var mnemonicLabel: UILabel!
+    @IBOutlet weak var copyButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var warningLabel: UILabel!
 
     private(set) weak var delegate: SaveMnemonicDelegate?
     private var ethereumService: EthereumApplicationService {
@@ -42,16 +46,21 @@ final class SaveMnemonicViewController: UIViewController {
         return controller
     }
 
-    @IBAction func continuePressed(_ sender: Any) {
-        delegate?.didPressContinue()
-    }
-
     @IBAction func copyToClipboard(_ sender: Any) {
-        UIPasteboard.general.string = mnemonicCopyableLabel.text!
+        UIPasteboard.general.string = mnemonicLabel.text!
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Strings.title
+        headerLabel.text = Strings.header
+        configureMnemonic()
+        copyButton.setTitle(Strings.copy, for: .normal)
+        configureDescriptionAndWarning()
+        addNextButton()
+    }
+
+    private func configureMnemonic() {
         if let existingAddress = ApplicationServiceRegistry.walletService.ownerAddress(of: .paperWallet),
             let existingAccount = ethereumService.findExternallyOwnedAccount(by: existingAddress) {
             account = existingAccount
@@ -59,17 +68,29 @@ final class SaveMnemonicViewController: UIViewController {
             account = ethereumService.generateExternallyOwnedAccount()
         }
         guard !account.mnemonicWords.isEmpty else {
-            mnemonicCopyableLabel.text = nil
+            mnemonicLabel.text = nil
             dismiss(animated: true)
             return
         }
-        titleLabel.text = Strings.title
-        mnemonicCopyableLabel.text = account.mnemonicWords.joined(separator: " ")
-        mnemonicCopyableLabel.accessibilityIdentifier = "mnemonic"
-        copyToClipboardButton.setTitle(Strings.copy, for: .normal)
+        mnemonicLabel.text = account.mnemonicWords.joined(separator: " ")
+        mnemonicLabel.accessibilityIdentifier = "mnemonic"
+    }
+
+    private func configureDescriptionAndWarning() {
         descriptionLabel.text = Strings.description
         descriptionLabel.accessibilityIdentifier = "description"
-        continueButton.setTitle(Strings.continue, for: .normal)
+        warningLabel.text = Strings.warning
+        warningLabel.accessibilityIdentifier = "warning"
+    }
+
+    private func addNextButton() {
+        let nextButton = UIBarButtonItem(
+            title: Strings.next, style: .plain, target: self, action: #selector(confirmMnemonic))
+        navigationItem.rightBarButtonItem = nextButton
+    }
+
+    @objc func confirmMnemonic() {
+        delegate?.didPressContinue()
     }
 
 }
