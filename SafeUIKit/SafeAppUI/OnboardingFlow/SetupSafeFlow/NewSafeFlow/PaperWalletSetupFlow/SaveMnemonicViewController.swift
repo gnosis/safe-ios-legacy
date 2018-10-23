@@ -18,7 +18,7 @@ final class SaveMnemonicViewController: UIViewController {
         static let title = LocalizedString("new_safe.setup_recovery.title",
                                            comment: "Title for setup recovery phrase screen.")
         static let header = LocalizedString("new_safe.setup_recovery.header",
-                                           comment: "Header for setup recovery phrase screen.")
+                                            comment: "Header for setup recovery phrase screen.")
         static let copy = LocalizedString("new_safe.setup_recovery.copy", comment: "Make a copy button")
         static let description = LocalizedString("new_safe.setup_recovery.description",
                                                  comment: "Description for setup recovery phrase screen.")
@@ -29,6 +29,7 @@ final class SaveMnemonicViewController: UIViewController {
     }
 
     @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var mnemonicWrapperView: UIView!
     @IBOutlet weak var mnemonicLabel: UILabel!
     @IBOutlet weak var copyButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -72,6 +73,7 @@ final class SaveMnemonicViewController: UIViewController {
             dismiss(animated: true)
             return
         }
+        mnemonicWrapperView.layer.cornerRadius = 6
         mnemonicLabel.text = account.mnemonicWords.joined(separator: " ")
         mnemonicLabel.accessibilityIdentifier = "mnemonic"
     }
