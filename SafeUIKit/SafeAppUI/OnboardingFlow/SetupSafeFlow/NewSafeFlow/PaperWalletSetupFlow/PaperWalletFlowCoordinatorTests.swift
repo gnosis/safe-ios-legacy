@@ -37,7 +37,7 @@ class PaperWalletFlowCoordinatorTests: SafeTestCase {
         ethereumService.prepareToGenerateExternallyOwnedAccount(address: "address", mnemonic: [])
         let startVC = topViewController as! SaveMnemonicViewController
         startVC.loadViewIfNeeded()
-        let text = startVC.mnemonicCopyableLabel.text ?? ""
+        let text = startVC.mnemonicLabel.text ?? ""
         XCTAssertTrue(text.isEmpty)
     }
 

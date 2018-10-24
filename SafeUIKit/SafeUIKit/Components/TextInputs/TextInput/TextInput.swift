@@ -12,7 +12,13 @@ public class TextInput: UITextField {
 
     public var heightConstraint: NSLayoutConstraint!
 
-    public var isDimmed: Bool = false {
+    public enum Style {
+        case white
+        case gray
+        case dimmed
+    }
+
+    public var style: Style = .white {
         didSet {
             updateAdjustableUI()
         }
@@ -94,27 +100,54 @@ public class TextInput: UITextField {
     }
 
     private func updateBackgroundAndText() {
-        if isDimmed {
-            backgroundColor = UIColor.white.withAlphaComponent(0.4)
-            textColor = .white
-            tintColor = ColorName.lightishBlue.color
-        } else {
+        switch style {
+        case .white:
             backgroundColor = .white
             textColor = ColorName.battleshipGrey.color
             tintColor = ColorName.battleshipGrey.color
+        case .gray:
+            backgroundColor = ColorName.paleGreyThree.color
+            textColor = ColorName.battleshipGrey.color
+            tintColor = ColorName.battleshipGrey.color
+        case .dimmed:
+            backgroundColor = UIColor.white.withAlphaComponent(0.4)
+            textColor = .white
+            tintColor = ColorName.lightishBlue.color
         }
     }
 
     private func updatePlaceholder() {
-        let color = isDimmed ? .white : ColorName.blueyGrey.color
         attributedPlaceholder = NSAttributedString(
             string: placeholder != nil ?  placeholder! : "",
-            attributes: [NSAttributedString.Key.foregroundColor: color])
+            attributes: [NSAttributedString.Key.foregroundColor: placeholderColor()])
+    }
+
+    private func placeholderColor() -> UIColor {
+        switch style {
+        case .white:
+            return ColorName.blueyGrey.color
+        case .gray:
+            return ColorName.blueyGrey.color
+        case .dimmed:
+            return .white
+        }
     }
 
     private func updateButton() {
-        let image = isDimmed ? Asset.TextInputs.tmpClose.image : Asset.TextInputs.tmpCloseGray.image
+        let image = Asset.closeIcon.image.withRenderingMode(.alwaysTemplate)
         clearButton.setImage(image, for: .normal)
+        clearButton.tintColor = clearButtonTintColor()
+    }
+
+    private func clearButtonTintColor() -> UIColor {
+        switch style {
+        case .white:
+            return ColorName.blueyGrey.color
+        case .gray:
+            return ColorName.blueyGrey.color
+        case .dimmed:
+            return .white
+        }
     }
 
     private func updateImage() {

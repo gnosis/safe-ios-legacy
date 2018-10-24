@@ -44,14 +44,17 @@ final class StartViewController: UIViewController {
         preservedTranslucent = navigationController!.navigationBar.isTranslucent
         navigationController!.navigationBar.barTintColor = .clear
         navigationController!.navigationBar.isTranslucent = true
+        navigationController!.navigationBar.shadowImage = UIImage()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController!.navigationBar.barTintColor = preservedNavBarColor
+        // some unit tests call viewWillDisappear before viewWillAppear is called
         if let preservedTranslucent = preservedTranslucent {
             navigationController!.navigationBar.isTranslucent = preservedTranslucent
         }
+        navigationController!.navigationBar.shadowImage = nil
     }
 
     @IBAction func setupPassword(_ sender: Any) {

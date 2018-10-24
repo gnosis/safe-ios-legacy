@@ -24,7 +24,7 @@ class VerifiableInputViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         verifiableInput.accessibilityIdentifier = "testVerifiableInput"
-        verifiableInput.isDimmed = true
+        verifiableInput.style = .white
     }
 
 }

@@ -21,8 +21,7 @@ class ConfirmMnemonicViewControllerTests: SafeTestCase {
 
     func test_canCreate() {
         XCTAssertNotNil(controller)
-        XCTAssertNotNil(controller.titleLabel)
-        XCTAssertNotNil(controller.descriptionLabel)
+        XCTAssertNotNil(controller.headerLabel)
         XCTAssertNotNil(controller.firstWordTextInput)
         XCTAssertTrue(controller.firstWordTextInput.delegate === controller)
         XCTAssertNotNil(controller.secondWordTextInput)
@@ -59,8 +58,8 @@ class ConfirmMnemonicViewControllerTests: SafeTestCase {
         controller.viewDidLoad()
         let firstWordIndex = words.index(of: controller.firstMnemonicWordToCheck)!
         let secondWordIndex = words.index(of: controller.secondMnemonicWordToCheck)!
-        XCTAssertEqual("#\(firstWordIndex + 1).", controller.firstWordNumberLabel.text)
-        XCTAssertEqual("#\(secondWordIndex + 1).", controller.secondWordNumberLabel.text)
+        XCTAssertEqual(controller.firstWordTextInput.textInput.placeholder, "Word #\(firstWordIndex + 1)")
+        XCTAssertEqual(controller.secondWordTextInput.textInput.placeholder, "Word #\(secondWordIndex + 1)")
     }
 
     func test_viewDidLoad_setsFirstTextInputAsFirstResponder() {

@@ -62,9 +62,9 @@ public class VerifiableInput: UIView {
         return layer.animation(forKey: VerifiableInput.shakeAnimationKey) != nil
     }
 
-    public var isDimmed: Bool {
-        get { return textInput.isDimmed }
-        set { textInput.isDimmed = newValue }
+    public var style: TextInput.Style {
+        get { return textInput.style }
+        set { textInput.style = newValue }
     }
 
     public required init?(coder aDecoder: NSCoder) {

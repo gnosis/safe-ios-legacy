@@ -12,7 +12,7 @@ class TextInputTests: XCTestCase {
 
     func test_whenInitialized_thenDefaultValuesAreCorrect() {
         XCTAssertEqual(textInput.placeholder, nil)
-        XCTAssertEqual(textInput.isDimmed, false)
+        XCTAssertEqual(textInput.style, .white)
         XCTAssertEqual(textInput.leftImage, nil)
         XCTAssertEqual(textInput.leftImageURL, nil)
         XCTAssertEqual(textInput.font, UIFont.systemFont(ofSize: 17))
