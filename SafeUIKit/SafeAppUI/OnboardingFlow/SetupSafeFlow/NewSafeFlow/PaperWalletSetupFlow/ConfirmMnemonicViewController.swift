@@ -43,6 +43,8 @@ final class ConfirmMnemonicViewController: UIViewController {
                                             comment: "Title for confirm recovery screen.")
         static let next = LocalizedString("new_safe.confirm_recovery.next",
                                           comment: "Next button for confirm recovery screen.")
+        static let wordNumberPlaceholder = LocalizedString("new_safe.confirm_recovery.word_number",
+                                                           comment: "Word #%@")
     }
 
     override func viewDidLoad() {
@@ -69,12 +71,13 @@ final class ConfirmMnemonicViewController: UIViewController {
 
     private func configureInputs(words: [String]) {
         (firstMnemonicWordToCheck, secondMnemonicWordToCheck) = twoRandomWords()
-        // TODO: localize
-        firstWordTextInput.textInput.placeholder = " Word #\(words.index(of: firstMnemonicWordToCheck)! + 1)."
+        let firstWordIndex = String(words.index(of: firstMnemonicWordToCheck)! + 1)
+        let secondWordIndex = String(words.index(of: secondMnemonicWordToCheck)! + 1)
+        firstWordTextInput.textInput.placeholder = String(format: Strings.wordNumberPlaceholder, firstWordIndex)
         firstWordTextInput.delegate = self
         firstWordTextInput.accessibilityIdentifier = "firstInput"
         firstWordTextInput.textInput.style = .gray
-        secondWordTextInput.textInput.placeholder = "Word #\(words.index(of: secondMnemonicWordToCheck)! + 1)."
+        secondWordTextInput.textInput.placeholder = String(format: Strings.wordNumberPlaceholder, secondWordIndex)
         secondWordTextInput.delegate = self
         secondWordTextInput.accessibilityIdentifier = "secondInput"
         secondWordTextInput.textInput.style = .gray

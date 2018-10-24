@@ -127,6 +127,9 @@
 /* Title for confirm recovery screen. */
 "new_safe.confirm_recovery.title" = "Confirm Recovery Phrase";
 
+/* Word #%@ */
+"new_safe.confirm_recovery.word_number" = "Word #%@";
+
 /* Create button */
 "new_safe.create" = "Create";
 
