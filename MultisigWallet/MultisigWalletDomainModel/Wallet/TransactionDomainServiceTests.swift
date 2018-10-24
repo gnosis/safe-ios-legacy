@@ -237,7 +237,7 @@ extension Transaction {
         return bare()
             .change(amount: .ether(1))
             .change(fee: .ether(1))
-            .change(feeEstimate: TransactionFeeEstimate(gas: 1, dataGas: 1, gasPrice: .ether(1)))
+            .change(feeEstimate: TransactionFeeEstimate(gas: 1, dataGas: 1, signatureGas: 1, gasPrice: .ether(1)))
             .change(sender: Address.testAccount1)
             .change(recipient: Address.testAccount2)
             .change(data: Data())

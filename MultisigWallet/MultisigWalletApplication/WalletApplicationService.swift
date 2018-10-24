@@ -418,7 +418,8 @@ public class WalletApplicationService: Assertable {
         guard let response = try? DomainRegistry.transactionRelayService.estimateTransaction(request: request) else {
             return nil
         }
-        return (BigInt(response.dataGas) + BigInt(response.txGas)) * BigInt(response.gasPrice)
+        return (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.signatureGas))
+            * BigInt(response.gasPrice)
     }
 
     public func estimateTransferFee(amount: BigInt, token: String, recipient: String?) -> BigInt? {
@@ -444,7 +445,8 @@ public class WalletApplicationService: Assertable {
         guard let response = try? DomainRegistry.transactionRelayService.estimateTransaction(request: request) else {
             return nil
         }
-        return (BigInt(response.dataGas) + BigInt(response.txGas)) * BigInt(response.gasPrice)
+        return (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.signatureGas))
+            * BigInt(response.gasPrice)
     }
 
     public func hasEnoughFundsForTransfer(amount: BigInt, token: String, fee: BigInt, feeToken: String) -> Bool {
@@ -540,8 +542,9 @@ public class WalletApplicationService: Assertable {
         }
         // TODO: get token from Tokens List by estimationResponse.gasToken address and use Ether as fallback
         let token = Token.Ether
-        let feeEstimate = TransactionFeeEstimate(gas: estimationResponse.txGas,
+        let feeEstimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
                                                  dataGas: estimationResponse.dataGas,
+                                                 signatureGas: estimationResponse.signatureGas,
                                                  gasPrice: TokenAmount(amount: TokenInt(estimationResponse.gasPrice),
                                                                        token: token))
         return (feeEstimate, estimationResponse.nextNonce)

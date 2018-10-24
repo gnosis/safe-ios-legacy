@@ -352,11 +352,13 @@ public struct TransactionFeeEstimate: Equatable {
 
     public let gas: Int
     public let dataGas: Int
+    public let signatureGas: Int
     public let gasPrice: TokenAmount
 
-    public init(gas: Int, dataGas: Int, gasPrice: TokenAmount) {
+    public init(gas: Int, dataGas: Int, signatureGas: Int, gasPrice: TokenAmount) {
         self.gas = gas
         self.dataGas = dataGas
+        self.signatureGas = signatureGas
         self.gasPrice = gasPrice
     }
 

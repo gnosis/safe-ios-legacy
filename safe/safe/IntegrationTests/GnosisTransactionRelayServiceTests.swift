@@ -82,7 +82,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
                                                  data: "",
                                                  operation: .call)
         let response = try relayService.estimateTransaction(request: request)
-        let ints = [response.txGas, response.gasPrice, response.dataGas]
+        let ints = [response.safeTxGas, response.gasPrice, response.dataGas, response.signatureGas]
         ints.forEach { XCTAssertNotEqual($0, 0, "Response: \(response)") }
         let address = EthAddress(hex: response.gasToken)
         XCTAssertEqual(address, .zero)
@@ -208,7 +208,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
 
     private func execute(transaction tx: Transaction, context: SafeContext) throws {
         context.owners[0..<2].forEach { context.safe.sign(tx, by: $0) }
-        try pay(from: context.funder, to: context.safe.address, amount: tx.fee!.amount)
+        try pay(from: context.funder, to: context.safe.address, amount: tx.fee!.amount + tx.ethValue)
         try context.safe.executeTransaction(tx)
     }
 
@@ -283,11 +283,50 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         XCTAssertEqual(try erc20Proxy.balance(of: context.safe.address), 0)
     }
 
-    func test_whenMultipleTransactionsPerformed_thenOk() throws {
-        let context = try deployNewSafe()
+    func test_searchForGasAdjustment() {
+        var lower: BigInt = 0
+        var upper = lower
+        // exponential growth until first success value
+        while true {
+            if do_test_send_transaction(gasAdjustment: upper) {
+                print("RANGE: (failure) \(lower) - \(upper) (success)")
+                break
+            }
+            lower = upper
+            upper = upper == 0 ? 1 : (upper * 2)
+        }
+        // and binary search between failure and success values
+        var next: BigInt
+        while (upper - lower) > 0 {
+            next = (lower + upper) / 2
+            let success = do_test_send_transaction(gasAdjustment: next)
+            if success {
+                print("SUCCESS: \(next)")
+                upper = next
+            } else {
+                lower = next
+            }
+        }
+    }
 
-        let tx1 = try context.safe.prepareTx(to: context.funder.address, amount: 1, data: nil)
-        try execute(transaction: tx1, context: context)
+    private func do_test_send_transaction(gasAdjustment: BigInt) -> Bool {
+        print("Trying \(gasAdjustment)")
+        do {
+            var context = try deployNewSafe()
+            context.safe.gasAdjustment = gasAdjustment
+            let tx = try context.safe.prepareTx(to: context.funder.address, amount: 1, data: nil)
+            try execute(transaction: tx, context: context)
+            return true
+        } catch {
+            return false
+        }
+    }
+
+    func test_whenMultipleTransactionsPerformed_thenOk() throws {
+        var context = try deployNewSafe()
+        context.safe.gasAdjustment = 16_250 // find your own with the test_searchForGasAdjustment()
+        let tx = try context.safe.prepareTx(to: context.funder.address, amount: 1, data: nil)
+        try execute(transaction: tx, context: context)
         let tx2 = try context.safe.prepareTx(to: context.funder.address, amount: 1, data: nil)
         try execute(transaction: tx2, context: context)
     }
@@ -300,6 +339,8 @@ struct Safe {
     var address: Address!
 
     var _test: GnosisTransactionRelayServiceTests!
+
+    var gasAdjustment: BigInt = 0
 
     var proxy: SafeOwnerManagerContractProxy { return SafeOwnerManagerContractProxy(address) }
 
@@ -315,16 +356,18 @@ struct Safe {
                                                  data: data == nil ? "" : data!.toHexString().addHexPrefix(),
                                                  operation: .call)
         let response = try _test.relayService.estimateTransaction(request: request)
-        // FIXME: fees are doubled because of the server-side gas estimation bug
-        let fee = BigInt(response.gasPrice) * (BigInt(response.dataGas) + BigInt(response.txGas)) * 2
+        // FIXME: gas is adjusted because currently dataGas + txGas is not enough for funding the fees.
+        let fee = (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.signatureGas) +
+            gasAdjustment) * BigInt(response.gasPrice)
         let nonce = response.nextNonce
         let tx = Transaction(id: TransactionID(),
                              type: .transfer,
                              walletID: WalletID(),
                              accountID: AccountID(tokenID: Token.Ether.id, walletID: WalletID()))
         tx.change(sender: address)
-            .change(feeEstimate: TransactionFeeEstimate(gas: response.txGas,
+            .change(feeEstimate: TransactionFeeEstimate(gas: response.safeTxGas,
                                                         dataGas: response.dataGas,
+                                                        signatureGas: response.signatureGas,
                                                         gasPrice: TokenAmount(amount: TokenInt(response.gasPrice),
                                                                               token: Token.Ether)))
             .change(fee: TokenAmount(amount: TokenInt(fee), token: Token.Ether))

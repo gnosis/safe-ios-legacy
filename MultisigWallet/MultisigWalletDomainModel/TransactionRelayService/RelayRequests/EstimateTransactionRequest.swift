@@ -54,10 +54,6 @@ public struct EstimateTransactionRequest: Encodable {
             return 0
         }
 
-        public var txGas: Int {
-            return safeTxGas + signatureGas
-        }
-
         public init(safeTxGas: Int,
                     dataGas: Int,
                     signatureGas: Int,
