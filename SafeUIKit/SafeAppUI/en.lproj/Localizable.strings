@@ -118,6 +118,15 @@
 /* Title for add browser extension screen */
 "new_safe.browser_extension.title" = "Setup";
 
+/* Title for confirm recovery screen. */
+"new_safe.confirm_recovery.header" = "Enter the following words from your recovery phrase.";
+
+/* Next button for confirm recovery screen. */
+"new_safe.confirm_recovery.next" = "Next";
+
+/* Title for confirm recovery screen. */
+"new_safe.confirm_recovery.title" = "Confirm Recovery Phrase";
+
 /* Create button */
 "new_safe.create" = "Create";
 
@@ -252,15 +261,6 @@
 
 /* Title of pending safe screen */
 "pending_safe.title" = "Creating new safe";
-
-/* Title for confirm button */
-"recovery.confirm_mnemonic.confirm_button" = "Confirm";
-
-/* Description for confirm mnemonic view controller */
-"recovery.confirm_mnemonic.description" = "Please enter the following words from the mnemonic.";
-
-/* Title for confirm mnemonic view controller */
-"recovery.confirm_mnemonic.title" = "Confirmation";
 
 /* Safe Address label. */
 "safe_address.address" = "Address";
