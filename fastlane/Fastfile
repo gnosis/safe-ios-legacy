@@ -24,6 +24,7 @@ platform :ios do
   before_all do
     ADHOC_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".adhoc"
     DEV_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".dev"
+    PRERELEASE_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".prerelease"
     BUILD_LOG_PATH = "Build/build_logs"
     DERIVED_DATA_PATH = "."
     BUILD_PATH = "Build"
@@ -85,12 +86,14 @@ platform :ios do
     match(type: "adhoc", app_identifier: ADHOC_APP_ID, force_for_new_devices: true)
   end
 
-  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "Submit a new PreRelease Rinkeby Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
-    xcversion(version: "9.3")
+    set_bundle_id PRERELEASE_APP_ID
+    xcversion(version: "10.0")
     match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"])
-    gym(scheme: "safe", 
+    gym(configuration: "PreRelease",
+      scheme: "safe", 
       include_symbols: true,
       include_bitcode: true,
       buildlog_path: BUILD_LOG_PATH,
@@ -110,6 +113,8 @@ platform :ios do
     match(type: "development", app_identifier: DEV_APP_ID, readonly: is_readonly)
     set_bundle_id ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID, readonly: is_readonly)
+    set_bundle_id PRERELEASE_APP_ID
+    match(type: "appstore", app_identifier: PRERELEASE_APP_ID, readonly: is_readonly)
   end
 
   error do |lane, exception|
