@@ -1265,7 +1265,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = safe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1456,7 +1456,7 @@
 				CODE_SIGN_ENTITLEMENTS = safe/safe.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = safe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1486,7 +1486,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = safe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1672,7 +1672,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = MBAHRQRF52;
 				INFOPLIST_FILE = safe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
