@@ -46,9 +46,12 @@ public struct EstimateTransactionRequest: Encodable {
         public let dataGas: Int
         public let gasPrice: Int
         public let gasToken: String
-        public let nonce: Int
+        public let nonce: Int?
 
-        public var nextNonce: Int { return nonce + 1 }
+        public var nextNonce: Int {
+            if let nonce = nonce { return nonce + 1 }
+            return 0
+        }
 
         public init(safeTxGas: Int,
                     dataGas: Int,
