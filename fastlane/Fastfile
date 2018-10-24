@@ -11,7 +11,7 @@
 
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
-fastlane_version "2.81.0"
+fastlane_version "2.107.0"
 
 default_platform :ios
 
@@ -88,9 +88,8 @@ platform :ios do
 
   desc "Submit a new PreRelease Rinkeby Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
-  lane :beta do
+  lane :prerelease do
     set_bundle_id PRERELEASE_APP_ID
-    xcversion(version: "10.0")
     match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"])
     gym(configuration: "PreRelease",
       scheme: "safe", 
@@ -99,8 +98,10 @@ platform :ios do
       buildlog_path: BUILD_LOG_PATH,
       derived_data_path: DERIVED_DATA_PATH,
       build_path: BUILD_PATH,
-      archive_path: ARCHIVE_PATH)
-    pilot(skip_waiting_for_build_processing: true)
+      archive_path: ARCHIVE_PATH
+      )
+    pilot(skip_waiting_for_build_processing: true,
+      app_identifier: PRERELEASE_APP_ID)
     slack(
      message: "Successfully distributed new version to TestFlight :rocket:",
     )
@@ -108,13 +109,11 @@ platform :ios do
 
   lane :certificates do |options|
     is_readonly = !options[:force]
-    match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"], readonly: is_readonly)
+    match(type: "appstore", app_identifier: [ENV["FASTLANE_APP_IDENTIFIER"], PRERELEASE_APP_ID], readonly: is_readonly)
     set_bundle_id DEV_APP_ID
     match(type: "development", app_identifier: DEV_APP_ID, readonly: is_readonly)
     set_bundle_id ADHOC_APP_ID
     match(type: "adhoc", app_identifier: ADHOC_APP_ID, readonly: is_readonly)
-    set_bundle_id PRERELEASE_APP_ID
-    match(type: "appstore", app_identifier: PRERELEASE_APP_ID, readonly: is_readonly)
   end
 
   error do |lane, exception|
