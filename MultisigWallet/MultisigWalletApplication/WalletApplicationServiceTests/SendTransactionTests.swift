@@ -112,7 +112,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
     func test_whenRequestingConfirmation_thenFetchesContractNonceFromEstimation() throws {
         let tx = givenDraftTransaction()
         _ = try service.requestTransactionConfirmation(tx.id.id)
-        XCTAssertEqual(tx.nonce, String(relayService.estimateTransaction_output.nonce))
+        XCTAssertEqual(tx.nonce, String(relayService.estimateTransaction_output.nextNonce))
     }
 
     func test_whenRequestingConfirmation_thenCalculatesHash() throws {

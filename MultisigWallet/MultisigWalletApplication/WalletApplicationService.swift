@@ -544,7 +544,7 @@ public class WalletApplicationService: Assertable {
                                                  dataGas: estimationResponse.dataGas,
                                                  gasPrice: TokenAmount(amount: TokenInt(estimationResponse.gasPrice),
                                                                        token: token))
-        return (feeEstimate, estimationResponse.nonce)
+        return (feeEstimate, estimationResponse.nextNonce)
     }
 
     public enum TransactionError: Swift.Error {

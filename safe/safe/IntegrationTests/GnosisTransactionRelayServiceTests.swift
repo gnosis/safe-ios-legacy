@@ -283,6 +283,15 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         XCTAssertEqual(try erc20Proxy.balance(of: context.safe.address), 0)
     }
 
+    func test_whenMultipleTransactionsPerformed_thenOk() throws {
+        let context = try deployNewSafe()
+
+        let tx1 = try context.safe.prepareTx(to: context.funder.address, amount: 1, data: nil)
+        try execute(transaction: tx1, context: context)
+        let tx2 = try context.safe.prepareTx(to: context.funder.address, amount: 1, data: nil)
+        try execute(transaction: tx2, context: context)
+    }
+
 }
 
 struct Safe {
@@ -308,7 +317,7 @@ struct Safe {
         let response = try _test.relayService.estimateTransaction(request: request)
         // FIXME: fees are doubled because of the server-side gas estimation bug
         let fee = BigInt(response.gasPrice) * (BigInt(response.dataGas) + BigInt(response.safeTxGas)) * 2
-        let nonce = response.nonce
+        let nonce = response.nextNonce
         let tx = Transaction(id: TransactionID(),
                              type: .transfer,
                              walletID: WalletID(),

@@ -48,6 +48,8 @@ public struct EstimateTransactionRequest: Encodable {
         public let gasToken: String
         public let nonce: Int
 
+        public var nextNonce: Int { return nonce + 1 }
+
         public init(safeTxGas: Int,
                     dataGas: Int,
                     gasPrice: Int,
