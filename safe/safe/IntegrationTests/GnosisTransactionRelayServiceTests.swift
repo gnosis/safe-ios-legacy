@@ -308,7 +308,7 @@ struct Safe {
         let response = try _test.relayService.estimateTransaction(request: request)
         // FIXME: fees are doubled because of the server-side gas estimation bug
         let fee = BigInt(response.gasPrice) * (BigInt(response.dataGas) + BigInt(response.safeTxGas)) * 2
-        let nonce = try proxy.nonce()
+        let nonce = response.nonce
         let tx = Transaction(id: TransactionID(),
                              type: .transfer,
                              walletID: WalletID(),

@@ -512,11 +512,10 @@ public class WalletApplicationService: Assertable {
     public func requestTransactionConfirmation(_ id: String) throws -> TransactionData {
         let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
         if tx.status == .draft {
-            let estimation = try estimateTransaction(tx)
+            let (estimation, nonce) = try estimateTransaction(tx)
             let fee = TokenInt(estimation.gas + estimation.dataGas) * estimation.gasPrice.amount
             tx.change(feeEstimate: estimation)
                 .change(fee: TokenAmount(amount: fee, token: estimation.gasPrice.token))
-            let nonce = try ethereumService.nonce(contractAddress: tx.sender!)
             tx.change(nonce: String(nonce))
                 .change(operation: .call)
                 .change(hash: ethereumService.hash(of: tx))
@@ -528,7 +527,7 @@ public class WalletApplicationService: Assertable {
         return transactionData(id)!
     }
 
-    private func estimateTransaction(_ tx: Transaction) throws -> TransactionFeeEstimate {
+    private func estimateTransaction(_ tx: Transaction) throws -> (TransactionFeeEstimate, Int) {
         let recipient = DomainRegistry.encryptionService.address(from: tx.ethTo.value)!
         let request = EstimateTransactionRequest(safe: tx.sender!,
                                                  to: recipient,
@@ -545,7 +544,7 @@ public class WalletApplicationService: Assertable {
                                                  dataGas: estimationResponse.dataGas,
                                                  gasPrice: TokenAmount(amount: TokenInt(estimationResponse.gasPrice),
                                                                        token: token))
-        return feeEstimate
+        return (feeEstimate, estimationResponse.nonce)
     }
 
     public enum TransactionError: Swift.Error {

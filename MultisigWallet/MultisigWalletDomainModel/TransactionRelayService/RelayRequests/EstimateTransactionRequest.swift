@@ -46,15 +46,18 @@ public struct EstimateTransactionRequest: Encodable {
         public let dataGas: Int
         public let gasPrice: Int
         public let gasToken: String
+        public let nonce: Int
 
         public init(safeTxGas: Int,
                     dataGas: Int,
                     gasPrice: Int,
-                    gasToken: String) {
+                    gasToken: String,
+                    nonce: Int) {
             self.safeTxGas = safeTxGas
             self.dataGas = dataGas
             self.gasPrice = gasPrice
             self.gasToken = gasToken
+            self.nonce = nonce
         }
 
     }

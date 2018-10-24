@@ -71,7 +71,8 @@ public class MockTransactionRelayService: TransactionRelayDomainService {
         .init(safeTxGas: 100,
               dataGas: 100,
               gasPrice: 100,
-              gasToken: "0x0000000000000000000000000000000000000000")
+              gasToken: "0x0000000000000000000000000000000000000000",
+              nonce: 11)
 
     public func estimateTransaction(request: EstimateTransactionRequest) throws -> EstimateTransactionRequest.Response {
         try throwIfNeeded()
