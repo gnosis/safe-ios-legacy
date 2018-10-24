@@ -12,6 +12,7 @@ protocol FundsTransferTransactionViewControllerDelegate: class {
 
 class FundsTransferTransactionViewController: UIViewController {
 
+    @IBOutlet weak var tokenCodeLabel: UILabel!
     @IBOutlet weak var participantView: TransactionParticipantView!
     @IBOutlet weak var valueView: TransactionValueView!
     @IBOutlet weak var amountTextField: UITextField!
@@ -72,13 +73,15 @@ class FundsTransferTransactionViewController: UIViewController {
     }
 
     func updateFromViewModel() {
+        tokenCodeLabel.text = model.tokenCode
+
         participantView.name = model.senderName
         participantView.address = model.senderAddress
 
         valueView.tokenAmount = model.balance ?? ""
         valueView.fiatAmount = ""
 
-        balanceLabel.text = model.balance
+        balanceLabel.text = model.feeBalance
         feeLabel.text = model.fee
 
         clearErrors(in: amountStackView)
@@ -93,7 +96,10 @@ class FundsTransferTransactionViewController: UIViewController {
     @objc func proceedToSigning(_ sender: Any) {
         let service = ApplicationServiceRegistry.walletService
         transactionID = service.createNewDraftTransaction()
-        service.updateTransaction(transactionID!, amount: model.intAmount!, recipient: model.recipient!)
+        service.updateTransaction(transactionID!,
+                                  amount: model.intAmount!,
+                                  token: tokenID.id,
+                                  recipient: model.recipient!)
         delegate?.didCreateDraftTransaction(id: transactionID!)
     }
 

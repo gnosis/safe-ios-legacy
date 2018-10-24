@@ -64,6 +64,7 @@ ORDER BY sorting_id;
     }
 
     public func find(id: TokenID) -> TokenListItem? {
+        if id == Token.Ether.id { return TokenListItem(token: .Ether, status: .whitelisted) }
         return try! db.execute(sql: SQL.find,
                                bindings: [id.id],
                                resultMap: tokenListItemFromResultSet).first as? TokenListItem

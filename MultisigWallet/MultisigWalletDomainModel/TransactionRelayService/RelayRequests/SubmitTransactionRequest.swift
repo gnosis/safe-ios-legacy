@@ -37,10 +37,10 @@ public class SubmitTransactionRequest: Encodable {
     ///   - transaction: transaction to submit to blockchain
     ///   - signatures: transaction signatures from owners, sorted by owner address lexicographically.
     public init(transaction: Transaction, signatures: [EthSignature]) {
-        safe = transaction.sender!.value
-        to = transaction.recipient!.value
-        value = String(transaction.amount!.amount)
-        data = transaction.data?.toHexString() ?? ""
+        safe = DomainRegistry.encryptionService.address(from: transaction.sender!.value)!.value
+        to = DomainRegistry.encryptionService.address(from: transaction.ethTo.value)!.value
+        value = String(transaction.ethValue)
+        data = transaction.ethData
         operation = transaction.operation!
         self.signatures = signatures
         safeTxGas = String(transaction.feeEstimate!.gas)

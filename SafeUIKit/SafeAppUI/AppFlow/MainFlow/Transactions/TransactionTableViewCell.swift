@@ -35,13 +35,15 @@ class TransactionTableViewCell: UITableViewCell {
     }
 
     func configure(transaction: TransactionData) {
-        transactionIconImageView.image = UIImage.createBlockiesImage(seed: transaction.recipient)
+        let isFailed = transaction.status == .rejected || transaction.status == .failed
+        transactionIconImageView.image = isFailed ?
+            Asset.TransactionOverviewIcons.error.image :
+            UIImage.createBlockiesImage(seed: transaction.recipient)
 
         transactionTypeIconImageView.image = typeIcon(transaction)
 
         transactionDescriptionLabel.text = transaction.recipient
-        transactionDescriptionLabel.textColor = transaction.status == .failed ? ColorName.tomato.color :
-            ColorName.darkSlateBlue.color
+        transactionDescriptionLabel.textColor = isFailed ? ColorName.tomato.color : ColorName.darkSlateBlue.color
 
         transactionDateLabel.text = transaction.displayDate?.timeAgoSinceNow
         transactionDateLabel.textColor = ColorName.blueyGrey.color
@@ -57,8 +59,7 @@ class TransactionTableViewCell: UITableViewCell {
         singleValueLabelStackView.isHidden = true
         progressView.isHidden = true
 
-        backgroundView?.backgroundColor = transaction.status == .failed ? ColorName.transparentWhiteOnGrey.color :
-            UIColor.white
+        backgroundView?.backgroundColor = isFailed ? ColorName.transparentWhiteOnGrey.color : UIColor.white
     }
 
     private func typeIcon(_ transaction: TransactionData) -> UIImage {

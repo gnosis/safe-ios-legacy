@@ -388,3 +388,25 @@ public struct TransactionGroup: Equatable {
     }
 
 }
+
+public extension Transaction {
+
+    private var isERC20Transfer: Bool {
+        return amount != nil && amount!.token.id != Token.Ether.id
+    }
+
+    public var ethTo: Address {
+        let result = isERC20Transfer ? amount?.token.address : recipient
+        return result ?? .zero
+    }
+
+    public var ethValue: TokenInt {
+        let result = isERC20Transfer ? 0 : amount?.amount
+        return result ?? 0
+    }
+
+    public var ethData: String {
+        return data == nil ? "" : "0x\(data!.toHexString())"
+    }
+
+}

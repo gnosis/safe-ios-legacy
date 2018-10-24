@@ -45,7 +45,7 @@ class MockMainViewControllerDelegate: MainViewControllerDelegate, TransactionsTa
     func mainViewDidAppear() {}
 
     var didCallCreateNewTransaction = false
-    func createNewTransaction() {
+    func createNewTransaction(token: String) {
         didCallCreateNewTransaction = true
     }
 

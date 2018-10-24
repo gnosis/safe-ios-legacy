@@ -10,7 +10,7 @@ import BigInt
 
 protocol MainViewControllerDelegate: class {
     func mainViewDidAppear()
-    func createNewTransaction()
+    func createNewTransaction(token: String)
     func openMenu()
     func manageTokens()
     func openAddressDetails()

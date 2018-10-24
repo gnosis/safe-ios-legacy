@@ -280,6 +280,20 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.syncService.sync()
     }
 
+    public func tokenData(id: String) -> TokenData? {
+        guard let token = self.token(id: id) else { return nil }
+        let balance = accountBalance(tokenID: token.id)
+        return TokenData(token: token, balance: balance)
+    }
+
+    private func token(id: String) -> Token? {
+        if id == Token.Ether.id.id {
+            return Token.Ether
+        } else {
+            return DomainRegistry.tokenListItemRepository.find(id: TokenID(id))?.token
+        }
+    }
+
     /// Returns selected account Eth Data together with whitelisted tokens data.
     ///
     /// - Parameter withEth: should the Eth be amoung Token Data returned or not.
@@ -372,11 +386,18 @@ public class WalletApplicationService: Assertable {
         }
     }
 
-    public func updateTransaction(_ id: String, amount: BigInt, recipient: String) {
+    public func updateTransaction(_ id: String, amount: BigInt, token: String, recipient: String) {
         let transaction = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
-        transaction.change(amount: .ether(amount))
+        let tokenItem = DomainRegistry.tokenListItemRepository.find(id: TokenID(token))!
+        transaction
+            .change(amount: TokenAmount(amount: amount, token: tokenItem.token))
             .change(recipient: Address(recipient))
-            .timestampUpdated(at: Date())
+        if tokenItem.token != .Ether {
+            let proxy = ERC20TokenContractProxy(tokenItem.token.address)
+            let data = proxy.transfer(to: Address(recipient), amount: amount)
+            transaction.change(data: data)
+        }
+        transaction.timestampUpdated(at: Date())
         DomainRegistry.transactionRepository.save(transaction)
     }
 
@@ -398,6 +419,42 @@ public class WalletApplicationService: Assertable {
             return nil
         }
         return (BigInt(response.dataGas) + BigInt(response.safeTxGas)) * BigInt(response.gasPrice)
+    }
+
+    public func estimateTransferFee(amount: BigInt, token: String, recipient: String?) -> BigInt? {
+        let fallbackAddress = Address(ownerAddress(of: .thisDevice)!)
+        var address = recipient == nil || recipient!.isEmpty ? fallbackAddress.value : recipient!
+        var data: String?
+        var value: BigInt = amount
+        if token != Token.Ether.id.id {
+            data = "0x" + ERC20TokenContractProxy(Address(address))
+                .transfer(to: Address(address), amount: amount).toHexString()
+            address = token
+            value = 0
+        }
+        guard let to = DomainRegistry.encryptionService.address(from: address),
+            let safe = DomainRegistry.encryptionService.address(from: selectedWalletAddress!) else {
+                return nil
+        }
+        let request = EstimateTransactionRequest(safe: safe,
+                                                 to: to,
+                                                 value: String(value),
+                                                 data: data,
+                                                 operation: .call)
+        guard let response = try? DomainRegistry.transactionRelayService.estimateTransaction(request: request) else {
+            return nil
+        }
+        return (BigInt(response.dataGas) + BigInt(response.safeTxGas)) * BigInt(response.gasPrice)
+    }
+
+    public func hasEnoughFundsForTransfer(amount: BigInt, token: String, fee: BigInt, feeToken: String) -> Bool {
+        let transferBalance = accountBalance(tokenID: BaseID(token))!
+        if token == feeToken {
+            return (amount + fee) <= transferBalance
+        } else {
+            let feeBalance = accountBalance(tokenID: BaseID(feeToken))!
+            return amount <= transferBalance && fee <= feeBalance
+        }
     }
 
     public func transactionData(_ id: String) -> TransactionData? {
@@ -472,11 +529,11 @@ public class WalletApplicationService: Assertable {
     }
 
     private func estimateTransaction(_ tx: Transaction) throws -> TransactionFeeEstimate {
-        let recipient = DomainRegistry.encryptionService.address(from: tx.recipient!.value)!
+        let recipient = DomainRegistry.encryptionService.address(from: tx.ethTo.value)!
         let request = EstimateTransactionRequest(safe: tx.sender!,
                                                  to: recipient,
-                                                 value: String(tx.amount!.amount),
-                                                 data: nil,
+                                                 value: String(tx.ethValue),
+                                                 data: tx.ethData,
                                                  operation: .call)
 
         let estimationResponse = try handleRelayServiceErrors {

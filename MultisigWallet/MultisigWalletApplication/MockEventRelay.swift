@@ -31,7 +31,7 @@ class MockEventRelay: EventRelay {
     }
 
     public func verify() -> Bool {
-        return actual_reset == expected_reset &&
+        return
             actual_subscribe.count == expected_subscribe.count &&
             zip(actual_subscribe, expected_subscribe).reduce(true) { result, pair -> Bool in
                 result && pair.0.subject === pair.1.subject && pair.0.event == pair.1.event

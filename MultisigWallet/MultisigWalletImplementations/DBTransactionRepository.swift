@@ -176,12 +176,14 @@ LIMIT 1;
 
     private func transactionFromResultSet(_ rs: ResultSet) -> Transaction? {
         let it = rs.rowIterator()
-        guard let id = it.nextString(),
-            let walletID = it.nextString(),
-            let accountID = it.nextString(),
-            let rawTransactionType = it.nextInt(),
+        let (idOrNil, walletIDOrNil, accountIDOrNil, rawTransactionTypeOrNil, rawTransactionStatusOrNil) =
+            (it.nextString(), it.nextString(), it.nextString(), it.nextInt(), it.nextInt())
+        guard let id = idOrNil,
+            let walletID = walletIDOrNil,
+            let accountID = accountIDOrNil,
+            let rawTransactionType = rawTransactionTypeOrNil,
             let transactionType = TransactionType(rawValue: rawTransactionType),
-            let rawTransactionStatus = it.nextInt(),
+            let rawTransactionStatus = rawTransactionStatusOrNil,
             let targetTransactionStatus = TransactionStatus(rawValue: rawTransactionStatus) else {
                 return nil
         }
@@ -264,13 +266,12 @@ LIMIT 1;
     }
 
     private func updateRemaining(_ it: ResultSetRowIterator, _ transaction: Transaction) {
-        if let gas = it.nextInt(),
-            let dataGas = it.nextInt(),
-            let gasPriceString = it.nextString(),
+        let (gasOrNil, dataGasOrNil, gasPriceStringOrNil) = (it.nextInt(), it.nextInt(), it.nextString())
+        if let gas = gasOrNil,
+            let dataGas = dataGasOrNil,
+            let gasPriceString = gasPriceStringOrNil,
             let gasPrice = TokenAmount(gasPriceString) {
-            transaction.change(feeEstimate: TransactionFeeEstimate(gas: gas,
-                                                                   dataGas: dataGas,
-                                                                   gasPrice: gasPrice))
+            transaction.change(feeEstimate: TransactionFeeEstimate(gas: gas, dataGas: dataGas, gasPrice: gasPrice))
         }
 
         if let data = it.nextData() {

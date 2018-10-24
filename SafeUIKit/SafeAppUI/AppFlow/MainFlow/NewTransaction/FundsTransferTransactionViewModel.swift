@@ -14,12 +14,14 @@ class FundsTransferTransactionViewModel {
     private var intBalance: BigInt?
     private var intFee: BigInt?
 
+    private(set) var tokenCode: String
     private(set) var senderName: String
     private(set) var senderAddress: String
     private(set) var balance: String?
     private(set) var amount: String?
     private(set) var recipient: String?
     private(set) var fee: String
+    private(set) var feeBalance: String
     private(set) var canProceedToSigning: Bool
 
     private(set) var amountErrors = [Error]()
@@ -28,12 +30,14 @@ class FundsTransferTransactionViewModel {
     private var allErrors: [Error] { return amountErrors + recipientErrors }
     private var hasErrors: Bool { return !allErrors.isEmpty }
 
-    let tokenFormatter: TokenNumberFormatter = .eth
+    let tokenFormatter: TokenNumberFormatter
+    let feeFormatter: TokenNumberFormatter = .eth
     private let amountValidator: TokenAmountValidator
     private let fundsValidator: FundsValidator
     private let addressValidator: EthereumAddressValidator
     private let inputQueue: OperationQueue
     private let tokenID: BaseID!
+    private let feeTokenID: BaseID = ethID
 
     private var walletService: WalletApplicationService { return ApplicationServiceRegistry.walletService }
 
@@ -45,10 +49,14 @@ class FundsTransferTransactionViewModel {
         self.senderAddress = ApplicationServiceRegistry.walletService.selectedWalletAddress!
         canProceedToSigning = false
         updateBlock = onUpdate
+        let token = ApplicationServiceRegistry.walletService.tokenData(id: tokenID.id)!
+        tokenCode = token.code
+        tokenFormatter = .ERC20Token(code: token.code, decimals: token.decimals)
         amountValidator = TokenAmountValidator(formatter: tokenFormatter, range: BigInt(0)..<BigInt(2).power(256) - 1)
         fundsValidator = FundsValidator()
         addressValidator = EthereumAddressValidator(byteCount: 20)
         fee = "--"
+        feeBalance = ""
         inputQueue = OperationQueue()
         inputQueue.maxConcurrentOperationCount = 1
         inputQueue.qualityOfService = .userInitiated
@@ -67,6 +75,7 @@ class FundsTransferTransactionViewModel {
             intBalance = nil
             balance = nil
         }
+        feeBalance = feeFormatter.string(from: walletService.accountBalance(tokenID: feeTokenID) ?? 0)
         updateCanProceedToSigning()
         notifyUpdated()
     }
@@ -147,7 +156,7 @@ class FundsTransferTransactionViewModel {
             let intFee = self.walletService.estimateTransferFee(amount: intAmount ?? 0, address: recipient)
             if op.isCancelled { return }
             self.intFee = intFee
-            self.fee = intFee == nil ? "--" : self.tokenFormatter.string(from: -intFee!)
+            self.fee = intFee == nil ? "--" : self.feeFormatter.string(from: -intFee!)
             self.didChangeFee()
         })
     }
@@ -159,20 +168,25 @@ class FundsTransferTransactionViewModel {
     }
 
     private func updateCanProceedToSigning() {
-        guard let balance = intBalance, let amount = intAmount, let fee = intFee,
+        guard let hasFunds = hasEnoughFunds(),
             !hasErrors, recipient != nil else {
                 canProceedToSigning = false
                 return
         }
-        canProceedToSigning = amount + fee <= balance
+        canProceedToSigning = hasFunds
+    }
+
+    private func hasEnoughFunds() -> Bool? {
+        guard let amount = intAmount, let fee = intFee else { return nil }
+        return walletService.hasEnoughFundsForTransfer(amount: amount,
+                                                       token: tokenID.id,
+                                                       fee: fee,
+                                                       feeToken: feeTokenID.id)
     }
 
     private func validateFunds() {
-        guard amountErrors.isEmpty else { return }
-        if let amount = intAmount, let fee = intFee, let balance = intBalance,
-            let error = fundsValidator.validate(amount, fee, balance) {
-            amountErrors.append(error)
-        }
+        guard amountErrors.isEmpty, let hasFunds = hasEnoughFunds(), !hasFunds else { return }
+        amountErrors.append(FundsValidator.ValidationError.notEnoughFunds)
     }
 
 }

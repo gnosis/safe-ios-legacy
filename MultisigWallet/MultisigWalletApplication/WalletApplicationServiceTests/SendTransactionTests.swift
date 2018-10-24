@@ -5,6 +5,7 @@
 import XCTest
 @testable import MultisigWalletApplication
 import MultisigWalletDomainModel
+import Common
 
 class SendTransactionTests: BaseWalletApplicationServiceTests {
 
@@ -56,7 +57,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         let txID = service.createNewDraftTransaction()
         let beforeUpdateTx = transactionRepository.findByID(TransactionID(txID))!
         let oldUpdateDate = beforeUpdateTx.updatedDate
-        service.updateTransaction(txID, amount: 1_000, recipient: Address.testAccount1.value)
+        service.updateTransaction(txID, amount: 1_000, token: ethID.id, recipient: Address.testAccount1.value)
         let tx = transactionRepository.findByID(TransactionID(txID))!
         XCTAssertEqual(tx.amount, .ether(1_000))
         XCTAssertEqual(tx.recipient, Address.testAccount1)
