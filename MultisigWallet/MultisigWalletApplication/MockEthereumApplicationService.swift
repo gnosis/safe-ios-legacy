@@ -122,14 +122,6 @@ open class MockEthereumApplicationService: EthereumApplicationService {
         balances[address] = BigInt(balance)
     }
 
-    public var nonce_input: Address?
-    public var nonce_output: BigInt = 0
-
-    public override func nonce(contractAddress: Address) throws -> BigInt {
-        nonce_input = contractAddress
-        return nonce_output
-    }
-
     public var hash_of_tx_output = Data(repeating: 1, count: 32)
 
     public override func hash(of tx: Transaction) -> Data {

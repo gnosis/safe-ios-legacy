@@ -137,7 +137,6 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(data?.balance, 99)
     }
 
-
 }
 
 private extension TokenListItemApplicationTests {

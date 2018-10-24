@@ -30,16 +30,8 @@ public class MockEventPublisher: EventPublisher {
         actuallyPublished.append(String(reflecting: type(of: event)))
     }
 
-    private var expected_reset = [String]()
-    private var actual_reset = [String]()
-
-    public func expect_reset() {
-        expected_reset.append("reset()")
-    }
-
     public func verify() -> Bool {
-        return actual_reset == expected_reset &&
-            expectedToPublish == actuallyPublished
+        return expectedToPublish == actuallyPublished
     }
 
 }
