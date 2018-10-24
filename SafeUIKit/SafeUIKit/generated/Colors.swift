@@ -38,6 +38,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#426bf2"></span>
   /// Alpha: 100% <br/> (0x426bf2ff)
   static let lightishBlue = ColorName(rgbaValue: 0x426bf2ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f4f5f9"></span>
+  /// Alpha: 100% <br/> (0xf4f5f9ff)
+  static let paleGreyThree = ColorName(rgbaValue: 0xf4f5f9ff)
 }
 // swiftlint:enable identifier_name line_length type_body_length
 

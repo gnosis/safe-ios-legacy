@@ -55,6 +55,7 @@ enum Asset {
   enum Onboarding {
     static let browserExtensionQr = ImageAsset(name: "browser-extension-qr")
     static let gnosisSafeLogo = ImageAsset(name: "gnosis-safe-logo")
+    static let water = ImageAsset(name: "water")
   }
   static let touchIdIcon = ImageAsset(name: "touch-id-icon")
   enum TransactionDetails {
@@ -88,6 +89,7 @@ enum Asset {
     Menu.chevron,
     Onboarding.browserExtensionQr,
     Onboarding.gnosisSafeLogo,
+    Onboarding.water,
     touchIdIcon,
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,

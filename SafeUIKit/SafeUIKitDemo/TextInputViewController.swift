@@ -13,7 +13,7 @@ class TextInputViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         simpleTextInput.placeholder = "Simple Text Input"
-        simpleTextInput.isDimmed = true
+        simpleTextInput.style = .dimmed
     }
 
     @IBAction func setIconForSimpleTextInput(_ sender: Any) {
@@ -33,12 +33,17 @@ class TextInputViewController: UIViewController {
     }
 
     @IBAction func setDimmed(_ sender: Any) {
-        simpleTextInput.isDimmed = true
+        simpleTextInput.style = .dimmed
         simpleTextInput.resignFirstResponder()
     }
 
-    @IBAction func setNotDimmed(_ sender: Any) {
-        simpleTextInput.isDimmed = false
+    @IBAction func setWhite(_ sender: Any) {
+        simpleTextInput.style = .white
+        simpleTextInput.resignFirstResponder()
+    }
+
+    @IBAction func setGray(_ sender: Any) {
+        simpleTextInput.style = .gray
         simpleTextInput.resignFirstResponder()
     }
 

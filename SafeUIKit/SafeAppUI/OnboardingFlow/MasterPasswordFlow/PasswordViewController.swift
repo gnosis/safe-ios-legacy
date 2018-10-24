@@ -65,7 +65,7 @@ final class PasswordViewController: UIViewController {
     private func configureInput() {
         verifiableInput.delegate = self
         verifiableInput.isSecure = true
-        verifiableInput.isDimmed = true
+        verifiableInput.style = .dimmed
         _ = verifiableInput.becomeFirstResponder()
     }
 
