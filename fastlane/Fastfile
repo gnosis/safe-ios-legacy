@@ -92,6 +92,11 @@ platform :ios do
   desc "This will also make sure the profile is up to date"
   lane :prerelease do
     set_bundle_id PRERELEASE_APP_ID
+    build_number = latest_testflight_build_number(app_identifier: PRERELEASE_APP_ID)
+    increment_build_number(
+      build_number: build_number + 1,
+      xcodeproj: PROJECT
+    )
     match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"])
     gym(configuration: "PreRelease",
       scheme: "safe", 
