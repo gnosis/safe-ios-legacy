@@ -57,7 +57,7 @@ public struct EstimateTransactionRequest: Encodable {
                     dataGas: Int,
                     gasPrice: Int,
                     gasToken: String,
-                    nonce: Int) {
+                    nonce: Int?) {
             self.safeTxGas = safeTxGas
             self.dataGas = dataGas
             self.gasPrice = gasPrice
