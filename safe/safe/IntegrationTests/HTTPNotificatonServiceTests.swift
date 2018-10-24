@@ -78,7 +78,7 @@ class HTTPNotificatonServiceTests: XCTestCase {
             .change(operation: .call)
             .change(feeEstimate: TransactionFeeEstimate(gas: 21_000,
                                                         dataGas: 0,
-                                                        signatureGas: 0,
+                                                        operationalGas: 0,
                                                         gasPrice: .ether(90_000_000)))
             .change(nonce: "1")
         let hash = encryptionService.hash(of: transaction)

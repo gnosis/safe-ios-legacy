@@ -124,7 +124,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
                 .change(feeEstimate:
                     TransactionFeeEstimate(gas: 10,
                                            dataGas: 10,
-                                           signatureGas: 10,
+                                           operationalGas: 10,
                                            gasPrice:
                         TokenAmount(amount: 10, token: Token.Ether)))
                 .change(nonce: "0")

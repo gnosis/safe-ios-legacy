@@ -101,7 +101,7 @@ class DBTransactionRepositoryTests: XCTestCase {
             .change(fee: .ether(1))
             .change(feeEstimate: TransactionFeeEstimate(gas: 100,
                                                         dataGas: 100,
-                                                        signatureGas: 100,
+                                                        operationalGas: 100,
                                                         gasPrice: .ether(5)))
             .change(sender: Address.testAccount1)
             .change(recipient: Address.testAccount2)

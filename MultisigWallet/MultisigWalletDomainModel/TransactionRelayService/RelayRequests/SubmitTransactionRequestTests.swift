@@ -21,7 +21,7 @@ class SubmitTransactionRequestTests: XCTestCase {
             .change(feeEstimate:
                 TransactionFeeEstimate(gas: 1,
                                        dataGas: 1,
-                                       signatureGas: 1,
+                                       operationalGas: 1,
                                        gasPrice: TokenAmount(amount: 1, token: .Ether)))
             .change(nonce: "1")
         let request = SubmitTransactionRequest(transaction: tx, signatures: [])

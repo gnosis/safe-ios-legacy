@@ -418,7 +418,7 @@ public class WalletApplicationService: Assertable {
         guard let response = try? DomainRegistry.transactionRelayService.estimateTransaction(request: request) else {
             return nil
         }
-        return (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.signatureGas))
+        return (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.operationalGas))
             * BigInt(response.gasPrice)
     }
 
@@ -445,7 +445,7 @@ public class WalletApplicationService: Assertable {
         guard let response = try? DomainRegistry.transactionRelayService.estimateTransaction(request: request) else {
             return nil
         }
-        return (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.signatureGas))
+        return (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.operationalGas))
             * BigInt(response.gasPrice)
     }
 
@@ -544,7 +544,7 @@ public class WalletApplicationService: Assertable {
         let token = Token.Ether
         let feeEstimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
                                                  dataGas: estimationResponse.dataGas,
-                                                 signatureGas: estimationResponse.signatureGas,
+                                                 operationalGas: estimationResponse.operationalGas,
                                                  gasPrice: TokenAmount(amount: TokenInt(estimationResponse.gasPrice),
                                                                        token: token))
         return (feeEstimate, estimationResponse.nextNonce)

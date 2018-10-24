@@ -82,7 +82,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
                                                  data: "",
                                                  operation: .call)
         let response = try relayService.estimateTransaction(request: request)
-        let ints = [response.safeTxGas, response.gasPrice, response.dataGas, response.signatureGas]
+        let ints = [response.safeTxGas, response.gasPrice, response.dataGas, response.operationalGas]
         ints.forEach { XCTAssertNotEqual($0, 0, "Response: \(response)") }
         let address = EthAddress(hex: response.gasToken)
         XCTAssertEqual(address, .zero)
@@ -357,7 +357,7 @@ struct Safe {
                                                  operation: .call)
         let response = try _test.relayService.estimateTransaction(request: request)
         // FIXME: gas is adjusted because currently dataGas + txGas is not enough for funding the fees.
-        let fee = (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.signatureGas) +
+        let fee = (BigInt(response.dataGas) + BigInt(response.safeTxGas) + BigInt(response.operationalGas) +
             gasAdjustment) * BigInt(response.gasPrice)
         let nonce = response.nextNonce
         let tx = Transaction(id: TransactionID(),
@@ -367,7 +367,7 @@ struct Safe {
         tx.change(sender: address)
             .change(feeEstimate: TransactionFeeEstimate(gas: response.safeTxGas,
                                                         dataGas: response.dataGas,
-                                                        signatureGas: response.signatureGas,
+                                                        operationalGas: response.operationalGas,
                                                         gasPrice: TokenAmount(amount: TokenInt(response.gasPrice),
                                                                               token: Token.Ether)))
             .change(fee: TokenAmount(amount: TokenInt(fee), token: Token.Ether))

@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS tbl_transactions (
     transaction_hash TEXT,
     fee_estimate_gas INTEGER,
     fee_estimate_data_gas INTEGER,
-    fee_estimate_signature_gas INTEGER,
+    fee_estimate_operational_gas INTEGER,
     fee_estimate_gas_price TEXT,
     data BLOB,
     operation INTEGER,
@@ -69,7 +69,7 @@ INSERT OR REPLACE INTO tbl_transactions VALUES (
     transaction_hash,
     fee_estimate_gas,
     fee_estimate_data_gas,
-    fee_estimate_signature_gas,
+    fee_estimate_operational_gas,
     fee_estimate_gas_price,
     data,
     operation,
@@ -125,7 +125,7 @@ LIMIT 1;
                 transaction.transactionHash?.value,
                 transaction.feeEstimate?.gas,
                 transaction.feeEstimate?.dataGas,
-                transaction.feeEstimate?.signatureGas,
+                transaction.feeEstimate?.operationalGas,
                 transaction.feeEstimate?.gasPrice.description,
                 transaction.data,
                 transaction.operation?.rawValue,
@@ -269,16 +269,16 @@ LIMIT 1;
     }
 
     private func updateRemaining(_ it: ResultSetRowIterator, _ transaction: Transaction) {
-        let (gasOrNil, dataGasOrNil, signatureGasOrNil, gasPriceStringOrNil) =
+        let (gasOrNil, dataGasOrNil, operationalGasOrNil, gasPriceStringOrNil) =
             (it.nextInt(), it.nextInt(), it.nextInt(), it.nextString())
         if let gas = gasOrNil,
             let dataGas = dataGasOrNil,
-            let signatureGas = signatureGasOrNil,
+            let operationalGas = operationalGasOrNil,
             let gasPriceString = gasPriceStringOrNil,
             let gasPrice = TokenAmount(gasPriceString) {
             transaction.change(feeEstimate: TransactionFeeEstimate(gas: gas,
                                                                    dataGas: dataGas,
-                                                                   signatureGas: signatureGas,
+                                                                   operationalGas: operationalGas,
                                                                    gasPrice: gasPrice))
         }
 

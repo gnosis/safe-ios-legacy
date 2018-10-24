@@ -211,7 +211,7 @@ ef8553f949acc5f0cb8002523b7a4f8e02664b6637eddc74ad72bb8e38588309
             .change(nonce: fixture.nonce)
             .change(feeEstimate: TransactionFeeEstimate(gas: Int(fixture.txGas)!,
                                                         dataGas: Int(fixture.dataGas)!,
-                                                        signatureGas: 0,
+                                                        operationalGas: 0,
                                                         gasPrice: newGasPrice(fixture.gasPrice, fixture.gasToken)))
     }
 

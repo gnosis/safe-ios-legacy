@@ -56,7 +56,7 @@ final public class HTTPNotificationService: NotificationDomainService {
             var operation: String
             var txGas: String
             var dataGas: String
-            var signatureGas: String
+            var operationalGas: String
             var gasPrice: String
             var gasToken: String
             var nonce: String
@@ -72,7 +72,7 @@ final public class HTTPNotificationService: NotificationDomainService {
                               operation: String(transaction.operation!.rawValue),
                               txGas: String(transaction.feeEstimate!.gas),
                               dataGas: String(transaction.feeEstimate!.dataGas),
-                              signatureGas: String(transaction.feeEstimate!.signatureGas),
+                              operationalGas: String(transaction.feeEstimate!.operationalGas),
                               gasPrice: String(transaction.feeEstimate!.gasPrice.amount),
                               gasToken: transaction.feeEstimate!.gasPrice.token.address.value,
                               nonce: transaction.nonce!)
