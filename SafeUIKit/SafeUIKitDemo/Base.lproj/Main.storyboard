@@ -412,17 +412,24 @@
                                                         <rect key="frame" x="0.0" y="104.5" width="343" height="30"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qh8-Vu-Kwr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="109" height="30"/>
                                                                 <state key="normal" title="Dimmed"/>
                                                                 <connections>
                                                                     <action selector="setDimmed:" destination="vHI-aF-hxB" eventType="touchUpInside" id="GOk-68-eT6"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cvi-Ah-yXk">
-                                                                <rect key="frame" x="175.5" y="0.0" width="167.5" height="30"/>
-                                                                <state key="normal" title="Not Dimmed"/>
+                                                                <rect key="frame" x="117" y="0.0" width="109" height="30"/>
+                                                                <state key="normal" title="White"/>
                                                                 <connections>
-                                                                    <action selector="setNotDimmed:" destination="vHI-aF-hxB" eventType="touchUpInside" id="c9w-BJ-D0q"/>
+                                                                    <action selector="setWhite:" destination="vHI-aF-hxB" eventType="touchUpInside" id="T14-bD-q5l"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ULh-cI-Bol">
+                                                                <rect key="frame" x="234" y="0.0" width="109" height="30"/>
+                                                                <state key="normal" title="Gray"/>
+                                                                <connections>
+                                                                    <action selector="setGray:" destination="vHI-aF-hxB" eventType="touchUpInside" id="to3-Df-3fX"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
