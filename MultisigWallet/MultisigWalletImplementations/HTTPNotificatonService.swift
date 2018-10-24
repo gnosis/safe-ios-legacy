@@ -60,13 +60,14 @@ final public class HTTPNotificationService: NotificationDomainService {
             var gasToken: String
             var nonce: String
         }
-        let value = transaction.amount?.amount ?? 0
+        let safe = DomainRegistry.encryptionService.address(from: transaction.sender!.value)!
+        let to = DomainRegistry.encryptionService.address(from: transaction.ethTo.value)!
         let message = Message(type: "requestConfirmation",
                               hash: hash.toHexString().addHexPrefix(),
-                              safe: transaction.sender!.value,
-                              to: transaction.recipient!.value,
-                              value: String(value),
-                              data: transaction.data?.toHexString() ?? "",
+                              safe: safe.value,
+                              to: to.value,
+                              value: String(transaction.ethValue),
+                              data: transaction.ethData,
                               operation: String(transaction.operation!.rawValue),
                               txGas: String(transaction.feeEstimate!.gas),
                               dataGas: String(transaction.feeEstimate!.dataGas),
@@ -77,8 +78,10 @@ final public class HTTPNotificationService: NotificationDomainService {
     }
 
     public func transactionSentMessage(for transaction: Transaction) -> String {
-        let message = TransactionSentMessage(to: transaction.recipient!,
-                                             from: transaction.sender!,
+        let safe = DomainRegistry.encryptionService.address(from: transaction.sender!.value)!
+        let to = DomainRegistry.encryptionService.address(from: transaction.ethTo.value)!
+        let message = TransactionSentMessage(to: to,
+                                             from: safe,
                                              hash: transaction.hash!,
                                              transactionHash: transaction.transactionHash!)
         return message.stringValue

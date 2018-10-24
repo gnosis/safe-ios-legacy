@@ -99,7 +99,7 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func configureSubmitted() {
         submittedParameterView.name = Strings.submitted
-        submittedParameterView.value = string(from: transaction.submitted!)
+        submittedParameterView.value = transaction.submitted == nil ? "--" : string(from: transaction.submitted!)
     }
 
     private func configureStatus() {
@@ -144,7 +144,9 @@ public class TransactionDetailsViewController: UIViewController {
 extension TransactionDetailsViewController: EventSubscriber {
 
     public func notify() {
-        reloadData()
+        DispatchQueue.main.async {
+            self.reloadData()
+        }
     }
 
 }

@@ -56,6 +56,7 @@ public final class SynchronisationService: SynchronisationDomainService {
             try? RetryWithIncreasingDelay(maxAttempts: self.tokenSyncMaxRetries, startDelay: self.retryInterval) { _ in
                 try DomainRegistry.transactionService.updatePendingTransactions()
             }.start()
+            self.syncAccounts()
         }
         try? tokenSyncRepeater.start()
     }

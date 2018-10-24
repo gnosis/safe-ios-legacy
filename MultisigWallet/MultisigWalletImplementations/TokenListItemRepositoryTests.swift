@@ -26,7 +26,7 @@ class BaseTokenListItemRepositoryTests: XCTestCase {
         XCTAssertEqual(all[1].token, Token.gno)
         XCTAssertEqual(all[1].status, .regular)
         repository.remove(item)
-        XCTAssertNil(repository.find(id: eth.id))
+        XCTAssertNotNil(repository.find(id: eth.id))
         XCTAssertEqual(repository.all().count, 1)
     }
 

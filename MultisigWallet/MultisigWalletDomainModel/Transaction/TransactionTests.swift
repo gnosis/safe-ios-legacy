@@ -114,6 +114,37 @@ class TransactionTests: XCTestCase {
         XCTAssertTrue(transaction.signatures.isEmpty)
     }
 
+    func test_whenTokenAmountIsNonEth_thenEthToAndValueAreCorrect() {
+        givenNewlyCreatedTransaction()
+        transaction.change(amount: TokenAmount(amount: 10, token: .gno))
+        XCTAssertEqual(transaction.ethTo, Token.gno.address)
+        XCTAssertEqual(transaction.ethValue, 0)
+        XCTAssertEqual(transaction.amount?.amount, 10)
+    }
+
+    func test_whenTokenAmountIsEth_thenEthToAndValueAreCorrect() {
+        givenNewlyCreatedTransaction()
+        transaction.change(recipient: Address.testAccount1)
+        XCTAssertEqual(transaction.ethTo, transaction.recipient)
+        transaction.change(amount: TokenAmount(amount: 9, token: .Ether))
+        XCTAssertEqual(transaction.ethValue, 9)
+    }
+
+    func test_whenAmountAndRecipientNotSet_thenEthToAndEthValueAreZero() {
+        givenNewlyCreatedTransaction()
+        transaction.change(amount: nil).change(recipient: nil)
+        XCTAssertEqual(transaction.ethTo, .zero)
+        XCTAssertEqual(transaction.ethValue, 0)
+    }
+
+    func test_ethData() {
+        givenNewlyCreatedTransaction()
+        transaction.change(data: nil)
+        XCTAssertTrue(transaction.ethData.isEmpty)
+        transaction.change(data: Data([7]))
+        XCTAssertEqual(transaction.ethData, "0x07")
+    }
+
 }
 
 extension TransactionTests {

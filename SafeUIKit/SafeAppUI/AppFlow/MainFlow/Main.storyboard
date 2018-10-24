@@ -1119,6 +1119,7 @@
                         <outlet property="recipientStackView" destination="hjM-Ks-hys" id="C3q-RC-TAK"/>
                         <outlet property="recipientTextField" destination="CkH-bP-C0E" id="Orq-7z-aKE"/>
                         <outlet property="scrollView" destination="EQY-vz-Wzx" id="Kkc-U2-crn"/>
+                        <outlet property="tokenCodeLabel" destination="JoI-fL-dfu" id="3fX-cv-N0g"/>
                         <outlet property="valueView" destination="QRc-eC-DsR" id="TzU-ph-E5S"/>
                     </connections>
                 </viewController>

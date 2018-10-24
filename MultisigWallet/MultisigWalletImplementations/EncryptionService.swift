@@ -296,8 +296,8 @@ open class EncryptionService: EncryptionDomainService {
         let shouldRefundReceiver = false
         return [
             EIP712SafeAppTxTypeHash,
-            transaction.recipient!.data,
-            (transaction.amount?.amount ?? 0).data,
+            transaction.ethTo.data,
+            transaction.ethValue.data,
             hash(transaction.data ?? Data()),
             transaction.operation!.data,
             transaction.feeEstimate!.gas.data,

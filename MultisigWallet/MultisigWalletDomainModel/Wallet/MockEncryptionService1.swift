@@ -93,8 +93,16 @@ class MockEncryptionService1: EncryptionDomainService {
         preconditionFailure()
     }
 
+    private var expected_addressFrom = [(from: String, result: Address?)]()
+    private var actual_addressFrom = [String]()
+
+    func expect_address(from string: String, result: Address?) {
+        expected_addressFrom.append((string, result))
+    }
+
     func address(from string: String) -> Address? {
-        preconditionFailure()
+        actual_addressFrom.append(string)
+        return expected_addressFrom[actual_addressFrom.count - 1].result
     }
 
 }

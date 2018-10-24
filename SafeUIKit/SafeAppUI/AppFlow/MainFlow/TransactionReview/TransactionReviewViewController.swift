@@ -40,7 +40,8 @@ final class TransactionReviewViewController: UIViewController {
     weak var delegate: TransactionReviewViewControllerDelegate?
 
     private var didNotRequestSignaturesYet = true
-    private let tokenFormatter = TokenNumberFormatter.eth
+    private var tokenFormatter: TokenNumberFormatter!
+    private var feeFormatter: TokenNumberFormatter!
 
     static func create() -> TransactionReviewViewController {
         return StoryboardScene.Main.transactionReviewViewController.instantiate()
@@ -80,10 +81,13 @@ final class TransactionReviewViewController: UIViewController {
     private func update(_ tx: TransactionData) {
         senderView.address = tx.sender
         recipientView.address = tx.recipient
+        tokenFormatter = TokenNumberFormatter.ERC20Token(code: tx.token, decimals: tx.tokenDecimals)
         transactionValueView.tokenAmount = tokenFormatter.string(from: tx.amount)
+
+        feeFormatter = TokenNumberFormatter.ERC20Token(code: tx.feeToken, decimals: tx.feeTokenDecimals)
         let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: ethID)!
-        safeBalanceValueLabel.text = tokenFormatter.string(from: BigInt(balance))
-        feeValueLabel.text = tokenFormatter.string(from: -tx.fee)
+        safeBalanceValueLabel.text = feeFormatter.string(from: BigInt(balance))
+        feeValueLabel.text = feeFormatter.string(from: -tx.fee)
 
         actionButton.removeTarget(nil, action: nil, for: .touchUpInside)
         progressView.stopAnimating()

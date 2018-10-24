@@ -114,6 +114,30 @@ class TokenListItemApplicationTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(logger.loggedError as? TokensListError, .inconsistentData_notAmongWhitelistedToken)
     }
 
+    func test_whenRequestingTokenDataEth_thenReturnsIt() {
+        givenReadyToUseWallet()
+        let data = service.tokenData(id: Token.Ether.id.id)
+        XCTAssertNotNil(data)
+        XCTAssertEqual(data?.address, Token.Ether.address.value)
+        XCTAssertEqual(data?.balance, 100)
+    }
+
+    func test_whenRequestingUnknownTokenData_thenNil() {
+        givenReadyToUseWallet()
+        XCTAssertNil(service.tokenData(id: "some"))
+    }
+
+    func test_whenRequestingNonEthTokenData_thenReturnsIt() {
+        givenReadyToUseWallet()
+        tokenItemsRepository.save(TokenListItem(token: Token.gno, status: .whitelisted))
+        let account = Account(tokenID: Token.gno.id, walletID: selectedWallet.id, balance: 99)
+        accountRepository.save(account)
+        let data = service.tokenData(id: Token.gno.id.id)
+        XCTAssertEqual(data?.address, Token.gno.address.value)
+        XCTAssertEqual(data?.balance, 99)
+    }
+
+
 }
 
 private extension TokenListItemApplicationTests {

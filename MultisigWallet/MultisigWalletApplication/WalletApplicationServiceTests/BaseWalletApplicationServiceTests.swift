@@ -90,7 +90,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         ethereumService.nonce_output = 3
         givenReadyToUseWallet()
         let txID = service.createNewDraftTransaction()
-        service.updateTransaction(txID, amount: 100, recipient: Address.testAccount1.value)
+        service.updateTransaction(txID, amount: 100, token: ethID.id, recipient: Address.testAccount1.value)
         return transactionRepository.findByID(TransactionID(txID))!
     }
 

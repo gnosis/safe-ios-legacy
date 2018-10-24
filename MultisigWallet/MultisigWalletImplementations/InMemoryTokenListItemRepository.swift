@@ -22,6 +22,7 @@ public class InMemoryTokenListItemRepository: TokenListItemRepository {
     }
 
     public func find(id: TokenID) -> TokenListItem? {
+        if id == Token.Ether.id { return TokenListItem(token: .Ether, status: .whitelisted) }
         return items[id]
     }
 

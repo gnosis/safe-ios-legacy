@@ -156,9 +156,9 @@ public class MockWalletApplicationService: WalletApplicationService {
         return createNewDraftTransaction_output
     }
 
-    public var updateTransaction_input: (id: String, amount: BigInt, recipient: String)?
-    public override func updateTransaction(_ id: String, amount: BigInt, recipient: String) {
-        updateTransaction_input = (id, amount, recipient)
+    public var updateTransaction_input: (id: String, amount: BigInt, token: String, recipient: String)?
+    public override func updateTransaction(_ id: String, amount: BigInt, token: String, recipient: String) {
+        updateTransaction_input = (id, amount, token, recipient)
     }
 
     public var transactionData_output: TransactionData?

@@ -136,7 +136,7 @@ final class TokensTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.createNewTransaction()
+        delegate?.createNewTransaction(token: tokenData(for: indexPath).address)
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

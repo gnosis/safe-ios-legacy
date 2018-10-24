@@ -7,6 +7,7 @@ import XCTest
 import CommonTestSupport
 import MultisigWalletApplication
 import SafariServices
+import Common
 
 class MainFlowCoordinatorTests: SafeTestCase {
 
@@ -28,7 +29,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenCreatingNewTransaction_thenOpensFundsTransferVC() {
-        mainFlowCoordinator.createNewTransaction()
+        mainFlowCoordinator.createNewTransaction(token: ethID.id)
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.topViewController
             is FundsTransferTransactionViewController)
@@ -97,7 +98,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
     func test_whenReviewTransactionFinished_thenPopsBack() {
         delay()
         let vc = mainFlowCoordinator.navigationController.topViewController
-        mainFlowCoordinator.createNewTransaction()
+        mainFlowCoordinator.createNewTransaction(token: ethID.id)
         delay()
         mainFlowCoordinator.transactionReviewViewControllerDidFinish()
         delay()

@@ -29,7 +29,7 @@ class DBTransactionRepositoryTests: XCTestCase {
         try? db.destroy()
     }
 
-    func test_oneTransaction() throws {
+    func test_oneTransaction() {
         let transaction = testTransaction()
 
         repo.save(transaction)
@@ -43,27 +43,39 @@ class DBTransactionRepositoryTests: XCTestCase {
         XCTAssertNil(repo.findByID(transaction.id))
     }
 
+
+    func test_transactionWithPartialData() {
+        let tx = txDraft().change(feeEstimate: nil)
+        repo.save(tx)
+        let saved = repo.findByID(tx.id)
+        assertEqual(saved, tx)
+    }
+
     private func assertEqual(_ lhs: Transaction?, _ rhs: Transaction, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(lhs, rhs, file: file, line: line)
-        XCTAssertEqual(lhs?.type, rhs.type, file: file, line: line)
-        XCTAssertEqual(lhs?.walletID, rhs.walletID, file: file, line: line)
-        XCTAssertEqual(lhs?.amount, rhs.amount, file: file, line: line)
-        XCTAssertEqual(lhs?.fee, rhs.fee, file: file, line: line)
-        XCTAssertEqual(lhs?.feeEstimate, rhs.feeEstimate, file: file, line: line)
-        XCTAssertEqual(lhs?.sender, rhs.sender, file: file, line: line)
-        XCTAssertEqual(lhs?.recipient, rhs.recipient, file: file, line: line)
-        XCTAssertEqual(lhs?.data, rhs.data, file: file, line: line)
-        XCTAssertEqual(lhs?.hash, rhs.hash, file: file, line: line)
-        XCTAssertEqual(lhs?.operation, rhs.operation, file: file, line: line)
-        XCTAssertEqual(lhs?.nonce, rhs.nonce, file: file, line: line)
-        XCTAssertEqual(lhs?.signatures, rhs.signatures, file: file, line: line)
-        XCTAssertEqual(lhs?.createdDate, rhs.createdDate, file: file, line: line)
-        XCTAssertEqual(lhs?.updatedDate, rhs.updatedDate, file: file, line: line)
-        XCTAssertEqual(lhs?.rejectedDate, rhs.rejectedDate, file: file, line: line)
-        XCTAssertEqual(lhs?.submittedDate, rhs.submittedDate, file: file, line: line)
-        XCTAssertEqual(lhs?.processedDate, rhs.processedDate, file: file, line: line)
-        XCTAssertEqual(lhs?.transactionHash, rhs.transactionHash, file: file, line: line)
-        XCTAssertEqual(lhs?.status, rhs.status, file: file, line: line)
+        guard let lhs = lhs else {
+            XCTFail(file: file, line: line)
+            return
+        }
+        XCTAssertEqual(lhs.type, rhs.type, "type", file: file, line: line)
+        XCTAssertEqual(lhs.walletID, rhs.walletID, "walletID", file: file, line: line)
+        XCTAssertEqual(lhs.amount, rhs.amount, "amount", file: file, line: line)
+        XCTAssertEqual(lhs.fee, rhs.fee, "fee", file: file, line: line)
+        XCTAssertEqual(lhs.feeEstimate, rhs.feeEstimate, "feeEstimate", file: file, line: line)
+        XCTAssertEqual(lhs.sender, rhs.sender, "sender", file: file, line: line)
+        XCTAssertEqual(lhs.recipient, rhs.recipient, "recipient", file: file, line: line)
+        XCTAssertEqual(lhs.data, rhs.data, "data", file: file, line: line)
+        XCTAssertEqual(lhs.hash, rhs.hash, "hash", file: file, line: line)
+        XCTAssertEqual(lhs.operation, rhs.operation, "operation", file: file, line: line)
+        XCTAssertEqual(lhs.nonce, rhs.nonce, "nonce", file: file, line: line)
+        XCTAssertEqual(lhs.signatures, rhs.signatures, "signatures", file: file, line: line)
+        XCTAssertEqual(lhs.createdDate, rhs.createdDate, "createdDate", file: file, line: line)
+        XCTAssertEqual(lhs.updatedDate, rhs.updatedDate, "updatedDate", file: file, line: line)
+        XCTAssertEqual(lhs.rejectedDate, rhs.rejectedDate, "rejectedDate", file: file, line: line)
+        XCTAssertEqual(lhs.submittedDate, rhs.submittedDate, "submittedDate", file: file, line: line)
+        XCTAssertEqual(lhs.processedDate, rhs.processedDate, "processedDate", file: file, line: line)
+        XCTAssertEqual(lhs.transactionHash, rhs.transactionHash, "transactionHash", file: file, line: line)
+        XCTAssertEqual(lhs.status, rhs.status, "status", file: file, line: line)
     }
 
     private func testTransaction(_ date: Date = Date()) -> Transaction {
