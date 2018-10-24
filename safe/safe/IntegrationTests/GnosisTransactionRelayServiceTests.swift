@@ -82,7 +82,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
                                                  data: "",
                                                  operation: .call)
         let response = try relayService.estimateTransaction(request: request)
-        let ints = [response.safeTxGas, response.gasPrice, response.dataGas]
+        let ints = [response.txGas, response.gasPrice, response.dataGas]
         ints.forEach { XCTAssertNotEqual($0, 0, "Response: \(response)") }
         let address = EthAddress(hex: response.gasToken)
         XCTAssertEqual(address, .zero)
@@ -316,14 +316,14 @@ struct Safe {
                                                  operation: .call)
         let response = try _test.relayService.estimateTransaction(request: request)
         // FIXME: fees are doubled because of the server-side gas estimation bug
-        let fee = BigInt(response.gasPrice) * (BigInt(response.dataGas) + BigInt(response.safeTxGas)) * 2
+        let fee = BigInt(response.gasPrice) * (BigInt(response.dataGas) + BigInt(response.txGas)) * 2
         let nonce = response.nextNonce
         let tx = Transaction(id: TransactionID(),
                              type: .transfer,
                              walletID: WalletID(),
                              accountID: AccountID(tokenID: Token.Ether.id, walletID: WalletID()))
         tx.change(sender: address)
-            .change(feeEstimate: TransactionFeeEstimate(gas: response.safeTxGas,
+            .change(feeEstimate: TransactionFeeEstimate(gas: response.txGas,
                                                         dataGas: response.dataGas,
                                                         gasPrice: TokenAmount(amount: TokenInt(response.gasPrice),
                                                                               token: Token.Ether)))
