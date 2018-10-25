@@ -23,16 +23,15 @@ class NewSafeViewControllerTests: SafeTestCase {
 
     func test_canCreate() {
         XCTAssertNotNil(controller)
-        XCTAssertNotNil(controller.titleLabel)
-        XCTAssertNotNil(controller.thisDeviceButton)
+        XCTAssertNotNil(controller.mobileAppButton)
         XCTAssertNotNil(controller.browserExtensionButton)
-        XCTAssertNotNil(controller.paperWalletButton)
-        XCTAssertFalse(controller.thisDeviceButton.isEnabled)
+        XCTAssertNotNil(controller.recoveryPhraseButton)
+        XCTAssertFalse(controller.mobileAppButton.isEnabled)
         XCTAssertFalse(controller.nextButton.isEnabled)
     }
 
-    func test_setupPaperWallet_callsDelegate() {
-        controller.setupPaperWallet(self)
+    func test_setupRecoveryPhrase_callsDelegate() {
+        controller.setupRecoveryPhrase(self)
         XCTAssertTrue(delegate.hasSelectedPaperWalletSetup)
     }
 
@@ -85,8 +84,8 @@ extension NewSafeViewControllerTests {
                                         _ paperWalletCheckmark: CheckmarkButton.CheckmarkStatus,
                                         _ browserExtensionCheckmark: CheckmarkButton.CheckmarkStatus,
                                         line: UInt = #line) {
-        XCTAssertEqual(controller.thisDeviceButton.checkmarkStatus, thisDeviceCheckmark, line: line)
-        XCTAssertEqual(controller.paperWalletButton.checkmarkStatus, paperWalletCheckmark, line: line)
+        XCTAssertEqual(controller.mobileAppButton.checkmarkStatus, thisDeviceCheckmark, line: line)
+        XCTAssertEqual(controller.recoveryPhraseButton.checkmarkStatus, paperWalletCheckmark, line: line)
         XCTAssertEqual(controller.browserExtensionButton.checkmarkStatus, browserExtensionCheckmark, line: line)
     }
 

@@ -16,22 +16,20 @@ protocol NewSafeDelegate: class {
 
 class NewSafeViewController: UIViewController {
 
-    private struct Strings {
-
+    enum Strings {
         static let title = LocalizedString("new_safe.title", comment: "Title for new safe screen")
-        static let thisDevice = LocalizedString("new_safe.this_device", comment: "This device button")
-        static let paperWallet = LocalizedString("new_safe.paper_wallet", comment: "Paper Wallet Button")
+        static let thisDevice = LocalizedString("new_safe.mobile_app", comment: "Mobile app button")
+        static let recoveryPhrase = LocalizedString("new_safe.recovery_phrase", comment: "Recovery phrase button")
         static let browserExtension = LocalizedString("new_safe.browser_extension",
-                                                      comment: "Browser extension Button")
-        static let next = LocalizedString("new_safe.create", comment: "Create button")
-
+                                                      comment: "Browser extension button")
+        static let next = LocalizedString("new_safe.next", comment: "Next button")
     }
 
-    @IBOutlet weak var titleLabel: H1Label!
     @IBOutlet weak var nextButton: UIBarButtonItem!
-    @IBOutlet weak var thisDeviceButton: CheckmarkButton!
+    @IBOutlet weak var wrapperView: UIView!
+    @IBOutlet weak var mobileAppButton: CheckmarkButton!
+    @IBOutlet weak var recoveryPhraseButton: CheckmarkButton!
     @IBOutlet weak var browserExtensionButton: CheckmarkButton!
-    @IBOutlet weak var paperWalletButton: CheckmarkButton!
 
     weak var delegate: NewSafeDelegate?
 
@@ -54,22 +52,23 @@ class NewSafeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Strings.title
         guard walletService.hasSelectedWallet else {
             dismiss(animated: true)
             logger.error("Draft wallet not found")
             return
         }
-        titleLabel.text = Strings.title
         nextButton.title = Strings.next
         configureThisDeviceButton()
         configureConnectBorwserExtensionButton()
         configureSetupRecoveryPhraseButton()
+        configureWrapperView()
     }
 
     private func configureThisDeviceButton() {
-        thisDeviceButton.setTitle(Strings.thisDevice, for: .normal)
-        thisDeviceButton.isEnabled = false
-        thisDeviceButton.checkmarkStatus = .selected
+        mobileAppButton.setTitle(Strings.thisDevice, for: .normal)
+        mobileAppButton.isEnabled = false
+        mobileAppButton.checkmarkStatus = .selected
     }
 
     private func configureConnectBorwserExtensionButton() {
@@ -77,17 +76,23 @@ class NewSafeViewController: UIViewController {
     }
 
     private func configureSetupRecoveryPhraseButton() {
-        paperWalletButton.setTitle(Strings.paperWallet, for: .normal)
+        recoveryPhraseButton.setTitle(Strings.recoveryPhrase, for: .normal)
+    }
+
+    private func configureWrapperView() {
+        wrapperView.layer.shadowColor = UIColor.black.cgColor
+        wrapperView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        wrapperView.layer.shadowOpacity = 0.4
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        paperWalletButton.checkmarkStatus = walletService.isOwnerExists(.paperWallet) ? .selected : .normal
+        recoveryPhraseButton.checkmarkStatus = walletService.isOwnerExists(.paperWallet) ? .selected : .normal
         browserExtensionButton.checkmarkStatus = walletService.isOwnerExists(.browserExtension) ? .selected : .normal
         nextButton.isEnabled = walletService.isWalletDeployable
     }
 
-    @IBAction func setupPaperWallet(_ sender: Any) {
+    @IBAction func setupRecoveryPhrase(_ sender: Any) {
         delegate?.didSelectPaperWalletSetup()
     }
 

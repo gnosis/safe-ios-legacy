@@ -14,52 +14,54 @@
         <scene sceneID="d56-LH-0Kc">
             <objects>
                 <viewController storyboardIdentifier="NewSafeViewController" id="oT1-O9-HET" customClass="NewSafeViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="anf-fD-Q5G">
+                    <view key="view" contentMode="scaleToFill" id="anf-fD-Q5G" customClass="BackgroundImageView" customModule="SafeUIKit">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Configure three Safe owners" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jT2-Op-oIr" customClass="H1Label" customModule="SafeUIKit">
-                                <rect key="frame" x="20" y="104" width="335" height="86"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mv5-vW-qj2">
-                                <rect key="frame" x="20" y="230" width="335" height="163"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnp-MZ-9Jr">
+                                <rect key="frame" x="0.0" y="64" width="375" height="263"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUi-Ui-sFY" customClass="CheckmarkButton" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="This Device"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-2s-l1J" customClass="CheckmarkButton" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="61" width="335" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Browser Extension"/>
-                                        <connections>
-                                            <action selector="setupBrowserExtension:" destination="oT1-O9-HET" eventType="touchUpInside" id="3Fn-Qy-SEp"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn0-3F-SUf" customClass="CheckmarkButton" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="122" width="335" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Paper Wallet"/>
-                                        <connections>
-                                            <action selector="setupPaperWallet:" destination="oT1-O9-HET" eventType="touchUpInside" id="74f-cD-XIB"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mv5-vW-qj2">
+                                        <rect key="frame" x="30" y="50" width="315" height="163"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUi-Ui-sFY" customClass="CheckmarkButton" customModule="SafeUIKit">
+                                                <rect key="frame" x="0.0" y="0.0" width="315" height="41"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <state key="normal" title="Mobile app"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-2s-l1J" customClass="CheckmarkButton" customModule="SafeUIKit">
+                                                <rect key="frame" x="0.0" y="61" width="315" height="41"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <state key="normal" title="Recovery phrase"/>
+                                                <connections>
+                                                    <action selector="setupRecoveryPhrase:" destination="oT1-O9-HET" eventType="touchUpInside" id="LBK-fq-IA7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn0-3F-SUf" customClass="CheckmarkButton" customModule="SafeUIKit">
+                                                <rect key="frame" x="0.0" y="122" width="315" height="41"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <state key="normal" title="Browser extension"/>
+                                                <connections>
+                                                    <action selector="setupBrowserExtension:" destination="oT1-O9-HET" eventType="touchUpInside" id="7NM-PF-Scy"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="mv5-vW-qj2" firstAttribute="top" secondItem="vnp-MZ-9Jr" secondAttribute="top" constant="50" id="5x3-Dt-XRc"/>
+                                    <constraint firstAttribute="trailing" secondItem="mv5-vW-qj2" secondAttribute="trailing" constant="30" id="HsH-ht-aO5"/>
+                                    <constraint firstItem="mv5-vW-qj2" firstAttribute="leading" secondItem="vnp-MZ-9Jr" secondAttribute="leading" constant="30" id="uN5-aP-fbx"/>
+                                    <constraint firstAttribute="bottom" secondItem="mv5-vW-qj2" secondAttribute="bottom" constant="50" id="yu8-r8-kUO"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="mv5-vW-qj2" firstAttribute="top" secondItem="jT2-Op-oIr" secondAttribute="bottom" constant="40" id="5Q6-TM-GDE"/>
-                            <constraint firstItem="mv5-vW-qj2" firstAttribute="leading" secondItem="lwB-8g-DNf" secondAttribute="leading" constant="20" id="9KD-A9-p1S"/>
-                            <constraint firstItem="lwB-8g-DNf" firstAttribute="trailing" secondItem="mv5-vW-qj2" secondAttribute="trailing" constant="20" id="RMZ-3A-kRe"/>
-                            <constraint firstItem="jT2-Op-oIr" firstAttribute="top" secondItem="lwB-8g-DNf" secondAttribute="top" constant="40" id="WcV-HF-ymp"/>
-                            <constraint firstItem="mv5-vW-qj2" firstAttribute="centerX" secondItem="jT2-Op-oIr" secondAttribute="centerX" id="WmT-Zh-Adx"/>
-                            <constraint firstAttribute="trailing" secondItem="jT2-Op-oIr" secondAttribute="trailing" constant="20" id="cMQ-7i-uQC"/>
-                            <constraint firstItem="jT2-Op-oIr" firstAttribute="leading" secondItem="lwB-8g-DNf" secondAttribute="leading" constant="20" id="mLD-cj-ply"/>
+                            <constraint firstItem="vnp-MZ-9Jr" firstAttribute="top" secondItem="lwB-8g-DNf" secondAttribute="top" id="LxQ-ij-HmC"/>
+                            <constraint firstItem="vnp-MZ-9Jr" firstAttribute="leading" secondItem="lwB-8g-DNf" secondAttribute="leading" id="lKO-Qi-Hc4"/>
+                            <constraint firstItem="vnp-MZ-9Jr" firstAttribute="trailing" secondItem="lwB-8g-DNf" secondAttribute="trailing" id="m0f-Ie-MzU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lwB-8g-DNf"/>
                     </view>
@@ -71,11 +73,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="browserExtensionButton" destination="uZP-2s-l1J" id="t09-nA-B2M"/>
+                        <outlet property="browserExtensionButton" destination="Yn0-3F-SUf" id="jER-OW-xJd"/>
+                        <outlet property="mobileAppButton" destination="BUi-Ui-sFY" id="v7v-Ru-hma"/>
                         <outlet property="nextButton" destination="aPw-Qg-l8a" id="5Vb-gG-h4G"/>
-                        <outlet property="paperWalletButton" destination="Yn0-3F-SUf" id="8dz-Wl-kaU"/>
-                        <outlet property="thisDeviceButton" destination="BUi-Ui-sFY" id="5bU-ji-byK"/>
-                        <outlet property="titleLabel" destination="jT2-Op-oIr" id="IAX-6d-WeA"/>
+                        <outlet property="recoveryPhraseButton" destination="uZP-2s-l1J" id="9mV-Wg-deE"/>
+                        <outlet property="wrapperView" destination="vnp-MZ-9Jr" id="U02-Xt-Lxu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTb-ej-aOI" userLabel="First Responder" sceneMemberID="firstResponder"/>

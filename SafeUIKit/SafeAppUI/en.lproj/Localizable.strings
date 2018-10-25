@@ -85,8 +85,8 @@
 /* Title for menu screen. */
 "menu.title" = "Menu";
 
-/* Browser extension Button */
-"new_safe.browser_extension" = "Browser Extension";
+/* Browser extension button */
+"new_safe.browser_extension" = "Browser extension";
 
 /* Download the 'Gnosis Safe Chrome browser exntension.' */
 "new_safe.browser_extension.chrome_extension_substring" = "Gnosis Safe Chrome browser extension.";
@@ -130,11 +130,14 @@
 /* Word #%@ */
 "new_safe.confirm_recovery.word_number" = "Word #%@";
 
-/* Create button */
-"new_safe.create" = "Create";
+/* Mobile app button */
+"new_safe.mobile_app" = "Mobile app";
 
-/* Paper Wallet Button */
-"new_safe.paper_wallet" = "Paper Wallet";
+/* Next button */
+"new_safe.next" = "Next";
+
+/* Recovery phrase button */
+"new_safe.recovery_phrase" = "Recovery phrase";
 
 /* Make a copy button */
 "new_safe.setup_recovery.copy" = "Make a copy";
@@ -154,11 +157,8 @@
 /* Warning for setup recovery phrase screen. */
 "new_safe.setup_recovery.warning" = "Without these, you won’t be able to recover your Safe and its assets.";
 
-/* This device button */
-"new_safe.this_device" = "This Device";
-
 /* Title for new safe screen */
-"new_safe.title" = "Configure three Safe owners.";
+"new_safe.title" = "Configure";
 
 /* Passwords must match. */
 "onboarding.confirm_password.match" = "Passwords must match";
