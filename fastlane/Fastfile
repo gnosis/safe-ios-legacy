@@ -11,9 +11,11 @@
 
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
-fastlane_version "2.81.0"
+fastlane_version "2.107.0"
 
 default_platform :ios
+
+ENV["DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS"] = "-t DAV"
 
 def set_bundle_id(id)
   ENV["FASTLANE_APP_IDENTIFIER"] = id
@@ -24,6 +26,7 @@ platform :ios do
   before_all do
     ADHOC_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".adhoc"
     DEV_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".dev"
+    PRERELEASE_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".prerelease"
     BUILD_LOG_PATH = "Build/build_logs"
     DERIVED_DATA_PATH = "."
     BUILD_PATH = "Build"
@@ -85,19 +88,27 @@ platform :ios do
     match(type: "adhoc", app_identifier: ADHOC_APP_ID, force_for_new_devices: true)
   end
 
-  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "Submit a new PreRelease Rinkeby Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
-  lane :beta do
-    xcversion(version: "9.3")
+  lane :prerelease do
+    set_bundle_id PRERELEASE_APP_ID
+    build_number = latest_testflight_build_number(app_identifier: PRERELEASE_APP_ID)
+    increment_build_number(
+      build_number: build_number + 1,
+      xcodeproj: PROJECT
+    )
     match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"])
-    gym(scheme: "safe", 
+    gym(configuration: "PreRelease",
+      scheme: "safe", 
       include_symbols: true,
       include_bitcode: true,
       buildlog_path: BUILD_LOG_PATH,
       derived_data_path: DERIVED_DATA_PATH,
       build_path: BUILD_PATH,
-      archive_path: ARCHIVE_PATH)
-    pilot(skip_waiting_for_build_processing: true)
+      archive_path: ARCHIVE_PATH
+      )
+    pilot(skip_waiting_for_build_processing: true,
+      app_identifier: PRERELEASE_APP_ID)
     slack(
      message: "Successfully distributed new version to TestFlight :rocket:",
     )
@@ -105,7 +116,7 @@ platform :ios do
 
   lane :certificates do |options|
     is_readonly = !options[:force]
-    match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"], readonly: is_readonly)
+    match(type: "appstore", app_identifier: [ENV["FASTLANE_APP_IDENTIFIER"], PRERELEASE_APP_ID], readonly: is_readonly)
     set_bundle_id DEV_APP_ID
     match(type: "development", app_identifier: DEV_APP_ID, readonly: is_readonly)
     set_bundle_id ADHOC_APP_ID
