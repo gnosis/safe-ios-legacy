@@ -24,7 +24,7 @@ public class PendingSafeViewController: UIViewController, EventSubscriber {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressStatusLabel: UILabel!
     @IBOutlet weak var copySafeAddressButton: UIButton!
-    @IBOutlet var retryButton: UIBarButtonItem!
+    @IBOutlet var retryButton: UIBarButtonItem! // why not weak?
 
     weak var delegate: PendingSafeViewControllerDelegate?
 
@@ -141,7 +141,7 @@ public class PendingSafeViewController: UIViewController, EventSubscriber {
 
 extension PendingSafeViewController {
 
-    struct Strings {
+    enum Strings {
 
         static let title = LocalizedString("pending_safe.title", comment: "Title of pending safe screen")
         static let cancel = LocalizedString("pending_safe.cancel", comment: "Cancel safe creation button")
@@ -150,8 +150,7 @@ extension PendingSafeViewController {
         static let balanceLabel = LocalizedString("pending_safe.balanceLabel", comment: "Balance label")
         static let retry = LocalizedString("pending_safe.retry", comment: "Retry button title")
 
-        struct Status {
-
+        enum Status {
             static let started = LocalizedString("pending_safe.status.deployment_started",
                                                  comment: "Deployment started status")
             static let accountFunded = LocalizedString("pending_safe.status.account_funded",
@@ -182,6 +181,8 @@ extension PendingSafeViewController {
         case .readyToUse: return readyToUseState
         }
     }
+
+    // MARK: - States
 
     class State {
         var canCancel: Bool { return false }

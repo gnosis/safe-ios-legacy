@@ -501,11 +501,186 @@ Save this recovery phrase.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSv-x6-GaE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1652" y="675"/>
+            <point key="canvasLocation" x="1599" y="675"/>
+        </scene>
+        <!--SAFE-->
+        <scene sceneID="eri-fX-Xsk">
+            <objects>
+                <viewController storyboardIdentifier="SafeCreationViewController" id="Pyc-la-4mA" customClass="SafeCreationViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bxo-Fs-Fjd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8a6-yR-H9R">
+                                <rect key="frame" x="0.0" y="64" width="375" height="736"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="mFC-Wa-utT">
+                                        <rect key="frame" x="0.0" y="40" width="375" height="207.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5zq-6V-lmd">
+                                                <rect key="frame" x="68" y="0.0" width="239.5" height="24"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error-icon" translatesAutoresizingMaskIntoConstraints="NO" id="5P0-fL-G1i">
+                                                        <rect key="frame" x="0.0" y="4" width="16" height="16"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="16" id="8Hx-Fh-NKJ"/>
+                                                            <constraint firstAttribute="width" constant="16" id="JLD-fl-dLY"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make your first deposit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDW-wm-Np7">
+                                                        <rect key="frame" x="24" y="0.0" width="215.5" height="24"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                        <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Arv-a2-Ych">
+                                                <rect key="frame" x="30" y="54" width="315" height="100"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ObO-mt-c7p">
+                                                        <rect key="frame" x="0.0" y="0.0" width="315" height="100"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required minimum transfer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcI-sE-iJB">
+                                                                <rect key="frame" x="57.5" y="0.0" width="200.5" height="30.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00041 ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S11-ds-Ohy">
+                                                                <rect key="frame" x="110.5" y="34.5" width="94.5" height="31"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(This is the Safe opening fee.)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tO-VL-33D">
+                                                                <rect key="frame" x="61" y="69.5" width="193.5" height="30.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VCM-sh-EEu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="315" height="100"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iron-safe" translatesAutoresizingMaskIntoConstraints="NO" id="5nw-Bx-WHW">
+                                                                <rect key="frame" x="112.5" y="0.0" width="90" height="72"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="90" id="j2A-6J-Mig"/>
+                                                                    <constraint firstAttribute="height" constant="72" id="peS-ky-AMP"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your deposit is on its way." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypk-0c-OS8">
+                                                                <rect key="frame" x="64" y="72" width="187" height="28"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="VCM-sh-EEu" firstAttribute="top" secondItem="Arv-a2-Ych" secondAttribute="top" id="3JZ-Ba-fQO"/>
+                                                    <constraint firstItem="ObO-mt-c7p" firstAttribute="leading" secondItem="Arv-a2-Ych" secondAttribute="leading" id="4gm-i6-NrZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="VCM-sh-EEu" secondAttribute="trailing" id="Hc1-PD-4bV"/>
+                                                    <constraint firstAttribute="height" constant="100" id="J33-QF-8Lk"/>
+                                                    <constraint firstItem="VCM-sh-EEu" firstAttribute="leading" secondItem="Arv-a2-Ych" secondAttribute="leading" id="Pnd-UA-LpO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ObO-mt-c7p" secondAttribute="trailing" id="SkD-8i-TdJ"/>
+                                                    <constraint firstItem="ObO-mt-c7p" firstAttribute="top" secondItem="Arv-a2-Ych" secondAttribute="top" id="Ylc-Hh-fDM"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ObO-mt-c7p" secondAttribute="bottom" id="gJ7-BU-5rb"/>
+                                                    <constraint firstAttribute="bottom" secondItem="VCM-sh-EEu" secondAttribute="bottom" id="vqO-5x-L3P"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ZYw-69-GCw">
+                                                <rect key="frame" x="0.0" y="184" width="375" height="23.5"/>
+                                                <subviews>
+                                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hL7-hL-15t">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="5"/>
+                                                        <color key="backgroundColor" red="0.63529411759999999" green="0.6588235294" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" red="0.0" green="0.72156862745098038" blue="0.8784313725490196" alpha="1" colorSpace="deviceRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="5" id="zY1-Kc-d5X"/>
+                                                        </constraints>
+                                                        <color key="progressTintColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="1" colorSpace="deviceRGB"/>
+                                                    </progressView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Awaiting your deposit..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuc-Nf-e0n">
+                                                        <rect key="frame" x="119.5" y="9" width="136.5" height="14.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="hL7-hL-15t" secondAttribute="trailing" id="RMq-XB-NU6"/>
+                                                    <constraint firstItem="hL7-hL-15t" firstAttribute="leading" secondItem="ZYw-69-GCw" secondAttribute="leading" id="qCm-A9-i32"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="ZYw-69-GCw" firstAttribute="leading" secondItem="mFC-Wa-utT" secondAttribute="leading" id="Shk-CM-cR8"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZYw-69-GCw" secondAttribute="trailing" id="Z6p-SF-1If"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="mFC-Wa-utT" firstAttribute="leading" secondItem="8a6-yR-H9R" secondAttribute="leading" id="1Cf-9r-7dN"/>
+                                    <constraint firstItem="mFC-Wa-utT" firstAttribute="top" secondItem="8a6-yR-H9R" secondAttribute="top" constant="40" id="GYR-fE-d13"/>
+                                    <constraint firstAttribute="trailing" secondItem="mFC-Wa-utT" secondAttribute="trailing" id="eaT-OK-Y6h"/>
+                                    <constraint firstAttribute="bottom" secondItem="mFC-Wa-utT" secondAttribute="bottom" constant="40" id="gfI-YG-ij2"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mFC-Wa-utT" firstAttribute="width" secondItem="bxo-Fs-Fjd" secondAttribute="width" id="Odj-Kp-tYs"/>
+                            <constraint firstItem="8a6-yR-H9R" firstAttribute="top" secondItem="crL-VE-ZNw" secondAttribute="top" id="UUf-so-gAH"/>
+                            <constraint firstAttribute="bottom" secondItem="8a6-yR-H9R" secondAttribute="bottom" id="VZT-FW-DZK"/>
+                            <constraint firstItem="8a6-yR-H9R" firstAttribute="leading" secondItem="crL-VE-ZNw" secondAttribute="leading" id="Y2O-Nm-DQv"/>
+                            <constraint firstItem="8a6-yR-H9R" firstAttribute="trailing" secondItem="crL-VE-ZNw" secondAttribute="trailing" id="h59-a0-LST"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="crL-VE-ZNw"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="SAFE" id="anU-tV-S8g">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="yQ6-Df-534">
+                            <connections>
+                                <action selector="cancel:" destination="Pyc-la-4mA" id="Sm9-GC-n6u"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Retry" id="nWu-RY-8QT">
+                            <connections>
+                                <action selector="retryDeployment:" destination="Pyc-la-4mA" id="xNw-a5-NVr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <size key="freeformSize" width="375" height="800"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="yQ6-Df-534" id="du0-Hm-ogP"/>
+                        <outlet property="headerLabel" destination="YDW-wm-Np7" id="C2W-v6-EGG"/>
+                        <outlet property="insufficientFundsErrorImage" destination="5P0-fL-G1i" id="ADb-tF-FV9"/>
+                        <outlet property="progressStatusLabel" destination="tuc-Nf-e0n" id="1RI-Fq-v1F"/>
+                        <outlet property="progressView" destination="hL7-hL-15t" id="pkR-gL-s7o"/>
+                        <outlet property="requiredMinimumAmountLabel" destination="S11-ds-Ohy" id="O3P-1o-bLp"/>
+                        <outlet property="requiredMinimumDescriptionLabel" destination="6tO-VL-33D" id="1s8-JI-8W0"/>
+                        <outlet property="requiredMinimumHeaderLabel" destination="tcI-sE-iJB" id="nvI-li-387"/>
+                        <outlet property="requiredMinimumStackView" destination="ObO-mt-c7p" id="jE2-2v-KHX"/>
+                        <outlet property="retryButton" destination="nWu-RY-8QT" id="S0A-hi-4Dq"/>
+                        <outlet property="waitingForSafeDescriptionLabel" destination="ypk-0c-OS8" id="A7h-h7-zch"/>
+                        <outlet property="waitingForSafeStackView" destination="VCM-sh-EEu" id="Zu9-Qu-Zil"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dEa-Gm-r7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2431" y="747"/>
         </scene>
     </scenes>
     <resources>
         <image name="browser-extension-qr" width="125" height="95"/>
+        <image name="error-icon" width="16" height="16"/>
+        <image name="iron-safe" width="90" height="74"/>
         <image name="water" width="375" height="224"/>
     </resources>
 </document>

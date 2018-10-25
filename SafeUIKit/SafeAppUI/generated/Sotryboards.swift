@@ -101,6 +101,8 @@ enum StoryboardScene {
 
     static let pendingSafeViewController = SceneType<SafeAppUI.PendingSafeViewController>(storyboard: NewSafe.self, identifier: "PendingSafeViewController")
 
+    static let safeCreationViewController = SceneType<SafeAppUI.SafeCreationViewController>(storyboard: NewSafe.self, identifier: "SafeCreationViewController")
+
     static let saveMnemonicViewController = SceneType<SafeAppUI.SaveMnemonicViewController>(storyboard: NewSafe.self, identifier: "SaveMnemonicViewController")
   }
   enum SetupSafe: StoryboardType {

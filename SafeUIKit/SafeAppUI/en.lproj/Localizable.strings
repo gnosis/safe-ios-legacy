@@ -283,6 +283,51 @@
 /* Title for Address Details screen. */
 "safe_address.title" = "Safe Address";
 
+/* Address label */
+"safe_creation.address" = "Address";
+
+/* Balance label */
+"safe_creation.balanceLabel" = "Balance";
+
+/* Cancel safe creation button. */
+"safe_creation.cancel" = "Cancel";
+
+/* Creating safe header for safe creation screen. */
+"safe_creation.creating_safe_header" = "Creating your new safe";
+
+/* First deposit header for safe creation screen. */
+"safe_creation.first_deposit_header" = "Make your first deposit";
+
+/* Insufficient funds header for safe creation screen. */
+"safe_creation.insufficient_funds_header" = "Insufficient funds";
+
+/* Required minimum description for safe creation screen. */
+"safe_creation.required_minimum_description" = "(This is the Safe opening fee.)";
+
+/* Required minimum header for safe creation screen. */
+"safe_creation.required_minimum_header" = "Required minimum transfer:";
+
+/* Retry button title. */
+"safe_creation.retry" = "Retry";
+
+/* Account received enough funds. */
+"safe_creation.status.account_funded" = "Account funded";
+
+/* Awaiting deposit label. */
+"safe_creation.status.awaiting_deposit" = "Awaiting your deposit...";
+
+/* Deployment accepted by blockchain. */
+"safe_creation.status.deployment_accepted" = "This can take a couple minutes...";
+
+/* Error during safe creation. Retry later. */
+"safe_creation.status.error" = "Network error. Please retry later...";
+
+/* Title for safe creation screen. */
+"safe_creation.title" = "SAFE";
+
+/* Waiting for safe description for safe creation screen. */
+"safe_creation.waiting_for_safe_description" = "Your deposit is on its way.";
+
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";
 

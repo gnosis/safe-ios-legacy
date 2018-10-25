@@ -50,7 +50,7 @@ final class StartViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController!.navigationBar.barTintColor = preservedNavBarColor
-        // some unit tests call viewWillDisappear before viewWillAppear is called
+        // FIXME: some unit tests call viewWillDisappear before viewWillAppear is called
         if let preservedTranslucent = preservedTranslucent {
             navigationController!.navigationBar.isTranslucent = preservedTranslucent
         }
