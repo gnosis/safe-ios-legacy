@@ -134,7 +134,7 @@ public class TextInput: UITextField {
     }
 
     private func updateButton() {
-        let image = Asset.closeIcon.image.withRenderingMode(.alwaysTemplate)
+        let image = Asset.TextInputs.clearIcon.image
         clearButton.setImage(image, for: .normal)
         clearButton.tintColor = clearButtonTintColor()
     }
