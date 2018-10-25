@@ -45,8 +45,9 @@ class SafeCreationViewController: UIViewController {
 
         }
         enum FundSafe {
-            static let requiredMinimumHeader = LocalizedString("safe_creation.required_minimum_header",
-                                                               comment: "Required minimum header for safe creation screen.")
+            static let requiredMinimumHeader =
+                LocalizedString("safe_creation.required_minimum_header",
+                                comment: "Required minimum header for safe creation screen.")
             static let requredMinimumDescription =
                 LocalizedString("safe_creation.required_minimum_description",
                                 comment: "Required minimum description for safe creation screen.")

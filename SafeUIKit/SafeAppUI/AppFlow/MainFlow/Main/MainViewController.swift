@@ -50,6 +50,16 @@ final class MainViewController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController!.navigationBar.shadowImage = UIImage()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController!.navigationBar.shadowImage = nil
+    }
+
     @objc func openMenu(_ sender: Any) {
         delegate?.openMenu()
     }
