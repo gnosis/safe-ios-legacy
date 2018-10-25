@@ -19,7 +19,9 @@ class UnlockViewControllerTests: SafeTestCase {
     func test_whenCreated_hasAllElements() {
         XCTAssertNotNil(vc.verifiableInput)
         XCTAssertNotNil(vc.loginWithBiometryButton)
-        XCTAssertNotNil(vc.headerLabel)
+        XCTAssertNotNil(vc.backgroundImageView)
+        XCTAssertNotNil(vc.tryAgainLabel)
+        XCTAssertNotNil(vc.countdownStack)
     }
 
     func test_whenCreated_thenTextInputIsSecure() {
@@ -85,7 +87,7 @@ class UnlockViewControllerTests: SafeTestCase {
         authenticationService.enableFaceIDSupport()
         vc = UnlockViewController.create()
         vc.loadViewIfNeeded()
-        XCTAssertEqual(vc.loginWithBiometryButton.image(for: .normal), Asset.faceIdIcon.image)
+        XCTAssertEqual(vc.loginWithBiometryButton.image(for: .normal), Asset.UnlockScreen.faceIdIcon.image)
     }
 
     func test_whenAccountIsBlocked_thenShowsCountdown() throws {

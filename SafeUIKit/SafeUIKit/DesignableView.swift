@@ -5,7 +5,7 @@
 import UIKit
 
 @IBDesignable
-public class DesignableView: UIView {
+open class DesignableView: UIView {
 
     private var isLoaded = false
 
@@ -18,12 +18,12 @@ public class DesignableView: UIView {
         super.init(coder: aDecoder)
     }
 
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         commonInit()
     }
 
-    public override func prepareForInterfaceBuilder() {
+    open override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         setNeedsUpdate()
     }
@@ -31,7 +31,7 @@ public class DesignableView: UIView {
     /// Common initializer called in `init(frame:)` and in `awakeFromNib()`
     /// At some point in this method you must call `didLoad()` in order to enable view updates.
     /// The base implementation of this method does nothing.
-    public func commonInit() {
+    open func commonInit() {
         // meant for subclassing
     }
 
@@ -39,18 +39,18 @@ public class DesignableView: UIView {
     /// Don't call this method directly. Instead, please call `setNeedsUpdate()`.
     /// Update will not be called if `didLoad()` hasn't been called before.
     /// The base implementation of this method does nothing.
-    public func update() {
+    open func update() {
         // meant for subclassing
     }
 
     /// Call this method when your view model changes and view has to be updated.
-    public func setNeedsUpdate() {
+    open func setNeedsUpdate() {
         guard isLoaded else { return }
         update()
     }
 
     /// Indicates that view initialization complete and updates can be performed.
-    public func didLoad() {
+    open func didLoad() {
         isLoaded = true
         setNeedsUpdate()
     }

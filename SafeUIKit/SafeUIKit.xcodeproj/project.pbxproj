@@ -13,7 +13,7 @@
 		0A03402F20C004C200C1C3BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DD9209C70F000ABC6AE /* Localizable.strings */; };
 		0A0974D220480CEB005753DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974C820480CEB005753DF /* Assets.xcassets */; };
 		0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974C920480CEB005753DF /* AppDelegate.swift */; };
-		0A0974D620480CEB005753DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974CF20480CEB005753DF /* ViewController.swift */; };
+		0A0974D620480CEB005753DF /* UnlockDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */; };
 		0A0974DC20480D03005753DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974D820480D03005753DF /* Main.storyboard */; };
 		0A0974DD20480D03005753DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974DA20480D03005753DF /* LaunchScreen.storyboard */; };
 		0A0974EA20480E11005753DF /* SafeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */; };
@@ -151,7 +151,6 @@
 		0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C420D29C920099B79D /* StatusTransactionParameterView.swift */; };
 		0AE950CA20D29C930099B79D /* TokenAmountTransactionParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950C520D29C930099B79D /* TokenAmountTransactionParameterView.swift */; };
 		0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950CC20D29CAF0099B79D /* HorizontalSeparatorView.swift */; };
-		0AE950D020D29D9E0099B79D /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950CF20D29D9E0099B79D /* DesignableView.swift */; };
 		0AF33D3E209C6BF800527D25 /* SafeAppUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; };
 		0AF33D47209C6BF800527D25 /* SafeAppUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AF33D37209C6BF800527D25 /* SafeAppUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AF33D4A209C6BF800527D25 /* SafeAppUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; };
@@ -161,6 +160,9 @@
 		0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */; };
 		0AF8D53920D00E56001E8423 /* TransactionsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53820D00E56001E8423 /* TransactionsTableViewControllerTests.swift */; };
 		0AF8D55720D01A90001E8423 /* TokensTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */; };
+		0AFA76692181FB1800A96FDB /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA76682181FB1800A96FDB /* libIdentityAccessImplementations.a */; };
+		0AFA766B2181FB1E00A96FDB /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */; };
+		0AFA766D2182195200A96FDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA766C2182195200A96FDB /* ViewController.swift */; };
 		5506395C20D17CAD000F2A82 /* ApproximateCurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395720D17CAC000F2A82 /* ApproximateCurrencyFormatter.swift */; };
 		5506395E20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395D20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift */; };
 		5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395F20D17CDB000F2A82 /* Double+BigInt.swift */; };
@@ -303,7 +305,7 @@
 		0A0974C720480CEB005753DF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A0974C820480CEB005753DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A0974C920480CEB005753DF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0A0974CF20480CEB005753DF /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockDemoViewController.swift; sourceTree = "<group>"; };
 		0A0974D920480D03005753DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A0974DB20480D03005753DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeUIKitDemoUITests.swift; sourceTree = "<group>"; };
@@ -469,6 +471,9 @@
 		0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestSegmentBarNib.xib; sourceTree = "<group>"; };
 		0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBarControllerTests.swift; sourceTree = "<group>"; };
 		0AF8D53820D00E56001E8423 /* TransactionsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewControllerTests.swift; sourceTree = "<group>"; };
+		0AFA76682181FB1800A96FDB /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AFA766C2182195200A96FDB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5506395720D17CAC000F2A82 /* ApproximateCurrencyFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproximateCurrencyFormatter.swift; sourceTree = "<group>"; };
 		5506395D20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproximateCurrencyFormatterTests.swift; sourceTree = "<group>"; };
 		5506395F20D17CDB000F2A82 /* Double+BigInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+BigInt.swift"; sourceTree = "<group>"; };
@@ -552,6 +557,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AFA766B2181FB1E00A96FDB /* libCommonTestSupport.a in Frameworks */,
+				0AFA76692181FB1800A96FDB /* libIdentityAccessImplementations.a in Frameworks */,
 				0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */,
 				0AF33D4A209C6BF800527D25 /* SafeAppUI.framework in Frameworks */,
 			);
@@ -702,6 +709,8 @@
 		0A34BC61207B80A700636560 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */,
+				0AFA76682181FB1800A96FDB /* libIdentityAccessImplementations.a */,
 				55A7B2B220ECE2940035EF38 /* libCommon.a */,
 				0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */,
 				0A334E63209C8ED300ABC6AE /* libIdentityAccessApplication.a */,
@@ -840,7 +849,8 @@
 				0A0974DA20480D03005753DF /* LaunchScreen.storyboard */,
 				0A0974D820480D03005753DF /* Main.storyboard */,
 				0A0974C720480CEB005753DF /* Info.plist */,
-				0A0974CF20480CEB005753DF /* ViewController.swift */,
+				0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */,
+				0AFA766C2182195200A96FDB /* ViewController.swift */,
 				55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */,
 				555B0E6620CA83DF00424CEE /* TokenDoubleInputViewController.swift */,
 				0A00293120CFD75E009A4BFE /* MySegmentViewController.swift */,
@@ -1669,9 +1679,10 @@
 				55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */,
 				5541586521748BC400A3CEA4 /* AddressInputViewController.swift in Sources */,
 				555EB71D216DF23700E06553 /* VerifiableInputViewController.swift in Sources */,
-				0A0974D620480CEB005753DF /* ViewController.swift in Sources */,
+				0A0974D620480CEB005753DF /* UnlockDemoViewController.swift in Sources */,
 				0A60B516211333620066821A /* ProgressViewController.swift in Sources */,
 				55247360214293D500A77557 /* IdenticonViewController.swift in Sources */,
+				0AFA766D2182195200A96FDB /* ViewController.swift in Sources */,
 				555B0E6720CA83DF00424CEE /* TokenDoubleInputViewController.swift in Sources */,
 				556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */,
 				0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */,
@@ -1827,7 +1838,6 @@
 				0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */,
 				0A5D467520AD6D8200AC287E /* UIAlertController+Testable.swift in Sources */,
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
-				0AE950D020D29D9E0099B79D /* DesignableView.swift in Sources */,
 				0AD5091F2110AABD008507CB /* FundsTransferTransactionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
