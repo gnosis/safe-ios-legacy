@@ -23,7 +23,6 @@ class NewSafeViewControllerTests: SafeTestCase {
 
     func test_canCreate() {
         XCTAssertNotNil(controller)
-        XCTAssertNotNil(controller.titleLabel)
         XCTAssertNotNil(controller.mobileAppButton)
         XCTAssertNotNil(controller.browserExtensionButton)
         XCTAssertNotNil(controller.recoveryPhraseButton)
@@ -31,8 +30,8 @@ class NewSafeViewControllerTests: SafeTestCase {
         XCTAssertFalse(controller.nextButton.isEnabled)
     }
 
-    func test_setupPaperWallet_callsDelegate() {
-        controller.setupPaperWallet(self)
+    func test_setupRecoveryPhrase_callsDelegate() {
+        controller.setupRecoveryPhrase(self)
         XCTAssertTrue(delegate.hasSelectedPaperWalletSetup)
     }
 
