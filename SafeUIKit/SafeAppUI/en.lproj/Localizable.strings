@@ -4,8 +4,8 @@
 /* Cancel */
 "app.unlock.cancel" = "Cancel";
 
-/* Unlock screen header */
-"app.unlock.header" = "Unlock with your master password";
+/* Try again in */
+"app.unlock.tryagain" = "Try again in";
 
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
