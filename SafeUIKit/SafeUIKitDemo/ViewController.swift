@@ -4,5 +4,4 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
-}
+class ViewController: UITableViewController {}

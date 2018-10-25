@@ -73,6 +73,10 @@ public class MockAuthenticationService: AuthenticationApplicationService {
         enabledAuthenticationMethods.insert(.faceID)
     }
 
+    public func enableTouchIDSupport() {
+        enabledAuthenticationMethods.insert(.touchID)
+    }
+
     public override func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
         return !method.isDisjoint(with: enabledAuthenticationMethods)
     }
@@ -89,4 +93,15 @@ public class MockAuthenticationService: AuthenticationApplicationService {
     public override var isAuthenticationBlocked: Bool {
         return authenticationBlocked
     }
+
+    private var _blockedPeriodDuration: TimeInterval = 3
+
+    public override func configureBlockDuration(_ duration: TimeInterval) throws {
+        _blockedPeriodDuration = duration
+    }
+
+    public override var blockedPeriodDuration: TimeInterval {
+        return _blockedPeriodDuration
+    }
+
 }

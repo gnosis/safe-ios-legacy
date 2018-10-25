@@ -87,7 +87,6 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     }
 
     func givenDraftTransaction() -> Transaction {
-        ethereumService.nonce_output = 3
         givenReadyToUseWallet()
         let txID = service.createNewDraftTransaction()
         service.updateTransaction(txID, amount: 100, token: ethID.id, recipient: Address.testAccount1.value)
@@ -125,6 +124,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
                 .change(feeEstimate:
                     TransactionFeeEstimate(gas: 10,
                                            dataGas: 10,
+                                           operationalGas: 10,
                                            gasPrice:
                         TokenAmount(amount: 10, token: Token.Ether)))
                 .change(nonce: "0")

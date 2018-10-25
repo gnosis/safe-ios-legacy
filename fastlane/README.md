@@ -36,11 +36,11 @@ Build and distribute build to Fabric Beta
 fastlane ios add_devices
 ```
 
-### ios beta
+### ios prerelease
 ```
-fastlane ios beta
+fastlane ios prerelease
 ```
-Submit a new Beta Build to Apple TestFlight
+Submit a new PreRelease Rinkeby Beta Build to Apple TestFlight
 
 This will also make sure the profile is up to date
 ### ios certificates

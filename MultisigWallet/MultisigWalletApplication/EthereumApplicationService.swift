@@ -237,15 +237,6 @@ open class EthereumApplicationService: Assertable {
         return Address(value)
     }
 
-    public func nonce(contractAddress: Address) throws -> BigInt {
-        let hash = encryptionService.hash("nonce()".data(using: .ascii)!).prefix(4)
-        let data = try nodeService.eth_call(to: contractAddress, data: hash)
-        guard let result = BigInt(data.toHexString(), radix: 16) else {
-            throw Error.serverError
-        }
-        return result
-    }
-
     public func hash(of tx: Transaction) -> Data {
         return encryptionService.hash(of: tx)
     }

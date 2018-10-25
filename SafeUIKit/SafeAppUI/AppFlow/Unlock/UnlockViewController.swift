@@ -28,14 +28,17 @@ class Authenticator {
     }
 }
 
-final class UnlockViewController: UIViewController {
+public final class UnlockViewController: UIViewController {
 
+    @IBOutlet weak var tryAgainLabel: UILabel!
+    @IBOutlet weak var countdownStack: UIStackView!
+    @IBOutlet weak var backgroundImageView: BackgroundImageView!
+    @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var countdownLabel: CountdownLabel!
-    @IBOutlet weak var headerLabel: H1Label!
     @IBOutlet weak var verifiableInput: VerifiableInput!
     @IBOutlet weak var loginWithBiometryButton: UIButton!
-    var showsCancelButton: Bool = false
+    public var showsCancelButton: Bool = false
     private var unlockCompletion: ((Bool) -> Void)!
     private var clockService: Clock { return ApplicationServiceRegistry.clock }
     private var authenticationService: AuthenticationApplicationService {
@@ -43,28 +46,37 @@ final class UnlockViewController: UIViewController {
     }
 
     private struct Strings {
-        static let header = LocalizedString("app.unlock.header", comment: "Unlock screen header")
+        static let tryAgain = LocalizedString("app.unlock.tryagain", comment: "Try again in")
         static let cancel = LocalizedString("app.unlock.cancel", comment: "Cancel")
     }
 
-    static func create(completion: ((Bool) -> Void)? = nil) -> UnlockViewController {
+    public static func create(completion: ((Bool) -> Void)? = nil) -> UnlockViewController {
         let vc = StoryboardScene.AppFlow.unlockViewController.instantiate()
         vc.unlockCompletion = completion ?? { _ in }
         return vc
     }
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        headerLabel.text = Strings.header
+        backgroundImageView.isDark = true
+
         verifiableInput.delegate = self
         verifiableInput.isSecure = true
+        verifiableInput.style = .dimmed
 
-        let biometryIcon = authenticationService
-            .isAuthenticationMethodSupported(.faceID) ? Asset.faceIdIcon.image : Asset.touchIdIcon.image
+        let biometryIcon = authenticationService.isAuthenticationMethodSupported(.faceID) ?
+            Asset.UnlockScreen.faceIdIcon.image :
+            Asset.UnlockScreen.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
         updateBiometryButtonVisibility()
+
+        tryAgainLabel.textColor = ColorName.paleGreyThree.color
+        tryAgainLabel.text = Strings.tryAgain
+        tryAgainLabel.font = UIFont.systemFont(ofSize: 15)
         countdownLabel.setup(time: authenticationService.blockedPeriodDuration,
                              clock: clockService)
+        countdownLabel.textColor = ColorName.paleGreyThree.color
+        countdownLabel.font = UIFont.systemFont(ofSize: 20)
         countdownLabel.accessibilityIdentifier = "countdown"
 
         cancelButton.isHidden = !showsCancelButton
@@ -73,15 +85,57 @@ final class UnlockViewController: UIViewController {
         cancelButton.accessibilityIdentifier = "cancel"
 
         startCountdownIfNeeded()
+        subscribeForKeyboardUpdates()
+    }
+
+    private func subscribeForKeyboardUpdates() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(willChangeKeyboard(_:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(willChangeKeyboard(_:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+
+    @objc private func willChangeKeyboard(_ notification: NSNotification) {
+        guard let animationCurveRaw = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int,
+            let animationCurve = UIView.AnimationCurve(rawValue: animationCurveRaw),
+            let animationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+            let endingKeyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+            else {
+                return
+        }
+        let contentViewBottomOffset: CGFloat
+        if notification.name == UIResponder.keyboardWillShowNotification {
+            let keyboardFrameInScreenCoordinates = endingKeyboardValue.cgRectValue
+            let keyboardFrameInViewCoordinates = view.convertFromScreenCoordinates(keyboardFrameInScreenCoordinates)
+            contentViewBottomOffset = view.bounds.maxY - keyboardFrameInViewCoordinates.minY
+        } else {
+            contentViewBottomOffset = 0
+        }
+        // see https://is.gd/qcYyqL
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(animationDuration)
+        UIView.setAnimationCurve(animationCurve)
+        contentViewBottomConstraint.constant = contentViewBottomOffset
+        view.layoutIfNeeded()
+        UIView.commitAnimations()
     }
 
     private func startCountdownIfNeeded() {
-        guard authenticationService.isAuthenticationBlocked else { return }
+        guard authenticationService.isAuthenticationBlocked else {
+            countdownStack.isHidden = true
+            return
+        }
+        countdownStack.isHidden = false
         verifiableInput.isEnabled = false
         updateBiometryButtonVisibility()
         countdownLabel.start { [weak self] in
             guard let `self` = self else { return }
             self.verifiableInput.isEnabled = true
+            self.countdownStack.isHidden = true
             self.focusPasswordField()
         }
     }
@@ -92,7 +146,7 @@ final class UnlockViewController: UIViewController {
             .isAuthenticationMethodPossible(.biometry)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         auhtenticateWithBiometry()
     }
@@ -130,9 +184,19 @@ final class UnlockViewController: UIViewController {
 
 }
 
+extension UIView {
+
+    func convertFromScreenCoordinates(_ rect: CGRect) -> CGRect {
+        guard let window = self.window else { return rect }
+        let inWindowCoordinates = window.convert(rect, from: nil)
+        let inViewCoordinates = convert(inWindowCoordinates, from: nil)
+        return inViewCoordinates
+    }
+}
+
 extension UnlockViewController: VerifiableInputDelegate {
 
-    func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
+    public func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
         do {
             let result = try Authenticator.instance.authenticate(.password(verifiableInput.text!))
             if result.isSuccess {

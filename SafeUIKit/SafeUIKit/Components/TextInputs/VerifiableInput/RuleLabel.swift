@@ -88,9 +88,9 @@ final class RuleLabel: UIView {
         case .error:
             return Asset.TextInputs.errorIcon.image
         case .inactive:
-            return Asset.closeIcon.image
+            return Asset.TextInputs.defaultIcon.image
         case .success:
-            return Asset.checkmarkSelected.image
+            return Asset.TextInputs.successIcon.image
         }
     }
 

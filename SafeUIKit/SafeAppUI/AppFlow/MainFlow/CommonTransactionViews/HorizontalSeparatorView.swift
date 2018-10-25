@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SafeUIKit
 
 class HorizontalSeparatorView: DesignableView {
 

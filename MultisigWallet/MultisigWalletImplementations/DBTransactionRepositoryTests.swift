@@ -99,7 +99,10 @@ class DBTransactionRepositoryTests: XCTestCase {
         return Transaction(id: repo.nextID(), type: .transfer, walletID: walletID, accountID: accountID)
             .change(amount: .ether(3))
             .change(fee: .ether(1))
-            .change(feeEstimate: TransactionFeeEstimate(gas: 100, dataGas: 100, gasPrice: .ether(5)))
+            .change(feeEstimate: TransactionFeeEstimate(gas: 100,
+                                                        dataGas: 100,
+                                                        operationalGas: 100,
+                                                        gasPrice: .ether(5)))
             .change(sender: Address.testAccount1)
             .change(recipient: Address.testAccount2)
             .change(data: Data(repeating: 1, count: 8))

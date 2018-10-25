@@ -76,7 +76,10 @@ class HTTPNotificatonServiceTests: XCTestCase {
             .change(recipient: Address("0x8e6A5aDb2B88257A3DAc7A76A7B4EcaCdA090b66"))
             .change(amount: TokenAmount.ether(1_000))
             .change(operation: .call)
-            .change(feeEstimate: TransactionFeeEstimate(gas: 21_000, dataGas: 0, gasPrice: .ether(90_000_000)))
+            .change(feeEstimate: TransactionFeeEstimate(gas: 21_000,
+                                                        dataGas: 0,
+                                                        operationalGas: 0,
+                                                        gasPrice: .ether(90_000_000)))
             .change(nonce: "1")
         let hash = encryptionService.hash(of: transaction)
         let message = notificationService.requestConfirmationMessage(for: transaction, hash: hash)

@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import SafeAppUI
+import SafeUIKit
 
 /// This test is parametrized: it tests both TestDesignableButton and TestDesignableView
 /// with the same set of tests because they have the same API. We have these duplicate classes

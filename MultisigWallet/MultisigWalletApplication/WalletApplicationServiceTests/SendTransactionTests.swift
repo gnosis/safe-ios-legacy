@@ -109,10 +109,10 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
                        TokenInt(tx.feeEstimate!.dataGas + tx.feeEstimate!.gas) * tx.feeEstimate!.gasPrice.amount)
     }
 
-    func test_whenRequestingConfirmation_thenFetchesContractNonce() throws {
+    func test_whenRequestingConfirmation_thenFetchesContractNonceFromEstimation() throws {
         let tx = givenDraftTransaction()
         _ = try service.requestTransactionConfirmation(tx.id.id)
-        XCTAssertEqual(tx.nonce, String(ethereumService.nonce_output))
+        XCTAssertEqual(tx.nonce, String(relayService.estimateTransaction_output.nextNonce))
     }
 
     func test_whenRequestingConfirmation_thenCalculatesHash() throws {

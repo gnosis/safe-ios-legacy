@@ -44,7 +44,6 @@ struct ColorAsset {
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 enum Asset {
-  static let faceIdIcon = ImageAsset(name: "face-id-icon")
   enum MainScreenHeader {
     static let arrows = ImageAsset(name: "arrows")
     static let coins = ImageAsset(name: "coins")
@@ -54,12 +53,9 @@ enum Asset {
   }
   enum Onboarding {
     static let browserExtensionQr = ImageAsset(name: "browser-extension-qr")
-    static let errorIcon = ImageAsset(name: "error-icon")
-    static let gnosisSafeLogo = ImageAsset(name: "gnosis-safe-logo")
-    static let ironSafe = ImageAsset(name: "iron-safe")
+    static let gnosisSafeLogoRinkeby = ImageAsset(name: "gnosis-safe-logo-rinkeby")
     static let water = ImageAsset(name: "water")
   }
-  static let touchIdIcon = ImageAsset(name: "touch-id-icon")
   enum TransactionDetails {
     static let arrowTransaction = ImageAsset(name: "arrow_transaction")
     static let externalLink = ImageAsset(name: "external_link")
@@ -80,21 +76,22 @@ enum Asset {
     static let extensionWindow = ImageAsset(name: "extension_window")
     static let rejectedExtension = ImageAsset(name: "rejected_extension")
   }
+  enum UnlockScreen {
+    static let faceIdIcon = ImageAsset(name: "face-id-icon")
+    static let safeHeaderLogo = ImageAsset(name: "safe-header-logo")
+    static let touchIdIcon = ImageAsset(name: "touch-id-icon")
+  }
 
   // swiftlint:disable trailing_comma
   static let allColors: [ColorAsset] = [
   ]
   static let allImages: [ImageAsset] = [
-    faceIdIcon,
     MainScreenHeader.arrows,
     MainScreenHeader.coins,
     Menu.chevron,
     Onboarding.browserExtensionQr,
-    Onboarding.errorIcon,
-    Onboarding.gnosisSafeLogo,
-    Onboarding.ironSafe,
+    Onboarding.gnosisSafeLogoRinkeby,
     Onboarding.water,
-    touchIdIcon,
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,
     TransactionEdit.scanQrCopy,
@@ -107,6 +104,9 @@ enum Asset {
     TransactionOverviewIcons.settingTransactionIcon,
     TransactionReview.extensionWindow,
     TransactionReview.rejectedExtension,
+    UnlockScreen.faceIdIcon,
+    UnlockScreen.safeHeaderLogo,
+    UnlockScreen.touchIdIcon,
   ]
   // swiftlint:enable trailing_comma
   @available(*, deprecated, renamed: "allImages")

@@ -19,7 +19,10 @@ class SubmitTransactionRequestTests: XCTestCase {
             .change(data: Data([7]))
             .change(operation: .call)
             .change(feeEstimate:
-                TransactionFeeEstimate(gas: 1, dataGas: 1, gasPrice: TokenAmount(amount: 1, token: .Ether)))
+                TransactionFeeEstimate(gas: 1,
+                                       dataGas: 1,
+                                       operationalGas: 1,
+                                       gasPrice: TokenAmount(amount: 1, token: .Ether)))
             .change(nonce: "1")
         let request = SubmitTransactionRequest(transaction: tx, signatures: [])
         encryptionService.verify()
