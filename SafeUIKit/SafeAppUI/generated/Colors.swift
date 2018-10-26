@@ -77,6 +77,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f9fafc"></span>
   /// Alpha: 100% <br/> (0xf9fafcff)
   static let transparentWhiteOnGrey = ColorName(rgbaValue: 0xf9fafcff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#d8d8d8"></span>
+  /// Alpha: 100% <br/> (0xd8d8d8ff)
+  static let whiteTwo = ColorName(rgbaValue: 0xd8d8d8ff)
 }
 // swiftlint:enable identifier_name line_length type_body_length
 

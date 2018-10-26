@@ -87,6 +87,8 @@ enum StoryboardScene {
     static let passwordViewController = SceneType<SafeAppUI.PasswordViewController>(storyboard: MasterPassword.self, identifier: "PasswordViewController")
 
     static let startViewController = SceneType<SafeAppUI.StartViewController>(storyboard: MasterPassword.self, identifier: "StartViewController")
+
+    static let termsAndConditionsViewController = SceneType<SafeAppUI.TermsAndConditionsViewController>(storyboard: MasterPassword.self, identifier: "TermsAndConditionsViewController")
   }
   enum NewSafe: StoryboardType {
     static let storyboardName = "NewSafe"
