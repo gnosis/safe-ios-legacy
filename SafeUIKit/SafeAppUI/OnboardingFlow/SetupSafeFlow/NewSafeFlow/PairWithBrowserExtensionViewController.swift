@@ -135,9 +135,11 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     }
 
     private func showActivityIndicator() {
-        let activityButton = UIBarButtonItem(customView: activityIndicator)
-        activityIndicator.startAnimating()
-        navigationItem.rightBarButtonItem = activityButton
+        DispatchQueue.main.async {
+            let activityButton = UIBarButtonItem(customView: self.activityIndicator)
+            self.activityIndicator.startAnimating()
+            self.navigationItem.rightBarButtonItem = activityButton
+        }
     }
 
     private func showScanButton() {

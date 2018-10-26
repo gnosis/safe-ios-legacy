@@ -7,7 +7,7 @@ import XCTest
 
 class AddressInputTests: XCTestCase {
 
-    let input = AddressInput()
+    var input = AddressInput()
     // swiftlint:disable:next weak_delegate
     let delegate = MockAddressInputDelegate()
 
@@ -72,6 +72,7 @@ private extension AddressInputTests {
     }
 
     private func assertValidAddress(_ address: String) {
+        input = AddressInput()
         input.scanHandler.didScan(address)
         XCTAssertEqual(input.text, address)
     }
