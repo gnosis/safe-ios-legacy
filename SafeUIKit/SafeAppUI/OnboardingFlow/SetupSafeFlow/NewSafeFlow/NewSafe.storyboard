@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--New Safe View Controller-->
         <scene sceneID="d56-LH-0Kc">
@@ -505,19 +510,19 @@ Save this recovery phrase.</string>
             </objects>
             <point key="canvasLocation" x="1599" y="675"/>
         </scene>
-        <!--SAFE-->
+        <!--Safe Creation View Controller-->
         <scene sceneID="eri-fX-Xsk">
             <objects>
                 <viewController storyboardIdentifier="SafeCreationViewController" id="Pyc-la-4mA" customClass="SafeCreationViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bxo-Fs-Fjd" customClass="BackgroundImageView" customModule="SafeUIKit">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8a6-yR-H9R">
-                                <rect key="frame" x="0.0" y="64" width="375" height="836"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="1136"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mFC-Wa-utT">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="834"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="962"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Xn-oS-uhw">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="417.5"/>
@@ -668,7 +673,7 @@ Save this recovery phrase.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="CTK-bn-ywX">
-                                                        <rect key="frame" x="108" y="166" width="202" height="38.5"/>
+                                                        <rect key="frame" x="108" y="161" width="202" height="38.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -722,10 +727,10 @@ Save this recovery phrase.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldr-cw-PuK">
-                                                <rect key="frame" x="67" y="353" width="240" height="128"/>
+                                                <rect key="frame" x="0.0" y="834" width="375" height="128"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow its progress on Etherscan.io" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nu4-pZ-fcY">
-                                                        <rect key="frame" x="99" y="53" width="42" height="21"/>
+                                                        <rect key="frame" x="20" y="40" width="335" height="68"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -769,12 +774,32 @@ Save this recovery phrase.</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="crL-VE-ZNw"/>
                     </view>
-                    <navigationItem key="navigationItem" title="SAFE" id="anU-tV-S8g">
+                    <navigationItem key="navigationItem" id="anU-tV-S8g">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="yQ6-Df-534">
                             <connections>
                                 <action selector="cancel:" destination="Pyc-la-4mA" id="Sm9-GC-n6u"/>
                             </connections>
                         </barButtonItem>
+                        <view key="titleView" contentMode="scaleToFill" id="ZAC-fi-KtA">
+                            <rect key="frame" x="187.5" y="22" width="0.0" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xOt-E3-vVo">
+                                    <rect key="frame" x="-27" y="-13" width="54" height="24.5"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAFE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Sf-LG-eEg">
+                                            <rect key="frame" x="0.0" y="0.0" width="54" height="24.5"/>
+                                            <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
+                                            <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <barButtonItem key="rightBarButtonItem" title="Retry" id="nWu-RY-8QT">
                             <connections>
                                 <action selector="retryDeployment:" destination="Pyc-la-4mA" id="xNw-a5-NVr"/>

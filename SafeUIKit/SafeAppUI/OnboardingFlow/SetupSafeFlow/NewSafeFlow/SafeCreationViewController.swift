@@ -120,7 +120,9 @@ class SafeCreationViewController: UIViewController {
     }
 
     @IBAction func shareSafeAddress(_ sender: Any) {
-        // TODO
+        guard let address = state.addressText else { return }
+        let activityController = UIActivityViewController(activityItems: [address], applicationActivities: nil)
+        self.present(activityController, animated: true)
     }
 
     @objc private func openProgressOnEtherscan() {
@@ -134,6 +136,7 @@ class SafeCreationViewController: UIViewController {
         title = Strings.title
         cancelButton.title = Strings.cancel
         retryButton.title = Strings.retry
+        navigationController!.navigationBar.shadowImage = UIImage()
         configureDescriptionTexts()
         configureSafeAddressTexts()
         configureEtherscanTexts()

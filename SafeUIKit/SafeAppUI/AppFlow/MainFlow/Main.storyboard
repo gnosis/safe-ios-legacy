@@ -97,16 +97,10 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fpc-0E-fts">
-                                    <rect key="frame" x="-67.5" y="-12.5" width="135" height="25"/>
+                                    <rect key="frame" x="-27" y="-12.5" width="54" height="25"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GNOSIS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIO-QF-xVu">
-                                            <rect key="frame" x="0.0" y="0.0" width="81" height="25"/>
-                                            <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
-                                            <color key="textColor" red="0.63529411759999999" green="0.6588235294" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAFE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjX-sX-kbw">
-                                            <rect key="frame" x="81" y="0.0" width="54" height="25"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="54" height="25"/>
                                             <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                             <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                             <nil key="highlightedColor"/>
@@ -145,7 +139,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOR-ma-Hoj">
-                                                <rect key="frame" x="16" y="16" width="343" height="511"/>
+                                                <rect key="frame" x="16" y="16" width="343" height="506"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receive Ether and Tokens" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0z-KF-Cxk">
                                                         <rect key="frame" x="16" y="24" width="311" height="19.5"/>
@@ -208,7 +202,7 @@
                                                         <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sd3-Tb-1UW" customClass="QRCodeView" customModule="SafeUIKit">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sd3-Tb-1UW" customClass="QRCodeView" customModule="SafeUIKit">
                                                         <rect key="frame" x="98" y="331" width="135" height="135"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
