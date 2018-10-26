@@ -22,11 +22,10 @@ class MenuTableViewControllerTests: XCTestCase {
     }
 
     func test_whenCreated_thenConfigured() {
-        XCTAssertEqual(controller.tableView.numberOfSections, 4)
+        XCTAssertEqual(controller.tableView.numberOfSections, 3)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 2)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 1), 1)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 2), 3)
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 3), 5)
     }
 
     func test_whenCreated_thenRowHeightsAreProvided() {
@@ -59,6 +58,16 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.manageTokensSelected)
     }
 
+    func test_whenSelectingTermsOfUse_thenCallsDelegate() {
+        selectCell(row: 0, section: 2)
+        XCTAssertTrue(delegate.didCallTermsOfUse)
+    }
+
+    func test_whenSelectingPrivacy_thenCallsDelegate() {
+        selectCell(row: 1, section: 2)
+        XCTAssertTrue(delegate.didCallPrivacyPolicy)
+    }
+
     func test_whenSelectingCell_thenDeselectsIt() {
         selectCell(row: 0, section: 0)
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
@@ -89,4 +98,15 @@ final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate
         manageTokensSelected = true
     }
 
+    var didCallTermsOfUse = false
+
+    func didSelectTermsOfUse() {
+        didCallTermsOfUse = true
+    }
+
+    var didCallPrivacyPolicy = false
+
+    func didSelectPrivacyPolicy() {
+        didCallPrivacyPolicy = true
+    }
 }
