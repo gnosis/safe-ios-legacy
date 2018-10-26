@@ -27,6 +27,13 @@ class SafeCreationViewController: UIViewController {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressStatusLabel: UILabel!
 
+    @IBOutlet weak var safeAddressWrapperView: UIView!
+    @IBOutlet weak var safeAddressDescription: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var safeAddressLabel: UILabel!
+    @IBOutlet weak var qrCodeLabel: UILabel!
+    @IBOutlet weak var qrCodeView: QRCodeView!
+
     weak var delegate: PendingSafeViewControllerDelegate?
 
     enum Strings {
@@ -55,11 +62,6 @@ class SafeCreationViewController: UIViewController {
         static let waitingForSafeDescription =
             LocalizedString("safe_creation.waiting_for_safe_description",
                             comment: "Waiting for safe description for safe creation screen.")
-
-//        static let addressLabel = LocalizedString("safe_creation.address", comment: "Address label")
-//        static let balanceLabel = LocalizedString("safe_creation.balanceLabel", comment: "Balance label")
-
-
         enum Status {
             static let generatingSafeAddress = LocalizedString("safe_creation.status.generating_safe_address",
                                                                comment: "Generation safe address.")
@@ -72,7 +74,12 @@ class SafeCreationViewController: UIViewController {
             static let error = LocalizedString("safe_creation.status.error",
                                                comment: "Error during safe creation. Retry later.")
         }
-
+        enum SafeAddress {
+            static let description = LocalizedString("safe_creation.safe_address.description",
+                                                     comment: "Description how to share safe address.")
+            static let address = LocalizedString("safe_creation.safe_address.address", comment: "Address label.")
+            static let qrCode = LocalizedString("safe_creation.safe_address.qr_code", comment: "QR Code label.")
+        }
     }
 
     internal var state: State! {
@@ -89,6 +96,12 @@ class SafeCreationViewController: UIViewController {
     internal var readyToUseState: State!
     internal var errorState: State!
 
+    internal var safeIsBeingCreated: Bool {
+        return state is CreationStartedState ||
+            state is FinalizingDeploymentState ||
+            state is ReadyToUseState
+    }
+
     public static func create(delegate: PendingSafeViewControllerDelegate? = nil) -> SafeCreationViewController {
         let controller = StoryboardScene.NewSafe.safeCreationViewController.instantiate()
         controller.delegate = delegate
@@ -103,22 +116,44 @@ class SafeCreationViewController: UIViewController {
         delegate?.deploymentDidCancel()
     }
 
+    @IBAction func shareSafeAddress(_ sender: Any) {
+        // TODO
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = Strings.title
-        progressStatusLabel.accessibilityIdentifier = "safe_creation.status"
-        configureTexts()
+        cancelButton.title = Strings.cancel
+        retryButton.title = Strings.retry
+        configureDescriptionTexts()
+        configureSafeAddressTexts()
         initStates()
         state = nilState
         deploy()
     }
 
-    private func configureTexts() {
-        cancelButton.title = Strings.cancel
-        retryButton.title = Strings.retry
+    private func configureDescriptionTexts() {
         requiredMinimumHeaderLabel.text = Strings.FundSafe.requiredMinimumHeader
         requiredMinimumDescriptionLabel.text = Strings.FundSafe.requredMinimumDescription
         waitingForSafeDescriptionLabel.text = Strings.waitingForSafeDescription
+        progressStatusLabel.accessibilityIdentifier = "safe_creation.status"
+    }
+
+    private func configureSafeAddressTexts() {
+        addShadow(to: safeAddressWrapperView)
+        safeAddressDescription.text = Strings.SafeAddress.description
+        addressLabel.text = Strings.SafeAddress.address
+        qrCodeLabel.text = Strings.SafeAddress.qrCode
+        qrCodeView.padding = 12
+        qrCodeView.layer.borderWidth = 1
+        qrCodeView.layer.borderColor = UIColor.black.cgColor
+        qrCodeView.layer.cornerRadius = 6
+    }
+
+    private func addShadow(to view: UIView) {
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowOpacity = 0.4
     }
 
     private func initStates() {
@@ -151,6 +186,10 @@ class SafeCreationViewController: UIViewController {
         requiredMinimumWrapperView.isHidden = !state.canCancel
 
         insufficientFundsErrorImage.isHidden = !(state is NotEnoughFundsState)
+
+        safeAddressWrapperView.isHidden = safeIsBeingCreated
+        safeAddressLabel.setEthereumAddress(state.addressText ?? "")
+        qrCodeView.value = state.addressText
 
         if state.isFinalState {
             delegate?.deploymentDidSuccess()

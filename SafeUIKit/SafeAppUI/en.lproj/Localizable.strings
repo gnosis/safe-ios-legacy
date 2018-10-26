@@ -283,12 +283,6 @@
 /* Title for Address Details screen. */
 "safe_address.title" = "Safe Address";
 
-/* Address label */
-"safe_creation.address" = "Address";
-
-/* Balance label */
-"safe_creation.balanceLabel" = "Balance";
-
 /* Cancel safe creation button. */
 "safe_creation.cancel" = "Cancel";
 
@@ -309,6 +303,15 @@
 
 /* Retry button title. */
 "safe_creation.retry" = "Retry";
+
+/* Address label. */
+"safe_creation.safe_address.address" = "Address";
+
+/* Description how to share safe address. */
+"safe_creation.safe_address.description" = "Share your address or scan this QR code with the account or person sending funds.";
+
+/* QR Code label. */
+"safe_creation.safe_address.qr_code" = "QR Code";
 
 /* Account received enough funds. */
 "safe_creation.status.account_funded" = "Account funded";

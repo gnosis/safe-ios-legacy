@@ -7,6 +7,7 @@ import UIKit
 public extension UILabel {
 
     func setEthereumAddress(_ address: String) {
+        guard address.count > 8 else { return }
         let attrStr = NSMutableAttributedString(string: address)
         attrStr.addAttribute(
             NSAttributedString.Key.foregroundColor,

@@ -509,15 +509,15 @@ Save this recovery phrase.</string>
         <scene sceneID="eri-fX-Xsk">
             <objects>
                 <viewController storyboardIdentifier="SafeCreationViewController" id="Pyc-la-4mA" customClass="SafeCreationViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bxo-Fs-Fjd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                    <view key="view" contentMode="scaleToFill" id="bxo-Fs-Fjd" customClass="BackgroundImageView" customModule="SafeUIKit">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8a6-yR-H9R">
-                                <rect key="frame" x="0.0" y="64" width="375" height="736"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="836"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="mFC-Wa-utT">
-                                        <rect key="frame" x="0.0" y="40" width="375" height="337.5"/>
+                                        <rect key="frame" x="0.0" y="40" width="375" height="784"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5zq-6V-lmd">
                                                 <rect key="frame" x="68" y="0.0" width="239.5" height="24"/>
@@ -629,10 +629,85 @@ Save this recovery phrase.</string>
                                                     <constraint firstItem="hL7-hL-15t" firstAttribute="leading" secondItem="ZYw-69-GCw" secondAttribute="leading" id="qCm-A9-i32"/>
                                                 </constraints>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfc-Q4-178">
+                                                <rect key="frame" x="0.0" y="367.5" width="375" height="416.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share your address or scan this QR code with the account or person sending funds." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJ4-q0-VNw">
+                                                        <rect key="frame" x="20" y="30" width="335" height="102.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGp-GN-ls3">
+                                                        <rect key="frame" x="20" y="182.5" width="80" height="17"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="80" id="VNR-yP-ONF"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="CTK-bn-ywX">
+                                                        <rect key="frame" x="118" y="161" width="188" height="38.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lr4-bf-cdb">
+                                                        <rect key="frame" x="324" y="164.5" width="35" height="35"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="5As-eB-Kz7"/>
+                                                            <constraint firstAttribute="width" constant="35" id="ObX-ju-MRd"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="share-icon"/>
+                                                        <connections>
+                                                            <action selector="shareSafeAddress:" destination="Pyc-la-4mA" eventType="touchUpInside" id="8Dt-DW-pOr"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QR Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xJ-0N-1bU">
+                                                        <rect key="frame" x="20" y="359.5" width="80" height="17"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="80" id="SFx-KP-btR"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="It0-IB-Yhr" customClass="QRCodeView" customModule="SafeUIKit">
+                                                        <rect key="frame" x="118" y="241.5" width="135" height="135"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="135" id="kU8-3g-3Jb"/>
+                                                            <constraint firstAttribute="height" constant="135" id="qAA-4o-KMY"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="It0-IB-Yhr" firstAttribute="leading" secondItem="CTK-bn-ywX" secondAttribute="leading" id="1iJ-Cw-93S"/>
+                                                    <constraint firstItem="3xJ-0N-1bU" firstAttribute="leading" secondItem="IGp-GN-ls3" secondAttribute="leading" id="3fr-zN-wLk"/>
+                                                    <constraint firstItem="CTK-bn-ywX" firstAttribute="bottom" secondItem="IGp-GN-ls3" secondAttribute="bottom" id="9Wk-EG-GTc"/>
+                                                    <constraint firstItem="3xJ-0N-1bU" firstAttribute="bottom" secondItem="It0-IB-Yhr" secondAttribute="bottom" id="HhP-CF-ag5"/>
+                                                    <constraint firstItem="IGp-GN-ls3" firstAttribute="top" secondItem="RJ4-q0-VNw" secondAttribute="bottom" constant="50" id="ItZ-bO-7Hh"/>
+                                                    <constraint firstItem="3xJ-0N-1bU" firstAttribute="top" secondItem="IGp-GN-ls3" secondAttribute="bottom" constant="160" id="MLa-dQ-tZL"/>
+                                                    <constraint firstItem="Lr4-bf-cdb" firstAttribute="leading" secondItem="CTK-bn-ywX" secondAttribute="trailing" constant="18" id="PRC-Nm-wcS"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Lr4-bf-cdb" secondAttribute="trailing" constant="16" id="Pl8-jT-xrz"/>
+                                                    <constraint firstItem="RJ4-q0-VNw" firstAttribute="leading" secondItem="cfc-Q4-178" secondAttribute="leading" constant="20" id="XIf-uV-PUs"/>
+                                                    <constraint firstAttribute="trailing" secondItem="RJ4-q0-VNw" secondAttribute="trailing" constant="20" id="aHY-eE-ASA"/>
+                                                    <constraint firstItem="IGp-GN-ls3" firstAttribute="leading" secondItem="RJ4-q0-VNw" secondAttribute="leading" id="nbk-2K-yk8"/>
+                                                    <constraint firstItem="Lr4-bf-cdb" firstAttribute="bottom" secondItem="CTK-bn-ywX" secondAttribute="bottom" id="qOg-Tl-6yH"/>
+                                                    <constraint firstAttribute="bottom" secondItem="3xJ-0N-1bU" secondAttribute="bottom" constant="40" id="uqF-V8-PL2"/>
+                                                    <constraint firstItem="RJ4-q0-VNw" firstAttribute="top" secondItem="cfc-Q4-178" secondAttribute="top" constant="30" id="x6c-ml-reP"/>
+                                                    <constraint firstItem="CTK-bn-ywX" firstAttribute="leading" secondItem="IGp-GN-ls3" secondAttribute="trailing" constant="18" id="ywx-go-VqV"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="cfc-Q4-178" secondAttribute="bottom" id="SAI-EY-MSC"/>
                                             <constraint firstItem="ZYw-69-GCw" firstAttribute="leading" secondItem="mFC-Wa-utT" secondAttribute="leading" id="Shk-CM-cR8"/>
                                             <constraint firstAttribute="trailing" secondItem="ZYw-69-GCw" secondAttribute="trailing" id="Z6p-SF-1If"/>
+                                            <constraint firstAttribute="trailing" secondItem="cfc-Q4-178" secondAttribute="trailing" id="dbd-xt-qku"/>
+                                            <constraint firstItem="cfc-Q4-178" firstAttribute="leading" secondItem="mFC-Wa-utT" secondAttribute="leading" id="fsA-Ol-c9n"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -667,31 +742,38 @@ Save this recovery phrase.</string>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <size key="freeformSize" width="375" height="800"/>
+                    <size key="freeformSize" width="375" height="900"/>
                     <connections>
+                        <outlet property="addressLabel" destination="IGp-GN-ls3" id="GvI-dL-tJa"/>
                         <outlet property="cancelButton" destination="yQ6-Df-534" id="du0-Hm-ogP"/>
                         <outlet property="headerLabel" destination="YDW-wm-Np7" id="C2W-v6-EGG"/>
                         <outlet property="insufficientFundsErrorImage" destination="5P0-fL-G1i" id="ADb-tF-FV9"/>
                         <outlet property="progressStatusLabel" destination="tuc-Nf-e0n" id="1RI-Fq-v1F"/>
                         <outlet property="progressView" destination="hL7-hL-15t" id="pkR-gL-s7o"/>
+                        <outlet property="qrCodeLabel" destination="3xJ-0N-1bU" id="rts-eQ-pJP"/>
+                        <outlet property="qrCodeView" destination="It0-IB-Yhr" id="X1N-ww-1eR"/>
                         <outlet property="requiredMinimumAmountLabel" destination="S11-ds-Ohy" id="O3P-1o-bLp"/>
                         <outlet property="requiredMinimumDescriptionLabel" destination="6tO-VL-33D" id="1s8-JI-8W0"/>
                         <outlet property="requiredMinimumHeaderLabel" destination="tcI-sE-iJB" id="nvI-li-387"/>
                         <outlet property="requiredMinimumWrapperView" destination="Arv-a2-Ych" id="D4l-Bg-7D1"/>
                         <outlet property="retryButton" destination="nWu-RY-8QT" id="S0A-hi-4Dq"/>
+                        <outlet property="safeAddressDescription" destination="RJ4-q0-VNw" id="5z1-Te-ocC"/>
+                        <outlet property="safeAddressLabel" destination="CTK-bn-ywX" id="dUp-uC-Fzo"/>
+                        <outlet property="safeAddressWrapperView" destination="cfc-Q4-178" id="tG5-cw-f3h"/>
                         <outlet property="waitingForSafeDescriptionLabel" destination="CK5-Cq-9OZ" id="AYC-T9-yf0"/>
                         <outlet property="waitingForSafeWrapperView" destination="IGN-2r-W6z" id="jMW-KN-eLL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dEa-Gm-r7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2431" y="747"/>
+            <point key="canvasLocation" x="2429.5999999999999" y="746.62668665667172"/>
         </scene>
     </scenes>
     <resources>
         <image name="browser-extension-qr" width="125" height="95"/>
         <image name="error-icon" width="16" height="16"/>
         <image name="iron-safe" width="90" height="74"/>
+        <image name="share-icon" width="28" height="28"/>
         <image name="water" width="375" height="224"/>
     </resources>
 </document>
