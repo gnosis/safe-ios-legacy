@@ -22,6 +22,10 @@ class MainContentViewController: SegmentBarController {
         selectedViewController = tokensController
     }
 
+    func showTransactionList() {
+        selectedViewController = transactionsController
+    }
+
 }
 
 extension TokensTableViewController: SegmentController {

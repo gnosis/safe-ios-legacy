@@ -59,6 +59,12 @@ final class MainViewController: UIViewController {
         delegate?.manageTokens()
     }
 
+    func showTransactionList() {
+        if let contentVC = self.children.first as? MainContentViewController {
+            contentVC.showTransactionList()
+        }
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Without async appearing animations is not finished yet, but we call in delegate
