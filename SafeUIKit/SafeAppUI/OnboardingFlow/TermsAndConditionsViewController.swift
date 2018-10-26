@@ -19,6 +19,8 @@ public class TermsAndConditionsViewController: UIViewController {
     @IBOutlet weak var privacyPolicyButton: UIButton!
     @IBOutlet weak var agreeButton: UIButton!
     @IBOutlet weak var disagreeButton: UIButton!
+    @IBOutlet weak var contentTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentLeadingConstraint: NSLayoutConstraint!
 
     public weak var delegate: TermsAndConditionsViewControllerDelegate?
 
@@ -38,8 +40,14 @@ public class TermsAndConditionsViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        headerLabel.attributedText = header(from: Strings.header)
-        listLabel.attributedText = list(from: Strings.body)
+        var headerStyle = HeaderStyle.default
+        headerStyle.leading = contentLeadingConstraint.constant
+        headerStyle.trailing = -contentTrailingConstraint.constant
+        var bodyStyle = ListStyle.default
+        bodyStyle.leading = contentLeadingConstraint.constant
+        bodyStyle.trailing = -contentTrailingConstraint.constant
+        headerLabel.attributedText = header(from: Strings.header, style: headerStyle)
+        listLabel.attributedText = list(from: Strings.body, style: bodyStyle)
         privacyPolicyButton.setAttributedTitle(link(from: Strings.privacyLink), for: .normal)
         termsOfUseButton.setAttributedTitle(link(from: Strings.termsLink), for: .normal)
         disagreeButton.setTitle(Strings.disagree, for: .normal)
@@ -83,9 +91,9 @@ public class TermsAndConditionsViewController: UIViewController {
                                                              .foregroundColor: headerStyle.textColor])
     }
 
-    private func list(from text: String) -> NSAttributedString {
+    private func list(from text: String, style: ListStyle = .default) -> NSAttributedString {
         return text.components(separatedBy: "\n").reduce(into: NSMutableAttributedString()) { result, text in
-            result.append(listItem(from: text))
+            result.append(listItem(from: text, style: style))
         }
     }
 

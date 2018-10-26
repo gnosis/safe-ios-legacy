@@ -4,6 +4,8 @@
 
 import UIKit
 import IdentityAccessApplication
+import SafariServices
+import MultisigWalletApplication
 
 final class OnboardingFlowCoordinator: FlowCoordinator {
 
@@ -34,9 +36,40 @@ final class OnboardingFlowCoordinator: FlowCoordinator {
 extension OnboardingFlowCoordinator: StartViewControllerDelegate {
 
     func didStart() {
-        enter(flow: masterPasswordFlowCoordinator) { [unowned self] in
-            self.clearNavigationStack()
-            self.enterSetupSafeFlow()
+        let controller = TermsAndConditionsViewController.create()
+        controller.delegate = self
+        controller.modalPresentationStyle = .overFullScreen
+        rootViewController.definesPresentationContext = true
+        presentModally(controller)
+    }
+
+}
+
+extension OnboardingFlowCoordinator: TermsAndConditionsViewControllerDelegate {
+
+    func wantsToOpenTermsOfUse() {
+        openInSafari(MultisigWalletApplication.ApplicationServiceRegistry.walletService.termsOfUseURL)
+    }
+
+    func wantsToOpenPrivacyPolicy() {
+        openInSafari(MultisigWalletApplication.ApplicationServiceRegistry.walletService.privacyPolicyURL)
+    }
+
+    private func openInSafari(_ url: URL!) {
+        let controller = SFSafariViewController(url: url)
+        presentModally(controller)
+    }
+
+    func didDisagree() {
+        dismissModal()
+    }
+
+    func didAgree() {
+        dismissModal { [unowned self] in
+            self.enter(flow: self.masterPasswordFlowCoordinator) {
+                self.clearNavigationStack()
+                self.enterSetupSafeFlow()
+            }
         }
     }
 
