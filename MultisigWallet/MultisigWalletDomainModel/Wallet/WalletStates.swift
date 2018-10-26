@@ -135,6 +135,7 @@ public class CreationStartedState: WalletState {
 }
 
 public class CreationStarted: DomainEvent {}
+public class WalletTransactionHashIsKnown: DomainEvent {}
 
 public class FinalizingDeploymentState: WalletState {
 

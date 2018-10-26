@@ -26,19 +26,18 @@ Password setup complete.</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ab1-Z8-9ct" customClass="BigBorderedButton" customModule="SafeUIKit">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ab1-Z8-9ct" customClass="BigBorderedButton" customModule="SafeUIKit">
                                 <rect key="frame" x="40" y="587" width="295" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="jIh-Ei-gnh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="New Safe"/>
+                                <state key="normal" title="Create a New Safe"/>
                                 <connections>
                                     <action selector="createNewSafe:" destination="Dc2-0P-PlK" eventType="touchUpInside" id="bAl-fZ-vB1"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="Ab1-Z8-9ct" firstAttribute="leading" secondItem="8Uu-Zb-CVY" secondAttribute="leading" constant="40" id="MRD-4x-nPZ"/>
                             <constraint firstItem="8Uu-Zb-CVY" firstAttribute="trailing" secondItem="Ab1-Z8-9ct" secondAttribute="trailing" constant="40" id="e0L-Jj-6GW"/>

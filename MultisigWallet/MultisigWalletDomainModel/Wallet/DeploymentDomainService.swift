@@ -83,12 +83,16 @@ public class DeploymentDomainService {
     }
 
     private func waitForCreationTransactionHash(_ wallet: Wallet) throws {
-        guard wallet.creationTransactionHash == nil else { return }
+        guard wallet.creationTransactionHash == nil else {
+            DomainRegistry.eventPublisher.publish(WalletTransactionHashIsKnown())
+            return
+        }
         try Repeater(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
             guard let hash = try self.transactionHash(of: wallet.address!) else { return }
             wallet.assignCreationTransaction(hash: hash.value)
             repeater.stop()
             DomainRegistry.walletRepository.save(wallet)
+            DomainRegistry.eventPublisher.publish(WalletTransactionHashIsKnown())
             }.start()
     }
 

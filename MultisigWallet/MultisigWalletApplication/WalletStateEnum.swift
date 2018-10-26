@@ -11,6 +11,7 @@ public enum WalletStateId {
     case deploying
     case notEnoughFunds
     case creationStarted
+    case transactionHashIsKnown
     case finalizingDeployment
     case readyToUse
 

@@ -53,6 +53,7 @@ enum Asset {
   static let checkmarkSelected = ImageAsset(name: "checkmark-selected")
   static let closeIcon = ImageAsset(name: "close-icon")
   static let qrCode = ImageAsset(name: "qr-code")
+  static let shareLink = ImageAsset(name: "share-link")
   enum TextInputs {
     static let clearIcon = ImageAsset(name: "clear-icon")
     static let defaultIcon = ImageAsset(name: "default-icon")
@@ -75,6 +76,7 @@ enum Asset {
     checkmarkSelected,
     closeIcon,
     qrCode,
+    shareLink,
     TextInputs.clearIcon,
     TextInputs.defaultIcon,
     TextInputs.errorIcon,

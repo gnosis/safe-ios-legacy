@@ -22,7 +22,7 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
         push(NewSafeViewController.create(delegate: self))
         saveCheckpoint()
         if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
-            push(PendingSafeViewController.create(delegate: self))
+            push(SafeCreationViewController.create(delegate: self))
         }
     }
 
@@ -50,7 +50,7 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     }
 
     func didSelectNext() {
-        push(PendingSafeViewController.create(delegate: self))
+        push(SafeCreationViewController.create(delegate: self))
     }
 
 }
@@ -63,7 +63,7 @@ extension NewSafeFlowCoordinator: PairWithBrowserDelegate {
 
 }
 
-extension NewSafeFlowCoordinator: PendingSafeViewControllerDelegate {
+extension NewSafeFlowCoordinator: SafeCreationViewControllerDelegate {
 
     func deploymentDidFail(_ error: String) {
         let controller = SafeCreationFailedAlertController.create(localizedErrorDescription: error) { [unowned self] in

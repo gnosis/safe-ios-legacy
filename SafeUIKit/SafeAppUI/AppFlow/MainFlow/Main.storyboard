@@ -97,16 +97,10 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fpc-0E-fts">
-                                    <rect key="frame" x="-67.5" y="-12.5" width="135" height="25"/>
+                                    <rect key="frame" x="-27" y="-12.5" width="54" height="25"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GNOSIS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIO-QF-xVu">
-                                            <rect key="frame" x="0.0" y="0.0" width="81" height="25"/>
-                                            <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
-                                            <color key="textColor" red="0.63529411759999999" green="0.6588235294" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAFE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjX-sX-kbw">
-                                            <rect key="frame" x="81" y="0.0" width="54" height="25"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="54" height="25"/>
                                             <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                             <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                             <nil key="highlightedColor"/>
@@ -145,7 +139,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOR-ma-Hoj">
-                                                <rect key="frame" x="16" y="16" width="343" height="511"/>
+                                                <rect key="frame" x="16" y="16" width="343" height="506"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receive Ether and Tokens" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0z-KF-Cxk">
                                                         <rect key="frame" x="16" y="24" width="311" height="19.5"/>
@@ -202,32 +196,26 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uc6-X3-vcd" customClass="QRCodeView" customModule="SafeUIKit">
-                                                        <rect key="frame" x="100" y="331" width="135" height="135"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="135" id="JSn-Zr-XTp"/>
-                                                            <constraint firstAttribute="width" constant="135" id="iFN-uw-qsM"/>
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="value" value="0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0"/>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="padding">
-                                                                <real key="value" value="12"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="QR Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="J1A-jJ-tSH">
                                                         <rect key="frame" x="16" y="331" width="80" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sd3-Tb-1UW" customClass="QRCodeView" customModule="SafeUIKit">
+                                                        <rect key="frame" x="98" y="331" width="135" height="135"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="135" id="qBY-kU-k4b"/>
+                                                            <constraint firstAttribute="width" constant="135" id="xS3-pS-13n"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="sd3-Tb-1UW" secondAttribute="bottom" constant="40" id="3Qs-gn-OIJ"/>
                                                     <constraint firstItem="Eb1-PZ-dQJ" firstAttribute="leading" secondItem="EtM-Mz-vte" secondAttribute="leading" id="3Rs-Mz-FaH"/>
                                                     <constraint firstItem="Eb1-PZ-dQJ" firstAttribute="trailing" secondItem="EtM-Mz-vte" secondAttribute="trailing" id="5tK-gS-gps"/>
-                                                    <constraint firstItem="Uc6-X3-vcd" firstAttribute="leading" secondItem="J1A-jJ-tSH" secondAttribute="trailing" constant="4" id="CTv-uC-8pp"/>
                                                     <constraint firstItem="Jkr-6f-XIV" firstAttribute="top" secondItem="YyW-CH-CpR" secondAttribute="bottom" constant="16" id="Eag-SV-XFq"/>
                                                     <constraint firstItem="hjv-RX-pe5" firstAttribute="leading" secondItem="Y0z-KF-Cxk" secondAttribute="leading" id="G1d-vK-Ybh"/>
                                                     <constraint firstItem="J1A-jJ-tSH" firstAttribute="trailing" secondItem="Eb1-PZ-dQJ" secondAttribute="trailing" id="GN6-Yb-o2f"/>
@@ -238,8 +226,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="Jkr-6f-XIV" secondAttribute="trailing" constant="16" id="SDo-77-aiA"/>
                                                     <constraint firstItem="Y0z-KF-Cxk" firstAttribute="leading" secondItem="uOR-ma-Hoj" secondAttribute="leading" constant="16" id="Vgg-ka-S4z"/>
                                                     <constraint firstItem="Y0z-KF-Cxk" firstAttribute="top" secondItem="uOR-ma-Hoj" secondAttribute="top" constant="24" id="Xlp-Wh-TUZ"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Uc6-X3-vcd" secondAttribute="bottom" constant="45" id="YhY-nE-TuB"/>
-                                                    <constraint firstItem="Uc6-X3-vcd" firstAttribute="top" secondItem="J1A-jJ-tSH" secondAttribute="top" id="a9n-bp-Wpl"/>
+                                                    <constraint firstItem="sd3-Tb-1UW" firstAttribute="top" secondItem="J1A-jJ-tSH" secondAttribute="top" id="Xw1-cC-l3G"/>
                                                     <constraint firstItem="hnS-hO-Axt" firstAttribute="trailing" secondItem="Jkr-6f-XIV" secondAttribute="trailing" id="ej3-AA-Zfa"/>
                                                     <constraint firstItem="YyW-CH-CpR" firstAttribute="top" secondItem="hjv-RX-pe5" secondAttribute="bottom" constant="44" id="f8A-3n-Prn"/>
                                                     <constraint firstItem="hjv-RX-pe5" firstAttribute="top" secondItem="Y0z-KF-Cxk" secondAttribute="bottom" constant="4" id="gNO-Et-ReM"/>
@@ -247,6 +234,7 @@
                                                     <constraint firstItem="amP-pM-xdH" firstAttribute="leading" secondItem="Eb1-PZ-dQJ" secondAttribute="trailing" constant="2" id="hnn-qb-aNG"/>
                                                     <constraint firstItem="hjv-RX-pe5" firstAttribute="trailing" secondItem="Y0z-KF-Cxk" secondAttribute="trailing" id="im3-3m-NzO"/>
                                                     <constraint firstItem="Eb1-PZ-dQJ" firstAttribute="top" secondItem="Jkr-6f-XIV" secondAttribute="bottom" constant="18" id="j7L-CL-cjP"/>
+                                                    <constraint firstItem="sd3-Tb-1UW" firstAttribute="leading" secondItem="J1A-jJ-tSH" secondAttribute="trailing" constant="2" id="m1E-0m-L30"/>
                                                     <constraint firstItem="J1A-jJ-tSH" firstAttribute="leading" secondItem="hnS-hO-Axt" secondAttribute="leading" id="nu1-3Z-RSY"/>
                                                     <constraint firstItem="Jkr-6f-XIV" firstAttribute="leading" secondItem="EtM-Mz-vte" secondAttribute="leading" id="qPb-72-uAB"/>
                                                     <constraint firstItem="YyW-CH-CpR" firstAttribute="leading" secondItem="EtM-Mz-vte" secondAttribute="trailing" constant="2" id="qnw-cf-fNw"/>
@@ -290,7 +278,7 @@
                         <outlet property="identiconLabel" destination="EtM-Mz-vte" id="rjs-tG-6Et"/>
                         <outlet property="identiconView" destination="YyW-CH-CpR" id="QnS-5M-i0D"/>
                         <outlet property="qrCodeLabel" destination="J1A-jJ-tSH" id="sg8-6k-3Tk"/>
-                        <outlet property="qrCodeView" destination="Uc6-X3-vcd" id="zqH-Ck-d6e"/>
+                        <outlet property="qrCodeView" destination="sd3-Tb-1UW" id="agZ-w1-Eq1"/>
                         <outlet property="safeAddressLabel" destination="amP-pM-xdH" id="Zjp-wK-FR8"/>
                         <outlet property="wrapperView" destination="uOR-ma-Hoj" id="rsk-n7-1L5"/>
                     </connections>
@@ -419,21 +407,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Agh-l0-sF5" customClass="QRCodeView" customModule="SafeUIKit">
-                                            <rect key="frame" x="74" y="28" width="144" height="144"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="144" id="6V2-n1-Icg"/>
-                                                <constraint firstAttribute="height" constant="144" id="f9U-On-tHw"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="value" value="0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0"/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="padding">
-                                                    <real key="value" value="12"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YaL-2x-eTD">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="YaL-2x-eTD">
                                             <rect key="frame" x="74" y="188" width="270" height="48"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="270" id="Qox-UW-isS"/>
@@ -442,17 +416,26 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rR0-dk-kFn" customClass="QRCodeView" customModule="SafeUIKit">
+                                            <rect key="frame" x="74" y="28" width="144" height="144"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="144" id="TJr-Tt-qvJ"/>
+                                                <constraint firstAttribute="height" constant="144" id="r43-Jn-5og"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="YaL-2x-eTD" firstAttribute="top" secondItem="Agh-l0-sF5" secondAttribute="bottom" constant="16" id="J3T-Pb-3XE"/>
-                                        <constraint firstItem="Agh-l0-sF5" firstAttribute="leading" secondItem="XTU-j7-llh" secondAttribute="leading" constant="74" id="bVz-am-8aG"/>
-                                        <constraint firstItem="Agh-l0-sF5" firstAttribute="top" secondItem="XTU-j7-llh" secondAttribute="top" constant="28" id="cbU-TZ-10E"/>
-                                        <constraint firstItem="YaL-2x-eTD" firstAttribute="leading" secondItem="Agh-l0-sF5" secondAttribute="leading" id="vdc-bU-vGJ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="YaL-2x-eTD" secondAttribute="trailing" constant="16" id="2Af-Ix-T5D"/>
+                                        <constraint firstItem="rR0-dk-kFn" firstAttribute="leading" secondItem="YaL-2x-eTD" secondAttribute="leading" id="YQX-sd-kKA"/>
+                                        <constraint firstItem="YaL-2x-eTD" firstAttribute="top" secondItem="rR0-dk-kFn" secondAttribute="bottom" constant="16" id="aj6-7z-ozs"/>
+                                        <constraint firstItem="rR0-dk-kFn" firstAttribute="top" secondItem="XTU-j7-llh" secondAttribute="top" constant="28" id="jmT-rK-AmJ"/>
+                                        <constraint firstItem="rR0-dk-kFn" firstAttribute="leading" secondItem="XTU-j7-llh" secondAttribute="leading" constant="74" id="yKI-T1-abn"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addressLabel" destination="YaL-2x-eTD" id="pcy-uD-l71"/>
-                                    <outlet property="qrCodeView" destination="Agh-l0-sF5" id="9mk-6R-dIh"/>
+                                    <outlet property="qrCodeView" destination="rR0-dk-kFn" id="BUi-ec-1y8"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AppVersionTableViewCell" rowHeight="32" id="FmE-jC-EgN" customClass="AppVersionTableViewCell" customModule="SafeAppUI" customModuleProvider="target">

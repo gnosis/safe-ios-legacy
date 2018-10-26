@@ -243,19 +243,10 @@
 "pending_safe.abort_alert.cancel" = "Close";
 
 /* Message body of abort alert */
-"pending_safe.abort_alert.message" = "If you abort safe creation, you'll loose access to all funds on the safe address. This cannot be undone.";
+"pending_safe.abort_alert.message" = "If you abort, you will lose access to all funds associated with this address. This cannot be undone.";
 
 /* Title of abort safe creation alert */
-"pending_safe.abort_alert.title" = "Aborting Safe Creation";
-
-/* Address label */
-"pending_safe.address" = "Safe address";
-
-/* Balance label */
-"pending_safe.balanceLabel" = "Balance";
-
-/* Cancel safe creation button */
-"pending_safe.cancel" = "Cancel";
+"pending_safe.abort_alert.title" = "Aborting Safe Creation?";
 
 /* Pending safe failed alert's message */
 "pending_safe.failed_alert.message" = "Error: %@ Please try again later.";
@@ -265,33 +256,6 @@
 
 /* Pending safe failed alert's title */
 "pending_safe.failed_alert.title" = "Error";
-
-/* Info label about safe creation */
-"pending_safe.info" = "Your safe is being created. Please follow status updates below.";
-
-/* Retry button title */
-"pending_safe.retry" = "Retry";
-
-/* Account received enough funds */
-"pending_safe.status.account_funded" = "Account has enough funds. Proceeding.";
-
-/* Deployment accepted by blockchain */
-"pending_safe.status.deployment_accepted" = "Creating Safe in the blockchain...";
-
-/* Deployment started status */
-"pending_safe.status.deployment_started" = "Safe creation started.";
-
-/* Deployment succeeded */
-"pending_safe.status.deployment_success" = "Successfully created new Safe in the blockchain";
-
-/* Error during safe creation. Retry later. */
-"pending_safe.status.error" = "Please retry later.";
-
-/* Not enough funds in account */
-"pending_safe.status.not_enough_funds" = "Not enough funds for safe creation: %@. Please transfer at least %@.";
-
-/* Title of pending safe screen */
-"pending_safe.title" = "Creating new safe";
 
 /* Safe Address label. */
 "safe_address.address" = "Address";
@@ -310,6 +274,60 @@
 
 /* Title for Address Details screen. */
 "safe_address.title" = "Safe Address";
+
+/* Cancel safe creation button. */
+"safe_creation.cancel" = "Cancel";
+
+/* Creating safe header for safe creation screen. */
+"safe_creation.creating_safe_header" = "Creating your new safe";
+
+/* Follow its progress on Etherscan.io */
+"safe_creation.etherscan.follow_progress" = "Follow its progress on Etherscan.io";
+
+/* First deposit header for safe creation screen. */
+"safe_creation.first_deposit_header" = "Make your first deposit";
+
+/* Insufficient funds header for safe creation screen. */
+"safe_creation.insufficient_funds_header" = "Insufficient funds";
+
+/* Required minimum description for safe creation screen. */
+"safe_creation.required_minimum_description" = "(This is the Safe opening fee.)";
+
+/* Required minimum header for safe creation screen. */
+"safe_creation.required_minimum_header" = "Required minimum transfer:";
+
+/* Retry button title. */
+"safe_creation.retry" = "Retry";
+
+/* Address label. */
+"safe_creation.safe_address.address" = "Address";
+
+/* Description how to share safe address. */
+"safe_creation.safe_address.description" = "Share your address or scan this QR code with the account or person sending funds.";
+
+/* QR Code label. */
+"safe_creation.safe_address.qr_code" = "QR Code";
+
+/* Account received enough funds. */
+"safe_creation.status.account_funded" = "Account funded";
+
+/* Awaiting deposit label. */
+"safe_creation.status.awaiting_deposit" = "Awaiting your deposit...";
+
+/* Deployment accepted by blockchain. */
+"safe_creation.status.deployment_accepted" = "This can take a couple minutes...";
+
+/* Error during safe creation. Retry later. */
+"safe_creation.status.error" = "Network error. Please retry later...";
+
+/* Generation safe address. */
+"safe_creation.status.generating_safe_address" = "Generating safe address...";
+
+/* Title for safe creation screen. */
+"safe_creation.title" = "SAFE";
+
+/* Waiting for safe description for safe creation screen. */
+"safe_creation.waiting_for_safe_description" = "Your deposit is on its way.";
 
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";

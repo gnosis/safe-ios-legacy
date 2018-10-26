@@ -59,7 +59,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     func test_didSelectNext_presentsNextController() {
         newSafeFlowCoordinator.didSelectNext()
         delay()
-        XCTAssertTrue(topViewController is PendingSafeViewController)
+        XCTAssertTrue(topViewController is SafeCreationViewController)
     }
 
     func test_paperWalletSetupCompletion_popsToStartVC() {
@@ -107,7 +107,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         action.test_handler?(action)
         delay(1)
         XCTAssertNil(newSafeFlowCoordinator.rootViewController.presentedViewController)
-        XCTAssertTrue(newSafeFlowCoordinator.navigationController.topViewController is PendingSafeViewController)
+        XCTAssertTrue(newSafeFlowCoordinator.navigationController.topViewController is SafeCreationViewController)
     }
 
     func test_whenDeploymentSuccess_thenExitsFlow() {
@@ -162,7 +162,7 @@ extension NewSafeFlowCoordinatorTests {
         let testFC = TestFlowCoordinator()
         testFC.enter(flow: newSafeFlowCoordinator)
         delay()
-        XCTAssertTrue((testFC.topViewController is PendingSafeViewController) == shouldShow,
+        XCTAssertTrue((testFC.topViewController is SafeCreationViewController) == shouldShow,
                       "\(String(describing: testFC.topViewController)) is not PendingViewController",
                       line: line)
     }
