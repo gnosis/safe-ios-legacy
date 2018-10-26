@@ -43,6 +43,11 @@ final class MainFlowCoordinator: FlowCoordinator {
         push(reviewVC)
     }
 
+    private func openInSafari(_ url: URL) {
+        let safari = SFSafariViewController(url: url)
+        presentModally(safari)
+    }
+
 }
 
 extension MainFlowCoordinator: MainViewControllerDelegate {
@@ -96,9 +101,7 @@ extension MainFlowCoordinator: TransactionDetailsViewControllerDelegate {
 
     func showTransactionInExternalApp(from controller: TransactionDetailsViewController) {
         let transactionID = controller.transactionID!
-        let url = ApplicationServiceRegistry.walletService.transactionURL(transactionID)
-        let safari = SFSafariViewController(url: url)
-        presentModally(safari)
+        openInSafari(ApplicationServiceRegistry.walletService.transactionURL(transactionID))
     }
 
 }
@@ -136,6 +139,14 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
 
     func didSelectManageTokens() {
         enter(flow: manageTokensFlowCoordinator)
+    }
+
+    func didSelectTermsOfUse() {
+        openInSafari(ApplicationServiceRegistry.walletService.termsOfUseURL)
+    }
+
+    func didSelectPrivacyPolicy() {
+        openInSafari(ApplicationServiceRegistry.walletService.privacyPolicyURL)
     }
 
 }

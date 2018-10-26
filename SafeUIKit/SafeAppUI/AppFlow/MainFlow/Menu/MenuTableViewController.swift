@@ -8,6 +8,8 @@ import MultisigWalletApplication
 
 protocol MenuTableViewControllerDelegate: class {
     func didSelectManageTokens()
+    func didSelectTermsOfUse()
+    func didSelectPrivacyPolicy()
 }
 
 final class MenuItemTableViewCell: UITableViewCell {
@@ -109,18 +111,20 @@ final class MenuTableViewController: UITableViewController {
             (section: .portfolio,
              items: [menuItem(Strings.manageTokens)],
              title: Strings.portfolioSectionTitle),
+            /*
             (section: .security,
              items: [
                 menuItem(Strings.changePassword),
                 menuItem(Strings.changeRecoveryPhrase),
                 menuItem(Strings.changeBrowserExtension)],
              title: Strings.securitySectionTitle),
+            */
             (section: .support,
              items: [
-                menuItem(Strings.feedback),
+//                menuItem(Strings.feedback),
                 menuItem(Strings.terms),
                 menuItem(Strings.privacyPolicy),
-                menuItem(Strings.rateApp),
+//                menuItem(Strings.rateApp),
                 (item: AppVersion(), cellHeight: { return AppVersionTableViewCell.height })],
              title: Strings.supportSectionTitle)
         ]
@@ -182,14 +186,21 @@ final class MenuTableViewController: UITableViewController {
     // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
         switch menuItems[indexPath.section].section {
         case .portfolio:
             if let manageTokensItem = menuItems[indexPath.section].items[indexPath.row].item as? MenuItem,
                 manageTokensItem.name == Strings.manageTokens {
                 delegate?.didSelectManageTokens()
             }
-            fallthrough
-        default: tableView.deselectRow(at: indexPath, animated: true)
+        case .support:
+            if indexPath.row == 0 {
+                delegate?.didSelectTermsOfUse()
+            } else {
+                delegate?.didSelectPrivacyPolicy()
+            }
+        default: break
         }
     }
 
