@@ -8,14 +8,12 @@ import AVFoundation
 
 final public class QRCodeView: DesignableView {
 
-    @IBInspectable
     public var value: String? {
         didSet {
             setNeedsUpdate()
         }
     }
 
-    @IBInspectable
     public var padding: CGFloat = 0 {
         didSet {
             guard padding > 0 && padding < bounds.width / 2 else { return }

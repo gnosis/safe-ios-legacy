@@ -289,6 +289,9 @@
 /* Creating safe header for safe creation screen. */
 "safe_creation.creating_safe_header" = "Creating your new safe";
 
+/* Follow its progress on Etherscan.io */
+"safe_creation.etherscan.follow_progress" = "Follow its progress on Etherscan.io";
+
 /* First deposit header for safe creation screen. */
 "safe_creation.first_deposit_header" = "Make your first deposit";
 

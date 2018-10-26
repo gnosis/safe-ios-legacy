@@ -86,6 +86,7 @@ public class WalletApplicationService: Assertable {
          WalletConfigured.self,
          DeploymentFunded.self,
          CreationStarted.self,
+         WalletTransactionHashIsKnown.self,
          WalletCreated.self,
          WalletCreationFailed.self].forEach {
             ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: $0)
@@ -95,6 +96,9 @@ public class WalletApplicationService: Assertable {
 
     public func walletState() -> WalletStateId? {
         guard let state = selectedWallet?.state else { return nil }
+        if state is FinalizingDeploymentState && selectedWallet!.creationTransactionHash != nil {
+            return .transactionHashIsKnown
+        }
         return WalletStateId(state)
     }
 
@@ -120,6 +124,11 @@ public class WalletApplicationService: Assertable {
 
     private var selectedWallet: Wallet? {
         return DomainRegistry.walletRepository.selectedWallet()
+    }
+
+    public func walletCreationURL() -> URL {
+        let creationTransactionHash = selectedWallet!.creationTransactionHash!
+        return URL(string: String(format: transactionWebURLFormat, creationTransactionHash))!
     }
 
     // MARK: - Owners

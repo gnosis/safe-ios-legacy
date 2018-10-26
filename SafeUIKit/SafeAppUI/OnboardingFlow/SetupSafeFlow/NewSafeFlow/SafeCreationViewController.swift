@@ -7,6 +7,7 @@ import SafeUIKit
 import MultisigWalletApplication
 import Common
 import BigInt
+import SafariServices
 
 class SafeCreationViewController: UIViewController {
 
@@ -33,6 +34,9 @@ class SafeCreationViewController: UIViewController {
     @IBOutlet weak var safeAddressLabel: UILabel!
     @IBOutlet weak var qrCodeLabel: UILabel!
     @IBOutlet weak var qrCodeView: QRCodeView!
+
+    @IBOutlet weak var etherscanWrapperView: UIView!
+    @IBOutlet weak var etherscanLabel: UILabel!
 
     weak var delegate: PendingSafeViewControllerDelegate?
 
@@ -80,6 +84,10 @@ class SafeCreationViewController: UIViewController {
             static let address = LocalizedString("safe_creation.safe_address.address", comment: "Address label.")
             static let qrCode = LocalizedString("safe_creation.safe_address.qr_code", comment: "QR Code label.")
         }
+        enum Etherscan {
+            static let followProgress = LocalizedString("safe_creation.etherscan.follow_progress",
+                                                        comment: "Follow its progress on Etherscan.io")
+        }
     }
 
     internal var state: State! {
@@ -92,15 +100,10 @@ class SafeCreationViewController: UIViewController {
     internal var deployingState: State!
     internal var notEnoughFundsState: State!
     internal var creationStartedState: State!
+    internal var transactionHashIsKnownState: State!
     internal var finalizingDeploymentState: State!
     internal var readyToUseState: State!
     internal var errorState: State!
-
-    internal var safeIsBeingCreated: Bool {
-        return state is CreationStartedState ||
-            state is FinalizingDeploymentState ||
-            state is ReadyToUseState
-    }
 
     public static func create(delegate: PendingSafeViewControllerDelegate? = nil) -> SafeCreationViewController {
         let controller = StoryboardScene.NewSafe.safeCreationViewController.instantiate()
@@ -120,6 +123,12 @@ class SafeCreationViewController: UIViewController {
         // TODO
     }
 
+    @objc private func openProgressOnEtherscan() {
+        let url = ApplicationServiceRegistry.walletService.walletCreationURL()
+        let safari = SFSafariViewController(url: url)
+        present(safari, animated: true)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = Strings.title
@@ -127,6 +136,7 @@ class SafeCreationViewController: UIViewController {
         retryButton.title = Strings.retry
         configureDescriptionTexts()
         configureSafeAddressTexts()
+        configureEtherscanTexts()
         initStates()
         state = nilState
         deploy()
@@ -150,10 +160,22 @@ class SafeCreationViewController: UIViewController {
         qrCodeView.layer.cornerRadius = 6
     }
 
+    private func configureEtherscanTexts() {
+        addShadow(to: etherscanWrapperView)
+        let attrStr = NSMutableAttributedString(string: Strings.Etherscan.followProgress)
+        let range = NSRange(location: 0, length: attrStr.length)
+        attrStr.addAttribute(.foregroundColor, value: ColorName.aquaBlue.color, range: range)
+        attrStr.addLinkIcon()
+        etherscanLabel.attributedText = attrStr
+        etherscanLabel.isUserInteractionEnabled = true
+        etherscanLabel.addGestureRecognizer(UITapGestureRecognizer(
+            target: self, action: #selector(openProgressOnEtherscan)))
+    }
+
     private func addShadow(to view: UIView) {
         view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 2)
-        view.layer.shadowOpacity = 0.4
+        view.layer.shadowOffset = CGSize(width: 0, height: 3)
+        view.layer.shadowOpacity = 0.2
     }
 
     private func initStates() {
@@ -161,6 +183,7 @@ class SafeCreationViewController: UIViewController {
         deployingState = DeployingState()
         notEnoughFundsState = NotEnoughFundsState()
         creationStartedState = CreationStartedState()
+        transactionHashIsKnownState = TransactionHashIsKnownState()
         finalizingDeploymentState = FinalizingDeploymentState()
         readyToUseState = ReadyToUseState()
         errorState = ErrorState()
@@ -187,9 +210,12 @@ class SafeCreationViewController: UIViewController {
 
         insufficientFundsErrorImage.isHidden = !(state is NotEnoughFundsState)
 
-        safeAddressWrapperView.isHidden = safeIsBeingCreated
+        safeAddressWrapperView.isHidden = !(state is NotEnoughFundsState || state is CreationStartedState)
         safeAddressLabel.setEthereumAddress(state.addressText ?? "")
         qrCodeView.value = state.addressText
+
+        etherscanWrapperView.isHidden = !(state is FinalizingDeploymentState || state is TransactionHashIsKnownState)
+        etherscanLabel.isHidden = !(state is TransactionHashIsKnownState)
 
         if state.isFinalState {
             delegate?.deploymentDidSuccess()
@@ -250,6 +276,7 @@ extension SafeCreationViewController {
         case .draft: return nilState
         case .notEnoughFunds: return notEnoughFundsState
         case .creationStarted: return creationStartedState
+        case .transactionHashIsKnown: return transactionHashIsKnownState
         case .finalizingDeployment: return finalizingDeploymentState
         case .readyToUse: return readyToUseState
         }
@@ -311,6 +338,12 @@ extension SafeCreationViewController {
     }
 
     class FinalizingDeploymentState: State {
+        override var headerText: String? { return Strings.Header.creatingSafeHeader }
+        override var statusText: String? { return Strings.Status.deploymentAccepted }
+        override var progress: Double { return 0.8 }
+    }
+
+    class TransactionHashIsKnownState: State {
         override var headerText: String? { return Strings.Header.creatingSafeHeader }
         override var statusText: String? { return Strings.Status.deploymentAccepted }
         override var progress: Double { return 0.9 }

@@ -177,6 +177,7 @@ extension PendingSafeViewController {
         case .draft: return nilState
         case .notEnoughFunds: return notEnoughFundsState
         case .creationStarted: return creationStartedState
+        case .transactionHashIsKnown: return creationStartedState
         case .finalizingDeployment: return finalizingDeploymentState
         case .readyToUse: return readyToUseState
         }
