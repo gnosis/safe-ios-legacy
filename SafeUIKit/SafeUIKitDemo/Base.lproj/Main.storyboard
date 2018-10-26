@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1SC-eE-rFU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="52o-tk-rih">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -910,10 +910,25 @@
             </objects>
             <point key="canvasLocation" x="3247" y="32"/>
         </scene>
+        <!--Terms And Conditions Demo View Controller-->
+        <scene sceneID="sKF-Mp-UoG">
+            <objects>
+                <viewController id="52o-tk-rih" customClass="TermsAndConditionsDemoViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7eB-EM-1J7" customClass="BackgroundImageView" customModule="SafeUIKit">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Av1-ic-blc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rUJ-zH-25r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1119" y="32"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="KwY-5H-yHZ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1SC-eE-rFU" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ComponentsDemoNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="1SC-eE-rFU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MPH-LL-YRn">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
