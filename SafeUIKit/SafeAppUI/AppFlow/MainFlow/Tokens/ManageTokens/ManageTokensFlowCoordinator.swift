@@ -43,6 +43,8 @@ extension ManageTokensFlowCoordinator: AddTokenTableViewControllerDelegate {
 
     func didSelectToken(_ tokenData: TokenData) {
         ApplicationServiceRegistry.walletService.whitelist(token: tokenData)
+        // FIXME
+        Timer.wait(0.1)
         addTokenNavigationController.dismiss(animated: true)
         manageTokensVC.tokenAdded()
     }

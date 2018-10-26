@@ -151,6 +151,11 @@ class SafeCreationViewController: UIViewController {
         deploy()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.shadowImage = nil
+    }
+
     private func configureDescriptionTexts() {
         requiredMinimumHeaderLabel.text = Strings.FundSafe.requiredMinimumHeader
         requiredMinimumDescriptionLabel.text = Strings.FundSafe.requredMinimumDescription
@@ -183,7 +188,7 @@ class SafeCreationViewController: UIViewController {
 
     private func addShadow(to view: UIView) {
         view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 3)
+        view.layer.shadowOffset = CGSize(width: 0, height: 4)
         view.layer.shadowOpacity = 0.2
     }
 
