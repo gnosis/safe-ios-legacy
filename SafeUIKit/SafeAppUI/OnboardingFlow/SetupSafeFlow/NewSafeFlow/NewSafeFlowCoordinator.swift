@@ -23,7 +23,6 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
         saveCheckpoint()
         if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
             push(SafeCreationViewController.create(delegate: self))
-//            push(PendingSafeViewController.create(delegate: self))
         }
     }
 
@@ -52,7 +51,6 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
 
     func didSelectNext() {
         push(SafeCreationViewController.create(delegate: self))
-//        push(PendingSafeViewController.create(delegate: self))
     }
 
 }
