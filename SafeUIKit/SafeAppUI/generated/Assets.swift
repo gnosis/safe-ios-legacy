@@ -58,6 +58,9 @@ enum Asset {
     static let water = ImageAsset(name: "water")
   }
   static let shareIcon = ImageAsset(name: "share-icon")
+  enum TermsScreen {
+    static let squareButtonBorder = ImageAsset(name: "square-button-border")
+  }
   enum TransactionDetails {
     static let arrowTransaction = ImageAsset(name: "arrow_transaction")
     static let externalLink = ImageAsset(name: "external_link")
@@ -96,6 +99,7 @@ enum Asset {
     Onboarding.ironSafe,
     Onboarding.water,
     shareIcon,
+    TermsScreen.squareButtonBorder,
     TransactionDetails.arrowTransaction,
     TransactionDetails.externalLink,
     TransactionEdit.scanQrCopy,

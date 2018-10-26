@@ -133,7 +133,8 @@
 /* Mobile app button */
 "new_safe.mobile_app" = "Mobile app";
 
-/* Next button */
+/* Next
+   Next button */
 "new_safe.next" = "Next";
 
 /* Recovery phrase button */
@@ -178,6 +179,15 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
 
+/* Content paragraphs, separated by '\n' */
+"onboarding.guidelines.content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. A recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
+
+/* How this works */
+"onboarding.guidelines.header" = "How this works";
+
+/* Guidelines */
+"onboarding.guidelines.title" = "Guidelines";
+
 /* At least 1 number and 1 letter. */
 "onboarding.set_password.capital_and_number" = "At least 1 number and 1 letter";
 
@@ -207,6 +217,24 @@
 
 /* Setup password button title */
 "onboarding.start.setup_password" = "Setup password";
+
+/* Agree */
+"onboarding.terms.agree" = "Agree";
+
+/* Content (bulleted list). Separate by new line characters '\n' */
+"onboarding.terms.content" = "We do not collect demographic data such as age or gender.\nWe collect anonymized app usage  data and crash reports to ensure the quality of our app.";
+
+/* No Thanks */
+"onboarding.terms.disagree" = "No Thanks";
+
+/* Header label */
+"onboarding.terms.header" = "Please review our Terms of Use and Privacy Policy.";
+
+/* Privacy Policy */
+"onboarding.terms.privacy" = "Privacy Policy";
+
+/* Terms of Use */
+"onboarding.terms.terms" = "Terms of Use";
 
 /* Abort safe creation button title */
 "pending_safe.abort_alert.abort" = "Abort";

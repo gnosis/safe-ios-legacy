@@ -52,6 +52,8 @@ public class WalletApplicationService: Assertable {
 
     public var transactionWebURLFormat: String!
     public var chromeExtensionURL: String!
+    public var privacyPolicyURL: URL!
+    public var termsOfUseURL: URL!
 
     public init() {}
 

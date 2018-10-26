@@ -117,9 +117,9 @@ open class FlowCoordinator {
         }
     }
 
-    func dismissModal() {
+    func dismissModal(_ completion: (() -> Void)? = nil) {
         if rootViewController.presentedViewController != nil {
-            rootViewController.dismiss(animated: true, completion: nil)
+            rootViewController.dismiss(animated: true, completion: completion)
         }
     }
 

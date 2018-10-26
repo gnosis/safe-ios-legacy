@@ -39,7 +39,7 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
         let testFC = TestFlowCoordinator()
         testFC.enter(flow: setupSafeFlowCoordinator)
 
-        setupSafeFlowCoordinator.didSelectNewSafe()
+        setupSafeFlowCoordinator.didPressNext()
         delay()
         let newSafeStartVC = testFC.topViewController
         XCTAssertTrue(type(of: setupSafeFlowCoordinator.navigationController.topViewController) ==
@@ -63,9 +63,19 @@ class SetupSafeFlowCoordinatorTests: SafeTestCase {
         testFC.enter(flow: setupSafeFlowCoordinator) {
             finished = true
         }
-        setupSafeFlowCoordinator.didSelectNewSafe()
+        setupSafeFlowCoordinator.didPressNext()
         setupSafeFlowCoordinator.newSafeFlowCoordinator.exitFlow()
         XCTAssertTrue(finished)
     }
+
+    func test_whenSelectsNewSafe_thenShowsGuidelines() {
+        let testFC = TestFlowCoordinator()
+        testFC.enter(flow: setupSafeFlowCoordinator)
+
+        setupSafeFlowCoordinator.didSelectNewSafe()
+        delay()
+        XCTAssertTrue(testFC.navigationController.topViewController is GuidelinesViewController)
+    }
+
 
 }
