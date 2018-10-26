@@ -45,7 +45,6 @@
 		0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E06209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift */; };
 		0A334E35209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E07209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift */; };
 		0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E08209C8E3800ABC6AE /* SaveMnemonicViewController.swift */; };
-		0A334E37209C8E3800ABC6AE /* PendingSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E09209C8E3800ABC6AE /* PendingSafeViewController.swift */; };
 		0A334E3B209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E0E209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift */; };
 		0A334E3E209C8E3800ABC6AE /* MasterPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334E12209C8E3800ABC6AE /* MasterPassword.storyboard */; };
 		0A334E3F209C8E3800ABC6AE /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E13209C8E3800ABC6AE /* StartViewController.swift */; };
@@ -60,7 +59,6 @@
 		0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E28209C8E3800ABC6AE /* CountdownLabelTests.swift */; };
 		0A334E55209C8E6800ABC6AE /* OnboardingFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DF9209C8E3800ABC6AE /* OnboardingFlowCoordinatorTests.swift */; };
 		0A334E56209C8E6800ABC6AE /* NewSafeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */; };
-		0A334E57209C8E6800ABC6AE /* PendingSafeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DFF209C8E3800ABC6AE /* PendingSafeViewControllerTests.swift */; };
 		0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E03209C8E3800ABC6AE /* SaveMnemonicViewControllerTests.swift */; };
 		0A334E59209C8E6800ABC6AE /* PaperWalletFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */; };
 		0A334E5A209C8E6800ABC6AE /* ConfirmMnemonicViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E05209C8E3800ABC6AE /* ConfirmMnemonicViewControllerTests.swift */; };
@@ -224,6 +222,7 @@
 		55BAB0E521789285007539CF /* BigBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E321789285007539CF /* BigBorderedButton.swift */; };
 		55BAB0E8217894F8007539CF /* BigBorderedButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */; };
 		55BFA53C21833C5C00389732 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */; };
+		55BFA53E21837EB500389732 /* SafeCreationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFA53D21837EB500389732 /* SafeCreationViewControllerTests.swift */; };
 		55C3C6232174CB6E00FA5B4F /* ScanQRCodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6222174CB6E00FA5B4F /* ScanQRCodeHandler.swift */; };
 		55C3C6272175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6262175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift */; };
 		55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6282175CC2800FA5B4F /* MockAVCaptureDevice.swift */; };
@@ -340,7 +339,6 @@
 		0A334DFC209C8E3800ABC6AE /* NewSafeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeViewController.swift; sourceTree = "<group>"; };
 		0A334DFD209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeViewControllerTests.swift; sourceTree = "<group>"; };
-		0A334DFF209C8E3800ABC6AE /* PendingSafeViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingSafeViewControllerTests.swift; sourceTree = "<group>"; };
 		0A334E00209C8E3800ABC6AE /* NewSafe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewSafe.storyboard; sourceTree = "<group>"; };
 		0A334E03209C8E3800ABC6AE /* SaveMnemonicViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicViewControllerTests.swift; sourceTree = "<group>"; };
 		0A334E04209C8E3800ABC6AE /* PaperWalletFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperWalletFlowCoordinatorTests.swift; sourceTree = "<group>"; };
@@ -348,7 +346,6 @@
 		0A334E06209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperWalletFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A334E07209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicViewController.swift; sourceTree = "<group>"; };
 		0A334E08209C8E3800ABC6AE /* SaveMnemonicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicViewController.swift; sourceTree = "<group>"; };
-		0A334E09209C8E3800ABC6AE /* PendingSafeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingSafeViewController.swift; sourceTree = "<group>"; };
 		0A334E0A209C8E3800ABC6AE /* NewSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A334E0E209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionViewController.swift; sourceTree = "<group>"; };
 		0A334E0F209C8E3800ABC6AE /* PairWithBrowserExtensionViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionViewControllerTests.swift; sourceTree = "<group>"; };
@@ -531,6 +528,7 @@
 		55BAB0E321789285007539CF /* BigBorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButton.swift; sourceTree = "<group>"; };
 		55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButtonTests.swift; sourceTree = "<group>"; };
 		55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
+		55BFA53D21837EB500389732 /* SafeCreationViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationViewControllerTests.swift; sourceTree = "<group>"; };
 		55C3C6222174CB6E00FA5B4F /* ScanQRCodeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeHandler.swift; sourceTree = "<group>"; };
 		55C3C6262175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeHandlerTests.swift; sourceTree = "<group>"; };
 		55C3C6282175CC2800FA5B4F /* MockAVCaptureDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAVCaptureDevice.swift; sourceTree = "<group>"; };
@@ -665,9 +663,8 @@
 				0A334E0E209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift */,
 				0A334E0F209C8E3800ABC6AE /* PairWithBrowserExtensionViewControllerTests.swift */,
 				0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */,
-				0A334E09209C8E3800ABC6AE /* PendingSafeViewController.swift */,
-				0A334DFF209C8E3800ABC6AE /* PendingSafeViewControllerTests.swift */,
 				558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */,
+				55BFA53D21837EB500389732 /* SafeCreationViewControllerTests.swift */,
 			);
 			path = NewSafeFlow;
 			sourceTree = "<group>";
@@ -1833,7 +1830,6 @@
 				0A334E2C209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift in Sources */,
 				0A334E2B209C8E3800ABC6AE /* NewSafeViewController.swift in Sources */,
 				0AD5091321106900008507CB /* Validator.swift in Sources */,
-				0A334E37209C8E3800ABC6AE /* PendingSafeViewController.swift in Sources */,
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
 				550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */,
 				0A5D467B20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift in Sources */,
@@ -1871,11 +1867,11 @@
 				0A334E56209C8E6800ABC6AE /* NewSafeViewControllerTests.swift in Sources */,
 				0AF8D53920D00E56001E8423 /* TransactionsTableViewControllerTests.swift in Sources */,
 				0A54E7BF21300D35006BAD93 /* XCTest+Alert.swift in Sources */,
+				55BFA53E21837EB500389732 /* SafeCreationViewControllerTests.swift in Sources */,
 				0A72D42C209C92700082C0A3 /* XCTestCase+Extensions.swift in Sources */,
 				0A72D431209C92740082C0A3 /* XCTest+Assert.swift in Sources */,
 				0AD998AC20D3ED5E00E6F3CA /* TokenAmountTransactionParameterViewTests.swift in Sources */,
 				0A4EEA6D20D1112F005CDAC0 /* MenuTableViewControllerTests.swift in Sources */,
-				0A334E57209C8E6800ABC6AE /* PendingSafeViewControllerTests.swift in Sources */,
 				0AF8D55720D01A90001E8423 /* TokensTableViewControllerTests.swift in Sources */,
 				0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */,
 				0AF8D53020CFF68D001E8423 /* SegmentBarTests.swift in Sources */,

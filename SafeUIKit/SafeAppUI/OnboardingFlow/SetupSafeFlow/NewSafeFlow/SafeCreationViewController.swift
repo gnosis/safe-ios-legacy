@@ -9,6 +9,12 @@ import Common
 import BigInt
 import SafariServices
 
+public protocol PendingSafeViewControllerDelegate: class {
+    func deploymentDidFail(_ localizedDescription: String)
+    func deploymentDidSuccess()
+    func deploymentDidCancel()
+}
+
 class SafeCreationViewController: UIViewController {
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -136,7 +142,7 @@ class SafeCreationViewController: UIViewController {
         title = Strings.title
         cancelButton.title = Strings.cancel
         retryButton.title = Strings.retry
-        navigationController!.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.shadowImage = UIImage()
         configureDescriptionTexts()
         configureSafeAddressTexts()
         configureEtherscanTexts()
