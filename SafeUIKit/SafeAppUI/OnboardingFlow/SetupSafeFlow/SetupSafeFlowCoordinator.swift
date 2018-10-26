@@ -12,6 +12,7 @@ public final class SetupSafeFlowCoordinator: FlowCoordinator {
     public override func setUp() {
         super.setUp()
         push(SetupSafeOptionsViewController.create(delegate: self))
+
         if newSafeFlowCoordinator.isSafeCreationInProgress ||
             ApplicationServiceRegistry.walletService.isWalletDeployable {
             enterNewSafeFlow()
@@ -28,6 +29,14 @@ public final class SetupSafeFlowCoordinator: FlowCoordinator {
 extension SetupSafeFlowCoordinator: SetupSafeOptionsDelegate {
 
     func didSelectNewSafe() {
+        push(GuidelinesViewController.create(delegate: self))
+    }
+
+}
+
+extension SetupSafeFlowCoordinator: GuidelinesViewControllerDelegate {
+
+    public func didPressNext() {
         enterNewSafeFlow()
     }
 

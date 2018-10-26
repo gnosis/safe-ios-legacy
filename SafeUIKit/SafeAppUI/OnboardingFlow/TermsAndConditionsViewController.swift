@@ -46,8 +46,8 @@ public class TermsAndConditionsViewController: UIViewController {
         var bodyStyle = ListStyle.default
         bodyStyle.leading = contentLeadingConstraint.constant
         bodyStyle.trailing = -contentTrailingConstraint.constant
-        headerLabel.attributedText = header(from: Strings.header, style: headerStyle)
-        listLabel.attributedText = list(from: Strings.body, style: bodyStyle)
+        headerLabel.attributedText = .header(from: Strings.header, style: headerStyle)
+        listLabel.attributedText = .list(from: Strings.body, style: bodyStyle)
         privacyPolicyButton.setAttributedTitle(link(from: Strings.privacyLink), for: .normal)
         termsOfUseButton.setAttributedTitle(link(from: Strings.termsLink), for: .normal)
         disagreeButton.setTitle(Strings.disagree, for: .normal)
@@ -79,7 +79,43 @@ public class TermsAndConditionsViewController: UIViewController {
                                                              .foregroundColor: ColorName.aquaBlue.color])
     }
 
-    private func header(from text: String, style headerStyle: HeaderStyle = .default) -> NSAttributedString {
+}
+
+struct ListStyle {
+    var bullet: String
+    var leading: CGFloat
+    var trailing: CGFloat
+    var spaceToBullet: CGFloat
+    var bulletFontSize: CGFloat
+    var textFontSize: CGFloat
+    var textColor: UIColor
+    var bulletColor: UIColor
+
+    static let `default` = ListStyle(bullet: "•",
+                                     leading: 40,
+                                     trailing: 40,
+                                     spaceToBullet: 18,
+                                     bulletFontSize: 24,
+                                     textFontSize: 14,
+                                     textColor: ColorName.battleshipGrey.color,
+                                     bulletColor: ColorName.whiteTwo.color)
+}
+
+struct HeaderStyle {
+    var leading: CGFloat
+    var trailing: CGFloat
+    var textColor: UIColor
+    var textFontSize: CGFloat
+
+    static let `default` = HeaderStyle(leading: 40,
+                                       trailing: 40,
+                                       textColor: ColorName.battleshipGrey.color,
+                                       textFontSize: 17)
+}
+
+extension NSAttributedString {
+
+    static func header(from text: String, style headerStyle: HeaderStyle = .default) -> NSAttributedString {
         let style = NSMutableParagraphStyle()
         style.firstLineHeadIndent = headerStyle.leading
         style.headIndent = headerStyle.leading
@@ -91,19 +127,19 @@ public class TermsAndConditionsViewController: UIViewController {
                                                              .foregroundColor: headerStyle.textColor])
     }
 
-    private func list(from text: String, style: ListStyle = .default) -> NSAttributedString {
+    static func list(from text: String, style: ListStyle = .default) -> NSAttributedString {
         return text.components(separatedBy: "\n").reduce(into: NSMutableAttributedString()) { result, text in
             result.append(listItem(from: text, style: style))
         }
     }
 
-    private func listItem(from text: String, style listStyle: ListStyle = .default) -> NSAttributedString {
+    static func listItem(from text: String, style listStyle: ListStyle = .default) -> NSAttributedString {
         let paragraph = "\(listStyle.bullet)\t\(text)\n"
         let style = NSMutableParagraphStyle()
         style.headIndent = listStyle.leading
         style.tailIndent = -listStyle.trailing
         // tabStop's location is the distance from previous tab stop to the start of the text
-        style.tabStops = [NSTextTab(textAlignment: .left, location: listStyle.leading, options: [:])]
+        style.tabStops.insert(NSTextTab(textAlignment: .left, location: listStyle.leading, options: [:]), at: 0)
         style.firstLineHeadIndent = listStyle.leading - listStyle.spaceToBullet
         let str = NSMutableAttributedString(string: paragraph, attributes: [.paragraphStyle: style])
         str.addAttributes([.font: UIFont.systemFont(ofSize: listStyle.bulletFontSize),
@@ -113,38 +149,6 @@ public class TermsAndConditionsViewController: UIViewController {
                            .foregroundColor: listStyle.textColor],
                           range: (paragraph as NSString).range(of: text))
         return str
-    }
-
-    struct ListStyle {
-        var bullet: String
-        var leading: CGFloat
-        var trailing: CGFloat
-        var spaceToBullet: CGFloat
-        var bulletFontSize: CGFloat
-        var textFontSize: CGFloat
-        var textColor: UIColor
-        var bulletColor: UIColor
-
-        static let `default` = ListStyle(bullet: "•",
-                                         leading: 50,
-                                         trailing: 50,
-                                         spaceToBullet: 18,
-                                         bulletFontSize: 24,
-                                         textFontSize: 14,
-                                         textColor: ColorName.battleshipGrey.color,
-                                         bulletColor: ColorName.whiteTwo.color)
-    }
-
-    struct HeaderStyle {
-        var leading: CGFloat
-        var trailing: CGFloat
-        var textColor: UIColor
-        var textFontSize: CGFloat
-
-        static let `default` = HeaderStyle(leading: 50,
-                                           trailing: 50,
-                                           textColor: ColorName.battleshipGrey.color,
-                                           textFontSize: 17)
     }
 
 }

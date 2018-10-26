@@ -133,7 +133,8 @@
 /* Mobile app button */
 "new_safe.mobile_app" = "Mobile app";
 
-/* Next button */
+/* Next
+   Next button */
 "new_safe.next" = "Next";
 
 /* Recovery phrase button */
@@ -177,6 +178,15 @@
 
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
+
+/* Content paragraphs, separated by '\n' */
+"onboarding.guidelines.content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. A recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
+
+/* How this works */
+"onboarding.guidelines.header" = "How this works";
+
+/* Guidelines */
+"onboarding.guidelines.title" = "Guidelines";
 
 /* At least 1 number and 1 letter. */
 "onboarding.set_password.capital_and_number" = "At least 1 number and 1 letter";

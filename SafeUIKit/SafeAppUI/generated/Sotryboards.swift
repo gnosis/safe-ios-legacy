@@ -95,6 +95,8 @@ enum StoryboardScene {
 
     static let confirmMnemonicViewController = SceneType<SafeAppUI.ConfirmMnemonicViewController>(storyboard: NewSafe.self, identifier: "ConfirmMnemonicViewController")
 
+    static let guidelinesViewController = SceneType<SafeAppUI.GuidelinesViewController>(storyboard: NewSafe.self, identifier: "GuidelinesViewController")
+
     static let navigationController = SceneType<UINavigationController>(storyboard: NewSafe.self, identifier: "NavigationController")
 
     static let newSafeViewController = SceneType<SafeAppUI.NewSafeViewController>(storyboard: NewSafe.self, identifier: "NewSafeViewController")

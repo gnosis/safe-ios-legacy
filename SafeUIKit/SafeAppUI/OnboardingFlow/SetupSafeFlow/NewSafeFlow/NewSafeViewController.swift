@@ -14,6 +14,30 @@ protocol NewSafeDelegate: class {
     func didSelectNext()
 }
 
+public class ShadowWrapperView: UIView {
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        commonInit()
+    }
+
+    public func commonInit() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowOpacity = 0.4
+    }
+
+}
+
 class NewSafeViewController: UIViewController {
 
     enum Strings {
@@ -26,7 +50,6 @@ class NewSafeViewController: UIViewController {
     }
 
     @IBOutlet weak var nextButton: UIBarButtonItem!
-    @IBOutlet weak var wrapperView: UIView!
     @IBOutlet weak var mobileAppButton: CheckmarkButton!
     @IBOutlet weak var recoveryPhraseButton: CheckmarkButton!
     @IBOutlet weak var browserExtensionButton: CheckmarkButton!
@@ -62,7 +85,6 @@ class NewSafeViewController: UIViewController {
         configureThisDeviceButton()
         configureConnectBorwserExtensionButton()
         configureSetupRecoveryPhraseButton()
-        configureWrapperView()
     }
 
     private func configureThisDeviceButton() {
@@ -77,12 +99,6 @@ class NewSafeViewController: UIViewController {
 
     private func configureSetupRecoveryPhraseButton() {
         recoveryPhraseButton.setTitle(Strings.recoveryPhrase, for: .normal)
-    }
-
-    private func configureWrapperView() {
-        wrapperView.layer.shadowColor = UIColor.black.cgColor
-        wrapperView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        wrapperView.layer.shadowOpacity = 0.4
     }
 
     override func viewWillAppear(_ animated: Bool) {
