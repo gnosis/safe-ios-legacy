@@ -22,6 +22,7 @@ class ScanQRCodeHandler {
     var scanValidatedConverter: ScanValidatedConverter?
     private var scannerController: ScannerViewController?
     private var debugButtons = [DebugButton]()
+    private var didFinishScanning = false
 
     enum Strings {
         static let cameraAlertTitle = LocalizedString("scanner.camera_access_required.title",
@@ -34,6 +35,7 @@ class ScanQRCodeHandler {
     }
 
     func scan() {
+        didFinishScanning = false
         checkCameraAvailability { [unowned self] success in
             DispatchQueue.main.async {
                 if success {
@@ -103,6 +105,8 @@ extension ScanQRCodeHandler: ScannerDelegate {
     }
 
     private func didScanCode(raw: String, converted: String? = nil) {
+        guard !didFinishScanning else { return }
+        didFinishScanning = true
         delegate.didScanCode(raw: raw, converted: converted)
         scannerController?.dismiss(animated: true)
     }
