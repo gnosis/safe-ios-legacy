@@ -9,7 +9,7 @@ import Common
 import BigInt
 import SafariServices
 
-public protocol PendingSafeViewControllerDelegate: class {
+public protocol SafeCreationViewControllerDelegate: class {
     func deploymentDidFail(_ localizedDescription: String)
     func deploymentDidSuccess()
     func deploymentDidCancel()
@@ -44,7 +44,7 @@ class SafeCreationViewController: UIViewController {
     @IBOutlet weak var etherscanWrapperView: UIView!
     @IBOutlet weak var etherscanLabel: UILabel!
 
-    weak var delegate: PendingSafeViewControllerDelegate?
+    weak var delegate: SafeCreationViewControllerDelegate?
 
     enum Strings {
         static let title = LocalizedString("safe_creation.title", comment: "Title for safe creation screen.")
@@ -111,7 +111,7 @@ class SafeCreationViewController: UIViewController {
     internal var readyToUseState: State!
     internal var errorState: State!
 
-    public static func create(delegate: PendingSafeViewControllerDelegate? = nil) -> SafeCreationViewController {
+    public static func create(delegate: SafeCreationViewControllerDelegate? = nil) -> SafeCreationViewController {
         let controller = StoryboardScene.NewSafe.safeCreationViewController.instantiate()
         controller.delegate = delegate
         return controller

@@ -65,7 +65,7 @@ extension NewSafeFlowCoordinator: PairWithBrowserDelegate {
 
 }
 
-extension NewSafeFlowCoordinator: PendingSafeViewControllerDelegate {
+extension NewSafeFlowCoordinator: SafeCreationViewControllerDelegate {
 
     func deploymentDidFail(_ error: String) {
         let controller = SafeCreationFailedAlertController.create(localizedErrorDescription: error) { [unowned self] in

@@ -161,7 +161,7 @@ extension SafeCreationViewControllerTests {
 
 }
 
-class MockPendingSafeViewControllerDelegate: PendingSafeViewControllerDelegate {
+class MockPendingSafeViewControllerDelegate: SafeCreationViewControllerDelegate {
 
     var success: Bool?
     var cancelled = false
