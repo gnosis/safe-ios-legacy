@@ -16,12 +16,12 @@ class SafeCreationViewController: UIViewController {
     @IBOutlet weak var insufficientFundsErrorImage: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
 
-    @IBOutlet weak var requiredMinimumStackView: UIStackView!
+    @IBOutlet weak var requiredMinimumWrapperView: UIView!
     @IBOutlet weak var requiredMinimumHeaderLabel: UILabel!
     @IBOutlet weak var requiredMinimumAmountLabel: UILabel!
     @IBOutlet weak var requiredMinimumDescriptionLabel: UILabel!
 
-    @IBOutlet weak var waitingForSafeStackView: UIStackView!
+    @IBOutlet weak var waitingForSafeWrapperView: UIView!
     @IBOutlet weak var waitingForSafeDescriptionLabel: UILabel!
 
     @IBOutlet weak var progressView: UIProgressView!
@@ -61,6 +61,8 @@ class SafeCreationViewController: UIViewController {
 
 
         enum Status {
+            static let generatingSafeAddress = LocalizedString("safe_creation.status.generating_safe_address",
+                                                               comment: "Generation safe address.")
             static let awaitingDeposit = LocalizedString("safe_creation.status.awaiting_deposit",
                                                          comment: "Awaiting deposit label.")
             static let accountFunded = LocalizedString("safe_creation.status.account_funded",
@@ -145,8 +147,8 @@ class SafeCreationViewController: UIViewController {
 
         progressView.setProgress(Float(state.progress), animated: true)
 
-        waitingForSafeStackView.isHidden = state.canCancel
-        requiredMinimumStackView.isHidden = !state.canCancel
+        waitingForSafeWrapperView.isHidden = state.canCancel
+        requiredMinimumWrapperView.isHidden = !state.canCancel
 
         insufficientFundsErrorImage.isHidden = !(state is NotEnoughFundsState)
 
@@ -250,7 +252,7 @@ extension SafeCreationViewController {
     class DeployingState: State {
         override var canCancel: Bool { return true }
         override var headerText: String? { return Strings.Header.firstDepositHeader }
-        override var statusText: String? { return Strings.Status.awaitingDeposit }
+        override var statusText: String? { return Strings.Status.generatingSafeAddress }
         override var progress: Double { return 0.1 }
     }
 

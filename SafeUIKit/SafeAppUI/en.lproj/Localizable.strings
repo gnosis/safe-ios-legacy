@@ -322,6 +322,9 @@
 /* Error during safe creation. Retry later. */
 "safe_creation.status.error" = "Network error. Please retry later...";
 
+/* Generation safe address. */
+"safe_creation.status.generating_safe_address" = "Generating safe address...";
+
 /* Title for safe creation screen. */
 "safe_creation.title" = "SAFE";
 

@@ -517,7 +517,7 @@ Save this recovery phrase.</string>
                                 <rect key="frame" x="0.0" y="64" width="375" height="736"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="mFC-Wa-utT">
-                                        <rect key="frame" x="0.0" y="40" width="375" height="207.5"/>
+                                        <rect key="frame" x="0.0" y="40" width="375" height="337.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5zq-6V-lmd">
                                                 <rect key="frame" x="68" y="0.0" width="239.5" height="24"/>
@@ -563,17 +563,30 @@ Save this recovery phrase.</string>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VCM-sh-EEu">
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="ObO-mt-c7p" firstAttribute="leading" secondItem="Arv-a2-Ych" secondAttribute="leading" id="4gm-i6-NrZ"/>
+                                                    <constraint firstAttribute="height" constant="100" id="J33-QF-8Lk"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ObO-mt-c7p" secondAttribute="trailing" id="SkD-8i-TdJ"/>
+                                                    <constraint firstItem="ObO-mt-c7p" firstAttribute="top" secondItem="Arv-a2-Ych" secondAttribute="top" id="Ylc-Hh-fDM"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ObO-mt-c7p" secondAttribute="bottom" id="gJ7-BU-5rb"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IGN-2r-W6z">
+                                                <rect key="frame" x="30" y="184" width="315" height="100"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rFg-H1-UCJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="100"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iron-safe" translatesAutoresizingMaskIntoConstraints="NO" id="5nw-Bx-WHW">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iron-safe" translatesAutoresizingMaskIntoConstraints="NO" id="Dze-f0-1Ho">
                                                                 <rect key="frame" x="112.5" y="0.0" width="90" height="72"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="90" id="j2A-6J-Mig"/>
-                                                                    <constraint firstAttribute="height" constant="72" id="peS-ky-AMP"/>
+                                                                    <constraint firstAttribute="width" constant="90" id="0Vz-dr-Jvu"/>
+                                                                    <constraint firstAttribute="height" constant="72" id="bkA-lk-0qp"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your deposit is on its way." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypk-0c-OS8">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your deposit is on its way." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CK5-Cq-9OZ">
                                                                 <rect key="frame" x="64" y="72" width="187" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
@@ -585,19 +598,15 @@ Save this recovery phrase.</string>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="VCM-sh-EEu" firstAttribute="top" secondItem="Arv-a2-Ych" secondAttribute="top" id="3JZ-Ba-fQO"/>
-                                                    <constraint firstItem="ObO-mt-c7p" firstAttribute="leading" secondItem="Arv-a2-Ych" secondAttribute="leading" id="4gm-i6-NrZ"/>
-                                                    <constraint firstAttribute="trailing" secondItem="VCM-sh-EEu" secondAttribute="trailing" id="Hc1-PD-4bV"/>
-                                                    <constraint firstAttribute="height" constant="100" id="J33-QF-8Lk"/>
-                                                    <constraint firstItem="VCM-sh-EEu" firstAttribute="leading" secondItem="Arv-a2-Ych" secondAttribute="leading" id="Pnd-UA-LpO"/>
-                                                    <constraint firstAttribute="trailing" secondItem="ObO-mt-c7p" secondAttribute="trailing" id="SkD-8i-TdJ"/>
-                                                    <constraint firstItem="ObO-mt-c7p" firstAttribute="top" secondItem="Arv-a2-Ych" secondAttribute="top" id="Ylc-Hh-fDM"/>
-                                                    <constraint firstAttribute="bottom" secondItem="ObO-mt-c7p" secondAttribute="bottom" id="gJ7-BU-5rb"/>
-                                                    <constraint firstAttribute="bottom" secondItem="VCM-sh-EEu" secondAttribute="bottom" id="vqO-5x-L3P"/>
+                                                    <constraint firstItem="rFg-H1-UCJ" firstAttribute="top" secondItem="IGN-2r-W6z" secondAttribute="top" id="0ge-f2-ncV"/>
+                                                    <constraint firstItem="rFg-H1-UCJ" firstAttribute="leading" secondItem="IGN-2r-W6z" secondAttribute="leading" id="E46-mr-s0M"/>
+                                                    <constraint firstAttribute="height" constant="100" id="OEe-hT-vSa"/>
+                                                    <constraint firstAttribute="bottom" secondItem="rFg-H1-UCJ" secondAttribute="bottom" id="g5B-aa-RtA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="rFg-H1-UCJ" secondAttribute="trailing" id="zjv-5K-Paf"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ZYw-69-GCw">
-                                                <rect key="frame" x="0.0" y="184" width="375" height="23.5"/>
+                                                <rect key="frame" x="0.0" y="314" width="375" height="23.5"/>
                                                 <subviews>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hL7-hL-15t">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="5"/>
@@ -668,10 +677,10 @@ Save this recovery phrase.</string>
                         <outlet property="requiredMinimumAmountLabel" destination="S11-ds-Ohy" id="O3P-1o-bLp"/>
                         <outlet property="requiredMinimumDescriptionLabel" destination="6tO-VL-33D" id="1s8-JI-8W0"/>
                         <outlet property="requiredMinimumHeaderLabel" destination="tcI-sE-iJB" id="nvI-li-387"/>
-                        <outlet property="requiredMinimumStackView" destination="ObO-mt-c7p" id="jE2-2v-KHX"/>
+                        <outlet property="requiredMinimumWrapperView" destination="Arv-a2-Ych" id="D4l-Bg-7D1"/>
                         <outlet property="retryButton" destination="nWu-RY-8QT" id="S0A-hi-4Dq"/>
-                        <outlet property="waitingForSafeDescriptionLabel" destination="ypk-0c-OS8" id="A7h-h7-zch"/>
-                        <outlet property="waitingForSafeStackView" destination="VCM-sh-EEu" id="Zu9-Qu-Zil"/>
+                        <outlet property="waitingForSafeDescriptionLabel" destination="CK5-Cq-9OZ" id="AYC-T9-yf0"/>
+                        <outlet property="waitingForSafeWrapperView" destination="IGN-2r-W6z" id="jMW-KN-eLL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dEa-Gm-r7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
