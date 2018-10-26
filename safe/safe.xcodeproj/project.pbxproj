@@ -1272,7 +1272,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safe.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5f5d2866-6c2f-4972-b03b-b441785533bc";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore pm.gnosis.safe.prerelease";
@@ -1463,7 +1463,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safe.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d84b5606-5087-4f32-8480-2bf1207b0897";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development pm.gnosis.safe.dev";
@@ -1493,7 +1493,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safe.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5f5d2866-6c2f-4972-b03b-b441785533bc";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore pm.gnosis.safe";
@@ -1679,7 +1679,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.safe.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0ace297f-3081-47d4-81fa-74065d7a8761";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc pm.gnosis.safe.adhoc";

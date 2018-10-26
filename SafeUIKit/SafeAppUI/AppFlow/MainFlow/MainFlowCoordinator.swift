@@ -118,6 +118,7 @@ extension MainFlowCoordinator: TransactionReviewViewControllerDelegate {
 
     func transactionReviewViewControllerDidFinish() {
         popToLastCheckpoint()
+        showTransactionList()
     }
 
     func transactionReviewViewControllerWantsToSubmitTransaction(completionHandler: @escaping (Bool) -> Void) {
@@ -130,6 +131,12 @@ extension MainFlowCoordinator: TransactionReviewViewControllerDelegate {
             }
             unlockVC.showsCancelButton = true
             presentModally(unlockVC)
+        }
+    }
+
+    private func showTransactionList() {
+        if let mainVC = self.navigationController.topViewController as? MainViewController {
+            mainVC.showTransactionList()
         }
     }
 
