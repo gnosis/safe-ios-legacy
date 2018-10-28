@@ -272,7 +272,7 @@
                         <viewLayoutGuide key="safeArea" id="bfC-1c-f97"/>
                     </view>
                     <navigationItem key="navigationItem" id="rZQ-mz-pUd">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="action" id="52v-Fn-74f">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="52v-Fn-74f">
                             <connections>
                                 <action selector="shareAddress:" destination="Dnc-Q4-Gr8" id="Is4-Hb-QIF"/>
                             </connections>
