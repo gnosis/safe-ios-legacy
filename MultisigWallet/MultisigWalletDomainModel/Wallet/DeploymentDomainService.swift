@@ -111,7 +111,10 @@ public class DeploymentDomainService {
     func walletCreated(_ event: WalletCreated) {
         handleError { wallet in
             try notifyDidCreate(wallet)
-            DomainRegistry.externallyOwnedAccountRepository.remove(address: wallet.owner(role: .paperWallet)!.address)
+            DomainRegistry.externallyOwnedAccountRepository.remove(address:
+                wallet.owner(role: .paperWallet)!.address)
+            DomainRegistry.externallyOwnedAccountRepository.remove(address:
+                wallet.owner(role: .paperWalletDerived)!.address)
         }
     }
 

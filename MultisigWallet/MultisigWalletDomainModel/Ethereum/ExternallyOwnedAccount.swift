@@ -16,6 +16,8 @@ public class ExternallyOwnedAccount: IdentifiableEntity<Address> {
     public let privateKey: PrivateKey
     /// Public key associated with the private key.
     public let publicKey: PublicKey
+    /// Derived index path. Default value is 0.
+    public let derivedIndex: Int
 
     /// Creates new account with specified parameters
     ///
@@ -27,11 +29,13 @@ public class ExternallyOwnedAccount: IdentifiableEntity<Address> {
     public init(address: Address,
                 mnemonic: Mnemonic,
                 privateKey: PrivateKey,
-                publicKey: PublicKey) {
+                publicKey: PublicKey,
+                derivedIndex: Int = 0) {
         self.address = address
         self.mnemonic = mnemonic
         self.privateKey = privateKey
         self.publicKey = publicKey
+        self.derivedIndex = derivedIndex
         super.init(id: address)
     }
 

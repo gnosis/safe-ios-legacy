@@ -269,11 +269,16 @@ class WalletCreatedTests: BaseDeploymentDomainServiceTests {
                                         role: .paperWallet,
                                         privateKey: .testPrivateKey,
                                         publicKey: .testPublicKey))
+        eoaRepository.save(.testAccount(wallet,
+                                        role: .paperWalletDerived,
+                                        privateKey: .testPrivateKey,
+                                        publicKey: .testPublicKey))
 
         start()
         wallet.proceed()
         delay()
         XCTAssertNil(eoaRepository.find(by: wallet.owner(role: .paperWallet)!.address))
+        XCTAssertNil(eoaRepository.find(by: wallet.owner(role: .paperWalletDerived)!.address))
     }
 
 }
@@ -336,6 +341,7 @@ extension BaseDeploymentDomainServiceTests {
         wallet = Wallet(id: walletRepository.nextID(), owner: Address.deviceAddress)
         wallet.addOwner(Wallet.createOwner(address: Address.extensionAddress.value, role: .browserExtension))
         wallet.addOwner(Wallet.createOwner(address: Address.paperWalletAddress.value, role: .paperWallet))
+        wallet.addOwner(Wallet.createOwner(address: Address.testAccount1.value, role: .paperWalletDerived))
         let account = Account(tokenID: Token.Ether.id, walletID: wallet.id)
         walletRepository.save(wallet)
         let portfolio = Portfolio(id: portfolioRepository.nextID())
