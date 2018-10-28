@@ -127,4 +127,19 @@ open class MockEthereumApplicationService: EthereumApplicationService {
     public override func hash(of tx: Transaction) -> Data {
         return hash_of_tx_output
     }
+
+    private var expected_generateDerivedExternallyOwnedAccount =
+        [(address: String, result: ExternallyOwnedAccountData)]()
+    private var actual_generateDerivedExternallyOwnedAccount = [String]()
+
+    public func expect_generateDerivedExternallyOwnedAccount(address: String, _ result: ExternallyOwnedAccountData) {
+        expected_generateDerivedExternallyOwnedAccount.append((address, result))
+    }
+
+    open override func generateDerivedExternallyOwnedAccount(address: String) -> ExternallyOwnedAccountData {
+        actual_generateDerivedExternallyOwnedAccount.append(address)
+        return expected_generateDerivedExternallyOwnedAccount[
+            actual_generateDerivedExternallyOwnedAccount.count - 1].result
+    }
+
 }

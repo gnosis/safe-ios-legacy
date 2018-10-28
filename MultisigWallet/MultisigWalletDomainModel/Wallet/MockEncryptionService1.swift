@@ -105,4 +105,8 @@ class MockEncryptionService1: EncryptionDomainService {
         return expected_addressFrom[actual_addressFrom.count - 1].result
     }
 
+    func deriveExternallyOwnedAccount(from account: ExternallyOwnedAccount,
+                                      at pathIndex: Int) -> ExternallyOwnedAccount {
+        preconditionFailure("not implemented")
+    }
 }

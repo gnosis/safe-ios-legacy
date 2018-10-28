@@ -66,13 +66,13 @@ public enum EthereumServiceError: String, LocalizedError, Hashable {
 
 public extension EthereumService {
 
-    typealias EOA = (mnemonic: [String], privateKey: Data, publicKey: Data, address: String)
+    typealias EOA = (mnemonic: [String], privateKey: Data, publicKey: Data, address: String, index: Int)
 
     func createExternallyOwnedAccount(chainId: EIP155ChainId) -> EOA {
         let mnemonic = createMnemonic()
         try! assertEqual(mnemonic.count, 12, EthereumServiceError.invalidMnemonicWordsCount)
         let masterEOA = derivedExternallyOwnedAccountFrom(mnemonic: mnemonic, chainId: chainId, at: 0)
-        return (mnemonic, masterEOA.privateKey, masterEOA.publicKey, masterEOA.address)
+        return (mnemonic, masterEOA.privateKey, masterEOA.publicKey, masterEOA.address, 0)
     }
 
     func derivedExternallyOwnedAccountFrom(mnemonic: [String], chainId: EIP155ChainId, at index: Int) -> EOA {
@@ -80,7 +80,7 @@ public extension EthereumService {
         let privateKey = createHDPrivateKey(seed: seed, network: chainId, derivedAt: index)
         let publicKey = createPublicKey(privateKey: privateKey)
         let address = createAddress(publicKey: publicKey)
-        return ([], privateKey, publicKey, address) // derived address can not be recovered with mnemonic
+        return ([], privateKey, publicKey, address, index) // derived address can not be recovered with mnemonic
     }
 
 }
@@ -227,8 +227,11 @@ open class EncryptionService: EncryptionDomainService {
         return externallyOwnedAccount(from: eoaData)
     }
 
-    public func deriveExternallyOwnedAccountFrom(mnemonic: [String], at index: Int) -> ExternallyOwnedAccount {
-        let eoaData = ethereumService.derivedExternallyOwnedAccountFrom(mnemonic: mnemonic, chainId: chainId, at: index)
+    public func deriveExternallyOwnedAccount(from account: ExternallyOwnedAccount,
+                                             at pathIndex: Int) -> ExternallyOwnedAccount {
+        let eoaData = ethereumService.derivedExternallyOwnedAccountFrom(mnemonic: account.mnemonic.words,
+                                                                        chainId: chainId,
+                                                                        at: pathIndex)
         return externallyOwnedAccount(from: eoaData)
     }
 
@@ -236,7 +239,8 @@ open class EncryptionService: EncryptionDomainService {
         return ExternallyOwnedAccount(address: Address(data.address),
                                       mnemonic: Mnemonic(words: data.mnemonic),
                                       privateKey: PrivateKey(data: data.privateKey),
-                                      publicKey: PublicKey(data: data.publicKey))
+                                      publicKey: PublicKey(data: data.publicKey),
+                                      derivedIndex: data.index)
     }
 
     // MARK: - random numbers

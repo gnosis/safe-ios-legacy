@@ -43,7 +43,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: syncService, for: SynchronisationDomainService.self)
     }
 
-    fileprivate func start() {
+     func start() {
         deploymentService.start()
         delay()
     }
@@ -269,11 +269,16 @@ class WalletCreatedTests: BaseDeploymentDomainServiceTests {
                                         role: .paperWallet,
                                         privateKey: .testPrivateKey,
                                         publicKey: .testPublicKey))
+        eoaRepository.save(.testAccount(wallet,
+                                        role: .paperWalletDerived,
+                                        privateKey: .testPrivateKey,
+                                        publicKey: .testPublicKey))
 
         start()
         wallet.proceed()
         delay()
         XCTAssertNil(eoaRepository.find(by: wallet.owner(role: .paperWallet)!.address))
+        XCTAssertNil(eoaRepository.find(by: wallet.owner(role: .paperWalletDerived)!.address))
     }
 
 }
@@ -296,38 +301,6 @@ class WalletCreationFailedTests: BaseDeploymentDomainServiceTests {
 
 }
 
-class AllDeploymentStatesTests: BaseDeploymentDomainServiceTests {
-
-    func test_whenSuccessfulFromService_thenArrivesAtReadyToUseState() {
-        givenDraftWalletWithAllOwners()
-
-        let response = SafeCreationTransactionRequest.Response.testResponse
-        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), response)
-
-        nodeService.expect_eth_getBalance(account: response.walletAddress, balance: response.deploymentFee / 2)
-        nodeService.expect_eth_getBalance(account: response.walletAddress, balance: response.deploymentFee)
-
-        relayService.expect_startSafeCreation(address: response.walletAddress)
-
-        relayService.expect_safeCreationTransactionHash(address: response.walletAddress, hash: nil)
-        relayService.expect_safeCreationTransactionHash(address: response.walletAddress, hash: nil)
-        relayService.expect_safeCreationTransactionHash(address: response.walletAddress, hash: TransactionHash.test1)
-
-        let receipt = TransactionReceipt(hash: TransactionHash.test1, status: .success)
-        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: nil)
-        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: nil)
-        nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: receipt)
-
-        expectSafeCreatedNotification()
-
-        start()
-
-        wallet = walletRepository.findByID(wallet.id)!
-        XCTAssertTrue(wallet.state === wallet.readyToUseState)
-    }
-
-}
-
 // MARK: - Helpers
 
 extension BaseDeploymentDomainServiceTests {
@@ -336,6 +309,8 @@ extension BaseDeploymentDomainServiceTests {
         wallet = Wallet(id: walletRepository.nextID(), owner: Address.deviceAddress)
         wallet.addOwner(Wallet.createOwner(address: Address.extensionAddress.value, role: .browserExtension))
         wallet.addOwner(Wallet.createOwner(address: Address.paperWalletAddress.value, role: .paperWallet))
+        wallet.addOwner(Wallet.createOwner(address: Address.testAccount1.value, role: .paperWalletDerived))
+        wallet.changeConfirmationCount(2)
         let account = Account(tokenID: Token.Ether.id, walletID: wallet.id)
         walletRepository.save(wallet)
         let portfolio = Portfolio(id: portfolioRepository.nextID())

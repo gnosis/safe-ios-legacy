@@ -17,6 +17,7 @@ class SafeCreationResponseValidatorTests: XCTestCase {
         super.setUp()
         wallet.addOwner(Owner(address: Address.extensionAddress, role: .browserExtension))
         wallet.addOwner(Owner(address: Address.paperWalletAddress, role: .paperWallet))
+        wallet.changeConfirmationCount(1)
         request = SafeCreationTransactionRequest.testRequest(wallet, encryptionService)
         DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
 

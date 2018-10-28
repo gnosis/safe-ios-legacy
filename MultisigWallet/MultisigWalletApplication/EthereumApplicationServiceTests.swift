@@ -123,4 +123,23 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         XCTAssertNil(signature)
     }
 
+    func test_whenGeneratesDerivedAccount_thenCallsEncryptionService() {
+        let pk = PrivateKey(data: Data(repeating: 1, count: 32))
+        let eoa = ExternallyOwnedAccount(
+            address: Address.deviceAddress,
+            mnemonic: Mnemonic(words: ["test"]),
+            privateKey: pk,
+            publicKey: PublicKey(data: Data()))
+        eoaRepository.save(eoa)
+        let derived = ExternallyOwnedAccount(
+            address: Address.testAccount1,
+            mnemonic: Mnemonic(words: []),
+            privateKey: pk,
+            publicKey: PublicKey(data: Data()))
+        encryptionService.expect_deriveExternallyOwnedAccount(from: eoa, at: 1, result: derived)
+        let account = applicationService.generateDerivedExternallyOwnedAccount(address: Address.deviceAddress.value)
+        XCTAssertEqual(account, derived.applicationServiceData)
+        XCTAssertEqual(eoaRepository.find(by: Address.testAccount1), derived)
+    }
+
 }
