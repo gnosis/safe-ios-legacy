@@ -137,6 +137,9 @@
    Next button */
 "new_safe.next" = "Next";
 
+/* (Optional) */
+"new_safe.optional" = "(Optional)";
+
 /* Recovery phrase button */
 "new_safe.recovery_phrase" = "Recovery phrase";
 
