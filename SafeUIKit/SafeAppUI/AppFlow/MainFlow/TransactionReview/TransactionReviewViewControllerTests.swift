@@ -81,13 +81,9 @@ class TransactionReviewViewControllerTests: XCTestCase {
         service.createReadyToUseWallet()
         vc.transactionID = "some"
         vc.delegate = delegate
-        service.transactionData_output = TransactionData.create(status: .readyToSubmit)
+        service.transactionData_output = TransactionData.create(status: .pending)
         vc.loadViewIfNeeded()
         delay()
-        service.submitTransaction_output = TransactionData.create(status: .pending)
-        vc.actionButton.sendActions(for: .touchUpInside)
-        delay()
-        XCTAssertEqual(service.submitTransaction_input, "some")
         XCTAssertTrue(delegate.didCall)
     }
 

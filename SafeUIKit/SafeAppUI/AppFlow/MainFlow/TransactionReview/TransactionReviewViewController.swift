@@ -72,7 +72,7 @@ final class TransactionReviewViewController: UIViewController {
         guard isViewLoaded else { return }
         let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
         update(tx)
-        if tx.status == .waitingForConfirmation && didNotRequestSignaturesYet {
+        if (tx.status == .waitingForConfirmation || tx.status == .readyToSubmit) && didNotRequestSignaturesYet {
             requestSignatures()
             didNotRequestSignaturesYet = false
         }
@@ -195,7 +195,7 @@ final class TransactionReviewViewController: UIViewController {
                                 comment: "Transaction was rejected by the browser extension."),
                                          action: nil)
             static let readyToSubmit = Status(title: LocalizedString("transaction.status.readyToSubmit.title",
-                                                                     comment: "CONFIRMED BY EXTENSION"),
+                                                                     comment: "CONFIRMED"),
                                               description:
                 LocalizedString("transaction.status.readyToSubmit.description",
                                 comment: "Transaction was confirmed by the browser extension. You can submit it now."),
