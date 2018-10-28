@@ -44,6 +44,12 @@ final class SafeAddressViewController: UIViewController {
         safeAddressLabel.setEthereumAddress(address)
     }
 
+    @IBAction func shareAddress(_ sender: Any) {
+        guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
+        let activityController = UIActivityViewController(activityItems: [address], applicationActivities: nil)
+        present(activityController, animated: true)
+    }
+
     private func configureTexts() {
         title = Strings.title
         headerLabel.text = Strings.header

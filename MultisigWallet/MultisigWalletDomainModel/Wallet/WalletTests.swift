@@ -12,6 +12,7 @@ class WalletTests: XCTestCase {
     let deviceOwner = Owner(address: .deviceAddress, role: .thisDevice)
     let extensionOwner = Owner(address: .extensionAddress, role: .browserExtension)
     let paperOwner = Owner(address: .paperWalletAddress, role: .paperWallet)
+    let derivedOwner = Owner(address: .testAccount1, role: .paperWalletDerived)
 
     override func setUp() {
         super.setUp()
@@ -98,6 +99,7 @@ class WalletTests: XCTestCase {
     func test_whenInDraftWithAllDataSet_thenIsDeployable() {
         wallet.addOwner(extensionOwner)
         wallet.addOwner(paperOwner)
+        wallet.addOwner(derivedOwner)
         XCTAssertTrue(wallet.isDeployable)
     }
 

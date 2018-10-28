@@ -29,35 +29,38 @@ public class SecureExternallyOwnedAccountRepository: ExternallyOwnedAccountRepos
     public func find(by address: Address) -> ExternallyOwnedAccount? {
         guard let data = try! store.data(forKey: address.value) else { return nil }
         let decoder = PropertyListDecoder()
-        let dataStruct = try! decoder.decode(ExternallyOwnedAccountData.self, from: data)
+        let dataStruct = try! decoder.decode(ExternallyOwnedAccountPersistedData.self, from: data)
         return ExternallyOwnedAccount(dataStruct: dataStruct)
     }
 
 }
 
-fileprivate struct ExternallyOwnedAccountData: Codable {
+fileprivate struct ExternallyOwnedAccountPersistedData: Codable {
 
     var address: String
     var mnemonic: [String]
     var privateKey: Data
     var publicKey: Data
+    var derivedIndex: Int
 
 }
 
 fileprivate extension ExternallyOwnedAccount {
 
-    var dataStruct: ExternallyOwnedAccountData {
-        return ExternallyOwnedAccountData(address: address.value,
-                                          mnemonic: mnemonic.words,
-                                          privateKey: privateKey.data,
-                                          publicKey: publicKey.data)
+    var dataStruct: ExternallyOwnedAccountPersistedData {
+        return ExternallyOwnedAccountPersistedData(address: address.value,
+                                                   mnemonic: mnemonic.words,
+                                                   privateKey: privateKey.data,
+                                                   publicKey: publicKey.data,
+                                                   derivedIndex: derivedIndex)
     }
 
-    convenience init(dataStruct: ExternallyOwnedAccountData) {
+    convenience init(dataStruct: ExternallyOwnedAccountPersistedData) {
         self.init(address: Address(dataStruct.address),
                   mnemonic: Mnemonic(words: dataStruct.mnemonic),
                   privateKey: PrivateKey(data: dataStruct.privateKey),
-                  publicKey: PublicKey(data: dataStruct.publicKey))
+                  publicKey: PublicKey(data: dataStruct.publicKey),
+                  derivedIndex: dataStruct.derivedIndex)
     }
 
 }

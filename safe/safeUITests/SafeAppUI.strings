@@ -320,10 +320,10 @@
 "transaction.status.actionTitle.submit" = "Submit";
 
 /* Transaction was confirmed by the browser extension. You can submit it now. */
-"transaction.status.readyToSubmit.description" = "Transaction was confirmed by the browser extension. You can submit it now.";
+"transaction.status.readyToSubmit.description" = "Transaction was confirmed. You can submit it now.";
 
 /* CONFIRMED BY EXTENSION */
-"transaction.status.readyToSubmit.title" = "CONFIRMED BY EXTENSION";
+"transaction.status.readyToSubmit.title" = "CONFIRMED";
 
 /* Transaction was rejected by the browser extension. */
 "transaction.status.rejected.description" = "Transaction was rejected by the browser extension.";

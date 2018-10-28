@@ -76,7 +76,7 @@ class EncryptionServiceTests: XCTestCase {
         encryptionService = EncryptionService(chainId: .mainnet, ethereumService: ethereumService)
         let account = encryptionService.generateExternallyOwnedAccount()
 
-        let derivedAccount = encryptionService.deriveExternallyOwnedAccountFrom(mnemonic: account.mnemonic.words, at: 1)
+        let derivedAccount = encryptionService.deriveExternallyOwnedAccount(from: account, at: 1)
         let expectedAccount = ExternallyOwnedAccount.testAccountAt1
 
         XCTAssertEqual(derivedAccount, expectedAccount)
@@ -86,7 +86,7 @@ class EncryptionServiceTests: XCTestCase {
         XCTAssertEqual(derivedAccount.privateKey, expectedAccount.privateKey)
         print(derivedAccount.publicKey.data.toHexString())
         XCTAssertEqual(derivedAccount.publicKey, expectedAccount.publicKey)
-
+        XCTAssertEqual(derivedAccount.derivedIndex, 1)
     }
 
     func test_whenSigningMessage_thenSignatureIsCorrect() throws {

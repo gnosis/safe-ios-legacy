@@ -46,6 +46,7 @@ class NewSafeViewController: UIViewController {
         static let recoveryPhrase = LocalizedString("new_safe.recovery_phrase", comment: "Recovery phrase button")
         static let browserExtension = LocalizedString("new_safe.browser_extension",
                                                       comment: "Browser extension button")
+        static let optionalText = LocalizedString("new_safe.optional", comment: "(Optional)")
         static let next = LocalizedString("new_safe.next", comment: "Next button")
     }
 
@@ -53,6 +54,7 @@ class NewSafeViewController: UIViewController {
     @IBOutlet weak var mobileAppButton: CheckmarkButton!
     @IBOutlet weak var recoveryPhraseButton: CheckmarkButton!
     @IBOutlet weak var browserExtensionButton: CheckmarkButton!
+    @IBOutlet weak var optionalTextLabel: UILabel!
 
     weak var delegate: NewSafeDelegate?
 
@@ -94,6 +96,8 @@ class NewSafeViewController: UIViewController {
     }
 
     private func configureConnectBorwserExtensionButton() {
+        optionalTextLabel.text = Strings.optionalText
+        optionalTextLabel.textColor = ColorName.blueyGrey.color
         browserExtensionButton.setTitle(Strings.browserExtension, for: .normal)
     }
 

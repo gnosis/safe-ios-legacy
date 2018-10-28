@@ -22,6 +22,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         fileprivate let address: Address?
         fileprivate let creationTransactionHash: String?
         fileprivate let minimumDeploymentTransactionAmount: TokenInt?
+        fileprivate let confirmationCount: Int
     }
 
     public var state: WalletState!
@@ -42,7 +43,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var address: Address?
     public private(set) var creationTransactionHash: String?
     public private(set) var minimumDeploymentTransactionAmount: TokenInt?
-    public let confirmationCount: Int = 2
+    public private(set) var confirmationCount: Int = 1
     public private(set) var deploymentFee: BigInt?
 
     public var isDeployable: Bool {
@@ -57,6 +58,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         address = state.address
         creationTransactionHash = state.creationTransactionHash
         minimumDeploymentTransactionAmount = state.minimumDeploymentTransactionAmount
+        confirmationCount = state.confirmationCount
         initStates()
         self.state = self.state(from: state.state)
     }
@@ -81,7 +83,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
                                ownersByRole: ownersByRole,
                                address: address,
                                creationTransactionHash: creationTransactionHash,
-                               minimumDeploymentTransactionAmount: minimumDeploymentTransactionAmount)
+                               minimumDeploymentTransactionAmount: minimumDeploymentTransactionAmount,
+                               confirmationCount: confirmationCount)
         return try! encoder.encode(state)
     }
 
@@ -140,6 +143,11 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public func changeAddress(_ address: Address?) {
         try! assertTrue(state.canChangeAddress, Error.invalidState)
         self.address = address
+    }
+
+    public func changeConfirmationCount(_ newValue: Int) {
+        // TODO: guard for state
+        confirmationCount = newValue
     }
 
     private func assertOwnerExists(_ role: OwnerRole) {

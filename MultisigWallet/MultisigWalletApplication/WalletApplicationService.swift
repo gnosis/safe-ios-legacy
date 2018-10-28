@@ -105,8 +105,8 @@ public class WalletApplicationService: Assertable {
     }
 
     private func notifyBrowserExtension(message: String) throws {
+        guard let recipient = ownerAddress(of: .browserExtension) else { return }
         let sender = ownerAddress(of: .thisDevice)!
-        let recipient = ownerAddress(of: .browserExtension)!
         let signedAddress = ethereumService.sign(message: "GNO" + message, by: sender)!
         let request = SendNotificationRequest(message: message, to: recipient, from: signedAddress)
         try handleNotificationServiceError {
@@ -495,10 +495,15 @@ public class WalletApplicationService: Assertable {
     }
 
     private func status(of tx: Transaction) -> TransactionData.Status {
-        let defaultStatus = TransactionData.Status.waitingForConfirmation
+        // TODO: refactor to have similar statuses of transaction in domain model and app
+        let hasBrowserExtension = address(of: .browserExtension) != nil
+        let defaultStatus = hasBrowserExtension ? TransactionData.Status.waitingForConfirmation : .readyToSubmit
         switch tx.status {
-        case .signing: return tx.signatures.count == 1 && tx.isSignedBy(address(of: .browserExtension)!) ?
-            .readyToSubmit : defaultStatus
+        case .signing:
+            let isSignedByExtension = hasBrowserExtension &&
+                tx.signatures.count == 1
+                && tx.isSignedBy(address(of: .browserExtension)!)
+            return isSignedByExtension ? .readyToSubmit : defaultStatus
         case .rejected: return .rejected
         case .pending: return .pending
         case .failed: return .failed
@@ -579,7 +584,9 @@ public class WalletApplicationService: Assertable {
     }
 
     private func signTransaction(_ tx: Transaction) {
-        try! assertTrue(tx.isSignedBy(address(of: .browserExtension)!), TransactionError.unsignedTransaction)
+        if let extensionAddress = address(of: .browserExtension) {
+            try! assertTrue(tx.isSignedBy(extensionAddress), TransactionError.unsignedTransaction)
+        }
         let myAddress = address(of: .thisDevice)!
         if !tx.isSignedBy(myAddress) {
             let pk = DomainRegistry.externallyOwnedAccountRepository.find(by: myAddress)!.privateKey

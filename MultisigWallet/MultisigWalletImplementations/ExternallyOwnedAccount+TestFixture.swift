@@ -19,6 +19,7 @@ extension ExternallyOwnedAccount {
     static let testAccountAt1 = ExternallyOwnedAccount(address: MultisigWalletDomainModel.Address("0x9346687d2ABf2065e078dD0D6F092624856098cE"),
                                                        mnemonic: MultisigWalletDomainModel.Mnemonic(words: []),
                                                        privateKey: MultisigWalletDomainModel.PrivateKey(data: Data(ethHex: "7f95166dcbd225dd7fec57c6cda5a4c99766eadca451eac57a4a93b29ea5ccaf")),
-                                                       publicKey: MultisigWalletDomainModel.PublicKey(data: Data(ethHex: "04cf6a7018fdf9dddeb3f38b1b999b08e0fb5bfe0d181d848df44da9c73f059e18a0029a31aad3fb4ac0837c88267c7a6fec3af3d0685a54ebe77ca215e4da3313")))
+                                                       publicKey: MultisigWalletDomainModel.PublicKey(data: Data(ethHex: "04cf6a7018fdf9dddeb3f38b1b999b08e0fb5bfe0d181d848df44da9c73f059e18a0029a31aad3fb4ac0837c88267c7a6fec3af3d0685a54ebe77ca215e4da3313")),
+                                                       derivedIndex: 1)
 
 }

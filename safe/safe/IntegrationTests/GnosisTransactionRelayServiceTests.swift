@@ -33,8 +33,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         let deviceKey = encryptionService.generateExternallyOwnedAccount()
         let browserExtensionKey = encryptionService.generateExternallyOwnedAccount()
         let recoveryKey = encryptionService.generateExternallyOwnedAccount()
-        let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccountFrom(
-            mnemonic: recoveryKey.mnemonic.words, at: 1)
+        let derivedKeyFromRecovery = encryptionService.deriveExternallyOwnedAccount(from: recoveryKey, at: 1)
 
         let owners = [deviceKey, browserExtensionKey, recoveryKey, derivedKeyFromRecovery].map { $0.address }
         let ecdsaRandomS = encryptionService.ecdsaRandomS()

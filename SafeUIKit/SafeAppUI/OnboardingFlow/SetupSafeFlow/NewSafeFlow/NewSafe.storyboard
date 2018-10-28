@@ -52,11 +52,19 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SvL-fI-cSR">
+                                        <rect key="frame" x="67" y="209" width="37.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="mv5-vW-qj2" firstAttribute="top" secondItem="vnp-MZ-9Jr" secondAttribute="top" constant="50" id="5x3-Dt-XRc"/>
                                     <constraint firstAttribute="trailing" secondItem="mv5-vW-qj2" secondAttribute="trailing" constant="30" id="HsH-ht-aO5"/>
+                                    <constraint firstItem="SvL-fI-cSR" firstAttribute="leading" secondItem="Yn0-3F-SUf" secondAttribute="leading" constant="37" id="Nzh-xP-YhC"/>
+                                    <constraint firstItem="SvL-fI-cSR" firstAttribute="top" secondItem="Yn0-3F-SUf" secondAttribute="baseline" constant="8" id="YPd-uD-RAM"/>
                                     <constraint firstItem="mv5-vW-qj2" firstAttribute="leading" secondItem="vnp-MZ-9Jr" secondAttribute="leading" constant="30" id="uN5-aP-fbx"/>
                                     <constraint firstAttribute="bottom" secondItem="mv5-vW-qj2" secondAttribute="bottom" constant="50" id="yu8-r8-kUO"/>
                                 </constraints>
@@ -81,6 +89,7 @@
                         <outlet property="browserExtensionButton" destination="Yn0-3F-SUf" id="jER-OW-xJd"/>
                         <outlet property="mobileAppButton" destination="BUi-Ui-sFY" id="v7v-Ru-hma"/>
                         <outlet property="nextButton" destination="aPw-Qg-l8a" id="5Vb-gG-h4G"/>
+                        <outlet property="optionalTextLabel" destination="SvL-fI-cSR" id="7hY-Xw-Jxa"/>
                         <outlet property="recoveryPhraseButton" destination="uZP-2s-l1J" id="9mV-Wg-deE"/>
                     </connections>
                 </viewController>
@@ -238,29 +247,29 @@ Save this recovery phrase.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U1F-YR-xad">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JGw-OJ-g8w">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the following words from your recovery phrase." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxD-ES-jJ0">
-                                                <rect key="frame" x="20" y="40" width="560" height="24"/>
+                                                <rect key="frame" x="20" y="40" width="335" height="48"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <color key="textColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="jQ9-6b-oHW">
-                                                <rect key="frame" x="16" y="124" width="568" height="130"/>
+                                                <rect key="frame" x="16" y="148" width="343" height="130"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Odv-TH-gJW" customClass="VerifiableInput" customModule="SafeUIKit">
-                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" placeholder="YES" id="fqh-lF-sMb"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ddJ-a1-VLt" customClass="VerifiableInput" customModule="SafeUIKit">
-                                                        <rect key="frame" x="0.0" y="80" width="568" height="50"/>
+                                                        <rect key="frame" x="0.0" y="80" width="343" height="50"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" placeholder="YES" id="hfh-91-Gjp"/>
@@ -500,7 +509,7 @@ Save this recovery phrase.</string>
             <objects>
                 <viewController storyboardIdentifier="SafeCreationViewController" id="Pyc-la-4mA" customClass="SafeCreationViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bxo-Fs-Fjd" customClass="BackgroundImageView" customModule="SafeUIKit">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8a6-yR-H9R">

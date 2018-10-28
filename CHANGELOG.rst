@@ -5,6 +5,34 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`0.8.0`_ - 2018-10-28
+=====================
+Added
+-----
+- Terms of Use screen
+- Guidelines screen
+- Input components in SafeUIKit
+    - TextInput
+    - VerifiableInput
+    - TokenInput
+    - AddressInput
+- Proxy classes for contracts communication (ERC20, safe)
+- Transaction list screen functionality implementation
+    - Querying the database
+    - Synchronization of pending transactions
+- Transaction details screen functionality implementation
+    - Subscribing on transaction updates
+- Sending ERC20 tokens
+- Made browser extension
+- PreRelease configuration (production-rinkeby services)
+
+Changed
+-------
+- Hashing of transactions according to EIP712 implementation
+- Changed confirmation counts for wallet from 2/3 to 1/3 and 2/4
+- Nonce is fetched from relay service instead of the contract
+- Designs of onboarding screens
+
 `0.7.0`_ - 2018-10-05
 =====================
 Added
@@ -137,6 +165,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _0.8.0: https://github.com/gnosis/safe-ios/tree/0.8.0
 .. _0.7.0: https://github.com/gnosis/safe-ios/tree/0.7.0
 .. _0.6.0: https://github.com/gnosis/safe-ios/tree/0.6.0
 .. _0.4.1: https://github.com/gnosis/safe-ios/tree/0.4.1

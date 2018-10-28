@@ -69,14 +69,18 @@ class ConfirmMnemonicViewControllerTests: SafeTestCase {
     }
 
     func test_whenTextInputsHaveWrongWords_thenDelegateIsNotCalled() {
-        setTextInputs("wrong", controller.secondMnemonicWordToCheck)
+        typeIntoTextInputs("wrong", controller.secondMnemonicWordToCheck)
         XCTAssertFalse(delegate.confirmed)
-        setTextInputs(controller.firstMnemonicWordToCheck, "wrong")
+        typeIntoTextInputs(controller.firstMnemonicWordToCheck, "wrong")
         XCTAssertFalse(delegate.confirmed)
     }
 
     func test_whenTextInputsHaveCorrectWords_thenDelegateIsCalled() {
-        setTextInputs(controller.firstMnemonicWordToCheck, controller.secondMnemonicWordToCheck)
+        let expectedEOA = ExternallyOwnedAccountData(address: "derived",
+                                                     mnemonicWords: controller.account.mnemonicWords)
+        ethereumService.expect_generateDerivedExternallyOwnedAccount(address: controller.account.address,
+                                                                     expectedEOA)
+        typeIntoTextInputs(controller.firstMnemonicWordToCheck, controller.secondMnemonicWordToCheck)
         XCTAssertTrue(delegate.confirmed)
     }
 
@@ -88,15 +92,20 @@ class ConfirmMnemonicViewControllerTests: SafeTestCase {
 
     func test_whenTextInputReturns_thenAddsOwner() {
         walletService.createNewDraftWallet()
-        setTextInputs(controller.firstMnemonicWordToCheck, controller.secondMnemonicWordToCheck)
+        let expectedEOA = ExternallyOwnedAccountData(address: "derived",
+                                                     mnemonicWords: controller.account.mnemonicWords)
+        ethereumService.expect_generateDerivedExternallyOwnedAccount(address: controller.account.address,
+                                                                     expectedEOA)
+        typeIntoTextInputs(controller.firstMnemonicWordToCheck, controller.secondMnemonicWordToCheck)
         XCTAssertEqual(walletService.ownerAddress(of: .paperWallet), "address")
+        XCTAssertEqual(walletService.ownerAddress(of: .paperWalletDerived), "derived")
     }
 
 }
 
 extension ConfirmMnemonicViewControllerTests {
 
-    private func setTextInputs(_ first: String, _ second: String) {
+    private func typeIntoTextInputs(_ first: String, _ second: String) {
         controller.firstWordTextInput.text = first
         controller.secondWordTextInput.text = second
         controller.verifiableInputDidReturn(controller.secondWordTextInput)
