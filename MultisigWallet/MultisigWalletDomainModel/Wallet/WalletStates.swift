@@ -43,8 +43,14 @@ extension WalletState: CustomStringConvertible {
 
 public class DraftState: WalletState {
 
+    private let requiredRoles = [OwnerRole.thisDevice, .paperWallet, .paperWalletDerived]
+
+    private var hasAllRoles: Bool {
+        return requiredRoles.reduce(true) { $0 && wallet.owner(role: $1) != nil }
+    }
+
     override var isDeployable: Bool {
-        return wallet.allOwners().count >= wallet.confirmationCount
+        return hasAllRoles
     }
 
     override init(wallet: Wallet) {
@@ -53,6 +59,12 @@ public class DraftState: WalletState {
     }
 
     override func resume() {
+        let ownerCount = wallet.allOwners().count
+        guard hasAllRoles, ownerCount <= 4 else {
+            preconditionFailure("Wallet is misconfigured. Must have all roles set up.")
+        }
+        let confirmations = wallet.owner(role: .browserExtension) == nil ? 1 : 2
+        wallet.changeConfirmationCount(confirmations)
         proceed()
     }
 
