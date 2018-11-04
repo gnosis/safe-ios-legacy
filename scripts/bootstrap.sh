@@ -48,11 +48,14 @@ if [ ! -d $TEMPLATES_DIR ]; then
   cp -R xcode-templates/* $TEMPLATES_DIR/
 fi
 
-if [ ! -d .git/hooks ]; then
-   mkdir -p .git/hooks
-fi
+mkdir -p .git/hooks
+cd .git/hooks
+
 echo "Installing git configuration"
-cp git/hooks/* .git/hooks/
+for hook in ../../git/hooks/* ; do
+  rm -f $(basename $hook)
+  ln -sf $hook
+fi
 
 echo "Disabling git case insensitive matches"
 git config --local core.ignorecase false
