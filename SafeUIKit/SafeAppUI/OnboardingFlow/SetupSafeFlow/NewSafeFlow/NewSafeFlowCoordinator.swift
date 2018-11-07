@@ -46,7 +46,7 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     }
 
     func didSelectBrowserExtensionSetup() {
-        push(PairWithBrowserExtensionViewController.create {
+        push(PairWithBrowserExtensionViewController.create { [unowned self] in
             self.pop()
         })
     }
