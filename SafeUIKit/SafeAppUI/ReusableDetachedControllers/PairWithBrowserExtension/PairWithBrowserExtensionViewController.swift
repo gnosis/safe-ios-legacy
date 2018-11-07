@@ -59,7 +59,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     private var activityIndicator: UIActivityIndicatorView!
 
     static func create(delegate: PairWithBrowserDelegate) -> PairWithBrowserExtensionViewController {
-        let controller = StoryboardScene.NewSafe.pairWithBrowserExtensionViewController.instantiate()
+        let controller = StoryboardScene.PairWithBrowserExtension.pairWithBrowserExtensionViewController.instantiate()
         controller.delegate = delegate
         return controller
     }

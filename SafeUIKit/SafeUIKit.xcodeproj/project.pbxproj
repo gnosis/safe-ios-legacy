@@ -219,6 +219,7 @@
 		5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562E64F216E1CF500C54D57 /* RuleLabel.xib */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
+		558682CC2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 558682CB2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard */; };
 		558D64EA2180B1A2008107E5 /* SafeCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */; };
 		558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* CheckmarkButton.swift */; };
 		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
@@ -529,6 +530,7 @@
 		5562E64F216E1CF500C54D57 /* RuleLabel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RuleLabel.xib; sourceTree = "<group>"; };
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
+		558682CB2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PairWithBrowserExtension.storyboard; sourceTree = "<group>"; };
 		558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationViewController.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
@@ -671,8 +673,6 @@
 				0A5D467A20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift */,
 				0A334DFC209C8E3800ABC6AE /* NewSafeViewController.swift */,
 				0A334DFE209C8E3800ABC6AE /* NewSafeViewControllerTests.swift */,
-				0A334E0E209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift */,
-				0A334E0F209C8E3800ABC6AE /* PairWithBrowserExtensionViewControllerTests.swift */,
 				0A334E02209C8E3800ABC6AE /* PaperWalletSetupFlow */,
 				558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */,
 				55BFA53D21837EB500389732 /* SafeCreationViewControllerTests.swift */,
@@ -713,7 +713,6 @@
 				0A334E26209C8E3800ABC6AE /* AppFlow.storyboard */,
 				0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */,
 				0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */,
-				55DFBCF52135901D004B2AC4 /* Unlock */,
 				0A4DF82520CE701E0095C00D /* MainFlow */,
 			);
 			path = AppFlow;
@@ -961,6 +960,7 @@
 		0AF33D36209C6BF800527D25 /* SafeAppUI */ = {
 			isa = PBXGroup;
 			children = (
+				558682C92192F95C0060F1DE /* ReusableDetachedControllers */,
 				0A334E20209C8E3800ABC6AE /* AppFlow */,
 				0A334E70209C918A00ABC6AE /* Config.xcconfig */,
 				0A334E6A209C8F8500ABC6AE /* ErrorHandler.swift */,
@@ -1206,6 +1206,25 @@
 				556252052149201500F569EE /* QRCodeViewTests.swift */,
 			);
 			path = QRCodeView;
+			sourceTree = "<group>";
+		};
+		558682C92192F95C0060F1DE /* ReusableDetachedControllers */ = {
+			isa = PBXGroup;
+			children = (
+				558682CA2192F9840060F1DE /* PairWithBrowserExtension */,
+				55DFBCF52135901D004B2AC4 /* Unlock */,
+			);
+			path = ReusableDetachedControllers;
+			sourceTree = "<group>";
+		};
+		558682CA2192F9840060F1DE /* PairWithBrowserExtension */ = {
+			isa = PBXGroup;
+			children = (
+				0A334E0E209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift */,
+				0A334E0F209C8E3800ABC6AE /* PairWithBrowserExtensionViewControllerTests.swift */,
+				558682CB2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard */,
+			);
+			path = PairWithBrowserExtension;
 			sourceTree = "<group>";
 		};
 		55BAB0E221789285007539CF /* BorderedButton */ = {
@@ -1537,6 +1556,7 @@
 				0A334E4D209C8E3800ABC6AE /* AppFlow.storyboard in Resources */,
 				55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */,
 				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
+				558682CC2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
