@@ -219,6 +219,8 @@
 		5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562E64F216E1CF500C54D57 /* RuleLabel.xib */; };
 		556C0B0C205C1D8C001F943D /* CABasicAnimation+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */; };
 		556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */; };
+		558682C62192EE9D0060F1DE /* ConnectBrowserExtensionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558682C52192EE9D0060F1DE /* ConnectBrowserExtensionFlowCoordinator.swift */; };
+		558682C82192EED50060F1DE /* ConnectBrowserExtensionFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558682C72192EED50060F1DE /* ConnectBrowserExtensionFlowCoordinatorTests.swift */; };
 		558D64EA2180B1A2008107E5 /* SafeCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */; };
 		558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* CheckmarkButton.swift */; };
 		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
@@ -529,6 +531,8 @@
 		5562E64F216E1CF500C54D57 /* RuleLabel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RuleLabel.xib; sourceTree = "<group>"; };
 		556C0B0B205C1D8C001F943D /* CABasicAnimation+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Shake.swift"; sourceTree = "<group>"; };
 		556C0B0D205C1DBA001F943D /* CABasicAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABasicAnimationTests.swift; sourceTree = "<group>"; };
+		558682C52192EE9D0060F1DE /* ConnectBrowserExtensionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionFlowCoordinator.swift; sourceTree = "<group>"; };
+		558682C72192EED50060F1DE /* ConnectBrowserExtensionFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationViewController.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
@@ -740,6 +744,7 @@
 		0A4DF82520CE701E0095C00D /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
+				558682C42192EE6C0060F1DE /* ConnectBrowserExtensionFlow */,
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
 				55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */,
 				55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */,
@@ -1206,6 +1211,15 @@
 				556252052149201500F569EE /* QRCodeViewTests.swift */,
 			);
 			path = QRCodeView;
+			sourceTree = "<group>";
+		};
+		558682C42192EE6C0060F1DE /* ConnectBrowserExtensionFlow */ = {
+			isa = PBXGroup;
+			children = (
+				558682C52192EE9D0060F1DE /* ConnectBrowserExtensionFlowCoordinator.swift */,
+				558682C72192EED50060F1DE /* ConnectBrowserExtensionFlowCoordinatorTests.swift */,
+			);
+			path = ConnectBrowserExtensionFlow;
 			sourceTree = "<group>";
 		};
 		55BAB0E221789285007539CF /* BorderedButton */ = {
@@ -1840,6 +1854,7 @@
 				0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */,
 				0A334E2A209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift in Sources */,
 				0A8C962F20D2C3E7007D2410 /* DesignableButton.swift in Sources */,
+				558682C62192EE9D0060F1DE /* ConnectBrowserExtensionFlowCoordinator.swift in Sources */,
 				0A334E48209C8E3800ABC6AE /* AppFlowCoordinator.swift in Sources */,
 				0A334E2C209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift in Sources */,
 				0A334E2B209C8E3800ABC6AE /* NewSafeViewController.swift in Sources */,
@@ -1877,6 +1892,7 @@
 				0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
 				0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */,
+				558682C82192EED50060F1DE /* ConnectBrowserExtensionFlowCoordinatorTests.swift in Sources */,
 				550D1EDB213406380035109A /* ManageTokensTableViewControllerTests.swift in Sources */,
 				0AD998AA20D3E97C00E6F3CA /* ProgressViewTests.swift in Sources */,
 				0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */,

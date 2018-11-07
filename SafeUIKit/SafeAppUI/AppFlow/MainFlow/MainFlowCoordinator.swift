@@ -11,6 +11,7 @@ import SafariServices
 final class MainFlowCoordinator: FlowCoordinator {
 
     private let manageTokensFlowCoordinator = ManageTokensFlowCoordinator()
+    private let connectExtensionFlowCoordinator = ConnectBrowserExtensionFlowCoordinator()
 
     private var walletService: WalletApplicationService {
         return MultisigWalletApplication.ApplicationServiceRegistry.walletService
