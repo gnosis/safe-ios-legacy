@@ -191,14 +191,14 @@
 /* Guidelines */
 "onboarding.guidelines.title" = "Guidelines";
 
-/* At least 1 number and 1 letter. */
-"onboarding.set_password.capital_and_number" = "At least 1 number and 1 letter";
-
 /* Set password screen description. */
 "onboarding.set_password.description" = "Your confidential password is used to unlock the Safe and confirm transactions.";
 
 /* Use a minimum of 8 characters. */
 "onboarding.set_password.length" = "Use a minimum of 8 characters";
+
+/* At least 1 digit and 1 letter. */
+"onboarding.set_password.letter_and_digit" = "At least 1 number and 1 letter";
 
 /* No triple characters. */
 "onboarding.set_password.no_tripple_chars" = "No triple characters";

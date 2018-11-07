@@ -6,8 +6,8 @@ import Foundation
 
 extension String {
 
-    func containsCapitalLetter() -> Bool {
-        return rangeOfCharacter(from: CharacterSet.uppercaseLetters) != nil
+    func containsLetter() -> Bool {
+        return rangeOfCharacter(from: CharacterSet.letters) != nil
     }
 
     func containsDigit() -> Bool {
