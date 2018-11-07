@@ -10,6 +10,8 @@ protocol MenuTableViewControllerDelegate: class {
     func didSelectManageTokens()
     func didSelectTermsOfUse()
     func didSelectPrivacyPolicy()
+    func didSelectConnectBrowserExtension()
+    func didSelectChangeBrowserExtension()
 }
 
 final class MenuItemTableViewCell: UITableViewCell {
@@ -192,9 +194,17 @@ final class MenuTableViewController: UITableViewController {
 
         switch menuItems[indexPath.section].section {
         case .portfolio:
-            if let manageTokensItem = menuItems[indexPath.section].items[indexPath.row].item as? MenuItem,
-                manageTokensItem.name == Strings.manageTokens {
+            if let manageTokensItem = menuItem(at: indexPath), manageTokensItem.name == Strings.manageTokens {
                 delegate?.didSelectManageTokens()
+            }
+        case .security:
+            let item =  menuItem(at: indexPath)!
+            switch item.name {
+            case Strings.connectBrowserExtension:
+                delegate?.didSelectConnectBrowserExtension()
+            case Strings.changeBrowserExtension:
+                delegate?.didSelectChangeBrowserExtension()
+            default: break
             }
         case .support:
             if indexPath.row == 0 {
@@ -204,6 +214,10 @@ final class MenuTableViewController: UITableViewController {
             }
         default: break
         }
+    }
+
+    private func menuItem(at indexPath: IndexPath) -> MenuItem? {
+        return menuItems[indexPath.section].items[indexPath.row].item as? MenuItem
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

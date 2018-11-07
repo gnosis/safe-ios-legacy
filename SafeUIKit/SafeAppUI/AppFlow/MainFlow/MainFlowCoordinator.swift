@@ -156,4 +156,12 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
         openInSafari(ApplicationServiceRegistry.walletService.privacyPolicyURL)
     }
 
+    func didSelectConnectBrowserExtension() {
+        // TODO
+    }
+
+    func didSelectChangeBrowserExtension() {
+        // TODO
+    }
+
 }

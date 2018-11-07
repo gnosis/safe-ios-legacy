@@ -72,6 +72,18 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.manageTokensSelected)
     }
 
+    func test_whenSelectingConnectBrowserExtension_thenCallsDelegate() {
+        selectCell(row: 0, section: 2)
+        XCTAssertTrue(delegate.didCallConnectBrowserExtension)
+    }
+
+    func test_whenSelectingChangeBrowserExtension_thenCallsDelegate() {
+        walletService.addOwner(address: "test", type: .browserExtension)
+        controller.viewDidLoad()
+        selectCell(row: 0, section: 2)
+        XCTAssertTrue(delegate.didCallChangeBrowserExtension)
+    }
+
     func test_whenSelectingTermsOfUse_thenCallsDelegate() {
         selectCell(row: 0, section: 3)
         XCTAssertTrue(delegate.didCallTermsOfUse)
@@ -113,15 +125,23 @@ final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate
     }
 
     var didCallTermsOfUse = false
-
     func didSelectTermsOfUse() {
         didCallTermsOfUse = true
     }
 
     var didCallPrivacyPolicy = false
-
     func didSelectPrivacyPolicy() {
         didCallPrivacyPolicy = true
+    }
+
+    var didCallConnectBrowserExtension = false
+    func didSelectConnectBrowserExtension() {
+        didCallConnectBrowserExtension = true
+    }
+
+    var didCallChangeBrowserExtension = false
+    func didSelectChangeBrowserExtension() {
+        didCallChangeBrowserExtension = true
     }
 
 }
