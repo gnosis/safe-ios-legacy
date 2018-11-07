@@ -52,6 +52,9 @@
 /* Change recovery key  menu item */
 "menu.action.change_recovery_phrase" = "Replace Recovery Phrase";
 
+/* Connect browser extension menu item */
+"menu.action.connect_browser_extension" = "Connect Browser Extension";
+
 /* Feedback and FAQ menu item */
 "menu.action.feedback_and_faq" = "Feedback and FAQs";
 

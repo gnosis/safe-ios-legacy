@@ -40,6 +40,8 @@ final class MenuTableViewController: UITableViewController {
                                                           comment: "Change recovery key  menu item")
         static let changeBrowserExtension = LocalizedString("menu.action.change_browser_extension",
                                                             comment: "Change browser extension menu item")
+        static let connectBrowserExtension = LocalizedString("menu.action.connect_browser_extension",
+                                                             comment: "Connect browser extension menu item")
         static let feedback = LocalizedString("menu.action.feedback_and_faq", comment: "Feedback and FAQ menu item")
         static let terms = LocalizedString("menu.action.terms",
                                            comment: "Terms menu item")
@@ -98,7 +100,9 @@ final class MenuTableViewController: UITableViewController {
 
     private func generateData() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
-
+        let hasBrowserExtension = ApplicationServiceRegistry.walletService.isOwnerExists(.browserExtension)
+        let browserExtensionItem =
+            hasBrowserExtension ? menuItem(Strings.changeBrowserExtension) : menuItem(Strings.connectBrowserExtension)
         menuItems = [
             (section: .safe,
              items: [
@@ -111,14 +115,12 @@ final class MenuTableViewController: UITableViewController {
             (section: .portfolio,
              items: [menuItem(Strings.manageTokens)],
              title: Strings.portfolioSectionTitle),
-            /*
             (section: .security,
              items: [
-                menuItem(Strings.changePassword),
-                menuItem(Strings.changeRecoveryPhrase),
-                menuItem(Strings.changeBrowserExtension)],
+//                menuItem(Strings.changePassword),
+//                menuItem(Strings.changeRecoveryPhrase),
+                browserExtensionItem],
              title: Strings.securitySectionTitle),
-            */
             (section: .support,
              items: [
 //                menuItem(Strings.feedback),
