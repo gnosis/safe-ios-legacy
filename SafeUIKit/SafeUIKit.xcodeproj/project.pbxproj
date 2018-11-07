@@ -53,7 +53,7 @@
 		0A334E46209C8E3800ABC6AE /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E1A209C8E3800ABC6AE /* PasswordViewController.swift */; };
 		0A334E48209C8E3800ABC6AE /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */; };
 		0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */; };
-		0A334E4D209C8E3800ABC6AE /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334E26209C8E3800ABC6AE /* AppFlow.storyboard */; };
+		0A334E4D209C8E3800ABC6AE /* Unlock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A334E26209C8E3800ABC6AE /* Unlock.storyboard */; };
 		0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */; };
 		0A334E52209C8E6800ABC6AE /* UnlockViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */; };
 		0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E28209C8E3800ABC6AE /* CountdownLabelTests.swift */; };
@@ -367,7 +367,7 @@
 		0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockViewControllerTests.swift; sourceTree = "<group>"; };
 		0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A334E25209C8E3800ABC6AE /* CountdownLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
-		0A334E26209C8E3800ABC6AE /* AppFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AppFlow.storyboard; sourceTree = "<group>"; };
+		0A334E26209C8E3800ABC6AE /* Unlock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Unlock.storyboard; sourceTree = "<group>"; };
 		0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockViewController.swift; sourceTree = "<group>"; };
 		0A334E28209C8E3800ABC6AE /* CountdownLabelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownLabelTests.swift; sourceTree = "<group>"; };
 		0A334E63209C8ED300ABC6AE /* libIdentityAccessApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -710,7 +710,6 @@
 		0A334E20209C8E3800ABC6AE /* AppFlow */ = {
 			isa = PBXGroup;
 			children = (
-				0A334E26209C8E3800ABC6AE /* AppFlow.storyboard */,
 				0A334E21209C8E3800ABC6AE /* AppFlowCoordinator.swift */,
 				0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */,
 				0A4DF82520CE701E0095C00D /* MainFlow */,
@@ -1290,6 +1289,7 @@
 				0A334E28209C8E3800ABC6AE /* CountdownLabelTests.swift */,
 				0A334E27209C8E3800ABC6AE /* UnlockViewController.swift */,
 				0A334E22209C8E3800ABC6AE /* UnlockViewControllerTests.swift */,
+				0A334E26209C8E3800ABC6AE /* Unlock.storyboard */,
 			);
 			path = Unlock;
 			sourceTree = "<group>";
@@ -1553,7 +1553,7 @@
 				0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */,
 				0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */,
 				0A334E2F209C8E3800ABC6AE /* NewSafe.storyboard in Resources */,
-				0A334E4D209C8E3800ABC6AE /* AppFlow.storyboard in Resources */,
+				0A334E4D209C8E3800ABC6AE /* Unlock.storyboard in Resources */,
 				55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */,
 				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
 				558682CC2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard in Resources */,

@@ -53,11 +53,6 @@ extension UIViewController {
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 enum StoryboardScene {
-  enum AppFlow: StoryboardType {
-    static let storyboardName = "AppFlow"
-
-    static let unlockViewController = SceneType<SafeAppUI.UnlockViewController>(storyboard: AppFlow.self, identifier: "UnlockViewController")
-  }
   enum Main: StoryboardType {
     static let storyboardName = "Main"
 
@@ -114,6 +109,11 @@ enum StoryboardScene {
     static let storyboardName = "SetupSafe"
 
     static let setupSafeOptionsViewController = SceneType<SafeAppUI.SetupSafeOptionsViewController>(storyboard: SetupSafe.self, identifier: "SetupSafeOptionsViewController")
+  }
+  enum Unlock: StoryboardType {
+    static let storyboardName = "Unlock"
+
+    static let unlockViewController = SceneType<SafeAppUI.UnlockViewController>(storyboard: Unlock.self, identifier: "UnlockViewController")
   }
 }
 
