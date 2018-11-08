@@ -72,7 +72,6 @@
 		0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E67209C8F4700ABC6AE /* Assets.swift */; };
 		0A334E6C209C8F8500ABC6AE /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E6A209C8F8500ABC6AE /* ErrorHandler.swift */; };
 		0A334E6D209C8F8800ABC6AE /* ErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E69209C8F8500ABC6AE /* ErrorHandlerTests.swift */; };
-		0A334E6F209C8FB100ABC6AE /* SafeFoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E6E209C8FB100ABC6AE /* SafeFoundationExtensions.swift */; };
 		0A34BC63207B80A700636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC62207B80A700636560 /* libCommonTestSupport.a */; };
 		0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668C20A5E059009BA7FC /* MainViewController.swift */; };
 		0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */; };
@@ -95,7 +94,6 @@
 		0A5D467B20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467A20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift */; };
 		0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */; };
 		0A5DC575209C9AB600BA7A06 /* AppFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E24209C8E3800ABC6AE /* AppFlowCoordinatorTests.swift */; };
-		0A5DC577209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5DC576209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift */; };
 		0A60B5092112F9460066821A /* KeyboardAvoidingBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */; };
 		0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */; };
 		0A60B512211315350066821A /* MainViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B5102113152F0066821A /* MainViewControllerTests.swift */; };
@@ -373,7 +371,6 @@
 		0A334E67209C8F4700ABC6AE /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		0A334E69209C8F8500ABC6AE /* ErrorHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandlerTests.swift; sourceTree = "<group>"; };
 		0A334E6A209C8F8500ABC6AE /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
-		0A334E6E209C8FB100ABC6AE /* SafeFoundationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensions.swift; sourceTree = "<group>"; };
 		0A334E70209C918A00ABC6AE /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0A34BC62207B80A700636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A40668C20A5E059009BA7FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -400,7 +397,6 @@
 		0A5D467A20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbortSafeCreationAlertController.swift; sourceTree = "<group>"; };
 		0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationFailedAlertController.swift; sourceTree = "<group>"; };
 		0A5DC574209C9A8600BA7A06 /* TestConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TestConfig.xcconfig; sourceTree = "<group>"; };
-		0A5DC576209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeFoundationExtensionsTests.swift; sourceTree = "<group>"; };
 		0A60B5072112F9460066821A /* KeyboardAvoidingBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoidingBehavior.swift; sourceTree = "<group>"; };
 		0A60B50A2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoidingBehaviorTests.swift; sourceTree = "<group>"; };
 		0A60B5102113152F0066821A /* MainViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerTests.swift; sourceTree = "<group>"; };
@@ -976,8 +972,6 @@
 				0A334DF8209C8E3800ABC6AE /* OnboardingFlow */,
 				0AF33D37209C6BF800527D25 /* SafeAppUI.h */,
 				0A334DF1209C8BA600ABC6AE /* SafeAppUIMedia.xcassets */,
-				0A334E6E209C8FB100ABC6AE /* SafeFoundationExtensions.swift */,
-				0A5DC576209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift */,
 				0A334DE2209C892700ABC6AE /* SafeTestCase.swift */,
 				0A334DF3209C8C4A00ABC6AE /* swiftgen.yml */,
 				0A5DC574209C9A8600BA7A06 /* TestConfig.xcconfig */,
@@ -1826,7 +1820,6 @@
 				0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */,
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
-				0A334E6F209C8FB100ABC6AE /* SafeFoundationExtensions.swift in Sources */,
 				0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */,
 				0AD509232110AAEC008507CB /* FundsValidator.swift in Sources */,
 				0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */,
@@ -1873,7 +1866,6 @@
 				0AD998A020D3CDA000E6F3CA /* DesignableTests.swift in Sources */,
 				55DFBD1A2136A883004B2AC4 /* AddTokenTableViewControllerTests.swift in Sources */,
 				0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */,
-				0A5DC577209C9E2100BA7A06 /* SafeFoundationExtensionsTests.swift in Sources */,
 				0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
 				0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */,
