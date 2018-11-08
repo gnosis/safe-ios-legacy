@@ -53,11 +53,6 @@ extension UIViewController {
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 enum StoryboardScene {
-  enum AppFlow: StoryboardType {
-    static let storyboardName = "AppFlow"
-
-    static let unlockViewController = SceneType<SafeAppUI.UnlockViewController>(storyboard: AppFlow.self, identifier: "UnlockViewController")
-  }
   enum Main: StoryboardType {
     static let storyboardName = "Main"
 
@@ -101,16 +96,24 @@ enum StoryboardScene {
 
     static let newSafeViewController = SceneType<SafeAppUI.NewSafeViewController>(storyboard: NewSafe.self, identifier: "NewSafeViewController")
 
-    static let pairWithBrowserExtensionViewController = SceneType<SafeAppUI.PairWithBrowserExtensionViewController>(storyboard: NewSafe.self, identifier: "PairWithBrowserExtensionViewController")
-
     static let safeCreationViewController = SceneType<SafeAppUI.SafeCreationViewController>(storyboard: NewSafe.self, identifier: "SafeCreationViewController")
 
     static let saveMnemonicViewController = SceneType<SafeAppUI.SaveMnemonicViewController>(storyboard: NewSafe.self, identifier: "SaveMnemonicViewController")
+  }
+  enum PairWithBrowserExtension: StoryboardType {
+    static let storyboardName = "PairWithBrowserExtension"
+
+    static let pairWithBrowserExtensionViewController = SceneType<SafeAppUI.PairWithBrowserExtensionViewController>(storyboard: PairWithBrowserExtension.self, identifier: "PairWithBrowserExtensionViewController")
   }
   enum SetupSafe: StoryboardType {
     static let storyboardName = "SetupSafe"
 
     static let setupSafeOptionsViewController = SceneType<SafeAppUI.SetupSafeOptionsViewController>(storyboard: SetupSafe.self, identifier: "SetupSafeOptionsViewController")
+  }
+  enum Unlock: StoryboardType {
+    static let storyboardName = "Unlock"
+
+    static let unlockViewController = SceneType<SafeAppUI.UnlockViewController>(storyboard: Unlock.self, identifier: "UnlockViewController")
   }
 }
 
