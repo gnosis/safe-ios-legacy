@@ -158,7 +158,7 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
     }
 
     func didSelectConnectBrowserExtension() {
-        // TODO
+        enter(flow: connectExtensionFlowCoordinator)
     }
 
     func didSelectChangeBrowserExtension() {

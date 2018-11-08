@@ -178,7 +178,11 @@ class MainFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_didSelectConnectBrowserExtension_entersConnectBrowserExtensionFlow() {
-        // TODO
+        createWindow(mainFlowCoordinator.rootViewController)
+        mainFlowCoordinator.didSelectConnectBrowserExtension()
+        delay()
+        let topController = mainFlowCoordinator.navigationController.topViewController
+        XCTAssertTrue(topController is PairWithBrowserExtensionViewController)
     }
 
     func test_whenSelectingTermsOfUse_thenOpensSafari() {

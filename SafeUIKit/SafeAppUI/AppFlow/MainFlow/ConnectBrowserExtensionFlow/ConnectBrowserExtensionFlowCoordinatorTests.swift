@@ -16,8 +16,9 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
         connectExtensionFlowCoordinator.setUp()
     }
 
-    func test_whenSetupCalled_thenShowsViewController() {
-        XCTAssertNotNil(connectExtensionFlowCoordinator.navigationController.topViewController)
+    func test_whenSetupCalled_thenShowsPairViewController() {
+        let topController = connectExtensionFlowCoordinator.navigationController.topViewController
+        XCTAssertTrue(topController is PairWithBrowserExtensionViewController)
     }
 
 }
