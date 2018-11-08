@@ -40,7 +40,8 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         let startVC = topViewController
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
         delay()
-        newSafeFlowCoordinator.didPair()
+        let pairVC = topViewController as? PairWithBrowserExtensionViewController
+        pairVC?.pairCompletion()
         delay()
         XCTAssertTrue(topViewController === startVC)
     }

@@ -51,7 +51,7 @@ public final class UnlockViewController: UIViewController {
     }
 
     public static func create(completion: ((Bool) -> Void)? = nil) -> UnlockViewController {
-        let vc = StoryboardScene.AppFlow.unlockViewController.instantiate()
+        let vc = StoryboardScene.Unlock.unlockViewController.instantiate()
         vc.unlockCompletion = completion ?? { _ in }
         return vc
     }
