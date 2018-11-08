@@ -9,20 +9,20 @@ import CommonTestSupport
 
 class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
 
-    // swiftlint:disable:next weak_delegate
-    let delegate = MockPairWithBrowserDelegate()
     var controller: PairWithBrowserExtensionViewController!
+    var didPair = false
 
     override func setUp() {
         super.setUp()
-        controller = PairWithBrowserExtensionViewController.create(delegate: delegate)
+        controller = PairWithBrowserExtensionViewController.create {
+            self.didPair = true
+        }
         controller.loadViewIfNeeded()
         ethereumService.browserExtensionAddress = "address"
     }
 
     func test_canCreate() {
         XCTAssertNotNil(controller)
-        XCTAssertTrue(controller.delegate === delegate)
     }
 
     func test_canPresentController() {
@@ -41,8 +41,9 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
 
     func test_whenScansValidCode_thenCallsTheDelegare() {
         controller.didScanValidCode(controller.scanBarButtonItem, code: "valid_code")
+        XCTAssertFalse(didPair)
         delay()
-        XCTAssertTrue(delegate.paired)
+        XCTAssertTrue(didPair)
     }
 
     func test_whenWalletServiceThrows_thenAlertIsShown() {
@@ -50,15 +51,6 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
         controller.didScanValidCode(controller.scanBarButtonItem, code: "valid_code")
         delay()
         XCTAssertAlertShown(message: PairWithBrowserExtensionViewController.Strings.invalidCode)
-    }
-
-}
-
-class MockPairWithBrowserDelegate: PairWithBrowserDelegate {
-
-    var paired = false
-    func didPair() {
-        paired = true
     }
 
 }

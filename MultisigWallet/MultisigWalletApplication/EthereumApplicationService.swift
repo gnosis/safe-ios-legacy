@@ -64,6 +64,13 @@ open class EthereumApplicationService: Assertable {
         return account.applicationServiceData
     }
 
+    open func generateDerivedExternallyOwnedAccount(address: String) -> ExternallyOwnedAccountData {
+        let account = eoaRepository.find(by: Address(address))!
+        let derived = encryptionService.deriveExternallyOwnedAccount(from: account, at: 1)
+        eoaRepository.save(derived)
+        return derived.applicationServiceData
+    }
+
     open func removeExternallyOwnedAccount(address: String) {
         eoaRepository.remove(address: Address(address))
     }
@@ -242,7 +249,7 @@ open class EthereumApplicationService: Assertable {
     }
 }
 
-fileprivate extension ExternallyOwnedAccount {
+internal extension ExternallyOwnedAccount {
 
     var applicationServiceData: ExternallyOwnedAccountData {
         return ExternallyOwnedAccountData(address: address.value, mnemonicWords: mnemonic.words)

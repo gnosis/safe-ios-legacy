@@ -20,6 +20,14 @@ public protocol EncryptionDomainService {
     /// - Returns: random externally owned account
     func generateExternallyOwnedAccount() -> ExternallyOwnedAccount
 
+    /// Derives externally owned account from existing account at the specified derivation path index
+    ///
+    /// - Parameters:
+    ///   - account: account to derive from
+    ///   - pathIndex: path index of the derived account
+    /// - Returns: derived account
+    func deriveExternallyOwnedAccount(from account: ExternallyOwnedAccount, at pathIndex: Int) -> ExternallyOwnedAccount
+
     /// Converts browser extension code string to Ethereum address, verifying code validity and sender's signature.
     ///
     /// - Parameter browserExtensionCode: code received from browser extension owner

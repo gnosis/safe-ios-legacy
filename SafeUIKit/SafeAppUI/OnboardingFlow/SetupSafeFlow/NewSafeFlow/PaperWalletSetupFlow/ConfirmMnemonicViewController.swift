@@ -124,6 +124,9 @@ final class ConfirmMnemonicViewController: UIViewController {
 
     private func confirmMnemonic() {
         ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
+        let derivedAccount = ApplicationServiceRegistry.ethereumService
+            .generateDerivedExternallyOwnedAccount(address: account.address)
+        ApplicationServiceRegistry.walletService.addOwner(address: derivedAccount.address, type: .paperWalletDerived)
         delegate?.didConfirm()
     }
 

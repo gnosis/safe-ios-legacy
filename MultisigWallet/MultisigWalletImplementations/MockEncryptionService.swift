@@ -79,4 +79,21 @@ public class MockEncryptionService: EncryptionDomainService {
         return EthSignature(r: "0", s: "0", v: 27)
     }
 
+    private var expected_deriveExternallyOwnedAccount =
+        [(account: ExternallyOwnedAccount, index: Int, result: ExternallyOwnedAccount)]()
+    private var actual_deriveExternallyOwnedAccount =
+        [(account: ExternallyOwnedAccount, index: Int)]()
+
+    public func expect_deriveExternallyOwnedAccount(from account: ExternallyOwnedAccount,
+                                                    at pathIndex: Int,
+                                                    result: ExternallyOwnedAccount) {
+        expected_deriveExternallyOwnedAccount.append((account, pathIndex, result))
+    }
+
+    public func deriveExternallyOwnedAccount(from account: ExternallyOwnedAccount,
+                                             at pathIndex: Int) -> ExternallyOwnedAccount {
+        actual_deriveExternallyOwnedAccount.append((account, pathIndex))
+        return expected_deriveExternallyOwnedAccount[actual_deriveExternallyOwnedAccount.count - 1].result
+    }
+
 }

@@ -9,10 +9,6 @@ import MultisigWalletApplication
 import Common
 import SafariServices
 
-protocol PairWithBrowserDelegate: class {
-    func didPair()
-}
-
 final class PairWithBrowserExtensionViewController: UIViewController {
 
     enum Strings {
@@ -44,7 +40,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     @IBOutlet weak var step1Label: UILabel!
     @IBOutlet weak var step2Label: UILabel!
 
-    private(set) weak var delegate: PairWithBrowserDelegate?
+    public private(set) var pairCompletion: (() -> Void)!
     private var logger: Logger {
         return MultisigWalletApplication.ApplicationServiceRegistry.logger
     }
@@ -58,9 +54,9 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     var scanBarButtonItem: ScanBarButtonItem!
     private var activityIndicator: UIActivityIndicatorView!
 
-    static func create(delegate: PairWithBrowserDelegate) -> PairWithBrowserExtensionViewController {
-        let controller = StoryboardScene.NewSafe.pairWithBrowserExtensionViewController.instantiate()
-        controller.delegate = delegate
+    static func create(completion: @escaping () -> Void) -> PairWithBrowserExtensionViewController {
+        let controller = StoryboardScene.PairWithBrowserExtension.pairWithBrowserExtensionViewController.instantiate()
+        controller.pairCompletion = completion
         return controller
     }
 
@@ -121,7 +117,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         do {
             try walletService.addBrowserExtensionOwner(address: address, browserExtensionCode: code)
             DispatchQueue.main.async {
-                self.delegate?.didPair()
+                self.pairCompletion()
             }
         } catch WalletApplicationServiceError.validationFailed {
             showError(message: Strings.invalidCode, log: "Invalid browser extension code")

@@ -111,13 +111,16 @@ public class DeploymentDomainService {
     func walletCreated(_ event: WalletCreated) {
         handleError { wallet in
             try notifyDidCreate(wallet)
-            DomainRegistry.externallyOwnedAccountRepository.remove(address: wallet.owner(role: .paperWallet)!.address)
+            DomainRegistry.externallyOwnedAccountRepository.remove(address:
+                wallet.owner(role: .paperWallet)!.address)
+            DomainRegistry.externallyOwnedAccountRepository.remove(address:
+                wallet.owner(role: .paperWalletDerived)!.address)
         }
     }
 
     private func notifyDidCreate(_ wallet: Wallet) throws {
+        guard let recipient = wallet.owner(role: .browserExtension)?.address else { return }
         let sender = wallet.owner(role: .thisDevice)!.address
-        let recipient = wallet.owner(role: .browserExtension)!.address
         let senderEOA = DomainRegistry.externallyOwnedAccountRepository.find(by: sender)!
         let message = DomainRegistry.notificationService.safeCreatedMessage(at: wallet.address!.value)
         let signedAddress = DomainRegistry.encryptionService.sign(message: "GNO" + message,

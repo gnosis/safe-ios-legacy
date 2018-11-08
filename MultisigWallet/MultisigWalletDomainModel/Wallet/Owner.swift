@@ -14,6 +14,7 @@ public enum OwnerRole: String, Codable {
     case thisDevice
     case browserExtension
     case paperWallet
+    case paperWalletDerived
 
-    static let all = [OwnerRole.thisDevice, .browserExtension, .paperWallet]
+    static let all = [OwnerRole.thisDevice, .browserExtension, .paperWallet, .paperWalletDerived]
 }
