@@ -10,12 +10,14 @@ import CommonTestSupport
 class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
 
     var controller: PairWithBrowserExtensionViewController!
-    var didPair = false
+    var pairedAddress: String?
+    var pairedCode: String?
 
     override func setUp() {
         super.setUp()
-        controller = PairWithBrowserExtensionViewController.create {
-            self.didPair = true
+        controller = PairWithBrowserExtensionViewController.create { address, code in
+            self.pairedAddress = address
+            self.pairedCode = code
         }
         controller.loadViewIfNeeded()
         ethereumService.browserExtensionAddress = "address"
@@ -32,25 +34,13 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
         XCTAssertTrue(controller.presentedViewController === presentedController)
     }
 
-    func test_whenScansValidCode_thenAddsBowserExtension() {
-        XCTAssertFalse(walletService.isOwnerExists(.browserExtension))
-        controller.didScanValidCode(controller.scanBarButtonItem, code: "valid_code")
-        delay()
-        XCTAssertTrue(walletService.isOwnerExists(.browserExtension))
-    }
-
     func test_whenScansValidCode_thenCallsTheDelegare() {
         controller.didScanValidCode(controller.scanBarButtonItem, code: "valid_code")
-        XCTAssertFalse(didPair)
+        XCTAssertNil(pairedAddress)
+        XCTAssertNil(pairedCode)
         delay()
-        XCTAssertTrue(didPair)
-    }
-
-    func test_whenWalletServiceThrows_thenAlertIsShown() {
-        walletService.shouldThrow = true
-        controller.didScanValidCode(controller.scanBarButtonItem, code: "valid_code")
-        delay()
-        XCTAssertAlertShown(message: PairWithBrowserExtensionViewController.Strings.invalidCode)
+        XCTAssertNotNil(pairedAddress)
+        XCTAssertNotNil(pairedCode)
     }
 
 }

@@ -8,6 +8,7 @@ import MultisigWalletApplication
 final class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
+    var pairController: PairWithBrowserExtensionViewController?
 
     var isSafeCreationInProgress: Bool {
         return ApplicationServiceRegistry.walletService.isSafeCreationInProgress
@@ -46,13 +47,25 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     }
 
     func didSelectBrowserExtensionSetup() {
-        push(PairWithBrowserExtensionViewController.create { [unowned self] in
-            self.pop()
-        })
+        pairController = PairWithBrowserExtensionViewController.create { [unowned self] address, code in
+            self.didPair(address: address, code: code)
+        }
+        push(pairController!)
     }
 
     func didSelectNext() {
         push(SafeCreationViewController.create(delegate: self))
+    }
+
+    private func didPair(address: String, code: String) {
+        guard let pairController = pairController else { return }
+        do {
+            try ApplicationServiceRegistry.walletService.addBrowserExtensionOwner(
+                address: address, browserExtensionCode: code)
+            self.pop()
+        } catch let e {
+            pairController.handleError(e)
+        }
     }
 
 }
