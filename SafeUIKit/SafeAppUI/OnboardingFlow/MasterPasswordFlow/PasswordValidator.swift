@@ -12,8 +12,8 @@ final class PasswordValidator {
         return input.count >= minInputLength
     }
 
-    static func validateAtLeastOneCapitalLetterAndOneDigit(_ input: String) -> Bool {
-        return input.containsCapitalLetter() && input.containsDigit()
+    static func validateAtLeastOneLetterAndOneDigit(_ input: String) -> Bool {
+        return input.containsLetter() && input.containsDigit()
     }
 
     static func validateNoTrippleChar(_ input: String) -> Bool {

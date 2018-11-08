@@ -12,9 +12,7 @@ class SafeFoundationExtensionsTests: XCTestCase {
     let oneDigit = "1"
     let oneLowercase = "a"
     let oneUppercase = "A"
-    let manyContainsOneUppercase = "abC"
     let manyContainsNoneUppercase = "abc"
-    let manyContainsManyUppercase = "aBC"
     let manyContainsOneDigit = "ab1"
     let manyContainsNoneDigit = "abc"
     let manyContainsManyDigits = "a12"
@@ -23,13 +21,12 @@ class SafeFoundationExtensionsTests: XCTestCase {
     let trippleInTheMiddle = "1aaa4"
     let trippleInTheEnd = "1aa4bbb"
 
-    func test_containsCapitalizedLetter() {
-        XCTAssertFalse(empty.containsCapitalLetter())
-        XCTAssertFalse(oneLowercase.containsCapitalLetter())
-        XCTAssertTrue(oneUppercase.containsCapitalLetter())
-        XCTAssertTrue(manyContainsOneUppercase.containsCapitalLetter())
-        XCTAssertFalse(manyContainsNoneUppercase.containsCapitalLetter())
-        XCTAssertTrue(manyContainsManyUppercase.containsCapitalLetter())
+    func test_containsLetter() {
+        XCTAssertFalse(empty.containsLetter())
+        XCTAssertFalse(oneDigit.containsLetter())
+        XCTAssertTrue(oneLowercase.containsLetter())
+        XCTAssertTrue(oneUppercase.containsLetter())
+        XCTAssertTrue(manyContainsNoneUppercase.containsLetter())
     }
 
     func test_containsDigit() {
