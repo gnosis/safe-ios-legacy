@@ -135,14 +135,6 @@ class MainFlowCoordinatorTests: SafeTestCase {
         waitForExpectations(timeout: 1)
     }
 
-    func test_didSelectManageTokens_entersManageTokensFlow() {
-        createWindow(mainFlowCoordinator.rootViewController)
-        mainFlowCoordinator.didSelectManageTokens()
-        delay()
-        let presented = mainFlowCoordinator.navigationController.presentedViewController
-        XCTAssertTrue(presented?.children[0] is ManageTokensTableViewController)
-    }
-
     func test_whenManageTokensCalled_thenEntersManageTokensFlow() {
         createWindow(mainFlowCoordinator.rootViewController)
         mainFlowCoordinator.manageTokens()
@@ -173,6 +165,24 @@ class MainFlowCoordinatorTests: SafeTestCase {
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.presentedViewController
             is SFSafariViewController)
+    }
+
+    // MARK: - MenuTableViewControllerDelegate
+
+    func test_didSelectManageTokens_entersManageTokensFlow() {
+        createWindow(mainFlowCoordinator.rootViewController)
+        mainFlowCoordinator.didSelectManageTokens()
+        delay()
+        let presented = mainFlowCoordinator.navigationController.presentedViewController
+        XCTAssertTrue(presented?.children[0] is ManageTokensTableViewController)
+    }
+
+    func test_didSelectConnectBrowserExtension_entersConnectBrowserExtensionFlow() {
+        createWindow(mainFlowCoordinator.rootViewController)
+        mainFlowCoordinator.didSelectConnectBrowserExtension()
+        delay()
+        let topController = mainFlowCoordinator.navigationController.topViewController
+        XCTAssertTrue(topController is PairWithBrowserExtensionViewController)
     }
 
     func test_whenSelectingTermsOfUse_thenOpensSafari() {

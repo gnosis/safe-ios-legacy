@@ -11,6 +11,7 @@ import SafariServices
 final class MainFlowCoordinator: FlowCoordinator {
 
     private let manageTokensFlowCoordinator = ManageTokensFlowCoordinator()
+    private let connectExtensionFlowCoordinator = ConnectBrowserExtensionFlowCoordinator()
 
     private var walletService: WalletApplicationService {
         return MultisigWalletApplication.ApplicationServiceRegistry.walletService
@@ -154,6 +155,14 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
 
     func didSelectPrivacyPolicy() {
         openInSafari(ApplicationServiceRegistry.walletService.privacyPolicyURL)
+    }
+
+    func didSelectConnectBrowserExtension() {
+        enter(flow: connectExtensionFlowCoordinator)
+    }
+
+    func didSelectChangeBrowserExtension() {
+        // TODO
     }
 
 }

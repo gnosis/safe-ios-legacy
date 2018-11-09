@@ -13,6 +13,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     var newSafeFlowCoordinator: NewSafeFlowCoordinator!
     let nav = UINavigationController()
     var startVC: UIViewController!
+    var pairVC: PairWithBrowserExtensionViewController?
     let address = "test_address"
 
     var topViewController: UIViewController? {
@@ -35,15 +36,18 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(topViewController is PairWithBrowserExtensionViewController)
     }
 
-    func test_pairWithBrowserExtensionCompletion_popsToStartVC() {
-        walletService.expect_isSafeCreationInProgress(true)
-        let startVC = topViewController
-        newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
-        delay()
-        let pairVC = topViewController as? PairWithBrowserExtensionViewController
-        pairVC?.pairCompletion()
-        delay()
+    func test_pairWithBrowserExtensionCompletion_thenAddsBowserExtensionAndPopsToStartVC() {
+        XCTAssertFalse(walletService.isOwnerExists(.browserExtension))
+        pairWithBrowserExtension()
+        XCTAssertTrue(walletService.isOwnerExists(.browserExtension))
         XCTAssertTrue(topViewController === startVC)
+    }
+
+    func test_whenWalletServiceThrowsDuringPairing_thenAlertIsHandled() {
+        walletService.shouldThrow = true
+        pairWithBrowserExtension()
+        XCTAssertAlertShown(message: PairWithBrowserExtensionViewController.Strings.invalidCode)
+        XCTAssertTrue(topViewController === pairVC)
     }
 
     func test_whenSelectedPaperWalletSetup_thenTransitionsToPaperWalletCoordinator() {
@@ -149,17 +153,13 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
 
 }
 
-class MockEventSubscriber: EventSubscriber {
-    func notify() {}
-}
+private extension NewSafeFlowCoordinatorTests {
 
-extension NewSafeFlowCoordinatorTests {
-
-    private func deploy() {
+    func deploy() {
         walletService.deployWallet(subscriber: MockEventSubscriber(), onError: nil)
     }
 
-    private func assertShowingPendingVC(shouldShow: Bool = true, line: UInt = #line) {
+    func assertShowingPendingVC(shouldShow: Bool = true, line: UInt = #line) {
         let testFC = TestFlowCoordinator()
         testFC.enter(flow: newSafeFlowCoordinator)
         delay()
@@ -168,4 +168,18 @@ extension NewSafeFlowCoordinatorTests {
                       line: line)
     }
 
+    func pairWithBrowserExtension() {
+        walletService.expect_isSafeCreationInProgress(true)
+        startVC = topViewController
+        newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
+        delay()
+        pairVC = topViewController as? PairWithBrowserExtensionViewController
+        pairVC?.pairCompletion("address", "code")
+        delay()
+    }
+
+}
+
+class MockEventSubscriber: EventSubscriber {
+    func notify() {}
 }
