@@ -6,15 +6,18 @@ pipeline {
     stages {
         stage('test') {
             steps {
-                sh '''
-                    export PATH="/usr/local/bin:$PATH"
-                    source ~/.bash_profile
-                    scripts/jenkins_bootstrap.sh
-                    scripts/decrypt_files.sh
-                    cp encrypted_files/.env.default .env.default
-                    bundle install --jobs=3 --retry=3 --deployment --path=${BUNDLE_PATH:-vendor/bundle}
-                    bundle exec fastlane test scheme:safe
-                '''
+                ansiColor('xterm') {
+                    sh '''
+                        export PATH="/usr/local/bin:$PATH"
+                        source ~/.bash_profile
+                        scripts/jenkins_bootstrap.sh
+                        xcode-select /Applications/Xcode.app
+                        scripts/decrypt_files.sh
+                        cp encrypted_files/.env.default .env.default
+                        bundle install --jobs=3 --retry=3 --deployment --path=${BUNDLE_PATH:-vendor/bundle}
+                        bundle exec fastlane test scheme:safe
+                    '''
+                }
             }
         }
     }
@@ -25,7 +28,9 @@ pipeline {
             sh 'git clean -fd'
         }
         success {
-            sh 'bash <(curl -s https://codecov.io/bash) -D . -c'
+            ansiColor('xterm') {
+                sh 'bash <(curl -s https://codecov.io/bash) -D . -c'
+            }
         }
     }
 }
