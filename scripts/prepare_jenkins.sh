@@ -1,4 +1,4 @@
-#! /usr/bin/sh
+#! /usr/bin/env bash
 
 export PATH="/usr/local/bin:$PATH"
 export CI="true"
