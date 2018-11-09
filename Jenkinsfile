@@ -4,7 +4,7 @@ pipeline {
         ENCRYPTED_FILES_SECRET_KEY = credentials('ENCRYPTED_FILES_SECRET_KEY')
     }
     stages {
-        stage('test') {
+        stage('Prepare') {
             steps {
                 ansiColor('xterm') {
                     sh '''
@@ -15,9 +15,36 @@ pipeline {
                         scripts/decrypt_files.sh
                         cp encrypted_files/.env.default .env.default
                         bundle install --jobs=3 --retry=3
-                        bundle exec fastlane test scheme:safe
-                        curl -s https://codecov.io/bash | bash
                     '''
+                }
+            }
+        }
+        stage('Test') {
+            parallel {
+                stage('Unit Tests') {
+                    steps {
+                        ansiColor('xterm') {
+                            sh 'bundle exec fastlane test scheme:safe'
+                            sh 'scripts/codecov.sh -D . -c'
+                            junit 'Build/reports/**/*.junit'
+                        }
+                    }
+                }
+                stage('UI Tests') {
+                    steps {
+                        ansiColor('xterm') {
+                            sh 'bundle exec fastlane test scheme:allUITests'
+                            junit 'Build/reports/**/*.junit'
+                        }
+                    }
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                ansiColor('xterm') {
+                    sh 'bundle exec fastlane fabric'
+                    archiveArtifacts 'Build/Archive.xcarchive'
                 }
             }
         }
@@ -25,7 +52,6 @@ pipeline {
     post {
         always {
             archiveArtifacts 'Build/build_logs/,Build/reports/,Build/pre_build_action.log'
-            junit 'Build/reports/**/*.junit'
             sh 'git clean -fd'
         }
     }

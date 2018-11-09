@@ -1,16 +1,6 @@
 #! /usr/bin/env bash
 set -e
 
-if ! which swiftlint > /dev/null; then
-  echo "Installing SwiftLint"
-  brew install swiftlint
-fi
-
-if ! which swiftgen > /dev/null; then
-  echo "Installing SwiftGen"
-  brew install swiftgen
-fi
-
 if ! which rbenv > /dev/null; then
   echo "Installing rbenv"
   brew install rbenv
