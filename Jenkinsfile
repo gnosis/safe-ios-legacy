@@ -14,8 +14,9 @@ pipeline {
                         scripts/jenkins_bootstrap.sh
                         scripts/decrypt_files.sh
                         cp encrypted_files/.env.default .env.default
-                        bundle install --jobs=3 --retry=3 --deployment --path=${BUNDLE_PATH:-vendor/bundle}
+                        bundle install --jobs=3 --retry=3 --deployment
                         bundle exec fastlane test scheme:safe
+                        bash <(curl -s https://codecov.io/bash) -D . -c
                     '''
                 }
             }
@@ -26,11 +27,6 @@ pipeline {
             archiveArtifacts 'Build/build_logs/,Build/reports/,Build/pre_build_action.log'
             junit 'Build/reports/**/*.junit'
             sh 'git clean -fd'
-        }
-        success {
-            ansiColor('xterm') {
-                sh 'bash <(curl -s https://codecov.io/bash) -D . -c'
-            }
         }
     }
 }
