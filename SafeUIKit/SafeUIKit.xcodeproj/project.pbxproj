@@ -1564,7 +1564,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ../scripts/run_swiftgen_per_target.sh;
+			shellScript = "../scripts/run_swiftgen_per_target.sh\n";
 			showEnvVarsInLog = 0;
 		};
 		0A334DCB209C6F8A00ABC6AE /* SwiftGen */ = {
