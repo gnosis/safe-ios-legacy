@@ -14,7 +14,7 @@ pipeline {
                         scripts/jenkins_bootstrap.sh
                         scripts/decrypt_files.sh
                         cp encrypted_files/.env.default .env.default
-                        bundle install --jobs=3 --retry=3 --deployment
+                        bundle install --jobs=3 --retry=3
                         bundle exec fastlane test scheme:safe
                         curl -s https://codecov.io/bash | bash
                     '''
