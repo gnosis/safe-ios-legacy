@@ -7,11 +7,11 @@ pipeline {
         stage('test') {
             steps {
                 sh '''
-                    export PATH="$HOME/.rbenv/bin:$PATH"
+                    export PATH="/usr/local/bin:$HOME/.rbenv/bin:$PATH"
                     eval "$(rbenv init -)"
                     if ! rbenv which bundle > /dev/null; then
                       echo "Installing bundler"
-                        gem install bundler
+                      gem install bundler
                     fi
                     scripts/decrypt_files.sh
                     cp encrypted_files/.env.default .env.default
