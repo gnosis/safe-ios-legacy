@@ -134,13 +134,13 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     private func addBrowserExtensionOwner(code: String) {
         let address = scanBarButtonItem.scanValidatedConverter!(code)!
         DispatchQueue.main.async {
+            self.showScanButton()
             self.pairCompletion(address, code)
         }
     }
 
     private func showError(message: String, log: String) {
         DispatchQueue.main.async {
-            self.showScanButton()
             ErrorHandler.showError(message: message, log: log, error: nil)
         }
     }
