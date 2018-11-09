@@ -4,26 +4,12 @@ pipeline {
         ENCRYPTED_FILES_SECRET_KEY = credentials('ENCRYPTED_FILES_SECRET_KEY')
     }
     stages {
-        stage('Prepare') {
-            steps {
-                ansiColor('xterm') {
-                    sh '''
-                        export PATH="/usr/local/bin:$PATH"
-                        export CI="true"
-                        source ~/.bash_profile
-                        scripts/jenkins_bootstrap.sh
-                        scripts/decrypt_files.sh
-                        cp encrypted_files/.env.default .env.default
-                        bundle install --jobs=3 --retry=3
-                    '''
-                }
-            }
-        }
         stage('Test') {
             parallel {
                 stage('Unit Tests') {
                     steps {
                         ansiColor('xterm') {
+                            sh 'scripts/prepare_jenkins.sh'
                             sh 'bundle exec fastlane test scheme:safe'
                             sh 'scripts/codecov.sh -D . -c'
                             junit 'Build/reports/**/*.junit'
@@ -33,6 +19,7 @@ pipeline {
                 stage('UI Tests') {
                     steps {
                         ansiColor('xterm') {
+                            sh 'scripts/prepare_jenkins.sh'
                             sh 'bundle exec fastlane test scheme:allUITests'
                             junit 'Build/reports/**/*.junit'
                         }
@@ -43,6 +30,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 ansiColor('xterm') {
+                    sh 'scripts/prepare_jenkins.sh'
                     sh 'bundle exec fastlane fabric'
                     archiveArtifacts 'Build/Archive.xcarchive'
                 }
