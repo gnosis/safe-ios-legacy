@@ -37,7 +37,7 @@ platform :ios do
     ENV["SCAN_WORKSPACE"] = workspace
     PROJECT = "safe/safe.xcodeproj"
     if is_ci
-      setup_travis
+      setup_jenkins
       increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"], xcodeproj: PROJECT)
     end
   end
