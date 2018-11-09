@@ -7,6 +7,7 @@ pipeline {
         stage('test') {
             steps {
                 sh '''
+                    source ~/.bash_profile
                     export PATH="/usr/local/bin:$PATH"
                     scripts/jenkins_bootstrap.sh
                     scripts/decrypt_files.sh

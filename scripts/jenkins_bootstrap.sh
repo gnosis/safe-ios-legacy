@@ -20,8 +20,6 @@ if ! rbenv versions | grep $PROJECT_RUBY_VERSION > /dev/null; then
   echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
 fi
 
-source ~/.bash_profile
-
 if ! rbenv which bundle > /dev/null; then
   echo "Installing bundler"
   gem install bundler
