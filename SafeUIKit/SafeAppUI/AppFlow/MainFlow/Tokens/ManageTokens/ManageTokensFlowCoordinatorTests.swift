@@ -45,7 +45,7 @@ class ManageTokensFlowCoordinatorTests: XCTestCase {
         delay()
         XCTAssertTrue(flowCoordinator.rootViewController.presentedViewController is UINavigationController)
         flowCoordinator.didSelectToken(TokenData.gno)
-        delay(1)
+        delay(1.25)
         XCTAssertNil(flowCoordinator.rootViewController.presentedViewController)
     }
 
