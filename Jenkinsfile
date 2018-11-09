@@ -11,7 +11,7 @@ pipeline {
                         export PATH="/usr/local/bin:$PATH"
                         source ~/.bash_profile
                         scripts/jenkins_bootstrap.sh
-                        xcode-select /Applications/Xcode.app
+                        xcode-select -s /Applications/Xcode.app
                         scripts/decrypt_files.sh
                         cp encrypted_files/.env.default .env.default
                         bundle install --jobs=3 --retry=3 --deployment --path=${BUNDLE_PATH:-vendor/bundle}
