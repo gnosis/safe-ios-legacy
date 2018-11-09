@@ -7,7 +7,8 @@ pipeline {
         stage('test') {
             steps {
                 sh '''
-                    source ~/.bash_profile
+                    export PATH="$HOME/.rbenv/bin:$PATH"
+                    eval "$(rbenv init -)"
                     if ! rbenv which bundle > /dev/null; then
                       echo "Installing bundler"
                         gem install bundler
