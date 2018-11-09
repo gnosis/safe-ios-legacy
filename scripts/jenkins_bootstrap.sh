@@ -21,11 +21,6 @@ if ! rbenv versions | grep $PROJECT_RUBY_VERSION > /dev/null; then
   source ~/.bash_profile
 fi
 
-rbenv version
-rbenv which ruby
-rbenv which gem
-rbenv rehash
-
 if ! rbenv which bundle > /dev/null; then
   echo "Installing bundler"
   gem install bundler
