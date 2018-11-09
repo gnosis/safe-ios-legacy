@@ -16,7 +16,7 @@ pipeline {
                         cp encrypted_files/.env.default .env.default
                         bundle install --jobs=3 --retry=3 --deployment
                         bundle exec fastlane test scheme:safe
-                        bash <(curl -s https://codecov.io/bash) -D . -c
+                        curl -s https://codecov.io/bash | bash -D . -c
                     '''
                 }
             }
