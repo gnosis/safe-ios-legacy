@@ -23,6 +23,7 @@ public class IdentityService: Assertable {
         case passwordTooLong
         case passwordMissingCapitalLetter
         case passwordMissingDigit
+        case passwordHasTrippleChar
     }
 
     /// Error occurred during notification
@@ -100,8 +101,9 @@ public class IdentityService: Assertable {
         try assertArgument(!password.isEmpty, RegistrationError.emptyPassword)
         try assertArgument(password.count >= 6, RegistrationError.passwordTooShort)
         try assertArgument(password.count <= 100, RegistrationError.passwordTooLong)
-        try assertArgument(password.hasUppercaseLetter, RegistrationError.passwordMissingCapitalLetter)
+        try assertArgument(password.hasLetter, RegistrationError.passwordMissingCapitalLetter)
         try assertArgument(password.hasDecimalDigit, RegistrationError.passwordMissingDigit)
+        try assertArgument(password.hasNoTrippleChar, RegistrationError.passwordHasTrippleChar)
     }
 
     /// Attempts to authenticate user using password.
