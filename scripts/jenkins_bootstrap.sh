@@ -18,6 +18,7 @@ if ! rbenv versions | grep $PROJECT_RUBY_VERSION > /dev/null; then
   rbenv install $PROJECT_RUBY_VERSION
   echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
   echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+  source ~/.bash_profile
 fi
 
 if ! rbenv which bundle > /dev/null; then
