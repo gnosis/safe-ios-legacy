@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Common
 
 final class PasswordValidator {
 
@@ -12,12 +13,12 @@ final class PasswordValidator {
         return input.count >= minInputLength
     }
 
-    static func validateAtLeastOneCapitalLetterAndOneDigit(_ input: String) -> Bool {
-        return input.containsCapitalLetter() && input.containsDigit()
+    static func validateAtLeastOneLetterAndOneDigit(_ input: String) -> Bool {
+        return input.hasLetter && input.hasDecimalDigit
     }
 
     static func validateNoTrippleChar(_ input: String) -> Bool {
-        return input.noTrippleChar()
+        return input.hasNoTrippleChar
     }
 
     static func validate(input: String, equals other: String) -> Bool {

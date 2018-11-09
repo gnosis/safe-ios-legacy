@@ -24,13 +24,13 @@ class PasswordValidatorTests: XCTestCase {
     }
 
     func test_whenInputHasNoCapitalLetter_thenReturnsFalse() {
-        XCTAssertFalse(PasswordValidator.validateAtLeastOneCapitalLetterAndOneDigit("a"))
-        XCTAssertFalse(PasswordValidator.validateAtLeastOneCapitalLetterAndOneDigit("A"))
-        XCTAssertFalse(PasswordValidator.validateAtLeastOneCapitalLetterAndOneDigit("1"))
+        XCTAssertFalse(PasswordValidator.validateAtLeastOneLetterAndOneDigit("a"))
+        XCTAssertFalse(PasswordValidator.validateAtLeastOneLetterAndOneDigit("A"))
+        XCTAssertFalse(PasswordValidator.validateAtLeastOneLetterAndOneDigit("1"))
     }
 
     func test_whenInputHasCapitalLetterAndDigit_thenReturnsTrue() {
-        XCTAssertTrue(PasswordValidator.validateAtLeastOneCapitalLetterAndOneDigit("aB1"))
+        XCTAssertTrue(PasswordValidator.validateAtLeastOneLetterAndOneDigit("aB1"))
     }
 
     func test_whenInputHasTrippleChar_thenReturnsFalse() {
