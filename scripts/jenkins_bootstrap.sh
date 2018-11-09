@@ -19,6 +19,7 @@ if ! rbenv versions | grep $PROJECT_RUBY_VERSION > /dev/null; then
   echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
   echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
   source ~/.bash_profile
+  rbenv rehash
 fi
 
 if ! rbenv which bundle > /dev/null; then
