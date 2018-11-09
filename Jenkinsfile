@@ -7,6 +7,11 @@ pipeline {
         stage('test') {
             steps {
                 sh '''
+                    source ~/.bash_profile
+                    if ! rbenv which bundle > /dev/null; then
+                      echo "Installing bundler"
+                        gem install bundler
+                    fi
                     scripts/decrypt_files.sh
                     cp encrypted_files/.env.default .env.default
                     bundle install --jobs=3 --retry=3 --deployment --path=${BUNDLE_PATH:-vendor/bundle}
