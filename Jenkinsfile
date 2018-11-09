@@ -17,7 +17,7 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts artifacts: 'Build/build_logs/', 'Build/reports/', 'Build/pre_build_action.log'
+            archiveArtifacts 'Build/build_logs/,Build/reports/,Build/pre_build_action.log'
             junit 'Build/reports/**/*.xml'
             sh 'git clean -fd'
         }
