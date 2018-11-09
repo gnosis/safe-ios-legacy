@@ -9,6 +9,7 @@ pipeline {
                 ansiColor('xterm') {
                     sh '''
                         export PATH="/usr/local/bin:$PATH"
+                        export CI="true"
                         source ~/.bash_profile
                         scripts/jenkins_bootstrap.sh
                         scripts/decrypt_files.sh
@@ -23,7 +24,7 @@ pipeline {
     post {
         always {
             archiveArtifacts 'Build/build_logs/,Build/reports/,Build/pre_build_action.log'
-            junit 'Build/reports/**/*.xml'
+            junit 'Build/reports/**/*.junit'
             sh 'git clean -fd'
         }
         success {
