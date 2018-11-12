@@ -7,34 +7,19 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 ansiColor('xterm') {
-                    sh '''
-                        export PATH="/usr/local/bin:$PATH"
-                        export CI="true"
-                        source ~/.bash_profile
-                        scripts/jenkins_bootstrap.sh
-                        scripts/decrypt_files.sh
-                        cp encrypted_files/.env.default .env.default
-                        bundle install --jobs=3 --retry=3
-                        bundle exec fastlane test scheme:safe
-                    '''
+                    sh 'scripts/jenkins_build.sh test'
                     // sh 'scripts/codecov.sh -D . -c'
                     junit 'Build/reports/**/*.junit'
                 }
             }
         }
         stage('Deploy') {
+            // when {
+            //     branch '(master|release\/.*)'
+            // }
             steps {
                 ansiColor('xterm') {
-                    sh '''
-                        export PATH="/usr/local/bin:$PATH"
-                        export CI="true"
-                        source ~/.bash_profile
-                        scripts/jenkins_bootstrap.sh
-                        scripts/decrypt_files.sh
-                        cp encrypted_files/.env.default .env.default
-                        bundle install --jobs=3 --retry=3 
-                        bundle exec fastlane fabric
-                    '''
+                    sh 'scripts/jenkins_build.sh adhoc'
                     archiveArtifacts 'Build/Archive.xcarchive'
                 }
             }

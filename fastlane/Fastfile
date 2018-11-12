@@ -97,7 +97,7 @@ platform :ios do
       build_number: build_number + 1,
       xcodeproj: PROJECT
     )
-    match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"])
+    match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"], clone_branch_directly: true)
     gym(configuration: "PreRelease",
       scheme: "safe", 
       include_symbols: true,
