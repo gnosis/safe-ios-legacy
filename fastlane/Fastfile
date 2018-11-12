@@ -113,7 +113,8 @@ platform :ios do
       build_number: build_number + 1,
       xcodeproj: PROJECT
     )
-    puts "FASTLANE_SESSION", ENV["FASTLANE_SESSION"]
+    puts "FASTLANE_SESSION"
+    puts ENV["FASTLANE_SESSION"]
     match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"], clone_branch_directly: true)
     gym(configuration: "PreRelease",
       scheme: "safe", 
