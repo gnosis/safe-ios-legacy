@@ -42,7 +42,7 @@ platform :ios do
       create_keychain(name: KEYCHAIN_NAME,
         default_keychain: true,
         unlock: true,
-        password: ENV["KEYCHAIN_PASSWORD"]),
+        password: ENV["KEYCHAIN_PASSWORD"],
         timeout: 3600,
         lock_when_sleeps: false)
       setup_jenkins(keychain_path: KEYCHAIN_NAME, keychain_password: ENV["KEYCHAIN_PASSWORD"])
