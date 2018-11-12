@@ -38,7 +38,7 @@ platform :ios do
     PROJECT = "safe/safe.xcodeproj"
     KEYCHAIN_NAME="CI"
     if is_ci
-      delete_keychain(KEYCHAIN_NAME)
+      delete_keychain(name: KEYCHAIN_NAME)
       create_keychain(name: KEYCHAIN_NAME,
         default_keychain: true,
         unlock: true,
