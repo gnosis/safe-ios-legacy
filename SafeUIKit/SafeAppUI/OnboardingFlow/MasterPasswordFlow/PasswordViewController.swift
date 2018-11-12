@@ -33,8 +33,8 @@ final class PasswordViewController: UIViewController {
                                                  comment: "Set password screen description.")
         static let length = LocalizedString("onboarding.set_password.length",
                                             comment: "Use a minimum of 8 characters.")
-        static let capitalAndDigit = LocalizedString("onboarding.set_password.capital_and_number",
-                                                     comment: "At least 1 number and 1 letter.")
+        static let letterAndDigit = LocalizedString("onboarding.set_password.letter_and_digit",
+                                                    comment: "At least 1 digit and 1 letter.")
         static let trippleChars = LocalizedString("onboarding.set_password.no_tripple_chars",
                                                   comment: "No triple characters.")
         static let matchPassword = LocalizedString("onboarding.confirm_password.match",
@@ -77,8 +77,8 @@ final class PasswordViewController: UIViewController {
 
     private func addSetPasswordRules() {
         verifiableInput.addRule(Strings.length) { PasswordValidator.validateMinLength($0) }
-        verifiableInput.addRule(Strings.capitalAndDigit) {
-            PasswordValidator.validateAtLeastOneCapitalLetterAndOneDigit($0)
+        verifiableInput.addRule(Strings.letterAndDigit) {
+            PasswordValidator.validateAtLeastOneLetterAndOneDigit($0)
         }
         verifiableInput.addRule(Strings.trippleChars) { PasswordValidator.validateNoTrippleChar($0) }
     }

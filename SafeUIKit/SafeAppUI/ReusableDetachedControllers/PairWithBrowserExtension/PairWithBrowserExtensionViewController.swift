@@ -9,11 +9,9 @@ import MultisigWalletApplication
 import Common
 import SafariServices
 
-protocol PairWithBrowserDelegate: class {
-    func didPair()
-}
-
 final class PairWithBrowserExtensionViewController: UIViewController {
+
+    typealias PairCompletion = (_ address: String, _ code: String) -> Void
 
     enum Strings {
         static let title = LocalizedString("new_safe.browser_extension.title",
@@ -44,7 +42,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     @IBOutlet weak var step1Label: UILabel!
     @IBOutlet weak var step2Label: UILabel!
 
-    private(set) weak var delegate: PairWithBrowserDelegate?
+    public private(set) var pairCompletion: PairCompletion!
     private var logger: Logger {
         return MultisigWalletApplication.ApplicationServiceRegistry.logger
     }
@@ -58,9 +56,9 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     var scanBarButtonItem: ScanBarButtonItem!
     private var activityIndicator: UIActivityIndicatorView!
 
-    static func create(delegate: PairWithBrowserDelegate) -> PairWithBrowserExtensionViewController {
-        let controller = StoryboardScene.NewSafe.pairWithBrowserExtensionViewController.instantiate()
-        controller.delegate = delegate
+    static func create(completion: @escaping PairCompletion) -> PairWithBrowserExtensionViewController {
+        let controller = StoryboardScene.PairWithBrowserExtension.pairWithBrowserExtensionViewController.instantiate()
+        controller.pairCompletion = completion
         return controller
     }
 
@@ -71,6 +69,23 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         configureActivityIndicator()
         configureWrapperView()
         configureTexts()
+    }
+
+    func handleError(_ error: Error) {
+        guard  let err = error as? WalletApplicationServiceError else {
+            showError(message: Strings.invalidCode, log: "Failed to pair with extension: \(error)")
+            return
+        }
+        switch err {
+        case .validationFailed:
+            showError(message: Strings.invalidCode, log: "Invalid browser extension code")
+        case .networkError, .clientError:
+            showError(message: Strings.networkError, log: "Network Error in pairing")
+        case .exceededExpirationDate:
+            showError(message: Strings.browserExtensionExpired, log: "Browser Extension code is expired")
+        default:
+            showError(message: Strings.invalidCode, log: "Failed to pair with extension: \(error)")
+        }
     }
 
     private func configureScanButton() {
@@ -118,19 +133,15 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     private func addBrowserExtensionOwner(code: String) {
         let address = scanBarButtonItem.scanValidatedConverter!(code)!
-        do {
-            try walletService.addBrowserExtensionOwner(address: address, browserExtensionCode: code)
-            DispatchQueue.main.async {
-                self.delegate?.didPair()
-            }
-        } catch WalletApplicationServiceError.validationFailed {
-            showError(message: Strings.invalidCode, log: "Invalid browser extension code")
-        } catch let error as WalletApplicationServiceError where error == .networkError || error == .clientError {
-            showError(message: Strings.networkError, log: "Network Error in pairing")
-        } catch WalletApplicationServiceError.exceededExpirationDate {
-            showError(message: Strings.browserExtensionExpired, log: "Browser Extension code is expired")
-        } catch let e {
-            showError(message: Strings.invalidCode, log: "Failed to pair with extension: \(e)")
+        DispatchQueue.main.async {
+            self.showScanButton()
+            self.pairCompletion(address, code)
+        }
+    }
+
+    private func showError(message: String, log: String) {
+        DispatchQueue.main.async {
+            ErrorHandler.showError(message: message, log: log, error: nil)
         }
     }
 
@@ -144,13 +155,6 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     private func showScanButton() {
         navigationItem.rightBarButtonItem = scanBarButtonItem
-    }
-
-    private func showError(message: String, log: String) {
-        DispatchQueue.main.async {
-            self.showScanButton()
-            ErrorHandler.showError(message: message, log: log, error: nil)
-        }
     }
 
     // MARK: - Debug Buttons

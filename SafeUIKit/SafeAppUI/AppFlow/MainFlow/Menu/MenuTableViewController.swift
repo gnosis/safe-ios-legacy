@@ -10,6 +10,8 @@ protocol MenuTableViewControllerDelegate: class {
     func didSelectManageTokens()
     func didSelectTermsOfUse()
     func didSelectPrivacyPolicy()
+    func didSelectConnectBrowserExtension()
+    func didSelectChangeBrowserExtension()
 }
 
 final class MenuItemTableViewCell: UITableViewCell {
@@ -40,6 +42,8 @@ final class MenuTableViewController: UITableViewController {
                                                           comment: "Change recovery key  menu item")
         static let changeBrowserExtension = LocalizedString("menu.action.change_browser_extension",
                                                             comment: "Change browser extension menu item")
+        static let connectBrowserExtension = LocalizedString("menu.action.connect_browser_extension",
+                                                             comment: "Connect browser extension menu item")
         static let feedback = LocalizedString("menu.action.feedback_and_faq", comment: "Feedback and FAQ menu item")
         static let terms = LocalizedString("menu.action.terms",
                                            comment: "Terms menu item")
@@ -98,7 +102,9 @@ final class MenuTableViewController: UITableViewController {
 
     private func generateData() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
-
+        let hasBrowserExtension = ApplicationServiceRegistry.walletService.isOwnerExists(.browserExtension)
+        let browserExtensionItem =
+            hasBrowserExtension ? menuItem(Strings.changeBrowserExtension) : menuItem(Strings.connectBrowserExtension)
         menuItems = [
             (section: .safe,
              items: [
@@ -111,14 +117,12 @@ final class MenuTableViewController: UITableViewController {
             (section: .portfolio,
              items: [menuItem(Strings.manageTokens)],
              title: Strings.portfolioSectionTitle),
-            /*
             (section: .security,
              items: [
-                menuItem(Strings.changePassword),
-                menuItem(Strings.changeRecoveryPhrase),
-                menuItem(Strings.changeBrowserExtension)],
+//                menuItem(Strings.changePassword),
+//                menuItem(Strings.changeRecoveryPhrase),
+                browserExtensionItem],
              title: Strings.securitySectionTitle),
-            */
             (section: .support,
              items: [
 //                menuItem(Strings.feedback),
@@ -190,9 +194,17 @@ final class MenuTableViewController: UITableViewController {
 
         switch menuItems[indexPath.section].section {
         case .portfolio:
-            if let manageTokensItem = menuItems[indexPath.section].items[indexPath.row].item as? MenuItem,
-                manageTokensItem.name == Strings.manageTokens {
+            if let manageTokensItem = menuItem(at: indexPath), manageTokensItem.name == Strings.manageTokens {
                 delegate?.didSelectManageTokens()
+            }
+        case .security:
+            let item =  menuItem(at: indexPath)!
+            switch item.name {
+            case Strings.connectBrowserExtension:
+                delegate?.didSelectConnectBrowserExtension()
+            case Strings.changeBrowserExtension:
+                delegate?.didSelectChangeBrowserExtension()
+            default: break
             }
         case .support:
             if indexPath.row == 0 {
@@ -202,6 +214,10 @@ final class MenuTableViewController: UITableViewController {
             }
         default: break
         }
+    }
+
+    private func menuItem(at indexPath: IndexPath) -> MenuItem? {
+        return menuItems[indexPath.section].items[indexPath.row].item as? MenuItem
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

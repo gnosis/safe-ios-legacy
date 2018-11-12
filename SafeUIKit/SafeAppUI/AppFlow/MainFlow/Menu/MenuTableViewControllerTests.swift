@@ -5,6 +5,7 @@
 import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
+import CommonTestSupport
 
 class MenuTableViewControllerTests: XCTestCase {
 
@@ -22,10 +23,23 @@ class MenuTableViewControllerTests: XCTestCase {
     }
 
     func test_whenCreated_thenConfigured() {
-        XCTAssertEqual(controller.tableView.numberOfSections, 3)
+        XCTAssertEqual(controller.tableView.numberOfSections, 4)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 2)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 1), 1)
-        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 2), 3)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 2), 1)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 3), 3)
+    }
+
+    func test_whenBrowserExtensionIsNotConnected_thenConnectBrowserExtensionCellIsShown() {
+        let cell = self.cell(row: 0, section: 2)
+        XCTAssertEqual(cell.textLabel?.text, XCLocalizedString("menu.action.connect_browser_extension"))
+    }
+
+    func test_whenBrowserExtensionIsConnected_thenChangeBrowserExtensionCellIsShown() {
+        walletService.addOwner(address: "test", type: .browserExtension)
+        controller.viewDidLoad()
+        let cell = self.cell(row: 0, section: 2)
+        XCTAssertEqual(cell.textLabel?.text, XCLocalizedString("menu.action.change_browser_extension"))
     }
 
     func test_whenCreated_thenRowHeightsAreProvided() {
@@ -58,13 +72,25 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.manageTokensSelected)
     }
 
-    func test_whenSelectingTermsOfUse_thenCallsDelegate() {
+    func test_whenSelectingConnectBrowserExtension_thenCallsDelegate() {
         selectCell(row: 0, section: 2)
+        XCTAssertTrue(delegate.didCallConnectBrowserExtension)
+    }
+
+    func test_whenSelectingChangeBrowserExtension_thenCallsDelegate() {
+        walletService.addOwner(address: "test", type: .browserExtension)
+        controller.viewDidLoad()
+        selectCell(row: 0, section: 2)
+        XCTAssertTrue(delegate.didCallChangeBrowserExtension)
+    }
+
+    func test_whenSelectingTermsOfUse_thenCallsDelegate() {
+        selectCell(row: 0, section: 3)
         XCTAssertTrue(delegate.didCallTermsOfUse)
     }
 
     func test_whenSelectingPrivacy_thenCallsDelegate() {
-        selectCell(row: 1, section: 2)
+        selectCell(row: 1, section: 3)
         XCTAssertTrue(delegate.didCallPrivacyPolicy)
     }
 
@@ -99,14 +125,23 @@ final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate
     }
 
     var didCallTermsOfUse = false
-
     func didSelectTermsOfUse() {
         didCallTermsOfUse = true
     }
 
     var didCallPrivacyPolicy = false
-
     func didSelectPrivacyPolicy() {
         didCallPrivacyPolicy = true
     }
+
+    var didCallConnectBrowserExtension = false
+    func didSelectConnectBrowserExtension() {
+        didCallConnectBrowserExtension = true
+    }
+
+    var didCallChangeBrowserExtension = false
+    func didSelectChangeBrowserExtension() {
+        didCallChangeBrowserExtension = true
+    }
+
 }
