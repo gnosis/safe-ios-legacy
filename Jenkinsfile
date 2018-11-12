@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Deploy') {
             when {
-                branch '(master|release\/.*)'
+                branch '(master|release\\/.*)'
             }
             steps {
                 ansiColor('xterm') {
