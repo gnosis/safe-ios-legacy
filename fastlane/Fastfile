@@ -36,9 +36,16 @@ platform :ios do
     ENV["GYM_WORKSPACE"] = workspace
     ENV["SCAN_WORKSPACE"] = workspace
     PROJECT = "safe/safe.xcodeproj"
+    KEYCHAIN_NAME="CI"
     if is_ci
-      setup_jenkins(keychain_path: File.join(ENV["PWD"], "encrypted_files/Jenkins.keychain"),
-        keychain_password: ENV["KEYCHAIN_PASSWORD"])
+      delete_keychain(KEYCHAIN_NAME)
+      create_keychain(name: KEYCHAIN_NAME,
+        default_keychain: true,
+        unlock: true,
+        password: ENV["KEYCHAIN_PASSWORD"]),
+        timeout: 3600,
+        lock_when_sleeps: false)
+      setup_jenkins(keychain_path: KEYCHAIN_NAME, keychain_password: ENV["KEYCHAIN_PASSWORD"])
       increment_build_number(build_number: ENV["BUILD_NUMBER"], xcodeproj: PROJECT)
     end
   end
@@ -131,7 +138,6 @@ platform :ios do
     )
   end
 end
-
 
 # More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
 # All available actions: https://docs.fastlane.tools/actions
