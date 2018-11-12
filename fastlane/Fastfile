@@ -38,6 +38,9 @@ platform :ios do
     PROJECT = "safe/safe.xcodeproj"
     KEYCHAIN_NAME="CI"
     if is_ci
+      if File.exist?(File.join(ENV["HOME"], "Library/Keychains/CI-db"))
+        delete_keychain(name: KEYCHAIN_NAME)
+      end
       create_keychain(name: KEYCHAIN_NAME,
         default_keychain: true,
         unlock: true,
