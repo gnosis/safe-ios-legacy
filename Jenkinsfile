@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         ENCRYPTED_FILES_SECRET_KEY = credentials('ENCRYPTED_FILES_SECRET_KEY')
-        KEYCHAIN_PASSWORD = credentials('KEYCHAIN_PASSWORD')
     }
     stages {
         // stage('Unit Tests') {
