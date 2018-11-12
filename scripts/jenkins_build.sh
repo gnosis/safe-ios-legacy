@@ -14,7 +14,7 @@ case "$1" in
 
 test) bundle exec fastlane test scheme:safe
     ;;
-adhoc) bundle exec fastlane fabric --verbose
+adhoc) bundle exec fastlane fabric
     ;;
 *) echo "Invalid option"; exit 1;
     ;;
