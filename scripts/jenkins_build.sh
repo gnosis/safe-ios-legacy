@@ -13,6 +13,8 @@ bundle install --jobs=3 --retry=3
 case "$1" in
 
 test) bundle exec fastlane test scheme:safe
+    source .env.default
+    curl -s https://codecov.io/bash | bash -s -- -D . -c -t "${CODECOV_TOKEN}"
     ;;
 adhoc) bundle exec fastlane fabric
     ;;
