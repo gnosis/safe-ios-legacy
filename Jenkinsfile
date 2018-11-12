@@ -20,7 +20,8 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     sh 'scripts/jenkins_build.sh adhoc'
-                    archiveArtifacts 'Build/Archive.xcarchive'
+                    sh 'tar -czf archive.tgz ./Build/Archive.xcarchive'                    
+                    archiveArtifacts 'archive.tgz'
                 }
             }
         }
