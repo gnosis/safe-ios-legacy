@@ -5,6 +5,12 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`0.8.2`_ - 2018-11-13
+=====================
+Changed
+-----
+- Forced to use always encrypted AppConfig for PreRelease and Release configurations
+
 `0.8.1`_ - 2018-11-08
 =====================
 Changed
@@ -171,6 +177,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _0.8.2: https://github.com/gnosis/safe-ios/tree/0.8.2
 .. _0.8.1: https://github.com/gnosis/safe-ios/tree/0.8.1
 .. _0.8.0: https://github.com/gnosis/safe-ios/tree/0.8.0
 .. _0.7.0: https://github.com/gnosis/safe-ios/tree/0.7.0
