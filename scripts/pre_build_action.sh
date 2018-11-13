@@ -3,7 +3,10 @@
 set -ex
 
 cd ${SRCROOT}/..
-if [ ! -e AppConfig.yml ]; then
+if [ ${CONFIGURATION} == 'PreRelease' ] || [ ${CONFIGURATION} == 'Release' ]; then
+  source .env.default && export ENCRYPTED_FILES_SECRET_KEY && ./scripts/decrypt_files.sh
+  cp encrypted_files/AppConfig.yml .
+elif [ ! -e AppConfig.yml ]; then
   cp encrypted_files/AppConfig.yml .
 fi
 
