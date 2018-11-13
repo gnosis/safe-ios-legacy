@@ -31,14 +31,36 @@ platform :ios do
     DERIVED_DATA_PATH = "."
     BUILD_PATH = "Build"
     ARCHIVE_PATH = "Build/Archive"
-    REPORTS_PATH = "Build/reports"
+    OUTPUT_PATH = "Build/reports"
     workspace = "safe.xcworkspace"
     ENV["GYM_WORKSPACE"] = workspace
     ENV["SCAN_WORKSPACE"] = workspace
     PROJECT = "safe/safe.xcodeproj"
+    KEYCHAIN_NAME="CI"
+    KEYCHAIN_PASSWORD=ENV["KEYCHAIN_PASSWORD"]
     if is_ci
-      setup_travis
-      increment_build_number(build_number: ENV["TRAVIS_BUILD_NUMBER"], xcodeproj: PROJECT)
+      if File.exist?(File.join(ENV["HOME"], "Library/Keychains/CI-db"))
+        delete_keychain(name: KEYCHAIN_NAME)
+      end
+      create_keychain(name: KEYCHAIN_NAME,
+        default_keychain: true,
+        unlock: true,
+        password: KEYCHAIN_PASSWORD,
+        timeout: 3600,
+        lock_when_sleeps: false)
+      setup_jenkins(keychain_path: KEYCHAIN_NAME, 
+        keychain_password: KEYCHAIN_PASSWORD,
+        output_directory: OUTPUT_PATH,
+        derived_data_path: DERIVED_DATA_PATH)
+      increment_build_number(build_number: ENV["BUILD_NUMBER"], xcodeproj: PROJECT)
+      ENV["MATCH_KEYCHAIN_NAME"] = KEYCHAIN_NAME
+      ENV["MATCH_KEYCHAIN_PASSWORD"] = KEYCHAIN_PASSWORD
+    end
+  end
+
+  after_all do
+    if is_ci
+      delete_keychain(name: KEYCHAIN_NAME)
     end
   end
 
@@ -53,7 +75,7 @@ platform :ios do
       skip_build: true, 
       slack_only_on_failure: true, 
       result_bundle: true,
-      output_directory: REPORTS_PATH,
+      output_directory: OUTPUT_PATH,
       buildlog_path: BUILD_LOG_PATH,
       derived_data_path: DERIVED_DATA_PATH,
       devices: ['iPhone X']}.merge(params))
@@ -70,7 +92,9 @@ platform :ios do
     #NOTE: disabled until CI migration
     #test_all
     set_bundle_id ADHOC_APP_ID
-    match(type: "adhoc", app_identifier: ADHOC_APP_ID, clone_branch_directly: true)
+    match(type: "adhoc", 
+      app_identifier: ADHOC_APP_ID, 
+      clone_branch_directly: true)
     gym(configuration: "AdHoc", 
       scheme: "safe", 
       buildlog_path: BUILD_LOG_PATH,
@@ -97,7 +121,7 @@ platform :ios do
       build_number: build_number + 1,
       xcodeproj: PROJECT
     )
-    match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"])
+    match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"], clone_branch_directly: true)
     gym(configuration: "PreRelease",
       scheme: "safe", 
       include_symbols: true,
@@ -130,7 +154,6 @@ platform :ios do
     )
   end
 end
-
 
 # More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
 # All available actions: https://docs.fastlane.tools/actions

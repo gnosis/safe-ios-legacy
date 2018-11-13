@@ -17,7 +17,7 @@ import UIKit
  A view controller must not present any other view controller. Rather, the FlowCoordinator handles what controller to
  present next and how to present it.
 
- A detached controller is a view controller that implements a single task by itself, without other controllers.
+ A reusable detached controller is a view controller that implements a single task by itself, without other controllers.
  Detached controller must have public factory method with completion closure. That is needed to use detached controller
  from several flows.
  For example, UnlockViewController handles password or biometry authentication, and is used from different parts of the
