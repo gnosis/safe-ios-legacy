@@ -52,9 +52,9 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenOpensTermsOfUse_thenOpensSafari() {
-        let service = MockWalletApplicationService()
-        ApplicationServiceRegistry.put(service: service, for: WalletApplicationService.self)
-        service.termsOfUseURL = URL(string: "https://gnosis.pm/")!
+        var config = WalletApplicationServiceConfiguration.default
+        config.termsOfUseURL = URL(string: "https://gnosis.pm/")!
+        reconfigureService(with: config)
         pressSetupPasswordButton()
         flowCoordinator.wantsToOpenTermsOfUse()
         delay(1.0)
@@ -63,9 +63,9 @@ class OnboardingFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenOpensPrivacyPolicy_thenOpensSafari() {
-        let service = MockWalletApplicationService()
-        ApplicationServiceRegistry.put(service: service, for: WalletApplicationService.self)
-        service.privacyPolicyURL = URL(string: "https://gnosis.pm/")!
+        var config = WalletApplicationServiceConfiguration.default
+        config.privacyPolicyURL = URL(string: "https://gnosis.pm/")!
+        reconfigureService(with: config)
         pressSetupPasswordButton()
         flowCoordinator.wantsToOpenPrivacyPolicy()
         delay(1.0)

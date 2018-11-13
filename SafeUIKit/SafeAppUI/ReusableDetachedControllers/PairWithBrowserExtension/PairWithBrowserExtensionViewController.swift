@@ -126,7 +126,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     }
 
     @objc private func downloadBrowserExtension() {
-        let safariVC = SFSafariViewController(url: URL(string: walletService.chromeExtensionURL)!)
+        let safariVC = SFSafariViewController(url: walletService.configuration.chromeExtensionURL)
         safariVC.modalPresentationStyle = .popover
         present(safariVC, animated: true)
     }

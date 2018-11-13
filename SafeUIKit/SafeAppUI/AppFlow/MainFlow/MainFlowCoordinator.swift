@@ -150,11 +150,11 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
     }
 
     func didSelectTermsOfUse() {
-        openInSafari(ApplicationServiceRegistry.walletService.termsOfUseURL)
+        openInSafari(ApplicationServiceRegistry.walletService.configuration.termsOfUseURL)
     }
 
     func didSelectPrivacyPolicy() {
-        openInSafari(ApplicationServiceRegistry.walletService.privacyPolicyURL)
+        openInSafari(ApplicationServiceRegistry.walletService.configuration.privacyPolicyURL)
     }
 
     func didSelectConnectBrowserExtension() {

@@ -50,12 +50,11 @@ public class WalletApplicationService: Assertable {
         return selectedWallet?.minimumDeploymentTransactionAmount
     }
 
-    public var transactionWebURLFormat: String!
-    public var chromeExtensionURL: String!
-    public var privacyPolicyURL: URL!
-    public var termsOfUseURL: URL!
+    public let configuration: WalletApplicationServiceConfiguration
 
-    public init() {}
+    public init(configuration: WalletApplicationServiceConfiguration = .default) {
+        self.configuration = configuration
+    }
 
     // MARK: - Wallet
 
@@ -129,8 +128,7 @@ public class WalletApplicationService: Assertable {
     }
 
     public func walletCreationURL() -> URL {
-        let creationTransactionHash = selectedWallet!.creationTransactionHash!
-        return URL(string: String(format: transactionWebURLFormat, creationTransactionHash))!
+        return configuration.transactionURL(for: selectedWallet!.creationTransactionHash!)
     }
 
     // MARK: - Owners
@@ -386,7 +384,7 @@ public class WalletApplicationService: Assertable {
 
     public func transactionURL(_ id: String) -> URL {
         let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
-        return URL(string: String(format: transactionWebURLFormat, tx.transactionHash!.value))!
+        return configuration.transactionURL(for: tx.transactionHash!.value)
     }
 
     public func grouppedTransactions() -> [TransactionGroupData] {

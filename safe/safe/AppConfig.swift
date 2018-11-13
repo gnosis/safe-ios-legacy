@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import MultisigWalletApplication
 
 struct AppConfig: Codable {
 
@@ -12,7 +13,7 @@ struct AppConfig: Codable {
     var notificationServiceURL: URL
     var tokenListServiceURL: URL
     var transactionWebURLFormat: String
-    var chromeExtensionURL: String
+    var chromeExtensionURL: URL
     var termsOfUseURL: URL
     var privacyPolicyURL: URL
 
@@ -61,6 +62,17 @@ extension AppConfig {
             return nil
         }
         return try AppConfig(contentsOfFile: file)
+    }
+
+}
+
+extension AppConfig {
+
+    var walletApplicationServiceConfiguration: WalletApplicationServiceConfiguration {
+        return .init(transactionURLFormat: transactionWebURLFormat,
+                     chromeExtensionURL: chromeExtensionURL,
+                     privacyPolicyURL: privacyPolicyURL,
+                     termsOfUseURL: termsOfUseURL)
     }
 
 }
