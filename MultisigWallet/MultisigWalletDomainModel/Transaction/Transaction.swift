@@ -45,7 +45,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public private(set) var fee: TokenAmount?
     public private(set) var status: TransactionStatus.Code {
         get {
-            return state.status
+            return state.code
         }
         set {
             state = TransactionStatus.status(newValue)

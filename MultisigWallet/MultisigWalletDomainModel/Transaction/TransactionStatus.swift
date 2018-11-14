@@ -26,7 +26,7 @@ public class TransactionStatus: Assertable {
         case discarded
     }
 
-    var status: TransactionStatus.Code { return .draft }
+    var code: TransactionStatus.Code { return .draft }
     var canChangeParameters: Bool { return false }
     var canChangeBlockchainHash: Bool { return false }
     var canChangeSignatures: Bool { return false }
@@ -49,30 +49,30 @@ public class TransactionStatus: Assertable {
     }
 
     func reset(_ tx: Transaction) {
-        preconditionFailure("Illegal state transition: reset transaction from \(status)")
+        preconditionFailure("Illegal state transition: reset transaction from \(code)")
     }
 
     func reject(_ tx: Transaction) {
-        preconditionFailure("Illegal state transition: reject transaction from \(status)")
+        preconditionFailure("Illegal state transition: reject transaction from \(code)")
     }
 
     func succeed(_ tx: Transaction) {
-        preconditionFailure("Illegal state transition: succeed transaction from \(status)")
+        preconditionFailure("Illegal state transition: succeed transaction from \(code)")
     }
 
     func fail(_ tx: Transaction) {
-        preconditionFailure("Illegal state transition: fail transaction from \(status)")
+        preconditionFailure("Illegal state transition: fail transaction from \(code)")
     }
 
     func proceed(_ tx: Transaction) {
-        preconditionFailure("Illegal state transition: proceed transaction from \(status)")
+        preconditionFailure("Illegal state transition: proceed transaction from \(code)")
     }
 
 }
 
 class DraftTransactionStatus: TransactionStatus {
 
-    override var status: TransactionStatus.Code { return .draft }
+    override var code: TransactionStatus.Code { return .draft }
     override var canChangeParameters: Bool { return true }
     override var canChangeBlockchainHash: Bool { return true }
     override var canChangeSignatures: Bool { return true }
@@ -90,7 +90,7 @@ class DraftTransactionStatus: TransactionStatus {
 
 class SigningTransactionStatus: TransactionStatus {
 
-    override var status: TransactionStatus.Code { return .signing }
+    override var code: TransactionStatus.Code { return .signing }
     override var canChangeBlockchainHash: Bool { return true }
     override var canChangeSignatures: Bool { return true }
 
@@ -111,7 +111,7 @@ class SigningTransactionStatus: TransactionStatus {
 
 class PendingTransactionStatus: TransactionStatus {
 
-    override var status: TransactionStatus.Code { return .pending }
+    override var code: TransactionStatus.Code { return .pending }
     override func succeed(_ tx: Transaction) {
         tx.change(status: .success)
             .timestampProcessed(at: Date())
@@ -127,23 +127,23 @@ class PendingTransactionStatus: TransactionStatus {
 }
 
 class RejectedTransactionStatus: TransactionStatus {
-    override var status: TransactionStatus.Code { return .rejected }
+    override var code: TransactionStatus.Code { return .rejected }
 }
 
 class FailedTransactionStatus: TransactionStatus {
-    override var status: TransactionStatus.Code { return .failed }
+    override var code: TransactionStatus.Code { return .failed }
 }
 
 class SuccessTransactionStatus: TransactionStatus {
-    override var status: TransactionStatus.Code { return .success }
+    override var code: TransactionStatus.Code { return .success }
 }
 
 class DiscardedTransactionStatus: TransactionStatus {
 
-    override var status: TransactionStatus.Code { return .discarded }
+    override var code: TransactionStatus.Code { return .discarded }
 
     override func discard(_ tx: Transaction) {
-        preconditionFailure("Illegal state transition: discard transaction from \(status)")
+        preconditionFailure("Illegal state transition: discard transaction from \(code)")
     }
 
     public override func reset(_ tx: Transaction) {
