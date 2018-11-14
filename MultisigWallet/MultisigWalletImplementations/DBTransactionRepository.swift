@@ -194,28 +194,32 @@ LIMIT 1;
                                       type: transactionType,
                                       walletID: WalletID(walletID),
                                       accountID: AccountID(accountID))
-        update(it, transaction)
+        let timestamps = update(it, transaction)
+
         // initial status is draft
         switch targetTransactionStatus {
         case .draft: break
         case .signing:
-            transaction.change(status: .signing)
+            transaction.proceed()
         case .pending:
-            transaction.change(status: .signing).change(status: .pending)
+            transaction.proceed().proceed()
         case .rejected:
-            transaction.change(status: .signing).change(status: .rejected)
+            transaction.proceed().reject()
         case .failed:
-            transaction.change(status: .signing).change(status: .pending).change(status: .failed)
+            transaction.proceed().proceed().fail()
         case .success:
-            transaction.change(status: .signing).change(status: .pending).change(status: .success)
+            transaction.proceed().proceed().succeed()
         case .discarded:
-            transaction.change(status: .discarded)
+            transaction.discard()
         }
+
+        // because status changes will modify timestamps
+        timestamp(transaction, with: timestamps)
 
         return transaction
     }
 
-    private func update(_ it: ResultSetRowIterator, _ transaction: Transaction) {
+    private func update(_ it: ResultSetRowIterator, _ transaction: Transaction) -> Timestamps {
         if let sender = it.nextString() {
             transaction.change(sender: Address(sender))
         }
@@ -237,34 +241,42 @@ LIMIT 1;
             signatures.forEach { transaction.add(signature: $0) }
         }
 
-        updateTimestamps(it, transaction)
+        let timestamps = fetchTimestamps(it)
 
         if let transactionHashString = it.nextString() {
             transaction.set(hash: TransactionHash(transactionHashString))
         }
 
         updateRemaining(it, transaction)
+
+        return timestamps
     }
 
-    private func updateTimestamps(_ it: ResultSetRowIterator, _ transaction: Transaction) {
-        if let date = deserializedDate(it.nextString()) {
-            transaction.timestampCreated(at: date)
-        }
+    private typealias Timestamps = (created: Date?, updated: Date?, rejected: Date?, submitted: Date?, processed: Date?)
 
-        if let date = deserializedDate(it.nextString()) {
-            transaction.timestampUpdated(at: date)
-        }
+    private func fetchTimestamps(_ it: ResultSetRowIterator) -> Timestamps {
+        return (created: deserializedDate(it.nextString()),
+                updated: deserializedDate(it.nextString()),
+                rejected: deserializedDate(it.nextString()),
+                submitted: deserializedDate(it.nextString()),
+                processed: deserializedDate(it.nextString()))
+    }
 
-        if let date = deserializedDate(it.nextString()) {
-            transaction.timestampRejected(at: date)
+    private func timestamp(_ tx: Transaction, with stamps: Timestamps) {
+        if let date = stamps.created {
+            tx.timestampCreated(at: date)
         }
-
-        if let date = deserializedDate(it.nextString()) {
-            transaction.timestampSubmitted(at: date)
+        if let date = stamps.updated {
+            tx.timestampUpdated(at: date)
         }
-
-        if let date = deserializedDate(it.nextString()) {
-            transaction.timestampProcessed(at: date)
+        if let date = stamps.rejected {
+            tx.timestampRejected(at: date)
+        }
+        if let date = stamps.submitted {
+            tx.timestampSubmitted(at: date)
+        }
+        if let date = stamps.processed {
+            tx.timestampProcessed(at: date)
         }
     }
 

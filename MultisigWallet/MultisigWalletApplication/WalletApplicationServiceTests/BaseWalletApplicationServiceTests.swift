@@ -131,7 +131,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
                         TokenAmount(amount: 10, token: Token.Ether)))
                 .change(nonce: "0")
                 .timestampCreated(at: Date())
-                .change(status: .signing)
+                .proceed()
                 .timestampUpdated(at: Date())
             transactionRepository.save(transaction)
             return (transaction, signatureData, extensionAddress)

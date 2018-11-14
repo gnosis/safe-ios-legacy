@@ -189,9 +189,9 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
             .change(recipient: Address.testAccount1)
             .change(amount: TokenAmount.ether(1))
             .change(fee: TokenAmount.ether(1))
-            .change(status: .signing)
+            .proceed()
             .set(hash: TransactionHash.test1)
-            .change(status: .pending)
+            .proceed()
         transactionRepository.save(tx)
         XCTAssertEqual(service.transactionData(tx.id.id)!.status, .pending)
     }

@@ -35,14 +35,19 @@ class TransactionDomainServiceTests: XCTestCase {
     }
 
     func test_whenStatusIsNotDraft_thenDoesNotRemovesTransaction() {
-        tx.change(status: .discarded)
+        tx.discard()
         repo.save(tx)
         service.removeDraftTransaction(tx.id)
         XCTAssertNotNil(repo.findByID(tx.id))
     }
 
-    func test_whenNoTimestamps_thenOrdersByStatus() {
-        let stored = [Transaction.pending(), .failure(), .rejected(), .pending(), .success()]
+    func test_whenSameTimestamps_thenOrdersByStatus() {
+        let date = Date()
+        let stored = [Transaction.pending().allTimestamps(at: date),
+                      Transaction.failure().allTimestamps(at: date),
+                      Transaction.rejected().allTimestamps(at: date),
+                      Transaction.pending().allTimestamps(at: date),
+                      Transaction.success().allTimestamps(at: date)]
         save(stored)
         let all = service.allTransactions()
         let expected = stored.sorted { lhs, rhs in
@@ -52,6 +57,7 @@ class TransactionDomainServiceTests: XCTestCase {
                 return lhs.status.rawValue < rhs.status.rawValue
             }
         }
+        XCTAssertEqual(all.first, expected.first)
         XCTAssertEqual(all, expected)
     }
 
@@ -69,8 +75,7 @@ class TransactionDomainServiceTests: XCTestCase {
 
     func test_whenOnlyOneTimestamp_thenUsesWhatExists() {
         let stored = [
-            Transaction.pending().timestampCreated(at: Date(timeIntervalSince1970: 0)),
-            Transaction.pending().timestampUpdated(at: Date(timeIntervalSince1970: 1)),
+            Transaction.pending().timestampSubmitted(at: Date(timeIntervalSince1970: 1)),
             Transaction.failure().timestampProcessed(at: Date(timeIntervalSince1970: 2)),
             Transaction.rejected().timestampRejected(at: Date(timeIntervalSince1970: 3)),
             Transaction.pending().timestampSubmitted(at: Date(timeIntervalSince1970: 4)),
@@ -211,24 +216,24 @@ extension TransactionReceipt {
 extension Transaction {
 
     static func success() -> Transaction {
-        return pending().change(status: .success)
+        return pending().succeed()
     }
 
     static func failure() -> Transaction {
-        return pending().change(status: .failed)
+        return pending().fail()
     }
 
     static func pending() -> Transaction {
-        return signing().change(status: .pending)
+        return signing().proceed()
     }
 
     static func rejected() -> Transaction {
-        return signing().change(status: .rejected)
+        return signing().reject()
     }
 
     static func signing() -> Transaction {
         return draft()
-            .change(status: .signing)
+            .proceed()
             .add(signature: Signature(data: Data(), address: Address.testAccount1))
             .set(hash: TransactionHash.test1)
     }
@@ -247,7 +252,7 @@ extension Transaction {
     }
 
     static func discarded() -> Transaction {
-        return bare().change(status: .discarded)
+        return bare().discard()
     }
 
     static func bare() -> Transaction {
@@ -259,4 +264,11 @@ extension Transaction {
                            accountID: accountID)
     }
 
+    func allTimestamps(at date: Date) -> Transaction {
+        return timestampProcessed(at: date)
+            .timestampSubmitted(at: date)
+            .timestampRejected(at: date)
+            .timestampUpdated(at: date)
+            .timestampCreated(at: date)
+    }
 }

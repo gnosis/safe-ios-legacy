@@ -34,11 +34,9 @@ class TransactionTests: XCTestCase {
     func test_statusChangesFromDraftStatus() {
         givenNewlyCreatedTransaction()
         moveToSigningStatus()
-        transaction.change(status: .draft)
-        transaction.change(status: .signing)
-        transaction.change(status: .discarded)
-        transaction.change(status: .draft)
-        transaction.change(status: .discarded)
+        transaction.discard()
+        transaction.reset()
+        transaction.discard()
     }
 
     func test_whenInDraft_thenCanAddSignature() {
@@ -73,8 +71,8 @@ class TransactionTests: XCTestCase {
                        TransactionHash.test1)
         moveToSigningStatus()
         transaction.set(hash: .test2)
-        transaction.change(status: .pending)
-        transaction.change(status: .discarded)
+        transaction.proceed()
+        transaction.discard()
     }
 
     func test_timestampingAllowedInAnyButDiscardedState() {
@@ -98,13 +96,13 @@ class TransactionTests: XCTestCase {
             .set(hash: .test1)
             .timestampUpdated(at: Date())
             .add(signature: signature)
-            .change(status: .pending)
+            .proceed()
             .timestampSubmitted(at: Date())
-            .change(status: .success)
+            .succeed()
             .timestampProcessed(at: Date())
             .timestampRejected(at: Date())
-            .change(status: .discarded)
-        transaction.change(status: .draft)
+            .discard()
+        transaction.reset()
         XCTAssertNil(transaction.transactionHash)
         XCTAssertNil(transaction.submittedDate)
         XCTAssertNil(transaction.processedDate)
@@ -167,7 +165,7 @@ extension TransactionTests {
             .change(fee: .ether(0))
             .change(sender: .testAccount1)
             .change(recipient: .testAccount2)
-            .change(status: .signing)
+            .proceed()
     }
 
 }

@@ -23,8 +23,6 @@ public class TransactionDomainService {
                                       walletID: wallet.id,
                                       accountID: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
         transaction.change(sender: wallet.address!)
-            .timestampCreated(at: Date())
-            .timestampUpdated(at: Date())
         repository.save(transaction)
         return transaction.id
     }
@@ -89,8 +87,11 @@ public class TransactionDomainService {
             let receipt = try DomainRegistry.ethereumNodeService
                 .eth_getTransactionReceipt(transaction: tx.transactionHash!)
             if let receipt = receipt {
-                let status = receipt.status == .success ? TransactionStatus.success : .failed
-                tx.change(status: status).timestampProcessed(at: Date())
+                if receipt.status == .success {
+                    tx.succeed()
+                } else {
+                    tx.fail()
+                }
                 DomainRegistry.transactionRepository.save(tx)
                 hasUpdates = true
             }

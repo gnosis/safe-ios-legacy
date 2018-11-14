@@ -78,118 +78,140 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         self.accountID = accountID
         self.state = DraftTransactionStatus()
         super.init(id: id)
+        self.timestampCreated(at: Date())
+        self.timestampUpdated(at: Date())
     }
 
     // MARK: - Changing transaction's status
 
-    private static let statusTransitionTable: [TransactionStatus: [TransactionStatus]] =
-    [
-        .draft: [.signing, .discarded],
-        .signing: [.draft, .rejected, .pending, .discarded],
-        .rejected: [.discarded],
-        .pending: [.success, .failed, .discarded],
-        .success: [.discarded],
-        .failed: [.discarded],
-        .discarded: [.draft]
-    ]
-
     @discardableResult
-    public func change(status: TransactionStatus) -> Transaction {
-        assertAllowedTransition(to: status)
-        if status == .signing {
-            try! assertNotNil(sender, Error.senderNotSet)
-            try! assertNotNil(recipient, Error.recipientNotSet)
-            try! assertNotNil(amount, Error.amountNotSet)
-            try! assertNotNil(fee, Error.feeNotSet)
-        } else if status == .pending {
-            try! assertNotNil(transactionHash, Error.transactionHashNotSet)
-        }
-        if self.status == .discarded && status == .draft {
-            transactionHash = nil
-            createdDate = nil
-            updatedDate = nil
-            rejectedDate = nil
-            submittedDate = nil
-            processedDate = nil
-            signatures = []
-        }
-        self.status = status
+    public func discard() -> Transaction {
+        state.discard(self)
         return self
     }
 
-    private func assertAllowedTransition(to status: TransactionStatus) {
-        let allowedNextStates = Transaction.statusTransitionTable[self.status]!
-        try! assertTrue(allowedNextStates.contains(status),
-                        Error.invalidStatusTransition(from: self.status, to: status))
+    @discardableResult
+    public func reset() -> Transaction {
+        state.reset(self)
+        return self
+    }
+
+    fileprivate func resetParameters() {
+        transactionHash = nil
+        createdDate = nil
+        updatedDate = nil
+        rejectedDate = nil
+        submittedDate = nil
+        processedDate = nil
+        signatures = []
+    }
+
+    @discardableResult
+    public func proceed() -> Transaction {
+        state.proceed(self)
+        return self
+    }
+
+    @discardableResult
+    public func reject() -> Transaction {
+        state.reject(self)
+        return self
+    }
+
+    @discardableResult
+    public func succeed() -> Transaction {
+        state.succeed(self)
+        return self
+    }
+
+    @discardableResult
+    public func fail() -> Transaction {
+        state.fail(self)
+        return self
+    }
+
+    @discardableResult
+    fileprivate func change(status: TransactionStatus) -> Transaction {
+        self.status = status
+        return self
     }
 
     // MARK: - Editing Transaction draft
 
     @discardableResult
     public func change(amount: TokenAmount?) -> Transaction {
-        assertInDraftStatus()
+        assertCanChangeParameters()
         self.amount = amount
+        timestampUpdated(at: Date())
         return self
     }
 
     @discardableResult
     public func change(sender: Address?) -> Transaction {
-        assertInDraftStatus()
+        assertCanChangeParameters()
         self.sender = sender
+        timestampUpdated(at: Date())
         return self
     }
 
     @discardableResult
     public func change(recipient: Address?) -> Transaction {
-        assertInDraftStatus()
+        assertCanChangeParameters()
         self.recipient = recipient
+        timestampUpdated(at: Date())
         return self
     }
 
     @discardableResult
     public func change(fee: TokenAmount?) -> Transaction {
-        assertInDraftStatus()
+        assertCanChangeParameters()
         self.fee = fee
+        timestampUpdated(at: Date())
         return self
     }
 
     @discardableResult
     public func change(feeEstimate: TransactionFeeEstimate?) -> Transaction {
-        assertInDraftStatus()
+        assertCanChangeParameters()
         self.feeEstimate = feeEstimate
+        timestampUpdated(at: Date())
         return self
     }
 
     @discardableResult
     public func change(data: Data?) -> Transaction {
-        assertInDraftStatus()
+        assertCanChangeParameters()
         self.data = data
+        timestampUpdated(at: Date())
         return self
     }
 
     @discardableResult
     public func change(operation: WalletOperation?) -> Transaction {
-        assertInDraftStatus()
+        assertCanChangeParameters()
         self.operation = operation
+        timestampUpdated(at: Date())
         return self
     }
 
     @discardableResult
     public func change(nonce: String?) -> Transaction {
-        assertInDraftStatus()
+        assertCanChangeParameters()
         self.nonce = nonce
+        timestampUpdated(at: Date())
         return self
     }
 
     @discardableResult
     public func change(hash: Data?) -> Transaction {
-        assertInDraftStatus()
+        assertCanChangeParameters()
         self.hash = hash
+        timestampUpdated(at: Date())
         return self
     }
 
-    private func assertInDraftStatus() {
-        try! assertEqual(status, .draft, Error.invalidStatusForEditing(status))
+    private func assertCanChangeParameters() {
+        try! assertTrue(state.canChangeParameters, Error.invalidStatusForEditing(status))
     }
 
     /// Sets hash of the transaction (retrieved from a blockchain or pre-calculated).
@@ -197,9 +219,9 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     /// - Parameter hash: hash of the transaction
     @discardableResult
     public func set(hash: TransactionHash) -> Transaction {
-        try! assertTrue(status == .draft ||
-            status == .signing, Error.invalidStatusForSetHash(status))
+        try! assertTrue(state.canChangeBlockchainHash, Error.invalidStatusForSetHash(status))
         transactionHash = hash
+        timestampUpdated(at: Date())
         return self
     }
 
@@ -210,6 +232,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         assertSignaturesEditable()
         guard !signatures.contains(signature) else { return self }
         signatures.append(signature)
+        timestampUpdated(at: Date())
         return self
     }
 
@@ -218,6 +241,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
         assertSignaturesEditable()
         guard let index = signatures.index(of: signature) else { return self }
         signatures.remove(at: index)
+        timestampUpdated(at: Date())
         return self
     }
 
@@ -226,7 +250,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     }
 
     private func assertSignaturesEditable() {
-        try! assertTrue(status == .draft || status == .signing, Error.invalidStatusForSigning(status))
+        try! assertTrue(state.canChangeSignatures, Error.invalidStatusForSigning(status))
     }
 
     // MARK: - Recording transaction's state in the blockchain
@@ -236,7 +260,6 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     /// - Parameter at: timestamp of transaction creation
     @discardableResult
     public func timestampCreated(at date: Date) -> Transaction {
-        assertCanTimestamp()
         createdDate = date
         return self
     }
@@ -246,7 +269,6 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     /// - Parameter at: timestamp of submission event
     @discardableResult
     public func timestampUpdated(at date: Date) -> Transaction {
-        assertCanTimestamp()
         updatedDate = date
         return self
     }
@@ -256,7 +278,6 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     /// - Parameter at: timestamp of transaction rejection
     @discardableResult
     public func timestampRejected(at date: Date) -> Transaction {
-        assertCanTimestamp()
         rejectedDate = date
         return self
     }
@@ -265,7 +286,6 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     /// - Parameter at: timestamp of submission event
     @discardableResult
     public func timestampSubmitted(at date: Date) -> Transaction {
-        assertCanTimestamp()
         submittedDate = date
         return self
     }
@@ -275,16 +295,8 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     /// - Parameter at: timestamp of transaction processing
     @discardableResult
     public func timestampProcessed(at date: Date) -> Transaction {
-        assertCanTimestamp()
         processedDate = date
         return self
-    }
-
-    private static let timestampingStatuses: [TransactionStatus] =
-        [.draft, .signing, .pending, .rejected, .failed, .success]
-
-    private func assertCanTimestamp() {
-        try! assertTrue(Transaction.timestampingStatuses.contains(status), Error.invalidStatusForTimestamp(status))
     }
 
 }
@@ -313,9 +325,12 @@ public enum TransactionStatus: Int {
 
 }
 
-public class TransactionState {
+public class TransactionState: Assertable {
 
     public var status: TransactionStatus { return .draft }
+    public var canChangeParameters: Bool { return false }
+    public var canChangeBlockchainHash: Bool { return false }
+    public var canChangeSignatures: Bool { return false }
 
     public static func status(_ code: TransactionStatus) -> TransactionState {
         switch code {
@@ -329,18 +344,87 @@ public class TransactionState {
         }
     }
 
+    public func discard(_ tx: Transaction) {
+        tx.timestampUpdated(at: Date()).change(status: .discarded)
+
+    }
+
+    public func reset(_ tx: Transaction) {
+        preconditionFailure("Illegal state transition: reset transaction from \(status)")
+    }
+
+    public func reject(_ tx: Transaction) {
+        preconditionFailure("Illegal state transition: reject transaction from \(status)")
+    }
+
+    public func succeed(_ tx: Transaction) {
+        preconditionFailure("Illegal state transition: succeed transaction from \(status)")
+    }
+
+    public func fail(_ tx: Transaction) {
+        preconditionFailure("Illegal state transition: fail transaction from \(status)")
+    }
+
+    public func proceed(_ tx: Transaction) {
+        preconditionFailure("Illegal state transition: proceed transaction from \(status)")
+    }
+
 }
 
 class DraftTransactionStatus: TransactionState {
+
     override var status: TransactionStatus { return .draft }
+    override var canChangeParameters: Bool { return true }
+    override var canChangeBlockchainHash: Bool { return true }
+    override var canChangeSignatures: Bool { return true }
+
+    override func proceed(_ tx: Transaction) {
+        try! assertNotNil(tx.sender, Transaction.Error.senderNotSet)
+        try! assertNotNil(tx.recipient, Transaction.Error.recipientNotSet)
+        try! assertNotNil(tx.amount, Transaction.Error.amountNotSet)
+        try! assertNotNil(tx.fee, Transaction.Error.feeNotSet)
+        tx.change(status: .signing)
+            .timestampUpdated(at: Date())
+    }
+
 }
 
 class SigningTransactionStatus: TransactionState {
+
     override var status: TransactionStatus { return .signing }
+    override var canChangeBlockchainHash: Bool { return true }
+    override var canChangeSignatures: Bool { return true }
+
+    override func proceed(_ tx: Transaction) {
+        try! assertNotNil(tx.transactionHash, Transaction.Error.transactionHashNotSet)
+        tx.change(status: .pending)
+            .timestampSubmitted(at: Date())
+            .timestampUpdated(at: Date())
+    }
+
+    override func reject(_ tx: Transaction) {
+        tx.change(status: .rejected)
+            .timestampRejected(at: Date())
+            .timestampUpdated(at: Date())
+    }
+
 }
 
 class PendingTransactionStatus: TransactionState {
+
     override var status: TransactionStatus { return .pending }
+    override func succeed(_ tx: Transaction) {
+        tx.change(status: .success)
+            .timestampProcessed(at: Date())
+            .timestampUpdated(at: Date())
+    }
+
+    override func fail(_ tx: Transaction) {
+        tx.change(status: .failed)
+            .timestampProcessed(at: Date())
+            .timestampUpdated(at: Date())
+    }
+
 }
 
 class RejectedTransactionStatus: TransactionState {
@@ -356,7 +440,17 @@ class SuccessTransactionStatus: TransactionState {
 }
 
 class DiscardedTransactionStatus: TransactionState {
+
     override var status: TransactionStatus { return .discarded }
+
+    override func discard(_ tx: Transaction) {
+        preconditionFailure("Illegal state transition: discard transaction from \(status)")
+    }
+
+    public override func reset(_ tx: Transaction) {
+        tx.resetParameters()
+        tx.change(status: .draft)
+    }
 }
 
 
