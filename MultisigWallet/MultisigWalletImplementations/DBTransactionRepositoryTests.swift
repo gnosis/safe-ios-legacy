@@ -89,8 +89,8 @@ class DBTransactionRepositoryTests: XCTestCase {
 
     private func txWithoutTimestamps() -> Transaction {
         return txSigning()
-            .change(status: .pending)
-            .change(status: .success)
+            .proceed()
+            .succeed()
     }
 
     private func txDraft() -> Transaction {
@@ -113,7 +113,7 @@ class DBTransactionRepositoryTests: XCTestCase {
 
     private func txSigning() -> Transaction {
         return txDraft()
-            .change(status: .signing)
+            .proceed()
             .add(signature: Signature(data: Data(repeating: 1, count: 7),
                                       address: Address.testAccount3))
             .add(signature: Signature(data: Data(repeating: 2, count: 7),
@@ -123,22 +123,22 @@ class DBTransactionRepositoryTests: XCTestCase {
 
     private func txPending() -> Transaction {
         return txSigning()
-            .change(status: .pending)
+            .proceed()
     }
 
     private func txSuccess() -> Transaction {
         return txPending()
-            .change(status: .success)
+            .succeed()
     }
 
     func test_findAll() {
         let txDraft = self.txDraft()
         let txSigning = self.txSigning()
-        let txDiscarded = testTransaction().change(status: .discarded)
+        let txDiscarded = testTransaction().discard()
         let txPending = self.txPending()
-        let txRejected = self.txSigning().change(status: .rejected)
+        let txRejected = self.txSigning().reject()
         let txSuccess = self.txSuccess()
-        let txFailed = self.txPending().change(status: .failed)
+        let txFailed = self.txPending().fail()
 
         let txs = [txDraft, txSigning, txDiscarded, txPending, txRejected, txSuccess, txFailed]
         txs.forEach { repo.save($0) }

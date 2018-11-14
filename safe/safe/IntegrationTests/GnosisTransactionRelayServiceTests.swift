@@ -376,7 +376,7 @@ struct Safe {
             .change(amount: TokenAmount(amount: amount, token: Token.Ether))
             .change(operation: .call)
             .change(hash: _test.encryptionService.hash(of: tx))
-            .change(status: .signing)
+            .proceed()
         return tx
     }
 
@@ -400,7 +400,7 @@ struct Safe {
         let request = SubmitTransactionRequest(transaction: tx, signatures: ethSigs)
         let response = try _test.relayService.submitTransaction(request: request)
         let hash = TransactionHash(response.transactionHash)
-        tx.set(hash: hash).change(status: .pending)
+        tx.set(hash: hash).proceed()
         let receipt = try _test.waitForTransaction(tx.transactionHash!)!
         assert(receipt.status == .success)
     }
