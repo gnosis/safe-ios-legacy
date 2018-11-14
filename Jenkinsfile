@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Deploy') {
             when {
-                expression { BRANCH_NAME ==~ /(master|release\/.*)/ }
+                expression { BRANCH_NAME ==~ /^(master|release\/.*)$/ }
             }
             steps {
                 ansiColor('xterm') {
