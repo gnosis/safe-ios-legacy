@@ -9,14 +9,17 @@ public final class TokenNumberFormatter {
 
     public static let eth: TokenNumberFormatter = TokenNumberFormatter.ERC20Token(code: "ETH", decimals: 18)
 
-    public static func ERC20Token(code: String? = nil, decimals: Int) -> TokenNumberFormatter {
+    public static func ERC20Token(
+        code: String? = nil, decimals: Int, displayedDecimals: Int? = nil) -> TokenNumberFormatter {
         let formatter = TokenNumberFormatter()
         formatter.tokenCode = code
         formatter.decimals = decimals
+        formatter.displayedDecimals = displayedDecimals
         return formatter
     }
 
     var decimals: Int = 18
+    var displayedDecimals: Int?
     var locale = Locale.autoupdatingCurrent
     var groupingSeparator: String { return locale.groupingSeparator ?? " " }
     var decimalSeparator: String { return locale.decimalSeparator ?? "," }
@@ -37,6 +40,9 @@ public final class TokenNumberFormatter {
         addIntegerGrouping(integer: &integer)
         var fraction = str.count <= decimals ? str.paddingWithLeadingZeroes(to: decimals) : String(str.suffix(decimals))
         fraction = fraction.removingTrailingZeroes
+        if let displayedDecimals = displayedDecimals, fraction.count > displayedDecimals {
+            fraction = String(fraction.prefix(displayedDecimals))
+        }
         addFractionGrouping(fraction: &fraction)
         let adjustedFraction = (fraction.isEmpty ? "00" : fraction) + (fraction.count == 1 ? "0" : "")
         return sign + integer + decimalSeparator + adjustedFraction + tokenCurrency
