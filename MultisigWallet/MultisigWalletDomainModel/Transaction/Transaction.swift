@@ -43,7 +43,14 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public private(set) var recipient: Address?
     public private(set) var amount: TokenAmount?
     public private(set) var fee: TokenAmount?
-    public private(set) var status: TransactionStatus = .draft
+    public private(set) var status: TransactionStatus {
+        get {
+            return state.status
+        }
+        set {
+            state = TransactionState.status(newValue)
+        }
+    }
     public private(set) var signatures = [Signature]()
     public private(set) var createdDate: Date!
     public private(set) var updatedDate: Date!
@@ -61,12 +68,15 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public let walletID: WalletID
     public let accountID: AccountID
 
+    private var state: TransactionState
+
     // MARK: - Creating Transaction
 
     public init(id: TransactionID, type: TransactionType, walletID: WalletID, accountID: AccountID) {
         self.type = type
         self.walletID = walletID
         self.accountID = accountID
+        self.state = DraftTransactionStatus()
         super.init(id: id)
     }
 
@@ -281,6 +291,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
 // MARK: - Supporting types
 
+// TODO: move inside TransactionState class
 public enum TransactionStatus: Int {
 
     /// Draft transaction is allowed to change any data
@@ -301,6 +312,53 @@ public enum TransactionStatus: Int {
     case discarded
 
 }
+
+public class TransactionState {
+
+    public var status: TransactionStatus { return .draft }
+
+    public static func status(_ code: TransactionStatus) -> TransactionState {
+        switch code {
+        case .discarded: return DiscardedTransactionStatus()
+        case .draft: return DraftTransactionStatus()
+        case .failed: return FailedTransactionStatus()
+        case .pending: return PendingTransactionStatus()
+        case .rejected: return RejectedTransactionStatus()
+        case .signing: return SigningTransactionStatus()
+        case .success: return SuccessTransactionStatus()
+        }
+    }
+
+}
+
+class DraftTransactionStatus: TransactionState {
+    override var status: TransactionStatus { return .draft }
+}
+
+class SigningTransactionStatus: TransactionState {
+    override var status: TransactionStatus { return .signing }
+}
+
+class PendingTransactionStatus: TransactionState {
+    override var status: TransactionStatus { return .pending }
+}
+
+class RejectedTransactionStatus: TransactionState {
+    override var status: TransactionStatus { return .rejected }
+}
+
+class FailedTransactionStatus: TransactionState {
+    override var status: TransactionStatus { return .failed }
+}
+
+class SuccessTransactionStatus: TransactionState {
+    override var status: TransactionStatus { return .success }
+}
+
+class DiscardedTransactionStatus: TransactionState {
+    override var status: TransactionStatus { return .discarded }
+}
+
 
 public enum TransactionType: Int {
 
