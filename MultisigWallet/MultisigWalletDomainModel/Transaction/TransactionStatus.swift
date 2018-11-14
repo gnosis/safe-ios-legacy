@@ -26,12 +26,12 @@ public class TransactionStatus: Assertable {
         case discarded
     }
 
-    public var status: TransactionStatus.Code { return .draft }
-    public var canChangeParameters: Bool { return false }
-    public var canChangeBlockchainHash: Bool { return false }
-    public var canChangeSignatures: Bool { return false }
+    var status: TransactionStatus.Code { return .draft }
+    var canChangeParameters: Bool { return false }
+    var canChangeBlockchainHash: Bool { return false }
+    var canChangeSignatures: Bool { return false }
 
-    public static func status(_ code: TransactionStatus.Code) -> TransactionStatus {
+    static func status(_ code: TransactionStatus.Code) -> TransactionStatus {
         switch code {
         case .discarded: return DiscardedTransactionStatus()
         case .draft: return DraftTransactionStatus()
@@ -43,28 +43,28 @@ public class TransactionStatus: Assertable {
         }
     }
 
-    public func discard(_ tx: Transaction) {
+    func discard(_ tx: Transaction) {
         tx.timestampUpdated(at: Date()).change(status: .discarded)
 
     }
 
-    public func reset(_ tx: Transaction) {
+    func reset(_ tx: Transaction) {
         preconditionFailure("Illegal state transition: reset transaction from \(status)")
     }
 
-    public func reject(_ tx: Transaction) {
+    func reject(_ tx: Transaction) {
         preconditionFailure("Illegal state transition: reject transaction from \(status)")
     }
 
-    public func succeed(_ tx: Transaction) {
+    func succeed(_ tx: Transaction) {
         preconditionFailure("Illegal state transition: succeed transaction from \(status)")
     }
 
-    public func fail(_ tx: Transaction) {
+    func fail(_ tx: Transaction) {
         preconditionFailure("Illegal state transition: fail transaction from \(status)")
     }
 
-    public func proceed(_ tx: Transaction) {
+    func proceed(_ tx: Transaction) {
         preconditionFailure("Illegal state transition: proceed transaction from \(status)")
     }
 
