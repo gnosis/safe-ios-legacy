@@ -7,6 +7,12 @@ import Common
 
 public final class TransferView: UIView {
 
+    @IBOutlet weak var fromIdenticonView: IdenticonView!
+    @IBOutlet weak var toIdenticonView: IdenticonView!
+    @IBOutlet weak var fromAddressLabel: UILabel!
+    @IBOutlet weak var toAddressLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+
     public var fromAddress: String! {
         didSet {
             guard fromAddress != nil else { return }
@@ -23,17 +29,12 @@ public final class TransferView: UIView {
     }
     public var tokenData: TokenData! {
         didSet {
-            // TODO
+            guard tokenData != nil && tokenData.balance != nil else { return }
+            let tokenFormatter = TokenNumberFormatter.ERC20Token(
+                code: tokenData.code, decimals: tokenData.decimals, displayedDecimals: 4)
+            amountLabel.text = tokenFormatter.string(from: -tokenData.balance!)
         }
     }
-
-    @IBOutlet weak var fromIdenticonView: IdenticonView!
-    @IBOutlet weak var toIdenticonView: IdenticonView!
-
-    @IBOutlet weak var fromAddressLabel: UILabel!
-    @IBOutlet weak var toAddressLabel: UILabel!
-
-    @IBOutlet weak var amountLabel: UILabel!
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,6 +56,7 @@ public final class TransferView: UIView {
         fromAddressLabel.text = ""
         toIdenticonView.seed = ""
         toAddressLabel.text = ""
+        amountLabel.text = ""
     }
 
 }

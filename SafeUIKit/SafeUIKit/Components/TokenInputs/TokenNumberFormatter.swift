@@ -34,7 +34,7 @@ public final class TokenNumberFormatter {
     public func string(from number: BigInt) -> String {
         let tokenCurrency = tokenSymbol != nil ? " \(tokenSymbol!)" : (tokenCode != nil ? " \(tokenCode!)" : "")
         if number == 0 { return "0,00" + tokenCurrency }
-        let sign = number.sign == .minus ? "-" : ""
+        let sign = number.sign == .minus ? "- " : ""
         let str = String(number.magnitude)
         var integer = str.count <= decimals ? "0" : String(str.prefix(str.count - decimals))
         addIntegerGrouping(integer: &integer)
