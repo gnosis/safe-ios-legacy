@@ -38,7 +38,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         walletService.estimatedFee_output = 100
         controller.loadViewIfNeeded()
         delay()
-        XCTAssertEqual(controller.feeLabel.text, "-0.0000000000000001 ETH")
+        XCTAssertEqual(controller.feeLabel.text, "- 0.0000000000000001 ETH")
     }
 
     func test_whenInvalidAmount_thenShowsError() {

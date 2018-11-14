@@ -27,7 +27,7 @@ class TransactionReviewViewControllerTests: XCTestCase {
         let amount = "0.10 ETH"
         let balance = "1.00 ETH"
         let id = "some"
-        let fee = "-0.01 ETH"
+        let fee = "- 0.01 ETH"
 
         service.update(account: ethID, newBalance: BigInt(10).power(18))
 
@@ -74,7 +74,7 @@ class TransactionReviewViewControllerTests: XCTestCase {
         vc.loadViewIfNeeded()
         delay()
         XCTAssertEqual(service.requestTransactionConfirmation_input, "some")
-        XCTAssertEqual(vc.feeValueLabel.text, "-1.00 ETH")
+        XCTAssertEqual(vc.feeValueLabel.text, "- 1.00 ETH")
     }
 
     func test_whenTransactionPending_thenCallsDelegate() {

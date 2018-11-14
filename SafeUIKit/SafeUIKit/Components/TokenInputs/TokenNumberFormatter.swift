@@ -9,8 +9,9 @@ public final class TokenNumberFormatter {
 
     public static let eth: TokenNumberFormatter = TokenNumberFormatter.ERC20Token(code: "ETH", decimals: 18)
 
-    public static func ERC20Token(
-        code: String? = nil, decimals: Int, displayedDecimals: Int? = nil) -> TokenNumberFormatter {
+    public static func ERC20Token(code: String? = nil,
+                                  decimals: Int,
+                                  displayedDecimals: Int? = nil) -> TokenNumberFormatter {
         let formatter = TokenNumberFormatter()
         formatter.tokenCode = code
         formatter.decimals = decimals
