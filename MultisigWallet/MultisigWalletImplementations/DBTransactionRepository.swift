@@ -167,7 +167,7 @@ LIMIT 1;
                                resultMap: transactionFromResultSet).first as? Transaction
     }
 
-    public func findBy(hash: Data, status: TransactionStatus) -> Transaction? {
+    public func findBy(hash: Data, status: TransactionStatus.Code) -> Transaction? {
         return try! db.execute(sql: SQL.findByHashStatus,
                                bindings: [hash, status.rawValue],
                                resultMap: transactionFromResultSet).first as? Transaction
@@ -187,7 +187,7 @@ LIMIT 1;
             let rawTransactionType = rawTransactionTypeOrNil,
             let transactionType = TransactionType(rawValue: rawTransactionType),
             let rawTransactionStatus = rawTransactionStatusOrNil,
-            let targetTransactionStatus = TransactionStatus(rawValue: rawTransactionStatus) else {
+            let targetTransactionStatus = TransactionStatus.Code(rawValue: rawTransactionStatus) else {
                 return nil
         }
         let transaction = Transaction(id: TransactionID(id),

@@ -24,11 +24,11 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     /// - feeNotSet: transaction fee is missing
     /// - transactionHashNotSet: transaction's hash is missing
     public enum Error: Swift.Error {
-        case invalidStatusForEditing(TransactionStatus)
-        case invalidStatusForSigning(TransactionStatus)
-        case invalidStatusForSetHash(TransactionStatus)
-        case invalidStatusForTimestamp(TransactionStatus)
-        case invalidStatusTransition(from: TransactionStatus, to: TransactionStatus)
+        case invalidStatusForEditing(TransactionStatus.Code)
+        case invalidStatusForSigning(TransactionStatus.Code)
+        case invalidStatusForSetHash(TransactionStatus.Code)
+        case invalidStatusForTimestamp(TransactionStatus.Code)
+        case invalidStatusTransition(from: TransactionStatus.Code, to: TransactionStatus.Code)
         case senderNotSet
         case recipientNotSet
         case amountNotSet
@@ -43,12 +43,12 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public private(set) var recipient: Address?
     public private(set) var amount: TokenAmount?
     public private(set) var fee: TokenAmount?
-    public private(set) var status: TransactionStatus {
+    public private(set) var status: TransactionStatus.Code {
         get {
             return state.status
         }
         set {
-            state = TransactionState.status(newValue)
+            state = TransactionStatus.status(newValue)
         }
     }
     public private(set) var signatures = [Signature]()
@@ -68,7 +68,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     public let walletID: WalletID
     public let accountID: AccountID
 
-    private var state: TransactionState
+    private var state: TransactionStatus
 
     // MARK: - Creating Transaction
 
@@ -131,7 +131,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     }
 
     @discardableResult
-    fileprivate func change(status: TransactionStatus) -> Transaction {
+    fileprivate func change(status: TransactionStatus.Code) -> Transaction {
         self.status = status
         return self
     }
@@ -303,36 +303,33 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 
 // MARK: - Supporting types
 
-// TODO: move inside TransactionState class
-public enum TransactionStatus: Int {
+public class TransactionStatus: Assertable {
 
-    /// Draft transaction is allowed to change any data
-    case draft
-    /// Sigining transaction freezes amount, fees, sender and recipient while still allowing to add signatures
-    case signing
-    /// Pending transaction is the one submitted to a blockchain. At this stage, transaction parameters are immutable.
-    /// Pending transaction is allowed to set hash, if it wasn't set before.
-    case pending
-    /// Transaction is rejected by owner (s) and may not be submitted to blockchain.
-    case rejected
-    /// Transaction may become failed when it is rejected by blockchain.
-    case failed
-    /// Transaction is successful when it is processed and added to the blockchain
-    case success
-    /// Discarded transaction should not be shown to the user, but it is still present in the transactions list.
-    /// Transaction may become discarded from any other status when user decides to archive the transaction.
-    case discarded
+    public enum Code: Int {
+        /// Draft transaction is allowed to change any data
+        case draft
+        /// Sigining transaction freezes amount, fees, sender and recipient while still allowing to add signatures
+        case signing
+        /// Pending transaction is the one submitted to a blockchain. Transaction parameters are immutable.
+        /// Pending transaction is allowed to set hash, if it wasn't set before.
+        case pending
+        /// Transaction is rejected by owner (s) and may not be submitted to blockchain.
+        case rejected
+        /// Transaction may become failed when it is rejected by blockchain.
+        case failed
+        /// Transaction is successful when it is processed and added to the blockchain
+        case success
+        /// Discarded transaction should not be shown to the user, but it is still present in the transactions list.
+        /// Transaction may become discarded from any other status when user decides to archive the transaction.
+        case discarded
+    }
 
-}
-
-public class TransactionState: Assertable {
-
-    public var status: TransactionStatus { return .draft }
+    public var status: TransactionStatus.Code { return .draft }
     public var canChangeParameters: Bool { return false }
     public var canChangeBlockchainHash: Bool { return false }
     public var canChangeSignatures: Bool { return false }
 
-    public static func status(_ code: TransactionStatus) -> TransactionState {
+    public static func status(_ code: TransactionStatus.Code) -> TransactionStatus {
         switch code {
         case .discarded: return DiscardedTransactionStatus()
         case .draft: return DraftTransactionStatus()
@@ -371,9 +368,9 @@ public class TransactionState: Assertable {
 
 }
 
-class DraftTransactionStatus: TransactionState {
+class DraftTransactionStatus: TransactionStatus {
 
-    override var status: TransactionStatus { return .draft }
+    override var status: TransactionStatus.Code { return .draft }
     override var canChangeParameters: Bool { return true }
     override var canChangeBlockchainHash: Bool { return true }
     override var canChangeSignatures: Bool { return true }
@@ -389,9 +386,9 @@ class DraftTransactionStatus: TransactionState {
 
 }
 
-class SigningTransactionStatus: TransactionState {
+class SigningTransactionStatus: TransactionStatus {
 
-    override var status: TransactionStatus { return .signing }
+    override var status: TransactionStatus.Code { return .signing }
     override var canChangeBlockchainHash: Bool { return true }
     override var canChangeSignatures: Bool { return true }
 
@@ -410,9 +407,9 @@ class SigningTransactionStatus: TransactionState {
 
 }
 
-class PendingTransactionStatus: TransactionState {
+class PendingTransactionStatus: TransactionStatus {
 
-    override var status: TransactionStatus { return .pending }
+    override var status: TransactionStatus.Code { return .pending }
     override func succeed(_ tx: Transaction) {
         tx.change(status: .success)
             .timestampProcessed(at: Date())
@@ -427,21 +424,21 @@ class PendingTransactionStatus: TransactionState {
 
 }
 
-class RejectedTransactionStatus: TransactionState {
-    override var status: TransactionStatus { return .rejected }
+class RejectedTransactionStatus: TransactionStatus {
+    override var status: TransactionStatus.Code { return .rejected }
 }
 
-class FailedTransactionStatus: TransactionState {
-    override var status: TransactionStatus { return .failed }
+class FailedTransactionStatus: TransactionStatus {
+    override var status: TransactionStatus.Code { return .failed }
 }
 
-class SuccessTransactionStatus: TransactionState {
-    override var status: TransactionStatus { return .success }
+class SuccessTransactionStatus: TransactionStatus {
+    override var status: TransactionStatus.Code { return .success }
 }
 
-class DiscardedTransactionStatus: TransactionState {
+class DiscardedTransactionStatus: TransactionStatus {
 
-    override var status: TransactionStatus { return .discarded }
+    override var status: TransactionStatus.Code { return .discarded }
 
     override func discard(_ tx: Transaction) {
         preconditionFailure("Illegal state transition: discard transaction from \(status)")
@@ -491,9 +488,9 @@ public struct TransactionHash: Equatable {
 public struct TransactionReceipt: Equatable {
 
     public let hash: TransactionHash
-    public let status: TransactionStatus
+    public let status: TransactionStatus.Code
 
-    public init(hash: TransactionHash, status: TransactionStatus) {
+    public init(hash: TransactionHash, status: TransactionStatus.Code) {
         self.hash = hash
         self.status = status
     }
