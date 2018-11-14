@@ -58,4 +58,9 @@ class SafeTestCase: XCTestCase {
         applicationRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
     }
 
+    internal func reconfigureService(with config: WalletApplicationServiceConfiguration) {
+        let walletService = MockWalletApplicationService(configuration: config)
+        ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
+    }
+
 }

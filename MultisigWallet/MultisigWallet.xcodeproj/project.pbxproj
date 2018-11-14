@@ -129,6 +129,7 @@
 		0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */; };
 		0AAA175920E3813E003B35B3 /* DBTransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */; };
 		0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */; };
+		0AAAE3E7219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAE3E6219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift */; };
 		0AB08755212D9857002F969C /* MockEventRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB08751212D9851002F969C /* MockEventRelay.swift */; };
 		0AB08757212D9A0B002F969C /* MockErrorStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9CF4212ACD0500E39BB6 /* MockErrorStream.swift */; };
 		0ABCC0F52177290F00E60E9F /* TransactionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCC0F42177290F00E60E9F /* TransactionDomainService.swift */; };
@@ -488,6 +489,7 @@
 		0AAA175420E274F5003B35B3 /* InMemoryTransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTransactionRepository.swift; sourceTree = "<group>"; };
 		0AAA175820E3813E003B35B3 /* DBTransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTransactionRepository.swift; sourceTree = "<group>"; };
 		0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTransactionRepositoryTests.swift; sourceTree = "<group>"; };
+		0AAAE3E6219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationServiceConfiguration.swift; sourceTree = "<group>"; };
 		0AB08751212D9851002F969C /* MockEventRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventRelay.swift; sourceTree = "<group>"; };
 		0AB0B5692163881300FB2435 /* TestDependencies.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = TestDependencies.xcfilelist; sourceTree = "<group>"; };
 		0ABCC0F42177290F00E60E9F /* TransactionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDomainService.swift; sourceTree = "<group>"; };
@@ -911,6 +913,7 @@
 				0AEF8A9F20A088A5006A1265 /* Tests-Info.plist */,
 				0A60B521211343F70066821A /* TransactionData.swift */,
 				0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */,
+				0AAAE3E6219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift */,
 				0A54E7CA21305273006BAD93 /* WalletApplicationServiceError.swift */,
 				0A4A1D692136C4990088F9EC /* WalletApplicationServiceTests */,
 				0A4C3897212D9411005594DA /* WalletStateEnum.swift */,
@@ -1516,6 +1519,7 @@
 				0A40668820A5E01D009BA7FC /* MockWalletApplicationService.swift in Sources */,
 				0A9E383320F4AC5F0085E8D7 /* MockEthereumApplicationService.swift in Sources */,
 				0A40669320A5E1C2009BA7FC /* ApplicationServiceRegistry.swift in Sources */,
+				0AAAE3E7219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift in Sources */,
 				0A9E383520F4AC5F0085E8D7 /* EthereumApplicationService.swift in Sources */,
 				0A40669120A5E0EA009BA7FC /* WalletApplicationService.swift in Sources */,
 				0A4C3898212D9411005594DA /* WalletStateEnum.swift in Sources */,

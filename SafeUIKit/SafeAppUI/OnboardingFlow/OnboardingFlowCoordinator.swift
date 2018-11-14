@@ -48,11 +48,11 @@ extension OnboardingFlowCoordinator: StartViewControllerDelegate {
 extension OnboardingFlowCoordinator: TermsAndConditionsViewControllerDelegate {
 
     func wantsToOpenTermsOfUse() {
-        openInSafari(MultisigWalletApplication.ApplicationServiceRegistry.walletService.termsOfUseURL)
+        openInSafari(MultisigWalletApplication.ApplicationServiceRegistry.walletService.configuration.termsOfUseURL)
     }
 
     func wantsToOpenPrivacyPolicy() {
-        openInSafari(MultisigWalletApplication.ApplicationServiceRegistry.walletService.privacyPolicyURL)
+        openInSafari(MultisigWalletApplication.ApplicationServiceRegistry.walletService.configuration.privacyPolicyURL)
     }
 
     private func openInSafari(_ url: URL!) {

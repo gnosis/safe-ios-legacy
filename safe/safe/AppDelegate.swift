@@ -80,11 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     }
 
     private func configureMultisigWallet() {
-        let walletService = WalletApplicationService()
-        walletService.transactionWebURLFormat = appConfig.transactionWebURLFormat
-        walletService.chromeExtensionURL = appConfig.chromeExtensionURL
-        walletService.termsOfUseURL = appConfig.termsOfUseURL
-        walletService.privacyPolicyURL = appConfig.privacyPolicyURL
+        let walletService = WalletApplicationService(configuration: appConfig.walletApplicationServiceConfiguration)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: walletService,
                                                                  for: WalletApplicationService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)

@@ -186,8 +186,10 @@ class MainFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenSelectingTermsOfUse_thenOpensSafari() {
+        var config = WalletApplicationServiceConfiguration.default
+        config.termsOfUseURL = URL(string: "https://gnosis.pm/")!
+        reconfigureService(with: config)
         createWindow(mainFlowCoordinator.rootViewController)
-        walletService.termsOfUseURL = URL(string: "https://gnosis.pm/")
         mainFlowCoordinator.didSelectTermsOfUse()
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.presentedViewController
@@ -195,8 +197,10 @@ class MainFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenSelectingPrivacyPolicy_thenOpensSafari() {
+        var config = WalletApplicationServiceConfiguration.default
+        config.privacyPolicyURL = URL(string: "https://gnosis.pm/")!
+        reconfigureService(with: config)
         createWindow(mainFlowCoordinator.rootViewController)
-        walletService.privacyPolicyURL = URL(string: "https://gnosis.pm/")
         mainFlowCoordinator.didSelectPrivacyPolicy()
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.presentedViewController
