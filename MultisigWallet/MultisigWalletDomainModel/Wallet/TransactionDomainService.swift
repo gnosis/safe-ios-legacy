@@ -15,6 +15,20 @@ public class TransactionDomainService {
         }
     }
 
+    public func newDraftTransaction() -> TransactionID {
+        let repository = DomainRegistry.transactionRepository
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        let transaction = Transaction(id: repository.nextID(),
+                                      type: .transfer,
+                                      walletID: wallet.id,
+                                      accountID: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
+        transaction.change(sender: wallet.address!)
+            .timestampCreated(at: Date())
+            .timestampUpdated(at: Date())
+        repository.save(transaction)
+        return transaction.id
+    }
+
     public func allTransactions() -> [Transaction] {
         let all = DomainRegistry.transactionRepository.findAll()
         return all

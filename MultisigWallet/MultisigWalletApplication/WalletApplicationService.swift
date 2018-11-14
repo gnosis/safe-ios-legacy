@@ -512,17 +512,8 @@ public class WalletApplicationService: Assertable {
     }
 
     public func createNewDraftTransaction() -> String {
-        let repository = DomainRegistry.transactionRepository
-        let wallet = selectedWallet!
-        let transaction = Transaction(id: repository.nextID(),
-                                      type: .transfer,
-                                      walletID: wallet.id,
-                                      accountID: AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
-        transaction.change(sender: selectedWallet!.address!)
-            .timestampCreated(at: Date())
-            .timestampUpdated(at: Date())
-        repository.save(transaction)
-        return transaction.id.id
+        let newTransactionID = DomainRegistry.transactionService.newDraftTransaction()
+        return newTransactionID.id
     }
 
     public func requestTransactionConfirmation(_ id: String) throws -> TransactionData {

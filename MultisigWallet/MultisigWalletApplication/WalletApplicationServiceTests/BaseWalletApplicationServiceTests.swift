@@ -15,6 +15,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
     let accountRepository = InMemoryAccountRepository()
     let ethereumService = MockEthereumApplicationService()
     let service = WalletApplicationService()
+    let transactionService = TransactionDomainService()
     let notificationService = MockNotificationService()
     let tokensService = MockPushTokensDomainService()
     let transactionRepository = InMemoryTransactionRepository()
@@ -59,6 +60,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         DomainRegistry.put(service: tokenItemsRepository, for: TokenListItemRepository.self)
         DomainRegistry.put(service: tokenItemsService, for: TokenListDomainService.self)
         DomainRegistry.put(service: ethereumNodeService, for: EthereumNodeDomainService.self)
+        DomainRegistry.put(service: transactionService, for: TransactionDomainService.self)
 
         ApplicationServiceRegistry.put(service: eventRelay, for: EventRelay.self)
         ApplicationServiceRegistry.put(service: logger, for: Logger.self)
