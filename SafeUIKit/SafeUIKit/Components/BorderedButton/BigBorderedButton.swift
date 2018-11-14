@@ -21,11 +21,6 @@ final public class BigBorderedButton: UIButton {
         commonInit()
     }
 
-    public override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        commonInit()
-    }
-
     private func commonInit() {
         titleLabel?.font = UIFont.systemFont(ofSize: 17)
         setTitleColor(.white, for: .normal)

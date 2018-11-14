@@ -64,6 +64,9 @@ enum Asset {
     static let eth = ImageAsset(name: "ETH")
     static let defaultToken = ImageAsset(name: "default-token")
   }
+  enum TransferView {
+    static let arrowDown = ImageAsset(name: "arrow-down")
+  }
 
   // swiftlint:disable trailing_comma
   static let allColors: [ColorAsset] = [
@@ -83,6 +86,7 @@ enum Asset {
     TextInputs.successIcon,
     TokenIcons.eth,
     TokenIcons.defaultToken,
+    TransferView.arrowDown,
   ]
   // swiftlint:enable trailing_comma
   @available(*, deprecated, renamed: "allImages")

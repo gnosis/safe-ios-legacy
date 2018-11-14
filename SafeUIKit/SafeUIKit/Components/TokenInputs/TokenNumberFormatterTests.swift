@@ -21,8 +21,20 @@ class TokenNumberFormatterTests: XCTestCase {
         assert(number: BigInt(10).power(18), equalTo: "1,00")
         assert(number: BigInt(10).power(18) + BigInt(10).power(17), equalTo: "1,10")
         assert(number: BigInt(10).power(18) + 1, equalTo: "1,000000000000000001")
-        assert(number: -1, equalTo: "-0,000000000000000001")
+        assert(number: -1, equalTo: "- 0,000000000000000001")
         assert(number: -0, equalTo: "0,00")
+    }
+
+    func test_displayedDecimals() {
+        formatter.displayedDecimals = 4
+        assert(number: 0, equalTo: "0,00")
+        assert(number: 1, equalTo: "0,0000")
+        assert(number: BigInt(10e17), equalTo: "1,00")
+        assert(number: BigInt(10e17) + BigInt(10e16), equalTo: "1,10")
+        assert(number: BigInt(10e17) + 1, equalTo: "1,0000")
+        assert(number: -1, equalTo: "- 0,0000")
+        assert(number: -0, equalTo: "0,00")
+        assert(number: BigInt(10e17) + BigInt(10e13) + 9 * BigInt(10e12), equalTo: "1,0001")
     }
 
     func test_numberFromString() {
