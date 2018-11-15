@@ -41,6 +41,7 @@ public class TransactionFeeView: UIView {
     private func pinWrapperStackView() {
         wrapperStackView.axis = .vertical
         wrapperStackView.spacing = 4
+        wrapperStackView.accessibilityIdentifier = "wrapperStackView"
         wrapperStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(wrapperStackView)
         NSLayoutConstraint.activate([
