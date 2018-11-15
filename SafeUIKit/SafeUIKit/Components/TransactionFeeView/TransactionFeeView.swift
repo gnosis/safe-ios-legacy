@@ -52,32 +52,40 @@ public class TransactionFeeView: UIView {
 
     public func configure(currentBalance: TokenData?, transactionFee: TokenData?, resultingBalance: TokenData!) {
         guard wrapperStackView.arrangedSubviews.isEmpty else { return }
-        if let currentBalance = currentBalance {
-            let currentBalanceStackView =
-                balanceStackView(text: currentBalanceLabel(currentBalance),
-                                 balance: balanceLabel(currentBalance,
-                                                       bold: true,
-                                                       displayedDecimals: displayedDecimals))
-            wrapperStackView.addArrangedSubview(currentBalanceStackView)
-        }
         let isSecondaryView = currentBalance == nil
+        if let currentBalance = currentBalance {
+            addCurrentBalance(currentBalance)
+        }
         if let transactionFee = transactionFee {
-            let transactionFeeStackView =
-                balanceStackView(text: transactionFeeLabel(transactionFee,
-                                                           shouldDisplayEtherText: isSecondaryView),
-                                 balance: balanceLabel(transactionFee,
-                                                       bold: false,
-                                                       displayedDecimals: displayedDecimals))
-            wrapperStackView.addArrangedSubview(transactionFeeStackView)
-            if !isSecondaryView {
-                let emptyView = UIView()
-                emptyView.translatesAutoresizingMaskIntoConstraints = false
-                emptyView.heightAnchor.constraint(equalToConstant: 6).isActive = true
-                wrapperStackView.addArrangedSubview(emptyView)
-            }
+            addTransactionFee(transactionFee, isSecondaryView: isSecondaryView)
         } else if !isSecondaryView {
             wrapperStackView.spacing = 8
         }
+        addResultingBalance(resultingBalance, isSecondaryView: isSecondaryView)
+    }
+
+    private func addCurrentBalance(_ currentBalance: TokenData) {
+        let currentBalanceStackView = balanceStackView(text: currentBalanceLabel(currentBalance),
+                                                       balance: balanceLabel(currentBalance,
+                                                                             bold: true,
+                                                                             displayedDecimals: displayedDecimals))
+        wrapperStackView.addArrangedSubview(currentBalanceStackView)
+    }
+
+    private func addTransactionFee(_ transactionFee: TokenData, isSecondaryView: Bool) {
+        let transactionFeeStackView =
+            balanceStackView(text: transactionFeeLabel(transactionFee,
+                                                       shouldDisplayEtherText: isSecondaryView),
+                             balance: balanceLabel(transactionFee,
+                                                   bold: false,
+                                                   displayedDecimals: displayedDecimals))
+        wrapperStackView.addArrangedSubview(transactionFeeStackView)
+        if !isSecondaryView {
+            addSpacingView()
+        }
+    }
+
+    private func addResultingBalance(_ resultingBalance: TokenData, isSecondaryView: Bool) {
         let balanceAfterTransferStackView =
             balanceStackView(text: resultingBalanceLabel(resultingBalance, bold: !isSecondaryView),
                              balance: balanceLabel(resultingBalance,
@@ -136,6 +144,13 @@ public class TransactionFeeView: UIView {
         resultingBalanceLabel.text = Strings.resultingBalance
         resultingBalanceLabel.textColor = ColorName.battleshipGrey.color
         return resultingBalanceLabel
+    }
+
+    private func addSpacingView() {
+        let emptyView = UIView()
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        emptyView.heightAnchor.constraint(equalToConstant: 6).isActive = true
+        wrapperStackView.addArrangedSubview(emptyView)
     }
 
 }

@@ -1079,21 +1079,21 @@
 		5524734F21428E4C00A77557 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5541586621748C0200A3CEA4 /* AddressInput */,
+				55DEBC11214AA59F0017CD4B /* BackgroundHeaderFooterView */,
+				5524735721428F2500A77557 /* BackgroundImageView */,
+				5524735521428E9000A77557 /* BigButton */,
+				55BAB0E221789285007539CF /* BorderedButton */,
+				5524735821428F5000A77557 /* H1Label */,
+				5524735921428FA300A77557 /* IdenticonView */,
+				5524735421428E7600A77557 /* QRCodeInput */,
+				556251F72149119200F569EE /* QRCodeView */,
+				55C428F8217B424C00BF8922 /* ScanBarButtonItem */,
+				555EB6ED216CA55000E06553 /* TextInputs */,
+				556251CF2146710800F569EE /* TokenBalanceCell */,
+				55D0EC5C216F6DB9003D9A53 /* TokenInputs */,
 				55E8AFFE219C4A62002930A1 /* TransactionFeeView */,
 				55E8AFE1219B34D9002930A1 /* TransferView */,
-				55C428F8217B424C00BF8922 /* ScanBarButtonItem */,
-				55BAB0E221789285007539CF /* BorderedButton */,
-				55D0EC5C216F6DB9003D9A53 /* TokenInputs */,
-				555EB6ED216CA55000E06553 /* TextInputs */,
-				5541586621748C0200A3CEA4 /* AddressInput */,
-				556251F72149119200F569EE /* QRCodeView */,
-				556251CF2146710800F569EE /* TokenBalanceCell */,
-				5524735921428FA300A77557 /* IdenticonView */,
-				5524735821428F5000A77557 /* H1Label */,
-				5524735721428F2500A77557 /* BackgroundImageView */,
-				55DEBC11214AA59F0017CD4B /* BackgroundHeaderFooterView */,
-				5524735521428E9000A77557 /* BigButton */,
-				5524735421428E7600A77557 /* QRCodeInput */,
 			);
 			path = Components;
 			sourceTree = "<group>";
