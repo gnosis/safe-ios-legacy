@@ -962,10 +962,10 @@
             </objects>
             <point key="canvasLocation" x="3247" y="32"/>
         </scene>
-        <!--Terms And Conditions Demo View Controller-->
+        <!--Transaction Review Demo View Controller-->
         <scene sceneID="sKF-Mp-UoG">
             <objects>
-                <viewController storyboardIdentifier="TermsAndConditionsDemoViewController" id="52o-tk-rih" customClass="TermsAndConditionsDemoViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TermsAndConditionsDemoViewController" id="52o-tk-rih" customClass="TransactionReviewDemoViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7eB-EM-1J7" customClass="BackgroundImageView" customModule="SafeUIKit">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
