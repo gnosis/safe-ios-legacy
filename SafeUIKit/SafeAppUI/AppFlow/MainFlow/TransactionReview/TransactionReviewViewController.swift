@@ -13,7 +13,7 @@ protocol TransactionReviewViewControllerDelegate: class {
     func transactionReviewViewControllerDidFinish()
 }
 
-final class TransactionReviewViewController: UIViewController {
+public final class TransactionReviewViewController: UIViewController {
 
     @IBOutlet weak var senderView: TransactionParticipantView!
     @IBOutlet weak var recipientView: TransactionParticipantView!
@@ -36,14 +36,16 @@ final class TransactionReviewViewController: UIViewController {
     @IBOutlet weak var actionButtonInfoLabel: UILabel!
     @IBOutlet weak var actionButton: BorderedButton!
 
-    var transactionID: String!
+    public var transactionID: String!
     weak var delegate: TransactionReviewViewControllerDelegate?
 
-    private var didNotRequestSignaturesYet = true
+    private var didNotRequestSignaturesOnce = true
     private var tokenFormatter: TokenNumberFormatter!
     private var feeFormatter: TokenNumberFormatter!
 
-    static func create() -> TransactionReviewViewController {
+    private var actionPanelController: TransactionActionPanelController!
+
+    public static func create() -> TransactionReviewViewController {
         return StoryboardScene.Main.transactionReviewViewController.instantiate()
     }
 
@@ -72,13 +74,18 @@ final class TransactionReviewViewController: UIViewController {
         guard isViewLoaded else { return }
         let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
         update(tx)
-        if (tx.status == .waitingForConfirmation || tx.status == .readyToSubmit) && didNotRequestSignaturesYet {
-            requestSignatures()
-            didNotRequestSignaturesYet = false
-        }
+        requestSignaturesOnce()
+    }
+
+    private func requestSignaturesOnce() {
+        guard didNotRequestSignaturesOnce else { return }
+        didNotRequestSignaturesOnce = false
+        actionPanelController.requestSignaturesIfNeeded(self)
     }
 
     private func update(_ tx: TransactionData) {
+        actionPanelController = TransactionActionPanelController.create(from: tx.status)
+
         senderView.address = tx.sender
         recipientView.address = tx.recipient
         tokenFormatter = TokenNumberFormatter.ERC20Token(code: tx.token, decimals: tx.tokenDecimals)
@@ -89,29 +96,10 @@ final class TransactionReviewViewController: UIViewController {
         safeBalanceValueLabel.text = feeFormatter.string(from: BigInt(balance))
         feeValueLabel.text = feeFormatter.string(from: -tx.fee)
 
-        actionButton.removeTarget(nil, action: nil, for: .touchUpInside)
-        progressView.stopAnimating()
-
-        switch tx.status {
-        case .waitingForConfirmation:
-            progressView.beginAnimating()
-            updateActionTitle(with: Strings.Status.waiting)
-            actionButton.addTarget(self, action: #selector(requestSignatures), for: .touchUpInside)
-        case .rejected:
-            progressView.isError = true
-            updateActionTitle(with: Strings.Status.rejected)
-        case .readyToSubmit:
-            progressView.isError = false
-            progressView.isIndeterminate = false
-            progressView.progress = 1.0
-            updateActionTitle(with: Strings.Status.readyToSubmit)
-            actionButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
-        case .pending, .failed, .success, .discarded:
-            delegate?.transactionReviewViewControllerDidFinish()
-        }
+        actionPanelController.changeActionPanel(in: self)
     }
 
-    private func updateActionTitle(with status: Strings.Status) {
+    internal func updateActionTitle(with status: Strings.Status) {
         actionTitleLabel.text = status.title
         actionDescription.text = status.description
         if status.action == nil {
@@ -121,14 +109,13 @@ final class TransactionReviewViewController: UIViewController {
         }
     }
 
-
-    @objc private func requestSignatures() {
+    @objc internal func requestSignatures() {
         performAction { [unowned self] in
             try ApplicationServiceRegistry.walletService.requestTransactionConfirmation(self.transactionID)
         }
     }
 
-    @objc private func submit() {
+    @objc internal func submit() {
         if let delegate = delegate {
             delegate.transactionReviewViewControllerWantsToSubmitTransaction { [weak self] shouldSubmit in
                 if shouldSubmit {
@@ -165,6 +152,10 @@ final class TransactionReviewViewController: UIViewController {
             }
         }
     }
+
+}
+
+extension TransactionReviewViewController {
 
     struct Strings {
 

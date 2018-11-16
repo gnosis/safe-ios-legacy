@@ -128,6 +128,8 @@
 		0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */; };
 		0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */; };
 		0AC3F1732183674100DAADC9 /* GuidelinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F1722183674100DAADC9 /* GuidelinesViewController.swift */; };
+		0ACC77F7219D76060057E79A /* TransactionReviewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC77F6219D76060057E79A /* TransactionReviewDemoViewController.swift */; };
+		0ACC77F9219D8FB60057E79A /* TransactionActionPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC77F8219D8FB60057E79A /* TransactionActionPanelController.swift */; };
 		0AD50905211054FC008507CB /* EthereumAddressValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD50904211054FC008507CB /* EthereumAddressValidator.swift */; };
 		0AD5090921105514008507CB /* EthereumAddressValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5090721105511008507CB /* EthereumAddressValidatorTests.swift */; };
 		0AD5091321106900008507CB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5091221106900008507CB /* Validator.swift */; };
@@ -448,6 +450,8 @@
 		0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewControllerTests.swift; sourceTree = "<group>"; };
 		0AC3F1722183674100DAADC9 /* GuidelinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidelinesViewController.swift; sourceTree = "<group>"; };
+		0ACC77F6219D76060057E79A /* TransactionReviewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionReviewDemoViewController.swift; sourceTree = "<group>"; };
+		0ACC77F8219D8FB60057E79A /* TransactionActionPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionActionPanelController.swift; sourceTree = "<group>"; };
 		0AD50904211054FC008507CB /* EthereumAddressValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressValidator.swift; sourceTree = "<group>"; };
 		0AD5090721105511008507CB /* EthereumAddressValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressValidatorTests.swift; sourceTree = "<group>"; };
 		0AD5091221106900008507CB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -824,6 +828,7 @@
 			isa = PBXGroup;
 			children = (
 				0A8C963020D2C80F007D2410 /* TransactionReviewViewController.swift */,
+				0ACC77F8219D8FB60057E79A /* TransactionActionPanelController.swift */,
 				0A8C963220D2C820007D2410 /* TransactionReviewViewControllerTests.swift */,
 				0A8C962C20D2C3B7007D2410 /* BorderedButton.swift */,
 				0AD998A720D3E7DC00E6F3CA /* BorderedButtonTests.swift */,
@@ -869,9 +874,10 @@
 				0A0974DA20480D03005753DF /* LaunchScreen.storyboard */,
 				0A0974D820480D03005753DF /* Main.storyboard */,
 				0A0974C720480CEB005753DF /* Info.plist */,
-				0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */,
 				0AFA766C2182195200A96FDB /* ViewController.swift */,
+				0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */,
 				0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */,
+				0ACC77F6219D76060057E79A /* TransactionReviewDemoViewController.swift */,
 				55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */,
 				555B0E6620CA83DF00424CEE /* TokenDoubleInputViewController.swift */,
 				0A00293120CFD75E009A4BFE /* MySegmentViewController.swift */,
@@ -1744,6 +1750,7 @@
 				55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */,
 				5541586521748BC400A3CEA4 /* AddressInputViewController.swift in Sources */,
 				555EB71D216DF23700E06553 /* VerifiableInputViewController.swift in Sources */,
+				0ACC77F7219D76060057E79A /* TransactionReviewDemoViewController.swift in Sources */,
 				0A0974D620480CEB005753DF /* UnlockDemoViewController.swift in Sources */,
 				0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */,
 				0A60B516211333620066821A /* ProgressViewController.swift in Sources */,
@@ -1854,6 +1861,7 @@
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
 				0A8C962D20D2C3B7007D2410 /* BorderedButton.swift in Sources */,
+				0ACC77F9219D8FB60057E79A /* TransactionActionPanelController.swift in Sources */,
 				0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */,
 				0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */,
 				0A60B5092112F9460066821A /* KeyboardAvoidingBehavior.swift in Sources */,
