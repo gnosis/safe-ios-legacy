@@ -12,7 +12,7 @@ class TokenInputViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tokenInput.imageURL = URL(string: "https://github.com/TrustWallet/tokens/blob/master/images/0x6810e776880c02933d47db1b9fc05908e5386b96.png?raw=true")
+        tokenInput.imageURL = URL(string: "https://raw.githubusercontent.com/rmeissner/crypto_resources/master/tokens/rinkeby/icons/0x979861dF79C7408553aAF20c01Cfb3f81CCf9341.png")
     }
 
     @IBAction func set18deciamlDigits(_ sender: Any) {
