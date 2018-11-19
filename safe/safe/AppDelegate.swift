@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     var multisigWalletDB: Database?
     var secureStore: SecureStore?
     var appConfig: AppConfig!
+    let filesystemGuard = FileSystemGuard()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -134,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         do {
             let db = SQLiteDatabase(name: "IdentityAccess",
                                     fileManager: FileManager.default,
-                                    sqlite: CSQLite3(),
+                                    sqlite: DataProtectionAwareCSQLite3(filesystemGuard: filesystemGuard),
                                     bundleId: Bundle.main.bundleIdentifier ?? "pm.gnosis.safe")
             identityAccessDB = db
             let userRepo = DBSingleUserRepository(db: db)
@@ -161,7 +162,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         do {
             let db = SQLiteDatabase(name: "MultisigWallet",
                                     fileManager: FileManager.default,
-                                    sqlite: CSQLite3(),
+                                    sqlite: DataProtectionAwareCSQLite3(filesystemGuard: filesystemGuard),
                                     bundleId: Bundle.main.bundleIdentifier ?? "pm.gnosis.safe")
             multisigWalletDB = db
             let walletRepo = DBWalletRepository(db: db)
