@@ -13,6 +13,7 @@ class AddressInputTests: XCTestCase {
 
     let validAddress_withPrefix = "0xf1511FAB6b7347899f51f9db027A32b39caE3910"
     let validAddress_withoutPrefix = "f1511FAB6b7347899f51f9db027A32b39caE3910"
+    let validAddress_withoutPrefix_withEndSpaces = " f1511FAB6b7347899f51f9db027A32b39caE3910 "
 
     let invalidAddress_tooLong_withPrefix = "0xf1511FAB6b7347899f51f9db027A32b39caE3910a"
     let invalidAddress_tooLong_withoutPrefix = "f1511FAB6b7347899f51f9db027A32b39caE3910a"
@@ -46,6 +47,12 @@ class AddressInputTests: XCTestCase {
     func test_whenScanningValidAddress_thenReturnsIt() {
         assertValidAddress(validAddress_withPrefix)
         assertValidAddress(validAddress_withoutPrefix)
+    }
+
+    func test_whenScanningAddressWithSpacesAtEnds_thenReturnsTrimmed() {
+        input.trimsText = true
+        input.scanHandler.didScan(validAddress_withoutPrefix_withEndSpaces)
+        XCTAssertEqual(input.text, validAddress_withoutPrefix)
     }
 
     func test_whenScanningInvalidAddress_thenDoesNotReturnIt() {

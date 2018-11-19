@@ -122,6 +122,19 @@ class VerifiableInputTests: XCTestCase {
         XCTAssertEqual(input.text, "my text")
     }
 
+    func test_whenHasWhitespaceAtTheEnds_thenTrimsThem() {
+        input.trimsText = true
+        input.text = " my text "
+        XCTAssertEqual(input.text, "my text")
+    }
+
+    func test_whenTrimsTextChanging_thenReTrimsTheText() {
+        input.text = " my text "
+        XCTAssertEqual(input.text, " my text ")
+        input.trimsText = true
+        XCTAssertEqual(input.text, "my text")
+    }
+
     func test_setText_hasMax2Chars() {
         input.maxLength = 1
         input.text = "11"
