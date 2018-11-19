@@ -76,11 +76,15 @@ final class PasswordViewController: UIViewController {
     }
 
     private func addSetPasswordRules() {
-        verifiableInput.addRule(Strings.length) { PasswordValidator.validateMinLength($0) }
+        verifiableInput.addRule(Strings.length) {
+            PasswordValidator.validateMinLength($0)
+        }
         verifiableInput.addRule(Strings.letterAndDigit) {
             PasswordValidator.validateAtLeastOneLetterAndOneDigit($0)
         }
-        verifiableInput.addRule(Strings.trippleChars) { PasswordValidator.validateNoTrippleChar($0) }
+        verifiableInput.addRule(Strings.trippleChars) {
+            PasswordValidator.validateNoTrippleChar($0)
+        }
     }
 
     private func addConfirmPasswordRules() {

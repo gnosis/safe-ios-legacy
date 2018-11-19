@@ -35,6 +35,7 @@ class PasswordValidatorTests: XCTestCase {
 
     func test_whenInputHasTrippleChar_thenReturnsFalse() {
         XCTAssertFalse(PasswordValidator.validateNoTrippleChar("aaa"))
+        XCTAssertFalse(PasswordValidator.validateNoTrippleChar(""))
     }
 
     func test_whenInputEqualToReference_thenReturnsTrue() {
