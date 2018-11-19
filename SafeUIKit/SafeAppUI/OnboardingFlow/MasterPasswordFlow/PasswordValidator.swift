@@ -18,7 +18,7 @@ final class PasswordValidator {
     }
 
     static func validateNoTrippleChar(_ input: String) -> Bool {
-        return input.hasNoTrippleChar
+        return !input.isEmpty && input.hasNoTrippleChar
     }
 
     static func validate(input: String, equals other: String) -> Bool {
