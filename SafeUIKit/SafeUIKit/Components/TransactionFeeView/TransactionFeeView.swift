@@ -18,6 +18,7 @@ public class TransactionFeeView: UIView {
 
     private let wrapperStackView = UIStackView()
     private let displayedDecimals = 5
+    private let paddings: (left: CGFloat, top: CGFloat, right: CGFloat, bottom: CGFloat) = (16, 20, 16, 20)
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,10 +46,10 @@ public class TransactionFeeView: UIView {
         wrapperStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(wrapperStackView)
         NSLayoutConstraint.activate([
-            wrapperStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            wrapperStackView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            wrapperStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            wrapperStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)])
+            wrapperStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: paddings.left),
+            wrapperStackView.topAnchor.constraint(equalTo: topAnchor, constant: paddings.top),
+            wrapperStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -paddings.right),
+            wrapperStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -paddings.bottom)])
     }
 
     public func configure(currentBalance: TokenData?, transactionFee: TokenData?, resultingBalance: TokenData!) {

@@ -255,6 +255,10 @@
 		55E8AFFD219C4A45002930A1 /* TransactionFeeViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8AFFC219C4A45002930A1 /* TransactionFeeViewViewController.swift */; };
 		55E8B000219C4A93002930A1 /* TransactionFeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8AFFF219C4A93002930A1 /* TransactionFeeView.swift */; };
 		55E8B002219C4AF1002930A1 /* TransactionFeeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8B001219C4AF1002930A1 /* TransactionFeeViewTests.swift */; };
+		55E8B006219EC213002930A1 /* TransactionHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8B005219EC213002930A1 /* TransactionHeaderViewController.swift */; };
+		55E8B009219EC29A002930A1 /* TransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8B008219EC29A002930A1 /* TransactionHeaderView.swift */; };
+		55E8B00B219EC2B9002930A1 /* TransactionHeaderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8B00A219EC2B9002930A1 /* TransactionHeaderViewTests.swift */; };
+		55E8B00D219ED3CF002930A1 /* TransactionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E8B00C219ED3CF002930A1 /* TransactionHeaderView.xib */; };
 		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
 		55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F558208A298200889C9F /* QRCodeInputTests.swift */; };
 		55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */; };
@@ -576,6 +580,10 @@
 		55E8AFFC219C4A45002930A1 /* TransactionFeeViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeViewViewController.swift; sourceTree = "<group>"; };
 		55E8AFFF219C4A93002930A1 /* TransactionFeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeView.swift; sourceTree = "<group>"; };
 		55E8B001219C4AF1002930A1 /* TransactionFeeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeViewTests.swift; sourceTree = "<group>"; };
+		55E8B005219EC213002930A1 /* TransactionHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderViewController.swift; sourceTree = "<group>"; };
+		55E8B008219EC29A002930A1 /* TransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderView.swift; sourceTree = "<group>"; };
+		55E8B00A219EC2B9002930A1 /* TransactionHeaderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderViewTests.swift; sourceTree = "<group>"; };
+		55E8B00C219ED3CF002930A1 /* TransactionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionHeaderView.xib; sourceTree = "<group>"; };
 		55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputViewController.swift; sourceTree = "<group>"; };
 		55E9F558208A298200889C9F /* QRCodeInputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputTests.swift; sourceTree = "<group>"; };
 		55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
@@ -897,6 +905,7 @@
 				55DE530A217B467900613B90 /* ScanButtonViewController.swift */,
 				55E8AFE8219B41A7002930A1 /* TransferViewViewController.swift */,
 				55E8AFFC219C4A45002930A1 /* TransactionFeeViewViewController.swift */,
+				55E8B005219EC213002930A1 /* TransactionHeaderViewController.swift */,
 			);
 			path = SafeUIKitDemo;
 			sourceTree = "<group>";
@@ -1099,6 +1108,7 @@
 				556251CF2146710800F569EE /* TokenBalanceCell */,
 				55D0EC5C216F6DB9003D9A53 /* TokenInputs */,
 				55E8AFFE219C4A62002930A1 /* TransactionFeeView */,
+				55E8B007219EC254002930A1 /* TransactionHeaderView */,
 				55E8AFE1219B34D9002930A1 /* TransferView */,
 			);
 			path = Components;
@@ -1345,6 +1355,16 @@
 			path = TransactionFeeView;
 			sourceTree = "<group>";
 		};
+		55E8B007219EC254002930A1 /* TransactionHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				55E8B008219EC29A002930A1 /* TransactionHeaderView.swift */,
+				55E8B00A219EC2B9002930A1 /* TransactionHeaderViewTests.swift */,
+				55E8B00C219ED3CF002930A1 /* TransactionHeaderView.xib */,
+			);
+			path = TransactionHeaderView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1579,6 +1599,7 @@
 				0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */,
 				55E8AFE7219B37F8002930A1 /* TransferView.xib in Resources */,
 				555EB71F216DF48900E06553 /* VerifiableInput.xib in Resources */,
+				55E8B00D219ED3CF002930A1 /* TransactionHeaderView.xib in Resources */,
 				556251D3214671BE00F569EE /* TokenBalanceTableViewCell.xib in Resources */,
 				0A53AD5320598B5000D713AD /* Localizable.strings in Resources */,
 				5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */,
@@ -1770,6 +1791,7 @@
 				555EB71D216DF23700E06553 /* VerifiableInputViewController.swift in Sources */,
 				0ACC77F7219D76060057E79A /* TransactionReviewDemoViewController.swift in Sources */,
 				0A0974D620480CEB005753DF /* UnlockDemoViewController.swift in Sources */,
+				55E8B006219EC213002930A1 /* TransactionHeaderViewController.swift in Sources */,
 				0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */,
 				0A60B516211333620066821A /* ProgressViewController.swift in Sources */,
 				55247360214293D500A77557 /* IdenticonViewController.swift in Sources */,
@@ -1818,6 +1840,7 @@
 				552473612142A07300A77557 /* DesignableView.swift in Sources */,
 				5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */,
 				550E7CE121708FBC0032DE6C /* TokenBounds.swift in Sources */,
+				55E8B009219EC29A002930A1 /* TransactionHeaderView.swift in Sources */,
 				55E8AFE3219B3521002930A1 /* TransferView.swift in Sources */,
 				555EB6F0216CA5CF00E06553 /* TextInput.swift in Sources */,
 				550954EA20C9590000F5F25F /* TokenDoubleInput.swift in Sources */,
@@ -1848,6 +1871,7 @@
 				55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */,
 				555EB71B216DF19800E06553 /* VerifiableInputTests.swift in Sources */,
 				0A9BA3C9207F6B6A001DC22F /* CheckmarkButtonTests.swift in Sources */,
+				55E8B00B219EC2B9002930A1 /* TransactionHeaderViewTests.swift in Sources */,
 				55E8B002219C4AF1002930A1 /* TransactionFeeViewTests.swift in Sources */,
 				55C428FC217B428100BF8922 /* ScanBarButtonItemTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
