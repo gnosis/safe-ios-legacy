@@ -29,6 +29,12 @@ public class VerifiableInput: UIView {
         return allRules.reduce(true) { $0 && $1.status == .success }
     }
 
+    public var trimsText: Bool = false {
+        didSet {
+            revalidateText()
+        }
+    }
+
     public var showErrorsOnly: Bool = false
 
     public var maxLength: Int = Int.max
@@ -40,12 +46,25 @@ public class VerifiableInput: UIView {
         }
         set {
             if newValue != nil {
-                textInput.text = String(newValue!.prefix(maxLength))
+                textInput.text = safeUserInput(newValue)
                 validateRules(for: textInput.text!)
             } else {
                 textInput.text = nil
             }
         }
+    }
+
+    private func revalidateText() {
+        let str = text
+        text = str
+    }
+
+    internal func safeUserInput(_ text: String?) -> String {
+        var result = String(text!.prefix(maxLength))
+        if trimsText {
+            result = result.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        return result
     }
 
     public var isEnabled: Bool {
@@ -59,6 +78,7 @@ public class VerifiableInput: UIView {
     }
 
     public var isShaking: Bool {
+        // FIXME: animaiton state must be tracked by bool variables and not by state of the graphic system
         return layer.animation(forKey: VerifiableInput.shakeAnimationKey) != nil
     }
 

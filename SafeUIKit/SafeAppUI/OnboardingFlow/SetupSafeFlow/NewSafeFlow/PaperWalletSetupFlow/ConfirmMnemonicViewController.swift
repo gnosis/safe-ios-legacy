@@ -79,10 +79,12 @@ final class ConfirmMnemonicViewController: UIViewController {
         firstWordTextInput.delegate = self
         firstWordTextInput.accessibilityIdentifier = "firstInput"
         firstWordTextInput.textInput.style = .gray
+        firstWordTextInput.trimsText = true
         secondWordTextInput.textInput.placeholder = String(format: Strings.wordNumberPlaceholder, secondWordIndex)
         secondWordTextInput.delegate = self
         secondWordTextInput.accessibilityIdentifier = "secondInput"
         secondWordTextInput.textInput.style = .gray
+        secondWordTextInput.trimsText = true
          _ = firstWordTextInput.becomeFirstResponder()
     }
 
