@@ -102,6 +102,7 @@ platform :ios do
       build_path: BUILD_PATH,
       archive_path: ARCHIVE_PATH)
     crashlytics(groups: "ios-beta-testers", notifications: false)
+    sh "cd ..; scripts/fabric-upload-symbols -a #{ENV["CRASHLYTICS_API_TOKEN"]} -p ios Build/Archive.xcarchive/dSYMs"
     slack(
      message: "Successfully distributed new version to Fabric beta :rocket:",
     )

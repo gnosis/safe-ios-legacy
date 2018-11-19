@@ -26,6 +26,11 @@ Runs tests
 fastlane ios test_all
 ```
 Runs all tests
+### ios some
+```
+fastlane ios some
+```
+
 ### ios fabric
 ```
 fastlane ios fabric
