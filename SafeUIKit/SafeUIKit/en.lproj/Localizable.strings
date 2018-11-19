@@ -55,3 +55,18 @@
 /* Error to display if entered value is too big. */
 "token_input.value_is_too_big" = "Value is too big.";
 
+/* Balance after transfer */
+"transaction_fee.balance_after_transfer" = "Balance after transfer";
+
+/* Current balance */
+"transaction_fee.current_balance" = "Current balance";
+
+/* Displayed in parentheses */
+"transaction_fee.ether" = "Ether";
+
+/* Displayed in parentheses */
+"transaction_fee.token" = "token";
+
+/* Transaction fee */
+"transaction_fee.transaction_fee" = "Transaction fee";
+
