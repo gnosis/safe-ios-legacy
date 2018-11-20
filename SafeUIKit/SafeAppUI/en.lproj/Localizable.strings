@@ -203,6 +203,9 @@
 /* At least 1 digit and 1 letter. */
 "onboarding.set_password.letter_and_digit" = "At least 1 number and 1 letter";
 
+/* Next button title */
+"onboarding.set_password.next" = "Next";
+
 /* No triple characters. */
 "onboarding.set_password.no_tripple_chars" = "No triple characters";
 

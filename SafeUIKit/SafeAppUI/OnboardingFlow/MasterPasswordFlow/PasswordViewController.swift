@@ -15,6 +15,7 @@ final class PasswordViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var verifiableInput: VerifiableInput!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
 
     private weak var delegate: PasswordViewControllerDelegate?
     private var keyboardBehavior: KeyboardAvoidingBehavior!
@@ -39,6 +40,8 @@ final class PasswordViewController: UIViewController {
                                                   comment: "No triple characters.")
         static let matchPassword = LocalizedString("onboarding.confirm_password.match",
                                                    comment: "Passwords must match.")
+        static let next = LocalizedString("onboarding.set_password.next",
+                                          comment: "Next button title")
     }
 
     static func create(delegate: PasswordViewControllerDelegate?,
@@ -47,6 +50,15 @@ final class PasswordViewController: UIViewController {
         vc.delegate = delegate
         vc.referencePassword = referencePassword
         return vc
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+         nextButton.title = Strings.next
+    }
+
+    @IBAction func proceed(_ sender: Any) {
+        verifiableInput.verify()
     }
 
     override func viewDidLoad() {
@@ -66,6 +78,7 @@ final class PasswordViewController: UIViewController {
         verifiableInput.delegate = self
         verifiableInput.isSecure = true
         verifiableInput.style = .dimmed
+        verifiableInput.returnKeyType = .next
         _ = verifiableInput.becomeFirstResponder()
     }
 

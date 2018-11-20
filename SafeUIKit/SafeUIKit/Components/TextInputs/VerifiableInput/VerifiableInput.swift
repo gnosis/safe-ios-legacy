@@ -77,6 +77,11 @@ public class VerifiableInput: UIView {
         set { textInput.isSecureTextEntry = newValue }
     }
 
+    public var returnKeyType: UIReturnKeyType {
+        get { return textInput.returnKeyType }
+        set { textInput.returnKeyType = newValue }
+    }
+
     public var isShaking: Bool {
         // FIXME: animaiton state must be tracked by bool variables and not by state of the graphic system
         return layer.animation(forKey: VerifiableInput.shakeAnimationKey) != nil
@@ -154,6 +159,16 @@ public class VerifiableInput: UIView {
         }
     }
 
+    @discardableResult
+    public func verify() -> Bool {
+        if isValid {
+            delegate?.verifiableInputDidReturn(self)
+        } else {
+            shake()
+        }
+        return isValid
+    }
+
 }
 
 extension VerifiableInput: UITextFieldDelegate {
@@ -177,13 +192,7 @@ extension VerifiableInput: UITextFieldDelegate {
     }
 
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let shouldReturn = isValid
-        if shouldReturn {
-            delegate?.verifiableInputDidReturn(self)
-        } else {
-            shake()
-        }
-        return shouldReturn
+        return verify()
     }
 
     public func textFieldDidBeginEditing(_ textField: UITextField) {
