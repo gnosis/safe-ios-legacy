@@ -37,9 +37,14 @@ public class TransactionsTableViewController: UITableViewController {
         DispatchQueue.global().async {
             self.groups = ApplicationServiceRegistry.walletService.grouppedTransactions()
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.displayUpdatedData()
             }
         }
+    }
+
+    private func displayUpdatedData() {
+        tableView.reloadData()
+        tableView.backgroundView = groups.isEmpty ? TransactionsEmptyView() : nil
     }
 
     // MARK: - Table view data source
