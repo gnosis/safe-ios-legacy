@@ -13,15 +13,9 @@ class TransactionValueViewTests: XCTestCase {
         XCTAssertEqual(view.tokenLabel.text, "test")
         view.fiatAmount = "test"
         XCTAssertEqual(view.fiatLabel.text, "test")
-        view.IBStyle = TransactionValueStyle.negative.rawValue
-        XCTAssertEqual(view.style, .negative)
+        XCTAssertEqual(view.style, .positive)
         view.isSingleValue = true
         XCTAssertTrue(view.fiatLabel.isHidden)
-        view.style = .neutral
-        XCTAssertEqual(view.IBStyle, TransactionValueStyle.neutral.rawValue)
-        view.style = .positive
-        view.IBStyle = -10
-        XCTAssertEqual(view.IBStyle, TransactionValueStyle.neutral.rawValue)
     }
 
 }

@@ -11,6 +11,7 @@ final class IdenticonViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        identiconView.displayShadow = false
         identiconView.seed = "Test it!"
     }
 

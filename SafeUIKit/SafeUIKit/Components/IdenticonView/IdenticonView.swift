@@ -4,9 +4,8 @@
 
 import UIKit
 
-public class IdenticonView: DesignableView {
+public class IdenticonView: BaseCustomView {
 
-    @IBInspectable
     public var displayShadow: Bool = false {
         didSet {
             _displayShadow = displayShadow
@@ -19,7 +18,6 @@ public class IdenticonView: DesignableView {
         }
     }
 
-    @IBInspectable
     public var seed: String = "Identicon" {
         didSet {
             setNeedsUpdate()

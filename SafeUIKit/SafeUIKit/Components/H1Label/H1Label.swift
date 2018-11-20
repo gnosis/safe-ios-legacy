@@ -4,7 +4,6 @@
 
 import UIKit
 
-@IBDesignable
 public final class H1Label: UILabel {
 
     public override init(frame: CGRect) {
@@ -26,11 +25,6 @@ public final class H1Label: UILabel {
         font = UIFont.systemFont(ofSize: 36)
         numberOfLines = 0
         textColor = .black
-    }
-
-    public override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        configure()
     }
 
 }

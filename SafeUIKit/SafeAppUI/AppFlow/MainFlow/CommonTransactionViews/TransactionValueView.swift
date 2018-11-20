@@ -5,28 +5,18 @@
 import UIKit
 import SafeUIKit
 
-class TransactionValueView: DesignableView {
+class TransactionValueView: BaseCustomView {
 
-    @IBInspectable
     var tokenAmount: String = "+9.11300 ETH" {
         didSet {
             setNeedsUpdate()
         }
     }
-    @IBInspectable
     var fiatAmount: String = "≈ $643.42" {
         didSet {
             setNeedsUpdate()
         }
     }
-    @IBInspectable
-    var IBStyle: Int {
-        get { return style.rawValue }
-        set {
-            setStyle(newValue)
-        }
-    }
-    @IBInspectable
     var  isSingleValue: Bool = false {
         didSet {
             setNeedsUpdate()
@@ -35,14 +25,6 @@ class TransactionValueView: DesignableView {
     var style: TransactionValueStyle = .positive {
         didSet {
             setNeedsUpdate()
-        }
-    }
-
-    func setStyle(_ newValue: Int) {
-        if let value = TransactionValueStyle(rawValue: newValue) {
-            style = value
-        } else {
-            style = .neutral
         }
     }
 

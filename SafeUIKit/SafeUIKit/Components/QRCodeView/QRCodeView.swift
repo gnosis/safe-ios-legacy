@@ -6,7 +6,7 @@ import UIKit
 import RSBarcodes
 import AVFoundation
 
-final public class QRCodeView: DesignableView {
+final public class QRCodeView: BaseCustomView {
 
     public var value: String? {
         didSet {

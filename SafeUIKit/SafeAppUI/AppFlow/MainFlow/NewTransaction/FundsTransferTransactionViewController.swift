@@ -80,6 +80,7 @@ class FundsTransferTransactionViewController: UIViewController {
 
         valueView.tokenAmount = model.balance ?? ""
         valueView.fiatAmount = ""
+        valueView.style = .neutral
 
         balanceLabel.text = model.feeBalance
         feeLabel.text = model.fee

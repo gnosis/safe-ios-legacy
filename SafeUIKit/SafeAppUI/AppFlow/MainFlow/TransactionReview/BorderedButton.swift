@@ -4,7 +4,7 @@
 
 import UIKit
 
-class BorderedButton: DesignableButton {
+class BorderedButton: BaseCustomButton {
 
     private var stateObservation: NSKeyValueObservation!
     private var background: UIView!

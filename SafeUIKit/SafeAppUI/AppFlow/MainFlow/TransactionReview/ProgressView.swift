@@ -5,23 +5,20 @@
 import UIKit
 import SafeUIKit
 
-public class ProgressView: DesignableView {
+public class ProgressView: BaseCustomView {
 
-    @IBInspectable
     public var progress: Double = 0 {
         didSet {
             updateState()
         }
     }
 
-    @IBInspectable
     public var isError: Bool = false {
         didSet {
             updateState()
         }
     }
 
-    @IBInspectable
     public var isIndeterminate: Bool = false {
         didSet {
             updateState()

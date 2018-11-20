@@ -198,7 +198,7 @@ final class MenuTableViewController: UITableViewController {
                 delegate?.didSelectManageTokens()
             }
         case .security:
-            let item =  menuItem(at: indexPath)!
+            let item = menuItem(at: indexPath)!
             switch item.name {
             case Strings.connectBrowserExtension:
                 delegate?.didSelectConnectBrowserExtension()
