@@ -6,23 +6,9 @@ import UIKit
 
 class StatusTransactionParameterView: TransactionParameterView {
 
-    @IBInspectable
-    var IBStatus: Int {
-        get { return status.rawValue }
-        set { setStatus(newValue) }
-    }
-
     var status: TransactionStatusParameter = .pending {
         didSet {
             setNeedsUpdate()
-        }
-    }
-
-    func setStatus(_ newValue: Int) {
-        if let value = TransactionStatusParameter(rawValue: newValue) {
-            status = value
-        } else {
-            status = .pending
         }
     }
 

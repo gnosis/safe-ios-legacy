@@ -74,6 +74,11 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
     func openMenu() {
         let menuVC = MenuTableViewController.create()
         menuVC.delegate = self
+        navigationController.topViewController?.navigationItem.backBarButtonItem =
+            UIBarButtonItem(title: LocalizedString("navigation.back", comment: "Back"),
+                            style: .plain,
+                            target: nil,
+                            action: nil)
         push(menuVC)
     }
 

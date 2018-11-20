@@ -618,10 +618,6 @@
                                     <constraint firstAttribute="width" secondItem="yGw-m7-AFl" secondAttribute="height" multiplier="1:1" id="eVK-0Z-6Ce"/>
                                     <constraint firstAttribute="height" constant="100" id="uzR-vX-Dd0"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="displayShadow" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="seed" value="Yo!"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -904,12 +900,6 @@
                                     <constraint firstAttribute="height" constant="120" id="NM2-uh-KLq"/>
                                     <constraint firstAttribute="width" constant="120" id="h2t-nq-DiS"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="value" value="Gnosis Safe"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="padding">
-                                        <real key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

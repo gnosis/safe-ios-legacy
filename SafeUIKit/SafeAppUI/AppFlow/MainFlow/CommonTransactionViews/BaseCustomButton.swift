@@ -4,34 +4,28 @@
 
 import UIKit
 
-@IBDesignable
-open class DesignableView: UIView {
+class BaseCustomButton: UIButton {
 
     private var isLoaded = false
 
-    public override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    open override func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         commonInit()
-    }
-
-    open override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        setNeedsUpdate()
     }
 
     /// Common initializer called in `init(frame:)` and in `awakeFromNib()`
     /// At some point in this method you must call `didLoad()` in order to enable view updates.
     /// The base implementation of this method does nothing.
-    open func commonInit() {
+    func commonInit() {
         // meant for subclassing
     }
 
@@ -39,18 +33,18 @@ open class DesignableView: UIView {
     /// Don't call this method directly. Instead, please call `setNeedsUpdate()`.
     /// Update will not be called if `didLoad()` hasn't been called before.
     /// The base implementation of this method does nothing.
-    open func update() {
+    func update() {
         // meant for subclassing
     }
 
     /// Call this method when your view model changes and view has to be updated.
-    open func setNeedsUpdate() {
+    func setNeedsUpdate() {
         guard isLoaded else { return }
         update()
     }
 
     /// Indicates that view initialization complete and updates can be performed.
-    open func didLoad() {
+    func didLoad() {
         isLoaded = true
         setNeedsUpdate()
     }

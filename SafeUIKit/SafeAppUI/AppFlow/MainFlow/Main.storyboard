@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -97,10 +97,10 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fpc-0E-fts">
-                                    <rect key="frame" x="-25" y="-12" width="50" height="24"/>
+                                    <rect key="frame" x="-27" y="-12.5" width="54" height="25"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAFE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjX-sX-kbw">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="24"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="54" height="25"/>
                                             <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                             <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                             <nil key="highlightedColor"/>
@@ -318,17 +318,17 @@
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQp-an-Qdf">
-                                            <rect key="frame" x="78" y="20" width="145" height="27"/>
+                                            <rect key="frame" x="78" y="20" width="154.5" height="28.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GNOSIS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43X-yf-mzg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="87.5" height="27"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="92.5" height="28.5"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="23"/>
                                                     <color key="textColor" red="0.63529411759999999" green="0.6588235294" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAFE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPs-pW-bhA">
-                                                    <rect key="frame" x="87.5" y="0.0" width="57.5" height="27"/>
+                                                    <rect key="frame" x="92.5" y="0.0" width="62" height="28.5"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="23"/>
                                                     <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -337,7 +337,7 @@
                                             </subviews>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vK8-Bb-AnF">
-                                            <rect key="frame" x="78" y="47" width="90" height="16"/>
+                                            <rect key="frame" x="78" y="48.5" width="90" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="6OR-9b-QJA"/>
                                                 <constraint firstAttribute="height" constant="16" id="jpa-bi-er6"/>
@@ -624,10 +624,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="kQL-4W-5MV"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="Tobias Funds"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="address" value="0xb0859c869dd022a4827a6916e6b7b83fe97d912f"/>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9bO-C5-2MI">
                                         <rect key="frame" x="0.0" y="50" width="343" height="44"/>
@@ -644,13 +640,6 @@
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EZC-qM-B0L" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
                                                 <rect key="frame" x="52" y="0.0" width="291" height="44"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="tokenAmount" value="-1.10000 ETH"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="IBStyle">
-                                                        <integer key="value" value="-1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="fiatAmount" value="316934 bytes included"/>
-                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -662,10 +651,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="w3a-Wi-Kth"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="Martin Winklervos"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="address" value="0xd3996b90f0976d6c1dec1155db4933aca4898f9a"/>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -684,37 +669,15 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="A8M-Jk-kZx"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="Type"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="value" value="Outgoing Transfer"/>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fJ-ed-qN7" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="48" width="343" height="32"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="Submitted"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="value" value="May 6, 2018 - 3:34PM (2 months ago)"/>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQu-Qj-qJQ" customClass="StatusTransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="96" width="343" height="32"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="Status"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="value" value="May 6, 2018 - 3:34PM (2 months ago)"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="IBStatus">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5am-MD-ipW" customClass="TokenAmountTransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="144" width="343" height="32"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="Transaction fee"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="value" value="-0.00034 ETH"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="IBStyle">
-                                                <integer key="value" value="-1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maA-2G-VbL">
                                         <rect key="frame" x="0.0" y="192" width="343" height="44"/>
@@ -844,20 +807,9 @@
                                                             <constraint firstAttribute="width" constant="150" placeholder="YES" id="Z31-8R-So9"/>
                                                             <constraint firstAttribute="height" constant="50" id="nUI-tP-njN"/>
                                                         </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="Tobias Funds"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="address" value="0xb0859c869dd022a4827a6916e6b7b83fe97d912f"/>
-                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QRc-eC-DsR" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
                                                         <rect key="frame" x="165" y="0.0" width="178" height="50"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="tokenAmount" value="94.34934 ETH"/>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="IBStyle">
-                                                                <integer key="value" value="0"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="fiatAmount" value="≈ $340.234"/>
-                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -1133,10 +1085,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="kGg-xG-Mhx"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="Tobias Funds"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="address" value="0xb0859c869dd022a4827a6916e6b7b83fe97d912f"/>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sFZ-Jk-52n">
                                         <rect key="frame" x="0.0" y="50" width="343" height="44"/>
@@ -1153,13 +1101,6 @@
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dzu-pH-JMu" customClass="TransactionValueView" customModule="SafeAppUI" customModuleProvider="target">
                                                 <rect key="frame" x="52" y="0.0" width="291" height="44"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="tokenAmount" value="-1.10000 ETH"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="IBStyle">
-                                                        <integer key="value" value="-1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="fiatAmount" value="316934 bytes included"/>
-                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -1171,10 +1112,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="2xn-Na-ygb"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="Martin Winklervos"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="address" value="0xd3996b90f0976d6c1dec1155db4933aca4898f9a"/>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1266,12 +1203,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="ppu-2f-vQm"/>
                                                 </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="progress">
-                                                        <real key="value" value="0.40000000000000002"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isIndeterminate" value="YES"/>
-                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                     </stackView>

@@ -59,6 +59,7 @@ public final class TransactionReviewViewController: UIViewController {
         dataTitleLabel.text = Strings.dataTitle
         dataInfoStackView.isHidden = true
         actionButtonInfoLabel.isHidden = true
+        progressView.isIndeterminate = true
         update()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(resumeAnimation),
@@ -90,6 +91,7 @@ public final class TransactionReviewViewController: UIViewController {
         recipientView.address = tx.recipient
         tokenFormatter = TokenNumberFormatter.ERC20Token(code: tx.token, decimals: tx.tokenDecimals)
         transactionValueView.tokenAmount = tokenFormatter.string(from: tx.amount)
+        transactionValueView.style = .negative
 
         feeFormatter = TokenNumberFormatter.ERC20Token(code: tx.feeToken, decimals: tx.feeTokenDecimals)
         let balance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: ethID)!

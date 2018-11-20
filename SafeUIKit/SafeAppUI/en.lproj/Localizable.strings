@@ -88,6 +88,9 @@
 /* Title for menu screen. */
 "menu.title" = "Menu";
 
+/* Back */
+"navigation.back" = "Back";
+
 /* Browser extension button */
 "new_safe.browser_extension" = "Browser extension";
 
@@ -202,6 +205,9 @@
 
 /* At least 1 digit and 1 letter. */
 "onboarding.set_password.letter_and_digit" = "At least 1 number and 1 letter";
+
+/* Next button title */
+"onboarding.set_password.next" = "Next";
 
 /* No triple characters. */
 "onboarding.set_password.no_tripple_chars" = "No triple characters";
@@ -442,6 +448,9 @@
 
 /* AWAITING CONFIRMATION */
 "transaction.status.waiting.title" = "AWAITING CONFIRMATION";
+
+/* No transactions yet */
+"transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";
 
 /* Pending transactions group header */
 "transactions.group.pending" = "PENDING";

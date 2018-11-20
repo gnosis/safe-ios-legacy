@@ -13,6 +13,7 @@ final class QRCodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         qrCodeView.padding = 5
+        qrCodeView.value = "Gnosis Safe"
         qrCodeView.layer.borderWidth = 1
         qrCodeView.layer.borderColor = UIColor.black.cgColor
         qrCodeView.layer.cornerRadius = 4

@@ -5,9 +5,8 @@
 import UIKit
 import SafeUIKit
 
-class HorizontalSeparatorView: DesignableView {
+class HorizontalSeparatorView: BaseCustomView {
 
-    @IBInspectable
     var size: CGFloat = 1 {
         didSet {
             setNeedsUpdate()

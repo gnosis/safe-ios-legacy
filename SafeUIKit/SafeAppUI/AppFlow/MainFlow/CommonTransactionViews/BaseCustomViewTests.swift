@@ -6,32 +6,32 @@ import XCTest
 @testable import SafeAppUI
 import SafeUIKit
 
-/// This test is parametrized: it tests both TestDesignableButton and TestDesignableView
+/// This test is parametrized: it tests both TestCustomButton and TestCustomView
 /// with the same set of tests because they have the same API. We have these duplicate classes
-/// because we can't substitute base class of UIButton or other designable variant.
+/// because we can't substitute base class of UIButton or other UIKit variant.
 /// Although we could use method swizzling, but I feel it is not worth the trouble.
-class DesignableTests: XCTestCase {
+class BaseCustomViewTests: XCTestCase {
 
-    var initClosure: (() -> UIView & TestDesignable)!
-    var initWithFrameClosure: ((CGRect) -> UIView & TestDesignable)!
-    var initWithCoderClosure: ((NSCoder) -> UIView & TestDesignable)!
-    var otherInit: (() -> (UIView & TestDesignable)?)!
+    var initClosure: (() -> UIView & TestCustomViewProtocol)!
+    var initWithFrameClosure: ((CGRect) -> UIView & TestCustomViewProtocol)!
+    var initWithCoderClosure: ((NSCoder) -> UIView & TestCustomViewProtocol)!
+    var otherInit: (() -> (UIView & TestCustomViewProtocol)?)!
 
     override class var defaultTestSuite: XCTestSuite {
         let testSuite = XCTestSuite(name: NSStringFromClass(self))
 
         for invocation in testInvocations {
-            var test = DesignableTests(invocation: invocation)
-            test.initClosure = { TestDesignableButton() }
-            test.initWithFrameClosure = { TestDesignableButton(frame: $0) }
-            test.initWithCoderClosure = { TestDesignableButton(coder: $0)! }
-            test.otherInit = { TestDesignableButton(type: .custom) }
+            var test = BaseCustomViewTests(invocation: invocation)
+            test.initClosure = { TestCustomButton() }
+            test.initWithFrameClosure = { TestCustomButton(frame: $0) }
+            test.initWithCoderClosure = { TestCustomButton(coder: $0)! }
+            test.otherInit = { TestCustomButton(type: .custom) }
             testSuite.addTest(test)
 
-            test = DesignableTests(invocation: invocation)
-            test.initClosure = { TestDesignableView() }
-            test.initWithFrameClosure = { TestDesignableView(frame: $0) }
-            test.initWithCoderClosure = { TestDesignableView(coder: $0)! }
+            test = BaseCustomViewTests(invocation: invocation)
+            test.initClosure = { TestCustomView() }
+            test.initWithFrameClosure = { TestCustomView(frame: $0) }
+            test.initWithCoderClosure = { TestCustomView(coder: $0)! }
             test.otherInit = { nil }
             testSuite.addTest(test)
         }
@@ -87,7 +87,7 @@ class DesignableTests: XCTestCase {
 
 }
 
-extension DesignableTests {
+extension BaseCustomViewTests {
 
     private func dummyCoder() -> NSCoder {
         let data = NSMutableData()
@@ -99,7 +99,7 @@ extension DesignableTests {
 
 }
 
-protocol TestDesignable {
+protocol TestCustomViewProtocol {
 
     var didCallCommonInit: Bool { get set }
     var didCallUpdate: Bool { get set }
@@ -111,7 +111,7 @@ protocol TestDesignable {
 
 }
 
-class TestDesignableButton: DesignableButton, TestDesignable {
+class TestCustomButton: BaseCustomButton, TestCustomViewProtocol {
 
     var didCallCommonInit = false
     var didCallUpdate = false
@@ -126,7 +126,7 @@ class TestDesignableButton: DesignableButton, TestDesignable {
 
 }
 
-class TestDesignableView: DesignableView, TestDesignable {
+class TestCustomView: BaseCustomView, TestCustomViewProtocol {
 
     var didCallCommonInit = false
     var didCallUpdate = false

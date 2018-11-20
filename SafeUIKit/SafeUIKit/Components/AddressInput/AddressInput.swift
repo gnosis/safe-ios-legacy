@@ -23,7 +23,7 @@ public final class AddressInput: VerifiableInput {
         }
         set {
             if newValue != nil {
-                let displayAddress = String(newValue!.prefix(maxLength))
+                let displayAddress = safeUserInput(newValue)
                 addressLabel.text = displayAddress
                 textInput.rightViewMode = .always
                 textInput.placeholder = nil
@@ -73,6 +73,7 @@ public final class AddressInput: VerifiableInput {
         configureTextInput()
         addAddressLabel()
         showErrorsOnly = true
+        trimsText = true
         maxLength = 43 // if user scans >42 chars value, the error will be displayed.
         text = nil
         addRule(Strings.Rules.invalidAddress, identifier: "invalidAddress", validation: isValid)
@@ -114,7 +115,8 @@ public final class AddressInput: VerifiableInput {
     }
 
     private func validatedAddress(_ address: String) -> String? {
-        return isValid(address) ? address : nil
+        let safeValue = safeUserInput(address)
+        return isValid(safeValue) ? safeValue : nil
     }
 
     private func isValid(_ address: String) -> Bool {
