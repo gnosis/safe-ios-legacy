@@ -88,6 +88,9 @@
 /* Title for menu screen. */
 "menu.title" = "Menu";
 
+/* Back */
+"navigation.back" = "Back";
+
 /* Browser extension button */
 "new_safe.browser_extension" = "Browser extension";
 
