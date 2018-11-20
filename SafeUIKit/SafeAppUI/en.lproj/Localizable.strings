@@ -443,6 +443,9 @@
 /* AWAITING CONFIRMATION */
 "transaction.status.waiting.title" = "AWAITING CONFIRMATION";
 
+/* No transactions yet */
+"transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";
+
 /* Pending transactions group header */
 "transactions.group.pending" = "PENDING";
 
