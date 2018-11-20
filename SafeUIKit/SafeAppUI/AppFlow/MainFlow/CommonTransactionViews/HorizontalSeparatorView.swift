@@ -5,7 +5,7 @@
 import UIKit
 import SafeUIKit
 
-class HorizontalSeparatorView: DesignableView {
+class HorizontalSeparatorView: BaseCustomView {
 
     var size: CGFloat = 1 {
         didSet {

@@ -5,7 +5,7 @@
 import UIKit
 import SafeUIKit
 
-class TransactionValueView: DesignableView {
+class TransactionValueView: BaseCustomView {
 
     var tokenAmount: String = "+9.11300 ETH" {
         didSet {

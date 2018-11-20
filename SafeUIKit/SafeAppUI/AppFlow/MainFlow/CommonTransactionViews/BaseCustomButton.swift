@@ -4,7 +4,7 @@
 
 import UIKit
 
-class DesignableButton: UIButton {
+class BaseCustomButton: UIButton {
 
     private var isLoaded = false
 

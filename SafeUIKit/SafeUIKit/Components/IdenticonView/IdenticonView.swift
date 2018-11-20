@@ -4,7 +4,7 @@
 
 import UIKit
 
-public class IdenticonView: DesignableView {
+public class IdenticonView: BaseCustomView {
 
     public var displayShadow: Bool = false {
         didSet {

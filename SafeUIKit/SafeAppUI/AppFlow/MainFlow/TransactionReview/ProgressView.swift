@@ -5,7 +5,7 @@
 import UIKit
 import SafeUIKit
 
-public class ProgressView: DesignableView {
+public class ProgressView: BaseCustomView {
 
     public var progress: Double = 0 {
         didSet {

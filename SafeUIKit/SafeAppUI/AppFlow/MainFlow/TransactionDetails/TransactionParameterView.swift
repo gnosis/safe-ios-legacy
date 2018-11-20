@@ -5,7 +5,7 @@
 import UIKit
 import SafeUIKit
 
-class TransactionParameterView: DesignableView {
+class TransactionParameterView: BaseCustomView {
 
     var name: String = "Parameter" {
         didSet { setNeedsUpdate() }

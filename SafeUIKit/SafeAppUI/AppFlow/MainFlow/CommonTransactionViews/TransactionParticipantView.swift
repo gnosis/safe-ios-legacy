@@ -5,7 +5,7 @@
 import UIKit
 import SafeUIKit
 
-class TransactionParticipantView: DesignableView {
+class TransactionParticipantView: BaseCustomView {
 
     var name: String = "Name" {
         didSet {

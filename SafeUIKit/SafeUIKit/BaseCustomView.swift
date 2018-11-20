@@ -4,7 +4,7 @@
 
 import UIKit
 
-open class DesignableView: UIView {
+open class BaseCustomView: UIView {
 
     private var isLoaded = false
 
@@ -20,11 +20,6 @@ open class DesignableView: UIView {
     open override func awakeFromNib() {
         super.awakeFromNib()
         commonInit()
-    }
-
-    open override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        setNeedsUpdate()
     }
 
     /// Common initializer called in `init(frame:)` and in `awakeFromNib()`
