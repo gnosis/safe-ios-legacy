@@ -39,6 +39,7 @@ extension TransactionData {
                                            amount: 2000000000000,
                                            token: "ETH",
                                            tokenDecimals: 18,
+                                           tokenLogoUrl: "",
                                            fee: 30000000,
                                            feeToken: "ETH",
                                            feeTokenDecimals: 18,

@@ -194,6 +194,8 @@
 		5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5527A807208E357B00AF3A50 /* ScannerViewController.xib */; };
 		5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */; };
 		552D1DF02177668E003FBE2D /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D1DEF2177668E003FBE2D /* UILabel+Extension.swift */; };
+		5539C13521A48031006BF834 /* ReviewTransactionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */; };
+		5539C13621A4803B006BF834 /* TransactionHeaderCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDFE3F21A47E7C00FDF2E8 /* TransactionHeaderCellTests.swift */; };
 		5541586521748BC400A3CEA4 /* AddressInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586421748BC400A3CEA4 /* AddressInputViewController.swift */; };
 		5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586721748C3700A3CEA4 /* AddressInput.swift */; };
 		5541586A21748C5200A3CEA4 /* AddressInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586921748C5200A3CEA4 /* AddressInputTests.swift */; };
@@ -228,11 +230,13 @@
 		55BAB0E8217894F8007539CF /* BigBorderedButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */; };
 		55BFA53C21833C5C00389732 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */; };
 		55BFA53E21837EB500389732 /* SafeCreationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFA53D21837EB500389732 /* SafeCreationViewControllerTests.swift */; };
+		55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C0D4BB219AD35900F04FA4 /* ReviewTransactionViewController.swift */; };
 		55C3C6232174CB6E00FA5B4F /* ScanQRCodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6222174CB6E00FA5B4F /* ScanQRCodeHandler.swift */; };
 		55C3C6272175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6262175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift */; };
 		55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6282175CC2800FA5B4F /* MockAVCaptureDevice.swift */; };
 		55C428FA217B426D00BF8922 /* ScanBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C428F9217B426D00BF8922 /* ScanBarButtonItem.swift */; };
 		55C428FC217B428100BF8922 /* ScanBarButtonItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C428FB217B428100BF8922 /* ScanBarButtonItemTests.swift */; };
+		55CDFE3E21A4745C00FDF2E8 /* TransactionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDFE3D21A4745C00FDF2E8 /* TransactionHeaderCell.swift */; };
 		55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */; };
 		55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */; };
 		55D0EC5E216F6F70003D9A53 /* TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC5D216F6F70003D9A53 /* TokenInput.swift */; };
@@ -522,6 +526,7 @@
 		5527A807208E357B00AF3A50 /* ScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
 		5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		552D1DEF2177668E003FBE2D /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTransactionViewControllerTests.swift; sourceTree = "<group>"; };
 		5541586421748BC400A3CEA4 /* AddressInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputViewController.swift; sourceTree = "<group>"; };
 		5541586721748C3700A3CEA4 /* AddressInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInput.swift; sourceTree = "<group>"; };
 		5541586921748C5200A3CEA4 /* AddressInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputTests.swift; sourceTree = "<group>"; };
@@ -552,11 +557,14 @@
 		55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButtonTests.swift; sourceTree = "<group>"; };
 		55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		55BFA53D21837EB500389732 /* SafeCreationViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationViewControllerTests.swift; sourceTree = "<group>"; };
+		55C0D4BB219AD35900F04FA4 /* ReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTransactionViewController.swift; sourceTree = "<group>"; };
 		55C3C6222174CB6E00FA5B4F /* ScanQRCodeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeHandler.swift; sourceTree = "<group>"; };
 		55C3C6262175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeHandlerTests.swift; sourceTree = "<group>"; };
 		55C3C6282175CC2800FA5B4F /* MockAVCaptureDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAVCaptureDevice.swift; sourceTree = "<group>"; };
 		55C428F9217B426D00BF8922 /* ScanBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBarButtonItem.swift; sourceTree = "<group>"; };
 		55C428FB217B428100BF8922 /* ScanBarButtonItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBarButtonItemTests.swift; sourceTree = "<group>"; };
+		55CDFE3D21A4745C00FDF2E8 /* TransactionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderCell.swift; sourceTree = "<group>"; };
+		55CDFE3F21A47E7C00FDF2E8 /* TransactionHeaderCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderCellTests.swift; sourceTree = "<group>"; };
 		55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
 		55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55D0EC5D216F6F70003D9A53 /* TokenInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInput.swift; sourceTree = "<group>"; };
@@ -1243,6 +1251,7 @@
 		558682C92192F95C0060F1DE /* ReusableDetachedControllers */ = {
 			isa = PBXGroup;
 			children = (
+				55C0D4BA219AD32C00F04FA4 /* ReviewTransaction */,
 				558682CA2192F9840060F1DE /* PairWithBrowserExtension */,
 				55DFBCF52135901D004B2AC4 /* Unlock */,
 			);
@@ -1266,6 +1275,17 @@
 				55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */,
 			);
 			path = BorderedButton;
+			sourceTree = "<group>";
+		};
+		55C0D4BA219AD32C00F04FA4 /* ReviewTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				55C0D4BB219AD35900F04FA4 /* ReviewTransactionViewController.swift */,
+				5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */,
+				55CDFE3D21A4745C00FDF2E8 /* TransactionHeaderCell.swift */,
+				55CDFE3F21A47E7C00FDF2E8 /* TransactionHeaderCellTests.swift */,
+			);
+			path = ReviewTransaction;
 			sourceTree = "<group>";
 		};
 		55C428F8217B424C00BF8922 /* ScanBarButtonItem */ = {
@@ -1899,6 +1919,7 @@
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
 				0A8C962720D2B76D007D2410 /* ProgressView.swift in Sources */,
 				556251EA2146D38000F569EE /* GradientFooterView.swift in Sources */,
+				55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */,
 				55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */,
 				0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */,
 				0A00293020CFCBA3009A4BFE /* SegmentBarController.swift in Sources */,
@@ -1937,6 +1958,7 @@
 				558D64EA2180B1A2008107E5 /* SafeCreationViewController.swift in Sources */,
 				0A8C963120D2C80F007D2410 /* TransactionReviewViewController.swift in Sources */,
 				0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */,
+				55CDFE3E21A4745C00FDF2E8 /* TransactionHeaderCell.swift in Sources */,
 				0A4DF82020CE6FC70095C00D /* TokensTableViewController.swift in Sources */,
 				0A334E6C209C8F8500ABC6AE /* ErrorHandler.swift in Sources */,
 				55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */,
@@ -1980,6 +2002,7 @@
 				0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */,
 				0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
+				5539C13521A48031006BF834 /* ReviewTransactionViewControllerTests.swift in Sources */,
 				0AD9989F20D3CD9000E6F3CA /* TransactionParticipantViewTests.swift in Sources */,
 				55D6CCEC21942EBF004652C7 /* ConnectBrowserExtensionFlowCoordinatorTests.swift in Sources */,
 				550D1EDB213406380035109A /* ManageTokensTableViewControllerTests.swift in Sources */,
@@ -2021,6 +2044,7 @@
 				0A334E5B209C8E6800ABC6AE /* NewSafeFlowCoordinatorTests.swift in Sources */,
 				0A334E5A209C8E6800ABC6AE /* ConfirmMnemonicViewControllerTests.swift in Sources */,
 				0A334E60209C8E6800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
+				5539C13621A4803B006BF834 /* TransactionHeaderCellTests.swift in Sources */,
 				0AD998AE20D3EDD200E6F3CA /* TransactionParameterViewTests.swift in Sources */,
 				0A60B512211315350066821A /* MainViewControllerTests.swift in Sources */,
 				0A334DC1209C6D8D00ABC6AE /* SetupSafeFlowCoordinatorTests.swift in Sources */,

@@ -74,6 +74,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
                                                                amount: 100,
                                                                token: "ETH",
                                                                tokenDecimals: 18,
+                                                               tokenLogoUrl: "",
                                                                fee: 0,
                                                                feeToken: "ETH",
                                                                feeTokenDecimals: 18,

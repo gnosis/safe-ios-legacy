@@ -54,7 +54,7 @@ final class PasswordViewController: UIViewController {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-         nextButton.title = Strings.next
+        nextButton.title = Strings.next
     }
 
     @IBAction func proceed(_ sender: Any) {

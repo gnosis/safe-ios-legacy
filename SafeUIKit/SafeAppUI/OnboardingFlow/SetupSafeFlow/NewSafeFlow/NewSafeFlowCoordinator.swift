@@ -60,8 +60,8 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     private func didPair(address: String, code: String) {
         guard let pairController = pairController else { return }
         do {
-            try ApplicationServiceRegistry.walletService.addBrowserExtensionOwner(
-                address: address, browserExtensionCode: code)
+            try ApplicationServiceRegistry.walletService
+                .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
             self.pop()
         } catch let e {
             pairController.handleError(e)

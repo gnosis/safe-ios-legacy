@@ -35,6 +35,7 @@ public struct TransactionData {
     public let amount: BigInt
     public let token: String
     public let tokenDecimals: Int
+    public let tokenLogoUrl: String
     public let fee: BigInt
     public let feeToken: String
     public let feeTokenDecimals: Int
@@ -56,6 +57,7 @@ public struct TransactionData {
                 amount: BigInt,
                 token: String,
                 tokenDecimals: Int,
+                tokenLogoUrl: String,
                 fee: BigInt,
                 feeToken: String,
                 feeTokenDecimals: Int,
@@ -72,6 +74,7 @@ public struct TransactionData {
         self.amount = amount
         self.token = token
         self.tokenDecimals = tokenDecimals
+        self.tokenLogoUrl = tokenLogoUrl
         self.fee = fee
         self.feeToken = feeToken
         self.feeTokenDecimals = feeTokenDecimals

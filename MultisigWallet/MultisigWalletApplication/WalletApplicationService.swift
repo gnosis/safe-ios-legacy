@@ -479,6 +479,7 @@ public class WalletApplicationService: Assertable {
                                amount: tx.amount?.amount ?? 0,
                                token: tx.amount?.token.code ?? "",
                                tokenDecimals: tx.amount?.token.decimals ?? Token.Ether.decimals,
+                               tokenLogoUrl: tx.amount?.token.logoUrl ?? "",
                                fee: tx.fee?.amount ?? 0,
                                feeToken: tx.feeEstimate?.gasPrice.token.code ?? Token.Ether.code,
                                feeTokenDecimals: tx.feeEstimate?.gasPrice.token.decimals ?? Token.Ether.decimals,
