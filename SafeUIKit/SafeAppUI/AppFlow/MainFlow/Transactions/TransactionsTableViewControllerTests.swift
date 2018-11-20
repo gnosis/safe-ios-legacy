@@ -109,8 +109,7 @@ class TransactionsTableViewControllerTests: XCTestCase {
         createWindow(controller)
         let cell = self.cell(at: 0)
 
-        assertEqual(cell.transactionIconImageView.image,
-                    UIImage.createBlockiesImage(seed: transaction.recipient))
+        XCTAssertEqual(cell.transactionIconImageView.blockiesSeed, transaction.recipient.lowercased())
         assertEqual(cell.transactionTypeIconImageView.image,
                     Asset.TransactionOverviewIcons.sent.image)
 

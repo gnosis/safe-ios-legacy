@@ -36,9 +36,11 @@ class TransactionTableViewCell: UITableViewCell {
 
     func configure(transaction: TransactionData) {
         let isFailed = transaction.status == .rejected || transaction.status == .failed
-        transactionIconImageView.image = isFailed ?
-            Asset.TransactionOverviewIcons.error.image :
-            UIImage.createBlockiesImage(seed: transaction.recipient)
+        if isFailed {
+            transactionIconImageView.image = Asset.TransactionOverviewIcons.error.image
+        } else {
+            transactionIconImageView.blockiesSeed = transaction.recipient.lowercased()
+        }
 
         transactionTypeIconImageView.image = typeIcon(transaction)
 

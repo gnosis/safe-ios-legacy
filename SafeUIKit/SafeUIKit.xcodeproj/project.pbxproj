@@ -185,7 +185,6 @@
 		55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55247304213E8EC600A77557 /* TokensHeaderView.xib */; };
 		5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524730E213FDEB400A77557 /* BackgroundImageView.swift */; };
 		5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524735A21428FDD00A77557 /* IdenticonView.swift */; };
-		5524735E2142930A00A77557 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524735D2142930A00A77557 /* UIImage+Extensions.swift */; };
 		55247360214293D500A77557 /* IdenticonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524735F214293D500A77557 /* IdenticonViewController.swift */; };
 		552473612142A07300A77557 /* BaseCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE950CF20D29D9E0099B79D /* BaseCustomView.swift */; };
 		552473642142AD6900A77557 /* IdenticonViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD998A120D3E5BA00E6F3CA /* IdenticonViewTests.swift */; };
@@ -515,7 +514,6 @@
 		55247304213E8EC600A77557 /* TokensHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokensHeaderView.xib; sourceTree = "<group>"; };
 		5524730E213FDEB400A77557 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		5524735A21428FDD00A77557 /* IdenticonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonView.swift; sourceTree = "<group>"; };
-		5524735D2142930A00A77557 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		5524735F214293D500A77557 /* IdenticonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdenticonViewController.swift; sourceTree = "<group>"; };
 		5527A802208E26EC00AF3A50 /* ScannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewControllerTests.swift; sourceTree = "<group>"; };
 		5527A806208E357B00AF3A50 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -942,7 +940,6 @@
 				55071BC2209313F800297D1C /* UIDevice+Extensions.swift */,
 				55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */,
 				550954F120C966CF00F5F25F /* UIView+Extensions.swift */,
-				5524735D2142930A00A77557 /* UIImage+Extensions.swift */,
 				0AE950CF20D29D9E0099B79D /* BaseCustomView.swift */,
 				550E7CDB21708E1E0032DE6C /* String+Extensions.swift */,
 				550E7CDD21708E540032DE6C /* UITextField+Extensions.swift */,
@@ -1823,7 +1820,6 @@
 				55E8B000219C4A93002930A1 /* TransactionFeeView.swift in Sources */,
 				5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */,
 				550E7CDE21708E540032DE6C /* UITextField+Extensions.swift in Sources */,
-				5524735E2142930A00A77557 /* UIImage+Extensions.swift in Sources */,
 				55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */,
 				0A7AE8BF205284180044D5DD /* H1Label.swift in Sources */,
 				0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */,
