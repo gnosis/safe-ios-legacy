@@ -12,10 +12,15 @@ class TransactionsEmptyView: BaseCustomView {
         didSet { setNeedsUpdate() }
     }
 
+    var backgroundView: UIView!
     var textLabel: UILabel!
 
     override func commonInit() {
-        backgroundColor = ColorName.paleGreyThree.color
+        backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        backgroundView = ShadowWrapperView(frame: CGRect.zero)
+        backgroundView.backgroundColor = ColorName.paleGreyThree.color
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(backgroundView)
         textLabel = UILabel(frame: CGRect.zero)
         textLabel.backgroundColor = .clear
         textLabel.font = UIFont.systemFont(ofSize: 28, weight: .light)
@@ -23,10 +28,14 @@ class TransactionsEmptyView: BaseCustomView {
         textLabel.textColor = ColorName.darkSlateBlue.color
         textLabel.numberOfLines = 0
         textLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(textLabel)
+        backgroundView.addSubview(textLabel)
         NSLayoutConstraint.activate([
-            textLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            textLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30)])
+            textLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            textLabel.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor, constant: -30),
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -94)])
         didLoad()
     }
 
