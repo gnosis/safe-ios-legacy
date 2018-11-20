@@ -4,7 +4,6 @@
 
 import UIKit
 
-@IBDesignable
 class DesignableButton: UIButton {
 
     private var isLoaded = false
@@ -21,11 +20,6 @@ class DesignableButton: UIButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         commonInit()
-    }
-
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        setNeedsUpdate()
     }
 
     /// Common initializer called in `init(frame:)` and in `awakeFromNib()`

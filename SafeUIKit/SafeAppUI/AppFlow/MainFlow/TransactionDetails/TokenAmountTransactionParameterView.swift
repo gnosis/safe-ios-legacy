@@ -6,25 +6,9 @@ import UIKit
 
 class TokenAmountTransactionParameterView: TransactionParameterView {
 
-    @IBInspectable
-    var IBStyle: Int {
-        get { return style.rawValue }
-        set {
-            setStyle(newValue)
-        }
-    }
-
     var style: TransactionValueStyle = .positive {
         didSet {
             setNeedsUpdate()
-        }
-    }
-
-    func setStyle(_ newValue: Int) {
-        if let value = TransactionValueStyle(rawValue: newValue) {
-            style = value
-        } else {
-            style = .neutral
         }
     }
 

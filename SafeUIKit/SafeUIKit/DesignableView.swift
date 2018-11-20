@@ -4,7 +4,6 @@
 
 import UIKit
 
-@IBDesignable
 open class DesignableView: UIView {
 
     private var isLoaded = false

@@ -7,11 +7,9 @@ import SafeUIKit
 
 class TransactionParameterView: DesignableView {
 
-    @IBInspectable
     var name: String = "Parameter" {
         didSet { setNeedsUpdate() }
     }
-    @IBInspectable
     var value: String = "Value of a transaction parameter" {
         didSet { setNeedsUpdate() }
     }

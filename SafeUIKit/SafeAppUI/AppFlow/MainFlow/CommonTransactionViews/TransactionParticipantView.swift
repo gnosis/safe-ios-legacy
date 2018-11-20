@@ -7,19 +7,16 @@ import SafeUIKit
 
 class TransactionParticipantView: DesignableView {
 
-    @IBInspectable
     var name: String = "Name" {
         didSet {
             setNeedsUpdate()
         }
     }
-    @IBInspectable
     var address: String = "Address" {
         didSet {
             setNeedsUpdate()
         }
     }
-    @IBInspectable
     var text: String? {
         didSet {
             setNeedsUpdate()
