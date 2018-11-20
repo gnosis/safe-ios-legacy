@@ -14,6 +14,7 @@ public class TransactionsTableViewController: UITableViewController {
 
     private var groups = [TransactionGroupData]()
     public weak var delegate: TransactionsTableViewControllerDelegate?
+    let emptyView = TransactionsEmptyView()
 
     public static func create() -> TransactionsTableViewController {
         return StoryboardScene.Main.transactionsTableViewController.instantiate()
@@ -26,6 +27,7 @@ public class TransactionsTableViewController: UITableViewController {
                            forHeaderFooterViewReuseIdentifier: "TransactionsGroupHeaderView")
         tableView.estimatedSectionHeaderHeight = tableView.sectionHeaderHeight
         ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
+        displayUpdatedData()
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +46,7 @@ public class TransactionsTableViewController: UITableViewController {
 
     private func displayUpdatedData() {
         tableView.reloadData()
-        tableView.backgroundView = groups.isEmpty ? TransactionsEmptyView() : nil
+        tableView.backgroundView = groups.isEmpty ? emptyView : nil
     }
 
     // MARK: - Table view data source

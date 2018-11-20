@@ -31,7 +31,7 @@ class TransactionsEmptyView: BaseCustomView {
         backgroundView.addSubview(textLabel)
         NSLayoutConstraint.activate([
             textLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            textLabel.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor, constant: -30),
+            textLabel.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor, constant: -15),
             backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             backgroundView.topAnchor.constraint(equalTo: topAnchor),
