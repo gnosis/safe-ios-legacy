@@ -10,11 +10,18 @@ class IdenticonViewTests: XCTestCase {
     let view = IdenticonView()
 
     func test_whenChangingAddress_thenImageChanges() {
+        let vc = UIViewController()
+        vc.view.addSubview(view)
+        view.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        createWindow(vc)
         view.seed = "a"
-        let imageA = view.imageView.image
-        view.seed = "b"
-        let imageB = view.imageView.image
+        let imageA = view.imageView.image?.pngData()
+        view.seed = "bbb"
+        let imageB = view.imageView.image?.pngData()
         XCTAssertNotEqual(imageA, imageB)
+        view.seed = "BBB"
+        let imageC = view.imageView.image?.pngData()
+        XCTAssertEqual(imageB, imageC)
     }
 
     func test_whenShown_thenHasCircleShape() {

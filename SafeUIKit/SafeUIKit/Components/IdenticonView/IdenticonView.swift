@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import BlockiesSwift
 
 public class IdenticonView: BaseCustomView {
 
@@ -34,11 +35,9 @@ public class IdenticonView: BaseCustomView {
     private let shadowColor = UIColor.black
 
     override public func commonInit() {
-
         configureImageView()
         configureLayer()
         configureIdenticon()
-
         didLoad()
     }
 
@@ -85,7 +84,7 @@ public class IdenticonView: BaseCustomView {
     }
 
     override public func update() {
-        imageView.image = UIImage.createBlockiesImage(seed: seed)
+        imageView.blockiesSeed = seed.lowercased()
     }
 
     override public func layoutSubviews() {

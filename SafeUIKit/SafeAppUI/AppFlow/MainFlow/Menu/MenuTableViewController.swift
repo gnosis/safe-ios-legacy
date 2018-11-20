@@ -55,7 +55,6 @@ final class MenuTableViewController: UITableViewController {
 
     struct SafeDescription {
         var address: String
-        var image: UIImage
     }
 
     struct SafeQRCode {
@@ -108,7 +107,7 @@ final class MenuTableViewController: UITableViewController {
         menuItems = [
             (section: .safe,
              items: [
-                (item: SafeDescription(address: address, image: UIImage.createBlockiesImage(seed: address)),
+                (item: SafeDescription(address: address),
                  cellHeight: { return SafeTableViewCell.height }),
                 (item: SafeQRCode(address: address),
                  cellHeight: { return self.showQRCode ? SafeQRCodeTableViewCell.height : 0 })

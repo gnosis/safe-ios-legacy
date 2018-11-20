@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import BlockiesSwift
 
 final class SafeTableViewCell: UITableViewCell {
 
@@ -30,7 +31,7 @@ final class SafeTableViewCell: UITableViewCell {
     }
 
     func configure(safe: MenuTableViewController.SafeDescription, qrCodeShown: Bool) {
-        safeIconImageView.image = safe.image
+        safeIconImageView.blockiesSeed = safe.address.lowercased()
         safeAddressLabel.text = safe.address
         if qrCodeShown {
             chevronImageView.transform = CGAffineTransform(rotationAngle: .pi)
