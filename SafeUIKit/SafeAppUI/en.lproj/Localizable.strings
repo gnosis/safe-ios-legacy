@@ -452,6 +452,9 @@
 /* AWAITING CONFIRMATION */
 "transaction.status.waiting.title" = "AWAITING CONFIRMATION";
 
+/* Send */
+"transaction.title" = "Send";
+
 /* No transactions yet */
 "transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";
 
