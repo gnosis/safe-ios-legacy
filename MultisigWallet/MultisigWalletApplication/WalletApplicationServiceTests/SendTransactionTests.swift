@@ -74,10 +74,10 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         let data = service.transactionData(txID)!
         XCTAssertEqual(data.sender, service.selectedWalletAddress!)
         XCTAssertEqual(data.recipient, "")
-        XCTAssertEqual(data.amount, 0)
-        XCTAssertEqual(data.fee, 0)
+        XCTAssertEqual(data.amountTokenData.balance, 0)
+        XCTAssertEqual(data.feeTokenData.balance, 0)
         XCTAssertEqual(data.id, txID)
-        XCTAssertEqual(data.token, "")
+        XCTAssertEqual(data.amountTokenData.code, "")
         XCTAssertNotNil(data.created)
         XCTAssertNotNil(data.updated)
     }
@@ -92,8 +92,8 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         transactionRepository.save(tx)
         let data = service.transactionData(txID)!
         XCTAssertEqual(data.recipient, Address.testAccount1.value)
-        XCTAssertEqual(data.amount, 100)
-        XCTAssertEqual(data.fee, 10)
+        XCTAssertEqual(data.amountTokenData.balance, 100)
+        XCTAssertEqual(data.feeTokenData.balance, 10)
     }
 
     func test_whenRequestingConfirmation_thenRequestingFeeEstimate() throws {

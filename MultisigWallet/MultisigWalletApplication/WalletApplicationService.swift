@@ -476,8 +476,8 @@ public class WalletApplicationService: Assertable {
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token, balance: tx.amount?.amount ?? 0) :
             TokenData.empty()
-        let feeTokenData = tx.feeEstimate != nil ?
-            TokenData(token: tx.feeEstimate!.gasPrice.token, balance: tx.fee?.amount ?? 0) :
+        let feeTokenData = tx.fee != nil ?
+            TokenData(token: tx.fee!.token, balance: tx.fee!.amount) :
             TokenData(token: Token.Ether, balance: 0)
         return TransactionData(id: tx.id.id,
                                sender: tx.sender?.value ?? "",

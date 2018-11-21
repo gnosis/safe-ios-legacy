@@ -17,7 +17,7 @@ class TransactionReviewDemoViewController: UIViewController {
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         walletService.transactionData_output = .default
         walletService.requestTransactionConfirmation_output = .default
-        walletService.update(account: ethID, newBalance: 90000000000000000)
+        walletService.update(account: ethID, newBalance: 90_000_000_000_000_000)
         controller = .create()
         controller.transactionID = "TxID"
     }
@@ -36,13 +36,8 @@ extension TransactionData {
     static let `default` = TransactionData(id: "TxID",
                                            sender: "0x2333b4cc1f89a0b4c43e9e733123c124aae977ee",
                                            recipient: "0x7eb15f032bb60605a5302f1bc2c3c38a80888f27",
-                                           amount: 2000000000000,
-                                           token: "ETH",
-                                           tokenDecimals: 18,
-                                           tokenLogoUrl: "",
-                                           fee: 30000000,
-                                           feeToken: "ETH",
-                                           feeTokenDecimals: 18,
+                                           amountTokenData: TokenData.Ether.copy(balance: 2_000_000_000_000),
+                                           feeTokenData: TokenData.Ether.copy(balance: 30_000_000),
                                            status: .readyToSubmit,
                                            type: .outgoing,
                                            created: Date(timeIntervalSinceNow: -3 * 60 * 60),

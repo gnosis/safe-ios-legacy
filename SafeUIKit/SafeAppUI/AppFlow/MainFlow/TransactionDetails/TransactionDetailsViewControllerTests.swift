@@ -6,6 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import SafeUIKit
 import MultisigWalletApplication
+import Common
 
 class TransactionDetailsViewControllerTests: XCTestCase {
 
@@ -28,8 +29,10 @@ class TransactionDetailsViewControllerTests: XCTestCase {
 
         XCTAssertTrue(controller.transactionValueView.isSingleValue)
         XCTAssertEqual(controller.transactionValueView.style, .negative)
-        let amountFormatter = TokenNumberFormatter.ERC20Token(code: tx.token, decimals: tx.tokenDecimals)
-        XCTAssertEqual(controller.transactionValueView.tokenAmount, amountFormatter.string(from: tx.amount))
+        let amountFormatter = TokenNumberFormatter.ERC20Token(code: tx.amountTokenData.code,
+                                                              decimals: tx.amountTokenData.decimals)
+        XCTAssertEqual(controller.transactionValueView.tokenAmount,
+                       amountFormatter.string(from: tx.amountTokenData.balance!))
 
         typealias Strings = TransactionDetailsViewController.Strings
 
@@ -44,9 +47,10 @@ class TransactionDetailsViewControllerTests: XCTestCase {
         XCTAssertEqual(controller.transactionStatusView.value, controller.string(from: tx.displayDate!))
 
         XCTAssertEqual(controller.transactionFeeView.name, Strings.fee)
-        let feeFormatter = TokenNumberFormatter.ERC20Token(code: tx.feeToken, decimals: tx.feeTokenDecimals)
+        let feeFormatter = TokenNumberFormatter.ERC20Token(code: tx.feeTokenData.code,
+                                                           decimals: tx.feeTokenData.decimals)
         XCTAssertEqual(controller.transactionFeeView.style, .negative)
-        XCTAssertEqual(controller.transactionFeeView.value, feeFormatter.string(from: tx.fee))
+        XCTAssertEqual(controller.transactionFeeView.value, feeFormatter.string(from: tx.feeTokenData.balance!))
 
         XCTAssertEqual(controller.viewInExternalAppButton.title(for: .normal), Strings.externalApp)
     }
@@ -92,13 +96,8 @@ extension TransactionData {
     static let pending = TransactionData(id: "some",
                                          sender: "0x674647242239941b2D35368e66A4EdC39b161Da9",
                                          recipient: "0x97e3bA6cC43b2aF2241d4CAD4520DA8266170988",
-                                         amount: 10_001,
-                                         token: "GNO",
-                                         tokenDecimals: 2,
-                                         tokenLogoUrl: "",
-                                         fee: 101,
-                                         feeToken: "GNO",
-                                         feeTokenDecimals: 2,
+                                         amountTokenData: TokenData.gno.copy(balance: 10_001),
+                                         feeTokenData: TokenData.gno.copy(balance: 101),
                                          status: .pending,
                                          type: .outgoing,
                                          created: Date(),

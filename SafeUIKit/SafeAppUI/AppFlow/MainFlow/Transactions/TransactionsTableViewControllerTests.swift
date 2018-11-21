@@ -8,6 +8,7 @@ import MultisigWalletApplication
 import MultisigWalletImplementations
 import DateTools
 import SafeUIKit
+import Common
 
 class TransactionsTableViewControllerTests: XCTestCase {
 
@@ -90,13 +91,8 @@ class TransactionsTableViewControllerTests: XCTestCase {
         let transaction = TransactionData(id: UUID().uuidString,
                                           sender: "0x674647242239941b2D35368e66A4EdC39b161Da9",
                                           recipient: "0x97e3bA6cC43b2aF2241d4CAD4520DA8266170988",
-                                          amount: 3,
-                                          token: "GNO",
-                                          tokenDecimals: 18,
-                                          tokenLogoUrl: "",
-                                          fee: 0,
-                                          feeToken: "ETH",
-                                          feeTokenDecimals: 18,
+                                          amountTokenData: TokenData.gno.copy(balance: 3),
+                                          feeTokenData: TokenData.Ether,
                                           status: .pending,
                                           type: .outgoing,
                                           created: now - 5.seconds,
@@ -121,8 +117,9 @@ class TransactionsTableViewControllerTests: XCTestCase {
 
         XCTAssertFalse(cell.pairValueStackView.isHidden)
 
-        let formatter = TokenNumberFormatter.ERC20Token(code: transaction.token, decimals: transaction.tokenDecimals)
-        XCTAssertEqual(cell.tokenAmountLabel.text, formatter.string(from: transaction.amount))
+        let formatter = TokenNumberFormatter.ERC20Token(code: transaction.amountTokenData.code,
+                                                        decimals: transaction.amountTokenData.decimals)
+        XCTAssertEqual(cell.tokenAmountLabel.text, formatter.string(from: transaction.amountTokenData.balance!))
 
         XCTAssertTrue(cell.singleValueLabelStackView.isHidden)
         XCTAssertNil(cell.fiatAmountLabel.text)
@@ -147,13 +144,8 @@ extension TransactionGroupData {
             TransactionData(id: String(i),
                             sender: "sender",
                             recipient: "recipient",
-                            amount: 0,
-                            token: "ETH",
-                            tokenDecimals: 18,
-                            tokenLogoUrl: "",
-                            fee: 0,
-                            feeToken: "ETH",
-                            feeTokenDecimals: 18,
+                            amountTokenData: TokenData.Ether,
+                            feeTokenData: TokenData.Ether,
                             status: .success,
                             type: .outgoing,
                             created: nil,
