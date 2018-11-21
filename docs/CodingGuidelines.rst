@@ -13,9 +13,9 @@ Put all arguments on the same line, or put each on a separate line, breaking aft
 Valid::
 
     self.imageView.frame = CGRect(x: frame.minX,
-                                y: frame.minY + IdenticonView.shadowOffset,
-                                width: frame.width,
-                                height: frame.height)
+                                  y: frame.minY + IdenticonView.shadowOffset,
+                                  width: frame.width,
+                                  height: frame.height)
 
 Invalid because the linebreak is after parenthesis::
 
