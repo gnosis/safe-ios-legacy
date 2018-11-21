@@ -9,7 +9,7 @@ import MultisigWalletDomainModel
 
 extension TokenData {
 
-    init(token: Token, balance: BigInt? = nil) {
+    init(token: Token, balance: BigInt?) {
         self.init(
             address: token.address.value,
             code: token.code,
@@ -29,7 +29,7 @@ extension TokenData {
     }
 
     static func empty() -> TokenData {
-        return TokenData(address: "", code: "", name: "", logoURL: "", decimals: 18, balance: nil)
+        return TokenData(address: "", code: "", name: "", logoURL: "", decimals: 18, balance: 0)
     }
 
 }

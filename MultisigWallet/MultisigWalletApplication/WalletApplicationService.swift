@@ -473,15 +473,16 @@ public class WalletApplicationService: Assertable {
     }
 
     private func transactionData(_ tx: Transaction) -> TransactionData {
-        let amountTokenData = tx.amount != nil ? TokenData(token: tx.amount!.token) : TokenData.empty()
-        let feeTokenData =
-            tx.feeEstimate != nil ? TokenData(token: tx.feeEstimate!.gasPrice.token) : TokenData(token: Token.Ether)
+        let amountTokenData = tx.amount != nil ?
+            TokenData(token: tx.amount!.token, balance: tx.amount?.amount ?? 0) :
+            TokenData.empty()
+        let feeTokenData = tx.feeEstimate != nil ?
+            TokenData(token: tx.feeEstimate!.gasPrice.token, balance: tx.fee?.amount ?? 0) :
+            TokenData(token: Token.Ether, balance: 0)
         return TransactionData(id: tx.id.id,
                                sender: tx.sender?.value ?? "",
                                recipient: tx.recipient?.value ?? "",
-                               amount: tx.amount?.amount ?? 0,
                                amountTokenData: amountTokenData,
-                               fee: tx.fee?.amount ?? 0,
                                feeTokenData: feeTokenData,
                                status: status(of: tx),
                                type: .outgoing,

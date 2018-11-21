@@ -52,7 +52,7 @@ class TransactionTableViewCell: UITableViewCell {
 
         tokenAmountLabel.text = TokenNumberFormatter
             .ERC20Token(code: transaction.amountTokenData.code, decimals: transaction.amountTokenData.decimals)
-            .string(from: transaction.amount)
+            .string(from: transaction.amountTokenData.balance!)
         tokenAmountLabel.textColor = valueColor(transaction)
 
         fiatAmountLabel.text = nil

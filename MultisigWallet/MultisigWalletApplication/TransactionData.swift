@@ -33,9 +33,7 @@ public struct TransactionData {
     public let id: String
     public let sender: String
     public let recipient: String
-    public let amount: BigInt
     public let amountTokenData: TokenData
-    public let fee: BigInt
     public let feeTokenData: TokenData
     public let status: Status
     public let type: TransactionType
@@ -52,9 +50,7 @@ public struct TransactionData {
     public init(id: String,
                 sender: String,
                 recipient: String,
-                amount: BigInt,
                 amountTokenData: TokenData,
-                fee: BigInt,
                 feeTokenData: TokenData,
                 status: Status,
                 type: TransactionType,
@@ -66,9 +62,7 @@ public struct TransactionData {
         self.id = id
         self.sender = sender
         self.recipient = recipient
-        self.amount = amount
         self.amountTokenData = amountTokenData
-        self.fee = fee
         self.feeTokenData = feeTokenData
         self.status = status
         self.type = type
