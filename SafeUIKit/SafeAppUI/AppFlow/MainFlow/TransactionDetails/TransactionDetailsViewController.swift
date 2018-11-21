@@ -86,7 +86,8 @@ public class TransactionDetailsViewController: UIViewController {
     private func configureAmount() {
         transactionValueView.isSingleValue = true
         transactionValueView.style = .negative
-        let formatter = TokenNumberFormatter.ERC20Token(code: transaction.token, decimals: transaction.tokenDecimals)
+        let formatter = TokenNumberFormatter.ERC20Token(code: transaction.amountTokenData.code,
+                                                        decimals: transaction.amountTokenData.decimals)
         transactionValueView.tokenAmount = formatter.string(from: transaction.amount)
     }
 
@@ -120,8 +121,8 @@ public class TransactionDetailsViewController: UIViewController {
     private func configureFee() {
         transactionFeeView.name = Strings.fee
         transactionFeeView.style = .negative
-        let formatter = TokenNumberFormatter.ERC20Token(code: transaction.feeToken,
-                                                        decimals: transaction.feeTokenDecimals)
+        let formatter = TokenNumberFormatter.ERC20Token(code: transaction.feeTokenData.code,
+                                                        decimals: transaction.feeTokenData.decimals)
         transactionFeeView.value = formatter.string(from: transaction.fee)
     }
 

@@ -4,6 +4,7 @@
 
 import Foundation
 import BigInt
+import Common
 
 public struct TransactionGroupData {
 
@@ -33,12 +34,9 @@ public struct TransactionData {
     public let sender: String
     public let recipient: String
     public let amount: BigInt
-    public let token: String
-    public let tokenDecimals: Int
-    public let tokenLogoUrl: String
+    public let amountTokenData: TokenData
     public let fee: BigInt
-    public let feeToken: String
-    public let feeTokenDecimals: Int
+    public let feeTokenData: TokenData
     public let status: Status
     public let type: TransactionType
     public let created: Date?
@@ -55,12 +53,9 @@ public struct TransactionData {
                 sender: String,
                 recipient: String,
                 amount: BigInt,
-                token: String,
-                tokenDecimals: Int,
-                tokenLogoUrl: String,
+                amountTokenData: TokenData,
                 fee: BigInt,
-                feeToken: String,
-                feeTokenDecimals: Int,
+                feeTokenData: TokenData,
                 status: Status,
                 type: TransactionType,
                 created: Date?,
@@ -72,12 +67,9 @@ public struct TransactionData {
         self.sender = sender
         self.recipient = recipient
         self.amount = amount
-        self.token = token
-        self.tokenDecimals = tokenDecimals
-        self.tokenLogoUrl = tokenLogoUrl
+        self.amountTokenData = amountTokenData
         self.fee = fee
-        self.feeToken = feeToken
-        self.feeTokenDecimals = feeTokenDecimals
+        self.feeTokenData = feeTokenData
         self.status = status
         self.type = type
         self.created = created
