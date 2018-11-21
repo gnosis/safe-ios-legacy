@@ -43,8 +43,15 @@ class FundsTransferTransactionViewController: UIViewController {
     }
 
     private enum Strings {
+        static let title = LocalizedString("transaction.title",
+                                           comment: "Send")
         static let `continue` = LocalizedString("transaction.continue",
                                                 comment: "Continue button title for New Transaction Screen")
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        navigationItem.title = Strings.title
     }
 
     override func viewDidLoad() {
