@@ -331,7 +331,7 @@ extension SafeCreationViewController {
         override var canCancel: Bool { return true }
         override var addressText: String? { return nil }
     }
-// idea tiger donor home sell offer fancy token pave blossom adapt alpha
+
     // Usually not shown in UI because as soon as we know safe address
     // from the service, the state is already NotEnoughFunds
     class DeployingState: State {
