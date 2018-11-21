@@ -95,19 +95,19 @@ final class ReviewTransactionViewController: UITableViewController {
     }
 
     private func addTransactionFeeCellForTokenTransfer_inEther(for indexPath: IndexPath) {
-        let (cell, currentBalance) = cellAndCurrentBalance(for: indexPath)
-        let resultingBalance = tx.amountTokenData.copy(balance: currentBalance - tx.feeTokenData.balance!)
+        let (cell, currentBalance) = cellAndCurrentBalance(for: indexPath, forFee: true)
+        let resultingBalance = tx.feeTokenData.copy(balance: currentBalance - tx.feeTokenData.balance!)
         cell.transactionFeeView.configure(currentBalance: nil,
                                           transactionFee: tx.feeTokenData,
                                           resultingBalance: resultingBalance)
         cells[indexPath] = cell
     }
 
-    private func cellAndCurrentBalance(for indexPath: IndexPath) -> (TransactionFeeCell, BigInt) {
+    private func cellAndCurrentBalance(for indexPath: IndexPath, forFee: Bool = false) -> (TransactionFeeCell, BigInt) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionFeeCell",
                                                  for: indexPath) as! TransactionFeeCell
-        let tokenID = BaseID(tx.amountTokenData.address)
-        let currentBalance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: tokenID)!
+        let address = forFee ? tx.feeTokenData.address : tx.amountTokenData.address
+        let currentBalance = ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(address))!
         return (cell, currentBalance)
     }
 
