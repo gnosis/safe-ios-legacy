@@ -78,7 +78,7 @@ public class DeploymentDomainService {
     }
 
     private func waitForFunding(_ wallet: Wallet) throws {
-        let repeater = Repeater(delay: config.balance.repeatDelay) { [unowned self] repeater in
+        try self.repeat(delay: config.balance.repeatDelay) { [unowned self] repeater in
             let balance = try self.balance(of: wallet.address!)
             let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
             let account = DomainRegistry.accountRepository.find(id: accountID)!
@@ -88,6 +88,10 @@ public class DeploymentDomainService {
             repeater.stop()
             wallet.proceed()
         }
+    }
+
+    private func `repeat`(delay: TimeInterval, closure: @escaping (Repeater) throws -> Void) throws {
+        let repeater = Repeater(delay: delay, closure)
         repeaters.add(repeater)
         try repeater.start()
     }
@@ -118,19 +122,17 @@ public class DeploymentDomainService {
             DomainRegistry.eventPublisher.publish(WalletTransactionHashIsKnown())
             return
         }
-        let repeater = Repeater(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
+        try self.repeat(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
             guard let hash = try self.transactionHash(of: wallet.address!) else { return }
             wallet.assignCreationTransaction(hash: hash.value)
             repeater.stop()
             DomainRegistry.walletRepository.save(wallet)
             DomainRegistry.eventPublisher.publish(WalletTransactionHashIsKnown())
         }
-        repeaters.add(repeater)
-        try repeater.start()
     }
 
     private func waitForCreationTransactionCompletion(_ wallet: Wallet) throws {
-        let repeater = Repeater(delay: config.transactionStatus.repeatDelay) { [unowned self] repeater in
+        try self.repeat(delay: config.transactionStatus.repeatDelay) { [unowned self] repeater in
             guard let receipt = try self.receipt(of: TransactionHash(wallet.creationTransactionHash!)) else { return }
             repeater.stop()
             if receipt.status == .success {
@@ -139,8 +141,6 @@ public class DeploymentDomainService {
                 wallet.cancel()
             }
         }
-        repeaters.add(repeater)
-        try repeater.start()
     }
 
     func walletCreated(_ event: WalletCreated) {
