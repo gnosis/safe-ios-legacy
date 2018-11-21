@@ -77,6 +77,7 @@ public class DraftState: WalletState {
 }
 
 public class DeploymentStarted: DomainEvent {}
+public class DeploymentAborted: DomainEvent {}
 
 public class DeployingState: WalletState {
 
@@ -99,6 +100,7 @@ public class DeployingState: WalletState {
         wallet.state = wallet.newDraftState
         wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(DeploymentAborted())
     }
 
 }
@@ -121,6 +123,7 @@ public class NotEnoughFundsState: WalletState {
         wallet.state = wallet.newDraftState
         wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(DeploymentAborted())
     }
 
 }
@@ -143,6 +146,7 @@ public class CreationStartedState: WalletState {
         wallet.state = wallet.newDraftState
         wallet.reset()
         DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(DeploymentAborted())
     }
 }
 

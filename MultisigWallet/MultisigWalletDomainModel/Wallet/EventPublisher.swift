@@ -12,29 +12,40 @@ import Foundation
 public class EventPublisher {
 
     private var subscriptions = [(subscriber: WeakWrapper, type: DomainEvent.Type, closure: (DomainEvent) -> Void)]()
-    private var queue: OperationQueue
+    private var queue: DispatchQueue
 
     public init () {
-        queue = OperationQueue()
-        queue.name = "EventPublisherSerialQueue"
-        queue.maxConcurrentOperationCount = 1
+        queue = DispatchQueue(label: "EventPublisherSerialQueue",
+                              qos: .userInitiated,
+                              attributes: [])
     }
 
     public func subscribe<T>(_ subscriber: AnyObject, _ closure: @escaping (T) -> Void) where T: DomainEvent {
-        subscriptions.append((WeakWrapper(subscriber), T.self, { c in closure(c as! T) }))
+        queue.async { [weak self] in
+            guard let `self` = self else { return }
+            self.subscriptions.append((WeakWrapper(subscriber), T.self, { c in closure(c as! T) }))
+        }
     }
 
     public func unsubscribe(_ subscriber: AnyObject) {
-        subscriptions.removeAll { $0.subscriber.ref === subscriber }
+        queue.async { [weak self] in
+            guard let `self` = self else { return }
+            self.subscriptions.removeAll { $0.subscriber.ref === subscriber }
+        }
     }
 
     public func publish(_ event: DomainEvent) {
-        removeWeakNils()
-        let subscriptionsSnapshot = subscriptions
-        queue.addOperation {
-            subscriptionsSnapshot
+        queue.async { [weak self] in
+            guard let `self` = self else { return }
+            self.removeWeakNils()
+            self.subscriptions
                 .filter { $0.type == type(of: event) || $0.type == DomainEvent.self }
-                .forEach { $0.closure(event) }
+                .forEach { subscription in
+                    DispatchQueue.global().async {
+                        subscription.closure(event)
+                    }
+            }
+
         }
     }
 
