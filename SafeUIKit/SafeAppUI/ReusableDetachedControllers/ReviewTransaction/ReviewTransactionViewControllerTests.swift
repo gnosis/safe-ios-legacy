@@ -7,6 +7,7 @@ import XCTest
 import MultisigWalletApplication
 import BigInt
 import Common
+import SafeUIKit
 
 class ReviewTransactionViewControllerTests: XCTestCase {
 

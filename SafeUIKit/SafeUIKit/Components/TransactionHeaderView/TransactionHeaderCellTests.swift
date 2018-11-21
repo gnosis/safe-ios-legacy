@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import SafeAppUI
+@testable import SafeUIKit
 
 class TransactionHeaderCellTests: XCTestCase {
 
@@ -21,7 +21,7 @@ class TransactionHeaderCellTests: XCTestCase {
         XCTAssertEqual(cell.transactionHeaderView.assetCode, "GNO")
         XCTAssertEqual(cell.transactionHeaderView.assetInfo, "Test")
         cell.configure(imageURL: nil, code: "OWL", info: "Test 2")
-        XCTAssertEqual(cell.transactionHeaderView.assetImage, Asset.ethIcon.image)
+        XCTAssertEqual(cell.transactionHeaderView.assetImage, Asset.TokenIcons.eth.image)
         XCTAssertEqual(cell.transactionHeaderView.assetCode, "OWL")
         XCTAssertEqual(cell.transactionHeaderView.assetInfo, "Test 2")
     }

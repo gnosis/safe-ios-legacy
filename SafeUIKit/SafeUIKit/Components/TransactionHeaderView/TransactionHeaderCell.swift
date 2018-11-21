@@ -3,11 +3,10 @@
 //
 
 import UIKit
-import SafeUIKit
 
-class TransactionHeaderCell: UITableViewCell {
+public class TransactionHeaderCell: UITableViewCell {
 
-    let transactionHeaderView = TransactionHeaderView()
+    public let transactionHeaderView = TransactionHeaderView()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -29,11 +28,11 @@ class TransactionHeaderCell: UITableViewCell {
             transactionHeaderView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
     }
 
-    func configure(imageURL: URL?, code: String, info: String) {
+    public func configure(imageURL: URL?, code: String, info: String) {
         if let imageURL = imageURL {
             transactionHeaderView.assetImageURL = imageURL
         } else {
-            transactionHeaderView.assetImage = Asset.ethIcon.image
+            transactionHeaderView.assetImage = Asset.TokenIcons.eth.image
         }
         transactionHeaderView.assetCode = code
         transactionHeaderView.assetInfo = info

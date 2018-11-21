@@ -44,7 +44,6 @@ struct ColorAsset {
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 enum Asset {
-  static let ethIcon = ImageAsset(name: "eth-icon")
   enum MainScreenHeader {
     static let arrows = ImageAsset(name: "arrows")
     static let coins = ImageAsset(name: "coins")
@@ -92,7 +91,6 @@ enum Asset {
   static let allColors: [ColorAsset] = [
   ]
   static let allImages: [ImageAsset] = [
-    ethIcon,
     MainScreenHeader.arrows,
     MainScreenHeader.coins,
     Menu.chevron,
