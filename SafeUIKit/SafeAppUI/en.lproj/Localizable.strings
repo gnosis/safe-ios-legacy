@@ -419,6 +419,9 @@
 /* Maximum transaction fee */
 "transaction.fee.title" = "Maximum transaction fee";
 
+/* Outgoing transafer */
+"transaction.outgoing_transfer" = "Outgoing transfer";
+
 /* Recipient */
 "transaction.recipient.name" = "Recipient";
 

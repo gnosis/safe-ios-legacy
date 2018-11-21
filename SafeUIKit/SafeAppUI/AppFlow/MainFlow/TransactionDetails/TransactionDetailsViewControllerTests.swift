@@ -95,6 +95,7 @@ extension TransactionData {
                                          amount: 10_001,
                                          token: "GNO",
                                          tokenDecimals: 2,
+                                         tokenLogoUrl: "",
                                          fee: 101,
                                          feeToken: "GNO",
                                          feeTokenDecimals: 2,
