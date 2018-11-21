@@ -52,6 +52,10 @@ class FundsTransferTransactionViewController: UIViewController {
         model = FundsTransferTransactionViewModel(senderName: "Safe", tokenID: tokenID, onUpdate: updateFromViewModel)
         amountTextField.delegate = self
         amountTextField.accessibilityIdentifier = "transaction.amount"
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.minimumFractionDigits = 2
+        amountTextField.placeholder = numberFormatter.string(from: NSNumber(value: 0))
         recipientTextField.delegate = self
         recipientTextField.accessibilityIdentifier = "transaction.address"
         continueButton.addTarget(self, action: #selector(proceedToSigning(_:)), for: .touchUpInside)
