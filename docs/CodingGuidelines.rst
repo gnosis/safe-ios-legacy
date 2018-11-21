@@ -8,7 +8,7 @@ Here we mention some rules that are not implemented in the tool.
 Method arguments line breaks
 ----------------------------
 
-Put all arguments on the same line, or put each on a separate lines, breaking after comma.
+Put all arguments on the same line, or put each on a separate line, breaking after comma.
 
 Valid::
 
@@ -28,7 +28,7 @@ Invalid because the linebreak is after parenthesis::
 Using extensions for code grouping and protocol implementations
 ---------------------------------------------------------------
 
-If a type adopts protocol, then it is a valid case for implementing protocol methods in an extension on that type.
+If a type adopts a protocol, then it is a valid case for implementing protocol methods in an extension on that type.
 
 Valid::
 
@@ -48,9 +48,7 @@ Valid::
 
     }
 
-
-
-If a class inherits from another class that implements protocol, and then overrides protocol implementation methods, then we do not use extensions to separate overriden methods from the class body.
+If a class inherits from another class that implements a protocol and overrides base class' implementation of the protocol methods, then we do not use extensions to separate overriden methods from the class body.
 
 Valid::
 
