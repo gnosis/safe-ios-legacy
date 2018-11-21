@@ -10,14 +10,14 @@ Method arguments line breaks
 
 Put all arguments on the same line, or put each on a separate lines, breaking after comma.
 
-Valid:
+Valid::
 
     self.imageView.frame = CGRect(x: frame.minX,
                                 y: frame.minY + IdenticonView.shadowOffset,
                                 width: frame.width,
                                 height: frame.height)
 
-Invalid because the linebreak is after parenthesis:
+Invalid because the linebreak is after parenthesis::
 
     self.imageView.frame = CGRect(
         x: frame.minX,
@@ -30,7 +30,7 @@ Using extensions for code grouping and protocol implementations
 
 If a type adopts protocol, then it is a valid case for implementing protocol methods in an extension on that type.
 
-Valid:
+Valid::
 
     final class MainFlowCoordinator: FlowCoordinator {
         ...
@@ -39,7 +39,7 @@ Valid:
     ...
 
     extension MainFlowCoordinator: TransactionsTableViewControllerDelegate {
-
+    
         func didSelectTransaction(id: String) {
             let controller = TransactionDetailsViewController.create(transactionID: id)
             controller.delegate = self
@@ -52,7 +52,7 @@ Valid:
 
 If a class inherits from another class that implements protocol, and then overrides protocol implementation methods, then we do not use extensions to separate overriden methods from the class body.
 
-Valid:
+Valid::
 
     final class MenuTableViewController: UITableViewController { 
         ...
@@ -65,12 +65,12 @@ Valid:
         ...
     }
 
-Invalid because override happens in the extension:
+Invalid because override happens in the extension::
 
     final class MenuTableViewController: UITableViewController { 
         ...
     }
-
+    
     extension MenuTableViewController {
 
         override func numberOfSections(in tableView: UITableView) -> Int {
@@ -87,13 +87,18 @@ Localization
 -------------
 We use `NSLocalizedString` function or custom `LocalizedString` function to wrap user-facing strings. You must provide meaningful comment with each string.
 
+::
+
     LocalizedString("onboarding.start.header", "Header label for Start screen")
 
 Never localize storyboards or xibs but put all localization keys in the source code.
 
 Error handling
--------------
+--------------
+
 Errors are logged using LogService.shared logger. You can pass any `Error` implementation to it.
+
+::
 
     LogService.shared.fatal("Oops! App will crash", error: MyError.error)
     LogService.shared.error("Something bad happened")
@@ -102,6 +107,8 @@ Errors are logged using LogService.shared logger. You can pass any `Error` imple
 
 By default, we enable Crashlytics logger to record errors to crashlytics. Recommended approach is to create enum implementing `LoggableError` protocol. This will make enum cases available in the Crashlytics. 
 
+::
+
     enum BiometricServiceError: LoggableError {
         case unexpectedBiometryType
     }
@@ -109,7 +116,7 @@ By default, we enable Crashlytics logger to record errors to crashlytics. Recomm
     LogService.shared.error("Received unexpected biometry type: none",
                                         error: BiometricServiceError.unexpectedBiometryType)
 
-You can also provide underlying error:
+You can also provide underlying error::
 
     do {
         // something throws
