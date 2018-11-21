@@ -26,6 +26,14 @@ public class DeploymentDomainService {
             }
         }
 
+        func stop(_ repeater: Repeater) {
+            repeater.stop()
+            queue.async { [weak self] in
+                guard let `self` = self else { return }
+                self.repeaters.removeAll { $0 === repeater }
+            }
+        }
+
         func stopAll() {
             queue.async { [weak self] in
                 guard let `self` = self else { return }
@@ -85,7 +93,7 @@ public class DeploymentDomainService {
             account.update(newAmount: balance)
             DomainRegistry.accountRepository.save(account)
             guard balance >= wallet.minimumDeploymentTransactionAmount! else { return }
-            repeater.stop()
+            self.repeaters.stop(repeater)
             wallet.proceed()
         }
     }
@@ -125,7 +133,7 @@ public class DeploymentDomainService {
         try self.repeat(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
             guard let hash = try self.transactionHash(of: wallet.address!) else { return }
             wallet.assignCreationTransaction(hash: hash.value)
-            repeater.stop()
+            self.repeaters.stop(repeater)
             DomainRegistry.walletRepository.save(wallet)
             DomainRegistry.eventPublisher.publish(WalletTransactionHashIsKnown())
         }
@@ -134,7 +142,7 @@ public class DeploymentDomainService {
     private func waitForCreationTransactionCompletion(_ wallet: Wallet) throws {
         try self.repeat(delay: config.transactionStatus.repeatDelay) { [unowned self] repeater in
             guard let receipt = try self.receipt(of: TransactionHash(wallet.creationTransactionHash!)) else { return }
-            repeater.stop()
+            self.repeaters.stop(repeater)
             if receipt.status == .success {
                 wallet.proceed()
             } else {
