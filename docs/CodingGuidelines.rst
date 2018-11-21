@@ -2,7 +2,7 @@
 Coding Guidelines
 =================
 
-The most rules of coding style are verified during build steps with `swiftlint` rules.
+The most rules of coding style are verified during build steps with ``swiftlint`` rules.
 Here we mention some rules that are not implemented in the tool.
 
 Method arguments line breaks
@@ -85,7 +85,7 @@ Folders and groups MUST NOT contain whitespace symbols (because genstrings ignor
 
 Localization
 -------------
-We use `NSLocalizedString` function or custom `LocalizedString` function to wrap user-facing strings. You must provide meaningful comment with each string.
+We use ``NSLocalizedString`` function or custom ``LocalizedString`` function to wrap user-facing strings. You must provide meaningful comment with each string.
 
 ::
 
@@ -96,7 +96,7 @@ Never localize storyboards or xibs but put all localization keys in the source c
 Error handling
 --------------
 
-Errors are logged using LogService.shared logger. You can pass any `Error` implementation to it.
+Errors are logged using LogService.shared logger. You can pass any ``Error`` implementation to it.
 
 ::
 
@@ -105,7 +105,7 @@ Errors are logged using LogService.shared logger. You can pass any `Error` imple
     LogService.shared.info("We reached some stage")
     LogService.shared.debug("Log debug values")
 
-By default, we enable Crashlytics logger to record errors to crashlytics. Recommended approach is to create enum implementing `LoggableError` protocol. This will make enum cases available in the Crashlytics. 
+By default, we enable Crashlytics logger to record errors to crashlytics. Recommended approach is to create enum implementing ``LoggableError`` protocol. This will make enum cases available in the Crashlytics. 
 
 ::
 
