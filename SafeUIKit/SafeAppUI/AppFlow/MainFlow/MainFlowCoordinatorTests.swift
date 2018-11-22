@@ -71,7 +71,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         walletService.transactionData_output = TransactionData(id: "some",
                                                                sender: "some",
                                                                recipient: "some",
-                                                               amountTokenData: TokenData.Ether.copy(balance: 100),
+                                                               amountTokenData: TokenData.Ether.withBalance(100),
                                                                feeTokenData: TokenData.Ether,
                                                                status: .waitingForConfirmation,
                                                                type: .outgoing,

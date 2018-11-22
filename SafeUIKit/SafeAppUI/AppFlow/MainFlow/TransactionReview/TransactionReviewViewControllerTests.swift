@@ -31,8 +31,8 @@ class TransactionReviewViewControllerTests: XCTestCase {
 
         service.update(account: ethID, newBalance: BigInt(10).power(18))
 
-        let ethData = TokenData.Ether.copy(balance: BigInt(10).power(17))
-        let feeData = TokenData.Ether.copy(balance: BigInt(10).power(16))
+        let ethData = TokenData.Ether.withBalance(BigInt(10).power(17))
+        let feeData = TokenData.Ether.withBalance(BigInt(10).power(16))
         service.transactionData_output = TransactionData(id: id,
                                                          sender: sender,
                                                          recipient: recipient,
@@ -114,8 +114,8 @@ extension TransactionData {
         return TransactionData(id: "some",
                                sender: "some",
                                recipient: "some",
-                               amountTokenData: TokenData.Ether.copy(balance: 100),
-                               feeTokenData: TokenData.Ether.copy(balance: BigInt(10).power(18)),
+                               amountTokenData: TokenData.Ether.withBalance(100),
+                               feeTokenData: TokenData.Ether.withBalance(BigInt(10).power(18)),
                                status: status,
                                type: .outgoing,
                                created: nil,

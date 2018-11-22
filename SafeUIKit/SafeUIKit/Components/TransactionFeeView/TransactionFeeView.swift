@@ -24,9 +24,9 @@ public class TransactionFeeView: BaseCustomView {
     private let paddings: (left: CGFloat, top: CGFloat, right: CGFloat, bottom: CGFloat) = (16, 20, 16, 20)
     public private(set) var tokenFormatter: TokenNumberFormatter = .ERC20Token(decimals: 18)
 
-    private var currentBalance: TokenData?
-    private var transactionFee: TokenData?
-    private var resultingBalance: TokenData!
+    public private(set) var currentBalance: TokenData?
+    public private(set) var transactionFee: TokenData?
+    public private(set) var resultingBalance: TokenData!
 
     private var isSecondaryView: Bool {
         return currentBalanceLabel == nil

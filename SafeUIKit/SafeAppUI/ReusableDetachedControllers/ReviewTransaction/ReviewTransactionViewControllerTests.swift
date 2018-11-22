@@ -34,17 +34,42 @@ class ReviewTransactionViewControllerTests: XCTestCase {
         XCTAssertEqual(transferViewCell.transferView.tokenData, data.amountTokenData)
     }
 
-    func test_whenLoadedForEtherTransfer_thenHasOneTransactionFeeCell() {
-        let (_, vc) = ethDataAndCotroller()
-        XCTAssertTrue(vc.cellForRow(3) is TransactionFeeCell)
-        XCTAssertEqual(vc.cellsCount(), 4)
+    func test_whenLoadedForEtherTransfer_theneTransactionFeeCellHasCorrectValues() {
+        let (data, vc) = ethDataAndCotroller()
+        XCTAssertEqual(vc.cellCount(), 4)
+
+        let cell = vc.cellForRow(3) as! TransactionFeeCell
+        let balance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address))!
+
+        XCTAssertEqual(cell.transactionFeeView.currentBalance?.balance,
+                       balance)
+        XCTAssertEqual(cell.transactionFeeView.transactionFee?.balance,
+                       data.feeTokenData.balance!)
+        XCTAssertEqual(cell.transactionFeeView.resultingBalance?.balance,
+                       balance - data.feeTokenData.balance! - data.amountTokenData.balance!)
     }
 
-    func test_whenLoadedForTokenTransfer_thenHasTwoTransactionFeeCells() {
-        let (_, vc) = tokenDataAndCotroller()
-        XCTAssertTrue(vc.cellForRow(3) is TransactionFeeCell)
-        XCTAssertTrue(vc.cellForRow(4) is TransactionFeeCell)
-        XCTAssertEqual(vc.cellsCount(), 5)
+    func test_whenLoadedForTokenTransfer_thenHasTwoTransactionFeeCellsWithCorrectValues() {
+        let (data, vc) = tokenDataAndCotroller()
+        XCTAssertEqual(vc.cellCount(), 5)
+
+        let cellOne = vc.cellForRow(3) as! TransactionFeeCell
+        let tokenBalance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address))!
+
+        XCTAssertEqual(cellOne.transactionFeeView.currentBalance?.balance,
+                       tokenBalance)
+        XCTAssertNil(cellOne.transactionFeeView.transactionFee?.balance)
+        XCTAssertEqual(cellOne.transactionFeeView.resultingBalance?.balance,
+                       tokenBalance - data.amountTokenData.balance!)
+
+        let cellTwo = vc.cellForRow(4) as! TransactionFeeCell
+        let feeBalance = service.accountBalance(tokenID: BaseID(data.feeTokenData.address))!
+
+        XCTAssertNil(cellTwo.transactionFeeView.currentBalance?.balance)
+        XCTAssertEqual(cellTwo.transactionFeeView.transactionFee?.balance,
+                       data.feeTokenData.balance!)
+        XCTAssertEqual(cellTwo.transactionFeeView.resultingBalance?.balance,
+                       feeBalance - data.feeTokenData.balance!)
     }
 
 }
@@ -79,7 +104,7 @@ private extension ReviewTransactionViewController {
         return tableView(tableView, cellForRowAt: IndexPath(row: row, section: 0))
     }
 
-    func cellsCount() -> Int {
+    func cellCount() -> Int {
         return tableView(tableView, numberOfRowsInSection: 0)
     }
 
@@ -91,8 +116,8 @@ extension TransactionData {
         return TransactionData(id: "some",
                                sender: "some",
                                recipient: "some",
-                               amountTokenData: TokenData.Ether.copy(balance: BigInt(10).power(18)),
-                               feeTokenData: TokenData.Ether.copy(balance: BigInt(10).power(17)),
+                               amountTokenData: TokenData.Ether.withBalance(BigInt(10).power(18)),
+                               feeTokenData: TokenData.Ether.withBalance(BigInt(10).power(17)),
                                status: status,
                                type: .outgoing,
                                created: nil,
@@ -106,8 +131,8 @@ extension TransactionData {
         return TransactionData(id: "some",
                                sender: "some",
                                recipient: "some",
-                               amountTokenData: TokenData.gno.copy(balance: BigInt(10).power(18)),
-                               feeTokenData: TokenData.gno.copy(balance: BigInt(10).power(17)),
+                               amountTokenData: TokenData.gno.withBalance(BigInt(10).power(18)),
+                               feeTokenData: TokenData.gno.withBalance(BigInt(10).power(17)),
                                status: status,
                                type: .outgoing,
                                created: nil,

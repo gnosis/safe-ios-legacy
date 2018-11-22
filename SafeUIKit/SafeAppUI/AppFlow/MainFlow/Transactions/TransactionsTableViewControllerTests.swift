@@ -91,7 +91,7 @@ class TransactionsTableViewControllerTests: XCTestCase {
         let transaction = TransactionData(id: UUID().uuidString,
                                           sender: "0x674647242239941b2D35368e66A4EdC39b161Da9",
                                           recipient: "0x97e3bA6cC43b2aF2241d4CAD4520DA8266170988",
-                                          amountTokenData: TokenData.gno.copy(balance: 3),
+                                          amountTokenData: TokenData.gno.withBalance(3),
                                           feeTokenData: TokenData.Ether,
                                           status: .pending,
                                           type: .outgoing,
