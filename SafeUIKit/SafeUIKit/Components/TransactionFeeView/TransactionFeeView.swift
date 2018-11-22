@@ -17,7 +17,10 @@ public class TransactionFeeView: BaseCustomView {
     }
 
     internal let wrapperStackView = UIStackView()
+    internal let fontSize: CGFloat = 16
     private let displayedDecimals = 5
+    private let stackViewSpacing: CGFloat = 8
+    private let emptyViewHeight: CGFloat = 6
     private let paddings: (left: CGFloat, top: CGFloat, right: CGFloat, bottom: CGFloat) = (16, 20, 16, 20)
     public private(set) var tokenFormatter: TokenNumberFormatter = .ERC20Token(decimals: 18)
 
@@ -103,7 +106,7 @@ public class TransactionFeeView: BaseCustomView {
         if transactionFee != nil && !isSecondaryView {
             wrapperStackView.addArrangedSubview(spacingView())
         } else if transactionFee == nil {
-            wrapperStackView.spacing = 8
+            wrapperStackView.spacing = stackViewSpacing
         }
         wrapperStackView.addArrangedSubview(resultingBalanceSection())
     }
@@ -131,50 +134,43 @@ public class TransactionFeeView: BaseCustomView {
     private func sectionStackView(text: UILabel, balance: UILabel) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 8
+        stackView.spacing = stackViewSpacing
         stackView.addArrangedSubview(text)
         stackView.addArrangedSubview(balance)
         return stackView
     }
 
     private func currentBalanceLabel(_ tokenData: TokenData) -> UILabel {
-        let currentBalanceLabel = UILabel()
-        currentBalanceLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        currentBalanceLabel.textColor = ColorName.battleshipGrey.color
-        currentBalanceLabel.text = Strings.currentBalance + (!tokenData.isEther ? " (\(Strings.token))" : "")
-        return currentBalanceLabel
-    }
-
-    private func tokenValueLabel(_ tokenData: TokenData, bold: Bool) -> UILabel {
-        let balanceLabel = UILabel()
-        balanceLabel.textAlignment = .right
-        balanceLabel.font = bold ? UIFont.boldSystemFont(ofSize: 16) : UIFont.systemFont(ofSize: 16)
-        balanceLabel.textColor = ColorName.battleshipGrey.color
-        balanceLabel.text = tokenFormatter.string(from: tokenData.balance ?? 0)
-        balanceLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1_000), for: .horizontal)
-        return balanceLabel
-    }
-
-    private func transactionFeeLabel(_ tokenData: TokenData, shouldDisplayEtherText: Bool) -> UILabel {
-        let transactionFeeLabel = UILabel()
-        transactionFeeLabel.font = UIFont.systemFont(ofSize: 16)
-        transactionFeeLabel.textColor = ColorName.battleshipGrey.color
-        transactionFeeLabel.text = Strings.transactionFee + (shouldDisplayEtherText ? " (\(Strings.ether))" :  "")
-        return transactionFeeLabel
+        return baseLabel(Strings.currentBalance + (!tokenData.isEther ? " (\(Strings.token))" : ""), bold: true)
     }
 
     private func resultingBalanceLabel(_ tokenData: TokenData, bold: Bool) -> UILabel {
-        let resultingBalanceLabel = UILabel()
-        resultingBalanceLabel.font = bold ? UIFont.boldSystemFont(ofSize: 16) : UIFont.systemFont(ofSize: 16)
-        resultingBalanceLabel.text = Strings.resultingBalance
-        resultingBalanceLabel.textColor = ColorName.battleshipGrey.color
-        return resultingBalanceLabel
+        return baseLabel(Strings.resultingBalance, bold: bold)
+    }
+
+    private func transactionFeeLabel(_ tokenData: TokenData, shouldDisplayEtherText: Bool) -> UILabel {
+        return baseLabel(Strings.transactionFee + (shouldDisplayEtherText ? " (\(Strings.ether))" :  ""), bold: false)
+    }
+
+    private func tokenValueLabel(_ tokenData: TokenData, bold: Bool) -> UILabel {
+        let label = baseLabel(tokenFormatter.string(from: tokenData.balance ?? 0), bold: bold)
+        label.textAlignment = .right
+        label.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
+        return label
+    }
+
+    private func baseLabel(_ text: String, bold: Bool) -> UILabel {
+        let label = UILabel()
+        label.font = bold ? UIFont.boldSystemFont(ofSize: fontSize) : UIFont.systemFont(ofSize: fontSize)
+        label.textColor = ColorName.battleshipGrey.color
+        label.text = text
+        return label
     }
 
     private func spacingView() -> UIView {
         let emptyView = UIView()
         emptyView.translatesAutoresizingMaskIntoConstraints = false
-        emptyView.heightAnchor.constraint(equalToConstant: 6).isActive = true
+        emptyView.heightAnchor.constraint(equalToConstant: emptyViewHeight).isActive = true
         return emptyView
     }
 
