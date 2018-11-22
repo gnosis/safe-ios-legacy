@@ -162,6 +162,7 @@
 		0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */; };
 		0AF8D53920D00E56001E8423 /* TransactionsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53820D00E56001E8423 /* TransactionsTableViewControllerTests.swift */; };
 		0AF8D55720D01A90001E8423 /* TokensTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DF82C20CE9A080095C00D /* TokensTableViewControllerTests.swift */; };
+		0AF9EBC521A6C4A700C028B3 /* ContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9EBC421A6C4A700C028B3 /* ContainerCell.swift */; };
 		0AFA76692181FB1800A96FDB /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA76682181FB1800A96FDB /* libIdentityAccessImplementations.a */; };
 		0AFA766B2181FB1E00A96FDB /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */; };
 		0AFA766D2182195200A96FDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA766C2182195200A96FDB /* ViewController.swift */; };
@@ -499,6 +500,7 @@
 		0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestSegmentBarNib.xib; sourceTree = "<group>"; };
 		0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBarControllerTests.swift; sourceTree = "<group>"; };
 		0AF8D53820D00E56001E8423 /* TransactionsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewControllerTests.swift; sourceTree = "<group>"; };
+		0AF9EBC421A6C4A700C028B3 /* ContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerCell.swift; sourceTree = "<group>"; };
 		0AFA76682181FB1800A96FDB /* libIdentityAccessImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccessImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFA766C2182195200A96FDB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1366,6 +1368,7 @@
 				55E8AFE4219B353C002930A1 /* TransferViewTests.swift */,
 				55E8AFE6219B37F8002930A1 /* TransferView.xib */,
 				5539C13921A55C74006BF834 /* TransferViewCell.swift */,
+				0AF9EBC421A6C4A700C028B3 /* ContainerCell.swift */,
 				5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */,
 			);
 			path = TransferView;
@@ -1867,6 +1870,7 @@
 				55DEBC13214AA6660017CD4B /* BackgroundHeaderFooterView.swift in Sources */,
 				555EB719216DF15700E06553 /* VerifiableInput.swift in Sources */,
 				5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */,
+				0AF9EBC521A6C4A700C028B3 /* ContainerCell.swift in Sources */,
 				552473612142A07300A77557 /* BaseCustomView.swift in Sources */,
 				5539C13A21A55C74006BF834 /* TransferViewCell.swift in Sources */,
 				5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */,
