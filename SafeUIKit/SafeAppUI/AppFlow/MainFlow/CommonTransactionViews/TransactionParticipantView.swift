@@ -9,17 +9,17 @@ class TransactionParticipantView: BaseCustomView {
 
     var name: String = "Name" {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
     var address: String = "Address" {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
     var text: String? {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
 
@@ -69,7 +69,7 @@ class TransactionParticipantView: BaseCustomView {
                 identiconView.widthAnchor.constraint(equalToConstant: 32),
                 identiconView.heightAnchor.constraint(equalToConstant: 32)
             ])
-        didLoad()
+        update()
     }
 
 

@@ -8,7 +8,7 @@ class StatusTransactionParameterView: TransactionParameterView {
 
     var status: TransactionStatusParameter = .pending {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
 

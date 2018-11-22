@@ -9,22 +9,22 @@ class TransactionValueView: BaseCustomView {
 
     var tokenAmount: String = "+9.11300 ETH" {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
     var fiatAmount: String = "≈ $643.42" {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
     var  isSingleValue: Bool = false {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
     var style: TransactionValueStyle = .positive {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
 
@@ -63,7 +63,7 @@ class TransactionValueView: BaseCustomView {
                 widthAnchor.constraint(equalTo: labelStack.widthAnchor),
                 heightAnchor.constraint(equalTo: labelStack.heightAnchor)
             ])
-        didLoad()
+        update()
     }
 
     override func update() {

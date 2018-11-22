@@ -9,7 +9,7 @@ import SafeUIKit
 class TransactionsEmptyView: BaseCustomView {
 
     var text: String = LocalizedString("transactions.empty.text", comment: "No transactions yet") {
-        didSet { setNeedsUpdate() }
+        didSet { update() }
     }
 
     var backgroundView: UIView!
@@ -36,7 +36,7 @@ class TransactionsEmptyView: BaseCustomView {
             backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             backgroundView.topAnchor.constraint(equalTo: topAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -94)])
-        didLoad()
+        update()
     }
 
     override func update() {

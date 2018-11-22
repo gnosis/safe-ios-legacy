@@ -11,13 +11,13 @@ class BorderedButton: BaseCustomButton {
 
     override var isEnabled: Bool {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
 
     override var isHighlighted: Bool {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
 
@@ -33,7 +33,7 @@ class BorderedButton: BaseCustomButton {
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 3
         layer.shadowOffset = CGSize(width: 0, height: 0)
-        didLoad()
+        update()
     }
 
     override func prepareForInterfaceBuilder() {

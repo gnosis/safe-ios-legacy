@@ -8,10 +8,10 @@ import SafeUIKit
 class TransactionParameterView: BaseCustomView {
 
     var name: String = "Parameter" {
-        didSet { setNeedsUpdate() }
+        didSet { update() }
     }
     var value: String = "Value of a transaction parameter" {
-        didSet { setNeedsUpdate() }
+        didSet { update() }
     }
 
     var nameLabel: UILabel!
@@ -33,7 +33,7 @@ class TransactionParameterView: BaseCustomView {
         stack.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(stack)
 
-        didLoad()
+        update()
     }
 
     override func update() {

@@ -5,7 +5,7 @@
 import UIKit
 import Common
 
-public final class TransferView: UIView {
+public final class TransferView: BaseCustomView {
 
     @IBOutlet weak var fromIdenticonView: IdenticonView!
     @IBOutlet weak var toIdenticonView: IdenticonView!
@@ -15,48 +15,38 @@ public final class TransferView: UIView {
 
     public var fromAddress: String! {
         didSet {
-            guard fromAddress != nil else { return }
-            fromIdenticonView.seed = fromAddress
-            fromAddressLabel.text = fromAddress
+            update()
         }
     }
     public var toAddress: String! {
         didSet {
-            guard toAddress != nil else { return }
-            toIdenticonView.seed = toAddress
-            toAddressLabel.text = toAddress
+            update()
         }
     }
     public var tokenData: TokenData! {
         didSet {
-            guard tokenData != nil && tokenData.balance != nil else { return }
-            let tokenFormatter = TokenNumberFormatter.ERC20Token(
-                code: tokenData.code, decimals: tokenData.decimals, displayedDecimals: 4)
-            amountLabel.text = tokenFormatter.string(from: -tokenData.balance!)
+            update()
         }
     }
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-        commonInit()
-    }
-
-    private func commonInit() {
+    public override func commonInit() {
         safeUIKit_loadFromNib(forClass: TransferView.self)
-        fromIdenticonView.seed = ""
-        fromAddressLabel.text = ""
-        toIdenticonView.seed = ""
-        toAddressLabel.text = ""
-        amountLabel.text = ""
+        update()
+    }
+
+    public override func update() {
+        fromIdenticonView.seed = fromAddress ?? ""
+        fromAddressLabel.text = fromAddress
+        toIdenticonView.seed = toAddress ?? ""
+        toAddressLabel.text = toAddress
+        if let data = tokenData, let balance = tokenData.balance {
+            let tokenFormatter = TokenNumberFormatter.ERC20Token(code: data.code,
+                                                                 decimals: data.decimals,
+                                                                 displayedDecimals: 4)
+            amountLabel.text = tokenFormatter.string(from: -balance)
+        } else {
+            amountLabel.text = nil
+        }
     }
 
 }
