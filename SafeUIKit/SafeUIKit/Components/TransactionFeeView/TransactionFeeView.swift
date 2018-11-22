@@ -16,25 +16,32 @@ public class TransactionFeeView: BaseCustomView {
         static let token = LocalizedString("transaction_fee.token", comment: "Displayed in parentheses")
     }
 
-    private let wrapperStackView = UIStackView()
+    internal let wrapperStackView = UIStackView()
     private let displayedDecimals = 5
     private let paddings: (left: CGFloat, top: CGFloat, right: CGFloat, bottom: CGFloat) = (16, 20, 16, 20)
     public private(set) var tokenFormatter: TokenNumberFormatter = .ERC20Token(decimals: 18)
 
+    private var currentBalance: TokenData?
+    private var transactionFee: TokenData?
+
     public var currentBalanceLabel: UILabel? {
+        guard currentBalance != nil else { return nil }
         return label(at: IndexPath(item: 0, section: 0))
     }
 
     public var currentBalanceValueLabel: UILabel? {
+        guard currentBalance != nil else { return nil }
         return label(at: IndexPath(item: 1, section: 0))
     }
 
     public var transactionFeeLabel: UILabel? {
-        return label(at: IndexPath(item: 0, section: 1))
+        guard transactionFee != nil else { return nil }
+        return label(at: IndexPath(item: 0, section: currentBalance == nil ? 0 : 1))
     }
 
     public var transactionFeeValueLabel: UILabel? {
-        return label(at: IndexPath(item: 1, section: 1))
+        guard transactionFee != nil else { return nil }
+        return label(at: IndexPath(item: 1, section: currentBalance == nil ? 0 : 1))
     }
 
     public var resultingBalanceLabel: UILabel? {
@@ -72,6 +79,8 @@ public class TransactionFeeView: BaseCustomView {
 
     public func configure(currentBalance: TokenData?, transactionFee: TokenData?, resultingBalance: TokenData!) {
         guard wrapperStackView.arrangedSubviews.isEmpty else { return }
+        self.currentBalance = currentBalance
+        self.transactionFee = transactionFee
         tokenFormatter = TokenNumberFormatter.ERC20Token(code: resultingBalance.code,
                                                          decimals: resultingBalance.decimals,
                                                          displayedDecimals: displayedDecimals)
