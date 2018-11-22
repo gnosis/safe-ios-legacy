@@ -21,7 +21,7 @@ public class IdenticonView: BaseCustomView {
 
     public var seed: String = "Identicon" {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
 
@@ -38,7 +38,7 @@ public class IdenticonView: BaseCustomView {
         configureImageView()
         configureLayer()
         configureIdenticon()
-        didLoad()
+        update()
     }
 
     private func configureImageView() {

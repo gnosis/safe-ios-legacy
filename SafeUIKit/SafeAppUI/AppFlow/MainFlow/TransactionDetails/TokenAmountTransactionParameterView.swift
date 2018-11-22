@@ -8,7 +8,7 @@ class TokenAmountTransactionParameterView: TransactionParameterView {
 
     var style: TransactionValueStyle = .positive {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
 

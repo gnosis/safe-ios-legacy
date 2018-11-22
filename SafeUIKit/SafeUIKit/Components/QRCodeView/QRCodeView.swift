@@ -10,7 +10,7 @@ final public class QRCodeView: BaseCustomView {
 
     public var value: String? {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
 
@@ -32,7 +32,7 @@ final public class QRCodeView: BaseCustomView {
         imageView.frame = bounds
         imageView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         addSubview(imageView)
-        didLoad()
+        update()
     }
 
     override public func update() {

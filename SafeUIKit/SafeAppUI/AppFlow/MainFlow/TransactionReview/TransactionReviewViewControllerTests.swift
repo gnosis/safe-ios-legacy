@@ -31,16 +31,13 @@ class TransactionReviewViewControllerTests: XCTestCase {
 
         service.update(account: ethID, newBalance: BigInt(10).power(18))
 
+        let ethData = TokenData.Ether.withBalance(BigInt(10).power(17))
+        let feeData = TokenData.Ether.withBalance(BigInt(10).power(16))
         service.transactionData_output = TransactionData(id: id,
                                                          sender: sender,
                                                          recipient: recipient,
-                                                         amount: BigInt(10).power(17),
-                                                         token: "ETH",
-                                                         tokenDecimals: 18,
-                                                         tokenLogoUrl: "",
-                                                         fee: BigInt(10).power(16),
-                                                         feeToken: "ETH",
-                                                         feeTokenDecimals: 18,
+                                                         amountTokenData: ethData,
+                                                         feeTokenData: feeData,
                                                          status: .waitingForConfirmation,
                                                          type: .outgoing,
                                                          created: nil,
@@ -71,7 +68,6 @@ class TransactionReviewViewControllerTests: XCTestCase {
         vc.transactionID = "some"
         service.transactionData_output = TransactionData.create(status: .waitingForConfirmation)
         service.requestTransactionConfirmation_output = TransactionData.create(status: .waitingForConfirmation)
-
         vc.loadViewIfNeeded()
         delay()
         XCTAssertEqual(service.requestTransactionConfirmation_input, "some")
@@ -118,13 +114,8 @@ extension TransactionData {
         return TransactionData(id: "some",
                                sender: "some",
                                recipient: "some",
-                               amount: 100,
-                               token: "ETH",
-                               tokenDecimals: 18,
-                               tokenLogoUrl: "",
-                               fee: BigInt(10).power(18),
-                               feeToken: "ETH",
-                               feeTokenDecimals: 18,
+                               amountTokenData: TokenData.Ether.withBalance(100),
+                               feeTokenData: TokenData.Ether.withBalance(BigInt(10).power(18)),
                                status: status,
                                type: .outgoing,
                                created: nil,

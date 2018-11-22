@@ -27,7 +27,7 @@ public class ProgressView: BaseCustomView {
 
     public private(set) var state: ProgressViewState = .progress(0.5) {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
 
@@ -70,7 +70,7 @@ public class ProgressView: BaseCustomView {
                 indicatorView.topAnchor.constraint(equalTo: topAnchor),
                 indicatorView.heightAnchor.constraint(equalTo: heightAnchor)
             ])
-        didLoad()
+        update()
     }
 
     public override func update() {

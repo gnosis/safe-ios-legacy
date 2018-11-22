@@ -60,29 +60,10 @@ class BaseCustomViewTests: XCTestCase {
         XCTAssertTrue(button.didCallCommonInit)
     }
 
-    func test_whenNotLoaded_thenDoesNotUpdate() {
-        let button = initClosure()
-        button.setNeedsUpdate()
-        XCTAssertFalse(button.didCallUpdate)
-    }
-
     func test_whenLoaded_thenCallsUpdate() {
         let button = initClosure()
-        button.didLoad()
+        button.update()
         XCTAssertTrue(button.didCallUpdate)
-    }
-
-    func test_whenPreapringForIB_thenCallsUpdate() {
-        let button = initClosure()
-        button.didLoad()
-        button.prepareForInterfaceBuilder()
-        XCTAssertTrue(button.didCallUpdate)
-    }
-
-    func test_whenNotLoadedAndPreparingForIB_thenDoesNotUpdate() {
-        let button = initClosure()
-        button.prepareForInterfaceBuilder()
-        XCTAssertFalse(button.didCallUpdate)
     }
 
 }
@@ -106,8 +87,6 @@ protocol TestCustomViewProtocol {
 
     func commonInit()
     func update()
-    func setNeedsUpdate()
-    func didLoad()
 
 }
 

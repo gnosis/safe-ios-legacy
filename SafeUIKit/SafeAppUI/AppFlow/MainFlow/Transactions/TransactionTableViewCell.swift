@@ -53,8 +53,8 @@ class TransactionTableViewCell: UITableViewCell {
         pairValueStackView.isHidden = false
 
         tokenAmountLabel.text = TokenNumberFormatter
-            .ERC20Token(code: transaction.token, decimals: transaction.tokenDecimals)
-            .string(from: transaction.amount)
+            .ERC20Token(code: transaction.amountTokenData.code, decimals: transaction.amountTokenData.decimals)
+            .string(from: transaction.amountTokenData.balance!)
         tokenAmountLabel.textColor = valueColor(transaction)
 
         fiatAmountLabel.text = nil

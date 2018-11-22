@@ -28,5 +28,8 @@ extension TokenData {
             logoUrl: logoURL?.absoluteString ?? "")
     }
 
+    static func empty() -> TokenData {
+        return TokenData(address: "", code: "", name: "", logoURL: "", decimals: 18, balance: 0)
+    }
 
 }

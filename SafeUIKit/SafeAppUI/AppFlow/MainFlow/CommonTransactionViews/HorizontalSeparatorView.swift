@@ -9,7 +9,7 @@ class HorizontalSeparatorView: BaseCustomView {
 
     var size: CGFloat = 1 {
         didSet {
-            setNeedsUpdate()
+            update()
         }
     }
     var heightConstraint: NSLayoutConstraint!
@@ -20,7 +20,7 @@ class HorizontalSeparatorView: BaseCustomView {
             [
                 heightConstraint
             ])
-        didLoad()
+        update()
     }
 
     override func update() {
