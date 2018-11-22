@@ -5,7 +5,7 @@
 import UIKit
 import Kingfisher
 
-public class TransactionHeaderView: UIView {
+public class TransactionHeaderView: BaseCustomView {
 
     @IBOutlet weak private(set) var assetImageView: UIImageView!
     @IBOutlet weak private(set) var assetCodeLabel: UILabel!
@@ -13,47 +13,41 @@ public class TransactionHeaderView: UIView {
 
     public var assetImage: UIImage? {
         didSet {
-            assetImageView.image = assetImage
+            update()
         }
     }
 
     public var assetImageURL: URL? {
         didSet {
-            assetImageView.kf.setImage(with: assetImageURL)
+            update()
         }
     }
 
     public var assetCode: String? {
         didSet {
-            assetCodeLabel.text = assetCode
+            update()
         }
     }
 
     public var assetInfo: String? {
         didSet {
-            assetInfoLabel.text = assetInfo
+            update()
         }
     }
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-        commonInit()
-    }
-
-    private func commonInit() {
+    public override func commonInit() {
         safeUIKit_loadFromNib(forClass: TransactionHeaderView.self)
-        assetImageView.image = nil
-        assetCodeLabel.text = nil
-        assetInfoLabel.text = nil
+        update()
+    }
+
+    public override func update() {
+        if let url = assetImageURL {
+            assetImageView.kf.setImage(with: url)
+        } else {
+            assetImageView.image = assetImage
+        }
+        assetCodeLabel.text = assetCode
+        assetInfoLabel.text = assetInfo
     }
 
 }
