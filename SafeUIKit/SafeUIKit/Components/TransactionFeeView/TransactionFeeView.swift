@@ -23,6 +23,11 @@ public class TransactionFeeView: BaseCustomView {
 
     private var currentBalance: TokenData?
     private var transactionFee: TokenData?
+    private var resultingBalance: TokenData!
+
+    private var isSecondaryView: Bool {
+        return currentBalanceLabel == nil
+    }
 
     public var currentBalanceLabel: UILabel? {
         guard currentBalance != nil else { return nil }
@@ -78,57 +83,52 @@ public class TransactionFeeView: BaseCustomView {
     }
 
     public func configure(currentBalance: TokenData?, transactionFee: TokenData?, resultingBalance: TokenData!) {
-        guard wrapperStackView.arrangedSubviews.isEmpty else { return }
         self.currentBalance = currentBalance
         self.transactionFee = transactionFee
+        self.resultingBalance = resultingBalance
         tokenFormatter = TokenNumberFormatter.ERC20Token(code: resultingBalance.code,
                                                          decimals: resultingBalance.decimals,
                                                          displayedDecimals: displayedDecimals)
-        let isSecondaryView = currentBalance == nil
-        if let currentBalance = currentBalance {
-            assert(currentBalance.isSameToken(with: resultingBalance))
-            addCurrentBalance(currentBalance)
+        buildWrapperStackView()
+    }
+
+    private func buildWrapperStackView() {
+        guard wrapperStackView.arrangedSubviews.isEmpty else { return }
+        if let section = currentBalanceSection() {
+            wrapperStackView.addArrangedSubview(section)
         }
-        if let transactionFee = transactionFee {
-            assert(transactionFee.isSameToken(with: resultingBalance))
-            addTransactionFee(transactionFee, isSecondaryView: isSecondaryView)
-        } else if !isSecondaryView {
+        if let section = transactionFeeSection() {
+            wrapperStackView.addArrangedSubview(section)
+        }
+        if transactionFee != nil && !isSecondaryView {
+            wrapperStackView.addArrangedSubview(spacingView())
+        } else if transactionFee == nil {
             wrapperStackView.spacing = 8
         }
-        addResultingBalance(resultingBalance, isSecondaryView: isSecondaryView)
+        wrapperStackView.addArrangedSubview(resultingBalanceSection())
     }
 
-    private func addCurrentBalance(_ currentBalance: TokenData) {
-        let currentBalanceStackView = balanceStackView(text: currentBalanceLabel(currentBalance),
-                                                       balance: balanceLabel(currentBalance,
-                                                                             bold: true,
-                                                                             displayedDecimals: displayedDecimals))
-        wrapperStackView.addArrangedSubview(currentBalanceStackView)
+    private func currentBalanceSection() -> UIStackView? {
+        guard let tokenData = currentBalance else { return nil }
+        assert(tokenData.isSameToken(with: resultingBalance))
+        return sectionStackView(text: currentBalanceLabel(tokenData),
+                                balance: tokenValueLabel(tokenData, bold: true))
     }
 
-    private func addTransactionFee(_ transactionFee: TokenData, isSecondaryView: Bool) {
-        let transactionFeeStackView =
-            balanceStackView(text: transactionFeeLabel(transactionFee,
-                                                       shouldDisplayEtherText: isSecondaryView),
-                             balance: balanceLabel(transactionFee,
-                                                   bold: false,
-                                                   displayedDecimals: displayedDecimals))
-        wrapperStackView.addArrangedSubview(transactionFeeStackView)
-        if !isSecondaryView {
-            addSpacingView()
-        }
+    private func transactionFeeSection() -> UIStackView? {
+        guard let tokenData = transactionFee else { return nil }
+        assert(tokenData.isSameToken(with: resultingBalance))
+        return sectionStackView(text: transactionFeeLabel(tokenData, shouldDisplayEtherText: isSecondaryView),
+                                balance: tokenValueLabel(tokenData, bold: false))
     }
 
-    private func addResultingBalance(_ resultingBalance: TokenData, isSecondaryView: Bool) {
-        let balanceAfterTransferStackView =
-            balanceStackView(text: resultingBalanceLabel(resultingBalance, bold: !isSecondaryView),
-                             balance: balanceLabel(resultingBalance,
-                                                   bold: !isSecondaryView,
-                                                   displayedDecimals: displayedDecimals))
-        wrapperStackView.addArrangedSubview(balanceAfterTransferStackView)
+    private func resultingBalanceSection() -> UIStackView {
+        let isBold = !isSecondaryView
+        return sectionStackView(text: resultingBalanceLabel(resultingBalance, bold: isBold),
+                                balance: tokenValueLabel(resultingBalance, bold: isBold))
     }
 
-    private func balanceStackView(text: UILabel, balance: UILabel) -> UIStackView {
+    private func sectionStackView(text: UILabel, balance: UILabel) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 8
@@ -140,15 +140,12 @@ public class TransactionFeeView: BaseCustomView {
     private func currentBalanceLabel(_ tokenData: TokenData) -> UILabel {
         let currentBalanceLabel = UILabel()
         currentBalanceLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        currentBalanceLabel.text = Strings.currentBalance
         currentBalanceLabel.textColor = ColorName.battleshipGrey.color
-        if !tokenData.isEther {
-            currentBalanceLabel.text! += " (\(Strings.token))"
-        }
+        currentBalanceLabel.text = Strings.currentBalance + (!tokenData.isEther ? " (\(Strings.token))" : "")
         return currentBalanceLabel
     }
 
-    private func balanceLabel(_ tokenData: TokenData, bold: Bool, displayedDecimals: Int? = nil) -> UILabel {
+    private func tokenValueLabel(_ tokenData: TokenData, bold: Bool) -> UILabel {
         let balanceLabel = UILabel()
         balanceLabel.textAlignment = .right
         balanceLabel.font = bold ? UIFont.boldSystemFont(ofSize: 16) : UIFont.systemFont(ofSize: 16)
@@ -161,11 +158,8 @@ public class TransactionFeeView: BaseCustomView {
     private func transactionFeeLabel(_ tokenData: TokenData, shouldDisplayEtherText: Bool) -> UILabel {
         let transactionFeeLabel = UILabel()
         transactionFeeLabel.font = UIFont.systemFont(ofSize: 16)
-        transactionFeeLabel.text = Strings.transactionFee
         transactionFeeLabel.textColor = ColorName.battleshipGrey.color
-        if shouldDisplayEtherText {
-            transactionFeeLabel.text! += " (\(Strings.ether))"
-        }
+        transactionFeeLabel.text = Strings.transactionFee + (shouldDisplayEtherText ? " (\(Strings.ether))" :  "")
         return transactionFeeLabel
     }
 
@@ -177,11 +171,11 @@ public class TransactionFeeView: BaseCustomView {
         return resultingBalanceLabel
     }
 
-    private func addSpacingView() {
+    private func spacingView() -> UIView {
         let emptyView = UIView()
         emptyView.translatesAutoresizingMaskIntoConstraints = false
         emptyView.heightAnchor.constraint(equalToConstant: 6).isActive = true
-        wrapperStackView.addArrangedSubview(emptyView)
+        return emptyView
     }
 
 }
