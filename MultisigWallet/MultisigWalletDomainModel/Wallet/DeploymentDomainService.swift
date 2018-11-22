@@ -11,6 +11,38 @@ public class DeploymentDomainService {
 
     private let config: DeploymentDomainServiceConfiguration
     internal var responseValidator = SafeCreationResponseValidator()
+    private let repeaters = Repeaters()
+
+    // Thread-safe repeaters array operations
+    private class Repeaters {
+
+        var repeaters: [Repeater] = []
+        private let queue = DispatchQueue(label: "DeploymentServiceRepeaterManagementQueue")
+
+        func add(_ repeater: Repeater) {
+            queue.async { [weak self] in
+                guard let `self` = self else { return }
+                self.repeaters.append(repeater)
+            }
+        }
+
+        func stop(_ repeater: Repeater) {
+            repeater.stop()
+            queue.async { [weak self] in
+                guard let `self` = self else { return }
+                self.repeaters.removeAll { $0 === repeater }
+            }
+        }
+
+        func stopAll() {
+            queue.async { [weak self] in
+                guard let `self` = self else { return }
+                self.repeaters.forEach { $0.stop() }
+                self.repeaters = []
+            }
+        }
+
+    }
 
     public init(_ config: DeploymentDomainServiceConfiguration = .standard) {
         self.config = config
@@ -24,6 +56,7 @@ public class DeploymentDomainService {
         DomainRegistry.eventPublisher.subscribe(self, creationStarted)
         DomainRegistry.eventPublisher.subscribe(self, walletCreated)
         DomainRegistry.eventPublisher.subscribe(self, creationFailed)
+        DomainRegistry.eventPublisher.subscribe(self, deploymentAborted)
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         wallet.resume()
     }
@@ -42,6 +75,10 @@ public class DeploymentDomainService {
         }
     }
 
+    func deploymentAborted(_ event: DeploymentAborted) {
+        repeaters.stopAll()
+    }
+
     func walletConfigured(_ event: WalletConfigured) {
         handleError { wallet in
             try waitForFunding(wallet)
@@ -49,16 +86,22 @@ public class DeploymentDomainService {
     }
 
     private func waitForFunding(_ wallet: Wallet) throws {
-        try Repeater(delay: config.balance.repeatDelay) { [unowned self] repeater in
+        try self.repeat(delay: config.balance.repeatDelay) { [unowned self] repeater in
             let balance = try self.balance(of: wallet.address!)
             let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
             let account = DomainRegistry.accountRepository.find(id: accountID)!
             account.update(newAmount: balance)
             DomainRegistry.accountRepository.save(account)
             guard balance >= wallet.minimumDeploymentTransactionAmount! else { return }
-            repeater.stop()
+            self.repeaters.stop(repeater)
             wallet.proceed()
-        }.start()
+        }
+    }
+
+    private func `repeat`(delay: TimeInterval, closure: @escaping (Repeater) throws -> Void) throws {
+        let repeater = Repeater(delay: delay, closure)
+        repeaters.add(repeater)
+        try repeater.start()
     }
 
     func walletFunded(_ event: DeploymentFunded) {
@@ -87,25 +130,25 @@ public class DeploymentDomainService {
             DomainRegistry.eventPublisher.publish(WalletTransactionHashIsKnown())
             return
         }
-        try Repeater(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
+        try self.repeat(delay: config.deploymentStatus.repeatDelay) { [unowned self] repeater in
             guard let hash = try self.transactionHash(of: wallet.address!) else { return }
             wallet.assignCreationTransaction(hash: hash.value)
-            repeater.stop()
+            self.repeaters.stop(repeater)
             DomainRegistry.walletRepository.save(wallet)
             DomainRegistry.eventPublisher.publish(WalletTransactionHashIsKnown())
-            }.start()
+        }
     }
 
     private func waitForCreationTransactionCompletion(_ wallet: Wallet) throws {
-        try Repeater(delay: config.transactionStatus.repeatDelay) { [unowned self] repeater in
+        try self.repeat(delay: config.transactionStatus.repeatDelay) { [unowned self] repeater in
             guard let receipt = try self.receipt(of: TransactionHash(wallet.creationTransactionHash!)) else { return }
-            repeater.stop()
+            self.repeaters.stop(repeater)
             if receipt.status == .success {
                 wallet.proceed()
             } else {
                 wallet.cancel()
             }
-        }.start()
+        }
     }
 
     func walletCreated(_ event: WalletCreated) {

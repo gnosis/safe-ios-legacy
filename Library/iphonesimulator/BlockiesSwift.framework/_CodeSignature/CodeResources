@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/BlockiesSwift-Swift.h</key>
 		<data>
-		WzDAK5p1sTv4pyHWwl+HZjO78X0=
+		FxyrYtZErjC3HLU2ZEfC/SndL5M=
 		</data>
 		<key>Headers/BlockiesSwift.h</key>
 		<data>
@@ -14,23 +14,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		KKUbB3LuTAXFOPh/8cuq/SS7VEE=
+		wsas8PGEoPtORDsNhShEpUFNUZg=
 		</data>
 		<key>Modules/BlockiesSwift.swiftmodule/i386.swiftdoc</key>
 		<data>
-		0/LltQ9Tpqfeg6+DcsaEuIyDUSk=
+		LqjxiAxh0BUn43ZcCw54yhvi/mk=
 		</data>
 		<key>Modules/BlockiesSwift.swiftmodule/i386.swiftmodule</key>
 		<data>
-		B5j4nx0DTd5OG5xg7ySdbtnlz5g=
+		kc3WuDhcUTefAPCPF9O7jdiXXJU=
 		</data>
 		<key>Modules/BlockiesSwift.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		pHr/EjckBJHFcGdKi0UcuVmf/MY=
+		9e9B/2ki9QYZqgjFAAy1mxK78xY=
 		</data>
 		<key>Modules/BlockiesSwift.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		EsBm38XpxYdlwK9iT7K3AyYvxrY=
+		suVVnkhXMYZ3udoUeCmisIIsIdM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,11 +43,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			WzDAK5p1sTv4pyHWwl+HZjO78X0=
+			FxyrYtZErjC3HLU2ZEfC/SndL5M=
 			</data>
 			<key>hash2</key>
 			<data>
-			2h/MY7iYAQsDb4MQsnBjrJ6N76urBnSDCCIyqaLsEXo=
+			CZPCW5w7WOlj0IPpCj68rk/0aE/LFdLxkiorqXOWS2M=
 			</data>
 		</dict>
 		<key>Headers/BlockiesSwift.h</key>
@@ -65,44 +65,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0/LltQ9Tpqfeg6+DcsaEuIyDUSk=
+			LqjxiAxh0BUn43ZcCw54yhvi/mk=
 			</data>
 			<key>hash2</key>
 			<data>
-			rlRiAK2bcohPgXaYl5WxfHYqVF+Ta67kw1NEfuNpClA=
+			b9MsbpbQWkZUEWFy4T8erdDRcHTib5wG+5xs8bDeR2I=
 			</data>
 		</dict>
 		<key>Modules/BlockiesSwift.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			B5j4nx0DTd5OG5xg7ySdbtnlz5g=
+			kc3WuDhcUTefAPCPF9O7jdiXXJU=
 			</data>
 			<key>hash2</key>
 			<data>
-			iKkLxML7dqwo0Bpmx2ufaeDptf0udJBjRtFGnZylKc8=
+			hZ51R+D1G20UGvbBtVrV0kYAbtny2FHMxjI4ufc8Cwo=
 			</data>
 		</dict>
 		<key>Modules/BlockiesSwift.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			pHr/EjckBJHFcGdKi0UcuVmf/MY=
+			9e9B/2ki9QYZqgjFAAy1mxK78xY=
 			</data>
 			<key>hash2</key>
 			<data>
-			oYJtvwr4hlHDIdAotywdvvY/RkoAIIpD3h0cQIXXxac=
+			Jkp/XGiYu58sa5AIAMWB/Apd7pQ39KzA7M/zISIGbVo=
 			</data>
 		</dict>
 		<key>Modules/BlockiesSwift.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EsBm38XpxYdlwK9iT7K3AyYvxrY=
+			suVVnkhXMYZ3udoUeCmisIIsIdM=
 			</data>
 			<key>hash2</key>
 			<data>
-			rmAUd5omkrvHL1dg4m5gKcHKs8YApIU/IfogSBnzqkM=
+			JbzXMqtOCNs0pYg3L+o7rDyG0kdyscyBq7Y4H9IpC/E=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -119,7 +119,7 @@
 	</dict>
 	<key>rules</key>
 	<dict>
-		<key>^</key>
+		<key>^.*</key>
 		<true/>
 		<key>^.*\.lproj/</key>
 		<dict>
@@ -150,24 +150,12 @@
 			<key>weight</key>
 			<real>11</real>
 		</dict>
-		<key>^</key>
-		<dict>
-			<key>weight</key>
-			<real>20</real>
-		</dict>
 		<key>^(.*/)?\.DS_Store$</key>
 		<dict>
 			<key>omit</key>
 			<true/>
 			<key>weight</key>
 			<real>2000</real>
-		</dict>
-		<key>^(Frameworks|SharedFrameworks|PlugIns|Plug-ins|XPCServices|Helpers|MacOS|Library/(Automator|Spotlight|LoginItems))/</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^.*</key>
 		<true/>
@@ -203,13 +191,6 @@
 			<true/>
 			<key>weight</key>
 			<real>20</real>
-		</dict>
-		<key>^[^/]+$</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^embedded\.provisionprofile$</key>
 		<dict>

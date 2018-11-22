@@ -784,7 +784,7 @@
             </objects>
             <point key="canvasLocation" x="126" y="363"/>
         </scene>
-        <!--Send ETH-->
+        <!--Send-->
         <scene sceneID="0w6-Po-KSm">
             <objects>
                 <viewController storyboardIdentifier="FundsTransferTransactionViewController" id="lZ0-dr-TFf" customClass="FundsTransferTransactionViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
@@ -1048,7 +1048,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="S1J-eE-zL8"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Send ETH" id="dNB-dz-Mlg"/>
+                    <navigationItem key="navigationItem" title="Send" id="dNB-dz-Mlg"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="amountStackView" destination="iVe-Z2-hqM" id="UpU-wQ-duM"/>

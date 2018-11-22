@@ -222,14 +222,14 @@ class SafeCreationViewController: UIViewController {
         waitingForSafeWrapperView.isHidden = state.canCancel
         requiredMinimumWrapperView.isHidden = !state.canCancel
 
-        insufficientFundsErrorImage.isHidden = !(state is NotEnoughFundsState)
+        insufficientFundsErrorImage.isHidden = !state.showsInsufficientFundsError
 
-        safeAddressWrapperView.isHidden = !(state is NotEnoughFundsState || state is CreationStartedState)
+        safeAddressWrapperView.isHidden = !state.showsSafeAddress
         safeAddressLabel.setEthereumAddress(state.addressText ?? "")
         qrCodeView.value = state.addressText
 
-        etherscanWrapperView.isHidden = !(state is FinalizingDeploymentState || state is TransactionHashIsKnownState)
-        etherscanLabel.isHidden = !(state is TransactionHashIsKnownState)
+        etherscanWrapperView.isHidden = !state.showsEtherScanBlock
+        etherscanLabel.isHidden = !state.showsEtherScanLabel
 
         if state.isFinalState {
             delegate?.deploymentDidSuccess()
@@ -306,6 +306,11 @@ extension SafeCreationViewController {
         var requiredAmountTextColor: UIColor { return ColorName.battleshipGrey.color }
         var canCopyAddress: Bool { return false }
         var isFinalState: Bool { return false }
+        var showsInsufficientFundsError: Bool { return false }
+        var showsSafeAddress: Bool { return false }
+        var showsEtherScanBlock: Bool { return false }
+        var showsEtherScanLabel: Bool { return false }
+
         var addressText: String? {
             guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return nil }
             return address
@@ -343,24 +348,30 @@ extension SafeCreationViewController {
         override var statusText: String? { return Strings.Status.awaitingDeposit }
         override var requiredAmountTextColor: UIColor { return ColorName.tomato.color }
         override var progress: Double { return 0.3 }
+        override var showsInsufficientFundsError: Bool { return true }
+        override var showsSafeAddress: Bool { return true }
     }
 
     class CreationStartedState: State {
         override var headerText: String? { return Strings.Header.creatingSafeHeader }
         override var statusText: String? { return Strings.Status.accountFunded }
         override var progress: Double { return 0.7 }
+        override var showsSafeAddress: Bool { return true }
     }
 
     class FinalizingDeploymentState: State {
         override var headerText: String? { return Strings.Header.creatingSafeHeader }
         override var statusText: String? { return Strings.Status.deploymentAccepted }
         override var progress: Double { return 0.8 }
+        override var showsEtherScanBlock: Bool { return true }
     }
 
     class TransactionHashIsKnownState: State {
         override var headerText: String? { return Strings.Header.creatingSafeHeader }
         override var statusText: String? { return Strings.Status.deploymentAccepted }
         override var progress: Double { return 0.9 }
+        override var showsEtherScanBlock: Bool { return true }
+        override var showsEtherScanLabel: Bool { return true }
     }
 
     class ReadyToUseState: State {

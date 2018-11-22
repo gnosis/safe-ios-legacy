@@ -43,8 +43,15 @@ class FundsTransferTransactionViewController: UIViewController {
     }
 
     private enum Strings {
+        static let title = LocalizedString("transaction.title",
+                                           comment: "Send")
         static let `continue` = LocalizedString("transaction.continue",
                                                 comment: "Continue button title for New Transaction Screen")
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        navigationItem.title = Strings.title
     }
 
     override func viewDidLoad() {
@@ -52,6 +59,10 @@ class FundsTransferTransactionViewController: UIViewController {
         model = FundsTransferTransactionViewModel(senderName: "Safe", tokenID: tokenID, onUpdate: updateFromViewModel)
         amountTextField.delegate = self
         amountTextField.accessibilityIdentifier = "transaction.amount"
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.minimumFractionDigits = 2
+        amountTextField.placeholder = numberFormatter.string(from: NSNumber(value: 0))
         recipientTextField.delegate = self
         recipientTextField.accessibilityIdentifier = "transaction.address"
         continueButton.addTarget(self, action: #selector(proceedToSigning(_:)), for: .touchUpInside)

@@ -84,4 +84,9 @@ class TokenNumberFormatterTests: XCTestCase {
         assert(number: 1, equalTo: "1,00 ETH")
     }
 
+    func test_whenZero_thenPointIsLocaleSpecific() {
+        formatter.locale = Locale(identifier: "en_US")
+        assert(number: 0, equalTo: "0.00")
+    }
+
 }
