@@ -1,1 +1,1 @@
-OTHER_LDFLAGS=$(inherited) -framework "Kingfisher" -framework "BlockiesSwift" -framework "SipHash" -framework "BigInt" -framework "RSBarcodes" -framework "DateTools"
+OTHER_LDFLAGS=$(inherited) -framework "Kingfisher" -framework "BlockiesSwift" -framework "SipHash" -framework "BigInt" -framework "RSBarcodes" -framework "DateTools" -framework "BigInt" -framework "EthereumKit"
