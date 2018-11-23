@@ -102,7 +102,7 @@ public enum EthereumAddressFormatterHexMode {
     /// All hex characters lowercased
     case uppercased
     /// EIP-55 mixed case checksum
-    case mixedCased
+    case mixedcased
 }
 
 extension EthereumAddressFormatter {
@@ -115,7 +115,7 @@ extension EthereumAddressFormatter {
             switch mode {
             case .lowercased: return Lowercased()
             case .uppercased: return Uppercased()
-            case .mixedCased: return MixedCased()
+            case .mixedcased: return MixedCased()
             }
         }
 
@@ -156,7 +156,6 @@ extension EthereumAddressFormatter {
     }
 
 }
-
 
 /// Mode of truncation
 public enum EthereumAddressFormatterTruncationMode {

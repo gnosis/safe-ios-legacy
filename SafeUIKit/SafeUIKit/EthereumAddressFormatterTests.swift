@@ -29,7 +29,7 @@ class EthereumAddressFormatterTests: XCTestCase {
         XCTAssertEqual(formatter.string(from: allChars), "0xaabbccddeeffaabbccddeeffaabbccddeeffaabb")
         formatter.hexMode = .uppercased
         XCTAssertEqual(formatter.string(from: allChars), "0xAABBCCDDEEFFAABBCCDDEEFFAABBCCDDEEFFAABB")
-        formatter.hexMode = .mixedCased
+        formatter.hexMode = .mixedcased
         assertHex("0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed")
         assertHex("0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359")
         assertHex("0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB")
