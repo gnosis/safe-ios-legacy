@@ -662,34 +662,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mik-iB-vQp" customClass="ProgressView" customModule="SafeAppUI">
-                                <rect key="frame" x="16" y="96" width="343" height="21"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mik-iB-vQp" customClass="ProgressView" customModule="SafeUIKit">
+                                <rect key="frame" x="16" y="96" width="343" height="8"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="2ke-ts-eBM"/>
+                                    <constraint firstAttribute="height" constant="8" id="2ke-ts-eBM"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pun-i2-N1a">
-                                <rect key="frame" x="170.5" y="147" width="34" height="30"/>
+                                <rect key="frame" x="170.5" y="124" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="toggle:" destination="N3U-c6-AuC" eventType="touchUpInside" id="eEB-bp-rKX"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="isError state" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQP-Mv-eC1">
+                                <rect key="frame" x="146" y="223" width="83.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MWT-Um-tmH" customClass="ProgressView" customModule="SafeUIKit">
+                                <rect key="frame" x="16" y="207" width="343" height="8"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="NtA-Y7-E85"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Pun-i2-N1a" firstAttribute="top" secondItem="Mik-iB-vQp" secondAttribute="bottom" constant="30" id="0Mi-1a-nL1"/>
+                            <constraint firstItem="Pun-i2-N1a" firstAttribute="top" secondItem="Mik-iB-vQp" secondAttribute="bottom" constant="20" id="0Mi-1a-nL1"/>
                             <constraint firstItem="Mik-iB-vQp" firstAttribute="top" secondItem="8lb-2f-RDB" secondAttribute="top" constant="32" id="4l4-r3-pm2"/>
+                            <constraint firstItem="MWT-Um-tmH" firstAttribute="trailing" secondItem="Mik-iB-vQp" secondAttribute="trailing" id="532-1a-VNU"/>
+                            <constraint firstItem="BQP-Mv-eC1" firstAttribute="centerX" secondItem="MWT-Um-tmH" secondAttribute="centerX" id="75R-kq-dPf"/>
+                            <constraint firstItem="MWT-Um-tmH" firstAttribute="top" secondItem="Pun-i2-N1a" secondAttribute="bottom" constant="53" id="8s3-WV-A50"/>
+                            <constraint firstItem="BQP-Mv-eC1" firstAttribute="top" secondItem="MWT-Um-tmH" secondAttribute="bottom" constant="8" id="IPe-ec-suX"/>
                             <constraint firstItem="8lb-2f-RDB" firstAttribute="trailing" secondItem="Mik-iB-vQp" secondAttribute="trailing" constant="16" id="Utz-cC-5dt"/>
                             <constraint firstItem="Pun-i2-N1a" firstAttribute="centerX" secondItem="3Dc-Yv-z7A" secondAttribute="centerX" id="aAR-bs-352"/>
                             <constraint firstItem="Mik-iB-vQp" firstAttribute="leading" secondItem="8lb-2f-RDB" secondAttribute="leading" constant="16" id="eW0-IV-E6E"/>
+                            <constraint firstItem="MWT-Um-tmH" firstAttribute="leading" secondItem="Mik-iB-vQp" secondAttribute="leading" id="q4f-YQ-zhf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8lb-2f-RDB"/>
                     </view>
                     <navigationItem key="navigationItem" title="ProgressView" id="r8C-yi-jWo"/>
                     <connections>
                         <outlet property="progressView" destination="Mik-iB-vQp" id="W01-IK-Yi9"/>
+                        <outlet property="progressView2" destination="MWT-Um-tmH" id="fXM-ef-IZB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lTh-Tr-8Fg" userLabel="First Responder" sceneMemberID="firstResponder"/>

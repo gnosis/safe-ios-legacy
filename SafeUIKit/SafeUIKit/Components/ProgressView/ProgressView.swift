@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import SafeUIKit
 
 public class ProgressView: BaseCustomView {
 
