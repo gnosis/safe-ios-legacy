@@ -4,10 +4,4 @@
 
 import UIKit
 
-class TransactionConfirmationCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-}
+class TransactionConfirmationCell: UITableViewCell {}

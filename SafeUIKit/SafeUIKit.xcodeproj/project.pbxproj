@@ -862,6 +862,7 @@
 				0A8C963220D2C820007D2410 /* TransactionReviewViewControllerTests.swift */,
 				0A8C962C20D2C3B7007D2410 /* BorderedButton.swift */,
 				0AD998A720D3E7DC00E6F3CA /* BorderedButtonTests.swift */,
+				0ACC77F8219D8FB60057E79A /* TransactionActionPanelController.swift */,
 			);
 			path = TransactionReview;
 			sourceTree = "<group>";
@@ -1291,7 +1292,6 @@
 				5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */,
 				0A8C962620D2B76D007D2410 /* ProgressView.swift */,
 				0AD998A920D3E97C00E6F3CA /* ProgressViewTests.swift */,
-				0ACC77F8219D8FB60057E79A /* TransactionActionPanelController.swift */,
 				5597C55921A82431000A60F3 /* TransactionConfirmationCell.swift */,
 			);
 			path = ReviewTransaction;
