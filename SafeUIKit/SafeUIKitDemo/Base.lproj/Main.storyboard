@@ -368,6 +368,26 @@
                                             <segue destination="Ji7-jT-Hf7" kind="show" id="PTZ-Gu-PvW"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TransactionConfirmationView" textLabel="O2C-Ex-L65" style="IBUITableViewCellStyleDefault" id="23f-cA-Nhl">
+                                        <rect key="frame" x="0.0" y="616" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="23f-cA-Nhl" id="h4f-V0-2SJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="TransactionConfirmationView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O2C-Ex-L65">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="igh-jp-e1w" kind="show" id="ruI-bN-8Zq"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -942,6 +962,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zkd-UM-84y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2328.8000000000002" y="507.79610194902551"/>
+        </scene>
+        <!--TransactionConfirmationView-->
+        <scene sceneID="aXX-Bg-kB8">
+            <objects>
+                <viewController title="TransactionConfirmationView" id="igh-jp-e1w" customClass="TransactionConfirmationViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ju1-gw-hCw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVz-Ob-JHP" customClass="TransactionConfirmationView" customModule="SafeUIKit">
+                                <rect key="frame" x="0.0" y="84" width="375" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" placeholder="YES" id="wug-CK-pCU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="cVz-Ob-JHP" firstAttribute="top" secondItem="Ouc-4F-aSG" secondAttribute="top" constant="20" id="Vw9-4a-fhj"/>
+                            <constraint firstItem="Ouc-4F-aSG" firstAttribute="trailing" secondItem="cVz-Ob-JHP" secondAttribute="trailing" id="bWY-zw-9Pi"/>
+                            <constraint firstItem="cVz-Ob-JHP" firstAttribute="leading" secondItem="Ouc-4F-aSG" secondAttribute="leading" id="c0t-bR-nLX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ouc-4F-aSG"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="transactionConfirmationView" destination="cVz-Ob-JHP" id="q3z-ha-fNU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8x0-fN-mP5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2529" y="1325"/>
         </scene>
         <!--TokenDoubleInput-->
         <scene sceneID="ctb-rB-S28">

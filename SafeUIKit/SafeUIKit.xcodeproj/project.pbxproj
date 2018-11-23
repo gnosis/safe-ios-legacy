@@ -227,9 +227,14 @@
 		558682CC2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 558682CB2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard */; };
 		558D64EA2180B1A2008107E5 /* SafeCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */; };
 		558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* CheckmarkButton.swift */; };
-		5597C55A21A82431000A60F3 /* TransactionConfirmationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597C55921A82431000A60F3 /* TransactionConfirmationCell.swift */; };
 		5597C55C21A84B9F000A60F3 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C962620D2B76D007D2410 /* ProgressView.swift */; };
 		5597C55D21A84BA4000A60F3 /* ProgressViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD998A920D3E97C00E6F3CA /* ProgressViewTests.swift */; };
+		5597C56021A84F05000A60F3 /* TransactionConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597C55F21A84F05000A60F3 /* TransactionConfirmationView.swift */; };
+		5597C56221A84F24000A60F3 /* TransactionConfirmationViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597C56121A84F24000A60F3 /* TransactionConfirmationViewTests.swift */; };
+		5597C56421A84F49000A60F3 /* TransactionConfirmationCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597C56321A84F49000A60F3 /* TransactionConfirmationCellTests.swift */; };
+		5597C56621A85185000A60F3 /* TransactionConfirmationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597C55921A82431000A60F3 /* TransactionConfirmationCell.swift */; };
+		5597C56821A8525A000A60F3 /* TransactionConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5597C56721A8525A000A60F3 /* TransactionConfirmationView.xib */; };
+		5597C56A21A85873000A60F3 /* TransactionConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597C56921A85873000A60F3 /* TransactionConfirmationViewController.swift */; };
 		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
 		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
 		55BAB0E521789285007539CF /* BigBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E321789285007539CF /* BigBorderedButton.swift */; };
@@ -561,6 +566,11 @@
 		558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationViewController.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		5597C55921A82431000A60F3 /* TransactionConfirmationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationCell.swift; sourceTree = "<group>"; };
+		5597C55F21A84F05000A60F3 /* TransactionConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationView.swift; sourceTree = "<group>"; };
+		5597C56121A84F24000A60F3 /* TransactionConfirmationViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationViewTests.swift; sourceTree = "<group>"; };
+		5597C56321A84F49000A60F3 /* TransactionConfirmationCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationCellTests.swift; sourceTree = "<group>"; };
+		5597C56721A8525A000A60F3 /* TransactionConfirmationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionConfirmationView.xib; sourceTree = "<group>"; };
+		5597C56921A85873000A60F3 /* TransactionConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationViewController.swift; sourceTree = "<group>"; };
 		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
 		55A7B2B220ECE2940035EF38 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55BAB0E321789285007539CF /* BigBorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButton.swift; sourceTree = "<group>"; };
@@ -921,6 +931,7 @@
 				55E8AFE8219B41A7002930A1 /* TransferViewViewController.swift */,
 				55E8AFFC219C4A45002930A1 /* TransactionFeeViewViewController.swift */,
 				55E8B005219EC213002930A1 /* TransactionHeaderViewController.swift */,
+				5597C56921A85873000A60F3 /* TransactionConfirmationViewController.swift */,
 			);
 			path = SafeUIKitDemo;
 			sourceTree = "<group>";
@@ -1124,6 +1135,7 @@
 				555EB6ED216CA55000E06553 /* TextInputs */,
 				556251CF2146710800F569EE /* TokenBalanceCell */,
 				55D0EC5C216F6DB9003D9A53 /* TokenInputs */,
+				5597C55E21A84EC5000A60F3 /* TransactionConfirmationView */,
 				55E8AFFE219C4A62002930A1 /* TransactionFeeView */,
 				55E8B007219EC254002930A1 /* TransactionHeaderView */,
 				55E8AFE1219B34D9002930A1 /* TransferView */,
@@ -1286,6 +1298,18 @@
 			path = ProgressView;
 			sourceTree = "<group>";
 		};
+		5597C55E21A84EC5000A60F3 /* TransactionConfirmationView */ = {
+			isa = PBXGroup;
+			children = (
+				5597C55F21A84F05000A60F3 /* TransactionConfirmationView.swift */,
+				5597C56121A84F24000A60F3 /* TransactionConfirmationViewTests.swift */,
+				5597C55921A82431000A60F3 /* TransactionConfirmationCell.swift */,
+				5597C56321A84F49000A60F3 /* TransactionConfirmationCellTests.swift */,
+				5597C56721A8525A000A60F3 /* TransactionConfirmationView.xib */,
+			);
+			path = TransactionConfirmationView;
+			sourceTree = "<group>";
+		};
 		55BAB0E221789285007539CF /* BorderedButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1300,7 +1324,6 @@
 			children = (
 				55C0D4BB219AD35900F04FA4 /* ReviewTransactionViewController.swift */,
 				5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */,
-				5597C55921A82431000A60F3 /* TransactionConfirmationCell.swift */,
 			);
 			path = ReviewTransaction;
 			sourceTree = "<group>";
@@ -1641,6 +1664,7 @@
 			files = (
 				0A9BA3C7207F69FD001DC22F /* SafeUIKitMedia.xcassets in Resources */,
 				55E8AFE7219B37F8002930A1 /* TransferView.xib in Resources */,
+				5597C56821A8525A000A60F3 /* TransactionConfirmationView.xib in Resources */,
 				555EB71F216DF48900E06553 /* VerifiableInput.xib in Resources */,
 				55E8B00D219ED3CF002930A1 /* TransactionHeaderView.xib in Resources */,
 				556251D3214671BE00F569EE /* TokenBalanceTableViewCell.xib in Resources */,
@@ -1827,6 +1851,7 @@
 				55E8AFFD219C4A45002930A1 /* TransactionFeeViewViewController.swift in Sources */,
 				55D0EC62216F7383003D9A53 /* TokenInputViewController.swift in Sources */,
 				555EB6EC216CA42100E06553 /* TextInputViewController.swift in Sources */,
+				5597C56A21A85873000A60F3 /* TransactionConfirmationViewController.swift in Sources */,
 				0A00293220CFD75F009A4BFE /* MySegmentViewController.swift in Sources */,
 				55E8AFE9219B41A7002930A1 /* TransferViewViewController.swift in Sources */,
 				55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */,
@@ -1864,6 +1889,7 @@
 				5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */,
 				0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */,
 				5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */,
+				5597C56621A85185000A60F3 /* TransactionConfirmationCell.swift in Sources */,
 				55E8B000219C4A93002930A1 /* TransactionFeeView.swift in Sources */,
 				5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */,
 				550E7CDE21708E540032DE6C /* UITextField+Extensions.swift in Sources */,
@@ -1891,6 +1917,7 @@
 				55E8AFE3219B3521002930A1 /* TransferView.swift in Sources */,
 				555EB6F0216CA5CF00E06553 /* TextInput.swift in Sources */,
 				550954EA20C9590000F5F25F /* TokenDoubleInput.swift in Sources */,
+				5597C56021A84F05000A60F3 /* TransactionConfirmationView.swift in Sources */,
 				0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */,
 				55BFA53C21833C5C00389732 /* NSMutableAttributedString+Extension.swift in Sources */,
 				556251D2214671B800F569EE /* TokenBalanceTableViewCell.swift in Sources */,
@@ -1932,10 +1959,12 @@
 				556251D52146721A00F569EE /* TokenNumberFormatterTests.swift in Sources */,
 				0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
 				5539C13821A55AF5006BF834 /* TransactionHeaderCellTests.swift in Sources */,
+				5597C56421A84F49000A60F3 /* TransactionConfirmationCellTests.swift in Sources */,
 				5541586A21748C5200A3CEA4 /* AddressInputTests.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
 				555EB6F2216CA5E900E06553 /* TextInputTests.swift in Sources */,
 				5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */,
+				5597C56221A84F24000A60F3 /* TransactionConfirmationViewTests.swift in Sources */,
 				55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1976,7 +2005,6 @@
 				0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */,
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
-				5597C55A21A82431000A60F3 /* TransactionConfirmationCell.swift in Sources */,
 				556251F42147C34600F569EE /* AddTokenHeaderView.swift in Sources */,
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
 				0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */,
