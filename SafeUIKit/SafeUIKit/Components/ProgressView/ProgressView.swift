@@ -156,4 +156,5 @@ public enum ProgressViewState: Equatable {
             return false
         }
     }
+
 }

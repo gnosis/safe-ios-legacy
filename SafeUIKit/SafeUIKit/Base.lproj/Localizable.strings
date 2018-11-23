@@ -25,6 +25,21 @@
 /* Cancel button title */
 "cancel" = "Cancel";
 
+/* Awaiting confirmation... */
+"confirmaion_view.awaiting_confirmation" = "Awaiting confirmation...";
+
+/* Explanation how to confirm. */
+"confirmation_view.confirmation_explanation" = "Open browser extension to confirm this transaction.";
+
+/* Confirmed by browser extension. */
+"confirmation_view.confirmed" = "Confirmed by browser extension.";
+
+/* Rejected by browser extension. */
+"confirmation_view.rejected" = "Rejected by browser extension.";
+
+/* Transaction rejected by the browser extension. */
+"confirmation_view.rejection_explanation" = "Transaction rejected by the browser extension.";
+
 /* Error status of a rule */
 "rule.error" = "Error";
 
