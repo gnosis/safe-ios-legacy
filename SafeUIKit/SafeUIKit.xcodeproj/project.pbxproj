@@ -229,6 +229,7 @@
 		558682CC2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 558682CB2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard */; };
 		558D64EA2180B1A2008107E5 /* SafeCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */; };
 		558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* CheckmarkButton.swift */; };
+		5597C55A21A82431000A60F3 /* TransactionConfirmationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597C55921A82431000A60F3 /* TransactionConfirmationCell.swift */; };
 		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
 		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
 		55BAB0E521789285007539CF /* BigBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E321789285007539CF /* BigBorderedButton.swift */; };
@@ -559,6 +560,7 @@
 		558682CB2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PairWithBrowserExtension.storyboard; sourceTree = "<group>"; };
 		558D64E92180B1A2008107E5 /* SafeCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationViewController.swift; sourceTree = "<group>"; };
 		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
+		5597C55921A82431000A60F3 /* TransactionConfirmationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationCell.swift; sourceTree = "<group>"; };
 		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
 		55A7B2B220ECE2940035EF38 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55BAB0E321789285007539CF /* BigBorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButton.swift; sourceTree = "<group>"; };
@@ -857,12 +859,9 @@
 			isa = PBXGroup;
 			children = (
 				0A8C963020D2C80F007D2410 /* TransactionReviewViewController.swift */,
-				0ACC77F8219D8FB60057E79A /* TransactionActionPanelController.swift */,
 				0A8C963220D2C820007D2410 /* TransactionReviewViewControllerTests.swift */,
 				0A8C962C20D2C3B7007D2410 /* BorderedButton.swift */,
 				0AD998A720D3E7DC00E6F3CA /* BorderedButtonTests.swift */,
-				0A8C962620D2B76D007D2410 /* ProgressView.swift */,
-				0AD998A920D3E97C00E6F3CA /* ProgressViewTests.swift */,
 			);
 			path = TransactionReview;
 			sourceTree = "<group>";
@@ -1290,6 +1289,10 @@
 			children = (
 				55C0D4BB219AD35900F04FA4 /* ReviewTransactionViewController.swift */,
 				5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */,
+				0A8C962620D2B76D007D2410 /* ProgressView.swift */,
+				0AD998A920D3E97C00E6F3CA /* ProgressViewTests.swift */,
+				0ACC77F8219D8FB60057E79A /* TransactionActionPanelController.swift */,
+				5597C55921A82431000A60F3 /* TransactionConfirmationCell.swift */,
 			);
 			path = ReviewTransaction;
 			sourceTree = "<group>";
@@ -1964,6 +1967,7 @@
 				0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */,
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
+				5597C55A21A82431000A60F3 /* TransactionConfirmationCell.swift in Sources */,
 				556251F42147C34600F569EE /* AddTokenHeaderView.swift in Sources */,
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
 				0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */,
