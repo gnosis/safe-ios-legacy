@@ -110,6 +110,7 @@ public class AmountLabel: BaseCustomLabel {
     public override func commonInit() {
         formatter.plusSign = "+ "
         formatter.minusSign = "- "
+        formatter.displayedDecimals = 4
         update()
     }
 

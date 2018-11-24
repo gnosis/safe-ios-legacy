@@ -60,7 +60,7 @@ class TokensTableViewControllerTests: SafeTestCase {
         createWindow(controller)
         controller.notify()
         let footer = controller.tableView(controller.tableView, viewForFooterInSection: 1)
-        XCTAssertTrue(footer is GradientFooterView)
+        XCTAssertTrue(footer is ShadowFooterView)
     }
 
     func test_whenThereAreNoTokens_thenTokensFooterIsShown() {

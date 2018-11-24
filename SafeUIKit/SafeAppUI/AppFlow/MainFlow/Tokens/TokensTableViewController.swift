@@ -45,8 +45,8 @@ final class TokensTableViewController: UITableViewController {
         sections.append((
             headerViewIdentifier: "TokensHeaderView",
             headerHeight: TokensHeaderView.height,
-            footerViewIdentifier: shouldShowTokensFooter ? "AddTokenFooterView" : "GradientFooterView",
-            footerHeight: shouldShowTokensFooter ? AddTokenFooterView.height : GradientFooterView.height,
+            footerViewIdentifier: shouldShowTokensFooter ? "AddTokenFooterView" : "ShadowFooterView",
+            footerHeight: shouldShowTokensFooter ? AddTokenFooterView.height : ShadowFooterView.height,
             elements: [TokenData](tokens.dropFirst())
         ))
     }
@@ -71,7 +71,7 @@ final class TokensTableViewController: UITableViewController {
         let bundle = Bundle(for: TokensTableViewController.self)
         tableView.register(UINib(nibName: "AddTokenFooterView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "AddTokenFooterView")
-        tableView.register(GradientFooterView.self, forHeaderFooterViewReuseIdentifier: "GradientFooterView")
+        tableView.register(ShadowFooterView.self, forHeaderFooterViewReuseIdentifier: "ShadowFooterView")
         tableView.register(UINib(nibName: "TokensHeaderView", bundle: bundle),
                            forHeaderFooterViewReuseIdentifier: "TokensHeaderView")
         tableView.register(EmptyFooter.self, forHeaderFooterViewReuseIdentifier: "EmptyFooter")

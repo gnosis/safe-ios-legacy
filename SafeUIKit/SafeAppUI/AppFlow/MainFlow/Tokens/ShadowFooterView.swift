@@ -4,7 +4,7 @@
 
 import UIKit
 
-final class GradientFooterView: UITableViewHeaderFooterView {
+final class ShadowFooterView: UITableViewHeaderFooterView {
 
     static let height: CGFloat = 4
 

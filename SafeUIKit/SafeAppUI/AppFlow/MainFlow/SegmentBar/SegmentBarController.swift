@@ -34,6 +34,14 @@ open class SegmentBarController: UIViewController {
 
     override open func viewDidLoad() {
         super.viewDidLoad()
+        addStackView()
+        addSegmentBar()
+        addShadow()
+        addContentView()
+        update()
+    }
+
+    private func addStackView() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         view.addSubview(stackView)
@@ -44,16 +52,20 @@ open class SegmentBarController: UIViewController {
                 stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
+    }
 
+    private func addSegmentBar() {
         segmentBar.addTarget(self, action: #selector(didChangeSegment(bar:)), for: .valueChanged)
         segmentBar.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(segmentBar)
         NSLayoutConstraint.activate(
             [
-            segmentBar.heightAnchor.constraint(equalToConstant: 48),
-            segmentBar.widthAnchor.constraint(greaterThanOrEqualToConstant: 0)
+                segmentBar.heightAnchor.constraint(equalToConstant: 48),
+                segmentBar.widthAnchor.constraint(greaterThanOrEqualToConstant: 0)
             ])
+    }
 
+    private func addContentView() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(contentView)
         NSLayoutConstraint.activate(
@@ -61,7 +73,18 @@ open class SegmentBarController: UIViewController {
                 contentView.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
                 contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
             ])
-        update()
+    }
+
+    private func addShadow() {
+        let shadowView = ShadowFooterView()
+        shadowView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(shadowView)
+        NSLayoutConstraint.activate([
+            shadowView.topAnchor.constraint(equalTo: segmentBar.bottomAnchor),
+            shadowView.leadingAnchor.constraint(equalTo: segmentBar.leadingAnchor),
+            shadowView.trailingAnchor.constraint(equalTo: segmentBar.trailingAnchor),
+            shadowView.heightAnchor.constraint(equalToConstant: ShadowFooterView.height)
+            ])
     }
 
     private func update() {
