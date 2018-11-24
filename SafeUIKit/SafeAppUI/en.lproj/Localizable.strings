@@ -381,7 +381,7 @@
 "transaction.details.type" = "Type";
 
 /* 'Incoming' transaction type */
-"transaction.details.type.incoming" = "transaction.details.type.incoming";
+"transaction.details.type.incoming" = "Incoming Transfer";
 
 /* 'Outgoing' transaction type */
 "transaction.details.type.outgoing" = "Outgoing Transfer";
