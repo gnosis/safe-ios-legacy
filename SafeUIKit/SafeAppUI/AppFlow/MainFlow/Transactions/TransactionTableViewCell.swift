@@ -5,76 +5,122 @@
 import UIKit
 import MultisigWalletApplication
 import SafeUIKit
+import Common
 
 class TransactionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var transactionIconImageView: UIImageView!
-    @IBOutlet weak var transactionTypeIconImageView: UIImageView!
-    @IBOutlet weak var transactionDescriptionLabel: UILabel!
+    @IBOutlet weak var identiconView: IdenticonView!
+    @IBOutlet weak var addressLabel: EthereumAddressLabel!
     @IBOutlet weak var transactionDateLabel: UILabel!
-    @IBOutlet weak var pairValueStackView: UIStackView!
-    @IBOutlet weak var fiatAmountLabel: UILabel!
-    @IBOutlet weak var tokenAmountLabel: UILabel!
-    @IBOutlet weak var singleValueLabelStackView: UIStackView!
-    @IBOutlet weak var singleValueLabel: UILabel!
-    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var tokenAmountLabel: AmountLabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundView = UIView()
         backgroundView?.backgroundColor = UIColor.white
-        progressView.transform = CGAffineTransform(scaleX: 1.0, y: 0.5)
-
-        transactionIconImageView.layer.cornerRadius = transactionIconImageView.bounds.width / 2
-        transactionIconImageView.clipsToBounds = true
-
-        transactionTypeIconImageView.layer.cornerRadius = transactionTypeIconImageView.bounds.width / 2
-        transactionTypeIconImageView.layer.borderWidth = 2
-        transactionTypeIconImageView.layer.borderColor = UIColor.white.cgColor
-        transactionTypeIconImageView.clipsToBounds = true
+        identiconView.layer.cornerRadius = identiconView.bounds.width / 2
+        identiconView.clipsToBounds = true
     }
 
     func configure(transaction: TransactionData) {
-        let isFailed = transaction.status == .rejected || transaction.status == .failed
-        if isFailed {
-            transactionIconImageView.image = Asset.TransactionOverviewIcons.error.image
-        } else {
-            transactionIconImageView.blockiesSeed = transaction.recipient.lowercased()
-        }
+        identiconView.seed = transaction.recipient
 
-        transactionTypeIconImageView.image = typeIcon(transaction)
-
-        transactionDescriptionLabel.text = transaction.recipient
-        transactionDescriptionLabel.textColor = isFailed ? ColorName.tomato.color : ColorName.darkSlateBlue.color
+        addressLabel.address = transaction.recipient
+        addressLabel.suffix = addressSuffix(transaction)
+        addressLabel.textColor = addressColor(transaction)
 
         transactionDateLabel.text = transaction.displayDate?.timeAgoSinceNow
         transactionDateLabel.textColor = ColorName.blueyGrey.color
 
-        pairValueStackView.isHidden = false
-
-        tokenAmountLabel.text = TokenNumberFormatter
-            .ERC20Token(code: transaction.amountTokenData.code, decimals: transaction.amountTokenData.decimals)
-            .string(from: transaction.amountTokenData.balance!)
+        tokenAmountLabel.amount = transaction.amountTokenData
         tokenAmountLabel.textColor = valueColor(transaction)
-
-        fiatAmountLabel.text = nil
-        singleValueLabelStackView.isHidden = true
-        progressView.isHidden = true
-
-        backgroundView?.backgroundColor = isFailed ? ColorName.transparentWhiteOnGrey.color : UIColor.white
     }
 
-    private func typeIcon(_ transaction: TransactionData) -> UIImage {
-        switch transaction.type {
-        case .outgoing: return Asset.TransactionOverviewIcons.sent.image
+    private func addressSuffix(_ transaction: TransactionData) -> String? {
+        switch transaction.status {
+        case .rejected: return LocalizedString("transactions.row.rejected", comment: "(rejected) suffix")
+        case .failed: return LocalizedString("transactions.row.failed", comment: "(failed) suffix)")
+        default: return nil
         }
     }
+
+    private func addressColor(_ transaction: TransactionData) -> UIColor {
+        switch transaction.status {
+        case .rejected, .failed: return ColorName.tomato.color
+        default: return ColorName.darkSlateBlue.color
+        }
+    }
+
 
     private func valueColor(_ transaction: TransactionData) -> UIColor {
-        if transaction.status == .failed { return ColorName.battleshipGrey.color }
+        if transaction.status == .pending { return ColorName.silver.color }
         switch transaction.type {
-        case .outgoing: return ColorName.tomato.color
+        case .outgoing: return ColorName.darkSlateBlue.color
+        case .incoming: return ColorName.greenTeal.color
         }
+    }
+
+}
+
+public class EthereumAddressLabel: BaseCustomLabel {
+
+    public var formatter = EthereumAddressFormatter()
+
+    public var address: String? {
+        didSet {
+            update()
+        }
+    }
+
+    public var suffix: String? {
+        didSet {
+            update()
+        }
+    }
+
+    public override func commonInit() {
+        formatter.hexMode = .mixedcased
+        formatter.truncationMode = .middle
+        formatter.usesHeadTailSplit = true
+        formatter.headLength = 2
+        formatter.tailLength = 4
+        update()
+    }
+
+    public override func update() {
+        guard let address = address else {
+            text = nil
+            return
+        }
+        text = [formatter.string(from: address), suffix].compactMap { $0 }.joined(separator: " ")
+    }
+
+}
+
+public class AmountLabel: BaseCustomLabel {
+
+    public var formatter = TokenNumberFormatter.ERC20Token(decimals: 18)
+
+    public var amount: TokenData? {
+        didSet {
+            update()
+        }
+    }
+
+    public override func commonInit() {
+        formatter.plusSign = "+ "
+        formatter.minusSign = "- "
+        update()
+    }
+
+    public override func update() {
+        guard let amount = amount else {
+            text = nil
+            return
+        }
+        formatter.tokenCode = amount.code
+        formatter.decimals = amount.decimals
+        text = formatter.string(from: amount.balance ?? 0)
     }
 
 }

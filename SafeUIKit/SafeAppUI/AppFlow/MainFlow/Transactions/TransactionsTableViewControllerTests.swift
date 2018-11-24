@@ -106,14 +106,9 @@ class TransactionsTableViewControllerTests: XCTestCase {
         createWindow(controller)
         let cell = self.cell(at: 0)
 
-        XCTAssertEqual(cell.transactionIconImageView.blockiesSeed, transaction.recipient.lowercased())
-        assertEqual(cell.transactionTypeIconImageView.image,
-                    Asset.TransactionOverviewIcons.sent.image)
-
-        XCTAssertEqual(cell.transactionDescriptionLabel.text, transaction.recipient)
-
+        XCTAssertEqual(cell.identiconView.blockiesSeed, transaction.recipient.lowercased())
+        XCTAssertEqual(cell.addressLabel.address, transaction.recipient)
         XCTAssertEqual(cell.transactionDateLabel.text, transaction.processed?.timeAgoSinceNow)
-
         XCTAssertFalse(cell.pairValueStackView.isHidden)
 
         let formatter = TokenNumberFormatter.ERC20Token(code: transaction.amountTokenData.code,

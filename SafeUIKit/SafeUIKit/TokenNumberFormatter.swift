@@ -19,23 +19,25 @@ public final class TokenNumberFormatter {
         return formatter
     }
 
-    var decimals: Int = 18
-    var displayedDecimals: Int?
-    var locale = Locale.autoupdatingCurrent
+    public var decimals: Int = 18
+    public var displayedDecimals: Int?
+    public var locale = Locale.autoupdatingCurrent
     var groupingSeparator: String { return locale.groupingSeparator ?? " " }
     var decimalSeparator: String { return locale.decimalSeparator ?? "," }
-    var usesGroupingSeparator = false
-    var usesGroupingSeparatorForFractionDigits = false
-    var groupSize = 3
-    var tokenSymbol: String?
-    var tokenCode: String?
+    public var usesGroupingSeparator = false
+    public var usesGroupingSeparatorForFractionDigits = false
+    public var groupSize = 3
+    public var tokenSymbol: String?
+    public var tokenCode: String?
+    public var plusSign: String = ""
+    public var minusSign: String = "- "
 
     public init() {}
 
     public func string(from number: BigInt) -> String {
         let tokenCurrency = tokenSymbol != nil ? " \(tokenSymbol!)" : (tokenCode != nil ? " \(tokenCode!)" : "")
         if number == 0 { return "0\(decimalSeparator)00" + tokenCurrency }
-        let sign = number.sign == .minus ? "- " : ""
+        let sign = number.sign == .minus ? minusSign : plusSign
         let str = String(number.magnitude)
         var integer = str.count <= decimals ? "0" : String(str.prefix(str.count - decimals))
         addIntegerGrouping(integer: &integer)

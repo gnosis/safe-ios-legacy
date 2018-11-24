@@ -29,6 +29,8 @@ public class TransactionDetailsViewController: UIViewController {
                                                  comment: "'View on Etherscan' button name")
         static let outgoing = LocalizedString("transaction.details.type.outgoing",
                                               comment: "'Outgoing' transaction type")
+        static let incoming = LocalizedString("transaction.details.type.incoming",
+                                              comment: "'Incoming' transaction type")
     }
 
     @IBOutlet weak var senderView: TransactionParticipantView!
@@ -95,6 +97,7 @@ public class TransactionDetailsViewController: UIViewController {
         transactionTypeView.name = Strings.type
         switch transaction.type {
         case .outgoing: transactionTypeView.value = Strings.outgoing
+        case .incoming: transactionTypeView.value = Strings.incoming
         }
     }
 

@@ -9,6 +9,8 @@ import Common
 
 public class EthereumAddressFormatter {
 
+    public init() {}
+
     // MARK: - Letter case
 
     /// Defines which letter case to use for hexadecimal digits.
