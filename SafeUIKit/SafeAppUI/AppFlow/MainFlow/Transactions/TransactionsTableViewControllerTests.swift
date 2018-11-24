@@ -65,14 +65,12 @@ class TransactionsTableViewControllerTests: XCTestCase {
         service.expect_grouppedTransactions(result: [.group(type: .pending)])
         createWindow(controller)
         let headerView = controller.tableView.headerView(forSection: 0) as! TransactionsGroupHeaderView
-        XCTAssertEqual(headerView.headerLabel.text, TransactionsGroupHeaderView.Strings.pending)
+        XCTAssertEqual(headerView.headerLabel.text, TransactionsGroupHeaderView.Strings.pending.uppercased())
     }
 
     func test_whenGroupTypeProcessedInFuture_thenNameIsRelativeToGroupDate() {
-        template_testGroupHeader(for: Date(), string: TransactionsGroupHeaderView.Strings.today)
-        template_testGroupHeader(for: Date() - 1.days, string: TransactionsGroupHeaderView.Strings.yesterday)
-        let past = Date() - 2.days
-        template_testGroupHeader(for: past, string: past.format(with: .short))
+        template_testGroupHeader(for: Date(), string: TransactionsGroupHeaderView.Strings.today.uppercased())
+        template_testGroupHeader(for: Date() - 1.days, string: TransactionsGroupHeaderView.Strings.past.uppercased())
     }
 
     private func template_testGroupHeader(for date: Date,
@@ -106,17 +104,12 @@ class TransactionsTableViewControllerTests: XCTestCase {
         createWindow(controller)
         let cell = self.cell(at: 0)
 
-        XCTAssertEqual(cell.identiconView.blockiesSeed, transaction.recipient.lowercased())
+        XCTAssertEqual(cell.identiconView.seed, transaction.recipient)
         XCTAssertEqual(cell.addressLabel.address, transaction.recipient)
         XCTAssertEqual(cell.transactionDateLabel.text, transaction.processed?.timeAgoSinceNow)
-        XCTAssertFalse(cell.pairValueStackView.isHidden)
 
-        let formatter = TokenNumberFormatter.ERC20Token(code: transaction.amountTokenData.code,
-                                                        decimals: transaction.amountTokenData.decimals)
+        let formatter = cell.tokenAmountLabel.formatter
         XCTAssertEqual(cell.tokenAmountLabel.text, formatter.string(from: transaction.amountTokenData.balance!))
-
-        XCTAssertTrue(cell.singleValueLabelStackView.isHidden)
-        XCTAssertNil(cell.fiatAmountLabel.text)
     }
 
     private func assertEqual(_ lhs: UIImage?, _ rhs: UIImage?, file: StaticString = #file, line: UInt = #line) {
