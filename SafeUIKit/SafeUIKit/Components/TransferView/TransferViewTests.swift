@@ -30,7 +30,7 @@ class TransferViewTests: XCTestCase {
     func test_whenSettingTokenData_thenSetsProperties() {
         XCTAssertNil(transferView.amountLabel.text)
         transferView.tokenData = tokenData
-        XCTAssertEqual(transferView.amountLabel.text?.replacingOccurrences(of: ",", with: "."), "- 1.2345 TEST")
+        XCTAssertEqual(transferView.amountLabel.text?.replacingOccurrences(of: ",", with: "."), "- 1.234~ TEST")
     }
 
     func test_whenSettingNilValues_thenIgnorsIt() { // why so?

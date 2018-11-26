@@ -342,7 +342,7 @@ fileprivate extension MultisigWalletDomainModel.Address {
 fileprivate extension TokenInt {
 
     var data: Data {
-        return EthData(hex: hexString).data.leftPadded(to: 32)
+        return EthData(hex: hexString).data.leftPadded(to: 32, with: 0)
     }
     var signedData: Data {
         return EthData(hex: hexString).data.leftPadded(to: 32, with: self < 0 ? 0xff : 0x00)

@@ -73,7 +73,6 @@ enum Asset {
   enum TransactionOverviewIcons {
     static let error = ImageAsset(name: "error")
     static let receive = ImageAsset(name: "receive")
-    static let sent = ImageAsset(name: "sent")
     static let settingTransaction = ImageAsset(name: "setting_transaction")
     static let settingTransactionIcon = ImageAsset(name: "setting_transaction_icon")
   }
@@ -107,7 +106,6 @@ enum Asset {
     TransactionEdit.`switch`,
     TransactionOverviewIcons.error,
     TransactionOverviewIcons.receive,
-    TransactionOverviewIcons.sent,
     TransactionOverviewIcons.settingTransaction,
     TransactionOverviewIcons.settingTransactionIcon,
     TransactionReview.extensionWindow,

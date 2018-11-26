@@ -380,6 +380,9 @@
 /* 'Type' parameter name */
 "transaction.details.type" = "Type";
 
+/* 'Incoming' transaction type */
+"transaction.details.type.incoming" = "Incoming Transfer";
+
 /* 'Outgoing' transaction type */
 "transaction.details.type.outgoing" = "Outgoing Transfer";
 
@@ -458,8 +461,17 @@
 /* No transactions yet */
 "transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";
 
+/* Past transactions group header */
+"transactions.group.past" = "Past";
+
 /* Pending transactions group header */
-"transactions.group.pending" = "PENDING";
+"transactions.group.pending_outgoing" = "Pending Outgoing";
+
+/* (failed) suffix) */
+"transactions.row.failed" = "(failed)";
+
+/* (rejected) suffix */
+"transactions.row.rejected" = "(rejected)";
 
 /* Blockchain address is unknown for the wallet. */
 "wallet.error.address_missing" = "Failed to find safe address. Please try again later.";

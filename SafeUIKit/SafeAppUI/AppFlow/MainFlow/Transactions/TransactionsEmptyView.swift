@@ -16,7 +16,6 @@ class TransactionsEmptyView: BaseCustomView {
     var textLabel: UILabel!
 
     override func commonInit() {
-        backgroundColor = UIColor.black.withAlphaComponent(0.4)
         backgroundView = ShadowWrapperView(frame: CGRect.zero)
         backgroundView.backgroundColor = ColorName.paleGreyThree.color
         backgroundView.translatesAutoresizingMaskIntoConstraints = false

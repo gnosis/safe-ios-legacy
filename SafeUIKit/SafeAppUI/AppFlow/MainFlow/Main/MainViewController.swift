@@ -18,6 +18,7 @@ protocol MainViewControllerDelegate: class {
 
 final class MainViewController: UIViewController {
 
+    @IBOutlet var backgroundView: BackgroundImageView!
     @IBOutlet weak var safeIdenticonView: IdenticonView!
     @IBOutlet weak var safeAddressLabel: UILabel!
 
@@ -36,6 +37,7 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        backgroundView.isDimmed = true
 
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
         ApplicationServiceRegistry.logger.info("Safe address: \(address)")
