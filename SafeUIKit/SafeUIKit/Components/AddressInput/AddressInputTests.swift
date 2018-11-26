@@ -45,14 +45,14 @@ class AddressInputTests: XCTestCase {
     }
 
     func test_whenScanningValidAddress_thenReturnsIt() {
-        assertValidAddress(validAddress_withPrefix)
-        assertValidAddress(validAddress_withoutPrefix)
+        assertValidAddress(validAddress_withPrefix, expected: validAddress_withPrefix)
+        assertValidAddress(validAddress_withoutPrefix, expected: validAddress_withPrefix)
     }
 
     func test_whenScanningAddressWithSpacesAtEnds_thenReturnsTrimmed() {
         input.trimsText = true
         input.scanHandler.didScan(validAddress_withoutPrefix_withEndSpaces)
-        XCTAssertEqual(input.text, validAddress_withoutPrefix)
+        XCTAssertEqual(input.text, validAddress_withPrefix)
     }
 
     func test_whenScanningInvalidAddress_thenDoesNotReturnIt() {
@@ -78,10 +78,10 @@ private extension AddressInputTests {
         XCTAssertEqual(input.text, nil)
     }
 
-    private func assertValidAddress(_ address: String) {
+    private func assertValidAddress(_ address: String, expected: String, line: UInt = #line) {
         input = AddressInput()
         input.scanHandler.didScan(address)
-        XCTAssertEqual(input.text, address)
+        XCTAssertEqual(input.text, expected, line: line)
     }
 
 }

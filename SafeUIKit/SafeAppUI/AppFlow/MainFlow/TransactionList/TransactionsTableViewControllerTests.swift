@@ -65,7 +65,7 @@ class TransactionsTableViewControllerTests: XCTestCase {
         service.expect_grouppedTransactions(result: [.group(type: .pending)])
         createWindow(controller)
         let headerView = controller.tableView.headerView(forSection: 0) as! TransactionsGroupHeaderView
-        XCTAssertEqual(headerView.headerLabel.text, TransactionsGroupHeaderView.Strings.pending.uppercased())
+        XCTAssertEqual(headerView.label.text, TransactionsGroupHeaderView.Strings.pending.uppercased())
     }
 
     func test_whenGroupTypeProcessedInFuture_thenNameIsRelativeToGroupDate() {
@@ -81,7 +81,7 @@ class TransactionsTableViewControllerTests: XCTestCase {
         service.expect_grouppedTransactions(result: [.group(date: date)])
         createWindow(controller)
         let headerView = controller.tableView.headerView(forSection: 0) as! TransactionsGroupHeaderView
-        XCTAssertEqual(headerView.headerLabel.text, string, file: file, line: line)
+        XCTAssertEqual(headerView.label.text, string, file: file, line: line)
     }
 
     func test_whenPendingTransaction_thenDisplaysPendingData() {

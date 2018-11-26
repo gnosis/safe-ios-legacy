@@ -73,6 +73,11 @@ class EthereumAddressFormatterTests: XCTestCase {
                        NSMutableAttributedString(string: "0x0000000000000000000000000000000000000001"))
     }
 
+    func test_whenInvalidInput_thenNilsOut() {
+        XCTAssertNil(formatter.string(from: "hi"))
+        XCTAssertNil(formatter.string(from: "longStringlongStringlongStringlongStringlongStringlongStringlongString"))
+    }
+
     private func assertHex(_ value: String, line: UInt = #line) {
         XCTAssertEqual(formatter.string(from: Data(hex: value)), value, line: line)
     }

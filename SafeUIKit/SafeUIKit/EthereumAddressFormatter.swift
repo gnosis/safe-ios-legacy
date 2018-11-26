@@ -43,6 +43,9 @@ public class EthereumAddressFormatter {
     /// Length of the hexadecimal prefix `0x`. Equals 2.
     public let hexPrefixLength: Int = 2
 
+    private let addressSizeInBytes: Int = 20
+    private let addressSizeInCharacters: Int = 40
+
     /// Formats address as a String.
     ///
     /// The data will be truncated to 20 bytes length, or padded from the left to 20 bytes.
@@ -56,15 +59,18 @@ public class EthereumAddressFormatter {
         truncate.usesHeadTailSplit = usesHeadTailSplit
         truncate.headLength = headLength
         truncate.tailLength = tailLength
-        return prefixed(truncate.string(from: hex.string(from: value.endTruncated(to: 20).leftPadded(to: 20))))
+        return prefixed(truncate.string(from: hex.string(from:
+            value.endTruncated(to: addressSizeInBytes).leftPadded(to: addressSizeInBytes))))
     }
 
-    public func string(from value: String) -> String {
-        return string(from: data(from: value))
+    public func string(from value: String) -> String? {
+        guard let data = self.data(from: value) else { return nil }
+        return string(from: data)
     }
 
-    private func data(from value: String) -> Data {
-        let string = value.stripHexPrefix()
+    private func data(from value: String) -> Data? {
+        let string = String(value.stripHexPrefix().prefix(addressSizeInCharacters))
+        guard BigInt(string, radix: 16) != nil else { return nil }
         let isOdd = string.count % 2 == 1
         return Data(hex: isOdd ? string.paddingWithLeadingZeroes(to: string.count + 1) : string)
     }
@@ -87,8 +93,9 @@ public class EthereumAddressFormatter {
         return string.copy() as! NSAttributedString
     }
 
-    public func attributedString(from value: String) -> NSAttributedString {
-        return attributedString(from: data(from: value))
+    public func attributedString(from value: String) -> NSAttributedString? {
+        guard let data = self.data(from: value) else { return nil }
+        return attributedString(from: data)
     }
 
     private func prefixed(_ value: String) -> String {

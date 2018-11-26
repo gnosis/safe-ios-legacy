@@ -37,7 +37,7 @@ class SafeCreationViewController: UIViewController {
     @IBOutlet weak var safeAddressWrapperView: UIView!
     @IBOutlet weak var safeAddressDescription: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var safeAddressLabel: UILabel!
+    @IBOutlet weak var safeAddressLabel: FullEthereumAddressLabel!
     @IBOutlet weak var qrCodeLabel: UILabel!
     @IBOutlet weak var qrCodeView: QRCodeView!
 
@@ -225,7 +225,7 @@ class SafeCreationViewController: UIViewController {
         insufficientFundsErrorImage.isHidden = !state.showsInsufficientFundsError
 
         safeAddressWrapperView.isHidden = !state.showsSafeAddress
-        safeAddressLabel.setEthereumAddress(state.addressText ?? "")
+        safeAddressLabel.address = state.addressText
         qrCodeView.value = state.addressText
 
         etherscanWrapperView.isHidden = !state.showsEtherScanBlock

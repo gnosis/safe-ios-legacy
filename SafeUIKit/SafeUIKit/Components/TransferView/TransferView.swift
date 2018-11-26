@@ -9,9 +9,9 @@ public final class TransferView: BaseCustomView {
 
     @IBOutlet weak var fromIdenticonView: IdenticonView!
     @IBOutlet weak var toIdenticonView: IdenticonView!
-    @IBOutlet weak var fromAddressLabel: UILabel!
-    @IBOutlet weak var toAddressLabel: UILabel!
-    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var fromAddressLabel: EthereumAddressLabel!
+    @IBOutlet weak var toAddressLabel: EthereumAddressLabel!
+    @IBOutlet weak var amountLabel: AmountLabel!
 
     public var fromAddress: String! {
         didSet {
@@ -36,17 +36,10 @@ public final class TransferView: BaseCustomView {
 
     public override func update() {
         fromIdenticonView.seed = fromAddress ?? ""
-        fromAddressLabel.text = fromAddress
+        fromAddressLabel.address = fromAddress
         toIdenticonView.seed = toAddress ?? ""
-        toAddressLabel.text = toAddress
-        if let data = tokenData, let balance = tokenData.balance {
-            let tokenFormatter = TokenNumberFormatter.ERC20Token(code: data.code,
-                                                                 decimals: data.decimals,
-                                                                 displayedDecimals: 4)
-            amountLabel.text = tokenFormatter.string(from: -balance)
-        } else {
-            amountLabel.text = nil
-        }
+        toAddressLabel.address = toAddress
+        amountLabel.amount = tokenData
     }
 
 }

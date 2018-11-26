@@ -15,7 +15,7 @@ class TransferViewTests: XCTestCase {
         XCTAssertNil(transferView.fromAddressLabel.text)
         XCTAssertEqual(transferView.fromIdenticonView.seed, "")
         transferView.fromAddress = "from_address"
-        XCTAssertEqual(transferView.fromAddressLabel.text, "from_address")
+        XCTAssertEqual(transferView.fromAddressLabel.address, "from_address")
         XCTAssertEqual(transferView.fromIdenticonView.seed, "from_address")
     }
 
@@ -23,14 +23,14 @@ class TransferViewTests: XCTestCase {
         XCTAssertNil(transferView.toAddressLabel.text)
         XCTAssertEqual(transferView.toIdenticonView.seed, "")
         transferView.toAddress = "to_address"
-        XCTAssertEqual(transferView.toAddressLabel.text, "to_address")
+        XCTAssertEqual(transferView.toAddressLabel.address, "to_address")
         XCTAssertEqual(transferView.toIdenticonView.seed, "to_address")
     }
 
     func test_whenSettingTokenData_thenSetsProperties() {
         XCTAssertNil(transferView.amountLabel.text)
         transferView.tokenData = tokenData
-        XCTAssertEqual(transferView.amountLabel.text?.replacingOccurrences(of: ",", with: "."), "- 1.234~ TEST")
+        XCTAssertEqual(transferView.amountLabel.amount, tokenData)
     }
 
     func test_whenSettingNilValues_thenIgnorsIt() { // why so?
