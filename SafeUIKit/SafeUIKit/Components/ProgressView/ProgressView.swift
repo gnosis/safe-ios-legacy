@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import SafeUIKit
 
 public class ProgressView: BaseCustomView {
 
@@ -46,7 +45,8 @@ public class ProgressView: BaseCustomView {
     public var trackColor: UIColor {
         switch state {
         case .error: return ColorName.tomato15.color
-        default: return ColorName.paleGrey.color
+        case .indeterminate: return ColorName.paleGrey.color
+        default: return .clear
         }
     }
 
@@ -157,4 +157,5 @@ public enum ProgressViewState: Equatable {
             return false
         }
     }
+
 }

@@ -49,6 +49,10 @@ enum Asset {
   }
   static let backgroundDarkImage = ImageAsset(name: "background-dark-image")
   static let backgroundImage = ImageAsset(name: "background-image")
+  enum BrowserExtension {
+    static let awaiting = ImageAsset(name: "awaiting")
+    static let rejected = ImageAsset(name: "rejected")
+  }
   static let checkmarkNormal = ImageAsset(name: "checkmark-normal")
   static let checkmarkSelected = ImageAsset(name: "checkmark-selected")
   static let closeIcon = ImageAsset(name: "close-icon")
@@ -75,6 +79,8 @@ enum Asset {
     AddressInput.addressIconTmp,
     backgroundDarkImage,
     backgroundImage,
+    BrowserExtension.awaiting,
+    BrowserExtension.rejected,
     checkmarkNormal,
     checkmarkSelected,
     closeIcon,

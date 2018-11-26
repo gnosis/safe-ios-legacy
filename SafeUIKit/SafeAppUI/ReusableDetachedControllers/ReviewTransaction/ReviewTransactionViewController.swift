@@ -13,6 +13,10 @@ final class ReviewTransactionViewController: UITableViewController {
     private var tx: TransactionData!
     private var cells = [IndexPath: UITableViewCell]()
 
+    private var isConfirmationRequired: Bool {
+        return ApplicationServiceRegistry.walletService.ownerAddress(of: .browserExtension) != nil
+    }
+
     enum Strings {
         static let outgoingTransfer = LocalizedString("transaction.outgoing_transfer", comment: "Outgoing transafer")
     }
@@ -30,7 +34,6 @@ final class ReviewTransactionViewController: UITableViewController {
 
     private func configureTableView() {
         tableView.separatorStyle = .none
-        tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundView = BackgroundImageView(frame: tableView.frame)
         tableView.allowsSelection = false
         tableView.tableFooterView = UIView()
@@ -44,6 +47,15 @@ final class ReviewTransactionViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return cells[indexPath]!
+    }
+
+    // MARK: - table view delegate
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if !isConfirmationRequired && cells[indexPath] is TransactionConfirmationCell {
+            return 0
+        }
+        return UITableView.automaticDimension
     }
 
     // MARK: Table view cell creation
@@ -76,8 +88,8 @@ final class ReviewTransactionViewController: UITableViewController {
         return cell
     }
 
-    private func confirmationCell() -> UITableViewCell {
-        return UITableViewCell()
+    private func confirmationCell() -> TransactionConfirmationCell {
+        return TransactionConfirmationCell()
     }
 
     private func etherTransactionFeeCell() -> UITableViewCell {

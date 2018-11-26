@@ -1155,7 +1155,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ir1-xQ-ERN" customClass="ProgressView" customModule="SafeAppUI" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ir1-xQ-ERN" customClass="ProgressView" customModule="SafeUIKit">
                                                 <rect key="frame" x="0.0" y="29.5" width="343" height="5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="ppu-2f-vQm"/>
