@@ -43,28 +43,19 @@ public class TransactionConfirmationView: BaseCustomView {
     }
 
     public override func update() {
-        clean()
         switch status {
+        case .undefined:
+            setUndefined()
         case .pending:
-            progressView.isIndeterminate = true
-            progressView.beginAnimating()
-            statusLabel.text = Strings.awaitingConfirmation
-            browserExtensionImageView.image = Asset.BrowserExtension.awaiting.image
-            browserExtensionLabel.text = Strings.confirmationExplanation
+            setPending()
         case .confirmed:
-            progressView.progress = 1.0
-            statusLabel.text = Strings.confirmed
+            setConfirmed()
         case .rejected:
-            progressView.isError = true
-            statusLabel.text = Strings.rejected
-            statusLabel.textColor = ColorName.tomato.color
-            browserExtensionImageView.image = Asset.BrowserExtension.rejected.image
-            browserExtensionLabel.text = Strings.rejectionExplanation
-        case .undefined: break
+            setRejected()
         }
     }
 
-    private func clean() {
+    private func setUndefined() {
         progressView.isError = false
         progressView.isIndeterminate = false
         progressView.progress = 0
@@ -73,6 +64,32 @@ public class TransactionConfirmationView: BaseCustomView {
         statusLabel.textColor = .black
         browserExtensionImageView.image = nil
         browserExtensionLabel.text = " "
+    }
+
+    private func setPending() {
+        progressView.isIndeterminate = true
+        progressView.beginAnimating()
+        statusLabel.text = Strings.awaitingConfirmation
+        browserExtensionImageView.image = Asset.BrowserExtension.awaiting.image
+        browserExtensionLabel.text = Strings.confirmationExplanation
+    }
+
+    private func setConfirmed() {
+        progressView.stopAnimating()
+        progressView.isError = false
+        progressView.isIndeterminate = false
+        progressView.progress = 1.0
+        statusLabel.text = Strings.confirmed
+    }
+
+    private func setRejected() {
+        progressView.stopAnimating()
+        progressView.isError = true
+        progressView.isIndeterminate = false
+        statusLabel.text = Strings.rejected
+        statusLabel.textColor = ColorName.tomato.color
+        browserExtensionImageView.image = Asset.BrowserExtension.rejected.image
+        browserExtensionLabel.text = Strings.rejectionExplanation
     }
 
 }

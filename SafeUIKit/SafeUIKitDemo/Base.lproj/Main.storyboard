@@ -979,30 +979,38 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uWy-Ve-WPZ" customClass="TransactionConfirmationView" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="204" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="264" width="375" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" placeholder="YES" id="J8W-vA-z4t"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IWD-bI-Wbq" customClass="TransactionConfirmationView" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="324" width="375" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" placeholder="YES" id="6vW-Wh-Tzg"/>
-                                </constraints>
-                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egQ-qk-C8Z">
+                                <rect key="frame" x="160" y="192" width="55" height="30"/>
+                                <state key="normal" title="Confirm"/>
+                                <connections>
+                                    <action selector="confirm:" destination="igh-jp-e1w" eventType="touchUpInside" id="PzU-AG-vdI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BQ-se-vef">
+                                <rect key="frame" x="166" y="372" width="43" height="30"/>
+                                <state key="normal" title="Reject"/>
+                                <connections>
+                                    <action selector="reject:" destination="igh-jp-e1w" eventType="touchUpInside" id="vqN-Ke-47t"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.63529411759999999" green="0.6588235294" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="IWD-bI-Wbq" firstAttribute="leading" secondItem="Ouc-4F-aSG" secondAttribute="leading" id="6YP-FW-qCB"/>
-                            <constraint firstItem="IWD-bI-Wbq" firstAttribute="top" secondItem="uWy-Ve-WPZ" secondAttribute="bottom" constant="20" id="EP8-cs-kpl"/>
-                            <constraint firstItem="uWy-Ve-WPZ" firstAttribute="top" secondItem="cVz-Ob-JHP" secondAttribute="bottom" constant="20" id="OcZ-3w-6JC"/>
+                            <constraint firstItem="6BQ-se-vef" firstAttribute="centerX" secondItem="uWy-Ve-WPZ" secondAttribute="centerX" id="3cc-wu-Yho"/>
+                            <constraint firstItem="egQ-qk-C8Z" firstAttribute="top" secondItem="cVz-Ob-JHP" secondAttribute="bottom" constant="8" id="MV4-xW-Cgl"/>
+                            <constraint firstItem="uWy-Ve-WPZ" firstAttribute="top" secondItem="cVz-Ob-JHP" secondAttribute="bottom" constant="80" id="OcZ-3w-6JC"/>
                             <constraint firstItem="uWy-Ve-WPZ" firstAttribute="leading" secondItem="Ouc-4F-aSG" secondAttribute="leading" id="QTS-LB-jdY"/>
                             <constraint firstItem="cVz-Ob-JHP" firstAttribute="top" secondItem="Ouc-4F-aSG" secondAttribute="top" constant="20" id="Vw9-4a-fhj"/>
+                            <constraint firstItem="6BQ-se-vef" firstAttribute="top" secondItem="uWy-Ve-WPZ" secondAttribute="bottom" constant="8" id="aIW-KH-Irc"/>
+                            <constraint firstItem="egQ-qk-C8Z" firstAttribute="centerX" secondItem="cVz-Ob-JHP" secondAttribute="centerX" id="bKx-Um-R8r"/>
                             <constraint firstItem="Ouc-4F-aSG" firstAttribute="trailing" secondItem="cVz-Ob-JHP" secondAttribute="trailing" id="bWY-zw-9Pi"/>
                             <constraint firstItem="cVz-Ob-JHP" firstAttribute="leading" secondItem="Ouc-4F-aSG" secondAttribute="leading" id="c0t-bR-nLX"/>
-                            <constraint firstItem="IWD-bI-Wbq" firstAttribute="trailing" secondItem="Ouc-4F-aSG" secondAttribute="trailing" id="s0h-33-98Z"/>
                             <constraint firstItem="uWy-Ve-WPZ" firstAttribute="trailing" secondItem="Ouc-4F-aSG" secondAttribute="trailing" id="tK6-vp-ofM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ouc-4F-aSG"/>
@@ -1011,7 +1019,6 @@
                     <connections>
                         <outlet property="transactionConfirmationView" destination="cVz-Ob-JHP" id="qcL-RR-Vb0"/>
                         <outlet property="transactionConfirmationView1" destination="uWy-Ve-WPZ" id="Tdx-qD-ufM"/>
-                        <outlet property="transactionConfirmationView2" destination="IWD-bI-Wbq" id="uUz-xx-0Cz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8x0-fN-mP5" userLabel="First Responder" sceneMemberID="firstResponder"/>

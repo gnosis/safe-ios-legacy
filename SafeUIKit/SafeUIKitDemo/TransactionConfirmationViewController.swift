@@ -9,19 +9,24 @@ class TransactionConfirmationViewController: UIViewController {
 
     @IBOutlet weak var transactionConfirmationView: TransactionConfirmationView!
     @IBOutlet weak var transactionConfirmationView1: TransactionConfirmationView!
-    @IBOutlet weak var transactionConfirmationView2: TransactionConfirmationView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         transactionConfirmationView.status = .undefined
         transactionConfirmationView1.status = .undefined
-        transactionConfirmationView2.status = .undefined
     }
 
     override func viewDidAppear(_ animated: Bool) {
         transactionConfirmationView.status = .pending
-        transactionConfirmationView1.status = .confirmed
-        transactionConfirmationView2.status = .rejected
+        transactionConfirmationView1.status = .pending
+    }
+
+    @IBAction func confirm(_ sender: Any) {
+        transactionConfirmationView.status = .confirmed
+    }
+
+    @IBAction func reject(_ sender: Any) {
+        transactionConfirmationView1.status = .rejected
     }
 
 }
