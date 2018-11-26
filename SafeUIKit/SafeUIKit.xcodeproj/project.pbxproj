@@ -175,6 +175,7 @@
 		0AFA766B2181FB1E00A96FDB /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */; };
 		0AFA766D2182195200A96FDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA766C2182195200A96FDB /* ViewController.swift */; };
 		0AFDB43821AC16B000F31840 /* FullEthereumAddressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFDB43721AC16B000F31840 /* FullEthereumAddressLabel.swift */; };
+		0AFDB43A21AC42BE00F31840 /* FullEthereumAddressLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFDB43921AC42BE00F31840 /* FullEthereumAddressLabelTests.swift */; };
 		5506395C20D17CAD000F2A82 /* ApproximateCurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395720D17CAC000F2A82 /* ApproximateCurrencyFormatter.swift */; };
 		5506395E20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395D20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift */; };
 		5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395F20D17CDB000F2A82 /* Double+BigInt.swift */; };
@@ -520,6 +521,7 @@
 		0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFA766C2182195200A96FDB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0AFDB43721AC16B000F31840 /* FullEthereumAddressLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullEthereumAddressLabel.swift; sourceTree = "<group>"; };
+		0AFDB43921AC42BE00F31840 /* FullEthereumAddressLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullEthereumAddressLabelTests.swift; sourceTree = "<group>"; };
 		5506395720D17CAC000F2A82 /* ApproximateCurrencyFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproximateCurrencyFormatter.swift; sourceTree = "<group>"; };
 		5506395D20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproximateCurrencyFormatterTests.swift; sourceTree = "<group>"; };
 		5506395F20D17CDB000F2A82 /* Double+BigInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+BigInt.swift"; sourceTree = "<group>"; };
@@ -1022,6 +1024,7 @@
 				0ABA591921AC07E8009D249F /* EthereumAddressLabel.swift */,
 				0ABA592021AC09CC009D249F /* EthereumAddressLabelTests.swift */,
 				0AFDB43721AC16B000F31840 /* FullEthereumAddressLabel.swift */,
+				0AFDB43921AC42BE00F31840 /* FullEthereumAddressLabelTests.swift */,
 			);
 			path = EthereumAddressLabel;
 			sourceTree = "<group>";
@@ -1945,6 +1948,7 @@
 				55C3C6272175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift in Sources */,
 				0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */,
 				0ABA591F21AC0856009D249F /* AmountLabelTests.swift in Sources */,
+				0AFDB43A21AC42BE00F31840 /* FullEthereumAddressLabelTests.swift in Sources */,
 				5506395E20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift in Sources */,
 				552473642142AD6900A77557 /* IdenticonViewTests.swift in Sources */,
 				55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */,
