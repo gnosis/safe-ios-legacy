@@ -12,10 +12,10 @@ public class TransactionConfirmationView: BaseCustomView {
     @IBOutlet weak var browserExtensionLabel: UILabel!
 
     public enum Status {
+        case undefined
         case pending
         case confirmed
         case rejected
-        case undefined
     }
 
     public enum Strings {
