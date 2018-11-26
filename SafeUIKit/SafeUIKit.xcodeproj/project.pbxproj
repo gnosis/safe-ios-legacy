@@ -924,31 +924,9 @@
 		0A96707C20480C3E00445AC2 /* SafeUIKitDemo */ = {
 			isa = PBXGroup;
 			children = (
-				5541586421748BC400A3CEA4 /* AddressInputViewController.swift */,
-				0A0974C920480CEB005753DF /* AppDelegate.swift */,
-				0A0974C820480CEB005753DF /* Assets.xcassets */,
-				5524735F214293D500A77557 /* IdenticonViewController.swift */,
-				0A0974C720480CEB005753DF /* Info.plist */,
-				0A0974DA20480D03005753DF /* LaunchScreen.storyboard */,
-				0A0974D820480D03005753DF /* Main.storyboard */,
-				0A00293120CFD75E009A4BFE /* MySegmentViewController.swift */,
-				0A60B515211333620066821A /* ProgressViewController.swift */,
-				55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */,
-				556251FA2149135F00F569EE /* QRCodeViewController.swift */,
-				55DE530A217B467900613B90 /* ScanButtonViewController.swift */,
-				0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */,
-				555EB6EB216CA42100E06553 /* TextInputViewController.swift */,
-				555B0E6620CA83DF00424CEE /* TokenDoubleInputViewController.swift */,
-				55D0EC61216F7383003D9A53 /* TokenInputViewController.swift */,
-				55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */,
-				55E8AFFC219C4A45002930A1 /* TransactionFeeViewViewController.swift */,
-				55E8B005219EC213002930A1 /* TransactionHeaderViewController.swift */,
-				0ACC77F6219D76060057E79A /* TransactionReviewDemoViewController.swift */,
-				55E8AFE8219B41A7002930A1 /* TransferViewViewController.swift */,
-				0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */,
-				555EB71C216DF23700E06553 /* VerifiableInputViewController.swift */,
-				0AFA766C2182195200A96FDB /* ViewController.swift */,
-				0ABA592221AC0B6E009D249F /* LabelsViewController.swift */,
+				0AFDB43B21AC4B9100F31840 /* _Supporting Files */,
+				0AFDB43E21AC4BDD00F31840 /* DetailControllers */,
+				0AFDB43F21AC4C1700F31840 /* Main */,
 			);
 			path = SafeUIKitDemo;
 			sourceTree = "<group>";
@@ -1132,6 +1110,52 @@
 				0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */,
 			);
 			path = SegmentBar;
+			sourceTree = "<group>";
+		};
+		0AFDB43B21AC4B9100F31840 /* _Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0A0974C820480CEB005753DF /* Assets.xcassets */,
+				0A0974C720480CEB005753DF /* Info.plist */,
+				0A0974DA20480D03005753DF /* LaunchScreen.storyboard */,
+			);
+			name = "_Supporting Files";
+			sourceTree = "<group>";
+		};
+		0AFDB43E21AC4BDD00F31840 /* DetailControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5541586421748BC400A3CEA4 /* AddressInputViewController.swift */,
+				5524735F214293D500A77557 /* IdenticonViewController.swift */,
+				0ABA592221AC0B6E009D249F /* LabelsViewController.swift */,
+				0A00293120CFD75E009A4BFE /* MySegmentViewController.swift */,
+				0A60B515211333620066821A /* ProgressViewController.swift */,
+				55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */,
+				556251FA2149135F00F569EE /* QRCodeViewController.swift */,
+				55DE530A217B467900613B90 /* ScanButtonViewController.swift */,
+				555EB6EB216CA42100E06553 /* TextInputViewController.swift */,
+				555B0E6620CA83DF00424CEE /* TokenDoubleInputViewController.swift */,
+				55D0EC61216F7383003D9A53 /* TokenInputViewController.swift */,
+				55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */,
+				55E8AFFC219C4A45002930A1 /* TransactionFeeViewViewController.swift */,
+				55E8B005219EC213002930A1 /* TransactionHeaderViewController.swift */,
+				55E8AFE8219B41A7002930A1 /* TransferViewViewController.swift */,
+				555EB71C216DF23700E06553 /* VerifiableInputViewController.swift */,
+			);
+			path = DetailControllers;
+			sourceTree = "<group>";
+		};
+		0AFDB43F21AC4C1700F31840 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0A0974C920480CEB005753DF /* AppDelegate.swift */,
+				0A0974D820480D03005753DF /* Main.storyboard */,
+				0AFA766C2182195200A96FDB /* ViewController.swift */,
+				0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */,
+				0ACC77F6219D76060057E79A /* TransactionReviewDemoViewController.swift */,
+				0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		550D1ED32133E6420035109A /* ManageTokens */ = {
