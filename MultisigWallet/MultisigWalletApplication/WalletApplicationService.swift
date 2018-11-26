@@ -473,8 +473,10 @@ public class WalletApplicationService: Assertable {
     }
 
     private func transactionData(_ tx: Transaction) -> TransactionData {
+        let type = TransactionData.TransactionType.outgoing
         let amountTokenData = tx.amount != nil ?
-            TokenData(token: tx.amount!.token, balance: tx.amount?.amount ?? 0) :
+            TokenData(token: tx.amount!.token,
+                      balance: (type == .outgoing ? -1 : 1) * (tx.amount?.amount ?? 0)) :
             TokenData.empty()
         let feeTokenData = tx.fee != nil ?
             TokenData(token: tx.fee!.token, balance: tx.fee!.amount) :

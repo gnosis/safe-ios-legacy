@@ -56,13 +56,6 @@ class TokensTableViewControllerTests: SafeTestCase {
         XCTAssertTrue(delegate.didCallCreateNewTransaction)
     }
 
-    func test_whenThereAreTokens_thenWeShowGradientFooter() {
-        createWindow(controller)
-        controller.notify()
-        let footer = controller.tableView(controller.tableView, viewForFooterInSection: 1)
-        XCTAssertTrue(footer is GradientFooterView)
-    }
-
     func test_whenThereAreNoTokens_thenTokensFooterIsShown() {
         walletService.visibleTokensOutput = [TokenData.eth]
         createWindow(controller)

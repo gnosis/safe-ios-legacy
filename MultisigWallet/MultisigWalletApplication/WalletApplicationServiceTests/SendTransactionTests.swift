@@ -92,7 +92,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         transactionRepository.save(tx)
         let data = service.transactionData(txID)!
         XCTAssertEqual(data.recipient, Address.testAccount1.value)
-        XCTAssertEqual(data.amountTokenData.balance, 100)
+        XCTAssertEqual(data.amountTokenData.balance, -100)
         XCTAssertEqual(data.feeTokenData.balance, 10)
     }
 

@@ -28,6 +28,9 @@ public class SegmentBar: UIControl {
 
     private let stackView = UIStackView()
     private let selectionMarker = UIView()
+    private let bottomLineHeight: CGFloat = 2
+    private let selectionMarkerHeight: CGFloat = 6
+    private let titleFontSize: CGFloat = 13
     var buttons = [UIButton]()
 
     public override init(frame: CGRect) {
@@ -56,7 +59,7 @@ public class SegmentBar: UIControl {
                 bottomLine.bottomAnchor.constraint(equalTo: bottomAnchor),
                 bottomLine.leadingAnchor.constraint(equalTo: leadingAnchor),
                 bottomLine.trailingAnchor.constraint(equalTo: trailingAnchor),
-                bottomLine.heightAnchor.constraint(equalToConstant: 2)
+                bottomLine.heightAnchor.constraint(equalToConstant: bottomLineHeight)
             ])
 
         selectionMarker.backgroundColor = ColorName.aquaBlue.color
@@ -70,7 +73,7 @@ public class SegmentBar: UIControl {
             button.setTitleColor(.black, for: .highlighted)
             button.setImage(item.image, for: .normal)
             button.tintColor = .black
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: titleFontSize, weight: UIFont.Weight.regular)
             button.backgroundColor = .white
             button.tag = index
             button.addTarget(self, action: #selector(didTapButton(sender:)), for: .touchUpInside)
@@ -84,28 +87,53 @@ public class SegmentBar: UIControl {
     }
 
     private func updateSelection() {
-        selectionMarker.removeFromSuperview()
-        guard let selected = selectedItem, let index = items.index(of: selected) else { return }
-        buttons.enumerated().forEach { indx, button in
-            if indx == index {
-                button.setTitleColor(.black, for: .normal)
-                button.tintColor = .black
-                selectionMarker.translatesAutoresizingMaskIntoConstraints = false
-                addSubview(selectionMarker)
-                NSLayoutConstraint.activate(
-                    [
-                        selectionMarker.bottomAnchor.constraint(equalTo: button.bottomAnchor),
-                        selectionMarker.leadingAnchor.constraint(equalTo: button.leadingAnchor),
-                        selectionMarker.trailingAnchor.constraint(equalTo: button.trailingAnchor),
-                        selectionMarker.heightAnchor.constraint(equalToConstant: 4)
-                    ])
-            } else {
-                button.setTitleColor(ColorName.blueyGrey.color, for: .normal)
-                button.tintColor = ColorName.blueyGrey.color
-            }
-        }
+        removeSelectionMarker()
+        guard let selected = selectedItem, let selectedItemIndex = items.index(of: selected) else { return }
+        buttons.forEach { configureDeselectedButton($0) }
+        configureSelectedButton(at: selectedItemIndex)
         setNeedsUpdateConstraints()
         setNeedsLayout()
+    }
+
+    private func configureSelectedButton(at index: Int) {
+        let button = buttons[index]
+        button.setTitleColor(.black, for: .normal)
+        button.tintColor = .black
+        addSelectionMarker(at: index)
+    }
+
+    private func configureDeselectedButton(_ button: UIButton) {
+        button.setTitleColor(ColorName.blueyGrey.color, for: .normal)
+        button.tintColor = ColorName.blueyGrey.color
+    }
+
+    private func addSelectionMarker(at index: Int) {
+        let button = buttons[index]
+        selectionMarker.translatesAutoresizingMaskIntoConstraints = false
+        selectionMarker.layer.cornerRadius = selectionMarkerHeight / 2
+        selectionMarker.clipsToBounds = true
+        let topLeftCorner = CACornerMask.layerMinXMinYCorner
+        let topRightCorner = CACornerMask.layerMaxXMinYCorner
+        switch index {
+        case 0:
+            selectionMarker.layer.maskedCorners = topRightCorner
+        case buttons.count - 1:
+            selectionMarker.layer.maskedCorners = topLeftCorner
+        default:
+            selectionMarker.layer.maskedCorners = [topLeftCorner, topRightCorner]
+        }
+        addSubview(selectionMarker)
+        NSLayoutConstraint.activate(
+            [
+                selectionMarker.bottomAnchor.constraint(equalTo: button.bottomAnchor),
+                selectionMarker.leadingAnchor.constraint(equalTo: button.leadingAnchor),
+                selectionMarker.trailingAnchor.constraint(equalTo: button.trailingAnchor),
+                selectionMarker.heightAnchor.constraint(equalToConstant: selectionMarkerHeight)
+            ])
+    }
+
+    private func removeSelectionMarker() {
+        selectionMarker.removeFromSuperview()
     }
 
     @objc private func didTapButton(sender: UIButton) {
