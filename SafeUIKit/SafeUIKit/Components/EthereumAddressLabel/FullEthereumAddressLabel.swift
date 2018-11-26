@@ -27,11 +27,11 @@ public class FullEthereumAddressLabel: BaseCustomLabel {
     }
 
     public override func update() {
-        guard let address = address else {
+        if let address = address {
+            attributedText = formatter.attributedString(from: address)
+        } else {
             attributedText = nil
-            return
         }
-        attributedText = formatter.attributedString(from: address)
     }
 
 }
