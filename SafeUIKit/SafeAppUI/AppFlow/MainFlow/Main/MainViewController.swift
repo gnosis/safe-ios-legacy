@@ -20,7 +20,7 @@ final class MainViewController: UIViewController {
 
     @IBOutlet var backgroundView: BackgroundImageView!
     @IBOutlet weak var safeIdenticonView: IdenticonView!
-    @IBOutlet weak var safeAddressLabel: UILabel!
+    @IBOutlet weak var safeAddressLabel: EthereumAddressLabel!
 
     private weak var delegate: (MainViewControllerDelegate & TransactionsTableViewControllerDelegate)?
 
@@ -38,13 +38,14 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundView.isDimmed = true
+        safeAddressLabel.textColor = ColorName.battleshipGrey.color
 
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
         ApplicationServiceRegistry.logger.info("Safe address: \(address)")
 
         let menuButton = UIBarButtonItem(title: Strings.menu, style: .done, target: self, action: #selector(openMenu))
         navigationItem.setRightBarButton(menuButton, animated: false)
-        safeAddressLabel.text = address
+        safeAddressLabel.address = address
         safeIdenticonView.seed = address
         safeIdenticonView.displayShadow = true
         safeIdenticonView.tapAction = {

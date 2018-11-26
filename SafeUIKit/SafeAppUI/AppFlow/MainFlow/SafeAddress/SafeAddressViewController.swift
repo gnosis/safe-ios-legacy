@@ -14,7 +14,7 @@ final class SafeAddressViewController: UIViewController {
     @IBOutlet weak var identiconLabel: UILabel!
     @IBOutlet weak var identiconView: IdenticonView!
     @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var safeAddressLabel: UILabel!
+    @IBOutlet weak var safeAddressLabel: FullEthereumAddressLabel!
     @IBOutlet weak var qrCodeLabel: UILabel!
     @IBOutlet weak var qrCodeView: QRCodeView!
 
@@ -41,7 +41,7 @@ final class SafeAddressViewController: UIViewController {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
         identiconView.seed = address
         configureQRCode(address)
-        safeAddressLabel.setEthereumAddress(address)
+        safeAddressLabel.address = address
     }
 
     @IBAction func shareAddress(_ sender: Any) {

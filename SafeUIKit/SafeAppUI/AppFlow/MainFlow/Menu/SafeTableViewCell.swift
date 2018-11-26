@@ -4,11 +4,12 @@
 
 import UIKit
 import BlockiesSwift
+import SafeUIKit
 
 final class SafeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var safeIconImageView: UIImageView!
-    @IBOutlet weak var safeAddressLabel: UILabel!
+    @IBOutlet weak var safeAddressLabel: EthereumAddressLabel!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var qrCodeButton: UIButton!
     @IBOutlet weak var tappableChevronView: UIView!
@@ -32,7 +33,7 @@ final class SafeTableViewCell: UITableViewCell {
 
     func configure(safe: MenuTableViewController.SafeDescription, qrCodeShown: Bool) {
         safeIconImageView.blockiesSeed = safe.address.lowercased()
-        safeAddressLabel.text = safe.address
+        safeAddressLabel.address = safe.address
         if qrCodeShown {
             chevronImageView.transform = CGAffineTransform(rotationAngle: .pi)
         }

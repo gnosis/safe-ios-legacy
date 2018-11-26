@@ -8,7 +8,7 @@ import SafeUIKit
 final class SafeQRCodeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var qrCodeView: QRCodeView!
-    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var addressLabel: FullEthereumAddressLabel!
 
     static let height: CGFloat = 250
 
@@ -23,7 +23,7 @@ final class SafeQRCodeTableViewCell: UITableViewCell {
         qrCodeView.layer.borderWidth = 1
         qrCodeView.layer.borderColor = UIColor.black.cgColor
         qrCodeView.layer.cornerRadius = 6
-        addressLabel.setEthereumAddress(code.address)
+        addressLabel.address = code.address
     }
 
 }

@@ -49,7 +49,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="1000" text="0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqu-Ky-gxa">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="1000" text="0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqu-Ky-gxa" customClass="EthereumAddressLabel" customModule="SafeUIKit">
                                                                 <rect key="frame" x="9" y="0.0" width="72" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <color key="textColor" red="0.63529411759999999" green="0.6588235294" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -191,7 +191,7 @@
                                                             <constraint firstAttribute="height" constant="1" id="hZQ-lC-q8W"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="amP-pM-xdH">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="amP-pM-xdH" customClass="FullEthereumAddressLabel" customModule="SafeUIKit">
                                                         <rect key="frame" x="98" y="253" width="229" height="43"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <nil key="textColor"/>
@@ -337,10 +337,9 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vK8-Bb-AnF">
-                                            <rect key="frame" x="78" y="48.5" width="90" height="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x5a0b54d5dc17e0aadc383d2db43b0a0d3e029c4c" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vK8-Bb-AnF" customClass="EthereumAddressLabel" customModule="SafeUIKit">
+                                            <rect key="frame" x="78" y="48.5" width="281" height="16"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="90" id="6OR-9b-QJA"/>
                                                 <constraint firstAttribute="height" constant="16" id="jpa-bi-er6"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -389,6 +388,7 @@
                                         <constraint firstItem="zQp-an-Qdf" firstAttribute="leading" secondItem="Zt0-d6-B3N" secondAttribute="trailing" constant="12" id="Bnv-B6-pO4"/>
                                         <constraint firstItem="Js1-gG-VxO" firstAttribute="leading" secondItem="fg2-r8-VQO" secondAttribute="trailing" id="CQq-z2-NAe"/>
                                         <constraint firstAttribute="bottom" secondItem="R2x-JK-Ftr" secondAttribute="bottom" id="Cpp-2t-YOj"/>
+                                        <constraint firstAttribute="trailing" secondItem="vK8-Bb-AnF" secondAttribute="trailing" constant="16" id="DHZ-A5-EEJ"/>
                                         <constraint firstAttribute="bottom" secondItem="fg2-r8-VQO" secondAttribute="bottom" id="HY9-1t-8Kr"/>
                                         <constraint firstAttribute="trailing" secondItem="Js1-gG-VxO" secondAttribute="trailing" id="QDj-Z1-BcX"/>
                                         <constraint firstItem="Zt0-d6-B3N" firstAttribute="top" secondItem="zQp-an-Qdf" secondAttribute="top" constant="-2" id="RdV-Yd-7gD"/>
@@ -411,15 +411,12 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SafeQRCodeTableViewCell" rowHeight="250" id="Tec-9r-2nO" customClass="SafeQRCodeTableViewCell" customModule="SafeAppUI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="165.5" width="375" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tec-9r-2nO" id="XTU-j7-llh">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tec-9r-2nO" id="XTU-j7-llh">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="YaL-2x-eTD">
-                                            <rect key="frame" x="74" y="188" width="270" height="48"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="270" id="Qox-UW-isS"/>
-                                            </constraints>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="YaL-2x-eTD" customClass="FullEthereumAddressLabel" customModule="SafeUIKit">
+                                            <rect key="frame" x="74" y="188" width="269" height="48"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -508,7 +505,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="b9O-G7-22I">
                                                     <rect key="frame" x="0.0" y="0.0" width="80.5" height="36"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Johny Cash" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsc-kl-wv7" customClass="EthereumAddressLabel" customModule="SafeAppUI" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Johny Cash" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsc-kl-wv7" customClass="EthereumAddressLabel" customModule="SafeUIKit">
                                                             <rect key="frame" x="0.0" y="0.0" width="80.5" height="19"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="19" id="7Yk-oK-o9B"/>
@@ -528,7 +525,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="uG3-Sf-eh8">
                                                     <rect key="frame" x="80.5" y="0.0" width="180.5" height="36"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="-2.42453 ETH" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olj-bB-CHd" customClass="AmountLabel" customModule="SafeAppUI" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="-2.42453 ETH" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olj-bB-CHd" customClass="AmountLabel" customModule="SafeUIKit">
                                                             <rect key="frame" x="0.0" y="0.0" width="180.5" height="36"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                             <color key="textColor" red="0.94117647058823528" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

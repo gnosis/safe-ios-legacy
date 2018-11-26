@@ -11,7 +11,7 @@ public protocol AddressInputDelegate: class {
 public final class AddressInput: VerifiableInput {
 
     var scanHandler = ScanQRCodeHandler()
-    private let addressLabel = UILabel()
+    private let addressLabel = FullEthereumAddressLabel()
     private let hexCharsSet: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                                                "a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F"]
 
@@ -29,10 +29,10 @@ public final class AddressInput: VerifiableInput {
                 textInput.placeholder = nil
                 validateRules(for: addressLabel.text!)
                 if isValid {
-                    addressLabel.setEthereumAddress(displayAddress)
+                    addressLabel.address = displayAddress
                 }
             } else {
-                addressLabel.text = nil
+                addressLabel.address = nil
                 textInput.rightViewMode = .never
                 textInput.placeholder = Strings.addressPlaceholder
             }
@@ -96,7 +96,6 @@ public final class AddressInput: VerifiableInput {
     private func configureAddressLabel() {
         addressLabel.font = UIFont.systemFont(ofSize: 18)
         addressLabel.backgroundColor = .clear
-        addressLabel.numberOfLines = 2
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
     }
 
