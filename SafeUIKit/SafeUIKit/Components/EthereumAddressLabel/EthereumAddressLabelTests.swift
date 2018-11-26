@@ -14,7 +14,7 @@ class EthereumAddressLabelTests: XCTestCase {
         label.address = "1"
         XCTAssertEqual(label.text, label.formatter.string(from: "1"))
         label.suffix = "hi"
-        XCTAssertEqual(label.text, label.formatter.string(from: "1") + " " + "hi")
+        XCTAssertEqual(label.text, label.formatter.string(from: "1")! + " " + "hi")
         label.address = nil
         XCTAssertNil(label.text)
     }

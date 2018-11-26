@@ -22,7 +22,7 @@ class SafeAddressViewControllerTests: XCTestCase {
         let controller = SafeAddressViewController.create()
         createWindow(controller)
         controller.viewDidLoad()
-        XCTAssertEqual(controller.safeAddressLabel.text, testAddress)
+        XCTAssertEqual(controller.safeAddressLabel.address, testAddress)
         XCTAssertEqual(controller.qrCodeView.value, testAddress)
         XCTAssertEqual(controller.identiconView.seed, testAddress)
     }
