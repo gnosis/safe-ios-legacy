@@ -16,6 +16,7 @@ final class ReviewTransactionViewController: UITableViewController {
     private var isConfirmationRequired: Bool {
         return ApplicationServiceRegistry.walletService.ownerAddress(of: .browserExtension) != nil
     }
+    internal let confirmationCell = TransactionConfirmationCell()
 
     enum Strings {
         static let outgoingTransfer = LocalizedString("transaction.outgoing_transfer", comment: "Outgoing transafer")
@@ -30,6 +31,11 @@ final class ReviewTransactionViewController: UITableViewController {
         super.viewDidLoad()
         configureTableView()
         createCells()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateConfirmationCell(tx)
     }
 
     private func configureTableView() {
@@ -61,6 +67,7 @@ final class ReviewTransactionViewController: UITableViewController {
     // MARK: Table view cell creation
 
     private func createCells() {
+        cells = [IndexPath: UITableViewCell]()
         var row: Int = 0
         cells[IndexPath(row: next(&row), section: 0)] = headerCell()
         cells[IndexPath(row: next(&row), section: 0)] = transferViewCell()
@@ -70,7 +77,7 @@ final class ReviewTransactionViewController: UITableViewController {
             cells[IndexPath(row: next(&row), section: 0)] = tokenBalanceChangeCell()
             cells[IndexPath(row: next(&row), section: 0)] = etherFeeBalanceChangeCell()
         }
-        cells[IndexPath(row: next(&row), section: 0)] = confirmationCell()
+        cells[IndexPath(row: next(&row), section: 0)] = confirmationCell
     }
 
     private func next(_ index: inout Int) -> Int {
@@ -92,10 +99,6 @@ final class ReviewTransactionViewController: UITableViewController {
         cell.transferView.toAddress = tx.recipient
         cell.transferView.tokenData = tx.amountTokenData
         return cell
-    }
-
-    private func confirmationCell() -> TransactionConfirmationCell {
-        return TransactionConfirmationCell()
     }
 
     private func etherTransactionFeeCell() -> UITableViewCell {
@@ -135,6 +138,25 @@ final class ReviewTransactionViewController: UITableViewController {
                                           transactionFee: transactionFee,
                                           resultingBalance: resultingBalance)
         return cell
+    }
+
+    internal func update(with tx: TransactionData) {
+        self.tx = tx
+        createCells()
+        tableView.reloadData()
+    }
+
+    private func updateConfirmationCell(_ tx: TransactionData) {
+        switch tx.status {
+        case .waitingForConfirmation:
+            confirmationCell.transactionConfirmationView.status = .pending
+        case .readyToSubmit:
+            confirmationCell.transactionConfirmationView.status = .confirmed
+        case .rejected:
+            confirmationCell.transactionConfirmationView.status = .rejected
+        default:
+            confirmationCell.transactionConfirmationView.status = .undefined
+        }
     }
 
 }

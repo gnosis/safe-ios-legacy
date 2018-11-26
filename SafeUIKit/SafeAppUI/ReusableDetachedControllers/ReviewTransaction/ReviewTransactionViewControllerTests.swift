@@ -85,18 +85,52 @@ class ReviewTransactionViewControllerTests: XCTestCase {
         XCTAssertNotEqual(vc.cellHeight(3), 0)
     }
 
+    func test_whenTransactionIsWaitingForConfirmation_thenConfirmationCellIsPending() {
+        let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
+        vc.viewDidAppear(false)
+        XCTAssertEqual(vc.confirmationCell.transactionConfirmationView.status, .pending)
+    }
+
+    func test_whenTransactionIsReadyToSubmit_thenConfirmationCellIsConfirmed() {
+        let (_, vc) = ethDataAndCotroller(.readyToSubmit)
+        vc.viewDidAppear(false)
+        XCTAssertEqual(vc.confirmationCell.transactionConfirmationView.status, .confirmed)
+    }
+
+    func test_whenTransactionIsRejected_thenConfirmationCellIsRejected() {
+        let (_, vc) = ethDataAndCotroller(.rejected)
+        vc.viewDidAppear(false)
+        XCTAssertEqual(vc.confirmationCell.transactionConfirmationView.status, .rejected)
+    }
+
+    func test_whenTransactionIsOther_thenConfirmationCellIsUndefined() {
+        let (_, vc) = ethDataAndCotroller(.pending)
+        vc.viewDidAppear(false)
+        XCTAssertEqual(vc.confirmationCell.transactionConfirmationView.status, .undefined)
+    }
+
+    func test_whenUpdatingWithNewTransactionData_thenUpdatesUI() {
+        let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
+        XCTAssertEqual(vc.cellCount(), 4)
+        let (newData, _) = tokenDataAndCotroller(.waitingForConfirmation)
+        vc.update(with: newData)
+        XCTAssertEqual(vc.cellCount(), 5)
+    }
+
 }
 
 private extension ReviewTransactionViewControllerTests {
 
-    func ethDataAndCotroller() -> (TransactionData, ReviewTransactionViewController) {
-        let data = TransactionData.ethData(status: .readyToSubmit)
+    func ethDataAndCotroller(_ status: TransactionData.Status = .readyToSubmit) ->
+        (TransactionData, ReviewTransactionViewController) {
+        let data = TransactionData.ethData(status: status)
         let vc = controller(for: data)
         return (data, vc)
     }
 
-    func tokenDataAndCotroller() -> (TransactionData, ReviewTransactionViewController) {
-        let data = TransactionData.tokenData(status: .readyToSubmit)
+    func tokenDataAndCotroller(_ status: TransactionData.Status = .readyToSubmit) ->
+        (TransactionData, ReviewTransactionViewController) {
+        let data = TransactionData.tokenData(status: status)
         let vc = controller(for: data)
         return (data, vc)
     }
