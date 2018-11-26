@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1SC-eE-rFU">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,17 +11,17 @@
             <objects>
                 <viewController storyboardIdentifier="VerifiableInputViewController" title="Verifiable Input" id="q7v-OS-MBb" customClass="VerifiableInputViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EuK-Oc-ufe" customClass="BackgroundImageView" customModule="SafeUIKit">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="GAZ-7F-rLE">
-                                <rect key="frame" x="20" y="84" width="335" height="89"/>
+                                <rect key="frame" x="20" y="84" width="560" height="89"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AjT-vi-yPC">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="27"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="27"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yQ-M0-ojb">
-                                                <rect key="frame" x="0.0" y="0.0" width="111.5" height="27"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="186.5" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="Add success rule"/>
                                                 <connections>
@@ -33,7 +29,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zru-Nt-wdf">
-                                                <rect key="frame" x="111.5" y="0.0" width="112" height="27"/>
+                                                <rect key="frame" x="186.5" y="0.0" width="187" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="Add failing rule"/>
                                                 <connections>
@@ -41,7 +37,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEQ-M2-daM">
-                                                <rect key="frame" x="223.5" y="0.0" width="111.5" height="27"/>
+                                                <rect key="frame" x="373.5" y="0.0" width="186.5" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="Add empty rule"/>
                                                 <connections>
@@ -51,7 +47,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKb-Ji-bGy" customClass="VerifiableInput" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="39" width="335" height="50"/>
+                                        <rect key="frame" x="0.0" y="39" width="560" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" placeholder="YES" id="8tP-hL-OSI"/>
@@ -408,11 +404,11 @@
             <objects>
                 <viewController title="ScanBarButtonItem" id="I9N-MP-xci" customClass="ScanButtonViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RFy-Hy-XKq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scanned code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpZ-m9-2s0">
-                                <rect key="frame" x="20" y="84" width="335" height="21"/>
+                                <rect key="frame" x="20" y="84" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -440,36 +436,36 @@
             <objects>
                 <viewController storyboardIdentifier="TextInputsViewController" title="Text Inputs" id="vHI-aF-hxB" customClass="TextInputViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kxU-cz-OaW" customClass="BackgroundImageView" customModule="SafeUIKit">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPh-M2-KRi">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mek-DX-Kev">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gAn-f7-Tw8">
-                                                <rect key="frame" x="16" y="16" width="343" height="210.5"/>
+                                                <rect key="frame" x="16" y="16" width="568" height="210.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simple Text Input" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0F5-F2-jpp">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gCf-6g-KRS">
-                                                        <rect key="frame" x="0.0" y="28.5" width="343" height="30"/>
+                                                        <rect key="frame" x="0.0" y="28.5" width="568" height="30"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qy8-X4-4jz">
-                                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
                                                                 <state key="normal" title="With Icon"/>
                                                                 <connections>
                                                                     <action selector="setIconForSimpleTextInput:" destination="vHI-aF-hxB" eventType="touchUpInside" id="QNP-MC-vsC"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9VB-be-sSC">
-                                                                <rect key="frame" x="175.5" y="0.0" width="167.5" height="30"/>
+                                                                <rect key="frame" x="288" y="0.0" width="280" height="30"/>
                                                                 <state key="normal" title="Without Icon"/>
                                                                 <connections>
                                                                     <action selector="removeIconForSimpleTextInput:" destination="vHI-aF-hxB" eventType="touchUpInside" id="70l-Dg-1xy"/>
@@ -478,10 +474,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="V08-iJ-2tk">
-                                                        <rect key="frame" x="0.0" y="66.5" width="343" height="30"/>
+                                                        <rect key="frame" x="0.0" y="66.5" width="568" height="30"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eP0-be-W2A">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="30"/>
                                                                 <state key="normal" title="With icon from URL"/>
                                                                 <connections>
                                                                     <action selector="setIconFromURL:" destination="vHI-aF-hxB" eventType="touchUpInside" id="vog-nS-xI6"/>
@@ -490,24 +486,24 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hPz-eu-il0">
-                                                        <rect key="frame" x="0.0" y="104.5" width="343" height="30"/>
+                                                        <rect key="frame" x="0.0" y="104.5" width="568" height="30"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qh8-Vu-Kwr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="109" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="184" height="30"/>
                                                                 <state key="normal" title="Dimmed"/>
                                                                 <connections>
                                                                     <action selector="setDimmed:" destination="vHI-aF-hxB" eventType="touchUpInside" id="GOk-68-eT6"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cvi-Ah-yXk">
-                                                                <rect key="frame" x="117" y="0.0" width="109" height="30"/>
+                                                                <rect key="frame" x="192" y="0.0" width="184" height="30"/>
                                                                 <state key="normal" title="White"/>
                                                                 <connections>
                                                                     <action selector="setWhite:" destination="vHI-aF-hxB" eventType="touchUpInside" id="T14-bD-q5l"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ULh-cI-Bol">
-                                                                <rect key="frame" x="234" y="0.0" width="109" height="30"/>
+                                                                <rect key="frame" x="384" y="0.0" width="184" height="30"/>
                                                                 <state key="normal" title="Gray"/>
                                                                 <connections>
                                                                     <action selector="setGray:" destination="vHI-aF-hxB" eventType="touchUpInside" id="to3-Df-3fX"/>
@@ -516,10 +512,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="x5F-H1-tIh">
-                                                        <rect key="frame" x="0.0" y="142.5" width="343" height="30"/>
+                                                        <rect key="frame" x="0.0" y="142.5" width="568" height="30"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxn-Hk-8Tb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="30"/>
                                                                 <state key="normal" title="Resign first responser"/>
                                                                 <connections>
                                                                     <action selector="resignFirstResponder:" destination="vHI-aF-hxB" eventType="touchUpInside" id="kXI-iu-Kat"/>
@@ -528,7 +524,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2uO-xA-jPX" customClass="TextInput" customModule="SafeUIKit">
-                                                        <rect key="frame" x="0.0" y="180.5" width="343" height="30"/>
+                                                        <rect key="frame" x="0.0" y="180.5" width="568" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -577,11 +573,11 @@
             <objects>
                 <viewController title="TransferView" id="zFW-vN-Kky" customClass="TransferViewViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TiT-ak-OFq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IjG-8K-Ln3" customClass="TransferView" customModule="SafeUIKit">
-                                <rect key="frame" x="20" y="84" width="335" height="144"/>
+                                <rect key="frame" x="20" y="84" width="560" height="144"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="144" placeholder="YES" id="zf3-W5-Zce"/>
@@ -609,21 +605,21 @@
             <objects>
                 <viewController title="Identicon" id="5Eb-Xs-Xpt" customClass="IdenticonViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ClP-KF-b12">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="McX-wR-fh4">
-                                <rect key="frame" x="12" y="84" width="351" height="30"/>
+                                <rect key="frame" x="12" y="84" width="576" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNS-24-MXj">
-                                        <rect key="frame" x="0.0" y="0.0" width="171.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="284" height="30"/>
                                         <state key="normal" title="With Shadow"/>
                                         <connections>
                                             <action selector="addShadow:" destination="5Eb-Xs-Xpt" eventType="touchUpInside" id="7I5-gg-Di9"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Zu-qp-byV">
-                                        <rect key="frame" x="179.5" y="0.0" width="171.5" height="30"/>
+                                        <rect key="frame" x="292" y="0.0" width="284" height="30"/>
                                         <state key="normal" title="Without Shadow"/>
                                         <connections>
                                             <action selector="removeShadow:" destination="5Eb-Xs-Xpt" eventType="touchUpInside" id="3sR-vH-kq6"/>
@@ -632,7 +628,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yGw-m7-AFl" customClass="IdenticonView" customModule="SafeUIKit">
-                                <rect key="frame" x="137.5" y="164" width="100" height="100"/>
+                                <rect key="frame" x="250" y="164" width="100" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yGw-m7-AFl" secondAttribute="height" multiplier="1:1" id="eVK-0Z-6Ce"/>
@@ -663,7 +659,7 @@
             <objects>
                 <viewController id="F9S-dv-h3O" customClass="MySegmentViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h0W-tV-tee">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="0DQ-dT-5si"/>
@@ -679,31 +675,31 @@
             <objects>
                 <viewController id="N3U-c6-AuC" customClass="ProgressViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Dc-Yv-z7A">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mik-iB-vQp" customClass="ProgressView" customModule="SafeUIKit">
-                                <rect key="frame" x="16" y="96" width="343" height="8"/>
+                                <rect key="frame" x="16" y="96" width="568" height="8"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="2ke-ts-eBM"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pun-i2-N1a">
-                                <rect key="frame" x="170.5" y="124" width="34" height="30"/>
+                                <rect key="frame" x="283" y="124" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="toggle:" destination="N3U-c6-AuC" eventType="touchUpInside" id="eEB-bp-rKX"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="isError state" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQP-Mv-eC1">
-                                <rect key="frame" x="146" y="223" width="83.5" height="18"/>
+                                <rect key="frame" x="258.5" y="223" width="83.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MWT-Um-tmH" customClass="ProgressView" customModule="SafeUIKit">
-                                <rect key="frame" x="16" y="207" width="343" height="8"/>
+                                <rect key="frame" x="16" y="207" width="568" height="8"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="NtA-Y7-E85"/>
@@ -727,7 +723,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="ProgressView" id="r8C-yi-jWo"/>
                     <connections>
-                        <outlet property="progressView" destination="Mik-iB-vQp" id="W01-IK-Yi9"/>
+                        <outlet property="progressView1" destination="Mik-iB-vQp" id="W01-IK-Yi9"/>
                         <outlet property="progressView2" destination="MWT-Um-tmH" id="fXM-ef-IZB"/>
                     </connections>
                 </viewController>
@@ -740,18 +736,18 @@
             <objects>
                 <viewController storyboardIdentifier="AddressInputViewController" title="AddressInput" id="XmW-mS-7Ci" customClass="AddressInputViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FYr-sW-aG4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1N-qU-qng" customClass="AddressInput" customModule="SafeUIKit">
-                                <rect key="frame" x="20" y="84" width="335" height="50"/>
+                                <rect key="frame" x="20" y="84" width="560" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" placeholder="YES" id="cjD-hJ-ckg"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IB-ma-WBM">
-                                <rect key="frame" x="20" y="157" width="335" height="20.5"/>
+                                <rect key="frame" x="20" y="157" width="560" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -792,31 +788,31 @@
             <objects>
                 <viewController title="TokenInput" id="gfA-rd-lRs" customClass="TokenInputViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mKO-US-DmM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PHS-4q-8uQ">
-                                <rect key="frame" x="20" y="84" width="335" height="126"/>
+                                <rect key="frame" x="20" y="84" width="560" height="126"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FKr-iO-5Ib">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXo-w9-TLr">
-                                                <rect key="frame" x="0.0" y="0.0" width="111.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="186.5" height="30"/>
                                                 <state key="normal" title="18 dec"/>
                                                 <connections>
                                                     <action selector="set18deciamlDigits:" destination="gfA-rd-lRs" eventType="touchUpInside" id="8kH-6K-4v2"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMo-4t-KUO">
-                                                <rect key="frame" x="111.5" y="0.0" width="112" height="30"/>
+                                                <rect key="frame" x="186.5" y="0.0" width="187" height="30"/>
                                                 <state key="normal" title="5 dec"/>
                                                 <connections>
                                                     <action selector="set5deciamlDdigits:" destination="gfA-rd-lRs" eventType="touchUpInside" id="e0O-CH-Nb8"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAX-gS-rn3">
-                                                <rect key="frame" x="223.5" y="0.0" width="111.5" height="30"/>
+                                                <rect key="frame" x="373.5" y="0.0" width="186.5" height="30"/>
                                                 <state key="normal" title="0 dec"/>
                                                 <connections>
                                                     <action selector="set0deciamlDdigits:" destination="gfA-rd-lRs" eventType="touchUpInside" id="uQ8-y0-xls"/>
@@ -825,14 +821,14 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bC-ho-VIN">
-                                        <rect key="frame" x="0.0" y="38" width="335" height="30"/>
+                                        <rect key="frame" x="0.0" y="38" width="560" height="30"/>
                                         <state key="normal" title="Resign"/>
                                         <connections>
                                             <action selector="resign:" destination="gfA-rd-lRs" eventType="touchUpInside" id="9Vf-pq-M5M"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A9s-ym-Vhe" customClass="TokenInput" customModule="SafeUIKit">
-                                        <rect key="frame" x="0.0" y="76" width="335" height="50"/>
+                                        <rect key="frame" x="0.0" y="76" width="560" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" placeholder="YES" id="8U6-DM-5i9"/>
@@ -863,21 +859,21 @@
             <objects>
                 <viewController id="R2l-o7-LoB" customClass="QRCodeInputViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kXF-tP-SdX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sRs-bF-G4P">
-                                <rect key="frame" x="40" y="104" width="295" height="30"/>
+                                <rect key="frame" x="40" y="104" width="520" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEu-9j-uuZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="147.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="30"/>
                                         <state key="normal" title="Enable"/>
                                         <connections>
                                             <action selector="enable:" destination="R2l-o7-LoB" eventType="touchUpInside" id="Ykl-kJ-XKy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyw-gv-oGQ">
-                                        <rect key="frame" x="147.5" y="0.0" width="147.5" height="30"/>
+                                        <rect key="frame" x="260" y="0.0" width="260" height="30"/>
                                         <state key="normal" title="Disable"/>
                                         <connections>
                                             <action selector="disable:" destination="R2l-o7-LoB" eventType="touchUpInside" id="IYV-tf-p6F"/>
@@ -886,7 +882,7 @@
                                 </subviews>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qwC-ik-yxe" customClass="QRCodeInput" customModule="SafeUIKit">
-                                <rect key="frame" x="40" y="174" width="295" height="30"/>
+                                <rect key="frame" x="40" y="174" width="520" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -917,7 +913,7 @@
             <objects>
                 <viewController title="QRCodeView" id="b3o-ac-0tl" customClass="QRCodeViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fOq-oa-Yuu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Encoded string:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maJ-3k-xDa">
@@ -927,13 +923,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qfa-fu-h3h">
-                                <rect key="frame" x="12" y="117" width="351" height="30"/>
+                                <rect key="frame" x="12" y="117" width="576" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xko-XR-r5S" customClass="QRCodeView" customModule="SafeUIKit">
-                                <rect key="frame" x="127.5" y="197" width="120" height="120"/>
+                                <rect key="frame" x="240" y="197" width="120" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="NM2-uh-KLq"/>
@@ -968,32 +964,32 @@
             <objects>
                 <viewController title="TransactionConfirmationView" id="igh-jp-e1w" customClass="TransactionConfirmationViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ju1-gw-hCw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVz-Ob-JHP" customClass="TransactionConfirmationView" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="84" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="84" width="600" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" placeholder="YES" id="wug-CK-pCU"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uWy-Ve-WPZ" customClass="TransactionConfirmationView" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="264" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="264" width="600" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" placeholder="YES" id="J8W-vA-z4t"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egQ-qk-C8Z">
-                                <rect key="frame" x="160" y="192" width="55" height="30"/>
+                                <rect key="frame" x="272.5" y="192" width="55" height="30"/>
                                 <state key="normal" title="Confirm"/>
                                 <connections>
                                     <action selector="confirm:" destination="igh-jp-e1w" eventType="touchUpInside" id="PzU-AG-vdI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BQ-se-vef">
-                                <rect key="frame" x="166" y="372" width="43" height="30"/>
+                                <rect key="frame" x="278.5" y="372" width="43" height="30"/>
                                 <state key="normal" title="Reject"/>
                                 <connections>
                                     <action selector="reject:" destination="igh-jp-e1w" eventType="touchUpInside" id="vqN-Ke-47t"/>
@@ -1030,11 +1026,11 @@
             <objects>
                 <viewController id="gs4-Ex-QRT" customClass="TokenDoubleInputViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pSs-ff-zPV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="46h-Wn-I8M">
-                                <rect key="frame" x="20" y="84" width="335" height="120"/>
+                                <rect key="frame" x="20" y="84" width="560" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeY-fa-Dzq">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
@@ -1067,7 +1063,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbp-PS-dN6" customClass="TokenDoubleInput" customModule="SafeUIKit">
-                                <rect key="frame" x="20" y="224" width="335" height="72"/>
+                                <rect key="frame" x="20" y="224" width="560" height="72"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" placeholder="YES" id="Ltr-Yf-nJT"/>
@@ -1099,7 +1095,7 @@
             <objects>
                 <viewController storyboardIdentifier="TermsAndConditionsDemoViewController" id="52o-tk-rih" customClass="TransactionReviewDemoViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7eB-EM-1J7" customClass="BackgroundImageView" customModule="SafeUIKit">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Av1-ic-blc"/>
@@ -1132,25 +1128,25 @@
             <objects>
                 <viewController title="TransactionFeeView" id="tc6-y7-y5y" customClass="TransactionFeeViewViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="64e-hp-nqM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rnr-iK-dAe" customClass="TransactionFeeView" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="84" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="84" width="600" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" placeholder="YES" id="wLL-Uy-0cN"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4OT-gH-5la" customClass="TransactionFeeView" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="184" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="184" width="600" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" placeholder="YES" id="CFl-7s-346"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBQ-Nx-WoV" customClass="TransactionFeeView" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="284" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="284" width="600" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" placeholder="YES" id="qcD-sR-lkT"/>
@@ -1186,18 +1182,18 @@
             <objects>
                 <viewController title="TransactionHeaderView" id="Ji7-jT-Hf7" customClass="TransactionHeaderViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hb0-Cc-fxJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhg-TO-Kr0" customClass="TransactionHeaderView" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="84" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="84" width="600" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" placeholder="YES" id="sTC-GE-p7k"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Kh-u8-x0W" customClass="TransactionHeaderView" customModule="SafeUIKit">
-                                <rect key="frame" x="0.0" y="159" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="159" width="600" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" placeholder="YES" id="tJG-vG-lBb"/>

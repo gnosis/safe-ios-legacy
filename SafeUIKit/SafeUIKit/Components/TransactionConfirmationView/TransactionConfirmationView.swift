@@ -81,7 +81,7 @@ public class TransactionConfirmationView: BaseCustomView {
         progressView.progress = 1.0
         statusLabel.text = Strings.confirmed
         browserExtensionImageView.image = nil
-        browserExtensionLabel.text = " "
+        browserExtensionLabel.text = nil
     }
 
     private func setRejected() {
