@@ -61,15 +61,21 @@ final class ReviewTransactionViewController: UITableViewController {
     // MARK: Table view cell creation
 
     private func createCells() {
-        cells[IndexPath(row: 0, section: 0)] = headerCell()
-        cells[IndexPath(row: 1, section: 0)] = transferViewCell()
-        cells[IndexPath(row: 2, section: 0)] = confirmationCell()
+        var row: Int = 0
+        cells[IndexPath(row: next(&row), section: 0)] = headerCell()
+        cells[IndexPath(row: next(&row), section: 0)] = transferViewCell()
         if tx.amountTokenData.isEther {
-           cells[IndexPath(row: 3, section: 0)] = etherTransactionFeeCell()
+           cells[IndexPath(row: next(&row), section: 0)] = etherTransactionFeeCell()
         } else {
-            cells[IndexPath(row: 3, section: 0)] = tokenBalanceChangeCell()
-            cells[IndexPath(row: 4, section: 0)] = etherFeeBalanceChangeCell()
+            cells[IndexPath(row: next(&row), section: 0)] = tokenBalanceChangeCell()
+            cells[IndexPath(row: next(&row), section: 0)] = etherFeeBalanceChangeCell()
         }
+        cells[IndexPath(row: next(&row), section: 0)] = confirmationCell()
+    }
+
+    private func next(_ index: inout Int) -> Int {
+        index += 1
+        return index - 1
     }
 
     private func headerCell() -> UITableViewCell {

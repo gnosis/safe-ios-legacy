@@ -38,7 +38,7 @@ class ReviewTransactionViewControllerTests: XCTestCase {
         let (data, vc) = ethDataAndCotroller()
         XCTAssertEqual(vc.cellCount(), 4)
 
-        let cell = vc.cellForRow(3) as! TransactionFeeCell
+        let cell = vc.cellForRow(2) as! TransactionFeeCell
         let balance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address))!
 
         XCTAssertEqual(cell.transactionFeeView.currentBalance?.balance,
@@ -53,7 +53,7 @@ class ReviewTransactionViewControllerTests: XCTestCase {
         let (data, vc) = tokenDataAndCotroller()
         XCTAssertEqual(vc.cellCount(), 5)
 
-        let cellOne = vc.cellForRow(3) as! TransactionFeeCell
+        let cellOne = vc.cellForRow(2) as! TransactionFeeCell
         let tokenBalance = service.accountBalance(tokenID: BaseID(data.amountTokenData.address))!
 
         XCTAssertEqual(cellOne.transactionFeeView.currentBalance?.balance,
@@ -62,7 +62,7 @@ class ReviewTransactionViewControllerTests: XCTestCase {
         XCTAssertEqual(cellOne.transactionFeeView.resultingBalance?.balance,
                        tokenBalance - data.amountTokenData.balance!)
 
-        let cellTwo = vc.cellForRow(4) as! TransactionFeeCell
+        let cellTwo = vc.cellForRow(3) as! TransactionFeeCell
         let feeBalance = service.accountBalance(tokenID: BaseID(data.feeTokenData.address))!
 
         XCTAssertNil(cellTwo.transactionFeeView.currentBalance?.balance)
@@ -74,15 +74,15 @@ class ReviewTransactionViewControllerTests: XCTestCase {
 
     func test_whenBrowserExtensionIsNotPaired_thenHidesTransactionReviewCell() {
         let (_, vc) = ethDataAndCotroller()
-        XCTAssertTrue(vc.cellForRow(2) is TransactionConfirmationCell)
-        XCTAssertEqual(vc.cellHeight(2), 0)
+        XCTAssertTrue(vc.cellForRow(3) is TransactionConfirmationCell)
+        XCTAssertEqual(vc.cellHeight(3), 0)
     }
 
     func test_whenBrowserExtensionIsPaired_thenShowsTransactionReviewCell() {
         let (_, vc) = ethDataAndCotroller()
         service.addOwner(address: "test", type: .browserExtension)
-        XCTAssertTrue(vc.cellForRow(2) is TransactionConfirmationCell)
-        XCTAssertNotEqual(vc.cellHeight(2), 0)
+        XCTAssertTrue(vc.cellForRow(3) is TransactionConfirmationCell)
+        XCTAssertNotEqual(vc.cellHeight(3), 0)
     }
 
 }
