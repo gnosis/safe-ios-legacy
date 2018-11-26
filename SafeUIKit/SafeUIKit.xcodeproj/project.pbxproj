@@ -20,7 +20,6 @@
 		0A0974EC20480E45005753DF /* SafeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* SafeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
 		0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */; };
-		0A321BBE20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A321BBD20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib */; };
 		0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */; };
 		0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */; };
 		0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */; };
@@ -354,7 +353,6 @@
 		0A2972C8205A89C500CEC7D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = SafeUIKit/Base.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsGroupHeaderView.swift; sourceTree = "<group>"; };
-		0A321BBD20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionsGroupHeaderView.xib; sourceTree = "<group>"; };
 		0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenFooterView.swift; sourceTree = "<group>"; };
 		0A321BCD20CED58A000B35E6 /* AddTokenFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTokenFooterView.xib; sourceTree = "<group>"; };
 		0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupSafeFlowCoordinatorTests.swift; sourceTree = "<group>"; };
@@ -821,7 +819,7 @@
 				0AF8D53D20D01002001E8423 /* SegmentBar */,
 				0A4EEA6B20D11109005CDAC0 /* Menu */,
 				0AF8D53A20D00FDB001E8423 /* Tokens */,
-				0AF8D53C20D00FF6001E8423 /* Transactions */,
+				0AF8D53C20D00FF6001E8423 /* TransactionList */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
@@ -829,12 +827,12 @@
 		0A4EEA6B20D11109005CDAC0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
 				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
 				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
+				55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */,
 				0A4EEA6720D107BF005CDAC0 /* SafeTableViewCell.swift */,
 				55625213214A601900F569EE /* SafeTableViewCellTests.swift */,
-				55DEBC0B214A85E10017CD4B /* SafeQRCodeTableViewCell.swift */,
-				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -1087,17 +1085,16 @@
 			path = Tokens;
 			sourceTree = "<group>";
 		};
-		0AF8D53C20D00FF6001E8423 /* Transactions */ = {
+		0AF8D53C20D00FF6001E8423 /* TransactionList */ = {
 			isa = PBXGroup;
 			children = (
+				0A8274E721A432DD00A73D32 /* TransactionsEmptyView.swift */,
 				0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */,
-				0A321BBD20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib */,
 				0A4DF82E20CE9D5B0095C00D /* TransactionsTableViewController.swift */,
 				0AF8D53820D00E56001E8423 /* TransactionsTableViewControllerTests.swift */,
 				0A4DF83020CE9D950095C00D /* TransactionTableViewCell.swift */,
-				0A8274E721A432DD00A73D32 /* TransactionsEmptyView.swift */,
 			);
-			path = Transactions;
+			path = TransactionList;
 			sourceTree = "<group>";
 		};
 		0AF8D53D20D01002001E8423 /* SegmentBar */ = {
@@ -1753,7 +1750,6 @@
 				0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */,
 				0A334E3E209C8E3800ABC6AE /* MasterPassword.storyboard in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
-				0A321BBE20CEC7CE000B35E6 /* TransactionsGroupHeaderView.xib in Resources */,
 				0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */,
 				0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */,
 				0A334E2F209C8E3800ABC6AE /* NewSafe.storyboard in Resources */,

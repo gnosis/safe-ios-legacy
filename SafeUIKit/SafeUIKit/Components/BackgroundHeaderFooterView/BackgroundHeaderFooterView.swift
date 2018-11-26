@@ -20,7 +20,7 @@ open class BackgroundHeaderFooterView: UITableViewHeaderFooterView {
         commonInit()
     }
 
-    private func commonInit() {
+    open func commonInit() {
         backgroundView = UIView()
         backgroundView?.backgroundColor = .clear
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)

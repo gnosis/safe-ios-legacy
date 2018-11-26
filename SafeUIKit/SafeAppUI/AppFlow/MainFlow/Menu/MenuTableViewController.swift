@@ -224,7 +224,8 @@ final class MenuTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = BackgroundHeaderFooterView()
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "BackgroundHeaderFooterView")
+            as! BackgroundHeaderFooterView
         view.label.text = menuItems[section].title.uppercased()
         return view
     }

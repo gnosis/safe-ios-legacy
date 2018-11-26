@@ -15,7 +15,6 @@ public class TransactionsTableViewController: UITableViewController {
     private var groups = [TransactionGroupData]()
     public weak var delegate: TransactionsTableViewControllerDelegate?
     let emptyView = TransactionsEmptyView()
-    let headerHeight: CGFloat = 34
     let rowHeight: CGFloat = 70
 
     public static func create() -> TransactionsTableViewController {
@@ -24,10 +23,9 @@ public class TransactionsTableViewController: UITableViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "TransactionsGroupHeaderView",
-                                 bundle: Bundle(for: TransactionsGroupHeaderView.self)),
+        tableView.register(TransactionsGroupHeaderView.self,
                            forHeaderFooterViewReuseIdentifier: "TransactionsGroupHeaderView")
-        tableView.sectionHeaderHeight = headerHeight
+        tableView.sectionHeaderHeight = TransactionsGroupHeaderView.height
         tableView.estimatedSectionHeaderHeight = tableView.sectionHeaderHeight
         tableView.rowHeight = rowHeight
         tableView.estimatedRowHeight = tableView.rowHeight

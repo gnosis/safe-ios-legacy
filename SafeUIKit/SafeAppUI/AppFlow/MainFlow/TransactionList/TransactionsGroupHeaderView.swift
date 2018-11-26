@@ -4,8 +4,9 @@
 
 import Foundation
 import MultisigWalletApplication
+import SafeUIKit
 
-class TransactionsGroupHeaderView: UITableViewHeaderFooterView {
+class TransactionsGroupHeaderView: BackgroundHeaderFooterView {
 
     internal enum Strings {
         static let pending = LocalizedString("transactions.group.pending_outgoing",
@@ -14,13 +15,8 @@ class TransactionsGroupHeaderView: UITableViewHeaderFooterView {
         static let past = LocalizedString("transactions.group.past", comment: "Past transactions group header")
     }
 
-    @IBOutlet weak var headerLabel: UILabel!
-
     func configure(group: TransactionGroupData) {
-        headerLabel.text = name(from: group)?.uppercased()
-        headerLabel.textColor = .white
-        backgroundView = UIView()
-        backgroundView?.backgroundColor = .clear
+        label.text = name(from: group)?.uppercased()
     }
 
     private func name(from group: TransactionGroupData) -> String? {
