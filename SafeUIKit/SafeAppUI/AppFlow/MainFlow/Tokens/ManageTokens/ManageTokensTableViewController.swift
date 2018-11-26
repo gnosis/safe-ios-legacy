@@ -46,8 +46,6 @@ final class ManageTokensTableViewController: UITableViewController {
         let bundle = Bundle(for: TokenBalanceTableViewCell.self)
         tableView.register(UINib(nibName: "TokenBalanceTableViewCell", bundle: bundle),
                            forCellReuseIdentifier: "TokenBalanceTableViewCell")
-        tableView.register(ShadowFooterView.self, forHeaderFooterViewReuseIdentifier: "ShadowFooterView")
-
         tableView.estimatedRowHeight = TokenBalanceTableViewCell.height
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundView = BackgroundImageView(frame: tableView.frame)
@@ -112,14 +110,6 @@ final class ManageTokensTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return Strings.hide
-    }
-
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "ShadowFooterView")
-    }
-
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return ShadowFooterView.height
     }
 
 }

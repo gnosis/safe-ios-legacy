@@ -16,7 +16,6 @@ public class TransactionsTableViewController: UITableViewController {
     public weak var delegate: TransactionsTableViewControllerDelegate?
     let emptyView = TransactionsEmptyView()
     let headerHeight: CGFloat = 34
-    let footerHeight: CGFloat = ShadowFooterView.height
     let rowHeight: CGFloat = 70
 
     public static func create() -> TransactionsTableViewController {
@@ -28,9 +27,7 @@ public class TransactionsTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "TransactionsGroupHeaderView",
                                  bundle: Bundle(for: TransactionsGroupHeaderView.self)),
                            forHeaderFooterViewReuseIdentifier: "TransactionsGroupHeaderView")
-        tableView.register(ShadowFooterView.self, forHeaderFooterViewReuseIdentifier: "ShadowFooterView")
         tableView.sectionHeaderHeight = headerHeight
-        tableView.sectionFooterHeight = footerHeight
         tableView.estimatedSectionHeaderHeight = tableView.sectionHeaderHeight
         tableView.rowHeight = rowHeight
         tableView.estimatedRowHeight = tableView.rowHeight
@@ -72,15 +69,6 @@ public class TransactionsTableViewController: UITableViewController {
             as! TransactionsGroupHeaderView
         view.configure(group: groups[section])
         return view
-    }
-
-    public override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard isLastSection(section) else { return nil }
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "ShadowFooterView")
-    }
-
-    private func isLastSection(_ section: Int) -> Bool {
-        return section == groups.count - 1
     }
 
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
