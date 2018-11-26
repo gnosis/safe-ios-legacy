@@ -72,6 +72,19 @@ class ReviewTransactionViewControllerTests: XCTestCase {
                        feeBalance - data.feeTokenData.balance!)
     }
 
+    func test_whenBrowserExtensionIsNotPaired_thenHidesTransactionReviewCell() {
+        let (_, vc) = ethDataAndCotroller()
+        XCTAssertTrue(vc.cellForRow(2) is TransactionConfirmationCell)
+        XCTAssertEqual(vc.cellHeight(2), 0)
+    }
+
+    func test_whenBrowserExtensionIsPaired_thenShowsTransactionReviewCell() {
+        let (_, vc) = ethDataAndCotroller()
+        service.addOwner(address: "test", type: .browserExtension)
+        XCTAssertTrue(vc.cellForRow(2) is TransactionConfirmationCell)
+        XCTAssertNotEqual(vc.cellHeight(2), 0)
+    }
+
 }
 
 private extension ReviewTransactionViewControllerTests {
@@ -102,6 +115,10 @@ private extension ReviewTransactionViewController {
 
     func cellForRow(_ row: Int) -> UITableViewCell {
         return tableView(tableView, cellForRowAt: IndexPath(row: row, section: 0))
+    }
+
+    func cellHeight(_ row: Int) -> CGFloat {
+        return tableView(tableView, heightForRowAt: IndexPath(row: row, section: 0))
     }
 
     func cellCount() -> Int {

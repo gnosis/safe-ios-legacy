@@ -41,9 +41,18 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#426bf2"></span>
   /// Alpha: 100% <br/> (0x426bf2ff)
   static let lightishBlue = ColorName(rgbaValue: 0x426bf2ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e4e8f1"></span>
+  /// Alpha: 100% <br/> (0xe4e8f1ff)
+  static let paleGrey = ColorName(rgbaValue: 0xe4e8f1ff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f4f5f9"></span>
   /// Alpha: 100% <br/> (0xf4f5f9ff)
   static let paleGreyThree = ColorName(rgbaValue: 0xf4f5f9ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f02525"></span>
+  /// Alpha: 100% <br/> (0xf02525ff)
+  static let tomato = ColorName(rgbaValue: 0xf02525ff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f02525"></span>
+  /// Alpha: 15% <br/> (0xf0252527)
+  static let tomato15 = ColorName(rgbaValue: 0xf0252527)
 }
 // swiftlint:enable identifier_name line_length type_body_length
 

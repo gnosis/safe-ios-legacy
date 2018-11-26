@@ -3,23 +3,25 @@
 //
 
 import UIKit
-import SafeAppUI
+import SafeUIKit
 
 class ProgressViewController: UIViewController {
 
-    @IBOutlet weak var progressView: ProgressView!
+    @IBOutlet weak var progressView1: ProgressView!
+    @IBOutlet weak var progressView2: ProgressView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        progressView.isIndeterminate = true
+        progressView1.isIndeterminate = true
+        progressView2.isError = true
     }
 
     @IBAction func toggle(_ sender: UIButton) {
-        if progressView.isAnimating {
-            progressView.stopAnimating()
+        if progressView1.isAnimating {
+            progressView1.stopAnimating()
             sender.setTitle("Start", for: .normal)
         } else {
-            progressView.beginAnimating()
+            progressView1.beginAnimating()
             sender.setTitle("Stop", for: .normal)
         }
     }
