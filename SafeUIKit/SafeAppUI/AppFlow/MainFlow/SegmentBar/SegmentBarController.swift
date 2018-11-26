@@ -36,7 +36,6 @@ open class SegmentBarController: UIViewController {
         super.viewDidLoad()
         addStackView()
         addSegmentBar()
-        addShadow()
         addContentView()
         update()
     }
@@ -72,18 +71,6 @@ open class SegmentBarController: UIViewController {
             [
                 contentView.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
                 contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
-            ])
-    }
-
-    private func addShadow() {
-        let shadowView = ShadowFooterView()
-        shadowView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(shadowView)
-        NSLayoutConstraint.activate([
-            shadowView.topAnchor.constraint(equalTo: segmentBar.bottomAnchor),
-            shadowView.leadingAnchor.constraint(equalTo: segmentBar.leadingAnchor),
-            shadowView.trailingAnchor.constraint(equalTo: segmentBar.trailingAnchor),
-            shadowView.heightAnchor.constraint(equalToConstant: ShadowFooterView.height)
             ])
     }
 

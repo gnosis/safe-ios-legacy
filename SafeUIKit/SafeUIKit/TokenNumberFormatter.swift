@@ -44,7 +44,7 @@ public final class TokenNumberFormatter {
         var fraction = str.count <= decimals ? str.paddingWithLeadingZeroes(to: decimals) : String(str.suffix(decimals))
         fraction = fraction.removingTrailingZeroes
         if let displayedDecimals = displayedDecimals, fraction.count > displayedDecimals {
-            fraction = String(fraction.prefix(displayedDecimals))
+            fraction = "\(fraction.prefix(displayedDecimals - 1))~"
         }
         addFractionGrouping(fraction: &fraction)
         let adjustedFraction = (fraction.isEmpty ? "00" : fraction) + (fraction.count == 1 ? "0" : "")

@@ -75,7 +75,12 @@ public class TransactionsTableViewController: UITableViewController {
     }
 
     public override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard isLastSection(section) else { return nil }
         return tableView.dequeueReusableHeaderFooterView(withIdentifier: "ShadowFooterView")
+    }
+
+    private func isLastSection(_ section: Int) -> Bool {
+        return section == groups.count - 1
     }
 
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
