@@ -30,11 +30,12 @@ public class EthereumAddressLabel: BaseCustomLabel {
     }
 
     public override func update() {
-        if let address = address {
-            text = [formatter.string(from: address), suffix].compactMap { $0 }.joined(separator: " ")
-        } else {
-            text = nil
-        }
+        text = formattedText()
+    }
+
+    private func formattedText() -> String? {
+        guard let address = address else { return nil }
+        return [formatter.string(from: address), suffix].compactMap { $0 }.joined(separator: " ")
     }
 
 }

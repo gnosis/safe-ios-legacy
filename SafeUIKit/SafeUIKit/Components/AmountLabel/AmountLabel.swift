@@ -23,13 +23,14 @@ public class AmountLabel: BaseCustomLabel {
     }
 
     public override func update() {
-        guard let amount = amount else {
-            text = nil
-            return
-        }
+        text = formattedText()
+    }
+
+    private func formattedText() -> String? {
+        guard let amount = amount else { return nil }
         formatter.tokenCode = amount.code
         formatter.decimals = amount.decimals
-        text = formatter.string(from: amount.balance ?? 0)
+        return formatter.string(from: amount.balance ?? 0)
     }
 
 }
