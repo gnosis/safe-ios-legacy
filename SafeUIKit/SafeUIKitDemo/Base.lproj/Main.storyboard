@@ -368,6 +368,26 @@
                                             <segue destination="Ji7-jT-Hf7" kind="show" id="PTZ-Gu-PvW"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Labels" textLabel="KXH-Rt-51Q" style="IBUITableViewCellStyleDefault" id="KLB-hM-2DX">
+                                        <rect key="frame" x="0.0" y="616" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KLB-hM-2DX" id="VG0-eD-UpG">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Labels" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KXH-Rt-51Q">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="MlV-rm-dgs" kind="show" id="pkl-Wz-jde"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -695,6 +715,111 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lTh-Tr-8Fg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1558" y="1243"/>
+        </scene>
+        <!--Labels-->
+        <scene sceneID="1I8-qz-Zxc">
+            <objects>
+                <viewController id="MlV-rm-dgs" customClass="LabelsViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pf5-AX-yry">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="oVf-05-5wl">
+                                <rect key="frame" x="34" y="109" width="307" height="365.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PE5-T5-wNt">
+                                        <rect key="frame" x="0.0" y="0.0" width="63.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="few chars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54j-mA-VPv" customClass="AmountLabel" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="34.5" width="74.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="exact chars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDH-eM-aWk" customClass="AmountLabel" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="69" width="88.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more chars negative" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9F8-Yd-9Me" customClass="AmountLabel" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="103.5" width="155.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5i-hL-So3">
+                                        <rect key="frame" x="0.0" y="138" width="66" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="full" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGk-nD-Ed9" customClass="EthereumAddressLabel" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="172.5" width="23.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="full attributed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IG1-4G-8il" customClass="EthereumAddressLabel" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="207" width="103" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="truncated head" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvo-23-BxR" customClass="EthereumAddressLabel" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="241.5" width="117" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="truncated tail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RhN-FG-Xog" customClass="EthereumAddressLabel" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="276" width="101" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="truncated middle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2h-K0-kXk" customClass="EthereumAddressLabel" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="310.5" width="130.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="truncated head tail split" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNk-5K-uia" customClass="EthereumAddressLabel" customModule="SafeUIKit">
+                                        <rect key="frame" x="0.0" y="345" width="180" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oVf-05-5wl" firstAttribute="top" secondItem="6eV-kA-eZs" secondAttribute="top" constant="45" id="cHh-rU-mES"/>
+                            <constraint firstItem="6eV-kA-eZs" firstAttribute="trailing" secondItem="oVf-05-5wl" secondAttribute="trailing" constant="34" id="jZL-58-p70"/>
+                            <constraint firstItem="oVf-05-5wl" firstAttribute="leading" secondItem="6eV-kA-eZs" secondAttribute="leading" constant="34" id="kfv-Cd-KNQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6eV-kA-eZs"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Labels" id="6QQ-W1-KNk"/>
+                    <connections>
+                        <outlet property="attributedAddressLabel" destination="IG1-4G-8il" id="gqX-bU-V2g"/>
+                        <outlet property="exactCharsLabel" destination="JDH-eM-aWk" id="zNl-Ol-2sF"/>
+                        <outlet property="fewCharsLabel" destination="54j-mA-VPv" id="9gY-bA-lKb"/>
+                        <outlet property="fullAddressLabel" destination="wGk-nD-Ed9" id="cdM-uZ-Wa7"/>
+                        <outlet property="moreCharsLabel" destination="9F8-Yd-9Me" id="oI6-a8-53S"/>
+                        <outlet property="truncatedHeadAddressLabel" destination="tvo-23-BxR" id="jwL-cb-IzL"/>
+                        <outlet property="truncatedHeadTailSplitAddressLabel" destination="kNk-5K-uia" id="ThM-z9-lIw"/>
+                        <outlet property="truncatedMiddleAddressLabel" destination="D2h-K0-kXk" id="WV0-jp-6pP"/>
+                        <outlet property="truncatedTailAddressLabel" destination="RhN-FG-Xog" id="qHd-f2-uZJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o6P-cc-dSn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2430" y="1172"/>
         </scene>
         <!--AddressInput-->
         <scene sceneID="fbq-nw-uib">

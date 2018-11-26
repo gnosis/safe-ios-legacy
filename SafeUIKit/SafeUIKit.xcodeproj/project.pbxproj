@@ -125,6 +125,11 @@
 		0A9BA3C9207F6B6A001DC22F /* CheckmarkButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C8207F6B6A001DC22F /* CheckmarkButtonTests.swift */; };
 		0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3CA207F6BB6001DC22F /* Assets.swift */; };
 		0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D058A20CEB5C3007DED3B /* Colors.swift */; };
+		0ABA591821AC07D0009D249F /* AmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591721AC07D0009D249F /* AmountLabel.swift */; };
+		0ABA591A21AC07E8009D249F /* EthereumAddressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591921AC07E8009D249F /* EthereumAddressLabel.swift */; };
+		0ABA591F21AC0856009D249F /* AmountLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591E21AC0856009D249F /* AmountLabelTests.swift */; };
+		0ABA592121AC09CC009D249F /* EthereumAddressLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA592021AC09CC009D249F /* EthereumAddressLabelTests.swift */; };
+		0ABA592321AC0B6E009D249F /* LabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA592221AC0B6E009D249F /* LabelsViewController.swift */; };
 		0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */; };
 		0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */; };
 		0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */; };
@@ -464,6 +469,11 @@
 		0AB0B56C21638A2400FB2435 /* SafeUIKitDemo.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = SafeUIKitDemo.xcfilelist; sourceTree = "<group>"; };
 		0AB0B56E21638AEC00FB2435 /* SafeUIKit.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SafeUIKit.xcconfig; sourceTree = "<group>"; };
 		0AB0B56F21638CBF00FB2435 /* CommonConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CommonConfig.xcconfig; sourceTree = "<group>"; };
+		0ABA591721AC07D0009D249F /* AmountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountLabel.swift; sourceTree = "<group>"; };
+		0ABA591921AC07E8009D249F /* EthereumAddressLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressLabel.swift; sourceTree = "<group>"; };
+		0ABA591E21AC0856009D249F /* AmountLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountLabelTests.swift; sourceTree = "<group>"; };
+		0ABA592021AC09CC009D249F /* EthereumAddressLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressLabelTests.swift; sourceTree = "<group>"; };
+		0ABA592221AC0B6E009D249F /* LabelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsViewController.swift; sourceTree = "<group>"; };
 		0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsDemoViewController.swift; sourceTree = "<group>"; };
 		0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -925,6 +935,7 @@
 				55E8AFE8219B41A7002930A1 /* TransferViewViewController.swift */,
 				55E8AFFC219C4A45002930A1 /* TransactionFeeViewViewController.swift */,
 				55E8B005219EC213002930A1 /* TransactionHeaderViewController.swift */,
+				0ABA592221AC0B6E009D249F /* LabelsViewController.swift */,
 			);
 			path = SafeUIKitDemo;
 			sourceTree = "<group>";
@@ -995,6 +1006,24 @@
 				0AB0B56B2163898E00FB2435 /* SafeUIKitDemoConfig.xcconfig */,
 			);
 			name = config;
+			sourceTree = "<group>";
+		};
+		0ABA591B21AC0802009D249F /* AmountLabel */ = {
+			isa = PBXGroup;
+			children = (
+				0ABA591721AC07D0009D249F /* AmountLabel.swift */,
+				0ABA591E21AC0856009D249F /* AmountLabelTests.swift */,
+			);
+			path = AmountLabel;
+			sourceTree = "<group>";
+		};
+		0ABA591D21AC0813009D249F /* EthereumAddressLabel */ = {
+			isa = PBXGroup;
+			children = (
+				0ABA591921AC07E8009D249F /* EthereumAddressLabel.swift */,
+				0ABA592021AC09CC009D249F /* EthereumAddressLabelTests.swift */,
+			);
+			path = EthereumAddressLabel;
 			sourceTree = "<group>";
 		};
 		0AD9989C20D3CC7800E6F3CA /* CommonTransactionViews */ = {
@@ -1119,10 +1148,12 @@
 			isa = PBXGroup;
 			children = (
 				5541586621748C0200A3CEA4 /* AddressInput */,
+				0ABA591B21AC0802009D249F /* AmountLabel */,
 				55DEBC11214AA59F0017CD4B /* BackgroundHeaderFooterView */,
 				5524735721428F2500A77557 /* BackgroundImageView */,
 				5524735521428E9000A77557 /* BigButton */,
 				55BAB0E221789285007539CF /* BorderedButton */,
+				0ABA591D21AC0813009D249F /* EthereumAddressLabel */,
 				5524735821428F5000A77557 /* H1Label */,
 				5524735921428FA300A77557 /* IdenticonView */,
 				5524735421428E7600A77557 /* QRCodeInput */,
@@ -1837,6 +1868,7 @@
 				555B0E6720CA83DF00424CEE /* TokenDoubleInputViewController.swift in Sources */,
 				556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */,
 				0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */,
+				0ABA592321AC0B6E009D249F /* LabelsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1876,6 +1908,7 @@
 				5562E64E216E1C0F00C54D57 /* RuleLabel.swift in Sources */,
 				55DEBC13214AA6660017CD4B /* BackgroundHeaderFooterView.swift in Sources */,
 				555EB719216DF15700E06553 /* VerifiableInput.swift in Sources */,
+				0ABA591821AC07D0009D249F /* AmountLabel.swift in Sources */,
 				5527A808208E357B00AF3A50 /* ScannerViewController.swift in Sources */,
 				0AF9EBC521A6C4A700C028B3 /* ContainerCell.swift in Sources */,
 				0AD1D1E621A8710500941EA1 /* BaseCustomLabel.swift in Sources */,
@@ -1884,6 +1917,7 @@
 				5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */,
 				550E7CE121708FBC0032DE6C /* TokenBounds.swift in Sources */,
 				55E8B009219EC29A002930A1 /* TransactionHeaderView.swift in Sources */,
+				0ABA591A21AC07E8009D249F /* EthereumAddressLabel.swift in Sources */,
 				55E8AFE3219B3521002930A1 /* TransferView.swift in Sources */,
 				555EB6F0216CA5CF00E06553 /* TextInput.swift in Sources */,
 				550954EA20C9590000F5F25F /* TokenDoubleInput.swift in Sources */,
@@ -1910,6 +1944,7 @@
 				5539C14021A55EA5006BF834 /* TransactionFeeCellTests.swift in Sources */,
 				55C3C6272175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift in Sources */,
 				0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */,
+				0ABA591F21AC0856009D249F /* AmountLabelTests.swift in Sources */,
 				5506395E20D17CB9000F2A82 /* ApproximateCurrencyFormatterTests.swift in Sources */,
 				552473642142AD6900A77557 /* IdenticonViewTests.swift in Sources */,
 				55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */,
@@ -1922,6 +1957,7 @@
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
 				55E8AFE5219B353C002930A1 /* TransferViewTests.swift in Sources */,
 				55BAB0E8217894F8007539CF /* BigBorderedButtonTests.swift in Sources */,
+				0ABA592121AC09CC009D249F /* EthereumAddressLabelTests.swift in Sources */,
 				55D0EC60216F6F8B003D9A53 /* TokenInputTests.swift in Sources */,
 				550954EE20C9592900F5F25F /* TokenDoubleInputTests.swift in Sources */,
 				556251D52146721A00F569EE /* TokenNumberFormatterTests.swift in Sources */,
