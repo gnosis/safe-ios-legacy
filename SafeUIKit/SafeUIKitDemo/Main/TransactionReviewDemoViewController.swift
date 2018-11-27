@@ -7,8 +7,9 @@ import SafeAppUI
 import MultisigWalletApplication
 import Common
 
-class TransactionReviewDemoViewController: UIViewController {
+class TransactionReviewDemoViewController: BaseDemoViewController {
 
+    override var demoController: UIViewController { return controller }
     var controller: TransactionReviewViewController!
     var walletService = MockWalletApplicationService()
 
@@ -20,13 +21,6 @@ class TransactionReviewDemoViewController: UIViewController {
         walletService.update(account: ethID, newBalance: 90_000_000_000_000_000)
         controller = .create()
         controller.transactionID = "TxID"
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        DispatchQueue.main.async {
-            self.present(self.controller, animated: true, completion: nil)
-        }
     }
 
 }

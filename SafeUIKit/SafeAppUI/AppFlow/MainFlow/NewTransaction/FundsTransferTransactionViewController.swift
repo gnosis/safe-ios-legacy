@@ -10,7 +10,7 @@ protocol FundsTransferTransactionViewControllerDelegate: class {
     func didCreateDraftTransaction(id: String)
 }
 
-class FundsTransferTransactionViewController: UIViewController {
+public class FundsTransferTransactionViewController: UIViewController {
 
     @IBOutlet weak var tokenCodeLabel: UILabel!
     @IBOutlet weak var participantView: TransactionParticipantView!
@@ -36,7 +36,7 @@ class FundsTransferTransactionViewController: UIViewController {
 
     private var tokenID: BaseID!
 
-    static func create(tokenID: BaseID) -> FundsTransferTransactionViewController {
+    public static func create(tokenID: BaseID) -> FundsTransferTransactionViewController {
         let controller = StoryboardScene.Main.fundsTransferTransactionViewController.instantiate()
         controller.tokenID = tokenID
         return controller
@@ -49,12 +49,12 @@ class FundsTransferTransactionViewController: UIViewController {
                                                 comment: "Continue button title for New Transaction Screen")
     }
 
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         navigationItem.title = Strings.title
     }
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         model = FundsTransferTransactionViewModel(senderName: "Safe", tokenID: tokenID, onUpdate: updateFromViewModel)
         amountTextField.delegate = self
@@ -73,12 +73,12 @@ class FundsTransferTransactionViewController: UIViewController {
         model.start()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardBehavior.start()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
+    override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         keyboardBehavior.stop()
     }
@@ -148,24 +148,24 @@ class FundsTransferTransactionViewController: UIViewController {
 
 extension FundsTransferTransactionViewController: UITextFieldDelegate {
 
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    private func textFieldDidBeginEditing(_ textField: UITextField) {
         keyboardBehavior.activeTextField = textField
     }
 
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
+    private func textField(_ textField: UITextField,
+                           shouldChangeCharactersIn range: NSRange,
+                           replacementString string: String) -> Bool {
         let newValue = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
         update(textField, newValue: newValue)
         return true
     }
 
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+    private func textFieldShouldClear(_ textField: UITextField) -> Bool {
         update(textField, newValue: nil)
         return true
     }
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    private func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let index = textFields.index(where: { $0 === textField }) {
             if index < textFields.count - 1 {
                 textFields[index + 1].becomeFirstResponder()

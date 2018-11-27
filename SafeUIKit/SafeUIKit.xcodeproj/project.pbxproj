@@ -10,6 +10,8 @@
 		0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A00292B20CFC118009A4BFE /* SegmentBar.swift */; };
 		0A00293020CFCBA3009A4BFE /* SegmentBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A00292F20CFCBA3009A4BFE /* SegmentBarController.swift */; };
 		0A00293220CFD75F009A4BFE /* MySegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A00293120CFD75E009A4BFE /* MySegmentViewController.swift */; };
+		0A028ECA21AD52EA00431D25 /* FundTransferDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028EC921AD52EA00431D25 /* FundTransferDemoViewController.swift */; };
+		0A028ECC21AD534000431D25 /* BaseDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028ECB21AD534000431D25 /* BaseDemoViewController.swift */; };
 		0A03402F20C004C200C1C3BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DD9209C70F000ABC6AE /* Localizable.strings */; };
 		0A0974D220480CEB005753DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974C820480CEB005753DF /* Assets.xcassets */; };
 		0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974C920480CEB005753DF /* AppDelegate.swift */; };
@@ -342,6 +344,8 @@
 		0A00292B20CFC118009A4BFE /* SegmentBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBar.swift; sourceTree = "<group>"; };
 		0A00292F20CFCBA3009A4BFE /* SegmentBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBarController.swift; sourceTree = "<group>"; };
 		0A00293120CFD75E009A4BFE /* MySegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySegmentViewController.swift; sourceTree = "<group>"; };
+		0A028EC921AD52EA00431D25 /* FundTransferDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundTransferDemoViewController.swift; sourceTree = "<group>"; };
+		0A028ECB21AD534000431D25 /* BaseDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDemoViewController.swift; sourceTree = "<group>"; };
 		0A0974C720480CEB005753DF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A0974C820480CEB005753DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A0974C920480CEB005753DF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1147,10 +1151,12 @@
 			children = (
 				0A0974C920480CEB005753DF /* AppDelegate.swift */,
 				0A0974D820480D03005753DF /* Main.storyboard */,
+				0A028ECB21AD534000431D25 /* BaseDemoViewController.swift */,
 				0AFA766C2182195200A96FDB /* ViewController.swift */,
 				0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */,
 				0ACC77F6219D76060057E79A /* TransactionReviewDemoViewController.swift */,
 				0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */,
+				0A028EC921AD52EA00431D25 /* FundTransferDemoViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1920,8 +1926,10 @@
 				0ACC77F7219D76060057E79A /* TransactionReviewDemoViewController.swift in Sources */,
 				0A0974D620480CEB005753DF /* UnlockDemoViewController.swift in Sources */,
 				55E8B006219EC213002930A1 /* TransactionHeaderViewController.swift in Sources */,
+				0A028ECC21AD534000431D25 /* BaseDemoViewController.swift in Sources */,
 				0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */,
 				0A60B516211333620066821A /* ProgressViewController.swift in Sources */,
+				0A028ECA21AD52EA00431D25 /* FundTransferDemoViewController.swift in Sources */,
 				55247360214293D500A77557 /* IdenticonViewController.swift in Sources */,
 				0AFA766D2182195200A96FDB /* ViewController.swift in Sources */,
 				555B0E6720CA83DF00424CEE /* TokenDoubleInputViewController.swift in Sources */,
