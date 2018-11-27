@@ -11,6 +11,12 @@ public class TransactionHeaderView: BaseCustomView {
     @IBOutlet weak private(set) var assetCodeLabel: UILabel!
     @IBOutlet weak private(set) var assetInfoLabel: UILabel!
 
+    public var usesEthImageWhenImageURLIsNil = false {
+        didSet {
+            update()
+        }
+    }
+
     public var assetImage: UIImage? {
         didSet {
             update()
@@ -45,7 +51,8 @@ public class TransactionHeaderView: BaseCustomView {
         if let url = assetImageURL {
             assetImageView.kf.setImage(with: url)
         } else {
-            assetImageView.image = assetImage
+            assetImageView.image = usesEthImageWhenImageURLIsNil ?
+                Asset.TokenIcons.eth.image : assetImage
         }
         assetCodeLabel.text = assetCode
         assetInfoLabel.text = assetInfo

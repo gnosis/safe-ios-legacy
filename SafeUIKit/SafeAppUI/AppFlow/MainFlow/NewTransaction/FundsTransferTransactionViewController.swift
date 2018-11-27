@@ -11,114 +11,22 @@ protocol FundsTransferTransactionViewControllerDelegate: class {
     func didCreateDraftTransaction(id: String)
 }
 
-public class InputCell: ContainerCell {
-
-    public override var horizontalMargin: CGFloat { return 15 }
-    public override var verticalMargin: CGFloat { return 20 }
-
-    public override func commonInit() {
-        super.commonInit()
-        backgroundColor = ColorName.paleGreyThree.color
-    }
-
-}
-
-public class AddressCell: InputCell {
-
-    let addressInput = AddressInput(frame: .zero)
-    public override var cellContentView: UIView { return addressInput }
-
-}
-
-public class AmountCell: InputCell {
-
-    let tokenInput = TokenInput(frame: .zero)
-    public override var cellContentView: UIView { return tokenInput }
-
-}
-
-public class FundsTransferViewController: UITableViewController {
-
-    var cells = [IndexPath: UITableViewCell]()
-    let backgroundView = BackgroundImageView(frame: .zero)
-    let stickyHeaderView = UIView(frame: .zero)
-    let headerViewCell = TransactionHeaderCell(frame: .zero)
-    let recipientCell = AddressCell(frame: .zero)
-    let amountCell = AmountCell(frame: .zero)
-    let feeCell = TransactionFeeCell(frame: .zero)
-
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        backgroundView.isDimmed = true
-        tableView.backgroundView = backgroundView
-        tableView.estimatedRowHeight = 75
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.allowsSelection = false
-        tableView.separatorStyle = .none
-        configureTableStickyHeader()
-        recipientCell.addressInput.addressInputDelegate = self
-        amountCell.tokenInput.usesEthDefaultImage = true
-        cells[IndexPath(row: 0, section: 0)] = headerViewCell
-        cells[IndexPath(row: 1, section: 0)] = recipientCell
-        cells[IndexPath(row: 2, section: 0)] = amountCell
-        cells[IndexPath(row: 3, section: 0)] = feeCell
-    }
-
-    private func configureTableStickyHeader() {
-        assert(tableView.backgroundView != nil, "You must set the tableView's backgroundView first")
-        stickyHeaderView.backgroundColor = ColorName.paleGreyThree.color
-        stickyHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundView.addSubview(stickyHeaderView)
-        NSLayoutConstraint.activate([
-            stickyHeaderView.topAnchor.constraint(equalTo: backgroundView.topAnchor),
-            stickyHeaderView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
-            stickyHeaderView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
-            stickyHeaderView.bottomAnchor.constraint(equalTo: tableView.topAnchor)])
-    }
-
-    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cells.keys.count
-    }
-
-    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cells[indexPath]!
-    }
-
-}
-
-extension FundsTransferViewController: AddressInputDelegate {
-
-    public func presentController(_ controller: UIViewController) {
-        self.present(controller, animated: true)
-    }
-
-}
-
 public class FundsTransferTransactionViewController: UIViewController {
 
-    @IBOutlet weak var tokenCodeLabel: UILabel!
-    @IBOutlet weak var participantView: TransactionParticipantView!
-    @IBOutlet weak var valueView: TransactionValueView!
-    @IBOutlet weak var amountTextField: UITextField!
-    @IBOutlet weak var recipientTextField: UITextField!
-    @IBOutlet weak var dataLabel: UILabel!
-    @IBOutlet weak var feeLabel: UILabel!
-    @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var continueButton: BorderedButton!
-    @IBOutlet weak var recipientStackView: UIStackView!
-    @IBOutlet weak var amountStackView: UIStackView!
+    @IBOutlet var backgroundView: BackgroundImageView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var nextBarButton: UIBarButtonItem!
+    @IBOutlet weak var transactionHeaderView: TransactionHeaderView!
+    @IBOutlet weak var addressInput: AddressInput!
+    @IBOutlet weak var tokenInput: TokenInput!
+    @IBOutlet weak var transactionFeeView: TransactionFeeView!
 
     weak var delegate: FundsTransferTransactionViewControllerDelegate?
 
     private var keyboardBehavior: KeyboardAvoidingBehavior!
     internal var model: FundsTransferTransactionViewModel!
     internal var transactionID: String?
-    private var textFields: [UITextField] {
-        return [amountTextField, recipientTextField]
-    }
-
-    let vc = FundsTransferViewController()
 
     private var tokenID: BaseID!
 
@@ -128,11 +36,13 @@ public class FundsTransferTransactionViewController: UIViewController {
         return controller
     }
 
-    private enum Strings {
+    fileprivate enum Strings {
         static let title = LocalizedString("transaction.title",
                                            comment: "Send")
         static let `continue` = LocalizedString("transaction.continue",
                                                 comment: "Continue button title for New Transaction Screen")
+        static let notEnoughFunds = LocalizedString("transaction.error.notEnoughFunds",
+                                                    comment: "Not enough balance for transaction.")
     }
 
     override public func awakeFromNib() {
@@ -140,41 +50,28 @@ public class FundsTransferTransactionViewController: UIViewController {
         navigationItem.title = Strings.title
     }
 
-    override public func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
-        model = FundsTransferTransactionViewModel(senderName: "Safe", tokenID: tokenID, onUpdate: updateFromViewModel)
-        amountTextField.delegate = self
-        amountTextField.accessibilityIdentifier = "transaction.amount"
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.minimumFractionDigits = 2
-        amountTextField.placeholder = numberFormatter.string(from: NSNumber(value: 0))
-        recipientTextField.delegate = self
-        recipientTextField.accessibilityIdentifier = "transaction.address"
-        continueButton.addTarget(self, action: #selector(proceedToSigning(_:)), for: .touchUpInside)
-        continueButton.setTitle(Strings.continue, for: .normal)
-        continueButton.accessibilityIdentifier = "transaction.continue"
+        contentView.backgroundColor = ColorName.paleGreyThree.color
+        backgroundView.isDimmed = true
+        addressInput.addressInputDelegate = self
+        nextBarButton.title = FundsTransferTransactionViewController.Strings.continue
+        nextBarButton.accessibilityIdentifier = "transaction.continue"
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
-        feeLabel.accessibilityIdentifier = "transaction.fee"
-
-        addChild(vc)
-        vc.view.frame = view.bounds
-        vc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(vc.view)
-        vc.didMove(toParent: self)
-
-        vc.recipientCell.addressInput.addRule("none", identifier: nil) { [unowned self] in
+        model = FundsTransferTransactionViewModel(tokenID: tokenID, onUpdate: updateFromViewModel)
+        addressInput.addRule("none", identifier: nil) { [unowned self] in
             self.model.change(recipient: $0)
             return true
         }
-        vc.amountCell.tokenInput.addRule("NO FUNDS", identifier: "notEnoughFunds") { [unowned self] in
+        tokenInput.addRule(Strings.notEnoughFunds, identifier: "notEnoughFunds") { [unowned self] in
+            guard self.tokenInput.formatter.number(from: $0) != nil else { return true }
             self.model.change(amount: $0)
             return self.model.hasEnoughFunds() ?? false
         }
-
-        vc.amountCell.tokenInput.setUp(value: 0, decimals: model.tokenData.decimals)
-        vc.amountCell.tokenInput.imageURL = model.tokenData.logoURL
-
+        tokenInput.setUp(value: 0, decimals: model.tokenData.decimals)
+        transactionHeaderView.usesEthImageWhenImageURLIsNil = true
+        tokenInput.usesEthDefaultImage = true
+        tokenInput.imageURL = model.tokenData.logoURL
         model.start()
     }
 
@@ -189,39 +86,16 @@ public class FundsTransferTransactionViewController: UIViewController {
     }
 
     func updateFromViewModel() {
-        tokenCodeLabel.text = model.tokenCode
-
-        participantView.name = model.senderName
-        participantView.address = model.senderAddress
-
-        valueView.tokenAmount = model.balance ?? ""
-        valueView.fiatAmount = ""
-        valueView.style = .neutral
-
-        balanceLabel.text = model.feeBalance
-        feeLabel.text = model.fee
-
-        clearErrors(in: amountStackView)
-        model.amountErrors.forEach { showError($0, in: amountStackView) }
-
-        clearErrors(in: recipientStackView)
-        model.recipientErrors.forEach { showError($0, in: recipientStackView) }
-
-        continueButton.isEnabled = model.canProceedToSigning
-
-        updateVC()
+        transactionHeaderView.assetCode = model.tokenData.code
+        transactionHeaderView.assetImageURL = model.tokenData.logoURL
+        transactionHeaderView.assetInfo = model.balance
+        transactionFeeView.configure(currentBalance: model.feeBalanceTokenData,
+                                     transactionFee: model.feeAmountTokenData,
+                                     resultingBalance: model.feeResultingBalanceTokenData)
+        nextBarButton.isEnabled = model.canProceedToSigning
     }
 
-    func updateVC() {
-        vc.headerViewCell.configure(imageURL: model.tokenData.logoURL,
-                                    code: model.tokenData.code,
-                                    info: model.balance ?? "")
-        vc.feeCell.transactionFeeView.configure(currentBalance: model.feeBalanceTokenData,
-                                                transactionFee: model.feeAmountTokenData,
-                                                resultingBalance: model.feeResultingBalanceTokenData)
-    }
-
-    @objc func proceedToSigning(_ sender: Any) {
+    @IBAction func proceedToSigning(_ sender: Any) {
         let service = ApplicationServiceRegistry.walletService
         transactionID = service.createNewDraftTransaction()
         service.updateTransaction(transactionID!,
@@ -237,29 +111,28 @@ public class FundsTransferTransactionViewController: UIViewController {
         }
     }
 
-    private func clearErrors(in stack: UIStackView) {
-        while stack.arrangedSubviews.count > 1 {
-            stack.arrangedSubviews.last!.removeFromSuperview()
+}
+
+extension FundsTransferTransactionViewController: AddressInputDelegate {
+
+    public func presentController(_ controller: UIViewController) {
+        self.present(controller, animated: true)
+    }
+
+}
+
+extension FundsTransferTransactionViewController: VerifiableInputDelegate {
+
+    public func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
+        if model.canProceedToSigning {
+            proceedToSigning(verifiableInput)
         }
     }
 
-    private func showError(_ error: Error, in stack: UIStackView) {
-        let wrapperView = UIView()
-        let errorLabel = UILabel()
-        errorLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        errorLabel.textColor = ColorName.tomato.color
-        errorLabel.numberOfLines = 0
-        errorLabel.text = error.localizedDescription
-
-        errorLabel.translatesAutoresizingMaskIntoConstraints = false
-        wrapperView.addSubview(errorLabel)
-        stack.addArrangedSubview(wrapperView)
-        NSLayoutConstraint.activate([
-            errorLabel.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor, constant: 16),
-            errorLabel.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor, constant: 16),
-            errorLabel.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: 8),
-            errorLabel.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: 8)])
+    public func verifiableInputDidBeginEditing(_ verifiableInput: VerifiableInput) {
+        keyboardBehavior.activeTextField = verifiableInput.textInput
     }
+
 }
 
 extension FundsTransferTransactionViewController: UITextFieldDelegate {
@@ -268,40 +141,6 @@ extension FundsTransferTransactionViewController: UITextFieldDelegate {
         keyboardBehavior.activeTextField = textField
     }
 
-    public func textField(_ textField: UITextField,
-                          shouldChangeCharactersIn range: NSRange,
-                          replacementString string: String) -> Bool {
-        let newValue = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
-        update(textField, newValue: newValue)
-        return true
-    }
-
-    public func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        update(textField, newValue: nil)
-        return true
-    }
-
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let index = textFields.index(where: { $0 === textField }) {
-            if index < textFields.count - 1 {
-                textFields[index + 1].becomeFirstResponder()
-            } else {
-                textField.resignFirstResponder()
-                if model.canProceedToSigning {
-                    proceedToSigning(textField)
-                }
-            }
-        }
-        return true
-    }
-
-    private func update(_ textField: UITextField, newValue: String?) {
-        if textField == amountTextField {
-            model.change(amount: newValue)
-        } else if textField == recipientTextField {
-            model.change(recipient: newValue)
-        }
-    }
 }
 
 extension EthereumAddressValidator.ValidationError: LocalizedError {

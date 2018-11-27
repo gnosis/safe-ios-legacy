@@ -21,53 +21,27 @@ class TransactionViewModelTests: XCTestCase {
         walletService.assignAddress(walletAddress)
         walletService.update(account: ethID, newBalance: balance)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
-        model = FundsTransferTransactionViewModel(senderName: "safe", tokenID: ethID) { /* empty */ }
+        model = FundsTransferTransactionViewModel(tokenID: ethID) { /* empty */ }
         model.start()
     }
 
     func test_start() {
-        XCTAssertEqual(model.senderName, "safe")
-        XCTAssertEqual(model.senderAddress, walletAddress)
         XCTAssertEqual(model.balance, model.tokenFormatter.string(from: balance))
         XCTAssertEqual(model.amount, nil)
         XCTAssertEqual(model.recipient, nil)
-        XCTAssertEqual(model.fee, "--")
+        XCTAssertEqual(model.feeAmountTokenData.balance, 0)
         XCTAssertFalse(model.canProceedToSigning)
-        XCTAssertTrue(model.amountErrors.isEmpty)
-        XCTAssertTrue(model.recipientErrors.isEmpty)
-    }
-
-    func test_whenAmountChangedToInvalid_thenError() {
-        model.change(amount: "")
-        XCTAssertFalse(model.amountErrors.isEmpty)
-    }
-
-    func test_whenAmountErased_thenErrorsCleared() {
-        model.change(amount: "")
-        model.change(amount: nil)
-        XCTAssertTrue(model.amountErrors.isEmpty)
-    }
-
-    func test_whenRecipientChangedToInvalid_thenError() {
-        model.change(recipient: "")
-        XCTAssertFalse(model.recipientErrors.isEmpty)
-    }
-
-    func test_whenRecipientErased_thenErrorsCleared() {
-        model.change(recipient: "")
-        model.change(recipient: nil)
-        XCTAssertTrue(model.recipientErrors.isEmpty)
     }
 
     func test_whenWalletBalanceNil_thenBalanceIsNil() {
         walletService.update(account: ethID, newBalance: nil)
         model.start()
-        XCTAssertNil(model.balance)
+        XCTAssertEqual(model.balance, model.tokenFormatter.string(from: 0))
     }
 
     func test_whenAmountChangesToSameValue_nothingHappens() {
         var changed: Int = 0
-        model = FundsTransferTransactionViewModel(senderName: "", tokenID: ethID) {
+        model = FundsTransferTransactionViewModel(tokenID: ethID) {
             changed += 1
         }
         model.start()
@@ -80,7 +54,7 @@ class TransactionViewModelTests: XCTestCase {
 
     func test_whenRecipientChangesToSameValue_nothingHappens() {
         var changed: Int = 0
-        model = FundsTransferTransactionViewModel(senderName: "", tokenID: ethID) {
+        model = FundsTransferTransactionViewModel(tokenID: ethID) {
             changed += 1
         }
         model.start()
@@ -95,7 +69,8 @@ class TransactionViewModelTests: XCTestCase {
         walletService.estimatedFee_output = 100
         model.change(recipient: walletAddress)
         delay()
-        XCTAssertEqual(model.fee, model.tokenFormatter.string(from: -100))
+        XCTAssertEqual(model.feeAmountTokenData.balance, -100)
+        XCTAssertEqual(model.feeResultingBalanceTokenData.balance, balance - 100)
     }
 
     func test_whenEnteredAllValidData_thenCanProceedToSigning() {

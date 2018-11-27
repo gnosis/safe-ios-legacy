@@ -21,7 +21,7 @@ public class TransactionFeeView: BaseCustomView {
     private let displayedDecimals = 5
     private let stackViewSpacing: CGFloat = 8
     private let emptyViewHeight: CGFloat = 6
-    private let paddings: (left: CGFloat, top: CGFloat, right: CGFloat, bottom: CGFloat) = (16, 20, 16, 20)
+    private let paddings: (left: CGFloat, top: CGFloat, right: CGFloat, bottom: CGFloat) = (0, 20, 0, 20)
     public private(set) var tokenFormatter: TokenNumberFormatter = .ERC20Token(decimals: 18)
 
     public private(set) var currentBalance: TokenData?
@@ -89,10 +89,11 @@ public class TransactionFeeView: BaseCustomView {
         self.currentBalance = currentBalance
         self.transactionFee = transactionFee
         self.resultingBalance = resultingBalance
-        tokenFormatter = TokenNumberFormatter.ERC20Token(code: resultingBalance.code,
-                                                         decimals: resultingBalance.decimals,
-                                                         displayedDecimals: displayedDecimals)
+        tokenFormatter.tokenCode = resultingBalance.code
+        tokenFormatter.decimals = resultingBalance.decimals
+        tokenFormatter.displayedDecimals = displayedDecimals
         buildWrapperStackView()
+        updateValues()
     }
 
     private func buildWrapperStackView() {
@@ -109,6 +110,18 @@ public class TransactionFeeView: BaseCustomView {
             wrapperStackView.spacing = stackViewSpacing
         }
         wrapperStackView.addArrangedSubview(resultingBalanceSection())
+    }
+
+    private func updateValues() {
+        if let data = currentBalance {
+            currentBalanceValueLabel?.text = tokenFormatter.string(from: data.balance ?? 0)
+        }
+        if let data = transactionFee {
+            transactionFeeValueLabel?.text = tokenFormatter.string(from: data.balance ?? 0)
+        }
+        if let data = resultingBalance {
+            resultingBalanceValueLabel?.text = tokenFormatter.string(from: data.balance ?? 0)
+        }
     }
 
     private func currentBalanceSection() -> UIStackView? {
