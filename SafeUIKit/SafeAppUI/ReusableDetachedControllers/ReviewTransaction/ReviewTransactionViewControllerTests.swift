@@ -13,6 +13,8 @@ import CommonTestSupport
 class ReviewTransactionViewControllerTests: XCTestCase {
 
     let service = MockWalletApplicationService()
+    // swiftlint:disable:next weak_delegate
+    let delegate = MockReviewTransactionViewControllerDelegate()
 
     override func setUp() {
         super.setUp()
@@ -138,6 +140,31 @@ class ReviewTransactionViewControllerTests: XCTestCase {
         XCTAssertAlertShown(message: MockWalletApplicationService.Error.error.errorDescription)
     }
 
+    // MARK: - Submitting
+
+    func test_whenLoaded_thenSubmitButtonIsEnabled() {
+        let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
+        XCTAssertNotNil(vc.navigationItem.rightBarButtonItem)
+        XCTAssertEqual(vc.navigationItem.rightBarButtonItem?.title, ReviewTransactionViewController.Strings.submit)
+    }
+
+    func test_whenSubmittingUnconfirmedTranasction_thenShowsAlert() {
+        let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
+        createWindow(vc)
+        vc.submit()
+        delay()
+        XCTAssertAlertShown(message: ReviewTransactionViewController.Strings.Alert.description, actionsCount: 2)
+    }
+
+    func test_whenSubmittingConfirmedTransaction_thenCallsDelegate() {
+        let (_, vc) = ethDataAndCotroller(.readyToSubmit)
+        vc.submit()
+        XCTAssertTrue(delegate.requestedToSubmit)
+    }
+
+    // TODO: test_whenSubmittingConfirmedTransactonAndNotAllowed_thenDoesNothing
+    // TODO: test_whenSubmittingConfirmedTransactonAndAllowed_thenCallesDelegateOnSuccess
+
 }
 
 private extension ReviewTransactionViewControllerTests {
@@ -160,7 +187,7 @@ private extension ReviewTransactionViewControllerTests {
     func controller(for data: TransactionData) -> ReviewTransactionViewController {
         service.transactionData_output = data
         service.update(account: BaseID(data.amountTokenData.address), newBalance: BigInt(10).power(19))
-        let vc = ReviewTransactionViewController(transactionID: data.id)
+        let vc = ReviewTransactionViewController(transactionID: data.id, delegate: delegate)
         vc.viewDidLoad()
         return vc
     }
@@ -213,6 +240,22 @@ extension TransactionData {
                                submitted: nil,
                                rejected: nil,
                                processed: nil)
+    }
+
+}
+
+class MockReviewTransactionViewControllerDelegate: ReviewTransactionViewControllerDelegate {
+
+    var requestedToSubmit = false
+    var shouldAllowToSubmit = true
+    func wantsToSubmitTransaction(_ completion: @escaping (_ allowed: Bool) -> Void) {
+        requestedToSubmit = true
+        completion(shouldAllowToSubmit)
+    }
+
+    var finished = false
+    func didFinish() {
+        finished = true
     }
 
 }

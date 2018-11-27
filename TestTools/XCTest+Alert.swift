@@ -6,7 +6,10 @@ import Foundation
 import XCTest
 import UIKit
 
-public func XCTAssertAlertShown(message expectedMessage: String? = nil, file: StaticString = #file, line: UInt = #line) {
+public func XCTAssertAlertShown(message expectedMessage: String? = nil,
+                                actionsCount: Int = 1,
+                                file: StaticString = #file,
+                                line: UInt = #line) {
     XCTAssertNotNil(UIApplication.shared.keyWindow?.rootViewController, file: file, line: line)
     guard let vc = UIApplication.shared.keyWindow?.rootViewController else { return }
     XCTAssertNotNil(vc.presentedViewController, file: file, line: line)
@@ -17,7 +20,7 @@ public func XCTAssertAlertShown(message expectedMessage: String? = nil, file: St
     if let expectedMessage = expectedMessage {
         XCTAssertEqual(alertVC.message, expectedMessage, file: file, line: line)
     }
-    XCTAssertEqual(alertVC.actions.count, 1, file: file, line: line)
+    XCTAssertEqual(alertVC.actions.count, actionsCount, file: file, line: line)
     XCTAssertNotNil(alertVC.title, file: file, line: line)
     XCTAssertNotNil(alertVC.actions.first?.title, file: file, line: line)
     if let action = alertVC.actions.first {
