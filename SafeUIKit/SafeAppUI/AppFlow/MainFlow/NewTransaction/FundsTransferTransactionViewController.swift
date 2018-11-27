@@ -163,6 +163,18 @@ public class FundsTransferTransactionViewController: UIViewController {
         view.addSubview(vc.view)
         vc.didMove(toParent: self)
 
+        vc.recipientCell.addressInput.addRule("none", identifier: nil) { [unowned self] in
+            self.model.change(recipient: $0)
+            return true
+        }
+        vc.amountCell.tokenInput.addRule("NO FUNDS", identifier: "notEnoughFunds") { [unowned self] in
+            self.model.change(amount: $0)
+            return self.model.hasEnoughFunds() ?? false
+        }
+
+        vc.amountCell.tokenInput.setUp(value: 0, decimals: model.tokenData.decimals)
+        vc.amountCell.tokenInput.imageURL = model.tokenData.logoURL
+
         model.start()
     }
 
@@ -204,8 +216,6 @@ public class FundsTransferTransactionViewController: UIViewController {
         vc.headerViewCell.configure(imageURL: model.tokenData.logoURL,
                                     code: model.tokenData.code,
                                     info: model.balance ?? "")
-        vc.amountCell.tokenInput.imageURL = model.tokenData.logoURL
-        vc.amountCell.tokenInput.setUp(value: model.intAmount ?? 0, decimals: model.tokenData.decimals)
         vc.feeCell.transactionFeeView.configure(currentBalance: model.feeBalanceTokenData,
                                                 transactionFee: model.feeAmountTokenData,
                                                 resultingBalance: model.feeResultingBalanceTokenData)

@@ -191,7 +191,7 @@ class FundsTransferTransactionViewModel {
         canProceedToSigning = hasFunds
     }
 
-    private func hasEnoughFunds() -> Bool? {
+    func hasEnoughFunds() -> Bool? {
         guard let amount = intAmount, let fee = intFee else { return nil }
         return walletService.hasEnoughFundsForTransfer(amount: amount,
                                                        token: tokenID.id,
