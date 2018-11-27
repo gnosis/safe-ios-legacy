@@ -12,8 +12,9 @@ class FundTransferDemoViewController: BaseDemoViewController {
 
     var controller: FundsTransferTransactionViewController!
     let service = MockWalletApplicationService()
+    var navController: UINavigationController!
 
-    override var demoController: UIViewController { return UINavigationController(rootViewController: controller) }
+    override var demoController: UIViewController { return navController }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class FundTransferDemoViewController: BaseDemoViewController {
         service.update(account: ethID, newBalance: BigInt(1e18) + BigInt(3e14))
         service.estimatedFee_output = BigInt(1e14)
         controller = .create(tokenID: ethID)
+        navController = UINavigationController(rootViewController: controller)
     }
 
 }

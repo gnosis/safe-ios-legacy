@@ -148,24 +148,24 @@ public class FundsTransferTransactionViewController: UIViewController {
 
 extension FundsTransferTransactionViewController: UITextFieldDelegate {
 
-    private func textFieldDidBeginEditing(_ textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         keyboardBehavior.activeTextField = textField
     }
 
-    private func textField(_ textField: UITextField,
-                           shouldChangeCharactersIn range: NSRange,
-                           replacementString string: String) -> Bool {
+    public func textField(_ textField: UITextField,
+                          shouldChangeCharactersIn range: NSRange,
+                          replacementString string: String) -> Bool {
         let newValue = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
         update(textField, newValue: newValue)
         return true
     }
 
-    private func textFieldShouldClear(_ textField: UITextField) -> Bool {
+    public func textFieldShouldClear(_ textField: UITextField) -> Bool {
         update(textField, newValue: nil)
         return true
     }
 
-    private func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let index = textFields.index(where: { $0 === textField }) {
             if index < textFields.count - 1 {
                 textFields[index + 1].becomeFirstResponder()
