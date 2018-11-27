@@ -18,9 +18,12 @@ class FundsTransferTransactionViewModel {
     private(set) var tokenData: TokenData!
     private(set) var amount: String?
     private(set) var recipient: String?
+
     private(set) var feeBalanceTokenData: TokenData!
     private(set) var feeResultingBalanceTokenData: TokenData!
     private(set) var feeAmountTokenData: TokenData!
+    private(set) var resultingTokenData: TokenData!
+
     private(set) var canProceedToSigning: Bool
     let tokenFormatter: TokenNumberFormatter = .ERC20Token(decimals: 18)
     private let inputQueue: OperationQueue
@@ -34,8 +37,8 @@ class FundsTransferTransactionViewModel {
         canProceedToSigning = false
         updateBlock = onUpdate
         tokenData = ApplicationServiceRegistry.walletService.tokenData(id: tokenID.id)!
-        tokenFormatter.tokenCode = tokenData.code
         tokenFormatter.decimals = tokenData.decimals
+        tokenFormatter.displayedDecimals = 8
         inputQueue = OperationQueue()
         inputQueue.maxConcurrentOperationCount = 1
         inputQueue.qualityOfService = .userInitiated
@@ -126,8 +129,15 @@ class FundsTransferTransactionViewModel {
     private func updateResultingBalance() {
         let intAmount = self.intAmount ?? 0
         let feeAmount = abs(self.feeAmountTokenData?.balance ?? 0)
-        let balance = self.feeBalanceTokenData?.balance ?? 0
-        self.feeResultingBalanceTokenData = self.feeBalanceTokenData.withBalance(balance - intAmount - feeAmount)
+        let feeAccountbalance = self.feeBalanceTokenData?.balance ?? 0
+        let accountBalance = self.tokenData.balance ?? 0
+        if feeTokenID == tokenID {
+            let newBalance = feeAccountbalance - intAmount - feeAmount
+            self.feeResultingBalanceTokenData = self.feeBalanceTokenData.withBalance(newBalance)
+        } else {
+            self.resultingTokenData = self.tokenData.withBalance(accountBalance - intAmount)
+            self.feeResultingBalanceTokenData = self.feeBalanceTokenData.withBalance(feeAccountbalance - feeAmount)
+        }
     }
 
     private func updateCanProceedToSigning() {
@@ -135,6 +145,7 @@ class FundsTransferTransactionViewModel {
     }
 
     func hasEnoughFunds() -> Bool? {
+        // FIXME: it is slow!
         guard let amount = intAmount, let fee = intFee else { return nil }
         return walletService.hasEnoughFundsForTransfer(amount: amount,
                                                        token: tokenID.id,

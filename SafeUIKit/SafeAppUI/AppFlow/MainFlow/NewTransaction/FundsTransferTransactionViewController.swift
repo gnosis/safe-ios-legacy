@@ -20,7 +20,13 @@ public class FundsTransferTransactionViewController: UIViewController {
     @IBOutlet weak var transactionHeaderView: TransactionHeaderView!
     @IBOutlet weak var addressInput: AddressInput!
     @IBOutlet weak var tokenInput: TokenInput!
+
+    // Either transactionFeeView or tokenBalanceView and feeBalanceView are visible at the same time
     @IBOutlet weak var transactionFeeView: TransactionFeeView!
+
+    @IBOutlet weak var tokenBalanceView: TransactionFeeView!
+    @IBOutlet weak var feeBalanceView: TransactionFeeView!
+    @IBOutlet weak var feeBackgroundView: UIView!
 
     weak var delegate: FundsTransferTransactionViewControllerDelegate?
 
@@ -29,6 +35,7 @@ public class FundsTransferTransactionViewController: UIViewController {
     internal var transactionID: String?
 
     private var tokenID: BaseID!
+    private let feeTokenID: BaseID = ethID
 
     public static func create(tokenID: BaseID) -> FundsTransferTransactionViewController {
         let controller = StoryboardScene.Main.fundsTransferTransactionViewController.instantiate()
@@ -72,6 +79,8 @@ public class FundsTransferTransactionViewController: UIViewController {
         transactionHeaderView.usesEthImageWhenImageURLIsNil = true
         tokenInput.usesEthDefaultImage = true
         tokenInput.imageURL = model.tokenData.logoURL
+        feeBalanceView.backgroundColor = .clear
+        feeBackgroundView.backgroundColor = ColorName.paleGreyTwo.color
         model.start()
     }
 
@@ -89,9 +98,26 @@ public class FundsTransferTransactionViewController: UIViewController {
         transactionHeaderView.assetCode = model.tokenData.code
         transactionHeaderView.assetImageURL = model.tokenData.logoURL
         transactionHeaderView.assetInfo = model.balance
-        transactionFeeView.configure(currentBalance: model.feeBalanceTokenData,
+        if tokenID == feeTokenID {
+            transactionFeeView.isHidden = false
+            tokenBalanceView.isHidden = true
+            feeBalanceView.isHidden = true
+            feeBackgroundView.isHidden = true
+            transactionFeeView.configure(currentBalance: model.feeBalanceTokenData,
+                                         transactionFee: model.feeAmountTokenData,
+                                         resultingBalance: model.feeResultingBalanceTokenData)
+        } else {
+            transactionFeeView.isHidden = true
+            tokenBalanceView.isHidden = false
+            feeBalanceView.isHidden = false
+            feeBackgroundView.isHidden = false
+            tokenBalanceView.configure(currentBalance: model.tokenData,
+                                       transactionFee: nil,
+                                       resultingBalance: model.resultingTokenData)
+            feeBalanceView.configure(currentBalance: nil,
                                      transactionFee: model.feeAmountTokenData,
                                      resultingBalance: model.feeResultingBalanceTokenData)
+        }
         nextBarButton.isEnabled = model.canProceedToSigning
     }
 
