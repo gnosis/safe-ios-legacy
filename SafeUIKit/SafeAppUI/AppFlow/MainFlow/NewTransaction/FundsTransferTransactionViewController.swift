@@ -5,9 +5,93 @@
 import UIKit
 import MultisigWalletApplication
 import Common
+import SafeUIKit
 
 protocol FundsTransferTransactionViewControllerDelegate: class {
     func didCreateDraftTransaction(id: String)
+}
+
+public class InputCell: ContainerCell {
+
+    public override var horizontalMargin: CGFloat { return 15 }
+    public override var verticalMargin: CGFloat { return 20 }
+
+    public override func commonInit() {
+        super.commonInit()
+        backgroundColor = ColorName.paleGreyThree.color
+    }
+
+}
+
+public class AddressCell: InputCell {
+
+    let addressInput = AddressInput(frame: .zero)
+    public override var cellContentView: UIView { return addressInput }
+
+}
+
+public class AmountCell: InputCell {
+
+    let tokenInput = TokenInput(frame: .zero)
+    public override var cellContentView: UIView { return tokenInput }
+
+}
+
+public class FundsTransferViewController: UITableViewController {
+
+    var cells = [IndexPath: UITableViewCell]()
+    let backgroundView = BackgroundImageView(frame: .zero)
+    let stickyHeaderView = UIView(frame: .zero)
+    let headerViewCell = TransactionHeaderCell(frame: .zero)
+    let recipientCell = AddressCell(frame: .zero)
+    let amountCell = AmountCell(frame: .zero)
+    let feeCell = TransactionFeeCell(frame: .zero)
+
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        backgroundView.isDimmed = true
+        tableView.backgroundView = backgroundView
+        tableView.estimatedRowHeight = 75
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.allowsSelection = false
+        tableView.separatorStyle = .none
+        configureTableStickyHeader()
+        recipientCell.addressInput.addressInputDelegate = self
+        amountCell.tokenInput.usesEthDefaultImage = true
+        cells[IndexPath(row: 0, section: 0)] = headerViewCell
+        cells[IndexPath(row: 1, section: 0)] = recipientCell
+        cells[IndexPath(row: 2, section: 0)] = amountCell
+        cells[IndexPath(row: 3, section: 0)] = feeCell
+    }
+
+    private func configureTableStickyHeader() {
+        assert(tableView.backgroundView != nil, "You must set the tableView's backgroundView first")
+        stickyHeaderView.backgroundColor = ColorName.paleGreyThree.color
+        stickyHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.addSubview(stickyHeaderView)
+        NSLayoutConstraint.activate([
+            stickyHeaderView.topAnchor.constraint(equalTo: backgroundView.topAnchor),
+            stickyHeaderView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            stickyHeaderView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+            stickyHeaderView.bottomAnchor.constraint(equalTo: tableView.topAnchor)])
+    }
+
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cells.keys.count
+    }
+
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return cells[indexPath]!
+    }
+
+}
+
+extension FundsTransferViewController: AddressInputDelegate {
+
+    public func presentController(_ controller: UIViewController) {
+        self.present(controller, animated: true)
+    }
+
 }
 
 public class FundsTransferTransactionViewController: UIViewController {
@@ -33,6 +117,8 @@ public class FundsTransferTransactionViewController: UIViewController {
     private var textFields: [UITextField] {
         return [amountTextField, recipientTextField]
     }
+
+    let vc = FundsTransferViewController()
 
     private var tokenID: BaseID!
 
@@ -70,6 +156,13 @@ public class FundsTransferTransactionViewController: UIViewController {
         continueButton.accessibilityIdentifier = "transaction.continue"
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
         feeLabel.accessibilityIdentifier = "transaction.fee"
+
+        addChild(vc)
+        vc.view.frame = view.bounds
+        vc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(vc.view)
+        vc.didMove(toParent: self)
+
         model.start()
     }
 
@@ -103,6 +196,19 @@ public class FundsTransferTransactionViewController: UIViewController {
         model.recipientErrors.forEach { showError($0, in: recipientStackView) }
 
         continueButton.isEnabled = model.canProceedToSigning
+
+        updateVC()
+    }
+
+    func updateVC() {
+        vc.headerViewCell.configure(imageURL: model.tokenData.logoURL,
+                                    code: model.tokenData.code,
+                                    info: model.balance ?? "")
+        vc.amountCell.tokenInput.imageURL = model.tokenData.logoURL
+        vc.amountCell.tokenInput.setUp(value: model.intAmount ?? 0, decimals: model.tokenData.decimals)
+        vc.feeCell.transactionFeeView.configure(currentBalance: model.feeBalanceTokenData,
+                                                transactionFee: model.feeAmountTokenData,
+                                                resultingBalance: model.feeResultingBalanceTokenData)
     }
 
     @objc func proceedToSigning(_ sender: Any) {
@@ -187,8 +293,6 @@ extension FundsTransferTransactionViewController: UITextFieldDelegate {
         }
     }
 }
-
-
 
 extension EthereumAddressValidator.ValidationError: LocalizedError {
 

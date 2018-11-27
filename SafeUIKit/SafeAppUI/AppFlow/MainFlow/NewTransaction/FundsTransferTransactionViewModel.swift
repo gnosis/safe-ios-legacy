@@ -15,6 +15,7 @@ class FundsTransferTransactionViewModel {
     private var intFee: BigInt?
 
     private(set) var tokenCode: String
+    private(set) var tokenData: TokenData!
     private(set) var senderName: String
     private(set) var senderAddress: String
     private(set) var balance: String?
@@ -22,6 +23,9 @@ class FundsTransferTransactionViewModel {
     private(set) var recipient: String?
     private(set) var fee: String
     private(set) var feeBalance: String
+    private(set) var feeBalanceTokenData: TokenData!
+    private(set) var feeResultingBalanceTokenData: TokenData!
+    private(set) var feeAmountTokenData: TokenData!
     private(set) var canProceedToSigning: Bool
 
     private(set) var amountErrors = [Error]()
@@ -51,6 +55,7 @@ class FundsTransferTransactionViewModel {
         updateBlock = onUpdate
         let token = ApplicationServiceRegistry.walletService.tokenData(id: tokenID.id)!
         tokenCode = token.code
+        tokenData = token
         tokenFormatter = .ERC20Token(code: token.code, decimals: token.decimals)
         amountValidator = TokenAmountValidator(formatter: tokenFormatter, range: BigInt(0)..<BigInt(2).power(256) - 1)
         fundsValidator = FundsValidator()
@@ -76,6 +81,7 @@ class FundsTransferTransactionViewModel {
             balance = nil
         }
         feeBalance = feeFormatter.string(from: walletService.accountBalance(tokenID: feeTokenID) ?? 0)
+        self.updateFeeData()
         updateCanProceedToSigning()
         notifyUpdated()
     }
@@ -157,8 +163,17 @@ class FundsTransferTransactionViewModel {
             if op.isCancelled { return }
             self.intFee = intFee
             self.fee = intFee == nil ? "--" : self.feeFormatter.string(from: -intFee!)
+            self.updateFeeData()
             self.didChangeFee()
         })
+    }
+
+    private func updateFeeData() {
+        guard let balance = self.walletService.tokenData(id: self.feeTokenID.id),
+            balance.balance != nil else { return }
+        self.feeBalanceTokenData = balance
+        self.feeAmountTokenData = balance.withBalance(intFee ?? 0)
+        self.feeResultingBalanceTokenData = balance.withBalance(balance.balance! - self.feeAmountTokenData.balance!)
     }
 
     private func didChangeFee() {
