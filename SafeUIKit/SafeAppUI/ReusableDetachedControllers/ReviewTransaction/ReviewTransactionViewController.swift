@@ -18,6 +18,8 @@ final class ReviewTransactionViewController: UITableViewController {
     }
     internal let confirmationCell = TransactionConfirmationCell()
 
+    private let scheduler = OneOperationWaitinScheduler(interval: 30)
+
     enum Strings {
         static let outgoingTransfer = LocalizedString("transaction.outgoing_transfer", comment: "Outgoing transafer")
     }
@@ -31,6 +33,7 @@ final class ReviewTransactionViewController: UITableViewController {
         super.viewDidLoad()
         configureTableView()
         createCells()
+        requestSignatures()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -68,21 +71,27 @@ final class ReviewTransactionViewController: UITableViewController {
 
     private func createCells() {
         cells = [IndexPath: UITableViewCell]()
-        var row: Int = 0
-        cells[IndexPath(row: next(&row), section: 0)] = headerCell()
-        cells[IndexPath(row: next(&row), section: 0)] = transferViewCell()
+        let indexPath = IndexPathIterator()
+        cells[indexPath.next()] = headerCell()
+        cells[indexPath.next()] = transferViewCell()
         if tx.amountTokenData.isEther {
-           cells[IndexPath(row: next(&row), section: 0)] = etherTransactionFeeCell()
+           cells[indexPath.next()] = etherTransactionFeeCell()
         } else {
-            cells[IndexPath(row: next(&row), section: 0)] = tokenBalanceChangeCell()
-            cells[IndexPath(row: next(&row), section: 0)] = etherFeeBalanceChangeCell()
+            cells[indexPath.next()] = tokenBalanceChangeCell()
+            cells[indexPath.next()] = etherFeeBalanceChangeCell()
         }
-        cells[IndexPath(row: next(&row), section: 0)] = confirmationCell
+        cells[indexPath.next()] = confirmationCell
     }
 
-    private func next(_ index: inout Int) -> Int {
-        index += 1
-        return index - 1
+    private class IndexPathIterator {
+
+        private var index: Int = 0
+
+        func next() -> IndexPath {
+            defer { index += 1 }
+            return IndexPath(row: index, section: 0)
+        }
+
     }
 
     private func headerCell() -> UITableViewCell {
@@ -156,6 +165,37 @@ final class ReviewTransactionViewController: UITableViewController {
             confirmationCell.transactionConfirmationView.status = .rejected
         default:
             confirmationCell.transactionConfirmationView.status = .undefined
+        }
+    }
+
+    // - MARK: Requesting signatures
+
+    private func requestSignatures() {
+        scheduler.schedule { [weak self] in
+            self?.doRequest()
+        }
+    }
+
+    private func doRequest() {
+        performTransactionAction { [unowned self] in
+            try ApplicationServiceRegistry.walletService.requestTransactionConfirmation(self.tx.id)
+        }
+    }
+
+    private func performTransactionAction(_ action: @escaping () throws -> TransactionData) {
+        DispatchQueue.global().async {
+            do {
+                let tx = try action()
+                DispatchQueue.main.sync {
+                    self.updateConfirmationCell(tx)
+                }
+            } catch let error {
+                DispatchQueue.main.sync {
+                    ErrorHandler.showError(message: error.localizedDescription,
+                                           log: "operation failed: \(error)",
+                                           error: nil)
+                }
+            }
         }
     }
 

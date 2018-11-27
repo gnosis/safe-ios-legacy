@@ -197,8 +197,6 @@
 		55126B6521AC37FC00A9F810 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6321AC37FC00A9F810 /* ProgressView.swift */; };
 		55126B6721AC380900A9F810 /* ProgressViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6421AC37FC00A9F810 /* ProgressViewTests.swift */; };
 		55126B6921AC38A900A9F810 /* TransactionConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */; };
-		55126B6B21AD524800A9F810 /* OneOperationAwaitinScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6A21AD524800A9F810 /* OneOperationAwaitinScheduler.swift */; };
-		55126B6E21AD530E00A9F810 /* OneOperationAwaitinSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55126B6C21AD529400A9F810 /* OneOperationAwaitinSchedulerTests.swift */; };
 		55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55247302213E8D7600A77557 /* TokensHeaderView.swift */; };
 		55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55247304213E8EC600A77557 /* TokensHeaderView.xib */; };
 		5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524730E213FDEB400A77557 /* BackgroundImageView.swift */; };
@@ -550,8 +548,6 @@
 		55126B6321AC37FC00A9F810 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		55126B6421AC37FC00A9F810 /* ProgressViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewTests.swift; sourceTree = "<group>"; };
 		55126B6821AC38A800A9F810 /* TransactionConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConfirmationViewController.swift; sourceTree = "<group>"; };
-		55126B6A21AD524800A9F810 /* OneOperationAwaitinScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneOperationAwaitinScheduler.swift; sourceTree = "<group>"; };
-		55126B6C21AD529400A9F810 /* OneOperationAwaitinSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneOperationAwaitinSchedulerTests.swift; sourceTree = "<group>"; };
 		55247302213E8D7600A77557 /* TokensHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensHeaderView.swift; sourceTree = "<group>"; };
 		55247304213E8EC600A77557 /* TokensHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokensHeaderView.xib; sourceTree = "<group>"; };
 		5524730E213FDEB400A77557 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
@@ -1391,8 +1387,6 @@
 			children = (
 				55C0D4BB219AD35900F04FA4 /* ReviewTransactionViewController.swift */,
 				5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */,
-				55126B6A21AD524800A9F810 /* OneOperationAwaitinScheduler.swift */,
-				55126B6C21AD529400A9F810 /* OneOperationAwaitinSchedulerTests.swift */,
 			);
 			path = ReviewTransaction;
 			sourceTree = "<group>";
@@ -2117,7 +2111,6 @@
 				0AC3F1732183674100DAADC9 /* GuidelinesViewController.swift in Sources */,
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
 				0AD5091F2110AABD008507CB /* FundsTransferTransactionViewModel.swift in Sources */,
-				55126B6B21AD524800A9F810 /* OneOperationAwaitinScheduler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2159,7 +2152,6 @@
 				0A72D439209C92A20082C0A3 /* TestExtensionsTests.swift in Sources */,
 				0A334E6D209C8F8800ABC6AE /* ErrorHandlerTests.swift in Sources */,
 				0AD5090921105514008507CB /* EthereumAddressValidatorTests.swift in Sources */,
-				55126B6E21AD530E00A9F810 /* OneOperationAwaitinSchedulerTests.swift in Sources */,
 				0A334E5F209C8E6800ABC6AE /* PasswordViewControllerTests.swift in Sources */,
 				0AD998A820D3E7DC00E6F3CA /* BorderedButtonTests.swift in Sources */,
 				55625214214A601900F569EE /* SafeTableViewCellTests.swift in Sources */,

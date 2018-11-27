@@ -8,6 +8,7 @@ import MultisigWalletApplication
 import BigInt
 import Common
 import SafeUIKit
+import CommonTestSupport
 
 class ReviewTransactionViewControllerTests: XCTestCase {
 
@@ -16,7 +17,10 @@ class ReviewTransactionViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: service, for: WalletApplicationService.self)
+        ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
     }
+
+    // MARK: - Layout
 
     func test_whenLoaded_thenSetsTransactionHeaderAccordingToTransactionData() {
         let (data, vc) = ethDataAndCotroller()
@@ -85,6 +89,8 @@ class ReviewTransactionViewControllerTests: XCTestCase {
         XCTAssertNotEqual(vc.cellHeight(3), 0)
     }
 
+    // MARK: - Transaction Review Cell states
+
     func test_whenTransactionIsWaitingForConfirmation_thenConfirmationCellIsPending() {
         let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
         vc.viewDidAppear(false)
@@ -117,10 +123,26 @@ class ReviewTransactionViewControllerTests: XCTestCase {
         XCTAssertEqual(vc.cellCount(), 5)
     }
 
+    // MARK: - Requesting signatures
+
+    func test_whenLoaded_thenRequestsSignatures() {
+        ethDataAndCotroller(.waitingForConfirmation)
+        XCTAssertNotNil(service.requestTransactionConfirmation_input)
+        service.requestTransactionConfirmation_input = nil
+    }
+
+    func test_whenRequestingConfirmationsFails_thenAlertIsShown() {
+        service.requestTransactionConfirmation_throws = true
+        ethDataAndCotroller(.waitingForConfirmation)
+        delay()
+        XCTAssertAlertShown(message: MockWalletApplicationService.Error.error.errorDescription)
+    }
+
 }
 
 private extension ReviewTransactionViewControllerTests {
 
+    @discardableResult
     func ethDataAndCotroller(_ status: TransactionData.Status = .readyToSubmit) ->
         (TransactionData, ReviewTransactionViewController) {
         let data = TransactionData.ethData(status: status)
