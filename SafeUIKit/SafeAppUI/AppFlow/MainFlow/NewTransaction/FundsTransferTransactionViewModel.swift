@@ -145,12 +145,15 @@ class FundsTransferTransactionViewModel {
     }
 
     func hasEnoughFunds() -> Bool? {
-        // FIXME: it is slow!
-        guard let amount = intAmount, let fee = intFee else { return nil }
-        return walletService.hasEnoughFundsForTransfer(amount: amount,
-                                                       token: tokenID.id,
-                                                       fee: fee,
-                                                       feeToken: feeTokenID.id)
+        let accountBalance = tokenData.balance ?? 0
+        let amount = intAmount ?? 0
+        let feeBalance = feeBalanceTokenData.balance ?? 0
+        let feeAmount = abs(feeAmountTokenData.balance ?? 0)
+        if feeTokenID == tokenID {
+            return accountBalance >= amount + feeAmount
+        } else {
+            return accountBalance >= amount && feeBalance >= feeAmount
+        }
     }
 
 }

@@ -457,16 +457,6 @@ public class WalletApplicationService: Assertable {
             * BigInt(response.gasPrice)
     }
 
-    public func hasEnoughFundsForTransfer(amount: BigInt, token: String, fee: BigInt, feeToken: String) -> Bool {
-        let transferBalance = accountBalance(tokenID: BaseID(token))!
-        if token == feeToken {
-            return (amount + fee) <= transferBalance
-        } else {
-            let feeBalance = accountBalance(tokenID: BaseID(feeToken))!
-            return amount <= transferBalance && fee <= feeBalance
-        }
-    }
-
     public func transactionData(_ id: String) -> TransactionData? {
         guard let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id)) else { return nil }
         return transactionData(tx)

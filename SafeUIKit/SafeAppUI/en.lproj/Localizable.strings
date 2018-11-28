@@ -386,38 +386,8 @@
 /* 'Outgoing' transaction type */
 "transaction.details.type.outgoing" = "Outgoing Transfer";
 
-/* Address length '%d' is too long for required length '%d' */
-"transaction.error.addressIsTooLong" = "Address is too long: %d instead of %d characters.";
-
-/* Address length '%d' is too short for required length '%d' */
-"transaction.error.addressIsTooShort" = "Address is too short: %d instead of %d characters.";
-
-/* Transfer amount must be a positive value */
-"transaction.error.amountNegative" = "Transaction amount must be a positive value.";
-
-/* Transfer amount must be a valid number */
-"transaction.error.amountNotANumber" = "Transaction amount must be a number.";
-
-/* Amount is too big value for transfer. */
-"transaction.error.amountTooBig" = "Transaction amount is too big.";
-
-/* Amount is too small value for transfer. */
-"transaction.error.amountTooSmall" = "Transaction amount is too small.";
-
-/* Address is empty but it is required */
-"transaction.error.emptyAddress" = "Address is required for transaction.";
-
-/* Amount is empty but it is required */
-"transaction.error.emptyAmount" = "Amount is required for transaction";
-
-/* Invalid character '%@' at position '%d' */
-"transaction.error.invalidAddressCharacterAt" = "Invalid character '%@' at position '%d'";
-
 /* Not enough balance for transaction. */
 "transaction.error.notEnoughFunds" = "Insufficient funds for the amount.";
-
-/* Zero address is invalid for transfer of tokens */
-"transaction.error.zeroAddressInvalidForTransfer" = "Transaction requires non-zero address for token transfer.";
 
 /* Maximum transaction fee */
 "transaction.fee.title" = "Maximum transaction fee";

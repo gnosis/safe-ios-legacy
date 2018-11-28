@@ -16,12 +16,21 @@ public final class AddressInput: VerifiableInput {
                                                "a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F"]
 
     public weak var addressInputDelegate: AddressInputDelegate?
+    private let identiconSize = CGSize(width: 26, height: 26)
+    private let inputHeight: CGFloat = 60
+    private let maximumCharacters: Int = 43
+    private let addressCharacterCount: Int = 42
+    private let addressDigitCount: Int = 40
+    private let hexPrefix: String = "0x"
+    private let textFontSize: CGFloat = 18
+    let addressLabelPadding: CGFloat = 12
 
     public override var text: String? {
         get {
             return addressLabel.text
         }
         set {
+            textInput.leftImage = Asset.AddressInput.addressIconTmp.image
             if newValue != nil {
                 let displayAddress = safeUserInput(newValue)
                 addressLabel.text = displayAddress
@@ -30,6 +39,9 @@ public final class AddressInput: VerifiableInput {
                 validateRules(for: addressLabel.text!)
                 if isValid {
                     addressLabel.address = displayAddress
+                    let identicon = IdenticonView(frame: CGRect(origin: .zero, size: identiconSize))
+                    identicon.seed = displayAddress
+                    textInput.leftView = identicon
                 }
             } else {
                 addressLabel.address = nil
@@ -74,7 +86,7 @@ public final class AddressInput: VerifiableInput {
         addAddressLabel()
         showErrorsOnly = true
         trimsText = true
-        maxLength = 43 // if user scans >42 chars value, the error will be displayed.
+        maxLength = maximumCharacters
         text = nil
         addRule(Strings.Rules.invalidAddress, identifier: "invalidAddress", validation: isValid)
         scanHandler.addDebugButtonToScannerController(title: "Test Address",
@@ -82,7 +94,7 @@ public final class AddressInput: VerifiableInput {
     }
 
     private func configureTextInput() {
-        textInput.heightConstraint.constant = 60
+        textInput.heightConstraint.constant = inputHeight
         textInput.rightViewMode = .never
         textInput.leftImage = Asset.AddressInput.addressIconTmp.image
         textInput.delegate = self
@@ -94,7 +106,7 @@ public final class AddressInput: VerifiableInput {
     }
 
     private func configureAddressLabel() {
-        addressLabel.font = UIFont.systemFont(ofSize: 18)
+        addressLabel.font = UIFont.systemFont(ofSize: textFontSize)
         addressLabel.backgroundColor = .clear
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -102,9 +114,9 @@ public final class AddressInput: VerifiableInput {
     private func pinAddressLabel() {
         let leftViewRect = textInput.leftViewRect(forBounds: textInput.bounds)
         let rightViewRect = textInput.rightViewRect(forBounds: textInput.bounds)
-        let padding: CGFloat = 12
-        let absoluteLeftPadding = leftViewRect.maxX + padding
-        let absoluteRightPadding = textInput.bounds.width - rightViewRect.maxX + rightViewRect.width + padding
+        let absoluteLeftPadding = leftViewRect.maxX + addressLabelPadding
+        let absoluteRightPadding = textInput.bounds.width - rightViewRect.maxX +
+            rightViewRect.width + addressLabelPadding
         textInput.addSubview(addressLabel)
         NSLayoutConstraint.activate([
             addressLabel.leadingAnchor.constraint(equalTo: textInput.leadingAnchor, constant: absoluteLeftPadding),
@@ -118,9 +130,12 @@ public final class AddressInput: VerifiableInput {
         return isValid(safeValue) ? safeValue : nil
     }
 
-    private func isValid(_ address: String) -> Bool {
-        guard ((address.count == 42 && address.hasPrefix("0x")) || (address.count == 40)) &&
-            address.suffix(40).reduce(true, { $0 && hexCharsSet.contains($1) }) else {
+    private func isValid(_ text: String) -> Bool {
+        let address = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        let hasCorrectLengthWithPrefix = address.count == addressCharacterCount && address.hasPrefix(hexPrefix)
+        let hasCorrectLengthWithoutPrefix = address.count == addressDigitCount
+        guard (hasCorrectLengthWithPrefix || hasCorrectLengthWithoutPrefix) &&
+            address.suffix(addressDigitCount).reduce(true, { $0 && hexCharsSet.contains($1) }) else {
             return false
         }
         return true
