@@ -172,7 +172,6 @@ final class ReviewTransactionViewController: UITableViewController {
     }
 
     internal func update(with tx: TransactionData) {
-        // TODO: check use case when the view is open and we receive a request to sign a new transaction.
         guard tx.id == self.tx.id else { return }
         self.tx = tx
         updateConfirmationCell(with: tx.status)

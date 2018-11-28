@@ -167,10 +167,25 @@ class ReviewTransactionViewControllerTests: XCTestCase {
         let (_, vc) = ethDataAndCotroller(.readyToSubmit)
         vc.submit()
         XCTAssertTrue(delegate.requestedToSubmit)
+        delay()
+        XCTAssertNotNil(service.submitTransaction_input)
     }
 
-    // TODO: test_whenSubmittingConfirmedTransactonAndNotAllowed_thenDoesNothing
-    // TODO: test_whenSubmittingConfirmedTransactonAndAllowed_thenCallesDelegateOnSuccess
+    func test_whenSubmittingConfirmedTransactonAndNotAllowed_thenDoesNothing() {
+        let (_, vc) = ethDataAndCotroller(.readyToSubmit)
+        delegate.shouldAllowToSubmit = false
+        vc.submit()
+        delay()
+        XCTAssertNil(service.submitTransaction_input)
+    }
+
+    func test_whenSubmittingConfirmedTransactonAndAllowed_thenCallsDelegateOnSuccess() {
+        let (_, vc) = ethDataAndCotroller(.readyToSubmit)
+        service.submitTransaction_output = TransactionData.ethData(status: .success)
+        vc.submit()
+        delay()
+        XCTAssertTrue(delegate.finished)
+    }
 
 }
 
