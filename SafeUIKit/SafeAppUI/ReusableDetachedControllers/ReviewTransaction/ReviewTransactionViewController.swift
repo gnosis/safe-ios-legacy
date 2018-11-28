@@ -25,7 +25,7 @@ final class ReviewTransactionViewController: UITableViewController {
     }
     internal let confirmationCell = TransactionConfirmationCell()
 
-    private let scheduler = OneOperationWaitinScheduler(interval: 30)
+    private let scheduler = OneOperationWaitingScheduler(interval: 30)
 
     private class IndexPathIterator {
 

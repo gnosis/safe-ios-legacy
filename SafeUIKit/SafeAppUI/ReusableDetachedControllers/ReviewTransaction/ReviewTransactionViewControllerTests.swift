@@ -160,7 +160,7 @@ class ReviewTransactionViewControllerTests: XCTestCase {
         createWindow(vc)
         vc.submit()
         delay()
-        XCTAssertAlertShown(message: ReviewTransactionViewController.Strings.Alert.description, actionsCount: 2)
+        XCTAssertAlertShown(message: ReviewTransactionViewController.Strings.Alert.description, actionCount: 2)
     }
 
     func test_whenSubmittingConfirmedTransaction_thenCallsDelegate() {
