@@ -29,6 +29,8 @@ public protocol TransactionRepository {
     /// - Returns: transaction found or nil otherwise
     func findBy(hash: Data, status: TransactionStatus.Code) -> Transaction?
 
+    func findBy(hash: Data) -> Transaction?
+    
     /// Generates new transaction identifier
     ///
     /// - Returns: new transaction identifier

@@ -6,6 +6,7 @@ import XCTest
 @testable import MultisigWalletApplication
 import MultisigWalletDomainModel
 import Common
+import BigInt
 
 class SendTransactionTests: BaseWalletApplicationServiceTests {
 
@@ -276,6 +277,157 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         service.subscribeForTransactionUpdates(subscriber: subscriber)
 
         XCTAssertTrue(eventRelay.verify())
+    }
+
+}
+
+class SendTransactionMessageTests: BaseWalletApplicationServiceTests {
+
+    override func setUp() {
+        super.setUp()
+        givenReadyToUseWallet()
+        encryptionService.hash_of_tx_output = Data(hex: Fixtures.hash)
+        encryptionService.addressFromHashSignature_output = service.ownerAddress(of: .browserExtension)
+        encryptionService.dataFromSignature_output = Data(repeating: 3, count: 32)
+    }
+
+    func test_whenRecievesNewSendTransactionWithValidHash_thenSavesIt() {
+        guard let txID = service.receive(message: Fixtures.sendTransactionAPNSPayload) else {
+            XCTFail("Expected to save the transaction")
+            return
+        }
+        let tx = transactionRepository.findByID(TransactionID(txID))
+        XCTAssertNotNil(tx)
+        XCTAssertEqual(tx?.signatures.count, 1)
+        XCTAssertEqual(tx?.signatures.first?.data, encryptionService.dataFromSignature_output)
+        XCTAssertEqual(tx?.signatures.first?.address, Address(encryptionService.addressFromHashSignature_output!))
+    }
+
+    func test_whenRecievesNewSendTransactionWithWrongSafe_thenIgnores() {
+        XCTAssertNil(service.receive(message: Fixtures.sendTransactionAPNSPayload_wrongSafe))
+    }
+
+    func test_whenRecievesNewSendTransactionWithWrongHash_thenIgnores() {
+        let differentHash = Data(repeating: 7, count: 32)
+        encryptionService.hash_of_tx_output = differentHash
+        XCTAssertNil(service.receive(message: Fixtures.sendTransactionAPNSPayload))
+    }
+
+    func test_whenRecievesNewSendTransactionWithInvalidSignature_thenIgnores() {
+        encryptionService.addressFromHashSignature_output = Address.testAccount4.value.lowercased()
+        XCTAssertNil(service.receive(message: Fixtures.sendTransactionAPNSPayload))
+    }
+
+    func test_whenReceivesExistingTransaction_thenReplacesSignature() {
+        let txID = service.receive(message: Fixtures.sendTransactionAPNSPayload)
+        let sameTxID = service.receive(message: Fixtures.sendTransactionAPNSPayload)
+        XCTAssertEqual(txID, sameTxID)
+    }
+
+    func test_whenRecievesPendingTransaction_thenIgnores() {
+        let txID = service.receive(message: Fixtures.sendTransactionAPNSPayload)!
+        let tx = transactionRepository.findByID(TransactionID(txID))!
+        tx.set(hash: TransactionHash.test1)
+        tx.proceed()
+        transactionRepository.save(tx)
+        XCTAssertNil(service.receive(message: Fixtures.sendTransactionAPNSPayload))
+    }
+
+    func test_whenRecievesNonEthTokenTransfer_thenHasCorrectData() {
+        let txID = service.receive(message: Fixtures.sendTransactionAPNSPayload_nonEth)!
+        let tx = transactionRepository.findByID(TransactionID(txID))!
+        XCTAssertEqual(tx.ethTo, Address.testAccount2)
+        XCTAssertEqual(tx.ethValue, 0)
+        XCTAssertEqual(tx.recipient, Address(Address.testAccount3.value.lowercased()))
+        XCTAssertEqual(tx.amount?.amount, 100)
+        XCTAssertEqual(tx.amount?.token.address, Address.testAccount2)
+        XCTAssertEqual(tx.fee?.token.address, Address.testAccount4)
+        XCTAssertEqual(tx.feeEstimate?.gasPrice.token.address, Address.testAccount4)
+    }
+
+    fileprivate struct Fixtures {
+
+        static let sendTransactionAPNSPayload: [AnyHashable: Any] = [
+            "aps": [
+                "alert": [
+                    "body": "Hello, world!",
+                    "title": "Test Message"
+                ],
+                "badge": 1
+            ],
+            "type": "sendTransaction",
+            "hash": Fixtures.hash,
+            "safe": Address.safeAddress.value,
+            "to": Address.testAccount2.value,
+            "value": String(BigInt(1e18)),
+            "data": "0x010101",
+            "operation": "0",
+            "txGas": "21500",
+            "dataGas": "24600",
+            "operationalGas": "48200",
+            "gasPrice": "10000",
+            "gasToken": Address.zero.value,
+            "nonce": "1",
+            "r": "1234567890",
+            "s": "1234567890",
+            "v": "28"
+        ]
+
+        static let hash = "0x1212121212121212121212121212121212121212121212121212121212121212"
+
+        static let sendTransactionAPNSPayload_wrongSafe: [AnyHashable: Any] = [
+            "aps": [
+                "alert": [
+                    "body": "Hello, world!",
+                    "title": "Test Message"
+                ],
+                "badge": 1
+            ],
+            "type": "sendTransaction",
+            "hash": Fixtures.hash,
+            "safe": Address.testAccount1.value,
+            "to": Address.testAccount2.value,
+            "value": String(BigInt(1e18)),
+            "data": "0x010101",
+            "operation": "0",
+            "txGas": "21500",
+            "dataGas": "24600",
+            "operationalGas": "48200",
+            "gasPrice": "10000",
+            "gasToken": Address.zero.value,
+            "nonce": "1",
+            "r": "1234567890",
+            "s": "1234567890",
+            "v": "28"
+        ]
+
+        static let sendTransactionAPNSPayload_nonEth: [AnyHashable: Any] = [
+            "aps": [
+                "alert": [
+                    "body": "Hello, world!",
+                    "title": "Test Message"
+                ],
+                "badge": 1
+            ],
+            "type": "sendTransaction",
+            "hash": Fixtures.hash,
+            "safe": Address.safeAddress.value,
+            "to": Address.testAccount2.value,
+            "value": "0",
+            "data": ERC20TokenContractProxy(Address.testAccount2)
+                .transfer(to: Address.testAccount3, amount: 100).toHexString().addHexPrefix(),
+            "operation": "0",
+            "txGas": "21500",
+            "dataGas": "24600",
+            "operationalGas": "48200",
+            "gasPrice": "10000",
+            "gasToken": Address.testAccount4.value,
+            "nonce": "1",
+            "r": "1234567890",
+            "s": "1234567890",
+            "v": "28"
+        ]
+
     }
 
 }

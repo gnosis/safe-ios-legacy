@@ -26,6 +26,8 @@ CREATE TABLE IF NOT EXISTS %@ (
     static let deleteFormat = "DELETE FROM %@ WHERE id = ?;"
     static let findByID = "SELECT id, data FROM %@ WHERE id = ? LIMIT 1;"
     static let findFirst = "SELECT id, data FROM %@ LIMIT 1;"
+    static let findAll = "SELECT id, data FROM %@;"
+
 }
 
 open class DBBaseRepository<T: DBCodable>: Assertable {
@@ -86,6 +88,11 @@ open class DBBaseRepository<T: DBCodable>: Assertable {
 
     open func nextID() -> T.ID {
         return T.ID()
+    }
+
+    open func findAll() -> [T] {
+        let sql = String(format: DBBaseRepositorySQL.findAll, tableName)
+        return try! db.execute(sql: sql, resultMap: itemFromResultSet).compactMap { $0 }
     }
 
 }

@@ -38,4 +38,8 @@ open class BaseInMemoryRepository<T: IdentifiableEntity<U>, U: Hashable> {
         return items.first { $0.id == itemID }
     }
 
+    open func findAll() -> [T] {
+        return Array(items)
+    }
+
 }

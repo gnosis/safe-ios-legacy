@@ -90,6 +90,7 @@ FROM tbl_transactions
 WHERE hash = ? AND transaction_status = ?
 LIMIT 1;
 """
+        static let findByHash = "SELECT \(fieldList) FROM tbl_transactions WHERE hash = ? LIMIT 1;"
         static let findAll = "SELECT \(fieldList) FROM tbl_transactions;"
 
     }
@@ -170,6 +171,12 @@ LIMIT 1;
     public func findBy(hash: Data, status: TransactionStatus.Code) -> Transaction? {
         return try! db.execute(sql: SQL.findByHashStatus,
                                bindings: [hash, status.rawValue],
+                               resultMap: transactionFromResultSet).first as? Transaction
+    }
+
+    public func findBy(hash: Data) -> Transaction? {
+        return try! db.execute(sql: SQL.findByHash,
+                               bindings: [hash],
                                resultMap: transactionFromResultSet).first as? Transaction
     }
 

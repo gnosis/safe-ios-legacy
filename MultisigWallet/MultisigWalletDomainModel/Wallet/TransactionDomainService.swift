@@ -16,8 +16,11 @@ public class TransactionDomainService {
     }
 
     public func newDraftTransaction() -> TransactionID {
+        return newDraftTransaction(in: DomainRegistry.walletRepository.selectedWallet()!)
+    }
+
+    public func newDraftTransaction(in wallet: Wallet) -> TransactionID {
         let repository = DomainRegistry.transactionRepository
-        let wallet = DomainRegistry.walletRepository.selectedWallet()!
         let transaction = Transaction(id: repository.nextID(),
                                       type: .transfer,
                                       walletID: wallet.id,
