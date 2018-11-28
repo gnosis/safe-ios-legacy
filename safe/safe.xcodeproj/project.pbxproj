@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0A009C0920C688B700380A07 /* PendingSafeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A009C0820C688B700380A07 /* PendingSafeScreen.swift */; };
+		0A028EED21AEE3FE00431D25 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028EEC21AEE3FE00431D25 /* NotificationService.swift */; };
+		0A028EF121AEE3FE00431D25 /* remoteNotificationHandler.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0A028EEA21AEE3FE00431D25 /* remoteNotificationHandler.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0A028F0521AEE52100431D25 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A028F0721AEE52100431D25 /* Localizable.strings */; };
 		0A0660842099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */; };
 		0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */; };
 		0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* SafeUIKit.strings */; };
@@ -90,6 +93,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0A028EEF21AEE3FE00431D25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5540A4E3203C3054009C9BE3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A028EE921AEE3FE00431D25;
+			remoteInfo = remoteNotificationHandler;
+		};
 		0A12F17820D01E530039B3E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */;
@@ -226,6 +236,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		0A028F0221AEE3FE00431D25 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0A028EF121AEE3FE00431D25 /* remoteNotificationHandler.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5554D7B820455B7800672DA8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -243,6 +264,10 @@
 
 /* Begin PBXFileReference section */
 		0A009C0820C688B700380A07 /* PendingSafeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PendingSafeScreen.swift; path = safeUITests/screens/OnboardingFlow/PendingSafeScreen.swift; sourceTree = SOURCE_ROOT; };
+		0A028EEA21AEE3FE00431D25 /* remoteNotificationHandler.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = remoteNotificationHandler.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A028EEC21AEE3FE00431D25 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		0A028EEE21AEE3FE00431D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A028F0621AEE52100431D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreenUITests.swift; sourceTree = "<group>"; };
 		0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreen.swift; sourceTree = "<group>"; };
 		0A0660872099B4870048FBD3 /* SafeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -347,6 +372,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0A028EE721AEE3FE00431D25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5540A4E8203C3054009C9BE3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -387,6 +419,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A028EEB21AEE3FE00431D25 /* remoteNotificationHandler */ = {
+			isa = PBXGroup;
+			children = (
+				0A028EEC21AEE3FE00431D25 /* NotificationService.swift */,
+				0A028EEE21AEE3FE00431D25 /* Info.plist */,
+				0A028F0721AEE52100431D25 /* Localizable.strings */,
+			);
+			path = remoteNotificationHandler;
+			sourceTree = "<group>";
+		};
 		0A160B4F20A07C2D00E064E1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +596,7 @@
 				55D6C2F72045C38D0026BC72 /* TestTools */,
 				5540A4ED203C3054009C9BE3 /* safe */,
 				5540A50D203C3054009C9BE3 /* SafeUITests */,
+				0A028EEB21AEE3FE00431D25 /* remoteNotificationHandler */,
 				5540A4EC203C3054009C9BE3 /* Products */,
 				0A53306B2073C73E00DE55F5 /* Frameworks */,
 			);
@@ -565,6 +608,7 @@
 				5540A4EB203C3054009C9BE3 /* safe.app */,
 				5540A4FF203C3054009C9BE3 /* safeTests.xctest */,
 				5540A50A203C3054009C9BE3 /* SafeUITests.xctest */,
+				0A028EEA21AEE3FE00431D25 /* remoteNotificationHandler.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -685,6 +729,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0A028EE921AEE3FE00431D25 /* remoteNotificationHandler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A028F0121AEE3FE00431D25 /* Build configuration list for PBXNativeTarget "remoteNotificationHandler" */;
+			buildPhases = (
+				0A028EE621AEE3FE00431D25 /* Sources */,
+				0A028EE721AEE3FE00431D25 /* Frameworks */,
+				0A028EE821AEE3FE00431D25 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = remoteNotificationHandler;
+			productName = remoteNotificationHandler;
+			productReference = 0A028EEA21AEE3FE00431D25 /* remoteNotificationHandler.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		5540A4EA203C3054009C9BE3 /* safe */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5540A513203C3054009C9BE3 /* Build configuration list for PBXNativeTarget "safe" */;
@@ -698,6 +759,7 @@
 				5554D7B820455B7800672DA8 /* Embed Frameworks */,
 				0AB0B571216390D200FB2435 /* Embed Third Party Frameworks */,
 				5540A520203C6077009C9BE3 /* Fabric */,
+				0A028F0221AEE3FE00431D25 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -705,6 +767,7 @@
 				0A12F17920D01E530039B3E1 /* PBXTargetDependency */,
 				0A160B8B20A07CC200E064E1 /* PBXTargetDependency */,
 				0AC33F1D2119CBE1009A5CFB /* PBXTargetDependency */,
+				0A028EF021AEE3FE00431D25 /* PBXTargetDependency */,
 			);
 			name = safe;
 			productName = safe;
@@ -755,10 +818,13 @@
 		5540A4E3203C3054009C9BE3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Gnosis Ltd";
 				TargetAttributes = {
+					0A028EE921AEE3FE00431D25 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					5540A4EA203C3054009C9BE3 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1000;
@@ -813,6 +879,7 @@
 				5540A4EA203C3054009C9BE3 /* safe */,
 				5540A4FE203C3054009C9BE3 /* safeTests */,
 				5540A509203C3054009C9BE3 /* SafeUITests */,
+				0A028EE921AEE3FE00431D25 /* remoteNotificationHandler */,
 			);
 		};
 /* End PBXProject section */
@@ -919,6 +986,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0A028EE821AEE3FE00431D25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A028F0521AEE52100431D25 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5540A4E9203C3054009C9BE3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1078,6 +1153,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0A028EE621AEE3FE00431D25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A028EED21AEE3FE00431D25 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5540A4E7203C3054009C9BE3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1152,6 +1235,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0A028EF021AEE3FE00431D25 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A028EE921AEE3FE00431D25 /* remoteNotificationHandler */;
+			targetProxy = 0A028EEF21AEE3FE00431D25 /* PBXContainerItemProxy */;
+		};
 		0A12F17920D01E530039B3E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SafeAppUI;
@@ -1180,6 +1268,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0A028F0721AEE52100431D25 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A028F0621AEE52100431D25 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		0A53AD3720595C2300D713AD /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1200,6 +1296,113 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0A028EF221AEE3FE00431D25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_IDENTIFIER = pm.gnosis.safe.dev;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = remoteNotificationHandler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER).remoteNotificationHandler";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0A028EF321AEE3FE00431D25 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_IDENTIFIER = pm.gnosis.safe.adhoc;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = remoteNotificationHandler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER).remoteNotificationHandler";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = AdHoc;
+		};
+		0A028EF421AEE3FE00431D25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_IDENTIFIER = pm.gnosis.safe;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = remoteNotificationHandler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER).remoteNotificationHandler";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0A028EF521AEE3FE00431D25 /* PreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_IDENTIFIER = pm.gnosis.safe.prerelease;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = remoteNotificationHandler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER).remoteNotificationHandler";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = PreRelease;
+		};
 		0A0920D22180C6C000C5A503 /* PreRelease */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0AFEDEB42073C80A002F5924 /* Config.xcconfig */;
@@ -1743,6 +1946,17 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0A028F0121AEE3FE00431D25 /* Build configuration list for PBXNativeTarget "remoteNotificationHandler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A028EF221AEE3FE00431D25 /* Debug */,
+				0A028EF321AEE3FE00431D25 /* AdHoc */,
+				0A028EF421AEE3FE00431D25 /* Release */,
+				0A028EF521AEE3FE00431D25 /* PreRelease */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5540A4E6203C3054009C9BE3 /* Build configuration list for PBXProject "safe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
