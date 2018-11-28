@@ -7,7 +7,9 @@ import SafeAppUI
 import IdentityAccessApplication
 import IdentityAccessImplementations
 
-class UnlockDemoViewController: UITableViewController {
+class UnlockDemoViewController: BaseDemoViewController {
+
+    override var demoController: UIViewController { return controller }
 
     var controller: UnlockViewController!
     let clock = SystemClockService()
@@ -29,13 +31,6 @@ class UnlockDemoViewController: UITableViewController {
             self.controller.dismiss(animated: true, completion: nil)
         }
         controller.showsCancelButton = true
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        DispatchQueue.main.async {
-            self.present(self.controller, animated: true, completion: nil)
-        }
     }
 
 }

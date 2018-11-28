@@ -5,107 +5,123 @@
 import UIKit
 import MultisigWalletApplication
 import Common
+import SafeUIKit
 
 protocol FundsTransferTransactionViewControllerDelegate: class {
     func didCreateDraftTransaction(id: String)
 }
 
-class FundsTransferTransactionViewController: UIViewController {
+public class FundsTransferTransactionViewController: UIViewController {
 
-    @IBOutlet weak var tokenCodeLabel: UILabel!
-    @IBOutlet weak var participantView: TransactionParticipantView!
-    @IBOutlet weak var valueView: TransactionValueView!
-    @IBOutlet weak var amountTextField: UITextField!
-    @IBOutlet weak var recipientTextField: UITextField!
-    @IBOutlet weak var dataLabel: UILabel!
-    @IBOutlet weak var feeLabel: UILabel!
-    @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var continueButton: BorderedButton!
-    @IBOutlet weak var recipientStackView: UIStackView!
-    @IBOutlet weak var amountStackView: UIStackView!
+    @IBOutlet var backgroundView: BackgroundImageView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var nextBarButton: UIBarButtonItem!
+    @IBOutlet weak var transactionHeaderView: TransactionHeaderView!
+    @IBOutlet weak var addressInput: AddressInput!
+    @IBOutlet weak var tokenInput: TokenInput!
+
+    // Either transactionFeeView or tokenBalanceView and feeBalanceView are visible at the same time
+    @IBOutlet weak var transactionFeeView: TransactionFeeView!
+
+    @IBOutlet weak var tokenBalanceView: TransactionFeeView!
+    @IBOutlet weak var feeBalanceView: TransactionFeeView!
+    @IBOutlet weak var feeBackgroundView: UIView!
 
     weak var delegate: FundsTransferTransactionViewControllerDelegate?
 
     private var keyboardBehavior: KeyboardAvoidingBehavior!
     internal var model: FundsTransferTransactionViewModel!
     internal var transactionID: String?
-    private var textFields: [UITextField] {
-        return [amountTextField, recipientTextField]
-    }
 
     private var tokenID: BaseID!
+    private let feeTokenID: BaseID = ethID
 
-    static func create(tokenID: BaseID) -> FundsTransferTransactionViewController {
+    public static func create(tokenID: BaseID) -> FundsTransferTransactionViewController {
         let controller = StoryboardScene.Main.fundsTransferTransactionViewController.instantiate()
         controller.tokenID = tokenID
         return controller
     }
 
-    private enum Strings {
+    fileprivate enum Strings {
         static let title = LocalizedString("transaction.title",
                                            comment: "Send")
         static let `continue` = LocalizedString("transaction.continue",
                                                 comment: "Continue button title for New Transaction Screen")
+        static let notEnoughFunds = LocalizedString("transaction.error.notEnoughFunds",
+                                                    comment: "Not enough balance for transaction.")
     }
 
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         navigationItem.title = Strings.title
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
-        model = FundsTransferTransactionViewModel(senderName: "Safe", tokenID: tokenID, onUpdate: updateFromViewModel)
-        amountTextField.delegate = self
-        amountTextField.accessibilityIdentifier = "transaction.amount"
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.minimumFractionDigits = 2
-        amountTextField.placeholder = numberFormatter.string(from: NSNumber(value: 0))
-        recipientTextField.delegate = self
-        recipientTextField.accessibilityIdentifier = "transaction.address"
-        continueButton.addTarget(self, action: #selector(proceedToSigning(_:)), for: .touchUpInside)
-        continueButton.setTitle(Strings.continue, for: .normal)
-        continueButton.accessibilityIdentifier = "transaction.continue"
+        contentView.backgroundColor = ColorName.paleGreyThree.color
+        backgroundView.isDimmed = true
+        addressInput.addressInputDelegate = self
+        nextBarButton.title = FundsTransferTransactionViewController.Strings.continue
+        nextBarButton.accessibilityIdentifier = "transaction.continue"
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
-        feeLabel.accessibilityIdentifier = "transaction.fee"
+        model = FundsTransferTransactionViewModel(tokenID: tokenID, onUpdate: updateFromViewModel)
+        addressInput.addRule("none", identifier: nil) { [unowned self] in
+            self.model.change(recipient: $0)
+            return true
+        }
+        tokenInput.addRule(Strings.notEnoughFunds, identifier: "notEnoughFunds") { [unowned self] in
+            guard self.tokenInput.formatter.number(from: $0) != nil else { return true }
+            self.model.change(amount: $0)
+            return self.model.hasEnoughFunds() ?? false
+        }
+        tokenInput.setUp(value: 0, decimals: model.tokenData.decimals)
+        transactionHeaderView.usesEthImageWhenImageURLIsNil = true
+        tokenInput.usesEthDefaultImage = true
+        tokenInput.imageURL = model.tokenData.logoURL
+        feeBalanceView.backgroundColor = .clear
+        feeBackgroundView.backgroundColor = ColorName.paleGreyTwo.color
         model.start()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardBehavior.start()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
+    override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         keyboardBehavior.stop()
     }
 
     func updateFromViewModel() {
-        tokenCodeLabel.text = model.tokenCode
-
-        participantView.name = model.senderName
-        participantView.address = model.senderAddress
-
-        valueView.tokenAmount = model.balance ?? ""
-        valueView.fiatAmount = ""
-        valueView.style = .neutral
-
-        balanceLabel.text = model.feeBalance
-        feeLabel.text = model.fee
-
-        clearErrors(in: amountStackView)
-        model.amountErrors.forEach { showError($0, in: amountStackView) }
-
-        clearErrors(in: recipientStackView)
-        model.recipientErrors.forEach { showError($0, in: recipientStackView) }
-
-        continueButton.isEnabled = model.canProceedToSigning
+        transactionHeaderView.assetCode = model.tokenData.code
+        transactionHeaderView.assetImageURL = model.tokenData.logoURL
+        transactionHeaderView.assetInfo = model.balance
+        if tokenID == feeTokenID {
+            transactionFeeView.isHidden = false
+            tokenBalanceView.isHidden = true
+            feeBalanceView.isHidden = true
+            feeBackgroundView.isHidden = true
+            transactionFeeView.configure(currentBalance: model.feeBalanceTokenData,
+                                         transactionFee: model.feeAmountTokenData,
+                                         resultingBalance: model.feeResultingBalanceTokenData)
+        } else {
+            transactionFeeView.isHidden = true
+            tokenBalanceView.isHidden = false
+            feeBalanceView.isHidden = false
+            feeBackgroundView.isHidden = false
+            tokenBalanceView.configure(currentBalance: model.tokenData,
+                                       transactionFee: nil,
+                                       resultingBalance: model.resultingTokenData)
+            feeBalanceView.configure(currentBalance: nil,
+                                     transactionFee: model.feeAmountTokenData,
+                                     resultingBalance: model.feeResultingBalanceTokenData)
+        }
+        nextBarButton.isEnabled = model.canProceedToSigning
     }
 
-    @objc func proceedToSigning(_ sender: Any) {
+    @IBAction func proceedToSigning(_ sender: Any) {
         let service = ApplicationServiceRegistry.walletService
         transactionID = service.createNewDraftTransaction()
         service.updateTransaction(transactionID!,
@@ -121,129 +137,26 @@ class FundsTransferTransactionViewController: UIViewController {
         }
     }
 
-    private func clearErrors(in stack: UIStackView) {
-        while stack.arrangedSubviews.count > 1 {
-            stack.arrangedSubviews.last!.removeFromSuperview()
-        }
-    }
-
-    private func showError(_ error: Error, in stack: UIStackView) {
-        let wrapperView = UIView()
-        let errorLabel = UILabel()
-        errorLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        errorLabel.textColor = ColorName.tomato.color
-        errorLabel.numberOfLines = 0
-        errorLabel.text = error.localizedDescription
-
-        errorLabel.translatesAutoresizingMaskIntoConstraints = false
-        wrapperView.addSubview(errorLabel)
-        stack.addArrangedSubview(wrapperView)
-        NSLayoutConstraint.activate([
-            errorLabel.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor, constant: 16),
-            errorLabel.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor, constant: 16),
-            errorLabel.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: 8),
-            errorLabel.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: 8)])
-    }
 }
 
-extension FundsTransferTransactionViewController: UITextFieldDelegate {
+extension FundsTransferTransactionViewController: AddressInputDelegate {
 
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        keyboardBehavior.activeTextField = textField
-    }
-
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
-        let newValue = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
-        update(textField, newValue: newValue)
-        return true
-    }
-
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        update(textField, newValue: nil)
-        return true
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let index = textFields.index(where: { $0 === textField }) {
-            if index < textFields.count - 1 {
-                textFields[index + 1].becomeFirstResponder()
-            } else {
-                textField.resignFirstResponder()
-                if model.canProceedToSigning {
-                    proceedToSigning(textField)
-                }
-            }
-        }
-        return true
-    }
-
-    private func update(_ textField: UITextField, newValue: String?) {
-        if textField == amountTextField {
-            model.change(amount: newValue)
-        } else if textField == recipientTextField {
-            model.change(recipient: newValue)
-        }
-    }
-}
-
-
-
-extension EthereumAddressValidator.ValidationError: LocalizedError {
-
-    var errorDescription: String? {
-        switch self {
-        case .empty:
-            return LocalizedString("transaction.error.emptyAddress", comment: "Address is empty but it is required")
-        case let .invalidCharacter(character, offset):
-            let format = LocalizedString("transaction.error.invalidAddressCharacterAt",
-                                         comment: "Invalid character '%@' at position '%d'")
-            let position = offset + 1
-            return String(format: format, character, position)
-        case let .valueTooShort(count, requiredCount):
-            let format = LocalizedString("transaction.error.addressIsTooShort",
-                                         comment: "Address length '%d' is too short for required length '%d'")
-            return String(format: format, count, requiredCount)
-        case let .valueTooLong(count, requiredCount):
-            let format = LocalizedString("transaction.error.addressIsTooLong",
-                                         comment: "Address length '%d' is too long for required length '%d'")
-            return String(format: format, count, requiredCount)
-        case .zeroAddress:
-            return LocalizedString("transaction.error.zeroAddressInvalidForTransfer",
-                                   comment: "Zero address is invalid for transfer of tokens")
-        }
+    public func presentController(_ controller: UIViewController) {
+        self.present(controller, animated: true)
     }
 
 }
 
-extension TokenAmountValidator.ValidationError: LocalizedError {
+extension FundsTransferTransactionViewController: VerifiableInputDelegate {
 
-    var errorDescription: String? {
-        switch self {
-        case .empty: return LocalizedString("transaction.error.emptyAmount",
-                                            comment: "Amount is empty but it is required")
-        case .valueIsTooBig:
-            return LocalizedString("transaction.error.amountTooBig",
-                                   comment: "Amount is too big value for transfer.")
-        case .valueIsTooSmall:
-            return LocalizedString("transaction.error.amountTooSmall",
-                                   comment: "Amount is too small value for transfer.")
-        case .valueIsNegative:
-            return LocalizedString("transaction.error.amountNegative",
-                                   comment: "Transfer amount must be a positive value")
-        case .notANumber:
-            return LocalizedString("transaction.error.amountNotANumber",
-                                   comment: "Transfer amount must be a valid number")
+    public func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
+        if model.canProceedToSigning {
+            proceedToSigning(verifiableInput)
         }
     }
 
-}
-
-extension FundsValidator.ValidationError: LocalizedError {
-
-    var errorDescription: String? {
-        return LocalizedString("transaction.error.notEnoughFunds", comment: "Not enough balance for transaction.")
+    public func verifiableInputDidBeginEditing(_ verifiableInput: VerifiableInput) {
+        keyboardBehavior.activeTextField = verifiableInput.textInput
     }
 
 }

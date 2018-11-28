@@ -5,21 +5,18 @@
 import UIKit
 import SafeAppUI
 
-class TermsAndConditionsDemoViewController: UIViewController, TermsAndConditionsViewControllerDelegate {
+class TermsAndConditionsDemoViewController: BaseDemoViewController, TermsAndConditionsViewControllerDelegate {
 
     var controller: TermsAndConditionsViewController!
+    override var demoController: UIViewController { return controller }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         controller = .create()
         controller.modalPresentationStyle = .overFullScreen
         controller.delegate = self
         definesPresentationContext = true
-        present(controller, animated: true, completion: nil)
+
     }
 
     func wantsToOpenTermsOfUse() {

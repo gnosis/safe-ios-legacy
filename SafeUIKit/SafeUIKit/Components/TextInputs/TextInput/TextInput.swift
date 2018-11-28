@@ -9,6 +9,12 @@ public class TextInput: UITextField {
 
     private let clearButton = UIButton(type: .custom)
     private let padding: CGFloat = 14
+    public var textInputHeight: CGFloat = 50 {
+        didSet {
+            heightConstraint.constant = textInputHeight
+            setNeedsUpdateConstraints()
+        }
+    }
 
     public var heightConstraint: NSLayoutConstraint!
 
@@ -65,7 +71,7 @@ public class TextInput: UITextField {
     }
 
     private func commonInit() {
-        heightConstraint = heightAnchor.constraint(equalToConstant: 50)
+        heightConstraint = heightAnchor.constraint(equalToConstant: textInputHeight)
         heightConstraint.isActive = true
         font = UIFont.systemFont(ofSize: 17)
         configureBorder()

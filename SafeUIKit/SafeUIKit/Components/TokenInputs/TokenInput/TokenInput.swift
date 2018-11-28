@@ -10,6 +10,7 @@ public final class TokenInput: VerifiableInput {
     public private(set) var decimals: Int = 18
     public private(set) var value: BigInt = 0
     public private(set) var formatter = TokenNumberFormatter()
+    private let textInputHeight: CGFloat = 60
 
     var locale = Locale.autoupdatingCurrent {
         didSet {
@@ -31,9 +32,15 @@ public final class TokenInput: VerifiableInput {
         }
     }
 
+    public var usesEthDefaultImage: Bool = false
+
     public var imageURL: URL? {
         didSet {
-            textInput.leftImageURL = imageURL
+            if usesEthDefaultImage && imageURL == nil {
+                textInput.leftImage = Asset.TokenIcons.eth.image
+            } else {
+                textInput.leftImageURL = imageURL
+            }
         }
     }
 
@@ -56,6 +63,7 @@ public final class TokenInput: VerifiableInput {
         textInput.leftImage = Asset.TokenIcons.defaultToken.image
         textInput.keyboardType = .decimalPad
         textInput.delegate = self
+        textInput.textInputHeight = textInputHeight
         maxLength = TokenBounds.maxDigitsCount
         showErrorsOnly = true
         addDefaultValidationsRules()
@@ -139,11 +147,11 @@ public extension TokenInput {
 
     override func textFieldDidEndEditing(_ textField: UITextField) {
         guard textField === textInput else { return }
-        guard isValid else {
+        guard isValid, let text = textField.text, !text.isEmpty else {
             value = 0
             return
         }
-        value = formatter.number(from: textInput.text ?? "") ?? 0
+        value = formatter.number(from: text) ?? 0
         textInput.text = formatter.string(from: value)
     }
 

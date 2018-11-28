@@ -4,28 +4,30 @@
 
 import UIKit
 
-public class ContainerCell: UITableViewCell {
+open class ContainerCell: UITableViewCell {
 
-    public var cellContentView: UIView { return UIView() }
+    open var cellContentView: UIView { return UIView() }
+    open var horizontalMargin: CGFloat { return 0 }
+    open var verticalMargin: CGFloat { return 0 }
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
     }
 
-    private func commonInit() {
+    open func commonInit() {
         cellContentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(cellContentView)
         NSLayoutConstraint.activate([
-            cellContentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            cellContentView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            cellContentView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            cellContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
+            cellContentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: horizontalMargin),
+            cellContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalMargin),
+            cellContentView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -horizontalMargin),
+            cellContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalMargin)])
     }
 
 }
