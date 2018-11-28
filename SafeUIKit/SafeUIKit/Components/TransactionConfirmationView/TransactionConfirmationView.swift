@@ -56,42 +56,59 @@ public class TransactionConfirmationView: BaseCustomView {
     }
 
     private func setUndefined() {
-        progressView.isError = false
-        progressView.isIndeterminate = false
-        progressView.progress = 0
+        updateView(isError: false,
+                   isIntermediate: false,
+                   progress: 0,
+                   statusText: Strings.awaitingConfirmation,
+                   extensionText: Strings.confirmationExplanation,
+                   extensionImage: Asset.BrowserExtension.awaiting.image)
         progressView.stopAnimating()
-        statusLabel.text = " "
         statusLabel.textColor = .black
-        browserExtensionImageView.image = nil
-        browserExtensionLabel.text = " "
     }
 
     private func setPending() {
-        progressView.isIndeterminate = true
+        updateView(isError: false,
+                   isIntermediate: true,
+                   progress: 0,
+                   statusText: Strings.awaitingConfirmation,
+                   extensionText: Strings.confirmationExplanation,
+                   extensionImage: Asset.BrowserExtension.awaiting.image)
         progressView.beginAnimating()
-        statusLabel.text = Strings.awaitingConfirmation
-        browserExtensionImageView.image = Asset.BrowserExtension.awaiting.image
-        browserExtensionLabel.text = Strings.confirmationExplanation
     }
 
     private func setConfirmed() {
         progressView.stopAnimating()
-        progressView.isError = false
-        progressView.isIndeterminate = false
-        progressView.progress = 1.0
-        statusLabel.text = Strings.confirmed
-        browserExtensionImageView.image = nil
-        browserExtensionLabel.text = nil
+        updateView(isError: false,
+                   isIntermediate: false,
+                   progress: 1.0,
+                   statusText: Strings.confirmed,
+                   extensionText: nil,
+                   extensionImage: nil)
     }
 
     private func setRejected() {
         progressView.stopAnimating()
-        progressView.isError = true
-        progressView.isIndeterminate = false
-        statusLabel.text = Strings.rejected
+        updateView(isError: true,
+                   isIntermediate: false,
+                   progress: 0,
+                   statusText: Strings.rejected,
+                   extensionText: Strings.rejectionExplanation,
+                   extensionImage: Asset.BrowserExtension.rejected.image)
         statusLabel.textColor = ColorName.tomato.color
-        browserExtensionImageView.image = Asset.BrowserExtension.rejected.image
-        browserExtensionLabel.text = Strings.rejectionExplanation
+    }
+
+    private func updateView(isError: Bool,
+                            isIntermediate: Bool,
+                            progress: Double,
+                            statusText: String?,
+                            extensionText: String?,
+                            extensionImage: UIImage?) {
+        progressView.isError = isError
+        progressView.isIndeterminate = isIntermediate
+        progressView.progress = progress
+        statusLabel.text = statusText
+        browserExtensionLabel.text = extensionText
+        browserExtensionImageView.image = extensionImage
     }
 
 }

@@ -13,9 +13,9 @@ class TransactionConfirmationViewTests: XCTestCase {
         assertView(isError: false,
                    isIntermediate: false,
                    progress: 0,
-                   statusText: " ",
-                   extensionText: " ",
-                   extensionImage: nil,
+                   statusText: TransactionConfirmationView.Strings.awaitingConfirmation,
+                   extensionText: TransactionConfirmationView.Strings.confirmationExplanation,
+                   extensionImage: Asset.BrowserExtension.awaiting.image,
                    line: #line)
     }
 

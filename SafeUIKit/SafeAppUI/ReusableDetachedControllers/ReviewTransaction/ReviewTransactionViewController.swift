@@ -27,7 +27,16 @@ final class ReviewTransactionViewController: UITableViewController {
 
     private let scheduler = OneOperationWaitinScheduler(interval: 30)
 
+    private class IndexPathIterator {
 
+        private var index: Int = 0
+
+        func next() -> IndexPath {
+            defer { index += 1 }
+            return IndexPath(row: index, section: 0)
+        }
+
+    }
 
     enum Strings {
         static let outgoingTransfer = LocalizedString("transaction.outgoing_transfer", comment: "Outgoing transafer")
@@ -59,12 +68,11 @@ final class ReviewTransactionViewController: UITableViewController {
             UIBarButtonItem(title: Strings.submit, style: .done, target: self, action: #selector(submit))
         configureTableView()
         createCells()
-        requestSignatures()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateConfirmationCell(tx)
+        requestSignatures()
     }
 
     private func configureTableView() {
@@ -109,17 +117,6 @@ final class ReviewTransactionViewController: UITableViewController {
         cells[indexPath.next()] = confirmationCell
     }
 
-    private class IndexPathIterator {
-
-        private var index: Int = 0
-
-        func next() -> IndexPath {
-            defer { index += 1 }
-            return IndexPath(row: index, section: 0)
-        }
-
-    }
-
     private func headerCell() -> UITableViewCell {
         let cell = TransactionHeaderCell(frame: .zero)
         cell.configure(imageURL: tx.amountTokenData.logoURL,
@@ -143,7 +140,6 @@ final class ReviewTransactionViewController: UITableViewController {
                        transactionFee: tx.feeTokenData,
                        resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
     }
-
 
     private func tokenBalanceChangeCell() -> UITableViewCell {
         let balance = self.balance(of: tx.amountTokenData)
@@ -176,23 +172,20 @@ final class ReviewTransactionViewController: UITableViewController {
     }
 
     internal func update(with tx: TransactionData) {
-        // TODO: check how UI will behave and refactor update <-> updateConfirmationCell
+        // TODO: check use case when the view is open and we receive a request to sign a new transaction.
+        guard tx.id == self.tx.id else { return }
         self.tx = tx
-        createCells()
-        tableView.reloadData()
+        updateConfirmationCell(with: tx.status)
     }
 
-    private func updateConfirmationCell(_ tx: TransactionData) {
-        switch tx.status {
+    private func updateConfirmationCell(with status: TransactionData.Status) {
+        switch status {
         case .waitingForConfirmation:
             confirmationCell.transactionConfirmationView.status = .pending
         case .readyToSubmit:
             confirmationCell.transactionConfirmationView.status = .confirmed
         case .rejected:
             confirmationCell.transactionConfirmationView.status = .rejected
-        case .success:
-            // TODO: unit test this
-            delegate.didFinish()
         default:
             confirmationCell.transactionConfirmationView.status = .undefined
         }
@@ -213,18 +206,27 @@ final class ReviewTransactionViewController: UITableViewController {
     }
 
     private func performTransactionAction(_ action: @escaping () throws -> TransactionData) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
             do {
-                let tx = try action()
-                DispatchQueue.main.sync {
-                    self.updateConfirmationCell(tx)
-                }
+                try self?.doAction(action)
             } catch let error {
                 DispatchQueue.main.sync {
                     ErrorHandler.showError(message: error.localizedDescription,
                                            log: "operation failed: \(error)",
                                            error: nil)
                 }
+            }
+        }
+    }
+
+    private func doAction(_ action: @escaping () throws -> TransactionData) throws {
+        self.tx = try action()
+        DispatchQueue.main.sync {
+            switch self.tx.status {
+            case .success, .pending, .failed, .discarded:
+                self.delegate.didFinish()
+            default:
+                self.updateConfirmationCell(with: self.tx.status)
             }
         }
     }
@@ -245,10 +247,10 @@ final class ReviewTransactionViewController: UITableViewController {
         let alert = UIAlertController(title: Strings.Alert.title,
                                       message: Strings.Alert.description,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Strings.Alert.resend, style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: Strings.Alert.cancel, style: .cancel) { [unowned self] _ in
+        alert.addAction(UIAlertAction(title: Strings.Alert.resend, style: .default) { [unowned self] _ in
             self.requestSignatures()
         })
+        alert.addAction(UIAlertAction(title: Strings.Alert.cancel, style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
 

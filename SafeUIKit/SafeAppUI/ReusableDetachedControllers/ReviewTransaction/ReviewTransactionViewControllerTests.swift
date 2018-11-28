@@ -96,18 +96,21 @@ class ReviewTransactionViewControllerTests: XCTestCase {
     func test_whenTransactionIsWaitingForConfirmation_thenConfirmationCellIsPending() {
         let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
         vc.viewDidAppear(false)
+        delay()
         XCTAssertEqual(vc.confirmationCell.transactionConfirmationView.status, .pending)
     }
 
     func test_whenTransactionIsReadyToSubmit_thenConfirmationCellIsConfirmed() {
         let (_, vc) = ethDataAndCotroller(.readyToSubmit)
         vc.viewDidAppear(false)
+        delay()
         XCTAssertEqual(vc.confirmationCell.transactionConfirmationView.status, .confirmed)
     }
 
     func test_whenTransactionIsRejected_thenConfirmationCellIsRejected() {
         let (_, vc) = ethDataAndCotroller(.rejected)
         vc.viewDidAppear(false)
+        delay()
         XCTAssertEqual(vc.confirmationCell.transactionConfirmationView.status, .rejected)
     }
 
@@ -117,25 +120,29 @@ class ReviewTransactionViewControllerTests: XCTestCase {
         XCTAssertEqual(vc.confirmationCell.transactionConfirmationView.status, .undefined)
     }
 
-    func test_whenUpdatingWithNewTransactionData_thenUpdatesUI() {
+    func test_whenUpdatingWithNewTransactionData_thenIgnoresIt() {
         let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
         XCTAssertEqual(vc.cellCount(), 4)
         let (newData, _) = tokenDataAndCotroller(.waitingForConfirmation)
         vc.update(with: newData)
-        XCTAssertEqual(vc.cellCount(), 5)
+        XCTAssertEqual(vc.cellCount(), 4)
     }
 
     // MARK: - Requesting signatures
 
-    func test_whenLoaded_thenRequestsSignatures() {
-        ethDataAndCotroller(.waitingForConfirmation)
+    func test_whenAppeared_thenRequestsSignatures() {
+        let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
+        XCTAssertNil(service.requestTransactionConfirmation_input)
+        vc.viewDidAppear(false)
+        delay()
         XCTAssertNotNil(service.requestTransactionConfirmation_input)
         service.requestTransactionConfirmation_input = nil
     }
 
     func test_whenRequestingConfirmationsFails_thenAlertIsShown() {
         service.requestTransactionConfirmation_throws = true
-        ethDataAndCotroller(.waitingForConfirmation)
+        let (_, vc) = ethDataAndCotroller(.waitingForConfirmation)
+        vc.viewDidAppear(false)
         delay()
         XCTAssertAlertShown(message: MockWalletApplicationService.Error.error.errorDescription)
     }
@@ -186,6 +193,7 @@ private extension ReviewTransactionViewControllerTests {
 
     func controller(for data: TransactionData) -> ReviewTransactionViewController {
         service.transactionData_output = data
+        service.requestTransactionConfirmation_output = data
         service.update(account: BaseID(data.amountTokenData.address), newBalance: BigInt(10).power(19))
         let vc = ReviewTransactionViewController(transactionID: data.id, delegate: delegate)
         vc.viewDidLoad()
