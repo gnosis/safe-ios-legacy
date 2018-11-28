@@ -12,8 +12,22 @@ public class ERC20TokenContractProxy: EthereumContractProxy {
         return try TokenInt(decodeUInt(invoke("balanceOf(address)", encodeAddress(address))))
     }
 
+    private let transferMethodSignature = "transfer(address,uint256)"
+
     public func transfer(to recipient: Address, amount: TokenInt) -> Data {
-        return invocation("transfer(address,uint256)", encodeAddress(recipient), encodeUInt(BigUInt(amount)))
+        return invocation(transferMethodSignature, encodeAddress(recipient), encodeUInt(BigUInt(amount)))
+    }
+
+    public func decodedTransfer(from data: Data) -> (recipient: Address, amount: TokenInt)? {
+        let head = invocation(transferMethodSignature)
+        guard data.prefix(head.count) == head else { return nil }
+        var argumentsData = data.suffix(from: head.count)
+        let recipient = decodeAddress(argumentsData)
+        argumentsData.removeFirst(32)
+        let amount = decodeUInt(argumentsData)
+        argumentsData.removeFirst(32)
+        guard argumentsData.isEmpty else { return nil }
+        return (recipient, TokenInt(amount))
     }
 
 }

@@ -5,6 +5,7 @@
 import XCTest
 @testable import MultisigWalletDomainModel
 import EthereumKit
+import BigInt
 
 class MessageTests: XCTestCase {
 
@@ -51,6 +52,31 @@ class MessageTests: XCTestCase {
             ])
     }
 
+    func test_sendTransactionMessage() {
+        let userInfo = Fixture.sendTransactionAPNSPayload
+        guard let message = Message.create(userInfo: userInfo) as? SendTransactionMessage else {
+            XCTFail("Expected to create a message")
+            return
+        }
+        XCTAssertEqual(message.type, "sendTransaction")
+        XCTAssertEqual(message.hash, Data(hex: userInfo["hash"] as! String))
+        XCTAssertEqual(message.signature, EthSignature(r: userInfo["r"] as! String,
+                                                       s: userInfo["s"] as! String,
+                                                       v: Int(userInfo["v"] as! String)!))
+        XCTAssertEqual(message.safe, Address.testAccount1)
+        XCTAssertEqual(message.to, Address.testAccount2)
+        XCTAssertEqual(message.value, BigInt(1e18))
+        XCTAssertEqual(message.data, Data([1, 1, 1]))
+        XCTAssertEqual(message.operation, WalletOperation.call)
+        XCTAssertEqual(message.txGas, 21_500)
+        XCTAssertEqual(message.dataGas, 24_600)
+        XCTAssertEqual(message.operationalGas, 48_200)
+        XCTAssertEqual(message.gasPrice, 10_000)
+        XCTAssertEqual(message.gasToken, Address.zero)
+        XCTAssertEqual(message.nonce, 1)
+
+    }
+
     private func assert(message: OutgoingMessage,
                         equalToJSON jsonObject: Any,
                         file: StaticString = #file,
@@ -88,6 +114,32 @@ fileprivate struct Fixture {
         ],
         "type": "rejectTransaction",
         "hash": "0x1212121212121212121212121212121212121212121212121212121212121212",
+        "r": "1234567890",
+        "s": "1234567890",
+        "v": "28"
+    ]
+
+    static let sendTransactionAPNSPayload: [AnyHashable: Any] = [
+        "aps": [
+            "alert": [
+                "body": "Hello, world!",
+                "title": "Test Message"
+            ],
+            "badge": 1
+        ],
+        "type": "sendTransaction",
+        "hash": "0x1212121212121212121212121212121212121212121212121212121212121212",
+        "safe": Address.testAccount1.value,
+        "to": Address.testAccount2.value,
+        "value": String(BigInt(1e18)),
+        "data": "0x010101",
+        "operation": "0",
+        "txGas": "21500",
+        "dataGas": "24600",
+        "operationalGas": "48200",
+        "gasPrice": "10000",
+        "gasToken": Address.zero.value,
+        "nonce": "1",
         "r": "1234567890",
         "s": "1234567890",
         "v": "28"

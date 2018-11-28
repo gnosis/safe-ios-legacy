@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A028ED421AEB02200431D25 /* SendTransactionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028ED321AEB02200431D25 /* SendTransactionMessage.swift */; };
 		0A0CEFFF2125656200772AB3 /* DeploymentDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */; };
 		0A0CF00C2125684000772AB3 /* ErrorStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CF00B2125684000772AB3 /* ErrorStream.swift */; };
 		0A0CF01421257ED000772AB3 /* DeploymentDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */; };
@@ -372,6 +373,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A028ED321AEB02200431D25 /* SendTransactionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionMessage.swift; sourceTree = "<group>"; };
 		0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentDomainService.swift; sourceTree = "<group>"; };
 		0A0CF00B2125684000772AB3 /* ErrorStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStream.swift; sourceTree = "<group>"; };
 		0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentDomainServiceTests.swift; sourceTree = "<group>"; };
@@ -635,6 +637,7 @@
 				0A442DE0210B124B00F19F80 /* TransactionSentMessage.swift */,
 				0A442DE2210B15E700F19F80 /* SafeCreatedMessage.swift */,
 				0A442DC6210A06EA00F19F80 /* TransactionDecisionMessage.swift */,
+				0A028ED321AEB02200431D25 /* SendTransactionMessage.swift */,
 				0A442DC8210A088800F19F80 /* Message+Factory.swift */,
 				0A442DC4210A05A400F19F80 /* MessageTests.swift */,
 			);
@@ -1434,6 +1437,7 @@
 				0A9E380C20F4A4F20085E8D7 /* ExternallyOwnedAccountRepository.swift in Sources */,
 				55FB258D2121AB3E00E81666 /* TokenListItem.swift in Sources */,
 				0A9E380920F4A4F20085E8D7 /* GetSafeCreationStatusRequest.swift in Sources */,
+				0A028ED421AEB02200431D25 /* SendTransactionMessage.swift in Sources */,
 				0A0CEFFF2125656200772AB3 /* DeploymentDomainService.swift in Sources */,
 				0A4CF10C20F63D8D001A8687 /* SendNotificationRequest.swift in Sources */,
 				0A442DBE2109D99D00F19F80 /* Message.swift in Sources */,

@@ -16,6 +16,8 @@ public extension Message {
             return message
         } else if let message = TransactionRejectedMessage(userInfo: userInfo) {
             return message
+        } else if let message = SendTransactionMessage(userInfo: userInfo) {
+            return message
         }
         return nil
     }

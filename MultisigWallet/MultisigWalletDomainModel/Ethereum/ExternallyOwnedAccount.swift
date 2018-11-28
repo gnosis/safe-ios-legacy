@@ -4,6 +4,7 @@
 
 import Foundation
 import Common
+import BigInt
 
 /// Represents Ethereum's externally owned account - account controlled by private key.
 public class ExternallyOwnedAccount: IdentifiableEntity<Address> {
@@ -62,6 +63,15 @@ public struct Address: Hashable, Codable {
     public init(_ value: String) {
         precondition(value.hasPrefix("0x"))
         precondition(Data(ethHex: value).count == 20 || Data(ethHex: value).isEmpty)
+        self.value = value
+    }
+
+    public init?(rawValue: String) {
+        let value = String(rawValue.trimmingCharacters(in: .whitespacesAndNewlines).prefix(42))
+        let noPrefix = value.hasPrefix("0x") ? String(value.suffix(value.count - 2)) : value
+        guard BigInt(noPrefix, radix: 16) != nil else { return nil }
+        let data = Data(ethHex: value)
+        guard data.count == 20 || data.isEmpty else { return nil }
         self.value = value
     }
 

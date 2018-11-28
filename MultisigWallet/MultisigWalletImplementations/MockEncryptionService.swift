@@ -41,8 +41,10 @@ public class MockEncryptionService: EncryptionDomainService {
         return sign_output
     }
 
+    public var hash_of_tx_output: Data = Data(repeating: 1, count: 32)
+
     public func hash(of transaction: Transaction) -> Data {
-        return Data(repeating: 1, count: 32)
+        return hash_of_tx_output
     }
 
     public var addressFromHashSignature_output: String?

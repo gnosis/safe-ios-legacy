@@ -10,6 +10,7 @@ public protocol WalletRepository {
     func remove(_ wallet: Wallet)
     func findByID(_ walletID: WalletID) -> Wallet?
     func nextID() -> WalletID
+    func findAll() -> [Wallet]
 
 }
 
@@ -18,6 +19,10 @@ public extension WalletRepository {
     func selectedWallet() -> Wallet? {
         guard let id = DomainRegistry.portfolioRepository.portfolio()?.selectedWallet else { return nil }
         return findByID(id)
+    }
+
+    func findByAddress(_ address: Address) -> Wallet? {
+        return findAll().first { $0.address == address }
     }
 
 }
