@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import SafeUIKit
+import CommonTestSupport
 
 class AddressInputTests: XCTestCase {
 
@@ -71,6 +72,7 @@ class AddressInputTests: XCTestCase {
     func test_whenScanningAddressWithSpacesAtEnds_thenReturnsTrimmed() {
         input.trimsText = true
         input.scanHandler.didScan(validAddress_withoutPrefix_withEndSpaces)
+        delay()
         XCTAssertEqual(input.text, validAddress_withPrefix)
     }
 
@@ -94,12 +96,14 @@ private extension AddressInputTests {
 
     private func assertInvalidAddress(_ address: String) {
         input.scanHandler.didScan(address)
+        delay()
         XCTAssertEqual(input.text, nil)
     }
 
     private func assertValidAddress(_ address: String, expected: String, line: UInt = #line) {
         input = AddressInput()
         input.scanHandler.didScan(address)
+        delay()
         XCTAssertEqual(input.text, expected, line: line)
     }
 

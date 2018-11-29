@@ -188,7 +188,9 @@ extension AddressInput: ScanQRCodeHandlerDelegate {
     }
 
     func didScanCode(raw: String, converted: String?) {
-        text = converted
+        DispatchQueue.main.async {
+            self.text = converted
+        }
     }
 
 }
