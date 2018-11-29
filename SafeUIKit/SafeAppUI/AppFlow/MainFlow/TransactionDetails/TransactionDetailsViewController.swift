@@ -31,6 +31,8 @@ public class TransactionDetailsViewController: UIViewController {
                                               comment: "'Outgoing' transaction type")
         static let incoming = LocalizedString("transaction.details.type.incoming",
                                               comment: "'Incoming' transaction type")
+        static let title = LocalizedString("transaction.details.title",
+                                           comment: "Title for the transaction details screen")
     }
 
     @IBOutlet weak var backgroundImageView: BackgroundImageView!

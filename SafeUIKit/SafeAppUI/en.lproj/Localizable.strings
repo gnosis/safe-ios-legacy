@@ -377,6 +377,9 @@
 /* 'Submitted' parameter name */
 "transaction.details.submitted" = "Submitted";
 
+/* Title for the transaction details screen */
+"transaction.details.title" = "Transaction details";
+
 /* 'Type' parameter name */
 "transaction.details.type" = "Type";
 
