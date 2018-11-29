@@ -56,6 +56,11 @@ public class TransactionDetailsViewController: UIViewController {
         return controller
     }
 
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        navigationItem.title = Strings.title
+    }
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         dateFormatter.dateStyle = .long
