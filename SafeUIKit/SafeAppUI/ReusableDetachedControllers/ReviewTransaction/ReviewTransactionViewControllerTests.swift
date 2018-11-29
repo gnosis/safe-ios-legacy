@@ -233,40 +233,6 @@ private extension ReviewTransactionViewController {
 
 }
 
-extension TransactionData {
-
-    static func ethData(status: Status) -> TransactionData {
-        return TransactionData(id: "some",
-                               sender: "some",
-                               recipient: "some",
-                               amountTokenData: TokenData.Ether.withBalance(BigInt(10).power(18)),
-                               feeTokenData: TokenData.Ether.withBalance(BigInt(10).power(17)),
-                               status: status,
-                               type: .outgoing,
-                               created: nil,
-                               updated: nil,
-                               submitted: nil,
-                               rejected: nil,
-                               processed: nil)
-    }
-
-    static func tokenData(status: Status) -> TransactionData {
-        return TransactionData(id: "some",
-                               sender: "some",
-                               recipient: "some",
-                               amountTokenData: TokenData.gno.withBalance(BigInt(10).power(18)),
-                               feeTokenData: TokenData.gno.withBalance(BigInt(10).power(17)),
-                               status: status,
-                               type: .outgoing,
-                               created: nil,
-                               updated: nil,
-                               submitted: nil,
-                               rejected: nil,
-                               processed: nil)
-    }
-
-}
-
 class MockReviewTransactionViewControllerDelegate: ReviewTransactionViewControllerDelegate {
 
     var requestedToSubmit = false

@@ -10,13 +10,13 @@ import BigInt
 
 protocol ReviewTransactionViewControllerDelegate: class {
     func wantsToSubmitTransaction(_ completion: @escaping (_ allowed: Bool) -> Void)
-    func didFinish()
+    func didFinish() // TODO: rename
 }
 
 final class ReviewTransactionViewController: UITableViewController {
 
-    private var tx: TransactionData!
-    private weak var delegate: ReviewTransactionViewControllerDelegate!
+    private(set) var tx: TransactionData!
+    private(set) weak var delegate: ReviewTransactionViewControllerDelegate!
 
     private var cells = [IndexPath: UITableViewCell]()
 

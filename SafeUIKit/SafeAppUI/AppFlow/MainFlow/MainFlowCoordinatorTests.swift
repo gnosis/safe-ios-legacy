@@ -43,11 +43,12 @@ class MainFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenDraftTransactionCreated_thenOpensTransactionReviewVC() {
-        mainFlowCoordinator.didCreateDraftTransaction(id: "some")
+        let data = createTransaction()
+        mainFlowCoordinator.didCreateDraftTransaction(id: data.id)
         delay()
-        let vc = mainFlowCoordinator.navigationController.topViewController as? TransactionReviewViewController
+        let vc = mainFlowCoordinator.navigationController.topViewController as? ReviewTransactionViewController
         XCTAssertNotNil(vc)
-        XCTAssertEqual(vc?.transactionID, "some")
+        XCTAssertEqual(vc?.tx.id, "some")
     }
 
     func test_whenReceivingRemoteMessageData_thenPassesItToService() {
@@ -56,38 +57,25 @@ class MainFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenReceivingRemoteMessageAndReviewScreenNotOpened_thenOpensIt() {
-        walletService.receive_output = "id"
+        let data = createTransaction()
         mainFlowCoordinator.receive(message: ["key": "value"])
         delay()
         let vc = mainFlowCoordinator.navigationController.topViewController
-            as? TransactionReviewViewController
+            as? ReviewTransactionViewController
         XCTAssertNotNil(vc)
-        XCTAssertEqual(vc?.transactionID, "id")
+        XCTAssertEqual(vc?.tx.id, data.id)
         XCTAssertTrue(vc?.delegate === mainFlowCoordinator)
     }
 
     func test_whenAlreadyOpenedReviewTransaction_thenJustUpdatesIt() {
-        walletService.receive_output = "id"
-        walletService.transactionData_output = TransactionData(id: "some",
-                                                               sender: "some",
-                                                               recipient: "some",
-                                                               amountTokenData: TokenData.Ether.withBalance(100),
-                                                               feeTokenData: TokenData.Ether,
-                                                               status: .waitingForConfirmation,
-                                                               type: .outgoing,
-                                                               created: nil,
-                                                               updated: nil,
-                                                               submitted: nil,
-                                                               rejected: nil,
-                                                               processed: nil)
+        let data = createTransaction()
         mainFlowCoordinator.receive(message: ["key": "value"])
         delay()
         let controllerCount = mainFlowCoordinator.navigationController.viewControllers.count
-        walletService.receive_output = "id2"
         mainFlowCoordinator.receive(message: ["key": "value"])
         delay()
         XCTAssertEqual((mainFlowCoordinator.navigationController.topViewController
-            as? TransactionReviewViewController)?.transactionID, "id2")
+            as? ReviewTransactionViewController)?.tx.id, data.id)
         XCTAssertEqual(mainFlowCoordinator.navigationController.viewControllers.count, controllerCount)
     }
 
@@ -96,7 +84,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         let vc = mainFlowCoordinator.navigationController.topViewController
         mainFlowCoordinator.createNewTransaction(token: ethID.id)
         delay()
-        mainFlowCoordinator.transactionReviewViewControllerDidFinish()
+        mainFlowCoordinator.didFinish()
         delay()
         XCTAssertTrue(vc === mainFlowCoordinator.navigationController.topViewController)
     }
@@ -106,7 +94,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         authenticationService.allowAuthentication()
         _ = try authenticationService.authenticateUser(.password("pass"))
         let exp = expectation(description: "submit")
-        mainFlowCoordinator.transactionReviewViewControllerWantsToSubmitTransaction { success in
+        mainFlowCoordinator.wantsToSubmitTransaction { success in
             XCTAssertTrue(success)
             exp.fulfill()
         }
@@ -118,7 +106,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         let exp = expectation(description: "submit")
         try authenticationService.registerUser(password: "111111A")
         authenticationService.allowAuthentication()
-        mainFlowCoordinator.transactionReviewViewControllerWantsToSubmitTransaction { success in
+        mainFlowCoordinator.wantsToSubmitTransaction { success in
             XCTAssertTrue(success)
             exp.fulfill()
         }
@@ -201,6 +189,14 @@ class MainFlowCoordinatorTests: SafeTestCase {
         delay()
         XCTAssertTrue(mainFlowCoordinator.navigationController.presentedViewController
             is SFSafariViewController)
+    }
+
+    @discardableResult
+    private func createTransaction() -> TransactionData {
+        let data = TransactionData.ethData(status: .waitingForConfirmation)
+        walletService.receive_output = data.id
+        walletService.transactionData_output = TransactionData.ethData(status: .waitingForConfirmation)
+        return data
     }
 
 }
