@@ -109,6 +109,8 @@ public final class AddressInput: VerifiableInput {
         addressLabel.font = UIFont.systemFont(ofSize: textFontSize)
         addressLabel.backgroundColor = .clear
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        addressLabel.adjustsFontSizeToFitWidth = true
+        addressLabel.minimumScaleFactor = 0.3
     }
 
     private func pinAddressLabel() {
