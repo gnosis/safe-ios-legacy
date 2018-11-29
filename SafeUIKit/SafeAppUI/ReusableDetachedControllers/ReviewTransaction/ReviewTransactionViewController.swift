@@ -10,7 +10,7 @@ import BigInt
 
 protocol ReviewTransactionViewControllerDelegate: class {
     func wantsToSubmitTransaction(_ completion: @escaping (_ allowed: Bool) -> Void)
-    func didFinish() // TODO: rename
+    func didFinishReview()
 }
 
 final class ReviewTransactionViewController: UITableViewController {
@@ -223,7 +223,7 @@ final class ReviewTransactionViewController: UITableViewController {
         DispatchQueue.main.sync {
             switch self.tx.status {
             case .success, .pending, .failed, .discarded:
-                self.delegate.didFinish()
+                self.delegate.didFinishReview()
             default:
                 self.updateConfirmationCell(with: self.tx.status)
             }

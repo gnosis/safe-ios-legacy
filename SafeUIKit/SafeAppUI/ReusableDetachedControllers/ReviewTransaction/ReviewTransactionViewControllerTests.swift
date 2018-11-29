@@ -243,7 +243,7 @@ class MockReviewTransactionViewControllerDelegate: ReviewTransactionViewControll
     }
 
     var finished = false
-    func didFinish() {
+    func didFinishReview() {
         finished = true
     }
 

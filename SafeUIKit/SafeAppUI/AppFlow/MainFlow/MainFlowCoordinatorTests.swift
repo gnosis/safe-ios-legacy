@@ -84,7 +84,7 @@ class MainFlowCoordinatorTests: SafeTestCase {
         let vc = mainFlowCoordinator.navigationController.topViewController
         mainFlowCoordinator.createNewTransaction(token: ethID.id)
         delay()
-        mainFlowCoordinator.didFinish()
+        mainFlowCoordinator.didFinishReview()
         delay()
         XCTAssertTrue(vc === mainFlowCoordinator.navigationController.topViewController)
     }

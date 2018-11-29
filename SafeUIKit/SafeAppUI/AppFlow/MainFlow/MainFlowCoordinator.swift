@@ -133,7 +133,7 @@ extension MainFlowCoordinator: ReviewTransactionViewControllerDelegate {
         }
     }
 
-    func didFinish() {
+    func didFinishReview() {
         popToLastCheckpoint()
         showTransactionList()
     }
