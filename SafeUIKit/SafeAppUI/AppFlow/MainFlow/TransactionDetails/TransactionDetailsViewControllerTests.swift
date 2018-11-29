@@ -24,15 +24,10 @@ class TransactionDetailsViewControllerTests: XCTestCase {
         service.transactionData_output = tx
         controller.clock = TestClock()
         createWindow(controller)
-        XCTAssertEqual(controller.senderView.address, tx.sender)
-        XCTAssertEqual(controller.recipientView.address, tx.recipient)
+        XCTAssertEqual(controller.transferView.fromAddress, tx.sender)
+        XCTAssertEqual(controller.transferView.toAddress, tx.recipient)
 
-        XCTAssertTrue(controller.transactionValueView.isSingleValue)
-        XCTAssertEqual(controller.transactionValueView.style, .negative)
-        let amountFormatter = TokenNumberFormatter.ERC20Token(code: tx.amountTokenData.code,
-                                                              decimals: tx.amountTokenData.decimals)
-        XCTAssertEqual(controller.transactionValueView.tokenAmount,
-                       amountFormatter.string(from: tx.amountTokenData.balance!))
+        XCTAssertEqual(controller.transferView.tokenData, tx.amountTokenData)
 
         typealias Strings = TransactionDetailsViewController.Strings
 
@@ -47,10 +42,7 @@ class TransactionDetailsViewControllerTests: XCTestCase {
         XCTAssertEqual(controller.transactionStatusView.value, controller.string(from: tx.displayDate!))
 
         XCTAssertEqual(controller.transactionFeeView.name, Strings.fee)
-        let feeFormatter = TokenNumberFormatter.ERC20Token(code: tx.feeTokenData.code,
-                                                           decimals: tx.feeTokenData.decimals)
-        XCTAssertEqual(controller.transactionFeeView.style, .negative)
-        XCTAssertEqual(controller.transactionFeeView.value, feeFormatter.string(from: tx.feeTokenData.balance!))
+        XCTAssertEqual(controller.transactionFeeView.amount, tx.feeTokenData.withBalance(-tx.feeTokenData.balance!))
 
         XCTAssertEqual(controller.viewInExternalAppButton.title(for: .normal), Strings.externalApp)
     }

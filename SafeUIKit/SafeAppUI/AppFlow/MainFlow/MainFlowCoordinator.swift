@@ -24,6 +24,11 @@ final class MainFlowCoordinator: FlowCoordinator {
     override func setUp() {
         super.setUp()
         let mainVC = MainViewController.create(delegate: self)
+        mainVC.navigationItem.backBarButtonItem =
+            UIBarButtonItem(title: LocalizedString("navigation.back", comment: "Back"),
+                            style: .plain,
+                            target: nil,
+                            action: nil)
         push(mainVC)
     }
 
@@ -74,11 +79,6 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
     func openMenu() {
         let menuVC = MenuTableViewController.create()
         menuVC.delegate = self
-        navigationController.topViewController?.navigationItem.backBarButtonItem =
-            UIBarButtonItem(title: LocalizedString("navigation.back", comment: "Back"),
-                            style: .plain,
-                            target: nil,
-                            action: nil)
         push(menuVC)
     }
 

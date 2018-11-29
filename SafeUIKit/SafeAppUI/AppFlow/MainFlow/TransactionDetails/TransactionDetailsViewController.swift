@@ -31,17 +31,18 @@ public class TransactionDetailsViewController: UIViewController {
                                               comment: "'Outgoing' transaction type")
         static let incoming = LocalizedString("transaction.details.type.incoming",
                                               comment: "'Incoming' transaction type")
+        static let title = LocalizedString("transaction.details.title",
+                                           comment: "Title for the transaction details screen")
     }
 
-    @IBOutlet weak var senderView: TransactionParticipantView!
-    @IBOutlet weak var recipientView: TransactionParticipantView!
-    @IBOutlet weak var transactionValueView: TransactionValueView!
+    @IBOutlet weak var backgroundImageView: BackgroundImageView!
+    @IBOutlet weak var transferView: TransferView!
     @IBOutlet weak var transactionTypeView: TransactionParameterView!
     @IBOutlet weak var submittedParameterView: TransactionParameterView!
     @IBOutlet weak var transactionStatusView: StatusTransactionParameterView!
     @IBOutlet weak var transactionFeeView: TokenAmountTransactionParameterView!
     @IBOutlet weak var viewInExternalAppButton: UIButton!
-
+    @IBOutlet weak var wrapperView: ShadowWrapperView!
     public weak var delegate: TransactionDetailsViewControllerDelegate?
     public private(set) var transactionID: String!
     private var transaction: TransactionData!
@@ -55,19 +56,24 @@ public class TransactionDetailsViewController: UIViewController {
         return controller
     }
 
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        navigationItem.title = Strings.title
+    }
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .medium
         ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
+        backgroundImageView.isDimmed = true
+        wrapperView.backgroundColor = ColorName.paleGreyThree.color
         reloadData()
     }
 
     private func reloadData() {
         transaction = ApplicationServiceRegistry.walletService.transactionData(transactionID)
-        configureSender()
-        configureRecipient()
-        configureAmount()
+        configureTransferDetails()
         configureType()
         configureSubmitted()
         configureStatus()
@@ -75,22 +81,10 @@ public class TransactionDetailsViewController: UIViewController {
         configureViewInOtherApp()
     }
 
-    private func configureSender() {
-        senderView.name = ""
-        senderView.address = transaction.sender
-    }
-
-    private func configureRecipient() {
-        recipientView.name = ""
-        recipientView.address = transaction.recipient
-    }
-
-    private func configureAmount() {
-        transactionValueView.isSingleValue = true
-        transactionValueView.style = .negative
-        let formatter = TokenNumberFormatter.ERC20Token(code: transaction.amountTokenData.code,
-                                                        decimals: transaction.amountTokenData.decimals)
-        transactionValueView.tokenAmount = formatter.string(from: transaction.amountTokenData.balance!)
+    private func configureTransferDetails() {
+        transferView.fromAddress = transaction.sender
+        transferView.toAddress = transaction.recipient
+        transferView.tokenData = transaction.amountTokenData
     }
 
     private func configureType() {
@@ -123,10 +117,8 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func configureFee() {
         transactionFeeView.name = Strings.fee
-        transactionFeeView.style = .negative
-        let formatter = TokenNumberFormatter.ERC20Token(code: transaction.feeTokenData.code,
-                                                        decimals: transaction.feeTokenData.decimals)
-        transactionFeeView.value = formatter.string(from: transaction.feeTokenData.balance!)
+        transactionFeeView.amountLabel.formatter.displayedDecimals = nil
+        transactionFeeView.amount = transaction.feeTokenData.withBalance(-(transaction.feeTokenData.balance ?? 0))
     }
 
     private func configureViewInOtherApp() {
