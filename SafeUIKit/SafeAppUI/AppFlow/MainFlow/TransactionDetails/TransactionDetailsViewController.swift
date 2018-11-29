@@ -33,13 +33,14 @@ public class TransactionDetailsViewController: UIViewController {
                                               comment: "'Incoming' transaction type")
     }
 
+    @IBOutlet weak var backgroundImageView: BackgroundImageView!
     @IBOutlet weak var transferView: TransferView!
     @IBOutlet weak var transactionTypeView: TransactionParameterView!
     @IBOutlet weak var submittedParameterView: TransactionParameterView!
     @IBOutlet weak var transactionStatusView: StatusTransactionParameterView!
     @IBOutlet weak var transactionFeeView: TokenAmountTransactionParameterView!
     @IBOutlet weak var viewInExternalAppButton: UIButton!
-
+    @IBOutlet weak var wrapperView: ShadowWrapperView!
     public weak var delegate: TransactionDetailsViewControllerDelegate?
     public private(set) var transactionID: String!
     private var transaction: TransactionData!
@@ -58,6 +59,8 @@ public class TransactionDetailsViewController: UIViewController {
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .medium
         ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
+        backgroundImageView.isDimmed = true
+        wrapperView.backgroundColor = ColorName.paleGreyThree.color
         reloadData()
     }
 
