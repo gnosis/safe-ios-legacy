@@ -15,6 +15,16 @@ class AddressInputTests: XCTestCase {
     let validAddress_withoutPrefix = "f1511FAB6b7347899f51f9db027A32b39caE3910"
     let validAddress_withoutPrefix_withEndSpaces = " f1511FAB6b7347899f51f9db027A32b39caE3910 "
 
+    let validERC681Address1 = "ethereum:0xf1511FAB6b7347899f51f9db027A32b39caE3910"
+    let validAddress1 = "0xf1511FAB6b7347899f51f9db027A32b39caE3910"
+    let validERC681Address2 = "ethereum:0xfb6916095ca1df60bb79Ce92ce3ea74c37c5d359?value=2.014e180"
+    let validAddress2 = "0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359"
+    // swiftlint:disable:next line_length
+    let validERC681Address3 = "ethereum:0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7/transfer?address=0x8e23ee67d1332ad560396262c48ffbb01f93d052&uint256=1"
+    let validAddress3 = "0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7"
+    let validERC681Address4 = "ethereum:0xf1511FAB6b7347899f51f9db027A32b39caE3910@1"
+    let validAddress4 = "0xf1511FAB6b7347899f51f9db027A32b39caE3910"
+
     let invalidAddress_tooLong_withPrefix = "0xf1511FAB6b7347899f51f9db027A32b39caE3910a"
     let invalidAddress_tooLong_withoutPrefix = "f1511FAB6b7347899f51f9db027A32b39caE3910a"
     let invalidAddress_tooShort_withPrefix = "0xf1511FAB6b7347899f51f9db027A32b39caE391"
@@ -29,6 +39,8 @@ class AddressInputTests: XCTestCase {
 
     func test_whenPastingValidAddress_thenNoErrorIsDisplayed() {
         input.text = validAddress_withPrefix
+        XCTAssertEqual(input.ruleLabel(by: "invalidAddress")!.status, .success)
+        input.text = validAddress_withoutPrefix
         XCTAssertEqual(input.ruleLabel(by: "invalidAddress")!.status, .success)
     }
 
@@ -47,6 +59,13 @@ class AddressInputTests: XCTestCase {
     func test_whenScanningValidAddress_thenReturnsIt() {
         assertValidAddress(validAddress_withPrefix, expected: validAddress_withPrefix)
         assertValidAddress(validAddress_withoutPrefix, expected: validAddress_withPrefix)
+    }
+
+    func test_whenScanningERC681Address_thenReturnsIt() {
+        assertValidAddress(validERC681Address1, expected: validAddress1)
+        assertValidAddress(validERC681Address2, expected: validAddress2)
+        assertValidAddress(validERC681Address3, expected: validAddress3)
+        assertValidAddress(validERC681Address4, expected: validAddress4)
     }
 
     func test_whenScanningAddressWithSpacesAtEnds_thenReturnsTrimmed() {
