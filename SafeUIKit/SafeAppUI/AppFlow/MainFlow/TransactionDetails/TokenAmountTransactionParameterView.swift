@@ -3,18 +3,23 @@
 //
 
 import UIKit
+import SafeUIKit
+import Common
 
 class TokenAmountTransactionParameterView: TransactionParameterView {
 
-    var style: TransactionValueStyle = .positive {
+    var amount: TokenData? {
         didSet {
-            update()
+            amountLabel.amount = amount
         }
     }
 
-    override func update() {
-        super.update()
-        valueLabel.textColor = style.colorValue
+    var amountLabel: AmountLabel! {
+        return valueLabel as! AmountLabel
+    }
+
+    override func newValueLabel() -> UILabel {
+        return AmountLabel()
     }
 
 }

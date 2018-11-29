@@ -33,9 +33,7 @@ public class TransactionDetailsViewController: UIViewController {
                                               comment: "'Incoming' transaction type")
     }
 
-    @IBOutlet weak var senderView: TransactionParticipantView!
-    @IBOutlet weak var recipientView: TransactionParticipantView!
-    @IBOutlet weak var transactionValueView: TransactionValueView!
+    @IBOutlet weak var transferView: TransferView!
     @IBOutlet weak var transactionTypeView: TransactionParameterView!
     @IBOutlet weak var submittedParameterView: TransactionParameterView!
     @IBOutlet weak var transactionStatusView: StatusTransactionParameterView!
@@ -65,9 +63,7 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func reloadData() {
         transaction = ApplicationServiceRegistry.walletService.transactionData(transactionID)
-        configureSender()
-        configureRecipient()
-        configureAmount()
+        configureTransferDetails()
         configureType()
         configureSubmitted()
         configureStatus()
@@ -75,22 +71,10 @@ public class TransactionDetailsViewController: UIViewController {
         configureViewInOtherApp()
     }
 
-    private func configureSender() {
-        senderView.name = ""
-        senderView.address = transaction.sender
-    }
-
-    private func configureRecipient() {
-        recipientView.name = ""
-        recipientView.address = transaction.recipient
-    }
-
-    private func configureAmount() {
-        transactionValueView.isSingleValue = true
-        transactionValueView.style = .negative
-        let formatter = TokenNumberFormatter.ERC20Token(code: transaction.amountTokenData.code,
-                                                        decimals: transaction.amountTokenData.decimals)
-        transactionValueView.tokenAmount = formatter.string(from: transaction.amountTokenData.balance!)
+    private func configureTransferDetails() {
+        transferView.fromAddress = transaction.sender
+        transferView.toAddress = transaction.recipient
+        transferView.tokenData = transaction.amountTokenData
     }
 
     private func configureType() {
@@ -123,10 +107,8 @@ public class TransactionDetailsViewController: UIViewController {
 
     private func configureFee() {
         transactionFeeView.name = Strings.fee
-        transactionFeeView.style = .negative
-        let formatter = TokenNumberFormatter.ERC20Token(code: transaction.feeTokenData.code,
-                                                        decimals: transaction.feeTokenData.decimals)
-        transactionFeeView.value = formatter.string(from: transaction.feeTokenData.balance!)
+        transactionFeeView.amountLabel.formatter.displayedDecimals = nil
+        transactionFeeView.amount = transaction.feeTokenData.withBalance(-(transaction.feeTokenData.balance ?? 0))
     }
 
     private func configureViewInOtherApp() {

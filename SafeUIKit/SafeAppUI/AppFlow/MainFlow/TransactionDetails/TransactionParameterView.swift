@@ -17,21 +17,32 @@ class TransactionParameterView: BaseCustomView {
     var nameLabel: UILabel!
     var valueLabel: UILabel!
 
+    internal func newValueLabel() -> UILabel {
+        return UILabel()
+    }
+
     override func commonInit() {
         nameLabel = UILabel()
-        nameLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        nameLabel.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         nameLabel.textColor = ColorName.darkSlateBlue.color
 
-        valueLabel = UILabel()
-        valueLabel.font = UIFont.systemFont(ofSize: 13)
+        valueLabel = newValueLabel()
+        valueLabel.font = UIFont.systemFont(ofSize: 14)
         valueLabel.textColor = ColorName.battleshipGrey.color
         valueLabel.numberOfLines = 0
 
         let stack = UIStackView(arrangedSubviews: [nameLabel, valueLabel])
         stack.axis = .vertical
         stack.frame = self.bounds
-        stack.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.spacing = 4
         addSubview(stack)
+
+        NSLayoutConstraint.activate([
+            heightAnchor.constraint(equalTo: stack.heightAnchor),
+            stack.topAnchor.constraint(equalTo: topAnchor),
+            stack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stack.trailingAnchor.constraint(equalTo: trailingAnchor)])
 
         update()
     }
