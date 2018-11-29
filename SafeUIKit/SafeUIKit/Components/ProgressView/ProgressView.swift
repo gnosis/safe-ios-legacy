@@ -45,8 +45,7 @@ public class ProgressView: BaseCustomView {
     public var trackColor: UIColor {
         switch state {
         case .error: return ColorName.tomato15.color
-        case .indeterminate: return ColorName.paleGrey.color
-        default: return .clear
+        default: return ColorName.paleGrey.color
         }
     }
 

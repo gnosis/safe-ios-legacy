@@ -398,6 +398,9 @@
 /* Recipient */
 "transaction.recipient.name" = "Recipient";
 
+/* Review transaction title */
+"transaction.review_title" = "Review";
+
 /* Sender */
 "transaction.sender.name" = "Sender";
 
@@ -425,8 +428,23 @@
 /* AWAITING CONFIRMATION */
 "transaction.status.waiting.title" = "AWAITING CONFIRMATION";
 
+/* Submit transaction */
+"transaction.submit" = "Submit";
+
 /* Send */
 "transaction.title" = "Send";
+
+/* Cancel button. */
+"transaction_confirmation_alert.cancel" = "Cancel";
+
+/* Description for transaction confirmation alert. */
+"transaction_confirmation_alert.description" = "Resend to refresh the connection.";
+
+/* Resend button. */
+"transaction_confirmation_alert.resend" = "Resend";
+
+/* Title for transaction confirmation alert. */
+"transaction_confirmation_alert.title" = "Please open the Safe browser extension to confirm this transaction.";
 
 /* No transactions yet */
 "transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";
