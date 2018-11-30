@@ -409,6 +409,10 @@ Save this recovery phrase.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ton-Eq-CBM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="962"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8a6-yR-H9R">
                                 <rect key="frame" x="0.0" y="64" width="375" height="1136"/>
                                 <subviews>
@@ -657,11 +661,15 @@ Save this recovery phrase.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Ton-Eq-CBM" firstAttribute="leading" secondItem="crL-VE-ZNw" secondAttribute="leading" id="2E4-0c-Az3"/>
                             <constraint firstItem="mFC-Wa-utT" firstAttribute="width" secondItem="bxo-Fs-Fjd" secondAttribute="width" id="Odj-Kp-tYs"/>
+                            <constraint firstItem="Ton-Eq-CBM" firstAttribute="bottom" secondItem="mFC-Wa-utT" secondAttribute="bottom" id="Ogi-L8-fBf"/>
                             <constraint firstItem="8a6-yR-H9R" firstAttribute="top" secondItem="crL-VE-ZNw" secondAttribute="top" id="UUf-so-gAH"/>
                             <constraint firstAttribute="bottom" secondItem="8a6-yR-H9R" secondAttribute="bottom" id="VZT-FW-DZK"/>
+                            <constraint firstItem="Ton-Eq-CBM" firstAttribute="top" secondItem="crL-VE-ZNw" secondAttribute="top" id="Vp6-P5-aOI"/>
                             <constraint firstItem="8a6-yR-H9R" firstAttribute="leading" secondItem="crL-VE-ZNw" secondAttribute="leading" id="Y2O-Nm-DQv"/>
                             <constraint firstItem="8a6-yR-H9R" firstAttribute="trailing" secondItem="crL-VE-ZNw" secondAttribute="trailing" id="h59-a0-LST"/>
+                            <constraint firstItem="crL-VE-ZNw" firstAttribute="trailing" secondItem="Ton-Eq-CBM" secondAttribute="trailing" id="sra-v9-cfw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="crL-VE-ZNw"/>
                     </view>
@@ -718,6 +726,8 @@ Save this recovery phrase.</string>
                         <outlet property="safeAddressDescription" destination="RJ4-q0-VNw" id="5z1-Te-ocC"/>
                         <outlet property="safeAddressLabel" destination="CTK-bn-ywX" id="dUp-uC-Fzo"/>
                         <outlet property="safeAddressWrapperView" destination="cfc-Q4-178" id="tG5-cw-f3h"/>
+                        <outlet property="scrollContentView" destination="mFC-Wa-utT" id="YM5-Ca-QXK"/>
+                        <outlet property="scrollView" destination="8a6-yR-H9R" id="rj5-VN-RDD"/>
                         <outlet property="waitingForSafeDescriptionLabel" destination="CK5-Cq-9OZ" id="AYC-T9-yf0"/>
                         <outlet property="waitingForSafeWrapperView" destination="IGN-2r-W6z" id="jMW-KN-eLL"/>
                     </connections>

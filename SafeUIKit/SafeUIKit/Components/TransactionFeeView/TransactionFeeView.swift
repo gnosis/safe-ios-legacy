@@ -68,7 +68,7 @@ public class TransactionFeeView: BaseCustomView {
     }
 
     public override func commonInit() {
-        backgroundColor = ColorName.paleGreyThree.color
+        backgroundColor = .white
         pinWrapperStackView()
     }
 

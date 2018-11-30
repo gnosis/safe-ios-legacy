@@ -89,7 +89,7 @@ final class MenuTableViewController: UITableViewController {
         backgroundView.isDimmed = true
         tableView.backgroundView = backgroundView
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = ColorName.paleGreyThree.color
+        tableView.backgroundColor = .white
         tableView.separatorStyle = .singleLine
         tableView.register(MenuItemTableViewCell.self, forCellReuseIdentifier: "MenuItemTableViewCell")
         tableView.register(BackgroundHeaderFooterView.self,
@@ -110,7 +110,7 @@ final class MenuTableViewController: UITableViewController {
                 (item: SafeDescription(address: address),
                  cellHeight: { return SafeTableViewCell.height }),
                 (item: SafeQRCode(address: address),
-                 cellHeight: { return self.showQRCode ? SafeQRCodeTableViewCell.height : 0 })
+                 cellHeight: { return self.showQRCode ? UITableView.automaticDimension : 0 })
              ],
              title: Strings.safeAddressSectionTitle),
             (section: .portfolio,

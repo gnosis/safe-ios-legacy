@@ -141,7 +141,14 @@ class FundsTransferTransactionViewModel {
     }
 
     private func updateCanProceedToSigning() {
-        canProceedToSigning = hasEnoughFunds() == true && recipient != nil
+        canProceedToSigning = hasEnoughFunds() == true && isValidAddress(recipient)
+    }
+
+    private func isValidAddress(_ string: String?) -> Bool {
+        if let string = string, EthereumAddressFormatter().string(from: string) != nil {
+            return true
+        }
+        return false
     }
 
     func hasEnoughFunds() -> Bool? {
