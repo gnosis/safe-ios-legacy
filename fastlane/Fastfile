@@ -141,11 +141,24 @@ platform :ios do
 
   lane :certificates do |options|
     is_readonly = !options[:force]
-    match(type: "appstore", app_identifier: [ENV["FASTLANE_APP_IDENTIFIER"], PRERELEASE_APP_ID], readonly: is_readonly)
-    set_bundle_id DEV_APP_ID
-    match(type: "development", app_identifier: DEV_APP_ID, readonly: is_readonly)
-    set_bundle_id ADHOC_APP_ID
-    match(type: "adhoc", app_identifier: ADHOC_APP_ID, readonly: is_readonly)
+    extensionSuffix = ".remoteNotificationHandler"
+    match(type: "appstore", 
+      app_identifier: ids_with_extension([ENV["FASTLANE_APP_IDENTIFIER"], PRERELEASE_APP_ID], extensionSuffix), 
+      readonly: is_readonly)
+    
+      set_bundle_id DEV_APP_ID
+    match(type: "development",
+       app_identifier: ids_with_extension([DEV_APP_ID], extensionSuffix), 
+       readonly: is_readonly)
+    
+       set_bundle_id ADHOC_APP_ID
+    match(type: "adhoc", 
+      app_identifier: ids_with_extension([ADHOC_APP_ID], extensionSuffix), 
+      readonly: is_readonly)
+  end
+
+  def ids_with_extension(ids, extension)
+    ids.map { |id| [id, id + extension] }.flatten
   end
 
   error do |lane, exception|
