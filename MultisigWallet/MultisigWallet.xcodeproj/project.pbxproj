@@ -36,7 +36,6 @@
 		0A442DE3210B15E700F19F80 /* SafeCreatedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DE2210B15E700F19F80 /* SafeCreatedMessage.swift */; };
 		0A442DF5210B1DC200F19F80 /* SubmitTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DEA210B1DC200F19F80 /* SubmitTransactionRequest.swift */; };
 		0A442DF7210B25EE00F19F80 /* MessageCallRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A442DF6210B25EE00F19F80 /* MessageCallRequest.swift */; };
-		0A4991D4217DD02900CE41FA /* WeakWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4991D3217DD02900CE41FA /* WeakWrapper.swift */; };
 		0A4A1D7D2136E4C00088F9EC /* DBTokeListItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4A1D7C2136E4C00088F9EC /* DBTokeListItemRepository.swift */; };
 		0A4C3898212D9411005594DA /* WalletStateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C3897212D9411005594DA /* WalletStateEnum.swift */; };
 		0A4C38A5212D9705005594DA /* MockDeploymentDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C38A4212D9705005594DA /* MockDeploymentDomainService.swift */; };
@@ -400,7 +399,6 @@
 		0A442DE2210B15E700F19F80 /* SafeCreatedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreatedMessage.swift; sourceTree = "<group>"; };
 		0A442DEA210B1DC200F19F80 /* SubmitTransactionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitTransactionRequest.swift; sourceTree = "<group>"; };
 		0A442DF6210B25EE00F19F80 /* MessageCallRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCallRequest.swift; sourceTree = "<group>"; };
-		0A4991D3217DD02900CE41FA /* WeakWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakWrapper.swift; sourceTree = "<group>"; };
 		0A4A1D7C2136E4C00088F9EC /* DBTokeListItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTokeListItemRepository.swift; sourceTree = "<group>"; };
 		0A4C3897212D9411005594DA /* WalletStateEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStateEnum.swift; sourceTree = "<group>"; };
 		0A4C38A4212D9705005594DA /* MockDeploymentDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeploymentDomainService.swift; sourceTree = "<group>"; };
@@ -732,7 +730,6 @@
 				0A5C0D472185B6F300988930 /* AllDeploymentStatesTests.swift */,
 				0A4C38A4212D9705005594DA /* MockDeploymentDomainService.swift */,
 				0A0CF00B2125684000772AB3 /* ErrorStream.swift */,
-				0A4991D3217DD02900CE41FA /* WeakWrapper.swift */,
 				0A73F3172133FDE000F65DAE /* ErrorStreamTests.swift */,
 				0A8272F121243B0300EB5C21 /* EventPublisher.swift */,
 				0A8272FE2124447D00EB5C21 /* EventPublisherTests.swift */,
@@ -1445,7 +1442,6 @@
 				0A0CF00C2125684000772AB3 /* ErrorStream.swift in Sources */,
 				555C94A620E3824800A0621D /* NotificationDomainService.swift in Sources */,
 				0A9E380B20F4A4F20085E8D7 /* StartSafeCreationRequest.swift in Sources */,
-				0A4991D4217DD02900CE41FA /* WeakWrapper.swift in Sources */,
 				0A9E380A20F4A4F20085E8D7 /* EncryptionDomainService.swift in Sources */,
 				0ACA9D0D212AD31900E39BB6 /* System.swift in Sources */,
 				0A442D8B2108B82B00F19F80 /* Data+InitWithHex.swift in Sources */,

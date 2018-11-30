@@ -133,7 +133,9 @@ public class FundsTransferTransactionViewController: UIViewController {
 
     func willBeRemoved() {
         if let id = transactionID {
-            ApplicationServiceRegistry.walletService.removeDraftTransaction(id)
+            DispatchQueue.main.async {
+                ApplicationServiceRegistry.walletService.removeDraftTransaction(id)
+            }
         }
     }
 

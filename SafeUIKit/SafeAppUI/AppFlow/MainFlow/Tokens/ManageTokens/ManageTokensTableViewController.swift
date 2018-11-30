@@ -27,9 +27,7 @@ final class ManageTokensTableViewController: UITableViewController {
 
     weak var delegate: ManageTokensTableViewControllerDelegate?
 
-    private var tokens: [TokenData] {
-        return ApplicationServiceRegistry.walletService.visibleTokens(withEth: false)
-    }
+    private var tokens = [TokenData]()
 
     private enum Strings {
         static let title = LocalizedString("manage_tokens.title",
@@ -53,6 +51,18 @@ final class ManageTokensTableViewController: UITableViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToken))
         navigationItem.setLeftBarButton(addButton, animated: false)
         setEditing(true, animated: false)
+        reloadData()
+    }
+
+    func reloadData(delay: TimeInterval = 0.1) {
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
+            Timer.wait(delay)
+            self.tokens = ApplicationServiceRegistry.walletService.visibleTokens(withEth: false)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     @objc internal func addToken() {
@@ -60,7 +70,7 @@ final class ManageTokensTableViewController: UITableViewController {
     }
 
     func tokenAdded() {
-        tableView.reloadData()
+        reloadData()
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -102,7 +112,7 @@ final class ManageTokensTableViewController: UITableViewController {
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         delegate?.hide(token: tokens[indexPath.row])
-        tableView.reloadData()
+        reloadData()
     }
 
     // MARK: - Table view delegate

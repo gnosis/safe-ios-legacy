@@ -71,7 +71,9 @@ extension MainFlowCoordinator: MainViewControllerDelegate {
         saveCheckpoint()
         let transactionVC = FundsTransferTransactionViewController.create(tokenID: BaseID(token))
         transactionVC.delegate = self
-        push(transactionVC) { transactionVC.willBeRemoved() }
+        push(transactionVC) {
+            transactionVC.willBeRemoved()
+        }
     }
 
     func openMenu() {
