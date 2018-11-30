@@ -31,11 +31,6 @@ Runs all tests
 fastlane ios fabric
 ```
 Build and distribute build to Fabric Beta
-### ios add_devices
-```
-fastlane ios add_devices
-```
-
 ### ios prerelease
 ```
 fastlane ios prerelease
@@ -43,11 +38,27 @@ fastlane ios prerelease
 Submit a new PreRelease Rinkeby Beta Build to Apple TestFlight
 
 This will also make sure the profile is up to date
+### ios add_devices
+```
+fastlane ios add_devices
+```
+Adds devices from the ../gnosis-ios-certificates/devices.txt file
+
+Provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables.
+### ios produce_app_ids
+```
+fastlane ios produce_app_ids
+```
+Creates necessary App IDs.
+
+Provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables.
 ### ios certificates
 ```
 fastlane ios certificates
 ```
+Downloads provisioning profiles and certificates. Creates missing ones if passed 'force:true' option.
 
+If you pass 'force:true', then provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables.
 
 ----
 

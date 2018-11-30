@@ -17,16 +17,14 @@ default_platform :ios
 
 ENV["DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS"] = "-t DAV"
 
-def set_bundle_id(id)
-  ENV["FASTLANE_APP_IDENTIFIER"] = id
-end
-
 platform :ios do
 
   before_all do
-    ADHOC_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".adhoc"
-    DEV_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".dev"
-    PRERELEASE_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".prerelease"
+    RELEASE_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"]
+    ADHOC_APP_ID = RELEASE_APP_ID + ".adhoc"
+    DEV_APP_ID = RELEASE_APP_ID + ".dev"
+    PRERELEASE_APP_ID = RELEASE_APP_ID + ".prerelease"
+    NOTIFICATION_SERVICE_EXTENSION_SUFFIX = ".remoteNotificationHandler"
     BUILD_LOG_PATH = "Build/build_logs"
     DERIVED_DATA_PATH = "."
     BUILD_PATH = "Build"
@@ -92,9 +90,7 @@ platform :ios do
     #NOTE: disabled until CI migration
     #test_all
     set_bundle_id ADHOC_APP_ID
-    match(type: "adhoc", 
-      app_identifier: ADHOC_APP_ID, 
-      clone_branch_directly: true)
+    run_match("adhoc", ADHOC_APP_ID)
     gym(configuration: "AdHoc", 
       scheme: "safe", 
       buildlog_path: BUILD_LOG_PATH,
@@ -108,11 +104,6 @@ platform :ios do
     )
   end
 
-  lane :add_devices do
-    register_devices(devices_file: "../gnosis-ios-certificates/devices.txt")
-    match(type: "adhoc", app_identifier: ADHOC_APP_ID, force_for_new_devices: true)
-  end
-
   desc "Submit a new PreRelease Rinkeby Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :prerelease do
@@ -122,7 +113,7 @@ platform :ios do
       build_number: build_number + 1,
       xcodeproj: PROJECT
     )
-    match(type: "appstore", app_identifier: ENV["FASTLANE_APP_IDENTIFIER"], clone_branch_directly: true)
+    run_match("appstore", PRERELEASE_APP_ID)
     gym(configuration: "PreRelease",
       scheme: "safe", 
       include_symbols: true,
@@ -139,13 +130,49 @@ platform :ios do
     )
   end
 
+  desc "Adds devices from the ../gnosis-ios-certificates/devices.txt file"
+  desc "Provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables."
+  lane :add_devices do
+    register_devices(devices_file: "../gnosis-ios-certificates/devices.txt")
+    run_match("adhoc", ADHOC_APP_ID, true) # force
+  end
+
+  desc "Creates necessary App IDs." 
+  desc "Provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables."
+  lane :produce_app_ids do
+    all_app_ids = ids_with_extension([RELEASE_APP_ID, PRERELEASE_APP_ID, DEV_APP_ID, ADHOC_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX)
+    all_app_ids.each { |id| produce(app_identifier: id, skip_itc: true) }
+  end
+
+  desc "Downloads provisioning profiles and certificates. Creates missing ones if passed 'force:true' option."
+  desc "If you pass 'force:true', then provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables."
   lane :certificates do |options|
-    is_readonly = !options[:force]
-    match(type: "appstore", app_identifier: [ENV["FASTLANE_APP_IDENTIFIER"], PRERELEASE_APP_ID], readonly: is_readonly)
-    set_bundle_id DEV_APP_ID
-    match(type: "development", app_identifier: DEV_APP_ID, readonly: is_readonly)
+    forced = options[:force]
+    run_match("appstore", [RELEASE_APP_ID, PRERELEASE_APP_ID], forced)
+
     set_bundle_id ADHOC_APP_ID
-    match(type: "adhoc", app_identifier: ADHOC_APP_ID, readonly: is_readonly)
+    run_match("adhoc", ADHOC_APP_ID, forced)
+
+    set_bundle_id DEV_APP_ID
+    run_match("development", DEV_APP_ID, forced)
+  end
+
+  # Custom methods
+
+  def set_bundle_id(id)
+    ENV["FASTLANE_APP_IDENTIFIER"] = id
+  end  
+
+  def run_match(type, ids, forced = false)
+    match(type: type,
+      app_identifier: ids_with_extension(ids, NOTIFICATION_SERVICE_EXTENSION_SUFFIX),
+      readonly: !forced,
+      force_for_new_devices: forced,
+      clone_branch_directly: true)
+  end
+
+  def ids_with_extension(ids, extension)
+    [ids].flatten.map { |id| [id, id + extension] }.flatten
   end
 
   error do |lane, exception|
