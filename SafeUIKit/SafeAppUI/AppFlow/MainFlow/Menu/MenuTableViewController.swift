@@ -134,6 +134,10 @@ final class MenuTableViewController: UITableViewController {
         ]
     }
 
+    func index(of section: SettingsSection) -> Int? {
+        return menuItems.enumerated().first { offset, item in item.section == section }?.offset
+    }
+
     private func menuItem(_ name: String, _ height: CGFloat = MenuItemTableViewCell.height) ->
         (item: Any, cellHeight: () -> CGFloat) {
             return (item: MenuItem(name: name), cellHeight: { return height })
