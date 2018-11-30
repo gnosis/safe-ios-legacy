@@ -752,27 +752,27 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="d1j-aR-gHb">
-                                                <rect key="frame" x="15" y="0.0" width="344" height="498"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="498"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8c-L6-hMu" customClass="TransactionHeaderView" customModule="SafeUIKit">
-                                                        <rect key="frame" x="0.0" y="0.0" width="344" height="75"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="75" placeholder="YES" id="Rao-Aj-wrs"/>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ZQW-Sn-kqY">
-                                                        <rect key="frame" x="0.0" y="91" width="344" height="150"/>
+                                                        <rect key="frame" x="0.0" y="91" width="375" height="150"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wPS-y0-TU7" customClass="AddressInput" customModule="SafeUIKit">
-                                                                <rect key="frame" x="0.0" y="0.0" width="344" height="60"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="WNz-ay-6Vd"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NVX-g8-IFt" customClass="TokenInput" customModule="SafeUIKit">
-                                                                <rect key="frame" x="0.0" y="90" width="344" height="60"/>
+                                                                <rect key="frame" x="0.0" y="90" width="375" height="60"/>
                                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" placeholder="YES" id="FHE-2J-Od3"/>
@@ -781,17 +781,17 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-ww-1qS" customClass="TransactionFeeView" customModule="SafeUIKit">
-                                                        <rect key="frame" x="0.0" y="257" width="344" height="75"/>
+                                                        <rect key="frame" x="0.0" y="257" width="375" height="75"/>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="75" placeholder="YES" id="Wtb-dL-hJK"/>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vCy-x3-Jy2">
-                                                        <rect key="frame" x="0.0" y="348" width="344" height="150"/>
+                                                        <rect key="frame" x="0.0" y="348" width="375" height="150"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2x-kJ-ZE5" customClass="TransactionFeeView" customModule="SafeUIKit">
-                                                                <rect key="frame" x="0.0" y="0.0" width="344" height="75"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="75" placeholder="YES" id="R2q-ha-M7A"/>
@@ -799,7 +799,7 @@
                                                                 <viewLayoutGuide key="safeArea" id="0a0-e3-oco"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IjC-BS-KgP" customClass="TransactionFeeView" customModule="SafeUIKit">
-                                                                <rect key="frame" x="0.0" y="75" width="344" height="75"/>
+                                                                <rect key="frame" x="0.0" y="75" width="375" height="75"/>
                                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="75" placeholder="YES" id="zZQ-dN-8GZ"/>
@@ -816,11 +816,11 @@
                                             <constraint firstItem="2KW-X7-wqf" firstAttribute="top" secondItem="IjC-BS-KgP" secondAttribute="top" id="JFM-Yu-W3x"/>
                                             <constraint firstItem="d1j-aR-gHb" firstAttribute="top" secondItem="bDK-RT-Q7p" secondAttribute="top" id="Mox-0Y-OaZ"/>
                                             <constraint firstItem="2KW-X7-wqf" firstAttribute="bottom" secondItem="IjC-BS-KgP" secondAttribute="bottom" id="O0m-WK-Rrg"/>
-                                            <constraint firstItem="d1j-aR-gHb" firstAttribute="leading" secondItem="bDK-RT-Q7p" secondAttribute="leading" constant="15" id="P5p-QI-WcL"/>
+                                            <constraint firstItem="d1j-aR-gHb" firstAttribute="leading" secondItem="bDK-RT-Q7p" secondAttribute="leading" id="P5p-QI-WcL"/>
                                             <constraint firstItem="2KW-X7-wqf" firstAttribute="leading" secondItem="bDK-RT-Q7p" secondAttribute="leading" id="ekJ-L7-IFg"/>
                                             <constraint firstAttribute="trailing" secondItem="2KW-X7-wqf" secondAttribute="trailing" id="hAE-Ai-2ce"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="d1j-aR-gHb" secondAttribute="bottom" id="iWN-ka-4Wa"/>
-                                            <constraint firstAttribute="trailing" secondItem="d1j-aR-gHb" secondAttribute="trailing" constant="16" id="wTs-DU-ods"/>
+                                            <constraint firstAttribute="trailing" secondItem="d1j-aR-gHb" secondAttribute="trailing" id="wTs-DU-ods"/>
                                         </constraints>
                                     </view>
                                 </subviews>

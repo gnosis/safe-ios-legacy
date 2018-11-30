@@ -8,7 +8,7 @@ import Kingfisher
 public class TextInput: UITextField {
 
     private let clearButton = UIButton(type: .custom)
-    private let padding: CGFloat = 14
+    private let edgeViewPadding: CGFloat = 14
     public var textInputHeight: CGFloat = 50 {
         didSet {
             heightConstraint.constant = textInputHeight
@@ -83,6 +83,7 @@ public class TextInput: UITextField {
         layer.borderWidth = 1
         layer.cornerRadius = 6
         layer.borderColor = UIColor.white.cgColor
+        clipsToBounds = true
     }
 
     private func addCustomClearButton() {
@@ -175,13 +176,13 @@ public class TextInput: UITextField {
 
     override public func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var leftRect = super.leftViewRect(forBounds: bounds)
-        leftRect.origin.x += padding
+        leftRect.origin.x += edgeViewPadding
         return leftRect
     }
 
     public override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         var rightRect = super.rightViewRect(forBounds: bounds)
-        rightRect.origin.x -= padding / 2
+        rightRect.origin.x -= edgeViewPadding / 2
         return rightRect
     }
 
@@ -196,7 +197,7 @@ public class TextInput: UITextField {
     }
 
     private func paddedRect(from rect: CGRect) -> CGRect {
-        let xPadding = leftImage == nil ? padding : 0
+        let xPadding = leftImage == nil ? edgeViewPadding : 0
         let resultingRect = CGRect(
             x: rect.origin.x + xPadding,
             y: rect.origin.y,
