@@ -156,7 +156,7 @@ final class ReviewTransactionViewController: UITableViewController {
 
     private func etherTransactionFeeCell() -> UITableViewCell {
         let balance = self.balance(of: tx.amountTokenData)
-        let resultingBalance = balance - (tx.amountTokenData.balance ?? 0) - (tx.feeTokenData.balance ?? 0)
+        let resultingBalance = balance - abs(tx.amountTokenData.balance ?? 0) - abs(tx.feeTokenData.balance ?? 0)
         return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
                        transactionFee: tx.feeTokenData,
                        resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
@@ -164,7 +164,7 @@ final class ReviewTransactionViewController: UITableViewController {
 
     private func tokenBalanceCell() -> UITableViewCell {
         let balance = self.balance(of: tx.amountTokenData)
-        let resultingBalance = balance - (tx.amountTokenData.balance ?? 0)
+        let resultingBalance = balance - abs(tx.amountTokenData.balance ?? 0)
         return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
                        transactionFee: nil,
                        resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
@@ -172,7 +172,7 @@ final class ReviewTransactionViewController: UITableViewController {
 
     private func etherFeeBalanceCell() -> UITableViewCell {
         let balance = self.balance(of: tx.feeTokenData)
-        let resultingBalance = balance - (tx.feeTokenData.balance ?? 0)
+        let resultingBalance = balance - abs(tx.feeTokenData.balance ?? 0)
         return feeCell(currentBalance: nil,
                        transactionFee: tx.feeTokenData,
                        resultingBalance: tx.feeTokenData.withBalance(resultingBalance))
