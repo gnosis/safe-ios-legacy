@@ -522,7 +522,9 @@ public class WalletApplicationService: Assertable {
                 .proceed()
             DomainRegistry.transactionRepository.save(tx)
         }
-        try notifyBrowserExtension(message: notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!))
+        if let extensionAddress = address(of: .browserExtension), !tx.isSignedBy(extensionAddress) {
+            try notifyBrowserExtension(message: notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!))
+        }
         return transactionData(id)!
     }
 
