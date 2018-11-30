@@ -6,6 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import MultisigWalletApplication
 import Common
+import CommonTestSupport
 
 class ManageTokensTableViewControllerTests: XCTestCase {
 
@@ -20,20 +21,25 @@ class ManageTokensTableViewControllerTests: XCTestCase {
         walletService.visibleTokensOutput = [TokenData.gno, TokenData.gno2, TokenData.mgn, TokenData.rdn]
         controller = ManageTokensTableViewController()
         controller.delegate = delegate
+        controller.loadViewIfNeeded()
+        delay(0.2)
     }
 
     func test_whenAddsToken_thenCallsDelegate() {
         controller.addToken()
+        delay()
         XCTAssertTrue(delegate.didAddToken)
     }
 
     func test_whenRowsMoved_thenDelegateIsCalled() {
         moveRow(from: 0, to: 2)
+        delay()
         XCTAssertEqual(delegate.rearrange_input, [TokenData.gno2, TokenData.mgn, TokenData.gno, TokenData.rdn])
     }
 
     func test_whenHidesToken_thenDeleateIsCalled() {
         hideRow(0, 0)
+        delay()
         XCTAssertTrue(delegate.didHide)
     }
 

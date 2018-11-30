@@ -53,6 +53,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         controller.transactionID = "some"
         walletService.expect_removeDraftTransaction("some")
         controller.willBeRemoved()
+        delay()
         XCTAssertTrue(walletService.verify())
     }
 
