@@ -38,6 +38,13 @@ final class ReviewTransactionViewController: UITableViewController {
 
     }
 
+    private var feeCellIndexPath: IndexPath!
+    private var hasUpdatedFee: Bool = false {
+        didSet {
+            updateSubmitButton()
+        }
+    }
+
     enum Strings {
         static let outgoingTransfer = LocalizedString("transaction.outgoing_transfer", comment: "Outgoing transafer")
         static let submit = LocalizedString("transaction.submit", comment: "Submit transaction")
@@ -68,6 +75,7 @@ final class ReviewTransactionViewController: UITableViewController {
             UIBarButtonItem(title: Strings.submit, style: .done, target: self, action: #selector(submit))
         configureTableView()
         createCells()
+        updateSubmitButton()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -109,10 +117,12 @@ final class ReviewTransactionViewController: UITableViewController {
         cells[indexPath.next()] = headerCell()
         cells[indexPath.next()] = transferViewCell()
         if tx.amountTokenData.isEther {
-           cells[indexPath.next()] = etherTransactionFeeCell()
+            feeCellIndexPath = indexPath.next()
+            cells[feeCellIndexPath] = etherTransactionFeeCell()
         } else {
-            cells[indexPath.next()] = tokenBalanceChangeCell()
-            cells[indexPath.next()] = etherFeeBalanceChangeCell()
+            cells[indexPath.next()] = tokenBalanceCell()
+            feeCellIndexPath = indexPath.next()
+            cells[feeCellIndexPath] = etherFeeBalanceCell()
         }
         cells[indexPath.next()] = confirmationCell
     }
@@ -135,23 +145,23 @@ final class ReviewTransactionViewController: UITableViewController {
 
     private func etherTransactionFeeCell() -> UITableViewCell {
         let balance = self.balance(of: tx.amountTokenData)
-        let resultingBalance = balance - tx.amountTokenData.balance! - tx.feeTokenData.balance!
+        let resultingBalance = balance - (tx.amountTokenData.balance ?? 0) - (tx.feeTokenData.balance ?? 0)
         return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
                        transactionFee: tx.feeTokenData,
                        resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
     }
 
-    private func tokenBalanceChangeCell() -> UITableViewCell {
+    private func tokenBalanceCell() -> UITableViewCell {
         let balance = self.balance(of: tx.amountTokenData)
-        let resultingBalance = balance - tx.amountTokenData.balance!
+        let resultingBalance = balance - (tx.amountTokenData.balance ?? 0)
         return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
                        transactionFee: nil,
                        resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
     }
 
-    private func etherFeeBalanceChangeCell() -> UITableViewCell {
+    private func etherFeeBalanceCell() -> UITableViewCell {
         let balance = self.balance(of: tx.feeTokenData)
-        let resultingBalance = balance - tx.feeTokenData.balance!
+        let resultingBalance = balance - (tx.feeTokenData.balance ?? 0)
         return feeCell(currentBalance: nil,
                        transactionFee: tx.feeTokenData,
                        resultingBalance: tx.feeTokenData.withBalance(resultingBalance))
@@ -174,11 +184,12 @@ final class ReviewTransactionViewController: UITableViewController {
     internal func update(with tx: TransactionData) {
         guard tx.id == self.tx.id else { return }
         self.tx = tx
-        updateConfirmationCell(with: tx.status)
+        updateConfirmationCell()
+        updateSubmitButton()
     }
 
-    private func updateConfirmationCell(with status: TransactionData.Status) {
-        switch status {
+    private func updateConfirmationCell() {
+        switch tx.status {
         case .waitingForConfirmation:
             confirmationCell.transactionConfirmationView.status = .pending
         case .readyToSubmit:
@@ -187,6 +198,12 @@ final class ReviewTransactionViewController: UITableViewController {
             confirmationCell.transactionConfirmationView.status = .rejected
         default:
             confirmationCell.transactionConfirmationView.status = .undefined
+        }
+    }
+
+    private func updateSubmitButton() {
+        DispatchQueue.main.async {
+            self.navigationItem.rightBarButtonItem?.isEnabled = self.hasUpdatedFee && self.tx.status != .rejected
         }
     }
 
@@ -199,8 +216,20 @@ final class ReviewTransactionViewController: UITableViewController {
     }
 
     private func doRequest() {
+        hasUpdatedFee = false
         performTransactionAction { [unowned self] in
             try ApplicationServiceRegistry.walletService.requestTransactionConfirmation(self.tx.id)
+        }
+    }
+
+    private func updateEtherFeeBalanceCell() {
+        if tx.amountTokenData.isEther {
+            cells[feeCellIndexPath] = etherTransactionFeeCell()
+        } else {
+            cells[feeCellIndexPath] = etherFeeBalanceCell()
+        }
+        if feeCellIndexPath.row < tableView.numberOfRows(inSection: feeCellIndexPath.section) {
+            tableView.reloadRows(at: [feeCellIndexPath], with: .none)
         }
     }
 
@@ -221,11 +250,14 @@ final class ReviewTransactionViewController: UITableViewController {
     private func doAction(_ action: @escaping () throws -> TransactionData) throws {
         self.tx = try action()
         DispatchQueue.main.sync {
+            hasUpdatedFee = true
             switch self.tx.status {
             case .success, .pending, .failed, .discarded:
                 self.delegate.didFinishReview()
             default:
-                self.updateConfirmationCell(with: self.tx.status)
+                self.updateConfirmationCell()
+                self.updateEtherFeeBalanceCell()
+                updateSubmitButton()
             }
         }
     }

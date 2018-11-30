@@ -16,6 +16,7 @@ public class TransactionsTableViewController: UITableViewController {
     public weak var delegate: TransactionsTableViewControllerDelegate?
     let emptyView = TransactionsEmptyView()
     let rowHeight: CGFloat = 70
+    var reloading: Bool = false
 
     public static func create() -> TransactionsTableViewController {
         return StoryboardScene.Main.transactionsTableViewController.instantiate()
@@ -39,10 +40,13 @@ public class TransactionsTableViewController: UITableViewController {
     }
 
     func reloadData() {
+        if reloading { return }
+        reloading = true
         DispatchQueue.global().async {
             self.groups = ApplicationServiceRegistry.walletService.grouppedTransactions()
             DispatchQueue.main.async {
                 self.displayUpdatedData()
+                self.reloading = false
             }
         }
     }
