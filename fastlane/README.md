@@ -47,12 +47,16 @@ This will also make sure the profile is up to date
 ```
 fastlane ios produce_app_ids
 ```
+Creates necessary App IDs.
 
+Provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables.
 ### ios certificates
 ```
 fastlane ios certificates
 ```
+Downloads provisioning profiles and certificates. Creates missing ones if passed 'force:true' option.
 
+If you pass 'force:true', then provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables.
 
 ----
 

@@ -141,26 +141,30 @@ platform :ios do
     )
   end
 
+  desc "Creates necessary App IDs." 
+  desc "Provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables."
   lane :produce_app_ids do
     all_app_ids = ids_with_extension([RELEASE_APP_ID, PRERELEASE_APP_ID, DEV_APP_ID, ADHOC_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX)
     all_app_ids.each { |id| produce(app_identifier: id, skip_itc: true) }
   end
 
+  desc "Downloads provisioning profiles and certificates. Creates missing ones if passed 'force:true' option."
+  desc "If you pass 'force:true', then provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables."
   lane :certificates do |options|
     is_readonly = !options[:force]
     match(type: "appstore", 
       app_identifier: ids_with_extension([RELEASE_APP_ID, PRERELEASE_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
       readonly: is_readonly)
-    
-      set_bundle_id DEV_APP_ID
-    match(type: "development",
-       app_identifier: ids_with_extension([DEV_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
-       readonly: is_readonly)
-    
-       set_bundle_id ADHOC_APP_ID
+        
+    set_bundle_id ADHOC_APP_ID
     match(type: "adhoc", 
       app_identifier: ids_with_extension([ADHOC_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
       readonly: is_readonly)
+
+    set_bundle_id DEV_APP_ID
+    match(type: "development",
+        app_identifier: ids_with_extension([DEV_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
+        readonly: is_readonly)  
   end
 
   def ids_with_extension(ids, extension)
