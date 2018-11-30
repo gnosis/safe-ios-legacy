@@ -14,9 +14,9 @@ pipeline {
             }
         }
         stage('Deploy') {
-            // when {
-            //     expression { BRANCH_NAME ==~ /^(master|release\/.*)$/ }
-            // }
+            when {
+                expression { BRANCH_NAME ==~ /^(master|release\/.*)$/ }
+            }
             steps {
                 ansiColor('xterm') {
                     sh 'scripts/jenkins_build.sh adhoc'

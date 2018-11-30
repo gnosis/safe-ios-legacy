@@ -17,10 +17,6 @@ default_platform :ios
 
 ENV["DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS"] = "-t DAV"
 
-def set_bundle_id(id)
-  ENV["FASTLANE_APP_IDENTIFIER"] = id
-end
-
 platform :ios do
 
   before_all do
@@ -94,9 +90,7 @@ platform :ios do
     #NOTE: disabled until CI migration
     #test_all
     set_bundle_id ADHOC_APP_ID
-    match(type: "adhoc", 
-      app_identifier: ids_with_extension([ADHOC_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
-      clone_branch_directly: true)
+    run_match("adhoc", ADHOC_APP_ID)
     gym(configuration: "AdHoc", 
       scheme: "safe", 
       buildlog_path: BUILD_LOG_PATH,
@@ -119,9 +113,7 @@ platform :ios do
       build_number: build_number + 1,
       xcodeproj: PROJECT
     )
-    match(type: "appstore", 
-      app_identifier: ids_with_extension([PRERELEASE_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
-      clone_branch_directly: true)
+    run_match("appstore", PRERELEASE_APP_ID)
     gym(configuration: "PreRelease",
       scheme: "safe", 
       include_symbols: true,
@@ -139,11 +131,10 @@ platform :ios do
   end
 
   desc "Adds devices from the ../gnosis-ios-certificates/devices.txt file"
+  desc "Provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables."
   lane :add_devices do
     register_devices(devices_file: "../gnosis-ios-certificates/devices.txt")
-    match(type: "adhoc", 
-      app_identifier: ids_with_extension([ADHOC_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
-      force_for_new_devices: true)
+    run_match("adhoc", ADHOC_APP_ID, true) # force
   end
 
   desc "Creates necessary App IDs." 
@@ -156,24 +147,32 @@ platform :ios do
   desc "Downloads provisioning profiles and certificates. Creates missing ones if passed 'force:true' option."
   desc "If you pass 'force:true', then provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables."
   lane :certificates do |options|
-    is_readonly = !options[:force]
-    match(type: "appstore", 
-      app_identifier: ids_with_extension([RELEASE_APP_ID, PRERELEASE_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
-      readonly: is_readonly)
-        
+    forced = options[:force]
+    run_match("appstore", [RELEASE_APP_ID, PRERELEASE_APP_ID], forced)
+
     set_bundle_id ADHOC_APP_ID
-    match(type: "adhoc", 
-      app_identifier: ids_with_extension([ADHOC_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
-      readonly: is_readonly)
+    run_match("adhoc", ADHOC_APP_ID, forced)
 
     set_bundle_id DEV_APP_ID
-    match(type: "development",
-        app_identifier: ids_with_extension([DEV_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
-        readonly: is_readonly)  
+    run_match("development", DEV_APP_ID, forced)
+  end
+
+  # Custom methods
+
+  def set_bundle_id(id)
+    ENV["FASTLANE_APP_IDENTIFIER"] = id
+  end  
+
+  def run_match(type, ids, forced = false)
+    match(type: type,
+      app_identifier: ids_with_extension(ids, NOTIFICATION_SERVICE_EXTENSION_SUFFIX),
+      readonly: !forced,
+      force_for_new_devices: forced,
+      clone_branch_directly: true)
   end
 
   def ids_with_extension(ids, extension)
-    ids.map { |id| [id, id + extension] }.flatten
+    [ids].flatten.map { |id| [id, id + extension] }.flatten
   end
 
   error do |lane, exception|
