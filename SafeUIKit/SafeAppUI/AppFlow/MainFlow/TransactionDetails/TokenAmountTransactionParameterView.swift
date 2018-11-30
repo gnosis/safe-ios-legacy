@@ -15,7 +15,7 @@ class TokenAmountTransactionParameterView: TransactionParameterView {
     }
 
     var amountLabel: AmountLabel! {
-        return valueLabel as! AmountLabel
+        return (valueLabel as! AmountLabel)
     }
 
     override func newValueLabel() -> UILabel {
