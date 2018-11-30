@@ -24,9 +24,11 @@ end
 platform :ios do
 
   before_all do
-    ADHOC_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".adhoc"
-    DEV_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".dev"
-    PRERELEASE_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"] + ".prerelease"
+    RELEASE_APP_ID = ENV["FASTLANE_APP_IDENTIFIER"]
+    ADHOC_APP_ID = RELEASE_APP_ID + ".adhoc"
+    DEV_APP_ID = RELEASE_APP_ID + ".dev"
+    PRERELEASE_APP_ID = RELEASE_APP_ID + ".prerelease"
+    NOTIFICATION_SERVICE_EXTENSION_SUFFIX = ".remoteNotificationHandler"
     BUILD_LOG_PATH = "Build/build_logs"
     DERIVED_DATA_PATH = "."
     BUILD_PATH = "Build"
@@ -139,21 +141,25 @@ platform :ios do
     )
   end
 
+  lane :produce_app_ids do
+    all_app_ids = ids_with_extension([RELEASE_APP_ID, PRERELEASE_APP_ID, DEV_APP_ID, ADHOC_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX)
+    all_app_ids.each { |id| produce(app_identifier: id, skip_itc: true) }
+  end
+
   lane :certificates do |options|
     is_readonly = !options[:force]
-    extensionSuffix = ".remoteNotificationHandler"
     match(type: "appstore", 
-      app_identifier: ids_with_extension([ENV["FASTLANE_APP_IDENTIFIER"], PRERELEASE_APP_ID], extensionSuffix), 
+      app_identifier: ids_with_extension([RELEASE_APP_ID, PRERELEASE_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
       readonly: is_readonly)
     
       set_bundle_id DEV_APP_ID
     match(type: "development",
-       app_identifier: ids_with_extension([DEV_APP_ID], extensionSuffix), 
+       app_identifier: ids_with_extension([DEV_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
        readonly: is_readonly)
     
        set_bundle_id ADHOC_APP_ID
     match(type: "adhoc", 
-      app_identifier: ids_with_extension([ADHOC_APP_ID], extensionSuffix), 
+      app_identifier: ids_with_extension([ADHOC_APP_ID], NOTIFICATION_SERVICE_EXTENSION_SUFFIX), 
       readonly: is_readonly)
   end
 

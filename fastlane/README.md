@@ -43,6 +43,11 @@ fastlane ios prerelease
 Submit a new PreRelease Rinkeby Beta Build to Apple TestFlight
 
 This will also make sure the profile is up to date
+### ios produce_app_ids
+```
+fastlane ios produce_app_ids
+```
+
 ### ios certificates
 ```
 fastlane ios certificates
