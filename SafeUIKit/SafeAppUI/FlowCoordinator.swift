@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import Common
 
 /**
  User interface is implemented as view controllers managed by flow coordinators.
@@ -125,12 +126,13 @@ open class FlowCoordinator {
 
 }
 
+/// Allows to track when certain VC is popped or pushed from another VC in a navigation controller.
 class NavigationControllerTransitionTracker: NSObject, UINavigationControllerDelegate {
 
-    var observers = [(nav: UINavigationController?,
+    var observers = [(nav: WeakWrapper,
                       operation: UINavigationController.Operation?,
-                      fromVC: UIViewController?,
-                      toVC: UIViewController?,
+                      fromVC: WeakWrapper,
+                      toVC: WeakWrapper,
                       action: () -> Void)]()
 
     func trackOnce(navigationController: UINavigationController? = nil,
@@ -138,7 +140,11 @@ class NavigationControllerTransitionTracker: NSObject, UINavigationControllerDel
                    from fromVC: UIViewController? = nil,
                    to toVC: UIViewController? = nil,
                    action: @escaping () -> Void) {
-        observers.append((navigationController, operation, fromVC, toVC, action))
+        observers.append((WeakWrapper(navigationController),
+                          operation,
+                          WeakWrapper(fromVC),
+                          WeakWrapper(toVC),
+                          action))
     }
 
     func navigationController(_ navigationController: UINavigationController,
@@ -146,10 +152,10 @@ class NavigationControllerTransitionTracker: NSObject, UINavigationControllerDel
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let index = observers.firstIndex { observer in
-            (observer.nav == navigationController || observer.nav == nil) &&
+            (observer.nav.ref === navigationController || observer.nav.ref == nil) &&
             (observer.operation == operation || observer.operation == nil) &&
-            (observer.fromVC == fromVC || observer.fromVC == nil) &&
-            (observer.toVC == toVC || observer.toVC == nil)
+            (observer.fromVC.ref === fromVC || observer.fromVC.ref == nil) &&
+            (observer.toVC.ref === toVC || observer.toVC.ref == nil)
         }
         if let index = index {
             observers[index].action()

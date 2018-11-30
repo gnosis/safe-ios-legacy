@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Common
 
 /// Serves to be a sink for errors occuring during different operations or as a result of processing DomainEvents.
 /// ErrorStream accumulates errors and forwards them to subscribers. This is very similar to EventPublisher, but

@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import Common
 
 public protocol EventSubscriber: class {
     func notify()

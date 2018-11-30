@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Common
 
 /// This is a lightweight implementation of Observer design pattern. It is a simple Publisher - Subscriber mechanism,
 /// where interested parties are registering closures to receive DomainEvents, and then other domain objects
