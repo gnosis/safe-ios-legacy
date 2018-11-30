@@ -59,28 +59,33 @@ public class FundsTransferTransactionViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        contentView.backgroundColor = ColorName.paleGreyThree.color
+        contentView.backgroundColor = .white
         backgroundView.isDimmed = true
-        addressInput.addressInputDelegate = self
         nextBarButton.title = FundsTransferTransactionViewController.Strings.continue
         nextBarButton.accessibilityIdentifier = "transaction.continue"
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
+
         model = FundsTransferTransactionViewModel(tokenID: tokenID, onUpdate: updateFromViewModel)
+
+        addressInput.addressInputDelegate = self
         addressInput.addRule("none", identifier: nil) { [unowned self] in
             self.model.change(recipient: $0)
             return true
         }
+
         tokenInput.addRule(Strings.notEnoughFunds, identifier: "notEnoughFunds") { [unowned self] in
             guard self.tokenInput.formatter.number(from: $0) != nil else { return true }
             self.model.change(amount: $0)
             return self.model.hasEnoughFunds() ?? false
         }
         tokenInput.setUp(value: 0, decimals: model.tokenData.decimals)
-        transactionHeaderView.usesEthImageWhenImageURLIsNil = true
         tokenInput.usesEthDefaultImage = true
         tokenInput.imageURL = model.tokenData.logoURL
+        tokenInput.delegate = self
+
+        transactionHeaderView.usesEthImageWhenImageURLIsNil = true
         feeBalanceView.backgroundColor = .clear
-        feeBackgroundView.backgroundColor = ColorName.paleGreyTwo.color
+        feeBackgroundView.backgroundColor = .white
         model.start()
     }
 

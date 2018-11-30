@@ -96,6 +96,7 @@ public final class AddressInput: VerifiableInput {
         textInput.rightViewMode = .never
         textInput.leftImage = Asset.AddressInput.addressIconTmp.image
         textInput.delegate = self
+        textInput.style = .gray
     }
 
     private func addAddressLabel() {

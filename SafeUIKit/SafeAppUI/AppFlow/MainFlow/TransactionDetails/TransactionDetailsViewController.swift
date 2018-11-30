@@ -67,7 +67,7 @@ public class TransactionDetailsViewController: UIViewController {
         dateFormatter.timeStyle = .medium
         ApplicationServiceRegistry.walletService.subscribeForTransactionUpdates(subscriber: self)
         backgroundImageView.isDimmed = true
-        wrapperView.backgroundColor = ColorName.paleGreyThree.color
+        wrapperView.backgroundColor = .white
         reloadData()
     }
 

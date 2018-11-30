@@ -84,10 +84,21 @@ final class ReviewTransactionViewController: UITableViewController {
     }
 
     private func configureTableView() {
+        let backgroundView = BackgroundImageView(frame: tableView.frame)
         tableView.separatorStyle = .none
-        tableView.backgroundView = BackgroundImageView(frame: tableView.frame)
+        tableView.backgroundView = backgroundView
         tableView.allowsSelection = false
         tableView.tableFooterView = UIView()
+        let stickyHeader = UIView()
+        stickyHeader.translatesAutoresizingMaskIntoConstraints = false
+        stickyHeader.backgroundColor = .white
+        backgroundView.addSubview(stickyHeader)
+        NSLayoutConstraint.activate([
+            stickyHeader.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stickyHeader.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            stickyHeader.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            stickyHeader.bottomAnchor.constraint(equalTo: tableView.topAnchor)])
+        view.setNeedsUpdateConstraints()
     }
 
     // MARK: - Table view data source

@@ -44,6 +44,9 @@ class SafeCreationViewController: UIViewController {
     @IBOutlet weak var etherscanWrapperView: UIView!
     @IBOutlet weak var etherscanLabel: UILabel!
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollContentView: UIStackView!
+
     weak var delegate: SafeCreationViewControllerDelegate?
 
     enum Strings {
