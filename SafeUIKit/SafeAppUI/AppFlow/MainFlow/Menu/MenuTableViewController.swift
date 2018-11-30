@@ -101,7 +101,7 @@ final class MenuTableViewController: UITableViewController {
 
     private func generateData() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
-        let hasBrowserExtension = ApplicationServiceRegistry.walletService.isOwnerExists(.browserExtension)
+//        let hasBrowserExtension = ApplicationServiceRegistry.walletService.isOwnerExists(.browserExtension)
 //        let browserExtensionItem =
 //            hasBrowserExtension ? menuItem(Strings.changeBrowserExtension) : menuItem(Strings.connectBrowserExtension)
         menuItems = [
@@ -116,13 +116,13 @@ final class MenuTableViewController: UITableViewController {
             (section: .portfolio,
              items: [menuItem(Strings.manageTokens)],
              title: Strings.portfolioSectionTitle),
-            (section: .security,
-             items: [
+//            (section: .security,
+//             items: [
 //                menuItem(Strings.changePassword),
 //                menuItem(Strings.changeRecoveryPhrase),
 //                browserExtensionItem
-                ],
-             title: Strings.securitySectionTitle),
+//                ],
+//             title: Strings.securitySectionTitle),
             (section: .support,
              items: [
 //                menuItem(Strings.feedback),
