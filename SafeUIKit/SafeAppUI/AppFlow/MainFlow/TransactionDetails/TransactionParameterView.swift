@@ -16,6 +16,7 @@ class TransactionParameterView: BaseCustomView {
 
     var nameLabel: UILabel!
     var valueLabel: UILabel!
+    private let padding: CGFloat = 16
 
     internal func newValueLabel() -> UILabel {
         return UILabel()
@@ -41,8 +42,8 @@ class TransactionParameterView: BaseCustomView {
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalTo: stack.heightAnchor),
             stack.topAnchor.constraint(equalTo: topAnchor),
-            stack.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stack.trailingAnchor.constraint(equalTo: trailingAnchor)])
+            stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding)])
 
         update()
     }
