@@ -20,6 +20,7 @@ public class VerifiableInput: UIView {
     /// Indicates whether the view has user input focus
     public private(set) var isActive: Bool = false
     private static let shakeAnimationKey = "shake"
+    private let padding: CGFloat = 16
 
     private var allRules: [RuleLabel] {
         return stackView.arrangedSubviews.compactMap { $0 as? RuleLabel }
@@ -122,11 +123,11 @@ public class VerifiableInput: UIView {
     }
 
     private func pinWrapperToSelf() {
-        NSLayoutConstraint.activate([
-            wrapperView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            wrapperView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            wrapperView.topAnchor.constraint(equalTo: topAnchor)])
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            wrapperView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            wrapperView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            wrapperView.topAnchor.constraint(equalTo: topAnchor)])
     }
 
     public func addRule(_ localizedDescription: String,
