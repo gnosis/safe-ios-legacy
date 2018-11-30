@@ -344,14 +344,8 @@
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";
 
-/* Safe balance */
-"transaction.balance.title" = "Safe balance";
-
 /* Continue button title for New Transaction Screen */
 "transaction.continue" = "Continue";
-
-/* Data included */
-"transaction.data.title" = "Data included";
 
 /* 'View on Etherscan' button name */
 "transaction.details.externalViewer" = "View on Etherscan.io";
@@ -392,44 +386,11 @@
 /* Not enough balance for transaction. */
 "transaction.error.notEnoughFunds" = "Insufficient funds for the amount.";
 
-/* Maximum transaction fee */
-"transaction.fee.title" = "Maximum transaction fee";
-
 /* Outgoing transafer */
 "transaction.outgoing_transfer" = "Outgoing transfer";
 
-/* Recipient */
-"transaction.recipient.name" = "Recipient";
-
 /* Review transaction title */
 "transaction.review_title" = "Review";
-
-/* Sender */
-"transaction.sender.name" = "Sender";
-
-/* Re-send confirmation request */
-"transaction.status.actionTitle.resend" = "Re-send confirmation request";
-
-/* Submit */
-"transaction.status.actionTitle.submit" = "Submit";
-
-/* Transaction was confirmed by the browser extension. You can submit it now. */
-"transaction.status.readyToSubmit.description" = "Transaction was confirmed. You can submit it now.";
-
-/* CONFIRMED */
-"transaction.status.readyToSubmit.title" = "CONFIRMED";
-
-/* Transaction was rejected by the browser extension. */
-"transaction.status.rejected.description" = "Transaction was rejected by the browser extension.";
-
-/* REJECTED BY EXTENSION */
-"transaction.status.rejected.title" = "REJECTED BY EXTENSION";
-
-/* Confirm this transaction with the browser extension */
-"transaction.status.waiting.description" = "Confirm this transaction with the browser extension";
-
-/* AWAITING CONFIRMATION */
-"transaction.status.waiting.title" = "AWAITING CONFIRMATION";
 
 /* Submit transaction */
 "transaction.submit" = "Submit";

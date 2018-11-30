@@ -18,8 +18,8 @@ import UIKit
  present next and how to present it.
 
  A reusable detached controller is a view controller that implements a single task by itself, without other controllers.
- Detached controller must have public factory method with completion closure. That is needed to use detached controller
- from several flows.
+ Detached controller must have public factory method with completion closure (if one completion block is required) or
+ a factory with a delegate otherwise. That is needed to use detached controller from several flows.
  For example, UnlockViewController handles password or biometry authentication, and is used from different parts of the
  app, whether after restart or transaction confirmation must be authorized.
 

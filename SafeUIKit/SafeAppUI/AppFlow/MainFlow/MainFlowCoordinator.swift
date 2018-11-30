@@ -34,18 +34,16 @@ final class MainFlowCoordinator: FlowCoordinator {
 
     func receive(message: [AnyHashable: Any]) {
         guard let transactionID = walletService.receive(message: message) else { return }
-        if let vc = navigationController.topViewController as? TransactionReviewViewController {
-            vc.transactionID = transactionID
-            vc.update()
+        if let vc = navigationController.topViewController as? ReviewTransactionViewController {
+            let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
+            vc.update(with: tx)
         } else {
             openTransactionReviewScreen(transactionID)
         }
     }
 
     private func openTransactionReviewScreen(_ id: String) {
-        let reviewVC = TransactionReviewViewController.create()
-        reviewVC.transactionID = id
-        reviewVC.delegate = self
+        let reviewVC = ReviewTransactionViewController(transactionID: id, delegate: self)
         push(reviewVC)
     }
 
@@ -120,24 +118,24 @@ extension MainFlowCoordinator: FundsTransferTransactionViewControllerDelegate {
 
 }
 
-extension MainFlowCoordinator: TransactionReviewViewControllerDelegate {
+extension MainFlowCoordinator: ReviewTransactionViewControllerDelegate {
 
-    func transactionReviewViewControllerDidFinish() {
-        popToLastCheckpoint()
-        showTransactionList()
-    }
-
-    func transactionReviewViewControllerWantsToSubmitTransaction(completionHandler: @escaping (Bool) -> Void) {
+    func wantsToSubmitTransaction(_ completion: @escaping (Bool) -> Void) {
         if authenticationService.isUserAuthenticated {
-            completionHandler(true)
+            completion(true)
         } else {
             let unlockVC = UnlockViewController.create { [unowned self] success in
                 self.dismissModal()
-                completionHandler(success)
+                completion(success)
             }
             unlockVC.showsCancelButton = true
             presentModally(unlockVC)
         }
+    }
+
+    func didFinishReview() {
+        popToLastCheckpoint()
+        showTransactionList()
     }
 
     private func showTransactionList() {

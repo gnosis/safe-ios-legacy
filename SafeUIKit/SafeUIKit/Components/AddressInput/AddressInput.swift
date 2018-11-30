@@ -18,7 +18,6 @@ public final class AddressInput: VerifiableInput {
     public weak var addressInputDelegate: AddressInputDelegate?
     private let identiconSize = CGSize(width: 26, height: 26)
     private let inputHeight: CGFloat = 60
-    private let maximumCharacters: Int = 43
     private let addressCharacterCount: Int = 42
     private let addressDigitCount: Int = 40
     private let hexPrefix: String = "0x"
@@ -86,7 +85,6 @@ public final class AddressInput: VerifiableInput {
         addAddressLabel()
         showErrorsOnly = true
         trimsText = true
-        maxLength = maximumCharacters
         text = nil
         addRule(Strings.Rules.invalidAddress, identifier: "invalidAddress", validation: isValid)
         scanHandler.addDebugButtonToScannerController(title: "Test Address",
@@ -128,12 +126,11 @@ public final class AddressInput: VerifiableInput {
     }
 
     private func validatedAddress(_ address: String) -> String? {
-        let safeValue = safeUserInput(address)
+        let safeValue = addressFromERC681(safeUserInput(address))
         return isValid(safeValue) ? safeValue : nil
     }
 
-    private func isValid(_ text: String) -> Bool {
-        let address = text.trimmingCharacters(in: .whitespacesAndNewlines)
+    private func isValid(_ address: String) -> Bool {
         let hasCorrectLengthWithPrefix = address.count == addressCharacterCount && address.hasPrefix(hexPrefix)
         let hasCorrectLengthWithoutPrefix = address.count == addressDigitCount
         guard (hasCorrectLengthWithPrefix || hasCorrectLengthWithoutPrefix) &&
@@ -141,6 +138,15 @@ public final class AddressInput: VerifiableInput {
             return false
         }
         return true
+    }
+
+    // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-681.md
+    private func addressFromERC681(_ address: String) -> String {
+        let withoutScheme = String(address.replacingOccurrences(of: "ethereum:", with: ""))
+        let hasPrefix = withoutScheme.hasPrefix(hexPrefix)
+        let withourPrefix = hasPrefix ? String(withoutScheme.dropFirst(hexPrefix.count)) : withoutScheme
+        let leadingHexChars = String(withourPrefix.prefix { hexCharsSet.contains($0) })
+        return hasPrefix ? hexPrefix + leadingHexChars : leadingHexChars
     }
 
 }
@@ -184,7 +190,9 @@ extension AddressInput: ScanQRCodeHandlerDelegate {
     }
 
     func didScanCode(raw: String, converted: String?) {
-        text = raw
+        DispatchQueue.main.async {
+            self.text = converted
+        }
     }
 
 }
