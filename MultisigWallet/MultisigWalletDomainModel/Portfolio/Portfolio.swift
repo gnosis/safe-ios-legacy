@@ -64,6 +64,14 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
         super.init(id: id)
     }
 
+    public init(id: PortfolioID, wallets: [WalletID], selectedWallet: WalletID?) {
+        super.init(id: id)
+        wallets.forEach { addWallet($0) }
+        if let selectedWallet = selectedWallet {
+            selectWallet(selectedWallet)
+        }
+    }
+
     /// Adds new wallet to the portfolio. Wallet ID must be unique within a portfolio.
     ///
     /// - Parameter wallet: wallet id to add to the portfolio.

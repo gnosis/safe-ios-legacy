@@ -51,6 +51,8 @@
 		0A60B522211343F70066821A /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B521211343F70066821A /* TransactionData.swift */; };
 		0A6AE029216CB539002FBE3D /* EthereumContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6AE028216CB539002FBE3D /* EthereumContractProxy.swift */; };
 		0A6AE030216CB554002FBE3D /* EthereumContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6AE02F216CB554002FBE3D /* EthereumContractProxyTests.swift */; };
+		0A6B845A21B6942100EDF04C /* TableSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B845921B6942100EDF04C /* TableSchema.swift */; };
+		0A6B846121B6943400EDF04C /* DBEntityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846021B6943400EDF04C /* DBEntityRepository.swift */; };
 		0A73F3182133FDE000F65DAE /* ErrorStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73F3172133FDE000F65DAE /* ErrorStreamTests.swift */; };
 		0A76BE4A20AEC3EB00D07770 /* WalletApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */; };
 		0A76BE4F20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */; };
@@ -414,6 +416,8 @@
 		0A60B521211343F70066821A /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
 		0A6AE028216CB539002FBE3D /* EthereumContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumContractProxy.swift; sourceTree = "<group>"; };
 		0A6AE02F216CB554002FBE3D /* EthereumContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumContractProxyTests.swift; sourceTree = "<group>"; };
+		0A6B845921B6942100EDF04C /* TableSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSchema.swift; sourceTree = "<group>"; };
+		0A6B846021B6943400EDF04C /* DBEntityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBEntityRepository.swift; sourceTree = "<group>"; };
 		0A73F3172133FDE000F65DAE /* ErrorStreamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStreamTests.swift; sourceTree = "<group>"; };
 		0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySinglePortfolioRepository.swift; sourceTree = "<group>"; };
@@ -955,6 +959,8 @@
 				0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */,
 				0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */,
 				0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */,
+				0A6B846021B6943400EDF04C /* DBEntityRepository.swift */,
+				0A6B845921B6942100EDF04C /* TableSchema.swift */,
 				0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */,
 				0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */,
 				0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */,
@@ -1566,6 +1572,7 @@
 				0A4A1D7D2136E4C00088F9EC /* DBTokeListItemRepository.swift in Sources */,
 				0A23C82C20A1DF0A00C72483 /* DBWalletRepository.swift in Sources */,
 				0AD22D7520A32F9C00D40478 /* DBBaseRepository.swift in Sources */,
+				0A6B845A21B6942100EDF04C /* TableSchema.swift in Sources */,
 				0A9E384D20F4AE510085E8D7 /* InMemoryExternallyOwnedAccountRepository.swift in Sources */,
 				0A9E383A20F4AE510085E8D7 /* EncryptionService.swift in Sources */,
 				0A76BE4F20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift in Sources */,
@@ -1594,6 +1601,7 @@
 				0A9E384020F4AE510085E8D7 /* EstimateGasRequest.swift in Sources */,
 				0A9E384E20F4AE510085E8D7 /* MockEncryptionService.swift in Sources */,
 				0A9E384320F4AE510085E8D7 /* GetTransactionCountRequest.swift in Sources */,
+				0A6B846121B6943400EDF04C /* DBEntityRepository.swift in Sources */,
 				55D3C08020F75F290047004F /* MockPushTokensDomainService.swift in Sources */,
 				555C94AF20E3924C00A0621D /* MockNotificationService.swift in Sources */,
 			);

@@ -4,17 +4,40 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import Database
 
-extension Portfolio: DBCodable {}
-
-public class DBSinglePortfolioRepository: DBBaseRepository<Portfolio>, SinglePortfolioRepository {
-
-    public override var tableName: String {
-        return "tbl_portfolios"
-    }
+public class DBSinglePortfolioRepository: DBEntityRepository<Portfolio, PortfolioID>, SinglePortfolioRepository {
 
     public func portfolio() -> Portfolio? {
         return findFirst()
+    }
+
+    // MARK: - DB template methods
+
+    override public var table: TableSchema {
+        return .init("tbl_portfolios",
+                     "id TEXT NOT NULL PRIMARY KEY",
+                     "wallets TEXT NOT NULL",
+                     "selected_wallet TEXT")
+    }
+
+    override public func insertionBindings(_ object: Portfolio) -> [SQLBindable?] {
+        return [
+            object.id.id,
+            object.wallets.map { $0.id }.joined(separator: ","),
+            object.selectedWallet?.id]
+    }
+
+    override public func objectFromResultSet(_ rs: ResultSet) -> Portfolio? {
+        let it = rs.rowIterator()
+        let id = it.nextString()
+        let wallets = it.nextString()
+        let selected = it.nextString()
+        guard id != nil && wallets != nil else { return nil }
+        let portfolio = Portfolio(id: PortfolioID(id!),
+                                  wallets: wallets!.components(separatedBy: ",").map { WalletID($0) },
+                                  selectedWallet: selected == nil ? nil : WalletID(selected!))
+        return portfolio
     }
 
 }

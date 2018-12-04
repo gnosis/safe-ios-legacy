@@ -49,4 +49,11 @@ class PortfolioTests: XCTestCase {
         XCTAssertEqual(portfolio.selectedWallet, wallet2.id)
     }
 
+    func test_whenCreatingWithAdditionalValues_thenSetsThem() {
+        let wallets = [WalletID(), WalletID(), WalletID()]
+        portfolio = Portfolio(id: PortfolioID(), wallets: wallets, selectedWallet: wallets[1])
+        XCTAssertEqual(portfolio.wallets, wallets)
+        XCTAssertEqual(portfolio.selectedWallet, wallets[1])
+    }
+
 }

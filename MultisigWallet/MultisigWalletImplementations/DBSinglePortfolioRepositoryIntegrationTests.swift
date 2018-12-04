@@ -37,7 +37,7 @@ class DBSinglePortfolioRepositoryIntegrationTests: XCTestCase {
         XCTAssertEqual(saved?.wallets, portfolio.wallets)
 
         repo.remove(portfolio)
-        XCTAssertNil(repo.findByID(portfolio.id))
+        XCTAssertNil(repo.find(id: portfolio.id))
     }
 
 }
