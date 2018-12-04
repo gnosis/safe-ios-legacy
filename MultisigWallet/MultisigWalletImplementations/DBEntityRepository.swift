@@ -8,16 +8,6 @@ import Common
 
 open class DBEntityRepository<T: IdentifiableEntity<U>, U: BaseID> {
 
-    open var table: TableSchema { preconditionFailure("Not implemented") }
-
-    open func insertionBindings(_ object: T) -> [SQLBindable?] {
-        preconditionFailure("Not implemented")
-    }
-
-    open func objectFromResultSet(_ rs: ResultSet) -> T? {
-        preconditionFailure("Not implemented")
-    }
-
     public let db: Database
 
     public init(db: Database) {
@@ -34,14 +24,6 @@ open class DBEntityRepository<T: IdentifiableEntity<U>, U: BaseID> {
 
     open func remove(_ object: T) {
         try! db.execute(sql: table.deleteSQL, bindings: primaryKeyBindings(object))
-    }
-
-    open func primaryKeyBindings(_ object: T) -> [SQLBindable?] {
-        return primaryKeyBindings(object.id)
-    }
-
-    open func primaryKeyBindings(_ id: U) -> [SQLBindable?] {
-        return [id.id]
     }
 
     open func findFirst() -> T? {
@@ -68,6 +50,28 @@ open class DBEntityRepository<T: IdentifiableEntity<U>, U: BaseID> {
 
     open func nextID() -> U {
         return U()
+    }
+
+    // MARK: - Override these methods
+
+    open var table: TableSchema { preconditionFailure("Not implemented") }
+
+    open func insertionBindings(_ object: T) -> [SQLBindable?] {
+        preconditionFailure("Not implemented")
+    }
+
+    open func objectFromResultSet(_ rs: ResultSet) -> T? {
+        preconditionFailure("Not implemented")
+    }
+
+    // MARK: Optional to override
+
+    open func primaryKeyBindings(_ object: T) -> [SQLBindable?] {
+        return primaryKeyBindings(object.id)
+    }
+
+    open func primaryKeyBindings(_ id: U) -> [SQLBindable?] {
+        return [id.id]
     }
 
 }

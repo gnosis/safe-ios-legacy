@@ -12,8 +12,6 @@ public class DBSinglePortfolioRepository: DBEntityRepository<Portfolio, Portfoli
         return findFirst()
     }
 
-    // MARK: - DB template methods
-
     override public var table: TableSchema {
         return .init("tbl_portfolios",
                      "id TEXT NOT NULL PRIMARY KEY",
