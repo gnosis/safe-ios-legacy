@@ -101,9 +101,9 @@ final class MenuTableViewController: UITableViewController {
 
     private func generateData() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
-        let hasBrowserExtension = ApplicationServiceRegistry.walletService.isOwnerExists(.browserExtension)
-        let browserExtensionItem =
-            hasBrowserExtension ? menuItem(Strings.changeBrowserExtension) : menuItem(Strings.connectBrowserExtension)
+//        let hasBrowserExtension = ApplicationServiceRegistry.walletService.isOwnerExists(.browserExtension)
+//        let browserExtensionItem =
+//            hasBrowserExtension ? menuItem(Strings.changeBrowserExtension) : menuItem(Strings.connectBrowserExtension)
         menuItems = [
             (section: .safe,
              items: [
@@ -116,12 +116,13 @@ final class MenuTableViewController: UITableViewController {
             (section: .portfolio,
              items: [menuItem(Strings.manageTokens)],
              title: Strings.portfolioSectionTitle),
-            (section: .security,
-             items: [
+//            (section: .security,
+//             items: [
 //                menuItem(Strings.changePassword),
 //                menuItem(Strings.changeRecoveryPhrase),
-                browserExtensionItem],
-             title: Strings.securitySectionTitle),
+//                browserExtensionItem
+//                ],
+//             title: Strings.securitySectionTitle),
             (section: .support,
              items: [
 //                menuItem(Strings.feedback),
@@ -131,6 +132,10 @@ final class MenuTableViewController: UITableViewController {
                 (item: AppVersion(), cellHeight: { return AppVersionTableViewCell.height })],
              title: Strings.supportSectionTitle)
         ]
+    }
+
+    func index(of section: SettingsSection) -> Int? {
+        return menuItems.enumerated().first { offset, item in item.section == section }?.offset
     }
 
     private func menuItem(_ name: String, _ height: CGFloat = MenuItemTableViewCell.height) ->
