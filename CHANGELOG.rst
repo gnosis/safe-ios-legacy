@@ -5,16 +5,55 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`0.9.0`_ - 2018-11-30
+=====================
+Changed
+-------
+- UI design changes and use of components 😻
+    - Backgrounds changed to white
+    - Confirm Transaction screen
+    - Send Transaction screen
+    - Transaction details screen (incl. empty state)
+    - Transaction list screen
+- Fixed crashes 💥
+- Coding guidelines extended
+- Fixed UX bugs 🐛
+    - Manage tokens (hiding glitch, adding delay)
+    - Cancelling and restarting safe creation
+    - Comma/dot in the amount input field in Send screen
+    - Screen titles and back button wordings
+    - Blockies images (identicons) aligned with other platforms
+    - Added "Continue" button to password setup screens
+    - "No tripple character" password reuirement behavior fixed
+    - Mnemonic word inputs trim whitespaces now
+- New lanes added in Fastfile
+- ``DesignableView`` changed to ``BaseCustomView``, ``BaseCustomLabel`` and ``BaseCustomButton``
+- Moved from Travis CI to Jenkins! 👏
+
+Added
+-----
+- New UI components 😻
+    - TransactionHeaderView
+    - TransactionFeeView
+    - TransferView
+    - TransactionConfirmationView
+    - AmountLabel
+    - AddressInput
+    - EthereumAddressLabel
+    - FullEthereumAddressLabel
+- Implemented ``sendTransaction`` push handling 📣
+- Notification Service Extension to load localized message
+
 `0.8.2`_ - 2018-11-13
 =====================
 Changed
------
+-------
 - Forced to use always encrypted AppConfig for PreRelease and Release configurations
 
 `0.8.1`_ - 2018-11-08
 =====================
 Changed
------
+-------
 - Fixed confusing setup password wording
 
 `0.8.0`_ - 2018-10-28
@@ -79,7 +118,7 @@ Changed
 - Fixed TODOs in code
 
 0.5.0 - 2018-07-18
-=====================
+==================
 Added
 -----
 - Firebase SDK integration
@@ -92,13 +131,13 @@ Changed
 - Refactored error handling
 
 `0.4.1`_ - 2018-07-11
-==========
+=====================
 Changed
 -------
 - Fixed bug in safe creation arised because of API response format change.
 
 `0.4.0`_ - 2018-07-09
-==========
+=====================
 Added
 -----
 - Added source code documentation to common modules.
@@ -133,7 +172,7 @@ Changed
 
 
 `0.3.0`_ - 2018-06-11
-==========
+=====================
 Added
 -----
 - Created new ``MultisigWallet`` project with DomainModel, Application and Implementations libraries.
@@ -149,7 +188,7 @@ Changed
 - Moved ``Database`` and SQLite implementations into ``Database`` library.
 
 `0.2.0`_ - 2018-05-03
-==========
+=====================
 Added
 -----
 
@@ -171,12 +210,13 @@ Changed
 - Implementation of IdentityAccess domain logic with User, Gatekeeper, AuthenticationApplicationService and others.
 
 `0.1.0`_ - 2018-04-05
-==================
+=====================
 Added
 -----
 - Setting master password
 - Unlocking app
 
+.. _0.9.0: https://github.com/gnosis/safe-ios/tree/0.9.0
 .. _0.8.2: https://github.com/gnosis/safe-ios/tree/0.8.2
 .. _0.8.1: https://github.com/gnosis/safe-ios/tree/0.8.1
 .. _0.8.0: https://github.com/gnosis/safe-ios/tree/0.8.0

@@ -72,6 +72,7 @@ public final class TokenBalanceTableViewCell: UITableViewCell {
     private func formattedBalance(_ tokenData: TokenData) -> String {
         guard let balance = tokenData.balance else { return "--" }
         let formatter = TokenNumberFormatter.ERC20Token(decimals: tokenData.decimals)
+        formatter.displayedDecimals = 8
         return formatter.string(from: balance)
     }
 
