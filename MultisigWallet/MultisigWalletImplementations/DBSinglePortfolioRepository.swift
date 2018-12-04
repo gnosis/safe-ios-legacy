@@ -20,21 +20,18 @@ public class DBSinglePortfolioRepository: DBEntityRepository<Portfolio, Portfoli
     }
 
     override public func insertionBindings(_ object: Portfolio) -> [SQLBindable?] {
-        return [
-            object.id.id,
-            object.wallets.map { $0.id }.joined(separator: ","),
-            object.selectedWallet?.id]
+        return bindable([object.id,
+                         object.wallets,
+                         object.selectedWallet])
     }
 
     override public func objectFromResultSet(_ rs: ResultSet) -> Portfolio? {
-        let it = rs.rowIterator()
-        let id = it.nextString()
-        let wallets = it.nextString()
-        let selected = it.nextString()
-        guard id != nil && wallets != nil else { return nil }
-        let portfolio = Portfolio(id: PortfolioID(id!),
-                                  wallets: wallets!.components(separatedBy: ",").map { WalletID($0) },
-                                  selectedWallet: selected == nil ? nil : WalletID(selected!))
+        guard let id: String = rs["id"],
+            let wallets: String = rs["wallets"] else { return nil }
+        let selectedWallet: String? = rs["selected_wallet"]
+        let portfolio = Portfolio(id: PortfolioID(id),
+                                  wallets: WalletIDList(serializedString: wallets),
+                                  selectedWallet: WalletID(serializedString: selectedWallet))
         return portfolio
     }
 

@@ -30,7 +30,7 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
     /// Currently selected wallet, or nil.
     public private(set) var selectedWallet: WalletID?
     /// Collection of wallet identifiers in this portfolio.
-    public private(set) var wallets = [WalletID]()
+    public private(set) var wallets = WalletIDList()
 
     /// Creates Portfolio with serialized Data.
     ///
@@ -42,7 +42,7 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
         if let id = state.selectedWallet {
             selectedWallet = WalletID(id)
         }
-        wallets = state.wallets.map { WalletID($0) }
+        wallets = WalletIDList(state.wallets.map { WalletID($0) })
     }
 
     /// Serializes Portfolio to Data
@@ -64,7 +64,7 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
         super.init(id: id)
     }
 
-    public init(id: PortfolioID, wallets: [WalletID], selectedWallet: WalletID?) {
+    public init(id: PortfolioID, wallets: WalletIDList, selectedWallet: WalletID?) {
         super.init(id: id)
         wallets.forEach { addWallet($0) }
         if let selectedWallet = selectedWallet {

@@ -39,7 +39,7 @@ class PortfolioTests: XCTestCase {
     func test_whenAddingMultipleWallets_thenCanFetchAll() {
         portfolio.addWallet(wallet1.id)
         portfolio.addWallet(wallet2.id)
-        XCTAssertEqual(portfolio.wallets, [wallet1.id, wallet2.id])
+        XCTAssertEqual(portfolio.wallets, WalletIDList([wallet1.id, wallet2.id]))
     }
 
     func test_whenSelectingWallet_thenItIsSelected() {
@@ -50,7 +50,7 @@ class PortfolioTests: XCTestCase {
     }
 
     func test_whenCreatingWithAdditionalValues_thenSetsThem() {
-        let wallets = [WalletID(), WalletID(), WalletID()]
+        let wallets = WalletIDList([WalletID(), WalletID(), WalletID()])
         portfolio = Portfolio(id: PortfolioID(), wallets: wallets, selectedWallet: wallets[1])
         XCTAssertEqual(portfolio.wallets, wallets)
         XCTAssertEqual(portfolio.selectedWallet, wallets[1])

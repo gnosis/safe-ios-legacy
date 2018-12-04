@@ -53,6 +53,10 @@
 		0A6AE030216CB554002FBE3D /* EthereumContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6AE02F216CB554002FBE3D /* EthereumContractProxyTests.swift */; };
 		0A6B845A21B6942100EDF04C /* TableSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B845921B6942100EDF04C /* TableSchema.swift */; };
 		0A6B846121B6943400EDF04C /* DBEntityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846021B6943400EDF04C /* DBEntityRepository.swift */; };
+		0A6B846321B6A0FF00EDF04C /* WalletIDList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846221B6A0FF00EDF04C /* WalletIDList.swift */; };
+		0A6B846521B6A28200EDF04C /* WalletIDList+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846421B6A28200EDF04C /* WalletIDList+Serialization.swift */; };
+		0A6B846721B6A2A700EDF04C /* BaseID+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846621B6A2A700EDF04C /* BaseID+Serialization.swift */; };
+		0A6B846921B6A2F000EDF04C /* DBSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846821B6A2F000EDF04C /* DBSerializable.swift */; };
 		0A73F3182133FDE000F65DAE /* ErrorStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73F3172133FDE000F65DAE /* ErrorStreamTests.swift */; };
 		0A76BE4A20AEC3EB00D07770 /* WalletApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */; };
 		0A76BE4F20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */; };
@@ -418,6 +422,10 @@
 		0A6AE02F216CB554002FBE3D /* EthereumContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumContractProxyTests.swift; sourceTree = "<group>"; };
 		0A6B845921B6942100EDF04C /* TableSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSchema.swift; sourceTree = "<group>"; };
 		0A6B846021B6943400EDF04C /* DBEntityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBEntityRepository.swift; sourceTree = "<group>"; };
+		0A6B846221B6A0FF00EDF04C /* WalletIDList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletIDList.swift; sourceTree = "<group>"; };
+		0A6B846421B6A28200EDF04C /* WalletIDList+Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletIDList+Serialization.swift"; sourceTree = "<group>"; };
+		0A6B846621B6A2A700EDF04C /* BaseID+Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseID+Serialization.swift"; sourceTree = "<group>"; };
+		0A6B846821B6A2F000EDF04C /* DBSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSerializable.swift; sourceTree = "<group>"; };
 		0A73F3172133FDE000F65DAE /* ErrorStreamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStreamTests.swift; sourceTree = "<group>"; };
 		0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySinglePortfolioRepository.swift; sourceTree = "<group>"; };
@@ -729,6 +737,7 @@
 		0A75D920211B193400F5DE63 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				0A6B846221B6A0FF00EDF04C /* WalletIDList.swift */,
 				0A0CEFFE2125656200772AB3 /* DeploymentDomainService.swift */,
 				0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */,
 				0A5C0D472185B6F300988930 /* AllDeploymentStatesTests.swift */,
@@ -959,6 +968,9 @@
 				0AAA176020E3815E003B35B3 /* DBTransactionRepositoryTests.swift */,
 				0AD22D7420A32F9C00D40478 /* DBBaseRepository.swift */,
 				0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */,
+				0A6B846621B6A2A700EDF04C /* BaseID+Serialization.swift */,
+				0A6B846821B6A2F000EDF04C /* DBSerializable.swift */,
+				0A6B846421B6A28200EDF04C /* WalletIDList+Serialization.swift */,
 				0A6B846021B6943400EDF04C /* DBEntityRepository.swift */,
 				0A6B845921B6942100EDF04C /* TableSchema.swift */,
 				0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */,
@@ -1427,6 +1439,7 @@
 				0A23C80520A1B09100C72483 /* Wallet.swift in Sources */,
 				0A9E380D20F4A4F20085E8D7 /* ExternallyOwnedAccount.swift in Sources */,
 				0A7F3A8C2126BD890062CB1E /* RetryWithIncreasingDelay.swift in Sources */,
+				0A6B846321B6A0FF00EDF04C /* WalletIDList.swift in Sources */,
 				552C6010212B0D0C00BF973A /* TokenListMerger.swift in Sources */,
 				0A23C80D20A1B34900C72483 /* Owner.swift in Sources */,
 				0ABCC0F52177290F00E60E9F /* TransactionDomainService.swift in Sources */,
@@ -1587,6 +1600,7 @@
 				0A9E384F20F4AE510085E8D7 /* MockEthereumNodeService.swift in Sources */,
 				0A9E384B20F4AE510085E8D7 /* EthInt.swift in Sources */,
 				0A9E384420F4AE510085E8D7 /* GetTransactionReceiptRequest.swift in Sources */,
+				0A6B846521B6A28200EDF04C /* WalletIDList+Serialization.swift in Sources */,
 				0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */,
 				0A9E383D20F4AE510085E8D7 /* GnosisTransactionRelayService.swift in Sources */,
 				0A9E384820F4AE510085E8D7 /* EthAddress.swift in Sources */,
@@ -1602,8 +1616,10 @@
 				0A9E384E20F4AE510085E8D7 /* MockEncryptionService.swift in Sources */,
 				0A9E384320F4AE510085E8D7 /* GetTransactionCountRequest.swift in Sources */,
 				0A6B846121B6943400EDF04C /* DBEntityRepository.swift in Sources */,
+				0A6B846921B6A2F000EDF04C /* DBSerializable.swift in Sources */,
 				55D3C08020F75F290047004F /* MockPushTokensDomainService.swift in Sources */,
 				555C94AF20E3924C00A0621D /* MockNotificationService.swift in Sources */,
+				0A6B846721B6A2A700EDF04C /* BaseID+Serialization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

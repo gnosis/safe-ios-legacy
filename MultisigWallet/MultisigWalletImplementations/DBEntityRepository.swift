@@ -60,6 +60,10 @@ open class DBEntityRepository<T: IdentifiableEntity<U>, U: BaseID> {
         preconditionFailure("Not implemented")
     }
 
+    open func bindable(_ values: [DBSerializable?]) -> [SQLBindable?] {
+        return values.map { $0?.serializedString }
+    }
+
     open func objectFromResultSet(_ rs: ResultSet) -> T? {
         preconditionFailure("Not implemented")
     }
