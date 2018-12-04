@@ -4,10 +4,11 @@
 
 import Foundation
 import Common
+import Database
 
 extension BaseID: DBSerializable {
 
-    public var serializedString: String {
+    public var serializedValue: SQLBindable {
         return id
     }
 

@@ -3,9 +3,10 @@
 //
 
 import Foundation
+import Database
 
 public protocol DBSerializable {
 
-    var serializedString: String { get }
+    var serializedValue: SQLBindable { get }
 
 }

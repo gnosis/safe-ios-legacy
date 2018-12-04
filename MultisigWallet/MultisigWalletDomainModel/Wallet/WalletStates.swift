@@ -11,6 +11,17 @@ import Foundation
 /// persisted and reloaded even between application launches.
 public class WalletState {
 
+    public enum State: Int {
+        case draft
+        case deploying
+        case notEnoughFunds
+        case creationStarted
+        case finalizingDeployment
+        case readyToUse
+    }
+
+    public var state: State { preconditionFailure("Not implemented") }
+
     var canChangeOwners: Bool = false
     var canChangeTransactionHash: Bool = false
     var canChangeAddress: Bool = false
@@ -42,6 +53,8 @@ extension WalletState: CustomStringConvertible {
 }
 
 public class DraftState: WalletState {
+
+    override public var state: WalletState.State { return .draft }
 
     private let requiredRoles = [OwnerRole.thisDevice, .paperWallet, .paperWalletDerived]
 
@@ -81,6 +94,8 @@ public class DeploymentAborted: DomainEvent {}
 
 public class DeployingState: WalletState {
 
+    override public var state: WalletState.State { return .deploying }
+
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
         canChangeAddress = true
@@ -109,6 +124,8 @@ public class WalletConfigured: DomainEvent {}
 
 public class NotEnoughFundsState: WalletState {
 
+    override public var state: WalletState.State { return .notEnoughFunds }
+
     override func resume() {
         DomainRegistry.eventPublisher.publish(WalletConfigured())
     }
@@ -132,6 +149,8 @@ public class DeploymentFunded: DomainEvent {}
 
 public class CreationStartedState: WalletState {
 
+    override public var state: WalletState.State { return .creationStarted }
+
     override func resume() {
         DomainRegistry.eventPublisher.publish(DeploymentFunded())
     }
@@ -154,6 +173,8 @@ public class CreationStarted: DomainEvent {}
 public class WalletTransactionHashIsKnown: DomainEvent {}
 
 public class FinalizingDeploymentState: WalletState {
+
+    override public var state: WalletState.State { return .finalizingDeployment }
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
@@ -183,6 +204,8 @@ public class WalletCreated: DomainEvent {}
 public class WalletCreationFailed: DomainEvent {}
 
 public class ReadyToUseState: WalletState {
+
+    override public var state: WalletState.State { return .readyToUse }
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)

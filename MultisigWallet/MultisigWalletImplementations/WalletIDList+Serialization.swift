@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import Database
 
 extension WalletIDList: DBSerializable {
 
@@ -13,7 +14,7 @@ extension WalletIDList: DBSerializable {
         self.init(serializedString.components(separatedBy: WalletIDList.separator).map { WalletID($0) })
     }
 
-    public var serializedString: String {
+    public var serializedValue: SQLBindable {
         return map { $0.id }.joined(separator: WalletIDList.separator)
     }
 

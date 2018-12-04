@@ -8,6 +8,11 @@ import Foundation
 public struct Owner: Hashable, Codable {
     public internal(set) var address: Address
     public internal(set) var role: OwnerRole
+
+    public init(address: Address, role: OwnerRole) {
+        self.address = address
+        self.role = role
+    }
 }
 
 public enum OwnerRole: String, Codable {
@@ -17,4 +22,48 @@ public enum OwnerRole: String, Codable {
     case paperWalletDerived
 
     static let all = [OwnerRole.thisDevice, .browserExtension, .paperWallet, .paperWalletDerived]
+}
+
+public struct OwnerList: Equatable {
+
+    var storage: [Owner]
+
+    public init() {
+        self.init([])
+    }
+
+    public init(_ list: [Owner]) {
+        storage = list
+    }
+
+}
+
+extension OwnerList: RandomAccessCollection {}
+
+extension OwnerList: MutableCollection {
+
+    public var startIndex: Int { return storage.startIndex }
+    public var endIndex: Int { return storage.endIndex }
+
+    public func index(after i: Int) -> Int {
+        return storage.index(after: i)
+    }
+
+    public subscript(index: Int) -> Owner {
+        get {
+            return storage[index]
+        }
+        set {
+            storage[index] = newValue
+        }
+    }
+}
+
+extension OwnerList: RangeReplaceableCollection {
+
+    public mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: C)
+        where C: Collection, R: RangeExpression, Owner == C.Element, Int == R.Bound {
+            storage.replaceSubrange(subrange, with: newElements)
+    }
+
 }

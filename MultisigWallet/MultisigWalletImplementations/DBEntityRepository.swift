@@ -52,16 +52,16 @@ open class DBEntityRepository<T: IdentifiableEntity<U>, U: BaseID> {
         return U()
     }
 
+    open func bindable(_ values: [DBSerializable?]) -> [SQLBindable?] {
+        return values.map { $0?.serializedValue }
+    }
+
     // MARK: - Override these methods
 
     open var table: TableSchema { preconditionFailure("Not implemented") }
 
     open func insertionBindings(_ object: T) -> [SQLBindable?] {
         preconditionFailure("Not implemented")
-    }
-
-    open func bindable(_ values: [DBSerializable?]) -> [SQLBindable?] {
-        return values.map { $0?.serializedString }
     }
 
     open func objectFromResultSet(_ rs: ResultSet) -> T? {

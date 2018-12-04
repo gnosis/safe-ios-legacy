@@ -45,15 +45,16 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var minimumDeploymentTransactionAmount: TokenInt?
     public private(set) var confirmationCount: Int = 1
     public private(set) var deploymentFee: BigInt?
+    public var ownerList: OwnerList { return OwnerList(allOwners()) }
 
     public var isDeployable: Bool {
         return state.isDeployable
     }
 
-    public required init(data: Data) {
+    public convenience init(data: Data) {
         let decoder = PropertyListDecoder()
         let state = try! decoder.decode(Serialized.self, from: data)
-        super.init(id: WalletID(state.id))
+        self.init(id: WalletID(state.id))
         ownersByRole = state.ownersByRole
         address = state.address
         creationTransactionHash = state.creationTransactionHash
@@ -61,6 +62,35 @@ public class Wallet: IdentifiableEntity<WalletID> {
         confirmationCount = state.confirmationCount
         initStates()
         self.state = self.state(from: state.state)
+    }
+
+    public convenience init(id: WalletID,
+                            state: WalletState.State,
+                            owners: OwnerList,
+                            address: Address?,
+                            minimumDeploymentTransactionAmount: TokenInt?,
+                            creationTransactionHash: String?,
+                            confirmationCount: Int = 1) {
+        self.init(id: id)
+        initStates()
+        self.state = self.state(from: state)
+        owners.forEach { addOwner($0) }
+        self.address = address
+        self.minimumDeploymentTransactionAmount = minimumDeploymentTransactionAmount
+        self.creationTransactionHash = creationTransactionHash
+        self.confirmationCount = confirmationCount
+    }
+
+    // TODO: duplication, obviously
+    private func state(from string: WalletState.State) -> WalletState {
+        switch string {
+        case .draft: return newDraftState
+        case .deploying: return deployingState
+        case .notEnoughFunds: return notEnoughFundsState
+        case .creationStarted: return creationStartedState
+        case .finalizingDeployment: return finalizingDeploymentState
+        case .readyToUse: return readyToUseState
+        }
     }
 
     private func state(from string: String) -> WalletState {
@@ -88,8 +118,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
         return try! encoder.encode(state)
     }
 
-    public init(id: WalletID, owner: Address) {
-        super.init(id: id)
+    public convenience init(id: WalletID, owner: Address) {
+        self.init(id: id)
         initStates()
         state = newDraftState
         addOwner(Owner(address: owner, role: .thisDevice))
