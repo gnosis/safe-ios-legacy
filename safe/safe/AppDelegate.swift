@@ -145,7 +145,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
             if !db.exists {
                 try db.create()
-                
                 try userRepo.setUp()
                 gatekeeperRepo.setUp()
 
