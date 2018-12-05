@@ -25,19 +25,10 @@ public class Session: IdentifiableEntity<SessionID> {
         case sessionWasFinishedAlready
     }
 
-    /// Serialized session state
-    struct State: Codable {
-        fileprivate let id: String
-        fileprivate let duration: TimeInterval
-        fileprivate let startedAt: Date?
-        fileprivate let endedAt: Date?
-        fileprivate let updatedAt: Date?
-    }
-
-    private let duration: TimeInterval
-    private var startedAt: Date?
-    private var endedAt: Date?
-    private var updatedAt: Date?
+    public let duration: TimeInterval
+    public private(set) var startedAt: Date?
+    public private(set) var endedAt: Date?
+    public private(set) var updatedAt: Date?
 
     /// Creates new session with id and duration.
     ///
@@ -51,28 +42,15 @@ public class Session: IdentifiableEntity<SessionID> {
         try assertTrue(durationInSeconds > 0, Error.invalidDuration)
     }
 
-    /// Creates new Session from a serialized Data value
-    ///
-    /// - Parameter data: serialized session
-    /// - Throws: error fi failed to decode session
-    public convenience init(data: Data) throws {
-        let decoder = PropertyListDecoder()
-        let state = try decoder.decode(State.self, from: data)
-        try self.init(id: SessionID(state.id), durationInSeconds: state.duration)
-        startedAt = state.startedAt
-        endedAt = state.endedAt
-        updatedAt = state.updatedAt
-    }
-
-    /// Serializes session's state into Data
-    ///
-    /// - Returns: serialized session
-    /// - Throws: error if serialization failes
-    public func data() throws -> Data {
-        let state = State(id: id.id, duration: duration, startedAt: startedAt, endedAt: endedAt, updatedAt: updatedAt)
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .binary
-        return try encoder.encode(state)
+    public convenience init(id: SessionID,
+                            duration: TimeInterval,
+                            startedAt: Date?,
+                            endedAt: Date?,
+                            updatedAt: Date?) throws {
+        try self.init(id: id, durationInSeconds: duration)
+        self.startedAt = startedAt
+        self.endedAt = endedAt
+        self.updatedAt = updatedAt
     }
 
     /// Checks whether session is active at the `time`.

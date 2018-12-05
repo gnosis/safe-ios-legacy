@@ -13,7 +13,6 @@
 		0A44F9CB20908BE400BB7101 /* DBSingleUserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */; };
 		0A44F9CD2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44F9CC2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift */; };
 		0A48A0722092003C00B704AD /* DBSingleGatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48A0712092003C00B704AD /* DBSingleGatekeeperRepository.swift */; };
-		0A48A0792092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48A0782092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift */; };
 		0A48A07B2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48A07A2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift */; };
 		0A537A98207CE74100921FB9 /* DomainRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A87207CE74100921FB9 /* DomainRegistry.swift */; };
 		0A537A9A207CE74100921FB9 /* BiometricAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A537A89207CE74100921FB9 /* BiometricAuthenticationService.swift */; };
@@ -155,6 +154,13 @@
 			remoteGlobalIDString = 0A934D4F20B711F400F15616;
 			remoteInfo = CommonIntegration;
 		};
+		0AAA735821B81EBA00F4AB7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A8E3B9120B419CC00F002F6;
+			remoteInfo = CommonImplementations;
+		};
 		0AC33F042119C851009A5CFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
@@ -257,7 +263,6 @@
 		0A44F9CA20908BE400BB7101 /* DBSingleUserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepositoryTests.swift; sourceTree = "<group>"; };
 		0A44F9CC2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
 		0A48A0712092003C00B704AD /* DBSingleGatekeeperRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleGatekeeperRepository.swift; sourceTree = "<group>"; };
-		0A48A0782092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleGatekeeperRepositoryTests.swift; sourceTree = "<group>"; };
 		0A48A07A2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSingleGatekeeperRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
 		0A537A64207CE5BC00921FB9 /* libIdentityAccessDomainModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIdentityAccessDomainModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A537A7C207CE73F00921FB9 /* IdentityAccessDomainModel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityAccessDomainModel-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -437,7 +442,6 @@
 				0AFFF42F2084C01A0030200C /* InMemoryGatekeeperRepository.swift */,
 				0AFFF42D2084BF850030200C /* InMemoryGatekeeperRepositoryTests.swift */,
 				0A48A0712092003C00B704AD /* DBSingleGatekeeperRepository.swift */,
-				0A48A0782092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift */,
 				0A48A07A2092025A00B704AD /* DBSingleGatekeeperRepositoryIntegrationTests.swift */,
 			);
 			path = SingleGatekeeperRepository;
@@ -726,6 +730,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0AAA735921B81EBA00F4AB7A /* PBXTargetDependency */,
 				0AC33F052119C851009A5CFB /* PBXTargetDependency */,
 				0AEF8A2E20A08182006A1265 /* PBXTargetDependency */,
 				0ADFDD9C20A0616700423554 /* PBXTargetDependency */,
@@ -1148,7 +1153,6 @@
 				0AFFF40E20808C0B0030200C /* InMemoryUserRepositoryTests.swift in Sources */,
 				0AFFF4342084D4DA0030200C /* AuthenticationPolicyTests.swift in Sources */,
 				0A537B3B207CF7F000921FB9 /* SystemClockServiceIntegrationTests.swift in Sources */,
-				0A48A0792092008100B704AD /* DBSingleGatekeeperRepositoryTests.swift in Sources */,
 				0A537B39207CF63800921FB9 /* BiometricServiceTests.swift in Sources */,
 				0A44F9CD2090B95700BB7101 /* DBSingleUserRepositoryIntegrationTests.swift in Sources */,
 			);
@@ -1220,6 +1224,11 @@
 			isa = PBXTargetDependency;
 			target = 0A537BE0207CFADE00921FB9 /* IdentityAccessApplication */;
 			targetProxy = 0A666D07208654090034FF66 /* PBXContainerItemProxy */;
+		};
+		0AAA735921B81EBA00F4AB7A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CommonImplementations;
+			targetProxy = 0AAA735821B81EBA00F4AB7A /* PBXContainerItemProxy */;
 		};
 		0AC33F052119C851009A5CFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
