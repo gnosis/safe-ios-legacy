@@ -77,6 +77,7 @@ platform :ios do
       output_directory: OUTPUT_PATH,
       buildlog_path: BUILD_LOG_PATH,
       derived_data_path: DERIVED_DATA_PATH,
+      xcargs: "'SWIFT_ENABLE_BATCH_MODE=NO'",
       devices: ['iPhone X']}.merge(params))
   end
 
