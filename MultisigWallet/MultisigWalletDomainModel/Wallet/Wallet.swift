@@ -50,8 +50,9 @@ public class Wallet: IdentifiableEntity<WalletID> {
                             confirmationCount: Int = 1) {
         self.init(id: id)
         initStates()
-        self.state = self.state(from: state)
+        self.state = newDraftState
         owners.forEach { addOwner($0) }
+        self.state = self.state(from: state)
         self.address = address
         self.minimumDeploymentTransactionAmount = minimumDeploymentTransactionAmount
         self.creationTransactionHash = creationTransactionHash

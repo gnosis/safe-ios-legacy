@@ -145,17 +145,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
             if !db.exists {
                 try db.create()
+                
                 try userRepo.setUp()
-                try gatekeeperRepo.setUp()
+                gatekeeperRepo.setUp()
 
                 try ApplicationServiceRegistry.authenticationService
                     .createAuthenticationPolicy(sessionDuration: 60,
                                                 maxPasswordAttempts: 3,
                                                 blockedPeriodDuration: 15)
             }
+
+            let migrationRepo = DBMigrationRepository(db: db)
+            migrationRepo.setUp()
+            let migrationService = DBMigrationService(repository: migrationRepo)
+            registerIdentityAccessDatabaseMigrations(service: migrationService)
+            migrationService.migrate()
         } catch let e {
             ErrorHandler.showFatalError(log: "Failed to set up identity access database", error: e)
         }
+    }
+
+    private func registerIdentityAccessDatabaseMigrations(service: DBMigrationService) {
+        // identity access db migrations go here
     }
 
     private func setUpMultisigDatabase() {
@@ -184,9 +195,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
             accountRepo.setUp()
             transactionRepo.setUp()
             tokenListItemRepo.setUp()
+
+            let migrationRepo = DBMigrationRepository(db: db)
+            migrationRepo.setUp()
+            let migrationService = DBMigrationService(repository: migrationRepo)
+            registerMultisigDatabaseMigrations(service: migrationService)
+            migrationService.migrate()
         } catch let e {
             ErrorHandler.showFatalError(log: "Failed to set up multisig database", error: e)
         }
+    }
+
+    private func registerMultisigDatabaseMigrations(service: DBMigrationService) {
+        // multisig wallet db migrations go here
     }
 
     private func createWindow() {
