@@ -12,7 +12,7 @@ extension BaseID: DBSerializable {
         return id
     }
 
-    convenience init?(serializedString: String?) {
+    public convenience init?(serializedString: String?) {
         guard let string = serializedString else { return nil }
         self.init(string)
     }

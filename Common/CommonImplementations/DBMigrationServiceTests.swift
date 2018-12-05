@@ -6,6 +6,7 @@ import Foundation
 import XCTest
 import MultisigWalletImplementations
 import MultisigWalletDomainModel
+import CommonImplementations
 import Database
 
 class DBMigrationServiceTests: XCTestCase {

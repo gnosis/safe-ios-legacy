@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import CommonImplementations
 import Database
 
 extension TokenInt: DBSerializable {

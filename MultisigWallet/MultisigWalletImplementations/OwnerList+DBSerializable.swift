@@ -5,6 +5,7 @@
 import Foundation
 import Database
 import MultisigWalletDomainModel
+import CommonImplementations
 
 extension OwnerList: DBSerializable {
 

@@ -15,16 +15,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
         case invalidState
     }
 
-    private struct Serialized: Codable {
-        fileprivate let id: String
-        fileprivate let state: String
-        fileprivate let ownersByRole: [OwnerRole: Owner]
-        fileprivate let address: Address?
-        fileprivate let creationTransactionHash: String?
-        fileprivate let minimumDeploymentTransactionAmount: TokenInt?
-        fileprivate let confirmationCount: Int
-    }
-
     public var state: WalletState!
 
     public private(set) var newDraftState: WalletState!
@@ -49,19 +39,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public var isDeployable: Bool {
         return state.isDeployable
-    }
-
-    public convenience init(data: Data) {
-        let decoder = PropertyListDecoder()
-        let state = try! decoder.decode(Serialized.self, from: data)
-        self.init(id: WalletID(state.id))
-        ownersByRole = state.ownersByRole
-        address = state.address
-        creationTransactionHash = state.creationTransactionHash
-        minimumDeploymentTransactionAmount = state.minimumDeploymentTransactionAmount
-        confirmationCount = state.confirmationCount
-        initStates()
-        self.state = self.state(from: state.state)
     }
 
     public convenience init(id: WalletID,
@@ -103,19 +80,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
         case readyToUseState.description: return readyToUseState
         default: preconditionFailure("Unknown state description")
         }
-    }
-
-    public func data() -> Data {
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .binary
-        let state = Serialized(id: id.id,
-                               state: self.state.description,
-                               ownersByRole: ownersByRole,
-                               address: address,
-                               creationTransactionHash: creationTransactionHash,
-                               minimumDeploymentTransactionAmount: minimumDeploymentTransactionAmount,
-                               confirmationCount: confirmationCount)
-        return try! encoder.encode(state)
     }
 
     public convenience init(id: WalletID, owner: Address) {

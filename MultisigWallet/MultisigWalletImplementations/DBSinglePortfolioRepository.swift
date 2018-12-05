@@ -5,6 +5,7 @@
 import Foundation
 import MultisigWalletDomainModel
 import Database
+import CommonImplementations
 
 public class DBSinglePortfolioRepository: DBEntityRepository<Portfolio, PortfolioID>, SinglePortfolioRepository {
 

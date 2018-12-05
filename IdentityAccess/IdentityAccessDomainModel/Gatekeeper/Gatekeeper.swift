@@ -35,6 +35,17 @@ public class Gatekeeper: IdentifiableEntity<GatekeeperID> {
         fileprivate let accessDeniedAt: Date?
     }
 
+    public convenience init(id: GatekeeperID,
+                            session: Session?,
+                            policy: AuthenticationPolicy,
+                            failedAttemptCount: Int,
+                            accessDeniedAt: Date?) {
+        self.init(id: id, policy: policy)
+        self.session = session
+        self.failedAttemptCount = failedAttemptCount
+        self.accessDeniedAt = accessDeniedAt
+    }
+
     /// Policy configures parameters of gatekeeper's behavior. On every change of policy, gatekeeper's state is reset.
     public private(set) var policy: AuthenticationPolicy {
         didSet {
