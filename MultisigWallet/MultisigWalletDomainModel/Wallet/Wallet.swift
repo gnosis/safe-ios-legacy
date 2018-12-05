@@ -15,16 +15,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
         case invalidState
     }
 
-    private struct Serialized: Codable {
-        fileprivate let id: String
-        fileprivate let state: String
-        fileprivate let ownersByRole: [OwnerRole: Owner]
-        fileprivate let address: Address?
-        fileprivate let creationTransactionHash: String?
-        fileprivate let minimumDeploymentTransactionAmount: TokenInt?
-        fileprivate let confirmationCount: Int
-    }
-
     public var state: WalletState!
 
     public private(set) var newDraftState: WalletState!
@@ -45,22 +35,40 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var minimumDeploymentTransactionAmount: TokenInt?
     public private(set) var confirmationCount: Int = 1
     public private(set) var deploymentFee: BigInt?
+    public var ownerList: OwnerList { return OwnerList(allOwners()) }
 
     public var isDeployable: Bool {
         return state.isDeployable
     }
 
-    public required init(data: Data) {
-        let decoder = PropertyListDecoder()
-        let state = try! decoder.decode(Serialized.self, from: data)
-        super.init(id: WalletID(state.id))
-        ownersByRole = state.ownersByRole
-        address = state.address
-        creationTransactionHash = state.creationTransactionHash
-        minimumDeploymentTransactionAmount = state.minimumDeploymentTransactionAmount
-        confirmationCount = state.confirmationCount
+    public convenience init(id: WalletID,
+                            state: WalletState.State,
+                            owners: OwnerList,
+                            address: Address?,
+                            minimumDeploymentTransactionAmount: TokenInt?,
+                            creationTransactionHash: String?,
+                            confirmationCount: Int = 1) {
+        self.init(id: id)
         initStates()
-        self.state = self.state(from: state.state)
+        self.state = newDraftState
+        owners.forEach { addOwner($0) }
+        self.state = self.state(from: state)
+        self.address = address
+        self.minimumDeploymentTransactionAmount = minimumDeploymentTransactionAmount
+        self.creationTransactionHash = creationTransactionHash
+        self.confirmationCount = confirmationCount
+    }
+
+    // TODO: duplication, obviously
+    private func state(from string: WalletState.State) -> WalletState {
+        switch string {
+        case .draft: return newDraftState
+        case .deploying: return deployingState
+        case .notEnoughFunds: return notEnoughFundsState
+        case .creationStarted: return creationStartedState
+        case .finalizingDeployment: return finalizingDeploymentState
+        case .readyToUse: return readyToUseState
+        }
     }
 
     private func state(from string: String) -> WalletState {
@@ -75,21 +83,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
         }
     }
 
-    public func data() -> Data {
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .binary
-        let state = Serialized(id: id.id,
-                               state: self.state.description,
-                               ownersByRole: ownersByRole,
-                               address: address,
-                               creationTransactionHash: creationTransactionHash,
-                               minimumDeploymentTransactionAmount: minimumDeploymentTransactionAmount,
-                               confirmationCount: confirmationCount)
-        return try! encoder.encode(state)
-    }
-
-    public init(id: WalletID, owner: Address) {
-        super.init(id: id)
+    public convenience init(id: WalletID, owner: Address) {
+        self.init(id: id)
         initStates()
         state = newDraftState
         addOwner(Owner(address: owner, role: .thisDevice))

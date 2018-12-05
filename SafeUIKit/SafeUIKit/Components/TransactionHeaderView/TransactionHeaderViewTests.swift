@@ -26,7 +26,7 @@ class TransactionHeaderViewTests: XCTestCase {
         // swiftlint:disable:next line_length
         let imageURL = URL(string: "https://raw.githubusercontent.com/rmeissner/crypto_resources/master/tokens/rinkeby/icons/0x979861dF79C7408553aAF20c01Cfb3f81CCf9341.png")
         transactionHeader.assetImageURL = imageURL
-        delay(0.5)
+        delay(0.7) // FIXME: this is a bad unit test because it goes through network.
         XCTAssertNotNil(transactionHeader.assetImageView.image)
     }
 

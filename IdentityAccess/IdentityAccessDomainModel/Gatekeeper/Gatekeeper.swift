@@ -26,13 +26,15 @@ public class Gatekeeper: IdentifiableEntity<GatekeeperID> {
         case accessBlocked
     }
 
-    /// Used for persistence
-    private struct State: Codable {
-        fileprivate let id: String
-        fileprivate let session: Data?
-        fileprivate let policy: AuthenticationPolicy
-        fileprivate let failedAttemptCount: Int
-        fileprivate let accessDeniedAt: Date?
+    public convenience init(id: GatekeeperID,
+                            session: Session?,
+                            policy: AuthenticationPolicy,
+                            failedAttemptCount: Int,
+                            accessDeniedAt: Date?) {
+        self.init(id: id, policy: policy)
+        self.session = session
+        self.failedAttemptCount = failedAttemptCount
+        self.accessDeniedAt = accessDeniedAt
     }
 
     /// Policy configures parameters of gatekeeper's behavior. On every change of policy, gatekeeper's state is reset.
@@ -41,9 +43,9 @@ public class Gatekeeper: IdentifiableEntity<GatekeeperID> {
             reset()
         }
     }
-    private var session: Session?
-    private var failedAttemptCount: Int = 0
-    private var accessDeniedAt: Date?
+    public private(set) var session: Session?
+    public private(set) var failedAttemptCount: Int = 0
+    public private(set) var accessDeniedAt: Date?
 
     /// Creates new gatekeeper with id and authentication policy
     ///
@@ -53,36 +55,6 @@ public class Gatekeeper: IdentifiableEntity<GatekeeperID> {
     public init(id: GatekeeperID, policy: AuthenticationPolicy) {
         self.policy = policy
         super.init(id: id)
-    }
-
-    /// Creates new gatekeeper from persisted data
-    ///
-    /// - Parameter data: serialized gatekeeper's state
-    /// - Throws: throws error if failed to decode data
-    public convenience init(data: Data) throws {
-        let decoder = PropertyListDecoder()
-        let state = try decoder.decode(State.self, from: data)
-        self.init(id: GatekeeperID(state.id), policy: state.policy)
-        if let data = state.session {
-            session = try Session(data: data)
-        }
-        failedAttemptCount = state.failedAttemptCount
-        accessDeniedAt = state.accessDeniedAt
-    }
-
-    /// Encodes gatekeeper's state into data
-    ///
-    /// - Returns: encoded gatekeeper's state
-    /// - Throws: throws error if failed to encode. should not happen, normally.
-    public func data() throws -> Data {
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .binary
-        let state = State(id: id.id,
-                          session: try session?.data(),
-                          policy: policy,
-                          failedAttemptCount: failedAttemptCount,
-                          accessDeniedAt: accessDeniedAt)
-        return try encoder.encode(state)
     }
 
     /// Changes policy's session duration

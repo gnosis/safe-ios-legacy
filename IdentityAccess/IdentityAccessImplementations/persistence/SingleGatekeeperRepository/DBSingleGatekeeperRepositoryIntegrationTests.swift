@@ -18,16 +18,16 @@ class DBSingleGatekeeperRepositoryIntegrationTests: XCTestCase {
         try db.create()
         defer { try? db.destroy() }
         let repo = DBSingleGatekeeperRepository(db: db)
-        try repo.setUp()
+        repo.setUp()
         let gatekeeper = try Gatekeeper(id: repo.nextId(),
                                         policy: AuthenticationPolicy(sessionDuration: 5,
                                                                      maxFailedAttempts: 5,
                                                                      blockDuration: 5))
-        try repo.save(gatekeeper)
+        repo.save(gatekeeper)
         let saved = repo.gatekeeper()
         XCTAssertEqual(saved, gatekeeper)
         XCTAssertEqual(saved?.policy, gatekeeper.policy)
-        try repo.remove(gatekeeper)
+        repo.remove(gatekeeper)
         XCTAssertNil(repo.gatekeeper())
     }
 

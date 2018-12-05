@@ -110,11 +110,6 @@ class GatekeeperTests: DomainTestCase {
         XCTAssertThrowsError(try gatekeeper.changeBlockDuration(-1))
     }
 
-    func test_codable() throws {
-        let data = try gatekeeper.data()
-        let other = try Gatekeeper(data: data)
-        XCTAssertEqual(other, gatekeeper)
-    }
 }
 
 extension GatekeeperTests {

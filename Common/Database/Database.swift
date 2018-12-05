@@ -223,24 +223,36 @@ public protocol ResultSet: class {
     /// - Parameter index: 0-based column index
     /// - Returns: String represntation of the value or nil if the result is NULL
     func string(at index: Int) -> String?
+    func string(column: String) -> String?
+    subscript(index: Int) -> String? { get }
+    subscript(column: String) -> String? { get }
 
     /// Fetch value at column `inde` as integer
     ///
     /// - Parameter index: 0-based column index
     /// - Returns: Value converted to integer, or nil if the value is NULL
     func int(at index: Int) -> Int?
+    func int(column: String) -> Int?
+    subscript(index: Int) -> Int? { get }
+    subscript(column: String) -> Int? { get }
 
     /// Fetch value at column `inde` as double
     ///
     /// - Parameter index: 0-based column index
     /// - Returns: Value converted to double, or nil if the value is NULL
     func double(at index: Int) -> Double?
+    func double(column: String) -> Double?
+    subscript(index: Int) -> Double? { get }
+    subscript(column: String) -> Double? { get }
 
     /// Fetch value at column `inde` as binary data
     ///
     /// - Parameter index: 0-based column index
     /// - Returns: Value converted to binary data, or nil if the value is NULL
     func data(at index: Int) -> Data?
+    func data(column: String) -> Data?
+    subscript(index: Int) -> Data? { get }
+    subscript(column: String) -> Data? { get }
 
 }
 
@@ -305,7 +317,25 @@ public extension Database {
                     resultMap: (ResultSet) throws -> T?) throws -> [T?] {
         let conn = try connection()
         defer { try? close(conn) }
-        let stmt = try conn.prepare(statement: sql)
+        return try conn.execute(sql: sql, bindings: bindings, dict: dict, resultMap: resultMap)
+    }
+
+}
+
+public extension Connection {
+
+    func execute(sql: String,
+                 bindings: [SQLBindable?] = [],
+                 dict: [String: SQLBindable?] = [:]) throws {
+        let map: (ResultSet) throws -> Void? = { _ in return nil }
+        _ = try self.execute(sql: sql, bindings: bindings, dict: dict, resultMap: map)
+    }
+
+    func execute<T>(sql: String,
+                    bindings: [SQLBindable?] = [],
+                    dict: [String: SQLBindable?] = [:],
+                    resultMap: (ResultSet) throws -> T?) throws -> [T?] {
+        let stmt = try prepare(statement: sql)
         try stmt.bind(bindings)
         try stmt.bind(dict)
         guard let rs = try stmt.execute() else { return [] }
@@ -317,6 +347,7 @@ public extension Database {
     }
 
 }
+
 
 public class ResultSetRowIterator {
 
@@ -357,6 +388,38 @@ public extension ResultSet {
 
     func rowIterator() -> ResultSetRowIterator {
         return ResultSetRowIterator(self)
+    }
+
+    subscript(index: Int) -> Int? {
+        return int(at: index)
+    }
+
+    subscript(index: Int) -> String? {
+        return string(at: index)
+    }
+
+    subscript(index: Int) -> Double? {
+        return double(at: index)
+    }
+
+    subscript(index: Int) -> Data? {
+        return data(at: index)
+    }
+
+    subscript(column: String) -> Int? {
+        return int(column: column)
+    }
+
+    subscript(column: String) -> String? {
+        return string(column: column)
+    }
+
+    subscript(column: String) -> Double? {
+        return double(column: column)
+    }
+
+    subscript(column: String) -> Data? {
+        return data(column: column)
     }
 
 }
