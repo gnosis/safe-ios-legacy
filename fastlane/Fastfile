@@ -69,6 +69,7 @@ platform :ios do
 
   def do_run_tests(params)
     set_bundle_id DEV_APP_ID
+    sh "xcrun simctl uninstall 'iPhone X' #{DEV_APP_ID}"
     run_tests({configuration: "Debug", 
       skip_build: true, 
       slack_only_on_failure: true, 
