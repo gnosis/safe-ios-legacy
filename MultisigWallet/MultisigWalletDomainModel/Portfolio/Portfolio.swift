@@ -20,42 +20,10 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
         case walletNotFound
     }
 
-    /// Persisted portfolio state.
-    private struct State: Codable {
-        fileprivate let id: String
-        fileprivate let selectedWallet: String?
-        fileprivate let wallets: [String]
-    }
-
     /// Currently selected wallet, or nil.
     public private(set) var selectedWallet: WalletID?
     /// Collection of wallet identifiers in this portfolio.
     public private(set) var wallets = WalletIDList()
-
-    /// Creates Portfolio with serialized Data.
-    ///
-    /// - Parameter data: serialized portfolio
-    public required init(data: Data) {
-        let decoder = PropertyListDecoder()
-        let state = try! decoder.decode(State.self, from: data)
-        super.init(id: PortfolioID(state.id))
-        if let id = state.selectedWallet {
-            selectedWallet = WalletID(id)
-        }
-        wallets = WalletIDList(state.wallets.map { WalletID($0) })
-    }
-
-    /// Serializes Portfolio to Data
-    ///
-    /// - Returns: serialized portfolio as Data
-    public func data() -> Data {
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .binary
-        let state = State(id: id.id,
-                          selectedWallet: selectedWallet?.id,
-                          wallets: wallets.map { $0.id })
-        return try! encoder.encode(state)
-    }
 
     /// Creates new portfolio with identifier
     ///
