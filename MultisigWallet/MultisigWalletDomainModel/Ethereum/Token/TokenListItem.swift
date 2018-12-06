@@ -19,14 +19,24 @@ public final class TokenListItem: IdentifiableEntity<TokenID>, Decodable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case token
         case `default`
+        case code = "symbol"
+        case name
+        case decimals
+        case address
+        case logoUrl = "logoUri"
     }
 
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        token = try values.decode(Token.self, forKey: .token)
+        let code = try values.decode(String.self, forKey: .code)
+        let name = try values.decode(String.self, forKey: .name)
+        let decimals = try values.decode(Int.self, forKey: .decimals)
+        let addressValue = try values.decode(String.self, forKey: .address)
+        let address = Address(addressValue)
+        let logoUrl = try values.decode(String.self, forKey: .logoUrl)
         let defaut = try values.decode(Bool.self, forKey: .default)
+        token = Token(code: code, name: name, decimals: decimals, address: address, logoUrl: logoUrl)
         status = defaut ? .whitelisted : .regular
         updated = Date()
         super.init(id: token.id)
@@ -50,6 +60,16 @@ public final class TokenListItem: IdentifiableEntity<TokenID>, Decodable {
 
     public func updateSortingId(with id: Int?) {
         sortingId = id
+    }
+
+}
+
+public struct TokenList: Decodable {
+
+    public var results: [TokenListItem]
+
+    public init(results: [TokenListItem]) {
+        self.results = results
     }
 
 }

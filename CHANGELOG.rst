@@ -5,6 +5,17 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`0.9.1`_ - 2018-12-05
+=====================
+Changed
+-------
+- New repository implementations
+- Changed token list JSON structure and udpated with new list
+
+Added
+-----
+- Ability to run migrations in future app updates. Note, that current update is still incompatible with previous versions. Users must delete previous app before installing this version.
+
 `0.9.0`_ - 2018-11-30
 =====================
 Changed
@@ -216,6 +227,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _0.9.1: https://github.com/gnosis/safe-ios/tree/0.9.1
 .. _0.9.0: https://github.com/gnosis/safe-ios/tree/0.9.0
 .. _0.8.2: https://github.com/gnosis/safe-ios/tree/0.8.2
 .. _0.8.1: https://github.com/gnosis/safe-ios/tree/0.8.1
