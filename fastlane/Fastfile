@@ -148,7 +148,7 @@ platform :ios do
   end
 
   desc "Download latest dsyms"
-  lane testflight_dsyms do
+  lane :testflight_dsyms do
     refresh_dsyms(PRERELEASE_APP_ID, true)
     refresh_dsyms(RELEASE_APP_ID, true)
   end
