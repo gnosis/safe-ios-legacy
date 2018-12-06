@@ -207,7 +207,6 @@
 		55FB25AE2124760200E81666 /* TokenListDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25AD2124760200E81666 /* TokenListDomainService.swift */; };
 		55FB25BB2124772C00E81666 /* HTTPTokenListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25BA2124772C00E81666 /* HTTPTokenListService.swift */; };
 		55FB25BD21256E0F00E81666 /* MockTokenListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25BC21256E0F00E81666 /* MockTokenListService.swift */; };
-		55FB25BF212573E400E81666 /* MockTokenListServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25BE212573E400E81666 /* MockTokenListServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -578,7 +577,6 @@
 		55FB25AD2124760200E81666 /* TokenListDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenListDomainService.swift; sourceTree = "<group>"; };
 		55FB25BA2124772C00E81666 /* HTTPTokenListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTokenListService.swift; sourceTree = "<group>"; };
 		55FB25BC21256E0F00E81666 /* MockTokenListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTokenListService.swift; sourceTree = "<group>"; };
-		55FB25BE212573E400E81666 /* MockTokenListServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTokenListServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -984,7 +982,6 @@
 				555C94BB20E4E35200A0621D /* HTTPNotificatonService.swift */,
 				55FB25BA2124772C00E81666 /* HTTPTokenListService.swift */,
 				55FB25BC21256E0F00E81666 /* MockTokenListService.swift */,
-				55FB25BE212573E400E81666 /* MockTokenListServiceTests.swift */,
 			);
 			path = MultisigWalletImplementations;
 			sourceTree = "<group>";
@@ -1642,7 +1639,6 @@
 				552C6011212B0D1300BF973A /* SynchronisationServiceTests.swift in Sources */,
 				0A9E385420F4AE600085E8D7 /* EthTypesTests.swift in Sources */,
 				0A9E385520F4AE600085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift in Sources */,
-				55FB25BF212573E400E81666 /* MockTokenListServiceTests.swift in Sources */,
 				0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */,
 				0A8E3C0720B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift in Sources */,
 				552C60882130048300BF973A /* TokenListItemRepositoryTests.swift in Sources */,
