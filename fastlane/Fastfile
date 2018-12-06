@@ -107,10 +107,6 @@ platform :ios do
     )
   end
 
-  def upload_crashlytics_dsyms
-    sh "cd ..; scripts/fabric-upload-symbols -a #{ENV["CRASHLYTICS_API_TOKEN"]} -p ios Build/Archive.xcarchive/dSYMs"
-  end
-
   desc "Submit a new PreRelease Rinkeby Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :prerelease do
@@ -125,7 +121,10 @@ platform :ios do
 
   def do_submit_to_testflight(app_id, configuration)
     set_bundle_id app_id
-    build_number = latest_testflight_build_number(app_identifier: app_id)
+    version = get_version_number(xcodeproj: PROJECT, target: APP_BUILD_SCHEME)
+    build_number = latest_testflight_build_number(app_identifier: app_id, 
+      version: version,
+      initial_build_number: 0)
     increment_build_number(
       build_number: build_number + 1,
       xcodeproj: PROJECT
@@ -142,10 +141,16 @@ platform :ios do
       )
     pilot(skip_waiting_for_build_processing: true,
       app_identifier: app_id)
-    sh "cd ..; scripts/fabric-upload-symbols -a #{ENV["CRASHLYTICS_API_TOKEN"]} -p ios Build/Archive.xcarchive/dSYMs"
+    refresh_dsyms(app_id)
     slack(
      message: "Successfully distributed new #{configuration} version to TestFlight :rocket:",
     )
+  end
+
+  desc "Download latest dsyms"
+  lane testflight_dsyms do
+    refresh_dsyms(PRERELEASE_APP_ID, true)
+    refresh_dsyms(RELEASE_APP_ID, true)
   end
 
   desc "Adds devices from the ../gnosis-ios-certificates/devices.txt file"
@@ -179,7 +184,26 @@ platform :ios do
 
   def set_bundle_id(id)
     ENV["FASTLANE_APP_IDENTIFIER"] = id
-  end  
+  end
+
+  def refresh_dsyms(app_id, latest = false)
+    set_bundle_id app_id
+    if latest 
+      download_dsyms(app_identifier: app_id, version: "latest", output_directory: BUILD_PATH)
+    else
+      build_number = get_build_number(xcodeproj: PROJECT)
+      version = get_version_number(xcodeproj: PROJECT, target: APP_BUILD_SCHEME)
+      download_dsyms(app_identifier: app_id,
+        version: version,
+        build_number: build_number,
+        output_directory: BUILD_PATH)
+    end
+    upload_crashlytics_dsyms(BUILD_PATH)
+  end
+
+  def upload_crashlytics_dsyms(path = "Build/Archive.xcarchive/dSYMs")
+    sh "cd ..; scripts/fabric-upload-symbols -a #{ENV["CRASHLYTICS_API_TOKEN"]} -p ios #{path}"
+  end
 
   def run_match(type, ids, forced = false)
     match(type: type,
