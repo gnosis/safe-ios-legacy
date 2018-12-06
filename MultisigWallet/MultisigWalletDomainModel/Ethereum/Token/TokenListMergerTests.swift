@@ -98,7 +98,7 @@ class TokenListMergerTests: XCTestCase {
         assertTokenItem(itemB, .blacklisted, "B")
 
         // Before merge: A+, B-, C, D+
-        tokenListService.json = "[]"
+        tokenListService.json = TokenListStub.emptyJson
         // Expected Result after merge: A+, D+
         merger.mergeStoredTokenItems(with: try tokenListService.items())
         XCTAssertEqual(allItems.count, 2)
@@ -150,138 +150,122 @@ fileprivate struct TokenListStub {
     static let C_Address = "0x5f92161588c6178130ede8cbdc181acec66a9731"
     static let D_Address = "0xb63d06025d580a94d59801f2513f5d309c079559"
 
+    static let emptyJson = "{\"results\": []}"
+
     static let json = """
-    [
-    {
-        "token": {
+{
+    "results": [
+        {
             "address": "0x975be7f72cea31fd83d0cb2a197f9136f38696b7",
             "name": "A+ Token",
             "symbol": "A",
             "decimals": 4,
-            "logoUrl": "https://test.com/A_Token.png"
+            "logoUri": "https://test.com/A_Token.png",
+            "default": true
         },
-        "default": true
-    },
-    {
-        "token": {
+        {
             "address": "0xb3a4bc89d8517e0e2c9b66703d09d3029ffa1e6d",
             "name": "B Token",
             "symbol": "B",
             "decimals": 4,
-            "logoUrl": "https://test.com/B_Token.png"
+            "logoUri": "https://test.com/B_Token.png",
+            "default": false
         },
-        "default": false
-    },
-    {
-        "token": {
+        {
             "address": "0x5f92161588c6178130ede8cbdc181acec66a9731",
             "name": "C Token",
             "symbol": "C",
             "decimals": 4,
-            "logoUrl": "https://test.com/C_Token.png"
+            "logoUri": "https://test.com/C_Token.png",
+            "default": false
         },
-        "default": false
-    },
-    {
-        "token": {
+        {
             "address": "0xb63d06025d580a94d59801f2513f5d309c079559",
             "name": "D+ Token",
             "symbol": "D",
             "decimals": 4,
-            "logoUrl": "https://test.com/D_Token.png"
-        },
-        "default": true
-    }
+            "logoUri": "https://test.com/D_Token.png",
+            "default": true
+        }
     ]
-    """
+}
+"""
 
     static let json1 = """
-    [
-    {
-        "token": {
+{
+    "results": [
+        {
             "address": "0x975be7f72cea31fd83d0cb2a197f9136f38696b7",
             "name": "A_1+ Token",
             "symbol": "A_1",
             "decimals": 4,
-            "logoUrl": "https://test.com/A_Token.png"
+            "logoUri": "https://test.com/A_Token.png",
+            "default": true
         },
-        "default": true
-    },
-    {
-        "token": {
+        {
             "address": "0xb3a4bc89d8517e0e2c9b66703d09d3029ffa1e6d",
             "name": "B_1+ Token",
             "symbol": "B_1",
             "decimals": 4,
-            "logoUrl": "https://test.com/B_Token.png"
+            "logoUri": "https://test.com/B_Token.png",
+            "default": true
         },
-        "default": true
-    },
-    {
-        "token": {
+        {
             "address": "0x5f92161588c6178130ede8cbdc181acec66a9731",
             "name": "C_1 Token",
             "symbol": "C_1",
             "decimals": 4,
-            "logoUrl": "https://test.com/C_Token.png"
+            "logoUri": "https://test.com/C_Token.png",
+            "default": false
         },
-        "default": false
-    },
-    {
-        "token": {
+        {
             "address": "0xb63d06025d580a94d59801f2513f5d309c079559",
             "name": "D_1 Token",
             "symbol": "D_1",
             "decimals": 4,
-            "logoUrl": "https://test.com/D_Token.png"
-        },
-        "default": false
-    }
+            "logoUri": "https://test.com/D_Token.png",
+            "default": false
+        }
     ]
-    """
+}
+"""
 
     static let json2 = """
-    [
-    {
-        "token": {
+{
+    "results": [
+        {
             "address": "0x975be7f72cea31fd83d0cb2a197f9136f38696b7",
             "name": "A_1 Token",
             "symbol": "A_1",
             "decimals": 4,
-            "logoUrl": "https://test.com/A_Token.png"
+            "logoUri": "https://test.com/A_Token.png",
+            "default": false
         },
-        "default": false
-    },
-    {
-        "token": {
+        {
             "address": "0xb3a4bc89d8517e0e2c9b66703d09d3029ffa1e6d",
             "name": "B_1 Token",
             "symbol": "B_1",
             "decimals": 4,
-            "logoUrl": "https://test.com/B_Token.png"
+            "logoUri": "https://test.com/B_Token.png",
+            "default": false
         },
-        "default": false
-    },
-    {
-        "token": {
+        {
             "address": "0x5f92161588c6178130ede8cbdc181acec66a9731",
             "name": "C_1+ Token",
             "symbol": "C_1",
             "decimals": 4,
-            "logoUrl": "https://test.com/C_Token.png"
+            "logoUri": "https://test.com/C_Token.png",
+            "default": true
         },
-        "default": true
-    },
-    {
-        "token": {
+        {
             "address": "0xb63d06025d580a94d59801f2513f5d309c079559",
             "name": "D_2+ Token",
             "symbol": "D_2",
             "decimals": 4,
-            "logoUrl": "https://test.com/D_Token.png"
-        },
-        "default": true
-    }
+            "logoUri": "https://test.com/D_Token.png",
+            "default": true
+        }
     ]
-    """
+}
+"""
 }
