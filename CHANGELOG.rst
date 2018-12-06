@@ -10,6 +10,7 @@ and this project adheres to `Semantic Versioning`_.
 Changed
 -------
 - New repository implementations
+- Changed token list JSON structure and udpated with new list
 
 Added
 -----
