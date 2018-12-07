@@ -40,7 +40,7 @@ public class GuidelinesViewController: UIViewController {
     @IBOutlet weak var nextButtonItem: UIBarButtonItem!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var headerLabel: UILabel!
-    var headerStyle = HeaderStyle.default
+    var headerStyle = HeaderStyle.contentHeader
     var bodyStyle = ListStyle.default
     public weak var delegate: GuidelinesViewControllerDelegate?
 
@@ -52,8 +52,6 @@ public class GuidelinesViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        headerStyle.textColor = ColorName.darkSlateBlue.color
-        headerStyle.textFontSize = 20
         bodyStyle.bulletColor = ColorName.aquaBlue.color
         bodyStyle.textColor = ColorName.battleshipGrey.color
         bodyStyle.textFontSize = 16

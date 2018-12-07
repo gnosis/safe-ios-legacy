@@ -46,6 +46,8 @@ public class TermsAndConditionsViewController: UIViewController {
         var bodyStyle = ListStyle.default
         bodyStyle.leading = contentLeadingConstraint.constant
         bodyStyle.trailing = -contentTrailingConstraint.constant
+        bodyStyle.minimumLineHeight = 0
+        bodyStyle.paragraphSpacing = 0
         headerLabel.attributedText = .header(from: Strings.header, style: headerStyle)
         listLabel.attributedText = .list(from: Strings.body, style: bodyStyle)
         privacyPolicyButton.setAttributedTitle(link(from: Strings.privacyLink), for: .normal)
@@ -115,6 +117,11 @@ struct HeaderStyle {
                                        trailing: 40,
                                        textColor: ColorName.battleshipGrey.color,
                                        textFontSize: 17)
+
+    static let contentHeader = HeaderStyle(leading: 40,
+                                           trailing: 40,
+                                           textColor: ColorName.darkSlateBlue.color,
+                                           textFontSize: 20)
 }
 
 extension NSAttributedString {

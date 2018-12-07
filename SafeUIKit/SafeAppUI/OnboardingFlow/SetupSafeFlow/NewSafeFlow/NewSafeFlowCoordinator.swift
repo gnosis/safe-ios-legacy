@@ -20,9 +20,10 @@ final class NewSafeFlowCoordinator: FlowCoordinator {
             exitFlow()
             return
         }
-        push(NewSafeViewController.create(delegate: self))
+        push(GuidelinesViewController.createNewSafeGuidelines(delegate: self))
         saveCheckpoint()
         if ApplicationServiceRegistry.walletService.isSafeCreationInProgress {
+            push(NewSafeViewController.create(delegate: self))
             push(SafeCreationViewController.create(delegate: self))
         }
     }
@@ -36,6 +37,14 @@ extension NewSafeFlowCoordinator {
         enter(flow: coordinator) {
             self.popToLastCheckpoint()
         }
+    }
+
+}
+
+extension NewSafeFlowCoordinator: GuidelinesViewControllerDelegate {
+
+    func didPressNext() {
+        push(NewSafeViewController.create(delegate: self))
     }
 
 }

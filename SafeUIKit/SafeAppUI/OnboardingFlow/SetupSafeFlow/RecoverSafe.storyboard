@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Address Input View Controller-->
+        <scene sceneID="Tsu-BE-eVb">
+            <objects>
+                <viewController storyboardIdentifier="AddressInputViewController" id="Ghs-AW-H5t" customClass="AddressInputViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Nh-Gs-tjw" customClass="BackgroundImageView" customModule="SafeUIKit">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCo-3o-SHL">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ooo-nj-tka">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="66" translatesAutoresizingMaskIntoConstraints="NO" id="lM1-l8-LAb">
+                                                <rect key="frame" x="0.0" y="43" width="375" height="146.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZW3-Jl-GBM">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tat-h4-GE3" customClass="AddressInput" customModule="SafeUIKit">
+                                                        <rect key="frame" x="0.0" y="86.5" width="375" height="60"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" placeholder="YES" id="faR-eJ-UcG"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lM1-l8-LAb" secondAttribute="bottom" id="6g5-bL-frH"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="7Xd-rP-NRs"/>
+                                            <constraint firstItem="lM1-l8-LAb" firstAttribute="top" secondItem="Ooo-nj-tka" secondAttribute="top" constant="43" id="Iuc-f5-kkf"/>
+                                            <constraint firstItem="lM1-l8-LAb" firstAttribute="leading" secondItem="Ooo-nj-tka" secondAttribute="leading" id="R58-1y-4wq"/>
+                                            <constraint firstAttribute="trailing" secondItem="lM1-l8-LAb" secondAttribute="trailing" id="cRS-g9-crG"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Ooo-nj-tka" firstAttribute="top" secondItem="tCo-3o-SHL" secondAttribute="top" id="6b7-Cd-bL6"/>
+                                    <constraint firstItem="Ooo-nj-tka" firstAttribute="leading" secondItem="tCo-3o-SHL" secondAttribute="leading" id="Ruw-6l-e6W"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ooo-nj-tka" secondAttribute="bottom" id="T30-CK-zdu"/>
+                                    <constraint firstItem="Ooo-nj-tka" firstAttribute="height" secondItem="tCo-3o-SHL" secondAttribute="height" placeholder="YES" id="fPm-Hg-gND"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ooo-nj-tka" secondAttribute="trailing" id="khb-6D-R8D"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gSK-fA-347" firstAttribute="trailing" secondItem="tCo-3o-SHL" secondAttribute="trailing" id="BDX-FK-TPa"/>
+                            <constraint firstItem="Ooo-nj-tka" firstAttribute="width" secondItem="9Nh-Gs-tjw" secondAttribute="width" id="G5C-Yu-FlI"/>
+                            <constraint firstItem="tCo-3o-SHL" firstAttribute="top" secondItem="gSK-fA-347" secondAttribute="top" id="VVm-lz-ohI"/>
+                            <constraint firstItem="gSK-fA-347" firstAttribute="bottom" secondItem="tCo-3o-SHL" secondAttribute="bottom" id="XE9-hy-O34"/>
+                            <constraint firstItem="tCo-3o-SHL" firstAttribute="leading" secondItem="gSK-fA-347" secondAttribute="leading" id="grV-Mz-j66"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gSK-fA-347"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lgb-ib-SwE">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="AHy-yU-b1R">
+                            <connections>
+                                <action selector="invokeNextAction:" destination="Ghs-AW-H5t" id="ozT-BV-AXx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="addressInput" destination="Tat-h4-GE3" id="5SR-PR-gaC"/>
+                        <outlet property="contentStackView" destination="lM1-l8-LAb" id="jeU-HF-wch"/>
+                        <outlet property="contentView" destination="Ooo-nj-tka" id="PTr-KA-GQm"/>
+                        <outlet property="contentViewHeightConstraint" destination="7Xd-rP-NRs" id="9bh-5M-PBj"/>
+                        <outlet property="headerLabel" destination="ZW3-Jl-GBM" id="wiA-Oi-XCY"/>
+                        <outlet property="nextButtonItem" destination="AHy-yU-b1R" id="uW7-Wd-nOT"/>
+                        <outlet property="scrollView" destination="tCo-3o-SHL" id="ICJ-RM-3c7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OJV-4Q-Nl8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137" y="134"/>
+        </scene>
+    </scenes>
+</document>
