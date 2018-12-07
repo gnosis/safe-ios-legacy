@@ -38,6 +38,13 @@ fastlane ios prerelease
 Submit a new PreRelease Rinkeby Beta Build to Apple TestFlight
 
 This will also make sure the profile is up to date
+### ios release
+```
+fastlane ios release
+```
+Submit new Release (Production Mainnet) Build to Apple TestFlight
+
+This will also make sure the provisioning profile is up to date
 ### ios add_devices
 ```
 fastlane ios add_devices
