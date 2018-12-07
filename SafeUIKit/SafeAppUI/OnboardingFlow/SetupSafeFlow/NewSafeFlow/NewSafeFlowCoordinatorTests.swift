@@ -27,7 +27,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_startViewController_returnsSetupSafeStartVC() {
-        XCTAssertTrue(topViewController is NewSafeViewController)
+        assert(topViewController, is: GuidelinesViewController.self)
     }
 
     func test_didSelectBrowserExtensionSetup_showsController() {
@@ -64,7 +64,14 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     func test_didSelectNext_presentsNextController() {
         newSafeFlowCoordinator.didSelectNext()
         delay()
-        XCTAssertTrue(topViewController is SafeCreationViewController)
+        assert(topViewController, is: SafeCreationViewController.self)
+    }
+
+    func assert<T>(_ object: Any?, is aType: T.Type, file: StaticString = #file, line: UInt = #line) {
+        XCTAssertTrue(object is T,
+                      "Expected \(T.self) but got \(String(describing: type(of: object)))",
+                      file: file,
+                      line: line)
     }
 
     func test_paperWalletSetupCompletion_popsToStartVC() {
@@ -94,7 +101,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         delay(1)
         XCTAssertTrue(walletService.verify())
         XCTAssertNil(newSafeFlowCoordinator.rootViewController.presentedViewController)
-        XCTAssertTrue(newSafeFlowCoordinator.navigationController.topViewController is NewSafeViewController)
+        assert(newSafeFlowCoordinator.navigationController.topViewController, is: GuidelinesViewController.self)
     }
 
     func test_whenCancellationAlertDismissed_thenStaysOnPendingController() {
@@ -140,7 +147,7 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         action.test_handler?(action)
         delay(1)
         XCTAssertNil(newSafeFlowCoordinator.rootViewController.presentedViewController)
-        XCTAssertTrue(newSafeFlowCoordinator.navigationController.topViewController is NewSafeViewController)
+        assert(newSafeFlowCoordinator.navigationController.topViewController, is: GuidelinesViewController.self)
     }
 
     func test_whenSafeIsInAnyPendingState_thenShowingPendingController() {
