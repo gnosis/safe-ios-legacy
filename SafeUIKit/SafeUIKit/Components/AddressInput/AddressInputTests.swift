@@ -111,6 +111,8 @@ private extension AddressInputTests {
 
 class MockAddressInputDelegate: AddressInputDelegate {
 
+    func didRecieveValidAddress(_ address: String) {}
+
     var presentedController: UIViewController?
     func presentController(_ controller: UIViewController) {
         presentedController = controller
