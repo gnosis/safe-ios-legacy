@@ -69,6 +69,10 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.accountRepository.save(account)
     }
 
+    public func prepareForCreation() {
+        DomainRegistry.deploymentService.prepareForCreation()
+    }
+
     private func fetchOrCreatePortfolio() -> Portfolio {
         if let result = DomainRegistry.portfolioRepository.portfolio() {
             return result

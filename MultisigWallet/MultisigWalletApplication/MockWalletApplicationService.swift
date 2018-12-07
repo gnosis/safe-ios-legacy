@@ -76,6 +76,9 @@ public class MockWalletApplicationService: WalletApplicationService {
         didCreateNewDraft = true
     }
 
+    public override func prepareForCreation() {
+    }
+
     public override func isOwnerExists(_ type: OwnerType) -> Bool {
         return existingOwners[type] != nil
     }

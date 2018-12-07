@@ -68,10 +68,6 @@ public class FundsTransferTransactionViewController: UIViewController {
         model = FundsTransferTransactionViewModel(tokenID: tokenID, onUpdate: updateFromViewModel)
 
         addressInput.addressInputDelegate = self
-        addressInput.addRule("none", identifier: nil) { [unowned self] in
-            self.model.change(recipient: $0)
-            return true
-        }
 
         tokenInput.addRule(Strings.notEnoughFunds, identifier: "notEnoughFunds") { [unowned self] in
             guard self.tokenInput.formatter.number(from: $0) != nil else { return true }
@@ -150,6 +146,10 @@ extension FundsTransferTransactionViewController: AddressInputDelegate {
 
     public func presentController(_ controller: UIViewController) {
         self.present(controller, animated: true)
+    }
+
+    public func didRecieveValidAddress(_ address: String) {
+        model.change(recipient: address)
     }
 
 }

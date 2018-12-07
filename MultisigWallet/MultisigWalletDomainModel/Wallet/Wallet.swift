@@ -15,6 +15,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         case invalidState
     }
 
+    // FIXME: encapsulate
     public var state: WalletState!
 
     public private(set) var newDraftState: WalletState!
@@ -23,19 +24,14 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var creationStartedState: WalletState!
     public private(set) var finalizingDeploymentState: WalletState!
     public private(set) var readyToUseState: WalletState!
+    public private(set) var recoveryDraftState: WalletState!
 
-    private lazy var allStates: [WalletState?] = [
-        newDraftState, deployingState, notEnoughFundsState,
-        creationStartedState, finalizingDeploymentState, readyToUseState
-    ]
-
-    private var ownersByRole = [OwnerRole: Owner]()
     public private(set) var address: Address?
     public private(set) var creationTransactionHash: String?
     public private(set) var minimumDeploymentTransactionAmount: TokenInt?
     public private(set) var confirmationCount: Int = 1
     public private(set) var deploymentFee: BigInt?
-    public var ownerList: OwnerList { return OwnerList(allOwners()) }
+    public private(set) var owners = OwnerList()
 
     public var isDeployable: Bool {
         return state.isDeployable
@@ -67,27 +63,15 @@ public class Wallet: IdentifiableEntity<WalletID> {
         self.confirmationCount = confirmationCount
     }
 
-    // TODO: duplication, obviously
-    private func state(from string: WalletState.State) -> WalletState {
-        switch string {
+    private func state(from walletState: WalletState.State) -> WalletState {
+        switch walletState {
         case .draft: return newDraftState
         case .deploying: return deployingState
         case .notEnoughFunds: return notEnoughFundsState
         case .creationStarted: return creationStartedState
         case .finalizingDeployment: return finalizingDeploymentState
         case .readyToUse: return readyToUseState
-        }
-    }
-
-    private func state(from string: String) -> WalletState {
-        switch string {
-        case newDraftState.description: return newDraftState
-        case deployingState.description: return deployingState
-        case notEnoughFundsState.description: return notEnoughFundsState
-        case creationStartedState.description: return creationStartedState
-        case finalizingDeploymentState.description: return finalizingDeploymentState
-        case readyToUseState.description: return readyToUseState
-        default: preconditionFailure("Unknown state description")
+        case .recoveryDraft: return recoveryDraftState
         }
     }
 
@@ -105,14 +89,29 @@ public class Wallet: IdentifiableEntity<WalletID> {
         creationStartedState = CreationStartedState(wallet: self)
         finalizingDeploymentState = FinalizingDeploymentState(wallet: self)
         readyToUseState = ReadyToUseState(wallet: self)
+        recoveryDraftState = RecoveryDraftState(wallet: self)
+    }
+
+    public func prepareForRecovery() {
+        guard state !== recoveryDraftState else { return }
+        state = recoveryDraftState
+        owners.removeAll { $0.role != .thisDevice }
+        confirmationCount = 1
+    }
+
+    public func prepareForCreation() {
+        guard state !== newDraftState else { return }
+        state = newDraftState
+        owners.removeAll { $0.role != .thisDevice }
+        confirmationCount = 1
     }
 
     public func owner(role: OwnerRole) -> Owner? {
-        return ownersByRole[role]
+        return owners.first(with: role)
     }
 
     public func allOwners() -> [Owner] {
-        return ownersByRole.values.sorted { $0.address.value < $1.address.value }
+        return owners.sortedOwners()
     }
 
     public static func createOwner(address: String, role: OwnerRole) -> Owner {
@@ -121,7 +120,12 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public func addOwner(_ owner: Owner) {
         assertCanChangeOwners()
-        ownersByRole[owner.role] = owner
+        if owner.role == .unknown {
+            owners.append(owner)
+        } else {
+            owners.remove(with: owner.role)
+            owners.append(owner)
+        }
     }
 
     private func assertCanChangeOwners() {
@@ -129,13 +133,13 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func contains(owner: Owner) -> Bool {
-        return ownersByRole.values.contains(owner)
+        return owners.contains(owner)
     }
 
     public func removeOwner(role: OwnerRole) {
         assertCanChangeOwners()
         assertOwnerExists(role)
-        ownersByRole.removeValue(forKey: role)
+        owners.remove(with: role)
     }
 
     public func assignCreationTransaction(hash: String?) {

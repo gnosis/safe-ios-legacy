@@ -23,7 +23,7 @@ public class DBWalletRepository: DBEntityRepository<Wallet, WalletID>, WalletRep
     public override func insertionBindings(_ object: Wallet) -> [SQLBindable?] {
         return bindable([object.id,
                          object.state,
-                         object.ownerList,
+                         object.owners,
                          object.address,
                          object.minimumDeploymentTransactionAmount]) +
             [object.creationTransactionHash,

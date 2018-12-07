@@ -20,6 +20,7 @@ public enum OwnerRole: String, Codable {
     case browserExtension
     case paperWallet
     case paperWalletDerived
+    case unknown
 
     static let all = [OwnerRole.thisDevice, .browserExtension, .paperWallet, .paperWalletDerived]
 }
@@ -36,6 +37,17 @@ public struct OwnerList: Equatable {
         storage = list
     }
 
+    public func first(with role: OwnerRole) -> Owner? {
+        return storage.first { $0.role == role }
+    }
+
+    public func  sortedOwners() -> [Owner] {
+        return storage.sorted { $0.address.value < $1.address.value }
+    }
+
+    public mutating func remove(with role: OwnerRole) {
+        storage.removeAll { $0.role == role }
+    }
 }
 
 extension OwnerList: RandomAccessCollection {}

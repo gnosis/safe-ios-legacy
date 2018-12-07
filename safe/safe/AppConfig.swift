@@ -16,6 +16,7 @@ struct AppConfig: Codable {
     var chromeExtensionURL: URL
     var termsOfUseURL: URL
     var privacyPolicyURL: URL
+    var masterCopyAddresses: [String]
 
     enum CodingKeys: String, CodingKey {
         case encryptionServiceChainId = "encryption_service_chain_id"
@@ -27,6 +28,7 @@ struct AppConfig: Codable {
         case chromeExtensionURL = "chrome_extension_url"
         case termsOfUseURL = "terms_of_use_url"
         case privacyPolicyURL = "privacy_policy_url"
+        case masterCopyAddresses = "master_copy_addresses"
     }
 
 }
