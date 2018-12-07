@@ -115,7 +115,8 @@ struct HeaderStyle {
 
 extension NSAttributedString {
 
-    static func header(from text: String, style headerStyle: HeaderStyle = .default) -> NSAttributedString {
+    static func header(from text: String?, style headerStyle: HeaderStyle = .default) -> NSAttributedString? {
+        guard let text = text else { return nil }
         let style = NSMutableParagraphStyle()
         style.firstLineHeadIndent = headerStyle.leading
         style.headIndent = headerStyle.leading
@@ -127,7 +128,8 @@ extension NSAttributedString {
                                                              .foregroundColor: headerStyle.textColor])
     }
 
-    static func list(from text: String, style: ListStyle = .default) -> NSAttributedString {
+    static func list(from text: String?, style: ListStyle = .default) -> NSAttributedString? {
+        guard let text = text else { return nil }
         return text.components(separatedBy: "\n").reduce(into: NSMutableAttributedString()) { result, text in
             result.append(listItem(from: text, style: style))
         }
