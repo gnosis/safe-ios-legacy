@@ -32,6 +32,10 @@ extension SetupSafeFlowCoordinator: SetupSafeOptionsDelegate {
         push(GuidelinesViewController.createNewSafeGuidelines(delegate: self))
     }
 
+    func didSelectRecoverSafe() {
+        push(GuidelinesViewController.createRecoverSafeGuidelines(delegate: self))
+    }
+
 }
 
 extension SetupSafeFlowCoordinator: GuidelinesViewControllerDelegate {

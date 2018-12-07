@@ -6,7 +6,7 @@ import UIKit
 
 public extension GuidelinesViewController {
 
-    struct Strings {
+    fileprivate struct Strings {
         static let title = LocalizedString("onboarding.guidelines.title", comment: "Guidelines")
         static let header = LocalizedString("onboarding.guidelines.header", comment: "How this works")
         static let body = LocalizedString("onboarding.guidelines.content",

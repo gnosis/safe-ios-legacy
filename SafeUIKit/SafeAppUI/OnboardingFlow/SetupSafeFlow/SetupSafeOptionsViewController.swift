@@ -8,6 +8,7 @@ import MultisigWalletApplication
 
 protocol SetupSafeOptionsDelegate: class {
     func didSelectNewSafe()
+    func didSelectRecoverSafe()
 }
 
 class SetupSafeOptionsViewController: UIViewController {
@@ -21,8 +22,17 @@ class SetupSafeOptionsViewController: UIViewController {
     @IBOutlet var backgroundView: BackgroundImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var newSafeButton: BigBorderedButton!
-
+    @IBOutlet weak var recoverSafeButton: BigBorderedButton!
     private weak var delegate: SetupSafeOptionsDelegate?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        backgroundView.isDark = true
+        headerLabel.text = Strings.header
+        headerLabel.textColor = .white
+        newSafeButton.setTitle(Strings.newSafe, for: .normal)
+        recoverSafeButton.setTitle(Strings.restoreSafe, for: .normal)
+    }
 
     @IBAction func createNewSafe(_ sender: Any) {
         if !ApplicationServiceRegistry.walletService.hasSelectedWallet {
@@ -31,18 +41,15 @@ class SetupSafeOptionsViewController: UIViewController {
         delegate?.didSelectNewSafe()
     }
 
+    @IBAction func recoverExistingSafe(_ sender: Any) {
+        delegate?.didSelectRecoverSafe()
+    }
+
     static func create(delegate: SetupSafeOptionsDelegate) -> SetupSafeOptionsViewController {
         let vc = StoryboardScene.SetupSafe.setupSafeOptionsViewController.instantiate()
         vc.delegate = delegate
         return vc
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        backgroundView.isDark = true
-        headerLabel.text = Strings.header
-        headerLabel.textColor = .white
-        newSafeButton.setTitle(Strings.newSafe, for: .normal)
-    }
 
 }

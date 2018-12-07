@@ -269,6 +269,18 @@
 /* Pending safe failed alert's title */
 "pending_safe.failed_alert.title" = "Error";
 
+/* Content paragraphs, separated by '\n' */
+"recovery.guidelines.content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee in ETH will be automatically deducted from the ETH balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount of ETH required to cover the fee.";
+
+/* How this works */
+"recovery.guidelines.header" = "How this works";
+
+/* Recover safe */
+"recovery.guidelines.title" = "Recover Safe";
+
+/* Start button title */
+"recovery.start" = "Start";
+
 /* Safe Address label. */
 "safe_address.address" = "Address";
 

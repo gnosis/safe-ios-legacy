@@ -47,10 +47,16 @@ class SetupSafeOptionsViewControllerTests: SafeTestCase {
 
 final class MockSetupSafeOptionsDelegate: SetupSafeOptionsDelegate {
 
+
     var pressedNewSafe = false
+    var pressedRecovery = false
 
     func didSelectNewSafe() {
         pressedNewSafe = true
+    }
+
+    func didSelectRecoverSafe() {
+        pressedRecovery = true
     }
 
 }

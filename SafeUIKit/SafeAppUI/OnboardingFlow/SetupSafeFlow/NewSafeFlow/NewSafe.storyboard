@@ -335,7 +335,7 @@ Save this recovery phrase.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1v-Kw-okT" customClass="ShadowWrapperView" customModule="SafeAppUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="500.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="X0O-6T-6hX" userLabel="Text Stack View">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="X0O-6T-6hX" userLabel="Text Stack View">
                                                 <rect key="frame" x="0.0" y="42" width="375" height="404.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How this works" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydp-ZQ-OwU" userLabel="Header Label">
@@ -347,11 +347,11 @@ Save this recovery phrase.</string>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UhS-X4-EnH">
-                                                        <rect key="frame" x="0.0" y="30" width="375" height="128"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UhS-X4-EnH">
+                                                        <rect key="frame" x="0.0" y="71" width="375" height="128"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guidelines go here..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htJ-RN-Xqq" userLabel="Content Label">
-                                                        <rect key="frame" x="0.0" y="158" width="375" height="246.5"/>
+                                                        <rect key="frame" x="0.0" y="240" width="375" height="164.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
