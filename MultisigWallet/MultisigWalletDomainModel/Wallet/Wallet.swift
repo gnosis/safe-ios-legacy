@@ -41,6 +41,14 @@ public class Wallet: IdentifiableEntity<WalletID> {
         return state.isDeployable
     }
 
+    public var isReadyToUse: Bool {
+        return state.isReadyToUse
+    }
+
+    public var isCreationInProgress: Bool {
+        return state.isCreationInProgress
+    }
+
     public convenience init(id: WalletID,
                             state: WalletState.State,
                             owners: OwnerList,

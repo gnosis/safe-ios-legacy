@@ -26,6 +26,8 @@ public class WalletState {
     var canChangeTransactionHash: Bool = false
     var canChangeAddress: Bool = false
     var isDeployable: Bool { return false }
+    var isReadyToUse: Bool { return false }
+    var isCreationInProgress: Bool { return false }
 
     internal weak var wallet: Wallet!
 
@@ -55,6 +57,8 @@ extension WalletState: CustomStringConvertible {
 public class DraftState: WalletState {
 
     override public var state: WalletState.State { return .draft }
+
+    override var isCreationInProgress: Bool { return false }
 
     private let requiredRoles = [OwnerRole.thisDevice, .paperWallet, .paperWalletDerived]
 
@@ -96,6 +100,8 @@ public class DeployingState: WalletState {
 
     override public var state: WalletState.State { return .deploying }
 
+    override var isCreationInProgress: Bool { return true }
+
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
         canChangeAddress = true
@@ -126,6 +132,8 @@ public class NotEnoughFundsState: WalletState {
 
     override public var state: WalletState.State { return .notEnoughFunds }
 
+    override var isCreationInProgress: Bool { return true }
+
     override func resume() {
         DomainRegistry.eventPublisher.publish(WalletConfigured())
     }
@@ -151,6 +159,8 @@ public class CreationStartedState: WalletState {
 
     override public var state: WalletState.State { return .creationStarted }
 
+    override var isCreationInProgress: Bool { return true }
+
     override func resume() {
         DomainRegistry.eventPublisher.publish(DeploymentFunded())
     }
@@ -175,6 +185,8 @@ public class WalletTransactionHashIsKnown: DomainEvent {}
 public class FinalizingDeploymentState: WalletState {
 
     override public var state: WalletState.State { return .finalizingDeployment }
+
+    override var isCreationInProgress: Bool { return true }
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
@@ -206,6 +218,8 @@ public class WalletCreationFailed: DomainEvent {}
 public class ReadyToUseState: WalletState {
 
     override public var state: WalletState.State { return .readyToUse }
+    override var isReadyToUse: Bool { return true }
+    override var isCreationInProgress: Bool { return false }
 
     override init(wallet: Wallet) {
         super.init(wallet: wallet)
