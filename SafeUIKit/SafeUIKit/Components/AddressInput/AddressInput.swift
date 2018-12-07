@@ -45,8 +45,15 @@ public final class AddressInput: VerifiableInput {
             } else {
                 addressLabel.address = nil
                 textInput.rightViewMode = .never
-                textInput.placeholder = Strings.addressPlaceholder
+                textInput.placeholder = self.placeholder
             }
+        }
+    }
+
+    public var placeholder: String? {
+        didSet {
+            let text = self.text
+            self.text = text
         }
     }
 
@@ -86,6 +93,7 @@ public final class AddressInput: VerifiableInput {
         showErrorsOnly = true
         trimsText = true
         text = nil
+        placeholder = Strings.addressPlaceholder
         addRule(Strings.Rules.invalidAddress, identifier: "invalidAddress", validation: isValid)
         scanHandler.addDebugButtonToScannerController(title: "Test Address",
                                                       scanValue: "0x728cafe9fb8cc2218fb12a9a2d9335193caa07e0")

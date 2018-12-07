@@ -8,6 +8,7 @@ import MultisigWalletApplication
 public final class SetupSafeFlowCoordinator: FlowCoordinator {
 
     let newSafeFlowCoordinator = NewSafeFlowCoordinator()
+    let recoverSafeFlowCoordinator = RecoverSafeFlowCoordinator()
 
     public override func setUp() {
         super.setUp()
@@ -24,24 +25,22 @@ public final class SetupSafeFlowCoordinator: FlowCoordinator {
             self.exitFlow()
         }
     }
+
+    private func enterRecoverSafeFlow() {
+        enter(flow: recoverSafeFlowCoordinator) { [unowned self] in
+            self.exitFlow()
+        }
+    }
 }
 
 extension SetupSafeFlowCoordinator: SetupSafeOptionsDelegate {
 
     func didSelectNewSafe() {
-        push(GuidelinesViewController.createNewSafeGuidelines(delegate: self))
+        enterNewSafeFlow()
     }
 
     func didSelectRecoverSafe() {
-        push(GuidelinesViewController.createRecoverSafeGuidelines(delegate: self))
-    }
-
-}
-
-extension SetupSafeFlowCoordinator: GuidelinesViewControllerDelegate {
-
-    public func didPressNext() {
-        enterNewSafeFlow()
+        enterRecoverSafeFlow()
     }
 
 }
