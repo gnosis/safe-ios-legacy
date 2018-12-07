@@ -101,6 +101,8 @@
 		0A60B516211333620066821A /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B515211333620066821A /* ProgressViewController.swift */; };
 		0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */; };
 		0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEC205A8D63003619EF /* LocalizedString.swift */; };
+		0A6EF3C221BA7DD700F1074E /* GuidelinesViewController+NewSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3C121BA7DD700F1074E /* GuidelinesViewController+NewSafe.swift */; };
+		0A6EF3C421BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3C321BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift */; };
 		0A72D42C209C92700082C0A3 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C32052C20A0044D5DD /* XCTestCase+Extensions.swift */; };
 		0A72D431209C92740082C0A3 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
 		0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A72D436209C92A20082C0A3 /* TestExtensions.swift */; };
@@ -430,6 +432,8 @@
 		0A60B515211333620066821A /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+SafeUIKit.swift"; sourceTree = "<group>"; };
 		0A638BEC205A8D63003619EF /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		0A6EF3C121BA7DD700F1074E /* GuidelinesViewController+NewSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GuidelinesViewController+NewSafe.swift"; sourceTree = "<group>"; };
+		0A6EF3C321BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GuidelinesViewController+RecoverSafe.swift"; sourceTree = "<group>"; };
 		0A72D436209C92A20082C0A3 /* TestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
 		0A72D437209C92A20082C0A3 /* TestExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestExtensionsTests.swift; sourceTree = "<group>"; };
 		0A7AE8BE205284180044D5DD /* H1Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H1Label.swift; sourceTree = "<group>"; };
@@ -676,6 +680,7 @@
 				0A334DFB209C8E3800ABC6AE /* NewSafeFlow */,
 				0A334DB6209C6D8600ABC6AE /* SetupSafe.storyboard */,
 				0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */,
+				0A6EF3C321BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift */,
 				0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */,
 				0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */,
 				0A334DB5209C6D8600ABC6AE /* SetupSafeOptionsViewControllerTests.swift */,
@@ -713,6 +718,7 @@
 			children = (
 				0A334E00209C8E3800ABC6AE /* NewSafe.storyboard */,
 				0AC3F1722183674100DAADC9 /* GuidelinesViewController.swift */,
+				0A6EF3C121BA7DD700F1074E /* GuidelinesViewController+NewSafe.swift */,
 				0A334DFD209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift */,
 				0A334E0A209C8E3800ABC6AE /* NewSafeFlowCoordinatorTests.swift */,
 				0A5D467C20AD727F00AC287E /* SafeCreationFailedAlertController.swift */,
@@ -2015,6 +2021,7 @@
 				0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */,
 				0A60B5092112F9460066821A /* KeyboardAvoidingBehavior.swift in Sources */,
 				0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */,
+				0A6EF3C421BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift in Sources */,
 				0AE950CA20D29C930099B79D /* TokenAmountTransactionParameterView.swift in Sources */,
 				0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */,
 				0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */,
@@ -2025,6 +2032,7 @@
 				0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
 				0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */,
+				0A6EF3C221BA7DD700F1074E /* GuidelinesViewController+NewSafe.swift in Sources */,
 				0A4EEA6820D107BF005CDAC0 /* SafeTableViewCell.swift in Sources */,
 				0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */,
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,

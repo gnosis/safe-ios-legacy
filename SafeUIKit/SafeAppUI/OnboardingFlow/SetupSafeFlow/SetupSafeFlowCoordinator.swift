@@ -29,7 +29,11 @@ public final class SetupSafeFlowCoordinator: FlowCoordinator {
 extension SetupSafeFlowCoordinator: SetupSafeOptionsDelegate {
 
     func didSelectNewSafe() {
-        push(GuidelinesViewController.create(delegate: self))
+        push(GuidelinesViewController.createNewSafeGuidelines(delegate: self))
+    }
+
+    func didSelectRecoverSafe() {
+        push(GuidelinesViewController.createRecoverSafeGuidelines(delegate: self))
     }
 
 }

@@ -90,6 +90,8 @@ struct ListStyle {
     var textFontSize: CGFloat
     var textColor: UIColor
     var bulletColor: UIColor
+    var paragraphSpacing: CGFloat
+    var minimumLineHeight: CGFloat
 
     static let `default` = ListStyle(bullet: "•",
                                      leading: 40,
@@ -98,7 +100,9 @@ struct ListStyle {
                                      bulletFontSize: 24,
                                      textFontSize: 14,
                                      textColor: ColorName.battleshipGrey.color,
-                                     bulletColor: ColorName.whiteTwo.color)
+                                     bulletColor: ColorName.whiteTwo.color,
+                                     paragraphSpacing: 22,
+                                     minimumLineHeight: 25)
 }
 
 struct HeaderStyle {
@@ -115,7 +119,8 @@ struct HeaderStyle {
 
 extension NSAttributedString {
 
-    static func header(from text: String, style headerStyle: HeaderStyle = .default) -> NSAttributedString {
+    static func header(from text: String?, style headerStyle: HeaderStyle = .default) -> NSAttributedString? {
+        guard let text = text else { return nil }
         let style = NSMutableParagraphStyle()
         style.firstLineHeadIndent = headerStyle.leading
         style.headIndent = headerStyle.leading
@@ -127,7 +132,8 @@ extension NSAttributedString {
                                                              .foregroundColor: headerStyle.textColor])
     }
 
-    static func list(from text: String, style: ListStyle = .default) -> NSAttributedString {
+    static func list(from text: String?, style: ListStyle = .default) -> NSAttributedString? {
+        guard let text = text else { return nil }
         return text.components(separatedBy: "\n").reduce(into: NSMutableAttributedString()) { result, text in
             result.append(listItem(from: text, style: style))
         }
@@ -141,6 +147,8 @@ extension NSAttributedString {
         // tabStop's location is the distance from previous tab stop to the start of the text
         style.tabStops.insert(NSTextTab(textAlignment: .left, location: listStyle.leading, options: [:]), at: 0)
         style.firstLineHeadIndent = listStyle.leading - listStyle.spaceToBullet
+        style.paragraphSpacing = listStyle.paragraphSpacing
+        style.minimumLineHeight = listStyle.minimumLineHeight
         let str = NSMutableAttributedString(string: paragraph, attributes: [.paragraphStyle: style])
         str.addAttributes([.font: UIFont.systemFont(ofSize: listStyle.bulletFontSize),
                            .foregroundColor: listStyle.bulletColor],
