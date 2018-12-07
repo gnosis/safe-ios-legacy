@@ -15,7 +15,7 @@ public extension GuidelinesViewController {
     }
 
     static func createNewSafeGuidelines(delegate: GuidelinesViewControllerDelegate? = nil) -> GuidelinesViewController {
-        let controller = GuidelinesViewController.create()
+        let controller = GuidelinesViewController.create(delegate: delegate)
         controller.titleText = Strings.title
         controller.headerText = Strings.header
         controller.headerImage = nil
