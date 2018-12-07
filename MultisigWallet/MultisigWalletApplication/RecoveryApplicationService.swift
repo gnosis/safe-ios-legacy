@@ -17,12 +17,16 @@ public class RecoveryApplicationService {
         DomainRegistry.recoveryService.prepareForRecovery()
     }
 
-    public func validate(address: String, subscriber: EventSubscriber, onError errorHandler: @escaping (Error) -> Void) {
+    public func validate(address: String,
+                         subscriber: EventSubscriber,
+                         onError errorHandler: @escaping (Error) -> Void) {
         DomainRegistry.errorStream.removeHandler(subscriber)
         DomainRegistry.errorStream.addHandler(subscriber, errorHandler)
         ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
         ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: WalletAddressChanged.self)
         DomainRegistry.recoveryService.change(address: Address(address))
     }
-    
+
 }
+
+// TODO: error localization

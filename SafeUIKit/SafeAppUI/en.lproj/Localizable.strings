@@ -270,7 +270,7 @@
 "pending_safe.failed_alert.title" = "Error";
 
 /* Recovery address validation failed alert's message */
-"recovery.address.failed_alert.message" = "Failed to find any valid Safe at this address.";
+"recovery.address.failed_alert.message" = "Failed to find any valid Safe at this address: %@";
 
 /* OK button title */
 "recovery.address.failed_alert.ok" = "Ok";
