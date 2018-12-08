@@ -162,6 +162,7 @@ public class WalletApplicationService: Assertable {
 
     public func removeBrowserExtensionOwner() {
         mutateSelectedWallet { wallet in
+            guard wallet.owner(role: .browserExtension) != nil else { return }
             wallet.removeOwner(role: .browserExtension)
         }
     }

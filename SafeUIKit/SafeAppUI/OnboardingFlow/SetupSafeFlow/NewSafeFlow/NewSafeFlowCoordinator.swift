@@ -56,8 +56,19 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     }
 
     func didSelectBrowserExtensionSetup() {
-        pairController = PairWithBrowserExtensionViewController.create(delegate: self)
+        pairController = newPairController()
         push(pairController!)
+    }
+
+    func newPairController() -> PairWithBrowserExtensionViewController {
+        let controller = PairWithBrowserExtensionViewController.create(delegate: self)
+        controller.screenTitle = LocalizedString("new_safe.browser_extension.title",
+                                                 comment: "Title for add browser extension screen")
+        controller.screenHeader = LocalizedString("new_safe.browser_extension.header",
+                                                  comment: "Header for add browser extension screen")
+        controller.descriptionText = LocalizedString("new_safe.browser_extension.description",
+                                                     comment: "Description for add browser extension screen")
+        return controller
     }
 
     func didSelectNext() {
@@ -68,14 +79,15 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
 
 extension NewSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
 
-    func pairWithBrowserExtensionViewControllerDidPair(to address: String, with code: String) {
-        guard let pairController = pairController else { return }
+    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
+                                                didPairWith address: String,
+                                                code: String) {
         do {
             try ApplicationServiceRegistry.walletService
                 .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
             self.pop()
         } catch let e {
-            pairController.handleError(e)
+            controller.handleError(e)
         }
     }
 

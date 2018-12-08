@@ -11,7 +11,9 @@ import SafariServices
 
 protocol PairWithBrowserExtensionViewControllerDelegate: class {
 
-    func pairWithBrowserExtensionViewControllerDidPair(to address: String, with code: String)
+    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
+                                                didPairWith address: String,
+                                                code: String)
     func pairWithBrowserExtensionViewControllerDidSkipPairing()
 
 }
@@ -19,12 +21,6 @@ protocol PairWithBrowserExtensionViewControllerDelegate: class {
 final class PairWithBrowserExtensionViewController: UIViewController {
 
     enum Strings {
-        static let title = LocalizedString("new_safe.browser_extension.title",
-                                           comment: "Title for add browser extension screen")
-        static let header = LocalizedString("new_safe.browser_extension.header",
-                                            comment: "Header for add browser extension screen")
-        static let description = LocalizedString("new_safe.browser_extension.description",
-                                                 comment: "Description for add browser extension screen")
         static let downloadExtension = LocalizedString("new_safe.browser_extension.download_chrome_extension",
                                                        comment: "'Download the' Gnosis Safe Chrome browser exntension.")
         static let chromeExtension = LocalizedString("new_safe.browser_extension.chrome_extension_substring",
@@ -66,6 +62,24 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     var scanBarButtonItem: ScanBarButtonItem!
     private var activityIndicator: UIActivityIndicatorView!
 
+    var screenTitle: String? {
+        didSet {
+            updateTexts()
+        }
+    }
+
+    var screenHeader: String? {
+        didSet {
+            updateTexts()
+        }
+    }
+
+    var descriptionText: String? {
+        didSet {
+            updateTexts()
+        }
+    }
+
     static func create(delegate: PairWithBrowserExtensionViewControllerDelegate?)
         -> PairWithBrowserExtensionViewController {
             let controller = StoryboardScene.PairWithBrowserExtension
@@ -76,11 +90,18 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = Strings.title
         configureScanButton()
         configureActivityIndicator()
-        configureTexts()
+        configureStepsLabels()
         configureSkipButton()
+        updateTexts()
+    }
+
+    func updateTexts() {
+        guard isViewLoaded else { return }
+        title = screenTitle
+        headerLabel.text = screenHeader
+        descriptionLabel.text = descriptionText
     }
 
     func handleError(_ error: Error) {
@@ -111,12 +132,6 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         activityIndicator.color = ColorName.aquaBlue.color
-    }
-
-    private func configureTexts() {
-        headerLabel.text = Strings.header
-        descriptionLabel.text = Strings.description
-        configureStepsLabels()
     }
 
     private func configureSkipButton() {
@@ -157,7 +172,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         let address = scanBarButtonItem.scanValidatedConverter!(code)!
         DispatchQueue.main.async {
             self.showScanButton()
-            self.delegate?.pairWithBrowserExtensionViewControllerDidPair(to: address, with: code)
+            self.delegate?.pairWithBrowserExtensionViewController(self, didPairWith: address, code: code)
         }
     }
 

@@ -290,6 +290,12 @@
 /* Safe Address */
 "recovery.address.placeholder" = "Safe address";
 
+/* Description for connect browser extension screen */
+"recovery.browser_extension.description" = "If you also lost access to Safe’s Chrome browser extension, please download the extension again and scan the QR code in the interface.";
+
+/* Header for connect browser extension screen */
+"recovery.browser_extension.header" = "Connect browser extension";
+
 /* Content paragraphs, separated by '\n' */
 "recovery.guidelines.content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee in ETH will be automatically deducted from the ETH balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount of ETH required to cover the fee.";
 
