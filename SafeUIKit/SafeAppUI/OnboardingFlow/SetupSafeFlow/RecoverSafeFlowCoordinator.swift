@@ -32,7 +32,6 @@ extension RecoverSafeFlowCoordinator: AddressInputViewControllerDelegate {
 extension RecoverSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
 
     func recoveryPhraseInputViewControllerDidPressNext() {
-
     }
 
 }

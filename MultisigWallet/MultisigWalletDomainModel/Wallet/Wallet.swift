@@ -93,7 +93,6 @@ public class Wallet: IdentifiableEntity<WalletID> {
     }
 
     public func prepareForRecovery() {
-        guard state !== recoveryDraftState else { return }
         state = recoveryDraftState
         owners.removeAll { $0.role != .thisDevice }
         confirmationCount = 1

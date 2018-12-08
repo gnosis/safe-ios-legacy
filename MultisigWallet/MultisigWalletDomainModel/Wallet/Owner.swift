@@ -48,6 +48,7 @@ public struct OwnerList: Equatable {
     public mutating func remove(with role: OwnerRole) {
         storage.removeAll { $0.role == role }
     }
+
 }
 
 extension OwnerList: RandomAccessCollection {}

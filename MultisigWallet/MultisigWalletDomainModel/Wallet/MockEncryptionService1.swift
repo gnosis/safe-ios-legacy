@@ -109,4 +109,9 @@ class MockEncryptionService1: EncryptionDomainService {
                                       at pathIndex: Int) -> ExternallyOwnedAccount {
         preconditionFailure("not implemented")
     }
+
+    func deriveExternallyOwnedAccount(from mnemonic: String) -> ExternallyOwnedAccount? {
+        preconditionFailure("not implemented")
+    }
+
 }

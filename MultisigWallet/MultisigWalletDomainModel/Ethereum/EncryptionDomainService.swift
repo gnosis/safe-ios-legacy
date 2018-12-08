@@ -20,6 +20,8 @@ public protocol EncryptionDomainService {
     /// - Returns: random externally owned account
     func generateExternallyOwnedAccount() -> ExternallyOwnedAccount
 
+    func deriveExternallyOwnedAccount(from mnemonic: String) -> ExternallyOwnedAccount?
+
     /// Derives externally owned account from existing account at the specified derivation path index
     ///
     /// - Parameters:

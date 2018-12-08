@@ -7,6 +7,8 @@ import Common
 
 public enum RecoveryServiceError: Error {
     case invalidContractAddress
+    case recoveryAccountsNotFound
+    case recoveryPhraseInvalid
 }
 
 public struct RecoveryDomainServiceConfig {
@@ -111,6 +113,40 @@ public class RecoveryDomainService: Assertable {
         DomainRegistry.walletRepository.save(wallet)
     }
 
+    public func provide(recoveryPhrase: String) {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        let accountOrNil = DomainRegistry.encryptionService.deriveExternallyOwnedAccount(from: recoveryPhrase)
+        guard let recoveryAccount = accountOrNil else {
+            DomainRegistry.errorStream.post(RecoveryServiceError.recoveryPhraseInvalid)
+            return
+        }
+        let derivedAccount = DomainRegistry.encryptionService.deriveExternallyOwnedAccount(from: recoveryAccount, at: 1)
+        let hasRecoveryAccounts = wallet.contains(owner: owner(from: recoveryAccount)) &&
+            wallet.contains(owner: owner(from: derivedAccount))
+        guard hasRecoveryAccounts else {
+            DomainRegistry.errorStream.post(RecoveryServiceError.recoveryAccountsNotFound)
+            return
+        }
+        save(recoveryAccount)
+        save(derivedAccount)
+        wallet.addOwner(Owner(address: recoveryAccount.address, role: .paperWallet))
+        wallet.addOwner(Owner(address: derivedAccount.address, role: .paperWalletDerived))
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(WalletRecoveryAccountsAccepted())
+    }
+
+    private func owner(from account: ExternallyOwnedAccount) -> Owner {
+        return Owner(address: Address(account.address.value.lowercased()), role: .unknown)
+    }
+
+    private func save(_ account: ExternallyOwnedAccount) {
+        if DomainRegistry.externallyOwnedAccountRepository.find(by: account.address) == nil {
+            DomainRegistry.externallyOwnedAccountRepository.save(account)
+        }
+    }
+
 }
 
 public class WalletAddressChanged: DomainEvent {}
+
+public class WalletRecoveryAccountsAccepted: DomainEvent {}

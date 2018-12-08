@@ -269,6 +269,9 @@
 /* Pending safe failed alert's title */
 "pending_safe.failed_alert.title" = "Error";
 
+/* Invalid contract address */
+"recovery.address.error.invalid_contract" = "Invalid Safe address";
+
 /* Recovery address validation failed alert's message */
 "recovery.address.failed_alert.message" = "Failed to find the Safe: %@";
 
@@ -280,9 +283,6 @@
 
 /* My Safe Address */
 "recovery.address.header" = "My Safe address";
-
-/* Invalid contract address */
-"recovery.address.invalid_contract" = "Invalid Safe contract address.";
 
 /* Safe Address */
 "recovery.address.placeholder" = "Safe address";
@@ -296,8 +296,14 @@
 /* Recover safe */
 "recovery.guidelines.title" = "Recover Safe";
 
+/* Recovery phrase does not match this Safe's recovery phrase */
+"recovery.phrase.error." = "Recovery phrase does not match Safe's recovery phrase.";
+
 /* Error format for invalid recovery phrase */
 "recovery.phrase.error.format" = "Failed to use recovery phrase: %@";
+
+/* Incorrect recovery phrase */
+"recovery.phrase.error.invalid_phrase" = "Recovery phrase is incorrect";
 
 /* Recovery Phrase Input screen header */
 "recovery.phrase.header" = "My recovery phrase";
