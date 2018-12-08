@@ -61,6 +61,13 @@ public class DeploymentDomainService {
         wallet.resume()
     }
 
+    public func prepareForCreation() {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        wallet.reset()
+        wallet.prepareForCreation()
+        DomainRegistry.walletRepository.save(wallet)
+    }
+
     func deploymentStarted(_ event: DeploymentStarted) {
         handleError { wallet in
             let s = DomainRegistry.encryptionService.ecdsaRandomS()

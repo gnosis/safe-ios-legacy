@@ -71,6 +71,7 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(service.ownerAddress(of: .browserExtension), Address.testAccount1.value)
     }
 
+    // FIXME: move to domain model
     func test_whenWalletIsReady_thenHasReadyState() throws {
         createPortfolio()
         service.createNewDraftWallet()

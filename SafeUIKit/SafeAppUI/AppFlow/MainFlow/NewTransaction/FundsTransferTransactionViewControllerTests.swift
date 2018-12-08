@@ -37,9 +37,8 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
 
         controller.delegate = delegate
         controller.loadViewIfNeeded()
-        controller.tokenInput.textInput.type("0.1")
-        controller.addressInput.textInput.type(recipient)
-        delay()
+        controller.tokenInput.text = "0.1"
+        controller.addressInput.text = recipient
         controller.proceedToSigning(controller.nextBarButton)
 
         XCTAssertEqual(walletService.updateTransaction_input?.id, transactionID)
@@ -55,21 +54,6 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         controller.willBeRemoved()
         delay()
         XCTAssertTrue(walletService.verify())
-    }
-
-}
-
-extension UITextField {
-
-    func type(_ string: String) {
-        let originalText = text ?? ""
-        let shouldType = delegate?.textField?(self,
-                                              // swiftlint:disable legacy_constructor
-                                              shouldChangeCharactersIn: NSMakeRange(originalText.count, 0),
-                                              replacementString: string) ?? true
-        if shouldType {
-            text = originalText + string
-        }
     }
 
 }

@@ -45,6 +45,11 @@ fastlane ios release
 Submit new Release (Production Mainnet) Build to Apple TestFlight
 
 This will also make sure the provisioning profile is up to date
+### ios testflight_dsyms
+```
+fastlane ios testflight_dsyms
+```
+Download latest dsyms
 ### ios add_devices
 ```
 fastlane ios add_devices

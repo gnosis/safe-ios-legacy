@@ -11,6 +11,10 @@ public class ApplicationServiceRegistry: AbstractRegistry {
         return service(for: WalletApplicationService.self)
     }
 
+    public static var recoveryService: RecoveryApplicationService {
+        return service(for: RecoveryApplicationService.self)
+    }
+
     public static var logger: Logger {
         return service(for: Logger.self)
     }

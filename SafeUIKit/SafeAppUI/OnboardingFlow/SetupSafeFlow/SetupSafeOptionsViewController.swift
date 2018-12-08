@@ -37,11 +37,18 @@ class SetupSafeOptionsViewController: UIViewController {
     @IBAction func createNewSafe(_ sender: Any) {
         if !ApplicationServiceRegistry.walletService.hasSelectedWallet {
             ApplicationServiceRegistry.walletService.createNewDraftWallet()
+        } else {
+            ApplicationServiceRegistry.walletService.prepareForCreation()
         }
         delegate?.didSelectNewSafe()
     }
 
     @IBAction func recoverExistingSafe(_ sender: Any) {
+        if !ApplicationServiceRegistry.walletService.hasSelectedWallet {
+            ApplicationServiceRegistry.recoveryService.createRecoverDraftWallet()
+        } else {
+            ApplicationServiceRegistry.recoveryService.prepareForRecovery()
+        }
         delegate?.didSelectRecoverSafe()
     }
 

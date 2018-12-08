@@ -18,14 +18,17 @@ public class WalletState {
         case creationStarted
         case finalizingDeployment
         case readyToUse
+        case recoveryDraft
     }
 
     public var state: State { preconditionFailure("Not implemented") }
 
-    var canChangeOwners: Bool = false
-    var canChangeTransactionHash: Bool = false
-    var canChangeAddress: Bool = false
+    var canChangeOwners: Bool { return false }
+    var canChangeTransactionHash: Bool { return false }
+    var canChangeAddress: Bool { return false }
     var isDeployable: Bool { return false }
+    var isReadyToUse: Bool { return false }
+    var isCreationInProgress: Bool { return false }
 
     internal weak var wallet: Wallet!
 
@@ -56,6 +59,9 @@ public class DraftState: WalletState {
 
     override public var state: WalletState.State { return .draft }
 
+    override var isCreationInProgress: Bool { return false }
+    override var canChangeOwners: Bool { return true }
+
     private let requiredRoles = [OwnerRole.thisDevice, .paperWallet, .paperWalletDerived]
 
     private var hasAllRoles: Bool {
@@ -64,11 +70,6 @@ public class DraftState: WalletState {
 
     override var isDeployable: Bool {
         return hasAllRoles
-    }
-
-    override init(wallet: Wallet) {
-        super.init(wallet: wallet)
-        canChangeOwners = true
     }
 
     override func resume() {
@@ -92,14 +93,20 @@ public class DraftState: WalletState {
 public class DeploymentStarted: DomainEvent {}
 public class DeploymentAborted: DomainEvent {}
 
+public class RecoveryDraftState: WalletState {
+
+    public override var state: WalletState.State { return .recoveryDraft }
+    override var canChangeOwners: Bool { return true }
+    override var canChangeAddress: Bool { return true }
+
+}
+
 public class DeployingState: WalletState {
 
     override public var state: WalletState.State { return .deploying }
 
-    override init(wallet: Wallet) {
-        super.init(wallet: wallet)
-        canChangeAddress = true
-    }
+    override var isCreationInProgress: Bool { return true }
+    override var canChangeAddress: Bool { return true }
 
     override func resume() {
         DomainRegistry.eventPublisher.publish(DeploymentStarted())
@@ -126,6 +133,8 @@ public class NotEnoughFundsState: WalletState {
 
     override public var state: WalletState.State { return .notEnoughFunds }
 
+    override var isCreationInProgress: Bool { return true }
+
     override func resume() {
         DomainRegistry.eventPublisher.publish(WalletConfigured())
     }
@@ -150,6 +159,8 @@ public class DeploymentFunded: DomainEvent {}
 public class CreationStartedState: WalletState {
 
     override public var state: WalletState.State { return .creationStarted }
+
+    override var isCreationInProgress: Bool { return true }
 
     override func resume() {
         DomainRegistry.eventPublisher.publish(DeploymentFunded())
@@ -176,10 +187,8 @@ public class FinalizingDeploymentState: WalletState {
 
     override public var state: WalletState.State { return .finalizingDeployment }
 
-    override init(wallet: Wallet) {
-        super.init(wallet: wallet)
-        canChangeTransactionHash = true
-    }
+    override var isCreationInProgress: Bool { return true }
+    override var canChangeTransactionHash: Bool { return true }
 
     override func resume() {
         DomainRegistry.eventPublisher.publish(CreationStarted())
@@ -206,10 +215,8 @@ public class WalletCreationFailed: DomainEvent {}
 public class ReadyToUseState: WalletState {
 
     override public var state: WalletState.State { return .readyToUse }
-
-    override init(wallet: Wallet) {
-        super.init(wallet: wallet)
-        canChangeOwners = true
-    }
+    override var isReadyToUse: Bool { return true }
+    override var isCreationInProgress: Bool { return false }
+    override var canChangeOwners: Bool { return true }
 
 }

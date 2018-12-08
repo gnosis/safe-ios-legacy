@@ -105,7 +105,8 @@ public class EthereumContractProxy {
 fileprivate extension Address {
 
     init(_ value: BigUInt) {
-        self.init("0x" + String(value, radix: 16))
+        let data = Data(ethHex: String(value, radix: 16)).endTruncated(to: 20).leftPadded(to: 20)
+        self.init("0x" + data.toHexString())
     }
 
 }

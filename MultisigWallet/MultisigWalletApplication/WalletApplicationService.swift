@@ -25,7 +25,7 @@ public class WalletApplicationService: Assertable {
 
     public var hasReadyToUseWallet: Bool {
         guard let wallet = selectedWallet else { return false }
-        return wallet.state === wallet.readyToUseState
+        return wallet.isReadyToUse
     }
 
     public var isWalletDeployable: Bool {
@@ -35,7 +35,7 @@ public class WalletApplicationService: Assertable {
 
     public var isSafeCreationInProgress: Bool {
         guard let wallet = selectedWallet else { return false }
-        return wallet.state !== wallet.newDraftState && wallet.state !== wallet.readyToUseState
+        return wallet.isCreationInProgress
     }
 
     public var canChangeAccount: Bool {
@@ -67,6 +67,10 @@ public class WalletApplicationService: Assertable {
         DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.portfolioRepository.save(portfolio)
         DomainRegistry.accountRepository.save(account)
+    }
+
+    public func prepareForCreation() {
+        DomainRegistry.deploymentService.prepareForCreation()
     }
 
     private func fetchOrCreatePortfolio() -> Portfolio {

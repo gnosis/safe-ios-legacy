@@ -88,4 +88,8 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: TransactionDomainService.self)
     }
 
+    public static var recoveryService: RecoveryDomainService {
+        return service(for: RecoveryDomainService.self)
+    }
+
 }

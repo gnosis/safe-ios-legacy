@@ -53,6 +53,9 @@
 		0A6AE030216CB554002FBE3D /* EthereumContractProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6AE02F216CB554002FBE3D /* EthereumContractProxyTests.swift */; };
 		0A6B846321B6A0FF00EDF04C /* WalletIDList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846221B6A0FF00EDF04C /* WalletIDList.swift */; };
 		0A6B846521B6A28200EDF04C /* WalletIDList+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B846421B6A28200EDF04C /* WalletIDList+Serialization.swift */; };
+		0A6EF3CC21BAB13200F1074E /* RecoveryApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3CB21BAB13200F1074E /* RecoveryApplicationService.swift */; };
+		0A6EF3D221BAB15E00F1074E /* RecoveryDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3D121BAB15E00F1074E /* RecoveryDomainService.swift */; };
+		0A6EF3D621BAB86600F1074E /* WalletProxyContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3D521BAB86600F1074E /* WalletProxyContractProxy.swift */; };
 		0A73F3182133FDE000F65DAE /* ErrorStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73F3172133FDE000F65DAE /* ErrorStreamTests.swift */; };
 		0A76BE4A20AEC3EB00D07770 /* WalletApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */; };
 		0A76BE4F20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */; };
@@ -427,6 +430,9 @@
 		0A6AE02F216CB554002FBE3D /* EthereumContractProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumContractProxyTests.swift; sourceTree = "<group>"; };
 		0A6B846221B6A0FF00EDF04C /* WalletIDList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletIDList.swift; sourceTree = "<group>"; };
 		0A6B846421B6A28200EDF04C /* WalletIDList+Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletIDList+Serialization.swift"; sourceTree = "<group>"; };
+		0A6EF3CB21BAB13200F1074E /* RecoveryApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryApplicationService.swift; sourceTree = "<group>"; };
+		0A6EF3D121BAB15E00F1074E /* RecoveryDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryDomainService.swift; sourceTree = "<group>"; };
+		0A6EF3D521BAB86600F1074E /* WalletProxyContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletProxyContractProxy.swift; sourceTree = "<group>"; };
 		0A73F3172133FDE000F65DAE /* ErrorStreamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStreamTests.swift; sourceTree = "<group>"; };
 		0A76BE4920AEC3EB00D07770 /* WalletApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0A76BE4E20AEC51E00D07770 /* InMemorySinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemorySinglePortfolioRepository.swift; sourceTree = "<group>"; };
@@ -773,6 +779,7 @@
 				0A23C80A20A1B09900C72483 /* WalletTests.swift */,
 				0ABCC0F42177290F00E60E9F /* TransactionDomainService.swift */,
 				0ABCC0FB2177291D00E60E9F /* TransactionDomainServiceTests.swift */,
+				0A6EF3D121BAB15E00F1074E /* RecoveryDomainService.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -905,6 +912,7 @@
 				0A9E37A820F4A4D10085E8D7 /* WorkerTests.swift */,
 				0ADD1DD02135432A0046AF1F /* ERC20TokenContractProxy.swift */,
 				0ADD1DDD213544C50046AF1F /* ERC20TokenContractProxyTests.swift */,
+				0A6EF3D521BAB86600F1074E /* WalletProxyContractProxy.swift */,
 				0AEDED5521676156005B6DD0 /* SafeOwnerManagerContractProxy.swift */,
 				0AEDED5C216761FE005B6DD0 /* SafeOwnerManagerContractProxyTests.swift */,
 				0A6AE028216CB539002FBE3D /* EthereumContractProxy.swift */,
@@ -932,6 +940,7 @@
 				0AEF8A9F20A088A5006A1265 /* Tests-Info.plist */,
 				0A60B521211343F70066821A /* TransactionData.swift */,
 				0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */,
+				0A6EF3CB21BAB13200F1074E /* RecoveryApplicationService.swift */,
 				0AAAE3E6219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift */,
 				0A54E7CA21305273006BAD93 /* WalletApplicationServiceError.swift */,
 				0A4A1D692136C4990088F9EC /* WalletApplicationServiceTests */,
@@ -1431,6 +1440,7 @@
 				55FB2591212300D400E81666 /* TokenListItemRepository.swift in Sources */,
 				0A4C38A5212D9705005594DA /* MockDeploymentDomainService.swift in Sources */,
 				0AAA174720E26E90003B35B3 /* TransactionRepository.swift in Sources */,
+				0A6EF3D221BAB15E00F1074E /* RecoveryDomainService.swift in Sources */,
 				0A9E380F20F4A4F20085E8D7 /* Worker.swift in Sources */,
 				552C6006212B0CA200BF973A /* SynchronisationDomainService.swift in Sources */,
 				0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */,
@@ -1459,6 +1469,7 @@
 				0A0CEFFF2125656200772AB3 /* DeploymentDomainService.swift in Sources */,
 				0A4CF10C20F63D8D001A8687 /* SendNotificationRequest.swift in Sources */,
 				0A442DBE2109D99D00F19F80 /* Message.swift in Sources */,
+				0A6EF3D621BAB86600F1074E /* WalletProxyContractProxy.swift in Sources */,
 				0A76BE5520AEF31000D07770 /* DomainRegistry.swift in Sources */,
 				0A0CF00C2125684000772AB3 /* ErrorStream.swift in Sources */,
 				555C94A620E3824800A0621D /* NotificationDomainService.swift in Sources */,
@@ -1546,6 +1557,7 @@
 				0A40669320A5E1C2009BA7FC /* ApplicationServiceRegistry.swift in Sources */,
 				0AAAE3E7219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift in Sources */,
 				0A9E383520F4AC5F0085E8D7 /* EthereumApplicationService.swift in Sources */,
+				0A6EF3CC21BAB13200F1074E /* RecoveryApplicationService.swift in Sources */,
 				0A40669120A5E0EA009BA7FC /* WalletApplicationService.swift in Sources */,
 				0A4C3898212D9411005594DA /* WalletStateEnum.swift in Sources */,
 			);

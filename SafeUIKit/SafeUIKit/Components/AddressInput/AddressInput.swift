@@ -6,6 +6,7 @@ import UIKit
 
 public protocol AddressInputDelegate: class {
     func presentController(_ controller: UIViewController)
+    func didRecieveValidAddress(_ address: String)
 }
 
 public final class AddressInput: VerifiableInput {
@@ -41,6 +42,7 @@ public final class AddressInput: VerifiableInput {
                     let identicon = IdenticonView(frame: CGRect(origin: .zero, size: identiconSize))
                     identicon.seed = displayAddress
                     textInput.leftView = identicon
+                    addressInputDelegate?.didRecieveValidAddress(displayAddress)
                 }
             } else {
                 addressLabel.address = nil
