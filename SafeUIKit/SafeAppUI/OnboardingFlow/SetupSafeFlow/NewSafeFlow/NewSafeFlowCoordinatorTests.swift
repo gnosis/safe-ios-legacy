@@ -181,7 +181,7 @@ private extension NewSafeFlowCoordinatorTests {
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
         delay()
         pairVC = topViewController as? PairWithBrowserExtensionViewController
-        pairVC?.pairCompletion("address", "code")
+        pairVC?.delegate?.pairWithBrowserExtensionViewControllerDidPair(to: "address", with: "code")
         delay()
     }
 

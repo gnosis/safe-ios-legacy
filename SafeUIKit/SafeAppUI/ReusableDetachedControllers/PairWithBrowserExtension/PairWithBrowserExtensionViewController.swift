@@ -9,9 +9,14 @@ import MultisigWalletApplication
 import Common
 import SafariServices
 
-final class PairWithBrowserExtensionViewController: UIViewController {
+protocol PairWithBrowserExtensionViewControllerDelegate: class {
 
-    typealias PairCompletion = (_ address: String, _ code: String) -> Void
+    func pairWithBrowserExtensionViewControllerDidPair(to address: String, with code: String)
+    func pairWithBrowserExtensionViewControllerDidSkipPairing()
+
+}
+
+final class PairWithBrowserExtensionViewController: UIViewController {
 
     enum Strings {
         static let title = LocalizedString("new_safe.browser_extension.title",
@@ -26,6 +31,8 @@ final class PairWithBrowserExtensionViewController: UIViewController {
                                                      comment: "Download the 'Gnosis Safe Chrome browser exntension.'")
         static let scanQRCode = LocalizedString("new_safe.browser_extension.scan_qr",
                                                 comment: "Scan its QR code.")
+        static let skipSetup = LocalizedString("new_safe.browser_extension.skip",
+                                               comment: "Skip button text")
         static let scan = LocalizedString("new_safe.browser_extension.scan",
                                           comment: "Scan button title in extension setup screen")
         static let browserExtensionExpired = LocalizedString("new_safe.browser_extension.expired",
@@ -41,8 +48,11 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var step1Label: UILabel!
     @IBOutlet weak var step2Label: UILabel!
+    var skipButton: UIButton!
+    let skipButtonOffset: CGFloat = 30
+    let skipButtonMinimumHeight: CGFloat = 50
+    weak var delegate: PairWithBrowserExtensionViewControllerDelegate?
 
-    public private(set) var pairCompletion: PairCompletion!
     private var logger: Logger {
         return MultisigWalletApplication.ApplicationServiceRegistry.logger
     }
@@ -56,10 +66,12 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     var scanBarButtonItem: ScanBarButtonItem!
     private var activityIndicator: UIActivityIndicatorView!
 
-    static func create(completion: @escaping PairCompletion) -> PairWithBrowserExtensionViewController {
-        let controller = StoryboardScene.PairWithBrowserExtension.pairWithBrowserExtensionViewController.instantiate()
-        controller.pairCompletion = completion
-        return controller
+    static func create(delegate: PairWithBrowserExtensionViewControllerDelegate?)
+        -> PairWithBrowserExtensionViewController {
+            let controller = StoryboardScene.PairWithBrowserExtension
+                .pairWithBrowserExtensionViewController.instantiate()
+            controller.delegate = delegate
+            return controller
     }
 
     override func viewDidLoad() {
@@ -67,8 +79,8 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         title = Strings.title
         configureScanButton()
         configureActivityIndicator()
-        configureWrapperView()
         configureTexts()
+        configureSkipButton()
     }
 
     func handleError(_ error: Error) {
@@ -101,16 +113,26 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         activityIndicator.color = ColorName.aquaBlue.color
     }
 
-    private func configureWrapperView() {
-        wrapperView.layer.shadowColor = UIColor.black.cgColor
-        wrapperView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        wrapperView.layer.shadowOpacity = 0.4
-    }
-
     private func configureTexts() {
         headerLabel.text = Strings.header
         descriptionLabel.text = Strings.description
         configureStepsLabels()
+    }
+
+    private func configureSkipButton() {
+        skipButton = UIButton(type: .custom)
+        skipButton.setTitleColor(.white, for: .normal)
+        skipButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        skipButton.titleLabel?.numberOfLines = 0
+        skipButton.titleLabel?.textAlignment = .center
+        skipButton.setTitle(Strings.skipSetup, for: .normal)
+        skipButton.addTarget(self, action: #selector(skipPairing(_:)), for: .touchUpInside)
+        skipButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(skipButton)
+        NSLayoutConstraint.activate([
+            skipButton.topAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: skipButtonOffset),
+            skipButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            skipButton.heightAnchor.constraint(greaterThanOrEqualToConstant: skipButtonMinimumHeight)])
     }
 
     private func configureStepsLabels() {
@@ -135,7 +157,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         let address = scanBarButtonItem.scanValidatedConverter!(code)!
         DispatchQueue.main.async {
             self.showScanButton()
-            self.pairCompletion(address, code)
+            self.delegate?.pairWithBrowserExtensionViewControllerDidPair(to: address, with: code)
         }
     }
 
@@ -155,6 +177,10 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     private func showScanButton() {
         navigationItem.rightBarButtonItem = scanBarButtonItem
+    }
+
+    @IBAction func skipPairing(_ sender: Any) {
+        delegate?.pairWithBrowserExtensionViewControllerDidSkipPairing()
     }
 
     // MARK: - Debug Buttons

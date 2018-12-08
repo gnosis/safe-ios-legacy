@@ -121,6 +121,9 @@
 /* Scan its QR code. */
 "new_safe.browser_extension.scan_qr" = "Scan its QR code.";
 
+/* Skip button text */
+"new_safe.browser_extension.skip" = "Skip and set up later.\n(This can be done from the Menu.)";
+
 /* Title for add browser extension screen */
 "new_safe.browser_extension.title" = "Setup";
 

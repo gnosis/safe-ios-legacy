@@ -160,6 +160,12 @@ public class WalletApplicationService: Assertable {
         addOwner(address: address, type: .browserExtension)
     }
 
+    public func removeBrowserExtensionOwner() {
+        mutateSelectedWallet { wallet in
+            wallet.removeOwner(role: .browserExtension)
+        }
+    }
+
     private func pair(_ browserExtension: BrowserExtensionCode,
                       _ signature: EthSignature,
                       _ deviceOwnerAddress: String) throws {

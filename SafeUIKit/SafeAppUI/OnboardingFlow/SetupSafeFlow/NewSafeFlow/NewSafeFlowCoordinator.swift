@@ -56,9 +56,7 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     }
 
     func didSelectBrowserExtensionSetup() {
-        pairController = PairWithBrowserExtensionViewController.create { [unowned self] address, code in
-            self.didPair(address: address, code: code)
-        }
+        pairController = PairWithBrowserExtensionViewController.create(delegate: self)
         push(pairController!)
     }
 
@@ -66,7 +64,11 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
         push(SafeCreationViewController.create(delegate: self))
     }
 
-    private func didPair(address: String, code: String) {
+}
+
+extension NewSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
+
+    func pairWithBrowserExtensionViewControllerDidPair(to address: String, with code: String) {
         guard let pairController = pairController else { return }
         do {
             try ApplicationServiceRegistry.walletService
@@ -75,6 +77,11 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
         } catch let e {
             pairController.handleError(e)
         }
+    }
+
+    func pairWithBrowserExtensionViewControllerDidSkipPairing() {
+        ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
+        self.pop()
     }
 
 }
