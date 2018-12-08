@@ -14,7 +14,7 @@ public class EthereumKitEthereumService: EthereumService {
     }
 
     public func createSeed(mnemonic: [String]) -> Data {
-        return try! Mnemonic.createSeed(mnemonic: mnemonic)
+        return (try? Mnemonic.createSeed(mnemonic: mnemonic)) ?? Data(repeating: 0, count: 32)
     }
 
     public func createHDPrivateKey(seed: Data, network: EIP155ChainId, derivedAt: Int) -> Data {

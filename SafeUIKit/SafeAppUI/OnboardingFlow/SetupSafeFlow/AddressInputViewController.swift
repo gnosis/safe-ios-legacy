@@ -72,8 +72,13 @@ extension RecoveryApplicationServiceError: LocalizedError {
 
     public var errorDescription: String? {
         switch self {
-        case .invalidContractAddress: return LocalizedString("recovery.address.invalid_contract",
-                                                             comment: "Invalid contract address")
+        case .invalidContractAddress:
+            return LocalizedString("recovery.address.error.invalid_contract", comment: "Invalid contract address")
+        case .recoveryPhraseInvalid:
+            return LocalizedString("recovery.phrase.error.invalid_phrase", comment: "Incorrect recovery phrase")
+        case .recoveryAccountsNotFound:
+            return LocalizedString("recovery.phrase.error.",
+                                   comment: "Recovery phrase does not match this Safe's recovery phrase")
         }
     }
 

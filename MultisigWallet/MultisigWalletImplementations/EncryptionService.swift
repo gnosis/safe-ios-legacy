@@ -71,8 +71,7 @@ public extension EthereumService {
     func createExternallyOwnedAccount(chainId: EIP155ChainId) -> EOA {
         let mnemonic = createMnemonic()
         try! assertEqual(mnemonic.count, 12, EthereumServiceError.invalidMnemonicWordsCount)
-        let masterEOA = derivedExternallyOwnedAccountFrom(mnemonic: mnemonic, chainId: chainId, at: 0)
-        return (mnemonic, masterEOA.privateKey, masterEOA.publicKey, masterEOA.address, 0)
+        return derivedExternallyOwnedAccountFrom(mnemonic: mnemonic, chainId: chainId, at: 0)
     }
 
     func derivedExternallyOwnedAccountFrom(mnemonic: [String], chainId: EIP155ChainId, at index: Int) -> EOA {
@@ -80,7 +79,7 @@ public extension EthereumService {
         let privateKey = createHDPrivateKey(seed: seed, network: chainId, derivedAt: index)
         let publicKey = createPublicKey(privateKey: privateKey)
         let address = createAddress(publicKey: publicKey)
-        return ([], privateKey, publicKey, address, index) // derived address can not be recovered with mnemonic
+        return (index == 0 ? mnemonic : [], privateKey, publicKey, address, index)
     }
 
 }
@@ -241,6 +240,15 @@ open class EncryptionService: EncryptionDomainService {
                                       privateKey: PrivateKey(data: data.privateKey),
                                       publicKey: PublicKey(data: data.publicKey),
                                       derivedIndex: data.index)
+    }
+
+    public func deriveExternallyOwnedAccount(from phrase: String) -> ExternallyOwnedAccount? {
+        let words = phrase
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+            .components(separatedBy: .whitespacesAndNewlines).compactMap { $0.isEmpty ? nil : $0 }
+        let eoaData = ethereumService.derivedExternallyOwnedAccountFrom(mnemonic: words, chainId: chainId, at: 0)
+        return externallyOwnedAccount(from: eoaData)
     }
 
     // MARK: - random numbers

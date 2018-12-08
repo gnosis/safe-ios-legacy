@@ -7,6 +7,8 @@ import MultisigWalletDomainModel
 
 public enum RecoveryApplicationServiceError: Error {
     case invalidContractAddress
+    case recoveryPhraseInvalid
+    case recoveryAccountsNotFound
 }
 
 public class RecoveryApplicationService {
@@ -34,7 +36,8 @@ public class RecoveryApplicationService {
                         subscriber: EventSubscriber,
                         onError errorHandler: @escaping (Error) -> Void) {
         withEnvironment(for: subscriber, errorHandler: errorHandler) {
-            DomainRegistry.errorStream.post(RecoveryApplicationServiceError.invalidContractAddress)
+            ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: WalletRecoveryAccountsAccepted.self)
+            DomainRegistry.recoveryService.provide(recoveryPhrase: recoveryPhrase)
         }
     }
 
@@ -43,7 +46,6 @@ public class RecoveryApplicationService {
                                  closure: () -> Void) {
         setUpEnvironment(for: subscriber, errorHandler: errorHandler)
         closure()
-        tearDownEnvironment(for: subscriber)
     }
 
     private func setUpEnvironment(for subscriber: EventSubscriber, errorHandler:  @escaping (Error) -> Void) {
@@ -54,15 +56,14 @@ public class RecoveryApplicationService {
         ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
     }
 
-    private func tearDownEnvironment(for subscriber: EventSubscriber) {
-        DomainRegistry.errorStream.removeHandler(self)
-        ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
-    }
-
     private static func applicationError(from domainError: Error) -> Error {
         switch domainError {
         case RecoveryServiceError.invalidContractAddress:
             return RecoveryApplicationServiceError.invalidContractAddress
+        case RecoveryServiceError.recoveryPhraseInvalid:
+            return RecoveryApplicationServiceError.recoveryPhraseInvalid
+        case RecoveryServiceError.recoveryAccountsNotFound:
+            return RecoveryApplicationServiceError.recoveryAccountsNotFound
         default:
             return domainError
         }
