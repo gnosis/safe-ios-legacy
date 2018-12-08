@@ -144,3 +144,14 @@ extension AddressInputViewController: EventSubscriber {
     }
 
 }
+
+extension RecoveryApplicationServiceError: LocalizedError {
+
+    public var errorDescription: String? {
+        switch self {
+        case .invalidContractAddress: return LocalizedString("recovery.address.invalid_contract",
+                                                             comment: "Invalid contract address")
+        }
+    }
+
+}

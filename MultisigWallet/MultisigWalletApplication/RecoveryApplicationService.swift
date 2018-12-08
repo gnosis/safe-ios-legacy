@@ -5,6 +5,10 @@
 import Foundation
 import MultisigWalletDomainModel
 
+public enum RecoveryApplicationServiceError: Error {
+    case invalidContractAddress
+}
+
 public class RecoveryApplicationService {
 
     public init() {}
@@ -20,13 +24,20 @@ public class RecoveryApplicationService {
     public func validate(address: String,
                          subscriber: EventSubscriber,
                          onError errorHandler: @escaping (Error) -> Void) {
-        DomainRegistry.errorStream.removeHandler(subscriber)
-        DomainRegistry.errorStream.addHandler(subscriber, errorHandler)
+        DomainRegistry.errorStream.removeHandler(self)
+        DomainRegistry.errorStream.addHandler(self) { error in
+            switch error {
+            case RecoveryServiceError.invalidContractAddress:
+                errorHandler(RecoveryApplicationServiceError.invalidContractAddress)
+            default:
+                errorHandler(error)
+            }
+        }
         ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
         ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: WalletAddressChanged.self)
         DomainRegistry.recoveryService.change(address: Address(address))
+        DomainRegistry.errorStream.removeHandler(self)
+        ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
     }
 
 }
-
-// TODO: error localization
