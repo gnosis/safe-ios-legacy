@@ -56,25 +56,44 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
     }
 
     func didSelectBrowserExtensionSetup() {
-        pairController = PairWithBrowserExtensionViewController.create { [unowned self] address, code in
-            self.didPair(address: address, code: code)
-        }
+        pairController = newPairController()
         push(pairController!)
+    }
+
+    func newPairController() -> PairWithBrowserExtensionViewController {
+        let controller = PairWithBrowserExtensionViewController.create(delegate: self)
+        controller.screenTitle = LocalizedString("new_safe.browser_extension.title",
+                                                 comment: "Title for add browser extension screen")
+        controller.screenHeader = LocalizedString("new_safe.browser_extension.header",
+                                                  comment: "Header for add browser extension screen")
+        controller.descriptionText = LocalizedString("new_safe.browser_extension.description",
+                                                     comment: "Description for add browser extension screen")
+        return controller
     }
 
     func didSelectNext() {
         push(SafeCreationViewController.create(delegate: self))
     }
 
-    private func didPair(address: String, code: String) {
-        guard let pairController = pairController else { return }
+}
+
+extension NewSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
+
+    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
+                                                didPairWith address: String,
+                                                code: String) {
         do {
             try ApplicationServiceRegistry.walletService
                 .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
             self.pop()
         } catch let e {
-            pairController.handleError(e)
+            controller.handleError(e)
         }
+    }
+
+    func pairWithBrowserExtensionViewControllerDidSkipPairing() {
+        ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
+        self.pop()
     }
 
 }

@@ -9,23 +9,26 @@ import MultisigWalletApplication
 import Common
 import SafariServices
 
+protocol PairWithBrowserExtensionViewControllerDelegate: class {
+
+    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
+                                                didPairWith address: String,
+                                                code: String)
+    func pairWithBrowserExtensionViewControllerDidSkipPairing()
+
+}
+
 final class PairWithBrowserExtensionViewController: UIViewController {
 
-    typealias PairCompletion = (_ address: String, _ code: String) -> Void
-
     enum Strings {
-        static let title = LocalizedString("new_safe.browser_extension.title",
-                                           comment: "Title for add browser extension screen")
-        static let header = LocalizedString("new_safe.browser_extension.header",
-                                            comment: "Header for add browser extension screen")
-        static let description = LocalizedString("new_safe.browser_extension.description",
-                                                 comment: "Description for add browser extension screen")
         static let downloadExtension = LocalizedString("new_safe.browser_extension.download_chrome_extension",
                                                        comment: "'Download the' Gnosis Safe Chrome browser exntension.")
         static let chromeExtension = LocalizedString("new_safe.browser_extension.chrome_extension_substring",
                                                      comment: "Download the 'Gnosis Safe Chrome browser exntension.'")
         static let scanQRCode = LocalizedString("new_safe.browser_extension.scan_qr",
                                                 comment: "Scan its QR code.")
+        static let skipSetup = LocalizedString("new_safe.browser_extension.skip",
+                                               comment: "Skip button text")
         static let scan = LocalizedString("new_safe.browser_extension.scan",
                                           comment: "Scan button title in extension setup screen")
         static let browserExtensionExpired = LocalizedString("new_safe.browser_extension.expired",
@@ -41,8 +44,11 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var step1Label: UILabel!
     @IBOutlet weak var step2Label: UILabel!
+    var skipButton: UIButton!
+    let skipButtonOffset: CGFloat = 30
+    let skipButtonMinimumHeight: CGFloat = 50
+    weak var delegate: PairWithBrowserExtensionViewControllerDelegate?
 
-    public private(set) var pairCompletion: PairCompletion!
     private var logger: Logger {
         return MultisigWalletApplication.ApplicationServiceRegistry.logger
     }
@@ -56,19 +62,46 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     var scanBarButtonItem: ScanBarButtonItem!
     private var activityIndicator: UIActivityIndicatorView!
 
-    static func create(completion: @escaping PairCompletion) -> PairWithBrowserExtensionViewController {
-        let controller = StoryboardScene.PairWithBrowserExtension.pairWithBrowserExtensionViewController.instantiate()
-        controller.pairCompletion = completion
-        return controller
+    var screenTitle: String? {
+        didSet {
+            updateTexts()
+        }
+    }
+
+    var screenHeader: String? {
+        didSet {
+            updateTexts()
+        }
+    }
+
+    var descriptionText: String? {
+        didSet {
+            updateTexts()
+        }
+    }
+
+    static func create(delegate: PairWithBrowserExtensionViewControllerDelegate?)
+        -> PairWithBrowserExtensionViewController {
+            let controller = StoryboardScene.PairWithBrowserExtension
+                .pairWithBrowserExtensionViewController.instantiate()
+            controller.delegate = delegate
+            return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = Strings.title
         configureScanButton()
         configureActivityIndicator()
-        configureWrapperView()
-        configureTexts()
+        configureStepsLabels()
+        configureSkipButton()
+        updateTexts()
+    }
+
+    func updateTexts() {
+        guard isViewLoaded else { return }
+        title = screenTitle
+        headerLabel.text = screenHeader
+        descriptionLabel.text = descriptionText
     }
 
     func handleError(_ error: Error) {
@@ -101,16 +134,20 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         activityIndicator.color = ColorName.aquaBlue.color
     }
 
-    private func configureWrapperView() {
-        wrapperView.layer.shadowColor = UIColor.black.cgColor
-        wrapperView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        wrapperView.layer.shadowOpacity = 0.4
-    }
-
-    private func configureTexts() {
-        headerLabel.text = Strings.header
-        descriptionLabel.text = Strings.description
-        configureStepsLabels()
+    private func configureSkipButton() {
+        skipButton = UIButton(type: .custom)
+        skipButton.setTitleColor(.white, for: .normal)
+        skipButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        skipButton.titleLabel?.numberOfLines = 0
+        skipButton.titleLabel?.textAlignment = .center
+        skipButton.setTitle(Strings.skipSetup, for: .normal)
+        skipButton.addTarget(self, action: #selector(skipPairing(_:)), for: .touchUpInside)
+        skipButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(skipButton)
+        NSLayoutConstraint.activate([
+            skipButton.topAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: skipButtonOffset),
+            skipButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            skipButton.heightAnchor.constraint(greaterThanOrEqualToConstant: skipButtonMinimumHeight)])
     }
 
     private func configureStepsLabels() {
@@ -135,7 +172,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
         let address = scanBarButtonItem.scanValidatedConverter!(code)!
         DispatchQueue.main.async {
             self.showScanButton()
-            self.pairCompletion(address, code)
+            self.delegate?.pairWithBrowserExtensionViewController(self, didPairWith: address, code: code)
         }
     }
 
@@ -155,6 +192,10 @@ final class PairWithBrowserExtensionViewController: UIViewController {
 
     private func showScanButton() {
         navigationItem.rightBarButtonItem = scanBarButtonItem
+    }
+
+    @IBAction func skipPairing(_ sender: Any) {
+        delegate?.pairWithBrowserExtensionViewControllerDidSkipPairing()
     }
 
     // MARK: - Debug Buttons

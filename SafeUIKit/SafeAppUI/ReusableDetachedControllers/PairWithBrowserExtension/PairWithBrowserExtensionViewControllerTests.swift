@@ -10,15 +10,12 @@ import CommonTestSupport
 class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
 
     var controller: PairWithBrowserExtensionViewController!
-    var pairedAddress: String?
-    var pairedCode: String?
+    //swiftlint:disable:next weak_delegate
+    var testDelegate = TestPairWithBrowserExtensionViewControllerDelegate()
 
     override func setUp() {
         super.setUp()
-        controller = PairWithBrowserExtensionViewController.create { address, code in
-            self.pairedAddress = address
-            self.pairedCode = code
-        }
+        controller = PairWithBrowserExtensionViewController.create(delegate: testDelegate)
         controller.loadViewIfNeeded()
         ethereumService.browserExtensionAddress = "address"
     }
@@ -36,11 +33,28 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
 
     func test_whenScansValidCode_thenCallsTheDelegate() {
         controller.didScanValidCode(controller.scanBarButtonItem, code: "valid_code")
-        XCTAssertNil(pairedAddress)
-        XCTAssertNil(pairedCode)
+        XCTAssertNil(testDelegate.pairedAddress)
+        XCTAssertNil(testDelegate.pairedCode)
         delay()
-        XCTAssertNotNil(pairedAddress)
-        XCTAssertNotNil(pairedCode)
+        XCTAssertNotNil(testDelegate.pairedAddress)
+        XCTAssertNotNil(testDelegate.pairedCode)
+    }
+
+}
+
+class TestPairWithBrowserExtensionViewControllerDelegate: PairWithBrowserExtensionViewControllerDelegate {
+
+    var pairedAddress: String?
+    var pairedCode: String?
+
+    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
+                                                didPairWith address: String,
+                                                code: String) {
+        pairedAddress = address
+        pairedCode = code
+    }
+
+    func pairWithBrowserExtensionViewControllerDidSkipPairing() {
     }
 
 }
