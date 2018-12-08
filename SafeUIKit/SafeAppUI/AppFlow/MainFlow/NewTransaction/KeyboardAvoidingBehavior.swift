@@ -11,7 +11,15 @@ class KeyboardAvoidingBehavior {
     private let notificationCenter: NotificationCenter
 
     /// Set this variable to reference active text field when a text field gets focus
-    var activeTextField: UITextField?
+    var activeTextField: UITextField? {
+        get { return activeResponder as? UITextField }
+        set { activeResponder = newValue }
+    }
+    var activeTextView: UITextView? {
+        get { return activeResponder as? UITextView }
+        set { activeResponder = newValue }
+    }
+    var activeResponder: UIView?
     var useTextFieldSuperviewFrame = false
 
     init(scrollView: UIScrollView, notificationCenter: NotificationCenter = NotificationCenter.default) {
@@ -39,8 +47,8 @@ class KeyboardAvoidingBehavior {
     }
 
     @objc func didTapScrollView() {
-        if let field = activeTextField {
-            deactivateField(field)
+        if let responder = activeResponder {
+            deactivate(responder)
         }
     }
 
@@ -55,7 +63,7 @@ class KeyboardAvoidingBehavior {
         scrollView.scrollIndicatorInsets = scrollView.contentInset
         var rect = view.bounds
         rect.size.height -= keyboardFrame.height
-        if let frame = textFieldFrame(in: view), !rect.contains(frame) {
+        if let frame = responderFrame(in: view), !rect.contains(frame) {
             var animated = true
             if let isSuppressing = notification.userInfo?["suppress_animation"] as? Bool {
                 animated = !isSuppressing
@@ -67,8 +75,8 @@ class KeyboardAvoidingBehavior {
         }
     }
 
-    private func textFieldFrame(in parent: UIView) -> CGRect? {
-        guard let field = activeTextField else { return nil }
+    private func responderFrame(in parent: UIView) -> CGRect? {
+        guard let field = activeResponder else { return nil }
         let frame = useTextFieldSuperviewFrame ?
             parent.convert(field.superview!.bounds, from: field.superview!) :
             parent.convert(field.bounds, from: field)
@@ -80,12 +88,12 @@ class KeyboardAvoidingBehavior {
         scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
 
-    func activateField(_ textField: UITextField) {
-        textField.becomeFirstResponder()
+    func activate(_ responder: UIView) {
+        responder.becomeFirstResponder()
     }
 
-    func deactivateField(_ textField: UITextField) {
-        textField.resignFirstResponder()
+    func deactivate(_ responder: UIView) {
+        responder.resignFirstResponder()
     }
 
 }

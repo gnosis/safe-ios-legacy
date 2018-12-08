@@ -125,6 +125,7 @@
 		0A9BA3C9207F6B6A001DC22F /* CheckmarkButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3C8207F6B6A001DC22F /* CheckmarkButtonTests.swift */; };
 		0A9BA3CB207F6BB6001DC22F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BA3CA207F6BB6001DC22F /* Assets.swift */; };
 		0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D058A20CEB5C3007DED3B /* Colors.swift */; };
+		0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */; };
 		0ABA591821AC07D0009D249F /* AmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591721AC07D0009D249F /* AmountLabel.swift */; };
 		0ABA591A21AC07E8009D249F /* EthereumAddressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591921AC07E8009D249F /* EthereumAddressLabel.swift */; };
 		0ABA591F21AC0856009D249F /* AmountLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591E21AC0856009D249F /* AmountLabelTests.swift */; };
@@ -134,6 +135,7 @@
 		0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */; };
 		0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */; };
 		0AC3F1732183674100DAADC9 /* GuidelinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F1722183674100DAADC9 /* GuidelinesViewController.swift */; };
+		0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD124DC21BBF037005565B7 /* RecoveryPhraseInputViewController.swift */; };
 		0AD1D1E021A8430300941EA1 /* EthereumAddressFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1D1DF21A8430300941EA1 /* EthereumAddressFormatter.swift */; };
 		0AD1D1E221A8432800941EA1 /* EthereumAddressFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1D1E121A8432800941EA1 /* EthereumAddressFormatterTests.swift */; };
 		0AD1D1E621A8710500941EA1 /* BaseCustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1D1E521A8710500941EA1 /* BaseCustomLabel.swift */; };
@@ -465,6 +467,7 @@
 		0A9BA3CA207F6BB6001DC22F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		0A9D058920CEB59E007DED3B /* Colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Colors.txt; sourceTree = "<group>"; };
 		0A9D058A20CEB5C3007DED3B /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputViewController.swift; sourceTree = "<group>"; };
 		0AB0B56B2163898E00FB2435 /* SafeUIKitDemoConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SafeUIKitDemoConfig.xcconfig; sourceTree = "<group>"; };
 		0AB0B56C21638A2400FB2435 /* SafeUIKitDemo.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = SafeUIKitDemo.xcfilelist; sourceTree = "<group>"; };
 		0AB0B56E21638AEC00FB2435 /* SafeUIKit.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SafeUIKit.xcconfig; sourceTree = "<group>"; };
@@ -478,6 +481,7 @@
 		0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewControllerTests.swift; sourceTree = "<group>"; };
 		0AC3F1722183674100DAADC9 /* GuidelinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidelinesViewController.swift; sourceTree = "<group>"; };
+		0AD124DC21BBF037005565B7 /* RecoveryPhraseInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryPhraseInputViewController.swift; sourceTree = "<group>"; };
 		0AD1D1DF21A8430300941EA1 /* EthereumAddressFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressFormatter.swift; sourceTree = "<group>"; };
 		0AD1D1E121A8432800941EA1 /* EthereumAddressFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressFormatterTests.swift; sourceTree = "<group>"; };
 		0AD1D1E521A8710500941EA1 /* BaseCustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomLabel.swift; sourceTree = "<group>"; };
@@ -688,7 +692,9 @@
 				0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */,
 				0A6EF3C521BA8C6600F1074E /* RecoverSafeFlowCoordinator.swift */,
 				0A6EF3C721BA8CC100F1074E /* AddressInputViewController.swift */,
+				0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */,
 				0A6EF3C921BA8D0600F1074E /* RecoverSafe.storyboard */,
+				0AD124DC21BBF037005565B7 /* RecoveryPhraseInputViewController.swift */,
 				0A6EF3C321BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift */,
 				0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */,
 				0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */,
@@ -2024,6 +2030,7 @@
 				55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */,
 				55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */,
 				0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */,
+				0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */,
 				0A00293020CFCBA3009A4BFE /* SegmentBarController.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
@@ -2048,6 +2055,7 @@
 				0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */,
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
+				0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */,
 				556251F42147C34600F569EE /* AddTokenHeaderView.swift in Sources */,
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
 				0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */,

@@ -24,7 +24,15 @@ extension RecoverSafeFlowCoordinator: GuidelinesViewControllerDelegate {
 extension RecoverSafeFlowCoordinator: AddressInputViewControllerDelegate {
 
     func addressInputViewControllerDidPressNext() {
-        // wip
+        push(RecoveryPhraseInputViewController.create(delegate: self))
+    }
+
+}
+
+extension RecoverSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
+
+    func recoveryPhraseInputViewControllerDidPressNext() {
+
     }
 
 }

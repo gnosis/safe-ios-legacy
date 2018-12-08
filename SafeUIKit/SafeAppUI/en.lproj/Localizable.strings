@@ -296,6 +296,15 @@
 /* Recover safe */
 "recovery.guidelines.title" = "Recover Safe";
 
+/* Error format for invalid recovery phrase */
+"recovery.phrase.error.format" = "Failed to use recovery phrase: %@";
+
+/* Recovery Phrase Input screen header */
+"recovery.phrase.header" = "My recovery phrase";
+
+/* Placeholder for the recovery phrase */
+"recovery.phrase.placeholder" = "HOME BEAT WORD BREAK LEAF HOUSE STUFF KEY HOME BEAT WORD BREAK";
+
 /* Start button title */
 "recovery.start" = "Start";
 
