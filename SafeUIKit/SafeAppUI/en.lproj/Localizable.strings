@@ -270,7 +270,7 @@
 "pending_safe.failed_alert.title" = "Error";
 
 /* Recovery address validation failed alert's message */
-"recovery.address.failed_alert.message" = "Failed to find any valid Safe at this address: %@";
+"recovery.address.failed_alert.message" = "Failed to find the Safe: %@";
 
 /* OK button title */
 "recovery.address.failed_alert.ok" = "Ok";
@@ -280,6 +280,9 @@
 
 /* My Safe Address */
 "recovery.address.header" = "My Safe address";
+
+/* Invalid contract address */
+"recovery.address.invalid_contract" = "Invalid Safe contract address.";
 
 /* Safe Address */
 "recovery.address.placeholder" = "Safe address";
