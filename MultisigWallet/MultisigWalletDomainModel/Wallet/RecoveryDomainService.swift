@@ -257,7 +257,7 @@ struct WalletScheme: Equatable, CustomStringConvertible {
 
 class RecoveryTransactionBuilder {
 
-    let isDebugging = true
+    let isDebugging = false
 
     var wallet: Wallet!
     var accountID: AccountID!
