@@ -33,7 +33,9 @@ class SafeOwnerManagerContractProxyTests: EthereumContractProxyBaseTests {
                                         data: methodCall,
                                         result: proxy.encodeArrayAddress(addresses))
         }
-        let expectedResults = [SafeOwnerManagerContractProxy.sentinelAddress, Address.testAccount2, Address.testAccount3]
+        let expectedResults = [SafeOwnerManagerContractProxy.sentinelAddress,
+                               Address.testAccount2,
+                               Address.testAccount3]
         for i in (0..<addresses.count) {
             XCTAssertEqual(try proxy.previousOwner(to: addresses[i])?.value.lowercased(),
                            expectedResults[i].value.lowercased())
