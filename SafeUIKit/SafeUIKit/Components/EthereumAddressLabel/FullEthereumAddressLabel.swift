@@ -23,6 +23,7 @@ public class FullEthereumAddressLabel: BaseCustomLabel {
         formatter.headAttributes = [.foregroundColor: UIColor.black]
         formatter.tailAttributes = formatter.headAttributes
         numberOfLines = 0
+        lineBreakMode = .byCharWrapping
         update()
     }
 

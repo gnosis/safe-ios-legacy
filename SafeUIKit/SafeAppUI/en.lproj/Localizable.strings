@@ -7,6 +7,9 @@
 /* Try again in */
 "app.unlock.tryagain" = "Try again in";
 
+/* Cancel */
+"cancel" = "cancel";
+
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
 
@@ -320,6 +323,9 @@
 /* Placeholder for the recovery phrase */
 "recovery.phrase.placeholder" = "HOME BEAT WORD BREAK LEAF HOUSE STUFF KEY HOME BEAT WORD BREAK";
 
+/* Header of the review transaction screen */
+"recovery.review.header" = "Recover my Safe";
+
 /* Start button title */
 "recovery.start" = "Start";
 
@@ -446,7 +452,8 @@
 /* Review transaction title */
 "transaction.review_title" = "Review";
 
-/* Submit transaction */
+/* Submit
+   Submit transaction */
 "transaction.submit" = "Submit";
 
 /* Send */
