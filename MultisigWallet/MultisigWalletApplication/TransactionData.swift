@@ -29,6 +29,7 @@ public struct TransactionData {
     public enum TransactionType {
         case outgoing
         case incoming
+        case walletRecovery
     }
 
     public let id: String

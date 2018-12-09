@@ -297,8 +297,16 @@
                         <viewLayoutGuide key="safeArea" id="3f3-aB-tr2"/>
                     </view>
                     <navigationItem key="navigationItem" id="f4E-RN-F4P">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="H9q-eA-gOd"/>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Submit" style="done" id="HpE-nF-lpz"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="H9q-eA-gOd">
+                            <connections>
+                                <action selector="cancel:" destination="Mwb-Jb-gCO" id="XbG-IQ-SHj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Submit" style="done" id="HpE-nF-lpz">
+                            <connections>
+                                <action selector="submit:" destination="Mwb-Jb-gCO" id="hau-6V-mWI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>

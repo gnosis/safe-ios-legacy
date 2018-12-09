@@ -19,6 +19,14 @@ public class EthereumContractProxy {
         return encryptionService.hash(selector.data(using: .ascii)!).prefix(4)
     }
 
+    func encodeUInt(_ value: Int) -> Data {
+        return encodeUInt(BigUInt(value))
+    }
+
+    func encodeUInt(_ value: BigInt) -> Data {
+        return encodeUInt(BigUInt(value))
+    }
+
     func encodeUInt(_ value: BigUInt) -> Data {
         return Data(ethHex: String(value, radix: 16)).leftPadded(to: 32).suffix(32)
     }
@@ -87,6 +95,20 @@ public class EthereumContractProxy {
 
     func decodeBool(_ value: Data) -> Bool {
         return decodeUInt(value) == 0 ? false : true
+    }
+
+    func encodeBytes(_ value: Data) -> Data {
+        let byteLength = value.count % 32 == 0 ? value.count :
+            (value.count + 32 - value.count % 32)
+        return encodeUInt(BigUInt(value.count)) +
+            value.rightPadded(to: byteLength)
+    }
+
+    func decodeBytes(_ value: Data) -> Data {
+        var encoded = value
+        let count = decodeUInt(encoded)
+        encoded = encoded.dropFirst(32)
+        return encoded.prefix(Int(count))
     }
 
     func invoke(_ selector: String, _ args: Data ...) throws -> Data {

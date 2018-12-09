@@ -17,6 +17,7 @@ struct AppConfig: Codable {
     var termsOfUseURL: URL
     var privacyPolicyURL: URL
     var masterCopyAddresses: [String]
+    var multiSendAddress: String
 
     enum CodingKeys: String, CodingKey {
         case encryptionServiceChainId = "encryption_service_chain_id"
@@ -29,6 +30,7 @@ struct AppConfig: Codable {
         case termsOfUseURL = "terms_of_use_url"
         case privacyPolicyURL = "privacy_policy_url"
         case masterCopyAddresses = "master_copy_addresses"
+        case multiSendAddress = "multi_send_contract_addres"
     }
 
 }

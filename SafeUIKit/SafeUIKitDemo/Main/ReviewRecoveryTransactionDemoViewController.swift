@@ -15,7 +15,7 @@ class ReviewRecoveryTransactionDemoViewController: BaseDemoViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        controller = .create()
+        controller = .create(delegate: nil)
         navController = UINavigationController(rootViewController: controller)
         navController.navigationBar.barTintColor = .white
         navController.navigationBar.isTranslucent = false

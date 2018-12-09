@@ -473,8 +473,12 @@ public class WalletApplicationService: Assertable {
         return transactionData(tx)
     }
 
-    private func transactionData(_ tx: Transaction) -> TransactionData {
-        let type = TransactionData.TransactionType.outgoing
+    internal func transactionData(_ tx: Transaction) -> TransactionData {
+        let type: TransactionData.TransactionType
+        switch tx.type {
+        case .transfer: type = .outgoing
+        case .walletRecovery: type = .walletRecovery
+        }
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token,
                       balance: (type == .outgoing ? -1 : 1) * (tx.amount?.amount ?? 0)) :
@@ -488,7 +492,7 @@ public class WalletApplicationService: Assertable {
                                amountTokenData: amountTokenData,
                                feeTokenData: feeTokenData,
                                status: status(of: tx),
-                               type: .outgoing,
+                               type: type,
                                created: tx.createdDate,
                                updated: tx.updatedDate,
                                submitted: tx.submittedDate,

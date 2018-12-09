@@ -30,7 +30,9 @@ public protocol TransactionRepository {
     func findBy(hash: Data, status: TransactionStatus.Code) -> Transaction?
 
     func findBy(hash: Data) -> Transaction?
-    
+
+    func findBy(type: TransactionType, wallet: WalletID) -> Transaction?
+
     /// Generates new transaction identifier
     ///
     /// - Returns: new transaction identifier

@@ -57,6 +57,7 @@ class TransactionTableViewCell: UITableViewCell {
         switch transaction.type {
         case .outgoing: return ColorName.darkSlateBlue.color
         case .incoming: return ColorName.greenTeal.color
+        case .walletRecovery: return ColorName.darkSlateBlue.color
         }
     }
 

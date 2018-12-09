@@ -9,7 +9,7 @@ import BigInt
 // see https://github.com/gnosis/safe-contracts/blob/6db7ce0f600d391bc6f34b144d7845bf5f227d81/contracts/base/ModuleManager.sol#L11
 public class SafeOwnerManagerContractProxy: EthereumContractProxy {
 
-    public let sentinelAddress = Address("0x" + Data([0x1]).leftPadded(to: 20).toHexString())
+    public static let sentinelAddress = Address("0x" + Data([0x1]).leftPadded(to: 20).toHexString())
 
     public func getOwners() throws -> [Address] {
         return try decodeArrayAddress(invoke("getOwners()"))
@@ -20,7 +20,7 @@ public class SafeOwnerManagerContractProxy: EthereumContractProxy {
         guard let index = owners.firstIndex(where: { $0.value.lowercased() == owner.value.lowercased() }) else {
             return nil
         }
-        return index > 0 ? owners[index - 1] : sentinelAddress
+        return index > 0 ? owners[index - 1] : SafeOwnerManagerContractProxy.sentinelAddress
     }
 
     public func isOwner(_ address: Address) throws -> Bool {

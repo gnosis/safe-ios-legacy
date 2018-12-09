@@ -10,10 +10,13 @@ final class RecoverSafeFlowCoordinator: FlowCoordinator {
     override func setUp() {
         super.setUp()
         push(GuidelinesViewController.createRecoverSafeGuidelines(delegate: self))
+        saveCheckpoint()
     }
 
     func showReview() {
-        presentModally(ReviewRecoveryTransactionViewController.create())
+        let controller = ReviewRecoveryTransactionViewController.create(delegate: self)
+        let navigationVC = UINavigationController(rootViewController: controller)
+        presentModally(navigationVC)
     }
 
 }
@@ -69,6 +72,20 @@ extension RecoverSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDele
     func pairWithBrowserExtensionViewControllerDidSkipPairing() {
         ApplicationServiceRegistry.walletService.removeBrowserExtensionOwner()
         showReview()
+    }
+
+}
+
+extension RecoverSafeFlowCoordinator: ReviewRecoveryTransactionViewControllerDelegate {
+
+    func reviewRecoveryTransactionViewControllerDidSubmit() {
+
+    }
+
+    func reviewRecoveryTransactionViewControllerDidCancel() {
+        dismissModal() { [unowned self] in
+            self.popToLastCheckpoint()
+        }
     }
 
 }
