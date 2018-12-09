@@ -20,6 +20,8 @@
 		0A0974DD20480D03005753DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974DA20480D03005753DF /* LaunchScreen.storyboard */; };
 		0A0974EA20480E11005753DF /* SafeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */; };
 		0A0974EC20480E45005753DF /* SafeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* SafeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A290E1421BD1656005188EA /* ReviewRecoveryTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */; };
+		0A290E1621BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
 		0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */; };
 		0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A321BC820CED575000B35E6 /* AddTokenFooterView.swift */; };
@@ -348,6 +350,8 @@
 		0A0974DB20480D03005753DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeUIKitDemoUITests.swift; sourceTree = "<group>"; };
 		0A0974EB20480E45005753DF /* SafeUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeUIKit.h; sourceTree = "<group>"; };
+		0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecoveryTransactionViewController.swift; sourceTree = "<group>"; };
+		0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecoveryTransactionDemoViewController.swift; sourceTree = "<group>"; };
 		0A2972C8205A89C500CEC7D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = SafeUIKit/Base.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		0A2972CA205A8A6200CEC7D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../SafeUIKit/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A321BB820CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsGroupHeaderView.swift; sourceTree = "<group>"; };
@@ -694,6 +698,7 @@
 				0A6EF3C721BA8CC100F1074E /* AddressInputViewController.swift */,
 				0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */,
 				0A6EF3C921BA8D0600F1074E /* RecoverSafe.storyboard */,
+				0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */,
 				0AD124DC21BBF037005565B7 /* RecoveryPhraseInputViewController.swift */,
 				0A6EF3C321BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift */,
 				0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */,
@@ -1131,6 +1136,7 @@
 				0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */,
 				0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */,
 				0A028EC921AD52EA00431D25 /* FundTransferDemoViewController.swift */,
+				0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1906,6 +1912,7 @@
 				0A028ECA21AD52EA00431D25 /* FundTransferDemoViewController.swift in Sources */,
 				55247360214293D500A77557 /* IdenticonViewController.swift in Sources */,
 				0AFA766D2182195200A96FDB /* ViewController.swift in Sources */,
+				0A290E1621BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift in Sources */,
 				555B0E6720CA83DF00424CEE /* TokenDoubleInputViewController.swift in Sources */,
 				556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */,
 				0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */,
@@ -2076,6 +2083,7 @@
 				0A334E48209C8E3800ABC6AE /* AppFlowCoordinator.swift in Sources */,
 				0A334E2C209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift in Sources */,
 				0A334E2B209C8E3800ABC6AE /* NewSafeViewController.swift in Sources */,
+				0A290E1421BD1656005188EA /* ReviewRecoveryTransactionViewController.swift in Sources */,
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
 				550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */,
 				0A5D467B20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift in Sources */,

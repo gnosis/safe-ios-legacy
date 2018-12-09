@@ -13,7 +13,9 @@ final class RecoverSafeFlowCoordinator: FlowCoordinator {
     }
 
     func showReview() {
+        presentModally(ReviewRecoveryTransactionViewController.create())
     }
+
 }
 
 extension RecoverSafeFlowCoordinator: GuidelinesViewControllerDelegate {
