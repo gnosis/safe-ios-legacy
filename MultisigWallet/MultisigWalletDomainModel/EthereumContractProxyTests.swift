@@ -110,4 +110,33 @@ class EthereumContractProxyTests: EthereumContractProxyBaseTests {
         XCTAssertEqual(proxy.decodeBool(proxy.encodeUInt(0)), false)
     }
 
+    func test_encodeBytes() {
+        let shorterThan32Bytes = Data([0x01])
+        let exactly32Bytes = Data(repeating: 0xa, count: 32)
+        let multipleOf32Bytes = Data(repeating: 0xb, count: 64)
+        let remainderShorterThan32Bytes = Data(repeating: 0xc, count: 33)
+
+        XCTAssertEqual(proxy.encodeBytes(shorterThan32Bytes),
+                       proxy.encodeUInt(BigUInt(shorterThan32Bytes.count)) +
+                       shorterThan32Bytes.rightPadded(to: 32))
+
+        XCTAssertEqual(proxy.encodeBytes(exactly32Bytes),
+                       proxy.encodeUInt(BigUInt(exactly32Bytes.count)) +
+                       exactly32Bytes)
+
+        XCTAssertEqual(proxy.encodeBytes(multipleOf32Bytes),
+                       proxy.encodeUInt(BigUInt(multipleOf32Bytes.count)) +
+                       multipleOf32Bytes)
+
+        XCTAssertEqual(proxy.encodeBytes(remainderShorterThan32Bytes),
+                       proxy.encodeUInt(BigUInt(remainderShorterThan32Bytes.count)) +
+                       remainderShorterThan32Bytes.rightPadded(to: 64))
+
+        XCTAssertEqual(proxy.decodeBytes(proxy.encodeBytes(shorterThan32Bytes)), shorterThan32Bytes)
+        XCTAssertEqual(proxy.decodeBytes(proxy.encodeBytes(exactly32Bytes)), exactly32Bytes)
+        XCTAssertEqual(proxy.decodeBytes(proxy.encodeBytes(multipleOf32Bytes)), multipleOf32Bytes)
+        XCTAssertEqual(proxy.decodeBytes(proxy.encodeBytes(remainderShorterThan32Bytes)), remainderShorterThan32Bytes)
+
+    }
+
 }

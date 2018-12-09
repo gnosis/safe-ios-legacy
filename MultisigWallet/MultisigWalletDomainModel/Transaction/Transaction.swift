@@ -306,6 +306,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
 public enum TransactionType: Int {
 
     case transfer
+    case walletRecovery
 
 }
 
@@ -361,6 +362,13 @@ public struct TransactionFeeEstimate: Equatable {
         self.dataGas = dataGas
         self.operationalGas = operationalGas
         self.gasPrice = gasPrice
+    }
+
+    public var total: TokenAmount {
+        return TokenAmount(amount: gasPrice.amount * (TokenInt(gas) +
+            TokenInt(dataGas) +
+            TokenInt(operationalGas)),
+                           token: gasPrice.token)
     }
 
 }

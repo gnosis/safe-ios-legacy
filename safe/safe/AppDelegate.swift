@@ -107,7 +107,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                      for: DeploymentDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: TransactionDomainService(),
                                                      for: TransactionDomainService.self)
-        let config = RecoveryDomainServiceConfig(masterCopyAddresses: appConfig.masterCopyAddresses)
+        let config = RecoveryDomainServiceConfig(masterCopyAddresses: appConfig.masterCopyAddresses,
+                                                 multiSendAddress: appConfig.multiSendAddress)
         MultisigWalletDomainModel.DomainRegistry.put(service: RecoveryDomainService(config: config),
                                                      for: RecoveryDomainService.self)
 

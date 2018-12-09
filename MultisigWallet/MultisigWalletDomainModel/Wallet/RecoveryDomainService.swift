@@ -4,19 +4,27 @@
 
 import Foundation
 import Common
+import BigInt
 
 public enum RecoveryServiceError: Error {
     case invalidContractAddress
     case recoveryAccountsNotFound
     case recoveryPhraseInvalid
+    case unsupportedOwnerCount(String)
+    case unsupportedWalletConfiguration(String)
+    case notEnoughFunds
 }
 
 public struct RecoveryDomainServiceConfig {
-    var validMasterCopyAddresses: [Address]
 
-    public init(masterCopyAddresses: [String]) {
+    var validMasterCopyAddresses: [Address]
+    var multiSendContractAddress: Address
+
+    public init(masterCopyAddresses: [String], multiSendAddress: String) {
         validMasterCopyAddresses = masterCopyAddresses.map { Address($0.lowercased()) }
+        multiSendContractAddress = Address(multiSendAddress)
     }
+
 }
 
 public class RecoveryDomainService: Assertable {
@@ -145,8 +153,353 @@ public class RecoveryDomainService: Assertable {
         }
     }
 
+    // MARK: - Recovery Transaction
+
+    public func createRecoveryTransaction() {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        if let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id) {
+            DomainRegistry.transactionRepository.remove(tx)
+        }
+        RecoveryTransactionBuilder(multiSendContractAddress: config.multiSendContractAddress).main()
+    }
+
+    public func isRecoveryTransactionReadyToSubmit() -> Bool {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        guard let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id) else {
+            return false
+        }
+        let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
+        guard let balance = DomainRegistry.accountRepository.find(id: accountID)?.balance else {
+            return false
+        }
+        guard let estimate = tx.feeEstimate else { return false }
+        let requiredBalance = estimate.total
+        return balance >= requiredBalance.amount
+    }
+
+    public func submitRecoveryTransaction() {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id)!
+
+        let txHash: TransactionHash
+
+        let signatures = tx.signatures.sorted { $0.address.value < $1.address.value }.map {
+            DomainRegistry.encryptionService.ethSignature(from: $0)
+        }
+        do {
+            let request = SubmitTransactionRequest(transaction: tx, signatures: signatures)
+            let response = try DomainRegistry.transactionRelayService.submitTransaction(request: request)
+            txHash = TransactionHash(response.transactionHash)
+        } catch let error {
+            DomainRegistry.errorStream.post(error)
+            return
+        }
+
+        tx.set(hash: txHash)
+        tx.proceed()
+        DomainRegistry.transactionRepository.save(tx)
+    }
+
+    public func cancelRecovery() {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        if let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id) {
+            DomainRegistry.transactionRepository.remove(tx)
+        }
+        wallet.reset()
+        wallet.prepareForRecovery()
+        DomainRegistry.walletRepository.save(wallet)
+    }
+
 }
 
 public class WalletAddressChanged: DomainEvent {}
 
 public class WalletRecoveryAccountsAccepted: DomainEvent {}
+
+public class WalletBecameReadyForRecovery: DomainEvent {}
+
+struct OwnerLinkedList {
+    var list = [SafeOwnerManagerContractProxy.sentinelAddress]
+
+    mutating func add(_ owner: Owner) {
+        let sentinel = list.removeLast()
+        if list.isEmpty {
+            list.append(sentinel)
+        }
+        list.append(owner.address)
+        list.append(sentinel)
+    }
+
+    mutating func replace(_ oldOwner: Owner, with newOwner: Owner) {
+        guard let index = list.firstIndex(of: oldOwner.address) else { return }
+        list[index] = newOwner.address
+    }
+
+    func addressBefore(_ owner: Owner) -> Address {
+        let index = list.firstIndex(of: owner.address)!
+        return list[index - 1]
+    }
+
+}
+
+struct WalletScheme: Equatable, CustomStringConvertible {
+    var confirmations: Int
+    var owners: Int
+
+    static let withoutExtension = WalletScheme(confirmations: 1, owners: 3)
+    static let hasExtension = WalletScheme(confirmations: 2, owners: 4)
+
+    var description: String {
+        return "(\(confirmations)/\(owners))"
+    }
+}
+
+
+class RecoveryTransactionBuilder {
+
+    let isDebugging = true
+
+    var wallet: Wallet!
+    var accountID: AccountID!
+    var oldScheme: WalletScheme!
+    var newScheme: WalletScheme!
+    var readonlyOwnerAddresses: [String]!
+
+    var ownerList: OwnerLinkedList!
+    var modifiableOwners: [Owner]!
+
+    var multiSendContractAddress: Address!
+
+    var ownerContractProxy: SafeOwnerManagerContractProxy!
+    var multiSendContractProxy: MultiSendContractProxy!
+
+    var supportedModifiableOwnerCounts = [1, 2]
+    var supportedSchemes: [WalletScheme] = [.withoutExtension, .hasExtension]
+
+    var transaction: Transaction!
+
+    init(multiSendContractAddress: Address) {
+        self.multiSendContractAddress = multiSendContractAddress
+
+        wallet = DomainRegistry.walletRepository.selectedWallet()!
+        print("Wallet \(wallet.id), address \(wallet.address!)")
+        accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
+
+        oldScheme = oldWalletScheme()
+        newScheme = newWalletScheme()
+        print("Old scheme: ", oldScheme)
+        print("New scheme: ", newScheme)
+
+        ownerList = ownerLinkedList()
+
+        readonlyOwnerAddresses = readonlyAddresses()
+        print("Readonly owners: ", readonlyOwnerAddresses)
+
+        modifiableOwners = mutableOwners()
+        print("Modifiable owners: ", modifiableOwners)
+
+        ownerContractProxy = SafeOwnerManagerContractProxy(wallet.address!)
+        multiSendContractProxy = MultiSendContractProxy(multiSendContractAddress)
+
+        transaction = newTransaction()
+            .change(sender: wallet.address!)
+            .change(amount: .ether(0))
+    }
+
+    func main() {
+        guard isSupportedSafeOwners() && isSupportedScheme() else { return }
+        buildData()
+        guard let estimation = self.estimate() else { return }
+        calculateFees(basedOn: estimation)
+        seal()
+        sign()
+        save()
+        notify()
+    }
+
+    private func print(_ items: Any...) {
+        #if DEBUG
+        guard isDebugging else { return }
+        Swift.print(items)
+        #endif
+    }
+
+    fileprivate func newTransaction() -> Transaction {
+        return Transaction(id: DomainRegistry.transactionRepository.nextID(),
+                           type: .walletRecovery,
+                           walletID: wallet.id,
+                           accountID: accountID)
+    }
+
+    fileprivate func oldWalletScheme() -> WalletScheme {
+        return WalletScheme(confirmations: wallet.confirmationCount,
+                            owners: wallet.owners.filter { $0.role == .unknown }.count)
+    }
+
+    fileprivate func newWalletScheme() -> WalletScheme {
+        return WalletScheme(confirmations: wallet.owner(role: .browserExtension) == nil ? 1 : 2,
+                            owners: wallet.owners.filter { $0.role != .unknown }.count)
+    }
+
+    private func ownerLinkedList() -> OwnerLinkedList {
+        var ownerList = OwnerLinkedList()
+        wallet.owners.filter { $0.role == .unknown }.forEach { ownerList.add($0) }
+        return ownerList
+    }
+
+    private func readonlyAddresses() -> [String] {
+        return wallet.owners
+            .filter { $0.role == .paperWallet || $0.role == .paperWalletDerived }
+            .map { $0.address.value.lowercased() }
+    }
+
+    private func mutableOwners() -> [Owner] {
+        let readonly = readonlyAddresses()
+        return wallet.owners.filter {
+            $0.role == .unknown && !readonly.contains($0.address.value.lowercased())
+        }
+    }
+
+    fileprivate func swapDeviceOwner() {
+        print("Recovery \(oldScheme!)-> \(newScheme!)")
+
+        let deviceSwapOwner = modifiableOwners.removeFirst()
+        let addressBeforeSwapOwner = ownerList.addressBefore(deviceSwapOwner)
+        let deviceOwner = wallet.owner(role: .thisDevice)!
+        let data = ownerContractProxy.swapOwner(prevOwner: addressBeforeSwapOwner,
+                                                old: deviceSwapOwner.address,
+                                                new: deviceOwner.address)
+
+        print("Owners: ", ownerList.list)
+        print("Swap \(deviceSwapOwner) -> \(deviceOwner)")
+
+        transaction.change(data: data)
+            .change(recipient: wallet.address!)
+            .change(operation: .call)
+    }
+
+    fileprivate func swapDeviceOwnerAndAddExtensionOwner() {
+        print("Recovery \(oldScheme!)-> \(newScheme!)")
+
+        let deviceSwapOwner = modifiableOwners.removeFirst()
+        let addressBeforeSwapOwner = ownerList.addressBefore(deviceSwapOwner)
+        let deviceOwner = wallet.owner(role: .thisDevice)!
+        let swapOwnerData = ownerContractProxy.swapOwner(prevOwner: addressBeforeSwapOwner,
+                                                         old: deviceSwapOwner.address,
+                                                         new: deviceOwner.address)
+
+        print("Owners: ", ownerList.list)
+        print("Swap \(deviceSwapOwner) -> \(deviceOwner)")
+
+        ownerList.replace(deviceSwapOwner, with: deviceOwner)
+
+        let extensionOwner = wallet.owner(role: .browserExtension)!
+
+        print("Owners: ", ownerList.list)
+        print("Add \(extensionOwner)")
+
+        ownerList.add(extensionOwner)
+        print("Owners: ", ownerList.list)
+
+        let addOwnerData = ownerContractProxy.addOwner(extensionOwner.address, newThreshold: 2)
+        wallet.changeConfirmationCount(2)
+
+        print("Threshold changed to \(wallet.confirmationCount)")
+
+        let data = multiSendContractProxy.multiSend([
+            (operation: .call, to: wallet.address!, value: 0, data: swapOwnerData),
+            (operation: .call, to: wallet.address!, value: 0, data: addOwnerData)])
+
+        transaction.change(recipient: multiSendContractProxy.contract)
+            .change(data: data)
+            .change(operation: .delegateCall)
+    }
+
+    fileprivate func sign() {
+        // Signing
+        let paperWalletEOA = DomainRegistry.externallyOwnedAccountRepository.find(by:
+            wallet.owner(role: .paperWallet)!.address)!
+        let firstSignature = DomainRegistry.encryptionService.sign(transaction: transaction,
+                                                                   privateKey: paperWalletEOA.privateKey)
+        transaction.add(signature: Signature(data: firstSignature, address: paperWalletEOA.address))
+        if wallet.confirmationCount == 2 {
+            let derivedEOA = DomainRegistry.externallyOwnedAccountRepository.find(by:
+                wallet.owner(role: .paperWalletDerived)!.address)!
+            let secondSignature = DomainRegistry.encryptionService.sign(transaction: transaction,
+                                                                        privateKey: derivedEOA.privateKey)
+            transaction.add(signature: Signature(data: secondSignature, address: derivedEOA.address))
+        }
+    }
+
+    fileprivate func calculateFees(basedOn estimationResponse: EstimateTransactionRequest.Response) {
+        let gasPrice = TokenAmount(amount: TokenInt(estimationResponse.gasPrice), token: Token.Ether)
+        let estimate = TransactionFeeEstimate(gas: estimationResponse.safeTxGas,
+                                              dataGas: estimationResponse.dataGas,
+                                              operationalGas: estimationResponse.operationalGas,
+                                              gasPrice: gasPrice)
+        let fee = TokenInt(estimate.gas + estimate.dataGas) * estimate.gasPrice.amount
+        let feeAmount = TokenAmount(amount: fee, token: gasPrice.token)
+        transaction.change(fee: feeAmount)
+            .change(feeEstimate: estimate)
+            .change(nonce: String(estimationResponse.nextNonce))
+    }
+
+    fileprivate func seal() {
+        transaction.change(hash: DomainRegistry.encryptionService.hash(of: transaction))
+        transaction.proceed()
+    }
+
+    fileprivate func buildData() {
+        switch (oldScheme!, newScheme!) {
+        case (.withoutExtension, .withoutExtension):
+            swapDeviceOwner()
+        case (.withoutExtension, .hasExtension):
+            swapDeviceOwnerAndAddExtensionOwner()
+        default:
+            preconditionFailure("Unreachable")
+        }
+    }
+
+    private func isSupportedSafeOwners() -> Bool {
+        guard supportedModifiableOwnerCounts.contains(modifiableOwners.count) else {
+            let message = "Expected one of \(supportedModifiableOwnerCounts) mutable owners" +
+            ", but found \(modifiableOwners.count)"
+            DomainRegistry.errorStream.post(RecoveryServiceError.unsupportedWalletConfiguration(message))
+            return false
+        }
+        return true
+    }
+
+    private func isSupportedScheme() -> Bool {
+        guard supportedSchemes.contains(oldScheme) && supportedSchemes.contains(newScheme) else {
+            let message = "Expected \(supportedSchemes) confirmations/owners, but got \(oldScheme!)"
+            DomainRegistry.errorStream.post(RecoveryServiceError.unsupportedWalletConfiguration(message))
+            return false
+        }
+        return true
+    }
+
+    private func estimate() -> EstimateTransactionRequest.Response? {
+        let formattedRecipient = DomainRegistry.encryptionService.address(from: transaction.ethTo.value)!
+        let estimationRequest = EstimateTransactionRequest(safe: transaction.sender!,
+                                                           to: formattedRecipient,
+                                                           value: String(transaction.ethValue),
+                                                           data: transaction.ethData,
+                                                           operation: transaction.operation!)
+        do {
+            return try DomainRegistry.transactionRelayService.estimateTransaction(request: estimationRequest)
+        } catch let error {
+            DomainRegistry.errorStream.post(error)
+            return nil
+        }
+    }
+
+    private func save() {
+        DomainRegistry.transactionRepository.save(transaction)
+        DomainRegistry.walletRepository.save(wallet)
+    }
+
+    private func notify() {
+        DomainRegistry.eventPublisher.publish(WalletBecameReadyForRecovery())
+    }
+}

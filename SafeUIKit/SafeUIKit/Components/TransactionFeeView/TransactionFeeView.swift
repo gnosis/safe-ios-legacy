@@ -26,7 +26,7 @@ public class TransactionFeeView: BaseCustomView {
 
     public private(set) var currentBalance: TokenData?
     public private(set) var transactionFee: TokenData?
-    public private(set) var resultingBalance: TokenData!
+    public private(set) var resultingBalance: TokenData?
 
     private var isSecondaryView: Bool {
         return currentBalanceLabel == nil
@@ -85,12 +85,14 @@ public class TransactionFeeView: BaseCustomView {
             wrapperStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -paddings.bottom)])
     }
 
-    public func configure(currentBalance: TokenData?, transactionFee: TokenData?, resultingBalance: TokenData!) {
+    public func configure(currentBalance: TokenData?, transactionFee: TokenData?, resultingBalance: TokenData?) {
         self.currentBalance = currentBalance
         self.transactionFee = transactionFee
         self.resultingBalance = resultingBalance
-        tokenFormatter.tokenCode = resultingBalance.code
-        tokenFormatter.decimals = resultingBalance.decimals
+        if let resultingBalance = resultingBalance {
+            tokenFormatter.tokenCode = resultingBalance.code
+            tokenFormatter.decimals = resultingBalance.decimals
+        }
         tokenFormatter.displayedDecimals = displayedDecimals
         buildWrapperStackView()
         updateValues()
@@ -125,20 +127,21 @@ public class TransactionFeeView: BaseCustomView {
     }
 
     private func currentBalanceSection() -> UIStackView? {
-        guard let tokenData = currentBalance else { return nil }
+        guard let tokenData = currentBalance, let resultingBalance = resultingBalance else { return nil }
         assert(tokenData.isSameToken(with: resultingBalance))
         return sectionStackView(text: currentBalanceLabel(tokenData),
                                 balance: tokenValueLabel(tokenData, bold: true))
     }
 
     private func transactionFeeSection() -> UIStackView? {
-        guard let tokenData = transactionFee else { return nil }
+        guard let tokenData = transactionFee, let resultingBalance = resultingBalance else { return nil }
         assert(tokenData.isSameToken(with: resultingBalance))
         return sectionStackView(text: transactionFeeLabel(tokenData, shouldDisplayEtherText: isSecondaryView),
                                 balance: tokenValueLabel(tokenData, bold: false))
     }
 
     private func resultingBalanceSection() -> UIStackView {
+        guard let resultingBalance = resultingBalance else { return UIStackView() }
         let isBold = !isSecondaryView
         return sectionStackView(text: resultingBalanceLabel(resultingBalance, bold: isBold),
                                 balance: tokenValueLabel(resultingBalance, bold: isBold))

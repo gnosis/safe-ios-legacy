@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import Common
 
 public enum RecoveryApplicationServiceError: Error {
     case invalidContractAddress
@@ -40,6 +41,79 @@ public class RecoveryApplicationService {
             DomainRegistry.recoveryService.provide(recoveryPhrase: recoveryPhrase)
         }
     }
+
+    public func createRecoveryTransaction(subscriber: EventSubscriber,
+                                          onError errorHandler: @escaping (Error) -> Void) {
+        withEnvironment(for: subscriber, errorHandler: errorHandler) {
+            ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: WalletBecameReadyForRecovery.self)
+            DomainRegistry.recoveryService.createRecoveryTransaction()
+        }
+    }
+
+    public func recoveryTransaction() -> TransactionData? {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        guard let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id) else {
+            return nil
+        }
+        let status: TransactionData.Status
+        switch tx.status {
+        case .draft:
+            status = .waitingForConfirmation
+        case .signing:
+            status = .readyToSubmit
+        case .pending:
+            status = .pending
+        case .rejected:
+            status = .rejected
+        case .failed:
+            status = .failed
+        case .success:
+            status = .success
+        case .discarded:
+            status = .discarded
+        }
+        let type: TransactionData.TransactionType
+        switch tx.type {
+        case .transfer:
+            type = .outgoing
+        case .walletRecovery:
+            type = .walletRecovery
+        }
+        let amountTokenData = TokenData(token: tx.amount!.token,
+                                        balance: tx.amount!.amount)
+        let feeTokenData = TokenData(token: tx.feeEstimate!.gasPrice.token,
+                                     balance: -tx.feeEstimate!.total.amount)
+        return TransactionData(id: tx.id.id,
+                               sender: tx.sender!.value,
+                               recipient: tx.recipient!.value,
+                               amountTokenData: amountTokenData,
+                               feeTokenData: feeTokenData,
+                               status: status,
+                               type: type,
+                               created: tx.createdDate,
+                               updated: tx.updatedDate,
+                               submitted: tx.submittedDate,
+                               rejected: tx.rejectedDate,
+                               processed: tx.processedDate)
+    }
+
+    public func isRecoveryTransactionReadyToSubmit() -> Bool {
+        return DomainRegistry.recoveryService.isRecoveryTransactionReadyToSubmit()
+    }
+
+    public func submitRecoveryTransaction() {
+        DomainRegistry.recoveryService.submitRecoveryTransaction()
+    }
+
+    public func cancelRecovery() {
+        DomainRegistry.recoveryService.cancelRecovery()
+    }
+
+    public func observeBalance(subscriber: EventSubscriber) {
+        ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: AccountsBalancesUpdated.self)
+    }
+
+    // MARK: - Execution environment setup
 
     private func withEnvironment(for subscriber: EventSubscriber,
                                  errorHandler:  @escaping (Error) -> Void,

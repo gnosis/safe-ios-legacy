@@ -329,6 +329,9 @@
 /* Start button title */
 "recovery.start" = "Start";
 
+/* Recovery transaction failed alert's title */
+"recovery.transaction.failed_alert.title" = "recovery.transaction.failed_alert.title";
+
 /* Safe Address label. */
 "safe_address.address" = "Address";
 
@@ -442,6 +445,9 @@
 
 /* 'Outgoing' transaction type */
 "transaction.details.type.outgoing" = "Outgoing Transfer";
+
+/* Wallet recovery */
+"transaction.details.type.recovery" = "Safe Recovery";
 
 /* Not enough balance for transaction. */
 "transaction.error.notEnoughFunds" = "Insufficient funds for the amount.";
