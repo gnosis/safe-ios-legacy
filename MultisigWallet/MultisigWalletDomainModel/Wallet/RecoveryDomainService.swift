@@ -218,38 +218,76 @@ public class WalletRecoveryAccountsAccepted: DomainEvent {}
 
 public class WalletBecameReadyForRecovery: DomainEvent {}
 
-struct OwnerLinkedList {
+fileprivate extension Address {
+
+    var normalized: Address {
+        return Address(value.lowercased())
+    }
+}
+
+public struct OwnerLinkedList {
+
     var list = [SafeOwnerManagerContractProxy.sentinelAddress]
 
-    mutating func add(_ owner: Owner) {
+    public init() {}
+
+    public mutating func add(_ owner: Owner) {
+        add(owner.address)
+    }
+
+    public mutating func add(_ owner: Address) {
         let sentinel = list.removeLast()
         if list.isEmpty {
             list.append(sentinel)
         }
-        list.append(owner.address)
+        list.append(owner.normalized)
         list.append(sentinel)
     }
 
-    mutating func replace(_ oldOwner: Owner, with newOwner: Owner) {
-        guard let index = list.firstIndex(of: oldOwner.address) else { return }
-        list[index] = newOwner.address
+    public mutating func replace(_ oldOwner: Owner, with newOwner: Owner) {
+        replace(oldOwner.address, with: newOwner.address)
     }
 
-    func addressBefore(_ owner: Owner) -> Address {
-        let index = list.firstIndex(of: owner.address)!
+    public mutating func replace(_ oldOwner: Address, with newOwner: Address) {
+        guard let index = list.firstIndex(of: oldOwner.normalized) else { return }
+        list[index] = newOwner.normalized
+    }
+
+    public mutating func remove(_ owner: Owner) {
+        remove(owner.address)
+    }
+
+    public mutating func remove(_ address: Address) {
+        if let index = list.firstIndex(of: address.normalized) {
+            list.remove(at: index)
+        }
+    }
+
+    public func addressBefore(_ owner: Owner) -> Address {
+        return addressBefore(owner.address)
+    }
+
+    public func addressBefore(_ owner: Address) -> Address {
+        let index = list.firstIndex(of: owner.normalized)!
         return list[index - 1]
     }
 
 }
 
-struct WalletScheme: Equatable, CustomStringConvertible {
-    var confirmations: Int
-    var owners: Int
+public struct WalletScheme: Equatable, CustomStringConvertible {
 
-    static let withoutExtension = WalletScheme(confirmations: 1, owners: 3)
-    static let hasExtension = WalletScheme(confirmations: 2, owners: 4)
+    public var confirmations: Int
+    public var owners: Int
 
-    var description: String {
+    public init(confirmations: Int, owners: Int) {
+        self.confirmations = confirmations
+        self.owners = owners
+    }
+
+    public static let withoutExtension = WalletScheme(confirmations: 1, owners: 3)
+    public static let hasExtension = WalletScheme(confirmations: 2, owners: 4)
+
+    public var description: String {
         return "(\(confirmations)/\(owners))"
     }
 }
@@ -412,7 +450,8 @@ class RecoveryTransactionBuilder {
             (operation: .call, to: wallet.address!, value: 0, data: swapOwnerData),
             (operation: .call, to: wallet.address!, value: 0, data: addOwnerData)])
 
-        transaction.change(recipient: multiSendContractProxy.contract)
+        let address = DomainRegistry.encryptionService.address(from: multiSendContractProxy.contract.value)!
+        transaction.change(recipient: address)
             .change(data: data)
             .change(operation: .delegateCall)
     }

@@ -4,8 +4,11 @@
 /* Cancel */
 "app.unlock.cancel" = "Cancel";
 
-/* Unlock screen header */
-"app.unlock.header" = "Unlock with your master password";
+/* Try again in */
+"app.unlock.tryagain" = "Try again in";
+
+/* Cancel */
+"cancel" = "cancel";
 
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
@@ -52,6 +55,9 @@
 /* Change recovery key  menu item */
 "menu.action.change_recovery_phrase" = "Replace Recovery Phrase";
 
+/* Connect browser extension menu item */
+"menu.action.connect_browser_extension" = "Connect Browser Extension";
+
 /* Feedback and FAQ menu item */
 "menu.action.feedback_and_faq" = "Feedback and FAQs";
 
@@ -85,53 +91,96 @@
 /* Title for menu screen. */
 "menu.title" = "Menu";
 
-/* Browser extension Button */
-"new_safe.browser_extension" = "Browser Extension";
+/* Back */
+"navigation.back" = "Back";
 
-/* Create button */
-"new_safe.create" = "Create";
+/* Browser extension button */
+"new_safe.browser_extension" = "Browser extension";
+
+/* Download the 'Gnosis Safe Chrome browser exntension.' */
+"new_safe.browser_extension.chrome_extension_substring" = "Gnosis Safe Chrome browser extension.";
+
+/* Description for add browser extension screen */
+"new_safe.browser_extension.description" = "All transactions need to be approved by both this device and the browser extension.";
+
+/* 'Download the' Gnosis Safe Chrome browser exntension. */
+"new_safe.browser_extension.download_chrome_extension" = "Download the Gnosis Safe Chrome browser extension.";
 
 /* Browser Extension Expired Message */
-"new_safe.extension.expired" = "Failed to pair because QR code is expired. Please, generate a new code.";
+"new_safe.browser_extension.expired" = "Failed to pair because QR code is expired. Please, generate a new code.";
+
+/* Header for add browser extension screen */
+"new_safe.browser_extension.header" = "Add browser extension";
 
 /* Invalid extension code */
-"new_safe.extension.invalid_code_error" = "Failed to pair because of invalid QR code.";
+"new_safe.browser_extension.invalid_code_error" = "Failed to pair because of invalid QR code.";
 
 /* Network error message */
-"new_safe.extension.network_error" = "Failed to pair because of network error. Please try again later.";
+"new_safe.browser_extension.network_error" = "Failed to pair because of network error. Please try again later.";
 
-/* Save button title in extension setup screen */
-"new_safe.extension.save" = "Save";
+/* Scan button title in extension setup screen */
+"new_safe.browser_extension.scan" = "Scan";
 
-/* Update button title in extension setup screen */
-"new_safe.extension.update" = "Update";
+/* Scan its QR code. */
+"new_safe.browser_extension.scan_qr" = "Scan its QR code.";
 
-/* Paper Wallet Button */
-"new_safe.paper_wallet" = "Paper Wallet";
+/* Skip button text */
+"new_safe.browser_extension.skip" = "Skip and set up later.\n(This can be done from the Menu.)";
 
-/* Continue button for store paper wallet screen */
-"new_safe.paper_wallet.continue" = "I understand, continue";
+/* Title for add browser extension screen */
+"new_safe.browser_extension.title" = "Setup";
 
-/* Copy Button */
-"new_safe.paper_wallet.copy" = "Copy";
+/* Title for confirm recovery screen. */
+"new_safe.confirm_recovery.header" = "Enter the following words from your recovery phrase.";
 
-/* Description for store paper wallet screen */
-"new_safe.paper_wallet.description" = "This phrase is one of your Safe secret keys.\n\nPlease store it in a secure place and do not share it with anyone. Gnosis Safe team will never ask you to reveal your secret phrase.";
+/* Next button for confirm recovery screen. */
+"new_safe.confirm_recovery.next" = "Next";
 
-/* Title for store paper wallet screen */
-"new_safe.paper_wallet.title" = "Store paper wallet secret phrase";
+/* Title for confirm recovery screen. */
+"new_safe.confirm_recovery.title" = "Confirm Recovery Phrase";
 
-/* This device button */
-"new_safe.this_device" = "This Device";
+/* Word #%@ */
+"new_safe.confirm_recovery.word_number" = "Word #%@";
+
+/* Mobile app button */
+"new_safe.mobile_app" = "Mobile app";
+
+/* Next
+   Next button */
+"new_safe.next" = "Next";
+
+/* (Optional) */
+"new_safe.optional" = "(Optional)";
+
+/* Recovery phrase button */
+"new_safe.recovery_phrase" = "Recovery phrase";
+
+/* Make a copy button */
+"new_safe.setup_recovery.copy" = "Make a copy";
+
+/* Description for setup recovery phrase screen. */
+"new_safe.setup_recovery.description" = "If you need to recover your Safe on a new phone, use this recovery phrase and your Safe address.";
+
+/* Header for setup recovery phrase screen. */
+"new_safe.setup_recovery.header" = "Stay secure.\nSave this recovery phrase.";
+
+/* Next button. */
+"new_safe.setup_recovery.next" = "Next";
+
+/* Title for setup recovery phrase screen. */
+"new_safe.setup_recovery.title" = "Recovery Phrase";
+
+/* Warning for setup recovery phrase screen. */
+"new_safe.setup_recovery.warning" = "Without these, you won’t be able to recover your Safe and its assets.";
 
 /* Title for new safe screen */
-"new_safe.title" = "Configure three Safe owners.";
+"new_safe.title" = "Configure";
 
-/* Confirm password screen header */
-"onboarding.confirm_password.header" = "Repeat your master password";
+/* Passwords must match. */
+"onboarding.confirm_password.match" = "Passwords must match";
 
-/* Password confirmation must match set password rule */
-"onboarding.confirm_password.match" = "• Passwords must match";
+/* Confirm password screen title. */
+"onboarding.confirm_password.title" = "Confirm Password";
 
 /* Error alert's title */
 "onboarding.error.title" = "Error";
@@ -145,35 +194,65 @@
 /* Fatal error alert's title */
 "onboarding.fatal.title" = "Fatal error";
 
-/* At least one capital letter rule for password field */
-"onboarding.set_password.capital" = "• Should have a capital letter";
+/* Content paragraphs, separated by '\n' */
+"onboarding.guidelines.content" = "Your Safe consists of:\r\t\t1. This mobile app.\r\t\t2. Its browser extension.\r\t\t3. A recovery phrase.\nYour funds are held securely in this mobile Safe and cannot be accessed by Gnosis Ltd.\nIf you lose or change your phone, use the Safe address and recovery phrase to recover access to your digital assets.";
 
-/* At least one digit rule for password field */
-"onboarding.set_password.digit" = "• Should have a digit";
+/* How this works */
+"onboarding.guidelines.header" = "How this works";
 
-/* Set password screen header label */
-"onboarding.set_password.header" = "Set your master password";
+/* Guidelines */
+"onboarding.guidelines.title" = "Guidelines";
 
-/* Minimum length rule for password field */
-"onboarding.set_password.length" = "• Minimum 6 charachters";
+/* Set password screen description. */
+"onboarding.set_password.description" = "Your confidential password is used to unlock the Safe and confirm transactions.";
+
+/* Use a minimum of 8 characters. */
+"onboarding.set_password.length" = "Use a minimum of 8 characters";
+
+/* At least 1 digit and 1 letter. */
+"onboarding.set_password.letter_and_digit" = "At least 1 number and 1 letter";
+
+/* Next button title */
+"onboarding.set_password.next" = "Next";
+
+/* No triple characters. */
+"onboarding.set_password.no_tripple_chars" = "No triple characters";
+
+/* Set password screen title. */
+"onboarding.set_password.title" = "Create Password";
 
 /* Set up safe options screen title */
-"onboarding.setup_safe.info" = "Setup your Safe";
+"onboarding.setup_safe.info" = "Safe is secured.\nPassword setup complete.";
 
 /* New safe button */
-"onboarding.setup_safe.new_safe" = "New Safe";
+"onboarding.setup_safe.new_safe" = "Create a New Safe";
 
 /* Restore safe button */
-"onboarding.setup_safe.restore" = "Restore Safe";
+"onboarding.setup_safe.restore" = "Restore an Existing Safe";
 
 /* App slogan */
-"onboarding.start.description" = "Your secure crypto wallet with 2-factor authentication.";
+"onboarding.start.description" = "Safely store Ether and ERC20\n tokens with 2-factor authentication.";
 
-/* App name */
-"onboarding.start.header" = "Gnosis Safe";
+/* Setup password button title */
+"onboarding.start.setup_password" = "Setup password";
 
-/* Start button title */
-"onboarding.start.start" = "Start";
+/* Agree */
+"onboarding.terms.agree" = "Agree";
+
+/* Content (bulleted list). Separate by new line characters '\n' */
+"onboarding.terms.content" = "We do not collect demographic data such as age or gender.\nWe collect anonymized app usage  data and crash reports to ensure the quality of our app.";
+
+/* No Thanks */
+"onboarding.terms.disagree" = "No Thanks";
+
+/* Header label */
+"onboarding.terms.header" = "Please review our Terms of Use and Privacy Policy.";
+
+/* Privacy Policy */
+"onboarding.terms.privacy" = "Privacy Policy";
+
+/* Terms of Use */
+"onboarding.terms.terms" = "Terms of Use";
 
 /* Abort safe creation button title */
 "pending_safe.abort_alert.abort" = "Abort";
@@ -182,19 +261,10 @@
 "pending_safe.abort_alert.cancel" = "Close";
 
 /* Message body of abort alert */
-"pending_safe.abort_alert.message" = "If you abort safe creation, you'll loose access to all funds on the safe address. This cannot be undone.";
+"pending_safe.abort_alert.message" = "If you abort, you will lose access to all funds associated with this address. This cannot be undone.";
 
 /* Title of abort safe creation alert */
-"pending_safe.abort_alert.title" = "Aborting Safe Creation";
-
-/* Address label */
-"pending_safe.address" = "Safe address";
-
-/* Balance label */
-"pending_safe.balanceLabel" = "Balance";
-
-/* Cancel safe creation button */
-"pending_safe.cancel" = "Cancel";
+"pending_safe.abort_alert.title" = "Aborting Safe Creation?";
 
 /* Pending safe failed alert's message */
 "pending_safe.failed_alert.message" = "Error: %@ Please try again later.";
@@ -205,41 +275,68 @@
 /* Pending safe failed alert's title */
 "pending_safe.failed_alert.title" = "Error";
 
-/* Info label about safe creation */
-"pending_safe.info" = "Your safe is being created. Please follow status updates below.";
+/* Invalid contract address */
+"recovery.address.error.invalid_contract" = "Invalid Safe address";
 
-/* Retry button title */
-"pending_safe.retry" = "Retry";
+/* Recovery address validation failed alert's message */
+"recovery.address.failed_alert.message" = "Failed to find the Safe: %@";
 
-/* Account received enough funds */
-"pending_safe.status.account_funded" = "Account has enough funds. Proceeding.";
+/* OK button title */
+"recovery.address.failed_alert.ok" = "Ok";
 
-/* Deployment accepted by blockchain */
-"pending_safe.status.deployment_accepted" = "Creating Safe in the blockchain...";
+/* Recovery address validation failed alert's title */
+"recovery.address.failed_alert.title" = "Error";
 
-/* Deployment started status */
-"pending_safe.status.deployment_started" = "Safe creation started.";
+/* My Safe Address */
+"recovery.address.header" = "My Safe address";
 
-/* Deployment succeeded */
-"pending_safe.status.deployment_success" = "Successfully created new Safe in the blockchain";
+/* Safe Address */
+"recovery.address.placeholder" = "Safe address";
 
-/* Error during safe creation. Retry later. */
-"pending_safe.status.error" = "Please retry later.";
+/* Description for connect browser extension screen */
+"recovery.browser_extension.description" = "If you also lost access to Safe’s Chrome browser extension, please download the extension again and scan the QR code in the interface.";
 
-/* Not enough funds in account */
-"pending_safe.status.not_enough_funds" = "Not enough funds for safe creation: %@. Please transfer at least %@.";
+/* Header for connect browser extension screen */
+"recovery.browser_extension.header" = "Connect browser extension";
 
-/* Title of pending safe screen */
-"pending_safe.title" = "Creating new safe";
+/* Content paragraphs, separated by '\n' */
+"recovery.guidelines.content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee in ETH will be automatically deducted from the ETH balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount of ETH required to cover the fee.";
 
-/* Title for confirm button */
-"recovery.confirm_mnemonic.confirm_button" = "Confirm";
+/* How this works */
+"recovery.guidelines.header" = "How this works";
 
-/* Description for confirm mnemonic view controller */
-"recovery.confirm_mnemonic.description" = "Please enter the following words from the mnemonic.";
+/* Recover safe */
+"recovery.guidelines.title" = "Recover Safe";
 
-/* Title for confirm mnemonic view controller */
-"recovery.confirm_mnemonic.title" = "Confirmation";
+/* Recovery phrase does not match this Safe's recovery phrase */
+"recovery.phrase.error." = "Recovery phrase does not match Safe's recovery phrase.";
+
+/* Error format for invalid recovery phrase */
+"recovery.phrase.error.format" = "Failed to use recovery phrase: %@";
+
+/* Incorrect recovery phrase */
+"recovery.phrase.error.invalid_phrase" = "Recovery phrase is incorrect";
+
+/* Recovery Phrase Input screen header */
+"recovery.phrase.header" = "My recovery phrase";
+
+/* Placeholder for the recovery phrase */
+"recovery.phrase.placeholder" = "HOME BEAT WORD BREAK LEAF HOUSE STUFF KEY HOME BEAT WORD BREAK";
+
+/* This can take a while... */
+"recovery.progress.description" = "This can take a couple minutes…";
+
+/* Header label for progress screen */
+"recovery.progress.header" = "Recovering your Safe";
+
+/* Header of the review transaction screen */
+"recovery.review.header" = "Recover my Safe";
+
+/* Start button title */
+"recovery.start" = "Start";
+
+/* Recovery transaction failed alert's title */
+"recovery.transaction.failed_alert.title" = "recovery.transaction.failed_alert.title";
 
 /* Safe Address label. */
 "safe_address.address" = "Address";
@@ -259,92 +356,147 @@
 /* Title for Address Details screen. */
 "safe_address.title" = "Safe Address";
 
+/* Cancel safe creation button. */
+"safe_creation.cancel" = "Cancel";
+
+/* Creating safe header for safe creation screen. */
+"safe_creation.creating_safe_header" = "Creating your new safe";
+
+/* Follow its progress on Etherscan.io */
+"safe_creation.etherscan.follow_progress" = "Follow its progress on Etherscan.io";
+
+/* First deposit header for safe creation screen. */
+"safe_creation.first_deposit_header" = "Make your first deposit";
+
+/* Insufficient funds header for safe creation screen. */
+"safe_creation.insufficient_funds_header" = "Insufficient funds";
+
+/* Required minimum description for safe creation screen. */
+"safe_creation.required_minimum_description" = "(This is the Safe opening fee.)";
+
+/* Required minimum header for safe creation screen. */
+"safe_creation.required_minimum_header" = "Required minimum transfer:";
+
+/* Retry button title. */
+"safe_creation.retry" = "Retry";
+
+/* Address label. */
+"safe_creation.safe_address.address" = "Address";
+
+/* Description how to share safe address. */
+"safe_creation.safe_address.description" = "Share your address or scan this QR code with the account or person sending funds.";
+
+/* QR Code label. */
+"safe_creation.safe_address.qr_code" = "QR Code";
+
+/* Account received enough funds. */
+"safe_creation.status.account_funded" = "Account funded";
+
+/* Awaiting deposit label. */
+"safe_creation.status.awaiting_deposit" = "Awaiting your deposit...";
+
+/* Deployment accepted by blockchain. */
+"safe_creation.status.deployment_accepted" = "This can take a couple minutes...";
+
+/* Error during safe creation. Retry later. */
+"safe_creation.status.error" = "Network error. Please retry later...";
+
+/* Generation safe address. */
+"safe_creation.status.generating_safe_address" = "Generating safe address...";
+
+/* Title for safe creation screen. */
+"safe_creation.title" = "SAFE";
+
+/* Waiting for safe description for safe creation screen. */
+"safe_creation.waiting_for_safe_description" = "Your deposit is on its way.";
+
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";
-
-/* Safe balance */
-"transaction.balance.title" = "Safe balance";
 
 /* Continue button title for New Transaction Screen */
 "transaction.continue" = "Continue";
 
-/* Data included */
-"transaction.data.title" = "Data included";
+/* 'View on Etherscan' button name */
+"transaction.details.externalViewer" = "View on Etherscan.io";
 
-/* Address length '%d' is too long for required length '%d' */
-"transaction.error.addressIsTooLong" = "Address is too long: %d instead of %d characters.";
+/* 'Fee' parameter name */
+"transaction.details.fee" = "Transaction fee";
 
-/* Address length '%d' is too short for required length '%d' */
-"transaction.error.addressIsTooShort" = "Address is too short: %d instead of %d characters.";
+/* 'Status' parameter name */
+"transaction.details.status" = "Status";
 
-/* Transfer amount must be a positive value */
-"transaction.error.amountNegative" = "Transaction amount must be a positive value.";
+/* 'Failed' status */
+"transaction.details.status.failed" = "Failed";
 
-/* Transfer amount must be a valid number */
-"transaction.error.amountNotANumber" = "Transaction amount must be a number.";
+/* 'Pending' status */
+"transaction.details.status.pending" = "Pending";
 
-/* Amount is too big value for transfer. */
-"transaction.error.amountTooBig" = "Transaction amount is too big.";
+/* 'Rejected' status */
+"transaction.details.status.rejected" = "Rejected";
 
-/* Amount is too small value for transfer. */
-"transaction.error.amountTooSmall" = "Transaction amount is too small.";
+/* 'Success' status */
+"transaction.details.status.success" = "Success";
 
-/* Address is empty but it is required */
-"transaction.error.emptyAddress" = "Address is required for transaction.";
+/* 'Submitted' parameter name */
+"transaction.details.submitted" = "Submitted";
 
-/* Amount is empty but it is required */
-"transaction.error.emptyAmount" = "Amount is required for transaction";
+/* Title for the transaction details screen */
+"transaction.details.title" = "Transaction details";
 
-/* Invalid character '%@' at position '%d' */
-"transaction.error.invalidAddressCharacterAt" = "Invalid character '%@' at position '%d'";
+/* 'Type' parameter name */
+"transaction.details.type" = "Type";
+
+/* 'Incoming' transaction type */
+"transaction.details.type.incoming" = "Incoming Transfer";
+
+/* 'Outgoing' transaction type */
+"transaction.details.type.outgoing" = "Outgoing Transfer";
+
+/* Wallet recovery */
+"transaction.details.type.recovery" = "Safe Recovery";
 
 /* Not enough balance for transaction. */
 "transaction.error.notEnoughFunds" = "Insufficient funds for the amount.";
 
-/* Zero address is invalid for transfer of tokens */
-"transaction.error.zeroAddressInvalidForTransfer" = "Transaction requires non-zero address for token transfer.";
+/* Outgoing transafer */
+"transaction.outgoing_transfer" = "Outgoing transfer";
 
-/* Maximum transaction fee */
-"transaction.fee.title" = "Maximum transaction fee";
+/* Review transaction title */
+"transaction.review_title" = "Review";
 
-/* Recipient */
-"transaction.recipient.name" = "Recipient";
+/* Submit
+   Submit transaction */
+"transaction.submit" = "Submit";
 
-/* Sender */
-"transaction.sender.name" = "Sender";
+/* Send */
+"transaction.title" = "Send";
 
-/* Re-send confirmation request */
-"transaction.status.actionTitle.resend" = "Re-send confirmation request";
+/* Cancel button. */
+"transaction_confirmation_alert.cancel" = "Cancel";
 
-/* Submit */
-"transaction.status.actionTitle.submit" = "Submit";
+/* Description for transaction confirmation alert. */
+"transaction_confirmation_alert.description" = "Resend to refresh the connection.";
 
-/* Transaction was confirmed by the browser extension. You can submit it now. */
-"transaction.status.readyToSubmit.description" = "Transaction was confirmed. You can submit it now.";
+/* Resend button. */
+"transaction_confirmation_alert.resend" = "Resend";
 
-/* CONFIRMED BY EXTENSION */
-"transaction.status.readyToSubmit.title" = "CONFIRMED";
+/* Title for transaction confirmation alert. */
+"transaction_confirmation_alert.title" = "Please open the Safe browser extension to confirm this transaction.";
 
-/* Transaction was rejected by the browser extension. */
-"transaction.status.rejected.description" = "Transaction was rejected by the browser extension.";
+/* No transactions yet */
+"transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";
 
-/* REJECTED BY EXTENSION */
-"transaction.status.rejected.title" = "REJECTED BY EXTENSION";
-
-/* Confirm this transaction with the browser extension */
-"transaction.status.waiting.description" = "Confirm this transaction with the browser extension";
-
-/* AWAITING CONFIRMATION */
-"transaction.status.waiting.title" = "AWAITING CONFIRMATION";
+/* Past transactions group header */
+"transactions.group.past" = "Past";
 
 /* Pending transactions group header */
-"transactions.group.pending" = "PENDING";
+"transactions.group.pending_outgoing" = "Pending Outgoing";
 
-/* Today transactions group header */
-"transactions.group.today" = "TODAY";
+/* (failed) suffix) */
+"transactions.row.failed" = "(failed)";
 
-/* Yesterday transactions group header */
-"trasnactions.group.yesterday" = "YESTERDAY";
+/* (rejected) suffix */
+"transactions.row.rejected" = "(rejected)";
 
 /* Blockchain address is unknown for the wallet. */
 "wallet.error.address_missing" = "Failed to find safe address. Please try again later.";
