@@ -58,8 +58,7 @@ class AddressInputTests: XCTestCase {
     }
 
     func test_whenScanningValidAddress_thenReturnsIt() {
-        assertVali
-dAddress(validAddress_withPrefix, expected: validAddress_withPrefix)
+        assertValidAddress(validAddress_withPrefix, expected: validAddress_withPrefix)
         assertValidAddress(validAddress_withoutPrefix, expected: validAddress_withPrefix)
     }
 
