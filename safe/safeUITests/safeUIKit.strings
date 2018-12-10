@@ -1,14 +1,44 @@
+/* Recipient's address in address input. */
+"address_input.address_placeholder" = "Recipient's address";
+
+/* Cancel alert item. */
+"address_input.alert.cancel" = "Cancel";
+
+/* Paste from clipboard alert item. */
+"address_input.alert.paste" = "Paste from clipboard";
+
+/* Scan QR code alert item. */
+"address_input.alert.scan" = "Scan QR code";
+
+/* Error to display if address is invalid. */
+"address_input.invalid_address" = "Address is invalid";
+
 /* Checkmark is checked */
-"button.checked" = "button.checked";
+"button.checked" = "Checked";
 
 /* Checkmark is not checked */
-"button.unchecked" = "button.unchecked";
+"button.unchecked" = "Unchecked";
 
 /* Close button on camera */
-"camera.close" = "camera.close";
+"camera.close" = "Close";
 
 /* Cancel button title */
 "cancel" = "Cancel";
+
+/* Awaiting confirmation... */
+"confirmaion_view.awaiting_confirmation" = "Awaiting confirmation...";
+
+/* Explanation how to confirm. */
+"confirmation_view.confirmation_explanation" = "Open browser extension to confirm this transaction.";
+
+/* Confirmed by browser extension. */
+"confirmation_view.confirmed" = "Confirmed by browser extension.";
+
+/* Rejected by browser extension. */
+"confirmation_view.rejected" = "Rejected by browser extension.";
+
+/* Transaction rejected by the browser extension. */
+"confirmation_view.rejection_explanation" = "Transaction rejected by the browser extension.";
 
 /* Error status of a rule */
 "rule.error" = "Error";
@@ -27,4 +57,31 @@
 
 /* Title for alert if camera is not accessable. */
 "scanner.camera_access_required.title" = "Camera Access";
+
+/* Amount placeholder for token input. */
+"token_input.amount" = "Amount";
+
+/* Error to display if amount of fractional digits is exceded. */
+"token_input.exceded_amount_of_fractional_digits" = "Exceded amount of fractional digits.";
+
+/* Error to display if entered value is not a number. */
+"token_input.value_is_not_a_number" = "Value is not a number.";
+
+/* Error to display if entered value is too big. */
+"token_input.value_is_too_big" = "Value is too big.";
+
+/* Balance after transfer */
+"transaction_fee.balance_after_transfer" = "Balance after transfer";
+
+/* Current balance */
+"transaction_fee.current_balance" = "Current balance";
+
+/* Displayed in parentheses */
+"transaction_fee.ether" = "Ether";
+
+/* Displayed in parentheses */
+"transaction_fee.token" = "token";
+
+/* Transaction fee */
+"transaction_fee.transaction_fee" = "Transaction fee";
 

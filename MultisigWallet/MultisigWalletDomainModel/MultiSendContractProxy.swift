@@ -15,14 +15,17 @@ public typealias MultiSendTransaction =
 
 public class MultiSendContractProxy: EthereumContractProxy {
 
-    func multiSend(_ transactions: [MultiSendTransaction]) -> Data {
+    public func multiSend(_ transactions: [MultiSendTransaction]) -> Data {
+        let bytesOffsetInTransaction = 4 * 32
         let argumentData = transactions.reduce(into: Data()) { result, tx in
             result.append(encodeUInt(tx.operation.rawValue))
             result.append(encodeAddress(tx.to))
             result.append(encodeUInt(abs(tx.value)))
+            result.append(encodeUInt(bytesOffsetInTransaction))
             result.append(encodeBytes(tx.data))
         }
-        return invocation("multiSend(bytes)", encodeBytes(argumentData))
+        let bytesOffsetInInvocation = 32
+        return invocation("multiSend(bytes)", encodeUInt(bytesOffsetInInvocation) + encodeBytes(argumentData))
     }
 
 }

@@ -108,6 +108,8 @@ enum StoryboardScene {
 
     static let addressInputViewController = SceneType<SafeAppUI.AddressInputViewController>(storyboard: RecoverSafe.self, identifier: "AddressInputViewController")
 
+    static let recoveryInProgressViewController = SceneType<SafeAppUI.RecoveryInProgressViewController>(storyboard: RecoverSafe.self, identifier: "RecoveryInProgressViewController")
+
     static let recoveryPhraseInputViewController = SceneType<SafeAppUI.RecoveryPhraseInputViewController>(storyboard: RecoverSafe.self, identifier: "RecoveryPhraseInputViewController")
 
     static let reviewRecoveryTransactionViewController = SceneType<SafeAppUI.ReviewRecoveryTransactionViewController>(storyboard: RecoverSafe.self, identifier: "ReviewRecoveryTransactionViewController")

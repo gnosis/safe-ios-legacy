@@ -323,6 +323,12 @@
 /* Placeholder for the recovery phrase */
 "recovery.phrase.placeholder" = "HOME BEAT WORD BREAK LEAF HOUSE STUFF KEY HOME BEAT WORD BREAK";
 
+/* This can take a while... */
+"recovery.progress.description" = "This can take a couple minutes…";
+
+/* Header label for progress screen */
+"recovery.progress.header" = "Recovering your Safe";
+
 /* Header of the review transaction screen */
 "recovery.review.header" = "Recover my Safe";
 

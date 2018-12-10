@@ -63,7 +63,7 @@ extension RecoverSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDele
         do {
             try ApplicationServiceRegistry.walletService
                 .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
-            showReview()
+            self.showReview()
         } catch let e {
             controller.handleError(e)
         }
@@ -79,11 +79,13 @@ extension RecoverSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDele
 extension RecoverSafeFlowCoordinator: ReviewRecoveryTransactionViewControllerDelegate {
 
     func reviewRecoveryTransactionViewControllerDidSubmit() {
-
+        dismissModal { [unowned self] in
+            self.push(RecoveryInProgressViewController.create())
+        }
     }
 
     func reviewRecoveryTransactionViewControllerDidCancel() {
-        dismissModal() { [unowned self] in
+        dismissModal { [unowned self] in
             self.popToLastCheckpoint()
         }
     }

@@ -321,7 +321,105 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p61-FU-Q4C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637.5999999999999" y="136.28185907046478"/>
+            <point key="canvasLocation" x="1638" y="134"/>
+        </scene>
+        <!--Recovery In Progress View Controller-->
+        <scene sceneID="1vI-Q8-yKF">
+            <objects>
+                <viewController storyboardIdentifier="RecoveryInProgressViewController" id="g42-dG-zec" customClass="RecoveryInProgressViewController" customModule="SafeAppUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h8Z-9f-ZG5" customClass="BackgroundImageView" customModule="SafeUIKit">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7X-X9-eSU">
+                                <rect key="frame" x="0.0" y="64" width="375" height="400"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="fop-he-Jqz">
+                                        <rect key="frame" x="0.0" y="42" width="375" height="215"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ln7-jn-2H6">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="safeInprogress" translatesAutoresizingMaskIntoConstraints="NO" id="Y32-vj-MQ2">
+                                                <rect key="frame" x="0.0" y="66.5" width="375" height="73"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="73" id="AL4-Zq-pIz"/>
+                                                </constraints>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Vdg-84-wbx">
+                                                <rect key="frame" x="0.0" y="185.5" width="375" height="29.5"/>
+                                                <subviews>
+                                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gSO-gk-kvf">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="6"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="6" id="zwS-Pz-rng"/>
+                                                        </constraints>
+                                                    </progressView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Hw-BZ-1t5">
+                                                        <rect key="frame" x="0.0" y="15" width="375" height="14.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7d-kt-G4n">
+                                        <rect key="frame" x="59" y="331" width="257" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="bu2-Yd-nIh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Follow its progress on Etherscan.io" image="external_link">
+                                            <color key="titleColor" red="0.15686274510000001" green="0.69803921570000005" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="openInExternalViewer:" destination="g42-dG-zec" eventType="touchUpInside" id="PXA-Wj-4Pl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="fop-he-Jqz" firstAttribute="leading" secondItem="h7X-X9-eSU" secondAttribute="leading" id="3W6-hJ-27Z"/>
+                                    <constraint firstAttribute="height" constant="400" id="9Di-bt-IN6"/>
+                                    <constraint firstAttribute="bottom" secondItem="p7d-kt-G4n" secondAttribute="bottom" constant="25" id="FZz-gu-v7a"/>
+                                    <constraint firstAttribute="trailing" secondItem="fop-he-Jqz" secondAttribute="trailing" id="Mgq-CD-6kg"/>
+                                    <constraint firstItem="fop-he-Jqz" firstAttribute="top" secondItem="h7X-X9-eSU" secondAttribute="top" constant="42" id="WGr-wx-7et"/>
+                                    <constraint firstItem="p7d-kt-G4n" firstAttribute="centerX" secondItem="h7X-X9-eSU" secondAttribute="centerX" id="zAl-c4-STV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15686274510000001" green="0.69803921570000005" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="h7X-X9-eSU" firstAttribute="top" secondItem="6pT-2w-bdX" secondAttribute="top" id="2KM-r7-rsG"/>
+                            <constraint firstItem="6pT-2w-bdX" firstAttribute="trailing" secondItem="h7X-X9-eSU" secondAttribute="trailing" id="CiN-op-cqe"/>
+                            <constraint firstItem="h7X-X9-eSU" firstAttribute="leading" secondItem="6pT-2w-bdX" secondAttribute="leading" id="qa7-jc-nu4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6pT-2w-bdX"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0nm-Nm-9eE">
+                        <barButtonItem key="leftBarButtonItem" id="vn1-nx-arO"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="headerLabel" destination="ln7-jn-2H6" id="kwJ-mE-e0L"/>
+                        <outlet property="openExternalButton" destination="p7d-kt-G4n" id="q6A-sS-by4"/>
+                        <outlet property="progressLabel" destination="8Hw-BZ-1t5" id="mO2-by-zhA"/>
+                        <outlet property="progressView" destination="gSO-gk-kvf" id="5FT-Cq-I9K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B81-f9-Npu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2426" y="134"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="external_link" width="12" height="12"/>
+        <image name="safeInprogress" width="121" height="93"/>
+    </resources>
 </document>
