@@ -378,6 +378,8 @@ class RecoveryTransactionBuilder {
             .change(operation: .call)
     }
 
+    // FIXME: if swapping to the same owner - then what? need to fake recovery
+
     fileprivate func swapDeviceOwnerAndAddExtensionOwner() {
         print("Recovery \(oldScheme!)-> \(newScheme!)")
 
@@ -416,13 +418,12 @@ class RecoveryTransactionBuilder {
     }
 
     fileprivate func sign() {
-        // Signing
         let paperWalletEOA = DomainRegistry.externallyOwnedAccountRepository.find(by:
             wallet.owner(role: .paperWallet)!.address)!
         let firstSignature = DomainRegistry.encryptionService.sign(transaction: transaction,
                                                                    privateKey: paperWalletEOA.privateKey)
         transaction.add(signature: Signature(data: firstSignature, address: paperWalletEOA.address))
-        if wallet.confirmationCount == 2 {
+        if oldScheme.confirmations == 2 {
             let derivedEOA = DomainRegistry.externallyOwnedAccountRepository.find(by:
                 wallet.owner(role: .paperWalletDerived)!.address)!
             let secondSignature = DomainRegistry.encryptionService.sign(transaction: transaction,

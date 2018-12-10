@@ -107,8 +107,9 @@ extension ScanQRCodeHandler: ScannerDelegate {
     private func didScanCode(raw: String, converted: String? = nil) {
         guard !didFinishScanning else { return }
         didFinishScanning = true
-        delegate.didScanCode(raw: raw, converted: converted)
-        scannerController?.dismiss(animated: true)
+        scannerController?.dismiss(animated: true) { [weak self] in
+            self?.delegate.didScanCode(raw: raw, converted: converted)
+        }
     }
 
 }

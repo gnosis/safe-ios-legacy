@@ -1,0 +1,67 @@
+//
+//  Copyright © 2018 Gnosis Ltd. All rights reserved.
+//
+
+import UIKit
+import SafeUIKit
+
+public class RecoveryInProgressViewController: UIViewController {
+
+    struct Strings {
+
+        static let header = LocalizedString("recovery.progress.header", comment: "Header label for progress screen")
+        static let progress = LocalizedString("recovery.progress.description", comment: "This can take a while...")
+        static let externalLink = LocalizedString("safe_creation.etherscan.follow_progress",
+                                                  comment: "Follow its progress on Etherscan.io")
+
+    }
+
+    @IBOutlet weak var openExternalButton: UIButton!
+    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var headerLabel: UILabel!
+    var headerStyle = HeaderStyle.contentHeader
+    var isAnimatingProgress = false
+
+    public static func create() -> RecoveryInProgressViewController {
+        return StoryboardScene.RecoverSafe.recoveryInProgressViewController.instantiate()
+    }
+
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        headerLabel.attributedText = .header(from: Strings.header, style: headerStyle)
+        progressLabel.text = Strings.progress
+        openExternalButton.setTitle(Strings.externalLink, for: .normal)
+        progressView.trackTintColor = ColorName.paleGrey.color
+        progressView.progressTintColor = ColorName.aquaBlue.color
+        progressView.progress = 0
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard !isAnimatingProgress else { return }
+        isAnimatingProgress = true
+        UIView.animate(withDuration: 120,
+                       delay: 0,
+                       usingSpringWithDamping: 1.0,
+                       initialSpringVelocity: 0,
+                       options: [],
+                       animations: { [unowned self] in
+            self.progressView.setProgress(0.7, animated: true)
+        }, completion: nil)
+    }
+
+    private func animateCopmletedProgress(_ completion: @escaping () -> Void) {
+        UIView.animate(withDuration: 0.7,
+                       animations: { [unowned self] in
+                        self.progressView.setProgress(1.0, animated: true)
+            }, completion: { _ in
+                completion()
+        })
+    }
+
+    @IBAction func openInExternalViewer(_ sender: Any) {
+        animateCopmletedProgress {}
+    }
+
+}

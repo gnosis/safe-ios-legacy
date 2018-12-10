@@ -133,6 +133,8 @@
 		0ABA591F21AC0856009D249F /* AmountLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591E21AC0856009D249F /* AmountLabelTests.swift */; };
 		0ABA592121AC09CC009D249F /* EthereumAddressLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA592021AC09CC009D249F /* EthereumAddressLabelTests.swift */; };
 		0ABA592321AC0B6E009D249F /* LabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA592221AC0B6E009D249F /* LabelsViewController.swift */; };
+		0ABDE31B21BE6FA000EA0CED /* RecoveryInProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDE31A21BE6FA000EA0CED /* RecoveryInProgressViewController.swift */; };
+		0ABDE31D21BE77F200EA0CED /* DemoRecoveryInProgressViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDE31C21BE77F200EA0CED /* DemoRecoveryInProgressViewControllerViewController.swift */; };
 		0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */; };
 		0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */; };
 		0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */; };
@@ -481,6 +483,8 @@
 		0ABA591E21AC0856009D249F /* AmountLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountLabelTests.swift; sourceTree = "<group>"; };
 		0ABA592021AC09CC009D249F /* EthereumAddressLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressLabelTests.swift; sourceTree = "<group>"; };
 		0ABA592221AC0B6E009D249F /* LabelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsViewController.swift; sourceTree = "<group>"; };
+		0ABDE31A21BE6FA000EA0CED /* RecoveryInProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryInProgressViewController.swift; sourceTree = "<group>"; };
+		0ABDE31C21BE77F200EA0CED /* DemoRecoveryInProgressViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoRecoveryInProgressViewControllerViewController.swift; sourceTree = "<group>"; };
 		0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsDemoViewController.swift; sourceTree = "<group>"; };
 		0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -698,6 +702,7 @@
 				0A6EF3C721BA8CC100F1074E /* AddressInputViewController.swift */,
 				0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */,
 				0A6EF3C921BA8D0600F1074E /* RecoverSafe.storyboard */,
+				0ABDE31A21BE6FA000EA0CED /* RecoveryInProgressViewController.swift */,
 				0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */,
 				0AD124DC21BBF037005565B7 /* RecoveryPhraseInputViewController.swift */,
 				0A6EF3C321BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift */,
@@ -1137,6 +1142,7 @@
 				0A0974CF20480CEB005753DF /* UnlockDemoViewController.swift */,
 				0A028EC921AD52EA00431D25 /* FundTransferDemoViewController.swift */,
 				0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */,
+				0ABDE31C21BE77F200EA0CED /* DemoRecoveryInProgressViewControllerViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1895,6 +1901,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55DE530B217B467900613B90 /* ScanButtonViewController.swift in Sources */,
+				0ABDE31D21BE77F200EA0CED /* DemoRecoveryInProgressViewControllerViewController.swift in Sources */,
 				55E8AFFD219C4A45002930A1 /* TransactionFeeViewViewController.swift in Sources */,
 				55D0EC62216F7383003D9A53 /* TokenInputViewController.swift in Sources */,
 				555EB6EC216CA42100E06553 /* TextInputViewController.swift in Sources */,
@@ -2062,6 +2069,7 @@
 				0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */,
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
+				0ABDE31B21BE6FA000EA0CED /* RecoveryInProgressViewController.swift in Sources */,
 				0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */,
 				556251F42147C34600F569EE /* AddTokenHeaderView.swift in Sources */,
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,

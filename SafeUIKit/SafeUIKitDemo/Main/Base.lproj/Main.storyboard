@@ -1219,10 +1219,10 @@
             </objects>
             <point key="canvasLocation" x="3247" y="32"/>
         </scene>
-        <!--Review Recovery Transaction Demo View Controller-->
+        <!--Demo Recovery In Progress View Controller View Controller-->
         <scene sceneID="tbJ-Fa-ILE">
             <objects>
-                <viewController storyboardIdentifier="ReviewRecoveryTransactionDemoViewController" id="qAl-GP-5EO" customClass="ReviewRecoveryTransactionDemoViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReviewRecoveryTransactionDemoViewController" id="qAl-GP-5EO" customClass="DemoRecoveryInProgressViewControllerViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RTz-Bm-XTb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
