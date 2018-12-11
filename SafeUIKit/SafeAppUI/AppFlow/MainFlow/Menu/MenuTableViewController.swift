@@ -12,6 +12,7 @@ protocol MenuTableViewControllerDelegate: class {
     func didSelectPrivacyPolicy()
     func didSelectConnectBrowserExtension()
     func didSelectChangeBrowserExtension()
+    func didSelectReplaceRecoveryPhrase()
 }
 
 final class MenuItemTableViewCell: UITableViewCell {
@@ -116,13 +117,13 @@ final class MenuTableViewController: UITableViewController {
             (section: .portfolio,
              items: [menuItem(Strings.manageTokens)],
              title: Strings.portfolioSectionTitle),
-//            (section: .security,
-//             items: [
+            (section: .security,
+             items: [
 //                menuItem(Strings.changePassword),
-//                menuItem(Strings.changeRecoveryPhrase),
+                menuItem(Strings.changeRecoveryPhrase)
 //                browserExtensionItem
-//                ],
-//             title: Strings.securitySectionTitle),
+                ],
+             title: Strings.securitySectionTitle),
             (section: .support,
              items: [
 //                menuItem(Strings.feedback),
@@ -208,6 +209,8 @@ final class MenuTableViewController: UITableViewController {
                 delegate?.didSelectConnectBrowserExtension()
             case Strings.changeBrowserExtension:
                 delegate?.didSelectChangeBrowserExtension()
+            case Strings.changeRecoveryPhrase:
+                delegate?.didSelectReplaceRecoveryPhrase()
             default: break
             }
         case .support:

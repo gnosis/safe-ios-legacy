@@ -83,6 +83,31 @@ public class TermsAndConditionsViewController: UIViewController {
 
 }
 
+struct BodyStyle {
+
+    var textFontSize: CGFloat
+    var textColor: UIColor
+    var fontWeight: UIFont.Weight
+    var alignment: NSTextAlignment
+    var paragraphSpacing: CGFloat
+    var minimumLineHeight: CGFloat
+
+    static let `default` = BodyStyle(textFontSize: 16,
+                                     textColor: ColorName.battleshipGrey.color,
+                                     fontWeight: .regular,
+                                     alignment: .left,
+                                     paragraphSpacing: 21,
+                                     minimumLineHeight: 25)
+
+    static let emphasis = BodyStyle(textFontSize: BodyStyle.default.textFontSize,
+                                    textColor: BodyStyle.default.textColor,
+                                    fontWeight: .semibold,
+                                    alignment: BodyStyle.default.alignment,
+                                    paragraphSpacing: BodyStyle.default.paragraphSpacing,
+                                    minimumLineHeight: BodyStyle.default.minimumLineHeight)
+
+}
+
 struct ListStyle {
     var bullet: String
     var leading: CGFloat
@@ -125,6 +150,18 @@ struct HeaderStyle {
 }
 
 extension NSAttributedString {
+
+    static func body(from text: String?, style bodyStyle: BodyStyle = .default) -> NSAttributedString? {
+        guard let text = text else { return nil }
+        let style = NSMutableParagraphStyle()
+        style.alignment = bodyStyle.alignment
+        style.paragraphSpacing = bodyStyle.paragraphSpacing
+        style.minimumLineHeight = bodyStyle.minimumLineHeight
+        let font = UIFont.systemFont(ofSize: bodyStyle.textFontSize, weight: bodyStyle.fontWeight)
+        return NSAttributedString(string: text, attributes: [.paragraphStyle: style,
+                                                             .font: font,
+                                                             .foregroundColor: bodyStyle.textColor])
+    }
 
     static func header(from text: String?, style headerStyle: HeaderStyle = .default) -> NSAttributedString? {
         guard let text = text else { return nil }

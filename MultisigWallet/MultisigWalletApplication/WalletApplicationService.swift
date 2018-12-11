@@ -478,6 +478,7 @@ public class WalletApplicationService: Assertable {
         switch tx.type {
         case .transfer: type = .outgoing
         case .walletRecovery: type = .walletRecovery
+        case .replaceRecoveryPhrase: type = .replaceRecoveryPhrase
         }
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token,

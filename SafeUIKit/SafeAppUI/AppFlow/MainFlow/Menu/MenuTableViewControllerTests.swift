@@ -148,4 +148,6 @@ final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate
         didCallChangeBrowserExtension = true
     }
 
+    func didSelectReplaceRecoveryPhrase() {}
+
 }

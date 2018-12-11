@@ -99,7 +99,7 @@ public class TransactionFeeView: BaseCustomView {
     }
 
     private func buildWrapperStackView() {
-        guard wrapperStackView.arrangedSubviews.isEmpty else { return }
+        wrapperStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         if let section = currentBalanceSection() {
             wrapperStackView.addArrangedSubview(section)
         }

@@ -307,6 +307,7 @@ public enum TransactionType: Int {
 
     case transfer
     case walletRecovery
+    case replaceRecoveryPhrase
 
 }
 

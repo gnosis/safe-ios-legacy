@@ -63,6 +63,10 @@ public class RecoveryApplicationService {
         guard let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id) else {
             return nil
         }
+        return transactionData(tx)
+    }
+
+    public func transactionData(_ tx: Transaction) -> TransactionData {
         let status: TransactionData.Status
         switch tx.status {
         case .draft:
@@ -86,6 +90,8 @@ public class RecoveryApplicationService {
             type = .outgoing
         case .walletRecovery:
             type = .walletRecovery
+        case .replaceRecoveryPhrase:
+            type = .replaceRecoveryPhrase
         }
         let amountTokenData = TokenData(token: tx.amount!.token,
                                         balance: tx.amount!.amount)
