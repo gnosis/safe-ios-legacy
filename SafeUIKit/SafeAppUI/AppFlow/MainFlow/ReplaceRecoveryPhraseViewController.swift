@@ -50,13 +50,6 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
         observeBalance()
     }
 
-    func willBeDismissed() {
-        guard let tx = transaction else { return }
-        DispatchQueue.main.async {
-            ApplicationServiceRegistry.settingsService.removeTransaction(tx.id)
-        }
-    }
-
     func update() {
         assert(Thread.isMainThread)
         guard isViewLoaded else { return }
@@ -113,6 +106,7 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
     }
 
     @IBAction func start(_ sender: Any) {
+        delegate?.replaceRecoveryPhraseViewControllerDidStart()
     }
 
 }

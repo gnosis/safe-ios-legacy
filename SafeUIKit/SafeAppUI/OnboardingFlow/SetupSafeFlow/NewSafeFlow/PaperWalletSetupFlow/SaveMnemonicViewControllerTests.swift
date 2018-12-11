@@ -70,7 +70,7 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
 final class MockSaveMnemonicDelegate: SaveMnemonicDelegate {
 
     var pressedContinue = false
-    func didPressContinue() {
+    func saveMnemonicViewControllerDidPressContinue(_ vc: SaveMnemonicViewController) {
         pressedContinue = true
     }
 

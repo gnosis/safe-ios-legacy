@@ -132,7 +132,7 @@ final class MockConfirmMnemonicDelegate: ConfirmMnemonicDelegate {
 
     var confirmed = false
 
-    func didConfirm() {
+    func confirmMnemonicViewControllerDidConfirm(_ vc: ConfirmMnemonicViewController) {
         confirmed = true
     }
 

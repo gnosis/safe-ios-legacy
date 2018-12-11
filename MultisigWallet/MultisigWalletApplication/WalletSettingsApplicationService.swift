@@ -26,4 +26,13 @@ public class WalletSettingsApplicationService {
         return DomainRegistry.settingsService.isRecoveryPhraseTransactionReadyToStart(TransactionID(id))
     }
 
+    public func updateRecoveryPhraseTransaction(_ id: String, with account: String) {
+        DomainRegistry.settingsService.updateRecoveryPhraseTransaction(TransactionID(id),
+                                                                       with: Address(account))
+    }
+
+    public func cancelPhraseRecovery() {
+        DomainRegistry.settingsService.cancelPhraseRecovery()
+    }
+
 }
