@@ -443,27 +443,13 @@ class RecoveryTransactionBuilder {
 
     init(multiSendContractAddress: Address) {
         self.multiSendContractAddress = multiSendContractAddress
-
         wallet = DomainRegistry.walletRepository.selectedWallet()!
-        print("Wallet \(wallet.id), address \(wallet.address!)")
-
         accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
-
-        oldScheme = oldWalletScheme()
-        newScheme = newWalletScheme()
-        print("Old scheme: ", oldScheme)
-        print("New scheme: ", newScheme)
-
-        ownerList = ownerLinkedList()
-
-        readonlyOwnerAddresses = readonlyAddresses()
-        print("Readonly owners: ", readonlyOwnerAddresses)
-
-        modifiableOwners = mutableOwners()
-        print("Modifiable owners: ", modifiableOwners)
 
         ownerContractProxy = SafeOwnerManagerContractProxy(wallet.address!)
         multiSendContractProxy = MultiSendContractProxy(multiSendContractAddress)
+
+        print("Wallet \(wallet.id), address \(wallet.address!)")
 
         transaction = newTransaction()
             .change(sender: wallet.address!)
@@ -471,6 +457,7 @@ class RecoveryTransactionBuilder {
     }
 
     func main() {
+        pullData()
         guard isSupportedSafeOwners() && isSupportedScheme() else { return }
         buildData()
         guard let estimation = self.estimate() else { return }
@@ -479,6 +466,34 @@ class RecoveryTransactionBuilder {
         sign()
         save()
         notify()
+    }
+
+    func pullData() {
+        do {
+            wallet.removeOwner(role: .unknown)
+            let remoteOwners = try ownerContractProxy.getOwners()
+            remoteOwners.forEach { wallet.addOwner(Owner(address: $0, role: .unknown)) }
+
+            let remoteThreshold = try ownerContractProxy.getThreshold()
+            wallet.changeConfirmationCount(remoteThreshold)
+
+            oldScheme = oldWalletScheme()
+            newScheme = newWalletScheme()
+            print("Old scheme: ", oldScheme)
+            print("New scheme: ", newScheme)
+
+            ownerList = ownerLinkedList()
+
+            readonlyOwnerAddresses = readonlyAddresses()
+            print("Readonly owners: ", readonlyOwnerAddresses)
+
+            modifiableOwners = mutableOwners()
+            print("Modifiable owners: ", modifiableOwners)
+
+            try DomainRegistry.accountUpdateService.updateAccountsBalances()
+        } catch let error {
+            DomainRegistry.errorStream.post(error)
+        }
     }
 
     private func print(_ items: Any...) {

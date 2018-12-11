@@ -294,7 +294,7 @@
 "recovery.address.placeholder" = "Safe address";
 
 /* Description for connect browser extension screen */
-"recovery.browser_extension.description" = "If you also lost access to Safe’s Chrome browser extension, please download the extension again and scan the QR code in the interface.";
+"recovery.browser_extension.description" = "If you want access to Safe’s Chrome browser extension after recovery, please download the extension again and scan the QR code in the interface.\nOtherwise, the access to the extension will be lost after recovery.";
 
 /* Header for connect browser extension screen */
 "recovery.browser_extension.header" = "Connect browser extension";
