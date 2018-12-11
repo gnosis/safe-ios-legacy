@@ -13,7 +13,7 @@ class DemoRecoveryInProgressViewControllerViewController: BaseDemoViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        controller = .create()
+        controller = .create(delegate: nil)
         navController = UINavigationController(rootViewController: UIViewController())
         navController.navigationBar.barTintColor = .white
         navController.navigationBar.isTranslucent = false

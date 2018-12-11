@@ -10,6 +10,14 @@ public enum RecoveryApplicationServiceError: Error {
     case invalidContractAddress
     case recoveryPhraseInvalid
     case recoveryAccountsNotFound
+    case unsupportedOwnerCount
+    case unsupportedWalletConfiguration
+    case failedToChangeOwners
+    case failedToChangeConfirmationCount
+    case failedToCreateValidTransactionData
+    case walletNotFound
+    case failedToCreateValidTransaction
+    case internalServerError
 }
 
 public class RecoveryApplicationService {
@@ -101,8 +109,8 @@ public class RecoveryApplicationService {
         return DomainRegistry.recoveryService.isRecoveryTransactionReadyToSubmit()
     }
 
-    public func submitRecoveryTransaction() {
-        DomainRegistry.recoveryService.submitRecoveryTransaction()
+    public func isRecoveryInProgress() -> Bool {
+        return DomainRegistry.recoveryService.isRecoveryInProgress()
     }
 
     public func cancelRecovery() {
@@ -111,6 +119,14 @@ public class RecoveryApplicationService {
 
     public func observeBalance(subscriber: EventSubscriber) {
         ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: AccountsBalancesUpdated.self)
+    }
+
+    public func resumeRecovery(subscriber: EventSubscriber,
+                               onError errorHandler: @escaping (Error) -> Void) {
+        withEnvironment(for: subscriber, errorHandler: errorHandler) {
+            ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: WalletRecovered.self)
+            DomainRegistry.recoveryService.resume()
+        }
     }
 
     // MARK: - Execution environment setup
@@ -138,6 +154,22 @@ public class RecoveryApplicationService {
             return RecoveryApplicationServiceError.recoveryPhraseInvalid
         case RecoveryServiceError.recoveryAccountsNotFound:
             return RecoveryApplicationServiceError.recoveryAccountsNotFound
+        case RecoveryServiceError.unsupportedOwnerCount:
+            return RecoveryApplicationServiceError.unsupportedOwnerCount
+        case RecoveryServiceError.unsupportedWalletConfiguration:
+            return RecoveryApplicationServiceError.unsupportedWalletConfiguration
+        case RecoveryServiceError.failedToChangeOwners:
+            return RecoveryApplicationServiceError.failedToChangeOwners
+        case RecoveryServiceError.failedToChangeConfirmationCount:
+            return RecoveryApplicationServiceError.failedToChangeConfirmationCount
+        case RecoveryServiceError.failedToCreateValidTransactionData:
+            return RecoveryApplicationServiceError.failedToCreateValidTransactionData
+        case RecoveryServiceError.walletNotFound:
+            return RecoveryApplicationServiceError.walletNotFound
+        case RecoveryServiceError.failedToCreateValidTransaction:
+            return RecoveryApplicationServiceError.failedToCreateValidTransaction
+        case RecoveryServiceError.internalServerError:
+            return RecoveryApplicationServiceError.internalServerError
         default:
             return domainError
         }

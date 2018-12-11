@@ -25,6 +25,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
     public private(set) var finalizingDeploymentState: WalletState!
     public private(set) var readyToUseState: WalletState!
     public private(set) var recoveryDraftState: WalletState!
+    public private(set) var recoveryInProgressState: WalletState!
+    public private(set) var recoveryPostProcessingState: WalletState!
 
     public private(set) var address: Address?
     public private(set) var creationTransactionHash: String?
@@ -43,6 +45,14 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public var isCreationInProgress: Bool {
         return state.isCreationInProgress
+    }
+
+    public var isRecoveryInProgress: Bool {
+        return state.isRecoveryInProgress
+    }
+
+    public var isFinalizingRecovery: Bool {
+        return state.isFinalizingRecovery
     }
 
     public convenience init(id: WalletID,
@@ -72,6 +82,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
         case .finalizingDeployment: return finalizingDeploymentState
         case .readyToUse: return readyToUseState
         case .recoveryDraft: return recoveryDraftState
+        case .recoveryInProgress: return recoveryInProgressState
+        case .recoveryPostProcessing: return recoveryPostProcessingState
         }
     }
 
@@ -90,6 +102,8 @@ public class Wallet: IdentifiableEntity<WalletID> {
         finalizingDeploymentState = FinalizingDeploymentState(wallet: self)
         readyToUseState = ReadyToUseState(wallet: self)
         recoveryDraftState = RecoveryDraftState(wallet: self)
+        recoveryInProgressState = RecoveryInProgressState(wallet: self)
+        recoveryPostProcessingState = RecoveryPostProcessingState(wallet: self)
     }
 
     public func prepareForRecovery() {

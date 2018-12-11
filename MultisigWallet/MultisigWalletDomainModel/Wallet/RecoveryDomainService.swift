@@ -12,7 +12,12 @@ public enum RecoveryServiceError: Error {
     case recoveryPhraseInvalid
     case unsupportedOwnerCount(String)
     case unsupportedWalletConfiguration(String)
-    case notEnoughFunds
+    case failedToChangeOwners
+    case failedToChangeConfirmationCount
+    case failedToCreateValidTransactionData
+    case walletNotFound
+    case failedToCreateValidTransaction
+    case internalServerError
 }
 
 public struct RecoveryDomainServiceConfig {
@@ -90,7 +95,7 @@ public class RecoveryDomainService: Assertable {
             changeWallet(address: address)
             try pullWalletData()
         } catch let error {
-            DomainRegistry.errorStream.post(error)
+            DomainRegistry.errorStream.post(serviceError(from: error))
         }
     }
 
@@ -177,7 +182,24 @@ public class RecoveryDomainService: Assertable {
         return balance >= requiredBalance.amount
     }
 
-    public func submitRecoveryTransaction() {
+    public func resume() {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id)!
+
+        if !wallet.isReadyToUse && !wallet.isRecoveryInProgress && tx.status == .signing {
+            submitRecoveryTransaction()
+        } else if wallet.isFinalizingRecovery && tx.status == .success {
+            postProcessing()
+        } else if wallet.isRecoveryInProgress && tx.status == .pending {
+            subscribeForTransactionProcessing()
+        } else if wallet.isRecoveryInProgress && (tx.status == .success || tx.status == .failed) {
+            handleTransactionProgress(tx, wallet)
+        } else {
+            preconditionFailure("Invalid wallet and transaction state")
+        }
+    }
+
+    private func submitRecoveryTransaction() {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id)!
 
@@ -191,13 +213,104 @@ public class RecoveryDomainService: Assertable {
             let response = try DomainRegistry.transactionRelayService.submitTransaction(request: request)
             txHash = TransactionHash(response.transactionHash)
         } catch let error {
-            DomainRegistry.errorStream.post(error)
+            DomainRegistry.errorStream.post(serviceError(from: error))
             return
         }
 
         tx.set(hash: txHash)
         tx.proceed()
         DomainRegistry.transactionRepository.save(tx)
+
+        wallet.proceed()
+        DomainRegistry.walletRepository.save(wallet)
+
+        assert(tx.status == .pending, "Invalid after-submission recovery state")
+        assert(wallet.isRecoveryInProgress && !wallet.isFinalizingRecovery, "Invalid after-submission wallet state")
+
+        subscribeForTransactionProcessing()
+    }
+
+    private func subscribeForTransactionProcessing() {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id)!
+
+        assert(wallet.isRecoveryInProgress && !wallet.isFinalizingRecovery && tx.status == .pending,
+               "Invalid pending recovery state")
+
+        guard tx.status == .pending else { return }
+        DomainRegistry.eventPublisher.subscribe(self) { [weak self] (_: TransactionStatusUpdated) in
+            guard let `self` = self else { return }
+            guard let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id) else {
+                DomainRegistry.eventPublisher.unsubscribe(self)
+                return
+            }
+            if tx.status == .pending { return }
+            DomainRegistry.eventPublisher.unsubscribe(self)
+            self.handleTransactionProgress(tx, wallet)
+        }
+    }
+
+    private func handleTransactionProgress(_ tx: Transaction, _ wallet: Wallet) {
+        assert(wallet.isRecoveryInProgress && !wallet.isFinalizingRecovery &&
+            (tx.status == .success || tx.status == .failed), "Invalid tx updated state")
+        if tx.status == .success {
+            wallet.proceed()
+            self.postProcessing()
+        } else if tx.status == .failed {
+            wallet.proceed()
+            wallet.cancel()
+            self.cancelRecovery()
+        }
+    }
+
+    private func postProcessing() {
+        let wallet = DomainRegistry.walletRepository.selectedWallet()!
+        let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id)!
+
+        assert(wallet.isFinalizingRecovery && tx.status == .success, "Invalid post-processing state")
+
+        do {
+            let ownersContract = SafeOwnerManagerContractProxy(wallet.address!)
+
+            let remoteOwners = try ownersContract.getOwners()
+                .map { $0.value.lowercased() }.sorted()
+            let localOwners = wallet.owners.filter { $0.role != .unknown }
+                .map { $0.address.value.lowercased() }.sorted()
+            try assertEqual(localOwners, remoteOwners, RecoveryServiceError.failedToChangeOwners)
+
+            let remoteThreshold = try ownersContract.getThreshold()
+            let localThreshold = wallet.confirmationCount
+            try assertEqual(localThreshold, remoteThreshold, RecoveryServiceError.failedToChangeConfirmationCount)
+
+            DomainRegistry.externallyOwnedAccountRepository.remove(address: wallet.owner(role: .paperWallet)!.address)
+            DomainRegistry.externallyOwnedAccountRepository.remove(address:
+                wallet.owner(role: .paperWalletDerived)!.address)
+
+            wallet.proceed()
+            wallet.removeOwner(role: .unknown)
+            DomainRegistry.walletRepository.save(wallet)
+
+            try? notifyDidCreate(wallet)
+        } catch let error {
+            wallet.cancel()
+            cancelRecovery()
+            DomainRegistry.errorStream.post(error)
+        }
+    }
+
+    private func notifyDidCreate(_ wallet: Wallet) throws {
+        guard let recipient = wallet.owner(role: .browserExtension)?.address else { return }
+        let sender = wallet.owner(role: .thisDevice)!.address
+        let senderEOA = DomainRegistry.externallyOwnedAccountRepository.find(by: sender)!
+        let message = DomainRegistry.notificationService.safeCreatedMessage(at: wallet.address!.value)
+        let signedAddress = DomainRegistry.encryptionService.sign(message: "GNO" + message,
+                                                                  privateKey: senderEOA.privateKey)
+        let request = SendNotificationRequest(message: message, to: recipient.value, from: signedAddress)
+        try DomainRegistry.notificationService.send(notificationRequest: request)
+    }
+
+    public func isRecoveryInProgress() -> Bool {
+        return DomainRegistry.walletRepository.selectedWallet()?.isRecoveryInProgress == true
     }
 
     public func cancelRecovery() {
@@ -289,6 +402,18 @@ public struct WalletScheme: Equatable, CustomStringConvertible {
 
     public var description: String {
         return "(\(confirmations)/\(owners))"
+    }
+}
+
+fileprivate func serviceError(from error: Error) -> Error {
+    guard case let JSONHTTPClient.Error.networkRequestFailed(_, response, _) = error else { return error }
+    guard let httpResponse = response as? HTTPURLResponse else { return error }
+    switch httpResponse.statusCode {
+    case 400: return RecoveryServiceError.failedToCreateValidTransactionData
+    case 404: return RecoveryServiceError.walletNotFound
+    case 422: return RecoveryServiceError.failedToCreateValidTransaction
+    case 500: return RecoveryServiceError.internalServerError
+    default: return error
     }
 }
 
@@ -439,9 +564,9 @@ class RecoveryTransactionBuilder {
         case (.withoutExtension, .withExtension):
             buildNoExtensionToExtensionData()
         case (.withExtension, .withoutExtension):
-            buildExtensionToExtensionData()
-        case (.withExtension, .withoutExtension):
             buildExtensionToNoExtensionData()
+        case (.withExtension, .withExtension):
+            buildExtensionToExtensionData()
         default:
             preconditionFailure("Unreachable")
         }
@@ -536,7 +661,7 @@ class RecoveryTransactionBuilder {
         do {
             return try DomainRegistry.transactionRelayService.estimateTransaction(request: estimationRequest)
         } catch let error {
-            DomainRegistry.errorStream.post(error)
+            DomainRegistry.errorStream.post(serviceError(from: error))
             return nil
         }
     }
@@ -549,4 +674,5 @@ class RecoveryTransactionBuilder {
     private func notify() {
         DomainRegistry.eventPublisher.publish(WalletBecameReadyForRecovery())
     }
+
 }

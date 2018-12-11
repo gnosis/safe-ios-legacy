@@ -19,6 +19,8 @@ public class WalletState {
         case finalizingDeployment
         case readyToUse
         case recoveryDraft
+        case recoveryInProgress
+        case recoveryPostProcessing
     }
 
     public var state: State { preconditionFailure("Not implemented") }
@@ -29,6 +31,8 @@ public class WalletState {
     var isDeployable: Bool { return false }
     var isReadyToUse: Bool { return false }
     var isCreationInProgress: Bool { return false }
+    var isRecoveryInProgress: Bool { return false }
+    var isFinalizingRecovery: Bool { return false }
 
     internal weak var wallet: Wallet!
 
@@ -54,6 +58,20 @@ extension WalletState: CustomStringConvertible {
     }
 
 }
+
+public class DeploymentStarted: DomainEvent {}
+public class DeploymentAborted: DomainEvent {}
+public class WalletTransactionHashIsKnown: DomainEvent {}
+public class WalletConfigured: DomainEvent {}
+public class CreationStarted: DomainEvent {}
+public class DeploymentFunded: DomainEvent {}
+public class WalletCreated: DomainEvent {}
+public class WalletCreationFailed: DomainEvent {}
+
+public class RecoveryStarted: DomainEvent {}
+public class RecoveryAborted: DomainEvent {}
+public class WalletRecovered: DomainEvent {}
+public class WalletRecoveryFailed: DomainEvent {}
 
 public class DraftState: WalletState {
 
@@ -90,17 +108,6 @@ public class DraftState: WalletState {
 
 }
 
-public class DeploymentStarted: DomainEvent {}
-public class DeploymentAborted: DomainEvent {}
-
-public class RecoveryDraftState: WalletState {
-
-    public override var state: WalletState.State { return .recoveryDraft }
-    override var canChangeOwners: Bool { return true }
-    override var canChangeAddress: Bool { return true }
-
-}
-
 public class DeployingState: WalletState {
 
     override public var state: WalletState.State { return .deploying }
@@ -127,8 +134,6 @@ public class DeployingState: WalletState {
 
 }
 
-public class WalletConfigured: DomainEvent {}
-
 public class NotEnoughFundsState: WalletState {
 
     override public var state: WalletState.State { return .notEnoughFunds }
@@ -154,8 +159,6 @@ public class NotEnoughFundsState: WalletState {
 
 }
 
-public class DeploymentFunded: DomainEvent {}
-
 public class CreationStartedState: WalletState {
 
     override public var state: WalletState.State { return .creationStarted }
@@ -179,9 +182,6 @@ public class CreationStartedState: WalletState {
         DomainRegistry.eventPublisher.publish(DeploymentAborted())
     }
 }
-
-public class CreationStarted: DomainEvent {}
-public class WalletTransactionHashIsKnown: DomainEvent {}
 
 public class FinalizingDeploymentState: WalletState {
 
@@ -209,14 +209,74 @@ public class FinalizingDeploymentState: WalletState {
 
 }
 
-public class WalletCreated: DomainEvent {}
-public class WalletCreationFailed: DomainEvent {}
-
 public class ReadyToUseState: WalletState {
 
     override public var state: WalletState.State { return .readyToUse }
     override var isReadyToUse: Bool { return true }
     override var isCreationInProgress: Bool { return false }
     override var canChangeOwners: Bool { return true }
+
+}
+
+public class RecoveryDraftState: WalletState {
+
+    public override var state: WalletState.State { return .recoveryDraft }
+    override var canChangeOwners: Bool { return true }
+    override var canChangeAddress: Bool { return true }
+
+    override func resume() {
+        proceed()
+    }
+
+    override func proceed() {
+        wallet.state = wallet.recoveryInProgressState
+        DomainRegistry.walletRepository.save(wallet)
+        wallet.state.resume()
+    }
+
+}
+
+public class RecoveryInProgressState: WalletState {
+
+    public override var state: WalletState.State { return .recoveryInProgress }
+    override var isRecoveryInProgress: Bool { return true }
+
+    override func resume() {
+        DomainRegistry.eventPublisher.publish(RecoveryStarted())
+    }
+
+    override func proceed() {
+        wallet.state = wallet.recoveryPostProcessingState
+        DomainRegistry.walletRepository.save(wallet)
+        wallet.state.resume()
+    }
+
+    override func cancel() {
+        wallet.state = wallet.recoveryDraftState
+        wallet.reset()
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(RecoveryAborted())
+    }
+
+}
+
+public class RecoveryPostProcessingState: WalletState {
+
+    public override var state: WalletState.State { return .recoveryPostProcessing }
+    override var isRecoveryInProgress: Bool { return true }
+    override var isFinalizingRecovery: Bool { return true }
+
+    override func proceed() {
+        wallet.state = wallet.readyToUseState
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(WalletRecovered())
+    }
+
+    override func cancel() {
+        wallet.state = wallet.recoveryDraftState
+        wallet.reset()
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(WalletRecoveryFailed())
+    }
 
 }

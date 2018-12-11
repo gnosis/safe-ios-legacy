@@ -4,13 +4,23 @@
 
 import UIKit
 import MultisigWalletApplication
+import SafariServices
 
 final class RecoverSafeFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
+        if ApplicationServiceRegistry.walletService.hasReadyToUseWallet {
+            exitFlow()
+            return
+        }
+
         push(GuidelinesViewController.createRecoverSafeGuidelines(delegate: self))
         saveCheckpoint()
+
+        if ApplicationServiceRegistry.recoveryService.isRecoveryInProgress() {
+            push(RecoveryInProgressViewController.create(delegate: self))
+        }
     }
 
     func showReview() {
@@ -80,7 +90,7 @@ extension RecoverSafeFlowCoordinator: ReviewRecoveryTransactionViewControllerDel
 
     func reviewRecoveryTransactionViewControllerDidSubmit() {
         dismissModal { [unowned self] in
-            self.push(RecoveryInProgressViewController.create())
+            self.push(RecoveryInProgressViewController.create(delegate: self))
         }
     }
 
@@ -88,6 +98,24 @@ extension RecoverSafeFlowCoordinator: ReviewRecoveryTransactionViewControllerDel
         dismissModal { [unowned self] in
             self.popToLastCheckpoint()
         }
+    }
+
+}
+
+extension RecoverSafeFlowCoordinator: RecoveryInProgressViewControllerDelegate {
+
+    func recoveryInProgressViewControllerDidFail() {
+        popToLastCheckpoint()
+    }
+
+    func recoveryInProgressViewControllerDidSuccess() {
+        exitFlow()
+    }
+
+    func recoveryInProgressViewControllerWantsToOpenTransactionInExternalViewer(_ transactionID: String) {
+        let url = ApplicationServiceRegistry.walletService.transactionURL(transactionID)
+        let controller = SFSafariViewController(url: url)
+        push(controller)
     }
 
 }
