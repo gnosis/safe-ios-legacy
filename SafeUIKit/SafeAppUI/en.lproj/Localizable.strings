@@ -299,6 +299,30 @@
 /* Header for connect browser extension screen */
 "recovery.browser_extension.header" = "Connect browser extension";
 
+/* Recovery transaction failed to change Safe confirmation count */
+"recovery.failure.failedToChangeConfirmationCount" = "Recovery transaction failed to change Safe confirmation count";
+
+/* Recovery transaction failed to change Safe owners */
+"recovery.failure.failedToChangeOwners" = "Recovery transaction failed to change Safe owners";
+
+/* Cannot recover because recovery transaction is invalid */
+"recovery.failure.failedToCreateValidTransaction" = "Cannot recover because recovery transaction is invalid";
+
+/* Cannot recover because recovery data is invalid */
+"recovery.failure.failedToCreateValidTransactionData" = "Cannot recover because recovery data is invalid";
+
+/* Failed to recover because of internal server error */
+"recovery.failure.internalServerError" = "Failed to recover because of internal server error";
+
+/* Cannot recover because number of Safe owners is not supported */
+"recovery.failure.unsupportedOwnerCount" = "Cannot recover because number of Safe owners is not supported";
+
+/* Cannot recover because this Safe configuration is not supported */
+"recovery.failure.unsupportedWalletConfiguration" = "Cannot recover because this Safe configuration is not supported";
+
+/* Cannot recover because couldn't find the Safe with this address */
+"recovery.failure.walletNotFound" = "Cannot recover because couldn't find the Safe with this address";
+
 /* Content paragraphs, separated by '\n' */
 "recovery.guidelines.content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee in ETH will be automatically deducted from the ETH balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount of ETH required to cover the fee.";
 

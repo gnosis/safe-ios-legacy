@@ -162,9 +162,6 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
 
     @IBAction func submit(_ sender: Any) {
         guard recoveryTransaction != nil else { return }
-        DispatchQueue.global().async {
-            ApplicationServiceRegistry.recoveryService.submitRecoveryTransaction()
-        }
         delegate?.reviewRecoveryTransactionViewControllerDidSubmit()
     }
 

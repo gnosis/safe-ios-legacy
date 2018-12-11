@@ -4,6 +4,15 @@
 
 import UIKit
 import SafeUIKit
+import MultisigWalletApplication
+
+public protocol RecoveryInProgressViewControllerDelegate: class {
+
+    func recoveryInProgressViewControllerDidFail()
+    func recoveryInProgressViewControllerDidSuccess()
+    func recoveryInProgressViewControllerWantsToOpenTransactionInExternalViewer(_ transactionID: String)
+
+}
 
 public class RecoveryInProgressViewController: UIViewController {
 
@@ -22,9 +31,12 @@ public class RecoveryInProgressViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     var headerStyle = HeaderStyle.contentHeader
     var isAnimatingProgress = false
+    weak var delegate: RecoveryInProgressViewControllerDelegate?
 
-    public static func create() -> RecoveryInProgressViewController {
-        return StoryboardScene.RecoverSafe.recoveryInProgressViewController.instantiate()
+    public static func create(delegate: RecoveryInProgressViewControllerDelegate?) -> RecoveryInProgressViewController {
+        let controller = StoryboardScene.RecoverSafe.recoveryInProgressViewController.instantiate()
+        controller.delegate = delegate
+        return controller
     }
 
     public override func viewDidLoad() {
@@ -35,6 +47,7 @@ public class RecoveryInProgressViewController: UIViewController {
         progressView.trackTintColor = ColorName.paleGrey.color
         progressView.progressTintColor = ColorName.aquaBlue.color
         progressView.progress = 0
+        resumeObservation()
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -60,8 +73,45 @@ public class RecoveryInProgressViewController: UIViewController {
         })
     }
 
+    func resumeObservation() {
+        DispatchQueue.global().async {
+            ApplicationServiceRegistry.recoveryService.resumeRecovery(subscriber: self) { [weak self] error in
+                guard let `self` = self else { return }
+                DispatchQueue.main.async {
+                    self.show(error: error)
+                }
+            }
+        }
+    }
+
+    func success() {
+        DispatchQueue.main.async { [unowned self] in
+            self.animateCopmletedProgress {
+                self.delegate?.recoveryInProgressViewControllerDidSuccess()
+            }
+        }
+    }
+
+    func show(error: Error) {
+        let message = error.localizedDescription
+        let controller = InputFailedAlertController.create(message: message) {
+            self.delegate?.recoveryInProgressViewControllerDidFail()
+        }
+        present(controller, animated: true)
+    }
+
     @IBAction func openInExternalViewer(_ sender: Any) {
-        animateCopmletedProgress {}
+        if let transaction = ApplicationServiceRegistry.recoveryService.recoveryTransaction() {
+            delegate?.recoveryInProgressViewControllerWantsToOpenTransactionInExternalViewer(transaction.id)
+        }
+    }
+
+}
+
+extension RecoveryInProgressViewController: EventSubscriber {
+
+    public func notify() {
+        success()
     }
 
 }

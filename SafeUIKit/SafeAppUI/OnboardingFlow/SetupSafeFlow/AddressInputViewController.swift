@@ -79,6 +79,30 @@ extension RecoveryApplicationServiceError: LocalizedError {
         case .recoveryAccountsNotFound:
             return LocalizedString("recovery.phrase.error.",
                                    comment: "Recovery phrase does not match this Safe's recovery phrase")
+        case .unsupportedOwnerCount:
+            return LocalizedString("recovery.failure.unsupportedOwnerCount",
+                                   comment: "Cannot recover because number of Safe owners is not supported")
+        case .unsupportedWalletConfiguration:
+            return LocalizedString("recovery.failure.unsupportedWalletConfiguration",
+                                   comment: "Cannot recover because this Safe configuration is not supported")
+        case .failedToChangeOwners:
+            return LocalizedString("recovery.failure.failedToChangeOwners",
+                                   comment: "Recovery transaction failed to change Safe owners")
+        case .failedToCreateValidTransactionData:
+            return LocalizedString("recovery.failure.failedToCreateValidTransactionData",
+                                   comment: "Cannot recover because recovery data is invalid")
+        case .failedToCreateValidTransaction:
+            return LocalizedString("recovery.failure.failedToCreateValidTransaction",
+                                   comment: "Cannot recover because recovery transaction is invalid")
+        case .failedToChangeConfirmationCount:
+            return LocalizedString("recovery.failure.failedToChangeConfirmationCount",
+                                   comment: "Recovery transaction failed to change Safe confirmation count")
+        case .walletNotFound:
+            return LocalizedString("recovery.failure.walletNotFound",
+                                   comment: "Cannot recover because couldn't find the Safe with this address")
+        case .internalServerError:
+            return LocalizedString("recovery.failure.internalServerError",
+                                   comment: "Failed to recover because of internal server error")
         }
     }
 
