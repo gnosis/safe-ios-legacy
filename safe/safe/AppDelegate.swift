@@ -84,9 +84,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         let walletService = WalletApplicationService(configuration: appConfig.walletApplicationServiceConfiguration)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: walletService,
                                                                  for: WalletApplicationService.self)
-        let recoveryService = RecoveryApplicationService()
-        MultisigWalletApplication.ApplicationServiceRegistry.put(service: recoveryService,
+        MultisigWalletApplication.ApplicationServiceRegistry.put(service: RecoveryApplicationService(),
                                                                  for: RecoveryApplicationService.self)
+        MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletSettingsApplicationService(),
+                                                                 for: WalletSettingsApplicationService.self)
 
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
         let notificationService = HTTPNotificationService(url: appConfig.notificationServiceURL,
@@ -111,6 +112,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                  multiSendAddress: appConfig.multiSendAddress)
         MultisigWalletDomainModel.DomainRegistry.put(service: RecoveryDomainService(config: config),
                                                      for: RecoveryDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: WalletSettingsDomainService(config: config),
+                                                     for: WalletSettingsDomainService.self)
 
         let relay = EventRelay(publisher: MultisigWalletDomainModel.DomainRegistry.eventPublisher)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)

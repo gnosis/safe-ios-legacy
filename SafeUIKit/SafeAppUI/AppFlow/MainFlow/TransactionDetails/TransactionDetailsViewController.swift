@@ -32,6 +32,8 @@ public class TransactionDetailsViewController: UIViewController {
         static let incoming = LocalizedString("transaction.details.type.incoming",
                                               comment: "'Incoming' transaction type")
         static let recovery = LocalizedString("transaction.details.type.recovery", comment: "Wallet recovery")
+        static let replaceRecoveryPhrase = LocalizedString("transaction.details.type.replaceRecoveryPhrase",
+                                                           comment: "Replace recovery phrase")
         static let title = LocalizedString("transaction.details.title",
                                            comment: "Title for the transaction details screen")
     }
@@ -94,6 +96,7 @@ public class TransactionDetailsViewController: UIViewController {
         case .outgoing: transactionTypeView.value = Strings.outgoing
         case .incoming: transactionTypeView.value = Strings.incoming
         case .walletRecovery: transactionTypeView.value = Strings.recovery
+        case .replaceRecoveryPhrase: transactionTypeView.value = Strings.replaceRecoveryPhrase
         }
     }
 

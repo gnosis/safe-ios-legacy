@@ -92,4 +92,8 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: RecoveryDomainService.self)
     }
 
+    public static var settingsService: WalletSettingsDomainService {
+        return service(for: WalletSettingsDomainService.self)
+    }
+
 }

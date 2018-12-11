@@ -167,7 +167,22 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
     }
 
     func didSelectChangeBrowserExtension() {
-        // TODO
+        preconditionFailure("Not implemented")
+    }
+
+    func didSelectReplaceRecoveryPhrase() {
+        let controller = ReplaceRecoveryPhraseViewController.create(delegate: self)
+        push(controller) {
+            controller.willBeDismissed()
+        }
+    }
+
+}
+
+extension MainFlowCoordinator: ReplaceRecoveryPhraseViewControllerDelegate {
+
+    func replaceRecoveryPhraseViewControllerDidStart() {
+
     }
 
 }

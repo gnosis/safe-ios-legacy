@@ -362,6 +362,12 @@
 /* Recovery transaction failed alert's title */
 "recovery.transaction.failed_alert.title" = "recovery.transaction.failed_alert.title";
 
+/* Text between stars (*) will be emphasized */
+"replace_phrase.body" = "This will generate a new recovery phrase and invalidate your current one.";
+
+/* Replace recovery phrase */
+"replace_phrase.header" = "Replace recovery phrase";
+
 /* Safe Address label. */
 "safe_address.address" = "Address";
 
@@ -478,6 +484,9 @@
 
 /* Wallet recovery */
 "transaction.details.type.recovery" = "Safe Recovery";
+
+/* Replace recovery phrase */
+"transaction.details.type.replaceRecoveryPhrase" = "transaction.details.type.replaceRecoveryPhrase";
 
 /* Not enough balance for transaction. */
 "transaction.error.notEnoughFunds" = "Insufficient funds for the amount.";

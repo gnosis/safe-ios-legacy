@@ -30,6 +30,7 @@ public struct TransactionData {
         case outgoing
         case incoming
         case walletRecovery
+        case replaceRecoveryPhrase
     }
 
     public let id: String

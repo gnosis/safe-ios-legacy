@@ -173,8 +173,7 @@ public class RecoveryDomainService: Assertable {
         guard let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id) else {
             return false
         }
-        let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
-        guard let balance = DomainRegistry.accountRepository.find(id: accountID)?.balance else {
+        guard let balance = DomainRegistry.accountRepository.find(id: tx.accountID)?.balance else {
             return false
         }
         guard let estimate = tx.feeEstimate else { return false }
