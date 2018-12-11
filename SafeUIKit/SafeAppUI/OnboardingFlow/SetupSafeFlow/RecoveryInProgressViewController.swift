@@ -47,7 +47,7 @@ public class RecoveryInProgressViewController: UIViewController {
         progressView.trackTintColor = ColorName.paleGrey.color
         progressView.progressTintColor = ColorName.aquaBlue.color
         progressView.progress = 0
-        resumeObservation()
+        resumeRecovery()
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -73,7 +73,7 @@ public class RecoveryInProgressViewController: UIViewController {
         })
     }
 
-    func resumeObservation() {
+    func resumeRecovery() {
         DispatchQueue.global().async {
             ApplicationServiceRegistry.recoveryService.resumeRecovery(subscriber: self) { [weak self] error in
                 guard let `self` = self else { return }

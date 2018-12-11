@@ -149,7 +149,9 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
 
     func show(error: Error) {
         let message = error.localizedDescription
-        let controller = InputFailedAlertController.create(message: message) { /* empty */ }
+        let controller = RecoveryFailedAlertController.create(message: message) { [unowned self] in
+            self.delegate?.reviewRecoveryTransactionViewControllerDidCancel()
+        }
         present(controller, animated: true)
     }
 
