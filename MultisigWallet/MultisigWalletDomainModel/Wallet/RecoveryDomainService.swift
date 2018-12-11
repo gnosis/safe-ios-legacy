@@ -285,7 +285,7 @@ public struct WalletScheme: Equatable, CustomStringConvertible {
     }
 
     public static let withoutExtension = WalletScheme(confirmations: 1, owners: 3)
-    public static let hasExtension = WalletScheme(confirmations: 2, owners: 4)
+    public static let withExtension = WalletScheme(confirmations: 2, owners: 4)
 
     public var description: String {
         return "(\(confirmations)/\(owners))"
@@ -312,7 +312,7 @@ class RecoveryTransactionBuilder {
     var multiSendContractProxy: MultiSendContractProxy!
 
     var supportedModifiableOwnerCounts = [1, 2]
-    var supportedSchemes: [WalletScheme] = [.withoutExtension, .hasExtension]
+    var supportedSchemes: [WalletScheme] = [.withoutExtension, .withExtension]
 
     var transaction: Transaction!
 
@@ -321,6 +321,7 @@ class RecoveryTransactionBuilder {
 
         wallet = DomainRegistry.walletRepository.selectedWallet()!
         print("Wallet \(wallet.id), address \(wallet.address!)")
+
         accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
 
         oldScheme = oldWalletScheme()
@@ -398,64 +399,6 @@ class RecoveryTransactionBuilder {
         }
     }
 
-    fileprivate func swapDeviceOwner() {
-        print("Recovery \(oldScheme!)-> \(newScheme!)")
-
-        let deviceSwapOwner = modifiableOwners.removeFirst()
-        let addressBeforeSwapOwner = ownerList.addressBefore(deviceSwapOwner)
-        let deviceOwner = wallet.owner(role: .thisDevice)!
-        let data = ownerContractProxy.swapOwner(prevOwner: addressBeforeSwapOwner,
-                                                old: deviceSwapOwner.address,
-                                                new: deviceOwner.address)
-
-        print("Owners: ", ownerList.list)
-        print("Swap \(deviceSwapOwner) -> \(deviceOwner)")
-
-        transaction.change(data: data)
-            .change(recipient: wallet.address!)
-            .change(operation: .call)
-    }
-
-    // FIXME: if swapping to the same owner - then what? need to fake recovery
-
-    fileprivate func swapDeviceOwnerAndAddExtensionOwner() {
-        print("Recovery \(oldScheme!)-> \(newScheme!)")
-
-        let deviceSwapOwner = modifiableOwners.removeFirst()
-        let addressBeforeSwapOwner = ownerList.addressBefore(deviceSwapOwner)
-        let deviceOwner = wallet.owner(role: .thisDevice)!
-        let swapOwnerData = ownerContractProxy.swapOwner(prevOwner: addressBeforeSwapOwner,
-                                                         old: deviceSwapOwner.address,
-                                                         new: deviceOwner.address)
-
-        print("Owners: ", ownerList.list)
-        print("Swap \(deviceSwapOwner) -> \(deviceOwner)")
-
-        ownerList.replace(deviceSwapOwner, with: deviceOwner)
-
-        let extensionOwner = wallet.owner(role: .browserExtension)!
-
-        print("Owners: ", ownerList.list)
-        print("Add \(extensionOwner)")
-
-        ownerList.add(extensionOwner)
-        print("Owners: ", ownerList.list)
-
-        let addOwnerData = ownerContractProxy.addOwner(extensionOwner.address, newThreshold: 2)
-        wallet.changeConfirmationCount(2)
-
-        print("Threshold changed to \(wallet.confirmationCount)")
-
-        let data = multiSendContractProxy.multiSend([
-            (operation: .call, to: wallet.address!, value: 0, data: swapOwnerData),
-            (operation: .call, to: wallet.address!, value: 0, data: addOwnerData)])
-
-        let address = DomainRegistry.encryptionService.address(from: multiSendContractProxy.contract.value)!
-        transaction.change(recipient: address)
-            .change(data: data)
-            .change(operation: .delegateCall)
-    }
-
     fileprivate func sign() {
         let paperWalletEOA = DomainRegistry.externallyOwnedAccountRepository.find(by:
             wallet.owner(role: .paperWallet)!.address)!
@@ -492,12 +435,76 @@ class RecoveryTransactionBuilder {
     fileprivate func buildData() {
         switch (oldScheme!, newScheme!) {
         case (.withoutExtension, .withoutExtension):
-            swapDeviceOwner()
-        case (.withoutExtension, .hasExtension):
-            swapDeviceOwnerAndAddExtensionOwner()
+            buildNoExtensionToNoExtensionData()
+        case (.withoutExtension, .withExtension):
+            buildNoExtensionToExtensionData()
+        case (.withExtension, .withoutExtension):
+            buildExtensionToExtensionData()
+        case (.withExtension, .withoutExtension):
+            buildExtensionToNoExtensionData()
         default:
             preconditionFailure("Unreachable")
         }
+    }
+
+    fileprivate func buildNoExtensionToNoExtensionData() {
+        transaction.change(data: swapOwnerData(role: .thisDevice))
+            .change(recipient: wallet.address!)
+            .change(operation: .call)
+    }
+
+    fileprivate func buildNoExtensionToExtensionData() {
+        buildMultiSendTransaction([swapOwnerData(role: .thisDevice), addOwnerData(role: .browserExtension)])
+    }
+
+    private func buildExtensionToExtensionData() {
+        buildMultiSendTransaction([swapOwnerData(role: .thisDevice), swapOwnerData(role: .browserExtension)])
+    }
+
+    private func buildExtensionToNoExtensionData() {
+        buildMultiSendTransaction([swapOwnerData(role: .thisDevice), removeOwnerData()])
+    }
+
+    private func buildMultiSendTransaction(_ data: [Data]) {
+        let address = DomainRegistry.encryptionService.address(from: multiSendContractProxy.contract.value)!
+        transaction.change(recipient: address)
+            .change(data: multiSendData(data))
+            .change(operation: .delegateCall)
+    }
+
+    private func swapOwnerData(role: OwnerRole) -> Data {
+        let ownerToReplace = modifiableOwners.removeFirst()
+        let addressBeforeReplaceableOwner = ownerList.addressBefore(ownerToReplace)
+        let newOwner = wallet.owner(role: role)!
+        let data = ownerContractProxy.swapOwner(prevOwner: addressBeforeReplaceableOwner,
+                                                old: ownerToReplace.address,
+                                                new: newOwner.address)
+        ownerList.replace(ownerToReplace, with: newOwner)
+        return data
+    }
+
+    private func addOwnerData(role: OwnerRole) -> Data {
+        let newOwner = wallet.owner(role: role)!
+        let data = ownerContractProxy.addOwner(newOwner.address, newThreshold: newScheme.confirmations)
+        ownerList.add(newOwner)
+        wallet.changeConfirmationCount(newScheme.confirmations)
+        return data
+    }
+
+    private func removeOwnerData() -> Data {
+        let ownerToRemove = modifiableOwners.removeFirst()
+        let addressBeforeRemovedOwner = ownerList.addressBefore(ownerToRemove)
+        let data = ownerContractProxy.removeOwner(prevOwner: addressBeforeRemovedOwner,
+                                                  owner: ownerToRemove.address,
+                                                  newThreshold: newScheme.confirmations)
+        ownerList.remove(ownerToRemove)
+        wallet.changeConfirmationCount(newScheme.confirmations)
+        return data
+    }
+
+    private func multiSendData(_ transactionData: [Data]) -> Data {
+        return multiSendContractProxy.multiSend(transactionData.map {
+            (operation: .call, to: wallet.address!, value: 0, data: $0) })
     }
 
     private func isSupportedSafeOwners() -> Bool {
