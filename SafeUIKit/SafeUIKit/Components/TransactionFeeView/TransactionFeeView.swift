@@ -44,7 +44,16 @@ public class TransactionFeeView: BaseCustomView {
 
     public var transactionFeeLabel: UILabel? {
         guard transactionFee != nil else { return nil }
-        return label(at: IndexPath(item: 0, section: currentBalance == nil ? 0 : 1))
+        let stack = view(at: IndexPath(item: 0, section: currentBalance == nil ? 0 : 1)) as? UIStackView
+        let label = stack?.arrangedSubviews.first as? UILabel
+        return label
+    }
+
+    public var transactionFeeInfoButton: UIButton? {
+        guard transactionFee != nil else { return nil }
+        let stack = view(at: IndexPath(item: 0, section: currentBalance == nil ? 0 : 1)) as? UIStackView
+        let label = stack?.arrangedSubviews.last as? UIButton
+        return label
     }
 
     public var transactionFeeValueLabel: UILabel? {
@@ -65,6 +74,13 @@ public class TransactionFeeView: BaseCustomView {
             let stackView = (wrapperStackView.arrangedSubviews[path.section] as? UIStackView),
             stackView.arrangedSubviews.count > path.item else { return nil }
         return stackView.arrangedSubviews[path.item] as? UILabel
+    }
+
+    private func view(at path: IndexPath) -> UIView? {
+        guard wrapperStackView.arrangedSubviews.count > path.section,
+            let stackView = (wrapperStackView.arrangedSubviews[path.section] as? UIStackView),
+            stackView.arrangedSubviews.count > path.item else { return nil }
+        return stackView.arrangedSubviews[path.item]
     }
 
     public override func commonInit() {
@@ -147,7 +163,7 @@ public class TransactionFeeView: BaseCustomView {
                                 balance: tokenValueLabel(resultingBalance, bold: isBold))
     }
 
-    private func sectionStackView(text: UILabel, balance: UILabel) -> UIStackView {
+    private func sectionStackView(text: UIView, balance: UILabel) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = stackViewSpacing
@@ -164,8 +180,17 @@ public class TransactionFeeView: BaseCustomView {
         return baseLabel(Strings.resultingBalance, bold: bold)
     }
 
-    private func transactionFeeLabel(_ tokenData: TokenData, shouldDisplayEtherText: Bool) -> UILabel {
-        return baseLabel(Strings.transactionFee + (shouldDisplayEtherText ? " (\(Strings.ether))" :  ""), bold: false)
+    private func transactionFeeLabel(_ tokenData: TokenData, shouldDisplayEtherText: Bool) -> UIView {
+        let text = Strings.transactionFee + (shouldDisplayEtherText ? " (\(Strings.ether))" :  "")
+        let label = baseLabel(text, bold: false)
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        let button = UIButton(type: .custom)
+        button.setTitle("[?]", for: .normal)
+        button.setTitleColor(ColorName.aquaBlue.color, for: .normal)
+        button.addTarget(nil, action: Selector("showTransactionFeeInfo"), for: .touchUpInside)
+        let stack = UIStackView(arrangedSubviews: [label, button])
+        stack.axis = .horizontal
+        return stack
     }
 
     private func tokenValueLabel(_ tokenData: TokenData, bold: Bool) -> UILabel {

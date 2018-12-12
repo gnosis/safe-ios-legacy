@@ -525,6 +525,15 @@
 /* Title for transaction confirmation alert. */
 "transaction_confirmation_alert.title" = "Please open the Safe browser extension to confirm this transaction.";
 
+/* Explanatory message */
+"transaction_fee_alert.message" = "This is a transaction fee required by the blockchain to execute the transaction.";
+
+/* Ok */
+"transaction_fee_alert.ok" = "Close";
+
+/* Transaction fee */
+"transaction_fee_alert.title" = "Transaction fee";
+
 /* No transactions yet */
 "transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";
 
