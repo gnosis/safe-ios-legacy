@@ -18,7 +18,7 @@ final class PaperWalletFlowCoordinator: FlowCoordinator {
 
 extension PaperWalletFlowCoordinator: SaveMnemonicDelegate {
 
-    func didPressContinue() {
+    func saveMnemonicViewControllerDidPressContinue(_ vc: SaveMnemonicViewController) {
         guard !ApplicationServiceRegistry.walletService.isOwnerExists(.paperWallet) else {
             exitFlow()
             return
@@ -31,7 +31,7 @@ extension PaperWalletFlowCoordinator: SaveMnemonicDelegate {
 
 extension PaperWalletFlowCoordinator: ConfirmMnemonicDelegate {
 
-    func didConfirm() {
+    func confirmMnemonicViewControllerDidConfirm(_ vc: ConfirmMnemonicViewController) {
         exitFlow()
     }
 

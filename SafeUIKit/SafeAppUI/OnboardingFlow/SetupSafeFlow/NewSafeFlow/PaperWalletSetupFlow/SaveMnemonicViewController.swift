@@ -9,7 +9,7 @@ import MultisigWalletApplication
 import MultisigWalletApplication
 
 protocol SaveMnemonicDelegate: class {
-    func didPressContinue()
+    func saveMnemonicViewControllerDidPressContinue(_ vc: SaveMnemonicViewController)
 }
 
 final class SaveMnemonicViewController: UIViewController {
@@ -28,6 +28,20 @@ final class SaveMnemonicViewController: UIViewController {
                                           comment: "Next button.")
     }
 
+    enum RecoveryStrings {
+        static let header = LocalizedString("replace_recovery.new_phrase.title",
+                                            comment: "New recovery phrase")
+    }
+
+    var recoveryModeEnabled = false
+
+    var screenTitle: String? {
+        return recoveryModeEnabled ? nil : Strings.title
+    }
+    var headerText: String {
+        return recoveryModeEnabled ? RecoveryStrings.header : Strings.header
+    }
+
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var mnemonicWrapperView: UIView!
     @IBOutlet weak var mnemonicLabel: UILabel!
@@ -41,9 +55,10 @@ final class SaveMnemonicViewController: UIViewController {
     }
     private(set) var account: ExternallyOwnedAccountData!
 
-    static func create(delegate: SaveMnemonicDelegate) -> SaveMnemonicViewController {
+    static func create(delegate: SaveMnemonicDelegate, isRecoveryMode: Bool = false) -> SaveMnemonicViewController {
         let controller = StoryboardScene.NewSafe.saveMnemonicViewController.instantiate()
         controller.delegate = delegate
+        controller.recoveryModeEnabled = isRecoveryMode
         return controller
     }
 
@@ -53,8 +68,8 @@ final class SaveMnemonicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = Strings.title
-        headerLabel.text = Strings.header
+        title = screenTitle
+        headerLabel.text = headerText
         configureMnemonic()
         copyButton.setTitle(Strings.copy, for: .normal)
         configureDescriptionAndWarning()
@@ -62,12 +77,7 @@ final class SaveMnemonicViewController: UIViewController {
     }
 
     private func configureMnemonic() {
-        if let existingAddress = ApplicationServiceRegistry.walletService.ownerAddress(of: .paperWallet),
-            let existingAccount = ethereumService.findExternallyOwnedAccount(by: existingAddress) {
-            account = existingAccount
-        } else {
-            account = ethereumService.generateExternallyOwnedAccount()
-        }
+        setUpAccount()
         guard !account.mnemonicWords.isEmpty else {
             mnemonicLabel.text = nil
             dismiss(animated: true)
@@ -76,6 +86,30 @@ final class SaveMnemonicViewController: UIViewController {
         mnemonicWrapperView.layer.cornerRadius = 6
         mnemonicLabel.text = account.mnemonicWords.joined(separator: " ")
         mnemonicLabel.accessibilityIdentifier = "mnemonic"
+    }
+
+    fileprivate func generateNewAccount() {
+        account = ethereumService.generateExternallyOwnedAccount()
+    }
+
+    func willBeDismissed() {
+        guard recoveryModeEnabled, let account = account else { return }
+        DispatchQueue.global().async {
+            ApplicationServiceRegistry.ethereumService.removeExternallyOwnedAccount(address: account.address)
+        }
+    }
+
+    private func setUpAccount() {
+        if recoveryModeEnabled {
+            generateNewAccount()
+        } else {
+            if let existingAddress = ApplicationServiceRegistry.walletService.ownerAddress(of: .paperWallet),
+                let existingAccount = ethereumService.findExternallyOwnedAccount(by: existingAddress) {
+                account = existingAccount
+            } else {
+                generateNewAccount()
+            }
+        }
     }
 
     private func configureDescriptionAndWarning() {
@@ -92,7 +126,7 @@ final class SaveMnemonicViewController: UIViewController {
     }
 
     @objc func confirmMnemonic() {
-        delegate?.didPressContinue()
+        delegate?.saveMnemonicViewControllerDidPressContinue(self)
     }
 
 }

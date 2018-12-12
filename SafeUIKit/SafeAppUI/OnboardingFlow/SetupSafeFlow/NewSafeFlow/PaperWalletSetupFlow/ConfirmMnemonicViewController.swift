@@ -8,10 +8,23 @@ import MultisigWalletApplication
 import MultisigWalletApplication
 
 protocol ConfirmMnemonicDelegate: class {
-    func didConfirm()
+    func confirmMnemonicViewControllerDidConfirm(_ vc: ConfirmMnemonicViewController)
 }
 
 final class ConfirmMnemonicViewController: UIViewController {
+
+    enum Strings {
+        static let title = LocalizedString("new_safe.confirm_recovery.title",
+                                           comment: "Title for confirm recovery screen.")
+        static let header = LocalizedString("new_safe.confirm_recovery.header",
+                                            comment: "Title for confirm recovery screen.")
+        static let next = LocalizedString("new_safe.confirm_recovery.next",
+                                          comment: "Next button for confirm recovery screen.")
+        static let wordNumberPlaceholder = LocalizedString("new_safe.confirm_recovery.word_number",
+                                                           comment: "Word #%@")
+    }
+
+    var recoveryModeEnabled = false
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var headerLabel: UILabel!
@@ -28,23 +41,18 @@ final class ConfirmMnemonicViewController: UIViewController {
 
     private var keyboardBehavior: KeyboardAvoidingBehavior!
 
+    var screenTitle: String? {
+        return recoveryModeEnabled ? nil : Strings.title
+    }
+
     static func create(delegate: ConfirmMnemonicDelegate,
-                       account: ExternallyOwnedAccountData) -> ConfirmMnemonicViewController {
+                       account: ExternallyOwnedAccountData,
+                       isRecoveryMode: Bool = false) -> ConfirmMnemonicViewController {
         let controller = StoryboardScene.NewSafe.confirmMnemonicViewController.instantiate()
         controller.delegate = delegate
         controller.account = account
+        controller.recoveryModeEnabled = isRecoveryMode
         return controller
-    }
-
-    enum Strings {
-        static let title = LocalizedString("new_safe.confirm_recovery.title",
-                                           comment: "Title for confirm recovery screen.")
-        static let header = LocalizedString("new_safe.confirm_recovery.header",
-                                            comment: "Title for confirm recovery screen.")
-        static let next = LocalizedString("new_safe.confirm_recovery.next",
-                                          comment: "Next button for confirm recovery screen.")
-        static let wordNumberPlaceholder = LocalizedString("new_safe.confirm_recovery.word_number",
-                                                           comment: "Word #%@")
     }
 
     override func viewDidLoad() {
@@ -89,7 +97,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     }
 
     private func configureTexts() {
-        title = Strings.title
+        title = screenTitle
         headerLabel.text = Strings.header
         let nextButton = UIBarButtonItem(title: Strings.next, style: .plain, target: self, action: #selector(confirm))
         navigationItem.rightBarButtonItem = nextButton
@@ -125,11 +133,14 @@ final class ConfirmMnemonicViewController: UIViewController {
     }
 
     private func confirmMnemonic() {
-        ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
-        let derivedAccount = ApplicationServiceRegistry.ethereumService
-            .generateDerivedExternallyOwnedAccount(address: account.address)
-        ApplicationServiceRegistry.walletService.addOwner(address: derivedAccount.address, type: .paperWalletDerived)
-        delegate?.didConfirm()
+        if !recoveryModeEnabled {
+            ApplicationServiceRegistry.walletService.addOwner(address: account.address, type: .paperWallet)
+            let derivedAccount = ApplicationServiceRegistry.ethereumService
+                .generateDerivedExternallyOwnedAccount(address: account.address)
+            ApplicationServiceRegistry.walletService.addOwner(address: derivedAccount.address,
+                                                              type: .paperWalletDerived)
+        }
+        delegate?.confirmMnemonicViewControllerDidConfirm(self)
     }
 
     private func shakeErrors() {

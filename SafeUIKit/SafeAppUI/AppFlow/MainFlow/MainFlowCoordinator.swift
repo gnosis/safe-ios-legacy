@@ -21,6 +21,8 @@ final class MainFlowCoordinator: FlowCoordinator {
         return IdentityAccessApplication.ApplicationServiceRegistry.authenticationService
     }
 
+    private var replaceRecoveryController: ReplaceRecoveryPhraseViewController!
+
     override func setUp() {
         super.setUp()
         let mainVC = MainViewController.create(delegate: self)
@@ -171,10 +173,9 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
     }
 
     func didSelectReplaceRecoveryPhrase() {
-        let controller = ReplaceRecoveryPhraseViewController.create(delegate: self)
-        push(controller) {
-            controller.willBeDismissed()
-        }
+        saveCheckpoint()
+        replaceRecoveryController = ReplaceRecoveryPhraseViewController.create(delegate: self)
+        push(replaceRecoveryController)
     }
 
 }
@@ -182,7 +183,45 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
 extension MainFlowCoordinator: ReplaceRecoveryPhraseViewControllerDelegate {
 
     func replaceRecoveryPhraseViewControllerDidStart() {
+        let controller = SaveMnemonicViewController.create(delegate: self, isRecoveryMode: true)
+        push(controller) {
+            controller.willBeDismissed()
+        }
+    }
 
+}
+
+extension MainFlowCoordinator: SaveMnemonicDelegate {
+
+    func saveMnemonicViewControllerDidPressContinue(_ vc: SaveMnemonicViewController) {
+        let controller = ConfirmMnemonicViewController.create(delegate: self,
+                                                              account: vc.account,
+                                                              isRecoveryMode: true)
+        push(controller)
+    }
+
+}
+
+extension MainFlowCoordinator: ConfirmMnemonicDelegate {
+
+    func confirmMnemonicViewControllerDidConfirm(_ vc: ConfirmMnemonicViewController) {
+        let txID = replaceRecoveryController.transaction!.id
+        let address = vc.account.address
+        ApplicationServiceRegistry.settingsService.updateRecoveryPhraseTransaction(txID, with: address)
+        let reviewVC = ReviewTransactionViewController(transactionID: txID, delegate: self)
+        self.replaceRecoveryController = nil
+        push(reviewVC) { [unowned self] in
+            DispatchQueue.main.async {
+                self.popToLastCheckpoint()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                    self.showTransactionList()
+                }
+            }
+            DispatchQueue.global().async {
+                ApplicationServiceRegistry.settingsService.cancelPhraseRecovery()
+                ApplicationServiceRegistry.ethereumService.removeExternallyOwnedAccount(address: address)
+            }
+        }
     }
 
 }
