@@ -497,6 +497,12 @@
 /* Outgoing transafer */
 "transaction.outgoing_transfer" = "Outgoing transfer";
 
+/* Detail for the header in review screen */
+"transaction.replace_recovery.detail" = "The existing recovery phrase will be replaced by a new recovery phrase.";
+
+/* Title for the header in review screen */
+"transaction.replace_recovery.title" = "Replace recovery phrase";
+
 /* Review transaction title */
 "transaction.review_title" = "Review";
 
