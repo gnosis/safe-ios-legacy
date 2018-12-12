@@ -384,6 +384,14 @@ public struct OwnerLinkedList {
         return list[index - 1]
     }
 
+    public func contains(_ owner: Address) -> Bool {
+        return list.contains(owner.normalized)
+    }
+
+    public func contains(_ owner: Owner) -> Bool {
+        return contains(owner.address)
+    }
+
 }
 
 public struct WalletScheme: Equatable, CustomStringConvertible {
@@ -587,34 +595,47 @@ class RecoveryTransactionBuilder {
     }
 
     fileprivate func buildNoExtensionToNoExtensionData() {
-        transaction.change(data: swapOwnerData(role: .thisDevice))
-            .change(recipient: wallet.address!)
-            .change(operation: .call)
+        buildTransactionData([swapOwnerData(role: .thisDevice)])
     }
 
     fileprivate func buildNoExtensionToExtensionData() {
-        buildMultiSendTransaction([swapOwnerData(role: .thisDevice), addOwnerData(role: .browserExtension)])
+        buildTransactionData([swapOwnerData(role: .thisDevice), addOwnerData(role: .browserExtension)])
     }
 
     private func buildExtensionToExtensionData() {
-        buildMultiSendTransaction([swapOwnerData(role: .thisDevice), swapOwnerData(role: .browserExtension)])
+        buildTransactionData([swapOwnerData(role: .thisDevice), swapOwnerData(role: .browserExtension)])
     }
 
     private func buildExtensionToNoExtensionData() {
-        buildMultiSendTransaction([swapOwnerData(role: .thisDevice), removeOwnerData()])
+        buildTransactionData([swapOwnerData(role: .thisDevice), removeOwnerData()])
     }
 
-    private func buildMultiSendTransaction(_ data: [Data]) {
-        let address = DomainRegistry.encryptionService.address(from: multiSendContractProxy.contract.value)!
-        transaction.change(recipient: address)
-            .change(data: multiSendData(data))
-            .change(operation: .delegateCall)
+    private func buildTransactionData(_ data: [Data]) {
+        let input = data.filter { !$0.isEmpty }
+        switch input.count {
+        case 0: // may happen when the database was not updated but previous recovery tx went through
+            transaction.change(recipient: wallet.address!)
+                .change(operation: .call)
+                .change(data: nil)
+        case 1:
+            transaction.change(recipient: wallet.address!)
+                .change(operation: .call)
+                .change(data: input.first)
+        default:
+            let address = DomainRegistry.encryptionService.address(from: multiSendContractProxy.contract.value)!
+            transaction.change(recipient: address)
+                .change(data: multiSendData(input))
+                .change(operation: .delegateCall)
+        }
     }
 
     private func swapOwnerData(role: OwnerRole) -> Data {
         let ownerToReplace = modifiableOwners.removeFirst()
         let addressBeforeReplaceableOwner = ownerList.addressBefore(ownerToReplace)
         let newOwner = wallet.owner(role: role)!
+        guard newOwner.address.normalized != ownerToReplace.address.normalized else {
+            return Data()
+        }
         let data = ownerContractProxy.swapOwner(prevOwner: addressBeforeReplaceableOwner,
                                                 old: ownerToReplace.address,
                                                 new: newOwner.address)
@@ -624,6 +645,9 @@ class RecoveryTransactionBuilder {
 
     private func addOwnerData(role: OwnerRole) -> Data {
         let newOwner = wallet.owner(role: role)!
+        guard !ownerList.contains(newOwner) else {
+            return Data()
+        }
         let data = ownerContractProxy.addOwner(newOwner.address, newThreshold: newScheme.confirmations)
         ownerList.add(newOwner)
         wallet.changeConfirmationCount(newScheme.confirmations)
@@ -642,7 +666,7 @@ class RecoveryTransactionBuilder {
     }
 
     private func multiSendData(_ transactionData: [Data]) -> Data {
-        return multiSendContractProxy.multiSend(transactionData.map {
+        return multiSendContractProxy.multiSend(transactionData.filter { !$0.isEmpty }.map {
             (operation: .call, to: wallet.address!, value: 0, data: $0) })
     }
 

@@ -360,7 +360,7 @@
 "recovery.start" = "Start";
 
 /* Recovery transaction failed alert's title */
-"recovery.transaction.failed_alert.title" = "recovery.transaction.failed_alert.title";
+"recovery.transaction.failed_alert.title" = "Error";
 
 /* Text between stars (*) will be emphasized */
 "replace_phrase.body" = "This will generate a new recovery phrase and invalidate your current one.";
