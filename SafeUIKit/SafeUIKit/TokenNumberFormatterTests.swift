@@ -47,6 +47,7 @@ class TokenNumberFormatterTests: XCTestCase {
         assert(string: "0,001", equalTo: 1)
         assert(string: "0,1000000", equalTo: 100)
         assert(string: "0001,1", equalTo: 1_100)
+        formatter.usesGroupingSeparator = true
         assert(string: "1.000", equalTo: 1_000_000)
         assert(string: "-1", equalTo: -1_000)
         assert(string: "-0", equalTo: 0)

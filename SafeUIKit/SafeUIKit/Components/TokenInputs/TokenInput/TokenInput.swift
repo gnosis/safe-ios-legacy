@@ -140,10 +140,7 @@ public extension TokenInput {
             return false
         }
         let updatedText = (textField.nonNilText as NSString).replacingCharacters(in: range, with: string)
-        let components = updatedText.components(separatedBy: formatter.decimalSeparator)
-        guard components.count < 3 else { return false }
-        guard components.reduce(true, { $0 && !$1.hasNonDecimalDigitCharacters }) else { return false }
-        return true
+        return updatedText.isEmpty || formatter.number(from: updatedText) != nil
     }
 
     override func textFieldDidEndEditing(_ textField: UITextField) {

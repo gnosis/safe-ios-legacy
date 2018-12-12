@@ -182,7 +182,6 @@
 		5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506395F20D17CDB000F2A82 /* Double+BigInt.swift */; };
 		55071BC3209313F800297D1C /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071BC2209313F800297D1C /* UIDevice+Extensions.swift */; };
 		550954EA20C9590000F5F25F /* TokenDoubleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954E920C9590000F5F25F /* TokenDoubleInput.swift */; };
-		550954EE20C9592900F5F25F /* TokenDoubleInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954ED20C9592900F5F25F /* TokenDoubleInputTests.swift */; };
 		550954F020C9594700F5F25F /* TokenDoubleInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 550954EF20C9594700F5F25F /* TokenDoubleInput.xib */; };
 		550954F220C966CF00F5F25F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550954F120C966CF00F5F25F /* UIView+Extensions.swift */; };
 		550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D1ED62133E66C0035109A /* ManageTokensTableViewController.swift */; };
@@ -2036,7 +2035,6 @@
 				55BAB0E8217894F8007539CF /* BigBorderedButtonTests.swift in Sources */,
 				0ABA592121AC09CC009D249F /* EthereumAddressLabelTests.swift in Sources */,
 				55D0EC60216F6F8B003D9A53 /* TokenInputTests.swift in Sources */,
-				550954EE20C9592900F5F25F /* TokenDoubleInputTests.swift in Sources */,
 				556251D52146721A00F569EE /* TokenNumberFormatterTests.swift in Sources */,
 				0A7AE8C72052C2120044D5DD /* XCTestCase+Extensions.swift in Sources */,
 				0AD1D1E221A8432800941EA1 /* EthereumAddressFormatterTests.swift in Sources */,

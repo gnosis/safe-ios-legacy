@@ -51,11 +51,16 @@ public final class TokenNumberFormatter {
         return sign + integer + decimalSeparator + adjustedFraction + tokenCurrency
     }
 
+    private static let possibleDecimalSeapartors = CharacterSet(charactersIn: ".,٫")
+
     public func number(from string: String) -> BigInt? {
-        let input = string.replacingOccurrences(of: groupingSeparator, with: "")
+        var input = string.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "")
+        if usesGroupingSeparator {
+            input = input.replacingOccurrences(of: groupingSeparator, with: "")
+        }
         if input == "0" { return 0 }
-        let parts = input.components(separatedBy: decimalSeparator)
-        guard !parts.isEmpty, let integer = BigInt(parts[0]) else { return nil }
+        let parts = input.components(separatedBy: TokenNumberFormatter.possibleDecimalSeapartors)
+        guard !parts.isEmpty, parts.count < 3, let integer = BigInt(parts[0]) else { return nil }
         var fractionString = parts.count > 1 ? parts[1] : ""
         fractionString = fractionString.removingTrailingZeroes
         guard let fraction = BigInt(fractionString) else { return nil }
