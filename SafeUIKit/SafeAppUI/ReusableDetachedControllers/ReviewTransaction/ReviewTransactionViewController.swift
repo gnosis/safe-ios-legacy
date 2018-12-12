@@ -60,6 +60,13 @@ final class ReviewTransactionViewController: UITableViewController {
             static let cancel = LocalizedString("transaction_confirmation_alert.cancel",
                                                 comment: "Cancel button.")
         }
+
+        enum ReplaceRecoveryPhrase {
+            static let title = LocalizedString("transaction.replace_recovery.title",
+                                               comment: "Title for the header in review screen")
+            static let detail = LocalizedString("transaction.replace_recovery.detail",
+                                                comment: "Detail for the header in review screen")
+        }
     }
 
     convenience init(transactionID: String, delegate: ReviewTransactionViewControllerDelegate) {
@@ -125,8 +132,10 @@ final class ReviewTransactionViewController: UITableViewController {
     private func createCells() {
         cells = [IndexPath: UITableViewCell]()
         let indexPath = IndexPathIterator()
-        cells[indexPath.next()] = headerCell()
-        cells[indexPath.next()] = transferViewCell()
+        if tx.type != .replaceRecoveryPhrase {
+            cells[indexPath.next()] = transferHeaderCell()
+        }
+        cells[indexPath.next()] = transactionDetailCell()
         if tx.amountTokenData.isEther {
             feeCellIndexPath = indexPath.next()
             cells[feeCellIndexPath] = etherTransactionFeeCell()
@@ -138,12 +147,28 @@ final class ReviewTransactionViewController: UITableViewController {
         cells[indexPath.next()] = confirmationCell
     }
 
-    private func headerCell() -> UITableViewCell {
+    private func settingsHeaderCell() -> UITableViewCell {
+        let cell = SettingsTransactionHeaderCell(frame: .zero)
+        cell.headerView.fromAddress = tx.sender
+        cell.headerView.titleText = Strings.ReplaceRecoveryPhrase.title
+        cell.headerView.detailText = Strings.ReplaceRecoveryPhrase.detail
+        return cell
+    }
+
+    private func transferHeaderCell() -> UITableViewCell {
         let cell = TransactionHeaderCell(frame: .zero)
         cell.configure(imageURL: tx.amountTokenData.logoURL,
                        code: tx.amountTokenData.code,
                        info: Strings.outgoingTransfer)
         return cell
+    }
+
+    private func transactionDetailCell() -> UITableViewCell {
+        if tx.type == .replaceRecoveryPhrase {
+            return settingsHeaderCell()
+        } else {
+            return transferViewCell()
+        }
     }
 
     private func transferViewCell() -> UITableViewCell {
@@ -300,6 +325,18 @@ final class ReviewTransactionViewController: UITableViewController {
         performTransactionAction { [unowned self] in
             try ApplicationServiceRegistry.walletService.submitTransaction(self.tx.id)
         }
+    }
+
+    // TODO: remove duplication
+    @objc func showTransactionFeeInfo() {
+        let alert = UIAlertController(title: LocalizedString("transaction_fee_alert.title",
+                                                             comment: "Transaction fee"),
+                                      message: LocalizedString("transaction_fee_alert.message",
+                                                               comment: "Explanatory message"),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: LocalizedString("transaction_fee_alert.ok",
+                                                             comment: "Ok"), style: .default))
+        present(alert, animated: true, completion: nil)
     }
 
 }

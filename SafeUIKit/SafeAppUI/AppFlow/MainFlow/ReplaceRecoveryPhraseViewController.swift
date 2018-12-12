@@ -109,6 +109,18 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
         delegate?.replaceRecoveryPhraseViewControllerDidStart()
     }
 
+    // TODO: remove duplication
+    @objc func showTransactionFeeInfo() {
+        let alert = UIAlertController(title: LocalizedString("transaction_fee_alert.title",
+                                                             comment: "Transaction fee"),
+                                      message: LocalizedString("transaction_fee_alert.message",
+                                                               comment: "Explanatory message"),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: LocalizedString("transaction_fee_alert.ok",
+                                                             comment: "Ok"), style: .default))
+        present(alert, animated: true, completion: nil)
+    }
+
 }
 
 extension ReplaceRecoveryPhraseViewController: EventSubscriber {

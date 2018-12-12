@@ -76,6 +76,9 @@
 		0A334E6C209C8F8500ABC6AE /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E6A209C8F8500ABC6AE /* ErrorHandler.swift */; };
 		0A334E6D209C8F8800ABC6AE /* ErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E69209C8F8500ABC6AE /* ErrorHandlerTests.swift */; };
 		0A34BC63207B80A700636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC62207B80A700636560 /* libCommonTestSupport.a */; };
+		0A395C9A21C0F80200652A59 /* SettingsTransactionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A395C9921C0F80200652A59 /* SettingsTransactionHeaderView.xib */; };
+		0A395C9C21C0F8E500652A59 /* SettingsTransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A395C9B21C0F8E500652A59 /* SettingsTransactionHeaderView.swift */; };
+		0A395C9E21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A395C9D21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift */; };
 		0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668C20A5E059009BA7FC /* MainViewController.swift */; };
 		0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */; };
 		0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */; };
@@ -414,6 +417,9 @@
 		0A334E6A209C8F8500ABC6AE /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		0A334E70209C918A00ABC6AE /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0A34BC62207B80A700636560 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A395C9921C0F80200652A59 /* SettingsTransactionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTransactionHeaderView.xib; sourceTree = "<group>"; };
+		0A395C9B21C0F8E500652A59 /* SettingsTransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTransactionHeaderView.swift; sourceTree = "<group>"; };
+		0A395C9D21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTransactionHeaderCell.swift; sourceTree = "<group>"; };
 		0A40668C20A5E059009BA7FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
@@ -1458,6 +1464,9 @@
 				55E8AFE2219B3521002930A1 /* TransferView.swift */,
 				55E8AFE4219B353C002930A1 /* TransferViewTests.swift */,
 				55E8AFE6219B37F8002930A1 /* TransferView.xib */,
+				0A395C9921C0F80200652A59 /* SettingsTransactionHeaderView.xib */,
+				0A395C9B21C0F8E500652A59 /* SettingsTransactionHeaderView.swift */,
+				0A395C9D21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift */,
 				5539C13921A55C74006BF834 /* TransferViewCell.swift */,
 				5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */,
 			);
@@ -1728,6 +1737,7 @@
 				5562E650216E1CF500C54D57 /* RuleLabel.xib in Resources */,
 				550954F020C9594700F5F25F /* TokenDoubleInput.xib in Resources */,
 				5527A809208E357B00AF3A50 /* ScannerViewController.xib in Resources */,
+				0A395C9A21C0F80200652A59 /* SettingsTransactionHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1950,6 +1960,7 @@
 				0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */,
 				55126B5B21AC372D00A9F810 /* TransactionConfirmationCell.swift in Sources */,
 				5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */,
+				0A395C9E21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift in Sources */,
 				55E8B000219C4A93002930A1 /* TransactionFeeView.swift in Sources */,
 				5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */,
 				550E7CDE21708E540032DE6C /* UITextField+TokenInput.swift in Sources */,
@@ -1973,6 +1984,7 @@
 				552473612142A07300A77557 /* BaseCustomView.swift in Sources */,
 				5539C13A21A55C74006BF834 /* TransferViewCell.swift in Sources */,
 				5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */,
+				0A395C9C21C0F8E500652A59 /* SettingsTransactionHeaderView.swift in Sources */,
 				55126B6521AC37FC00A9F810 /* ProgressView.swift in Sources */,
 				550E7CE121708FBC0032DE6C /* TokenBounds.swift in Sources */,
 				55E8B009219EC29A002930A1 /* TransactionHeaderView.swift in Sources */,
