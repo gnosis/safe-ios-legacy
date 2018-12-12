@@ -60,7 +60,7 @@ public final class TokenNumberFormatter {
         }
         if input == "0" { return 0 }
         let parts = input.components(separatedBy: TokenNumberFormatter.possibleDecimalSeapartors)
-        guard !parts.isEmpty, let integer = BigInt(parts[0]) else { return nil }
+        guard !parts.isEmpty, parts.count < 3, let integer = BigInt(parts[0]) else { return nil }
         var fractionString = parts.count > 1 ? parts[1] : ""
         fractionString = fractionString.removingTrailingZeroes
         guard let fraction = BigInt(fractionString) else { return nil }

@@ -36,14 +36,14 @@ class TokenDoubleInputTests: XCTestCase {
         assertUI(0, 3, "", "")
         assertUI(1, 3, "", "001")
         assertUI(1, 1, "", "1")
-        assertUI(1_001, 3, "1.", "001")
-        assertUI(1_001, 3, "1.", "001")
-        assertUI(1_001_000, 3, "1001.", "")
-        assertUI(1_000_100, 3, "1000.", "1")
+        assertUI(1_001, 3, "1,", "001")
+        assertUI(1_001, 3, "1,", "001")
+        assertUI(1_001_000, 3, "1001,", "")
+        assertUI(1_000_100, 3, "1000,", "1")
         assertUI(1_000_100, 7, "", "10001")
         assertUI(TokenBounds.maxTokenValue,
                  TokenBounds.minDigitsCount,
-                 "115792089237316195423570985008687907853269984665640564039457584007913129639935.",
+                 "115792089237316195423570985008687907853269984665640564039457584007913129639935,",
                  "")
         assertUI(TokenBounds.maxTokenValue,
                  TokenBounds.maxDigitsCount,
@@ -61,7 +61,7 @@ class TokenDoubleInputTests: XCTestCase {
     }
 
     func test_whenNoDecimals_thenFractionalPartIsDisabled() {
-        assertUI(1, TokenBounds.minDigitsCount, "1.", "")
+        assertUI(1, TokenBounds.minDigitsCount, "1,", "")
         XCTAssertFalse(tokenInput.fractionalTextField.isEnabled)
     }
 
@@ -143,18 +143,18 @@ class TokenDoubleInputTests: XCTestCase {
 
         tokenInput.endEditing(finalValue: "000001", field: .integer)
         XCTAssertEqual(tokenInput.value, BigInt("100000"))
-        XCTAssertEqual(tokenInput.integerTextField.text, "1.")
+        XCTAssertEqual(tokenInput.integerTextField.text, "1,")
         XCTAssertEqual(tokenInput.fractionalTextField.text, "")
 
         tokenInput.endEditing(finalValue: "11000", field: .fractional)
         XCTAssertEqual(tokenInput.value, BigInt("111000"))
-        XCTAssertEqual(tokenInput.integerTextField.text, "1.")
+        XCTAssertEqual(tokenInput.integerTextField.text, "1,")
         XCTAssertEqual(tokenInput.fractionalTextField.text, "11")
     }
 
     func test_whenBeginEditing_thenIntegerPartDelimiterIsRemoved() {
         tokenInput.endEditing(finalValue: "1", field: .integer)
-        XCTAssertEqual(tokenInput.integerTextField.text, "1.")
+        XCTAssertEqual(tokenInput.integerTextField.text, "1,")
         tokenInput.beginEditing(field: .integer)
         XCTAssertEqual(tokenInput.integerTextField.text, "1")
     }
@@ -214,7 +214,7 @@ class TokenDoubleInputTests: XCTestCase {
         _ = tokenInput.integerTextField.becomeFirstResponder()
         tokenInput.canType("1", field: .integer)
         tokenInput.endEditing(finalValue: "1", field: .integer)
-        XCTAssertEqual(tokenInput.integerTextField.text, "1.")
+        XCTAssertEqual(tokenInput.integerTextField.text, "1,")
         tokenInput.canType((Locale.current as NSLocale).decimalSeparator, field: .integer)
         XCTAssertTrue(tokenInput.fractionalTextField.isFirstResponder)
         XCTAssertEqual(tokenInput.fractionalTextField.text, "")
@@ -237,11 +237,12 @@ private extension TokenDoubleInputTests {
     func assertUI(_ value: BigInt,
                   _ decimals: Int,
                   _ expectedIntegerPart: String,
-                  _ expectedFractionalPart: String) {
+                  _ expectedFractionalPart: String,
+                  line: UInt = #line) {
         tokenInput.setUp(value: value, decimals: decimals)
-        XCTAssertEqual(tokenInput.value, value)
-        XCTAssertEqual(tokenInput.integerTextField.text, expectedIntegerPart)
-        XCTAssertEqual(tokenInput.fractionalTextField.text, expectedFractionalPart)
+        XCTAssertEqual(tokenInput.value, value, line: line)
+        XCTAssertEqual(tokenInput.integerTextField.text, expectedIntegerPart, line: line)
+        XCTAssertEqual(tokenInput.fractionalTextField.text, expectedFractionalPart, line: line)
     }
 
     func assertFormatting(_ expected: String) {
