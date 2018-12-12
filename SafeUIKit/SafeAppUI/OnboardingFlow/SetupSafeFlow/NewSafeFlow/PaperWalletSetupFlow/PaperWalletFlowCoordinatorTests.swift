@@ -47,7 +47,8 @@ class PaperWalletFlowCoordinatorTests: SafeTestCase {
             self.completionCalled = true
         }
         walletService.addOwner(address: "address", type: .paperWallet)
-        coordinator.didPressContinue()
+        let startVC = topViewController as! SaveMnemonicViewController
+        coordinator.saveMnemonicViewControllerDidPressContinue(startVC)
         XCTAssertTrue(completionCalled)
     }
 
@@ -56,7 +57,7 @@ class PaperWalletFlowCoordinatorTests: SafeTestCase {
         testFC.enter(flow: coordinator) {
             self.completionCalled = true
         }
-        coordinator.didConfirm()
+        coordinator.confirmMnemonicViewControllerDidConfirm(ConfirmMnemonicViewController())
         XCTAssertTrue(completionCalled)
     }
 
@@ -68,7 +69,8 @@ class PaperWalletFlowCoordinatorTests: SafeTestCase {
         createWindow(coordinator.rootViewController)
         let saveMnemonicController = topViewController as! SaveMnemonicViewController
         delay()
-        coordinator.didPressContinue()
+        let startVC = topViewController as! SaveMnemonicViewController
+        coordinator.saveMnemonicViewControllerDidPressContinue(startVC)
         delay()
         XCTAssertTrue(topViewController is ConfirmMnemonicViewController)
         let confirmMnemonicController = topViewController as! ConfirmMnemonicViewController

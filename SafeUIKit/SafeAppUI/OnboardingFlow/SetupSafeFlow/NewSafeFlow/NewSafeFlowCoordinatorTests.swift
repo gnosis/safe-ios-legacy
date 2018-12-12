@@ -78,7 +78,8 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         let startVC = topViewController
         newSafeFlowCoordinator.didSelectPaperWalletSetup()
         delay()
-        newSafeFlowCoordinator.paperWalletFlowCoordinator.didConfirm()
+        let vc = ConfirmMnemonicViewController()
+        newSafeFlowCoordinator.paperWalletFlowCoordinator.confirmMnemonicViewControllerDidConfirm(vc)
         delay()
         XCTAssertTrue(topViewController === startVC)
     }
