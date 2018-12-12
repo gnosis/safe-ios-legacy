@@ -455,6 +455,12 @@
 /* 'Fee' parameter name */
 "transaction.details.fee" = "Transaction fee";
 
+/* Detail for the header in review screen */
+"transaction.details.replace_recovery.detail" = "The old recovery phrase was replaced by a new one";
+
+/* Title for the header in review screen */
+"transaction.details.replace_recovery.title" = "Replace recovery phrase";
+
 /* 'Status' parameter name */
 "transaction.details.status" = "Status";
 
@@ -489,7 +495,13 @@
 "transaction.details.type.recovery" = "Safe Recovery";
 
 /* Replace recovery phrase */
-"transaction.details.type.replaceRecoveryPhrase" = "transaction.details.type.replaceRecoveryPhrase";
+"transaction.details.type.replaceRecoveryPhrase" = "Replace recovery phrase";
+
+/* Detail for the header in review screen */
+"transaction.details.wallet_recovery.detail" = "The Safe was recovered";
+
+/* Title for the header in review screen */
+"transaction.details.wallet_recovery.title" = "Safe recovery";
 
 /* Not enough balance for transaction. */
 "transaction.error.notEnoughFunds" = "Insufficient funds for the amount.";
@@ -548,6 +560,12 @@
 
 /* (rejected) suffix */
 "transactions.row.rejected" = "(rejected)";
+
+/* Recovery phrase changed */
+"transactions.row.replace_phrase" = "Replaced\nRecovery Phrase";
+
+/* Wallet recovered */
+"transactions.row.wallet_recovery" = "Recovered Safe";
 
 /* Blockchain address is unknown for the wallet. */
 "wallet.error.address_missing" = "Failed to find safe address. Please try again later.";

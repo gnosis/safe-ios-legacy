@@ -555,10 +555,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vch-j3-Csj" customClass="ShadowWrapperView" customModule="SafeAppUI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="510"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="645"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2bG-5h-PCA">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="635"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWt-wh-dqY" customClass="TransferView" customModule="SafeUIKit">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
@@ -567,15 +567,22 @@
                                                     <constraint firstAttribute="height" constant="155" placeholder="YES" id="wvt-zm-xjd"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpO-Eo-QR6" customClass="SettingsTransactionHeaderView" customModule="SafeUIKit">
+                                                <rect key="frame" x="0.0" y="170" width="375" height="120"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" placeholder="YES" id="n5l-Wh-s9d"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3a-bg-PE7" customClass="HorizontalSeparatorView" customModule="SafeAppUI" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="170" width="375" height="1"/>
+                                                <rect key="frame" x="0.0" y="305" width="375" height="1"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="v16-w0-tcx"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6Wu-8Y-uAW">
-                                                <rect key="frame" x="0.0" y="186" width="375" height="314"/>
+                                                <rect key="frame" x="0.0" y="321" width="375" height="314"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPa-hP-BFi" customClass="TransactionParameterView" customModule="SafeAppUI" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -651,6 +658,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="coI-KM-0GS" id="YO6-qe-ISp"/>
+                        <outlet property="settingsHeaderView" destination="qpO-Eo-QR6" id="yY1-Dy-I1U"/>
                         <outlet property="submittedParameterView" destination="1fJ-ed-qN7" id="81l-1z-BXr"/>
                         <outlet property="transactionFeeView" destination="5am-MD-ipW" id="hdM-2A-Gbb"/>
                         <outlet property="transactionStatusView" destination="gQu-Qj-qJQ" id="5MI-ZJ-7oB"/>

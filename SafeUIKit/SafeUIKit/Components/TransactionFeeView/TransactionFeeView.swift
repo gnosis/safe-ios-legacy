@@ -14,6 +14,8 @@ public class TransactionFeeView: BaseCustomView {
                                                       comment: "Balance after transfer")
         static let ether = LocalizedString("transaction_fee.ether", comment: "Displayed in parentheses")
         static let token = LocalizedString("transaction_fee.token", comment: "Displayed in parentheses")
+        static let noFunds = LocalizedString("transaction_fee.insufficient_funds",
+                                             comment: "Warning about not enough funds")
     }
 
     internal let wrapperStackView = UIStackView()
@@ -61,11 +63,30 @@ public class TransactionFeeView: BaseCustomView {
         return label(at: IndexPath(item: 1, section: currentBalance == nil ? 0 : 1))
     }
 
+    // wrapper -> v_stack -> [h_stack, label] -> [[label, imageview], label]
     public var resultingBalanceLabel: UILabel? {
-        return label(at: IndexPath(item: 0, section: wrapperStackView.arrangedSubviews.count - 1))
+        let path = IndexPath(item: 0, section: wrapperStackView.arrangedSubviews.count - 1)
+        let lineStack = view(at: path) as? UIStackView
+        let stack = lineStack?.arrangedSubviews.first as? UIStackView
+        let label = stack?.arrangedSubviews.first as? UILabel
+        return label
+    }
+
+    public var resultingBalanceErrorImageView: UIImageView? {
+        let path = IndexPath(item: 0, section: wrapperStackView.arrangedSubviews.count - 1)
+        let lineStack = view(at: path) as? UIStackView
+        let stack = lineStack?.arrangedSubviews.first as? UIStackView
+        let imageView = stack?.arrangedSubviews.last as? UIImageView
+        return imageView
     }
 
     public var resultingBalanceValueLabel: UILabel? {
+        let path = IndexPath(item: 0, section: wrapperStackView.arrangedSubviews.count - 1)
+        let lineStack = view(at: path) as? UIStackView
+        return lineStack?.arrangedSubviews.last as? UILabel
+    }
+
+    public var resultingBalanceErrorLabel: UILabel? {
         return label(at: IndexPath(item: 1, section: wrapperStackView.arrangedSubviews.count - 1))
     }
 
@@ -139,6 +160,11 @@ public class TransactionFeeView: BaseCustomView {
         }
         if let data = resultingBalance {
             resultingBalanceValueLabel?.text = tokenFormatter.string(from: data.balance ?? 0)
+            let hasEnoughFunds = (data.balance ?? 0) >= 0
+            resultingBalanceErrorImageView?.isHidden = hasEnoughFunds
+            resultingBalanceErrorLabel?.isHidden = hasEnoughFunds
+            let textColor = hasEnoughFunds ? ColorName.battleshipGrey.color : ColorName.tomato.color
+            resultingBalanceValueLabel?.textColor = textColor
         }
     }
 
@@ -159,8 +185,17 @@ public class TransactionFeeView: BaseCustomView {
     private func resultingBalanceSection() -> UIStackView {
         guard let resultingBalance = resultingBalance else { return UIStackView() }
         let isBold = !isSecondaryView
-        return sectionStackView(text: resultingBalanceLabel(resultingBalance, bold: isBold),
-                                balance: tokenValueLabel(resultingBalance, bold: isBold))
+        let horizontalStack = sectionStackView(text: resultingBalanceLabel(resultingBalance, bold: isBold),
+                                               balance: tokenValueLabel(resultingBalance, bold: isBold))
+        let errorLabel = UILabel()
+        errorLabel.font = UIFont.systemFont(ofSize: 14)
+        errorLabel.textColor = ColorName.tomato.color
+        errorLabel.text = Strings.noFunds
+        errorLabel.numberOfLines = 0
+        errorLabel.isHidden = true
+        let verticalStack = UIStackView(arrangedSubviews: [horizontalStack, errorLabel])
+        verticalStack.axis = .vertical
+        return verticalStack
     }
 
     private func sectionStackView(text: UIView, balance: UILabel) -> UIStackView {
@@ -176,8 +211,17 @@ public class TransactionFeeView: BaseCustomView {
         return baseLabel(Strings.currentBalance + (!tokenData.isEther ? " (\(Strings.token))" : ""), bold: true)
     }
 
-    private func resultingBalanceLabel(_ tokenData: TokenData, bold: Bool) -> UILabel {
-        return baseLabel(Strings.resultingBalance, bold: bold)
+    private func resultingBalanceLabel(_ tokenData: TokenData, bold: Bool) -> UIView {
+        let label = baseLabel(Strings.resultingBalance, bold: bold)
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        let errorIcon = UIImageView(image: Asset.error.image)
+        errorIcon.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+        errorIcon.isHidden = true
+        errorIcon.contentMode = .center
+        let stack = UIStackView(arrangedSubviews: [label, errorIcon])
+        stack.axis = .horizontal
+        stack.spacing = 4
+        return stack
     }
 
     private func transactionFeeLabel(_ tokenData: TokenData, shouldDisplayEtherText: Bool) -> UIView {
