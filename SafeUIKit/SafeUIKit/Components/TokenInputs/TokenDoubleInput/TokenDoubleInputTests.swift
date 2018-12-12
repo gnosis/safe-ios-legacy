@@ -7,7 +7,8 @@ import XCTest
 import BigInt
 import CommonTestSupport
 
-class TokenDoubleInputTests: XCTestCase {
+// disabled as not used for now
+class DISABLED_TokenDoubleInputTests: XCTestCase {
 
     var tokenInput: TokenDoubleInput!
     let germanLocale = Locale(identifier: "de_DE")
