@@ -108,8 +108,7 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         headerLabel.attributedText = .header(from: Strings.title, style: headerStyle)
-        createRecoveryTransaction()
-        observeBalance()
+        start()
     }
 
     func reloadData() {
@@ -129,7 +128,7 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
                                      resultingBalance: resultingBalance)
     }
 
-    func createRecoveryTransaction() {
+    func start() {
         DispatchQueue.global().async {
             ApplicationServiceRegistry.recoveryService
                 .createRecoveryTransaction(subscriber: self) { [weak self] error in
@@ -138,11 +137,6 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
                         self.show(error: error)
                     }
             }
-        }
-    }
-
-    func observeBalance() {
-        DispatchQueue.global().async {
             ApplicationServiceRegistry.recoveryService.observeBalance(subscriber: self)
         }
     }

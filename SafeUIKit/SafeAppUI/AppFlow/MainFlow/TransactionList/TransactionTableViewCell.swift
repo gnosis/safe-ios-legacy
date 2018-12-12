@@ -32,8 +32,23 @@ class TransactionTableViewCell: UITableViewCell {
         transactionDateLabel.text = transaction.displayDate?.timeAgoSinceNow
         transactionDateLabel.textColor = ColorName.blueyGrey.color
 
-        tokenAmountLabel.amount = transaction.amountTokenData
+        setDetailText(transaction: transaction)
         tokenAmountLabel.textColor = valueColor(transaction)
+        tokenAmountLabel.numberOfLines = 0
+        tokenAmountLabel.font = UIFont.systemFont(ofSize: 16)
+    }
+
+    private func setDetailText(transaction tx: TransactionData) {
+        switch tx.type {
+        case .incoming, .outgoing:
+            tokenAmountLabel.amount = tx.amountTokenData
+        case .walletRecovery:
+            tokenAmountLabel.text = LocalizedString("transactions.row.wallet_recovery",
+                                                    comment: "Wallet recovered")
+        case .replaceRecoveryPhrase:
+            tokenAmountLabel.text = LocalizedString("transactions.row.replace_phrase",
+                                                    comment: "Recovery phrase changed")
+        }
     }
 
     private func addressSuffix(_ transaction: TransactionData) -> String? {
@@ -51,14 +66,12 @@ class TransactionTableViewCell: UITableViewCell {
         }
     }
 
-
     private func valueColor(_ transaction: TransactionData) -> UIColor {
         if transaction.status == .pending { return ColorName.silver.color }
         switch transaction.type {
         case .outgoing: return ColorName.darkSlateBlue.color
         case .incoming: return ColorName.greenTeal.color
-        case .walletRecovery: return ColorName.darkSlateBlue.color
-        case .replaceRecoveryPhrase: return ColorName.darkSlateBlue.color
+        case .walletRecovery, .replaceRecoveryPhrase: return ColorName.darkSlateBlue.color
         }
     }
 

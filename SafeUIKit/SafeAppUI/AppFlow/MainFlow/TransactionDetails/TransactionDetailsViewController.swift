@@ -36,8 +36,22 @@ public class TransactionDetailsViewController: UIViewController {
                                                            comment: "Replace recovery phrase")
         static let title = LocalizedString("transaction.details.title",
                                            comment: "Title for the transaction details screen")
-    }
 
+        enum ReplaceRecoveryPhrase {
+            static let title = LocalizedString("transaction.details.replace_recovery.title",
+                                               comment: "Title for the header in review screen")
+            static let detail = LocalizedString("transaction.details.replace_recovery.detail",
+                                                comment: "Detail for the header in review screen")
+        }
+        enum WalletRecovery {
+            static let title = LocalizedString("transaction.details.wallet_recovery.title",
+                                               comment: "Title for the header in review screen")
+            static let detail = LocalizedString("transaction.details.wallet_recovery.detail",
+                                                comment: "Detail for the header in review screen")
+
+        }
+    }
+    @IBOutlet weak var settingsHeaderView: SettingsTransactionHeaderView!
     @IBOutlet weak var backgroundImageView: BackgroundImageView!
     @IBOutlet weak var transferView: TransferView!
     @IBOutlet weak var transactionTypeView: TransactionParameterView!
@@ -85,9 +99,26 @@ public class TransactionDetailsViewController: UIViewController {
     }
 
     private func configureTransferDetails() {
-        transferView.fromAddress = transaction.sender
-        transferView.toAddress = transaction.recipient
-        transferView.tokenData = transaction.amountTokenData
+        switch transaction.type {
+        case .incoming, .outgoing:
+            transferView.fromAddress = transaction.sender
+            transferView.toAddress = transaction.recipient
+            transferView.tokenData = transaction.amountTokenData
+            transferView.isHidden = false
+            settingsHeaderView.isHidden = true
+        case .replaceRecoveryPhrase:
+            settingsHeaderView.titleText = Strings.ReplaceRecoveryPhrase.title
+            settingsHeaderView.detailText = Strings.ReplaceRecoveryPhrase.detail
+            settingsHeaderView.fromAddress = transaction.sender
+            transferView.isHidden = true
+            settingsHeaderView.isHidden = false
+        case .walletRecovery:
+            settingsHeaderView.titleText = Strings.WalletRecovery.title
+            settingsHeaderView.detailText = Strings.WalletRecovery.detail
+            settingsHeaderView.fromAddress = transaction.sender
+            transferView.isHidden = true
+            settingsHeaderView.isHidden = false
+        }
     }
 
     private func configureType() {
