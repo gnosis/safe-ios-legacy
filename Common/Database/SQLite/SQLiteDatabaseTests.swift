@@ -406,7 +406,7 @@ class SQLiteDatabaseTests: XCTestCase {
         XCTAssertNotNil(sqlite.bind_text_in_destructor)
 
         sqlite.bind_text_result = CSQLite3.SQLITE_MISUSE
-        let message = SQLiteDatabase.errorMessage(from: sqlite.open_result, sqlite, sqlite.open_pointer_result)
+        let message = SQLiteDatabase.errorMessage(from: CSQLite3.SQLITE_MISUSE, sqlite, sqlite.open_pointer_result)
         assertThrows(try stmt.set("text", at: 1), SQLiteDatabase.Error.failedToSetStatementParameter(message))
 
         sqlite.bind_text_result = CSQLite3.SQLITE_RANGE
@@ -485,6 +485,10 @@ class SQLiteDatabaseTests: XCTestCase {
         try givenConnection()
         sqlite.errmsg_result = "ERROR"
         XCTAssertEqual(conn.lastErrorMessage(), "ERROR")
+    }
+
+    func test_correctErrorCode() {
+        XCTAssertEqual(CSQLite3.SQLITE_AUTH, 23)
     }
 
 }

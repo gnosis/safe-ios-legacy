@@ -21,10 +21,12 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
         static let body = LocalizedString("replace_phrase.body", comment: "Text between stars (*) will be emphasized")
     }
 
-    @IBOutlet weak var startButtonItem: UIBarButtonItem!
+    @IBOutlet var startButtonItem: UIBarButtonItem!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var transactionFeeView: TransactionFeeView!
+    var activityIndicator = UIActivityIndicatorView(style: .gray)
+    var activityButtonItem: UIBarButtonItem!
 
     weak var delegate: ReplaceRecoveryPhraseViewControllerDelegate?
 
@@ -41,13 +43,29 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
         return controller
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        activityButtonItem = UIBarButtonItem(customView: activityIndicator)
+    }
+
+    func startActivityIndicator() {
+        activityIndicator.startAnimating()
+        navigationItem.setRightBarButton(activityButtonItem, animated: true)
+    }
+
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+        if navigationItem.rightBarButtonItem != startButtonItem {
+            navigationItem.setRightBarButton(startButtonItem, animated: true)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         headerLabel.attributedText = .header(from: Strings.header)
         bodyLabel.attributedText = parsedAttributedBodyText(from: Strings.body, marker: "*")
         update()
-        createTransaction()
-        observeBalance()
+        start()
     }
 
     func update() {
@@ -88,20 +106,17 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
         return result
     }
 
-    func createTransaction() {
+    func start() {
+        startActivityIndicator()
         DispatchQueue.global().async { [unowned self] in
             self.transaction = ApplicationServiceRegistry.settingsService.createRecoveryPhraseTransaction()
             self.isReadyToStart = ApplicationServiceRegistry
                 .settingsService.isRecoveryPhraseTransactionReadyToStart(self.transaction!.id)
+            ApplicationServiceRegistry.recoveryService.observeBalance(subscriber: self)
             DispatchQueue.main.async {
+                self.stopActivityIndicator()
                 self.update()
             }
-        }
-    }
-
-    func observeBalance() {
-        DispatchQueue.global().async {
-            ApplicationServiceRegistry.recoveryService.observeBalance(subscriber: self)
         }
     }
 
