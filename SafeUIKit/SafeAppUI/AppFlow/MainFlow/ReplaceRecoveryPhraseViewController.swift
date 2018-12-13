@@ -106,7 +106,31 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
     }
 
     @IBAction func start(_ sender: Any) {
+        showConfirmationAlert()
+    }
+
+    func doStart() {
         delegate?.replaceRecoveryPhraseViewControllerDidStart()
+    }
+
+    func showConfirmationAlert() {
+
+        let alert = UIAlertController(title: LocalizedString("replace_phrase.confirm.title",
+                                                             comment: "Confirmation alert title"),
+                                      message: LocalizedString("replace_phrase.confirm.message",
+                                                               comment: "Confirmation alert message"),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: LocalizedString("replace_phrase.confirm.yes",
+                                                             comment: "Affirmative response button title"),
+                                      style: .default,
+                                      handler: SafeAlertController.wrap { [unowned self] in
+                                        self.doStart()
+        }))
+        alert.addAction(UIAlertAction(title: LocalizedString("replace_phrase.confirm.cancel",
+                                                             comment: "Cancel response button title"),
+                                      style: .cancel,
+                                      handler: nil))
+        present(alert, animated: true)
     }
 
     // TODO: remove duplication
@@ -118,7 +142,7 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: LocalizedString("transaction_fee_alert.ok",
                                                              comment: "Ok"), style: .default))
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true)
     }
 
 }

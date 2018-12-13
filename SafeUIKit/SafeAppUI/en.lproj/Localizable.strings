@@ -365,6 +365,18 @@
 /* Text between stars (*) will be emphasized */
 "replace_phrase.body" = "This will generate a new recovery phrase and invalidate your current one.";
 
+/* Cancel response button title */
+"replace_phrase.confirm.cancel" = "Cancel";
+
+/* Confirmation alert message */
+"replace_phrase.confirm.message" = "This process cannot be undone.";
+
+/* Confirmation alert title */
+"replace_phrase.confirm.title" = "Are you sure you want to change your recovery phrase?";
+
+/* Affirmative response button title */
+"replace_phrase.confirm.yes" = "Yes";
+
 /* Replace recovery phrase */
 "replace_phrase.header" = "Replace recovery phrase";
 
