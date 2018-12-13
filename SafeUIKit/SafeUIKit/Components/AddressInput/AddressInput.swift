@@ -36,7 +36,7 @@ public final class AddressInput: VerifiableInput {
                 addressLabel.text = displayAddress
                 textInput.rightViewMode = .always
                 textInput.placeholder = nil
-                validateRules(for: addressLabel.text!)
+                validateRules(for: displayAddress)
                 if isValid {
                     addressLabel.address = displayAddress
                     let identicon = IdenticonView(frame: CGRect(origin: .zero, size: identiconSize))
@@ -57,6 +57,10 @@ public final class AddressInput: VerifiableInput {
             let text = self.text
             self.text = text
         }
+    }
+
+    override func safeUserInput(_ text: String?) -> String {
+        return super.safeUserInput(text).lowercased()
     }
 
     enum Strings {
