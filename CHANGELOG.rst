@@ -5,6 +5,13 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`0.10.0`_ - 2018-12-13
+======================
+Added
+-----
+- Safe recovery
+- Replace recovery phrase
+
 `0.9.1`_ - 2018-12-05
 =====================
 Changed
@@ -227,6 +234,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _0.10.0: https://github.com/gnosis/safe-ios/tree/0.10.0
 .. _0.9.1: https://github.com/gnosis/safe-ios/tree/0.9.1
 .. _0.9.0: https://github.com/gnosis/safe-ios/tree/0.9.0
 .. _0.8.2: https://github.com/gnosis/safe-ios/tree/0.8.2
