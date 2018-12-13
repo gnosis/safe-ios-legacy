@@ -42,7 +42,8 @@ public final class AddressInput: VerifiableInput {
                     let identicon = IdenticonView(frame: CGRect(origin: .zero, size: identiconSize))
                     identicon.seed = displayAddress
                     textInput.leftView = identicon
-                    addressInputDelegate?.didRecieveValidAddress(displayAddress)
+                    let validAddress = addressLabel.formatter.string(from: displayAddress) ?? displayAddress
+                    addressInputDelegate?.didRecieveValidAddress(validAddress)
                 }
             } else {
                 addressLabel.address = nil
