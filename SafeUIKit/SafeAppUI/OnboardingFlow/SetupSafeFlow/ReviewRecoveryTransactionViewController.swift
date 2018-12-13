@@ -80,7 +80,7 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
                 update()
                 return
             }
-            safeAddress = tx.recipient
+            safeAddress = tx.sender
             let balance = (ApplicationServiceRegistry
                 .walletService.accountBalance(tokenID: BaseID(tx.feeTokenData.address)) ?? 0)
             feeBalance = tx.feeTokenData.withBalance(balance)
