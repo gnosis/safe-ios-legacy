@@ -26,7 +26,7 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
     }
 
     @IBOutlet weak var cancelButtonItem: UIBarButtonItem!
-    @IBOutlet weak var submitButtonItem: UIBarButtonItem!
+    @IBOutlet var submitButtonItem: UIBarButtonItem!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var identiconView: IdenticonView!
     @IBOutlet weak var addressLabel: FullEthereumAddressLabel!
@@ -36,6 +36,9 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
 
     public weak var delegate: ReviewRecoveryTransactionViewControllerDelegate?
     private var isUpdateDisabled: Bool = false
+    var activityIndicator = UIActivityIndicatorView(style: .gray)
+    var activityButtonItem: UIBarButtonItem!
+
 
     public var safeAddress: String? {
         didSet {
@@ -103,11 +106,13 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
         super.awakeFromNib()
         cancelButtonItem.title = Strings.cancel
         submitButtonItem.title = Strings.submit
+        activityButtonItem = UIBarButtonItem(customView: activityIndicator)
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         headerLabel.attributedText = .header(from: Strings.title, style: headerStyle)
+        update()
         start()
     }
 
@@ -115,12 +120,14 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
         let tx = ApplicationServiceRegistry.recoveryService.recoveryTransaction()
         DispatchQueue.main.async {
             self.recoveryTransaction = tx
+            self.stopActivityIndicator()
         }
     }
 
     func update() {
         guard isViewLoaded && !isUpdateDisabled else { return }
         identiconView.seed = safeAddress ?? ""
+        identiconView.isHidden = safeAddress == nil
         addressLabel.address = safeAddress
         submitButtonItem.isEnabled = isReadyToSubmit
         transactionFeeView.configure(currentBalance: feeBalance,
@@ -128,12 +135,26 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
                                      resultingBalance: resultingBalance)
     }
 
+    func startActivityIndicator() {
+        activityIndicator.startAnimating()
+        navigationItem.setRightBarButton(activityButtonItem, animated: true)
+    }
+
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+        if navigationItem.rightBarButtonItem != submitButtonItem {
+            navigationItem.setRightBarButton(submitButtonItem, animated: true)
+        }
+    }
+
     func start() {
+        startActivityIndicator()
         DispatchQueue.global().async {
             ApplicationServiceRegistry.recoveryService
                 .createRecoveryTransaction(subscriber: self) { [weak self] error in
                     guard let `self` = self else { return }
                     DispatchQueue.main.async {
+                        self.stopActivityIndicator()
                         self.show(error: error)
                     }
             }
