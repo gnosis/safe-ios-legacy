@@ -23,6 +23,8 @@ class SafeCreationViewController: UIViewController {
     @IBOutlet weak var insufficientFundsErrorImage: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
 
+    @IBOutlet weak var feeInfoButton: UIButton!
+
     @IBOutlet weak var requiredMinimumWrapperView: UIView!
     @IBOutlet weak var requiredMinimumHeaderLabel: UILabel!
     @IBOutlet weak var requiredMinimumAmountLabel: UILabel!
@@ -164,6 +166,7 @@ class SafeCreationViewController: UIViewController {
         requiredMinimumDescriptionLabel.text = Strings.FundSafe.requredMinimumDescription
         waitingForSafeDescriptionLabel.text = Strings.waitingForSafeDescription
         progressStatusLabel.accessibilityIdentifier = "safe_creation.status"
+        feeInfoButton.setTitleColor(ColorName.aquaBlue.color, for: .normal)
     }
 
     private func configureSafeAddressTexts() {
@@ -234,6 +237,8 @@ class SafeCreationViewController: UIViewController {
         etherscanWrapperView.isHidden = !state.showsEtherScanBlock
         etherscanLabel.isHidden = !state.showsEtherScanLabel
 
+        feeInfoButton.isHidden = !state.showsFeeExplanationButton
+
         if state.isFinalState {
             delegate?.deploymentDidSuccess()
         }
@@ -267,6 +272,22 @@ class SafeCreationViewController: UIViewController {
             // empty
         }
         present(controller, animated: true, completion: nil)
+    }
+
+    @IBAction func showExplanation(_ sender: Any) {
+        showTransactionFeeInfo()
+    }
+
+    // TODO: remove duplication
+    @objc func showTransactionFeeInfo() {
+        let alert = UIAlertController(title: LocalizedString("safe_creation.alert.title",
+                                                             comment: "Transaction fee"),
+                                      message: LocalizedString("safe_creation.alert.message",
+                                                               comment: "Explanatory message"),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: LocalizedString("safe_creation.alert.ok",
+                                                             comment: "Ok"), style: .default))
+        present(alert, animated: true)
     }
 
 }
@@ -313,6 +334,7 @@ extension SafeCreationViewController {
         var showsSafeAddress: Bool { return false }
         var showsEtherScanBlock: Bool { return false }
         var showsEtherScanLabel: Bool { return false }
+        var showsFeeExplanationButton: Bool { return false }
 
         var addressText: String? {
             guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return nil }
@@ -353,6 +375,7 @@ extension SafeCreationViewController {
         override var progress: Double { return 0.3 }
         override var showsInsufficientFundsError: Bool { return true }
         override var showsSafeAddress: Bool { return true }
+        override var showsFeeExplanationButton: Bool { return true }
     }
 
     class CreationStartedState: State {

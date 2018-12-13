@@ -401,6 +401,15 @@
 /* Title for Address Details screen. */
 "safe_address.title" = "Safe Address";
 
+/* Explanatory message */
+"safe_creation.alert.message" = "This is a transaction fee required by the blockchain to execute the transaction.";
+
+/* Ok */
+"safe_creation.alert.ok" = "Close";
+
+/* Transaction fee */
+"safe_creation.alert.title" = "Safe opening fee";
+
 /* Cancel safe creation button. */
 "safe_creation.cancel" = "Cancel";
 
