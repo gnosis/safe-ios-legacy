@@ -465,12 +465,24 @@ Save this recovery phrase.</string>
                                                                                 <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(This is the Safe opening fee.)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tO-VL-33D">
-                                                                                <rect key="frame" x="61" y="69.5" width="193.5" height="30.5"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fH9-7h-iz8">
+                                                                                <rect key="frame" x="46" y="69.5" width="223.5" height="30.5"/>
+                                                                                <subviews>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(This is the Safe opening fee.)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tO-VL-33D">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="193.5" height="30.5"/>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                        <color key="textColor" red="0.39607843139999999" green="0.43921568630000002" blue="0.4941176471" alpha="1" colorSpace="deviceRGB"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDz-wZ-pRE">
+                                                                                        <rect key="frame" x="193.5" y="0.0" width="30" height="30.5"/>
+                                                                                        <state key="normal" title="[?]"/>
+                                                                                        <connections>
+                                                                                            <action selector="showExplanation:" destination="Pyc-la-4mA" eventType="touchUpInside" id="xl1-aU-E93"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                </subviews>
+                                                                            </stackView>
                                                                         </subviews>
                                                                     </stackView>
                                                                 </subviews>
@@ -716,6 +728,7 @@ Save this recovery phrase.</string>
                         <outlet property="cancelButton" destination="yQ6-Df-534" id="du0-Hm-ogP"/>
                         <outlet property="etherscanLabel" destination="nu4-pZ-fcY" id="gdO-7x-CEY"/>
                         <outlet property="etherscanWrapperView" destination="ldr-cw-PuK" id="NnQ-zE-xgW"/>
+                        <outlet property="feeInfoButton" destination="WDz-wZ-pRE" id="xf8-dT-KBc"/>
                         <outlet property="headerLabel" destination="YDW-wm-Np7" id="C2W-v6-EGG"/>
                         <outlet property="insufficientFundsErrorImage" destination="5P0-fL-G1i" id="ADb-tF-FV9"/>
                         <outlet property="progressStatusLabel" destination="tuc-Nf-e0n" id="1RI-Fq-v1F"/>
