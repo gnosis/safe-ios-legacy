@@ -108,8 +108,10 @@ extension ScanQRCodeHandler: ScannerDelegate {
         guard !didFinishScanning else { return }
         didFinishScanning = true
         if let controller = scannerController {
-            controller.dismiss(animated: true) { [weak self] in
-                self?.delegate.didScanCode(raw: raw, converted: converted)
+            DispatchQueue.main.async {
+                controller.dismiss(animated: true) { [weak self] in
+                    self?.delegate.didScanCode(raw: raw, converted: converted)
+                }
             }
         } else {
             delegate.didScanCode(raw: raw, converted: converted)
