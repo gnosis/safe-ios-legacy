@@ -74,6 +74,7 @@ final class ReviewTransactionViewController: UITableViewController {
         self.init()
         tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
         self.delegate = delegate
+        submitButtonItem = UIBarButtonItem(title: Strings.submit, style: .done, target: self, action: #selector(submit))
     }
 
     func disableSubmit() {
@@ -86,7 +87,6 @@ final class ReviewTransactionViewController: UITableViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        submitButtonItem = UIBarButtonItem(title: Strings.submit, style: .done, target: self, action: #selector(submit))
         title = Strings.title
         navigationItem.rightBarButtonItem = submitButtonItem
         disableSubmit()
