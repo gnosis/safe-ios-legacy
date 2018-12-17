@@ -7,6 +7,8 @@ import UIKit
 public protocol AddressInputDelegate: class {
     func presentController(_ controller: UIViewController)
     func didRecieveValidAddress(_ address: String)
+    func didRecieveInvalidAddress(_ string: String)
+    func didClear()
 }
 
 public final class AddressInput: VerifiableInput {
@@ -44,11 +46,14 @@ public final class AddressInput: VerifiableInput {
                     textInput.leftView = identicon
                     let validAddress = addressLabel.formatter.string(from: displayAddress) ?? displayAddress
                     addressInputDelegate?.didRecieveValidAddress(validAddress)
+                } else {
+                    addressInputDelegate?.didRecieveInvalidAddress(displayAddress)
                 }
             } else {
                 addressLabel.address = nil
                 textInput.rightViewMode = .never
                 textInput.placeholder = self.placeholder
+                addressInputDelegate?.didClear()
             }
         }
     }

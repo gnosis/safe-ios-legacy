@@ -156,6 +156,10 @@ public class FundsTransferTransactionViewController: UIViewController {
 
 extension FundsTransferTransactionViewController: AddressInputDelegate {
 
+    public func didRecieveInvalidAddress(_ string: String) {}
+
+    public func didClear() {}
+
     public func presentController(_ controller: UIViewController) {
         self.present(controller, animated: true)
     }

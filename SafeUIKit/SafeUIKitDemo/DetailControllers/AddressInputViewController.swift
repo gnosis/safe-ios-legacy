@@ -24,6 +24,10 @@ class AddressInputViewController: UIViewController {
 
 extension AddressInputViewController: AddressInputDelegate {
 
+    func didRecieveInvalidAddress(_ string: String) {}
+
+    func didClear() {}
+
     func didRecieveValidAddress(_ address: String) {}
 
     func presentController(_ controller: UIViewController) {
