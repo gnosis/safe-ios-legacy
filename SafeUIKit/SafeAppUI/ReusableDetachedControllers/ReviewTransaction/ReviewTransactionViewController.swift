@@ -218,7 +218,6 @@ final class ReviewTransactionViewController: UITableViewController {
     }
 
     internal func update(with tx: TransactionData) {
-        guard tx.id == self.tx.id else { return }
         self.tx = tx
         updateConfirmationCell()
         updateSubmitButton()
