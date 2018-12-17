@@ -39,7 +39,7 @@ final class MainFlowCoordinator: FlowCoordinator {
         if let vc = navigationController.topViewController as? ReviewTransactionViewController {
             let tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
             vc.update(with: tx)
-        } else {
+        } else if let tx = walletService.transactionData(transactionID), tx.status != .rejected {
             openTransactionReviewScreen(transactionID)
         }
     }
