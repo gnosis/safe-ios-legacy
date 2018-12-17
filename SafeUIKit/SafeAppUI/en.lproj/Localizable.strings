@@ -1,6 +1,12 @@
 /* Title for Add Token screen. */
 "add_token.title" = "Add Token";
 
+/* URL not available message */
+"alert.error.url_unavailable" = "Sorry, the link is unavailable.";
+
+/* Error title */
+"alert.error.url_unavailable.title" = "Oops";
+
 /* Cancel */
 "app.unlock.cancel" = "Cancel";
 

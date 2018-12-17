@@ -49,11 +49,25 @@ final class MainFlowCoordinator: FlowCoordinator {
         push(reviewVC)
     }
 
-    private func openInSafari(_ url: URL) {
+    private func openInSafari(_ url: URL?) {
+        guard let url = url else {
+            showURLNotAvailable()
+            return
+        }
         let safari = SFSafariViewController(url: url)
         presentModally(safari)
     }
 
+    // TODO: clean up the strings
+    private func showURLNotAvailable() {
+        let message = LocalizedString("alert.error.url_unavailable", comment: "URL not available message")
+        let title = LocalizedString("alert.error.url_unavailable.title", comment: "Error title")
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okTitle = LocalizedString("recovery.address.failed_alert.ok", comment: "OK button title")
+        let okAction = UIAlertAction(title: okTitle, style: .default)
+        controller.addAction(okAction)
+        presentModally(controller)
+    }
 }
 
 extension MainFlowCoordinator: MainViewControllerDelegate {
