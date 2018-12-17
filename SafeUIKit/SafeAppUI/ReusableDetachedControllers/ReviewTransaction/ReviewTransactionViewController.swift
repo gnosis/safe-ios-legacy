@@ -26,6 +26,7 @@ final class ReviewTransactionViewController: UITableViewController {
     internal let confirmationCell = TransactionConfirmationCell()
 
     private let scheduler = OneOperationWaitingScheduler(interval: 30)
+    private var submitButtonItem: UIBarButtonItem!
 
     private class IndexPathIterator {
 
@@ -73,13 +74,22 @@ final class ReviewTransactionViewController: UITableViewController {
         self.init()
         tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
         self.delegate = delegate
+        submitButtonItem = UIBarButtonItem(title: Strings.submit, style: .done, target: self, action: #selector(submit))
+    }
+
+    func disableSubmit() {
+        submitButtonItem.isEnabled = false
+    }
+
+    func enableSubmit() {
+        submitButtonItem.isEnabled = true
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         title = Strings.title
-        navigationItem.rightBarButtonItem =
-            UIBarButtonItem(title: Strings.submit, style: .done, target: self, action: #selector(submit))
+        navigationItem.rightBarButtonItem = submitButtonItem
+        disableSubmit()
         configureTableView()
         createCells()
         updateSubmitButton()
@@ -238,7 +248,11 @@ final class ReviewTransactionViewController: UITableViewController {
 
     private func updateSubmitButton() {
         DispatchQueue.main.async {
-            self.navigationItem.rightBarButtonItem?.isEnabled = self.hasUpdatedFee && self.tx.status != .rejected
+            if self.hasUpdatedFee && self.tx.status != .rejected {
+                self.enableSubmit()
+            } else {
+                self.disableSubmit()
+            }
         }
     }
 
@@ -269,11 +283,13 @@ final class ReviewTransactionViewController: UITableViewController {
     }
 
     private func performTransactionAction(_ action: @escaping () throws -> TransactionData) {
+        disableSubmit()
         DispatchQueue.global().async { [weak self] in
             do {
                 try self?.doAction(action)
             } catch let error {
                 DispatchQueue.main.sync {
+                    self?.enableSubmit()
                     ErrorHandler.showError(message: error.localizedDescription,
                                            log: "operation failed: \(error)",
                                            error: nil)
