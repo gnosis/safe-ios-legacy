@@ -158,6 +158,10 @@ public class TransactionDetailsViewController: UIViewController {
     }
 
     private func configureViewInOtherApp() {
+        let isSubmitted = transaction.status == .success ||
+            transaction.status == .failed ||
+            transaction.status == .pending
+        viewInExternalAppButton.isHidden = !isSubmitted
         viewInExternalAppButton.setTitle(Strings.externalApp, for: .normal)
         viewInExternalAppButton.removeTarget(self, action: nil, for: .touchUpInside)
         viewInExternalAppButton.addTarget(self, action: #selector(viewInExternalApp), for: .touchUpInside)

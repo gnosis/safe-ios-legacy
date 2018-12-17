@@ -45,7 +45,6 @@ class TransactionDomainServiceTests: XCTestCase {
         let date = Date()
         let stored = [Transaction.pending().allTimestamps(at: date),
                       Transaction.failure().allTimestamps(at: date),
-                      Transaction.rejected().allTimestamps(at: date),
                       Transaction.pending().allTimestamps(at: date),
                       Transaction.success().allTimestamps(at: date)]
         save(stored)
@@ -77,7 +76,6 @@ class TransactionDomainServiceTests: XCTestCase {
         let stored = [
             Transaction.pending().timestampSubmitted(at: Date(timeIntervalSince1970: 1)),
             Transaction.failure().timestampProcessed(at: Date(timeIntervalSince1970: 2)),
-            Transaction.rejected().timestampRejected(at: Date(timeIntervalSince1970: 3)),
             Transaction.pending().timestampSubmitted(at: Date(timeIntervalSince1970: 4)),
             Transaction.success().timestampProcessed(at: Date(timeIntervalSince1970: 5))
         ]
