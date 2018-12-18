@@ -9,6 +9,7 @@ import MultisigWalletImplementations
 import BigInt
 import Common
 import CryptoSwift
+import CommonTestSupport
 
 class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
 
@@ -192,7 +193,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         XCTAssertEqual(try context.safe.getThreshold(), 1)
     }
 
-    func test_whenMultipleOperations_thenExecutes() throws {
+    func test_whenMultipleOperations_thenExecutesMultiSend() throws {
         let context = try deployNewSafe(owners: 3, confirmations: 1)
 
         let remoteOwners = try context.safe.proxy.getOwners()
@@ -230,6 +231,39 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
         XCTAssertEqual(try context.safe.getThreshold(), newThreshold)
     }
 
+    func test_sendingManyTransactionsOneByOne() throws {
+        let postTransactionSubmissionDelay: TimeInterval = 15
+        let txCount = 2
+
+        let safeAddress = "<your safe address>"
+        let recipientAddress = "<transaction recipient address>"
+        let owners = ["<private keys of owners>"]
+            .map(createEOA)
+        let funder = provisionFundingAccount()
+        var safe = Safe()
+        safe._test = self
+        safe.address = Address(safeAddress)
+        safe.creationFee = TokenInt(1e10)
+        let context: SafeContext = (funder, owners, safe)
+        let recipient = Address(recipientAddress)
+        let txAmount = TokenInt(1e14)
+        try pay(from: context.funder, to: context.safe.address, amount: TokenInt(1e15))
+
+        var transactions = [Transaction]()
+        do {
+            for _ in (0..<txCount) {
+                let tx = try context.safe.prepareTx(to: recipient, amount: txAmount)
+                transactions.append(tx)
+                sign(transaction: tx, context: context, signatureCount: 1)
+                try context.safe.submit(transaction: tx)
+                print("Submitted Transaction", tx.transactionHash!.value)
+                delay(postTransactionSubmissionDelay)
+            }
+        } catch let error {
+            XCTFail("Error sending transaction: \(error) \(transactions)")
+        }
+    }
+
     // TODO: implement corner & error cases testing
 
     typealias SafeContext = (funder: ExternallyOwnedAccount, owners: [ExternallyOwnedAccount], safe: Safe)
@@ -245,15 +279,23 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
     }
 
     private func execute(transaction tx: Transaction, context: SafeContext, confirmations: Int = 2) throws {
-        context.owners[0..<confirmations].forEach { context.safe.sign(tx, by: $0) }
+        sign(transaction: tx, context: context, signatureCount: confirmations)
         try pay(from: context.funder, to: context.safe.address, amount: tx.fee!.amount + tx.ethValue)
         try context.safe.executeTransaction(tx)
     }
 
+    private func sign(transaction tx: Transaction, context: SafeContext, signatureCount: Int = 2) {
+        context.owners[0..<signatureCount].forEach { context.safe.sign(tx, by: $0) }
+    }
+
     func provisionFundingAccount() -> ExternallyOwnedAccount {
         // funder address: 0x2333b4CC1F89a0B4C43e9e733123C124aAE977EE
+        return createEOA(from: "0x72a2a6f44f24b099f279c87548a93fd7229e5927b4f1c7209f7130d5352efa40")
+    }
+
+    func createEOA(from privateKey: String) -> ExternallyOwnedAccount {
         let privateKey =
-            PrivateKey(data: Data(ethHex: "0x72a2a6f44f24b099f279c87548a93fd7229e5927b4f1c7209f7130d5352efa40"))
+            PrivateKey(data: Data(ethHex: privateKey))
         let publicKey = PublicKey(data: ethService.createPublicKey(privateKey: privateKey.data))
         return ExternallyOwnedAccount(address: encryptionService.address(privateKey: privateKey),
                                       mnemonic: Mnemonic(words: []),
@@ -438,14 +480,18 @@ struct Safe {
     }
 
     func executeTransaction(_ tx: Transaction) throws {
+        try submit(transaction: tx)
+        let receipt = try _test.waitForTransaction(tx.transactionHash!)!
+        assert(receipt.status == .success)
+    }
+
+    func submit(transaction tx: Transaction) throws {
         let sortedSigs = tx.signatures.sorted { $0.address.value < $1.address.value }
         let ethSigs = sortedSigs.map { _test.encryptionService.ethSignature(from: $0) }
         let request = SubmitTransactionRequest(transaction: tx, signatures: ethSigs)
         let response = try _test.relayService.submitTransaction(request: request)
         let hash = TransactionHash(response.transactionHash)
         tx.set(hash: hash).proceed()
-        let receipt = try _test.waitForTransaction(tx.transactionHash!)!
-        assert(receipt.status == .success)
     }
 
     func isOwner(_ address: Address) throws -> Bool {
