@@ -113,7 +113,7 @@ extension RecoverSafeFlowCoordinator: RecoveryInProgressViewControllerDelegate {
     }
 
     func recoveryInProgressViewControllerWantsToOpenTransactionInExternalViewer(_ transactionID: String) {
-        let url = ApplicationServiceRegistry.walletService.transactionURL(transactionID)
+        let url = ApplicationServiceRegistry.walletService.transactionURL(transactionID)!
         let controller = SFSafariViewController(url: url)
         presentModally(controller)
     }

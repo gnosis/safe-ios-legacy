@@ -36,7 +36,8 @@ public class TransactionDomainService {
             .filter { tx in
                 tx.status != .draft &&
                 tx.status != .signing &&
-                tx.status != .discarded
+                tx.status != .discarded &&
+                tx.status != .rejected
             }
             .sorted { lhs, rhs in
                 var lDates = lhs.allEventDates.makeIterator()

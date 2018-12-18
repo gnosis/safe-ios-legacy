@@ -47,6 +47,16 @@ class AddressInputViewController: BaseInputViewController {
 
 extension AddressInputViewController: AddressInputDelegate {
 
+    func didRecieveInvalidAddress(_ string: String) {
+        disableNextAction()
+        stopActivityIndicator()
+    }
+
+    func didClear() {
+        disableNextAction()
+        stopActivityIndicator()
+    }
+
     func presentController(_ controller: UIViewController) {
         self.present(controller, animated: true)
     }

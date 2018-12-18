@@ -7,6 +7,8 @@ import UIKit
 public protocol AddressInputDelegate: class {
     func presentController(_ controller: UIViewController)
     func didRecieveValidAddress(_ address: String)
+    func didRecieveInvalidAddress(_ string: String)
+    func didClear()
 }
 
 public final class AddressInput: VerifiableInput {
@@ -36,18 +38,22 @@ public final class AddressInput: VerifiableInput {
                 addressLabel.text = displayAddress
                 textInput.rightViewMode = .always
                 textInput.placeholder = nil
-                validateRules(for: addressLabel.text!)
+                validateRules(for: displayAddress)
                 if isValid {
                     addressLabel.address = displayAddress
                     let identicon = IdenticonView(frame: CGRect(origin: .zero, size: identiconSize))
                     identicon.seed = displayAddress
                     textInput.leftView = identicon
-                    addressInputDelegate?.didRecieveValidAddress(displayAddress)
+                    let validAddress = addressLabel.formatter.string(from: displayAddress) ?? displayAddress
+                    addressInputDelegate?.didRecieveValidAddress(validAddress)
+                } else {
+                    addressInputDelegate?.didRecieveInvalidAddress(displayAddress)
                 }
             } else {
                 addressLabel.address = nil
                 textInput.rightViewMode = .never
                 textInput.placeholder = self.placeholder
+                addressInputDelegate?.didClear()
             }
         }
     }
@@ -57,6 +63,10 @@ public final class AddressInput: VerifiableInput {
             let text = self.text
             self.text = text
         }
+    }
+
+    override func safeUserInput(_ text: String?) -> String {
+        return super.safeUserInput(text).lowercased()
     }
 
     enum Strings {

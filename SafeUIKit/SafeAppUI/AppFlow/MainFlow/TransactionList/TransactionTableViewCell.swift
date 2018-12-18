@@ -23,7 +23,7 @@ class TransactionTableViewCell: UITableViewCell {
     }
 
     func configure(transaction: TransactionData) {
-        identiconView.seed = transaction.recipient
+        identiconView.seed = identiconSeed(transaction)
 
         addressLabel.address = transaction.recipient
         addressLabel.suffix = addressSuffix(transaction)
@@ -48,6 +48,13 @@ class TransactionTableViewCell: UITableViewCell {
         case .replaceRecoveryPhrase:
             tokenAmountLabel.text = LocalizedString("transactions.row.replace_phrase",
                                                     comment: "Recovery phrase changed")
+        }
+    }
+
+    private func identiconSeed(_ transaction: TransactionData) -> String {
+        switch transaction.type {
+        case .incoming, .walletRecovery, .replaceRecoveryPhrase: return transaction.sender
+        case .outgoing: return transaction.recipient
         }
     }
 

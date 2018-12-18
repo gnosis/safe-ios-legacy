@@ -3,11 +3,10 @@
 //
 
 import Foundation
-
-import Foundation
+import UIKit
 import MultisigWalletDomainModel
 
-public final class SynchronisationService: SynchronisationDomainService {
+public class SynchronisationService: SynchronisationDomainService {
 
     private let retryInterval: TimeInterval
     private let merger: TokenListMerger
@@ -26,6 +25,19 @@ public final class SynchronisationService: SynchronisationDomainService {
         self.accountService = accountService
         self.tokenSyncInterval = tokenSyncInterval
         self.tokenSyncMaxRetries = tokenSyncMaxRetries
+        subscribeForLockingEvents()
+    }
+
+    private func subscribeForLockingEvents() {
+        let lockNotification = UIApplication.protectedDataWillBecomeUnavailableNotification
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didLock),
+                                               name: lockNotification,
+                                               object: nil)
+    }
+
+    @objc func didLock() {
+        stopSyncTransactions()
     }
 
     /// Synchronise stored data with info from services.

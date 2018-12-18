@@ -84,7 +84,7 @@ open class FlowCoordinator {
     }
 
     func pop(to controller: UIViewController? = nil) {
-        if let controller = controller {
+        if let controller = controller, navigationController.viewControllers.contains(controller) {
             navigationController.popToViewController(controller, animated: true)
         } else {
             navigationController.popViewController(animated: true)

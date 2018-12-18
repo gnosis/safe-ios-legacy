@@ -1,6 +1,12 @@
 /* Title for Add Token screen. */
 "add_token.title" = "Add Token";
 
+/* URL not available message */
+"alert.error.url_unavailable" = "Sorry, the link is unavailable.";
+
+/* Error title */
+"alert.error.url_unavailable.title" = "Oops";
+
 /* Cancel */
 "app.unlock.cancel" = "Cancel";
 
@@ -14,7 +20,7 @@
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
 
 /* Application submitted invalid request. */
-"generic.error.client_error" = "Application submitted ivnalid request to the server. Try again later.";
+"generic.error.client_error" = "Application submitted invalid request to the server. Try again later.";
 
 /* Generic error message alert */
 "generic.error.message" = "Operation failed because of an error. Please try again.";

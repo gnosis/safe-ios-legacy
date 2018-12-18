@@ -393,9 +393,10 @@ public class WalletApplicationService: Assertable {
         ApplicationServiceRegistry.eventRelay.subscribe(subscriber, for: TransactionStatusUpdated.self)
     }
 
-    public func transactionURL(_ id: String) -> URL {
-        let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
-        return configuration.transactionURL(for: tx.transactionHash!.value)
+    public func transactionURL(_ id: String) -> URL? {
+        guard let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id)),
+            let hash = tx.transactionHash?.value else { return nil }
+        return configuration.transactionURL(for: hash)
     }
 
     public func grouppedTransactions() -> [TransactionGroupData] {
