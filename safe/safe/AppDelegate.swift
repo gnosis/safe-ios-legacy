@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     var appConfig: AppConfig!
     let filesystemGuard = FileSystemGuard()
 
+    let defaultBundleIdentifier = "io.gnosis.safe" // DO NOT CHANGE BECAUSE DEFAULT DATABASE LOCATION MIGHT CHANGE
+
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
@@ -133,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         let relayService = GnosisTransactionRelayService(url: appConfig.relayServiceURL, logger: LogService.shared)
         MultisigWalletDomainModel.DomainRegistry.put(service: relayService, for: TransactionRelayDomainService.self)
 
-        secureStore = KeychainService(identifier: "pm.gnosis.safe")
+        secureStore = KeychainService(identifier: defaultBundleIdentifier)
         MultisigWalletDomainModel.DomainRegistry.put(service:
             SecureExternallyOwnedAccountRepository(store: secureStore!),
                                                      for: ExternallyOwnedAccountRepository.self)
@@ -148,7 +150,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
             let db = SQLiteDatabase(name: "IdentityAccess",
                                     fileManager: FileManager.default,
                                     sqlite: DataProtectionAwareCSQLite3(filesystemGuard: filesystemGuard),
-                                    bundleId: Bundle.main.bundleIdentifier ?? "pm.gnosis.safe")
+                                    bundleId: Bundle.main.bundleIdentifier ?? defaultBundleIdentifier)
             identityAccessDB = db
             let userRepo = DBSingleUserRepository(db: db)
             let gatekeeperRepo = DBSingleGatekeeperRepository(db: db)
@@ -185,7 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
             let db = SQLiteDatabase(name: "MultisigWallet",
                                     fileManager: FileManager.default,
                                     sqlite: DataProtectionAwareCSQLite3(filesystemGuard: filesystemGuard),
-                                    bundleId: Bundle.main.bundleIdentifier ?? "pm.gnosis.safe")
+                                    bundleId: Bundle.main.bundleIdentifier ?? defaultBundleIdentifier)
             multisigWalletDB = db
             let walletRepo = DBWalletRepository(db: db)
             let portfolioRepo = DBSinglePortfolioRepository(db: db)

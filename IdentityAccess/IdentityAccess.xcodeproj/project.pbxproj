@@ -1354,7 +1354,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessDomainModelTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessDomainModelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1390,7 +1390,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessImplementationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -1425,7 +1425,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessApplicationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessApplicationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -1438,7 +1438,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = IdentityAccessImplementationsResources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationsResources;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessImplementationsResources;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1453,7 +1453,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = IdentityAccessImplementationsResources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationsResources;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessImplementationsResources;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1468,7 +1468,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = IdentityAccessImplementationsResources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationsResources;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessImplementationsResources;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1483,7 +1483,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = IdentityAccessImplementationsResources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationsResources;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessImplementationsResources;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1582,7 +1582,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessDomainModelTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessDomainModelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1619,7 +1619,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessImplementationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -1655,7 +1655,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessApplicationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessApplicationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -1710,7 +1710,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessDomainModelTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessDomainModelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1727,7 +1727,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessDomainModelTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessDomainModelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1783,7 +1783,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessImplementationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -1799,7 +1799,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessImplementationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessImplementationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -1854,7 +1854,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessApplicationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessApplicationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -1870,7 +1870,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pm.gnosis.IdentityAccessApplicationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessApplicationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};

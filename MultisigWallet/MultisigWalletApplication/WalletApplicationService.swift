@@ -218,7 +218,7 @@ public class WalletApplicationService: Assertable {
         if let data = data, let string = String(data: data, encoding: .utf8) {
             userInfo["data"] = string
         }
-        let nsError = NSError(domain: "pm.gnosis.safe", code: 1, userInfo: userInfo)
+        let nsError = NSError(domain: "io.gnosis.safe", code: 1, userInfo: userInfo)
         ApplicationServiceRegistry.logger.error("Request failed", error: nsError)
         #endif
     }
