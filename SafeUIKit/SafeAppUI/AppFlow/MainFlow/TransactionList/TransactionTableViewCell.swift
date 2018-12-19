@@ -23,9 +23,9 @@ class TransactionTableViewCell: UITableViewCell {
     }
 
     func configure(transaction: TransactionData) {
-        identiconView.seed = identiconSeed(transaction)
+        identiconView.seed = recipient(transaction)
 
-        addressLabel.address = transaction.recipient
+        addressLabel.address = recipient(transaction)
         addressLabel.suffix = addressSuffix(transaction)
         addressLabel.textColor = addressColor(transaction)
 
@@ -51,7 +51,7 @@ class TransactionTableViewCell: UITableViewCell {
         }
     }
 
-    private func identiconSeed(_ transaction: TransactionData) -> String {
+    private func recipient(_ transaction: TransactionData) -> String {
         switch transaction.type {
         case .incoming, .walletRecovery, .replaceRecoveryPhrase: return transaction.sender
         case .outgoing: return transaction.recipient
