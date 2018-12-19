@@ -56,6 +56,10 @@ class AppDelegateTests: XCTestCase {
         XCTAssertEqual(UIApplication.shared.applicationIconBadgeNumber, 0)
     }
 
+    func test_defaultIdentifier() {
+        // DO NOT CHANGE BECAUSE DEFAULT DATABASE LOCATION MIGHT CHANGE
+        XCTAssertEqual(appDelegate.defaultBundleIdentifier, "io.gnosis.safe")
+    }
 }
 
 class MockCoordinator: AppFlowCoordinator {
