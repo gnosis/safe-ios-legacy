@@ -486,7 +486,7 @@ struct Safe {
     }
 
     func submit(transaction tx: Transaction) throws {
-        let sortedSigs = tx.signatures.sorted { $0.address.value < $1.address.value }
+        let sortedSigs = tx.signatures.sorted { $0.address.value.lowercased() < $1.address.value.lowercased() }
         let ethSigs = sortedSigs.map { _test.encryptionService.ethSignature(from: $0) }
         let request = SubmitTransactionRequest(transaction: tx, signatures: ethSigs)
         let response = try _test.relayService.submitTransaction(request: request)
