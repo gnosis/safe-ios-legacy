@@ -42,7 +42,7 @@ public struct OwnerList: Equatable {
     }
 
     public func  sortedOwners() -> [Owner] {
-        return storage.sorted { $0.address.value < $1.address.value }
+        return storage.sorted { $0.address.value.lowercased() < $1.address.value.lowercased() }
     }
 
     public mutating func remove(with role: OwnerRole) {

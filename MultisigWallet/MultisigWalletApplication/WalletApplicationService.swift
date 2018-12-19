@@ -593,11 +593,12 @@ public class WalletApplicationService: Assertable {
     }
 
     private func submitTransaction(_ tx: Transaction) throws -> TransactionHash {
-        let signatures = tx.signatures.sorted { $0.address.value < $1.address.value }.map {
+        let sortedSignatures = tx.signatures.sorted { $0.address.value.lowercased() < $1.address.value.lowercased() }
+        let ethSignatures = sortedSignatures.map {
             DomainRegistry.encryptionService.ethSignature(from: $0)
         }
         return try handleRelayServiceErrors {
-            let request = SubmitTransactionRequest(transaction: tx, signatures: signatures)
+            let request = SubmitTransactionRequest(transaction: tx, signatures: ethSignatures)
             let response = try DomainRegistry.transactionRelayService.submitTransaction(request: request)
             return TransactionHash(response.transactionHash)
         }

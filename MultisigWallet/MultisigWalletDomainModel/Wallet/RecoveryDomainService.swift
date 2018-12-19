@@ -204,7 +204,7 @@ public class RecoveryDomainService: Assertable {
 
         let txHash: TransactionHash
 
-        let signatures = tx.signatures.sorted { $0.address.value < $1.address.value }.map {
+        let signatures = tx.signatures.sorted { $0.address.value.lowercased() < $1.address.value.lowercased() }.map {
             DomainRegistry.encryptionService.ethSignature(from: $0)
         }
         do {
