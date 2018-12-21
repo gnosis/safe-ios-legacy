@@ -43,7 +43,7 @@ public class TransactionsTableViewController: UITableViewController {
     }
 
     func reloadData() {
-        dispatch.async(updateQueue) {
+        dispatch.asynchronous(updateQueue) {
             self.groups = ApplicationServiceRegistry.walletService.grouppedTransactions()
         }.then(.main, closure: displayUpdatedData)
     }
