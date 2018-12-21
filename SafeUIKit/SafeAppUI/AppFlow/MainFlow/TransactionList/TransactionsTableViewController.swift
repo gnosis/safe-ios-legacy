@@ -5,6 +5,7 @@
 import UIKit
 import BlockiesSwift
 import MultisigWalletApplication
+import Common
 
 public protocol TransactionsTableViewControllerDelegate: class {
     func didSelectTransaction(id: String)
@@ -16,7 +17,9 @@ public class TransactionsTableViewController: UITableViewController {
     public weak var delegate: TransactionsTableViewControllerDelegate?
     let emptyView = TransactionsEmptyView()
     let rowHeight: CGFloat = 70
-    var reloading: Bool = false
+    private let updateQueue = DispatchQueue(label: "TransactionDetailsUpdateQueue",
+                                            qos: .userInitiated,
+                                            attributes: [])
 
     public static func create() -> TransactionsTableViewController {
         return StoryboardScene.Main.transactionsTableViewController.instantiate()
@@ -40,15 +43,9 @@ public class TransactionsTableViewController: UITableViewController {
     }
 
     func reloadData() {
-        if reloading { return }
-        reloading = true
-        DispatchQueue.global().async {
+        dispatch.async(updateQueue) {
             self.groups = ApplicationServiceRegistry.walletService.grouppedTransactions()
-            DispatchQueue.main.async {
-                self.displayUpdatedData()
-                self.reloading = false
-            }
-        }
+        }.then(.main, closure: displayUpdatedData)
     }
 
     private func displayUpdatedData() {
@@ -76,7 +73,7 @@ public class TransactionsTableViewController: UITableViewController {
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell",
                                                  for: indexPath) as! TransactionTableViewCell
-        cell.configure(transaction: groups[indexPath.section].transactions[indexPath.row])
+        cell.configure(transaction: groups[indexPath.section].transactions[indexPath.row]) // crashing
         return cell
     }
 
