@@ -5,6 +5,7 @@
 import UIKit
 import BlockiesSwift
 import MultisigWalletApplication
+import Common
 
 public protocol TransactionsTableViewControllerDelegate: class {
     func didSelectTransaction(id: String)
@@ -16,7 +17,9 @@ public class TransactionsTableViewController: UITableViewController {
     public weak var delegate: TransactionsTableViewControllerDelegate?
     let emptyView = TransactionsEmptyView()
     let rowHeight: CGFloat = 70
-    var reloading: Bool = false
+    private let updateQueue = DispatchQueue(label: "TransactionDetailsUpdateQueue",
+                                            qos: .userInitiated,
+                                            attributes: [])
 
     public static func create() -> TransactionsTableViewController {
         return StoryboardScene.Main.transactionsTableViewController.instantiate()
@@ -40,15 +43,9 @@ public class TransactionsTableViewController: UITableViewController {
     }
 
     func reloadData() {
-        if reloading { return }
-        reloading = true
-        DispatchQueue.global().async {
+        dispatch.asynchronous(updateQueue) {
             self.groups = ApplicationServiceRegistry.walletService.grouppedTransactions()
-            DispatchQueue.main.async {
-                self.displayUpdatedData()
-                self.reloading = false
-            }
-        }
+        }.then(.main, closure: displayUpdatedData)
     }
 
     private func displayUpdatedData() {

@@ -301,14 +301,14 @@ final class ReviewTransactionViewController: UITableViewController {
     private func doAction(_ action: @escaping () throws -> TransactionData) throws {
         self.tx = try action()
         DispatchQueue.main.sync {
-            hasUpdatedFee = true
+            self.hasUpdatedFee = true
             switch self.tx.status {
             case .success, .pending, .failed, .discarded:
                 self.delegate.didFinishReview()
             default:
                 self.updateConfirmationCell()
                 self.updateEtherFeeBalanceCell()
-                updateSubmitButton()
+                self.updateSubmitButton()
             }
         }
     }
