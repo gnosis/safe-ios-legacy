@@ -73,7 +73,7 @@ public class TransactionsTableViewController: UITableViewController {
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell",
                                                  for: indexPath) as! TransactionTableViewCell
-        cell.configure(transaction: groups[indexPath.section].transactions[indexPath.row]) // crashing
+        cell.configure(transaction: groups[indexPath.section].transactions[indexPath.row])
         return cell
     }
 
