@@ -1,0 +1,6 @@
+// note: swifttemplate is disabled until bug is fixed in sourcery
+import Foundation
+
+public func bye() {
+    print("bye")
+}

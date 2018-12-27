@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:SourceryTemplates/SourceryTemplates.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Library/Library.xcodeproj">
    </FileRef>
    <FileRef
