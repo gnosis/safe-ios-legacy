@@ -1,0 +1,14 @@
+sources:
+  include:
+    - Common
+    - IdentityAccess
+    - MultisigWallet
+    - SafeUIKit
+    - TestTools
+    - safe
+  exclude:
+    - SafeUIKit/SafeUIKit/generated
+    - SafeUIKit/SafeAppUI/generated
+templates:
+  - sourcery_templates
+output: sourcery_out

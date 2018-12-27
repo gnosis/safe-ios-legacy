@@ -164,3 +164,4 @@ extension ReplaceRecoveryPhraseIntroViewController {
     }
 
 }
+

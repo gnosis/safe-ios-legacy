@@ -16,6 +16,11 @@ if ! which swiftgen > /dev/null; then
   brew install swiftgen
 fi
 
+if ! which sourcery > /dev/null; then
+  echo "Installing Sourcery"
+  brew install sourcery
+fi
+
 if ! which rbenv > /dev/null; then
   echo "Installing rbenv"
   brew install rbenv
