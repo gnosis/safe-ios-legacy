@@ -107,6 +107,8 @@
 		0A60B516211333620066821A /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60B515211333620066821A /* ProgressViewController.swift */; };
 		0A638BEB205A8D21003619EF /* Bundle+SafeUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */; };
 		0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A638BEC205A8D63003619EF /* LocalizedString.swift */; };
+		0A6E080421D0F87700AC13A2 /* ReplaceRecoveryPhraseIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6E080321D0F87700AC13A2 /* ReplaceRecoveryPhraseIntroViewController.swift */; };
+		0A6E080621D0F8EE00AC13A2 /* ReplaceRecoveryPhraseIntroViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6E080521D0F8EE00AC13A2 /* ReplaceRecoveryPhraseIntroViewControllerTests.swift */; };
 		0A6EF3C221BA7DD700F1074E /* GuidelinesViewController+NewSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3C121BA7DD700F1074E /* GuidelinesViewController+NewSafe.swift */; };
 		0A6EF3C421BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3C321BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift */; };
 		0A6EF3C621BA8C6600F1074E /* RecoverSafeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EF3C521BA8C6600F1074E /* RecoverSafeFlowCoordinator.swift */; };
@@ -450,6 +452,8 @@
 		0A60B515211333620066821A /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		0A638BEA205A8D21003619EF /* Bundle+SafeUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+SafeUIKit.swift"; sourceTree = "<group>"; };
 		0A638BEC205A8D63003619EF /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		0A6E080321D0F87700AC13A2 /* ReplaceRecoveryPhraseIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseIntroViewController.swift; sourceTree = "<group>"; };
+		0A6E080521D0F8EE00AC13A2 /* ReplaceRecoveryPhraseIntroViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseIntroViewControllerTests.swift; sourceTree = "<group>"; };
 		0A6EF3C121BA7DD700F1074E /* GuidelinesViewController+NewSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GuidelinesViewController+NewSafe.swift"; sourceTree = "<group>"; };
 		0A6EF3C321BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GuidelinesViewController+RecoverSafe.swift"; sourceTree = "<group>"; };
 		0A6EF3C521BA8C6600F1074E /* RecoverSafeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverSafeFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -824,6 +828,8 @@
 			children = (
 				0A4DF82320CE6FE20095C00D /* Main.storyboard */,
 				0A553D4221C004DF00647CFF /* ReplaceRecoveryPhraseViewController.swift */,
+				0A6E080321D0F87700AC13A2 /* ReplaceRecoveryPhraseIntroViewController.swift */,
+				0A6E080521D0F8EE00AC13A2 /* ReplaceRecoveryPhraseIntroViewControllerTests.swift */,
 				55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */,
 				55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */,
 				55D6CCE721942E9C004652C7 /* ConnectBrowserExtensionFlow */,
@@ -2061,6 +2067,7 @@
 				0A00293020CFCBA3009A4BFE /* SegmentBarController.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
+				0A6E080421D0F87700AC13A2 /* ReplaceRecoveryPhraseIntroViewController.swift in Sources */,
 				0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */,
 				0A6EF3C821BA8CC100F1074E /* AddressInputViewController.swift in Sources */,
 				0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */,
@@ -2155,6 +2162,7 @@
 				0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */,
 				0AF8D53020CFF68D001E8423 /* SegmentBarTests.swift in Sources */,
 				0AD998A620D3E6BC00E6F3CA /* TransactionValueViewTests.swift in Sources */,
+				0A6E080621D0F8EE00AC13A2 /* ReplaceRecoveryPhraseIntroViewControllerTests.swift in Sources */,
 				0AD5091C211091E4008507CB /* FundsTransferTransactionViewModelTests.swift in Sources */,
 				0A334DE7209C892800ABC6AE /* SafeTestCase.swift in Sources */,
 				55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */,

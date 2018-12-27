@@ -386,6 +386,15 @@
 /* Replace recovery phrase */
 "replace_phrase.header" = "Replace recovery phrase";
 
+/* Start */
+"replace_phrase.start" = "replace_phrase.start";
+
+/* Initial status text */
+"replace_recovery.intro.initial.status" = "Preparing...";
+
+/* Loading status text */
+"replace_recovery.intro.loading.status" = "Loading...";
+
 /* New recovery phrase */
 "replace_recovery.new_phrase.title" = "New recovery phrase";
 

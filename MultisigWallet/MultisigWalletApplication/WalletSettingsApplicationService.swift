@@ -5,11 +5,11 @@
 import Foundation
 import MultisigWalletDomainModel
 
-public class WalletSettingsApplicationService {
+open class WalletSettingsApplicationService {
 
     public init() {}
 
-    public func createRecoveryPhraseTransaction() -> TransactionData {
+    open func createRecoveryPhraseTransaction() -> TransactionData {
         let transactionID = DomainRegistry.settingsService.createReplaceRecoveryPhraseTransaction()
         DomainRegistry.settingsService.estimateRecoveryPhraseTransaction(transactionID)
         let tx = DomainRegistry.transactionRepository.findByID(transactionID)!

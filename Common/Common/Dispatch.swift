@@ -4,48 +4,46 @@
 
 import Foundation
 
-public typealias dispatch = DispatchQueue
+public class dispatch {
+
+    @discardableResult
+    public static func async(_ queue: DispatchQueue, closure: @escaping () -> Void) -> DispatchWorkItem {
+        return dispatch().async(queue, closure: closure)
+    }
+
+    @discardableResult
+    public static func sync(_ queue: DispatchQueue, closure: @escaping () -> Void) -> DispatchWorkItem {
+        return dispatch().sync(queue, closure: closure)
+    }
+
+    @discardableResult
+    public func async(_ queue: DispatchQueue, closure: @escaping () -> Void) -> DispatchWorkItem {
+        return async(queue, item: DispatchWorkItem(block: closure))
+    }
+
+    @discardableResult
+    public func sync(_ queue: DispatchQueue, closure: @escaping () -> Void) -> DispatchWorkItem {
+        return sync(queue, item: DispatchWorkItem(block: closure))
+    }
+
+    @discardableResult
+    public func async(_ queue: DispatchQueue, item: DispatchWorkItem) -> DispatchWorkItem {
+        queue.async(execute: item)
+        return item
+    }
+
+    @discardableResult
+    public func sync(_ queue: DispatchQueue, item: DispatchWorkItem) -> DispatchWorkItem {
+        queue.sync(execute: item)
+        return item
+    }
+
+}
 
 public extension DispatchQueue {
 
     class var global: DispatchQueue {
-        return global()
-    }
-
-    class var `default`: DispatchQueue {
-        return global
-    }
-
-    @discardableResult
-    static func asynchronous(_ queue: DispatchQueue, closure: @escaping () -> Void) -> DispatchWorkItem {
-        return queue.asynchronous(closure: closure)
-    }
-
-    @discardableResult
-    static func synchronous(_ queue: DispatchQueue, closure: @escaping () -> Void) -> DispatchWorkItem {
-        return queue.synchronous(closure: closure)
-    }
-
-    @discardableResult
-    func asynchronous(closure: @escaping () -> Void) -> DispatchWorkItem {
-        return asynchronous(item: DispatchWorkItem(block: closure))
-    }
-
-    @discardableResult
-    func synchronous(closure: @escaping () -> Void) -> DispatchWorkItem {
-        return synchronous(item: DispatchWorkItem(block: closure))
-    }
-
-    @discardableResult
-    func asynchronous(item: DispatchWorkItem) -> DispatchWorkItem {
-        async(execute: item)
-        return item
-    }
-
-    @discardableResult
-    func synchronous(item: DispatchWorkItem) -> DispatchWorkItem {
-        sync(execute: item)
-        return item
+        return DispatchQueue.global()
     }
 
 }
