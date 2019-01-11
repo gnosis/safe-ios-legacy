@@ -44,14 +44,14 @@ Alternatives Considered
 Apple's MVC
 ~~~~~~~~~~~~
 
-This is the straightforward version that is a default preferred architecture on iOS. It is good for small and medium-sized projects. From my experience, this architecture doesn't scale well and doesn't support flexibility and separation of concerns as good as other alternatives. 
+This is the straightforward approach that is a default preferred architecture on iOS. It is good for small and medium-sized projects. From my experience, this architecture doesn't scale well and doesn't support flexibility and separation of concerns as good as other alternatives. 
 
 The major issue with this approach for me is that the application is monolythic and the business logic exists in the same components as other UI code.
 
 MVVM
 ~~~~~~~~
 
-MVVM builds on the MVC with treating `UIViewController` as a "view" role and moving all controller and business logic into a separate "view model" object. This enables testability of the logic without testing user interface, and also enables user interface testing through mocking view models. 
+MVVM builds on the MVC with treating ``UIViewController`` as a "view" role and moving all controller and business logic into a separate "view model" object. This enables testability of the logic without testing user interface, and also enables user interface testing through mocking view models. 
 
 Nevertheless, it seemed as a partial solution to the problem because it doesn't separate the business logic and other service components well enough. This pattern's scope is too narrow for selecting it as an architectural pattern.
 
