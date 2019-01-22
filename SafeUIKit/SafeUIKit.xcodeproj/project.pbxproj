@@ -133,6 +133,9 @@
 		0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D058A20CEB5C3007DED3B /* Colors.swift */; };
 		0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */; };
 		0AB3F13221F5CF5400D351C7 /* TransactionsTableViewControllerRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13121F5CF5400D351C7 /* TransactionsTableViewControllerRegressionTests.swift */; };
+		0AB3F13821F7373300D351C7 /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB3F13721F7373300D351C7 /* libMultisigWalletImplementations.a */; };
+		0AB3F13921F73A5200D351C7 /* CollectionUIModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13321F7262900D351C7 /* CollectionUIModelTests.swift */; };
+		0AB3F13A21F73A5500D351C7 /* CollectionUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13521F7264100D351C7 /* CollectionUIModel.swift */; };
 		0ABA591821AC07D0009D249F /* AmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591721AC07D0009D249F /* AmountLabel.swift */; };
 		0ABA591A21AC07E8009D249F /* EthereumAddressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591921AC07E8009D249F /* EthereumAddressLabel.swift */; };
 		0ABA591F21AC0856009D249F /* AmountLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591E21AC0856009D249F /* AmountLabelTests.swift */; };
@@ -487,6 +490,9 @@
 		0AB0B56E21638AEC00FB2435 /* SafeUIKit.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SafeUIKit.xcconfig; sourceTree = "<group>"; };
 		0AB0B56F21638CBF00FB2435 /* CommonConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CommonConfig.xcconfig; sourceTree = "<group>"; };
 		0AB3F13121F5CF5400D351C7 /* TransactionsTableViewControllerRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewControllerRegressionTests.swift; sourceTree = "<group>"; };
+		0AB3F13321F7262900D351C7 /* CollectionUIModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUIModelTests.swift; sourceTree = "<group>"; };
+		0AB3F13521F7264100D351C7 /* CollectionUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUIModel.swift; sourceTree = "<group>"; };
+		0AB3F13721F7373300D351C7 /* libMultisigWalletImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ABA591721AC07D0009D249F /* AmountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountLabel.swift; sourceTree = "<group>"; };
 		0ABA591921AC07E8009D249F /* EthereumAddressLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressLabel.swift; sourceTree = "<group>"; };
 		0ABA591E21AC0856009D249F /* AmountLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountLabelTests.swift; sourceTree = "<group>"; };
@@ -692,6 +698,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AB3F13821F7373300D351C7 /* libMultisigWalletImplementations.a in Frameworks */,
 				0A334DED209C894D00ABC6AE /* libIdentityAccessImplementations.a in Frameworks */,
 				0A334DC9209C6DD800ABC6AE /* libCommonTestSupport.a in Frameworks */,
 				0AF33D3E209C6BF800527D25 /* SafeAppUI.framework in Frameworks */,
@@ -806,6 +813,7 @@
 		0A34BC61207B80A700636560 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AB3F13721F7373300D351C7 /* libMultisigWalletImplementations.a */,
 				0AFA766A2181FB1E00A96FDB /* libCommonTestSupport.a */,
 				0AFA76682181FB1800A96FDB /* libIdentityAccessImplementations.a */,
 				55A7B2B220ECE2940035EF38 /* libCommon.a */,
@@ -973,6 +981,8 @@
 				550E7CDB21708E1E0032DE6C /* String+Extensions.swift */,
 				550E7CDD21708E540032DE6C /* UITextField+TokenInput.swift */,
 				55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */,
+				0AB3F13521F7264100D351C7 /* CollectionUIModel.swift */,
+				0AB3F13321F7262900D351C7 /* CollectionUIModelTests.swift */,
 			);
 			path = SafeUIKit;
 			sourceTree = "<group>";
@@ -1961,6 +1971,7 @@
 				5506396020D17CDB000F2A82 /* Double+BigInt.swift in Sources */,
 				0A638BED205A8D63003619EF /* LocalizedString.swift in Sources */,
 				55126B5B21AC372D00A9F810 /* TransactionConfirmationCell.swift in Sources */,
+				0AB3F13A21F73A5500D351C7 /* CollectionUIModel.swift in Sources */,
 				5524735B21428FDD00A77557 /* IdenticonView.swift in Sources */,
 				0A395C9E21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift in Sources */,
 				55E8B000219C4A93002930A1 /* TransactionFeeView.swift in Sources */,
@@ -2017,6 +2028,7 @@
 			files = (
 				556252062149201500F569EE /* QRCodeViewTests.swift in Sources */,
 				5539C14021A55EA5006BF834 /* TransactionFeeCellTests.swift in Sources */,
+				0AB3F13921F73A5200D351C7 /* CollectionUIModelTests.swift in Sources */,
 				55C3C6272175CBF500FA5B4F /* ScanQRCodeHandlerTests.swift in Sources */,
 				55126B6021AC376F00A9F810 /* TransactionConfirmationCellTests.swift in Sources */,
 				0A7AE8C82052C2120044D5DD /* XCTest+Assert.swift in Sources */,

@@ -6,7 +6,7 @@ import Foundation
 import BigInt
 import Common
 
-public struct TransactionGroupData {
+public struct TransactionGroupData: Collection {
 
     public enum GroupType: String {
         case pending
@@ -22,6 +22,25 @@ public struct TransactionGroupData {
         self.date = date
         self.transactions = transactions
     }
+
+    // MARK: Collection conformance
+
+    public var startIndex: Int {
+        return transactions.startIndex
+    }
+
+    public var endIndex: Int {
+        return transactions.endIndex
+    }
+
+    public subscript(index: Int) -> TransactionData {
+        return transactions[index]
+    }
+
+    public func index(after i: Int) -> Int {
+        return transactions.index(after: i)
+    }
+
 }
 
 public struct TransactionData {
