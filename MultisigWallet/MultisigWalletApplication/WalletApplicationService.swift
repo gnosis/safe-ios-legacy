@@ -571,7 +571,11 @@ public class WalletApplicationService: Assertable {
     }
 
     public func submitTransaction(_ id: String) throws -> TransactionData {
-        let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
+        var tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
+        if tx.status == .draft {
+            _ = try requestTransactionConfirmation(id)
+            tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
+        }
         signTransaction(tx)
         let hash = try submitTransaction(tx)
         tx.set(hash: hash).proceed()

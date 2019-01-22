@@ -97,6 +97,7 @@ final class ReviewTransactionViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        guard isMovingToParent else { return }
         requestSignatures()
     }
 
