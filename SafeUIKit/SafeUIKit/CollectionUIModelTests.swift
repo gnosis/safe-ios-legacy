@@ -5,7 +5,7 @@
 import XCTest
 @testable import SafeUIKit
 
-class TableViewModelTests: XCTestCase {
+class CollectionUIModelTests: XCTestCase {
 
     let sectionIndex = 0
     let itemIndex = 0
