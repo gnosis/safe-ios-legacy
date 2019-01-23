@@ -5,6 +5,16 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`1.0.1`_ - 2019-01-23
+======================
+Changed
+-------
+- Stability improvements
+
+  + Fixing crash in background
+  + Fixing random crash after transaction submission
+  + Fixing crash on review transaction screen when network is lossy
+
 `1.0.0`_ - 2018-12-18
 =====================
 Changed
@@ -240,6 +250,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.0.1: https://github.com/gnosis/safe-ios/tree/1.0.1
 .. _1.0.0: https://github.com/gnosis/safe-ios/tree/1.0.0
 .. _0.10.0: https://github.com/gnosis/safe-ios/tree/0.10.0
 .. _0.9.1: https://github.com/gnosis/safe-ios/tree/0.9.1
