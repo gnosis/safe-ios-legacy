@@ -6,20 +6,20 @@ import UIKit
 import BlockiesSwift
 import MultisigWalletApplication
 import Common
+import SafeUIKit
 
 public protocol TransactionsTableViewControllerDelegate: class {
     func didSelectTransaction(id: String)
 }
 
-public class TransactionsTableViewController: UITableViewController {
+public class TransactionsTableViewController: UITableViewController, EventSubscriber {
 
-    private var groups = [TransactionGroupData]()
+    private var model = CollectionUIModel<TransactionGroupData>()
     public weak var delegate: TransactionsTableViewControllerDelegate?
     let emptyView = TransactionsEmptyView()
     let rowHeight: CGFloat = 70
     private let updateQueue = DispatchQueue(label: "TransactionDetailsUpdateQueue",
-                                            qos: .userInitiated,
-                                            attributes: [])
+                                            qos: .userInitiated)
 
     public static func create() -> TransactionsTableViewController {
         return StoryboardScene.Main.transactionsTableViewController.instantiate()
@@ -44,47 +44,52 @@ public class TransactionsTableViewController: UITableViewController {
 
     func reloadData() {
         dispatch.asynchronous(updateQueue) {
-            self.groups = ApplicationServiceRegistry.walletService.grouppedTransactions()
+            self.model = CollectionUIModel(ApplicationServiceRegistry.walletService.grouppedTransactions())
         }.then(.main, closure: displayUpdatedData)
     }
 
-    private func displayUpdatedData() {
+    func displayUpdatedData() {
         tableView.reloadData()
-        tableView.backgroundView = groups.isEmpty ? emptyView : nil
+        tableView.backgroundView = model.isEmpty ? emptyView : nil
     }
 
     // MARK: - Table view data source
 
     override public func numberOfSections(in tableView: UITableView) -> Int {
-        return groups.count
+        return model.sectionCount
     }
 
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups[section].transactions.count
+        return model.itemCount(section: section)
     }
 
     public override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let group = model[section] else { return nil }
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TransactionsGroupHeaderView")
             as! TransactionsGroupHeaderView
-        view.configure(group: groups[section])
+        view.configure(group: group)
         return view
     }
 
+    // GH-500 (crash) fix
+    // reloadTable() and cellForRow are not synchronous, but can run in different run loop cycles
+    // that's why reloading model in the background can invalidate saved `numberOfRows` inside the UITableView
+    // that is why guard to ensure we have correct indexes, i.e. in range of the model's count.
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let transaction = model[indexPath] else { return UITableViewCell() }
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell",
                                                  for: indexPath) as! TransactionTableViewCell
-        cell.configure(transaction: groups[indexPath.section].transactions[indexPath.row])
+        cell.configure(transaction: transaction)
         return cell
     }
 
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.didSelectTransaction(id: groups[indexPath.section].transactions[indexPath.row].id)
+        guard let transaction = model[indexPath] else { return }
+        delegate?.didSelectTransaction(id: transaction.id)
     }
 
-}
-
-extension TransactionsTableViewController: EventSubscriber {
+    // MARK: EventSubscriber
 
     public func notify() {
         reloadData()
