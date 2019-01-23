@@ -33,7 +33,7 @@ public class ErrorHandler {
         ApplicationServiceRegistry.logger.fatal(log, error: error, file: file, line: line)
         instance.showError(title: Strings.fatalErrorTitle, message: message, log: log, error: error) {
             if instance.crashOnFatalError {
-                fatalError(message + "; " + log)
+                fatalError(message + "; " + log + (error == nil ? "" : "; \(error!): \(error!.localizedDescription)"))
             }
         }
     }
