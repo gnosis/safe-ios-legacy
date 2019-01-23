@@ -27,6 +27,7 @@ final class ReviewTransactionViewController: UITableViewController {
 
     private let scheduler = OneOperationWaitingScheduler(interval: 30)
     private var submitButtonItem: UIBarButtonItem!
+    private var didRequestSignatures: Bool = false
 
     private class IndexPathIterator {
 
@@ -97,7 +98,9 @@ final class ReviewTransactionViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        guard !didRequestSignatures else { return }
         requestSignatures()
+        didRequestSignatures = true
     }
 
     private func configureTableView() {
