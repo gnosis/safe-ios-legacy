@@ -42,11 +42,11 @@ public struct CollectionUIModel<SectionType> where SectionType: Collection {
     }
 
     public func isInBounds(section: Int) -> Bool {
-        return section < sections.count
+        return 0 <= section && section < sections.count
     }
 
     public func isInBounds(section: Int, item: Int) -> Bool {
-        return isInBounds(section: section) && item < sections[section].count
+        return isInBounds(section: section) && 0 <= item && item < sections[section].count
     }
 
     public var isEmpty: Bool {
