@@ -81,8 +81,9 @@ public final class BiometricService: BiometricAuthenticationService {
         guard isAuthenticationAvailable else { return false }
         var success: Bool = false
         let semaphore = DispatchSemaphore(value: 0)
-        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { result, error in
-            if let error = error {
+        let policy = LAPolicy.deviceOwnerAuthenticationWithBiometrics
+        context.evaluatePolicy(policy, localizedReason: reason) { [unowned self] result, errorOrNil in
+            if let error = errorOrNil, !(error is LAError) || self.isUnexpectedFailureReason(error as! LAError) {
                 ApplicationServiceRegistry.logger.error("Failed to evaluate authentication policy", error: error)
             }
             success = result
@@ -90,6 +91,26 @@ public final class BiometricService: BiometricAuthenticationService {
         }
         semaphore.wait()
         return success
+    }
+
+    private func isUnexpectedFailureReason(_ error: LAError) -> Bool {
+            switch error.code {
+            case .authenticationFailed,
+                 .userCancel,
+                 .userFallback,
+                 .systemCancel,
+                 .passcodeNotSet,
+                 .biometryNotAvailable,
+                 .biometryNotEnrolled,
+                 .biometryLockout,
+                 .appCancel:
+                return false
+            case .invalidContext,
+                 .notInteractive:
+                return true
+            default: // these are deprecated touchID* cases
+                return false
+            }
     }
 
 }
