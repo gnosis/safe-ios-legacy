@@ -21,7 +21,7 @@ public class IdentityService: Assertable {
         case emptyPassword
         case passwordTooShort
         case passwordTooLong
-        case passwordMissingCapitalLetter
+        case passwordMissingLetter
         case passwordMissingDigit
         case passwordHasTrippleChar
     }
@@ -100,8 +100,7 @@ public class IdentityService: Assertable {
     private func validatePlaintextPassword(_ password: String) throws {
         try assertArgument(!password.isEmpty, RegistrationError.emptyPassword)
         try assertArgument(password.count >= 6, RegistrationError.passwordTooShort)
-        try assertArgument(password.count <= 100, RegistrationError.passwordTooLong)
-        try assertArgument(password.hasLetter, RegistrationError.passwordMissingCapitalLetter)
+        try assertArgument(password.hasLetter, RegistrationError.passwordMissingLetter)
         try assertArgument(password.hasDecimalDigit, RegistrationError.passwordMissingDigit)
         try assertArgument(password.hasNoTrippleChar, RegistrationError.passwordHasTrippleChar)
     }
