@@ -40,7 +40,7 @@ final class MenuTableViewController: UITableViewController {
         static let changePassword = LocalizedString("menu.action.change_password",
                                                     comment: "Change password menu item")
         static let changeRecoveryPhrase = LocalizedString("menu.action.change_recovery_phrase",
-                                                          comment: "Change recovery key  menu item")
+                                                          comment: "Change recovery key menu item")
         static let changeBrowserExtension = LocalizedString("menu.action.change_browser_extension",
                                                             comment: "Change browser extension menu item")
         static let connectBrowserExtension = LocalizedString("menu.action.connect_browser_extension",

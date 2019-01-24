@@ -9,7 +9,7 @@ At the same time, this module provides mock implementation of the application se
 used to mock different authentication behaviors in tests or demonstrations of the user interface.
 
 The clients of the `AuthenticationApplicationService`, which are user interface layer objects, must have no direct access to 
-domain model  objects. That's why the application service's API uses either simple data types, such as String and Int, or data structures
+domain model objects. That's why the application service's API uses either simple data types, such as String and Int, or data structures
 that are supposed to be used by the clients.
 
 Note, that the application service is stateless and does not have any persisted state. All state and logic delegated to the domain model
