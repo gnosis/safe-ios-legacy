@@ -17,7 +17,7 @@ class TransactionValueView: BaseCustomView {
             update()
         }
     }
-    var  isSingleValue: Bool = false {
+    var isSingleValue: Bool = false {
         didSet {
             update()
         }

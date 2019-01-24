@@ -41,7 +41,7 @@ public struct OwnerList: Equatable {
         return storage.first { $0.role == role }
     }
 
-    public func  sortedOwners() -> [Owner] {
+    public func sortedOwners() -> [Owner] {
         return storage.sorted { $0.address.value.lowercased() < $1.address.value.lowercased() }
     }
 
