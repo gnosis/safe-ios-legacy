@@ -21,6 +21,12 @@ public class RBEIntroViewController: UIViewController {
         stateLabel.text = "Loading"
     }
 
+    func transition(to newState: State) {
+        state = newState
+    }
+
+    // MARK: Actions
+
     public func handleError(_ error: Error) {
         state.handleError(error, controller: self)
     }
@@ -44,35 +50,21 @@ public class RBEIntroViewController: UIViewController {
     public func retry() {
         state.retry(controller: self)
     }
+
 }
 
 extension RBEIntroViewController {
 
+    // MARK: Base States
+
     class State {
 
-        func handleError(_ error: Error, controller: RBEIntroViewController) {
-
-        }
-
-        func back(controller: RBEIntroViewController) {
-
-        }
-
-        func didLoad(controller: RBEIntroViewController) {
-
-        }
-
-        func start(controller: RBEIntroViewController) {
-
-        }
-
-        func didStart(controller: RBEIntroViewController) {
-
-        }
-
-        func retry(controller: RBEIntroViewController) {
-
-        }
+        func handleError(_ error: Error, controller: RBEIntroViewController) {}
+        func back(controller: RBEIntroViewController) {}
+        func didLoad(controller: RBEIntroViewController) {}
+        func start(controller: RBEIntroViewController) {}
+        func didStart(controller: RBEIntroViewController) {}
+        func retry(controller: RBEIntroViewController) {}
 
     }
 
@@ -84,6 +76,15 @@ extension RBEIntroViewController {
 
     }
 
+    class BaseErrorState: CancellableState {
+
+        override func retry(controller: RBEIntroViewController) {
+            controller.state = LoadingState()
+        }
+
+    }
+
+    // MARK: Controller states
 
     class LoadingState: CancellableState {
 
@@ -94,29 +95,19 @@ extension RBEIntroViewController {
         override func didLoad(controller: RBEIntroViewController) {
             controller.state = ReadyState()
         }
-    }
-
-    class BaseErrorState: CancellableState {
-        override func retry(controller: RBEIntroViewController) {
-            controller.state = LoadingState()
-        }
 
     }
 
+    class InvalidState: BaseErrorState {}
 
-    class InvalidState: BaseErrorState {
-
-    }
-
-    class CancellingState: State {
-
-    }
+    class CancellingState: State {}
 
     class ReadyState: CancellableState {
 
         override func start(controller: RBEIntroViewController) {
             controller.state = StartingState()
         }
+
     }
 
     class StartingState: State {
@@ -128,14 +119,11 @@ extension RBEIntroViewController {
         override func handleError(_ error: Error, controller: RBEIntroViewController) {
             controller.state = ErrorState()
         }
-    }
-
-    class StartedState: State {
 
     }
 
-    class ErrorState: BaseErrorState {
+    class StartedState: State {}
 
-    }
+    class ErrorState: BaseErrorState {}
 
 }
