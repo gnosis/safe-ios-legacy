@@ -7,13 +7,25 @@ import UIKit
 public class RBEIntroViewController: UIViewController {
 
     @IBOutlet weak var stateLabel: UILabel!
+    var startButtonItem: UIBarButtonItem!
     var state: State = LoadingState()
 
     static func create() -> RBEIntroViewController {
-        let aClass = RBEIntroViewController.self
-        let nibName = "\(aClass)"
-        let bundle = Bundle(for: aClass)
-        return RBEIntroViewController(nibName: nibName, bundle: bundle)
+        return RBEIntroViewController(nibName: "\(self)", bundle: Bundle(for: self))
+    }
+
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        commonInit()
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+
+    func commonInit() {
+        startButtonItem = UIBarButtonItem(title: "some", style: .plain, target: nil, action: nil)
     }
 
     public override func viewDidLoad() {
@@ -23,6 +35,7 @@ public class RBEIntroViewController: UIViewController {
 
     func transition(to newState: State) {
         state = newState
+        newState.didEnter(controller: self)
     }
 
     // MARK: Actions
@@ -59,6 +72,7 @@ extension RBEIntroViewController {
 
     class State {
 
+        func didEnter(controller: RBEIntroViewController) {}
         func handleError(_ error: Error, controller: RBEIntroViewController) {}
         func back(controller: RBEIntroViewController) {}
         func didLoad(controller: RBEIntroViewController) {}
@@ -71,7 +85,7 @@ extension RBEIntroViewController {
     class CancellableState: State {
 
         override func back(controller: RBEIntroViewController) {
-            controller.state = CancellingState()
+            controller.transition(to: CancellingState())
         }
 
     }
@@ -79,7 +93,7 @@ extension RBEIntroViewController {
     class BaseErrorState: CancellableState {
 
         override func retry(controller: RBEIntroViewController) {
-            controller.state = LoadingState()
+            controller.transition(to: LoadingState())
         }
 
     }
@@ -88,12 +102,18 @@ extension RBEIntroViewController {
 
     class LoadingState: CancellableState {
 
+        override func didEnter(controller: RBEIntroViewController) {
+            controller.navigationItem.titleView = LoadingTitleView()
+            controller.navigationItem.rightBarButtonItems = [controller.startButtonItem]
+            controller.startButtonItem.isEnabled = false
+        }
+
         override func handleError(_ error: Error, controller: RBEIntroViewController) {
-            controller.state = InvalidState()
+            controller.transition(to: InvalidState())
         }
 
         override func didLoad(controller: RBEIntroViewController) {
-            controller.state = ReadyState()
+            controller.transition(to: ReadyState())
         }
 
     }
@@ -105,7 +125,7 @@ extension RBEIntroViewController {
     class ReadyState: CancellableState {
 
         override func start(controller: RBEIntroViewController) {
-            controller.state = StartingState()
+            controller.transition(to: StartingState())
         }
 
     }
@@ -113,11 +133,11 @@ extension RBEIntroViewController {
     class StartingState: State {
 
         override func didStart(controller: RBEIntroViewController) {
-            controller.state = StartedState()
+            controller.transition(to: StartedState())
         }
 
         override func handleError(_ error: Error, controller: RBEIntroViewController) {
-            controller.state = ErrorState()
+            controller.transition(to: ErrorState())
         }
 
     }

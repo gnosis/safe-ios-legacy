@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4c4-Wz-qCk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kf4-5L-HU5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -75,7 +75,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wd9-x3-CiL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="172" y="-643"/>
+            <point key="canvasLocation" x="1111.2" y="-643.62818590704649"/>
         </scene>
         <!--Components-->
         <scene sceneID="qXC-go-ZvE">
@@ -421,7 +421,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V61-zp-tDG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1064.8" y="31.934032983508249"/>
+            <point key="canvasLocation" x="2004" y="31.484257871064472"/>
         </scene>
         <!--ScanBarButtonItem-->
         <scene sceneID="cAS-oi-Gdf">
@@ -981,7 +981,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXe-us-Koa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1838" y="-654"/>
+            <point key="canvasLocation" x="2776.8000000000002" y="-654.42278860569718"/>
         </scene>
         <!--QRCodeInput-->
         <scene sceneID="bpq-FF-WHS">
@@ -1035,7 +1035,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hy9-Nk-nb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2604" y="-380"/>
+            <point key="canvasLocation" x="3543.1999999999998" y="-380.05997001499253"/>
         </scene>
         <!--QRCodeView-->
         <scene sceneID="oYY-i3-60S">
@@ -1217,22 +1217,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQ5-Zp-4ct" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3247" y="32"/>
+            <point key="canvasLocation" x="4184.8000000000002" y="31.934032983508249"/>
         </scene>
-        <!--Demo Recovery In Progress View Controller View Controller-->
-        <scene sceneID="tbJ-Fa-ILE">
+        <!--View Controller-->
+        <scene sceneID="K0W-ek-bIH">
             <objects>
-                <viewController storyboardIdentifier="ReviewRecoveryTransactionDemoViewController" id="qAl-GP-5EO" customClass="DemoRecoveryInProgressViewControllerViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="RTz-Bm-XTb">
+                <viewController id="uca-4R-2Ed" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n8D-ju-lvN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Jql-A6-Kbm"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bjt-2C-iNB" customClass="IntroContentView" customModule="SafeAppUI">
+                                <rect key="frame" x="0.0" y="64" width="375" height="340"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="340" placeholder="YES" id="ndp-xh-06N"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15686274510000001" green="0.69803921570000005" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Bjt-2C-iNB" firstAttribute="trailing" secondItem="YN1-Vi-k8n" secondAttribute="trailing" id="a5F-Ib-Vz6"/>
+                            <constraint firstItem="Bjt-2C-iNB" firstAttribute="top" secondItem="YN1-Vi-k8n" secondAttribute="top" id="gei-C5-q06"/>
+                            <constraint firstItem="Bjt-2C-iNB" firstAttribute="leading" secondItem="YN1-Vi-k8n" secondAttribute="leading" id="yZm-nK-wTM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YN1-Vi-k8n"/>
                     </view>
+                    <navigationItem key="navigationItem" id="zTh-ij-dNF"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dpe-2c-OR8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BYV-Lr-RG9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1964" y="-105"/>
+            <point key="canvasLocation" x="-1108" y="-150.67466266866569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KwY-5H-yHZ">
@@ -1250,7 +1265,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elE-H4-Ezx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="100" y="32"/>
+            <point key="canvasLocation" x="1039.2" y="31.934032983508249"/>
         </scene>
         <!--TransactionFeeView-->
         <scene sceneID="R1g-Nn-tl6">
@@ -1348,6 +1363,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QnO-Qf-3Ph" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3954.4000000000001" y="-863.1184407796103"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="syN-DM-1f6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kf4-5L-HU5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1eE-l3-PFP">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uca-4R-2Ed" kind="relationship" relationship="rootViewController" id="0Bf-Ke-icP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wHx-sc-X0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2047.2" y="-150.67466266866569"/>
         </scene>
     </scenes>
 </document>

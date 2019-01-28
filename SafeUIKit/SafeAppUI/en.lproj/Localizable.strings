@@ -368,6 +368,12 @@
 /* Recovery transaction failed alert's title */
 "recovery.transaction.failed_alert.title" = "Error";
 
+/* Intro body text */
+"replace_extension.intro.body" = "Once this process is complete, you can only use the new browser extension to confirm transactions.\nPlease have your Safe recovery phrase ready to confirm the recovery.";
+
+/* Replace browser extension */
+"replace_extension.intro.header" = "Replace browser extension";
+
 /* Text between stars (*) will be emphasized */
 "replace_phrase.body" = "This will generate a new recovery phrase and invalidate your current one.";
 

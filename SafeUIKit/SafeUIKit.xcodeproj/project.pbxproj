@@ -173,6 +173,11 @@
 		0AF6D88721FF129400D1980A /* RBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */; };
 		0AF6D88821FF129400D1980A /* RBEIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */; };
 		0AF6D88A21FF12D200D1980A /* RBEIntroViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D88921FF12D200D1980A /* RBEIntroViewControllerTests.swift */; };
+		0AF6D89221FF227100D1980A /* LoadingTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF6D89121FF227100D1980A /* LoadingTitleView.xib */; };
+		0AF6D89421FF228400D1980A /* LoadingTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D89321FF228400D1980A /* LoadingTitleView.swift */; };
+		0AF6D8DA21FF5DCA00D1980A /* NibUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D8D921FF5DCA00D1980A /* NibUIView.swift */; };
+		0AF6D8DC21FF614D00D1980A /* IntroContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */; };
+		0AF6D8DE21FF62EF00D1980A /* IntroContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */; };
 		0AF8D53020CFF68D001E8423 /* SegmentBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D52F20CFF68D001E8423 /* SegmentBarTests.swift */; };
 		0AF8D53520CFF85B001E8423 /* TestSegmentBarNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */; };
 		0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */; };
@@ -535,6 +540,11 @@
 		0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewController.swift; sourceTree = "<group>"; };
 		0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RBEIntroViewController.xib; sourceTree = "<group>"; };
 		0AF6D88921FF12D200D1980A /* RBEIntroViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerTests.swift; sourceTree = "<group>"; };
+		0AF6D89121FF227100D1980A /* LoadingTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingTitleView.xib; sourceTree = "<group>"; };
+		0AF6D89321FF228400D1980A /* LoadingTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTitleView.swift; sourceTree = "<group>"; };
+		0AF6D8D921FF5DCA00D1980A /* NibUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibUIView.swift; sourceTree = "<group>"; };
+		0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IntroContentView.xib; sourceTree = "<group>"; };
+		0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroContentView.swift; sourceTree = "<group>"; };
 		0AF8D52F20CFF68D001E8423 /* SegmentBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBarTests.swift; sourceTree = "<group>"; };
 		0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestSegmentBarNib.xib; sourceTree = "<group>"; };
 		0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBarControllerTests.swift; sourceTree = "<group>"; };
@@ -1089,6 +1099,11 @@
 		0AF6D88421FF126B00D1980A /* ReplaceBrowserExtension */ = {
 			isa = PBXGroup;
 			children = (
+				0AF6D8D921FF5DCA00D1980A /* NibUIView.swift */,
+				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
+				0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */,
+				0AF6D89321FF228400D1980A /* LoadingTitleView.swift */,
+				0AF6D89121FF227100D1980A /* LoadingTitleView.xib */,
 				0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */,
 				0AF6D88921FF12D200D1980A /* RBEIntroViewControllerTests.swift */,
 				0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */,
@@ -1788,11 +1803,13 @@
 				0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */,
 				0A334E2F209C8E3800ABC6AE /* NewSafe.storyboard in Resources */,
 				0A334E4D209C8E3800ABC6AE /* Unlock.storyboard in Resources */,
+				0AF6D89221FF227100D1980A /* LoadingTitleView.xib in Resources */,
 				55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */,
 				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
 				0A6EF3CA21BA8D0600F1074E /* RecoverSafe.storyboard in Resources */,
 				558682CC2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard in Resources */,
 				0AF6D88821FF129400D1980A /* RBEIntroViewController.xib in Resources */,
+				0AF6D8DC21FF614D00D1980A /* IntroContentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2124,6 +2141,7 @@
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
 				0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */,
+				0AF6D8DA21FF5DCA00D1980A /* NibUIView.swift in Sources */,
 				0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */,
 				550D1ED92133FD2E0035109A /* ManageTokensFlowCoordinator.swift in Sources */,
 				558D64EA2180B1A2008107E5 /* SafeCreationViewController.swift in Sources */,
@@ -2133,6 +2151,7 @@
 				0A334E6C209C8F8500ABC6AE /* ErrorHandler.swift in Sources */,
 				55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */,
 				0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */,
+				0AF6D8DE21FF62EF00D1980A /* IntroContentView.swift in Sources */,
 				0A334E2A209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift in Sources */,
 				0A8C962F20D2C3E7007D2410 /* BaseCustomButton.swift in Sources */,
 				55D6CCEA21942E9C004652C7 /* ConnectBrowserExtensionFlowCoordinator.swift in Sources */,
@@ -2156,6 +2175,7 @@
 				0AC3F1732183674100DAADC9 /* GuidelinesViewController.swift in Sources */,
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
 				0AD5091F2110AABD008507CB /* FundsTransferTransactionViewModel.swift in Sources */,
+				0AF6D89421FF228400D1980A /* LoadingTitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

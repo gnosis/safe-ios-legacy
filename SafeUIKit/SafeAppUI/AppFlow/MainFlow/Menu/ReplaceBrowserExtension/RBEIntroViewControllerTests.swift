@@ -6,7 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
 
-class RBEIntroViewControllerTests: XCTestCase {
+class RBEIntroViewControllerBaseTestCase: XCTestCase {
 
     let vc = RBEIntroViewController.create()
 
@@ -14,6 +14,11 @@ class RBEIntroViewControllerTests: XCTestCase {
         super.setUp()
         vc.loadViewIfNeeded()
     }
+
+}
+
+
+class RBEIntroViewControllerStateTransitionTests: RBEIntroViewControllerBaseTestCase {
 
     func test_whenStarts_thenInLoading() {
         XCTAssertState(RBEIntroViewController.LoadingState.self)
@@ -84,12 +89,23 @@ class RBEIntroViewControllerTests: XCTestCase {
 
 }
 
-extension RBEIntroViewControllerTests {
+extension RBEIntroViewControllerStateTransitionTests {
 
     func XCTAssertState<T: RBEIntroViewController.State>(_ expectedState: T.Type,
                                                          file: StaticString = #file,
                                                          line: UInt = #line) {
         XCTAssertTrue(vc.state is T, "Unexpected state: \(vc.state)", file: file, line: line)
+    }
+
+}
+
+class RBEIntroViewControllerContentTests: RBEIntroViewControllerBaseTestCase {
+
+    func test_whenLoading_thenHasContent() {
+        vc.transition(to: RBEIntroViewController.LoadingState())
+        XCTAssertTrue(vc.navigationItem.titleView is LoadingTitleView)
+        XCTAssertEqual(vc.navigationItem.rightBarButtonItems, [vc.startButtonItem])
+        XCTAssertFalse(vc.startButtonItem.isEnabled)
     }
 
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingTitleView" customModule="SafeAppUI" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="GVh-9O-pLU" id="6iM-bB-ymZ"/>
+                <outlet property="titleLabel" destination="5Mr-tm-4ce" id="c3J-Ig-KGH"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Tjb-Ab-udw">
+            <rect key="frame" x="0.0" y="0.0" width="125" height="28"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PrN-qJ-Yzh">
+                    <rect key="frame" x="0.0" y="0.0" width="125" height="28"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Mr-tm-4ce">
+                            <rect key="frame" x="0.0" y="0.0" width="97" height="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GVh-9O-pLU">
+                            <rect key="frame" x="105" y="0.0" width="20" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="1WX-vM-SgG"/>
+                            </constraints>
+                        </activityIndicatorView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="width" secondItem="PrN-qJ-Yzh" secondAttribute="width" id="3pQ-1C-zkE"/>
+                <constraint firstAttribute="height" secondItem="PrN-qJ-Yzh" secondAttribute="height" id="TlM-cD-gfV"/>
+                <constraint firstItem="PrN-qJ-Yzh" firstAttribute="centerX" secondItem="Tjb-Ab-udw" secondAttribute="centerX" id="WtS-hA-sP4"/>
+                <constraint firstItem="PrN-qJ-Yzh" firstAttribute="centerY" secondItem="Tjb-Ab-udw" secondAttribute="centerY" id="ZPF-ge-R8y"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="FoP-VD-wIv"/>
+            <point key="canvasLocation" x="285.60000000000002" y="-703.44827586206907"/>
+        </view>
+    </objects>
+</document>

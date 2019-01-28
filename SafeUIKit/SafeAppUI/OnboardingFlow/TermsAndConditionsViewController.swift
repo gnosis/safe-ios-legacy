@@ -170,7 +170,7 @@ extension NSAttributedString {
         style.headIndent = headerStyle.leading
         style.tailIndent = -headerStyle.trailing
         style.alignment = .center
-        let font = UIFont.systemFont(ofSize: headerStyle.textFontSize, weight: .medium)
+        let font = UIFont.systemFont(ofSize: headerStyle.textFontSize, weight: .bold)
         return NSAttributedString(string: text, attributes: [.paragraphStyle: style,
                                                              .font: font,
                                                              .foregroundColor: headerStyle.textColor])
