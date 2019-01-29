@@ -22,11 +22,11 @@ open class NibUIView: UIView {
             let contentView = contents.first as? UIView else { return }
         contentView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(contentView)
-        setupConstraints(for: contentView)
+        setUpConstraints(for: contentView)
         didLoad()
     }
 
-    func setupConstraints(for contentView: UIView) {
+    func setUpConstraints(for contentView: UIView) {
         NSLayoutConstraint.activate([widthAnchor.constraint(equalTo: contentView.widthAnchor),
                                      heightAnchor.constraint(equalTo: contentView.heightAnchor)])
     }

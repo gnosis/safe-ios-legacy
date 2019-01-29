@@ -37,6 +37,9 @@
 /* Some error occurred. */
 "generic.error.unknown" = "Error occurred. Please, try again later.";
 
+/* Loading... */
+"loading_title_text" = "Loading…";
+
 /* Menu button title */
 "main.menu" = "Menu";
 
@@ -99,6 +102,9 @@
 
 /* Back */
 "navigation.back" = "Back";
+
+/* Start */
+"navigation.start" = "Start";
 
 /* Browser extension button */
 "new_safe.browser_extension" = "Browser extension";

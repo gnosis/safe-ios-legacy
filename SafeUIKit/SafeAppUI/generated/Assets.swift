@@ -58,6 +58,9 @@ enum Asset {
     static let safeInprogress = ImageAsset(name: "safeInprogress")
     static let water = ImageAsset(name: "water")
   }
+  enum ReplaceBrowserExtension {
+    static let introIcon = ImageAsset(name: "intro-icon")
+  }
   static let replacePhrase = ImageAsset(name: "replacePhrase")
   static let shareIcon = ImageAsset(name: "share-icon")
   enum TermsScreen {
@@ -100,6 +103,7 @@ enum Asset {
     Onboarding.ironSafe,
     Onboarding.safeInprogress,
     Onboarding.water,
+    ReplaceBrowserExtension.introIcon,
     replacePhrase,
     shareIcon,
     TermsScreen.squareButtonBorder,

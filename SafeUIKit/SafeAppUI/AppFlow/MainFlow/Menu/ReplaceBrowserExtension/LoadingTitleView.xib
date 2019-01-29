@@ -14,6 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingTitleView" customModule="SafeAppUI" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="GVh-9O-pLU" id="6iM-bB-ymZ"/>
+                <outlet property="elementsStackView" destination="PrN-qJ-Yzh" id="kjJ-fo-Oab"/>
                 <outlet property="titleLabel" destination="5Mr-tm-4ce" id="c3J-Ig-KGH"/>
             </connections>
         </placeholder>

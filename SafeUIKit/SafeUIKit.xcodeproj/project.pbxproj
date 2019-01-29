@@ -79,6 +79,7 @@
 		0A395C9A21C0F80200652A59 /* SettingsTransactionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A395C9921C0F80200652A59 /* SettingsTransactionHeaderView.xib */; };
 		0A395C9C21C0F8E500652A59 /* SettingsTransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A395C9B21C0F8E500652A59 /* SettingsTransactionHeaderView.swift */; };
 		0A395C9E21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A395C9D21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift */; };
+		0A3EF76A22006E6D00958453 /* EmptyDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EF76922006E6D00958453 /* EmptyDemoController.swift */; };
 		0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668C20A5E059009BA7FC /* MainViewController.swift */; };
 		0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */; };
 		0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */; };
@@ -178,6 +179,7 @@
 		0AF6D8DA21FF5DCA00D1980A /* NibUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D8D921FF5DCA00D1980A /* NibUIView.swift */; };
 		0AF6D8DC21FF614D00D1980A /* IntroContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */; };
 		0AF6D8DE21FF62EF00D1980A /* IntroContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */; };
+		0AF6D8E021FF6B8F00D1980A /* AttributedStringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D8DF21FF6B8F00D1980A /* AttributedStringStyle.swift */; };
 		0AF8D53020CFF68D001E8423 /* SegmentBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D52F20CFF68D001E8423 /* SegmentBarTests.swift */; };
 		0AF8D53520CFF85B001E8423 /* TestSegmentBarNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */; };
 		0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */; };
@@ -431,6 +433,7 @@
 		0A395C9921C0F80200652A59 /* SettingsTransactionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTransactionHeaderView.xib; sourceTree = "<group>"; };
 		0A395C9B21C0F8E500652A59 /* SettingsTransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTransactionHeaderView.swift; sourceTree = "<group>"; };
 		0A395C9D21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTransactionHeaderCell.swift; sourceTree = "<group>"; };
+		0A3EF76922006E6D00958453 /* EmptyDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDemoController.swift; sourceTree = "<group>"; };
 		0A40668C20A5E059009BA7FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
@@ -545,6 +548,7 @@
 		0AF6D8D921FF5DCA00D1980A /* NibUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibUIView.swift; sourceTree = "<group>"; };
 		0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IntroContentView.xib; sourceTree = "<group>"; };
 		0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroContentView.swift; sourceTree = "<group>"; };
+		0AF6D8DF21FF6B8F00D1980A /* AttributedStringStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringStyle.swift; sourceTree = "<group>"; };
 		0AF8D52F20CFF68D001E8423 /* SegmentBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBarTests.swift; sourceTree = "<group>"; };
 		0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestSegmentBarNib.xib; sourceTree = "<group>"; };
 		0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentBarControllerTests.swift; sourceTree = "<group>"; };
@@ -1102,6 +1106,7 @@
 				0AF6D8D921FF5DCA00D1980A /* NibUIView.swift */,
 				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
 				0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */,
+				0AF6D8DF21FF6B8F00D1980A /* AttributedStringStyle.swift */,
 				0AF6D89321FF228400D1980A /* LoadingTitleView.swift */,
 				0AF6D89121FF227100D1980A /* LoadingTitleView.xib */,
 				0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */,
@@ -1189,6 +1194,7 @@
 			children = (
 				0A0974C920480CEB005753DF /* AppDelegate.swift */,
 				0A0974D820480D03005753DF /* Main.storyboard */,
+				0A3EF76922006E6D00958453 /* EmptyDemoController.swift */,
 				0A028ECB21AD534000431D25 /* BaseDemoViewController.swift */,
 				0AFA766C2182195200A96FDB /* ViewController.swift */,
 				0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */,
@@ -1980,6 +1986,7 @@
 				55247360214293D500A77557 /* IdenticonViewController.swift in Sources */,
 				0AFA766D2182195200A96FDB /* ViewController.swift in Sources */,
 				0A290E1621BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift in Sources */,
+				0A3EF76A22006E6D00958453 /* EmptyDemoController.swift in Sources */,
 				555B0E6720CA83DF00424CEE /* TokenDoubleInputViewController.swift in Sources */,
 				556251FB2149135F00F569EE /* QRCodeViewController.swift in Sources */,
 				0A0974D320480CEB005753DF /* AppDelegate.swift in Sources */,
@@ -2162,6 +2169,7 @@
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
 				550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */,
 				0A5D467B20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift in Sources */,
+				0AF6D8E021FF6B8F00D1980A /* AttributedStringStyle.swift in Sources */,
 				0A334E3B209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift in Sources */,
 				0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,

@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RBEIntroViewController" customModule="SafeAppUI" customModuleProvider="target">
             <connections>
-                <outlet property="stateLabel" destination="GnQ-0E-q0M" id="qO5-ZR-koc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,21 +20,47 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GnQ-0E-q0M">
-                    <rect key="frame" x="142.5" y="323" width="90" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4J-13-zq5" customClass="TransactionFeeView" customModule="SafeUIKit">
+                    <rect key="frame" x="0.0" y="539" width="375" height="128"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.62352941179999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" placeholder="YES" id="qpX-Ap-8mK"/>
+                    </constraints>
+                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WZr-q6-vxM">
+                    <rect key="frame" x="0.0" y="64" width="375" height="475"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uaN-6v-uXr" customClass="IntroContentView" customModule="SafeAppUI" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                            <color key="backgroundColor" red="0.12941176469999999" green="0.26274509800000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="300" placeholder="YES" id="mWv-eK-6K3"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="uaN-6v-uXr" firstAttribute="top" secondItem="WZr-q6-vxM" secondAttribute="top" id="0Qa-cj-C7w"/>
+                        <constraint firstAttribute="trailing" secondItem="uaN-6v-uXr" secondAttribute="trailing" id="2Vv-iz-8aD"/>
+                        <constraint firstItem="uaN-6v-uXr" firstAttribute="leading" secondItem="WZr-q6-vxM" secondAttribute="leading" id="DhE-qH-Lrf"/>
+                        <constraint firstAttribute="bottom" secondItem="uaN-6v-uXr" secondAttribute="bottom" id="Vbh-bI-gNj"/>
+                        <constraint firstItem="uaN-6v-uXr" firstAttribute="width" secondItem="WZr-q6-vxM" secondAttribute="width" id="t5F-Zd-ik3"/>
+                    </constraints>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="GnQ-0E-q0M" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8V9-cy-0Rr"/>
-                <constraint firstItem="GnQ-0E-q0M" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="waw-2c-lcb"/>
+                <constraint firstItem="WZr-q6-vxM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="6IT-Ol-eYD"/>
+                <constraint firstItem="B4J-13-zq5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uaN-6v-uXr" secondAttribute="bottom" id="NPy-Jo-n9n"/>
+                <constraint firstItem="WZr-q6-vxM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="P2q-JM-VBN"/>
+                <constraint firstItem="B4J-13-zq5" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="d4O-uT-gEe"/>
+                <constraint firstItem="WZr-q6-vxM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fb9-o6-z1J"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="B4J-13-zq5" secondAttribute="trailing" id="hI4-ga-kdz"/>
+                <constraint firstItem="B4J-13-zq5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pcd-j7-fu4"/>
+                <constraint firstItem="B4J-13-zq5" firstAttribute="top" secondItem="WZr-q6-vxM" secondAttribute="bottom" id="qwC-Jl-qKk"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-81" y="121"/>
+            <point key="canvasLocation" x="-82.400000000000006" y="120.98950524737631"/>
         </view>
     </objects>
 </document>

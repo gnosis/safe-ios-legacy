@@ -6,11 +6,18 @@ import UIKit
 
 public class RBEIntroViewController: UIViewController {
 
-    @IBOutlet weak var stateLabel: UILabel!
     var startButtonItem: UIBarButtonItem!
+    var backButtonItem: UIBarButtonItem!
     var state: State = LoadingState()
 
-    static func create() -> RBEIntroViewController {
+    struct Strings {
+        var start = LocalizedString("navigation.start", comment: "Start")
+        var back = LocalizedString("navigation.back", comment: "Back")
+    }
+
+    var strings = Strings()
+
+    public static func create() -> RBEIntroViewController {
         return RBEIntroViewController(nibName: "\(self)", bundle: Bundle(for: self))
     }
 
@@ -25,12 +32,21 @@ public class RBEIntroViewController: UIViewController {
     }
 
     func commonInit() {
-        startButtonItem = UIBarButtonItem(title: "some", style: .plain, target: nil, action: nil)
+        startButtonItem = UIBarButtonItem(title: strings.start, style: .done, target: nil, action: nil)
+        backButtonItem = UIBarButtonItem(title: strings.back, style: .plain, target: nil, action: nil)
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        stateLabel.text = "Loading"
+        transition(to: state)
+    }
+
+    public override func willMove(toParent parent: UIViewController?) {
+        guard let navigationController = parent as? UINavigationController else { return }
+        assert(navigationController.topViewController === self, "Unexpected UINavigationController behavior")
+        guard navigationController.viewControllers.count > 1,
+            let index = navigationController.viewControllers.firstIndex(where: { $0 == self }) else { return }
+        state.willPush(controller: self, onTopOf: navigationController.viewControllers[index - 1])
     }
 
     func transition(to newState: State) {
@@ -73,6 +89,7 @@ extension RBEIntroViewController {
     class State {
 
         func didEnter(controller: RBEIntroViewController) {}
+        func willPush(controller: RBEIntroViewController, onTopOf topViewController: UIViewController) {}
         func handleError(_ error: Error, controller: RBEIntroViewController) {}
         func back(controller: RBEIntroViewController) {}
         func didLoad(controller: RBEIntroViewController) {}
@@ -106,6 +123,10 @@ extension RBEIntroViewController {
             controller.navigationItem.titleView = LoadingTitleView()
             controller.navigationItem.rightBarButtonItems = [controller.startButtonItem]
             controller.startButtonItem.isEnabled = false
+        }
+
+        override func willPush(controller: RBEIntroViewController, onTopOf topViewController: UIViewController) {
+            topViewController.navigationItem.backBarButtonItem = controller.backButtonItem
         }
 
         override func handleError(_ error: Error, controller: RBEIntroViewController) {
