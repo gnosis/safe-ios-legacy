@@ -20,7 +20,7 @@ public class FeeCalculationView: UIView {
     }
 
     public func commonInit() {
-        let sectionA = FeeCalculationSection([
+        calculation = FeeCalculation([FeeCalculationSection([
             FeeCalculationAssetLine(style: .balance,
                                     item: "Current balance",
                                     value: "- ETH"),
@@ -32,23 +32,7 @@ public class FeeCalculationView: UIView {
             FeeCalculationAssetLine(style: .balance,
                                     item: "Balance",
                                     value: "- ETH")
-        ])
-        let sectionB = FeeCalculationSection([
-            FeeCalculationAssetLine(style: .balance,
-                                    item: "Current balance",
-                                    value: "- ETH"),
-            FeeCalculationAssetLine(style: .plain,
-                                    item: "Network fee",
-                                    value: "- ETH",
-                                    info: (text: "[?]", target: nil, action: nil)),
-            FeeCalculationSpacingLine(spacing: 12),
-            FeeCalculationAssetLine(style: .balance,
-                                    item: "Balance",
-                                    value: "- ETH")
-        ])
-        sectionB.backgroundColor = ColorName.paleGreyThree.color
-        sectionB.showsBorder = false
-        calculation = FeeCalculation([sectionA, sectionB])
+        ])])
         let contentView = calculation.makeView()
         addSubview(contentView)
         NSLayoutConstraint.activate([
