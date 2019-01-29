@@ -80,6 +80,8 @@
 		0A395C9C21C0F8E500652A59 /* SettingsTransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A395C9B21C0F8E500652A59 /* SettingsTransactionHeaderView.swift */; };
 		0A395C9E21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A395C9D21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift */; };
 		0A3EF76A22006E6D00958453 /* EmptyDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EF76922006E6D00958453 /* EmptyDemoController.swift */; };
+		0A3EF76C2200890400958453 /* FeeCalculationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EF76B2200890400958453 /* FeeCalculationView.swift */; };
+		0A3EF76E220091EB00958453 /* FeeCalculationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3EF76D220091EB00958453 /* FeeCalculationView.xib */; };
 		0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668C20A5E059009BA7FC /* MainViewController.swift */; };
 		0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */; };
 		0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */; };
@@ -434,6 +436,8 @@
 		0A395C9B21C0F8E500652A59 /* SettingsTransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTransactionHeaderView.swift; sourceTree = "<group>"; };
 		0A395C9D21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTransactionHeaderCell.swift; sourceTree = "<group>"; };
 		0A3EF76922006E6D00958453 /* EmptyDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDemoController.swift; sourceTree = "<group>"; };
+		0A3EF76B2200890400958453 /* FeeCalculationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeCalculationView.swift; sourceTree = "<group>"; };
+		0A3EF76D220091EB00958453 /* FeeCalculationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeeCalculationView.xib; sourceTree = "<group>"; };
 		0A40668C20A5E059009BA7FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletApplication.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
@@ -1104,6 +1108,8 @@
 			isa = PBXGroup;
 			children = (
 				0AF6D8D921FF5DCA00D1980A /* NibUIView.swift */,
+				0A3EF76B2200890400958453 /* FeeCalculationView.swift */,
+				0A3EF76D220091EB00958453 /* FeeCalculationView.xib */,
 				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
 				0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */,
 				0AF6D8DF21FF6B8F00D1980A /* AttributedStringStyle.swift */,
@@ -1816,6 +1822,7 @@
 				558682CC2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard in Resources */,
 				0AF6D88821FF129400D1980A /* RBEIntroViewController.xib in Resources */,
 				0AF6D8DC21FF614D00D1980A /* IntroContentView.xib in Resources */,
+				0A3EF76E220091EB00958453 /* FeeCalculationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2144,6 +2151,7 @@
 				0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */,
 				556251F42147C34600F569EE /* AddTokenHeaderView.swift in Sources */,
 				0A321BB920CEC7AB000B35E6 /* TransactionsGroupHeaderView.swift in Sources */,
+				0A3EF76C2200890400958453 /* FeeCalculationView.swift in Sources */,
 				0A4EEA6020D107A1005CDAC0 /* MenuTableViewController.swift in Sources */,
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,

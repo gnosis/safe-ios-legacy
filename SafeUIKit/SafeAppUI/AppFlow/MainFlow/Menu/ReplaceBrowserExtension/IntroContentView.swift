@@ -19,7 +19,6 @@ public class IntroContentView: NibUIView {
     struct Style {
         var elementSpacing: CGFloat = 39
         var edgeMargin: CGFloat = 28
-        var bottomSpacing: CGFloat = 16
         var headerStyle = ContentHeaderStyle()
         var bodyStyle = ContentBodyStyle()
     }
@@ -37,7 +36,7 @@ public class IntroContentView: NibUIView {
             contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
             contentView.topAnchor.constraint(equalTo: topAnchor),
-            heightAnchor.constraint(equalTo: contentView.heightAnchor)])
+            heightAnchor.constraint(greaterThanOrEqualTo: contentView.heightAnchor)])
     }
 
     override func didLoad() {
@@ -45,7 +44,7 @@ public class IntroContentView: NibUIView {
         elementsStackView.spacing = style.elementSpacing
         leadingConstraint.constant = style.edgeMargin
         trailingConstraint.constant = style.edgeMargin
-        bottomConstraint.constant = style.bottomSpacing
+        bottomConstraint.constant = style.elementSpacing
         headerLabel.attributedText = NSAttributedString(string: strings.header, style: style.headerStyle)
         bodyLabel.attributedText = NSAttributedString(string: strings.body, style: style.bodyStyle)
     }

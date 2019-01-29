@@ -60,6 +60,7 @@ enum Asset {
   }
   enum ReplaceBrowserExtension {
     static let introIcon = ImageAsset(name: "intro-icon")
+    static let scrollBottomGradient = ImageAsset(name: "scroll-bottom-gradient")
   }
   static let replacePhrase = ImageAsset(name: "replacePhrase")
   static let shareIcon = ImageAsset(name: "share-icon")
@@ -104,6 +105,7 @@ enum Asset {
     Onboarding.safeInprogress,
     Onboarding.water,
     ReplaceBrowserExtension.introIcon,
+    ReplaceBrowserExtension.scrollBottomGradient,
     replacePhrase,
     shareIcon,
     TermsScreen.squareButtonBorder,

@@ -10,6 +10,8 @@ public class RBEIntroViewController: UIViewController {
     var backButtonItem: UIBarButtonItem!
     var state: State = LoadingState()
 
+    @IBOutlet weak var feeCalculationView: FeeCalculationView!
+
     struct Strings {
         var start = LocalizedString("navigation.start", comment: "Start")
         var back = LocalizedString("navigation.back", comment: "Back")
