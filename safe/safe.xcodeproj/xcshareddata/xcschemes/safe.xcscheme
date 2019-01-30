@@ -281,6 +281,16 @@
                ReferencedContainer = "container:../Common/Common.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A2FAA2F2201A5D900793B7B"
+               BuildableName = "ReplaceBrowserExtensionUITests.xctest"
+               BlueprintName = "ReplaceBrowserExtensionUITests"
+               ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

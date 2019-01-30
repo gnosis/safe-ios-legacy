@@ -28,11 +28,7 @@ public class FeeCalculationView: UIView {
         contentView?.removeFromSuperview()
         contentView = calculation.makeView()
         addSubview(contentView)
-        NSLayoutConstraint.activate([
-            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            contentView.topAnchor.constraint(equalTo: topAnchor),
-            heightAnchor.constraint(equalTo: contentView.heightAnchor)])
+        wrapAroundDynamiHeightView(contentView)
     }
 
 }
@@ -107,11 +103,8 @@ public class FeeCalculation: ArrayBasedCollection<FeeCalculationSection> {
 public class FeeCalculationSection: ArrayBasedCollection<FeeCalculationLine> {
 
     var backgroundColor: UIColor = .white
-    var horizontalEdgeMargin: Double = 16
-    var verticalEdgeMargin: Double = 22
-    var showsBorder: Bool = true
-    var topBorderWidth: Double = 1
-    var topBorderColor: UIColor = ColorName.silver.color
+    var insets = UIEdgeInsets(top: 22, left: 16, bottom: 22, right: 16)
+    var border: (width: Double, color: UIColor)? = (1, ColorName.silver.color)
 
     public func makeView() -> UIView {
         let backgroundView = UIView()
@@ -127,29 +120,20 @@ public class FeeCalculationSection: ArrayBasedCollection<FeeCalculationLine> {
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.addSubview(stackView)
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor,
-                                               constant: CGFloat(horizontalEdgeMargin)),
-            stackView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor,
-                                                constant: CGFloat(-horizontalEdgeMargin)),
-            stackView.topAnchor.constraint(equalTo: backgroundView.topAnchor,
-                                           constant: CGFloat(verticalEdgeMargin)),
-            backgroundView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor,
-                                                   constant: CGFloat(verticalEdgeMargin))
-            ])
+        backgroundView.wrapAroundDynamicHeightView(stackView, insets: insets)
     }
 
     private func addBorder(to backgroundView: UIView) {
-        guard showsBorder else { return }
+        guard let border = self.border else { return }
         let borderView = UIView()
         borderView.translatesAutoresizingMaskIntoConstraints = false
-        borderView.backgroundColor = topBorderColor
+        borderView.backgroundColor = border.color
         backgroundView.addSubview(borderView)
         NSLayoutConstraint.activate([
             borderView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
             borderView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
             borderView.topAnchor.constraint(equalTo: backgroundView.topAnchor),
-            borderView.heightAnchor.constraint(equalToConstant: CGFloat(topBorderWidth))])
+            borderView.heightAnchor.constraint(equalToConstant: CGFloat(border.width))])
     }
 
 }
@@ -188,10 +172,11 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         case balance
     }
 
-    var style: Style
-
     typealias InfoItem = (text: String, target: Any?, action: Selector?)
 
+    var style: Style
+    var item: String
+    var value: String
     var info: InfoItem?
 
     init(style: Style, item: String, value: String) {
@@ -200,35 +185,10 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         self.value = value
     }
 
-    convenience init(style: Style, item: String, value: String, info: InfoItem) {
-        self.init(style: style, item: item, value: value)
-        self.info = info
-    }
-
-    struct TextStyle {
-        var item: AttributedStringStyle
-        var value: AttributedStringStyle
-        var info: AttributedStringStyle
-        var error: AttributedStringStyle
-    }
-
-    var plainTextStyle = TextStyle(item: DefaultItemStyle(),
-                                   value: DefaultValueStyle(),
-                                   info: InfoItemStyle(),
-                                   error: DefaultErrorStyle())
-
-    var balanceTextStyle = TextStyle(item: BalanceItemStyle(),
-                                     value: BalanceValueStyle(),
-                                     info: BalanceInfoItemStyle(),
-                                     error: DefaultErrorStyle())
-
-    var item: String
-    var value: String
-
     func setError(_ error: Error?) {}
 
     override func makeView() -> UIView {
-        let textStyle = self.style == .plain ? plainTextStyle : balanceTextStyle
+        let textStyle = self.style == .plain ? TextStyle.plain : TextStyle.balance
         let lineStack = UIStackView(arrangedSubviews: [makeItem(textStyle: textStyle), makeValue(textStyle: textStyle)])
         lineStack.translatesAutoresizingMaskIntoConstraints = false
         lineStack.heightAnchor.constraint(equalToConstant: CGFloat(lineHeight)).isActive = true
@@ -266,6 +226,23 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
 }
 
 extension FeeCalculationAssetLine {
+
+    struct TextStyle {
+        var item: AttributedStringStyle
+        var value: AttributedStringStyle
+        var info: AttributedStringStyle
+        var error: AttributedStringStyle
+
+        static let plain = TextStyle(item: DefaultItemStyle(),
+                                     value: DefaultValueStyle(),
+                                     info: InfoItemStyle(),
+                                     error: DefaultErrorStyle())
+
+        static let balance = TextStyle(item: BalanceItemStyle(),
+                                       value: BalanceValueStyle(),
+                                       info: BalanceInfoItemStyle(),
+                                       error: DefaultErrorStyle())
+    }
 
     class DefaultItemStyle: AttributedStringStyle {
 

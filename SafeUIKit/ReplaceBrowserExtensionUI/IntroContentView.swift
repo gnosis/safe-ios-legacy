@@ -32,11 +32,7 @@ public class IntroContentView: NibUIView {
     var strings = Strings()
 
     override func setUpConstraints(for contentView: UIView) {
-        NSLayoutConstraint.activate([
-            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            contentView.topAnchor.constraint(equalTo: topAnchor),
-            heightAnchor.constraint(greaterThanOrEqualTo: contentView.heightAnchor)])
+        wrapAroundDynamiHeightView(contentView)
     }
 
     override func didLoad() {
