@@ -263,6 +263,10 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         return valueLabel
     }
 
+}
+
+extension FeeCalculationAssetLine {
+
     class DefaultItemStyle: AttributedStringStyle {
 
         override var fontSize: Double { return 16 }
