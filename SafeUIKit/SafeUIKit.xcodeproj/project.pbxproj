@@ -809,13 +809,12 @@
 		0A2FAA292201A5D900793B7B /* ReplaceBrowserExtensionUI */ = {
 			isa = PBXGroup;
 			children = (
-				0AF6D8DF21FF6B8F00D1980A /* AttributedStringStyle.swift */,
+				0A2FAA822201A92A00793B7B /* Common */,
 				0A3EF76B2200890400958453 /* FeeCalculationView.swift */,
 				0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */,
 				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
 				0AF6D89321FF228400D1980A /* LoadingTitleView.swift */,
 				0AF6D89121FF227100D1980A /* LoadingTitleView.xib */,
-				0AF6D8D921FF5DCA00D1980A /* NibUIView.swift */,
 				0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */,
 				0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */,
 				0AF6D88921FF12D200D1980A /* RBEIntroViewControllerTests.swift */,
@@ -852,6 +851,15 @@
 				0A2FAA2B2201A5D900793B7B /* Info.plist */,
 			);
 			name = "support files";
+			sourceTree = "<group>";
+		};
+		0A2FAA822201A92A00793B7B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0AF6D8DF21FF6B8F00D1980A /* AttributedStringStyle.swift */,
+				0AF6D8D921FF5DCA00D1980A /* NibUIView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		0A334DB2209C6D8600ABC6AE /* SetupSafeFlow */ = {
