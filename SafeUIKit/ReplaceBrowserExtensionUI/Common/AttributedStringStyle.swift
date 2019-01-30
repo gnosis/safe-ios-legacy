@@ -72,20 +72,25 @@ class AttributedStringStyle {
         style.alignment = alignment
         style.paragraphSpacing = CGFloat(spacingAfterParagraph)
         style.paragraphSpacingBefore = CGFloat(spacingBeforeParagraph)
-        style.firstLineHeadIndent = CGFloat(firstLineHeadIndent)
-        style.headIndent = CGFloat(nonFirstLinesHeadIndent)
-        style.tailIndent = CGFloat(allLinesTailIndent)
-        style.minimumLineHeight = CGFloat(minimumLineHeight)
-        style.maximumLineHeight = CGFloat(maximumLineHeight)
-        style.lineHeightMultiple = CGFloat(lineHeightMultiplier)
-        style.lineSpacing = CGFloat(lineSpacing)
-        style.lineBreakMode = lineBreakMode
+        setUpLineStyle(in: style)
         return style
+    }
+
+    private func setUpLineStyle(in paragraph: NSMutableParagraphStyle) {
+        paragraph.firstLineHeadIndent = CGFloat(firstLineHeadIndent)
+        paragraph.headIndent = CGFloat(nonFirstLinesHeadIndent)
+        paragraph.tailIndent = CGFloat(allLinesTailIndent)
+        paragraph.minimumLineHeight = CGFloat(minimumLineHeight)
+        paragraph.maximumLineHeight = CGFloat(maximumLineHeight)
+        paragraph.lineHeightMultiple = CGFloat(lineHeightMultiplier)
+        paragraph.lineSpacing = CGFloat(lineSpacing)
+        paragraph.lineBreakMode = lineBreakMode
     }
 
     var font: UIFont {
         return .systemFont(ofSize: CGFloat(fontSize), weight: fontWeight)
     }
+
 }
 
 extension NSAttributedString {
