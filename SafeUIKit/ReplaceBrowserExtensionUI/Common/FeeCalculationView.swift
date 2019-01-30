@@ -8,6 +8,7 @@ import UIKit
 public class FeeCalculationView: UIView {
 
     var calculation = FeeCalculation()
+    var contentView: UIView!
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,20 +21,12 @@ public class FeeCalculationView: UIView {
     }
 
     public func commonInit() {
-        calculation = FeeCalculation([FeeCalculationSection([
-            FeeCalculationAssetLine(style: .balance,
-                                    item: "Current balance",
-                                    value: "- ETH"),
-            FeeCalculationAssetLine(style: .plain,
-                                    item: "Network fee",
-                                    value: "- ETH",
-                                    info: (text: "[?]", target: nil, action: nil)),
-            FeeCalculationSpacingLine(spacing: 12),
-            FeeCalculationAssetLine(style: .balance,
-                                    item: "Balance",
-                                    value: "- ETH")
-        ])])
-        let contentView = calculation.makeView()
+        update()
+    }
+
+    func update() {
+        contentView?.removeFromSuperview()
+        contentView = calculation.makeView()
         addSubview(contentView)
         NSLayoutConstraint.activate([
             contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -93,7 +86,11 @@ public class FeeCalculation: ArrayBasedCollection<FeeCalculationSection> {
     public func makeView() -> UIView {
         let backgroundView = UIView()
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        addSections(to: backgroundView)
+        return backgroundView
+    }
 
+    private func addSections(to backgroundView: UIView) {
         let stackView = UIStackView(arrangedSubviews: elements.map { $0.makeView() })
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -103,7 +100,6 @@ public class FeeCalculation: ArrayBasedCollection<FeeCalculationSection> {
             stackView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: backgroundView.topAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor)])
-        return backgroundView
     }
 
 }
@@ -121,12 +117,16 @@ public class FeeCalculationSection: ArrayBasedCollection<FeeCalculationLine> {
         let backgroundView = UIView()
         backgroundView.backgroundColor = backgroundColor
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        addLines(to: backgroundView)
+        addBorder(to: backgroundView)
+        return backgroundView
+    }
 
+    private func addLines(to backgroundView: UIView) {
         let stackView = UIStackView(arrangedSubviews: elements.map { $0.makeView() })
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.addSubview(stackView)
-
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor,
                                                constant: CGFloat(horizontalEdgeMargin)),
@@ -136,21 +136,20 @@ public class FeeCalculationSection: ArrayBasedCollection<FeeCalculationLine> {
                                            constant: CGFloat(verticalEdgeMargin)),
             backgroundView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor,
                                                    constant: CGFloat(verticalEdgeMargin))
-        ])
+            ])
+    }
 
-        if showsBorder {
-            let borderView = UIView()
-            borderView.translatesAutoresizingMaskIntoConstraints = false
-            borderView.backgroundColor = topBorderColor
-            backgroundView.addSubview(borderView)
-
-            NSLayoutConstraint.activate([
-                borderView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
-                borderView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
-                borderView.topAnchor.constraint(equalTo: backgroundView.topAnchor),
-                borderView.heightAnchor.constraint(equalToConstant: CGFloat(topBorderWidth))])
-        }
-        return backgroundView
+    private func addBorder(to backgroundView: UIView) {
+        guard showsBorder else { return }
+        let borderView = UIView()
+        borderView.translatesAutoresizingMaskIntoConstraints = false
+        borderView.backgroundColor = topBorderColor
+        backgroundView.addSubview(borderView)
+        NSLayoutConstraint.activate([
+            borderView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            borderView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+            borderView.topAnchor.constraint(equalTo: backgroundView.topAnchor),
+            borderView.heightAnchor.constraint(equalToConstant: CGFloat(topBorderWidth))])
     }
 
 }
@@ -230,29 +229,38 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
 
     override func makeView() -> UIView {
         let textStyle = self.style == .plain ? plainTextStyle : balanceTextStyle
+        let lineStack = UIStackView(arrangedSubviews: [makeItem(textStyle: textStyle), makeValue(textStyle: textStyle)])
+        lineStack.translatesAutoresizingMaskIntoConstraints = false
+        lineStack.heightAnchor.constraint(equalToConstant: CGFloat(lineHeight)).isActive = true
+        return lineStack
+    }
 
+    func makeItem(textStyle: TextStyle) -> UIView {
         let itemStack = UIStackView()
         let itemLabel = UILabel()
         itemLabel.attributedText = NSAttributedString(string: item, style: textStyle.item)
         itemStack.addArrangedSubview(itemLabel)
         if let info = self.info {
-            let infoButton = UIButton(type: .custom)
-            infoButton.setAttributedTitle(NSAttributedString(string: info.text, style: textStyle.info), for: .normal)
-            if let action = info.action {
-                infoButton.addTarget(info.target, action: action, for: .touchUpInside)
-            }
-            itemStack.addArrangedSubview(infoButton)
+            itemStack.addArrangedSubview(makeInfoButton(info: info, textStyle: textStyle))
         }
+        return itemStack
+    }
 
+    func makeInfoButton(info: InfoItem, textStyle: TextStyle) -> UIButton {
+        let infoButton = UIButton(type: .custom)
+        infoButton.setAttributedTitle(NSAttributedString(string: info.text, style: textStyle.info), for: .normal)
+        if let action = info.action {
+            infoButton.addTarget(info.target, action: action, for: .touchUpInside)
+        }
+        return infoButton
+    }
+
+    func makeValue(textStyle: TextStyle) -> UIView {
         let valueLabel = UILabel()
         valueLabel.attributedText = NSAttributedString(string: value, style: textStyle.value)
-        let stackPriority = itemStack.contentHuggingPriority(for: .horizontal).rawValue
-        valueLabel.setContentHuggingPriority(UILayoutPriority(stackPriority - 1), for: .horizontal)
-
-        let lineStack = UIStackView(arrangedSubviews: [itemStack, valueLabel])
-        lineStack.translatesAutoresizingMaskIntoConstraints = false
-        lineStack.heightAnchor.constraint(equalToConstant: CGFloat(lineHeight)).isActive = true
-        return lineStack
+        let huggingPriority = UILayoutPriority(UILayoutPriority.defaultLow.rawValue - 1)
+        valueLabel.setContentHuggingPriority(huggingPriority, for: .horizontal)
+        return valueLabel
     }
 
     class DefaultItemStyle: AttributedStringStyle {

@@ -810,7 +810,6 @@
 			isa = PBXGroup;
 			children = (
 				0A2FAA822201A92A00793B7B /* Common */,
-				0A3EF76B2200890400958453 /* FeeCalculationView.swift */,
 				0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */,
 				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
 				0AF6D89321FF228400D1980A /* LoadingTitleView.swift */,
@@ -857,6 +856,7 @@
 			isa = PBXGroup;
 			children = (
 				0AF6D8DF21FF6B8F00D1980A /* AttributedStringStyle.swift */,
+				0A3EF76B2200890400958453 /* FeeCalculationView.swift */,
 				0AF6D8D921FF5DCA00D1980A /* NibUIView.swift */,
 			);
 			path = Common;
