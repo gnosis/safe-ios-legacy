@@ -3,8 +3,7 @@
 //
 
 import XCTest
-@testable import SafeAppUI
-import CommonTestSupport
+@testable import ReplaceBrowserExtensionUI
 
 class RBEIntroViewControllerBaseTestCase: XCTestCase {
 
@@ -17,6 +16,7 @@ class RBEIntroViewControllerBaseTestCase: XCTestCase {
 
 }
 
+class MyError: Error {}
 
 class RBEIntroViewControllerStateTransitionTests: RBEIntroViewControllerBaseTestCase {
 
@@ -25,7 +25,7 @@ class RBEIntroViewControllerStateTransitionTests: RBEIntroViewControllerBaseTest
     }
 
     func test_whenErrorDuringLoading_thenInvalid() {
-        vc.handleError(TestError.error)
+        vc.handleError(MyError())
         XCTAssertState(RBEIntroViewController.InvalidState.self)
     }
 
@@ -59,7 +59,7 @@ class RBEIntroViewControllerStateTransitionTests: RBEIntroViewControllerBaseTest
 
     func test_whenErrorDuringStarting_thenError() {
         vc.transition(to: RBEIntroViewController.StartingState())
-        vc.handleError(TestError.error)
+        vc.handleError(MyError())
         XCTAssertState(RBEIntroViewController.ErrorState.self)
     }
 

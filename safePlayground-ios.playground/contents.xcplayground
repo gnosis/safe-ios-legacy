@@ -6,5 +6,6 @@
         <page name='TokenBalances'/>
         <page name='Plain'/>
         <page name='MainScreen'/>
+        <page name='RBE'/>
     </pages>
 </playground>
