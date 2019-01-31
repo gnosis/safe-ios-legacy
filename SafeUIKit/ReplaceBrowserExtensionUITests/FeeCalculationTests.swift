@@ -19,4 +19,3 @@ class FeeCalculationTests: XCTestCase {
         XCTAssertNotNil(view)
     }
 }
-
