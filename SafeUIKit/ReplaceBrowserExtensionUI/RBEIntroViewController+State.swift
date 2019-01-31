@@ -32,6 +32,12 @@ extension RBEIntroViewController {
 
     class BaseErrorState: CancellableState {
 
+        var error: Error
+
+        init(error: Error) {
+            self.error = error
+        }
+
         override func retry(controller: RBEIntroViewController) {
             controller.transition(to: LoadingState())
         }
@@ -46,7 +52,7 @@ extension RBEIntroViewController {
             controller.navigationItem.titleView = LoadingTitleView()
             controller.navigationItem.rightBarButtonItems = [controller.startButtonItem]
             controller.startButtonItem.isEnabled = false
-            controller.feeCalculationView.calculation = .loading
+            controller.feeCalculation = EthFeeCalculation()
         }
 
         override func willPush(controller: RBEIntroViewController, onTopOf topViewController: UIViewController) {
@@ -54,7 +60,7 @@ extension RBEIntroViewController {
         }
 
         override func handleError(_ error: Error, controller: RBEIntroViewController) {
-            controller.transition(to: InvalidState())
+            controller.transition(to: InvalidState(error: error))
         }
 
         override func didLoad(controller: RBEIntroViewController) {
@@ -63,7 +69,17 @@ extension RBEIntroViewController {
 
     }
 
-    class InvalidState: BaseErrorState {}
+    class InvalidState: BaseErrorState {
+
+        override func didEnter(controller: RBEIntroViewController) {
+            if let calculationError = error as? FeeCalculationError, calculationError == .insufficientBalance {
+                controller.feeCalculation.balance.set(error: calculationError)
+                controller.feeCalculation.error = FeeCalculationErrorLine(text: calculationError.localizedDescription)
+                controller.feeCalculation.update() // TODO make nicer
+                controller.feeCalculationView.update()
+            }
+        }
+    }
 
     class CancellingState: State {}
 
@@ -82,7 +98,7 @@ extension RBEIntroViewController {
         }
 
         override func handleError(_ error: Error, controller: RBEIntroViewController) {
-            controller.transition(to: ErrorState())
+            controller.transition(to: ErrorState(error: error))
         }
 
     }

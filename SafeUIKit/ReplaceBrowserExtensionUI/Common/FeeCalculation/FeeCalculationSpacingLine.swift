@@ -20,8 +20,9 @@ public class FeeCalculationSpacingLine: FeeCalculationLine {
         return view
     }
 
-    public static func ==(lhs: FeeCalculationSpacingLine, rhs: FeeCalculationSpacingLine) -> Bool {
-        return lhs.spacing == rhs.spacing
+    override func equals(to rhs: FeeCalculationLine) -> Bool {
+        guard let rhs = rhs as? FeeCalculationSpacingLine else { return false }
+        return spacing == rhs.spacing
     }
 
 }

@@ -38,11 +38,13 @@ public class FeeCalculationSection: ArrayBasedCollection<FeeCalculationLine> {
     }
 
     public func addAssetLine(_ build: (FeeCalculationAssetLine) -> FeeCalculationAssetLine) -> FeeCalculationSection {
-        return self + [build(FeeCalculationAssetLine())]
+        self.elements.append(build(FeeCalculationAssetLine()))
+        return self
     }
 
     public func addEmptyLine(spacing: Double = 10) -> FeeCalculationSection {
-        return self + [FeeCalculationSpacingLine(spacing: spacing)]
+        self.elements.append(FeeCalculationSpacingLine(spacing: spacing))
+        return self
     }
 
 }

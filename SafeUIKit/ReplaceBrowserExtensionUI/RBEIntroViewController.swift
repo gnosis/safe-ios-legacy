@@ -9,6 +9,15 @@ public class RBEIntroViewController: UIViewController {
     var startButtonItem: UIBarButtonItem!
     var backButtonItem: UIBarButtonItem!
     var state: State = LoadingState()
+    var calculationData: CalculationData?
+    var feeCalculation: EthFeeCalculation {
+        get {
+            return feeCalculationView.calculation as! EthFeeCalculation
+        }
+        set {
+            feeCalculationView.calculation = newValue
+        }
+    }
 
     @IBOutlet weak var feeCalculationView: FeeCalculationView!
 

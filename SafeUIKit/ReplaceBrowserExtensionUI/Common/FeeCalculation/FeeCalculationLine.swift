@@ -14,7 +14,11 @@ public class FeeCalculationLine: Equatable {
     }
 
     public static func ==(lhs: FeeCalculationLine, rhs: FeeCalculationLine) -> Bool {
-        return lhs === rhs
+        return lhs.equals(to: rhs)
+    }
+
+    func equals(to rhs: FeeCalculationLine) -> Bool {
+        return true
     }
 
 }
