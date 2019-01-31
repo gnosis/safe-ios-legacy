@@ -79,6 +79,7 @@ extension RBEIntroViewController {
                 controller.feeCalculationView.update()
             }
         }
+
     }
 
     class CancellingState: State {}
