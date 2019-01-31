@@ -7,21 +7,26 @@ import UIKit
 
 public class FeeCalculationView: UIView {
 
-    var calculation = FeeCalculation()
+    var calculation = FeeCalculation() {
+        didSet {
+            update()
+        }
+    }
     var contentView: UIView!
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        update()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInit()
+        update()
     }
 
-    public func commonInit() {
-        update()
+    convenience init(_ calculation: FeeCalculation) {
+        self.init(frame: .zero)
+        self.calculation = calculation
     }
 
     func update() {

@@ -37,4 +37,12 @@ public class FeeCalculationSection: ArrayBasedCollection<FeeCalculationLine> {
         borderView.pintToTop(of: backgroundView, height: CGFloat(border.width))
     }
 
+    public func addAssetLine(_ build: (FeeCalculationAssetLine) -> FeeCalculationAssetLine) -> FeeCalculationSection {
+        return self + [build(FeeCalculationAssetLine())]
+    }
+
+    public func addEmptyLine(spacing: Double = 10) -> FeeCalculationSection {
+        return self + [FeeCalculationSpacingLine(spacing: spacing)]
+    }
+
 }

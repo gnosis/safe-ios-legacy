@@ -22,4 +22,8 @@ public class FeeCalculation: ArrayBasedCollection<FeeCalculationSection> {
         backgroundView.wrapAroundDynamicHeightView(stackView, insets: .zero)
     }
 
+    public func addSection(_ build: (FeeCalculationSection) -> FeeCalculationSection) -> FeeCalculation {
+        return self + [build(FeeCalculationSection())]
+    }
+
 }

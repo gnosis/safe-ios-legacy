@@ -154,6 +154,7 @@
 		0A95E54A220328380019C63D /* FeeCalculationSpacingLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E549220328380019C63D /* FeeCalculationSpacingLine.swift */; };
 		0A95E54C220328480019C63D /* FeeCalculationAssetLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E54B220328470019C63D /* FeeCalculationAssetLine.swift */; };
 		0A95E54E220328620019C63D /* FeeCalculationAssetLine+TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E54D220328620019C63D /* FeeCalculationAssetLine+TextStyle.swift */; };
+		0A95E55122032B8F0019C63D /* FeeCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55022032B8F0019C63D /* FeeCalculationTests.swift */; };
 		0A9670BB20480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C820480C5700445AC2 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -546,6 +547,7 @@
 		0A95E549220328380019C63D /* FeeCalculationSpacingLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeCalculationSpacingLine.swift; sourceTree = "<group>"; };
 		0A95E54B220328470019C63D /* FeeCalculationAssetLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeCalculationAssetLine.swift; sourceTree = "<group>"; };
 		0A95E54D220328620019C63D /* FeeCalculationAssetLine+TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeeCalculationAssetLine+TextStyle.swift"; sourceTree = "<group>"; };
+		0A95E55022032B8F0019C63D /* FeeCalculationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeCalculationTests.swift; sourceTree = "<group>"; };
 		0A96707A20480C3E00445AC2 /* SafeUIKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeUIKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A96708E20480C3E00445AC2 /* SafeUIKitDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeUIKitDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A96709420480C3F00445AC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -845,6 +847,7 @@
 			children = (
 				0AF6D88921FF12D200D1980A /* RBEIntroViewControllerTests.swift */,
 				0A2FAA372201A5D900793B7B /* Info.plist */,
+				0A95E55022032B8F0019C63D /* FeeCalculationTests.swift */,
 			);
 			path = ReplaceBrowserExtensionUITests;
 			sourceTree = "<group>";
@@ -2271,6 +2274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A95E55122032B8F0019C63D /* FeeCalculationTests.swift in Sources */,
 				0A2FAA622201A69800793B7B /* RBEIntroViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

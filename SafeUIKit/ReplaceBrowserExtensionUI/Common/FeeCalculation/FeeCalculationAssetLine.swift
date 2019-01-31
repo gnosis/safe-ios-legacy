@@ -12,24 +12,28 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         case balance
     }
 
-    typealias InfoItem = (text: String, target: Any?, action: Selector?)
+    struct AssetInfo {
+        var name: String
+        var button: ButtonItem?
+        var value: String
+        var error: Error?
 
-    var style: Style
-    var name: String
-    var value: String
-    var info: InfoItem?
-
-    init(style: Style, name: String, value: String) {
-        self.style = style
-        self.name = name
-        self.value = value
+        static let empty = AssetInfo(name: "", button: nil, value: "", error: nil)
     }
 
-    func setError(_ error: Error?) {}
+    struct ButtonItem {
+        var text: String
+        var target: Any?
+        var action: Selector?
+    }
+
+    var style: Style = .plain
+    var asset: AssetInfo = .empty
 
     override func makeView() -> UIView {
         let textStyle = self.style == .plain ? TextStyle.plain : TextStyle.balance
-        let lineStack = UIStackView(arrangedSubviews: [makeName(textStyle: textStyle), makeValue(textStyle: textStyle)])
+        let lineStack = UIStackView(arrangedSubviews: [makeName(textStyle: textStyle),
+                                                       makeValue(textStyle: textStyle)])
         lineStack.translatesAutoresizingMaskIntoConstraints = false
         lineStack.heightAnchor.constraint(equalToConstant: CGFloat(lineHeight)).isActive = true
         return lineStack
@@ -38,29 +42,54 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
     func makeName(textStyle: TextStyle) -> UIView {
         let stack = UIStackView()
         let label = UILabel()
-        label.attributedText = NSAttributedString(string: name, style: textStyle.name)
+        label.attributedText = NSAttributedString(string: asset.name, style: textStyle.name)
         stack.addArrangedSubview(label)
-        if let info = self.info {
-            stack.addArrangedSubview(makeInfoButton(info: info, textStyle: textStyle))
+        if let buttonData = asset.button {
+            stack.addArrangedSubview(makeInfoButton(button: buttonData, textStyle: textStyle))
         }
         return stack
     }
 
-    func makeInfoButton(info: InfoItem, textStyle: TextStyle) -> UIButton {
+    func makeInfoButton(button buttonData: ButtonItem, textStyle: TextStyle) -> UIButton {
         let button = UIButton(type: .custom)
-        button.setAttributedTitle(NSAttributedString(string: info.text, style: textStyle.info), for: .normal)
-        if let action = info.action {
-            button.addTarget(info.target, action: action, for: .touchUpInside)
+        button.setAttributedTitle(NSAttributedString(string: buttonData.text, style: textStyle.info), for: .normal)
+        if let action = buttonData.action {
+            button.addTarget(buttonData.target, action: action, for: .touchUpInside)
         }
         return button
     }
 
     func makeValue(textStyle: TextStyle) -> UIView {
         let label = UILabel()
-        label.attributedText = NSAttributedString(string: value, style: textStyle.value)
+        label.attributedText = NSAttributedString(string: asset.value, style: textStyle.value)
         let huggingPriority = UILayoutPriority(UILayoutPriority.defaultLow.rawValue - 1)
         label.setContentHuggingPriority(huggingPriority, for: .horizontal)
         return label
+    }
+
+    func set(style: Style) -> FeeCalculationAssetLine {
+        self.style = style
+        return self
+    }
+
+    func set(name: String) -> FeeCalculationAssetLine {
+        self.asset.name = name
+        return self
+    }
+
+    func set(value: String) -> FeeCalculationAssetLine {
+        self.asset.value = value
+        return self
+    }
+
+    func set(button: String, target: Any?, action: Selector?) -> FeeCalculationAssetLine {
+        self.asset.button = ButtonItem(text: button, target: target, action: action)
+        return self
+    }
+
+    func set(error: Error?) -> FeeCalculationAssetLine {
+        self.asset.error = error
+        return self
     }
 
 }
