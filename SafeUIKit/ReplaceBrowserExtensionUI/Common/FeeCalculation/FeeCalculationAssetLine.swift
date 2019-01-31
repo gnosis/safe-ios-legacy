@@ -12,19 +12,36 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         case balance
     }
 
-    struct AssetInfo {
+    struct AssetInfo: Equatable {
+
         var name: String
         var button: ButtonItem?
         var value: String
         var error: Error?
 
         static let empty = AssetInfo(name: "", button: nil, value: "", error: nil)
+
+        static func == (lhs: FeeCalculationAssetLine.AssetInfo, rhs: FeeCalculationAssetLine.AssetInfo) -> Bool {
+            return lhs.name == rhs.name &&
+                lhs.button == rhs.button &&
+                lhs.value == rhs.value &&
+                String(describing: lhs.error) == String(describing: rhs.error)
+        }
+
     }
 
-    struct ButtonItem {
+    struct ButtonItem: Equatable {
+
         var text: String
-        var target: Any?
+        var target: AnyClass?
         var action: Selector?
+
+        static func == (lhs: FeeCalculationAssetLine.ButtonItem, rhs: FeeCalculationAssetLine.ButtonItem) -> Bool {
+            return lhs.text == rhs.text &&
+                lhs.target === rhs.target &&
+                String(describing: lhs.action) == String(describing: rhs.action)
+        }
+
     }
 
     var style: Style = .plain
@@ -82,7 +99,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         return self
     }
 
-    func set(button: String, target: Any?, action: Selector?) -> FeeCalculationAssetLine {
+    func set(button: String, target: AnyClass? = nil, action: Selector? = nil) -> FeeCalculationAssetLine {
         self.asset.button = ButtonItem(text: button, target: target, action: action)
         return self
     }
@@ -90,6 +107,10 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
     func set(error: Error?) -> FeeCalculationAssetLine {
         self.asset.error = error
         return self
+    }
+
+    public static func ==(lhs: FeeCalculationAssetLine, rhs: FeeCalculationAssetLine) -> Bool {
+        return lhs.style == rhs.style && lhs.asset == rhs.asset
     }
 
 }

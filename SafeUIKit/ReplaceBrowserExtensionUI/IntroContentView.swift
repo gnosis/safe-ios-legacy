@@ -32,7 +32,7 @@ public class IntroContentView: NibUIView {
     var strings = Strings()
 
     override func setUpConstraints(for contentView: UIView) {
-        wrapAroundDynamiHeightView(contentView)
+        wrapAroundDynamicHeightView(contentView)
     }
 
     override func didLoad() {

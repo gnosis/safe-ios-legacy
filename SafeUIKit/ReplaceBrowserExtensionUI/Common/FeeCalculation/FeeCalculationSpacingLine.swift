@@ -20,4 +20,8 @@ public class FeeCalculationSpacingLine: FeeCalculationLine {
         return view
     }
 
+    public static func ==(lhs: FeeCalculationSpacingLine, rhs: FeeCalculationSpacingLine) -> Bool {
+        return lhs.spacing == rhs.spacing
+    }
+
 }

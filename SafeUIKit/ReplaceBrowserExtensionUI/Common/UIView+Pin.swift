@@ -7,7 +7,7 @@ import UIKit
 
 extension UIView {
 
-    func wrapAroundDynamiHeightView(_ contentView: UIView) {
+    func wrapAroundDynamicHeightView(_ contentView: UIView) {
         NSLayoutConstraint.activate([
             contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: trailingAnchor),

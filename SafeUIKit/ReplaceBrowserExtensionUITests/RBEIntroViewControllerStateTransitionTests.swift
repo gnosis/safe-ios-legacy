@@ -5,19 +5,6 @@
 import XCTest
 @testable import ReplaceBrowserExtensionUI
 
-class RBEIntroViewControllerBaseTestCase: XCTestCase {
-
-    let vc = RBEIntroViewController.create()
-
-    override func setUp() {
-        super.setUp()
-        vc.loadViewIfNeeded()
-    }
-
-}
-
-class MyError: Error {}
-
 class RBEIntroViewControllerStateTransitionTests: RBEIntroViewControllerBaseTestCase {
 
     func test_whenStarts_thenInLoading() {
@@ -99,34 +86,3 @@ extension RBEIntroViewControllerStateTransitionTests {
 
 }
 
-class RBEIntroViewControllerContentTests: RBEIntroViewControllerBaseTestCase {
-
-    func test_whenLoading_thenHasContent() {
-        vc.transition(to: RBEIntroViewController.LoadingState())
-        XCTAssertTrue(vc.navigationItem.titleView is LoadingTitleView)
-        XCTAssertEqual(vc.navigationItem.rightBarButtonItems, [vc.startButtonItem])
-        XCTAssertFalse(vc.startButtonItem.isEnabled)
-    }
-
-    func test_whenLoadingAndPushed_thenBackButtonIsSet() {
-        let navVC = UINavigationController(rootViewController: UIViewController())
-        navVC.pushViewController(vc, animated: false)
-        vc.transition(to: RBEIntroViewController.LoadingState())
-        vc.willMove(toParent: navVC)
-        XCTAssertEqual(navVC.viewControllers.first!.navigationItem.backBarButtonItem, vc.backButtonItem)
-    }
-
-    func test_whenMovingToRootVC_thenOK() {
-        let navVC = UINavigationController()
-        navVC.setViewControllers([vc], animated: false)
-        XCTAssertNil(vc.navigationItem.backBarButtonItem)
-    }
-
-    func test_whenMovingToNonNavigationParent_thenOK() {
-        let parent = UIViewController()
-        parent.addChild(vc)
-        XCTAssertNil(vc.navigationItem.backBarButtonItem)
-        XCTAssertNil(parent.navigationItem.backBarButtonItem)
-    }
-
-}
