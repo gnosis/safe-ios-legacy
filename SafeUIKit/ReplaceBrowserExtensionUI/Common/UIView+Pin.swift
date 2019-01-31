@@ -23,4 +23,12 @@ extension UIView {
             bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: CGFloat(insets.bottom))])
     }
 
+    func pintToTop(of view: UIView, height: CGFloat) {
+        NSLayoutConstraint.activate([
+            leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topAnchor.constraint(equalTo: view.topAnchor),
+            heightAnchor.constraint(equalToConstant: CGFloat(height))])
+    }
+
 }
