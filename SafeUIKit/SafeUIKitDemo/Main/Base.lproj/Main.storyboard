@@ -75,7 +75,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wd9-x3-CiL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="172" y="-643"/>
+            <point key="canvasLocation" x="2050.4000000000001" y="-643.62818590704649"/>
         </scene>
         <!--Components-->
         <scene sceneID="qXC-go-ZvE">
@@ -421,7 +421,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V61-zp-tDG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1064.8" y="31.934032983508249"/>
+            <point key="canvasLocation" x="2943.1999999999998" y="31.484257871064472"/>
         </scene>
         <!--ScanBarButtonItem-->
         <scene sceneID="cAS-oi-Gdf">
@@ -590,7 +590,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5I-WK-haU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="882" y="-996"/>
+            <point key="canvasLocation" x="1820" y="-996.25187406296857"/>
         </scene>
         <!--TransferView-->
         <scene sceneID="X10-cL-bg9">
@@ -981,7 +981,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXe-us-Koa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1838" y="-654"/>
+            <point key="canvasLocation" x="3716" y="-654.42278860569718"/>
         </scene>
         <!--QRCodeInput-->
         <scene sceneID="bpq-FF-WHS">
@@ -1035,7 +1035,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hy9-Nk-nb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2604" y="-380"/>
+            <point key="canvasLocation" x="4482.3999999999996" y="-380.05997001499253"/>
         </scene>
         <!--QRCodeView-->
         <scene sceneID="oYY-i3-60S">
@@ -1217,22 +1217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQ5-Zp-4ct" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3247" y="32"/>
-        </scene>
-        <!--Demo Recovery In Progress View Controller View Controller-->
-        <scene sceneID="tbJ-Fa-ILE">
-            <objects>
-                <viewController storyboardIdentifier="ReviewRecoveryTransactionDemoViewController" id="qAl-GP-5EO" customClass="DemoRecoveryInProgressViewControllerViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="RTz-Bm-XTb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Jql-A6-Kbm"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dpe-2c-OR8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1964" y="-105"/>
+            <point key="canvasLocation" x="5124" y="31.934032983508249"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KwY-5H-yHZ">
@@ -1250,7 +1235,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elE-H4-Ezx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="100" y="32"/>
+            <point key="canvasLocation" x="1978.4000000000001" y="31.934032983508249"/>
         </scene>
         <!--TransactionFeeView-->
         <scene sceneID="R1g-Nn-tl6">
@@ -1304,7 +1289,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tsS-il-gmC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3105" y="-1117"/>
+            <point key="canvasLocation" x="4044" y="-1117.6911544227887"/>
         </scene>
         <!--TransactionHeaderView-->
         <scene sceneID="PuY-hV-fgo">
@@ -1347,7 +1332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QnO-Qf-3Ph" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3954.4000000000001" y="-863.1184407796103"/>
+            <point key="canvasLocation" x="4893.6000000000004" y="-863.1184407796103"/>
         </scene>
     </scenes>
 </document>
