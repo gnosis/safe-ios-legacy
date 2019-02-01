@@ -72,12 +72,19 @@ extension RBEIntroViewController {
     class InvalidState: BaseErrorState {
 
         override func didEnter(controller: RBEIntroViewController) {
+            if let data = controller.calculationData {
+                let formatter = EthTokenFormatter()
+                controller.feeCalculation.currentBalance.set(value: formatter.string(from: data.currentBalance))
+                controller.feeCalculation.networkFee.set(value: formatter.string(from: data.networkFee))
+                controller.feeCalculation.balance.set(value: formatter.string(from: data.balance))
+            }
+
             if let calculationError = error as? FeeCalculationError, calculationError == .insufficientBalance {
                 controller.feeCalculation.balance.set(error: calculationError)
                 controller.feeCalculation.error = FeeCalculationErrorLine(text: calculationError.localizedDescription)
-                controller.feeCalculation.update() // TODO make nicer
-                controller.feeCalculationView.update()
             }
+            controller.feeCalculation.update()
+            controller.feeCalculationView.update()
         }
 
     }
