@@ -896,8 +896,6 @@
 				0ABDF5EE220841E50047F10D /* RBEIntroViewControllerErrorState.swift */,
 				0ABDF5E4220841600047F10D /* RBEIntroViewControllerInvalidState.swift */,
 				0ABDF5E2220841390047F10D /* RBEIntroViewControllerLoadingState.swift */,
-				0ABDF60422086AB30047F10D /* UINavigationController+BackSwizzling.h */,
-				0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */,
 				0ABDF5E82208419E0047F10D /* RBEIntroViewControllerReadyState.swift */,
 				0ABDF5EC220841D20047F10D /* RBEIntroViewControllerStartedState.swift */,
 				0ABDF5EA220841BA0047F10D /* RBEIntroViewControllerStartingState.swift */,
@@ -951,6 +949,8 @@
 		0A2FAA822201A92A00793B7B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0ABDF60422086AB30047F10D /* UINavigationController+BackSwizzling.h */,
+				0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */,
 				0AF6D8DF21FF6B8F00D1980A /* AttributedStringStyle.swift */,
 				0A95E54F220328AC0019C63D /* FeeCalculation */,
 				0A95E541220327ED0019C63D /* ArrayBasedCollection.swift */,
