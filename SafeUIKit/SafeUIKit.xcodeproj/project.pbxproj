@@ -199,6 +199,8 @@
 		0ABDF5F72208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */; };
 		0ABDF5F922084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */; };
 		0ABDF5FB22084E760047F10D /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
+		0ABDF60622086AB30047F10D /* UINavigationController+BackSwizzling.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABDF60422086AB30047F10D /* UINavigationController+BackSwizzling.h */; };
+		0ABDF60722086AB30047F10D /* UINavigationController+BackSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */; };
 		0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */; };
 		0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */; };
 		0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */; };
@@ -633,6 +635,8 @@
 		0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerStartedStateTests.swift; sourceTree = "<group>"; };
 		0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerActionsTests.swift; sourceTree = "<group>"; };
 		0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableRBEIntroViewController.swift; sourceTree = "<group>"; };
+		0ABDF60422086AB30047F10D /* UINavigationController+BackSwizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BackSwizzling.h"; sourceTree = "<group>"; };
+		0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+BackSwizzling.m"; sourceTree = "<group>"; };
 		0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsDemoViewController.swift; sourceTree = "<group>"; };
 		0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -892,6 +896,8 @@
 				0ABDF5EE220841E50047F10D /* RBEIntroViewControllerErrorState.swift */,
 				0ABDF5E4220841600047F10D /* RBEIntroViewControllerInvalidState.swift */,
 				0ABDF5E2220841390047F10D /* RBEIntroViewControllerLoadingState.swift */,
+				0ABDF60422086AB30047F10D /* UINavigationController+BackSwizzling.h */,
+				0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */,
 				0ABDF5E82208419E0047F10D /* RBEIntroViewControllerReadyState.swift */,
 				0ABDF5EC220841D20047F10D /* RBEIntroViewControllerStartedState.swift */,
 				0ABDF5EA220841BA0047F10D /* RBEIntroViewControllerStartingState.swift */,
@@ -1784,6 +1790,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A2FAA382201A5D900793B7B /* ReplaceBrowserExtensionUI.h in Headers */,
+				0ABDF60622086AB30047F10D /* UINavigationController+BackSwizzling.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2373,6 +2380,7 @@
 				0A2FAA5C2201A69100793B7B /* LoadingTitleView.swift in Sources */,
 				0A2FAA4D2201A62B00793B7B /* Colors.swift in Sources */,
 				0ABDF5E3220841390047F10D /* RBEIntroViewControllerLoadingState.swift in Sources */,
+				0ABDF60722086AB30047F10D /* UINavigationController+BackSwizzling.m in Sources */,
 				0A95E55F220364720019C63D /* FeeCalculationErrorLine.swift in Sources */,
 				0ABDF5ED220841D20047F10D /* RBEIntroViewControllerStartedState.swift in Sources */,
 				0A2FAA5D2201A69100793B7B /* NibUIView.swift in Sources */,

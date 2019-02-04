@@ -48,40 +48,21 @@ public class RBEIntroViewController: UIViewController {
 
     func commonInit() {
         startButtonItem = UIBarButtonItem(title: strings.start, style: .done, target: nil, action: nil)
-        let chevronImage = UIImage(named: "Chevron", in: Bundle(for: RBEIntroViewController.self), compatibleWith: nil)
-        let chevronHighlighted = UIImage(named: "Chevron-highlighted", in: Bundle(for: RBEIntroViewController.self), compatibleWith: nil)
-        let button = UIButton(type: .custom)
-        button.addTarget(self, action: #selector(back), for: .touchUpInside)
-        button.setTitle(strings.back, for: .normal)
-        button.setTitleColor(button.tintColor, for: .normal)
-        button.setTitleColor(button.tintColor.withAlphaComponent(0.5), for: .highlighted)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        button.setImage(chevronImage, for: .normal)
-        button.setImage(chevronHighlighted, for: .highlighted)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -9.5, bottom: -1, right: 0)
-        button.titleEdgeInsets = UIEdgeInsets(top: -0.5, left: -0.5, bottom: 0, right: 0)
-        let container = UIView()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        container.addSubview(button)
-        NSLayoutConstraint.activate([
-            button.heightAnchor.constraint(equalToConstant: 44),
-            button.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: -2),
-            button.centerYAnchor.constraint(equalTo: container.centerYAnchor),
-            container.heightAnchor.constraint(equalTo: button.heightAnchor),
-            container.widthAnchor.constraint(equalTo: button.widthAnchor,
-                                             constant: (chevronImage?.size.width ?? 0) - button.imageEdgeInsets.left)])
-        container.translatesAutoresizingMaskIntoConstraints = false
-        backButtonItem = UIBarButtonItem(customView: container)
-//        backButtonItem = UIBarButtonItem(title: strings.back,
-//                                         style: .plain,
-//                                         target: self,
-//                                         action: #selector(back))
+        backButtonItem = UIBarButtonItem(title: strings.back, style: .plain, target: self, action: #selector(back))
         retryButtonItem = UIBarButtonItem(title: strings.retry, style: .done, target: nil, action:  nil)
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         transition(to: state)
+    }
+
+    public override func willMove(toParent parent: UIViewController?) {
+        guard let navigationController = parent as? UINavigationController else { return }
+        assert(navigationController.topViewController === self, "Unexpected UINavigationController behavior")
+        guard navigationController.viewControllers.count > 1,
+            let index = navigationController.viewControllers.firstIndex(where: { $0 == self }) else { return }
+        state.willPush(controller: self, onTopOf: navigationController.viewControllers[index - 1])
     }
 
     func transition(to newState: State) {
@@ -143,7 +124,6 @@ public class RBEIntroViewController: UIViewController {
 
     @objc public func back() {
         state.back(controller: self)
-        navigationController?.popViewController(animated: true)
     }
 
     public func didLoad() {

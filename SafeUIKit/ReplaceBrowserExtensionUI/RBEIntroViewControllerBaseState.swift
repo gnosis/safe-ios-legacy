@@ -11,6 +11,7 @@ extension RBEIntroViewController {
     class State {
 
         func didEnter(controller: RBEIntroViewController) {}
+        func willPush(controller: RBEIntroViewController, onTopOf topViewController: UIViewController) {}
         func handleError(_ error: Error, controller: RBEIntroViewController) {}
         func back(controller: RBEIntroViewController) {}
         func didLoad(controller: RBEIntroViewController) {}
