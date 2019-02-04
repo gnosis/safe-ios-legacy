@@ -13,11 +13,8 @@ extension RBEIntroViewController {
             controller.startIndicateLoading()
             controller.showStart()
             controller.disableStart()
+//            controller.showBack()
             controller.feeCalculation = EthFeeCalculation()
-        }
-
-        override func willPush(controller: RBEIntroViewController, onTopOf topViewController: UIViewController) {
-            topViewController.navigationItem.backBarButtonItem = controller.backButtonItem
         }
 
         override func handleError(_ error: Error, controller: RBEIntroViewController) {

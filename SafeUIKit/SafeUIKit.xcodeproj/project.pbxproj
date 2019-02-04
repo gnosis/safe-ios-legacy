@@ -197,6 +197,8 @@
 		0ABDF5F3220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */; };
 		0ABDF5F5220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */; };
 		0ABDF5F72208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */; };
+		0ABDF5F922084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */; };
+		0ABDF5FB22084E760047F10D /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
 		0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */; };
 		0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */; };
 		0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */; };
@@ -381,6 +383,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0A96707920480C3E00445AC2;
 			remoteInfo = SafeUIKitDemo;
+		};
+		0ABDF5FC220850950047F10D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A96707020480C1200445AC2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A2FAA662201A72700793B7B;
+			remoteInfo = UIStaging;
 		};
 		0AF33D3F209C6BF800527D25 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -622,6 +631,8 @@
 		0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerStartingStateTests.swift; sourceTree = "<group>"; };
 		0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerErrorStateTests.swift; sourceTree = "<group>"; };
 		0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerStartedStateTests.swift; sourceTree = "<group>"; };
+		0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerActionsTests.swift; sourceTree = "<group>"; };
+		0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableRBEIntroViewController.swift; sourceTree = "<group>"; };
 		0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsDemoViewController.swift; sourceTree = "<group>"; };
 		0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -895,6 +906,7 @@
 			children = (
 				0A95E55022032B8F0019C63D /* FeeCalculationTests.swift */,
 				0A2FAA372201A5D900793B7B /* Info.plist */,
+				0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */,
 				0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */,
 				0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */,
 				0A95E55A220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift */,
@@ -903,6 +915,7 @@
 				0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */,
 				0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */,
 				0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */,
+				0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */,
 			);
 			path = ReplaceBrowserExtensionUITests;
 			sourceTree = "<group>";
@@ -1825,6 +1838,7 @@
 			);
 			dependencies = (
 				0A2FAA332201A5D900793B7B /* PBXTargetDependency */,
+				0ABDF5FD220850950047F10D /* PBXTargetDependency */,
 			);
 			name = ReplaceBrowserExtensionUITests;
 			productName = ReplaceBrowserExtensionUITests;
@@ -1981,6 +1995,7 @@
 				TargetAttributes = {
 					0A2FAA272201A5D800793B7B = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					0A2FAA2F2201A5D900793B7B = {
 						CreatedOnToolsVersion = 10.1;
@@ -2384,7 +2399,9 @@
 				0ABDF5F5220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift in Sources */,
 				0ABDF5F72208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift in Sources */,
 				0A95E55122032B8F0019C63D /* FeeCalculationTests.swift in Sources */,
+				0ABDF5F922084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift in Sources */,
 				0A2FAA622201A69800793B7B /* RBEIntroViewControllerLoadingStateTests.swift in Sources */,
+				0ABDF5FB22084E760047F10D /* TestableRBEIntroViewController.swift in Sources */,
 				0ABDF5F3220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift in Sources */,
 				0A95E55522034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift in Sources */,
 				0ABDF5F1220842220047F10D /* RBEIntroViewControllerReadyStateTests.swift in Sources */,
@@ -2708,6 +2725,11 @@
 			isa = PBXTargetDependency;
 			target = 0A96707920480C3E00445AC2 /* SafeUIKitDemo */;
 			targetProxy = 0A9670BE20480C5700445AC2 /* PBXContainerItemProxy */;
+		};
+		0ABDF5FD220850950047F10D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A2FAA662201A72700793B7B /* UIStaging */;
+			targetProxy = 0ABDF5FC220850950047F10D /* PBXContainerItemProxy */;
 		};
 		0AF33D40209C6BF800527D25 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
