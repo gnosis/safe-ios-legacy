@@ -200,7 +200,7 @@
 		0ABDF5F922084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */; };
 		0ABDF5FB22084E760047F10D /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
 		0ABDF60622086AB30047F10D /* UINavigationController+BackSwizzling.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABDF60422086AB30047F10D /* UINavigationController+BackSwizzling.h */; };
-		0ABDF60722086AB30047F10D /* UINavigationController+BackSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */; };
+		0ABDF608220880BB0047F10D /* UINavigationController+BackSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */; };
 		0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */; };
 		0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */; };
 		0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */; };
@@ -385,13 +385,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0A96707920480C3E00445AC2;
 			remoteInfo = SafeUIKitDemo;
-		};
-		0ABDF5FC220850950047F10D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A96707020480C1200445AC2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A2FAA662201A72700793B7B;
-			remoteInfo = UIStaging;
 		};
 		0AF33D3F209C6BF800527D25 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1845,7 +1838,6 @@
 			);
 			dependencies = (
 				0A2FAA332201A5D900793B7B /* PBXTargetDependency */,
-				0ABDF5FD220850950047F10D /* PBXTargetDependency */,
 			);
 			name = ReplaceBrowserExtensionUITests;
 			productName = ReplaceBrowserExtensionUITests;
@@ -2380,7 +2372,7 @@
 				0A2FAA5C2201A69100793B7B /* LoadingTitleView.swift in Sources */,
 				0A2FAA4D2201A62B00793B7B /* Colors.swift in Sources */,
 				0ABDF5E3220841390047F10D /* RBEIntroViewControllerLoadingState.swift in Sources */,
-				0ABDF60722086AB30047F10D /* UINavigationController+BackSwizzling.m in Sources */,
+				0ABDF608220880BB0047F10D /* UINavigationController+BackSwizzling.m in Sources */,
 				0A95E55F220364720019C63D /* FeeCalculationErrorLine.swift in Sources */,
 				0ABDF5ED220841D20047F10D /* RBEIntroViewControllerStartedState.swift in Sources */,
 				0A2FAA5D2201A69100793B7B /* NibUIView.swift in Sources */,
@@ -2733,11 +2725,6 @@
 			isa = PBXTargetDependency;
 			target = 0A96707920480C3E00445AC2 /* SafeUIKitDemo */;
 			targetProxy = 0A9670BE20480C5700445AC2 /* PBXContainerItemProxy */;
-		};
-		0ABDF5FD220850950047F10D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0A2FAA662201A72700793B7B /* UIStaging */;
-			targetProxy = 0ABDF5FC220850950047F10D /* PBXContainerItemProxy */;
 		};
 		0AF33D40209C6BF800527D25 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

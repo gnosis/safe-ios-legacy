@@ -47,9 +47,9 @@ public class RBEIntroViewController: UIViewController {
     }
 
     func commonInit() {
-        startButtonItem = UIBarButtonItem(title: strings.start, style: .done, target: nil, action: nil)
+        startButtonItem = UIBarButtonItem(title: strings.start, style: .done, target: self, action: #selector(start))
         backButtonItem = UIBarButtonItem(title: strings.back, style: .plain, target: self, action: #selector(back))
-        retryButtonItem = UIBarButtonItem(title: strings.retry, style: .done, target: nil, action:  nil)
+        retryButtonItem = UIBarButtonItem(title: strings.retry, style: .done, target: self, action:  #selector(retry))
     }
 
     public override func viewDidLoad() {
@@ -130,7 +130,7 @@ public class RBEIntroViewController: UIViewController {
         state.didLoad(controller: self)
     }
 
-    public func start() {
+    @objc public func start() {
         state.start(controller: self)
     }
 
@@ -138,7 +138,7 @@ public class RBEIntroViewController: UIViewController {
         state.didStart(controller: self)
     }
 
-    public func retry() {
+    @objc public func retry() {
         state.retry(controller: self)
     }
 
