@@ -160,7 +160,7 @@
 		0A95E55722034DF70019C63D /* RBEIntroViewControllerBaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55622034DF70019C63D /* RBEIntroViewControllerBaseState.swift */; };
 		0A95E55922034E330019C63D /* EthFeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55822034E330019C63D /* EthFeeCalculation.swift */; };
 		0A95E55B220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55A220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift */; };
-		0A95E55D220354CD0019C63D /* CalculationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55C220354CD0019C63D /* CalculationData.swift */; };
+		0A95E55D220354CD0019C63D /* RBEFeeCalculationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55C220354CD0019C63D /* RBEFeeCalculationData.swift */; };
 		0A95E55F220364720019C63D /* FeeCalculationErrorLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55E220364720019C63D /* FeeCalculationErrorLine.swift */; };
 		0A9670BB20480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
@@ -201,6 +201,8 @@
 		0ABDF5FB22084E760047F10D /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
 		0ABDF60622086AB30047F10D /* UINavigationController+BackSwizzling.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABDF60422086AB30047F10D /* UINavigationController+BackSwizzling.h */; };
 		0ABDF608220880BB0047F10D /* UINavigationController+BackSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */; };
+		0ABDF60A22088AD70047F10D /* RBEStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF60922088AD70047F10D /* RBEStarter.swift */; };
+		0ABDF60C220895EC0047F10D /* FeeCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF60B220895EC0047F10D /* FeeCalculationError.swift */; };
 		0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */; };
 		0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */; };
 		0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */; };
@@ -576,7 +578,7 @@
 		0A95E55622034DF70019C63D /* RBEIntroViewControllerBaseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerBaseState.swift; sourceTree = "<group>"; };
 		0A95E55822034E330019C63D /* EthFeeCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthFeeCalculation.swift; sourceTree = "<group>"; };
 		0A95E55A220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerInvalidStateTests.swift; sourceTree = "<group>"; };
-		0A95E55C220354CD0019C63D /* CalculationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationData.swift; sourceTree = "<group>"; };
+		0A95E55C220354CD0019C63D /* RBEFeeCalculationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEFeeCalculationData.swift; sourceTree = "<group>"; };
 		0A95E55E220364720019C63D /* FeeCalculationErrorLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeCalculationErrorLine.swift; sourceTree = "<group>"; };
 		0A96707A20480C3E00445AC2 /* SafeUIKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeUIKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A96708E20480C3E00445AC2 /* SafeUIKitDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeUIKitDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -630,6 +632,8 @@
 		0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableRBEIntroViewController.swift; sourceTree = "<group>"; };
 		0ABDF60422086AB30047F10D /* UINavigationController+BackSwizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BackSwizzling.h"; sourceTree = "<group>"; };
 		0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+BackSwizzling.m"; sourceTree = "<group>"; };
+		0ABDF60922088AD70047F10D /* RBEStarter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEStarter.swift; sourceTree = "<group>"; };
+		0ABDF60B220895EC0047F10D /* FeeCalculationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeCalculationError.swift; sourceTree = "<group>"; };
 		0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsDemoViewController.swift; sourceTree = "<group>"; };
 		0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -874,7 +878,9 @@
 		0A2FAA292201A5D900793B7B /* ReplaceBrowserExtensionUI */ = {
 			isa = PBXGroup;
 			children = (
-				0A95E55C220354CD0019C63D /* CalculationData.swift */,
+				0A95E55C220354CD0019C63D /* RBEFeeCalculationData.swift */,
+				0ABDF60B220895EC0047F10D /* FeeCalculationError.swift */,
+				0ABDF60922088AD70047F10D /* RBEStarter.swift */,
 				0A2FAA822201A92A00793B7B /* Common */,
 				0A95E55822034E330019C63D /* EthFeeCalculation.swift */,
 				0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */,
@@ -2361,7 +2367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A95E548220328290019C63D /* FeeCalculationLine.swift in Sources */,
-				0A95E55D220354CD0019C63D /* CalculationData.swift in Sources */,
+				0A95E55D220354CD0019C63D /* RBEFeeCalculationData.swift in Sources */,
 				0AB586782201C5DF007C090D /* UIView+Pin.swift in Sources */,
 				0ABDF5E92208419E0047F10D /* RBEIntroViewControllerReadyState.swift in Sources */,
 				0A2FAA5B2201A69100793B7B /* RBEIntroViewController.swift in Sources */,
@@ -2372,6 +2378,7 @@
 				0A2FAA5C2201A69100793B7B /* LoadingTitleView.swift in Sources */,
 				0A2FAA4D2201A62B00793B7B /* Colors.swift in Sources */,
 				0ABDF5E3220841390047F10D /* RBEIntroViewControllerLoadingState.swift in Sources */,
+				0ABDF60C220895EC0047F10D /* FeeCalculationError.swift in Sources */,
 				0ABDF608220880BB0047F10D /* UINavigationController+BackSwizzling.m in Sources */,
 				0A95E55F220364720019C63D /* FeeCalculationErrorLine.swift in Sources */,
 				0ABDF5ED220841D20047F10D /* RBEIntroViewControllerStartedState.swift in Sources */,
@@ -2385,6 +2392,7 @@
 				0A2FAA602201A69100793B7B /* AttributedStringStyle.swift in Sources */,
 				0A2FAA4F2201A62B00793B7B /* LocalizedString.swift in Sources */,
 				0ABDF5E7220841880047F10D /* RBEIntroViewControllerCancellingState.swift in Sources */,
+				0ABDF60A22088AD70047F10D /* RBEStarter.swift in Sources */,
 				0A95E55922034E330019C63D /* EthFeeCalculation.swift in Sources */,
 				0A95E55722034DF70019C63D /* RBEIntroViewControllerBaseState.swift in Sources */,
 				0A95E54E220328620019C63D /* FeeCalculationAssetLine+TextStyle.swift in Sources */,

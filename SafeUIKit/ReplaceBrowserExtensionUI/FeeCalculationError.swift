@@ -3,13 +3,6 @@
 //
 
 import Foundation
-import Common
-
-struct CalculationData {
-    var currentBalance: TokenData
-    var networkFee: TokenData
-    var balance: TokenData
-}
 
 public class FeeCalculationError: NSError {
 

@@ -12,7 +12,7 @@ public class RBEIntroViewController: UIViewController {
     var retryButtonItem: UIBarButtonItem!
 
     var state: State = LoadingState()
-    var calculationData: CalculationData?
+    var calculationData: RBEFeeCalculationData?
     var feeCalculation: EthFeeCalculation {
         get {
             return feeCalculationView.calculation as! EthFeeCalculation

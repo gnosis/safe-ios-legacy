@@ -11,9 +11,9 @@ class RBEIntroViewControllerInvalidStateTests: RBEIntroViewControllerBaseTestCas
 
     func test_whenInvalid_thenShowsError() {
         let error = FeeCalculationError.insufficientBalance
-        vc.calculationData = CalculationData(currentBalance: TokenData.Ether.withBalance(BigInt(3e18)),
-                                             networkFee: TokenData.Ether.withBalance(BigInt(-4e18)),
-                                             balance: TokenData.Ether.withBalance(BigInt(-1e18)))
+        vc.calculationData = RBEFeeCalculationData(currentBalance: TokenData.Ether.withBalance(BigInt(3e18)),
+                                                   networkFee: TokenData.Ether.withBalance(BigInt(-4e18)),
+                                                   balance: TokenData.Ether.withBalance(BigInt(-1e18)))
         vc.disableRetry()
         vc.transition(to: RBEIntroViewController.InvalidState(error: error))
         XCTAssertEqual(vc.feeCalculation.currentBalance.asset.value, "3.00 ETH")
