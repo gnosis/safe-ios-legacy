@@ -10,8 +10,9 @@ extension RBEIntroViewController {
     class InvalidState: BaseErrorState {
 
         override func didEnter(controller: RBEIntroViewController) {
-            controller.navigationItem.titleView = nil
-            controller.navigationItem.rightBarButtonItems = [controller.retryButtonItem]
+            controller.stopIndicateLoading()
+            controller.showRetry()
+            controller.enableRetry()
             controller.reloadData()
             if let calculationError = error as? FeeCalculationError, calculationError == .insufficientBalance {
                 controller.feeCalculation.balance.set(error: calculationError)

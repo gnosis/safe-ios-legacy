@@ -80,6 +80,38 @@ public class RBEIntroViewController: UIViewController {
         feeCalculation.balance.set(value: formatter.string(from: data.balance.balance!))
     }
 
+    func startIndicateLoading() {
+        navigationItem.titleView = LoadingTitleView()
+    }
+
+    func stopIndicateLoading() {
+        navigationItem.titleView = nil
+    }
+
+    func showRetry() {
+        navigationItem.rightBarButtonItems = [retryButtonItem]
+    }
+
+    func showStart() {
+        navigationItem.rightBarButtonItems = [startButtonItem]
+    }
+
+    func enableStart() {
+        startButtonItem.isEnabled = true
+    }
+
+    func disableStart() {
+        startButtonItem.isEnabled = false
+    }
+
+    func enableRetry() {
+        retryButtonItem.isEnabled = true
+    }
+
+    func disableRetry() {
+        retryButtonItem.isEnabled = false
+    }
+
     // MARK: Actions
 
     public func handleError(_ error: Error) {

@@ -15,8 +15,9 @@ extension RBEIntroViewController {
         override func didEnter(controller: RBEIntroViewController) {
             controller.reloadData()
             controller.feeCalculationView.update()
-            controller.navigationItem.titleView = nil
-            controller.startButtonItem.isEnabled = true
+            controller.stopIndicateLoading()
+            controller.enableStart()
+            controller.showStart()
         }
 
     }

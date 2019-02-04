@@ -1,3 +1,9 @@
+/* OK */
+"alert.error.ok" = "alert.error.ok";
+
+/* Error */
+"alert.error.title" = "alert.error.title";
+
 /* Balance */
 "fee_calculation.balance" = "Balance";
 

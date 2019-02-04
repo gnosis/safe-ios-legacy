@@ -8,8 +8,9 @@ import XCTest
 class RBEIntroViewControllerStartingStateTests: RBEIntroViewControllerBaseTestCase {
 
     func test_whenStarting_thenCorrectUI() {
-        vc.navigationItem.titleView = nil
-        vc.navigationItem.rightBarButtonItems = [vc.retryButtonItem]
+        vc.stopIndicateLoading()
+        vc.showRetry()
+        vc.enableStart()
         vc.transition(to: RBEIntroViewController.StartingState())
         XCTAssertFalse(vc.startButtonItem.isEnabled)
         XCTAssertTrue(vc.navigationItem.titleView is LoadingTitleView)

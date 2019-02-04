@@ -17,9 +17,9 @@ extension RBEIntroViewController {
         }
 
         override func didEnter(controller: RBEIntroViewController) {
-            controller.navigationItem.titleView = LoadingTitleView()
-            controller.navigationItem.rightBarButtonItems = [controller.startButtonItem]
-            controller.startButtonItem.isEnabled = false
+            controller.startIndicateLoading()
+            controller.showStart()
+            controller.disableStart()
         }
     }
 
