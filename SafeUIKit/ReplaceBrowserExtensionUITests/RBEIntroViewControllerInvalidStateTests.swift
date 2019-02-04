@@ -7,7 +7,7 @@ import XCTest
 import Common
 import BigInt
 
-class RBEIntroViewControllerInvalidTests: RBEIntroViewControllerBaseTestCase {
+class RBEIntroViewControllerInvalidStateTests: RBEIntroViewControllerBaseTestCase {
 
     func test_whenInvalid_thenShowsError() {
         let error = FeeCalculationError.insufficientBalance
@@ -21,8 +21,8 @@ class RBEIntroViewControllerInvalidTests: RBEIntroViewControllerBaseTestCase {
         XCTAssertEqual(vc.feeCalculation.balance.asset.error as? FeeCalculationError, error)
         XCTAssertEqual(vc.feeCalculation.error?.text, error.localizedDescription)
         XCTAssertNil(vc.navigationItem.titleView)
-        XCTAssertFalse(vc.startButtonItem.isEnabled)
-        XCTAssertEqual(vc.navigationItem.rightBarButtonItems, [vc.startButtonItem])
+        XCTAssertTrue(vc.retryButtonItem.isEnabled)
+        XCTAssertEqual(vc.navigationItem.rightBarButtonItems, [vc.retryButtonItem])
     }
 
     func test_whenOhterError_thenDisplaysIt() {

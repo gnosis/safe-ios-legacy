@@ -5,7 +5,7 @@
 import XCTest
 @testable import ReplaceBrowserExtensionUI
 
-class RBEIntroViewControllerLoadingTests: RBEIntroViewControllerBaseTestCase {
+class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCase {
 
     func test_whenLoading_thenHasContent() {
         vc.transition(to: RBEIntroViewController.LoadingState())

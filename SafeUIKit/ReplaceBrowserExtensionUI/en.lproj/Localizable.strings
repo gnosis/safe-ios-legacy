@@ -22,6 +22,9 @@
 /* Back */
 "navigation.back" = "Back";
 
+/* Retry */
+"navigation.retry" = "Retry";
+
 /* Start */
 "navigation.start" = "Start";
 

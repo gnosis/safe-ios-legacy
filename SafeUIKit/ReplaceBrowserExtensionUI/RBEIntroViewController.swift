@@ -3,11 +3,14 @@
 //
 
 import UIKit
+import SafeUIKit
 
 public class RBEIntroViewController: UIViewController {
 
     var startButtonItem: UIBarButtonItem!
     var backButtonItem: UIBarButtonItem!
+    var retryButtonItem: UIBarButtonItem!
+
     var state: State = LoadingState()
     var calculationData: CalculationData?
     var feeCalculation: EthFeeCalculation {
@@ -24,6 +27,7 @@ public class RBEIntroViewController: UIViewController {
     struct Strings {
         var start = LocalizedString("navigation.start", comment: "Start")
         var back = LocalizedString("navigation.back", comment: "Back")
+        var retry = LocalizedString("navigation.retry", comment: "Retry")
     }
 
     var strings = Strings()
@@ -45,6 +49,7 @@ public class RBEIntroViewController: UIViewController {
     func commonInit() {
         startButtonItem = UIBarButtonItem(title: strings.start, style: .done, target: nil, action: nil)
         backButtonItem = UIBarButtonItem(title: strings.back, style: .plain, target: nil, action: nil)
+        retryButtonItem = UIBarButtonItem(title: strings.retry, style: .done, target: nil, action:  nil)
     }
 
     public override func viewDidLoad() {
@@ -63,6 +68,16 @@ public class RBEIntroViewController: UIViewController {
     func transition(to newState: State) {
         state = newState
         newState.didEnter(controller: self)
+    }
+
+    func reloadData() {
+        feeCalculation = EthFeeCalculation()
+        guard let data = calculationData else { return }
+        let formatter = TokenNumberFormatter()
+        formatter.tokenSymbol = data.currentBalance.code
+        feeCalculation.currentBalance.set(value: formatter.string(from: data.currentBalance.balance!))
+        feeCalculation.networkFee.set(value: formatter.string(from: data.networkFee.balance!))
+        feeCalculation.balance.set(value: formatter.string(from: data.balance.balance!))
     }
 
     // MARK: Actions
