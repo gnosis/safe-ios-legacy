@@ -20,7 +20,6 @@
 		0A0974DD20480D03005753DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974DA20480D03005753DF /* LaunchScreen.storyboard */; };
 		0A0974EA20480E11005753DF /* SafeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */; };
 		0A0974EC20480E45005753DF /* SafeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* SafeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0A14EC4A2204513600D23F7F /* EthNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14EC492204513600D23F7F /* EthNumberFormatter.swift */; };
 		0A290E1421BD1656005188EA /* ReviewRecoveryTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */; };
 		0A290E1621BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
@@ -186,6 +185,7 @@
 		0ABA592321AC0B6E009D249F /* LabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA592221AC0B6E009D249F /* LabelsViewController.swift */; };
 		0ABDE31B21BE6FA000EA0CED /* RecoveryInProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDE31A21BE6FA000EA0CED /* RecoveryInProgressViewController.swift */; };
 		0ABDE31D21BE77F200EA0CED /* DemoRecoveryInProgressViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDE31C21BE77F200EA0CED /* DemoRecoveryInProgressViewControllerViewController.swift */; };
+		0ABDF5E122083F420047F10D /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */; };
 		0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */; };
 		0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */; };
@@ -427,7 +427,6 @@
 		0A0974DB20480D03005753DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeUIKitDemoUITests.swift; sourceTree = "<group>"; };
 		0A0974EB20480E45005753DF /* SafeUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeUIKit.h; sourceTree = "<group>"; };
-		0A14EC492204513600D23F7F /* EthNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthNumberFormatter.swift; sourceTree = "<group>"; };
 		0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecoveryTransactionViewController.swift; sourceTree = "<group>"; };
 		0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecoveryTransactionDemoViewController.swift; sourceTree = "<group>"; };
 		0A2972C8205A89C500CEC7D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = SafeUIKit/Base.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
@@ -762,6 +761,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ABDF5E122083F420047F10D /* SafeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,20 +844,19 @@
 		0A2FAA292201A5D900793B7B /* ReplaceBrowserExtensionUI */ = {
 			isa = PBXGroup;
 			children = (
+				0A95E55C220354CD0019C63D /* CalculationData.swift */,
 				0A2FAA822201A92A00793B7B /* Common */,
+				0A95E55822034E330019C63D /* EthFeeCalculation.swift */,
 				0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */,
 				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
 				0AF6D89321FF228400D1980A /* LoadingTitleView.swift */,
 				0AF6D89121FF227100D1980A /* LoadingTitleView.xib */,
-				0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */,
-				0A95E55C220354CD0019C63D /* CalculationData.swift */,
-				0A95E55622034DF70019C63D /* RBEIntroViewController+State.swift */,
-				0A14EC492204513600D23F7F /* EthNumberFormatter.swift */,
-				0A95E55822034E330019C63D /* EthFeeCalculation.swift */,
-				0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */,
-				0A2FAA802201A81700793B7B /* support files */,
 				0AB5868D2201C92B007C090D /* Localizable.strings */,
+				0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */,
+				0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */,
+				0A95E55622034DF70019C63D /* RBEIntroViewController+State.swift */,
 				0AB5868E2201C979007C090D /* ReplaceBrowserExtensionMedia.xcassets */,
+				0A2FAA802201A81700793B7B /* support files */,
 			);
 			path = ReplaceBrowserExtensionUI;
 			sourceTree = "<group>";
@@ -1787,6 +1786,7 @@
 				0A2FAA2C2201A5D900793B7B /* Sources */,
 				0A2FAA2D2201A5D900793B7B /* Frameworks */,
 				0A2FAA2E2201A5D900793B7B /* Resources */,
+				0A1F312822083A020029C4B7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1806,6 +1806,7 @@
 				0A2FAA642201A72700793B7B /* Frameworks */,
 				0A2FAA652201A72700793B7B /* Resources */,
 				0A2FAA7F2201A73A00793B7B /* Embed Frameworks */,
+				0A1F312922083A160029C4B7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2134,6 +2135,44 @@
 			shellScript = "../scripts/run_swiftgen_per_target.sh\n";
 			showEnvVarsInLog = 0;
 		};
+		0A1F312822083A020029C4B7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/SafeUIKitDemo.xcfilelist",
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/xcode_embed_frameworks.sh\n";
+			showEnvVarsInLog = 0;
+		};
+		0A1F312922083A160029C4B7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/SafeUIKitDemo.xcfilelist",
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/xcode_embed_frameworks.sh\n";
+			showEnvVarsInLog = 0;
+		};
 		0A334DCB209C6F8A00ABC6AE /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2291,7 +2330,6 @@
 				0A95E542220327ED0019C63D /* ArrayBasedCollection.swift in Sources */,
 				0A2FAA602201A69100793B7B /* AttributedStringStyle.swift in Sources */,
 				0A2FAA4F2201A62B00793B7B /* LocalizedString.swift in Sources */,
-				0A14EC4A2204513600D23F7F /* EthNumberFormatter.swift in Sources */,
 				0A95E55922034E330019C63D /* EthFeeCalculation.swift in Sources */,
 				0A95E55722034DF70019C63D /* RBEIntroViewController+State.swift in Sources */,
 				0A95E54E220328620019C63D /* FeeCalculationAssetLine+TextStyle.swift in Sources */,

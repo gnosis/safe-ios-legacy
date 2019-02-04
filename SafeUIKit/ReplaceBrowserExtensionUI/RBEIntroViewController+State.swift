@@ -4,6 +4,7 @@
 
 import Foundation
 import UIKit
+import SafeUIKit
 
 extension RBEIntroViewController {
 
@@ -72,16 +73,19 @@ extension RBEIntroViewController {
     class InvalidState: BaseErrorState {
 
         override func didEnter(controller: RBEIntroViewController) {
+            controller.navigationItem.titleView = nil
             if let data = controller.calculationData {
-                let formatter = EthTokenFormatter()
-                controller.feeCalculation.currentBalance.set(value: formatter.string(from: data.currentBalance))
-                controller.feeCalculation.networkFee.set(value: formatter.string(from: data.networkFee))
-                controller.feeCalculation.balance.set(value: formatter.string(from: data.balance))
+                let formatter = TokenNumberFormatter()
+                formatter.tokenSymbol = data.currentBalance.code
+                controller.feeCalculation.currentBalance.set(value: formatter.string(from: data.currentBalance.balance!))
+                controller.feeCalculation.networkFee.set(value: formatter.string(from: data.networkFee.balance!))
+                controller.feeCalculation.balance.set(value: formatter.string(from: data.balance.balance!))
             }
-
             if let calculationError = error as? FeeCalculationError, calculationError == .insufficientBalance {
                 controller.feeCalculation.balance.set(error: calculationError)
                 controller.feeCalculation.error = FeeCalculationErrorLine(text: calculationError.localizedDescription)
+            } else {
+                controller.feeCalculation.error = FeeCalculationErrorLine(text: error.localizedDescription).enableIcon()
             }
             controller.feeCalculation.update()
             controller.feeCalculationView.update()

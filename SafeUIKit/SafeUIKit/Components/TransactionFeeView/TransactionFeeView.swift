@@ -231,7 +231,7 @@ public class TransactionFeeView: BaseCustomView {
         let button = UIButton(type: .custom)
         button.setTitle("[?]", for: .normal)
         button.setTitleColor(ColorName.aquaBlue.color, for: .normal)
-        button.addTarget(nil, action: Selector("showTransactionFeeInfo"), for: .touchUpInside)
+        button.addTarget(nil, action: Selector(("showTransactionFeeInfo")), for: .touchUpInside)
         let stack = UIStackView(arrangedSubviews: [label, button])
         stack.axis = .horizontal
         return stack

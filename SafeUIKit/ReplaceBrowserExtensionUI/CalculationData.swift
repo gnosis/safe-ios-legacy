@@ -3,28 +3,7 @@
 //
 
 import Foundation
-
-struct EthNumber {
-    var data: Data
-}
-
-struct EthAddress {
-    var value: EthNumber
-}
-
-struct TokenData {
-    var amount: EthNumber
-    var token: String
-}
-
-extension TokenData: ExpressibleByStringLiteral {
-
-    init(stringLiteral value: String) {
-        amount = EthNumber(data: Data())
-        token = "ETH"
-    }
-
-}
+import Common
 
 struct CalculationData {
     var currentBalance: TokenData

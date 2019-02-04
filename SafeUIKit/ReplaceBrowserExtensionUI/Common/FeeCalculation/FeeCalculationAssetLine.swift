@@ -67,14 +67,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
             stack.addArrangedSubview(makeInfoButton(button: buttonData, textStyle: textStyle))
         }
         if asset.error != nil {
-            let image = UIImageView(image: UIImage(named: "estimation-error-icon",
-                                                   in: Bundle(for: FeeCalculationAssetLine.self), compatibleWith: nil))
-            image.contentMode = .top
-            image.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                image.heightAnchor.constraint(equalToConstant: 18),
-                image.widthAnchor.constraint(equalToConstant: 16)])
-            stack.addArrangedSubview(image)
+            stack.addArrangedSubview(makeErrorIcon())
         }
         return stack
     }
