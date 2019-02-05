@@ -20,6 +20,23 @@ extension RBEIntroViewController {
             controller.startIndicateLoading()
             controller.showStart()
             controller.disableStart()
+            doStart(controller: controller)
+        }
+
+        func doStart(controller: RBEIntroViewController) {
+            asyncInBackground {
+                guard let transaction = controller.transactionID else { return }
+                do {
+                    try controller.starter?.start(transaction: transaction)
+                    DispatchQueue.main.sync {
+                        controller.didStart()
+                    }
+                } catch let error {
+                    DispatchQueue.main.sync {
+                        controller.handleError(error)
+                    }
+                }
+            }
         }
     }
 

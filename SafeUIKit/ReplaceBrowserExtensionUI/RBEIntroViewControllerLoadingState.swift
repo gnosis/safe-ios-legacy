@@ -9,14 +9,6 @@ extension RBEIntroViewController {
     
     class LoadingState: CancellableState {
 
-        private var completions = [(() -> Void)]()
-        private let queue = OperationQueue()
-
-        func addCompletion(_ block: @escaping () -> Void) {
-            completions.append(block)
-            queue.maxConcurrentOperationCount = 1
-        }
-
         override func didEnter(controller: RBEIntroViewController) {
             controller.startIndicateLoading()
             controller.showStart()
@@ -26,7 +18,7 @@ extension RBEIntroViewController {
         }
 
         private func reload(controller: RBEIntroViewController) {
-            queue.addOperation { [weak self] in
+            asyncInBackground {
                 guard let transactionID = controller.transactionID ?? controller.starter?.create() else { return }
                 guard let estimation = controller.starter?.estimate(transaction: transactionID) else { return }
                 DispatchQueue.main.sync {
@@ -37,7 +29,6 @@ extension RBEIntroViewController {
                         controller.didLoad()
                     }
                 }
-                self?.completions.forEach { $0() }
             }
         }
 

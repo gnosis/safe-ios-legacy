@@ -30,6 +30,19 @@ class RBEStarterMock: RBEStarter {
         return actualCall.returns
     }
 
+    func start(transaction: RBETransactionID) throws {
+        let actualCall: StartCall
+        if let expected: StartCall = nextCall() {
+            actualCall = StartCall(transaction: transaction, throwing: expected.throwing)
+        } else {
+            actualCall = StartCall(transaction: transaction, throwing: nil)
+        }
+        actualCalls.append(actualCall)
+        if let error = actualCall.throwing {
+            throw error
+        }
+    }
+
     var callIndex = 0
 
     func nextCall<T>() -> T? where T: Call {
@@ -38,9 +51,6 @@ class RBEStarterMock: RBEStarter {
         return result
     }
 
-    func start(transaction: RBETransactionID) throws {
-
-    }
 
     class Call: Equatable, CustomStringConvertible {
 
@@ -100,12 +110,39 @@ class RBEStarterMock: RBEStarter {
         }
     }
 
+    class StartCall: Call {
+
+        override var methodSignature: String { return "start(transaction:)" }
+
+        var transaction: RBETransactionID
+        var throwing: Error?
+
+        init(transaction: RBETransactionID, throwing: Error?) {
+            self.transaction = transaction
+            self.throwing = throwing
+        }
+
+        override func equals(_ rhs: RBEStarterMock.Call) -> Bool {
+            guard super.equals(rhs), let rhs = rhs as? StartCall else { return false }
+            return transaction == rhs.transaction && String(describing: throwing) == String(describing: rhs.throwing)
+        }
+
+        override var description: String {
+            return "start(transaction: \(transaction.debugDescription)) throws \(String(describing: throwing))"
+        }
+
+    }
+
     func expect_create(returns: RBETransactionID) {
         expect(CreateCall(returns: returns))
     }
 
     func expect_estimate(transaction: RBETransactionID, returns: RBEEstimationResult) {
         expect(EstimateCall(transaction: transaction, returns: returns))
+    }
+
+    func expect_start(transaction: RBETransactionID, throwing: Error?) {
+        expect(StartCall(transaction: transaction, throwing: throwing))
     }
 
     var expectedCalls = [Call]()

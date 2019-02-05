@@ -60,15 +60,6 @@ class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCas
         mock.verify()
     }
 
-    func transitionToLoading(_ vc: RBEIntroViewController? = nil) {
-        let state = RBEIntroViewController.LoadingState()
-        let exp = expectation(description: "Loading")
-        state.addCompletion { exp.fulfill() }
-        (vc ?? self.vc).state = state
-        (vc ?? self.vc).loadViewIfNeeded()
-        waitForExpectations(timeout: 0.01, handler: nil)
-    }
-
     func test_whenCreatedTransaction_thenReestimatesIt() {
         let mock = RBEStarterMock()
         mock.expect_estimate(transaction: transactionID, returns: .zero)
@@ -107,6 +98,19 @@ class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCas
 
         XCTAssertEqual(vc.calculationData, estimation.feeCalculation)
         XCTAssertTrue(vc.spy_didLoad_invoked)
+    }
+
+}
+
+extension RBEIntroViewControllerLoadingStateTests {
+
+    func transitionToLoading(_ vc: RBEIntroViewController? = nil) {
+        let state = RBEIntroViewController.LoadingState()
+        let exp = expectation(description: "Loading")
+        state.addCompletion { exp.fulfill() }
+        (vc ?? self.vc).state = state
+        (vc ?? self.vc).loadViewIfNeeded()
+        waitForExpectations(timeout: 0.01, handler: nil)
     }
 
 }

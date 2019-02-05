@@ -14,6 +14,7 @@ class TestableRBEIntroViewController: RBEIntroViewController {
     var spy_retry_invoked: Bool = false
     var spy_handleError_invoked: Bool = false
     var spy_didLoad_invoked: Bool = false
+    var spy_didStart_invoked: Bool = false
     
     static func createTestable() -> TestableRBEIntroViewController {
         return TestableRBEIntroViewController(nibName: "\(RBEIntroViewController.self)", bundle: Bundle(for: RBEIntroViewController.self))
@@ -49,5 +50,10 @@ class TestableRBEIntroViewController: RBEIntroViewController {
     override func didLoad() {
         spy_didLoad_invoked = true
         super.didLoad()
+    }
+
+    override func didStart() {
+        spy_didStart_invoked = true
+        super.didStart()
     }
 }

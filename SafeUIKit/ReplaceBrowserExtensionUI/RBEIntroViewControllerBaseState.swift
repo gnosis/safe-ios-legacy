@@ -19,6 +19,20 @@ extension RBEIntroViewController {
         func didStart(controller: RBEIntroViewController) {}
         func retry(controller: RBEIntroViewController) {}
 
+        private var completions = [(() -> Void)]()
+        private let queue = OperationQueue()
+
+        func addCompletion(_ block: @escaping () -> Void) {
+            completions.append(block)
+            queue.maxConcurrentOperationCount = 1
+        }
+
+        func asyncInBackground(_ block: @escaping () -> Void) {
+            queue.addOperation { [weak self] in
+                block()
+                self?.completions.forEach { $0() }
+            }
+        }
     }
 
     class CancellableState: State {
