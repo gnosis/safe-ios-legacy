@@ -203,6 +203,7 @@
 		0ABDF608220880BB0047F10D /* UINavigationController+BackSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */; };
 		0ABDF60A22088AD70047F10D /* RBEStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF60922088AD70047F10D /* RBEStarter.swift */; };
 		0ABDF60C220895EC0047F10D /* FeeCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF60B220895EC0047F10D /* FeeCalculationError.swift */; };
+		0ABDF61422098C2F0047F10D /* RBEStarterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */; };
 		0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */; };
 		0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */; };
 		0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */; };
@@ -634,6 +635,7 @@
 		0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+BackSwizzling.m"; sourceTree = "<group>"; };
 		0ABDF60922088AD70047F10D /* RBEStarter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEStarter.swift; sourceTree = "<group>"; };
 		0ABDF60B220895EC0047F10D /* FeeCalculationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeCalculationError.swift; sourceTree = "<group>"; };
+		0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEStarterMock.swift; sourceTree = "<group>"; };
 		0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsDemoViewController.swift; sourceTree = "<group>"; };
 		0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -914,6 +916,7 @@
 				0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */,
 				0A95E55A220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift */,
 				0AF6D88921FF12D200D1980A /* RBEIntroViewControllerLoadingStateTests.swift */,
+				0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */,
 				0ABDF5F0220842220047F10D /* RBEIntroViewControllerReadyStateTests.swift */,
 				0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */,
 				0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */,
@@ -2407,6 +2410,7 @@
 				0ABDF5F5220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift in Sources */,
 				0ABDF5F72208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift in Sources */,
 				0A95E55122032B8F0019C63D /* FeeCalculationTests.swift in Sources */,
+				0ABDF61422098C2F0047F10D /* RBEStarterMock.swift in Sources */,
 				0ABDF5F922084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift in Sources */,
 				0A2FAA622201A69800793B7B /* RBEIntroViewControllerLoadingStateTests.swift in Sources */,
 				0ABDF5FB22084E760047F10D /* TestableRBEIntroViewController.swift in Sources */,
