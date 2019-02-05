@@ -21,6 +21,8 @@ public class RBEIntroViewController: UIViewController {
             feeCalculationView.calculation = newValue
         }
     }
+    var transactionID: RBETransactionID?
+    var starter: RBEStarter?
 
     @IBOutlet weak var feeCalculationView: FeeCalculationView!
 

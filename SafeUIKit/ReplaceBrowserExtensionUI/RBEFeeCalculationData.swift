@@ -5,7 +5,7 @@
 import Foundation
 import Common
 
-public struct RBEFeeCalculationData {
+public struct RBEFeeCalculationData: Equatable {
 
     public var currentBalance: TokenData
     public var networkFee: TokenData
