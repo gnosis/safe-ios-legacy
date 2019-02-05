@@ -58,6 +58,7 @@ class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCas
         transitionToLoading()
 
         mock.verify()
+        XCTAssertEqual(vc.transactionID, transactionID)
     }
 
     func test_whenCreatedTransaction_thenReestimatesIt() {

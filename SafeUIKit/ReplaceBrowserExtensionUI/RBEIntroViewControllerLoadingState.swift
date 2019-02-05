@@ -20,6 +20,7 @@ extension RBEIntroViewController {
         private func reload(controller: RBEIntroViewController) {
             asyncInBackground {
                 guard let transactionID = controller.transactionID ?? controller.starter?.create() else { return }
+                controller.transactionID = transactionID
                 guard let estimation = controller.starter?.estimate(transaction: transactionID) else { return }
                 DispatchQueue.main.sync {
                     controller.calculationData = estimation.feeCalculation

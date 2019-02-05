@@ -22,14 +22,13 @@ public class RBEIntroViewController: UIViewController {
         }
     }
     var transactionID: RBETransactionID?
-    var starter: RBEStarter?
+    public var starter: RBEStarter?
 
     @IBOutlet weak var feeCalculationView: FeeCalculationView!
 
     struct Strings {
         var start = LocalizedString("navigation.start", comment: "Start")
         var back = LocalizedString("navigation.back", comment: "Back")
-        var retry = LocalizedString("navigation.retry", comment: "Retry")
     }
 
     var strings = Strings()
@@ -51,7 +50,7 @@ public class RBEIntroViewController: UIViewController {
     func commonInit() {
         startButtonItem = UIBarButtonItem(title: strings.start, style: .done, target: self, action: #selector(start))
         backButtonItem = UIBarButtonItem(title: strings.back, style: .plain, target: self, action: #selector(back))
-        retryButtonItem = UIBarButtonItem(title: strings.retry, style: .done, target: self, action:  #selector(retry))
+        retryButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(retry))
     }
 
     public override func viewDidLoad() {

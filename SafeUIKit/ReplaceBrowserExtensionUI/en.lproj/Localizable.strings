@@ -1,8 +1,8 @@
 /* OK */
-"alert.error.ok" = "alert.error.ok";
+"alert.error.ok" = "OK";
 
 /* Error */
-"alert.error.title" = "alert.error.title";
+"alert.error.title" = "Error";
 
 /* Balance */
 "fee_calculation.balance" = "Balance";
@@ -27,9 +27,6 @@
 
 /* Back */
 "navigation.back" = "Back";
-
-/* Retry */
-"navigation.retry" = "Retry";
 
 /* Start */
 "navigation.start" = "Start";
