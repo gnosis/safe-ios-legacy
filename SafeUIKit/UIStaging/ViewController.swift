@@ -9,7 +9,7 @@ import BigInt
 
 class ViewController: UIViewController {
 
-    let driver = RBEIntroDemoDriver()
+    var driver: RBEIntroDemoDriver!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func push() {
+        driver = RBEIntroDemoDriver()
         let vc = RBEIntroViewController.create()
         vc.starter = driver
         navigationController?.pushViewController(vc, animated: true)
