@@ -7,9 +7,9 @@ import SafeUIKit
 
 public class RBEIntroViewController: UIViewController {
 
-    var startButtonItem: UIBarButtonItem!
-    var backButtonItem: UIBarButtonItem!
-    var retryButtonItem: UIBarButtonItem!
+    public var startButtonItem: UIBarButtonItem!
+    public var backButtonItem: UIBarButtonItem!
+    public var retryButtonItem: UIBarButtonItem!
 
     var state: State = LoadingState()
     var calculationData: RBEFeeCalculationData?
