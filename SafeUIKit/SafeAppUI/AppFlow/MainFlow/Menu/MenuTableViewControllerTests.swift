@@ -150,4 +150,6 @@ final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate
 
     func didSelectReplaceRecoveryPhrase() {}
 
+    func didSelectCommand(_ command: MenuCommand) {}
+
 }
