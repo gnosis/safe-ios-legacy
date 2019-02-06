@@ -50,10 +50,10 @@ class RBEIntroViewControllerStateTransitionTests: RBEIntroViewControllerBaseTest
         XCTAssertState(RBEIntroViewController.ErrorState.self)
     }
 
-    func test_whenRetryDuringError_thenLoading() {
+    func test_whenRetryDuringError_thenStarting() {
         vc.transition(to: RBEIntroViewController.ErrorState(error: MyError()))
-        vc.retry()
-        XCTAssertState(RBEIntroViewController.LoadingState.self)
+        vc.start()
+        XCTAssertState(RBEIntroViewController.StartingState.self)
     }
 
     func test_whenBackDuringError_thenCancelling() {

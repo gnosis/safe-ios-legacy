@@ -16,8 +16,8 @@ extension RBEIntroViewController {
         override func didEnter(controller: RBEIntroViewController) {
             controller.present(makeAlert(), animated: true, completion: nil)
             controller.stopIndicateLoading()
-            controller.showRetry()
-            controller.enableRetry()
+            controller.showStart()
+            controller.enableStart()
         }
 
         private func makeAlert() -> UIViewController {
@@ -27,6 +27,14 @@ extension RBEIntroViewController {
             let okAction = UIAlertAction(title: Strings.errorOK, style: .default, handler: nil)
             alert.addAction(okAction)
             return alert
+        }
+
+        override func retry(controller: RBEIntroViewController) {
+            // nothing
+        }
+
+        override func start(controller: RBEIntroViewController) {
+            controller.transition(to: StartingState())
         }
 
     }
