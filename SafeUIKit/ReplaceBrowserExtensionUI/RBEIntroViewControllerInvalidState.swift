@@ -4,6 +4,7 @@
 
 import Foundation
 import UIKit
+import ReplaceBrowserExtensionFacade
 
 extension RBEIntroViewController {
 

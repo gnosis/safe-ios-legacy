@@ -10,9 +10,6 @@
 /* Current balance */
 "fee_calculation.current_balance" = "Current balance";
 
-/* Insufficient funds error text */
-"fee_calculation.error.insufficient_balance" = "Insufficient funds.\nPlease add ETH to your Safe.";
-
 /* Network fee */
 "fee_calculation.fee" = "Network fee";
 

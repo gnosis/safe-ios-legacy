@@ -6,6 +6,7 @@ import XCTest
 @testable import ReplaceBrowserExtensionUI
 import Common
 import BigInt
+import ReplaceBrowserExtensionFacade
 
 class RBEIntroViewControllerInvalidStateTests: RBEIntroViewControllerBaseTestCase {
 

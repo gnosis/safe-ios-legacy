@@ -10,7 +10,8 @@ public class FeeCalculationError: NSError {
 
     enum Description {
         static let insufficientBalance = LocalizedString("fee_calculation.error.insufficient_balance",
-                                                         comment: "Insufficient funds error text")
+                                                         comment: "Insufficient funds.\nPlease add ETH to your Safe.")
+
     }
     public enum Code: Int {
         case insufficientBalance

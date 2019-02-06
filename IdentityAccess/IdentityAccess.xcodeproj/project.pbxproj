@@ -84,6 +84,20 @@
 			remoteGlobalIDString = 0A160B9220A07FE100E064E1;
 			remoteInfo = Database;
 		};
+		0A3D152B220B2BEC00E340DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A3D1501220B286B00E340DB;
+			remoteInfo = ReplaceBrowserExtensionFacade;
+		};
+		0A3D152D220B2BEC00E340DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A3D1518220B2A0A00E340DB;
+			remoteInfo = ReplaceBrowserExtensionFacadeResources;
+		};
 		0A537AAD207CEA0100921FB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
@@ -603,6 +617,8 @@
 				0A8E3BB420B41AB100F002F6 /* libCommonImplementations.a */,
 				0A8E3BB620B41AB100F002F6 /* CommonImplementationsTests.xctest */,
 				0A934D6B20B714F900F15616 /* CommonIntegration.app */,
+				0A3D152C220B2BEC00E340DB /* libReplaceBrowserExtensionFacade.a */,
+				0A3D152E220B2BEC00E340DB /* ReplaceBrowserExtensionFacadeResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -882,6 +898,20 @@
 			remoteRef = 0A160B9F20A0801A00E064E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		0A3D152C220B2BEC00E340DB /* libReplaceBrowserExtensionFacade.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReplaceBrowserExtensionFacade.a;
+			remoteRef = 0A3D152B220B2BEC00E340DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A3D152E220B2BEC00E340DB /* ReplaceBrowserExtensionFacadeResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReplaceBrowserExtensionFacadeResources.bundle;
+			remoteRef = 0A3D152D220B2BEC00E340DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0A8E3BB420B41AB100F002F6 /* libCommonImplementations.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -985,7 +1015,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/../scripts/localize.sh LocalizedString";
+			shellScript = "${SRCROOT}/../scripts/localize.sh LocalizedString\n";
 			showEnvVarsInLog = 0;
 		};
 		0A537C21207D04D400921FB9 /* Lint */ = {

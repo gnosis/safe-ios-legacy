@@ -5,6 +5,7 @@
 import XCTest
 @testable import ReplaceBrowserExtensionUI
 import Common
+import ReplaceBrowserExtensionFacade
 
 class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCase {
 

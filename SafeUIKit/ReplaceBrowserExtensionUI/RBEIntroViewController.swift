@@ -4,6 +4,7 @@
 
 import UIKit
 import SafeUIKit
+import ReplaceBrowserExtensionFacade
 
 public class RBEIntroViewController: UIViewController {
 
