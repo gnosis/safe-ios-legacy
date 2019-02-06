@@ -3,12 +3,26 @@
 //
 
 import UIKit
+import SafeUIKit
 
 public class RBEIntroViewController: UIViewController {
 
-    var startButtonItem: UIBarButtonItem!
-    var backButtonItem: UIBarButtonItem!
+    public var startButtonItem: UIBarButtonItem!
+    public var backButtonItem: UIBarButtonItem!
+    public var retryButtonItem: UIBarButtonItem!
+
     var state: State = LoadingState()
+    var calculationData: RBEFeeCalculationData?
+    var feeCalculation: EthFeeCalculation {
+        get {
+            return feeCalculationView.calculation as! EthFeeCalculation
+        }
+        set {
+            feeCalculationView.calculation = newValue
+        }
+    }
+    var transactionID: RBETransactionID?
+    public var starter: RBEStarter?
 
     @IBOutlet weak var feeCalculationView: FeeCalculationView!
 
@@ -34,8 +48,9 @@ public class RBEIntroViewController: UIViewController {
     }
 
     func commonInit() {
-        startButtonItem = UIBarButtonItem(title: strings.start, style: .done, target: nil, action: nil)
-        backButtonItem = UIBarButtonItem(title: strings.back, style: .plain, target: nil, action: nil)
+        startButtonItem = UIBarButtonItem(title: strings.start, style: .done, target: self, action: #selector(start))
+        backButtonItem = UIBarButtonItem(title: strings.back, style: .plain, target: self, action: #selector(back))
+        retryButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(retry))
     }
 
     public override func viewDidLoad() {
@@ -56,13 +71,59 @@ public class RBEIntroViewController: UIViewController {
         newState.didEnter(controller: self)
     }
 
+    func reloadData() {
+        feeCalculation = EthFeeCalculation()
+        guard let data = calculationData else { return }
+        let formatter = TokenNumberFormatter()
+        formatter.tokenSymbol = data.currentBalance.code
+        feeCalculation.currentBalance.set(value: formatter.string(from: data.currentBalance.balance!))
+        feeCalculation.networkFee.set(value: formatter.string(from: data.networkFee.balance!))
+        feeCalculation.balance.set(value: formatter.string(from: data.balance.balance!))
+    }
+
+    func startIndicateLoading() {
+        navigationItem.titleView = LoadingTitleView()
+    }
+
+    func stopIndicateLoading() {
+        navigationItem.titleView = nil
+    }
+
+    func showRetry() {
+        navigationItem.rightBarButtonItems = [retryButtonItem]
+    }
+
+    func showStart() {
+        navigationItem.rightBarButtonItems = [startButtonItem]
+    }
+
+    func enableStart() {
+        startButtonItem.isEnabled = true
+    }
+
+    func disableStart() {
+        startButtonItem.isEnabled = false
+    }
+
+    func enableRetry() {
+        retryButtonItem.isEnabled = true
+    }
+
+    func disableRetry() {
+        retryButtonItem.isEnabled = false
+    }
+
+    func showBack() {
+        navigationItem.leftBarButtonItems = [backButtonItem]
+    }
+
     // MARK: Actions
 
     public func handleError(_ error: Error) {
         state.handleError(error, controller: self)
     }
 
-    public func back() {
+    @objc public func back() {
         state.back(controller: self)
     }
 
@@ -70,7 +131,7 @@ public class RBEIntroViewController: UIViewController {
         state.didLoad(controller: self)
     }
 
-    public func start() {
+    @objc public func start() {
         state.start(controller: self)
     }
 
@@ -78,95 +139,8 @@ public class RBEIntroViewController: UIViewController {
         state.didStart(controller: self)
     }
 
-    public func retry() {
+    @objc public func retry() {
         state.retry(controller: self)
     }
-
-}
-
-extension RBEIntroViewController {
-
-    // MARK: Base States
-
-    class State {
-
-        func didEnter(controller: RBEIntroViewController) {}
-        func willPush(controller: RBEIntroViewController, onTopOf topViewController: UIViewController) {}
-        func handleError(_ error: Error, controller: RBEIntroViewController) {}
-        func back(controller: RBEIntroViewController) {}
-        func didLoad(controller: RBEIntroViewController) {}
-        func start(controller: RBEIntroViewController) {}
-        func didStart(controller: RBEIntroViewController) {}
-        func retry(controller: RBEIntroViewController) {}
-
-    }
-
-    class CancellableState: State {
-
-        override func back(controller: RBEIntroViewController) {
-            controller.transition(to: CancellingState())
-        }
-
-    }
-
-    class BaseErrorState: CancellableState {
-
-        override func retry(controller: RBEIntroViewController) {
-            controller.transition(to: LoadingState())
-        }
-
-    }
-
-    // MARK: Controller states
-
-    class LoadingState: CancellableState {
-
-        override func didEnter(controller: RBEIntroViewController) {
-            controller.navigationItem.titleView = LoadingTitleView()
-            controller.navigationItem.rightBarButtonItems = [controller.startButtonItem]
-            controller.startButtonItem.isEnabled = false
-        }
-
-        override func willPush(controller: RBEIntroViewController, onTopOf topViewController: UIViewController) {
-            topViewController.navigationItem.backBarButtonItem = controller.backButtonItem
-        }
-
-        override func handleError(_ error: Error, controller: RBEIntroViewController) {
-            controller.transition(to: InvalidState())
-        }
-
-        override func didLoad(controller: RBEIntroViewController) {
-            controller.transition(to: ReadyState())
-        }
-
-    }
-
-    class InvalidState: BaseErrorState {}
-
-    class CancellingState: State {}
-
-    class ReadyState: CancellableState {
-
-        override func start(controller: RBEIntroViewController) {
-            controller.transition(to: StartingState())
-        }
-
-    }
-
-    class StartingState: State {
-
-        override func didStart(controller: RBEIntroViewController) {
-            controller.transition(to: StartedState())
-        }
-
-        override func handleError(_ error: Error, controller: RBEIntroViewController) {
-            controller.transition(to: ErrorState())
-        }
-
-    }
-
-    class StartedState: State {}
-
-    class ErrorState: BaseErrorState {}
 
 }

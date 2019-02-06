@@ -23,7 +23,8 @@ public class FeeCalculation: ArrayBasedCollection<FeeCalculationSection> {
     }
 
     public func addSection(_ build: (FeeCalculationSection) -> FeeCalculationSection) -> FeeCalculation {
-        return self + [build(FeeCalculationSection())]
+        self.elements.append(build(FeeCalculationSection()))
+        return self
     }
 
 }

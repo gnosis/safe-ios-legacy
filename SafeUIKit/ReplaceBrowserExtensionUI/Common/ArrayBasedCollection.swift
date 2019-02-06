@@ -44,3 +44,11 @@ open class ArrayBasedCollection<ElementType>: MutableCollection, RangeReplaceabl
             elements.replaceSubrange(subrange, with: newElements)
     }
 }
+
+extension ArrayBasedCollection: Equatable where Element: Equatable {
+
+    public static func ==(lhs: ArrayBasedCollection<ElementType>, rhs: ArrayBasedCollection<ElementType>) -> Bool {
+        return lhs.elements == rhs.elements
+    }
+
+}

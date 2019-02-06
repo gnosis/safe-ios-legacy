@@ -33,7 +33,7 @@ public class FeeCalculationView: UIView {
         contentView?.removeFromSuperview()
         contentView = calculation.makeView()
         addSubview(contentView)
-        wrapAroundDynamiHeightView(contentView)
+        wrapAroundDynamicHeightView(contentView, insets: .zero)
     }
 
 }

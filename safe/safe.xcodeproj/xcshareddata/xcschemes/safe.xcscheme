@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0940"
+   LastUpgradeVersion = "1010"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -279,16 +279,6 @@
                BuildableName = "CommonImplementationsTests.xctest"
                BlueprintName = "CommonImplementationsTests"
                ReferencedContainer = "container:../Common/Common.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A2FAA2F2201A5D900793B7B"
-               BuildableName = "ReplaceBrowserExtensionUITests.xctest"
-               BlueprintName = "ReplaceBrowserExtensionUITests"
-               ReferencedContainer = "container:../SafeUIKit/SafeUIKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

@@ -20,4 +20,9 @@ public class FeeCalculationSpacingLine: FeeCalculationLine {
         return view
     }
 
+    override func equals(to rhs: FeeCalculationLine) -> Bool {
+        guard let rhs = rhs as? FeeCalculationSpacingLine else { return false }
+        return spacing == rhs.spacing
+    }
+
 }

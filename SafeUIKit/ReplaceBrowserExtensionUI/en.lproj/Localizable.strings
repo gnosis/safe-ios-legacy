@@ -1,3 +1,27 @@
+/* OK */
+"alert.error.ok" = "OK";
+
+/* Error */
+"alert.error.title" = "Error";
+
+/* Balance */
+"fee_calculation.balance" = "Balance";
+
+/* Current balance */
+"fee_calculation.current_balance" = "Current balance";
+
+/* Insufficient funds error text */
+"fee_calculation.error.insufficient_balance" = "Insufficient funds.\nPlease add ETH to your Safe.";
+
+/* Network fee */
+"fee_calculation.fee" = "Network fee";
+
+/* [?] */
+"fee_calculation.fee.info" = "[?]";
+
+/* - ETH */
+"fee_calculation.value.loading_eth" = "- ETH";
+
 /* Loading... */
 "loading_title_text" = "Loading…";
 

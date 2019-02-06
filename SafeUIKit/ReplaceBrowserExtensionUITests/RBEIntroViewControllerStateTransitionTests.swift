@@ -5,19 +5,6 @@
 import XCTest
 @testable import ReplaceBrowserExtensionUI
 
-class RBEIntroViewControllerBaseTestCase: XCTestCase {
-
-    let vc = RBEIntroViewController.create()
-
-    override func setUp() {
-        super.setUp()
-        vc.loadViewIfNeeded()
-    }
-
-}
-
-class MyError: Error {}
-
 class RBEIntroViewControllerStateTransitionTests: RBEIntroViewControllerBaseTestCase {
 
     func test_whenStarts_thenInLoading() {
@@ -63,26 +50,26 @@ class RBEIntroViewControllerStateTransitionTests: RBEIntroViewControllerBaseTest
         XCTAssertState(RBEIntroViewController.ErrorState.self)
     }
 
-    func test_whenRetryDuringError_thenLoading() {
-        vc.transition(to: RBEIntroViewController.ErrorState())
-        vc.retry()
-        XCTAssertState(RBEIntroViewController.LoadingState.self)
+    func test_whenRetryDuringError_thenStarting() {
+        vc.transition(to: RBEIntroViewController.ErrorState(error: MyError()))
+        vc.start()
+        XCTAssertState(RBEIntroViewController.StartingState.self)
     }
 
     func test_whenBackDuringError_thenCancelling() {
-        vc.transition(to: RBEIntroViewController.ErrorState())
+        vc.transition(to: RBEIntroViewController.ErrorState(error: MyError()))
         vc.back()
         XCTAssertState(RBEIntroViewController.CancellingState.self)
     }
 
     func test_whenBackDuringInvalid_thenCancelling() {
-        vc.transition(to: RBEIntroViewController.InvalidState())
+        vc.transition(to: RBEIntroViewController.InvalidState(error: MyError()))
         vc.back()
         XCTAssertState(RBEIntroViewController.CancellingState.self)
     }
 
     func test_whenRetryDuringInvalid_thenLoading() {
-        vc.transition(to: RBEIntroViewController.InvalidState())
+        vc.transition(to: RBEIntroViewController.InvalidState(error: MyError()))
         vc.retry()
         XCTAssertState(RBEIntroViewController.LoadingState.self)
     }
@@ -99,34 +86,3 @@ extension RBEIntroViewControllerStateTransitionTests {
 
 }
 
-class RBEIntroViewControllerContentTests: RBEIntroViewControllerBaseTestCase {
-
-    func test_whenLoading_thenHasContent() {
-        vc.transition(to: RBEIntroViewController.LoadingState())
-        XCTAssertTrue(vc.navigationItem.titleView is LoadingTitleView)
-        XCTAssertEqual(vc.navigationItem.rightBarButtonItems, [vc.startButtonItem])
-        XCTAssertFalse(vc.startButtonItem.isEnabled)
-    }
-
-    func test_whenLoadingAndPushed_thenBackButtonIsSet() {
-        let navVC = UINavigationController(rootViewController: UIViewController())
-        navVC.pushViewController(vc, animated: false)
-        vc.transition(to: RBEIntroViewController.LoadingState())
-        vc.willMove(toParent: navVC)
-        XCTAssertEqual(navVC.viewControllers.first!.navigationItem.backBarButtonItem, vc.backButtonItem)
-    }
-
-    func test_whenMovingToRootVC_thenOK() {
-        let navVC = UINavigationController()
-        navVC.setViewControllers([vc], animated: false)
-        XCTAssertNil(vc.navigationItem.backBarButtonItem)
-    }
-
-    func test_whenMovingToNonNavigationParent_thenOK() {
-        let parent = UIViewController()
-        parent.addChild(vc)
-        XCTAssertNil(vc.navigationItem.backBarButtonItem)
-        XCTAssertNil(parent.navigationItem.backBarButtonItem)
-    }
-
-}

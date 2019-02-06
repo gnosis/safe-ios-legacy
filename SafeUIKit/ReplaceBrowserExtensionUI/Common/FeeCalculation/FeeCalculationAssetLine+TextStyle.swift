@@ -20,7 +20,7 @@ extension FeeCalculationAssetLine {
         static let balance = TextStyle(name: NameBalanceStyle(),
                                        value: ValueBalanceStyle(),
                                        info: NameButtonBalanceStyle(),
-                                       error: ErrorStyle())
+                                       error: ErrorBalanceStyle())
     }
 
     class DefaultStyle: AttributedStringStyle {
@@ -62,14 +62,16 @@ extension FeeCalculationAssetLine {
 
     }
 
-    class ErrorStyle: DefaultStyle {}
+    class ErrorStyle: DefaultStyle {
 
-}
+        override var fontColor: UIColor { return ColorName.tomato.color }
 
-public class FeeCalculationErrorLine: FeeCalculationLine {
+    }
 
-    init(text: String) {}
+    class ErrorBalanceStyle: ValueBalanceStyle {
 
-    var textStyle: AttributedStringStyle?
+        override var fontColor: UIColor { return ColorName.tomato.color }
+
+    }
 
 }
