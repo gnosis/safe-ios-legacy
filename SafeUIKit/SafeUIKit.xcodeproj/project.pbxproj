@@ -105,6 +105,7 @@
 		0A395C9E21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A395C9D21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift */; };
 		0A3D14C7220AE95300E340DB /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A3D14C8220AE95300E340DB /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A3D14CB220B153D00E340DB /* ReplaceBrowserExtensionUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2FAA282201A5D800793B7B /* ReplaceBrowserExtensionUI.framework */; };
 		0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668C20A5E059009BA7FC /* MainViewController.swift */; };
 		0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */; };
 		0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A437F0520D26E8C007608F8 /* TransactionDetailsViewController.swift */; };
@@ -868,6 +869,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3D14CB220B153D00E340DB /* ReplaceBrowserExtensionUI.framework in Frameworks */,
 				0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */,
 				0A334E64209C8ED300ABC6AE /* libIdentityAccessApplication.a in Frameworks */,
 				0A334DCA209C6DEC00ABC6AE /* SafeUIKit.framework in Frameworks */,
