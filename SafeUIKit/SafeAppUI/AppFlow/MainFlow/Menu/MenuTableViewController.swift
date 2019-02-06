@@ -13,6 +13,7 @@ protocol MenuTableViewControllerDelegate: class {
     func didSelectConnectBrowserExtension()
     func didSelectChangeBrowserExtension()
     func didSelectReplaceRecoveryPhrase()
+    func didSelectCommand(_ command: MenuCommand)
 }
 
 final class MenuItemTableViewCell: UITableViewCell {
@@ -25,6 +26,8 @@ final class MenuTableViewController: UITableViewController {
 
     private var menuItems =
         [(section: SettingsSection, items: [(item: Any, cellHeight: () -> CGFloat)], title: String)]()
+
+    private var commands: [MenuCommand] = [ReplaceBrowserExtensionCommand()]
 
     private enum Strings {
         static let title = LocalizedString("menu.title", comment: "Title for menu screen.")
@@ -118,11 +121,13 @@ final class MenuTableViewController: UITableViewController {
              items: [menuItem(Strings.manageTokens)],
              title: Strings.portfolioSectionTitle),
             (section: .security,
-             items: [
+             items:
+                [
 //                menuItem(Strings.changePassword),
                 menuItem(Strings.changeRecoveryPhrase)
 //                browserExtensionItem
-                ],
+                ] +
+                commands.filter { !$0.isHidden }.map { menuItem($0.title) },
              title: Strings.securitySectionTitle),
             (section: .support,
              items: [
@@ -208,7 +213,9 @@ final class MenuTableViewController: UITableViewController {
             case Strings.connectBrowserExtension:
                 delegate?.didSelectConnectBrowserExtension()
             case Strings.changeBrowserExtension:
-                delegate?.didSelectChangeBrowserExtension()
+                if let command = commands.first {
+                    delegate?.didSelectCommand(command)
+                }
             case Strings.changeRecoveryPhrase:
                 delegate?.didSelectReplaceRecoveryPhrase()
             default: break

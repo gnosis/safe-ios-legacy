@@ -192,6 +192,10 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
         push(replaceRecoveryController)
     }
 
+    func didSelectCommand(_ command: MenuCommand) {
+        command.run(flowCoordinator: self)
+    }
+
 }
 
 extension MainFlowCoordinator: ReplaceRecoveryPhraseViewControllerDelegate {

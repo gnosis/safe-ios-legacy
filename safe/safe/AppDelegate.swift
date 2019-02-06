@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         configureIdentityAccess()
         configureMultisigWallet()
         configureEthereum()
+        configureUI()
     }
 
     private func configureIdentityAccess() {
@@ -221,6 +222,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
     private func registerMultisigDatabaseMigrations(service: DBMigrationService) {
         // multisig wallet db migrations go here
+    }
+
+    func configureUI() {
+        if let flags = appConfig.featureFlags {
+            FeatureFlagSettings.instance = FeatureFlagSettings(flags: flags)
+        }
     }
 
     private func createWindow() {
