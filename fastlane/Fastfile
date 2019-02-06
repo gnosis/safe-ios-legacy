@@ -141,7 +141,6 @@ platform :ios do
       )
     pilot(skip_waiting_for_build_processing: true,
       app_identifier: app_id)
-    refresh_dsyms(app_id)
     slack(
      message: "Successfully distributed new #{configuration} version to TestFlight :rocket:",
     )
@@ -151,6 +150,8 @@ platform :ios do
   lane :testflight_dsyms do
     refresh_dsyms(PRERELEASE_APP_ID, true)
     refresh_dsyms(RELEASE_APP_ID, true)
+    refresh_dsyms(PRERELEASE_APP_ID, false)
+    refresh_dsyms(RELEASE_APP_ID, false)
   end
 
   desc "Adds devices from the ../gnosis-ios-certificates/devices.txt file"

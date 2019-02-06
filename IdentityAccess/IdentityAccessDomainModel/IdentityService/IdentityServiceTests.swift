@@ -127,18 +127,16 @@ class IdentityServiceTests: DomainTestCase {
 
     func test_create_passwordNSymbols() {
         let short = String(repeating: "1", count: 5)
-        let long = String(repeating: "1", count: 101)
+        let long = String(repeating: "qwe123qwe", count: 101)
         XCTAssertThrowsError(try createUser(password: short)) {
             self.assertError($0, .passwordTooShort)
         }
-        XCTAssertThrowsError(try createUser(password: long)) {
-            self.assertError($0, .passwordTooLong)
-        }
+        XCTAssertNoThrow(try createUser(password: long))
     }
 
     func test_create_passwordCapitalLetter() {
         XCTAssertThrowsError(try createUser(password: "123456")) {
-            self.assertError($0, .passwordMissingCapitalLetter)
+            self.assertError($0, .passwordMissingLetter)
         }
     }
 

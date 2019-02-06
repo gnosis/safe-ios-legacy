@@ -52,7 +52,7 @@
 /* Change password menu item */
 "menu.action.change_password" = "Change Password";
 
-/* Change recovery key  menu item */
+/* Change recovery key menu item */
 "menu.action.change_recovery_phrase" = "Replace Recovery Phrase";
 
 /* Connect browser extension menu item */
@@ -240,7 +240,7 @@
 "onboarding.terms.agree" = "Agree";
 
 /* Content (bulleted list). Separate by new line characters '\n' */
-"onboarding.terms.content" = "We do not collect demographic data such as age or gender.\nWe collect anonymized app usage  data and crash reports to ensure the quality of our app.";
+"onboarding.terms.content" = "We do not collect demographic data such as age or gender.\nWe collect anonymized app usage data and crash reports to ensure the quality of our app.";
 
 /* No Thanks */
 "onboarding.terms.disagree" = "No Thanks";

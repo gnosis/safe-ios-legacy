@@ -105,7 +105,7 @@ final class PairWithBrowserExtensionViewController: UIViewController {
     }
 
     func handleError(_ error: Error) {
-        guard  let err = error as? WalletApplicationServiceError else {
+        guard let err = error as? WalletApplicationServiceError else {
             showError(message: Strings.invalidCode, log: "Failed to pair with extension: \(error)")
             return
         }
