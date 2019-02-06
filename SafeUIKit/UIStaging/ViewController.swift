@@ -15,7 +15,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // play() // uncomment for scripted screen usage
+//         play() // uncomment for scripted screen usage
     }
 
     func play() {
@@ -67,9 +67,6 @@ class RBEIntroUser {
             alert.dismiss(animated: true, completion: nil)
         }
         withDelay(1) {
-            self.touch(self.vc.retryButtonItem)
-        }
-        withDelay(defaultDelay) {
             self.touch(self.vc.startButtonItem)
         }
         withDelay(3) {
