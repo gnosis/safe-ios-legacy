@@ -3,8 +3,14 @@
 //
 
 import Foundation
+import Common
 
-public class ReplaceBrowserExtensionDomainService {
+public enum ReplaceBrowserExtensionDomainServiceError: Error {
+    case insufficientBalance
+    case browserExtensionNotConnected
+}
+
+public class ReplaceBrowserExtensionDomainService: Assertable {
 
     public var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }
@@ -63,28 +69,52 @@ public class ReplaceBrowserExtensionDomainService {
     }
 
     public func estimateNetworkFee(for transactionID: TransactionID) throws -> TokenAmount {
-        return .ether(0)
+        let tx = transaction(transactionID)
+        let request = estimationRequest(for: tx)
+        let response = try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
+        let fee = TokenInt((response.dataGas + response.safeTxGas + response.operationalGas) * response.gasPrice)
+        let token = Token.Ether
+        tx.change(fee: TokenAmount(amount: TokenInt(response.dataGas + response.safeTxGas), token: token))
+        let estimate = TransactionFeeEstimate(gas: response.safeTxGas,
+                                              dataGas: response.dataGas,
+                                              operationalGas: response.operationalGas,
+                                              gasPrice: TokenAmount(amount: TokenInt(response.gasPrice), token: token))
+        tx.change(feeEstimate: estimate)
+        return .ether(fee)
+    }
+
+    private func estimationRequest(for tx: Transaction) -> EstimateTransactionRequest {
+        return .init(safe: tx.sender!,
+                     to: tx.ethTo,
+                     value: String(tx.ethValue),
+                     data: tx.ethData,
+                     operation: tx.operation!)
     }
 
     public func accountBalance(for transactionID: TransactionID) -> TokenAmount {
-        preconditionFailure()
+        let tx = transaction(transactionID)
+        let account = DomainRegistry.accountRepository.find(id: tx.accountID)!
+        let balance = account.balance ?? 0
+        return .ether(balance)
     }
 
     public func resultingBalance(for transactionID: TransactionID, change amount: TokenAmount) -> TokenAmount {
-        preconditionFailure()
+        let balance = accountBalance(for: transactionID)
+        let newBalance = TokenAmount(amount: balance.amount + amount.amount, token: balance.token)
+        return newBalance
     }
 
-    // validate transaction
-    //      network fee must be estimated
-    //      network fee account must exist -> wallet must exist
-    //      validate balance
-    //          network fee balance >= network fee amount
-    //          otherwise return error
-    //      validate contract
-    //          remote master copy address
-    //          locally, safe scheme must be 2 / 4
-    public func validate(transactionID: TransactionID) -> Error? {
-        preconditionFailure()
+    public func validate(transactionID: TransactionID) throws {
+        let tx = transaction(transactionID)
+        precondition(tx.fee != nil, "fee must be set during estimation")
+        precondition(tx.feeEstimate != nil, "fee estimate must be set during estimation")
+        let totalFeeAmount = -TokenInt(tx.feeEstimate!.dataGas + tx.feeEstimate!.gas + tx.feeEstimate!.operationalGas) *
+            tx.feeEstimate!.gasPrice.amount
+        let totalFee = TokenAmount(amount: totalFeeAmount, token: tx.feeEstimate!.gasPrice.token)
+        try assertTrue(resultingBalance(for: transactionID, change: totalFee).amount >= 0,
+                       ReplaceBrowserExtensionDomainServiceError.insufficientBalance)
+        try assertNotNil(requiredWallet.owner(role: .browserExtension) ,
+                         ReplaceBrowserExtensionDomainServiceError.browserExtensionNotConnected)
     }
 
     private func transaction(_ id: TransactionID, file: StaticString = #file, line: UInt = #line) -> Transaction {

@@ -15,6 +15,8 @@ class ReplaceBrowserExtensionDomainServiceTests: XCTestCase {
     let transactionRepo = InMemoryTransactionRepository()
 
     let mockEncryptionService = MockEncryptionService()
+    let accountRepo = InMemoryAccountRepository()
+    let mockRelayService = MockTransactionRelayService(averageDelay: 0, maxDeviation: 0)
 
     var ownersWithoutExtension = OwnerList([
         Owner(address: Address.testAccount1, role: .thisDevice),
@@ -35,6 +37,8 @@ class ReplaceBrowserExtensionDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
         DomainRegistry.put(service: transactionRepo, for: TransactionRepository.self)
         DomainRegistry.put(service: mockEncryptionService, for: EncryptionDomainService.self)
+        DomainRegistry.put(service: accountRepo, for: AccountRepository.self)
+        DomainRegistry.put(service: mockRelayService, for: TransactionRelayDomainService.self)
     }
 
     func test_whenSafeExistsAndExtensionSetUp_thenAvailable() {
@@ -100,6 +104,52 @@ class ReplaceBrowserExtensionDomainServiceTests: XCTestCase {
         XCTAssertNil(tx.recipient)
     }
 
+    func test_whenEstimatingNetworkFees_thenDoesSo() {
+        let expectedFee = TokenAmount.ether(30)
+        setNetworkFee(safeGas: 1, dataGas: 1, operationGas: 1, gasPrice: 10)
+
+        setUpWallet()
+        let txID = service.createTransaction()
+        service.addDummyData(to: txID)
+        let actualFee = try! service.estimateNetworkFee(for: txID)
+        XCTAssertEqual(actualFee, expectedFee)
+    }
+
+    func test_whenAccountBalanceQueried_thenReturnsIt() {
+        setUpWallet()
+        let tx = transaction(from: service.createTransaction())!
+        let expectedBalance: TokenInt = 123
+        setUpAccount(transaction: tx, balance: expectedBalance)
+        XCTAssertEqual(service.accountBalance(for: tx.id), TokenAmount.ether(expectedBalance))
+    }
+
+    func test_whenResultingBalanceCalculated_thenSummedWithChangedAmount() {
+        setUpWallet()
+        let tx = transaction(from: service.createTransaction())!
+        setUpAccount(transaction: tx, balance: 0)
+        XCTAssertEqual(service.resultingBalance(for: tx.id, change: TokenAmount.ether(-1)), TokenAmount.ether(-1))
+    }
+
+    func test_whenValidatingTransaction_thenThrowsOnBalanceError() {
+        setUpWallet()
+        let tx = transaction(from: service.createTransaction())!
+        setUpAccount(transaction: tx, balance: 0)
+        service.addDummyData(to: tx.id)
+        setNetworkFee(safeGas: 1, dataGas: 1, operationGas: 1, gasPrice: 10)
+        _ = try! service.estimateNetworkFee(for: tx.id)
+        XCTAssertThrowsError(try service.validate(transactionID: tx.id))
+    }
+
+    func test_whenValidating_thenThrowsOnInexistingExtension() {
+        setUpPortfolio(wallet: wallet(owners: ownersWithoutExtension))
+        let tx = transaction(from: service.createTransaction())!
+        setUpAccount(transaction: tx, balance: 100)
+        service.addDummyData(to: tx.id)
+        setNetworkFee(safeGas: 1, dataGas: 1, operationGas: 1, gasPrice: 10)
+        _ = try! service.estimateNetworkFee(for: tx.id)
+        XCTAssertThrowsError(try service.validate(transactionID: tx.id))
+    }
+
 }
 
 class TestableOwnerProxy: SafeOwnerManagerContractProxy {
@@ -112,6 +162,20 @@ class TestableOwnerProxy: SafeOwnerManagerContractProxy {
 }
 
 extension ReplaceBrowserExtensionDomainServiceTests {
+
+    func setNetworkFee(safeGas: Int, dataGas: Int, operationGas: Int, gasPrice: Int) {
+        mockRelayService.estimateTransaction_output = .init(safeTxGas: safeGas,
+                                                            dataGas: dataGas,
+                                                            operationalGas: operationGas,
+                                                            gasPrice: gasPrice,
+                                                            lastUsedNonce: nil,
+                                                            gasToken: Token.Ether.address.value)
+    }
+
+    func setUpAccount(transaction tx: Transaction, balance: TokenInt) {
+        let account = Account(tokenID: tx.accountID.tokenID, walletID: tx.accountID.walletID, balance: balance)
+        accountRepo.save(account)
+    }
 
     @discardableResult
     func setUpWallet() -> Wallet {

@@ -34,6 +34,8 @@ public class TransactionDetailsViewController: UIViewController {
         static let recovery = LocalizedString("transaction.details.type.recovery", comment: "Wallet recovery")
         static let replaceRecoveryPhrase = LocalizedString("transaction.details.type.replaceRecoveryPhrase",
                                                            comment: "Replace recovery phrase")
+        static let replaceBrowserExtension = LocalizedString("transaction.details.type.replaceBrowserExtension",
+                                                           comment: "Replace browser extension")
         static let title = LocalizedString("transaction.details.title",
                                            comment: "Title for the transaction details screen")
 
@@ -41,6 +43,12 @@ public class TransactionDetailsViewController: UIViewController {
             static let title = LocalizedString("transaction.details.replace_recovery.title",
                                                comment: "Title for the header in review screen")
             static let detail = LocalizedString("transaction.details.replace_recovery.detail",
+                                                comment: "Detail for the header in review screen")
+        }
+        enum ReplaceBrowserExtension {
+            static let title = LocalizedString("transaction.details.replace_extension.title",
+                                               comment: "Title for the header in review screen")
+            static let detail = LocalizedString("transaction.details.replace_extension.detail",
                                                 comment: "Detail for the header in review screen")
         }
         enum WalletRecovery {
@@ -112,6 +120,12 @@ public class TransactionDetailsViewController: UIViewController {
             settingsHeaderView.fromAddress = transaction.sender
             transferView.isHidden = true
             settingsHeaderView.isHidden = false
+        case .replaceBrowserExtension:
+            settingsHeaderView.titleText = Strings.ReplaceBrowserExtension.title
+            settingsHeaderView.detailText = Strings.ReplaceBrowserExtension.detail
+            settingsHeaderView.fromAddress = transaction.sender
+            transferView.isHidden = true
+            settingsHeaderView.isHidden = false
         case .walletRecovery:
             settingsHeaderView.titleText = Strings.WalletRecovery.title
             settingsHeaderView.detailText = Strings.WalletRecovery.detail
@@ -128,6 +142,7 @@ public class TransactionDetailsViewController: UIViewController {
         case .incoming: transactionTypeView.value = Strings.incoming
         case .walletRecovery: transactionTypeView.value = Strings.recovery
         case .replaceRecoveryPhrase: transactionTypeView.value = Strings.replaceRecoveryPhrase
+        case .replaceBrowserExtension: transactionTypeView.value = Strings.replaceBrowserExtension
         }
     }
 
