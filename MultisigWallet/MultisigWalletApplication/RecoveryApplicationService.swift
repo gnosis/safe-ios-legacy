@@ -92,6 +92,8 @@ public class RecoveryApplicationService {
             type = .walletRecovery
         case .replaceRecoveryPhrase:
             type = .replaceRecoveryPhrase
+        case .replaceBrowserExtension:
+            type = .replaceBrowserExtension
         }
         let amountTokenData = TokenData(token: tx.amount!.token,
                                         balance: tx.amount!.amount)

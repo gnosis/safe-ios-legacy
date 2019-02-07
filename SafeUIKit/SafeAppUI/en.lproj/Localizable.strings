@@ -483,6 +483,12 @@
 "transaction.details.fee" = "Transaction fee";
 
 /* Detail for the header in review screen */
+"transaction.details.replace_extension.detail" = "The existing browser extension connection was replaced by the new browser extension.";
+
+/* Title for the header in review screen */
+"transaction.details.replace_extension.title" = "Replace browser extension";
+
+/* Detail for the header in review screen */
 "transaction.details.replace_recovery.detail" = "The old recovery phrase was replaced by a new one";
 
 /* Title for the header in review screen */
@@ -520,6 +526,9 @@
 
 /* Wallet recovery */
 "transaction.details.type.recovery" = "Safe Recovery";
+
+/* Replace browser extension */
+"transaction.details.type.replaceBrowserExtension" = "Replace browser extension";
 
 /* Replace recovery phrase */
 "transaction.details.type.replaceRecoveryPhrase" = "Replace recovery phrase";
@@ -587,6 +596,9 @@
 
 /* (rejected) suffix */
 "transactions.row.rejected" = "(rejected)";
+
+/* Browser extension changed */
+"transactions.row.replace_extension" = "New browser\nextension";
 
 /* Recovery phrase changed */
 "transactions.row.replace_phrase" = "Replaced\nRecovery Phrase";

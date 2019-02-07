@@ -48,12 +48,15 @@ class TransactionTableViewCell: UITableViewCell {
         case .replaceRecoveryPhrase:
             tokenAmountLabel.text = LocalizedString("transactions.row.replace_phrase",
                                                     comment: "Recovery phrase changed")
+        case .replaceBrowserExtension:
+            tokenAmountLabel.text = LocalizedString("transactions.row.replace_extension",
+                                                    comment: "Browser extension changed")
         }
     }
 
     private func recipient(_ transaction: TransactionData) -> String {
         switch transaction.type {
-        case .incoming, .walletRecovery, .replaceRecoveryPhrase: return transaction.sender
+        case .incoming, .walletRecovery, .replaceRecoveryPhrase, .replaceBrowserExtension: return transaction.sender
         case .outgoing: return transaction.recipient
         }
     }
@@ -78,7 +81,8 @@ class TransactionTableViewCell: UITableViewCell {
         switch transaction.type {
         case .outgoing: return ColorName.darkSlateBlue.color
         case .incoming: return ColorName.greenTeal.color
-        case .walletRecovery, .replaceRecoveryPhrase: return ColorName.darkSlateBlue.color
+        case .walletRecovery, .replaceRecoveryPhrase, .replaceBrowserExtension:
+            return ColorName.darkSlateBlue.color
         }
     }
 

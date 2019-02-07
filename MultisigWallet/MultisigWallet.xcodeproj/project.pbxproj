@@ -24,6 +24,8 @@
 		0A23C83020A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C82F20A1DF6B00C72483 /* DBWalletRepositoryIntegrationTests.swift */; };
 		0A23C83220A1E30800C72483 /* InMemoryWalletRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */; };
 		0A290E1821BD3558005188EA /* MultiSendContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1721BD3558005188EA /* MultiSendContractProxy.swift */; };
+		0A2DBCBB220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */; };
+		0A2DBCC2220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */; };
 		0A3D1547220B321B00E340DB /* libReplaceBrowserExtensionFacade.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D153D220B2FA600E340DB /* libReplaceBrowserExtensionFacade.a */; };
 		0A3D1548220B322D00E340DB /* libReplaceBrowserExtensionFacade.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D153D220B2FA600E340DB /* libReplaceBrowserExtensionFacade.a */; };
 		0A40668820A5E01D009BA7FC /* MockWalletApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */; };
@@ -427,6 +429,8 @@
 		0A23C83120A1E30800C72483 /* InMemoryWalletRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryWalletRepository.swift; sourceTree = "<group>"; };
 		0A23C83320A1E34700C72483 /* BaseInMemoryRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInMemoryRepositoryTests.swift; sourceTree = "<group>"; };
 		0A290E1721BD3558005188EA /* MultiSendContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSendContractProxy.swift; sourceTree = "<group>"; };
+		0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainService.swift; sourceTree = "<group>"; };
+		0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServiceTests.swift; sourceTree = "<group>"; };
 		0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWalletApplicationService.swift; sourceTree = "<group>"; };
 		0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationService.swift; sourceTree = "<group>"; };
 		0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
@@ -812,6 +816,8 @@
 				0ABCC0FB2177291D00E60E9F /* TransactionDomainServiceTests.swift */,
 				0A6EF3D121BAB15E00F1074E /* RecoveryDomainService.swift */,
 				0A553D4421C0164100647CFF /* WalletSettingsDomainService.swift */,
+				0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */,
+				0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -1532,6 +1538,7 @@
 				55D3C07420F75EFF0047004F /* PushTokensDomainService.swift in Sources */,
 				0AD1938E2107534E0048CBCB /* SafeGasPriceResponse.swift in Sources */,
 				0AEDED5621676156005B6DD0 /* SafeOwnerManagerContractProxy.swift in Sources */,
+				0A2DBCBB220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift in Sources */,
 				0A442DE3210B15E700F19F80 /* SafeCreatedMessage.swift in Sources */,
 				0A442DC7210A06EA00F19F80 /* TransactionDecisionMessage.swift in Sources */,
 				0A76BE5A20AF0CB500D07770 /* Account.swift in Sources */,
@@ -1587,6 +1594,7 @@
 				0ACA9D04212ACD6000E39BB6 /* MockEthereumNodeService1.swift in Sources */,
 				0A9E385F20F4B46C0085E8D7 /* BaseInMemoryRepositoryTests.swift in Sources */,
 				0ACA9D08212ACDB100E39BB6 /* MockNotificationService1.swift in Sources */,
+				0A2DBCC2220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift in Sources */,
 				0ACA9D24212C02CD00E39BB6 /* MockSafeCreationResponseValidator.swift in Sources */,
 				0AEDED5D216761FE005B6DD0 /* SafeOwnerManagerContractProxyTests.swift in Sources */,
 				0A813533212315BB00B0B302 /* WalletStateTests.swift in Sources */,
