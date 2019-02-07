@@ -480,6 +480,7 @@ public class WalletApplicationService: Assertable {
         case .transfer: type = .outgoing
         case .walletRecovery: type = .walletRecovery
         case .replaceRecoveryPhrase: type = .replaceRecoveryPhrase
+        case .replaceBrowserExtension: type = .replaceBrowserExtension
         }
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token,
