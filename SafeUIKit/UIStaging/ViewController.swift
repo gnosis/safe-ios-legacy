@@ -6,6 +6,7 @@ import UIKit
 import ReplaceBrowserExtensionUI
 import Common
 import BigInt
+import ReplaceBrowserExtensionFacade
 
 class ViewController: UIViewController {
 

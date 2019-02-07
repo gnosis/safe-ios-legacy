@@ -5,6 +5,7 @@
 import Foundation
 @testable import ReplaceBrowserExtensionUI
 import XCTest
+import ReplaceBrowserExtensionFacade
 
 class RBEStarterMock: RBEStarter {
 

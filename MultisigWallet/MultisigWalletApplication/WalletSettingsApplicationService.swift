@@ -4,6 +4,7 @@
 
 import Foundation
 import MultisigWalletDomainModel
+import ReplaceBrowserExtensionFacade
 
 public class WalletSettingsApplicationService {
 
@@ -33,6 +34,22 @@ public class WalletSettingsApplicationService {
 
     public func cancelPhraseRecovery() {
         DomainRegistry.settingsService.cancelPhraseRecovery()
+    }
+
+}
+
+extension WalletSettingsApplicationService: RBEStarter {
+
+    public func create() -> RBETransactionID {
+        preconditionFailure("Not implemented yet")
+    }
+
+    public func estimate(transaction: RBETransactionID) -> RBEEstimationResult {
+        preconditionFailure("Not implemented yet")
+    }
+
+    public func start(transaction: RBETransactionID) throws {
+        preconditionFailure("Not implemented yet")
     }
 
 }
