@@ -20,6 +20,7 @@
 		0A0974DD20480D03005753DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974DA20480D03005753DF /* LaunchScreen.storyboard */; };
 		0A0974EA20480E11005753DF /* SafeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */; };
 		0A0974EC20480E45005753DF /* SafeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* SafeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A0FA38B220D836D006D5A93 /* libReplaceBrowserExtensionFacade.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1571220B393A00E340DB /* libReplaceBrowserExtensionFacade.a */; };
 		0A290E1421BD1656005188EA /* ReviewRecoveryTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */; };
 		0A290E1621BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
@@ -114,7 +115,6 @@
 		0A3D14F0220B1C9A00E340DB /* RBEFeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14EF220B1C9A00E340DB /* RBEFeatureFlag.swift */; };
 		0A3D14F2220B1CE800E340DB /* MenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F1220B1CE800E340DB /* MenuCommand.swift */; };
 		0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */; };
-		0A3D1552220B38B100E340DB /* libReplaceBrowserExtensionFacade.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1551220B38B100E340DB /* libReplaceBrowserExtensionFacade.a */; };
 		0A3D1574220B395200E340DB /* ReplaceBrowserExtensionFacadeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A3D1573220B393A00E340DB /* ReplaceBrowserExtensionFacadeResources.bundle */; };
 		0A40668D20A5E059009BA7FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668C20A5E059009BA7FC /* MainViewController.swift */; };
 		0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A40668E20A5E099009BA7FC /* libMultisigWalletApplication.a */; };
@@ -905,7 +905,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A3D1552220B38B100E340DB /* libReplaceBrowserExtensionFacade.a in Frameworks */,
+				0A0FA38B220D836D006D5A93 /* libReplaceBrowserExtensionFacade.a in Frameworks */,
 				0ABDF5E122083F420047F10D /* SafeUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3492,6 +3492,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.ReplaceBrowserExtensionUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3543,6 +3544,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.ReplaceBrowserExtensionUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3595,6 +3597,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.ReplaceBrowserExtensionUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3647,6 +3650,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.ReplaceBrowserExtensionUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

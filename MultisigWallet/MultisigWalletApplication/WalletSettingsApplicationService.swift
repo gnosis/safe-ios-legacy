@@ -5,6 +5,7 @@
 import Foundation
 import MultisigWalletDomainModel
 import ReplaceBrowserExtensionFacade
+import Common
 
 public class WalletSettingsApplicationService {
 
@@ -41,15 +42,40 @@ public class WalletSettingsApplicationService {
 extension WalletSettingsApplicationService: RBEStarter {
 
     public func create() -> RBETransactionID {
-        preconditionFailure("Not implemented yet")
+        return DomainRegistry.replaceExtensionService.createTransaction().id
     }
 
     public func estimate(transaction: RBETransactionID) -> RBEEstimationResult {
-        preconditionFailure("Not implemented yet")
+        let txID = TransactionID(transaction)
+        DomainRegistry.replaceExtensionService.addDummyData(to: txID)
+        do {
+            let fee = try DomainRegistry.replaceExtensionService.estimateNetworkFee(for: txID)
+            let negativeFee = TokenAmount(amount: -fee.amount, token: fee.token)
+            let balance = DomainRegistry.replaceExtensionService.accountBalance(for: txID)
+            let remaining = DomainRegistry.replaceExtensionService.resultingBalance(for: txID, change: negativeFee)
+            var result = RBEEstimationResult(feeCalculation: nil, error: nil)
+            result.feeCalculation =
+                RBEFeeCalculationData(currentBalance: TokenData(token: balance.token, balance: balance.amount),
+                                      networkFee: TokenData(token: negativeFee.token, balance: negativeFee.amount),
+                                      balance: TokenData(token: remaining.token, balance: remaining.amount))
+            if remaining.amount < 0 {
+                result.error = FeeCalculationError.insufficientBalance
+            }
+            return result
+        } catch let error {
+            return RBEEstimationResult(feeCalculation: nil, error: error)
+        }
     }
 
     public func start(transaction: RBETransactionID) throws {
-        preconditionFailure("Not implemented yet")
+        let txID = TransactionID(transaction)
+        do {
+            try DomainRegistry.replaceExtensionService.validate(transactionID: txID)
+        } catch ReplaceBrowserExtensionDomainServiceError.browserExtensionNotConnected {
+
+        } catch ReplaceBrowserExtensionDomainServiceError.insufficientBalance {
+            throw FeeCalculationError.insufficientBalance
+        }
     }
 
 }

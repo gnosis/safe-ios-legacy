@@ -76,7 +76,8 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
     }
 
     func test_whenEstimatingTransaction_thenReturnsEstimations() throws {
-        let safeAddress = Address("0x092CC1854399ADc38Dad4f846E369C40D0a40307")
+        let context = try deployNewSafe()
+        let safeAddress = context.safe.address!
         let request = EstimateTransactionRequest(safe: safeAddress,
                                                  to: safeAddress,
                                                  value: "1",
