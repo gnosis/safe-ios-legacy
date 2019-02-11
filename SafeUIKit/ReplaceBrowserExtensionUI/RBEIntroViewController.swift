@@ -24,6 +24,7 @@ public class RBEIntroViewController: UIViewController {
     }
     var transactionID: RBETransactionID?
     public var starter: RBEStarter?
+    let formatter = TokenNumberFormatter()
 
     @IBOutlet weak var feeCalculationView: FeeCalculationView!
 
@@ -52,6 +53,7 @@ public class RBEIntroViewController: UIViewController {
         startButtonItem = UIBarButtonItem(title: strings.start, style: .done, target: self, action: #selector(start))
         backButtonItem = UIBarButtonItem(title: strings.back, style: .plain, target: self, action: #selector(back))
         retryButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(retry))
+        formatter.displayedDecimals = 5
     }
 
     public override func viewDidLoad() {
@@ -75,7 +77,6 @@ public class RBEIntroViewController: UIViewController {
     func reloadData() {
         feeCalculation = EthFeeCalculation()
         guard let data = calculationData else { return }
-        let formatter = TokenNumberFormatter()
         formatter.tokenSymbol = data.currentBalance.code
         feeCalculation.currentBalance.set(value: formatter.string(from: data.currentBalance.balance!))
         feeCalculation.networkFee.set(value: formatter.string(from: data.networkFee.balance!))

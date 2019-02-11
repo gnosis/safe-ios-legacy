@@ -17,6 +17,7 @@ class ReplaceBrowserExtensionDomainServiceTests: XCTestCase {
     let mockEncryptionService = MockEncryptionService()
     let accountRepo = InMemoryAccountRepository()
     let mockRelayService = MockTransactionRelayService(averageDelay: 0, maxDeviation: 0)
+    let mockProxy = TestableOwnerProxy(Address.testAccount1)
 
     var ownersWithoutExtension = OwnerList([
         Owner(address: Address.testAccount1, role: .thisDevice),
@@ -39,6 +40,8 @@ class ReplaceBrowserExtensionDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: mockEncryptionService, for: EncryptionDomainService.self)
         DomainRegistry.put(service: accountRepo, for: AccountRepository.self)
         DomainRegistry.put(service: mockRelayService, for: TransactionRelayDomainService.self)
+        mockProxy.getOwners_result = ownersWithExtension.sortedOwners().map { $0.address }
+        service.ownerContractProxy = mockProxy
     }
 
     func test_whenSafeExistsAndExtensionSetUp_thenAvailable() {
@@ -88,7 +91,7 @@ class ReplaceBrowserExtensionDomainServiceTests: XCTestCase {
         let txID = service.createTransaction()
         service.addDummyData(to: txID)
         let tx = transaction(from: txID)!
-        XCTAssertEqual(tx.operation, .delegateCall)
+        XCTAssertEqual(tx.operation, .call)
         XCTAssertEqual(tx.data, service.dummySwapData())
         XCTAssertEqual(tx.recipient, wallet.address!)
     }
@@ -107,7 +110,6 @@ class ReplaceBrowserExtensionDomainServiceTests: XCTestCase {
     func test_whenEstimatingNetworkFees_thenDoesSo() {
         let expectedFee = TokenAmount.ether(30)
         setNetworkFee(safeGas: 1, dataGas: 1, operationGas: 1, gasPrice: 10)
-
         setUpWallet()
         let txID = service.createTransaction()
         service.addDummyData(to: txID)

@@ -4,6 +4,7 @@
 
 import UIKit
 import ReplaceBrowserExtensionUI
+import MultisigWalletApplication
 
 class ReplaceBrowserExtensionFlowCoordinator: FlowCoordinator {
 
@@ -12,6 +13,7 @@ class ReplaceBrowserExtensionFlowCoordinator: FlowCoordinator {
     override func setUp() {
         super.setUp()
         let intro = RBEIntroViewController.create()
+        intro.starter = ApplicationServiceRegistry.settingsService
         push(intro)
         introVC = intro
     }

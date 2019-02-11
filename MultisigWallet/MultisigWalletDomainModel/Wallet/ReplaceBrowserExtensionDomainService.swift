@@ -51,15 +51,22 @@ public class ReplaceBrowserExtensionDomainService: Assertable {
 
     public func addDummyData(to transactionID: TransactionID) {
         let tx = transaction(transactionID)
-        tx.change(recipient: wallet!.address!).change(operation: .delegateCall).change(data: dummySwapData())
+        tx.change(recipient: wallet!.address!).change(operation: .call).change(data: dummySwapData())
         repository.save(tx)
     }
 
     func dummySwapData() -> Data {
         let proxy = ownerContractProxy ?? SafeOwnerManagerContractProxy(self.wallet!.address!)
-        var dummyList = OwnerLinkedList()
-        dummyList.add(.zero)
-        return proxy.swapOwner(prevOwner: dummyList.addressBefore(.zero), old: .zero, new: .zero)
+        var remoteList = OwnerLinkedList()
+        if let owners = try? proxy.getOwners(), !owners.isEmpty {
+            owners.forEach { remoteList.add($0) }
+            let toSwap = owners.first!
+            let prev = remoteList.addressBefore(toSwap)
+            let data = proxy.swapOwner(prevOwner: prev, old: toSwap, new: self.wallet!.address!)
+            return data
+        }
+        remoteList.add(.zero)
+        return proxy.swapOwner(prevOwner: remoteList.addressBefore(.one), old: .zero, new: .zero)
     }
 
     public func removeDummyData(from transactionID: TransactionID) {

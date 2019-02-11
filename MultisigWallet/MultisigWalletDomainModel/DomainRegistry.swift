@@ -96,4 +96,8 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: WalletSettingsDomainService.self)
     }
 
+    public static var replaceExtensionService: ReplaceBrowserExtensionDomainService {
+        return service(for: ReplaceBrowserExtensionDomainService.self)
+    }
+
 }

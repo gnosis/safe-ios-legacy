@@ -117,6 +117,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                      for: RecoveryDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: WalletSettingsDomainService(config: config),
                                                      for: WalletSettingsDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: ReplaceBrowserExtensionDomainService(),
+                                                     for: ReplaceBrowserExtensionDomainService.self)
 
         let relay = EventRelay(publisher: MultisigWalletDomainModel.DomainRegistry.eventPublisher)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)
