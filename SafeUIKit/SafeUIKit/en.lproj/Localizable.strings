@@ -40,6 +40,9 @@
 /* Transaction rejected by the browser extension. */
 "confirmation_view.rejection_explanation" = "Transaction rejected by the browser extension.";
 
+/* Loading... */
+"loading_title_text" = "Loading…";
+
 /* Error status of a rule */
 "rule.error" = "Error";
 

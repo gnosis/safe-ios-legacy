@@ -6,7 +6,6 @@ import Foundation
 import UIKit
 import SafeAppUI
 import MultisigWalletApplication
-import MultisigWalletImplementations
 import Common
 
 class ConnectExtensionDemoViewController: UIViewController {
@@ -22,6 +21,10 @@ class ConnectExtensionDemoViewController: UIViewController {
     @IBAction func push() {
         let controller = PairWithBrowserExtensionViewController.createRBEConnectController(delegate: self)
         navigationController?.pushViewController(controller, animated: true)
+
+        Timer.scheduledTimer(withTimeInterval: 1.25, repeats: false) { _ in
+            controller.showLoadingTitle()
+        }
     }
 
 }

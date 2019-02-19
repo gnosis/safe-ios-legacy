@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SafeUIKit
 
 public class IntroContentView: NibUIView {
 
@@ -31,11 +32,11 @@ public class IntroContentView: NibUIView {
     var style = Style()
     var strings = Strings()
 
-    override func setUpConstraints(for contentView: UIView) {
+    public override func setUpConstraints(for contentView: UIView) {
         wrapAroundDynamicHeightView(contentView)
     }
 
-    override func didLoad() {
+    public override func didLoad() {
         topConstraint.constant = style.elementSpacing
         elementsStackView.spacing = style.elementSpacing
         leadingConstraint.constant = style.edgeMargin

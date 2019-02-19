@@ -19,9 +19,6 @@
 /* - ETH */
 "fee_calculation.value.loading_eth" = "- ETH";
 
-/* Loading... */
-"loading_title_text" = "Loading…";
-
 /* Back */
 "navigation.back" = "Back";
 

@@ -102,6 +102,14 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
         updateTexts()
     }
 
+    public func showLoadingTitle() {
+        navigationItem.titleView = LoadingTitleView()
+    }
+
+    public func hideLoadingTitle() {
+        navigationItem.titleView = nil
+    }
+
     func updateTexts() {
         guard isViewLoaded else { return }
         title = screenTitle
