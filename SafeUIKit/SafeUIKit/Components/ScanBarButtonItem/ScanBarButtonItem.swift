@@ -20,8 +20,7 @@ public final class ScanBarButtonItem: UIBarButtonItem {
     var scanHandler = ScanQRCodeHandler()
 
     public convenience init(title: String) {
-        self.init()
-        self.title = title
+        self.init(title: title, style: .done, target: nil, action: nil)
         commonInit()
     }
 

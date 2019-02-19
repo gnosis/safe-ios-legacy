@@ -8,7 +8,7 @@ import Common
 import BigInt
 import ReplaceBrowserExtensionFacade
 
-class ViewController: UIViewController {
+class RBEIntroDemoViewController: UIViewController {
 
     var driver: RBEIntroBackendDemoDriver!
     var user: RBEIntroUser!
