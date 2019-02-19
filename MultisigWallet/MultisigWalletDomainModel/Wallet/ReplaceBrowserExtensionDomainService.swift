@@ -134,4 +134,31 @@ public class ReplaceBrowserExtensionDomainService: Assertable {
         return tx
     }
 
+    // MARK: - Connection of Browser Extension
+
+    public func newOwnerAddress(from transactionID: TransactionID) -> String? {
+        let proxy = ownerContractProxy ?? SafeOwnerManagerContractProxy(self.wallet!.address!)
+        let tx = self.transaction(transactionID)
+        guard let data = tx.data, let arguments = proxy.decodeSwapOwnerArguments(from: data) else { return nil }
+        return arguments.new.value
+    }
+
+    public func update(transaction: TransactionID, newOwnerAddress: String) {
+        let tx = self.transaction(transaction)
+        tx.change(data: swapOwnerData(with: newOwnerAddress))
+        repository.save(tx)
+    }
+
+    func swapOwnerData(with newAddress: String) -> Data? {
+        let proxy = ownerContractProxy ?? SafeOwnerManagerContractProxy(self.wallet!.address!)
+        var linkedList = OwnerLinkedList()
+        guard let remoteOwners = try? proxy.getOwners(), !remoteOwners.isEmpty else { return nil }
+        remoteOwners.forEach { linkedList.add($0) }
+        let extensionAddress = wallet!.owner(role: .browserExtension)!.address
+        guard linkedList.contains(extensionAddress) else { return nil }
+        let prev = linkedList.addressBefore(extensionAddress)
+        let data = proxy.swapOwner(prevOwner: prev, old: extensionAddress, new: Address(newAddress))
+        return data
+    }
+
 }

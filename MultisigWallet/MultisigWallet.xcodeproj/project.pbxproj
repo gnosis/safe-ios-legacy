@@ -158,6 +158,7 @@
 		0ACA9D26212C034200E39BB6 /* SafeCreationResponseValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D25212C034200E39BB6 /* SafeCreationResponseValidatorTests.swift */; };
 		0ACA9D39212C19C400E39BB6 /* EventRelayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D38212C19C400E39BB6 /* EventRelayTests.swift */; };
 		0ACA9D46212C469100E39BB6 /* EventRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA9D45212C469100E39BB6 /* EventRelay.swift */; };
+		0ACCA8CB221C3E4600D37594 /* DeletePairRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCA8CA221C3E4600D37594 /* DeletePairRequest.swift */; };
 		0AD1938E2107534E0048CBCB /* SafeGasPriceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */; };
 		0AD1939A21075AB70048CBCB /* EstimateTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */; };
 		0AD22D7A20A32FCD00D40478 /* DBSinglePortfolioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */; };
@@ -561,6 +562,7 @@
 		0ACA9D25212C034200E39BB6 /* SafeCreationResponseValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCreationResponseValidatorTests.swift; sourceTree = "<group>"; };
 		0ACA9D38212C19C400E39BB6 /* EventRelayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRelayTests.swift; sourceTree = "<group>"; };
 		0ACA9D45212C469100E39BB6 /* EventRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRelay.swift; sourceTree = "<group>"; };
+		0ACCA8CA221C3E4600D37594 /* DeletePairRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePairRequest.swift; sourceTree = "<group>"; };
 		0AD1938D2107534E0048CBCB /* SafeGasPriceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeGasPriceResponse.swift; sourceTree = "<group>"; };
 		0AD1939921075AB70048CBCB /* EstimateTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateTransactionRequest.swift; sourceTree = "<group>"; };
 		0AD22D7920A32FCD00D40478 /* DBSinglePortfolioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSinglePortfolioRepository.swift; sourceTree = "<group>"; };
@@ -1072,6 +1074,7 @@
 			children = (
 				55CC279620F667FB00AC12D6 /* AuthRequest.swift */,
 				55CC279720F667FB00AC12D6 /* PairingRequest.swift */,
+				0ACCA8CA221C3E4600D37594 /* DeletePairRequest.swift */,
 				55CC279820F667FB00AC12D6 /* PairingRequestTests.swift */,
 				0A4CF10B20F63D8D001A8687 /* SendNotificationRequest.swift */,
 			);
@@ -1556,6 +1559,7 @@
 				0A8135122123122A00B0B302 /* WalletStates.swift in Sources */,
 				55CC279920F667FB00AC12D6 /* AuthRequest.swift in Sources */,
 				0A9E381120F4A4F20085E8D7 /* TransactionRelayDomainService.swift in Sources */,
+				0ACCA8CB221C3E4600D37594 /* DeletePairRequest.swift in Sources */,
 				555C949720E2A60F00A0621D /* AccountRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

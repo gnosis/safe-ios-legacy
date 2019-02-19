@@ -8,13 +8,16 @@ import MultisigWalletApplication
 import Common
 import SafariServices
 
+@objc
 public protocol PairWithBrowserExtensionViewControllerDelegate: class {
 
     func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
                                                 didScanAddress address: String,
                                                 code: String) throws
     func pairWithBrowserExtensionViewControllerDidFinish()
-    func pairWithBrowserExtensionViewControllerDidSkipPairing()
+
+    @objc
+    optional func pairWithBrowserExtensionViewControllerDidSkipPairing()
 
 }
 
@@ -233,7 +236,7 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
     }
 
     @IBAction func skipPairing(_ sender: Any) {
-        delegate?.pairWithBrowserExtensionViewControllerDidSkipPairing()
+        delegate?.pairWithBrowserExtensionViewControllerDidSkipPairing?()
     }
 
     // MARK: - Debug Buttons

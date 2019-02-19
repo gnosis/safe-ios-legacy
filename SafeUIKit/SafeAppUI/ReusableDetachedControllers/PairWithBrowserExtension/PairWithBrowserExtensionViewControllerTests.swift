@@ -49,12 +49,15 @@ class TestPairWithBrowserExtensionViewControllerDelegate: PairWithBrowserExtensi
 
     func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
                                                 didScanAddress address: String,
-                                                code: String) {
+                                                code: String) throws {
         pairedAddress = address
         pairedCode = code
     }
 
     func pairWithBrowserExtensionViewControllerDidSkipPairing() {
+    }
+
+    func pairWithBrowserExtensionViewControllerDidFinish() {
     }
 
 }

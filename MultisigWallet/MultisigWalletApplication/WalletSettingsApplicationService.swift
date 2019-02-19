@@ -41,6 +41,10 @@ public class WalletSettingsApplicationService {
 
 extension WalletSettingsApplicationService: RBEStarter {
 
+    public var replaceBrowserExtensionIsAvailable: Bool {
+        return DomainRegistry.replaceExtensionService.isAvailable
+    }
+
     public func create() -> RBETransactionID {
         return DomainRegistry.replaceExtensionService.createTransaction().id
     }
@@ -76,6 +80,20 @@ extension WalletSettingsApplicationService: RBEStarter {
         } catch ReplaceBrowserExtensionDomainServiceError.insufficientBalance {
             throw FeeCalculationError.insufficientBalance
         }
+    }
+
+}
+
+public extension WalletSettingsApplicationService {
+
+     func connect(transaction: RBETransactionID, code: String) throws {
+        let txID = TransactionID(transaction)
+        if let oldPairAddress = DomainRegistry.replaceExtensionService.newOwnerAddress(from: txID) {
+            try ApplicationServiceRegistry.walletService.deletePair(with: oldPairAddress)
+        }
+        try ApplicationServiceRegistry.walletService.createPair(from: code)
+        let newAddress = ApplicationServiceRegistry.walletService.address(browserExtensionCode: code)
+        DomainRegistry.replaceExtensionService.update(transaction: txID, newOwnerAddress: newAddress)
     }
 
 }

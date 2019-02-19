@@ -60,4 +60,8 @@ public final class MockNotificationService: NotificationDomainService {
         return "TransactionSentMessage_\(transaction)"
     }
 
+    public func deletePair(request: DeletePairRequest) throws {
+        // empty
+    }
+
 }

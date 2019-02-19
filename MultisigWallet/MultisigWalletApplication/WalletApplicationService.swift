@@ -151,13 +151,30 @@ public class WalletApplicationService: Assertable {
     }
 
     public func addBrowserExtensionOwner(address: String, browserExtensionCode rawCode: String) throws {
-        let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
-        let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress)!
-        guard let code = browserExtensionCode(from: rawCode) else {
+        try createPair(from: rawCode)
+        addOwner(address: address, type: .browserExtension)
+    }
+
+    public func createPair(from rawCode: String) throws {
+        guard let code = browserExtensionCode(from: rawCode), let address = code.extensionAddress else {
             throw WalletApplicationServiceError.validationFailed
         }
+        let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
+        let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress)!
         try pair(code, signature, deviceOwnerAddress)
-        addOwner(address: address, type: .browserExtension)
+    }
+
+    public func deletePair(with address: String) throws {
+        let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
+        let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress)!
+        try handleNotificationServiceError {
+            let request = DeletePairRequest(device: address, signature: signature)
+            try notificationService.deletePair(request: request)
+        }
+    }
+
+    public func address(browserExtensionCode rawCode: String) -> String {
+        return ethereumService.address(browserExtensionCode: rawCode)!
     }
 
     public func removeBrowserExtensionOwner() {

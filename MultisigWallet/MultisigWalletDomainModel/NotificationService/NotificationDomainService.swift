@@ -19,6 +19,12 @@ public protocol NotificationDomainService {
     /// - Throws: error in case of network error or validation error
     func pair(pairingRequest: PairingRequest) throws
 
+    /// Deletes a device pair, the devices will be no longer authorized to send notifications to each other
+    ///
+    /// - Parameter request: request with signature and other device address
+    /// - Throws: error in case of network error or server error
+    func deletePair(request: DeletePairRequest) throws
+
     /// Authenticate this device with AuthRequest to be able to receive notifications.
     ///
     /// - Parameter request: auth request to allow receiving notifications.

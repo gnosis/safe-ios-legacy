@@ -86,6 +86,12 @@ class HTTPNotificatonServiceTests: XCTestCase {
         try send(message)
     }
 
+    func test_deletePair() throws {
+        try makePair()
+        try deletePair()
+        try deletePair()
+    }
+
 }
 
 private extension HTTPNotificatonServiceTests {
@@ -98,6 +104,12 @@ private extension HTTPNotificatonServiceTests {
             signature: sig,
             deviceOwnerAddress: deviceEOA.address.value)
         try notificationService.pair(pairingRequest: pairingRequest)
+    }
+
+    func deletePair() throws {
+        let request = DeletePairRequest(device: browserExtensionEOA.address.value,
+                                        signature: try browserRequetSignature())
+        try notificationService.deletePair(request: request)
     }
 
     func browserExtensionCode(expirationDate: Date) throws -> BrowserExtensionCode {

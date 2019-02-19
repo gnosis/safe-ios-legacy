@@ -24,6 +24,10 @@ final public class HTTPNotificationService: NotificationDomainService {
         }
     }
 
+    public func deletePair(request: DeletePairRequest) throws {
+        try httpClient.execute(request: request)
+    }
+
     public func auth(request: AuthRequest) throws {
         let response = try httpClient.execute(request: request)
         guard response.pushToken == request.pushToken &&
@@ -100,6 +104,16 @@ extension PairingRequest: JSONRequest {
     public struct DevicePair: Decodable {
         let devicePair: [String]
     }
+
+}
+
+extension DeletePairRequest: JSONRequest {
+
+    public var httpMethod: String { return "DELETE" }
+    public var urlPath: String { return "/api/v1/pairing/" }
+    public typealias ResponseType = EmptyResponse
+
+    public struct EmptyResponse: Decodable {}
 
 }
 

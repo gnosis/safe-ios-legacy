@@ -28,7 +28,7 @@ public class RBEIntroViewController: UIViewController {
             feeCalculationView.calculation = newValue
         }
     }
-    var transactionID: RBETransactionID?
+    public internal(set) var transactionID: RBETransactionID?
     public var starter: RBEStarter?
     let formatter = TokenNumberFormatter()
 

@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import MultisigWalletApplication
 
 class ReplaceBrowserExtensionCommand: MenuCommand {
 
@@ -12,7 +13,8 @@ class ReplaceBrowserExtensionCommand: MenuCommand {
     }
 
     override var isHidden: Bool {
-        return FeatureFlagSettings.instance.isOff(RBEFeatureFlag.replaceBrowserExtension)
+        return !(FeatureFlagSettings.instance.isOn(RBEFeatureFlag.replaceBrowserExtension) &&
+            ApplicationServiceRegistry.settingsService.replaceBrowserExtensionIsAvailable)
     }
 
     var commandFlow = ReplaceBrowserExtensionFlowCoordinator()
