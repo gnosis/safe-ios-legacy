@@ -10,10 +10,15 @@ extension RBEIntroViewController {
 
         override func didEnter(controller: RBEIntroViewController) {
             controller.stopIndicateLoading()
-            controller.disableStart()
+            controller.enableStart()
             controller.showStart()
+            controller.delegate?.rbeIntroViewControllerDidStart()
         }
 
+        override func start(controller: RBEIntroViewController) {
+            controller.transition(to: StartingState())
+        }
+    
     }
 
 }

@@ -14,8 +14,32 @@ class ReplaceBrowserExtensionFlowCoordinator: FlowCoordinator {
         super.setUp()
         let intro = RBEIntroViewController.create()
         intro.starter = ApplicationServiceRegistry.settingsService
+        intro.delegate = self
         push(intro)
         introVC = intro
+    }
+
+}
+
+extension ReplaceBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate {
+
+    func rbeIntroViewControllerDidStart() {
+        let controller = PairWithBrowserExtensionViewController.create(delegate: self)
+        push(controller)
+    }
+
+}
+
+extension ReplaceBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
+
+    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
+                                                didPairWith address: String,
+                                                code: String) {
+
+    }
+
+    func pairWithBrowserExtensionViewControllerDidSkipPairing() {
+
     }
 
 }
