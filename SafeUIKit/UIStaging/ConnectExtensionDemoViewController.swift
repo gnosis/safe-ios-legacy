@@ -12,9 +12,12 @@ class ConnectExtensionDemoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let ethereumService = MockEthereumApplicationService()
+        ethereumService.browserExtensionAddress = "SomeValidAddressToMakeScanningGoThrough"
+
         ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
         ApplicationServiceRegistry.put(service: MockWalletApplicationService(), for: WalletApplicationService.self)
-        ApplicationServiceRegistry.put(service: MockEthereumApplicationService(), for: EthereumApplicationService.self)
+        ApplicationServiceRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
         push()
     }
     
@@ -25,6 +28,9 @@ class ConnectExtensionDemoViewController: UIViewController {
         Timer.scheduledTimer(withTimeInterval: 1.25, repeats: false) { _ in
             controller.showLoadingTitle()
         }
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+            controller.hideLoadingTitle()
+        }
     }
 
 }
@@ -33,15 +39,13 @@ class ConnectExtensionDemoViewController: UIViewController {
 extension ConnectExtensionDemoViewController: PairWithBrowserExtensionViewControllerDelegate {
 
     func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didPairWith address: String,
-                                                code: String) {
-
+                                                didScanAddress address: String,
+                                                code: String) throws {
+        sleep(1)
     }
 
-    func pairWithBrowserExtensionViewControllerDidSkipPairing() {
+    func pairWithBrowserExtensionViewControllerDidSkipPairing() {}
 
-    }
-
-
+    func pairWithBrowserExtensionViewControllerDidFinish() {}
 
 }

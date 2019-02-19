@@ -48,7 +48,7 @@ class TestPairWithBrowserExtensionViewControllerDelegate: PairWithBrowserExtensi
     var pairedCode: String?
 
     func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didPairWith address: String,
+                                                didScanAddress address: String,
                                                 code: String) {
         pairedAddress = address
         pairedCode = code

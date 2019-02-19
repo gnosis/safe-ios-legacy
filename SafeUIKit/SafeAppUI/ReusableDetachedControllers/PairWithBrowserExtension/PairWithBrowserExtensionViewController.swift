@@ -11,8 +11,9 @@ import SafariServices
 public protocol PairWithBrowserExtensionViewControllerDelegate: class {
 
     func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didPairWith address: String,
-                                                code: String)
+                                                didScanAddress address: String,
+                                                code: String) throws
+    func pairWithBrowserExtensionViewControllerDidFinish()
     func pairWithBrowserExtensionViewControllerDidSkipPairing()
 
 }
@@ -57,7 +58,7 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
     private var ethereumService: EthereumApplicationService {
         return MultisigWalletApplication.ApplicationServiceRegistry.ethereumService
     }
-
+    var downloadExtensionEnabled = true
     var scanBarButtonItem: ScanBarButtonItem!
     private var activityIndicator: UIActivityIndicatorView!
 
@@ -175,22 +176,41 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
         attrStr.addLinkIcon()
         step1Label.attributedText = attrStr
         step1Label.isUserInteractionEnabled = true
-        step1Label.addGestureRecognizer(UITapGestureRecognizer(
-            target: self, action: #selector(downloadBrowserExtension)))
+        step1Label.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                               action: #selector(downloadBrowserExtension)))
         step2Label.text = "2. \(Strings.scanQRCode)"
     }
 
     @objc private func downloadBrowserExtension() {
+        guard downloadExtensionEnabled else { return }
         let safariVC = SFSafariViewController(url: walletService.configuration.chromeExtensionURL)
         safariVC.modalPresentationStyle = .popover
         present(safariVC, animated: true)
     }
 
-    private func addBrowserExtensionOwner(code: String) {
+    private func disableButtons() {
+        scanBarButtonItem?.isEnabled = false
+        skipButton?.isEnabled = false
+        downloadExtensionEnabled = false
+    }
+
+    private func enableButtons() {
+        scanBarButtonItem?.isEnabled = true
+        skipButton?.isEnabled = true
+        downloadExtensionEnabled = true
+    }
+
+    private func processValidCode(_ code: String) {
         let address = scanBarButtonItem.scanValidatedConverter!(code)!
-        DispatchQueue.main.async {
-            self.showScanButton()
-            self.delegate?.pairWithBrowserExtensionViewController(self, didPairWith: address, code: code)
+        do {
+            try self.delegate?.pairWithBrowserExtensionViewController(self, didScanAddress: address, code: code)
+            DispatchQueue.main.async {
+                self.delegate?.pairWithBrowserExtensionViewControllerDidFinish()
+            }
+        } catch let e {
+            DispatchQueue.main.async {
+                self.handleError(e)
+            }
         }
     }
 
@@ -252,9 +272,15 @@ extension PairWithBrowserExtensionViewController: ScanBarButtonItemDelegate {
     }
 
     public func didScanValidCode(_ button: ScanBarButtonItem, code: String) {
-        showActivityIndicator()
+        disableButtons()
+        showLoadingTitle()
         DispatchQueue.global().async {
-            self.addBrowserExtensionOwner(code: code)
+            self.processValidCode(code)
+
+            DispatchQueue.main.async {
+                self.hideLoadingTitle()
+                self.enableButtons()
+            }
         }
     }
 

@@ -33,13 +33,12 @@ extension ReplaceBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate
 extension ReplaceBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
 
     func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didPairWith address: String,
+                                                didScanAddress address: String,
                                                 code: String) {
-
     }
 
-    func pairWithBrowserExtensionViewControllerDidSkipPairing() {
+    func pairWithBrowserExtensionViewControllerDidSkipPairing() {}
 
-    }
+    func pairWithBrowserExtensionViewControllerDidFinish() {}
 
 }

@@ -68,15 +68,14 @@ extension RecoverSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate 
 extension RecoverSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
 
     func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didPairWith address: String,
-                                                code: String) {
-        do {
-            try ApplicationServiceRegistry.walletService
-                .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
-            self.showReview()
-        } catch let e {
-            controller.handleError(e)
-        }
+                                                didScanAddress address: String,
+                                                code: String) throws {
+        try ApplicationServiceRegistry.walletService
+            .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
+    }
+
+    func pairWithBrowserExtensionViewControllerDidFinish() {
+        showReview()
     }
 
     func pairWithBrowserExtensionViewControllerDidSkipPairing() {

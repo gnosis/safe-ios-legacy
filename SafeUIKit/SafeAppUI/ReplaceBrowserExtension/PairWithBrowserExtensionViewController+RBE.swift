@@ -11,7 +11,8 @@ public extension PairWithBrowserExtensionViewController {
             let controller = PairWithBrowserExtensionViewController.create(delegate: delegate)
             controller.screenTitle = nil
             controller.screenHeader = LocalizedString("replace_extension.connect.header", comment: "Scan QR Code")
-            controller.descriptionText = LocalizedString("replace_extension.connect.description", comment: "Description")
+            controller.descriptionText = LocalizedString("replace_extension.connect.description",
+                                                         comment: "Description")
             controller.hidesSkipButton = true
             return controller
     }
