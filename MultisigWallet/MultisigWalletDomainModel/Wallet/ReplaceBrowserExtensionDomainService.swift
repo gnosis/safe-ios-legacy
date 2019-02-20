@@ -31,6 +31,10 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         return DomainRegistry.transactionRepository
     }
 
+    private var contractProxy: SafeOwnerManagerContractProxy {
+        return ownerContractProxy ?? SafeOwnerManagerContractProxy(self.wallet!.address!)
+    }
+
     public init() {}
 
     // MARK: - Transaction Creation and Validation
@@ -56,17 +60,16 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     func dummySwapData() -> Data {
-        let proxy = ownerContractProxy ?? SafeOwnerManagerContractProxy(self.wallet!.address!)
         var remoteList = OwnerLinkedList()
-        if let owners = try? proxy.getOwners(), !owners.isEmpty {
+        if let owners = try? contractProxy.getOwners(), !owners.isEmpty {
             owners.forEach { remoteList.add($0) }
             let toSwap = owners.first!
             let prev = remoteList.addressBefore(toSwap)
-            let data = proxy.swapOwner(prevOwner: prev, old: toSwap, new: self.wallet!.address!)
+            let data = contractProxy.swapOwner(prevOwner: prev, old: toSwap, new: self.wallet!.address!)
             return data
         }
         remoteList.add(.zero)
-        return proxy.swapOwner(prevOwner: remoteList.addressBefore(.one), old: .zero, new: .zero)
+        return contractProxy.swapOwner(prevOwner: remoteList.addressBefore(.one), old: .zero, new: .zero)
     }
 
     public func removeDummyData(from transactionID: TransactionID) {
@@ -137,9 +140,8 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     // MARK: - Connection of Browser Extension
 
     open func newOwnerAddress(from transactionID: TransactionID) -> String? {
-        let proxy = ownerContractProxy ?? SafeOwnerManagerContractProxy(self.wallet!.address!)
         let tx = self.transaction(transactionID)
-        guard let data = tx.data, let arguments = proxy.decodeSwapOwnerArguments(from: data) else { return nil }
+        guard let data = tx.data, let arguments = contractProxy.decodeSwapOwnerArguments(from: data) else { return nil }
         return arguments.new.value
     }
 
@@ -150,15 +152,18 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     func swapOwnerData(with newAddress: String) -> Data? {
-        let proxy = ownerContractProxy ?? SafeOwnerManagerContractProxy(self.wallet!.address!)
-        var linkedList = OwnerLinkedList()
-        guard let remoteOwners = try? proxy.getOwners(), !remoteOwners.isEmpty else { return nil }
-        remoteOwners.forEach { linkedList.add($0) }
         let extensionAddress = wallet!.owner(role: .browserExtension)!.address
-        guard linkedList.contains(extensionAddress) else { return nil }
-        let prev = linkedList.addressBefore(extensionAddress)
-        let data = proxy.swapOwner(prevOwner: prev, old: extensionAddress, new: Address(newAddress))
-        return data
+        guard let linkedList = remoteOwnersList(),  linkedList.contains(extensionAddress) else { return nil }
+        return contractProxy.swapOwner(prevOwner: linkedList.addressBefore(extensionAddress),
+                                       old: extensionAddress,
+                                       new: Address(newAddress))
+    }
+
+    private func remoteOwnersList() -> OwnerLinkedList? {
+        var linkedList = OwnerLinkedList()
+        guard let remoteOwners = try? contractProxy.getOwners(), !remoteOwners.isEmpty else { return nil }
+        remoteOwners.forEach { linkedList.add($0) }
+        return linkedList
     }
 
 }
