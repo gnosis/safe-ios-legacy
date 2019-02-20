@@ -1091,11 +1091,9 @@
 				0A334DB4209C6D8600ABC6AE /* SetupSafeFlowCoordinator.swift */,
 				0A6EF3C521BA8C6600F1074E /* RecoverSafeFlowCoordinator.swift */,
 				0A6EF3C721BA8CC100F1074E /* AddressInputViewController.swift */,
-				0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */,
 				0A6EF3C921BA8D0600F1074E /* RecoverSafe.storyboard */,
 				0ABDE31A21BE6FA000EA0CED /* RecoveryInProgressViewController.swift */,
 				0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */,
-				0AD124DC21BBF037005565B7 /* RecoveryPhraseInputViewController.swift */,
 				0A6EF3C321BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift */,
 				0A334DB3209C6D8600ABC6AE /* SetupSafeFlowCoordinatorTests.swift */,
 				0A334DB7209C6D8600ABC6AE /* SetupSafeOptionsViewController.swift */,
@@ -1812,6 +1810,8 @@
 		558682C92192F95C0060F1DE /* ReusableDetachedControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0A9DCA3921BBF40800D473B8 /* BaseInputViewController.swift */,
+				0AD124DC21BBF037005565B7 /* RecoveryPhraseInputViewController.swift */,
 				55C0D4BA219AD32C00F04FA4 /* ReviewTransaction */,
 				558682CA2192F9840060F1DE /* PairWithBrowserExtension */,
 				55DFBCF52135901D004B2AC4 /* Unlock */,

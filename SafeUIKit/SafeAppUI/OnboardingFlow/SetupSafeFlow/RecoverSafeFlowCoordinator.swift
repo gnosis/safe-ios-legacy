@@ -59,7 +59,7 @@ extension RecoverSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate 
         }
     }
 
-    func recoveryPhraseInputViewControllerDidPressNext() {
+    func recoveryPhraseInputViewControllerDidFinish() {
         push(newPairController())
     }
 

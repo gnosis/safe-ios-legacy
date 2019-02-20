@@ -3,11 +3,10 @@
 //
 
 import UIKit
-import MultisigWalletApplication
 
 protocol RecoveryPhraseInputViewControllerDelegate: class {
 
-    func recoveryPhraseInputViewControllerDidPressNext()
+    func recoveryPhraseInputViewControllerDidFinish()
     func recoveryPhraseInputViewController(_ controller: RecoveryPhraseInputViewController,
                                            didEnterPhrase phrase: String)
 }
@@ -119,7 +118,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         DispatchQueue.main.async {
             self.stopActivityIndicator()
             self.enableNextAction()
-            self.delegate?.recoveryPhraseInputViewControllerDidPressNext()
+            self.delegate?.recoveryPhraseInputViewControllerDidFinish()
         }
     }
 

@@ -42,7 +42,27 @@ extension ReplaceBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewCo
     }
 
     func pairWithBrowserExtensionViewControllerDidFinish() {
-        print("Finished successfullly")
+        let controller = RecoveryPhraseInputViewController.create(delegate: self)
+        push(controller)
+    }
+
+}
+
+extension ReplaceBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
+
+
+    func recoveryPhraseInputViewController(_ controller: RecoveryPhraseInputViewController,
+                                           didEnterPhrase phrase: String) {
+        do {
+            try ApplicationServiceRegistry.settingsService.sign(transaction: transactionID, withPhrase: phrase)
+            controller.handleSuccess()
+        } catch {
+            controller.handleError(error)
+        }
+    }
+
+
+    func recoveryPhraseInputViewControllerDidFinish() {
     }
 
 }

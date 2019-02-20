@@ -47,6 +47,12 @@ open class WalletSettingsApplicationService {
         DomainRegistry.replaceExtensionService.update(transaction: txID, newOwnerAddress: newAddress)
     }
 
+    open func sign(transaction: RBETransactionID, withPhrase phrase: String) throws {
+        let txID = TransactionID(transaction)
+        _ = try DomainRegistry.replaceExtensionService.estimateNetworkFee(for: txID)
+        try DomainRegistry.replaceExtensionService.sign(transactionID: txID, with: phrase)
+    }
+
 }
 
 extension WalletSettingsApplicationService: RBEStarter {

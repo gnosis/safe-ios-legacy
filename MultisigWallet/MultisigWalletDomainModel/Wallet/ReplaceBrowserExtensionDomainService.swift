@@ -78,7 +78,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         repository.save(tx)
     }
 
-    public func estimateNetworkFee(for transactionID: TransactionID) throws -> TokenAmount {
+    open func estimateNetworkFee(for transactionID: TransactionID) throws -> TokenAmount {
         let tx = transaction(transactionID)
         let request = estimationRequest(for: tx)
         let response = try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
@@ -153,7 +153,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     func swapOwnerData(with newAddress: String) -> Data? {
         let extensionAddress = wallet!.owner(role: .browserExtension)!.address
-        guard let linkedList = remoteOwnersList(),  linkedList.contains(extensionAddress) else { return nil }
+        guard let linkedList = remoteOwnersList(), linkedList.contains(extensionAddress) else { return nil }
         return contractProxy.swapOwner(prevOwner: linkedList.addressBefore(extensionAddress),
                                        old: extensionAddress,
                                        new: Address(newAddress))
@@ -164,6 +164,12 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         guard let remoteOwners = try? contractProxy.getOwners(), !remoteOwners.isEmpty else { return nil }
         remoteOwners.forEach { linkedList.add($0) }
         return linkedList
+    }
+
+    // MARK: - Signing the Transaction
+
+    open func sign(transactionID: TransactionID, with phrase: String) throws {
+
     }
 
 }
