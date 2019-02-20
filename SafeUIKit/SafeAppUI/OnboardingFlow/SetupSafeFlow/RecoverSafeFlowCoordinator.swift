@@ -49,6 +49,16 @@ extension RecoverSafeFlowCoordinator: AddressInputViewControllerDelegate {
 
 extension RecoverSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
 
+    func recoveryPhraseInputViewController(_ controller: RecoveryPhraseInputViewController,
+                                           didEnterPhrase phrase: String) {
+        DispatchQueue.global().async {
+            ApplicationServiceRegistry.recoveryService.provide(recoveryPhrase: phrase,
+                                                               subscriber: controller) { error in
+                                                                controller.handleError(error)
+            }
+        }
+    }
+
     func recoveryPhraseInputViewControllerDidPressNext() {
         push(newPairController())
     }

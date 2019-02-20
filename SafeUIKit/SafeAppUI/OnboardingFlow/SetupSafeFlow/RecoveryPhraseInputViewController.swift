@@ -8,7 +8,8 @@ import MultisigWalletApplication
 protocol RecoveryPhraseInputViewControllerDelegate: class {
 
     func recoveryPhraseInputViewControllerDidPressNext()
-
+    func recoveryPhraseInputViewController(_ controller: RecoveryPhraseInputViewController,
+                                           didEnterPhrase phrase: String)
 }
 
 class RecoveryPhraseInputViewController: BaseInputViewController {
@@ -111,16 +112,22 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         disableNextAction()
         startActivityIndicator()
         let phrase = safeUserInputText()
-        DispatchQueue.global().async {
-            let service = ApplicationServiceRegistry.recoveryService
-            service.provide(recoveryPhrase: phrase, subscriber: self) { [weak self] error in
-                guard let `self` = self else { return }
-                DispatchQueue.main.async {
-                    self.stopActivityIndicator()
-                    self.enableNextAction()
-                    self.show(error: error)
-                }
-            }
+        delegate?.recoveryPhraseInputViewController(self, didEnterPhrase: phrase)
+    }
+
+    public func handleSuccess() {
+        DispatchQueue.main.async {
+            self.stopActivityIndicator()
+            self.enableNextAction()
+            self.delegate?.recoveryPhraseInputViewControllerDidPressNext()
+        }
+    }
+
+    public func handleError(_ error: Error) {
+        DispatchQueue.main.async {
+            self.stopActivityIndicator()
+            self.enableNextAction()
+            self.show(error: error)
         }
     }
 
@@ -130,12 +137,9 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
             .prefix(RecoveryPhraseInputViewController.maxInputLength))
     }
 
-    override func didUpdateFromAction() {
+    override func notify() {
         DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else { return }
-            self.stopActivityIndicator()
-            self.enableNextAction()
-            self.delegate?.recoveryPhraseInputViewControllerDidPressNext()
+            self?.handleSuccess()
         }
     }
 
