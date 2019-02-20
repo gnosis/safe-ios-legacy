@@ -10,10 +10,10 @@ import CommonTestSupport
 class PairingWithBrowserExtensionTests: BaseWalletApplicationServiceTests {
 
     func test_whenAddingBrowserExtensionOwner_thenWorksProperly() throws {
+        ethereumService.browserExtensionAddress = Address.extensionAddress.value
         givenDraftWallet()
-        try service.addBrowserExtensionOwner(
-            address: Address.extensionAddress.value,
-            browserExtensionCode: BrowserExtensionFixture.testJSON)
+        try service.addBrowserExtensionOwner(address: Address.extensionAddress.value,
+                                             browserExtensionCode: BrowserExtensionFixture.testJSON)
         XCTAssertTrue(ethereumService.didSign)
         XCTAssertTrue(notificationService.didPair)
         XCTAssertNotNil(service.ownerAddress(of: .browserExtension))
@@ -23,11 +23,8 @@ class PairingWithBrowserExtensionTests: BaseWalletApplicationServiceTests {
         givenDraftWallet()
         notificationService.shouldThrow = true
         XCTAssertThrowsError(
-            try service.addBrowserExtensionOwner(
-                address: Address.extensionAddress.value,
-                browserExtensionCode: BrowserExtensionFixture.testJSON)) { error in
-                    XCTAssertEqual(error as! TestError, .error)
-        }
+            try service.addBrowserExtensionOwner(address: Address.extensionAddress.value,
+                                                 browserExtensionCode: BrowserExtensionFixture.testJSON))
     }
 
     func test_whenAuthWithPushTokenCalled_thenCallsNotificationService() throws {

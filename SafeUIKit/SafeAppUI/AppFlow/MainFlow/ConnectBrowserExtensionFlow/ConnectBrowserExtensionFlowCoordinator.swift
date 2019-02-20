@@ -19,7 +19,9 @@ extension ConnectBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewCo
     func pairWithBrowserExtensionViewControllerDidSkipPairing() {}
 
     func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didPairWith address: String,
-                                                code: String) {}
+                                                didScanAddress address: String,
+                                                code: String) throws {}
+
+    func pairWithBrowserExtensionViewControllerDidFinish() {}
 
 }

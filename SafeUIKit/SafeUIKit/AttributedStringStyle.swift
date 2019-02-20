@@ -5,69 +5,71 @@
 import Foundation
 import UIKit
 
-class AttributedStringStyle {
+open class AttributedStringStyle {
 
-    var fontSize: Double {
+    public init() {}
+
+    open var fontSize: Double {
         return 12
     }
 
-    var fontWeight: UIFont.Weight {
+    open var fontWeight: UIFont.Weight {
         return .regular
     }
 
-    var fontColor: UIColor {
+    open var fontColor: UIColor {
         return .black
     }
 
-    var alignment: NSTextAlignment {
+    open var alignment: NSTextAlignment {
         return .left
     }
 
-    var spacingAfterParagraph: Double {
+    open var spacingAfterParagraph: Double {
         return 0
     }
 
-    var spacingBeforeParagraph: Double {
+    open var spacingBeforeParagraph: Double {
         return 0
     }
 
-    var firstLineHeadIndent: Double {
+    open var firstLineHeadIndent: Double {
         return 0
     }
 
-    var nonFirstLinesHeadIndent: Double {
+    open var nonFirstLinesHeadIndent: Double {
         return 0
     }
 
-    var allLinesTailIndent: Double {
+    open var allLinesTailIndent: Double {
         return 0
     }
 
-    var minimumLineHeight: Double {
+    open var minimumLineHeight: Double {
         return 0
     }
 
-    var maximumLineHeight: Double {
+    open var maximumLineHeight: Double {
         return 0
     }
 
-    var lineHeightMultiplier: Double {
+    open var lineHeightMultiplier: Double {
         return 0
     }
 
-    var lineSpacing: Double {
+    open var lineSpacing: Double {
         return 0
     }
 
-    var lineBreakMode: NSLineBreakMode {
+    open var lineBreakMode: NSLineBreakMode {
         return .byWordWrapping
     }
 
-    var letterSpacing: Double {
+    open var letterSpacing: Double {
         return 0
     }
 
-    var paragraphStyle: NSParagraphStyle {
+    open var paragraphStyle: NSParagraphStyle {
         let style = NSMutableParagraphStyle()
         style.alignment = alignment
         style.paragraphSpacing = CGFloat(spacingAfterParagraph)
@@ -91,13 +93,13 @@ class AttributedStringStyle {
         paragraph.tailIndent = CGFloat(allLinesTailIndent)
     }
 
-    var font: UIFont {
+    open var font: UIFont {
         return .systemFont(ofSize: CGFloat(fontSize), weight: fontWeight)
     }
 
 }
 
-extension NSAttributedString {
+public extension NSAttributedString {
 
     convenience init(string: String, style: AttributedStringStyle) {
         self.init(string: string, attributes: [.font: style.font,

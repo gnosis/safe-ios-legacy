@@ -368,6 +368,12 @@
 /* Recovery transaction failed alert's title */
 "recovery.transaction.failed_alert.title" = "Error";
 
+/* Description */
+"replace_extension.connect.description" = "All transactions will need to be approved by both this device and the new Safe browser extension.";
+
+/* Scan QR Code */
+"replace_extension.connect.header" = "Scan QR code";
+
 /* Text between stars (*) will be emphasized */
 "replace_phrase.body" = "This will generate a new recovery phrase and invalidate your current one.";
 

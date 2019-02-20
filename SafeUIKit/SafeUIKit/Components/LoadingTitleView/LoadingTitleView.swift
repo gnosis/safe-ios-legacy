@@ -24,7 +24,7 @@ public class LoadingTitleView: NibUIView {
     var titleStyle = LabelStyle()
     var spacing: Double = 5
 
-    override func didLoad() {
+    public override func didLoad() {
         titleLabel.attributedText = NSAttributedString(string: text, style: titleStyle)
         elementsStackView.spacing = CGFloat(spacing)
     }

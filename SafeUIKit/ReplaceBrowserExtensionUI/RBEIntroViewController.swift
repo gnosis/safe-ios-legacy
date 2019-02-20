@@ -6,11 +6,17 @@ import UIKit
 import SafeUIKit
 import ReplaceBrowserExtensionFacade
 
+public protocol RBEIntroViewControllerDelegate: class {
+    func rbeIntroViewControllerDidStart()
+}
+
 public class RBEIntroViewController: UIViewController {
 
     public var startButtonItem: UIBarButtonItem!
     public var backButtonItem: UIBarButtonItem!
     public var retryButtonItem: UIBarButtonItem!
+
+    public weak var delegate: RBEIntroViewControllerDelegate?
 
     var state: State = LoadingState()
     var calculationData: RBEFeeCalculationData?
@@ -22,7 +28,7 @@ public class RBEIntroViewController: UIViewController {
             feeCalculationView.calculation = newValue
         }
     }
-    var transactionID: RBETransactionID?
+    public var transactionID: RBETransactionID?
     public var starter: RBEStarter?
     let formatter = TokenNumberFormatter()
 

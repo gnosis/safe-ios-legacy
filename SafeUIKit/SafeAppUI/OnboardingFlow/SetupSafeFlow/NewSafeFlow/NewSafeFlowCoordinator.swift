@@ -80,15 +80,14 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
 extension NewSafeFlowCoordinator: PairWithBrowserExtensionViewControllerDelegate {
 
     func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didPairWith address: String,
-                                                code: String) {
-        do {
-            try ApplicationServiceRegistry.walletService
-                .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
-            self.pop()
-        } catch let e {
-            controller.handleError(e)
-        }
+                                                didScanAddress address: String,
+                                                code: String) throws {
+        try ApplicationServiceRegistry.walletService
+            .addBrowserExtensionOwner(address: address, browserExtensionCode: code)
+    }
+
+    func pairWithBrowserExtensionViewControllerDidFinish() {
+        pop()
     }
 
     func pairWithBrowserExtensionViewControllerDidSkipPairing() {

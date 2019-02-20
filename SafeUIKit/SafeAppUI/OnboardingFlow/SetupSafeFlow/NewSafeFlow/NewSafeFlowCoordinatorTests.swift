@@ -177,12 +177,14 @@ private extension NewSafeFlowCoordinatorTests {
     }
 
     func pairWithBrowserExtension() {
+        ethereumService.browserExtensionAddress = "code"
         walletService.expect_isSafeCreationInProgress(true)
         startVC = topViewController
         newSafeFlowCoordinator.didSelectBrowserExtensionSetup()
         delay()
         pairVC = topViewController as? PairWithBrowserExtensionViewController
-        pairVC!.delegate?.pairWithBrowserExtensionViewController(pairVC!, didPairWith: "address", code: "code")
+        pairVC!.loadViewIfNeeded()
+        pairVC!.scanBarButtonItemDidScanValidCode("code")
         delay()
     }
 

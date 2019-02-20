@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import UIKit
 
 open class NibUIView: UIView {
 
@@ -16,7 +17,7 @@ open class NibUIView: UIView {
         commonInit()
     }
 
-    func commonInit() {
+    open func commonInit() {
         let aClass = type(of: self)
         guard let contents = Bundle(for: aClass).loadNibNamed("\(aClass)", owner: self, options: nil),
             let contentView = contents.first as? UIView else { return }
@@ -26,12 +27,12 @@ open class NibUIView: UIView {
         didLoad()
     }
 
-    func setUpConstraints(for contentView: UIView) {
+    open func setUpConstraints(for contentView: UIView) {
         NSLayoutConstraint.activate([widthAnchor.constraint(equalTo: contentView.widthAnchor),
                                      heightAnchor.constraint(equalTo: contentView.heightAnchor)])
     }
 
-    func didLoad() {
+    open func didLoad() {
         // meant for subclassing
     }
 

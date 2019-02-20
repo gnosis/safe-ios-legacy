@@ -323,4 +323,19 @@ public class MockWalletApplicationService: WalletApplicationService {
         return URL(string: "https://gnosis.pm")!
     }
 
+    public var deletePairCalled = false
+    public override func deletePair(with address: String) throws {
+        try throwIfNeeded()
+        deletePairCalled = true
+    }
+
+    public override func createPair(from rawCode: String) throws {
+        try throwIfNeeded()
+    }
+
+    public var addressBrowserExtensionCodeResult = ""
+    public override func address(browserExtensionCode rawCode: String) -> String {
+        return addressBrowserExtensionCodeResult
+    }
+
 }

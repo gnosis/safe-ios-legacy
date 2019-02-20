@@ -152,6 +152,36 @@ class ReplaceBrowserExtensionDomainServiceTests: XCTestCase {
         XCTAssertThrowsError(try service.validate(transactionID: tx.id))
     }
 
+    func test_whenCreatingSwapOwnerData_thenReturnsCorrectData() {
+        let wallet = setUpWallet()
+        let newAddress = Address.testAccount4
+        let prevAddress = Address.testAccount1
+        let oldAddress = wallet.owner(role: .browserExtension)!.address
+        mockProxy.getOwners_result = [prevAddress, oldAddress]
+        let expectedData = mockProxy.swapOwner(prevOwner: prevAddress, old: oldAddress, new: newAddress)
+
+        let actualData = service.swapOwnerData(with: newAddress.value)!
+
+        XCTAssertEqual(actualData,
+                       expectedData,
+                       "Actual: \(actualData.toHexString()) Expected: \(expectedData.toHexString())")
+    }
+
+    func test_whenUpdatesTransaction_thenPutsNewData() {
+        setUpWallet()
+        let txID = service.createTransaction()
+        service.update(transaction: txID, newOwnerAddress: Address.testAccount4.value)
+        let tx = transaction(from: txID)!
+        XCTAssertEqual(tx.data, service.swapOwnerData(with: Address.testAccount4.value))
+    }
+
+    func test_whenHasExtensionDataInside_thenCanExtractNewOwnerAddress() {
+        setUpWallet()
+        let txID = service.createTransaction()
+        service.update(transaction: txID, newOwnerAddress: Address.testAccount4.value)
+        XCTAssertEqual(service.newOwnerAddress(from: txID), Address.testAccount4.value.lowercased())
+    }
+
 }
 
 class TestableOwnerProxy: SafeOwnerManagerContractProxy {

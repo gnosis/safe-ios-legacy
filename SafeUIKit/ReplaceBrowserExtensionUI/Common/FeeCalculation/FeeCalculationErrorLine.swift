@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import SafeUIKit
 
 public class FeeCalculationErrorLine: FeeCalculationLine {
 

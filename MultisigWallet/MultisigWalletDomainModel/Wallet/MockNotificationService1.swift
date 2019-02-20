@@ -65,4 +65,8 @@ class MockNotificationService1: NotificationDomainService {
         preconditionFailure()
     }
 
+    func deletePair(request: DeletePairRequest) throws {
+        preconditionFailure()
+    }
+
 }
