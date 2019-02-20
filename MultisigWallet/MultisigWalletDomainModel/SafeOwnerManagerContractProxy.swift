@@ -53,12 +53,12 @@ public class SafeOwnerManagerContractProxy: EthereumContractProxy {
     }
 
     public func decodeSwapOwnerArguments(from data: Data) -> (prevOwner: Address, old: Address, new: Address)? {
-        let selectorLength = 4
         let argumentLength = 32
         let selector = self.method("swapOwner(address,address,address)")
-        guard data.count == selectorLength + 3 * argumentLength, data.prefix(4) == selector else { return nil }
+        guard data.count == selector.count + 3 * argumentLength &&
+            data.prefix(selector.count) == selector else { return nil }
         var input = data
-        input.removeFirst(selectorLength)
+        input.removeFirst(selector.count)
         let prevOwner = decodeAddress(input)
         input.removeFirst(argumentLength)
         let old = decodeAddress(input)

@@ -771,4 +771,5 @@ extension TransactionGroupData.GroupType {
         case .processed: self = .processed
         }
     }
+
 }

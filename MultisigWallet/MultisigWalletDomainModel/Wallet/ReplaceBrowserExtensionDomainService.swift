@@ -10,7 +10,7 @@ public enum ReplaceBrowserExtensionDomainServiceError: Error {
     case browserExtensionNotConnected
 }
 
-public class ReplaceBrowserExtensionDomainService: Assertable {
+open class ReplaceBrowserExtensionDomainService: Assertable {
 
     public var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }
@@ -136,14 +136,14 @@ public class ReplaceBrowserExtensionDomainService: Assertable {
 
     // MARK: - Connection of Browser Extension
 
-    public func newOwnerAddress(from transactionID: TransactionID) -> String? {
+    open func newOwnerAddress(from transactionID: TransactionID) -> String? {
         let proxy = ownerContractProxy ?? SafeOwnerManagerContractProxy(self.wallet!.address!)
         let tx = self.transaction(transactionID)
         guard let data = tx.data, let arguments = proxy.decodeSwapOwnerArguments(from: data) else { return nil }
         return arguments.new.value
     }
 
-    public func update(transaction: TransactionID, newOwnerAddress: String) {
+    open func update(transaction: TransactionID, newOwnerAddress: String) {
         let tx = self.transaction(transaction)
         tx.change(data: swapOwnerData(with: newOwnerAddress))
         repository.save(tx)
