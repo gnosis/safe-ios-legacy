@@ -8,7 +8,7 @@ import MultisigWalletDomainModel
 
 class WalletSettingsApplicationServiceTests: XCTestCase {
 
-    let mockReplaceService = MockReplaceBrowserExtensionDomainService()
+    var mockReplaceService = MockReplaceBrowserExtensionDomainService()
     let mockWalletService = MockWalletApplicationService()
     let service = WalletSettingsApplicationService()
 
@@ -42,9 +42,46 @@ class WalletSettingsApplicationServiceTests: XCTestCase {
         XCTAssertEqual(mockReplaceService.updateArguments?.address, "address")
     }
 
+    func test_whenSigning_thenEstimatesTransaction() throws {
+        let (tx, phrase) = ("tx", "phrase")
+        try service.sign(transaction: tx, withPhrase: phrase)
+        XCTAssertTrue(mockReplaceService.didCallEstimateFee)
+    }
+
+    func test_whenEstimationThrows_thenThrows() {
+        do_testThrowing(\.shouldThrow)
+    }
+
+    func test_whenSigningThrows_thenThrows() {
+        do_testThrowing(\.shouldThrowDuringSigning)
+    }
+
+    private func do_testThrowing(_ keyPath: WritableKeyPath<MockReplaceBrowserExtensionDomainService, Bool>,
+                                 line: UInt = #line) {
+        let (tx, phrase) = ("tx", "phrase")
+        mockReplaceService[keyPath: keyPath] = true
+        XCTAssertThrowsError(try service.sign(transaction: tx, withPhrase: phrase))
+    }
+
+    func test_whenNewAddressInvalidDuringConnecting_thenThrows() {
+        mockReplaceService.shouldThrowDuringValidation = true
+        XCTAssertThrowsError(try service.connect(transaction: "tx", code: "code"))
+    }
+
 }
 
 class MockReplaceBrowserExtensionDomainService: ReplaceBrowserExtensionDomainService {
+
+    var shouldThrowDuringValidation = false
+    var shouldThrowDuringSigning = false
+    enum MyError: Error { case error }
+
+    var shouldThrow = false
+    func throwIfNeeded() throws {
+        if shouldThrow {
+            throw MyError.error
+        }
+    }
 
     var newOwnerAddressReesult: String?
 
@@ -55,6 +92,25 @@ class MockReplaceBrowserExtensionDomainService: ReplaceBrowserExtensionDomainSer
     var updateArguments: (tx: TransactionID, address: String)?
     override func update(transaction: TransactionID, newOwnerAddress: String) {
         updateArguments = (transaction, newOwnerAddress)
+    }
+
+    var didCallEstimateFee = false
+    override func estimateNetworkFee(for transactionID: TransactionID) throws -> TokenAmount {
+        try throwIfNeeded()
+        didCallEstimateFee = true
+        return TokenAmount(amount: 0, token: Token.Ether)
+    }
+
+    override func sign(transactionID: TransactionID, with phrase: String) throws {
+        if shouldThrowDuringSigning {
+            throw MyError.error
+        }
+    }
+
+    override func validateNewOwnerAddress(_ address: String) throws {
+        if shouldThrowDuringValidation {
+            throw MyError.error
+        }
     }
 
 }

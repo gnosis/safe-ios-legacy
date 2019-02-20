@@ -6,7 +6,7 @@ import UIKit
 import SafeUIKit
 import MultisigWalletApplication
 
-class BaseInputViewController: UIViewController {
+class BaseInputViewController: UIViewController, EventSubscriber {
 
     var activityIndicatorItem: UIBarButtonItem!
     let activityIndicatorView = UIActivityIndicatorView(style: .gray)
@@ -62,20 +62,12 @@ class BaseInputViewController: UIViewController {
 
     @IBAction func next(_ sender: Any) {}
 
-    func didUpdateFromAction() {
+    func notify() {
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
             self.stopActivityIndicator()
             self.enableNextAction()
         }
-    }
-
-}
-
-extension BaseInputViewController: EventSubscriber {
-
-    func notify() {
-        didUpdateFromAction()
     }
 
 }
