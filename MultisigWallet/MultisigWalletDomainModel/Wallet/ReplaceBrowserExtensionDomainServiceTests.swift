@@ -182,6 +182,14 @@ class ReplaceBrowserExtensionDomainServiceTests: XCTestCase {
         XCTAssertEqual(service.newOwnerAddress(from: txID), Address.testAccount4.value.lowercased())
     }
 
+    func test_whenNewOnwerAddressIsOwner_thenThrows() {
+        setUpWallet()
+        _ = service.createTransaction()
+        let existingOwner = Address.testAccount1
+        mockProxy.getOwners_result = [existingOwner]
+        XCTAssertThrowsError(try service.validateNewOwnerAddress(existingOwner.value))
+    }
+
     func test_whenEstimatingTransaction_thenSetsNonce() {
         setUpWallet()
         let tx = createEstimatedTransaction()

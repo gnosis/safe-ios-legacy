@@ -60,10 +60,16 @@ class WalletSettingsApplicationServiceTests: XCTestCase {
         XCTAssertThrowsError(try service.sign(transaction: tx, withPhrase: phrase))
     }
 
+    func test_whenNewAddressInvalidDuringConnecting_thenThrows() {
+        mockReplaceService.shouldThrowDuringValidation = true
+        XCTAssertThrowsError(try service.connect(transaction: "tx", code: "code"))
+    }
+
 }
 
 class MockReplaceBrowserExtensionDomainService: ReplaceBrowserExtensionDomainService {
 
+    var shouldThrowDuringValidation = false
     var shouldThrowDuringSigning = false
     enum MyError: Error { case error }
 
@@ -94,6 +100,12 @@ class MockReplaceBrowserExtensionDomainService: ReplaceBrowserExtensionDomainSer
 
     override func sign(transactionID: TransactionID, with phrase: String) throws {
         if shouldThrowDuringSigning {
+            throw MyError.error
+        }
+    }
+
+    override func validateNewOwnerAddress(_ address: String) throws {
+        if shouldThrowDuringValidation {
             throw MyError.error
         }
     }

@@ -8,6 +8,7 @@ import Common
 public enum ReplaceBrowserExtensionDomainServiceError: Error {
     case insufficientBalance
     case browserExtensionNotConnected
+    case browserExtensionAlreadyExists
     case recoveryPhraseInvalid
     case recoveryPhraseHasNoOwnership
 }
@@ -141,6 +142,12 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     // MARK: - Connection of Browser Extension
+
+    open func validateNewOwnerAddress(_ address: String) throws {
+        guard let list = remoteOwnersList(), !list.contains(Address(address)) else {
+            throw ReplaceBrowserExtensionDomainServiceError.browserExtensionAlreadyExists
+        }
+    }
 
     open func newOwnerAddress(from transactionID: TransactionID) -> String? {
         let tx = self.transaction(transactionID)

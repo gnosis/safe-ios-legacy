@@ -39,11 +39,12 @@ open class WalletSettingsApplicationService {
 
     open func connect(transaction: RBETransactionID, code: String) throws {
         let txID = TransactionID(transaction)
+        let newAddress = ApplicationServiceRegistry.walletService.address(browserExtensionCode: code)
+        try DomainRegistry.replaceExtensionService.validateNewOwnerAddress(newAddress)
         if let oldPairAddress = DomainRegistry.replaceExtensionService.newOwnerAddress(from: txID) {
             try ApplicationServiceRegistry.walletService.deletePair(with: oldPairAddress)
         }
         try ApplicationServiceRegistry.walletService.createPair(from: code)
-        let newAddress = ApplicationServiceRegistry.walletService.address(browserExtensionCode: code)
         DomainRegistry.replaceExtensionService.update(transaction: txID, newOwnerAddress: newAddress)
     }
 
