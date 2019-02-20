@@ -12,6 +12,8 @@
 		0A0CF00C2125684000772AB3 /* ErrorStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CF00B2125684000772AB3 /* ErrorStream.swift */; };
 		0A0CF01421257ED000772AB3 /* DeploymentDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */; };
 		0A112191219C522B00EEDC27 /* TransactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A112190219C522B00EEDC27 /* TransactionStatus.swift */; };
+		0A1B2A90221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */; };
+		0A1B2A97221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */; };
 		0A23C80520A1B09100C72483 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80420A1B09100C72483 /* Wallet.swift */; };
 		0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80A20A1B09900C72483 /* WalletTests.swift */; };
 		0A23C80D20A1B34900C72483 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80C20A1B34900C72483 /* Owner.swift */; };
@@ -422,6 +424,8 @@
 		0A0CF00B2125684000772AB3 /* ErrorStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStream.swift; sourceTree = "<group>"; };
 		0A0CF01321257ED000772AB3 /* DeploymentDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentDomainServiceTests.swift; sourceTree = "<group>"; };
 		0A112190219C522B00EEDC27 /* TransactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStatus.swift; sourceTree = "<group>"; };
+		0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServiceBaseTestCase.swift; sourceTree = "<group>"; };
+		0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServiceSigningTests.swift; sourceTree = "<group>"; };
 		0A23C80420A1B09100C72483 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		0A23C80A20A1B09900C72483 /* WalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTests.swift; sourceTree = "<group>"; };
 		0A23C80C20A1B34900C72483 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
@@ -823,6 +827,8 @@
 				0A553D4421C0164100647CFF /* WalletSettingsDomainService.swift */,
 				0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */,
 				0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */,
+				0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */,
+				0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -1589,8 +1595,10 @@
 				0A77D0D1211AD986003582DD /* Fixtures.swift in Sources */,
 				0A5C0D482185B6F300988930 /* AllDeploymentStatesTests.swift in Sources */,
 				0ACA9D10212AD37F00E39BB6 /* MockSystem.swift in Sources */,
+				0A1B2A97221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift in Sources */,
 				0ACA9D02212ACD4000E39BB6 /* MockTransactionRelayService1.swift in Sources */,
 				0A8272FF2124447D00EB5C21 /* EventPublisherTests.swift in Sources */,
+				0A1B2A90221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift in Sources */,
 				0A76BE5720AEF35C00D07770 /* DomainRegistryTests.swift in Sources */,
 				0ABCC0FC2177291D00E60E9F /* TransactionDomainServiceTests.swift in Sources */,
 				0A9E386120F4B46C0085E8D7 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,

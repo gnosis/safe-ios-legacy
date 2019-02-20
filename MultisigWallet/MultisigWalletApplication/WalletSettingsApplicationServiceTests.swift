@@ -8,7 +8,7 @@ import MultisigWalletDomainModel
 
 class WalletSettingsApplicationServiceTests: XCTestCase {
 
-    let mockReplaceService = MockReplaceBrowserExtensionDomainService()
+    var mockReplaceService = MockReplaceBrowserExtensionDomainService()
     let mockWalletService = MockWalletApplicationService()
     let service = WalletSettingsApplicationService()
 
@@ -49,14 +49,17 @@ class WalletSettingsApplicationServiceTests: XCTestCase {
     }
 
     func test_whenEstimationThrows_thenThrows() {
-        let (tx, phrase) = ("tx", "phrase")
-        mockReplaceService.shouldThrow = true
-        XCTAssertThrowsError(try service.sign(transaction: tx, withPhrase: phrase))
+        do_testThrowing(\.shouldThrow)
     }
 
     func test_whenSigningThrows_thenThrows() {
+        do_testThrowing(\.shouldThrowDuringSigning)
+    }
+
+    private func do_testThrowing(_ keyPath: WritableKeyPath<MockReplaceBrowserExtensionDomainService, Bool>,
+                                 line: UInt = #line) {
         let (tx, phrase) = ("tx", "phrase")
-        mockReplaceService.shouldThrowDuringSigning = true
+        mockReplaceService[keyPath: keyPath] = true
         XCTAssertThrowsError(try service.sign(transaction: tx, withPhrase: phrase))
     }
 
