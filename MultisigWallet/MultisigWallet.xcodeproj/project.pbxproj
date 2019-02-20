@@ -87,6 +87,7 @@
 		0A8E3C0520B4260600F002F6 /* DBAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0420B4260600F002F6 /* DBAccountRepository.swift */; };
 		0A8E3C0720B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E3C0620B4265E00F002F6 /* DBAccountRepositoryIntegrationTests.swift */; };
 		0A978636221D5727008C1DC9 /* WalletSettingsApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A978635221D5727008C1DC9 /* WalletSettingsApplicationServiceTests.swift */; };
+		0A97864F221D9291008C1DC9 /* ExternallyOwnedAccount+TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E37FE20F4A4D20085E8D7 /* ExternallyOwnedAccount+TestFixture.swift */; };
 		0A9E380920F4A4F20085E8D7 /* GetSafeCreationStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379C20F4A4D10085E8D7 /* GetSafeCreationStatusRequest.swift */; };
 		0A9E380A20F4A4F20085E8D7 /* EncryptionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379D20F4A4D10085E8D7 /* EncryptionDomainService.swift */; };
 		0A9E380B20F4A4F20085E8D7 /* StartSafeCreationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E379E20F4A4D10085E8D7 /* StartSafeCreationRequest.swift */; };
@@ -1574,6 +1575,7 @@
 				0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */,
 				0A8A2B9B20FCDC540003BB7E /* TestFixture.swift in Sources */,
 				552C6012212B0D1B00BF973A /* TokenListMergerTests.swift in Sources */,
+				0A97864F221D9291008C1DC9 /* ExternallyOwnedAccount+TestFixture.swift in Sources */,
 				0ACA9D0B212ACDDD00E39BB6 /* MockEncryptionService1.swift in Sources */,
 				0A73F3182133FDE000F65DAE /* ErrorStreamTests.swift in Sources */,
 				0A0CF01421257ED000772AB3 /* DeploymentDomainServiceTests.swift in Sources */,

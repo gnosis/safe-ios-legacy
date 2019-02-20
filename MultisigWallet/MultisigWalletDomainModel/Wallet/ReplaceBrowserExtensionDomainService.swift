@@ -8,6 +8,8 @@ import Common
 public enum ReplaceBrowserExtensionDomainServiceError: Error {
     case insufficientBalance
     case browserExtensionNotConnected
+    case recoveryPhraseInvalid
+    case recoveryPhraseHasNoOwnership
 }
 
 open class ReplaceBrowserExtensionDomainService: Assertable {
@@ -92,6 +94,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
                                               operationalGas: response.operationalGas,
                                               gasPrice: TokenAmount(amount: TokenInt(response.gasPrice), token: token))
         tx.change(feeEstimate: estimate)
+          .change(nonce: String(response.nextNonce))
         repository.save(tx)
         return .ether(userFacingFee)
     }
@@ -169,7 +172,39 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     // MARK: - Signing the Transaction
 
     open func sign(transactionID: TransactionID, with phrase: String) throws {
+        guard let eoa = signingEOA(from: phrase) else {
+            throw ReplaceBrowserExtensionDomainServiceError.recoveryPhraseInvalid
+        }
+        guard try isContractOwners(eoa: eoa) else {
+            throw ReplaceBrowserExtensionDomainServiceError.recoveryPhraseHasNoOwnership
+        }
+        let tx = self.transaction(transactionID)
+        tx.change(hash: DomainRegistry.encryptionService.hash(of: tx))
+        tx.proceed()
+        sign(tx: tx, with: eoa.primary)
+        sign(tx: tx, with: eoa.derived)
+        repository.save(tx)
+    }
 
+    private func isContractOwners(eoa: EOAPair) throws -> Bool {
+        let contractOwners = try contractProxy.getOwners()
+        return contractOwners.contains { $0.value.lowercased() == eoa.primary.address.value.lowercased() } &&
+            contractOwners.contains { $0.value.lowercased() == eoa.derived.address.value.lowercased() }
+    }
+
+    private func sign(tx: Transaction, with eoa: ExternallyOwnedAccount) {
+        let signatureData = DomainRegistry.encryptionService.sign(transaction: tx, privateKey: eoa.privateKey)
+        tx.add(signature: Signature(data: signatureData, address: eoa.address))
+    }
+
+    typealias EOAPair = (primary: ExternallyOwnedAccount, derived: ExternallyOwnedAccount)
+
+    func signingEOA(from phrase: String) -> EOAPair? {
+        guard let primary = DomainRegistry.encryptionService.deriveExternallyOwnedAccount(from: phrase) else {
+            return nil
+        }
+        let derived = DomainRegistry.encryptionService.deriveExternallyOwnedAccount(from: primary, at: 1)
+        return (primary, derived)
     }
 
 }

@@ -98,8 +98,9 @@ public class MockEncryptionService: EncryptionDomainService {
         return expected_deriveExternallyOwnedAccount[actual_deriveExternallyOwnedAccount.count - 1].result
     }
 
+    public var deriveExternallyOwnedAccountFromMnemonicResult: ExternallyOwnedAccount?
     public func deriveExternallyOwnedAccount(from mnemonic: String) -> ExternallyOwnedAccount? {
-        return nil
+        return deriveExternallyOwnedAccountFromMnemonicResult
     }
 
 }

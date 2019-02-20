@@ -265,11 +265,11 @@ class WalletCreatedTests: BaseDeploymentDomainServiceTests {
 
     func test_whenCreated_thenRemovesPaperWallet() {
         givenCreatedWalletWithNotifiedExtension()
-        eoaRepository.save(.testAccount(wallet,
+        eoaRepository.save(.createTestAccount(wallet,
                                         role: .paperWallet,
                                         privateKey: .testPrivateKey,
                                         publicKey: .testPublicKey))
-        eoaRepository.save(.testAccount(wallet,
+        eoaRepository.save(.createTestAccount(wallet,
                                         role: .paperWalletDerived,
                                         privateKey: .testPrivateKey,
                                         publicKey: .testPublicKey))
@@ -352,7 +352,7 @@ extension BaseDeploymentDomainServiceTests {
     }
 
     func expectSafeCreatedNotification() {
-        eoaRepository.save(.testAccount(wallet,
+        eoaRepository.save(.createTestAccount(wallet,
                                         role: .thisDevice,
                                         privateKey: .testPrivateKey,
                                         publicKey: .testPublicKey))
@@ -448,7 +448,7 @@ extension SafeCreationTransactionRequest.Response.Transaction {
 }
 
 extension ExternallyOwnedAccount {
-    static func testAccount(_ wallet: Wallet, role: OwnerRole, privateKey: PrivateKey, publicKey: PublicKey)
+    static func createTestAccount(_ wallet: Wallet, role: OwnerRole, privateKey: PrivateKey, publicKey: PublicKey)
         -> ExternallyOwnedAccount {
             return ExternallyOwnedAccount(address: wallet.owner(role: role)!.address,
                                           mnemonic: Mnemonic(words: ["one", "two"]),
