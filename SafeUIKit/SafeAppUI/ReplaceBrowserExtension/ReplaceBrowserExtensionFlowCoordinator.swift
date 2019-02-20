@@ -41,8 +41,6 @@ extension ReplaceBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewCo
         try ApplicationServiceRegistry.settingsService.connect(transaction: transactionID, code: code)
     }
 
-    // did go back -> delete pair request
-
     func pairWithBrowserExtensionViewControllerDidFinish() {
         print("Finished successfullly")
     }

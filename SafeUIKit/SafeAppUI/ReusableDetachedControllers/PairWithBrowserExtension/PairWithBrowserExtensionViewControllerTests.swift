@@ -27,12 +27,12 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
     func test_canPresentController() {
         createWindow(controller)
         let presentedController = UIViewController()
-        controller.presentController(presentedController)
+        controller.scanBarButtonItemWantsToPresentController(presentedController)
         XCTAssertTrue(controller.presentedViewController === presentedController)
     }
 
     func test_whenScansValidCode_thenCallsTheDelegate() {
-        controller.didScanValidCode(controller.scanBarButtonItem, code: "valid_code")
+        controller.scanBarButtonItemDidScanValidCode("valid_code")
         XCTAssertNil(testDelegate.pairedAddress)
         XCTAssertNil(testDelegate.pairedCode)
         delay()

@@ -270,11 +270,11 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
 
 extension PairWithBrowserExtensionViewController: ScanBarButtonItemDelegate {
 
-    public func presentController(_ controller: UIViewController) {
+    public func scanBarButtonItemWantsToPresentController(_ controller: UIViewController) {
         present(controller, animated: true)
     }
 
-    public func didScanValidCode(_ button: ScanBarButtonItem, code: String) {
+    public func scanBarButtonItemDidScanValidCode(_ code: String) {
         disableButtons()
         showLoadingTitle()
         DispatchQueue.global().async {

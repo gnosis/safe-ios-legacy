@@ -5,8 +5,8 @@
 import UIKit
 
 public protocol ScanBarButtonItemDelegate: class {
-    func presentController(_ controller: UIViewController)
-    func didScanValidCode(_ button: ScanBarButtonItem, code: String)
+    func scanBarButtonItemWantsToPresentController(_ controller: UIViewController)
+    func scanBarButtonItemDidScanValidCode(_ code: String)
 }
 
 public final class ScanBarButtonItem: UIBarButtonItem {
@@ -47,11 +47,11 @@ public final class ScanBarButtonItem: UIBarButtonItem {
 extension ScanBarButtonItem: ScanQRCodeHandlerDelegate {
 
     func presentController(_ controller: UIViewController) {
-        delegate?.presentController(controller)
+        delegate?.scanBarButtonItemWantsToPresentController(controller)
     }
 
     func didScanCode(raw: String, converted: String?) {
-        self.delegate?.didScanValidCode(self, code: raw)
+        self.delegate?.scanBarButtonItemDidScanValidCode(raw)
     }
 
 }

@@ -39,12 +39,12 @@ class ScanBarButtonItemTests: XCTestCase {
 class MockScanBarButtonItemDelegate: ScanBarButtonItemDelegate {
 
     var presentedController: UIViewController?
-    func presentController(_ controller: UIViewController) {
+    func scanBarButtonItemWantsToPresentController(_ controller: UIViewController) {
         presentedController = controller
     }
 
     var scannedCode: String?
-    func didScanValidCode(_ button: ScanBarButtonItem, code: String) {
+    func scanBarButtonItemDidScanValidCode(_ code: String) {
         scannedCode = code
     }
 

@@ -22,11 +22,11 @@ class ScanButtonViewController: UIViewController {
 
 extension ScanButtonViewController: ScanBarButtonItemDelegate {
 
-    func presentController(_ controller: UIViewController) {
+    func scanBarButtonItemWantsToPresentController(_ controller: UIViewController) {
         present(controller, animated: true)
     }
 
-    func didScanValidCode(_ button: ScanBarButtonItem, code: String) {
+    func scanBarButtonItemDidScanValidCode(_ code: String) {
         scannedCodeLabel.text = code
     }
 
