@@ -31,3 +31,12 @@
 /* Replace browser extension */
 "replace_extension.intro.header" = "Replace browser extension";
 
+/* Explanatory message */
+"safe_creation.alert.message" = "safe_creation.alert.message";
+
+/* Ok */
+"safe_creation.alert.ok" = "safe_creation.alert.ok";
+
+/* Transaction fee */
+"safe_creation.alert.title" = "safe_creation.alert.title";
+
