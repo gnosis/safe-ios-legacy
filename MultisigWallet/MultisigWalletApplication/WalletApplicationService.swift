@@ -165,11 +165,8 @@ public class WalletApplicationService: Assertable {
     }
 
     public func deletePair(with address: String) throws {
-        let deviceOwnerAddress = ownerAddress(of: .thisDevice)!
-        let signature = ethereumService.sign(message: "GNO" + address, by: deviceOwnerAddress)!
         try handleNotificationServiceError {
-            let request = DeletePairRequest(device: address, signature: signature)
-            try notificationService.deletePair(request: request)
+            try DomainRegistry.communicationService.deletePair(walletID: selectedWallet!.id, other: address)
         }
     }
 

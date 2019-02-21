@@ -100,4 +100,12 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: ReplaceBrowserExtensionDomainService.self)
     }
 
+    public static var communicationService: CommunicationDomainService {
+        return service(for: CommunicationDomainService.self)
+    }
+
+    public static var transactionMonitorRepository: RBETransactionMonitorRepository {
+        return service(for: RBETransactionMonitorRepository.self)
+    }
+
 }

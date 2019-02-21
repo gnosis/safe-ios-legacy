@@ -119,7 +119,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                      for: WalletSettingsDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: ReplaceBrowserExtensionDomainService(),
                                                      for: ReplaceBrowserExtensionDomainService.self)
-
+        MultisigWalletDomainModel.DomainRegistry.put(service: CommunicationDomainService(),
+                                                     for: CommunicationDomainService.self)
         let relay = EventRelay(publisher: MultisigWalletDomainModel.DomainRegistry.eventPublisher)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)
 
@@ -197,11 +198,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
             let accountRepo = DBAccountRepository(db: db)
             let transactionRepo = DBTransactionRepository(db: db)
             let tokenListItemRepo = DBTokenListItemRepository(db: db)
+            let monitorRepo = DBRBETransactionMonitorRepository(db: db)
             MultisigWalletDomainModel.DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
             MultisigWalletDomainModel.DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
             MultisigWalletDomainModel.DomainRegistry.put(service: accountRepo, for: AccountRepository.self)
             MultisigWalletDomainModel.DomainRegistry.put(service: transactionRepo, for: TransactionRepository.self)
             MultisigWalletDomainModel.DomainRegistry.put(service: tokenListItemRepo, for: TokenListItemRepository.self)
+            MultisigWalletDomainModel.DomainRegistry.put(service: monitorRepo,
+                                                         for: RBETransactionMonitorRepository.self)
 
             if !db.exists {
                 try db.create()
@@ -211,6 +215,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
             accountRepo.setUp()
             transactionRepo.setUp()
             tokenListItemRepo.setUp()
+            monitorRepo.setUp()
 
             let migrationRepo = DBMigrationRepository(db: db)
             migrationRepo.setUp()
