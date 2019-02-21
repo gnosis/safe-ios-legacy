@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     var multisigWalletDB: Database?
     var secureStore: SecureStore?
     var appConfig: AppConfig!
-    let filesystemGuard = FileSystemGuard()
+    let filesystemGuard = UIKitFileSystemGuard()
 
     let defaultBundleIdentifier = "io.gnosis.safe" // DO NOT CHANGE BECAUSE DEFAULT DATABASE LOCATION MIGHT CHANGE
 
