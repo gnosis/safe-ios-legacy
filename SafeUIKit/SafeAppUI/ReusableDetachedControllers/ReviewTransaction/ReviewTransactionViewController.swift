@@ -8,12 +8,12 @@ import MultisigWalletApplication
 import Common
 import BigInt
 
-protocol ReviewTransactionViewControllerDelegate: class {
+public protocol ReviewTransactionViewControllerDelegate: class {
     func wantsToSubmitTransaction(_ completion: @escaping (_ allowed: Bool) -> Void)
     func didFinishReview()
 }
 
-final class ReviewTransactionViewController: UITableViewController {
+final public class ReviewTransactionViewController: UITableViewController {
 
     private(set) var tx: TransactionData!
     private(set) weak var delegate: ReviewTransactionViewControllerDelegate!
@@ -71,7 +71,7 @@ final class ReviewTransactionViewController: UITableViewController {
         }
     }
 
-    convenience init(transactionID: String, delegate: ReviewTransactionViewControllerDelegate) {
+    public convenience init(transactionID: String, delegate: ReviewTransactionViewControllerDelegate) {
         self.init()
         tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
         self.delegate = delegate
@@ -96,7 +96,7 @@ final class ReviewTransactionViewController: UITableViewController {
         updateSubmitButton()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard !didRequestSignatures else { return }
         requestSignatures()
@@ -123,17 +123,17 @@ final class ReviewTransactionViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells.keys.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return cells[indexPath]!
     }
 
     // MARK: - Table view delegate
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if !isConfirmationRequired && cells[indexPath] is TransactionConfirmationCell {
             return 0
         }

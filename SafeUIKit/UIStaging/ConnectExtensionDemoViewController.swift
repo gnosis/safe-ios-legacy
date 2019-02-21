@@ -6,46 +6,53 @@ import Foundation
 import UIKit
 import SafeAppUI
 import MultisigWalletApplication
+import MultisigWalletDomainModel
+import BigInt
 import Common
 
 class ConnectExtensionDemoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let ethereumService = MockEthereumApplicationService()
         ethereumService.browserExtensionAddress = "SomeValidAddressToMakeScanningGoThrough"
 
+        let mockWalletService = MockWalletApplicationService()
+        mockWalletService.transactionData_output =
+            TransactionData(id: "tx",
+                            sender: "",
+                            recipient: "",
+                            amountTokenData: TokenData.Ether,
+                            feeTokenData: TokenData.Ether,
+                            status: .readyToSubmit,
+                            type: .replaceBrowserExtension,
+                            created: Date(),
+                            updated: nil,
+                            submitted: nil,
+                            rejected: nil,
+                            processed: nil)
+        mockWalletService.update(account: Token.Ether.id, newBalance: BigInt(10e17))
+
         ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
-        ApplicationServiceRegistry.put(service: MockWalletApplicationService(), for: WalletApplicationService.self)
+        ApplicationServiceRegistry.put(service: mockWalletService, for: WalletApplicationService.self)
         ApplicationServiceRegistry.put(service: ethereumService, for: EthereumApplicationService.self)
+
         push()
     }
     
     @IBAction func push() {
-        let controller = PairWithBrowserExtensionViewController.createRBEConnectController(delegate: self)
+        let controller = ReviewTransactionViewController(transactionID: "tx", delegate: self)
         navigationController?.pushViewController(controller, animated: true)
-
-        Timer.scheduledTimer(withTimeInterval: 1.25, repeats: false) { _ in
-            controller.showLoadingTitle()
-        }
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-            controller.hideLoadingTitle()
-        }
     }
 
 }
 
 
-extension ConnectExtensionDemoViewController: PairWithBrowserExtensionViewControllerDelegate {
+extension ConnectExtensionDemoViewController: ReviewTransactionViewControllerDelegate {
 
-    func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
-                                                didScanAddress address: String,
-                                                code: String) throws {
-        sleep(1)
-    }
+    func wantsToSubmitTransaction(_ completion: @escaping (Bool) -> Void) {}
 
-    func pairWithBrowserExtensionViewControllerDidSkipPairing() {}
-
-    func pairWithBrowserExtensionViewControllerDidFinish() {}
+    func didFinishReview() {}
 
 }
