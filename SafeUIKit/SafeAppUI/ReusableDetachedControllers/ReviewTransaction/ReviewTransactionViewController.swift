@@ -13,6 +13,12 @@ public protocol ReviewTransactionViewControllerDelegate: class {
     func didFinishReview()
 }
 
+/// A reusable view controller that is used in following use cases
+/// - Outgoing transaction (Eth, Token)
+/// - Wallet recovery
+/// - Replace recovery phrase
+/// - Connect browser extension
+/// - Replace browser extension
 final public class ReviewTransactionViewController: UITableViewController {
 
     private(set) var tx: TransactionData!
@@ -47,30 +53,6 @@ final public class ReviewTransactionViewController: UITableViewController {
         }
     }
 
-    enum Strings {
-        static let outgoingTransfer = LocalizedString("transaction.outgoing_transfer", comment: "Outgoing transafer")
-        static let submit = LocalizedString("transaction.submit", comment: "Submit transaction")
-        static let title = LocalizedString("transaction.review_title", comment: "Review transaction title")
-
-        enum Alert {
-            static let title = LocalizedString("transaction_confirmation_alert.title",
-                                               comment: "Title for transaction confirmation alert.")
-            static let description = LocalizedString("transaction_confirmation_alert.description",
-                                                     comment: "Description for transaction confirmation alert.")
-            static let resend = LocalizedString("transaction_confirmation_alert.resend",
-                                                comment: "Resend button.")
-            static let cancel = LocalizedString("transaction_confirmation_alert.cancel",
-                                                comment: "Cancel button.")
-        }
-
-        enum ReplaceRecoveryPhrase {
-            static let title = LocalizedString("transaction.replace_recovery.title",
-                                               comment: "Title for the header in review screen")
-            static let detail = LocalizedString("transaction.replace_recovery.detail",
-                                                comment: "Detail for the header in review screen")
-        }
-    }
-
     public convenience init(transactionID: String, delegate: ReviewTransactionViewControllerDelegate) {
         self.init()
         tx = ApplicationServiceRegistry.walletService.transactionData(transactionID)!
@@ -78,11 +60,11 @@ final public class ReviewTransactionViewController: UITableViewController {
         submitButtonItem = UIBarButtonItem(title: Strings.submit, style: .done, target: self, action: #selector(submit))
     }
 
-    func disableSubmit() {
+    private func disableSubmit() {
         submitButtonItem.isEnabled = false
     }
 
-    func enableSubmit() {
+    private func enableSubmit() {
         submitButtonItem.isEnabled = true
     }
 
@@ -160,75 +142,7 @@ final public class ReviewTransactionViewController: UITableViewController {
         cells[indexPath.next()] = confirmationCell
     }
 
-    private func settingsHeaderCell() -> UITableViewCell {
-        let cell = SettingsTransactionHeaderCell(frame: .zero)
-        cell.headerView.fromAddress = tx.sender
-        cell.headerView.titleText = Strings.ReplaceRecoveryPhrase.title
-        cell.headerView.detailText = Strings.ReplaceRecoveryPhrase.detail
-        return cell
-    }
 
-    private func transferHeaderCell() -> UITableViewCell {
-        let cell = TransactionHeaderCell(frame: .zero)
-        cell.configure(imageURL: tx.amountTokenData.logoURL,
-                       code: tx.amountTokenData.code,
-                       info: Strings.outgoingTransfer)
-        return cell
-    }
-
-    private func transactionDetailCell() -> UITableViewCell {
-        if tx.type == .replaceRecoveryPhrase {
-            return settingsHeaderCell()
-        } else {
-            return transferViewCell()
-        }
-    }
-
-    private func transferViewCell() -> UITableViewCell {
-        let cell = TransferViewCell(frame: .zero)
-        cell.transferView.fromAddress = tx.sender
-        cell.transferView.toAddress = tx.recipient
-        cell.transferView.tokenData = tx.amountTokenData
-        return cell
-    }
-
-    private func etherTransactionFeeCell() -> UITableViewCell {
-        let balance = self.balance(of: tx.amountTokenData)
-        let resultingBalance = balance - abs(tx.amountTokenData.balance ?? 0) - abs(tx.feeTokenData.balance ?? 0)
-        return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
-                       transactionFee: tx.feeTokenData,
-                       resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
-    }
-
-    private func tokenBalanceCell() -> UITableViewCell {
-        let balance = self.balance(of: tx.amountTokenData)
-        let resultingBalance = balance - abs(tx.amountTokenData.balance ?? 0)
-        return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
-                       transactionFee: nil,
-                       resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
-    }
-
-    private func etherFeeBalanceCell() -> UITableViewCell {
-        let balance = self.balance(of: tx.feeTokenData)
-        let resultingBalance = balance - abs(tx.feeTokenData.balance ?? 0)
-        return feeCell(currentBalance: nil,
-                       transactionFee: tx.feeTokenData,
-                       resultingBalance: tx.feeTokenData.withBalance(resultingBalance))
-    }
-
-    private func balance(of token: TokenData) -> BigInt {
-        return ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(token.address))!
-    }
-
-    private func feeCell(currentBalance: TokenData?,
-                         transactionFee: TokenData?,
-                         resultingBalance: TokenData) -> UITableViewCell {
-        let cell = TransactionFeeCell(frame: .zero)
-        cell.transactionFeeView.configure(currentBalance: currentBalance,
-                                          transactionFee: transactionFee,
-                                          resultingBalance: resultingBalance)
-        return cell
-    }
 
     internal func update(with tx: TransactionData) {
         self.tx = tx
@@ -355,6 +269,127 @@ final public class ReviewTransactionViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: LocalizedString("transaction_fee_alert.ok",
                                                              comment: "Ok"), style: .default))
         present(alert, animated: true, completion: nil)
+    }
+
+}
+
+extension ReviewTransactionViewController {
+
+    // MARK: - Localization
+
+    enum Strings {
+
+        static let outgoingTransfer = LocalizedString("transaction.outgoing_transfer", comment: "Outgoing transafer")
+        static let submit = LocalizedString("transaction.submit", comment: "Submit transaction")
+        static let title = LocalizedString("transaction.review_title", comment: "Review transaction title")
+
+        enum Alert {
+            static let title = LocalizedString("transaction_confirmation_alert.title",
+                                               comment: "Title for transaction confirmation alert.")
+            static let description = LocalizedString("transaction_confirmation_alert.description",
+                                                     comment: "Description for transaction confirmation alert.")
+            static let resend = LocalizedString("transaction_confirmation_alert.resend",
+                                                comment: "Resend button.")
+            static let cancel = LocalizedString("transaction_confirmation_alert.cancel",
+                                                comment: "Cancel button.")
+        }
+
+        enum ReplaceRecoveryPhrase {
+            static let title = LocalizedString("transaction.replace_recovery.title",
+                                               comment: "Title for the header in review screen")
+            static let detail = LocalizedString("transaction.replace_recovery.detail",
+                                                comment: "Detail for the header in review screen")
+        }
+
+        enum ReplaceBrowserExtension {
+            static let title = LocalizedString("transaction.replace_browser_extension.title",
+                                               comment: "Title for the header in review screen.")
+            static let detail = LocalizedString("transaction.replace_browser_extension.description",
+                                                comment: "Detail for header in review screen.")
+        }
+
+    }
+
+    // MARK: - Cells
+
+    private func replaceRecoveryPhraseHeaderCell() -> UITableViewCell {
+        return settingsCell(title: Strings.ReplaceRecoveryPhrase.title, details: Strings.ReplaceRecoveryPhrase.detail)
+    }
+
+    private func replaceBrowserExtensionHeaderCell() -> UITableViewCell {
+        return settingsCell(title: Strings.ReplaceBrowserExtension.title,
+                            details: Strings.ReplaceBrowserExtension.detail)
+    }
+
+    private func settingsCell(title: String, details: String) -> UITableViewCell {
+        let cell = SettingsTransactionHeaderCell(frame: .zero)
+        cell.headerView.fromAddress = tx.sender
+        cell.headerView.titleText = Strings.ReplaceBrowserExtension.title
+        cell.headerView.detailText = Strings.ReplaceBrowserExtension.detail
+        return cell
+    }
+
+    private func transferHeaderCell() -> UITableViewCell {
+        let cell = TransactionHeaderCell(frame: .zero)
+        cell.configure(imageURL: tx.amountTokenData.logoURL,
+                       code: tx.amountTokenData.code,
+                       info: Strings.outgoingTransfer)
+        return cell
+    }
+
+    private func transactionDetailCell() -> UITableViewCell {
+        // TODO: change here as well
+        if tx.type == .replaceRecoveryPhrase {
+            return replaceRecoveryPhraseHeaderCell()
+        } else {
+            return transferViewCell()
+        }
+    }
+
+    private func transferViewCell() -> UITableViewCell {
+        let cell = TransferViewCell(frame: .zero)
+        cell.transferView.fromAddress = tx.sender
+        cell.transferView.toAddress = tx.recipient
+        cell.transferView.tokenData = tx.amountTokenData
+        return cell
+    }
+
+    private func etherTransactionFeeCell() -> UITableViewCell {
+        let balance = self.balance(of: tx.amountTokenData)
+        let resultingBalance = balance - abs(tx.amountTokenData.balance ?? 0) - abs(tx.feeTokenData.balance ?? 0)
+        return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
+                       transactionFee: tx.feeTokenData,
+                       resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
+    }
+
+    private func tokenBalanceCell() -> UITableViewCell {
+        let balance = self.balance(of: tx.amountTokenData)
+        let resultingBalance = balance - abs(tx.amountTokenData.balance ?? 0)
+        return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
+                       transactionFee: nil,
+                       resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
+    }
+
+    private func etherFeeBalanceCell() -> UITableViewCell {
+        let balance = self.balance(of: tx.feeTokenData)
+        let resultingBalance = balance - abs(tx.feeTokenData.balance ?? 0)
+        return feeCell(currentBalance: nil,
+                       transactionFee: tx.feeTokenData,
+                       resultingBalance: tx.feeTokenData.withBalance(resultingBalance))
+    }
+
+    private func balance(of token: TokenData) -> BigInt {
+        return ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(token.address))!
+    }
+
+    private func feeCell(currentBalance: TokenData?,
+                         transactionFee: TokenData?,
+                         resultingBalance: TokenData) -> UITableViewCell {
+        let cell = TransactionFeeCell(frame: .zero)
+        cell.transactionFeeView.configure(currentBalance: currentBalance,
+                                          transactionFee: transactionFee,
+                                          resultingBalance: resultingBalance)
+        return cell
     }
 
 }
