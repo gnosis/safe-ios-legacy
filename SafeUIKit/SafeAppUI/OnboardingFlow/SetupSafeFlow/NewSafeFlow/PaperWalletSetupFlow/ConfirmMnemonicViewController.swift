@@ -111,10 +111,10 @@ final class ConfirmMnemonicViewController: UIViewController {
 
     private func twoRandomWords() -> (String, String) {
         var wordsCopy = account.mnemonicWords
-        let firstIndex = Int(arc4random_uniform(UInt32(wordsCopy.count)))
+        let firstIndex = Int.random(in: 0..<wordsCopy.count)
         let firstWord = wordsCopy[firstIndex]
         wordsCopy.remove(at: firstIndex)
-        let secondIndex = Int(arc4random_uniform(UInt32(wordsCopy.count)))
+        let secondIndex = Int.random(in: 0..<wordsCopy.count)
         let secondWord = wordsCopy[secondIndex]
         return (firstWord, secondWord)
     }
