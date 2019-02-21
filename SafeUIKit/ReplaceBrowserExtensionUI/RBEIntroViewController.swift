@@ -154,12 +154,12 @@ public class RBEIntroViewController: UIViewController {
 
     // duplicated with showTransactionFeeInfo(0
     @objc public func showNetworkFeeInfo() {
-        let alert = UIAlertController(title: LocalizedString("safe_creation.alert.title",
+        let alert = UIAlertController(title: LocalizedString("network_fee.alert.title",
                                                              comment: "Transaction fee"),
-                                      message: LocalizedString("safe_creation.alert.message",
+                                      message: LocalizedString("network_fee.alert.message",
                                                                comment: "Explanatory message"),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("safe_creation.alert.ok",
+        alert.addAction(UIAlertAction(title: LocalizedString("network_fee.alert.ok",
                                                              comment: "Ok"), style: .default))
         present(alert, animated: true)
     }
