@@ -52,7 +52,7 @@ class ScanQRCodeHandlerTests: XCTestCase {
     }
 
     func test_didScan_returnsInputIfNoValidatorIsSet() {
-        handler.didScan("test")
+        try! handler.didScan("test")
         XCTAssertEqual(delegate.scannedCode, "test")
     }
 
@@ -62,7 +62,7 @@ class ScanQRCodeHandlerTests: XCTestCase {
             didCallValidatedConverter = true
             return str + "_validated"
         }
-        handler.didScan("test")
+        try! handler.didScan("test")
         XCTAssertTrue(didCallValidatedConverter)
         XCTAssertEqual(delegate.scannedCode, "test")
         XCTAssertEqual(delegate.convertedCode, "test_validated")
@@ -72,7 +72,7 @@ class ScanQRCodeHandlerTests: XCTestCase {
         handler.scanValidatedConverter = { _ in
             return nil
         }
-        handler.didScan("test")
+        XCTAssertThrowsError(try handler.didScan("test"))
         XCTAssertNil(delegate.scannedCode)
     }
 
