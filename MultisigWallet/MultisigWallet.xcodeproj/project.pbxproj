@@ -838,11 +838,11 @@
 				0ABCC0FB2177291D00E60E9F /* TransactionDomainServiceTests.swift */,
 				0A6EF3D121BAB15E00F1074E /* RecoveryDomainService.swift */,
 				0A553D4421C0164100647CFF /* WalletSettingsDomainService.swift */,
-				0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */,
 				0A1B2AAC221EB1A200E92990 /* RBETransactionMonitorRepository.swift */,
 				0A1B2AAE221EB1F800E92990 /* RBETransactionMonitorEntry.swift */,
-				0A1B2AA3221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */,
+				0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */,
 				0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */,
+				0A1B2AA3221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */,
 				0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */,
 				0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */,
 			);

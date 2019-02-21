@@ -58,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         createWindow()
         UIApplication.shared.applicationIconBadgeNumber = 0
         synchronise()
+        cleanUp()
         return true
     }
 
@@ -255,6 +256,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         }
         DispatchQueue.global().async {
             MultisigWalletDomainModel.DomainRegistry.syncService.syncTransactions()
+        }
+    }
+
+    private func cleanUp() {
+        DispatchQueue.global().async {
+            DomainRegistry.replaceExtensionService.cleanUpStaleTransactions()
         }
     }
 
