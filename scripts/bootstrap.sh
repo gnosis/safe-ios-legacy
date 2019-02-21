@@ -54,7 +54,7 @@ pushd .git/hooks
 for hook in ../../git/hooks/* ; do
   rm -f $(basename $hook)
   ln -sf $hook
-fi
+done
 popd
 
 echo "Disabling git case insensitive matches"
