@@ -13,18 +13,12 @@ public protocol ReviewTransactionViewControllerDelegate: class {
     func didFinishReview()
 }
 
-/// A reusable view controller that is used in following use cases
-/// - Outgoing transaction (Eth, Token)
-/// - Wallet recovery
-/// - Replace recovery phrase
-/// - Connect browser extension
-/// - Replace browser extension
-final public class ReviewTransactionViewController: UITableViewController {
+public class ReviewTransactionViewController: UITableViewController {
 
     private(set) var tx: TransactionData!
     private(set) weak var delegate: ReviewTransactionViewControllerDelegate!
 
-    private var cells = [IndexPath: UITableViewCell]()
+    internal var cells = [IndexPath: UITableViewCell]()
 
     private var isConfirmationRequired: Bool {
         return ApplicationServiceRegistry.walletService.ownerAddress(of: .browserExtension) != nil
@@ -35,7 +29,7 @@ final public class ReviewTransactionViewController: UITableViewController {
     private var submitButtonItem: UIBarButtonItem!
     private var didRequestSignatures: Bool = false
 
-    private class IndexPathIterator {
+    internal class IndexPathIterator {
 
         private var index: Int = 0
 
@@ -46,7 +40,7 @@ final public class ReviewTransactionViewController: UITableViewController {
 
     }
 
-    private var feeCellIndexPath: IndexPath!
+    internal var feeCellIndexPath: IndexPath!
     private var hasUpdatedFee: Bool = false {
         didSet {
             updateSubmitButton()
@@ -124,25 +118,9 @@ final public class ReviewTransactionViewController: UITableViewController {
 
     // MARK: - Table view cell creation
 
-    private func createCells() {
-        cells = [IndexPath: UITableViewCell]()
-        let indexPath = IndexPathIterator()
-        if tx.type != .replaceRecoveryPhrase {
-            cells[indexPath.next()] = transferHeaderCell()
-        }
-        cells[indexPath.next()] = transactionDetailCell()
-        if tx.amountTokenData.isEther {
-            feeCellIndexPath = indexPath.next()
-            cells[feeCellIndexPath] = etherTransactionFeeCell()
-        } else {
-            cells[indexPath.next()] = tokenBalanceCell()
-            feeCellIndexPath = indexPath.next()
-            cells[feeCellIndexPath] = etherFeeBalanceCell()
-        }
-        cells[indexPath.next()] = confirmationCell
+    internal func createCells() {
+        assertionFailure("Should be overriden")
     }
-
-
 
     internal func update(with tx: TransactionData) {
         self.tx = tx
@@ -188,12 +166,8 @@ final public class ReviewTransactionViewController: UITableViewController {
         }
     }
 
-    private func updateEtherFeeBalanceCell() {
-        if tx.amountTokenData.isEther {
-            cells[feeCellIndexPath] = etherTransactionFeeCell()
-        } else {
-            cells[feeCellIndexPath] = etherFeeBalanceCell()
-        }
+    internal func updateEtherFeeBalanceCell() {
+        cells[feeCellIndexPath] = etherTransactionFeeCell()
         if feeCellIndexPath.row < tableView.numberOfRows(inSection: feeCellIndexPath.section) {
             tableView.reloadRows(at: [feeCellIndexPath], with: .none)
         }
@@ -294,67 +268,19 @@ extension ReviewTransactionViewController {
                                                 comment: "Cancel button.")
         }
 
-        enum ReplaceRecoveryPhrase {
-            static let title = LocalizedString("transaction.replace_recovery.title",
-                                               comment: "Title for the header in review screen")
-            static let detail = LocalizedString("transaction.replace_recovery.detail",
-                                                comment: "Detail for the header in review screen")
-        }
-
-        enum ReplaceBrowserExtension {
-            static let title = LocalizedString("transaction.replace_browser_extension.title",
-                                               comment: "Title for the header in review screen.")
-            static let detail = LocalizedString("transaction.replace_browser_extension.description",
-                                                comment: "Detail for header in review screen.")
-        }
-
     }
 
     // MARK: - Cells
 
-    private func replaceRecoveryPhraseHeaderCell() -> UITableViewCell {
-        return settingsCell(title: Strings.ReplaceRecoveryPhrase.title, details: Strings.ReplaceRecoveryPhrase.detail)
-    }
-
-    private func replaceBrowserExtensionHeaderCell() -> UITableViewCell {
-        return settingsCell(title: Strings.ReplaceBrowserExtension.title,
-                            details: Strings.ReplaceBrowserExtension.detail)
-    }
-
-    private func settingsCell(title: String, details: String) -> UITableViewCell {
+    internal func settingsCell(title: String, details: String) -> UITableViewCell {
         let cell = SettingsTransactionHeaderCell(frame: .zero)
         cell.headerView.fromAddress = tx.sender
-        cell.headerView.titleText = Strings.ReplaceBrowserExtension.title
-        cell.headerView.detailText = Strings.ReplaceBrowserExtension.detail
+        cell.headerView.titleText = title
+        cell.headerView.detailText = details
         return cell
     }
 
-    private func transferHeaderCell() -> UITableViewCell {
-        let cell = TransactionHeaderCell(frame: .zero)
-        cell.configure(imageURL: tx.amountTokenData.logoURL,
-                       code: tx.amountTokenData.code,
-                       info: Strings.outgoingTransfer)
-        return cell
-    }
-
-    private func transactionDetailCell() -> UITableViewCell {
-        // TODO: change here as well
-        if tx.type == .replaceRecoveryPhrase {
-            return replaceRecoveryPhraseHeaderCell()
-        } else {
-            return transferViewCell()
-        }
-    }
-
-    private func transferViewCell() -> UITableViewCell {
-        let cell = TransferViewCell(frame: .zero)
-        cell.transferView.fromAddress = tx.sender
-        cell.transferView.toAddress = tx.recipient
-        cell.transferView.tokenData = tx.amountTokenData
-        return cell
-    }
-
-    private func etherTransactionFeeCell() -> UITableViewCell {
+    internal func etherTransactionFeeCell() -> UITableViewCell {
         let balance = self.balance(of: tx.amountTokenData)
         let resultingBalance = balance - abs(tx.amountTokenData.balance ?? 0) - abs(tx.feeTokenData.balance ?? 0)
         return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
@@ -362,29 +288,13 @@ extension ReviewTransactionViewController {
                        resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
     }
 
-    private func tokenBalanceCell() -> UITableViewCell {
-        let balance = self.balance(of: tx.amountTokenData)
-        let resultingBalance = balance - abs(tx.amountTokenData.balance ?? 0)
-        return feeCell(currentBalance: tx.amountTokenData.withBalance(balance),
-                       transactionFee: nil,
-                       resultingBalance: tx.amountTokenData.withBalance(resultingBalance))
-    }
-
-    private func etherFeeBalanceCell() -> UITableViewCell {
-        let balance = self.balance(of: tx.feeTokenData)
-        let resultingBalance = balance - abs(tx.feeTokenData.balance ?? 0)
-        return feeCell(currentBalance: nil,
-                       transactionFee: tx.feeTokenData,
-                       resultingBalance: tx.feeTokenData.withBalance(resultingBalance))
-    }
-
-    private func balance(of token: TokenData) -> BigInt {
+    internal func balance(of token: TokenData) -> BigInt {
         return ApplicationServiceRegistry.walletService.accountBalance(tokenID: BaseID(token.address))!
     }
 
-    private func feeCell(currentBalance: TokenData?,
-                         transactionFee: TokenData?,
-                         resultingBalance: TokenData) -> UITableViewCell {
+    internal func feeCell(currentBalance: TokenData?,
+                          transactionFee: TokenData?,
+                          resultingBalance: TokenData) -> UITableViewCell {
         let cell = TransactionFeeCell(frame: .zero)
         cell.transactionFeeView.configure(currentBalance: currentBalance,
                                           transactionFee: transactionFee,

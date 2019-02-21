@@ -45,7 +45,7 @@ final class MainFlowCoordinator: FlowCoordinator {
     }
 
     private func openTransactionReviewScreen(_ id: String) {
-        let reviewVC = ReviewTransactionViewController(transactionID: id, delegate: self)
+        let reviewVC = FundsTransferReviewTransactionViewController(transactionID: id, delegate: self)
         push(reviewVC)
     }
 
@@ -226,7 +226,7 @@ extension MainFlowCoordinator: ConfirmMnemonicDelegate {
         let txID = replaceRecoveryController.transaction!.id
         let address = vc.account.address
         ApplicationServiceRegistry.settingsService.updateRecoveryPhraseTransaction(txID, with: address)
-        let reviewVC = ReviewTransactionViewController(transactionID: txID, delegate: self)
+        let reviewVC = ReplaceRecoveryPhraseReviewTransactionViewController(transactionID: txID, delegate: self)
         self.replaceRecoveryController = nil
         push(reviewVC) { [unowned self] in
             DispatchQueue.main.async {
