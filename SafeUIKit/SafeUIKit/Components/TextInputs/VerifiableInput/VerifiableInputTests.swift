@@ -113,6 +113,8 @@ class VerifiableInputTests: XCTestCase {
     }
 
     func test_shake_whenCalled_thenAddsShakeAnimation() {
+        let input = TestableVerifiableInput()
+        input.delegate = delegate
         input.shake()
         XCTAssertTrue(input.isShaking)
     }
@@ -159,6 +161,17 @@ class VerifiableInputTests: XCTestCase {
     }
 
 }
+
+class TestableVerifiableInput: VerifiableInput {
+
+    var isShaking = false
+
+    override func shake() {
+        isShaking = true
+    }
+
+}
+
 
 extension VerifiableInput {
 

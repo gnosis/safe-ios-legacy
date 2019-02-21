@@ -4,6 +4,7 @@
 
 import Foundation
 import AVFoundation
+import Common
 
 protocol ScanQRCodeHandlerDelegate: class {
     func presentController(_ controller: UIViewController)
@@ -37,14 +38,16 @@ class ScanQRCodeHandler {
     func scan() {
         didFinishScanning = false
         checkCameraAvailability { [unowned self] success in
-            DispatchQueue.main.async {
-                if success {
-                    self.scannerController = self.createScannerController()
-                    self.delegate.presentController(self.scannerController!)
-                } else {
-                    self.delegate.presentController(self.cameraRequiredAlert())
-                }
-            }
+            dispatch.onMainThread { self.handleCameraAvailability(success: success) }
+        }
+    }
+
+    private func handleCameraAvailability(success: Bool) {
+        if success {
+            self.scannerController = self.createScannerController()
+            self.delegate.presentController(self.scannerController!)
+        } else {
+            self.delegate.presentController(self.cameraRequiredAlert())
         }
     }
 

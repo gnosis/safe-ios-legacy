@@ -11,7 +11,7 @@ protocol ScannerDelegate: class {
     func didScan(_ code: String)
 }
 
-final class ScannerViewController: UIViewController {
+class ScannerViewController: UIViewController {
 
     private weak var delegate: ScannerDelegate?
 
@@ -28,7 +28,7 @@ final class ScannerViewController: UIViewController {
         return controller
     }
 
-    @IBAction func close(_ sender: Any) {
+    @IBAction func close() {
         dismiss(animated: true)
     }
 

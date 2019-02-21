@@ -202,7 +202,7 @@ extension UnlockViewController: VerifiableInputDelegate {
             if result.isSuccess {
                 self.unlockCompletion(true)
             } else {
-                self.verifiableInput.shake()
+                verifiableInput.shake()
                 self.startCountdownIfNeeded()
             }
         } catch let e {

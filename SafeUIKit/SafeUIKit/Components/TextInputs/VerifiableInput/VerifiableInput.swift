@@ -10,7 +10,7 @@ import UIKit
     @objc optional func verifiableInputDidEndEditing(_ verifiableInput: VerifiableInput)
 }
 
-public class VerifiableInput: UIView {
+open class VerifiableInput: UIView {
 
     @IBOutlet var wrapperView: UIView!
     @IBOutlet public private(set) weak var textInput: TextInput!
@@ -83,11 +83,6 @@ public class VerifiableInput: UIView {
         set { textInput.returnKeyType = newValue }
     }
 
-    public var isShaking: Bool {
-        // FIXME: animaiton state must be tracked by bool variables and not by state of the graphic system
-        return layer.animation(forKey: VerifiableInput.shakeAnimationKey) != nil
-    }
-
     public var style: TextInput.Style {
         get { return textInput.style }
         set { textInput.style = newValue }
@@ -102,7 +97,7 @@ public class VerifiableInput: UIView {
         commonInit()
     }
 
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         commonInit()
     }
@@ -139,13 +134,13 @@ public class VerifiableInput: UIView {
         stackView.addArrangedSubview(ruleLabel)
     }
 
-    public override func becomeFirstResponder() -> Bool {
+    open override func becomeFirstResponder() -> Bool {
         super.becomeFirstResponder()
         isActive = textInput.becomeFirstResponder()
         return isActive
     }
 
-    public func shake() {
+    open func shake() {
         layer.add(CABasicAnimation.shake(center: center), forKey: VerifiableInput.shakeAnimationKey)
     }
 

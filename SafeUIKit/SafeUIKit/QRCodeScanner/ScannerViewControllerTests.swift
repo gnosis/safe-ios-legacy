@@ -18,19 +18,24 @@ class ScannerViewControllerTests: XCTestCase {
         controller = ScannerViewController.create(delegate: delegate)
     }
 
-    func test_canCreate() {
-        XCTAssertNotNil(controller)
-    }
-
     func test_close_dismisses() {
-        createWindow(controller)
-        controller.close(self)
-        delay(1)
-        XCTAssertNil(controller.view.window)
+        let controller = TestableScannerViewController()
+        controller.close()
+        XCTAssertTrue(controller.didDismiss)
     }
 
 }
 
 class MockScannerDelegate: ScannerDelegate {
     func didScan(_ code: String) {}
+}
+
+class TestableScannerViewController: ScannerViewController {
+
+    var didDismiss = false
+
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        didDismiss = true
+    }
+
 }
