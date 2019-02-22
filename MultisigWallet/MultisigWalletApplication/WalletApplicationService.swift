@@ -555,13 +555,12 @@ public class WalletApplicationService: Assertable {
 
     private func transactionHasEnoughSignaturesToSubmit(_ tx: Transaction) -> Bool {
         let wallet = DomainRegistry.walletRepository.findByID(tx.walletID)!
-        // TODO: test.
         return tx.signatures.count >= wallet.confirmationCount - 1 // When submititg we add device signature.
     }
 
-    public func estimateTransactionIfNeeded(_ id: String) throws {
+    public func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
         let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
-        guard tx.feeEstimate == nil else { return }
+        guard tx.feeEstimate == nil else { return transactionData(id)! }
         let recipient = DomainRegistry.encryptionService.address(from: tx.ethTo.value)!
         let request = EstimateTransactionRequest(safe: tx.sender!,
                                                  to: recipient,
@@ -579,6 +578,7 @@ public class WalletApplicationService: Assertable {
                                                  gasPrice: TokenAmount(amount: TokenInt(estimationResponse.gasPrice),
                                                                        token: token))
         updateTransaction(tx, withFeeEsimate: feeEstimate, nonce: String(estimationResponse.nextNonce))
+        return transactionData(id)!
     }
 
     private func updateTransaction(_ tx: Transaction,

@@ -193,6 +193,12 @@ public class MockWalletApplicationService: WalletApplicationService {
         return requestTransactionConfirmation_output
     }
 
+    public var didEstimate = false
+    public override func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
+        didEstimate = true
+        return requestTransactionConfirmation_output
+    }
+
     public var receive_input: [AnyHashable: Any]?
     public var receive_output: String?
     public override func receive(message: [AnyHashable: Any]) -> String? {

@@ -21,10 +21,11 @@ public class ReviewTransactionViewController: UITableViewController {
     internal var cells = [IndexPath: UITableViewCell]()
 
     /// Confirmation cell is always last if present
-    private var isConfirmationRequired: Bool {
+    internal let confirmationCell = TransactionConfirmationCell()
+
+    private var hasBrowserExtension: Bool {
         return ApplicationServiceRegistry.walletService.ownerAddress(of: .browserExtension) != nil
     }
-    internal let confirmationCell = TransactionConfirmationCell()
 
     /// To control how frequent a user can send confirmation requests
     private let scheduler = OneOperationWaitingScheduler(interval: 30)
@@ -41,7 +42,11 @@ public class ReviewTransactionViewController: UITableViewController {
     internal var feeCellIndexPath: IndexPath!
     private var hasUpdatedFee: Bool = false {
         didSet {
-            updateSubmitButton()
+            guard oldValue != hasUpdatedFee else { return }
+            DispatchQueue.main.async {
+                self.updateSubmitButton()
+                self.updateEtherFeeBalanceCell()
+            }
         }
     }
 
@@ -109,7 +114,7 @@ public class ReviewTransactionViewController: UITableViewController {
     // MARK: - Table view delegate
 
     override public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if !isConfirmationRequired && cells[indexPath] is TransactionConfirmationCell {
+        if !hasBrowserExtension && cells[indexPath] is TransactionConfirmationCell {
             return 0
         }
         return UITableView.automaticDimension
@@ -124,11 +129,14 @@ public class ReviewTransactionViewController: UITableViewController {
     /// called when signing results are received
     internal func update(with tx: TransactionData) {
         self.tx = tx
-        updateConfirmationCell()
-        updateSubmitButton()
+        DispatchQueue.main.async {
+            self.updateConfirmationCell()
+            self.updateSubmitButton()
+        }
     }
 
     private func updateConfirmationCell() {
+        precondition(Thread.isMainThread)
         switch tx.status {
         case .waitingForConfirmation:
             confirmationCell.transactionConfirmationView.status = .pending
@@ -142,12 +150,19 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     private func updateSubmitButton() {
-        DispatchQueue.main.async {
-            if self.hasUpdatedFee && self.tx.status != .rejected {
-                self.enableSubmit()
-            } else {
-                self.disableSubmit()
-            }
+        precondition(Thread.isMainThread)
+        if self.hasUpdatedFee && self.tx.status != .rejected {
+            self.enableSubmit()
+        } else {
+            self.disableSubmit()
+        }
+    }
+
+    internal func updateEtherFeeBalanceCell() {
+        precondition(Thread.isMainThread)
+        cells[feeCellIndexPath] = etherTransactionFeeCell()
+        if feeCellIndexPath.row < tableView.numberOfRows(inSection: feeCellIndexPath.section) {
+            tableView.reloadRows(at: [feeCellIndexPath], with: .none)
         }
     }
 
@@ -160,16 +175,8 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     private func doRequest() {
-        hasUpdatedFee = false
         performTransactionConfirmationsRequestAction { [unowned self] in
             try ApplicationServiceRegistry.walletService.requestTransactionConfirmationIfNeeded(self.tx.id)
-        }
-    }
-
-    internal func updateEtherFeeBalanceCell() {
-        cells[feeCellIndexPath] = etherTransactionFeeCell()
-        if feeCellIndexPath.row < tableView.numberOfRows(inSection: feeCellIndexPath.section) {
-            tableView.reloadRows(at: [feeCellIndexPath], with: .none)
         }
     }
 
@@ -178,7 +185,8 @@ public class ReviewTransactionViewController: UITableViewController {
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
             do {
-                try ApplicationServiceRegistry.walletService.estimateTransactionIfNeeded(self.tx.id)
+                self.tx = try ApplicationServiceRegistry.walletService.estimateTransactionIfNeeded(self.tx.id)
+                self.hasUpdatedFee = true
                 try self.doRequestConfirmationsAction(action)
             } catch let error {
                 DispatchQueue.main.sync {
@@ -194,14 +202,11 @@ public class ReviewTransactionViewController: UITableViewController {
     private func doRequestConfirmationsAction(_ action: @escaping () throws -> TransactionData) throws {
         self.tx = try action()
         DispatchQueue.main.sync {
-            self.hasUpdatedFee = true
             switch self.tx.status {
             case .success, .pending, .failed, .discarded:
                 self.delegate.didFinishReview()
             default:
                 self.updateConfirmationCell()
-                self.updateEtherFeeBalanceCell()
-                self.updateSubmitButton()
             }
         }
     }

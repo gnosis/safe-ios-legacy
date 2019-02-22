@@ -23,6 +23,7 @@ final class FundsTransferReviewTransactionViewController: ReviewTransactionViewC
     }
 
     override func updateEtherFeeBalanceCell() {
+        precondition(Thread.isMainThread)        
         if tx.amountTokenData.isEther {
             cells[feeCellIndexPath] = etherTransactionFeeCell()
         } else {
