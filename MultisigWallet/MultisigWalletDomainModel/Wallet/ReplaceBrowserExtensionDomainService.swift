@@ -214,4 +214,62 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         return (primary, derived)
     }
 
+    // MARK: - Post-processing
+
+    open func postProcess(transactionID: TransactionID) throws {
+        guard let tx = repository.findByID(transactionID),
+            tx.status == .success || tx.status == .failed,
+            let wallet = DomainRegistry.walletRepository.findByID(tx.walletID) else { return }
+        guard let newOwner = newOwnerAddress(from: transactionID) else {
+            unregisterPostProcessing(for: transactionID)
+            return
+        }
+        if tx.status == .success {
+            try replace(newOwner: newOwner, in: wallet)
+        } else {
+            try DomainRegistry.communicationService.deletePair(walletID: tx.walletID, other: newOwner)
+        }
+        unregisterPostProcessing(for: transactionID)
+    }
+
+    private func replace(newOwner: String, in wallet: Wallet) throws {
+        guard let oldOwner = wallet.owner(role: .browserExtension) else { return }
+        try DomainRegistry.communicationService.deletePair(walletID: wallet.id, other: oldOwner.address.value)
+        wallet.removeOwner(role: oldOwner.role)
+        wallet.addOwner(Owner(address: Address(newOwner), role: oldOwner.role))
+        DomainRegistry.walletRepository.save(wallet)
+    }
+
+    open func registerPostProcessing(for transactionID: TransactionID, timestamp: Date = Date()) {
+        let entry = RBETransactionMonitorEntry(transactionID: transactionID, createdDate: timestamp)
+        DomainRegistry.transactionMonitorRepository.save(entry)
+    }
+
+    open func unregisterPostProcessing(for transactionID: TransactionID) {
+        if let entry = DomainRegistry.transactionMonitorRepository.find(id: transactionID) {
+            DomainRegistry.transactionMonitorRepository.remove(entry)
+        }
+    }
+
+    open func postProcessTransactions() throws {
+        let allEntries = DomainRegistry.transactionMonitorRepository.findAll().sorted {
+            $0.createdDate < $1.createdDate
+        }
+        for entry in allEntries {
+            try postProcess(transactionID: entry.transactionID)
+        }
+    }
+
+    private static var doNotCleanUpStatuses = [TransactionStatus.Code.rejected, .success, .failed, .pending]
+
+    open func cleanUpStaleTransactions() {
+        let toDelete = DomainRegistry.transactionRepository.findAll().filter {
+            $0.type == .replaceBrowserExtension &&
+            !ReplaceBrowserExtensionDomainService.doNotCleanUpStatuses.contains($0.status)
+        }
+        for tx in toDelete {
+            DomainRegistry.transactionRepository.remove(tx)
+        }
+    }
+
 }

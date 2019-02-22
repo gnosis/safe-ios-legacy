@@ -67,6 +67,7 @@ public class SynchronisationService: SynchronisationDomainService {
         tokenSyncRepeater = Repeater(delay: tokenSyncInterval) { [unowned self] _ in
             try? RetryWithIncreasingDelay(maxAttempts: self.tokenSyncMaxRetries, startDelay: self.retryInterval) { _ in
                 try DomainRegistry.transactionService.updatePendingTransactions()
+                try DomainRegistry.replaceExtensionService.postProcessTransactions()
             }.start()
             self.syncAccounts()
         }
