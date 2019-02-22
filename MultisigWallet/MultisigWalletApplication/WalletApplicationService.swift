@@ -544,33 +544,30 @@ public class WalletApplicationService: Assertable {
         return newTransactionID.id
     }
 
-    public func requestTransactionConfirmation(_ id: String) throws -> TransactionData {
+    public func requestTransactionConfirmationIfNeeded(_ id: String) throws -> TransactionData {
         let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
-        if tx.status == .draft {
-            let (estimation, nonce) = try estimateTransaction(tx)
-            let fee = TokenInt(estimation.gas + estimation.dataGas) * estimation.gasPrice.amount
-            tx.change(feeEstimate: estimation)
-                .change(fee: TokenAmount(amount: fee, token: estimation.gasPrice.token))
-            tx.change(nonce: String(nonce))
-                .change(operation: .call)
-                .change(hash: ethereumService.hash(of: tx))
-                .proceed()
-            DomainRegistry.transactionRepository.save(tx)
-        }
+        guard !transactionHasEnoughSignaturesToSubmit(tx) else { return transactionData(id)! }
         if let extensionAddress = address(of: .browserExtension), !tx.isSignedBy(extensionAddress) {
             try notifyBrowserExtension(message: notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!))
         }
         return transactionData(id)!
     }
 
-    private func estimateTransaction(_ tx: Transaction) throws -> (TransactionFeeEstimate, Int) {
+    private func transactionHasEnoughSignaturesToSubmit(_ tx: Transaction) -> Bool {
+        let wallet = DomainRegistry.walletRepository.findByID(tx.walletID)!
+        // TODO: test.
+        return tx.signatures.count >= wallet.confirmationCount - 1 // When submititg we add device signature.
+    }
+
+    public func estimateTransactionIfNeeded(_ id: String) throws {
+        let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
+        guard tx.feeEstimate == nil else { return }
         let recipient = DomainRegistry.encryptionService.address(from: tx.ethTo.value)!
         let request = EstimateTransactionRequest(safe: tx.sender!,
                                                  to: recipient,
                                                  value: String(tx.ethValue),
                                                  data: tx.ethData,
                                                  operation: .call)
-
         let estimationResponse = try handleRelayServiceErrors {
             try DomainRegistry.transactionRelayService.estimateTransaction(request: request)
         }
@@ -581,7 +578,20 @@ public class WalletApplicationService: Assertable {
                                                  operationalGas: estimationResponse.operationalGas,
                                                  gasPrice: TokenAmount(amount: TokenInt(estimationResponse.gasPrice),
                                                                        token: token))
-        return (feeEstimate, estimationResponse.nextNonce)
+        updateTransaction(tx, withFeeEsimate: feeEstimate, nonce: String(estimationResponse.nextNonce))
+    }
+
+    private func updateTransaction(_ tx: Transaction,
+                                   withFeeEsimate feeEstimate: TransactionFeeEstimate,
+                                   nonce: String) {
+        let fee = TokenInt(feeEstimate.gas + feeEstimate.dataGas) * feeEstimate.gasPrice.amount
+        tx.change(feeEstimate: feeEstimate)
+            .change(fee: TokenAmount(amount: fee, token: feeEstimate.gasPrice.token))
+        tx.change(nonce: nonce)
+            .change(operation: .call)
+            .change(hash: ethereumService.hash(of: tx))
+            .proceed()
+        DomainRegistry.transactionRepository.save(tx)
     }
 
     public enum TransactionError: Swift.Error {
@@ -591,7 +601,7 @@ public class WalletApplicationService: Assertable {
     public func submitTransaction(_ id: String) throws -> TransactionData {
         var tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
         if tx.status == .draft {
-            _ = try requestTransactionConfirmation(id)
+            _ = try requestTransactionConfirmationIfNeeded(id)
             tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
         }
         signTransaction(tx)

@@ -20,24 +20,22 @@ public class ReviewTransactionViewController: UITableViewController {
 
     internal var cells = [IndexPath: UITableViewCell]()
 
+    /// Confirmation cell is always last if present
     private var isConfirmationRequired: Bool {
         return ApplicationServiceRegistry.walletService.ownerAddress(of: .browserExtension) != nil
     }
     internal let confirmationCell = TransactionConfirmationCell()
 
+    /// To control how frequent a user can send confirmation requests
     private let scheduler = OneOperationWaitingScheduler(interval: 30)
     private var submitButtonItem: UIBarButtonItem!
-    private var didRequestSignatures: Bool = false
 
     internal class IndexPathIterator {
-
         private var index: Int = 0
-
         func next() -> IndexPath {
             defer { index += 1 }
             return IndexPath(row: index, section: 0)
         }
-
     }
 
     internal var feeCellIndexPath: IndexPath!
@@ -54,14 +52,6 @@ public class ReviewTransactionViewController: UITableViewController {
         submitButtonItem = UIBarButtonItem(title: Strings.submit, style: .done, target: self, action: #selector(submit))
     }
 
-    private func disableSubmit() {
-        submitButtonItem.isEnabled = false
-    }
-
-    private func enableSubmit() {
-        submitButtonItem.isEnabled = true
-    }
-
     override public func viewDidLoad() {
         super.viewDidLoad()
         title = Strings.title
@@ -72,6 +62,7 @@ public class ReviewTransactionViewController: UITableViewController {
         updateSubmitButton()
     }
 
+    private var didRequestSignatures: Bool = false
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard !didRequestSignatures else { return }
@@ -95,6 +86,14 @@ public class ReviewTransactionViewController: UITableViewController {
             stickyHeader.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             stickyHeader.bottomAnchor.constraint(equalTo: tableView.topAnchor)])
         view.setNeedsUpdateConstraints()
+    }
+
+    private func disableSubmit() {
+        submitButtonItem.isEnabled = false
+    }
+
+    private func enableSubmit() {
+        submitButtonItem.isEnabled = true
     }
 
     // MARK: - Table view data source
@@ -122,6 +121,7 @@ public class ReviewTransactionViewController: UITableViewController {
         assertionFailure("Should be overriden")
     }
 
+    /// called when signing results are received
     internal func update(with tx: TransactionData) {
         self.tx = tx
         updateConfirmationCell()
@@ -161,8 +161,8 @@ public class ReviewTransactionViewController: UITableViewController {
 
     private func doRequest() {
         hasUpdatedFee = false
-        performTransactionAction { [unowned self] in
-            try ApplicationServiceRegistry.walletService.requestTransactionConfirmation(self.tx.id)
+        performTransactionConfirmationsRequestAction { [unowned self] in
+            try ApplicationServiceRegistry.walletService.requestTransactionConfirmationIfNeeded(self.tx.id)
         }
     }
 
@@ -173,14 +173,16 @@ public class ReviewTransactionViewController: UITableViewController {
         }
     }
 
-    private func performTransactionAction(_ action: @escaping () throws -> TransactionData) {
+    private func performTransactionConfirmationsRequestAction(_ action: @escaping () throws -> TransactionData) {
         disableSubmit()
         DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else { return }
             do {
-                try self?.doAction(action)
+                try ApplicationServiceRegistry.walletService.estimateTransactionIfNeeded(self.tx.id)
+                try self.doRequestConfirmationsAction(action)
             } catch let error {
                 DispatchQueue.main.sync {
-                    self?.enableSubmit()
+                    self.enableSubmit()
                     ErrorHandler.showError(message: error.localizedDescription,
                                            log: "operation failed: \(error)",
                                            error: nil)
@@ -189,7 +191,7 @@ public class ReviewTransactionViewController: UITableViewController {
         }
     }
 
-    private func doAction(_ action: @escaping () throws -> TransactionData) throws {
+    private func doRequestConfirmationsAction(_ action: @escaping () throws -> TransactionData) throws {
         self.tx = try action()
         DispatchQueue.main.sync {
             self.hasUpdatedFee = true
@@ -228,7 +230,7 @@ public class ReviewTransactionViewController: UITableViewController {
     }
 
     private func doSubmit() {
-        performTransactionAction { [unowned self] in
+        performTransactionConfirmationsRequestAction { [unowned self] in
             try ApplicationServiceRegistry.walletService.submitTransaction(self.tx.id)
         }
     }

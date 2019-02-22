@@ -97,60 +97,68 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         XCTAssertEqual(data.feeTokenData.balance, 10)
     }
 
-    func test_whenRequestingConfirmation_thenRequestingFeeEstimate() throws {
+    // MARK: - Requestin Transaction Estimation
+
+    func test_whenRequestingEstimation_thenEstimates() throws {
         let tx = givenDraftTransaction()
-        _ = try service.requestTransactionConfirmation(tx.id.id)
+        _ = try service.estimateTransactionIfNeeded(tx.id.id)
         XCTAssertNotNil(relayService.estimateTransaction_input)
     }
 
-    func test_whenRequestingConfirmation_thenSavesEstimationInTransaction() throws {
+    func test_whenRequestingEstimation_thenSavesEstimationInTransaction() throws {
         let tx = givenDraftTransaction()
-        _ = try service.requestTransactionConfirmation(tx.id.id)
+        _ = try service.estimateTransactionIfNeeded(tx.id.id)
         XCTAssertEqual(tx.fee?.amount,
                        TokenInt(tx.feeEstimate!.dataGas + tx.feeEstimate!.gas) * tx.feeEstimate!.gasPrice.amount)
     }
 
-    func test_whenRequestingConfirmation_thenFetchesContractNonceFromEstimation() throws {
+    func test_whenRequestingEstimation_thenFetchesContractNonceFromEstimation() throws {
         let tx = givenDraftTransaction()
-        _ = try service.requestTransactionConfirmation(tx.id.id)
+        _ = try service.estimateTransactionIfNeeded(tx.id.id)
         XCTAssertEqual(tx.nonce, String(relayService.estimateTransaction_output.nextNonce))
     }
 
-    func test_whenRequestingConfirmation_thenCalculatesHash() throws {
+    func test_whenRequestingEstimation_thenCalculatesHash() throws {
         let tx = givenDraftTransaction()
-        _ = try service.requestTransactionConfirmation(tx.id.id)
+        _ = try service.estimateTransactionIfNeeded(tx.id.id)
         XCTAssertNotNil(tx.operation)
         XCTAssertEqual(tx.hash, ethereumService.hash_of_tx_output)
     }
 
-    func test_whenRequestingConfirmation_thenTransactionInSigningStatus() throws {
+    func test_whenRequestingEstimation_thenTransactionInSigningStatus() throws {
         let tx = givenDraftTransaction()
-        _ = try service.requestTransactionConfirmation(tx.id.id)
+        _ = try service.estimateTransactionIfNeeded(tx.id.id)
         XCTAssertEqual(tx.status, .signing)
     }
 
-    func test_whenRequestingConfirmation_thenTransactionTimestampUpdated() throws {
+    func test_whenRequestingEstimation_thenTransactionTimestampUpdated() throws {
         let tx = givenDraftTransaction()
         let oldDate = tx.updatedDate!
-        _ = try service.requestTransactionConfirmation(tx.id.id)
+        _ = try service.estimateTransactionIfNeeded(tx.id.id)
         let updatedTx = transactionRepository.findByID(tx.id)!
         XCTAssertGreaterThan(updatedTx.updatedDate, oldDate)
     }
 
+    // MARK: - Requesting Transaction Confirmation
+
     func test_whenRequestingConfirmation_thenSendsConfirmatioMessage() throws {
         let tx = givenDraftTransaction()
-        _ = try service.requestTransactionConfirmation(tx.id.id)
+        _ = try service.estimateTransactionIfNeeded(tx.id.id)
+        _ = try service.requestTransactionConfirmationIfNeeded(tx.id.id)
         XCTAssertEqual(notificationService.sentMessages,
                        ["to:\(service.ownerAddress(of: .browserExtension)!) " +
                         "msg:\(notificationService.requestConfirmationMessage(for: tx, hash: tx.hash!))"])
     }
 
-    func test_whenTransactionConfirmationRequestedBefore_thenJustSendsNewConfirmation() throws {
+    func test_whenRequestingConfirmationRequestedBefore_thenJustSendsIt() throws {
         let tx = givenDraftTransaction()
-        _ = try service.requestTransactionConfirmation(tx.id.id)
-        _ = try service.requestTransactionConfirmation(tx.id.id)
+        _ = try service.estimateTransactionIfNeeded(tx.id.id)
+        _ = try service.requestTransactionConfirmationIfNeeded(tx.id.id)
+        _ = try service.requestTransactionConfirmationIfNeeded(tx.id.id)
         XCTAssertEqual(notificationService.sentMessages.count, 2)
     }
+
+    // MARK: - Statuses
 
     func test_whenTransactionCreated_thenWaitsForConfirmation() {
         let tx = givenDraftTransaction()
@@ -196,6 +204,8 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         transactionRepository.save(tx)
         XCTAssertEqual(service.transactionData(tx.id.id)!.status, .pending)
     }
+
+    // MARK: - Submit transaction
 
     func test_whenSubmittingTransaction_thenAddsOwnSignature() throws {
         let message = TransactionConfirmedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))

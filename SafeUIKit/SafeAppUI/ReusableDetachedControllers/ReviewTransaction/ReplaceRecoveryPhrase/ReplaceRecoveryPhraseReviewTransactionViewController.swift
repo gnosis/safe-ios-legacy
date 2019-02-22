@@ -14,7 +14,6 @@ final class ReplaceRecoveryPhraseReviewTransactionViewController: ReviewTransact
     }
 
     override func createCells() {
-        cells = [IndexPath: UITableViewCell]()
         let indexPath = IndexPathIterator()
         cells[indexPath.next()] = replaceRecoveryPhraseHeaderCell()
         feeCellIndexPath = indexPath.next()

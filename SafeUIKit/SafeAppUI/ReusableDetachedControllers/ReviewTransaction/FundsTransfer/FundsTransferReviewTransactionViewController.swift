@@ -8,7 +8,6 @@ import SafeUIKit
 final class FundsTransferReviewTransactionViewController: ReviewTransactionViewController {
 
     override func createCells() {
-        cells = [IndexPath: UITableViewCell]()
         let indexPath = IndexPathIterator()
         cells[indexPath.next()] = transferHeaderCell()
         cells[indexPath.next()] = transferViewCell()
