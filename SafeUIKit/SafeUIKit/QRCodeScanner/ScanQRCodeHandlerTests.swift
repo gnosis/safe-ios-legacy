@@ -22,14 +22,12 @@ class ScanQRCodeHandlerTests: XCTestCase {
     func test_whenCameraIsDenied_thenPresentsAlert() {
         captureDevice.authorizationStatus_result = .denied
         handler.scan()
-        delay()
         assertAlertPresented()
     }
 
     func test_whenCameraIsRestricted_thenPresentsAlert() {
         captureDevice.authorizationStatus_result = .restricted
         handler.scan()
-        delay()
         assertAlertPresented()
     }
 
@@ -38,7 +36,6 @@ class ScanQRCodeHandlerTests: XCTestCase {
         handler.scan()
         XCTAssertNotNil(captureDevice.requestAccess_in_handler)
         captureDevice.requestAccess_in_handler?(true)
-        delay()
         assertScannerPresented()
     }
 
@@ -47,7 +44,6 @@ class ScanQRCodeHandlerTests: XCTestCase {
         handler.scan()
         XCTAssertNotNil(captureDevice.requestAccess_in_handler)
         captureDevice.requestAccess_in_handler?(false)
-        delay()
         assertAlertPresented()
     }
 

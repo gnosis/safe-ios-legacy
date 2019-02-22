@@ -34,7 +34,7 @@ class ScannerViewController: UIViewController {
         return controller
     }
 
-    @IBAction func close(_ sender: Any) {
+    @IBAction func close() {
         dismiss(animated: true)
     }
 

@@ -5,7 +5,7 @@
 import UIKit
 import MultisigWalletApplication
 
-final class NewSafeFlowCoordinator: FlowCoordinator {
+class NewSafeFlowCoordinator: FlowCoordinator {
 
     var paperWalletFlowCoordinator = PaperWalletFlowCoordinator()
     var pairController: PairWithBrowserExtensionViewController?

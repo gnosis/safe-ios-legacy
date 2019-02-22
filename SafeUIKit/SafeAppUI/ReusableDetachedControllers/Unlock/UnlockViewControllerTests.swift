@@ -5,6 +5,7 @@
 import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
+import SafeUIKit
 
 class UnlockViewControllerTests: SafeTestCase {
 
@@ -120,8 +121,9 @@ class UnlockViewControllerTests: SafeTestCase {
 
     func test_whenPasswordFails_thenInputShakes() {
         authenticationService.invalidateAuthentication()
-        hitReturn()
-        XCTAssertTrue(vc.verifiableInput.isShaking)
+        let testableInput = TestableVeirfiableInput()
+        vc.verifiableInputDidReturn(testableInput)
+        XCTAssertTrue(testableInput.isShaking)
     }
 
     func test_whenShowsCancelButtonTrue_thenHasCancelButton() {
@@ -137,7 +139,6 @@ extension UnlockViewControllerTests {
 
     private func hitReturn() {
         vc.verifiableInputDidReturn(vc.verifiableInput)
-        delay()
     }
 
     private func createVC(blockPeriod: TimeInterval = 15) throws {
@@ -162,6 +163,16 @@ extension UnlockViewControllerTests {
         XCTAssertNotNil(vc.countdownLabel, line: line)
         XCTAssertTrue(vc.loginWithBiometryButton.isHidden, line: line)
         XCTAssertFalse(vc.verifiableInput.isEnabled, line: line)
+    }
+
+}
+
+class TestableVeirfiableInput: VerifiableInput {
+
+    var isShaking = false
+
+    override func shake() {
+        isShaking = true
     }
 
 }

@@ -109,7 +109,7 @@ final class ConfirmMnemonicViewController: UIViewController {
         keyboardBehavior.useTextFieldSuperviewFrame = true
     }
 
-    private func twoRandomWords() -> (String, String) {
+    func twoRandomWords() -> (String, String) {
         var wordsCopy = account.mnemonicWords
         let firstIndex = Int.random(in: 0..<wordsCopy.count)
         let firstWord = wordsCopy[firstIndex]

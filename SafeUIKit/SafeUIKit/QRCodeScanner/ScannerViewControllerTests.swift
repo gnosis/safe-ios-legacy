@@ -23,15 +23,10 @@ class ScannerViewControllerTests: XCTestCase {
         controller = TestableScannerViewController.createTestable(delegate: delegate)
     }
 
-    func test_canCreate() {
-        XCTAssertNotNil(controller)
-    }
-
     func test_close_dismisses() {
-        createWindow(controller)
-        controller.close(self)
-        delay(1)
-        XCTAssertNil(controller.view.window)
+        let controller = TestableScannerViewController()
+        controller.close()
+        XCTAssertTrue(controller.didDismiss)
     }
 
     func test_whenRecievesMultipleQRCodesAndDelegateStops_thenDoesNotProcessRemainingCodes() {
@@ -114,6 +109,16 @@ class TestableScannerViewController: ScannerViewController {
                           completion: (() -> Void)? = nil) {
         test_presentedController = viewControllerToPresent
         presentedTimes += 1
+    }
+
+}
+
+class TestableScannerViewController: ScannerViewController {
+
+    var didDismiss = false
+
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        didDismiss = true
     }
 
 }
