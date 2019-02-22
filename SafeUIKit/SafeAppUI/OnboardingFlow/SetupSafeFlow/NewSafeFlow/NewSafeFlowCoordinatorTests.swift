@@ -85,42 +85,39 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
     }
 
     func test_whenCancellationAlertConfirmed_thenPopsBackToNewSafeScreen() {
+        let newSafeFlowCoordinator = TestableNewSafeFlowCoordinator(rootViewController: UINavigationController())
+        newSafeFlowCoordinator.setUp()
         walletService.createReadyToDeployWallet()
         walletService.expect_deployWallet()
-        createWindow(newSafeFlowCoordinator.rootViewController)
+        newSafeFlowCoordinator.rootViewController.loadViewIfNeeded()
         newSafeFlowCoordinator.didSelectNext()
-        delay(1)
         newSafeFlowCoordinator.deploymentDidCancel()
-        delay(1)
-        let alert = newSafeFlowCoordinator.rootViewController.presentedViewController as! UIAlertController
+        let alert = newSafeFlowCoordinator.modallyPresentedController as! UIAlertController
         guard let confirmCancellationAction = alert.actions.first(where: { $0.style == .destructive }) else {
             XCTFail("Confirm cancellation action not found")
             return
         }
         walletService.expect_abortDeployment()
         confirmCancellationAction.test_handler?(confirmCancellationAction)
-        delay(1)
-        XCTAssertTrue(walletService.verify())
-        XCTAssertNil(newSafeFlowCoordinator.rootViewController.presentedViewController)
-        assert(newSafeFlowCoordinator.navigationController.topViewController, is: GuidelinesViewController.self)
+        XCTAssertTrue(walletService.verifyAborted())
+        XCTAssertNil(newSafeFlowCoordinator.modallyPresentedController)
+        XCTAssertTrue(newSafeFlowCoordinator.didPopToCheckpoint)
     }
 
     func test_whenCancellationAlertDismissed_thenStaysOnPendingController() {
         walletService.createReadyToDeployWallet()
-        createWindow(newSafeFlowCoordinator.rootViewController)
-        newSafeFlowCoordinator.didSelectNext()
-        delay(1)
+        let newSafeFlowCoordinator = TestableNewSafeFlowCoordinator(rootViewController: UINavigationController())
+        newSafeFlowCoordinator.setUp()
         newSafeFlowCoordinator.deploymentDidCancel()
-        delay(1)
-        let alert = newSafeFlowCoordinator.rootViewController.presentedViewController as! UIAlertController
+        let alert = newSafeFlowCoordinator.modallyPresentedController as! UIAlertController
         guard let action = alert.actions.first(where: { $0.style == .cancel }) else {
             XCTFail("Confirm cancellation action not found")
             return
         }
+        newSafeFlowCoordinator.didPush = false
         action.test_handler?(action)
-        delay(1)
-        XCTAssertNil(newSafeFlowCoordinator.rootViewController.presentedViewController)
-        XCTAssertTrue(newSafeFlowCoordinator.navigationController.topViewController is SafeCreationViewController)
+        XCTAssertNil(newSafeFlowCoordinator.modallyPresentedController)
+        XCTAssertFalse(newSafeFlowCoordinator.didPush)
     }
 
     func test_whenDeploymentSuccess_thenExitsFlow() {
@@ -135,20 +132,17 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
 
     func test_whenDeploymentFailed_thenShowsAlertThatTakesBackToNewSafeScreen() {
         walletService.createReadyToDeployWallet()
-        createWindow(newSafeFlowCoordinator.rootViewController)
-        newSafeFlowCoordinator.didSelectNext()
-        delay(1)
+        let newSafeFlowCoordinator = TestableNewSafeFlowCoordinator(rootViewController: UINavigationController())
+        newSafeFlowCoordinator.setUp()
         newSafeFlowCoordinator.deploymentDidFail("")
-        delay(1)
-        guard let alert = newSafeFlowCoordinator.rootViewController.presentedViewController as? UIAlertController,
+        guard let alert = newSafeFlowCoordinator.modallyPresentedController as? UIAlertController,
             let action = alert.actions.first(where: { $0.style == .cancel }) else {
                 XCTFail("Confirm cancellation action not found")
                 return
         }
         action.test_handler?(action)
-        delay(1)
-        XCTAssertNil(newSafeFlowCoordinator.rootViewController.presentedViewController)
-        assert(newSafeFlowCoordinator.navigationController.topViewController, is: GuidelinesViewController.self)
+        XCTAssertNil(newSafeFlowCoordinator.modallyPresentedController)
+        XCTAssertTrue(newSafeFlowCoordinator.didPopToCheckpoint)
     }
 
     func test_whenSafeIsInAnyPendingState_thenShowingPendingController() {
@@ -192,4 +186,30 @@ private extension NewSafeFlowCoordinatorTests {
 
 class MockEventSubscriber: EventSubscriber {
     func notify() {}
+}
+
+class TestableNewSafeFlowCoordinator: NewSafeFlowCoordinator {
+
+    var modallyPresentedController: UIViewController?
+
+    override func presentModally(_ controller: UIViewController) {
+        modallyPresentedController = controller
+    }
+
+    override func dismissModal(_ completion: (() -> Void)?) {
+        modallyPresentedController = nil
+    }
+
+    var didPush: Bool = false
+
+    override func push(_ controller: UIViewController, onPop action: (() -> Void)?) {
+        didPush = true
+    }
+
+    var didPopToCheckpoint: Bool = false
+
+    override func popToLastCheckpoint() {
+        didPopToCheckpoint = true
+    }
+
 }
