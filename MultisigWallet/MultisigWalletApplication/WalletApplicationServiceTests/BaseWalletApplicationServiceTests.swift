@@ -82,6 +82,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         wallet.state = wallet.deployingState
         wallet.changeAddress(Address.safeAddress)
         wallet.updateMinimumTransactionAmount(100)
+        wallet.changeConfirmationCount(2)
         wallet.state = wallet.readyToUseState
         walletRepository.save(wallet)
         service.update(account: Token.Ether.id, newBalance: 1)

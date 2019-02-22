@@ -45,7 +45,7 @@ final class MainFlowCoordinator: FlowCoordinator {
     }
 
     private func openTransactionReviewScreen(_ id: String) {
-        let reviewVC = ReviewTransactionViewController(transactionID: id, delegate: self)
+        let reviewVC = FundsTransferReviewTransactionViewController(transactionID: id, delegate: self)
         push(reviewVC)
     }
 
@@ -156,7 +156,7 @@ extension MainFlowCoordinator: ReviewTransactionViewControllerDelegate {
         showTransactionList()
     }
 
-    private func showTransactionList() {
+    internal func showTransactionList() {
         if let mainVC = self.navigationController.topViewController as? MainViewController {
             mainVC.showTransactionList()
         }
@@ -193,7 +193,7 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
     }
 
     func didSelectCommand(_ command: MenuCommand) {
-        command.run(flowCoordinator: self)
+        command.run(mainFlowCoordinator: self)
     }
 
 }
@@ -226,7 +226,7 @@ extension MainFlowCoordinator: ConfirmMnemonicDelegate {
         let txID = replaceRecoveryController.transaction!.id
         let address = vc.account.address
         ApplicationServiceRegistry.settingsService.updateRecoveryPhraseTransaction(txID, with: address)
-        let reviewVC = ReviewTransactionViewController(transactionID: txID, delegate: self)
+        let reviewVC = ReplaceRecoveryPhraseReviewTransactionViewController(transactionID: txID, delegate: self)
         self.replaceRecoveryController = nil
         push(reviewVC) { [unowned self] in
             DispatchQueue.main.async {

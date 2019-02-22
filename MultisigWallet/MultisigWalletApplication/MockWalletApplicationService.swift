@@ -185,11 +185,17 @@ public class MockWalletApplicationService: WalletApplicationService {
                         processed: nil)
     public var requestTransactionConfirmation_throws = false
 
-    public override func requestTransactionConfirmation(_ id: String) throws -> TransactionData {
+    public override func requestTransactionConfirmationIfNeeded(_ id: String) throws -> TransactionData {
         requestTransactionConfirmation_input = id
         if requestTransactionConfirmation_throws {
             throw Error.error
         }
+        return requestTransactionConfirmation_output
+    }
+
+    public var didEstimate = false
+    public override func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
+        didEstimate = true
         return requestTransactionConfirmation_output
     }
 

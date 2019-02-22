@@ -300,6 +300,10 @@
 		5541586521748BC400A3CEA4 /* AddressInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586421748BC400A3CEA4 /* AddressInputViewController.swift */; };
 		5541586821748C3700A3CEA4 /* AddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586721748C3700A3CEA4 /* AddressInput.swift */; };
 		5541586A21748C5200A3CEA4 /* AddressInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541586921748C5200A3CEA4 /* AddressInputTests.swift */; };
+		554CACCF221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACCE221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift */; };
+		554CACD1221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACD0221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift */; };
+		554CACD5221F08CD0086D303 /* ReplaceBrowserExtensionReviewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACD4221F08CD0086D303 /* ReplaceBrowserExtensionReviewTransactionViewController.swift */; };
+		554CACD7221F19430086D303 /* FundsTransferReviewTransactionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554CACD6221F19430086D303 /* FundsTransferReviewTransactionViewControllerTests.swift */; };
 		555B0E6720CA83DF00424CEE /* TokenDoubleInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B0E6620CA83DF00424CEE /* TokenDoubleInputViewController.swift */; };
 		555EB6EC216CA42100E06553 /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6EB216CA42100E06553 /* TextInputViewController.swift */; };
 		555EB6F0216CA5CF00E06553 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555EB6EF216CA5CF00E06553 /* TextInput.swift */; };
@@ -847,6 +851,10 @@
 		5541586421748BC400A3CEA4 /* AddressInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputViewController.swift; sourceTree = "<group>"; };
 		5541586721748C3700A3CEA4 /* AddressInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInput.swift; sourceTree = "<group>"; };
 		5541586921748C5200A3CEA4 /* AddressInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputTests.swift; sourceTree = "<group>"; };
+		554CACCE221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsTransferReviewTransactionViewController.swift; sourceTree = "<group>"; };
+		554CACD0221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceRecoveryPhraseReviewTransactionViewController.swift; sourceTree = "<group>"; };
+		554CACD4221F08CD0086D303 /* ReplaceBrowserExtensionReviewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionReviewTransactionViewController.swift; sourceTree = "<group>"; };
+		554CACD6221F19430086D303 /* FundsTransferReviewTransactionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsTransferReviewTransactionViewControllerTests.swift; sourceTree = "<group>"; };
 		555B0E6620CA83DF00424CEE /* TokenDoubleInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDoubleInputViewController.swift; sourceTree = "<group>"; };
 		555EB6EB216CA42100E06553 /* TextInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
 		555EB6EF216CA5CF00E06553 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
@@ -1758,6 +1766,31 @@
 			path = AddressInput;
 			sourceTree = "<group>";
 		};
+		554CACC4221F047F0086D303 /* FundsTransfer */ = {
+			isa = PBXGroup;
+			children = (
+				554CACCE221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift */,
+				554CACD6221F19430086D303 /* FundsTransferReviewTransactionViewControllerTests.swift */,
+			);
+			path = FundsTransfer;
+			sourceTree = "<group>";
+		};
+		554CACD2221F056D0086D303 /* ReplaceRecoveryPhrase */ = {
+			isa = PBXGroup;
+			children = (
+				554CACD0221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift */,
+			);
+			path = ReplaceRecoveryPhrase;
+			sourceTree = "<group>";
+		};
+		554CACD3221F08A90086D303 /* ReplaceBrowserExtension */ = {
+			isa = PBXGroup;
+			children = (
+				554CACD4221F08CD0086D303 /* ReplaceBrowserExtensionReviewTransactionViewController.swift */,
+			);
+			path = ReplaceBrowserExtension;
+			sourceTree = "<group>";
+		};
 		555EB6ED216CA55000E06553 /* TextInputs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1841,6 +1874,9 @@
 		55C0D4BA219AD32C00F04FA4 /* ReviewTransaction */ = {
 			isa = PBXGroup;
 			children = (
+				554CACD3221F08A90086D303 /* ReplaceBrowserExtension */,
+				554CACD2221F056D0086D303 /* ReplaceRecoveryPhrase */,
+				554CACC4221F047F0086D303 /* FundsTransfer */,
 				55C0D4BB219AD35900F04FA4 /* ReviewTransactionViewController.swift */,
 				5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */,
 			);
@@ -2832,6 +2868,7 @@
 				0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */,
 				0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */,
 				0A00293020CFCBA3009A4BFE /* SegmentBarController.swift in Sources */,
+				554CACD1221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
 				0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */,
@@ -2847,6 +2884,7 @@
 				55DEBC28214BD7AB0017CD4B /* SafeAddressViewController.swift in Sources */,
 				0A437F0620D26E8C007608F8 /* TransactionDetailsViewController.swift in Sources */,
 				55DEBC0C214A85E10017CD4B /* SafeQRCodeTableViewCell.swift in Sources */,
+				554CACD5221F08CD0086D303 /* ReplaceBrowserExtensionReviewTransactionViewController.swift in Sources */,
 				0AE950C720D29C930099B79D /* TransactionParameterView.swift in Sources */,
 				0A334E68209C8F4700ABC6AE /* Assets.swift in Sources */,
 				0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */,
@@ -2866,6 +2904,7 @@
 				0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */,
 				550D1ED92133FD2E0035109A /* ManageTokensFlowCoordinator.swift in Sources */,
 				558D64EA2180B1A2008107E5 /* SafeCreationViewController.swift in Sources */,
+				554CACCF221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift in Sources */,
 				0A334DD1209C700700ABC6AE /* LocalizedString.swift in Sources */,
 				0A553D4321C004DF00647CFF /* ReplaceRecoveryPhraseViewController.swift in Sources */,
 				0A4DF82020CE6FC70095C00D /* TokensTableViewController.swift in Sources */,
@@ -2912,6 +2951,7 @@
 				0A334E5E209C8E6800ABC6AE /* PasswordValidatorTests.swift in Sources */,
 				0A334E62209C8E6800ABC6AE /* StartViewControllerTests.swift in Sources */,
 				0A334E55209C8E6800ABC6AE /* OnboardingFlowCoordinatorTests.swift in Sources */,
+				554CACD7221F19430086D303 /* FundsTransferReviewTransactionViewControllerTests.swift in Sources */,
 				0AD998A020D3CDA000E6F3CA /* BaseCustomViewTests.swift in Sources */,
 				55DFBD1A2136A883004B2AC4 /* AddTokenTableViewControllerTests.swift in Sources */,
 				0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */,

@@ -11,7 +11,7 @@ class MenuCommand {
     }
     var isHidden: Bool { return false }
 
-    func run(flowCoordinator: FlowCoordinator) {
+    func run(mainFlowCoordinator: MainFlowCoordinator) {
         preconditionFailure("Override this method")
     }
 
