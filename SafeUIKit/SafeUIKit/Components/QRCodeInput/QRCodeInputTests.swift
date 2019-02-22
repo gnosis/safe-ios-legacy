@@ -49,7 +49,7 @@ class QRCodeInputTests: XCTestCase {
         barcodeTextField.scanValidatedConverter = { _ in
             return nil
         }
-        barcodeTextField.scanHandler.didScan("test")
+        XCTAssertThrowsError(try barcodeTextField.scanHandler.didScan("test"))
         delay()
         XCTAssertEqual(barcodeTextField.text, "some input")
         XCTAssertNil(delegate.scannedCode)
@@ -59,7 +59,7 @@ class QRCodeInputTests: XCTestCase {
         barcodeTextField.scanValidatedConverter = { _ in
             return "converted string"
         }
-        barcodeTextField.scanHandler.didScan("test")
+        try! barcodeTextField.scanHandler.didScan("test")
         delay()
         XCTAssertEqual(barcodeTextField.text, "converted string")
         XCTAssertEqual(delegate.scannedCode, "test")

@@ -8,18 +8,24 @@ import AVFoundation
 import Common
 
 protocol ScannerDelegate: class {
-    func didScan(_ code: String)
+    func didScan(_ code: String) throws -> Bool
 }
 
-final class ScannerViewController: UIViewController {
+class ScannerViewController: UIViewController {
 
-    private weak var delegate: ScannerDelegate?
+    enum Strings {
+        static let errorTitle = LocalizedString("alert.error.title", comment: "Error")
+        static let errorOK = LocalizedString("alert.error.ok", comment: "OK")
+    }
+
+    weak var delegate: ScannerDelegate?
 
     @IBOutlet weak var debugButtonsStackView: UIStackView!
     @IBOutlet weak var closeButton: UIButton!
 
     private var debugButtonReturnCodes = [String]()
     private var debugButtons = [UIButton]()
+    private var shouldStopHandling: Bool = false
 
     static func create(delegate: ScannerDelegate) -> ScannerViewController {
         let bundle = Bundle(for: ScannerViewController.self)
@@ -60,11 +66,40 @@ final class ScannerViewController: UIViewController {
         closeButton.accessibilityLabel = LocalizedString("camera.close", comment: "Close button on camera")
     }
 
-    private func barcodesHandler(_ barcodes: [AVMetadataMachineReadableCodeObject]) {
+    func barcodesHandler(_ barcodes: [AVMetadataMachineReadableCodeObject]) {
+        guard !shouldStopHandling else { return }
         for barcode in barcodes.filter({ $0.type == .qr && $0.stringValue != nil }) {
-            delegate?.didScan(barcode.stringValue!)
+            if handle(barcode.stringValue!) {
+                break
+            }
         }
     }
+
+    func handle(_ barcode: String) -> Bool {
+        guard let delegate = delegate else { return false }
+        do {
+            shouldStopHandling = try delegate.didScan(barcode)
+            return shouldStopHandling
+        } catch {
+            show(error: error)
+            return true
+        }
+    }
+    private func show(error: Error) {
+        let alert = UIAlertController(title: Strings.errorTitle,
+                                      message: error.localizedDescription,
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: Strings.errorOK, style: .default, handler: nil)
+        alert.addAction(okAction)
+        if !Thread.isMainThread {
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
+        } else {
+            present(alert, animated: true, completion: nil)
+        }
+    }
+
 
     func addDebugButton(title: String, scanValue: String) {
         let button = UIButton()
@@ -78,7 +113,7 @@ final class ScannerViewController: UIViewController {
 
     @objc private func scanDebugCode(_ sender: UIButton) {
         let code = debugButtonReturnCodes[sender.tag]
-        delegate?.didScan(code)
+        _ = handle(code)
     }
 
 }

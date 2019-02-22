@@ -13,6 +13,12 @@
 /* Error to display if address is invalid. */
 "address_input.invalid_address" = "Address is invalid";
 
+/* OK */
+"alert.error.ok" = "OK";
+
+/* Error */
+"alert.error.title" = "Error";
+
 /* Checkmark is checked */
 "button.checked" = "Checked";
 
@@ -60,6 +66,9 @@
 
 /* Title for alert if camera is not accessable. */
 "scanner.camera_access_required.title" = "Camera Access";
+
+/* Invalid code */
+"scanner.error.invalid_code" = "Invalid QR code.";
 
 /* Amount placeholder for token input. */
 "token_input.amount" = "Amount";
