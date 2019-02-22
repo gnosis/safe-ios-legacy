@@ -63,6 +63,21 @@ extension ReplaceBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewControl
 
 
     func recoveryPhraseInputViewControllerDidFinish() {
+        let controller = ReplaceBrowserExtensionReviewTransactionViewController(transactionID: transactionID,
+                                                                                delegate: self)
+        push(controller)
+    }
+
+}
+
+extension ReplaceBrowserExtensionFlowCoordinator: ReviewTransactionViewControllerDelegate {
+
+    func wantsToSubmitTransaction(_ completion: @escaping (Bool) -> Void) {
+        completion(true)
+    }
+
+    func didFinishReview() {
+        exitFlow()
     }
 
 }

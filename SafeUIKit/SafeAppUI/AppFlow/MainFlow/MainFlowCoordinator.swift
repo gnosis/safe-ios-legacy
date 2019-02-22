@@ -156,7 +156,7 @@ extension MainFlowCoordinator: ReviewTransactionViewControllerDelegate {
         showTransactionList()
     }
 
-    private func showTransactionList() {
+    internal func showTransactionList() {
         if let mainVC = self.navigationController.topViewController as? MainViewController {
             mainVC.showTransactionList()
         }
@@ -193,7 +193,7 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
     }
 
     func didSelectCommand(_ command: MenuCommand) {
-        command.run(flowCoordinator: self)
+        command.run(mainFlowCoordinator: self)
     }
 
 }

@@ -492,6 +492,9 @@ public class WalletApplicationService: Assertable {
     }
 
     internal func transactionData(_ tx: Transaction) -> TransactionData {
+        if tx.type == .replaceBrowserExtension {
+            return ApplicationServiceRegistry.recoveryService.transactionData(tx)
+        }
         let type: TransactionData.TransactionType
         switch tx.type {
         case .transfer: type = .outgoing
@@ -604,12 +607,20 @@ public class WalletApplicationService: Assertable {
             _ = try requestTransactionConfirmationIfNeeded(id)
             tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
         }
-        signTransaction(tx)
+        if tx.type == .replaceBrowserExtension {
+            try proceedTransaction(tx)
+        } else {
+            signTransaction(tx)
+            try proceedTransaction(tx)
+            try? notifyBrowserExtension(message: notificationService.transactionSentMessage(for: tx))
+        }
+        return transactionData(id)!
+    }
+
+    private func proceedTransaction(_ tx: Transaction) throws {
         let hash = try submitTransaction(tx)
         tx.set(hash: hash).proceed()
         DomainRegistry.transactionRepository.save(tx)
-        try? notifyBrowserExtension(message: notificationService.transactionSentMessage(for: tx))
-        return transactionData(id)!
     }
 
     private func signTransaction(_ tx: Transaction) {

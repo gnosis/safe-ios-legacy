@@ -19,8 +19,17 @@ class ReplaceBrowserExtensionCommand: MenuCommand {
 
     var commandFlow = ReplaceBrowserExtensionFlowCoordinator()
 
-    override func run(flowCoordinator: FlowCoordinator) {
-        flowCoordinator.enter(flow: commandFlow)
+    override func run(mainFlowCoordinator: MainFlowCoordinator) {
+        mainFlowCoordinator.saveCheckpoint()
+        mainFlowCoordinator.enter(flow: commandFlow) { [unowned mainFlowCoordinator] in
+            DispatchQueue.main.async {
+                mainFlowCoordinator.popToLastCheckpoint()
+                mainFlowCoordinator.pop()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                    mainFlowCoordinator.showTransactionList()
+                }
+            }
+        }
     }
 
 }
