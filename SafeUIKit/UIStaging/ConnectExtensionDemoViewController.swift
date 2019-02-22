@@ -42,7 +42,7 @@ class ConnectExtensionDemoViewController: UIViewController {
     }
     
     @IBAction func push() {
-        let controller = ReviewTransactionViewController(transactionID: "tx", delegate: self)
+        let controller = ReplaceBrowserExtensionReviewTransactionViewController(transactionID: "tx", delegate: self)
         navigationController?.pushViewController(controller, animated: true)
     }
 
