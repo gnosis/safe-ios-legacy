@@ -111,12 +111,7 @@ class TestableScannerViewController: ScannerViewController {
         presentedTimes += 1
     }
 
-}
-
-class TestableScannerViewController: ScannerViewController {
-
     var didDismiss = false
-
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         didDismiss = true
     }
