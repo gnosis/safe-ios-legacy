@@ -25,6 +25,15 @@
 /* Start */
 "navigation.start" = "Start";
 
+/* Explanatory message */
+"network_fee.alert.message" = "This is a network fee required by the blockchain to execute the transaction.";
+
+/* Ok */
+"network_fee.alert.ok" = "Close";
+
+/* Transaction fee */
+"network_fee.alert.title" = "Network Fee";
+
 /* Intro body text */
 "replace_extension.intro.body" = "Once this process is complete, you can only use the new browser extension to confirm transactions.\nPlease have your Safe recovery phrase ready to confirm the recovery.";
 
