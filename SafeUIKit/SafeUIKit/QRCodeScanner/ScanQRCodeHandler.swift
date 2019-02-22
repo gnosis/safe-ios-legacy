@@ -4,6 +4,7 @@
 
 import Foundation
 import AVFoundation
+import Common
 
 protocol ScanQRCodeHandlerDelegate: class {
     func presentController(_ controller: UIViewController)
@@ -32,19 +33,22 @@ class ScanQRCodeHandler {
         static let cameraAlertCancel = LocalizedString("cancel", comment: "Cancel button title")
         static let cameraAlertAllow = LocalizedString("scanner.camera_access_required.allow",
                                                       comment: "Button name to allow camera access")
+        static let invalidCode = LocalizedString(("scanner.error.invalid_code"), comment: "Invalid code")
     }
 
     func scan() {
         didFinishScanning = false
         checkCameraAvailability { [unowned self] success in
-            DispatchQueue.main.async {
-                if success {
-                    self.scannerController = self.createScannerController()
-                    self.delegate.presentController(self.scannerController!)
-                } else {
-                    self.delegate.presentController(self.cameraRequiredAlert())
-                }
-            }
+            dispatch.onMainThread { self.handleCameraAvailability(success: success) }
+        }
+    }
+
+    private func handleCameraAvailability(success: Bool) {
+        if success {
+            self.scannerController = self.createScannerController()
+            self.delegate.presentController(self.scannerController!)
+        } else {
+            self.delegate.presentController(self.cameraRequiredAlert())
         }
     }
 
@@ -94,27 +98,32 @@ class ScanQRCodeHandler {
 
 extension ScanQRCodeHandler: ScannerDelegate {
 
-    func didScan(_ code: String) {
-        if let scanValidatedConverter = scanValidatedConverter {
-            if let result = scanValidatedConverter(code) {
-                didScanCode(raw: code, converted: result)
-            }
+	@discardableResult
+    func didScan(_ code: String) throws -> Bool {
+        if let validCode = validated(code: code) {
+            notifyDidScan(raw: code, code: validCode)
+            return true
         } else {
-            didScanCode(raw: code)
+            throw NSError(domain: "io.gnosis.safe.scanQRCode",
+                          code: -999,
+                          userInfo: [NSLocalizedDescriptionKey: Strings.invalidCode])
         }
     }
 
-    private func didScanCode(raw: String, converted: String? = nil) {
-        guard !didFinishScanning else { return }
-        didFinishScanning = true
-        if let controller = scannerController {
-            DispatchQueue.main.async {
-                controller.dismiss(animated: true) { [weak self] in
-                    self?.delegate.didScanCode(raw: raw, converted: converted)
-                }
+    private func validated(code: String) -> String? {
+        guard let validator = scanValidatedConverter else { return code }
+        return validator(code)
+    }
+
+    private func notifyDidScan(raw: String, code: String) {
+        guard let controller = scannerController else {
+            delegate?.didScanCode(raw: raw, converted: code)
+            return
+        }
+        DispatchQueue.main.async {
+            controller.dismiss(animated: true) { [weak self] in
+                self?.delegate?.didScanCode(raw: raw, converted: code)
             }
-        } else {
-            delegate.didScanCode(raw: raw, converted: converted)
         }
     }
 

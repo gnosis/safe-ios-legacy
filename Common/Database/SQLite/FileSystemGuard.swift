@@ -14,20 +14,6 @@ open class FileSystemGuard {
         queue = DispatchQueue(label: "FileSystemGuardLockQueue",
                               qos: .userInitiated,
                               attributes: []) // serial by default
-        subscribeForLockingEvents()
-    }
-
-    private func subscribeForLockingEvents() {
-        let unlockNotification = NSNotification.Name(rawValue: "UIApplicationProtectedDataDidBecomeAvailable")
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didUnlock),
-                                               name: unlockNotification,
-                                               object: nil)
-        let lockNotification = NSNotification.Name(rawValue: "UIApplicationProtectedDataWillBecomeUnavailable")
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didLock),
-                                               name: lockNotification,
-                                               object: nil)
     }
 
     open func addUnlockSemaphore(_ semaphore: DispatchSemaphore) {

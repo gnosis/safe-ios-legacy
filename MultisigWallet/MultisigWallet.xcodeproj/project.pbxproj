@@ -14,6 +14,12 @@
 		0A112191219C522B00EEDC27 /* TransactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A112190219C522B00EEDC27 /* TransactionStatus.swift */; };
 		0A1B2A90221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */; };
 		0A1B2A97221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */; };
+		0A1B2AA4221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AA3221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */; };
+		0A1B2AAB221EAAE400E92990 /* CommunicationDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AAA221EAAE400E92990 /* CommunicationDomainService.swift */; };
+		0A1B2AAD221EB1A200E92990 /* RBETransactionMonitorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AAC221EB1A200E92990 /* RBETransactionMonitorRepository.swift */; };
+		0A1B2AAF221EB1F800E92990 /* RBETransactionMonitorEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AAE221EB1F800E92990 /* RBETransactionMonitorEntry.swift */; };
+		0A1B2AB1221EB29600E92990 /* DBRBETransactionMonitorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AB0221EB29600E92990 /* DBRBETransactionMonitorRepository.swift */; };
+		0A1B2AB5221EB8BC00E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AB2221EB89800E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */; };
 		0A23C80520A1B09100C72483 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80420A1B09100C72483 /* Wallet.swift */; };
 		0A23C80B20A1B09A00C72483 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80A20A1B09900C72483 /* WalletTests.swift */; };
 		0A23C80D20A1B34900C72483 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C80C20A1B34900C72483 /* Owner.swift */; };
@@ -426,6 +432,12 @@
 		0A112190219C522B00EEDC27 /* TransactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStatus.swift; sourceTree = "<group>"; };
 		0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServiceBaseTestCase.swift; sourceTree = "<group>"; };
 		0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServiceSigningTests.swift; sourceTree = "<group>"; };
+		0A1B2AA3221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServicePostProcessingTests.swift; sourceTree = "<group>"; };
+		0A1B2AAA221EAAE400E92990 /* CommunicationDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationDomainService.swift; sourceTree = "<group>"; };
+		0A1B2AAC221EB1A200E92990 /* RBETransactionMonitorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBETransactionMonitorRepository.swift; sourceTree = "<group>"; };
+		0A1B2AAE221EB1F800E92990 /* RBETransactionMonitorEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBETransactionMonitorEntry.swift; sourceTree = "<group>"; };
+		0A1B2AB0221EB29600E92990 /* DBRBETransactionMonitorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRBETransactionMonitorRepository.swift; sourceTree = "<group>"; };
+		0A1B2AB2221EB89800E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRBETransactionMonitorRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
 		0A23C80420A1B09100C72483 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		0A23C80A20A1B09900C72483 /* WalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTests.swift; sourceTree = "<group>"; };
 		0A23C80C20A1B34900C72483 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
@@ -696,6 +708,7 @@
 			isa = PBXGroup;
 			children = (
 				0A442DBD2109D99D00F19F80 /* Message.swift */,
+				0A1B2AAA221EAAE400E92990 /* CommunicationDomainService.swift */,
 				0A442DDE210B113100F19F80 /* OutgoingMessage.swift */,
 				0A442DE0210B124B00F19F80 /* TransactionSentMessage.swift */,
 				0A442DE2210B15E700F19F80 /* SafeCreatedMessage.swift */,
@@ -825,8 +838,11 @@
 				0ABCC0FB2177291D00E60E9F /* TransactionDomainServiceTests.swift */,
 				0A6EF3D121BAB15E00F1074E /* RecoveryDomainService.swift */,
 				0A553D4421C0164100647CFF /* WalletSettingsDomainService.swift */,
+				0A1B2AAC221EB1A200E92990 /* RBETransactionMonitorRepository.swift */,
+				0A1B2AAE221EB1F800E92990 /* RBETransactionMonitorEntry.swift */,
 				0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */,
 				0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */,
+				0A1B2AA3221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */,
 				0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */,
 				0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */,
 			);
@@ -1034,6 +1050,8 @@
 				0A6B846421B6A28200EDF04C /* WalletIDList+Serialization.swift */,
 				0AD22D7B20A3345100D40478 /* DBSinglePortfolioRepositoryIntegrationTests.swift */,
 				0A23C82B20A1DF0A00C72483 /* DBWalletRepository.swift */,
+				0A1B2AB0221EB29600E92990 /* DBRBETransactionMonitorRepository.swift */,
+				0A1B2AB2221EB89800E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift */,
 				0AD5294E21B6E567009559ED /* WalletState+DBSerializable.swift */,
 				0AD5294C21B6E554009559ED /* Address+DBSerializable.swift */,
 				0AD5294A21B6E538009559ED /* TokenInt+DBSerializable.swift */,
@@ -1532,10 +1550,12 @@
 				0ACA9D16212AEF4700E39BB6 /* SafeCreationResponseValidator.swift in Sources */,
 				0A7F3A9B2126C53E0062CB1E /* Repeater.swift in Sources */,
 				0A442DC9210A088800F19F80 /* Message+Factory.swift in Sources */,
+				0A1B2AAD221EB1A200E92990 /* RBETransactionMonitorRepository.swift in Sources */,
 				0AA5D4A020E12B68006F46CD /* Token.swift in Sources */,
 				0A9E380C20F4A4F20085E8D7 /* ExternallyOwnedAccountRepository.swift in Sources */,
 				55FB258D2121AB3E00E81666 /* TokenListItem.swift in Sources */,
 				0A9E380920F4A4F20085E8D7 /* GetSafeCreationStatusRequest.swift in Sources */,
+				0A1B2AAF221EB1F800E92990 /* RBETransactionMonitorEntry.swift in Sources */,
 				0A028ED421AEB02200431D25 /* SendTransactionMessage.swift in Sources */,
 				0A0CEFFF2125656200772AB3 /* DeploymentDomainService.swift in Sources */,
 				0A4CF10C20F63D8D001A8687 /* SendNotificationRequest.swift in Sources */,
@@ -1545,6 +1565,7 @@
 				0A0CF00C2125684000772AB3 /* ErrorStream.swift in Sources */,
 				555C94A620E3824800A0621D /* NotificationDomainService.swift in Sources */,
 				0A9E380B20F4A4F20085E8D7 /* StartSafeCreationRequest.swift in Sources */,
+				0A1B2AAB221EAAE400E92990 /* CommunicationDomainService.swift in Sources */,
 				0A9E380A20F4A4F20085E8D7 /* EncryptionDomainService.swift in Sources */,
 				0ACA9D0D212AD31900E39BB6 /* System.swift in Sources */,
 				0A442D8B2108B82B00F19F80 /* Data+InitWithHex.swift in Sources */,
@@ -1585,6 +1606,7 @@
 				0ACA9D0B212ACDDD00E39BB6 /* MockEncryptionService1.swift in Sources */,
 				0A73F3182133FDE000F65DAE /* ErrorStreamTests.swift in Sources */,
 				0A0CF01421257ED000772AB3 /* DeploymentDomainServiceTests.swift in Sources */,
+				0A1B2AA4221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift in Sources */,
 				0A9E386220F4B46C0085E8D7 /* WorkerTests.swift in Sources */,
 				0A7F3A992126BDCA0062CB1E /* RetryWithIncreasingDelayTests.swift in Sources */,
 				552C6050212C5AF800BF973A /* AccountUpdateDomainServiceTests.swift in Sources */,
@@ -1697,6 +1719,7 @@
 				0AD5294F21B6E567009559ED /* WalletState+DBSerializable.swift in Sources */,
 				0AAA175520E274F5003B35B3 /* InMemoryTransactionRepository.swift in Sources */,
 				0A9E383D20F4AE510085E8D7 /* GnosisTransactionRelayService.swift in Sources */,
+				0A1B2AB1221EB29600E92990 /* DBRBETransactionMonitorRepository.swift in Sources */,
 				0A9E384820F4AE510085E8D7 /* EthAddress.swift in Sources */,
 				0AD5294B21B6E538009559ED /* TokenInt+DBSerializable.swift in Sources */,
 				0A9E383920F4AE510085E8D7 /* DemoEthereumNodeService.swift in Sources */,
@@ -1729,6 +1752,7 @@
 				0A9E385220F4AE600085E8D7 /* EncryptionServiceTests.swift in Sources */,
 				5524733421412A6000A77557 /* EthereumKitEthereumServiceTests.swift in Sources */,
 				552C6011212B0D1300BF973A /* SynchronisationServiceTests.swift in Sources */,
+				0A1B2AB5221EB8BC00E92990 /* DBRBETransactionMonitorRepositoryIntegrationTests.swift in Sources */,
 				0A9E385420F4AE600085E8D7 /* EthTypesTests.swift in Sources */,
 				0A9E385520F4AE600085E8D7 /* InMemoryExternallyOwnedAccountRepositoryTests.swift in Sources */,
 				0AAA176120E3815E003B35B3 /* DBTransactionRepositoryTests.swift in Sources */,

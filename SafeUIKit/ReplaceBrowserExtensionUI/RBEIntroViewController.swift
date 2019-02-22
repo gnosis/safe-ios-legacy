@@ -26,6 +26,7 @@ public class RBEIntroViewController: UIViewController {
         }
         set {
             feeCalculationView.calculation = newValue
+
         }
     }
     public var transactionID: RBETransactionID?
@@ -149,6 +150,18 @@ public class RBEIntroViewController: UIViewController {
 
     @objc public func retry() {
         state.retry(controller: self)
+    }
+
+    // duplicated with showTransactionFeeInfo(0
+    @objc public func showNetworkFeeInfo() {
+        let alert = UIAlertController(title: LocalizedString("network_fee.alert.title",
+                                                             comment: "Transaction fee"),
+                                      message: LocalizedString("network_fee.alert.message",
+                                                               comment: "Explanatory message"),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: LocalizedString("network_fee.alert.ok",
+                                                             comment: "Ok"), style: .default))
+        present(alert, animated: true)
     }
 
 }
