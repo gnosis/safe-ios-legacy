@@ -11,10 +11,4 @@ public struct EthSignature: Codable, Equatable {
     public var s: String
     public var v: Int
 
-    public init(r: String, s: String, v: Int) {
-        self.r = r
-        self.s = s
-        self.v = v
-    }
-
 }

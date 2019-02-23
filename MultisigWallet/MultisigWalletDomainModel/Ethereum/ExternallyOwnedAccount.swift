@@ -85,13 +85,6 @@ public struct Mnemonic: Equatable {
     /// words of the mnemonic phrase
     public let words: [String]
 
-    /// Creates new mnemonic with words
-    ///
-    /// - Parameter words: words of the mnemonic
-    public init(words: [String]) {
-        self.words = words
-    }
-
 }
 
 /// Private key data structure
@@ -99,20 +92,12 @@ public struct PrivateKey: Equatable {
 
     public let data: Data
 
-    public init(data: Data) {
-        self.data = data
-    }
-
 }
 
 /// Public key data structure
 public struct PublicKey: Equatable {
 
     public let data: Data
-
-    public init(data: Data) {
-        self.data = data
-    }
 
 }
 
