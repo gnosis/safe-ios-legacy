@@ -9,7 +9,7 @@ import Common
 public class TokenID: BaseID {}
 
 /// Represents a token.
-public struct Token: Equatable {
+public struct Token {
 
     /// Token id is the same as token Address in blockchain
     public var id: TokenID {
@@ -35,30 +35,15 @@ public struct Token: Equatable {
         address: Address("0x" + Data(repeating: 0, count: 20).toHexString()),
         logoUrl: "")
 
-    /// Creates new Token with code, decimals and token contract address.
-    ///
-    /// - Parameters:
-    ///   - code: token code
-    ///   - name: token name
-    ///   - decimals: number of decimal units in one token unit.
-    ///   - address: token contract address
-    ///   - logoUrl: token icon url address
-    public init(code: String, name: String, decimals: Int, address: Address, logoUrl: String) {
-        self.code = code
-        self.name = name
-        self.decimals = decimals
-        self.address = address
-        self.logoUrl = logoUrl
-    }
-
 }
 
-// MARK: - Token to/from String serialization
-extension Token: CustomStringConvertible {
+extension Token: Equatable {}
 
-    private static let separator = "~~~"
+// MARK: - Token failable initializer from a String
 
-    public init?(_ value: String) {
+public extension Token {
+
+    init?(_ value: String) {
         let components = value.components(separatedBy: Token.separator)
         guard components.count == 5 else { return nil }
         guard let decimals = Int(components[2]) else { return nil }
@@ -68,6 +53,14 @@ extension Token: CustomStringConvertible {
                   address: Address(components[3]),
                   logoUrl: components[4])
     }
+
+    fileprivate static let separator = "~~~"
+
+}
+
+// MARK: - Token conversion into a String
+
+extension Token: CustomStringConvertible {
 
     public var description: String {
         return [code, name, String(decimals), address.value, logoUrl].joined(separator: Token.separator)
@@ -79,17 +72,14 @@ extension Token: CustomStringConvertible {
 public typealias TokenInt = BigInt
 
 /// TokenAmount represents a specific amount in a token denomination.
-public struct TokenAmount: Equatable {
+public struct TokenAmount {
 
     public let amount: TokenInt
     public let token: Token
 
-    public init(amount: TokenInt, token: Token) {
-        self.amount = amount
-        self.token = token
-    }
-
 }
+
+extension TokenAmount: Equatable {}
 
 public extension TokenAmount {
 
@@ -103,20 +93,29 @@ public extension TokenAmount {
 
 }
 
-// MARK: - TokenAmount to/from String conversion.
-extension TokenAmount: CustomStringConvertible {
+// MARK: - TokenAmount failable initializer from a String
+
+extension TokenAmount {
 
     public init?(_ value: String) {
-        let components = value.components(separatedBy: "===")
+        let components = value.components(separatedBy: TokenAmount.separator)
         guard components.count == 2 else { return nil }
-        guard let amount = TokenInt(components.first!), let token = Token(components.last!) else {
+        guard let amount = TokenInt(components[0]), let token = Token(components[1]) else {
             return nil
         }
         self.init(amount: amount, token: token)
     }
 
+    fileprivate static let separator = "==="
+
+}
+
+// MARK: - TokenAmount conversion into a String
+
+extension TokenAmount: CustomStringConvertible {
+
     public var description: String {
-        return "\(String(amount))===\(token)"
+        return [String(amount), token.description].joined(separator: TokenAmount.separator)
     }
 
 }
