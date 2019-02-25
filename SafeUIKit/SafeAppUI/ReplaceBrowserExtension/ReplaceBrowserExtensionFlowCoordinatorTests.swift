@@ -101,6 +101,10 @@ class MockWalletSettingsApplicationService: WalletSettingsApplicationService {
         didStartMonitoring = true
     }
 
+    override var replaceBrowserExtensionIsAvailable: Bool {
+        return true
+    }
+
 }
 
 class TestableReplaceBrowserExtensionFlowCoordinator: ReplaceBrowserExtensionFlowCoordinator {

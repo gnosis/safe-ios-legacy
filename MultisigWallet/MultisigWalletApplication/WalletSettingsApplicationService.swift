@@ -7,7 +7,7 @@ import MultisigWalletDomainModel
 import ReplaceBrowserExtensionFacade
 import Common
 
-open class WalletSettingsApplicationService {
+open class WalletSettingsApplicationService: RBEStarter {
 
     public init() {}
 
@@ -54,16 +54,9 @@ open class WalletSettingsApplicationService {
         try DomainRegistry.replaceExtensionService.sign(transactionID: txID, with: phrase)
     }
 
-    open func startMonitoring(transaction: RBETransactionID) {
-        let txID = TransactionID(transaction)
-        DomainRegistry.replaceExtensionService.registerPostProcessing(for: txID)
-    }
+    // MARK: - Replace Browser Extension
 
-}
-
-extension WalletSettingsApplicationService: RBEStarter {
-
-    public var replaceBrowserExtensionIsAvailable: Bool {
+    open var replaceBrowserExtensionIsAvailable: Bool {
         return DomainRegistry.replaceExtensionService.isAvailable
     }
 
@@ -102,6 +95,11 @@ extension WalletSettingsApplicationService: RBEStarter {
         } catch ReplaceBrowserExtensionDomainServiceError.insufficientBalance {
             throw FeeCalculationError.insufficientBalance
         }
+    }
+
+    open func startMonitoring(transaction: RBETransactionID) {
+        let txID = TransactionID(transaction)
+        DomainRegistry.replaceExtensionService.registerPostProcessing(for: txID)
     }
 
 }
