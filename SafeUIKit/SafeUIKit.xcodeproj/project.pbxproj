@@ -330,6 +330,8 @@
 		558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* CheckmarkButton.swift */; };
 		55A1E43C2089D0F0000BE191 /* QRCodeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */; };
 		55A7B2B320ECE2940035EF38 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A7B2B220ECE2940035EF38 /* libCommon.a */; };
+		55AFD5B72223E40200F88F45 /* ConnectBrowserExtensionLaterCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AFD5B62223E40200F88F45 /* ConnectBrowserExtensionLaterCommand.swift */; };
+		55AFD5B92223E56B00F88F45 /* ConnectBrowserExtensionLaterCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AFD5B82223E56B00F88F45 /* ConnectBrowserExtensionLaterCommandTests.swift */; };
 		55BAB0E521789285007539CF /* BigBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E321789285007539CF /* BigBorderedButton.swift */; };
 		55BAB0E8217894F8007539CF /* BigBorderedButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */; };
 		55BFA53C21833C5C00389732 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */; };
@@ -877,6 +879,8 @@
 		558FD80920765C53004F070E /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		55A1E43B2089D0F0000BE191 /* QRCodeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeInput.swift; sourceTree = "<group>"; };
 		55A7B2B220ECE2940035EF38 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55AFD5B62223E40200F88F45 /* ConnectBrowserExtensionLaterCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionLaterCommand.swift; sourceTree = "<group>"; };
+		55AFD5B82223E56B00F88F45 /* ConnectBrowserExtensionLaterCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionLaterCommandTests.swift; sourceTree = "<group>"; };
 		55BAB0E321789285007539CF /* BigBorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButton.swift; sourceTree = "<group>"; };
 		55BAB0E421789285007539CF /* BigBorderedButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBorderedButtonTests.swift; sourceTree = "<group>"; };
 		55BFA53B21833C5C00389732 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
@@ -1264,6 +1268,7 @@
 		0A4EEA6B20D11109005CDAC0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				55AFD5AC2223E39900F88F45 /* ConnectBrowserExtensionLater */,
 				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
 				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
 				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
@@ -1860,6 +1865,15 @@
 				558682CB2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard */,
 			);
 			path = PairWithBrowserExtension;
+			sourceTree = "<group>";
+		};
+		55AFD5AC2223E39900F88F45 /* ConnectBrowserExtensionLater */ = {
+			isa = PBXGroup;
+			children = (
+				55AFD5B62223E40200F88F45 /* ConnectBrowserExtensionLaterCommand.swift */,
+				55AFD5B82223E56B00F88F45 /* ConnectBrowserExtensionLaterCommandTests.swift */,
+			);
+			path = ConnectBrowserExtensionLater;
 			sourceTree = "<group>";
 		};
 		55BAB0E221789285007539CF /* BorderedButton */ = {
@@ -2932,6 +2946,7 @@
 				0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */,
 				0A334E46209C8E3800ABC6AE /* PasswordViewController.swift in Sources */,
 				0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */,
+				55AFD5B72223E40200F88F45 /* ConnectBrowserExtensionLaterCommand.swift in Sources */,
 				0A8274E821A432DD00A73D32 /* TransactionsEmptyView.swift in Sources */,
 				0A5D467520AD6D8200AC287E /* UIAlertController+Testable.swift in Sources */,
 				0A6EF3C621BA8C6600F1074E /* RecoverSafeFlowCoordinator.swift in Sources */,
@@ -2972,6 +2987,7 @@
 				0A4EEA6D20D1112F005CDAC0 /* MenuTableViewControllerTests.swift in Sources */,
 				0AF8D55720D01A90001E8423 /* TokensTableViewControllerTests.swift in Sources */,
 				0A334E54209C8E6800ABC6AE /* CountdownLabelTests.swift in Sources */,
+				55AFD5B92223E56B00F88F45 /* ConnectBrowserExtensionLaterCommandTests.swift in Sources */,
 				0AF8D53020CFF68D001E8423 /* SegmentBarTests.swift in Sources */,
 				0AD998A620D3E6BC00E6F3CA /* TransactionValueViewTests.swift in Sources */,
 				0AD5091C211091E4008507CB /* FundsTransferTransactionViewModelTests.swift in Sources */,
