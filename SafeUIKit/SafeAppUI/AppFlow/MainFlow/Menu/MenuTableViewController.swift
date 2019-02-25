@@ -10,8 +10,6 @@ protocol MenuTableViewControllerDelegate: class {
     func didSelectManageTokens()
     func didSelectTermsOfUse()
     func didSelectPrivacyPolicy()
-    func didSelectConnectBrowserExtension()
-    func didSelectChangeBrowserExtension()
     func didSelectReplaceRecoveryPhrase()
     func didSelectCommand(_ command: MenuCommand)
 }
@@ -26,8 +24,6 @@ final class MenuTableViewController: UITableViewController {
 
     private var menuItems =
         [(section: SettingsSection, items: [(item: Any, cellHeight: () -> CGFloat)], title: String)]()
-
-    private var commands: [MenuCommand] = [ReplaceBrowserExtensionCommand()]
 
     private enum Strings {
         static let title = LocalizedString("menu.title", comment: "Title for menu screen.")
@@ -44,10 +40,6 @@ final class MenuTableViewController: UITableViewController {
                                                     comment: "Change password menu item")
         static let changeRecoveryPhrase = LocalizedString("menu.action.change_recovery_phrase",
                                                           comment: "Change recovery key menu item")
-        static let changeBrowserExtension = LocalizedString("menu.action.change_browser_extension",
-                                                            comment: "Change browser extension menu item")
-        static let connectBrowserExtension = LocalizedString("menu.action.connect_browser_extension",
-                                                             comment: "Connect browser extension menu item")
         static let feedback = LocalizedString("menu.action.feedback_and_faq", comment: "Feedback and FAQ menu item")
         static let terms = LocalizedString("menu.action.terms",
                                            comment: "Terms menu item")
@@ -105,9 +97,7 @@ final class MenuTableViewController: UITableViewController {
 
     private func generateData() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
-//        let hasBrowserExtension = ApplicationServiceRegistry.walletService.isOwnerExists(.browserExtension)
-//        let browserExtensionItem =
-//            hasBrowserExtension ? menuItem(Strings.changeBrowserExtension) : menuItem(Strings.connectBrowserExtension)
+        let securityCommands: [MenuCommand] = [ReplaceBrowserExtensionCommand(), ConnectBrowserExtensionLaterCommand()]
         menuItems = [
             (section: .safe,
              items: [
@@ -125,9 +115,8 @@ final class MenuTableViewController: UITableViewController {
                 [
 //                menuItem(Strings.changePassword),
                 menuItem(Strings.changeRecoveryPhrase)
-//                browserExtensionItem
                 ] +
-                commands.filter { !$0.isHidden }.map { menuItem($0.title) },
+                securityCommands.filter { !$0.isHidden }.map { menuItem($0.title) },
              title: Strings.securitySectionTitle),
             (section: .support,
              items: [
@@ -210,12 +199,10 @@ final class MenuTableViewController: UITableViewController {
         case .security:
             let item = menuItem(at: indexPath)!
             switch item.name {
-            case Strings.connectBrowserExtension:
-                delegate?.didSelectConnectBrowserExtension()
-            case Strings.changeBrowserExtension:
-                if let command = commands.first {
-                    delegate?.didSelectCommand(command)
-                }
+            case ConnectBrowserExtensionLaterCommand().title:
+                delegate?.didSelectCommand(ConnectBrowserExtensionLaterCommand())
+            case ReplaceBrowserExtensionCommand().title:
+                delegate?.didSelectCommand(ReplaceBrowserExtensionCommand())
             case Strings.changeRecoveryPhrase:
                 delegate?.didSelectReplaceRecoveryPhrase()
             default: break
