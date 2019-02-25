@@ -26,7 +26,6 @@ public class RBEIntroViewController: UIViewController {
         }
         set {
             feeCalculationView.calculation = newValue
-
         }
     }
     public var transactionID: RBETransactionID?

@@ -23,6 +23,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
     let eoaRepository = InMemoryExternallyOwnedAccountRepository()
     let system = MockSystem()
     let syncService = MockSynchronisationService()
+    let communicationService = CommunicationDomainService()
     var wallet: Wallet!
 
     override func setUp() {
@@ -41,6 +42,7 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
         DomainRegistry.put(service: eoaRepository, for: ExternallyOwnedAccountRepository.self)
         DomainRegistry.put(service: system, for: System.self)
         DomainRegistry.put(service: syncService, for: SynchronisationDomainService.self)
+        DomainRegistry.put(service: communicationService, for: CommunicationDomainService.self)
     }
 
      func start() {

@@ -71,9 +71,29 @@ class ReplaceBrowserExtensionDomainServicePostProcessingTests: ReplaceBrowserExt
         try do_testRemovesMonitoring(in: .success)
     }
 
-    func test_whenTxSuccess_thenRemovesMonitoringProcessing() throws {
+    func test_whenTxProcessed_thenRemovesMonitoringProcessing() throws {
         try do_testRemovesMonitoring(in: .success)
         try do_testRemovesMonitoring(in: .failed)
+    }
+
+    func test_whenTxSuccess_thenNotifiesCreated() throws {
+        tx.change(status: .success)
+        try service.postProcess(transactionID: tx.id)
+        XCTAssertEqual(mockCommunicationService.notifyWalletCreatedId, wallet.id)
+    }
+
+    func test_whenTxSuccessButNotificationThrows_thenDoesNotThrow() {
+        tx.change(status: .success)
+        mockCommunicationService.shouldThrow = true
+        XCTAssertNoThrow(try service.postProcess(transactionID: tx.id))
+    }
+
+    func test_whenTxSuccess_thenNewOwnerAddressIsFormatted() throws {
+        let expected = Address.paperWalletAddress
+        mockEncryptionService.addressFromStringResult = expected
+        tx.change(status: .success)
+        try service.postProcess(transactionID: tx.id)
+        XCTAssertEqual(wallet.owner(role: .browserExtension)?.address, expected)
     }
 
     func do_testRemovesMonitoring(in status: TransactionStatus.Code, line: UInt = #line) throws {
@@ -140,6 +160,18 @@ class MockCommunicationDomainService: CommunicationDomainService {
 
     override func deletePair(walletID: WalletID, other address: String) throws {
         deletePairArguments = (walletID, address)
+    }
+
+    var notifyWalletCreatedId: WalletID?
+    var shouldThrow = false
+
+    enum MyError: Error { case error }
+
+    override func notifyWalletCreated(walletID: WalletID) throws {
+        if shouldThrow {
+            throw MyError.error
+        }
+        notifyWalletCreatedId = walletID
     }
 
 }

@@ -68,6 +68,11 @@ class WalletSettingsApplicationServiceTests: XCTestCase {
         XCTAssertThrowsError(try service.connect(transaction: "tx", code: "code"))
     }
 
+    func test_whenStartsMonitoring_thenRegisterPostProcessing() {
+        service.startMonitoring(transaction: "some")
+        XCTAssertEqual(mockReplaceService.registerPostProcessingId, TransactionID("some"))
+    }
+
 }
 
 class MockReplaceBrowserExtensionDomainService: ReplaceBrowserExtensionDomainService {
@@ -111,6 +116,12 @@ class MockReplaceBrowserExtensionDomainService: ReplaceBrowserExtensionDomainSer
         if shouldThrowDuringValidation {
             throw MyError.error
         }
+    }
+
+    var registerPostProcessingId: TransactionID?
+
+    override func registerPostProcessing(for transactionID: TransactionID, timestamp: Date) {
+        registerPostProcessingId = transactionID
     }
 
 }
