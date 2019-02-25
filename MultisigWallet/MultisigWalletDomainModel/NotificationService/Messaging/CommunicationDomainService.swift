@@ -17,4 +17,16 @@ public class CommunicationDomainService {
         try DomainRegistry.notificationService.deletePair(request: request)
     }
 
+    public func notifyWalletCreated(walletID: WalletID) throws {
+        guard let wallet = DomainRegistry.walletRepository.findByID(walletID),
+            let sender = wallet.address,
+            let recipient = wallet.owner(role: .browserExtension)?.address,
+            let owner = wallet.owner(role: .thisDevice)?.address,
+            let eoa = DomainRegistry.externallyOwnedAccountRepository.find(by: owner) else { return }
+        let message = DomainRegistry.notificationService.safeCreatedMessage(at: sender.value)
+        let signedAddress = DomainRegistry.encryptionService.sign(message: "GNO" + message, privateKey: eoa.privateKey)
+        let request = SendNotificationRequest(message: message, to: recipient.value, from: signedAddress)
+        try DomainRegistry.notificationService.send(notificationRequest: request)
+    }
+
 }

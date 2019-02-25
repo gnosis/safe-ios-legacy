@@ -108,7 +108,6 @@
 		0A3D14E9220B166A00E340DB /* ReplaceBrowserExtensionUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2FAA282201A5D800793B7B /* ReplaceBrowserExtensionUI.framework */; };
 		0A3D14EA220B166A00E340DB /* ReplaceBrowserExtensionUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2FAA282201A5D800793B7B /* ReplaceBrowserExtensionUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14ED220B18E200E340DB /* FeatureFlagSettings.swift */; };
-		0A3D14F0220B1C9A00E340DB /* RBEFeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14EF220B1C9A00E340DB /* RBEFeatureFlag.swift */; };
 		0A3D14F2220B1CE800E340DB /* MenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F1220B1CE800E340DB /* MenuCommand.swift */; };
 		0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */; };
 		0A3D1574220B395200E340DB /* ReplaceBrowserExtensionFacadeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A3D1573220B393A00E340DB /* ReplaceBrowserExtensionFacadeResources.bundle */; };
@@ -245,6 +244,7 @@
 		0AF33D47209C6BF800527D25 /* SafeAppUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AF33D37209C6BF800527D25 /* SafeAppUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AF33D4A209C6BF800527D25 /* SafeAppUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; };
 		0AF33D4B209C6BF800527D25 /* SafeAppUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF33D35209C6BF800527D25 /* SafeAppUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0AF5BB37222420B7006856E0 /* CBEFeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF5BB36222420B7006856E0 /* CBEFeatureFlag.swift */; };
 		0AF8D53020CFF68D001E8423 /* SegmentBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D52F20CFF68D001E8423 /* SegmentBarTests.swift */; };
 		0AF8D53520CFF85B001E8423 /* TestSegmentBarNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF8D53420CFF85B001E8423 /* TestSegmentBarNib.xib */; };
 		0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8D53620CFFC52001E8423 /* SegmentBarControllerTests.swift */; };
@@ -644,7 +644,6 @@
 		0A3D14E5220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A3D14ED220B18E200E340DB /* FeatureFlagSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagSettings.swift; sourceTree = "<group>"; };
-		0A3D14EF220B1C9A00E340DB /* RBEFeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEFeatureFlag.swift; sourceTree = "<group>"; };
 		0A3D14F1220B1CE800E340DB /* MenuCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCommand.swift; sourceTree = "<group>"; };
 		0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionCommand.swift; sourceTree = "<group>"; };
 		0A3D1551220B38B100E340DB /* libReplaceBrowserExtensionFacade.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReplaceBrowserExtensionFacade.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -795,6 +794,7 @@
 		0AF33D38209C6BF800527D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AF33D3D209C6BF800527D25 /* SafeAppUIUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeAppUIUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF33D46209C6BF800527D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AF5BB36222420B7006856E0 /* CBEFeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBEFeatureFlag.swift; sourceTree = "<group>"; };
 		0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewController.swift; sourceTree = "<group>"; };
 		0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RBEIntroViewController.xib; sourceTree = "<group>"; };
 		0AF6D88921FF12D200D1980A /* RBEIntroViewControllerLoadingStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEIntroViewControllerLoadingStateTests.swift; sourceTree = "<group>"; };
@@ -1214,7 +1214,6 @@
 		0A3D14E4220B158800E340DB /* ReplaceBrowserExtension */ = {
 			isa = PBXGroup;
 			children = (
-				0A3D14EF220B1C9A00E340DB /* RBEFeatureFlag.swift */,
 				0A3D14E5220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift */,
 				0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */,
 				0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */,
@@ -1489,6 +1488,7 @@
 		0AF33D36209C6BF800527D25 /* SafeAppUI */ = {
 			isa = PBXGroup;
 			children = (
+				0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */,
 				0A3D14E4220B158800E340DB /* ReplaceBrowserExtension */,
 				558682C92192F95C0060F1DE /* ReusableDetachedControllers */,
 				0A334E20209C8E3800ABC6AE /* AppFlow */,
@@ -1525,6 +1525,14 @@
 				0AF33D46209C6BF800527D25 /* Info.plist */,
 			);
 			path = SafeAppUIUnitTests;
+			sourceTree = "<group>";
+		};
+		0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */ = {
+			isa = PBXGroup;
+			children = (
+				0AF5BB36222420B7006856E0 /* CBEFeatureFlag.swift */,
+			);
+			path = ConnectBrowserExtension;
 			sourceTree = "<group>";
 		};
 		0AF8D53A20D00FDB001E8423 /* Tokens */ = {
@@ -2862,7 +2870,6 @@
 				55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */,
 				0AD998B020D3FEBD00E6F3CA /* FundsTransferTransactionViewController.swift in Sources */,
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
-				0A3D14F0220B1C9A00E340DB /* RBEFeatureFlag.swift in Sources */,
 				55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */,
 				55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */,
 				0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */,
@@ -2923,6 +2930,7 @@
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
 				550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */,
 				0A5D467B20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift in Sources */,
+				0AF5BB37222420B7006856E0 /* CBEFeatureFlag.swift in Sources */,
 				0A334E3B209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift in Sources */,
 				0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,

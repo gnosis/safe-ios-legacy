@@ -169,14 +169,7 @@ public class DeploymentDomainService {
     }
 
     private func notifyDidCreate(_ wallet: Wallet) throws {
-        guard let recipient = wallet.owner(role: .browserExtension)?.address else { return }
-        let sender = wallet.owner(role: .thisDevice)!.address
-        let senderEOA = DomainRegistry.externallyOwnedAccountRepository.find(by: sender)!
-        let message = DomainRegistry.notificationService.safeCreatedMessage(at: wallet.address!.value)
-        let signedAddress = DomainRegistry.encryptionService.sign(message: "GNO" + message,
-                                                                  privateKey: senderEOA.privateKey)
-        let request = SendNotificationRequest(message: message, to: recipient.value, from: signedAddress)
-        try DomainRegistry.notificationService.send(notificationRequest: request)
+        try DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
     }
 
     func creationFailed(_ event: WalletCreationFailed) {

@@ -65,8 +65,10 @@ public class MockEncryptionService: EncryptionDomainService {
         return signTransactionPrivateKey_output
     }
 
+    public var addressFromStringResult: Address?
+
     public func address(from string: String) -> Address? {
-        return Address(string)
+        return addressFromStringResult ?? Address(string)
     }
 
     public var hash_output = Data(repeating: 3, count: 32)
