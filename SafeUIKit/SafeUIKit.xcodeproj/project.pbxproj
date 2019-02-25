@@ -108,7 +108,6 @@
 		0A3D14E9220B166A00E340DB /* ReplaceBrowserExtensionUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2FAA282201A5D800793B7B /* ReplaceBrowserExtensionUI.framework */; };
 		0A3D14EA220B166A00E340DB /* ReplaceBrowserExtensionUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2FAA282201A5D800793B7B /* ReplaceBrowserExtensionUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14ED220B18E200E340DB /* FeatureFlagSettings.swift */; };
-		0A3D14F0220B1C9A00E340DB /* RBEFeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14EF220B1C9A00E340DB /* RBEFeatureFlag.swift */; };
 		0A3D14F2220B1CE800E340DB /* MenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F1220B1CE800E340DB /* MenuCommand.swift */; };
 		0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */; };
 		0A3D1574220B395200E340DB /* ReplaceBrowserExtensionFacadeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A3D1573220B393A00E340DB /* ReplaceBrowserExtensionFacadeResources.bundle */; };
@@ -644,7 +643,6 @@
 		0A3D14E5220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionFlowCoordinator.swift; sourceTree = "<group>"; };
 		0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		0A3D14ED220B18E200E340DB /* FeatureFlagSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagSettings.swift; sourceTree = "<group>"; };
-		0A3D14EF220B1C9A00E340DB /* RBEFeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBEFeatureFlag.swift; sourceTree = "<group>"; };
 		0A3D14F1220B1CE800E340DB /* MenuCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCommand.swift; sourceTree = "<group>"; };
 		0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionCommand.swift; sourceTree = "<group>"; };
 		0A3D1551220B38B100E340DB /* libReplaceBrowserExtensionFacade.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReplaceBrowserExtensionFacade.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1214,7 +1212,6 @@
 		0A3D14E4220B158800E340DB /* ReplaceBrowserExtension */ = {
 			isa = PBXGroup;
 			children = (
-				0A3D14EF220B1C9A00E340DB /* RBEFeatureFlag.swift */,
 				0A3D14E5220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift */,
 				0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */,
 				0A3D14F3220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift */,
@@ -2862,7 +2859,6 @@
 				55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */,
 				0AD998B020D3FEBD00E6F3CA /* FundsTransferTransactionViewController.swift in Sources */,
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
-				0A3D14F0220B1C9A00E340DB /* RBEFeatureFlag.swift in Sources */,
 				55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */,
 				55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */,
 				0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */,

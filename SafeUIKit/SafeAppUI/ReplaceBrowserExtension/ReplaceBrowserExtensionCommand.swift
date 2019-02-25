@@ -13,9 +13,7 @@ class ReplaceBrowserExtensionCommand: MenuCommand {
     }
 
     override var isHidden: Bool {
-        let isAvailable = ApplicationServiceRegistry.settingsService.replaceBrowserExtensionIsAvailable
-        let isDisabled = FeatureFlagSettings.instance.isOff(RBEFeatureFlag.replaceBrowserExtension)
-        return isDisabled || !isAvailable
+        return !ApplicationServiceRegistry.settingsService.replaceBrowserExtensionIsAvailable
     }
 
     var commandFlow = ReplaceBrowserExtensionFlowCoordinator()
