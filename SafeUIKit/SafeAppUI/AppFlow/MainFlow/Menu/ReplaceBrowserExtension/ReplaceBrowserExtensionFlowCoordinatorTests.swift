@@ -16,8 +16,7 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        ApplicationServiceRegistry.put(service: mockSettingsService,
-                                       for: WalletSettingsApplicationService.self)
+        ApplicationServiceRegistry.put(service: mockSettingsService, for: WalletSettingsApplicationService.self)
         fc = TestableReplaceBrowserExtensionFlowCoordinator(rootViewController: nav)
         fc.setUp()
     }
