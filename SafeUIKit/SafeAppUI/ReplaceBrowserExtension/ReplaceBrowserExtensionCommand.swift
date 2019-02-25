@@ -13,8 +13,9 @@ class ReplaceBrowserExtensionCommand: MenuCommand {
     }
 
     override var isHidden: Bool {
-        return !(FeatureFlagSettings.instance.isOn(RBEFeatureFlag.replaceBrowserExtension) &&
-            ApplicationServiceRegistry.settingsService.replaceBrowserExtensionIsAvailable)
+        let isAvailable = ApplicationServiceRegistry.settingsService.replaceBrowserExtensionIsAvailable
+        let isFeatureEnabled = FeatureFlagSettings.instance.isOff(RBEFeatureFlag.replaceBrowserExtension)
+        return isFeatureEnabled || !isAvailable
     }
 
     var commandFlow = ReplaceBrowserExtensionFlowCoordinator()
@@ -25,7 +26,7 @@ class ReplaceBrowserExtensionCommand: MenuCommand {
             DispatchQueue.main.async {
                 mainFlowCoordinator.popToLastCheckpoint()
                 mainFlowCoordinator.pop()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(800)) {
                     mainFlowCoordinator.showTransactionList()
                 }
             }
