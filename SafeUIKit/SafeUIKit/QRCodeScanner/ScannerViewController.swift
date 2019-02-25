@@ -85,6 +85,7 @@ class ScannerViewController: UIViewController {
             return true
         }
     }
+
     private func show(error: Error) {
         let alert = UIAlertController(title: Strings.errorTitle,
                                       message: error.localizedDescription,

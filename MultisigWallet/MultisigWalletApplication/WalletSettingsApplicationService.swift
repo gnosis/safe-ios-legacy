@@ -54,6 +54,11 @@ open class WalletSettingsApplicationService {
         try DomainRegistry.replaceExtensionService.sign(transactionID: txID, with: phrase)
     }
 
+    open func startMonitoring(transaction: RBETransactionID) {
+        let txID = TransactionID(transaction)
+        DomainRegistry.replaceExtensionService.registerPostProcessing(for: txID)
+    }
+
 }
 
 extension WalletSettingsApplicationService: RBEStarter {

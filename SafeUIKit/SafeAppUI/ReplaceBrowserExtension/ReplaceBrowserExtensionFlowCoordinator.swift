@@ -77,6 +77,7 @@ extension ReplaceBrowserExtensionFlowCoordinator: ReviewTransactionViewControlle
     }
 
     func didFinishReview() {
+        ApplicationServiceRegistry.settingsService.startMonitoring(transaction: transactionID)
         exitFlow()
     }
 

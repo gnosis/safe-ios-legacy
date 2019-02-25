@@ -93,7 +93,6 @@ class TestableAVMetadataMachineReadableCodeObject: AVMetadataMachineReadableCode
 
 class TestableScannerViewController: ScannerViewController {
 
-
     static func createTestable(delegate: ScannerDelegate) -> TestableScannerViewController {
         let bundle = Bundle(for: ScannerViewController.self)
         let controller = TestableScannerViewController(nibName: "ScannerViewController", bundle: bundle)

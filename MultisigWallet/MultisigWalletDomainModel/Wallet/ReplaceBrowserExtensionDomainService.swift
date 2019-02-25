@@ -225,18 +225,20 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
             return
         }
         if tx.status == .success {
-            try replace(newOwner: newOwner, in: wallet)
+            try replaceOldOwner(with: newOwner, in: wallet)
+            try? DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
         } else {
             try DomainRegistry.communicationService.deletePair(walletID: tx.walletID, other: newOwner)
         }
         unregisterPostProcessing(for: transactionID)
     }
 
-    private func replace(newOwner: String, in wallet: Wallet) throws {
+    private func replaceOldOwner(with newOwner: String, in wallet: Wallet) throws {
         guard let oldOwner = wallet.owner(role: .browserExtension) else { return }
         try DomainRegistry.communicationService.deletePair(walletID: wallet.id, other: oldOwner.address.value)
         wallet.removeOwner(role: oldOwner.role)
-        wallet.addOwner(Owner(address: Address(newOwner), role: oldOwner.role))
+        let formattedAddress = DomainRegistry.encryptionService.address(from: newOwner) ?? Address(newOwner)
+        wallet.addOwner(Owner(address: formattedAddress, role: oldOwner.role))
         DomainRegistry.walletRepository.save(wallet)
     }
 

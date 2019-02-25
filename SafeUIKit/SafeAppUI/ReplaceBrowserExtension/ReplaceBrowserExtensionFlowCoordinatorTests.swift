@@ -67,6 +67,12 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
         XCTAssertTrue(vc.didHandleSuccess)
     }
 
+    func test_whenFinishes_thenStartsMonitoring() {
+        fc.transactionID = "some"
+        fc.didFinishReview()
+        XCTAssertTrue(mockSettingsService.didStartMonitoring)
+    }
+
 }
 
 class MockWalletSettingsApplicationService: WalletSettingsApplicationService {
@@ -88,6 +94,11 @@ class MockWalletSettingsApplicationService: WalletSettingsApplicationService {
     override func sign(transaction: RBETransactionID, withPhrase phrase: String) throws {
         try throwIfNeeded()
         didCallSignTransaction = true
+    }
+
+    var didStartMonitoring = false
+    override func startMonitoring(transaction: RBETransactionID) {
+        didStartMonitoring = true
     }
 
 }
