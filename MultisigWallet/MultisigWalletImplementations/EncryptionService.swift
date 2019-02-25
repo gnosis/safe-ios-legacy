@@ -32,20 +32,43 @@ struct ExtensionCode {
     let r: BInt
     let s: BInt
 
-    init?(json: Any) {
-        guard let json = json as? [String: Any],
-            let expirationDate = json["expirationDate"] as? String,
-            let signature = json["signature"] as? [String: Any],
-            let vInt = signature["v"] as? Int,
-            let rStr = signature["r"] as? String,
-            let r = BInt(rStr, radix: 10),
-            let sStr = signature["s"] as? String,
-            let s = BInt(sStr, radix: 10)
-            else { return nil }
-        self.expirationDate = expirationDate
-        self.v = BInt(vInt)
-        self.r = r
-        self.s = s
+}
+
+extension ExtensionCode: Decodable {
+
+    // This is inside to avoid clashing with Signature aka Transaction owner signature.
+    struct Signature: Decodable {
+        let vInt: Int
+        let rStr: String
+        let sStr: String
+
+        enum CodingKeys: String, CodingKey {
+            case vInt = "v"
+            case rStr = "r"
+            case sStr = "s"
+        }
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case expirationDate
+        case signature
+    }
+
+    enum ExtensionCodeError: Error {
+        case bIntFailure
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let expirationDate = try container.decode(String.self, forKey: .expirationDate)
+        let signature = try container.decode(Signature.self, forKey: .signature)
+        let vInt = signature.vInt
+        let rStr = signature.rStr
+        let sStr = signature.sStr
+        guard let r = BInt(rStr, radix: 10), let s = BInt(sStr, radix: 10) else {
+            throw ExtensionCodeError.bIntFailure
+        }
+        self.init(expirationDate: expirationDate, v: BInt(vInt), r: r, s: s)
     }
 
 }
@@ -107,19 +130,11 @@ open class EncryptionService: EncryptionDomainService {
     // MARK: - Browser Extension Code conversion
 
     public func address(browserExtensionCode: String) -> String? {
-        guard let code = extensionCode(from: browserExtensionCode) else { return nil }
+        guard let codeData = browserExtensionCode.data(using: .utf8),
+              let code = try? JSONDecoder().decode(ExtensionCode.self, from: codeData) else { return nil }
         let message = hash(data("GNO" + code.expirationDate))
         guard let publicKey = publicKey(signature(from: code), message) else { return nil }
         return string(address: address(publicKey))
-    }
-
-    private func extensionCode(from code: String) -> ExtensionCode? {
-        guard let data = code.data(using: .utf8),
-            let json = try? JSONSerialization.jsonObject(with: data),
-            let extensionCode = ExtensionCode(json: json) else {
-                return nil
-        }
-        return extensionCode
     }
 
     private func signature(from code: ExtensionCode) -> EthSignature {
