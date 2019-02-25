@@ -161,14 +161,6 @@ class MainFlowCoordinatorTests: SafeTestCase {
         XCTAssertTrue(presented?.children[0] is ManageTokensTableViewController)
     }
 
-    func test_didSelectConnectBrowserExtension_entersConnectBrowserExtensionFlow() {
-        createWindow(mainFlowCoordinator.rootViewController)
-        mainFlowCoordinator.didSelectConnectBrowserExtension()
-        delay()
-        let topController = mainFlowCoordinator.navigationController.topViewController
-        XCTAssertTrue(topController is PairWithBrowserExtensionViewController)
-    }
-
     func test_whenSelectingTermsOfUse_thenOpensSafari() {
         var config = WalletApplicationServiceConfiguration.default
         config.termsOfUseURL = URL(string: "https://gnosis.pm/")!

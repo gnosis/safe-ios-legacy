@@ -23,6 +23,8 @@ final class MainFlowCoordinator: FlowCoordinator {
 
     private var replaceRecoveryController: ReplaceRecoveryPhraseViewController!
 
+    var transactionSubmissionHandler = TransactionSubmissionHandler()
+
     override func setUp() {
         super.setUp()
         let mainVC = MainViewController.create(delegate: self)
@@ -139,16 +141,7 @@ extension MainFlowCoordinator: FundsTransferTransactionViewControllerDelegate {
 extension MainFlowCoordinator: ReviewTransactionViewControllerDelegate {
 
     func wantsToSubmitTransaction(_ completion: @escaping (Bool) -> Void) {
-        if authenticationService.isUserAuthenticated {
-            completion(true)
-        } else {
-            let unlockVC = UnlockViewController.create { [unowned self] success in
-                self.dismissModal()
-                completion(success)
-            }
-            unlockVC.showsCancelButton = true
-            presentModally(unlockVC)
-        }
+        transactionSubmissionHandler.submitTransaction(from: self, completion: completion)
     }
 
     func didFinishReview() {
