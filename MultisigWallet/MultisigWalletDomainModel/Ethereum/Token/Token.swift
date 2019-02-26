@@ -35,6 +35,22 @@ public struct Token {
         address: Address("0x" + Data(repeating: 0, count: 20).toHexString()),
         logoUrl: "")
 
+    /// Creates new Token with code, decimals and token contract address.
+    ///
+    /// - Parameters:
+    ///   - code: token code
+    ///   - name: token name
+    ///   - decimals: number of decimal units in one token unit.
+    ///   - address: token contract address
+    ///   - logoUrl: token icon url address
+    public init(code: String, name: String, decimals: Int, address: Address, logoUrl: String) {
+        self.code = code
+        self.name = name
+        self.decimals = decimals
+        self.address = address
+        self.logoUrl = logoUrl
+    }
+
 }
 
 extension Token: Equatable {}
@@ -76,6 +92,11 @@ public struct TokenAmount {
 
     public let amount: TokenInt
     public let token: Token
+
+    public init(amount: TokenInt, token: Token) {
+        self.amount = amount
+        self.token = token
+    }
 
 }
 
