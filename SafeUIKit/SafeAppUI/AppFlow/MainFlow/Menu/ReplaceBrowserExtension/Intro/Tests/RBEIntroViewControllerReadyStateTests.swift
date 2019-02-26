@@ -6,7 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import Common
 import BigInt
-import ReplaceBrowserExtensionFacade
+import MultisigWalletApplication
 
 class RBEIntroViewControllerReadyStateTests: RBEIntroViewControllerBaseTestCase {
 

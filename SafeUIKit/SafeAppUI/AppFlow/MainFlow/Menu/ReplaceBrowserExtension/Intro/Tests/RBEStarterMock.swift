@@ -5,7 +5,7 @@
 import Foundation
 @testable import SafeAppUI
 import XCTest
-import ReplaceBrowserExtensionFacade
+import MultisigWalletApplication
 
 class RBEStarterMock: RBEStarter {
 

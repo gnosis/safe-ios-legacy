@@ -6,7 +6,6 @@ import XCTest
 @testable import SafeAppUI
 import SafeAppUI
 import MultisigWalletApplication
-import ReplaceBrowserExtensionFacade
 
 class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
 

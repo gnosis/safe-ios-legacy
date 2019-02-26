@@ -5,7 +5,7 @@
 import XCTest
 @testable import SafeAppUI
 import SafeUIKit
-import ReplaceBrowserExtensionFacade
+import MultisigWalletApplication
 
 class RBEIntroViewControllerStartingStateTests: RBEIntroViewControllerBaseTestCase {
 

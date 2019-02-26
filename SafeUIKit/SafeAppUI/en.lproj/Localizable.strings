@@ -2,10 +2,10 @@
 "add_token.title" = "Add Token";
 
 /* OK */
-"alert.error.ok" = "alert.error.ok";
+"alert.error.ok" = "OK";
 
 /* Error */
-"alert.error.title" = "alert.error.title";
+"alert.error.title" = "Error";
 
 /* URL not available message */
 "alert.error.url_unavailable" = "Sorry, the link is unavailable.";
@@ -26,19 +26,19 @@
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
 
 /* Balance */
-"fee_calculation.balance" = "fee_calculation.balance";
+"fee_calculation.balance" = "Balance";
 
 /* Current balance */
-"fee_calculation.current_balance" = "fee_calculation.current_balance";
+"fee_calculation.current_balance" = "Current balance";
 
 /* Network fee */
-"fee_calculation.fee" = "fee_calculation.fee";
+"fee_calculation.fee" = "Network fee";
 
 /* [?] */
-"fee_calculation.fee.info" = "fee_calculation.fee.info";
+"fee_calculation.fee.info" = "[?]";
 
 /* - ETH */
-"fee_calculation.value.loading_eth" = "fee_calculation.value.loading_eth";
+"fee_calculation.value.loading_eth" = "- ETH";
 
 /* Application submitted invalid request. */
 "generic.error.client_error" = "Application submitted invalid request to the server. Try again later.";
@@ -122,16 +122,16 @@
 "navigation.back" = "Back";
 
 /* Start */
-"navigation.start" = "navigation.start";
+"navigation.start" = "Start";
 
 /* Explanatory message */
-"network_fee.alert.message" = "network_fee.alert.message";
+"network_fee.alert.message" = "This is a network fee required by the blockchain to execute the transaction.";
 
 /* Ok */
-"network_fee.alert.ok" = "network_fee.alert.ok";
+"network_fee.alert.ok" = "Close";
 
 /* Transaction fee */
-"network_fee.alert.title" = "network_fee.alert.title";
+"network_fee.alert.title" = "Network Fee";
 
 /* Browser extension button */
 "new_safe.browser_extension" = "Browser extension";
@@ -408,10 +408,10 @@
 "replace_extension.connect.header" = "Scan QR code";
 
 /* Intro body text */
-"replace_extension.intro.body" = "replace_extension.intro.body";
+"replace_extension.intro.body" = "Once this process is complete, you can only use the new browser extension to confirm transactions.\nPlease have your Safe recovery phrase ready to confirm the recovery.";
 
 /* Replace browser extension */
-"replace_extension.intro.header" = "replace_extension.intro.header";
+"replace_extension.intro.header" = "Replace browser extension";
 
 /* Text between stars (*) will be emphasized */
 "replace_phrase.body" = "This will generate a new recovery phrase and invalidate your current one.";

@@ -4,7 +4,7 @@
 
 import UIKit
 import SafeUIKit
-import ReplaceBrowserExtensionFacade
+import MultisigWalletApplication
 
 public protocol RBEIntroViewControllerDelegate: class {
     func rbeIntroViewControllerDidStart()

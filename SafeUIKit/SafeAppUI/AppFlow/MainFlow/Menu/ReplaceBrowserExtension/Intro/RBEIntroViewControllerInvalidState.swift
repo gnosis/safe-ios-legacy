@@ -4,7 +4,7 @@
 
 import Foundation
 import UIKit
-import ReplaceBrowserExtensionFacade
+import MultisigWalletApplication
 
 extension RBEIntroViewController {
 

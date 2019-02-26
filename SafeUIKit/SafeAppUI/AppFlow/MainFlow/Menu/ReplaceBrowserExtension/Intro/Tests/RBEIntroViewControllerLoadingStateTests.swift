@@ -6,7 +6,7 @@ import XCTest
 @testable import SafeAppUI
 import SafeUIKit
 import Common
-import ReplaceBrowserExtensionFacade
+import MultisigWalletApplication
 
 class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCase {
 
@@ -113,7 +113,7 @@ extension RBEIntroViewControllerLoadingStateTests {
         state.addCompletion { exp.fulfill() }
         (vc ?? self.vc).state = state
         (vc ?? self.vc).loadViewIfNeeded()
-        waitForExpectations(timeout: 0.02, handler: nil)
+        waitForExpectations(timeout: 0.1, handler: nil)
     }
 
 }

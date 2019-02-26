@@ -4,7 +4,6 @@
 
 import UIKit
 import SafeAppUI
-import ReplaceBrowserExtensionFacade
 import MultisigWalletApplication
 
 class ReplaceBrowserExtensionFlowCoordinator: FlowCoordinator {
