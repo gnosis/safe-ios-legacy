@@ -94,6 +94,8 @@ public class RecoveryApplicationService {
             type = .replaceRecoveryPhrase
         case .replaceBrowserExtension:
             type = .replaceBrowserExtension
+        case .connectBrowserExtension:
+            type = .connectBrowserExtension
         }
         let amountTokenData = TokenData(token: tx.amount!.token,
                                         balance: tx.amount!.amount)

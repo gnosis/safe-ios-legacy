@@ -17,7 +17,7 @@ class ConnectBrowserExtensionFlowCoordinator: FlowCoordinator {
         super.setUp()
         let vc = CBEIntroViewController.createConnectExtensionIntro()
         vc.delegate = self
-        vc.starter = ApplicationServiceRegistry.settingsService
+        vc.starter = ApplicationServiceRegistry.connectExtensionService
         push(vc)
         intro = vc
     }
@@ -39,7 +39,7 @@ extension ConnectBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewCo
     func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
                                                 didScanAddress address: String,
                                                 code: String) throws {
-        try ApplicationServiceRegistry.settingsService.connect(transaction: transactionID, code: code)
+        try ApplicationServiceRegistry.connectExtensionService.connect(transaction: transactionID, code: code)
     }
 
     func pairWithBrowserExtensionViewControllerDidFinish() {
@@ -56,7 +56,7 @@ extension ConnectBrowserExtensionFlowCoordinator: ReviewTransactionViewControlle
     }
 
     func didFinishReview() {
-        ApplicationServiceRegistry.settingsService.startMonitoring(transaction: transactionID)
+        ApplicationServiceRegistry.connectExtensionService.startMonitoring(transaction: transactionID)
         exitFlow()
     }
 

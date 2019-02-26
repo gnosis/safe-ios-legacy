@@ -4,34 +4,22 @@
 
 import XCTest
 @testable import SafeAppUI
-import MultisigWalletDomainModel
 import MultisigWalletApplication
 
 class ConnectBrowserExtensionLaterCommandTests: XCTestCase {
 
-    let mockReplaceService = MockReplaceBrowserExtensionDomainService()
-    let settingsService = WalletSettingsApplicationService()
+    let connectService = MockConnectExtensionApplicationService()
     let command = ConnectBrowserExtensionLaterCommand()
 
     override func setUp() {
         super.setUp()
-        DomainRegistry.put(service: mockReplaceService, for: ReplaceBrowserExtensionDomainService.self)
-        ApplicationServiceRegistry.put(service: settingsService, for: WalletSettingsApplicationService.self)
+        ApplicationServiceRegistry.put(service: connectService, for: ConnectBrowserExtensionApplicationService.self)
     }
 
     func test_whenNoBrowserExtension_thenCanConnect() {
         XCTAssertTrue(command.isHidden)
-        mockReplaceService.serviceIsAvailable = false
+        connectService.isAvailableResult = false
         XCTAssertFalse(command.isHidden)
-    }
-
-}
-
-class MockReplaceBrowserExtensionDomainService: ReplaceBrowserExtensionDomainService {
-
-    var serviceIsAvailable = true
-    override var isAvailable: Bool {
-        return serviceIsAvailable
     }
 
 }

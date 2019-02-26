@@ -527,6 +527,12 @@
 /* Continue button title for New Transaction Screen */
 "transaction.continue" = "Continue";
 
+/* Detail for the header in review screen */
+"transaction.details.connect_extension.detail" = "transaction.details.connect_extension.detail";
+
+/* Title for the header in review screen */
+"transaction.details.connect_extension.title" = "transaction.details.connect_extension.title";
+
 /* 'View on Etherscan' button name */
 "transaction.details.externalViewer" = "View on Etherscan.io";
 
@@ -568,6 +574,9 @@
 
 /* 'Type' parameter name */
 "transaction.details.type" = "Type";
+
+/* Connect browser extension */
+"transaction.details.type.connectBrowserExtension" = "transaction.details.type.connectBrowserExtension";
 
 /* 'Incoming' transaction type */
 "transaction.details.type.incoming" = "Incoming Transfer";
@@ -647,6 +656,9 @@
 
 /* Pending transactions group header */
 "transactions.group.pending_outgoing" = "Pending Outgoing";
+
+/* Connect browser extension */
+"transactions.row.connect_extension" = "transactions.row.connect_extension";
 
 /* (failed) suffix) */
 "transactions.row.failed" = "(failed)";

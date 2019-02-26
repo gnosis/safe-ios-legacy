@@ -6,7 +6,7 @@ import Foundation
 import MultisigWalletDomainModel
 import Common
 
-open class WalletSettingsApplicationService: RBEStarter {
+open class WalletSettingsApplicationService {
 
     public init() {}
 
@@ -34,71 +34,6 @@ open class WalletSettingsApplicationService: RBEStarter {
 
     public func cancelPhraseRecovery() {
         DomainRegistry.settingsService.cancelPhraseRecovery()
-    }
-
-    // MARK: - Replace Browser Extension
-
-    open func connect(transaction: RBETransactionID, code: String) throws {
-        let txID = TransactionID(transaction)
-        let newAddress = ApplicationServiceRegistry.walletService.address(browserExtensionCode: code)
-        try DomainRegistry.replaceExtensionService.validateNewOwnerAddress(newAddress)
-        if let oldPairAddress = DomainRegistry.replaceExtensionService.newOwnerAddress(from: txID) {
-            try ApplicationServiceRegistry.walletService.deletePair(with: oldPairAddress)
-        }
-        try ApplicationServiceRegistry.walletService.createPair(from: code)
-        DomainRegistry.replaceExtensionService.update(transaction: txID, newOwnerAddress: newAddress)
-    }
-
-    open func sign(transaction: RBETransactionID, withPhrase phrase: String) throws {
-        let txID = TransactionID(transaction)
-        _ = try DomainRegistry.replaceExtensionService.estimateNetworkFee(for: txID)
-        try DomainRegistry.replaceExtensionService.sign(transactionID: txID, with: phrase)
-    }
-
-    open var replaceBrowserExtensionIsAvailable: Bool {
-        return DomainRegistry.replaceExtensionService.isAvailable
-    }
-
-    public func create() -> RBETransactionID {
-        return DomainRegistry.replaceExtensionService.createTransaction().id
-    }
-
-    public func estimate(transaction: RBETransactionID) -> RBEEstimationResult {
-        let txID = TransactionID(transaction)
-        DomainRegistry.replaceExtensionService.addDummyData(to: txID)
-        do {
-            let fee = try DomainRegistry.replaceExtensionService.estimateNetworkFee(for: txID)
-            let negativeFee = TokenAmount(amount: -fee.amount, token: fee.token)
-            let balance = DomainRegistry.replaceExtensionService.accountBalance(for: txID)
-            let remaining = DomainRegistry.replaceExtensionService.resultingBalance(for: txID, change: negativeFee)
-            var result = RBEEstimationResult(feeCalculation: nil, error: nil)
-            result.feeCalculation =
-                RBEFeeCalculationData(currentBalance: TokenData(token: balance.token, balance: balance.amount),
-                                      networkFee: TokenData(token: negativeFee.token, balance: negativeFee.amount),
-                                      balance: TokenData(token: remaining.token, balance: remaining.amount))
-            if remaining.amount < 0 {
-                result.error = FeeCalculationError.insufficientBalance
-            }
-            return result
-        } catch let error {
-            return RBEEstimationResult(feeCalculation: nil, error: error)
-        }
-    }
-
-    public func start(transaction: RBETransactionID) throws {
-        let txID = TransactionID(transaction)
-        do {
-            try DomainRegistry.replaceExtensionService.validate(transactionID: txID)
-        } catch ReplaceBrowserExtensionDomainServiceError.browserExtensionNotConnected {
-            throw FeeCalculationError.extensionNotFound
-        } catch ReplaceBrowserExtensionDomainServiceError.insufficientBalance {
-            throw FeeCalculationError.insufficientBalance
-        }
-    }
-
-    open func startMonitoring(transaction: RBETransactionID) {
-        let txID = TransactionID(transaction)
-        DomainRegistry.replaceExtensionService.registerPostProcessing(for: txID)
     }
 
 }

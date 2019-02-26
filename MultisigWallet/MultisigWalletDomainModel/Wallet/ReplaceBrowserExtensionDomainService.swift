@@ -22,19 +22,19 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     public var ownerContractProxy: SafeOwnerManagerContractProxy?
 
-    private var wallet: Wallet? {
+    var wallet: Wallet? {
         return DomainRegistry.walletRepository.selectedWallet()
     }
 
-    private var requiredWallet: Wallet {
+    var requiredWallet: Wallet {
         return wallet!
     }
 
-    private var repository: TransactionRepository {
+    var repository: TransactionRepository {
         return DomainRegistry.transactionRepository
     }
 
-    private var contractProxy: SafeOwnerManagerContractProxy {
+    var contractProxy: SafeOwnerManagerContractProxy {
         return ownerContractProxy ?? SafeOwnerManagerContractProxy(self.wallet!.address!)
     }
 
@@ -42,9 +42,13 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     // MARK: - Transaction Creation and Validation
 
+    var transactionType: TransactionType {
+        return .replaceBrowserExtension
+    }
+
     public func createTransaction() -> TransactionID {
         let tx = Transaction(id: repository.nextID(),
-                             type: .replaceBrowserExtension,
+                             type: transactionType,
                              walletID: requiredWallet.id,
                              accountID: AccountID(tokenID: Token.Ether.id, walletID: requiredWallet.id))
         tx.change(amount: .ether(0)).change(sender: requiredWallet.address!)
@@ -68,7 +72,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
             owners.forEach { remoteList.add($0) }
             let toSwap = owners.first!
             let prev = remoteList.addressBefore(toSwap)
-            let data = contractProxy.swapOwner(prevOwner: prev, old: toSwap, new: self.wallet!.address!)
+            let data = contractProxy.swapOwner(prevOwner: prev, old: toSwap, new: requiredWallet.address!)
             return data
         }
         remoteList.add(.zero)
@@ -130,8 +134,13 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         let totalFee = TokenAmount(amount: totalFeeAmount, token: tx.feeEstimate!.gasPrice.token)
         try assertTrue(resultingBalance(for: transactionID, change: totalFee).amount >= 0,
                        ReplaceBrowserExtensionDomainServiceError.insufficientBalance)
+        try validateOwners()
+    }
+
+    func validateOwners() throws {
         try assertNotNil(requiredWallet.owner(role: .browserExtension) ,
                          ReplaceBrowserExtensionDomainServiceError.browserExtensionNotConnected)
+
     }
 
     private func transaction(_ id: TransactionID, file: StaticString = #file, line: UInt = #line) -> Transaction {
@@ -157,11 +166,11 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     open func update(transaction: TransactionID, newOwnerAddress: String) {
         let tx = self.transaction(transaction)
-        tx.change(data: swapOwnerData(with: newOwnerAddress))
+        tx.change(data: realTransactionData(with: newOwnerAddress))
         repository.save(tx)
     }
 
-    func swapOwnerData(with newAddress: String) -> Data? {
+    func realTransactionData(with newAddress: String) -> Data? {
         let extensionAddress = wallet!.owner(role: .browserExtension)!.address
         guard let linkedList = remoteOwnersList(), linkedList.contains(extensionAddress) else { return nil }
         return contractProxy.swapOwner(prevOwner: linkedList.addressBefore(extensionAddress),

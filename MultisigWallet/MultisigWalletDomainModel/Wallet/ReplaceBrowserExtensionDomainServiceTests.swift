@@ -125,7 +125,7 @@ class ReplaceBrowserExtensionDomainServiceTests: ReplaceBrowserExtensionDomainSe
         mockProxy.getOwners_result = [prevAddress, oldAddress]
         let expectedData = mockProxy.swapOwner(prevOwner: prevAddress, old: oldAddress, new: newAddress)
 
-        let actualData = service.swapOwnerData(with: newAddress.value)!
+        let actualData = service.realTransactionData(with: newAddress.value)!
 
         XCTAssertEqual(actualData,
                        expectedData,
@@ -137,7 +137,7 @@ class ReplaceBrowserExtensionDomainServiceTests: ReplaceBrowserExtensionDomainSe
         let txID = service.createTransaction()
         service.update(transaction: txID, newOwnerAddress: Address.testAccount4.value)
         let tx = transaction(from: txID)!
-        XCTAssertEqual(tx.data, service.swapOwnerData(with: Address.testAccount4.value))
+        XCTAssertEqual(tx.data, service.realTransactionData(with: Address.testAccount4.value))
     }
 
     func test_whenHasExtensionDataInside_thenCanExtractNewOwnerAddress() {

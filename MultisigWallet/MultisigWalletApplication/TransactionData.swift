@@ -51,6 +51,7 @@ public struct TransactionData {
         case walletRecovery
         case replaceRecoveryPhrase
         case replaceBrowserExtension
+        case connectBrowserExtension
     }
 
     public let id: String

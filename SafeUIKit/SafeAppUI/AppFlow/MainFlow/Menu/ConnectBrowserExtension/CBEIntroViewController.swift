@@ -23,6 +23,6 @@ extension IntroContentView.Content {
                                                                                    comment: "Header label"),
                                                            body: LocalizedString("connect_extension.intro.body",
                                                                                  comment: "Body text"),
-                                                           icon: Asset.ReplaceBrowserExtension.introIcon.image)
+                                                           icon: Asset.ConnectBrowserExtension.connectIntroIcon.image)
 
 }

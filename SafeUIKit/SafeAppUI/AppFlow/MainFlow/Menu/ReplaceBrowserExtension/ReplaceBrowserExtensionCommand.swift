@@ -13,7 +13,7 @@ class ReplaceBrowserExtensionCommand: MenuCommand {
     }
 
     override var isHidden: Bool {
-        return !ApplicationServiceRegistry.settingsService.replaceBrowserExtensionIsAvailable
+        return !ApplicationServiceRegistry.replaceExtensionService.isAvailable
     }
 
     var commandFlow = ReplaceBrowserExtensionFlowCoordinator()

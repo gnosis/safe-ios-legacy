@@ -92,7 +92,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                                  for: RecoveryApplicationService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletSettingsApplicationService(),
                                                                  for: WalletSettingsApplicationService.self)
-
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
         let notificationService = HTTPNotificationService(url: appConfig.notificationServiceURL,
                                                           logger: LogService.shared)
@@ -120,10 +119,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                      for: WalletSettingsDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: ReplaceBrowserExtensionDomainService(),
                                                      for: ReplaceBrowserExtensionDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: ConnectBrowserExtensionDomainService(),
+                                                     for: ConnectBrowserExtensionDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: CommunicationDomainService(),
                                                      for: CommunicationDomainService.self)
         let relay = EventRelay(publisher: MultisigWalletDomainModel.DomainRegistry.eventPublisher)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)
+
+        // temporal coupling with domain model's services
+        MultisigWalletApplication.ApplicationServiceRegistry
+            .put(service: ReplaceBrowserExtensionApplicationService.create(),
+                 for: ReplaceBrowserExtensionApplicationService.self)
+        MultisigWalletApplication.ApplicationServiceRegistry
+            .put(service: ConnectBrowserExtensionApplicationService.create(),
+                 for: ConnectBrowserExtensionApplicationService.self)
 
         setUpMultisigDatabase()
     }
