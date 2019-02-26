@@ -4,7 +4,7 @@
 
 import Foundation
 import UIKit
-@testable import ReplaceBrowserExtensionUI
+@testable import SafeAppUI
 
 class TestableRBEIntroViewController: RBEIntroViewController {
 

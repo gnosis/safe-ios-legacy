@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import ReplaceBrowserExtensionUI
+import SafeAppUI
 import Common
 import BigInt
 import ReplaceBrowserExtensionFacade

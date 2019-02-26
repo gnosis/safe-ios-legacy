@@ -4,7 +4,7 @@
 
 import XCTest
 @testable import SafeAppUI
-import ReplaceBrowserExtensionUI
+import SafeAppUI
 import MultisigWalletApplication
 import ReplaceBrowserExtensionFacade
 

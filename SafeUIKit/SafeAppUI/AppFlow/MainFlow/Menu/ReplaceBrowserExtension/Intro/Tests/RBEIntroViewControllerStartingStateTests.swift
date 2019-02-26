@@ -3,7 +3,8 @@
 //
 
 import XCTest
-@testable import ReplaceBrowserExtensionUI
+@testable import SafeAppUI
+import SafeUIKit
 import ReplaceBrowserExtensionFacade
 
 class RBEIntroViewControllerStartingStateTests: RBEIntroViewControllerBaseTestCase {

@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import ReplaceBrowserExtensionUI
+import SafeAppUI
 import ReplaceBrowserExtensionFacade
 import MultisigWalletApplication
 

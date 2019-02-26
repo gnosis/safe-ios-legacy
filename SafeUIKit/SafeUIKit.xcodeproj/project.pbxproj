@@ -26,17 +26,11 @@
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
 		0A2FAA312201A5D900793B7B /* ReplaceBrowserExtensionUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2FAA282201A5D800793B7B /* ReplaceBrowserExtensionUI.framework */; };
 		0A2FAA382201A5D900793B7B /* ReplaceBrowserExtensionUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A2FAA2A2201A5D900793B7B /* ReplaceBrowserExtensionUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0A2FAA452201A5E700793B7B /* IntroContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */; };
-		0A2FAA4B2201A5E700793B7B /* RBEIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */; };
 		0A2FAA4D2201A62B00793B7B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D058A20CEB5C3007DED3B /* Colors.swift */; };
 		0A2FAA4E2201A62B00793B7B /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334E67209C8F4700ABC6AE /* Assets.swift */; };
 		0A2FAA4F2201A62B00793B7B /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A334DD0209C700700ABC6AE /* LocalizedString.swift */; };
 		0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FAA512201A64000793B7B /* DateToolsLocalized.swift */; };
 		0A2FAA542201A66900793B7B /* SafeAppUIMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A334DF1209C8BA600ABC6AE /* SafeAppUIMedia.xcassets */; };
-		0A2FAA5B2201A69100793B7B /* RBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */; };
-		0A2FAA5E2201A69100793B7B /* FeeCalculationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EF76B2200890400958453 /* FeeCalculationView.swift */; };
-		0A2FAA612201A69100793B7B /* IntroContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */; };
-		0A2FAA622201A69800793B7B /* RBEIntroViewControllerLoadingStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D88921FF12D200D1980A /* RBEIntroViewControllerLoadingStateTests.swift */; };
 		0A2FAA6A2201A72700793B7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FAA692201A72700793B7B /* AppDelegate.swift */; };
 		0A2FAA6C2201A72700793B7B /* RBEIntroDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FAA6B2201A72700793B7B /* RBEIntroDemoViewController.swift */; };
 		0A2FAA6F2201A72700793B7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A2FAA6D2201A72700793B7B /* Main.storyboard */; };
@@ -101,9 +95,47 @@
 		0A395C9C21C0F8E500652A59 /* SettingsTransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A395C9B21C0F8E500652A59 /* SettingsTransactionHeaderView.swift */; };
 		0A395C9E21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A395C9D21C0FA3800652A59 /* SettingsTransactionHeaderCell.swift */; };
 		0A3BD8D622244181007039B4 /* TransactionSubmissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD8D522244181007039B4 /* TransactionSubmissionHandler.swift */; };
+		0A3BD8EA22254822007039B4 /* FeeCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55022032B8F0019C63D /* FeeCalculationTests.swift */; };
+		0A3BD8EB22254822007039B4 /* RBEIntroViewControllerActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */; };
+		0A3BD8EC22254822007039B4 /* RBEIntroViewControllerBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */; };
+		0A3BD8ED22254822007039B4 /* RBEIntroViewControllerErrorStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */; };
+		0A3BD8EE22254822007039B4 /* RBEIntroViewControllerInvalidStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55A220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift */; };
+		0A3BD8EF22254822007039B4 /* RBEIntroViewControllerLoadingStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D88921FF12D200D1980A /* RBEIntroViewControllerLoadingStateTests.swift */; };
+		0A3BD8F022254822007039B4 /* RBEStarterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */; };
+		0A3BD8F122254822007039B4 /* RBEIntroViewControllerReadyStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F0220842220047F10D /* RBEIntroViewControllerReadyStateTests.swift */; };
+		0A3BD8F222254822007039B4 /* RBEIntroViewControllerStartedStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */; };
+		0A3BD8F322254822007039B4 /* RBEIntroViewControllerStartingStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */; };
+		0A3BD8F422254822007039B4 /* RBEIntroViewControllerStateTransitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */; };
+		0A3BD8F522254822007039B4 /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
+		0A3BD8F622254833007039B4 /* UINavigationController+BackSwizzling.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABDF60422086AB30047F10D /* UINavigationController+BackSwizzling.h */; };
+		0A3BD8F722254833007039B4 /* UINavigationController+BackSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */; };
+		0A3BD8F822254833007039B4 /* FeeCalculationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EF76B2200890400958453 /* FeeCalculationView.swift */; };
+		0A3BD8F922254833007039B4 /* FeeCalculationAssetLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E54B220328470019C63D /* FeeCalculationAssetLine.swift */; };
+		0A3BD8FA22254833007039B4 /* FeeCalculationAssetLine+TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E54D220328620019C63D /* FeeCalculationAssetLine+TextStyle.swift */; };
+		0A3BD8FB22254833007039B4 /* FeeCalculationErrorLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55E220364720019C63D /* FeeCalculationErrorLine.swift */; };
+		0A3BD8FC22254833007039B4 /* FeeCalculationSpacingLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E549220328380019C63D /* FeeCalculationSpacingLine.swift */; };
+		0A3BD8FD22254833007039B4 /* FeeCalculationLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E547220328290019C63D /* FeeCalculationLine.swift */; };
+		0A3BD8FE22254833007039B4 /* FeeCalculationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E545220328130019C63D /* FeeCalculationSection.swift */; };
+		0A3BD8FF22254833007039B4 /* FeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E543220328010019C63D /* FeeCalculation.swift */; };
+		0A3BD90022254833007039B4 /* ArrayBasedCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E541220327ED0019C63D /* ArrayBasedCollection.swift */; };
+		0A3BD90122254833007039B4 /* UIView+Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB586772201C5DF007C090D /* UIView+Pin.swift */; };
+		0A3BD90222254833007039B4 /* EthFeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55822034E330019C63D /* EthFeeCalculation.swift */; };
+		0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */; };
+		0A3BD90422254833007039B4 /* IntroContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */; };
+		0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */; };
+		0A3BD90622254833007039B4 /* RBEIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */; };
+		0A3BD90722254833007039B4 /* RBEIntroViewControllerBaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55622034DF70019C63D /* RBEIntroViewControllerBaseState.swift */; };
+		0A3BD90822254833007039B4 /* RBEIntroViewControllerCancellingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5E6220841880047F10D /* RBEIntroViewControllerCancellingState.swift */; };
+		0A3BD90922254833007039B4 /* RBEIntroViewControllerErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5EE220841E50047F10D /* RBEIntroViewControllerErrorState.swift */; };
+		0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5E4220841600047F10D /* RBEIntroViewControllerInvalidState.swift */; };
+		0A3BD90B22254833007039B4 /* RBEIntroViewControllerLoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5E2220841390047F10D /* RBEIntroViewControllerLoadingState.swift */; };
+		0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5E82208419E0047F10D /* RBEIntroViewControllerReadyState.swift */; };
+		0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5EC220841D20047F10D /* RBEIntroViewControllerStartedState.swift */; };
+		0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5EA220841BA0047F10D /* RBEIntroViewControllerStartingState.swift */; };
+		0A3BD91122254960007039B4 /* libReplaceBrowserExtensionFacade.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D1571220B393A00E340DB /* libReplaceBrowserExtensionFacade.a */; };
+		0A3BD9122225497A007039B4 /* ReplaceBrowserExtensionFacadeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A3D1573220B393A00E340DB /* ReplaceBrowserExtensionFacadeResources.bundle */; };
 		0A3D14C7220AE95300E340DB /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A3D14C8220AE95300E340DB /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A3D14CB220B153D00E340DB /* ReplaceBrowserExtensionUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2FAA282201A5D800793B7B /* ReplaceBrowserExtensionUI.framework */; };
 		0A3D14E6220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14E5220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift */; };
 		0A3D14E8220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */; };
 		0A3D14E9220B166A00E340DB /* ReplaceBrowserExtensionUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2FAA282201A5D800793B7B /* ReplaceBrowserExtensionUI.framework */; };
@@ -156,20 +188,6 @@
 		0A7AE8CA2052C2120044D5DD /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7AE8C42052C20A0044D5DD /* XCTest+Assert.swift */; };
 		0A8274E821A432DD00A73D32 /* TransactionsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8274E721A432DD00A73D32 /* TransactionsEmptyView.swift */; };
 		0A8C962F20D2C3E7007D2410 /* BaseCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C962E20D2C3E7007D2410 /* BaseCustomButton.swift */; };
-		0A95E542220327ED0019C63D /* ArrayBasedCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E541220327ED0019C63D /* ArrayBasedCollection.swift */; };
-		0A95E544220328010019C63D /* FeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E543220328010019C63D /* FeeCalculation.swift */; };
-		0A95E546220328130019C63D /* FeeCalculationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E545220328130019C63D /* FeeCalculationSection.swift */; };
-		0A95E548220328290019C63D /* FeeCalculationLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E547220328290019C63D /* FeeCalculationLine.swift */; };
-		0A95E54A220328380019C63D /* FeeCalculationSpacingLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E549220328380019C63D /* FeeCalculationSpacingLine.swift */; };
-		0A95E54C220328480019C63D /* FeeCalculationAssetLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E54B220328470019C63D /* FeeCalculationAssetLine.swift */; };
-		0A95E54E220328620019C63D /* FeeCalculationAssetLine+TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E54D220328620019C63D /* FeeCalculationAssetLine+TextStyle.swift */; };
-		0A95E55122032B8F0019C63D /* FeeCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55022032B8F0019C63D /* FeeCalculationTests.swift */; };
-		0A95E55322034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */; };
-		0A95E55522034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */; };
-		0A95E55722034DF70019C63D /* RBEIntroViewControllerBaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55622034DF70019C63D /* RBEIntroViewControllerBaseState.swift */; };
-		0A95E55922034E330019C63D /* EthFeeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55822034E330019C63D /* EthFeeCalculation.swift */; };
-		0A95E55B220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55A220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift */; };
-		0A95E55F220364720019C63D /* FeeCalculationErrorLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E55E220364720019C63D /* FeeCalculationErrorLine.swift */; };
 		0A9670BB20480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C720480C5700445AC2 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
 		0A9670C820480C5700445AC2 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -183,9 +201,6 @@
 		0AB3F13821F7373300D351C7 /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB3F13721F7373300D351C7 /* libMultisigWalletImplementations.a */; };
 		0AB3F13921F73A5200D351C7 /* CollectionUIModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13321F7262900D351C7 /* CollectionUIModelTests.swift */; };
 		0AB3F13A21F73A5500D351C7 /* CollectionUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3F13521F7264100D351C7 /* CollectionUIModel.swift */; };
-		0AB586782201C5DF007C090D /* UIView+Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB586772201C5DF007C090D /* UIView+Pin.swift */; };
-		0AB5868B2201C92B007C090D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0AB5868D2201C92B007C090D /* Localizable.strings */; };
-		0AB5868F2201C979007C090D /* ReplaceBrowserExtensionMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AB5868E2201C979007C090D /* ReplaceBrowserExtensionMedia.xcassets */; };
 		0ABA591821AC07D0009D249F /* AmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591721AC07D0009D249F /* AmountLabel.swift */; };
 		0ABA591A21AC07E8009D249F /* EthereumAddressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591921AC07E8009D249F /* EthereumAddressLabel.swift */; };
 		0ABA591F21AC0856009D249F /* AmountLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA591E21AC0856009D249F /* AmountLabelTests.swift */; };
@@ -194,22 +209,6 @@
 		0ABDE31B21BE6FA000EA0CED /* RecoveryInProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDE31A21BE6FA000EA0CED /* RecoveryInProgressViewController.swift */; };
 		0ABDE31D21BE77F200EA0CED /* DemoRecoveryInProgressViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDE31C21BE77F200EA0CED /* DemoRecoveryInProgressViewControllerViewController.swift */; };
 		0ABDF5E122083F420047F10D /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9670B220480C5700445AC2 /* SafeUIKit.framework */; };
-		0ABDF5E3220841390047F10D /* RBEIntroViewControllerLoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5E2220841390047F10D /* RBEIntroViewControllerLoadingState.swift */; };
-		0ABDF5E5220841600047F10D /* RBEIntroViewControllerInvalidState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5E4220841600047F10D /* RBEIntroViewControllerInvalidState.swift */; };
-		0ABDF5E7220841880047F10D /* RBEIntroViewControllerCancellingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5E6220841880047F10D /* RBEIntroViewControllerCancellingState.swift */; };
-		0ABDF5E92208419E0047F10D /* RBEIntroViewControllerReadyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5E82208419E0047F10D /* RBEIntroViewControllerReadyState.swift */; };
-		0ABDF5EB220841BA0047F10D /* RBEIntroViewControllerStartingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5EA220841BA0047F10D /* RBEIntroViewControllerStartingState.swift */; };
-		0ABDF5ED220841D20047F10D /* RBEIntroViewControllerStartedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5EC220841D20047F10D /* RBEIntroViewControllerStartedState.swift */; };
-		0ABDF5EF220841E50047F10D /* RBEIntroViewControllerErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5EE220841E50047F10D /* RBEIntroViewControllerErrorState.swift */; };
-		0ABDF5F1220842220047F10D /* RBEIntroViewControllerReadyStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F0220842220047F10D /* RBEIntroViewControllerReadyStateTests.swift */; };
-		0ABDF5F3220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */; };
-		0ABDF5F5220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */; };
-		0ABDF5F72208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */; };
-		0ABDF5F922084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */; };
-		0ABDF5FB22084E760047F10D /* TestableRBEIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */; };
-		0ABDF60622086AB30047F10D /* UINavigationController+BackSwizzling.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABDF60422086AB30047F10D /* UINavigationController+BackSwizzling.h */; };
-		0ABDF608220880BB0047F10D /* UINavigationController+BackSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF60522086AB30047F10D /* UINavigationController+BackSwizzling.m */; };
-		0ABDF61422098C2F0047F10D /* RBEStarterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */; };
 		0AC3F16C21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16B21830AEB00DAADC9 /* TermsAndConditionsDemoViewController.swift */; };
 		0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16D21830BD500DAADC9 /* TermsAndConditionsViewController.swift */; };
 		0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3F16F2183402200DAADC9 /* TermsAndConditionsViewControllerTests.swift */; };
@@ -387,6 +386,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0A2FAA272201A5D800793B7B;
 			remoteInfo = ReplaceBrowserExtensionUI;
+		};
+		0A3BD90F22254953007039B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A3D1553220B393A00E340DB /* Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A3D1517220B2A0A00E340DB;
+			remoteInfo = ReplaceBrowserExtensionFacadeResources;
 		};
 		0A3D14C9220AE95300E340DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -737,8 +743,6 @@
 		0AB3F13521F7264100D351C7 /* CollectionUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUIModel.swift; sourceTree = "<group>"; };
 		0AB3F13721F7373300D351C7 /* libMultisigWalletImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AB586772201C5DF007C090D /* UIView+Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Pin.swift"; sourceTree = "<group>"; };
-		0AB5868C2201C92B007C090D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		0AB5868E2201C979007C090D /* ReplaceBrowserExtensionMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ReplaceBrowserExtensionMedia.xcassets; sourceTree = "<group>"; };
 		0ABA591721AC07D0009D249F /* AmountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountLabel.swift; sourceTree = "<group>"; };
 		0ABA591921AC07E8009D249F /* EthereumAddressLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressLabel.swift; sourceTree = "<group>"; };
 		0ABA591E21AC0856009D249F /* AmountLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountLabelTests.swift; sourceTree = "<group>"; };
@@ -995,7 +999,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A3D14CB220B153D00E340DB /* ReplaceBrowserExtensionUI.framework in Frameworks */,
+				0A3BD91122254960007039B4 /* libReplaceBrowserExtensionFacade.a in Frameworks */,
 				0A40668F20A5E099009BA7FC /* libMultisigWalletApplication.a in Frameworks */,
 				0A334E64209C8ED300ABC6AE /* libIdentityAccessApplication.a in Frameworks */,
 				0A334DCA209C6DEC00ABC6AE /* SafeUIKit.framework in Frameworks */,
@@ -1019,22 +1023,6 @@
 		0A2FAA292201A5D900793B7B /* ReplaceBrowserExtensionUI */ = {
 			isa = PBXGroup;
 			children = (
-				0A2FAA822201A92A00793B7B /* Common */,
-				0A95E55822034E330019C63D /* EthFeeCalculation.swift */,
-				0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */,
-				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
-				0AB5868D2201C92B007C090D /* Localizable.strings */,
-				0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */,
-				0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */,
-				0A95E55622034DF70019C63D /* RBEIntroViewControllerBaseState.swift */,
-				0ABDF5E6220841880047F10D /* RBEIntroViewControllerCancellingState.swift */,
-				0ABDF5EE220841E50047F10D /* RBEIntroViewControllerErrorState.swift */,
-				0ABDF5E4220841600047F10D /* RBEIntroViewControllerInvalidState.swift */,
-				0ABDF5E2220841390047F10D /* RBEIntroViewControllerLoadingState.swift */,
-				0ABDF5E82208419E0047F10D /* RBEIntroViewControllerReadyState.swift */,
-				0ABDF5EC220841D20047F10D /* RBEIntroViewControllerStartedState.swift */,
-				0ABDF5EA220841BA0047F10D /* RBEIntroViewControllerStartingState.swift */,
-				0AB5868E2201C979007C090D /* ReplaceBrowserExtensionMedia.xcassets */,
 				0A2FAA802201A81700793B7B /* support files */,
 			);
 			path = ReplaceBrowserExtensionUI;
@@ -1043,19 +1031,7 @@
 		0A2FAA342201A5D900793B7B /* ReplaceBrowserExtensionUITests */ = {
 			isa = PBXGroup;
 			children = (
-				0A95E55022032B8F0019C63D /* FeeCalculationTests.swift */,
 				0A2FAA372201A5D900793B7B /* Info.plist */,
-				0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */,
-				0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */,
-				0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */,
-				0A95E55A220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift */,
-				0AF6D88921FF12D200D1980A /* RBEIntroViewControllerLoadingStateTests.swift */,
-				0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */,
-				0ABDF5F0220842220047F10D /* RBEIntroViewControllerReadyStateTests.swift */,
-				0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */,
-				0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */,
-				0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */,
-				0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */,
 			);
 			path = ReplaceBrowserExtensionUITests;
 			sourceTree = "<group>";
@@ -1215,9 +1191,51 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0A3BD8DF22254786007039B4 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				0A3BD8E9222547B2007039B4 /* Tests */,
+				0A2FAA822201A92A00793B7B /* Common */,
+				0A95E55822034E330019C63D /* EthFeeCalculation.swift */,
+				0AF6D8DD21FF62EF00D1980A /* IntroContentView.swift */,
+				0AF6D8DB21FF614D00D1980A /* IntroContentView.xib */,
+				0AF6D88521FF129400D1980A /* RBEIntroViewController.swift */,
+				0AF6D88621FF129400D1980A /* RBEIntroViewController.xib */,
+				0A95E55622034DF70019C63D /* RBEIntroViewControllerBaseState.swift */,
+				0ABDF5E6220841880047F10D /* RBEIntroViewControllerCancellingState.swift */,
+				0ABDF5EE220841E50047F10D /* RBEIntroViewControllerErrorState.swift */,
+				0ABDF5E4220841600047F10D /* RBEIntroViewControllerInvalidState.swift */,
+				0ABDF5E2220841390047F10D /* RBEIntroViewControllerLoadingState.swift */,
+				0ABDF5E82208419E0047F10D /* RBEIntroViewControllerReadyState.swift */,
+				0ABDF5EC220841D20047F10D /* RBEIntroViewControllerStartedState.swift */,
+				0ABDF5EA220841BA0047F10D /* RBEIntroViewControllerStartingState.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		0A3BD8E9222547B2007039B4 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0A95E55022032B8F0019C63D /* FeeCalculationTests.swift */,
+				0ABDF5F822084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift */,
+				0A95E55222034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift */,
+				0ABDF5F4220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift */,
+				0A95E55A220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift */,
+				0AF6D88921FF12D200D1980A /* RBEIntroViewControllerLoadingStateTests.swift */,
+				0ABDF61322098C2F0047F10D /* RBEStarterMock.swift */,
+				0ABDF5F0220842220047F10D /* RBEIntroViewControllerReadyStateTests.swift */,
+				0ABDF5F62208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift */,
+				0ABDF5F2220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift */,
+				0A95E55422034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift */,
+				0ABDF5FA22084E760047F10D /* TestableRBEIntroViewController.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		0A3D14E4220B158800E340DB /* ReplaceBrowserExtension */ = {
 			isa = PBXGroup;
 			children = (
+				0A3BD8DF22254786007039B4 /* Intro */,
 				554CACD4221F08CD0086D303 /* ReplaceBrowserExtensionReviewTransactionViewController.swift */,
 				0A3D14E5220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift */,
 				0A3D14E7220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift */,
@@ -1993,7 +2011,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A2FAA382201A5D900793B7B /* ReplaceBrowserExtensionUI.h in Headers */,
-				0ABDF60622086AB30047F10D /* UINavigationController+BackSwizzling.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2010,6 +2027,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AF33D47209C6BF800527D25 /* SafeAppUI.h in Headers */,
+				0A3BD8F622254833007039B4 /* UINavigationController+BackSwizzling.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2170,6 +2188,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0A3BD91022254953007039B4 /* PBXTargetDependency */,
 			);
 			name = SafeAppUI;
 			productName = SafeAppUI;
@@ -2359,11 +2378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A3D1574220B395200E340DB /* ReplaceBrowserExtensionFacadeResources.bundle in Resources */,
-				0AB5868B2201C92B007C090D /* Localizable.strings in Resources */,
 				0A2FAA542201A66900793B7B /* SafeAppUIMedia.xcassets in Resources */,
-				0A2FAA452201A5E700793B7B /* IntroContentView.xib in Resources */,
-				0AB5868F2201C979007C090D /* ReplaceBrowserExtensionMedia.xcassets in Resources */,
-				0A2FAA4B2201A5E700793B7B /* RBEIntroViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2432,9 +2447,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */,
+				0A3BD9122225497A007039B4 /* ReplaceBrowserExtensionFacadeResources.bundle in Resources */,
 				0A334E3E209C8E3800ABC6AE /* MasterPassword.storyboard in Resources */,
 				0A334DBF209C6D8700ABC6AE /* SetupSafe.storyboard in Resources */,
+				0A3BD90422254833007039B4 /* IntroContentView.xib in Resources */,
 				0A334DF2209C8BA600ABC6AE /* SafeAppUIMedia.xcassets in Resources */,
 				0A321BCE20CED58A000B35E6 /* AddTokenFooterView.xib in Resources */,
 				0A334E2F209C8E3800ABC6AE /* NewSafe.storyboard in Resources */,
@@ -2442,6 +2458,8 @@
 				55247305213E8EC600A77557 /* TokensHeaderView.xib in Resources */,
 				0A334DD7209C70F000ABC6AE /* Localizable.strings in Resources */,
 				0A6EF3CA21BA8D0600F1074E /* RecoverSafe.storyboard in Resources */,
+				0A3BD90622254833007039B4 /* RBEIntroViewController.xib in Resources */,
+				0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */,
 				558682CC2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2651,31 +2669,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A95E548220328290019C63D /* FeeCalculationLine.swift in Sources */,
-				0AB586782201C5DF007C090D /* UIView+Pin.swift in Sources */,
-				0ABDF5E92208419E0047F10D /* RBEIntroViewControllerReadyState.swift in Sources */,
-				0A2FAA5B2201A69100793B7B /* RBEIntroViewController.swift in Sources */,
-				0A95E54A220328380019C63D /* FeeCalculationSpacingLine.swift in Sources */,
-				0A95E544220328010019C63D /* FeeCalculation.swift in Sources */,
-				0A2FAA612201A69100793B7B /* IntroContentView.swift in Sources */,
 				0A2FAA4E2201A62B00793B7B /* Assets.swift in Sources */,
 				0A2FAA4D2201A62B00793B7B /* Colors.swift in Sources */,
-				0ABDF5E3220841390047F10D /* RBEIntroViewControllerLoadingState.swift in Sources */,
-				0ABDF608220880BB0047F10D /* UINavigationController+BackSwizzling.m in Sources */,
-				0A95E55F220364720019C63D /* FeeCalculationErrorLine.swift in Sources */,
-				0ABDF5ED220841D20047F10D /* RBEIntroViewControllerStartedState.swift in Sources */,
-				0ABDF5E5220841600047F10D /* RBEIntroViewControllerInvalidState.swift in Sources */,
-				0ABDF5EB220841BA0047F10D /* RBEIntroViewControllerStartingState.swift in Sources */,
-				0A95E546220328130019C63D /* FeeCalculationSection.swift in Sources */,
-				0A2FAA5E2201A69100793B7B /* FeeCalculationView.swift in Sources */,
-				0A95E542220327ED0019C63D /* ArrayBasedCollection.swift in Sources */,
-				0ABDF5EF220841E50047F10D /* RBEIntroViewControllerErrorState.swift in Sources */,
 				0A2FAA4F2201A62B00793B7B /* LocalizedString.swift in Sources */,
-				0ABDF5E7220841880047F10D /* RBEIntroViewControllerCancellingState.swift in Sources */,
-				0A95E55922034E330019C63D /* EthFeeCalculation.swift in Sources */,
-				0A95E55722034DF70019C63D /* RBEIntroViewControllerBaseState.swift in Sources */,
-				0A95E54E220328620019C63D /* FeeCalculationAssetLine+TextStyle.swift in Sources */,
-				0A95E54C220328480019C63D /* FeeCalculationAssetLine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2683,18 +2679,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ABDF5F5220844C00047F10D /* RBEIntroViewControllerErrorStateTests.swift in Sources */,
-				0ABDF5F72208493A0047F10D /* RBEIntroViewControllerStartedStateTests.swift in Sources */,
-				0A95E55122032B8F0019C63D /* FeeCalculationTests.swift in Sources */,
-				0ABDF61422098C2F0047F10D /* RBEStarterMock.swift in Sources */,
-				0ABDF5F922084E5D0047F10D /* RBEIntroViewControllerActionsTests.swift in Sources */,
-				0A2FAA622201A69800793B7B /* RBEIntroViewControllerLoadingStateTests.swift in Sources */,
-				0ABDF5FB22084E760047F10D /* TestableRBEIntroViewController.swift in Sources */,
-				0ABDF5F3220843C70047F10D /* RBEIntroViewControllerStartingStateTests.swift in Sources */,
-				0A95E55522034D420019C63D /* RBEIntroViewControllerStateTransitionTests.swift in Sources */,
-				0ABDF5F1220842220047F10D /* RBEIntroViewControllerReadyStateTests.swift in Sources */,
-				0A95E55322034D270019C63D /* RBEIntroViewControllerBaseTestCase.swift in Sources */,
-				0A95E55B220353E70019C63D /* RBEIntroViewControllerInvalidStateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2857,17 +2841,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A3D14F2220B1CE800E340DB /* MenuCommand.swift in Sources */,
+				0A3BD8FB22254833007039B4 /* FeeCalculationErrorLine.swift in Sources */,
 				55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */,
 				0AD998B020D3FEBD00E6F3CA /* FundsTransferTransactionViewController.swift in Sources */,
 				55DFBCF42135790E004B2AC4 /* AddTokenTableViewController.swift in Sources */,
 				55C0D4BC219AD35900F04FA4 /* ReviewTransactionViewController.swift in Sources */,
 				55DEBC15214AACDE0017CD4B /* AppVersionTableViewCell.swift in Sources */,
 				0A9D058B20CEB5C3007DED3B /* Colors.swift in Sources */,
+				0A3BD8F922254833007039B4 /* FeeCalculationAssetLine.swift in Sources */,
 				0A9DCA3A21BBF40800D473B8 /* BaseInputViewController.swift in Sources */,
 				0A00293020CFCBA3009A4BFE /* SegmentBarController.swift in Sources */,
 				554CACD1221F05250086D303 /* ReplaceRecoveryPhraseReviewTransactionViewController.swift in Sources */,
 				0A334E34209C8E3800ABC6AE /* PaperWalletFlowCoordinator.swift in Sources */,
 				0A00292C20CFC118009A4BFE /* SegmentBar.swift in Sources */,
+				0A3BD8FF22254833007039B4 /* FeeCalculation.swift in Sources */,
+				0A3BD90D22254833007039B4 /* RBEIntroViewControllerStartedState.swift in Sources */,
 				0AE950C920D29C930099B79D /* StatusTransactionParameterView.swift in Sources */,
 				0A6EF3C821BA8CC100F1074E /* AddressInputViewController.swift in Sources */,
 				0A4DF83120CE9D950095C00D /* TransactionTableViewCell.swift in Sources */,
@@ -2876,6 +2864,10 @@
 				0A6EF3C421BA802D00F1074E /* GuidelinesViewController+RecoverSafe.swift in Sources */,
 				0AE950CA20D29C930099B79D /* TokenAmountTransactionParameterView.swift in Sources */,
 				0AC3F16E21830BD500DAADC9 /* TermsAndConditionsViewController.swift in Sources */,
+				0A3BD8FD22254833007039B4 /* FeeCalculationLine.swift in Sources */,
+				0A3BD90722254833007039B4 /* RBEIntroViewControllerBaseState.swift in Sources */,
+				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
+				0A3BD8F722254833007039B4 /* UINavigationController+BackSwizzling.m in Sources */,
 				0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */,
 				0A4EEA5120D02E9D005CDAC0 /* MainContentViewController.swift in Sources */,
 				55DEBC28214BD7AB0017CD4B /* SafeAddressViewController.swift in Sources */,
@@ -2887,9 +2879,12 @@
 				0A5D467D20AD727F00AC287E /* SafeCreationFailedAlertController.swift in Sources */,
 				0A6EF3C221BA7DD700F1074E /* GuidelinesViewController+NewSafe.swift in Sources */,
 				0A4EEA6820D107BF005CDAC0 /* SafeTableViewCell.swift in Sources */,
+				0A3BD90822254833007039B4 /* RBEIntroViewControllerCancellingState.swift in Sources */,
 				0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */,
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
+				0A3BD8FA22254833007039B4 /* FeeCalculationAssetLine+TextStyle.swift in Sources */,
+				0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */,
 				0ABDE31B21BE6FA000EA0CED /* RecoveryInProgressViewController.swift in Sources */,
 				0AD124DD21BBF037005565B7 /* RecoveryPhraseInputViewController.swift in Sources */,
 				556251F42147C34600F569EE /* AddTokenHeaderView.swift in Sources */,
@@ -2898,7 +2893,9 @@
 				0A334DDE209C726100ABC6AE /* Sotryboards.swift in Sources */,
 				0A334E43209C8E3800ABC6AE /* PasswordValidator.swift in Sources */,
 				0A321BC920CED575000B35E6 /* AddTokenFooterView.swift in Sources */,
+				0A3BD8F822254833007039B4 /* FeeCalculationView.swift in Sources */,
 				0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */,
+				0A3BD90922254833007039B4 /* RBEIntroViewControllerErrorState.swift in Sources */,
 				550D1ED92133FD2E0035109A /* ManageTokensFlowCoordinator.swift in Sources */,
 				558D64EA2180B1A2008107E5 /* SafeCreationViewController.swift in Sources */,
 				554CACCF221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift in Sources */,
@@ -2910,35 +2907,44 @@
 				55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */,
 				0A334DC5209C6DB200ABC6AE /* FlowCoordinator.swift in Sources */,
 				0A334E2A209C8E3800ABC6AE /* OnboardingFlowCoordinator.swift in Sources */,
+				0A3BD90522254833007039B4 /* RBEIntroViewController.swift in Sources */,
 				0A2FAA522201A64000793B7B /* DateToolsLocalized.swift in Sources */,
 				0A8C962F20D2C3E7007D2410 /* BaseCustomButton.swift in Sources */,
 				0A334E48209C8E3800ABC6AE /* AppFlowCoordinator.swift in Sources */,
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,
+				0A3BD90B22254833007039B4 /* RBEIntroViewControllerLoadingState.swift in Sources */,
 				0AF5BB39222421B5006856E0 /* ConnectBrowserExtensionFlowCoordinator.swift in Sources */,
 				0A334E2C209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift in Sources */,
 				0A334E2B209C8E3800ABC6AE /* NewSafeViewController.swift in Sources */,
 				0A290E1421BD1656005188EA /* ReviewRecoveryTransactionViewController.swift in Sources */,
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
+				0A3BD90122254833007039B4 /* UIView+Pin.swift in Sources */,
 				550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */,
 				0A5D467B20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift in Sources */,
 				0AF5BB37222420B7006856E0 /* CBEFeatureFlag.swift in Sources */,
 				0A334E3B209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift in Sources */,
+				0A3BD8FE22254833007039B4 /* FeeCalculationSection.swift in Sources */,
 				0AE950C620D29C930099B79D /* TransactionValueView.swift in Sources */,
+				0A3BD8FC22254833007039B4 /* FeeCalculationSpacingLine.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,
+				0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */,
 				0ACCA8C0221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift in Sources */,
 				0A334E3F209C8E3800ABC6AE /* StartViewController.swift in Sources */,
 				0A334E35209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift in Sources */,
 				0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */,
+				0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */,
 				0A334E46209C8E3800ABC6AE /* PasswordViewController.swift in Sources */,
 				0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */,
 				0A8274E821A432DD00A73D32 /* TransactionsEmptyView.swift in Sources */,
 				0A5D467520AD6D8200AC287E /* UIAlertController+Testable.swift in Sources */,
 				0A6EF3C621BA8C6600F1074E /* RecoverSafeFlowCoordinator.swift in Sources */,
 				0AC3F1732183674100DAADC9 /* GuidelinesViewController.swift in Sources */,
+				0A3BD90022254833007039B4 /* ArrayBasedCollection.swift in Sources */,
 				0A3BD8D622244181007039B4 /* TransactionSubmissionHandler.swift in Sources */,
 				0A3D14E6220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift in Sources */,
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
 				0AD5091F2110AABD008507CB /* FundsTransferTransactionViewModel.swift in Sources */,
+				0A3BD90222254833007039B4 /* EthFeeCalculation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2948,14 +2954,23 @@
 			files = (
 				0A59E90220AAE24A0090E89C /* TestFlowCoordinator.swift in Sources */,
 				0A334E52209C8E6800ABC6AE /* UnlockViewControllerTests.swift in Sources */,
+				0A3BD8F422254822007039B4 /* RBEIntroViewControllerStateTransitionTests.swift in Sources */,
 				0A334E5E209C8E6800ABC6AE /* PasswordValidatorTests.swift in Sources */,
 				0A334E62209C8E6800ABC6AE /* StartViewControllerTests.swift in Sources */,
+				0A3BD8ED22254822007039B4 /* RBEIntroViewControllerErrorStateTests.swift in Sources */,
 				0A334E55209C8E6800ABC6AE /* OnboardingFlowCoordinatorTests.swift in Sources */,
 				554CACD7221F19430086D303 /* FundsTransferReviewTransactionViewControllerTests.swift in Sources */,
+				0A3BD8F122254822007039B4 /* RBEIntroViewControllerReadyStateTests.swift in Sources */,
+				0A3BD8EE22254822007039B4 /* RBEIntroViewControllerInvalidStateTests.swift in Sources */,
 				0AD998A020D3CDA000E6F3CA /* BaseCustomViewTests.swift in Sources */,
+				0A3BD8F222254822007039B4 /* RBEIntroViewControllerStartedStateTests.swift in Sources */,
 				55DFBD1A2136A883004B2AC4 /* AddTokenTableViewControllerTests.swift in Sources */,
+				0A3BD8EA22254822007039B4 /* FeeCalculationTests.swift in Sources */,
+				0A3BD8F322254822007039B4 /* RBEIntroViewControllerStartingStateTests.swift in Sources */,
 				0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */,
 				0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */,
+				0A3BD8EB22254822007039B4 /* RBEIntroViewControllerActionsTests.swift in Sources */,
+				0A3BD8F022254822007039B4 /* RBEStarterMock.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
 				5539C13521A48031006BF834 /* ReviewTransactionViewControllerTests.swift in Sources */,
 				0AF5BB3B222424C2006856E0 /* ConnectBrowserExtensionFlowCoordinatorTests.swift in Sources */,
@@ -2964,6 +2979,7 @@
 				550D1EDB213406380035109A /* ManageTokensTableViewControllerTests.swift in Sources */,
 				0AC3F1712183402800DAADC9 /* TermsAndConditionsViewControllerTests.swift in Sources */,
 				0A334E56209C8E6800ABC6AE /* NewSafeViewControllerTests.swift in Sources */,
+				0A3BD8F522254822007039B4 /* TestableRBEIntroViewController.swift in Sources */,
 				0AF8D53920D00E56001E8423 /* TransactionsTableViewControllerTests.swift in Sources */,
 				0A54E7BF21300D35006BAD93 /* XCTest+Alert.swift in Sources */,
 				55BFA53E21837EB500389732 /* SafeCreationViewControllerTests.swift in Sources */,
@@ -2984,6 +3000,7 @@
 				55625214214A601900F569EE /* SafeTableViewCellTests.swift in Sources */,
 				0AF8D53720CFFC52001E8423 /* SegmentBarControllerTests.swift in Sources */,
 				0A334E5D209C8E6800ABC6AE /* PairWithBrowserExtensionViewControllerTests.swift in Sources */,
+				0A3BD8EF22254822007039B4 /* RBEIntroViewControllerLoadingStateTests.swift in Sources */,
 				550D1EDF213426F00035109A /* AddTokenFooterViewTests.swift in Sources */,
 				0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */,
 				0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */,
@@ -2994,6 +3011,7 @@
 				0A3D14E8220B163500E340DB /* ReplaceBrowserExtensionFlowCoordinatorTests.swift in Sources */,
 				55DEBC2A214BD7C60017CD4B /* SafeAddressViewControllerTests.swift in Sources */,
 				0A334E5B209C8E6800ABC6AE /* NewSafeFlowCoordinatorTests.swift in Sources */,
+				0A3BD8EC22254822007039B4 /* RBEIntroViewControllerBaseTestCase.swift in Sources */,
 				0A334E5A209C8E6800ABC6AE /* ConfirmMnemonicViewControllerTests.swift in Sources */,
 				0A334E60209C8E6800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift in Sources */,
 				0AD998AE20D3EDD200E6F3CA /* TransactionParameterViewTests.swift in Sources */,
@@ -3015,6 +3033,11 @@
 			isa = PBXTargetDependency;
 			target = 0A2FAA272201A5D800793B7B /* ReplaceBrowserExtensionUI */;
 			targetProxy = 0A2FAA7D2201A73A00793B7B /* PBXContainerItemProxy */;
+		};
+		0A3BD91022254953007039B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ReplaceBrowserExtensionFacadeResources;
+			targetProxy = 0A3BD90F22254953007039B4 /* PBXContainerItemProxy */;
 		};
 		0A3D14CA220AE95300E340DB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3118,14 +3141,6 @@
 			children = (
 				0A53AD5420598B5000D713AD /* en */,
 				0A53AD5620598B5E00D713AD /* Base */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		0AB5868D2201C92B007C090D /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0AB5868C2201C92B007C090D /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

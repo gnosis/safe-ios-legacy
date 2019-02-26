@@ -3,7 +3,8 @@
 //
 
 import XCTest
-@testable import ReplaceBrowserExtensionUI
+@testable import SafeAppUI
+import SafeUIKit
 import Common
 import ReplaceBrowserExtensionFacade
 
@@ -112,7 +113,7 @@ extension RBEIntroViewControllerLoadingStateTests {
         state.addCompletion { exp.fulfill() }
         (vc ?? self.vc).state = state
         (vc ?? self.vc).loadViewIfNeeded()
-        waitForExpectations(timeout: 0.01, handler: nil)
+        waitForExpectations(timeout: 0.02, handler: nil)
     }
 
 }

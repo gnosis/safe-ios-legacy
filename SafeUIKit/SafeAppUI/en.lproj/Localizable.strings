@@ -1,6 +1,12 @@
 /* Title for Add Token screen. */
 "add_token.title" = "Add Token";
 
+/* OK */
+"alert.error.ok" = "alert.error.ok";
+
+/* Error */
+"alert.error.title" = "alert.error.title";
+
 /* URL not available message */
 "alert.error.url_unavailable" = "Sorry, the link is unavailable.";
 
@@ -18,6 +24,21 @@
 
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
+
+/* Balance */
+"fee_calculation.balance" = "fee_calculation.balance";
+
+/* Current balance */
+"fee_calculation.current_balance" = "fee_calculation.current_balance";
+
+/* Network fee */
+"fee_calculation.fee" = "fee_calculation.fee";
+
+/* [?] */
+"fee_calculation.fee.info" = "fee_calculation.fee.info";
+
+/* - ETH */
+"fee_calculation.value.loading_eth" = "fee_calculation.value.loading_eth";
 
 /* Application submitted invalid request. */
 "generic.error.client_error" = "Application submitted invalid request to the server. Try again later.";
@@ -99,6 +120,18 @@
 
 /* Back */
 "navigation.back" = "Back";
+
+/* Start */
+"navigation.start" = "navigation.start";
+
+/* Explanatory message */
+"network_fee.alert.message" = "network_fee.alert.message";
+
+/* Ok */
+"network_fee.alert.ok" = "network_fee.alert.ok";
+
+/* Transaction fee */
+"network_fee.alert.title" = "network_fee.alert.title";
 
 /* Browser extension button */
 "new_safe.browser_extension" = "Browser extension";
@@ -373,6 +406,12 @@
 
 /* Scan QR Code */
 "replace_extension.connect.header" = "Scan QR code";
+
+/* Intro body text */
+"replace_extension.intro.body" = "replace_extension.intro.body";
+
+/* Replace browser extension */
+"replace_extension.intro.header" = "replace_extension.intro.header";
 
 /* Text between stars (*) will be emphasized */
 "replace_phrase.body" = "This will generate a new recovery phrase and invalidate your current one.";

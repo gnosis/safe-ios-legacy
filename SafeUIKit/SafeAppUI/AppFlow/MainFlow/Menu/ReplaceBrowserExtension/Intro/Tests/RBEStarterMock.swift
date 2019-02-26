@@ -3,7 +3,7 @@
 //
 
 import Foundation
-@testable import ReplaceBrowserExtensionUI
+@testable import SafeAppUI
 import XCTest
 import ReplaceBrowserExtensionFacade
 

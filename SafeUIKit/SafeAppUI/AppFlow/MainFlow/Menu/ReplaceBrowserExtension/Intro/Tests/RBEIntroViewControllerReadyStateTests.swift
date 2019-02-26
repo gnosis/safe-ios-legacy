@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import ReplaceBrowserExtensionUI
+@testable import SafeAppUI
 import Common
 import BigInt
 import ReplaceBrowserExtensionFacade

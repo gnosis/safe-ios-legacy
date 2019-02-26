@@ -44,6 +44,8 @@ struct ColorAsset {
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 enum Asset {
+  static let chevronHighlighted = ImageAsset(name: "Chevron-highlighted")
+  static let chevron = ImageAsset(name: "Chevron")
   enum MainScreenHeader {
     static let arrows = ImageAsset(name: "arrows")
     static let coins = ImageAsset(name: "coins")
@@ -57,6 +59,11 @@ enum Asset {
     static let ironSafe = ImageAsset(name: "iron-safe")
     static let safeInprogress = ImageAsset(name: "safeInprogress")
     static let water = ImageAsset(name: "water")
+  }
+  enum ReplaceBrowserExtension {
+    static let estimationErrorIcon = ImageAsset(name: "estimation-error-icon")
+    static let introIcon = ImageAsset(name: "intro-icon")
+    static let scrollBottomGradient = ImageAsset(name: "scroll-bottom-gradient")
   }
   static let replacePhrase = ImageAsset(name: "replacePhrase")
   static let shareIcon = ImageAsset(name: "share-icon")
@@ -92,6 +99,8 @@ enum Asset {
   static let allColors: [ColorAsset] = [
   ]
   static let allImages: [ImageAsset] = [
+    chevronHighlighted,
+    chevron,
     MainScreenHeader.arrows,
     MainScreenHeader.coins,
     Menu.chevron,
@@ -100,6 +109,9 @@ enum Asset {
     Onboarding.ironSafe,
     Onboarding.safeInprogress,
     Onboarding.water,
+    ReplaceBrowserExtension.estimationErrorIcon,
+    ReplaceBrowserExtension.introIcon,
+    ReplaceBrowserExtension.scrollBottomGradient,
     replacePhrase,
     shareIcon,
     TermsScreen.squareButtonBorder,
