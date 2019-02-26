@@ -15,6 +15,7 @@ final public class RetryWithIncreasingDelay<T> {
     private let delay: TimeInterval
 
     public init(maxAttempts: Int, startDelay: TimeInterval = 0, _ main: @escaping (Int) throws -> T) {
+        precondition(maxAttempts > 0)
         self.main = main
         self.maxAttempts = maxAttempts
         self.delay = startDelay
