@@ -36,6 +36,8 @@ open class WalletSettingsApplicationService: RBEStarter {
         DomainRegistry.settingsService.cancelPhraseRecovery()
     }
 
+    // MARK: - Replace Browser Extension
+
     open func connect(transaction: RBETransactionID, code: String) throws {
         let txID = TransactionID(transaction)
         let newAddress = ApplicationServiceRegistry.walletService.address(browserExtensionCode: code)
@@ -52,8 +54,6 @@ open class WalletSettingsApplicationService: RBEStarter {
         _ = try DomainRegistry.replaceExtensionService.estimateNetworkFee(for: txID)
         try DomainRegistry.replaceExtensionService.sign(transactionID: txID, with: phrase)
     }
-
-    // MARK: - Replace Browser Extension
 
     open var replaceBrowserExtensionIsAvailable: Bool {
         return DomainRegistry.replaceExtensionService.isAvailable
@@ -90,7 +90,7 @@ open class WalletSettingsApplicationService: RBEStarter {
         do {
             try DomainRegistry.replaceExtensionService.validate(transactionID: txID)
         } catch ReplaceBrowserExtensionDomainServiceError.browserExtensionNotConnected {
-
+            throw FeeCalculationError.extensionNotFound
         } catch ReplaceBrowserExtensionDomainServiceError.insufficientBalance {
             throw FeeCalculationError.insufficientBalance
         }

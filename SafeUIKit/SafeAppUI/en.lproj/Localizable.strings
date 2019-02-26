@@ -22,6 +22,12 @@
 /* Cancel */
 "cancel" = "cancel";
 
+/* Body text */
+"connect_extension.intro.body" = "For increased security, enable 2-factor authentication between your phone and computer.\nAll future transacations will need to be approved by both devices.";
+
+/* Header label */
+"connect_extension.intro.header" = "Connect browser extension";
+
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
 

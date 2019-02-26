@@ -15,17 +15,18 @@ class ConnectBrowserExtensionFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-        let vc = CBEIntroViewController()
+        let vc = CBEIntroViewController.createConnectExtensionIntro()
         vc.delegate = self
+        vc.starter = ApplicationServiceRegistry.settingsService
         push(vc)
         intro = vc
     }
 
 }
 
-extension ConnectBrowserExtensionFlowCoordinator: CBEIntroViewControllerDelegate {
+extension ConnectBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate {
 
-    func introViewControllerDidStart() {
+    func rbeIntroViewControllerDidStart() {
         transactionID = intro.transactionID
         let vc = PairWithBrowserExtensionViewController.create(delegate: self)
         push(vc)

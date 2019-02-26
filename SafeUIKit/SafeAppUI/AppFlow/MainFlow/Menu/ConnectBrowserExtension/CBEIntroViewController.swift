@@ -4,17 +4,25 @@
 
 import UIKit
 
-protocol CBEIntroViewControllerDelegate: class {
-    func introViewControllerDidStart()
-}
+class CBEIntroViewController: RBEIntroViewController {
 
-class CBEIntroViewController: UIViewController {
-
-    weak var delegate: CBEIntroViewControllerDelegate?
-    var transactionID: CBETransactionID?
+    static func createConnectExtensionIntro() -> CBEIntroViewController {
+        return CBEIntroViewController(nibName: "\(RBEIntroViewController.self)", bundle: Bundle(for: self))
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setContent(.connectExtension)
     }
+
+}
+
+extension IntroContentView.Content {
+
+    static let connectExtension = IntroContentView.Content(header: LocalizedString("connect_extension.intro.header",
+                                                                                   comment: "Header label"),
+                                                           body: LocalizedString("connect_extension.intro.body",
+                                                                                 comment: "Body text"),
+                                                           icon: Asset.ReplaceBrowserExtension.introIcon.image)
 
 }

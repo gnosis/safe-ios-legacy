@@ -30,7 +30,7 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
     func test_whenDidStart_thenOpensPairController() {
         fc.transactionID = nil
         fc.intro.transactionID = "tx"
-        fc.introViewControllerDidStart()
+        fc.rbeIntroViewControllerDidStart()
         XCTAssertTrue(nav.topViewController is PairWithBrowserExtensionViewController)
         XCTAssertEqual(fc.transactionID, "tx")
     }
