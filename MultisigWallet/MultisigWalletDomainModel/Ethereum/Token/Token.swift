@@ -59,6 +59,8 @@ extension Token: Equatable {}
 
 public extension Token {
 
+    fileprivate static let separator = "~~~"
+
     init?(_ value: String) {
         let components = value.components(separatedBy: Token.separator)
         guard components.count == 5 else { return nil }
@@ -69,8 +71,6 @@ public extension Token {
                   address: Address(components[3]),
                   logoUrl: components[4])
     }
-
-    fileprivate static let separator = "~~~"
 
 }
 
@@ -118,6 +118,8 @@ public extension TokenAmount {
 
 extension TokenAmount {
 
+    fileprivate static let separator = "==="
+
     public init?(_ value: String) {
         let components = value.components(separatedBy: TokenAmount.separator)
         guard components.count == 2 else { return nil }
@@ -126,9 +128,6 @@ extension TokenAmount {
         }
         self.init(amount: amount, token: token)
     }
-
-    fileprivate static let separator = "==="
-
 }
 
 // MARK: - TokenAmount conversion into a String
