@@ -55,7 +55,7 @@ public struct Token {
 
 extension Token: Equatable {}
 
-// MARK: - Token failable initializer from a String
+// MARK: - Token from a String
 
 public extension Token {
 
@@ -114,7 +114,7 @@ public extension TokenAmount {
 
 }
 
-// MARK: - TokenAmount failable initializer from a String
+// MARK: - TokenAmount from String conversion
 
 extension TokenAmount {
 
