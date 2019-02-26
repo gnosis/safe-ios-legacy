@@ -752,11 +752,11 @@ public class WalletApplicationService: Assertable {
             transaction
                 .change(recipient: erc20Transfer.recipient)
                 .change(amount: TokenAmount(amount: erc20Transfer.amount,
-                                            token: Token.init(code: "",
-                                                              name: "",
-                                                              decimals: 18,
-                                                              address: message.to,
-                                                              logoUrl: "")))
+                                            token: Token(code: "",
+                                                         name: "",
+                                                         decimals: 18,
+                                                         address: message.to,
+                                                         logoUrl: "")))
         }
     }
 
