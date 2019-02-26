@@ -23,7 +23,8 @@ public class FeeCalculationLine: Equatable {
 
     func makeErrorIcon() -> UIView {
         let image = UIImageView(image: UIImage(named: "estimation-error-icon",
-                                               in: Bundle(for: FeeCalculationLine.self), compatibleWith: nil))
+                                               in: Bundle(for: FeeCalculationLine.self),
+                                               compatibleWith: nil))
         image.contentMode = .top
         image.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

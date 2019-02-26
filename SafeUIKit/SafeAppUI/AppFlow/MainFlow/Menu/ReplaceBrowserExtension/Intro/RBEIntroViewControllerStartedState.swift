@@ -18,7 +18,7 @@ extension RBEIntroViewController {
         override func start(controller: RBEIntroViewController) {
             controller.transition(to: StartingState())
         }
-    
+
     }
 
 }

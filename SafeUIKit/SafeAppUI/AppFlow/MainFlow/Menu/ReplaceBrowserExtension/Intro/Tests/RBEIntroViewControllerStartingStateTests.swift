@@ -12,6 +12,7 @@ class RBEIntroViewControllerStartingStateTests: RBEIntroViewControllerBaseTestCa
     let transactionID: RBETransactionID = "StartTransactionID"
     let mock = RBEStarterMock()
 
+    // swiftlint:disable:next overridden_super_call
     override func setUp() {
         // empty
     }

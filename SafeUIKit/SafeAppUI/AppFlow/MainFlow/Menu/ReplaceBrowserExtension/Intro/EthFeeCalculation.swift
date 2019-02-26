@@ -27,7 +27,7 @@ class EthFeeCalculation: FeeCalculation {
         currentBalance = FeeCalculationAssetLine().set(style: .balance).set(name: Strings.currentBalance)
             .set(value: Strings.loadingEth)
         networkFee = FeeCalculationAssetLine().set(name: Strings.networkFee).set(value: Strings.loadingEth)
-            .set(button: Strings.feeInfo, action: Selector(("showNetworkFeeInfo")))
+            .set(button: Strings.feeInfo, action: #selector(RBEIntroViewController.showNetworkFeeInfo))
         balance = FeeCalculationAssetLine().set(style: .balance).set(name: Strings.balance)
             .set(value: Strings.loadingEth)
         super.init()

@@ -12,6 +12,7 @@ class RBEIntroViewControllerLoadingStateTests: RBEIntroViewControllerBaseTestCas
 
     let transactionID = "TestTransactionID"
 
+    // swiftlint:disable:next overridden_super_call
     override func setUp() {
         // not loading view
     }

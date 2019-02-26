@@ -6,7 +6,7 @@ import Foundation
 import UIKit
 
 extension RBEIntroViewController {
-    
+
     class LoadingState: CancellableState {
 
         override func didEnter(controller: RBEIntroViewController) {

@@ -35,7 +35,7 @@ public class TransactionDetailsViewController: UIViewController {
         static let replaceRecoveryPhrase = LocalizedString("transaction.details.type.replaceRecoveryPhrase",
                                                            comment: "Replace recovery phrase")
         static let replaceBrowserExtension = LocalizedString("transaction.details.type.replaceBrowserExtension",
-                                                           comment: "Replace browser extension")
+                                                             comment: "Replace browser extension")
         static let title = LocalizedString("transaction.details.title",
                                            comment: "Title for the transaction details screen")
 

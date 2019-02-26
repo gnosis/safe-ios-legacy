@@ -163,8 +163,8 @@ public class WalletSettingsDomainService {
             wallet.addOwner(Owner(address: newOwner2, role: .unknown))
             DomainRegistry.walletRepository.save(wallet)
 
-            // FIXME: if crashes or closed before tx status finished, then walle tis not updated!
-            
+            // FIXME: if crashes or closed before tx status finished, then wallets not updated!
+
             DomainRegistry.eventPublisher.subscribe(self) { [unowned self] (_: TransactionStatusUpdated) in
                 guard let tx = DomainRegistry.transactionRepository.findByID(id) else {
                     DomainRegistry.eventPublisher.unsubscribe(self)

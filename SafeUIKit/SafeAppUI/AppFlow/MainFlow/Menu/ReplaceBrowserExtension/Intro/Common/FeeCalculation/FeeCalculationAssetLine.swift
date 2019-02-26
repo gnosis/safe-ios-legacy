@@ -119,7 +119,7 @@ public class FeeCalculationAssetLine: FeeCalculationLine {
         self.asset.error = error
         return self
     }
-    
+
     override func equals(to rhs: FeeCalculationLine) -> Bool {
         guard let rhs = rhs as? FeeCalculationAssetLine else { return false }
         return style == rhs.style && asset == rhs.asset

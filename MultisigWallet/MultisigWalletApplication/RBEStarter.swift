@@ -20,7 +20,8 @@ public struct RBEEstimationResult: Equatable, CustomDebugStringConvertible {
     public var error: Error?
 
     public var debugDescription: String {
-        return "RBEEstimationResult{feeCalculation: \(String(describing: feeCalculation)), error: \(String(describing: error))}"
+        return "RBEEstimationResult{feeCalculation: \(String(describing: feeCalculation))," +
+               " error: \(String(describing: error))}"
     }
 
     public init(feeCalculation: RBEFeeCalculationData?, error: Error?) {

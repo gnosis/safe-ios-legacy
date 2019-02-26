@@ -15,9 +15,10 @@ class TestableRBEIntroViewController: RBEIntroViewController {
     var spy_handleError_invoked: Bool = false
     var spy_didLoad_invoked: Bool = false
     var spy_didStart_invoked: Bool = false
-    
+
     static func createTestable() -> TestableRBEIntroViewController {
-        return TestableRBEIntroViewController(nibName: "\(RBEIntroViewController.self)", bundle: Bundle(for: RBEIntroViewController.self))
+        let bundle = Bundle(for: RBEIntroViewController.self)
+        return TestableRBEIntroViewController(nibName: "\(RBEIntroViewController.self)", bundle: bundle)
     }
 
     override func present(_ viewControllerToPresent: UIViewController,
