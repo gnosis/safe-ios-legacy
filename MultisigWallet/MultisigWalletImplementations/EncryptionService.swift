@@ -34,20 +34,13 @@ struct ExtensionCode {
 
 }
 
+private struct JSONSignature: Decodable {
+    let v: Int
+    let r: String
+    let s: String
+}
+
 extension ExtensionCode: Decodable {
-
-    // This is inside to avoid clashing with Signature aka Transaction owner signature.
-    struct Signature: Decodable {
-        let vInt: Int
-        let rStr: String
-        let sStr: String
-
-        enum CodingKeys: String, CodingKey {
-            case vInt = "v"
-            case rStr = "r"
-            case sStr = "s"
-        }
-    }
 
     enum CodingKeys: String, CodingKey {
         case expirationDate
@@ -61,14 +54,12 @@ extension ExtensionCode: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let expirationDate = try container.decode(String.self, forKey: .expirationDate)
-        let signature = try container.decode(Signature.self, forKey: .signature)
-        let vInt = signature.vInt
-        let rStr = signature.rStr
-        let sStr = signature.sStr
-        guard let r = BInt(rStr, radix: 10), let s = BInt(sStr, radix: 10) else {
+        let signature = try container.decode(JSONSignature.self, forKey: .signature)
+        let v = BInt(signature.v)
+        guard let r = BInt(signature.r, radix: 10), let s = BInt(signature.s, radix: 10) else {
             throw ExtensionCodeError.bIntFailure
         }
-        self.init(expirationDate: expirationDate, v: BInt(vInt), r: r, s: s)
+        self.init(expirationDate: expirationDate, v: v, r: r, s: s)
     }
 
 }
