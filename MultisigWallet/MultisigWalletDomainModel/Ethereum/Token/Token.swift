@@ -122,8 +122,7 @@ extension TokenAmount {
 
     public init?(_ value: String) {
         let components = value.components(separatedBy: TokenAmount.separator)
-        guard components.count == 2 else { return nil }
-        guard let amount = TokenInt(components[0]), let token = Token(components[1]) else {
+        guard let amount = TokenInt(components[0]), let token = Token(components[1]), components.count == 2 else {
             return nil
         }
         self.init(amount: amount, token: token)
