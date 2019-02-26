@@ -15,7 +15,7 @@ public enum ReplaceBrowserExtensionDomainServiceError: Error {
 
 open class ReplaceBrowserExtensionDomainService: Assertable {
 
-    public var isAvailable: Bool {
+    open var isAvailable: Bool {
         guard let wallet = self.wallet else { return false }
         return wallet.owner(role: .browserExtension) != nil
     }

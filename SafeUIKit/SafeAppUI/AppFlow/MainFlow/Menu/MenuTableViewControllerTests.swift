@@ -36,17 +36,6 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: supportSection), 3)
     }
 
-//    func test_whenBrowserExtensionIsNotConnected_thenConnectBrowserExtensionCellIsShown() {
-//        let cell = self.cell(row: 0, section: securitySection)
-//        XCTAssertEqual(cell.textLabel?.text, XCLocalizedString("menu.action.connect_browser_extension"))
-//    }
-//
-//    func test_whenBrowserExtensionIsConnected_thenChangeBrowserExtensionCellIsShown() {
-//        walletService.addOwner(address: "test", type: .browserExtension)
-//        controller.viewDidLoad()
-//        let cell = self.cell(row: 0, section: securitySection)
-//        XCTAssertEqual(cell.textLabel?.text, XCLocalizedString("menu.action.change_browser_extension"))
-//    }
 
     func test_whenCreated_thenRowHeightsAreProvided() {
         XCTAssertGreaterThan(cellHeight(row: 0, section: safeSection), 44)
@@ -77,18 +66,6 @@ class MenuTableViewControllerTests: XCTestCase {
         selectCell(row: 0, section: portfolioSection)
         XCTAssertTrue(delegate.manageTokensSelected)
     }
-
-//    func test_whenSelectingConnectBrowserExtension_thenCallsDelegate() {
-//        selectCell(row: 0, section: 2)
-//        XCTAssertTrue(delegate.didCallConnectBrowserExtension)
-//    }
-//
-//    func test_whenSelectingChangeBrowserExtension_thenCallsDelegate() {
-//        walletService.addOwner(address: "test", type: .browserExtension)
-//        controller.viewDidLoad()
-//        selectCell(row: 0, section: 2)
-//        XCTAssertTrue(delegate.didCallChangeBrowserExtension)
-//    }
 
     func test_whenSelectingTermsOfUse_thenCallsDelegate() {
         selectCell(row: 0, section: supportSection)
