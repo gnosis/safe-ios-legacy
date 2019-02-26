@@ -3,8 +3,6 @@
 //
 
 import UIKit
-import ReplaceBrowserExtensionUI
-import ReplaceBrowserExtensionFacade
 import MultisigWalletApplication
 
 class ReplaceBrowserExtensionFlowCoordinator: FlowCoordinator {

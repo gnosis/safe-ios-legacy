@@ -23,8 +23,6 @@
 		0A160B8920A07CC200E064E1 /* SafeUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B5C20A07C2D00E064E1 /* SafeUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A1B2AC5221EFDDA00E92990 /* UIKitFileSystemGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AC4221EFDDA00E92990 /* UIKitFileSystemGuard.swift */; };
 		0A34BC60207B808800636560 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A34BC5F207B808800636560 /* libCommonTestSupport.a */; };
-		0A3D14D9220B155400E340DB /* ReplaceBrowserExtensionUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D14D4220B155400E340DB /* ReplaceBrowserExtensionUI.framework */; };
-		0A3D14DA220B155400E340DB /* ReplaceBrowserExtensionUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D14D4220B155400E340DB /* ReplaceBrowserExtensionUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A4B004520977266006343EB /* SetupSafeOptionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */; };
 		0A537C1B207D019800921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1A207D019800921FB9 /* libIdentityAccessImplementations.a */; };
 		0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */; };
@@ -229,13 +227,6 @@
 			remoteGlobalIDString = 0A2FAA672201A72700793B7B;
 			remoteInfo = UIStaging;
 		};
-		0A3D14DB220B155400E340DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A2FAA272201A5D800793B7B;
-			remoteInfo = ReplaceBrowserExtensionUI;
-		};
 		0AC33F182119CBE1009A5CFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
@@ -286,7 +277,6 @@
 			files = (
 				0A160B8620A07C7300E064E1 /* SafeAppUI.framework in Embed Frameworks */,
 				0A160B8920A07CC200E064E1 /* SafeUIKit.framework in Embed Frameworks */,
-				0A3D14DA220B155400E340DB /* ReplaceBrowserExtensionUI.framework in Embed Frameworks */,
 				0AC33F1B2119CBE1009A5CFB /* CommonCrypto.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -419,7 +409,6 @@
 				0A8E3C0B20B42C2100F002F6 /* libMultisigWalletImplementations.a in Frameworks */,
 				0A8E3BE720B41D3F00F002F6 /* libCommonImplementations.a in Frameworks */,
 				0AEF8A3D20A08262006A1265 /* libDatabase.a in Frameworks */,
-				0A3D14D9220B155400E340DB /* ReplaceBrowserExtensionUI.framework in Frameworks */,
 				0A160B8520A07C6300E064E1 /* SafeAppUI.framework in Frameworks */,
 				0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */,
 				0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */,
@@ -806,7 +795,6 @@
 				0A160B8B20A07CC200E064E1 /* PBXTargetDependency */,
 				0AC33F1D2119CBE1009A5CFB /* PBXTargetDependency */,
 				0A028EF021AEE3FE00431D25 /* PBXTargetDependency */,
-				0A3D14DC220B155400E340DB /* PBXTargetDependency */,
 			);
 			name = safe;
 			productName = safe;
@@ -1310,11 +1298,6 @@
 			isa = PBXTargetDependency;
 			name = SafeUIKit;
 			targetProxy = 0A160B8A20A07CC200E064E1 /* PBXContainerItemProxy */;
-		};
-		0A3D14DC220B155400E340DB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ReplaceBrowserExtensionUI;
-			targetProxy = 0A3D14DB220B155400E340DB /* PBXContainerItemProxy */;
 		};
 		0AC33F1D2119CBE1009A5CFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

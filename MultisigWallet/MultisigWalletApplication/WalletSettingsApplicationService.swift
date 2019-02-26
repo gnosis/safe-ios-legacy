@@ -4,7 +4,6 @@
 
 import Foundation
 import MultisigWalletDomainModel
-import ReplaceBrowserExtensionFacade
 import Common
 
 open class WalletSettingsApplicationService: RBEStarter {

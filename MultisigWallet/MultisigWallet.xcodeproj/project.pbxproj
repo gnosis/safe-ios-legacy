@@ -34,8 +34,11 @@
 		0A290E1821BD3558005188EA /* MultiSendContractProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1721BD3558005188EA /* MultiSendContractProxy.swift */; };
 		0A2DBCBB220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */; };
 		0A2DBCC2220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */; };
-		0A3D1547220B321B00E340DB /* libReplaceBrowserExtensionFacade.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D153D220B2FA600E340DB /* libReplaceBrowserExtensionFacade.a */; };
-		0A3D1548220B322D00E340DB /* libReplaceBrowserExtensionFacade.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3D153D220B2FA600E340DB /* libReplaceBrowserExtensionFacade.a */; };
+		0A3BD92A22254FF7007039B4 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD92122254FF6007039B4 /* LocalizedString.swift */; };
+		0A3BD92B22254FF7007039B4 /* RBEStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD92722254FF6007039B4 /* RBEStarter.swift */; };
+		0A3BD92C22254FF7007039B4 /* FeeCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD92822254FF7007039B4 /* FeeCalculationError.swift */; };
+		0A3BD92D22254FF7007039B4 /* RBEFeeCalculationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD92922254FF7007039B4 /* RBEFeeCalculationData.swift */; };
+		0A3BD93C222550F6007039B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A3BD93B222550F5007039B4 /* Localizable.strings */; };
 		0A40668820A5E01D009BA7FC /* MockWalletApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */; };
 		0A40669120A5E0EA009BA7FC /* WalletApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */; };
 		0A40669320A5E1C2009BA7FC /* ApplicationServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */; };
@@ -238,26 +241,12 @@
 			remoteGlobalIDString = 0A160B9120A07FE100E064E1;
 			remoteInfo = Database;
 		};
-		0A3D1534220B2FA600E340DB /* PBXContainerItemProxy */ = {
+		0A3BD93D22255146007039B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */;
+			containerPortal = 0AEF8A6B20A08868006A1265 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0A3D1500220B286B00E340DB;
-			remoteInfo = ReplaceBrowserExtensionFacade;
-		};
-		0A3D153C220B2FA600E340DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A3D1501220B286B00E340DB;
-			remoteInfo = ReplaceBrowserExtensionFacade;
-		};
-		0A3D153E220B2FA600E340DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0AEF8AC720A08A3F006A1265 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A3D1518220B2A0A00E340DB;
-			remoteInfo = ReplaceBrowserExtensionFacadeResources;
+			remoteGlobalIDString = 0A3BD93122255049007039B4;
+			remoteInfo = MultisigWalletApplicationResources;
 		};
 		0A59E8F320AADD510090E89C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -450,6 +439,13 @@
 		0A290E1721BD3558005188EA /* MultiSendContractProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSendContractProxy.swift; sourceTree = "<group>"; };
 		0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainService.swift; sourceTree = "<group>"; };
 		0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServiceTests.swift; sourceTree = "<group>"; };
+		0A3BD92122254FF6007039B4 /* LocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		0A3BD92722254FF6007039B4 /* RBEStarter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBEStarter.swift; sourceTree = "<group>"; };
+		0A3BD92822254FF7007039B4 /* FeeCalculationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeeCalculationError.swift; sourceTree = "<group>"; };
+		0A3BD92922254FF7007039B4 /* RBEFeeCalculationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBEFeeCalculationData.swift; sourceTree = "<group>"; };
+		0A3BD93222255049007039B4 /* MultisigWalletApplicationResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultisigWalletApplicationResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A3BD93422255049007039B4 /* MultisigWalletApplicationResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MultisigWalletApplicationResources-Info.plist"; sourceTree = "<group>"; };
+		0A3BD93B222550F5007039B4 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		0A40668720A5E01D009BA7FC /* MockWalletApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWalletApplicationService.swift; sourceTree = "<group>"; };
 		0A40669020A5E0EA009BA7FC /* WalletApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApplicationService.swift; sourceTree = "<group>"; };
 		0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
@@ -670,7 +666,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A3D1547220B321B00E340DB /* libReplaceBrowserExtensionFacade.a in Frameworks */,
 				0A23C82920A1DEED00C72483 /* libDatabase.a in Frameworks */,
 				0AEF8AEC20A08BAE006A1265 /* libMultisigWalletApplication.a in Frameworks */,
 				0AEF8AE720A08AC2006A1265 /* libCommon.a in Frameworks */,
@@ -691,7 +686,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A3D1548220B322D00E340DB /* libReplaceBrowserExtensionFacade.a in Frameworks */,
 				0A23C82820A1DEE200C72483 /* libDatabase.a in Frameworks */,
 				0AEF8AE520A08AB6006A1265 /* libMultisigWalletApplication.a in Frameworks */,
 				0AEF8AE420A08AB3006A1265 /* libMultisigWalletDomainModel.a in Frameworks */,
@@ -952,6 +946,7 @@
 				0AEF8A9B20A088A5006A1265 /* MultisigWalletApplicationTests.xctest */,
 				0AEF8AAA20A088B1006A1265 /* libMultisigWalletImplementations.a */,
 				0AEF8AB520A088C3006A1265 /* MultisigWalletImplementationsTests.xctest */,
+				0A3BD93222255049007039B4 /* MultisigWalletApplicationResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -990,6 +985,11 @@
 		0AEF8A9120A08899006A1265 /* MultisigWalletApplication */ = {
 			isa = PBXGroup;
 			children = (
+				0A3BD93B222550F5007039B4 /* Localizable.strings */,
+				0A3BD92922254FF7007039B4 /* RBEFeeCalculationData.swift */,
+				0A3BD92822254FF7007039B4 /* FeeCalculationError.swift */,
+				0A3BD92122254FF6007039B4 /* LocalizedString.swift */,
+				0A3BD92722254FF6007039B4 /* RBEStarter.swift */,
 				0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */,
 				0A9E379420F4A4D10085E8D7 /* ApplicationServiceRegistryTests.swift */,
 				0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */,
@@ -1014,6 +1014,7 @@
 				0A4A1D692136C4990088F9EC /* WalletApplicationServiceTests */,
 				0A4C3897212D9411005594DA /* WalletStateEnum.swift */,
 				556251E52146787700F569EE /* TokenData+Extensions.swift */,
+				0A3BD93422255049007039B4 /* MultisigWalletApplicationResources-Info.plist */,
 			);
 			path = MultisigWalletApplication;
 			sourceTree = "<group>";
@@ -1076,8 +1077,6 @@
 				0A8E3C0120B4254F00F002F6 /* libCommonImplementations.a */,
 				0A8E3C0320B4254F00F002F6 /* CommonImplementationsTests.xctest */,
 				0AA5D49E20E113EF006F46CD /* CommonIntegration.app */,
-				0A3D153D220B2FA600E340DB /* libReplaceBrowserExtensionFacade.a */,
-				0A3D153F220B2FA600E340DB /* ReplaceBrowserExtensionFacadeResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1126,6 +1125,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0A3BD93122255049007039B4 /* MultisigWalletApplicationResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A3BD93522255049007039B4 /* Build configuration list for PBXNativeTarget "MultisigWalletApplicationResources" */;
+			buildPhases = (
+				0A3BD93A222550DC007039B4 /* ShellScript */,
+				0A3BD93022255049007039B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MultisigWalletApplicationResources;
+			productName = MultisigWalletApplicationResources;
+			productReference = 0A3BD93222255049007039B4 /* MultisigWalletApplicationResources.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		0AEF8A7420A08878006A1265 /* MultisigWalletDomainModel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AEF8A7A20A08878006A1265 /* Build configuration list for PBXNativeTarget "MultisigWalletDomainModel" */;
@@ -1177,7 +1192,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				0A3D1535220B2FA600E340DB /* PBXTargetDependency */,
 				0A59E8F420AADD510090E89C /* PBXTargetDependency */,
 				0AEF8ADC20A08A54006A1265 /* PBXTargetDependency */,
 			);
@@ -1217,6 +1231,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0A3BD93E22255146007039B4 /* PBXTargetDependency */,
 				0AAA735621B81BE100F4AB7A /* PBXTargetDependency */,
 				0A59E8F920AADD570090E89C /* PBXTargetDependency */,
 				0A59E8FB20AADD570090E89C /* PBXTargetDependency */,
@@ -1257,6 +1272,9 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Gnosis Ltd";
 				TargetAttributes = {
+					0A3BD93122255049007039B4 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					0AEF8A7420A08878006A1265 = {
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 1000;
@@ -1307,25 +1325,12 @@
 				0AEF8A9A20A088A5006A1265 /* MultisigWalletApplicationTests */,
 				0AEF8AA920A088B1006A1265 /* MultisigWalletImplementations */,
 				0AEF8AB420A088C3006A1265 /* MultisigWalletImplementationsTests */,
+				0A3BD93122255049007039B4 /* MultisigWalletApplicationResources */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		0A3D153D220B2FA600E340DB /* libReplaceBrowserExtensionFacade.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReplaceBrowserExtensionFacade.a;
-			remoteRef = 0A3D153C220B2FA600E340DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A3D153F220B2FA600E340DB /* ReplaceBrowserExtensionFacadeResources.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ReplaceBrowserExtensionFacadeResources.bundle;
-			remoteRef = 0A3D153E220B2FA600E340DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		0A8E3C0120B4254F00F002F6 /* libCommonImplementations.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1385,6 +1390,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0A3BD93022255049007039B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A3BD93C222550F6007039B4 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0AEF8A7F20A08889006A1265 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1409,6 +1422,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0A3BD93A222550DC007039B4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/../scripts/localize.sh LocalizedString MultisigWalletApplication\n";
+		};
 		0AB0B5642163841000FB2435 /* Embed Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1647,14 +1677,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3BD92D22254FF7007039B4 /* RBEFeeCalculationData.swift in Sources */,
 				0AB084CB21C01EAC00DC3E81 /* WalletSettingsApplicationService.swift in Sources */,
 				556251E62146787700F569EE /* TokenData+Extensions.swift in Sources */,
 				0A60B522211343F70066821A /* TransactionData.swift in Sources */,
 				0ACA9D46212C469100E39BB6 /* EventRelay.swift in Sources */,
 				0A54E7D821305282006BAD93 /* OwnerType.swift in Sources */,
+				0A3BD92C22254FF7007039B4 /* FeeCalculationError.swift in Sources */,
+				0A3BD92A22254FF7007039B4 /* LocalizedString.swift in Sources */,
 				0A54E7CB21305273006BAD93 /* WalletApplicationServiceError.swift in Sources */,
 				0A40668820A5E01D009BA7FC /* MockWalletApplicationService.swift in Sources */,
 				0A9E383320F4AC5F0085E8D7 /* MockEthereumApplicationService.swift in Sources */,
+				0A3BD92B22254FF7007039B4 /* RBEStarter.swift in Sources */,
 				0A40669320A5E1C2009BA7FC /* ApplicationServiceRegistry.swift in Sources */,
 				0AAAE3E7219AE0A100CB4AA4 /* WalletApplicationServiceConfiguration.swift in Sources */,
 				0A9E383520F4AC5F0085E8D7 /* EthereumApplicationService.swift in Sources */,
@@ -1769,10 +1803,10 @@
 			name = Database;
 			targetProxy = 0A23C82620A1DEDB00C72483 /* PBXContainerItemProxy */;
 		};
-		0A3D1535220B2FA600E340DB /* PBXTargetDependency */ = {
+		0A3BD93E22255146007039B4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = ReplaceBrowserExtensionFacade;
-			targetProxy = 0A3D1534220B2FA600E340DB /* PBXContainerItemProxy */;
+			target = 0A3BD93122255049007039B4 /* MultisigWalletApplicationResources */;
+			targetProxy = 0A3BD93D22255146007039B4 /* PBXContainerItemProxy */;
 		};
 		0A59E8F420AADD510090E89C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2268,6 +2302,67 @@
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+			};
+			name = PreRelease;
+		};
+		0A3BD93622255049007039B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				INFOPLIST_FILE = "$SRCROOT/MultisigWalletApplication/MultisigWalletApplicationResources-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.MultisigWalletApplicationResources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		0A3BD93722255049007039B4 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				INFOPLIST_FILE = "$SRCROOT/MultisigWalletApplication/MultisigWalletApplicationResources-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.MultisigWalletApplicationResources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = AdHoc;
+		};
+		0A3BD93822255049007039B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				INFOPLIST_FILE = "$SRCROOT/MultisigWalletApplication/MultisigWalletApplicationResources-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.MultisigWalletApplicationResources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		0A3BD93922255049007039B4 /* PreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				INFOPLIST_FILE = "$SRCROOT/MultisigWalletApplication/MultisigWalletApplicationResources-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.MultisigWalletApplicationResources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = PreRelease;
 		};
@@ -3668,6 +3763,17 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0A3BD93522255049007039B4 /* Build configuration list for PBXNativeTarget "MultisigWalletApplicationResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A3BD93622255049007039B4 /* Debug */,
+				0A3BD93722255049007039B4 /* AdHoc */,
+				0A3BD93822255049007039B4 /* Release */,
+				0A3BD93922255049007039B4 /* PreRelease */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0AEF8A6E20A08868006A1265 /* Build configuration list for PBXProject "MultisigWallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
