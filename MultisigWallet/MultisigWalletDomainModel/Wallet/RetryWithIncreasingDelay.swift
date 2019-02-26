@@ -22,17 +22,13 @@ final public class RetryWithIncreasingDelay<T> {
     }
 
     public func start() throws -> T {
-        var attempt = 0
         var error: Error!
-        while attempt < maxAttempts {
-            if attempt > 0 {
-                Common.Timer.wait(TimeInterval(attempt) * delay)
-            }
+        for attempt in 0..<maxAttempts {
             do {
                 return try main(attempt)
             } catch let e {
-                attempt += 1
                 error = e
+                Common.Timer.wait(TimeInterval(attempt) * delay)
             }
         }
         throw error
