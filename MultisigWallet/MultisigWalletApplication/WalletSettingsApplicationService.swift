@@ -36,4 +36,9 @@ open class WalletSettingsApplicationService {
         DomainRegistry.settingsService.cancelPhraseRecovery()
     }
 
+    public func resyncWithBrowserExtension() throws {
+        guard let wallet = DomainRegistry.walletRepository.selectedWallet() else { return }
+        try DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
+    }
+
 }
