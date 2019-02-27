@@ -6,16 +6,17 @@ import XCTest
 @testable import MultisigWalletApplication
 import MultisigWalletDomainModel
 
-class WalletSettingsApplicationServiceTests: XCTestCase {
+class ReplaceBrowserExtensionApplicationServiceTests: XCTestCase {
 
     var mockReplaceService = MockReplaceBrowserExtensionDomainService()
     let mockWalletService = MockWalletApplicationService()
-    let service = WalletSettingsApplicationService()
+    var service: ReplaceBrowserExtensionApplicationService!
 
     override func setUp() {
         super.setUp()
         DomainRegistry.put(service: mockReplaceService, for: ReplaceBrowserExtensionDomainService.self)
         ApplicationServiceRegistry.put(service: mockWalletService, for: WalletApplicationService.self)
+        service = ReplaceBrowserExtensionApplicationService.create()
     }
 
     func test_whenOldPairNotSet_thenDoesNotDeleteIt() throws {

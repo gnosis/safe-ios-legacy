@@ -71,6 +71,11 @@ final class MenuTableViewController: UITableViewController {
     }
 
     private var showQRCode = false
+    let replaceCommand = ReplaceBrowserExtensionCommand()
+    let connectCommand = ConnectBrowserExtensionLaterCommand()
+    var securityCommands: [MenuCommand] {
+        return [replaceCommand, connectCommand]
+    }
 
     static func create() -> MenuTableViewController {
         return StoryboardScene.Main.menuTableViewController.instantiate()
@@ -97,7 +102,6 @@ final class MenuTableViewController: UITableViewController {
 
     private func generateData() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
-        let securityCommands: [MenuCommand] = [ReplaceBrowserExtensionCommand(), ConnectBrowserExtensionLaterCommand()]
         menuItems = [
             (section: .safe,
              items: [
@@ -200,9 +204,9 @@ final class MenuTableViewController: UITableViewController {
             let item = menuItem(at: indexPath)!
             switch item.name {
             case ConnectBrowserExtensionLaterCommand().title:
-                delegate?.didSelectCommand(ConnectBrowserExtensionLaterCommand())
+                delegate?.didSelectCommand(connectCommand)
             case ReplaceBrowserExtensionCommand().title:
-                delegate?.didSelectCommand(ReplaceBrowserExtensionCommand())
+                delegate?.didSelectCommand(replaceCommand)
             case Strings.changeRecoveryPhrase:
                 delegate?.didSelectReplaceRecoveryPhrase()
             default: break

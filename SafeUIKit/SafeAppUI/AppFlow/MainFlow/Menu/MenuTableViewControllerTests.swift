@@ -13,12 +13,16 @@ class MenuTableViewControllerTests: XCTestCase {
     // swiftlint:disable:next weak_delegate
     let delegate = MockMenuTableViewControllerDelegate()
     let walletService = MockWalletApplicationService()
-    let settingsService = MockWalletSettingsApplicationService()
+    let replaceExtensionService = MockReplaceExtensionApplicationService()
+    let connectExtensionService = MockConnectExtensionApplicationService()
 
     override func setUp() {
         super.setUp()
         walletService.assignAddress("test_address")
-        ApplicationServiceRegistry.put(service: settingsService, for: WalletSettingsApplicationService.self)
+        ApplicationServiceRegistry.put(service: replaceExtensionService,
+                                       for: ReplaceBrowserExtensionApplicationService.self)
+        ApplicationServiceRegistry.put(service: connectExtensionService,
+                                       for: ConnectBrowserExtensionApplicationService.self)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         controller.delegate = delegate
         createWindow(controller)

@@ -22,6 +22,18 @@
 /* Cancel */
 "cancel" = "cancel";
 
+/* Body text */
+"connect_extension.intro.body" = "For increased security, enable 2-factor authentication between your phone and computer.\nAll future transacations will need to be approved by both devices.";
+
+/* Header label */
+"connect_extension.intro.header" = "Connect browser extension";
+
+/* Detail for the header */
+"connect_extension.review.detail" = "This transaction connects this Safe with the browser extension. Future transactions require confirmation from both devices.";
+
+/* Title for the header */
+"connect_extension.review.title" = "Connect browser extension";
+
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
 
@@ -521,6 +533,12 @@
 /* Continue button title for New Transaction Screen */
 "transaction.continue" = "Continue";
 
+/* Detail for the header in review screen */
+"transaction.details.connect_extension.detail" = "transaction.details.connect_extension.detail";
+
+/* Title for the header in review screen */
+"transaction.details.connect_extension.title" = "transaction.details.connect_extension.title";
+
 /* 'View on Etherscan' button name */
 "transaction.details.externalViewer" = "View on Etherscan.io";
 
@@ -562,6 +580,9 @@
 
 /* 'Type' parameter name */
 "transaction.details.type" = "Type";
+
+/* Connect browser extension */
+"transaction.details.type.connectBrowserExtension" = "transaction.details.type.connectBrowserExtension";
 
 /* 'Incoming' transaction type */
 "transaction.details.type.incoming" = "Incoming Transfer";
@@ -642,6 +663,9 @@
 /* Pending transactions group header */
 "transactions.group.pending_outgoing" = "Pending Outgoing";
 
+/* Connect browser extension */
+"transactions.row.connect_extension" = "Connected\nBrowser Extension";
+
 /* (failed) suffix) */
 "transactions.row.failed" = "(failed)";
 
@@ -649,7 +673,7 @@
 "transactions.row.rejected" = "(rejected)";
 
 /* Browser extension changed */
-"transactions.row.replace_extension" = "New browser\nextension";
+"transactions.row.replace_extension" = "New Browser\nExtension";
 
 /* Recovery phrase changed */
 "transactions.row.replace_phrase" = "Replaced\nRecovery Phrase";

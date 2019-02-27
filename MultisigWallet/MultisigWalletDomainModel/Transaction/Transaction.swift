@@ -309,6 +309,7 @@ public enum TransactionType: Int {
     case walletRecovery
     case replaceRecoveryPhrase
     case replaceBrowserExtension
+    case connectBrowserExtension
 
 }
 

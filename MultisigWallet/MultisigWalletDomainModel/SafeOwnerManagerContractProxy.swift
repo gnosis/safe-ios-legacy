@@ -41,6 +41,19 @@ public class SafeOwnerManagerContractProxy: EthereumContractProxy {
                           encodeUInt(BigUInt(threshold)))
     }
 
+    public func decodeAddOwnerArguments(from data: Data) -> (new: Address, threshold: Int)? {
+        let argumentLength = 32
+        let selector = self.method("addOwnerWithThreshold(address,uint256)")
+        guard data.count == selector.count + 2 * argumentLength &&
+            data.prefix(selector.count) == selector else { return nil }
+        var input = data
+        input.removeFirst(selector.count)
+        let newOwner = decodeAddress(input)
+        input.removeFirst(argumentLength)
+        let threshold = decodeUInt(input)
+        return (newOwner, Int(threshold))
+    }
+
     public func changeThreshold(_ newValue: Int) -> Data {
         return invocation("changeThreshold(uint256)", encodeUInt(BigUInt(newValue)))
     }

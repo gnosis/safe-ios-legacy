@@ -498,6 +498,7 @@ public class WalletApplicationService: Assertable {
         case .walletRecovery: type = .walletRecovery
         case .replaceRecoveryPhrase: type = .replaceRecoveryPhrase
         case .replaceBrowserExtension: type = .replaceBrowserExtension
+        case .connectBrowserExtension: type = .connectBrowserExtension
         }
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token,
