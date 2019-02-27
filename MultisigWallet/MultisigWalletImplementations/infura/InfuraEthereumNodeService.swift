@@ -126,7 +126,7 @@ public class InfuraEthereumNodeService: EthereumNodeDomainService {
     }
 
     private func error(httpStatusCode code: Int) -> Swift.Error {
-        if (100..<200).contains(code) || (300..<500).contains(code) {
+        if 100..<200 ~= code || 300..<500 ~= code {
             return NetworkServiceError.clientError
         } else {
             return NetworkServiceError.serverError

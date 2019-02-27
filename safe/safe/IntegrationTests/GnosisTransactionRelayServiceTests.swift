@@ -252,7 +252,7 @@ class GnosisTransactionRelayServiceTests: BlockchainIntegrationTest {
 
         var transactions = [Transaction]()
         do {
-            for _ in (0..<txCount) {
+            for _ in 0..<txCount {
                 let tx = try context.safe.prepareTx(to: recipient, amount: txAmount)
                 transactions.append(tx)
                 sign(transaction: tx, context: context, signatureCount: 1)
