@@ -5,17 +5,16 @@
 import UIKit
 import MultisigWalletApplication
 
-typealias CBETransactionID = String
-
 class ConnectBrowserExtensionFlowCoordinator: FlowCoordinator {
 
-    weak var intro: CBEIntroViewController!
-    var transactionID: CBETransactionID!
+    weak var intro: RBEIntroViewController!
+    var transactionID: RBETransactionID!
     var transactionSubmissionHandler = TransactionSubmissionHandler()
 
     override func setUp() {
         super.setUp()
-        let vc = CBEIntroViewController.createConnectExtensionIntro()
+        let vc = RBEIntroViewController.create()
+        vc.setContent(.connectExtension)
         vc.delegate = self
         vc.starter = ApplicationServiceRegistry.connectExtensionService
         intro = vc
@@ -23,6 +22,16 @@ class ConnectBrowserExtensionFlowCoordinator: FlowCoordinator {
     }
 
 }
+
+extension IntroContentView.Content {
+
+    static let connectExtension =
+        IntroContentView.Content(header: LocalizedString("connect_extension.intro.header", comment: "Header label"),
+                                 body: LocalizedString("connect_extension.intro.body", comment: "Body text"),
+                                 icon: Asset.ConnectBrowserExtension.connectIntroIcon.image)
+
+}
+
 
 extension ConnectBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate {
 

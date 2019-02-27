@@ -9,10 +9,24 @@ class MenuCommand {
     var title: String {
         preconditionFailure("Override this method")
     }
-    var isHidden: Bool { return false }
+
+    var isHidden: Bool {
+        return false
+    }
+
+    var childFlowCoordinator: FlowCoordinator!
 
     func run(mainFlowCoordinator: MainFlowCoordinator) {
-        preconditionFailure("Override this method")
+        mainFlowCoordinator.saveCheckpoint()
+        mainFlowCoordinator.enter(flow: childFlowCoordinator) { [unowned mainFlowCoordinator] in
+            DispatchQueue.main.async {
+                mainFlowCoordinator.popToLastCheckpoint()
+                mainFlowCoordinator.pop()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(800)) {
+                    mainFlowCoordinator.showTransactionList()
+                }
+            }
+        }
     }
 
 }

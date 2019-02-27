@@ -24,7 +24,7 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
     }
 
     func test_onEnter_pushesIntro() {
-        XCTAssertTrue(nav.topViewController is CBEIntroViewController)
+        XCTAssertTrue(nav.topViewController is RBEIntroViewController)
         XCTAssertTrue(fc.intro.delegate === fc, "Delegate is not set")
     }
 

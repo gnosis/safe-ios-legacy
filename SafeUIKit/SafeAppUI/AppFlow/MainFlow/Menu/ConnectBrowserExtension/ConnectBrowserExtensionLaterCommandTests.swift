@@ -17,9 +17,9 @@ class ConnectBrowserExtensionLaterCommandTests: XCTestCase {
     }
 
     func test_whenNoBrowserExtension_thenCanConnect() {
-        XCTAssertTrue(command.isHidden)
-        connectService.isAvailableResult = false
         XCTAssertFalse(command.isHidden)
+        connectService.isAvailableResult = false
+        XCTAssertTrue(command.isHidden)
     }
 
 }

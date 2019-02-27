@@ -91,6 +91,9 @@ public class RBEIntroViewController: UIViewController {
     }
 
     func setContent(_ content: IntroContentView.Content) {
+        if !isViewLoaded {
+            loadViewIfNeeded()
+        }
         contentView.content = content
         contentView.didLoad()
     }
