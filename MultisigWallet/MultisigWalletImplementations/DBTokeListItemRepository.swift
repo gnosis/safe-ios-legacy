@@ -25,7 +25,7 @@ SELECT id, token, status, sorting_id, updated
 FROM tbl_token_list_items
 WHERE id = ? LIMIT 1;
 """
-        static let all = "SELECT id, token, status, sorting_id, updated FROM tbl_token_list_items;"
+        static let all = "SELECT id, token, status, sorting_id, updated FROM tbl_token_list_items ORDER BY token;"
         static let find_by_status = """
 SELECT id, token, status, sorting_id, updated
 FROM tbl_token_list_items
