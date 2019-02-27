@@ -5,29 +5,39 @@
 import UIKit
 import MultisigWalletApplication
 
-typealias CBETransactionID = String
-
 class ConnectBrowserExtensionFlowCoordinator: FlowCoordinator {
 
-    weak var intro: CBEIntroViewController!
-    var transactionID: CBETransactionID!
+    weak var intro: RBEIntroViewController!
+    var transactionID: RBETransactionID!
     var transactionSubmissionHandler = TransactionSubmissionHandler()
 
     override func setUp() {
         super.setUp()
-        let vc = CBEIntroViewController()
+        let vc = RBEIntroViewController.create()
+        vc.starter = ApplicationServiceRegistry.connectExtensionService
         vc.delegate = self
-        push(vc)
+        vc.setContent(.connectExtension)
         intro = vc
+        push(vc)
     }
 
 }
 
-extension ConnectBrowserExtensionFlowCoordinator: CBEIntroViewControllerDelegate {
+extension IntroContentView.Content {
 
-    func introViewControllerDidStart() {
+    static let connectExtension =
+        IntroContentView.Content(header: LocalizedString("connect_extension.intro.header", comment: "Header label"),
+                                 body: LocalizedString("connect_extension.intro.body", comment: "Body text"),
+                                 icon: Asset.ConnectBrowserExtension.connectIntroIcon.image)
+
+}
+
+
+extension ConnectBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate {
+
+    func rbeIntroViewControllerDidStart() {
         transactionID = intro.transactionID
-        let vc = PairWithBrowserExtensionViewController.create(delegate: self)
+        let vc = PairWithBrowserExtensionViewController.createRBEConnectController(delegate: self)
         push(vc)
     }
 
@@ -38,11 +48,13 @@ extension ConnectBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewCo
     func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
                                                 didScanAddress address: String,
                                                 code: String) throws {
-        try ApplicationServiceRegistry.settingsService.connect(transaction: transactionID, code: code)
+        try ApplicationServiceRegistry.connectExtensionService.connect(transaction: transactionID, code: code)
     }
 
     func pairWithBrowserExtensionViewControllerDidFinish() {
-        let vc = FundsTransferReviewTransactionViewController(transactionID: transactionID, delegate: self)
+        let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
+        vc.titleString = LocalizedString("connect_extension.review.title", comment: "Title for the header")
+        vc.detailString = LocalizedString("connect_extension.review.detail", comment: "Detail for the header")
         push(vc)
     }
 
@@ -55,7 +67,7 @@ extension ConnectBrowserExtensionFlowCoordinator: ReviewTransactionViewControlle
     }
 
     func didFinishReview() {
-        ApplicationServiceRegistry.settingsService.startMonitoring(transaction: transactionID)
+        ApplicationServiceRegistry.connectExtensionService.startMonitoring(transaction: transactionID)
         exitFlow()
     }
 

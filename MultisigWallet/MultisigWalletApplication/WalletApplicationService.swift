@@ -489,7 +489,7 @@ public class WalletApplicationService: Assertable {
     }
 
     internal func transactionData(_ tx: Transaction) -> TransactionData {
-        if tx.type == .replaceBrowserExtension {
+        if tx.type == .replaceBrowserExtension || tx.type == .disconnectBrowserExtension {
             return ApplicationServiceRegistry.recoveryService.transactionData(tx)
         }
         let type: TransactionData.TransactionType
@@ -498,6 +498,8 @@ public class WalletApplicationService: Assertable {
         case .walletRecovery: type = .walletRecovery
         case .replaceRecoveryPhrase: type = .replaceRecoveryPhrase
         case .replaceBrowserExtension: type = .replaceBrowserExtension
+        case .connectBrowserExtension: type = .connectBrowserExtension
+        case .disconnectBrowserExtension: type = .disconnectBrowserExtension
         }
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token,
@@ -604,7 +606,7 @@ public class WalletApplicationService: Assertable {
             _ = try requestTransactionConfirmationIfNeeded(id)
             tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
         }
-        if tx.type == .replaceBrowserExtension {
+        if tx.type == .replaceBrowserExtension || tx.type == .disconnectBrowserExtension {
             try proceedTransaction(tx)
         } else {
             signTransaction(tx)

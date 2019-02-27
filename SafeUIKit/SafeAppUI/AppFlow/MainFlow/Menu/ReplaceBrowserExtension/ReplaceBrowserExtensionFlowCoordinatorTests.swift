@@ -6,16 +6,18 @@ import XCTest
 @testable import SafeAppUI
 import SafeAppUI
 import MultisigWalletApplication
+import MultisigWalletDomainModel
 
 class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
 
     let nav = UINavigationController()
     var fc: ReplaceBrowserExtensionFlowCoordinator!
-    let mockSettingsService = MockWalletSettingsApplicationService()
+    let mockApplicationService = MockReplaceExtensionApplicationService()
 
     override func setUp() {
         super.setUp()
-        ApplicationServiceRegistry.put(service: mockSettingsService, for: WalletSettingsApplicationService.self)
+        ApplicationServiceRegistry.put(service: mockApplicationService,
+                                       for: ReplaceBrowserExtensionApplicationService.self)
         fc = TestableReplaceBrowserExtensionFlowCoordinator(rootViewController: nav)
         fc.setUp()
     }
@@ -35,7 +37,7 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
         fc.rbeIntroViewControllerDidStart()
         let vc = PairWithBrowserExtensionViewController.create(delegate: nil)
         try fc.pairWithBrowserExtensionViewController(vc, didScanAddress: "Address", code: "Code")
-        XCTAssertTrue(mockSettingsService.didCallConnect)
+        XCTAssertTrue(mockApplicationService.didCallConnect)
     }
 
     func test_whenPairingFinishes_thenPresentsRecoveryPhraseInput() {
@@ -47,12 +49,12 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
         let vc = RecoveryPhraseInputViewController.create(delegate: fc)
         fc.transactionID = "tx"
         fc.recoveryPhraseInputViewController(vc, didEnterPhrase: "phrase")
-        XCTAssertTrue(mockSettingsService.didCallSignTransaction)
+        XCTAssertTrue(mockApplicationService.didCallSignTransaction)
     }
 
     func test_whenSigningThrows_thenHandlesError() {
         let vc = MockRecoveryPhraseInputViewController()
-        mockSettingsService.shouldThrow = true
+        mockApplicationService.shouldThrow = true
         fc.transactionID = "tx"
         fc.recoveryPhraseInputViewController(vc, didEnterPhrase: "phrase")
         XCTAssertTrue(vc.didHandleError)
@@ -68,12 +70,12 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
     func test_whenFinishes_thenStartsMonitoring() {
         fc.transactionID = "some"
         fc.didFinishReview()
-        XCTAssertTrue(mockSettingsService.didStartMonitoring)
+        XCTAssertTrue(mockApplicationService.didStartMonitoring)
     }
 
 }
 
-class MockWalletSettingsApplicationService: WalletSettingsApplicationService {
+class MockReplaceExtensionApplicationService: ReplaceBrowserExtensionApplicationService {
 
     var shouldThrow = false
     func throwIfNeeded() throws {
@@ -99,7 +101,7 @@ class MockWalletSettingsApplicationService: WalletSettingsApplicationService {
         didStartMonitoring = true
     }
 
-    override var replaceBrowserExtensionIsAvailable: Bool {
+    override var isAvailable: Bool {
         return true
     }
 

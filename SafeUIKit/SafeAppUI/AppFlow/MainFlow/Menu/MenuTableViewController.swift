@@ -59,6 +59,7 @@ final class MenuTableViewController: UITableViewController {
 
     struct MenuItem {
         var name: String
+        var hasDisclosure: Bool
     }
 
     struct AppVersion {}
@@ -71,6 +72,14 @@ final class MenuTableViewController: UITableViewController {
     }
 
     private var showQRCode = false
+    let replaceCommand = ReplaceBrowserExtensionCommand()
+    let connectCommand = ConnectBrowserExtensionLaterCommand()
+    let disconnectCommand = DisconnectBrowserExtensionCommand()
+    let resyncCommand = ResyncWithBrowserExtensionCommand()
+
+    var securityCommands: [MenuCommand] {
+        return [resyncCommand, replaceCommand, connectCommand, disconnectCommand]
+    }
 
     static func create() -> MenuTableViewController {
         return StoryboardScene.Main.menuTableViewController.instantiate()
@@ -97,7 +106,6 @@ final class MenuTableViewController: UITableViewController {
 
     private func generateData() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
-        let securityCommands: [MenuCommand] = [ReplaceBrowserExtensionCommand(), ConnectBrowserExtensionLaterCommand()]
         menuItems = [
             (section: .safe,
              items: [
@@ -116,7 +124,9 @@ final class MenuTableViewController: UITableViewController {
 //                menuItem(Strings.changePassword),
                 menuItem(Strings.changeRecoveryPhrase)
                 ] +
-                securityCommands.filter { !$0.isHidden }.map { menuItem($0.title) },
+                    securityCommands.filter { !$0.isHidden }.map {
+                        menuItem($0.title, hasDisclosure: $0.hasDisclosure)
+                },
              title: Strings.securitySectionTitle),
             (section: .support,
              items: [
@@ -133,9 +143,10 @@ final class MenuTableViewController: UITableViewController {
         return menuItems.enumerated().first { offset, item in item.section == section }?.offset
     }
 
-    private func menuItem(_ name: String, _ height: CGFloat = MenuItemTableViewCell.height) ->
-        (item: Any, cellHeight: () -> CGFloat) {
-            return (item: MenuItem(name: name), cellHeight: { return height })
+    private func menuItem(_ name: String,
+                          _ height: CGFloat = MenuItemTableViewCell.height,
+                          hasDisclosure: Bool = true) -> (item: Any, cellHeight: () -> CGFloat) {
+        return (item: MenuItem(name: name, hasDisclosure: hasDisclosure), cellHeight: { return height })
     }
 
     // MARK: - Table view data source
@@ -181,7 +192,7 @@ final class MenuTableViewController: UITableViewController {
             let menuItem = menuItems[indexPath.section].items[indexPath.row].item as! MenuItem
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTableViewCell", for: indexPath)
             cell.textLabel?.text = menuItem.name
-            cell.accessoryType = .disclosureIndicator
+            cell.accessoryType = menuItem.hasDisclosure ? .disclosureIndicator : .none
             return cell
         }
     }
@@ -199,10 +210,14 @@ final class MenuTableViewController: UITableViewController {
         case .security:
             let item = menuItem(at: indexPath)!
             switch item.name {
-            case ConnectBrowserExtensionLaterCommand().title:
-                delegate?.didSelectCommand(ConnectBrowserExtensionLaterCommand())
-            case ReplaceBrowserExtensionCommand().title:
-                delegate?.didSelectCommand(ReplaceBrowserExtensionCommand())
+            case connectCommand.title:
+                delegate?.didSelectCommand(connectCommand)
+            case replaceCommand.title:
+                delegate?.didSelectCommand(replaceCommand)
+            case disconnectCommand.title:
+                delegate?.didSelectCommand(disconnectCommand)
+            case resyncCommand.title:
+                delegate?.didSelectCommand(resyncCommand)
             case Strings.changeRecoveryPhrase:
                 delegate?.didSelectReplaceRecoveryPhrase()
             default: break

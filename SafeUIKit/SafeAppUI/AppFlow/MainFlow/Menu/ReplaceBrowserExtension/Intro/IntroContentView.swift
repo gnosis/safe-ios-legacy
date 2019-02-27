@@ -24,13 +24,14 @@ public class IntroContentView: NibUIView {
         var bodyStyle = ContentBodyStyle()
     }
 
-    struct Strings {
+    struct Content {
         var header = LocalizedString("replace_extension.intro.header", comment: "Replace browser extension")
         var body = LocalizedString("replace_extension.intro.body", comment: "Intro body text")
+        var icon = Asset.ReplaceBrowserExtension.introIcon.image
     }
 
     var style = Style()
-    var strings = Strings()
+    var content = Content()
 
     public override func setUpConstraints(for contentView: UIView) {
         wrapAroundDynamicHeightView(contentView)
@@ -42,8 +43,9 @@ public class IntroContentView: NibUIView {
         leadingConstraint.constant = style.edgeMargin
         trailingConstraint.constant = style.edgeMargin
         bottomConstraint.constant = style.elementSpacing
-        headerLabel.attributedText = NSAttributedString(string: strings.header, style: style.headerStyle)
-        bodyLabel.attributedText = NSAttributedString(string: strings.body, style: style.bodyStyle)
+        iconImageView.image = content.icon
+        headerLabel.attributedText = NSAttributedString(string: content.header, style: style.headerStyle)
+        bodyLabel.attributedText = NSAttributedString(string: content.body, style: style.bodyStyle)
     }
 
 }

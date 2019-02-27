@@ -1,3 +1,6 @@
+/* Browser extension is already connected. */
+"fee_calculation.error.extension_exists" = "Browser extension is already connected.";
+
 /* Browser extension is not connected. */
 "fee_calculation.error.extension_not_found" = "Browser extension is not connected.";
 

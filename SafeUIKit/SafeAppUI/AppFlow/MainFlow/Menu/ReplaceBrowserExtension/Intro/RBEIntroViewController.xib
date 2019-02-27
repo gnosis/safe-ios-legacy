@@ -10,8 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RBEIntroViewController" customModule="ReplaceBrowserExtensionUI" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RBEIntroViewController" customModule="SafeAppUI" customModuleProvider="target">
             <connections>
+                <outlet property="contentView" destination="xwE-nf-hYN" id="Zl8-oF-lVh"/>
                 <outlet property="feeCalculationView" destination="B4J-13-zq5" id="anG-8l-oPT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,7 +25,7 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WZr-q6-vxM">
                     <rect key="frame" x="0.0" y="64" width="375" height="475"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwE-nf-hYN" customClass="IntroContentView" customModule="ReplaceBrowserExtensionUI" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwE-nf-hYN" customClass="IntroContentView" customModule="SafeAppUI" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -45,7 +46,7 @@
                         <constraint firstAttribute="height" constant="30" id="OSC-Vr-Yti"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4J-13-zq5" customClass="FeeCalculationView" customModule="ReplaceBrowserExtensionUI" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4J-13-zq5" customClass="FeeCalculationView" customModule="SafeAppUI" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="539" width="375" height="128"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
