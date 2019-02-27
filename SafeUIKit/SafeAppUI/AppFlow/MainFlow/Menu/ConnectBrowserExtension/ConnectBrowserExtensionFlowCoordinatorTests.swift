@@ -83,6 +83,16 @@ class MockConnectExtensionApplicationService: ConnectBrowserExtensionApplication
     var isAvailableResult: Bool = true
     override var isAvailable: Bool { return isAvailableResult }
 
+    override func create() -> RBETransactionID {
+        return "SomeID"
+    }
+
+    override func estimate(transaction: RBETransactionID) -> RBEEstimationResult {
+        return RBEEstimationResult.zero
+    }
+
+    override func start(transaction: RBETransactionID) throws {}
+
 }
 
 class TestableTransactionSubmissionHandler: TransactionSubmissionHandler {

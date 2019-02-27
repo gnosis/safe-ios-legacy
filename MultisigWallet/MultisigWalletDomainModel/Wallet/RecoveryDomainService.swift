@@ -385,6 +385,10 @@ public struct OwnerLinkedList {
         return contains(owner.address)
     }
 
+    public func firstAddress() -> Address? {
+        return list.first { $0 != SafeOwnerManagerContractProxy.sentinelAddress }
+    }
+
 }
 
 public struct WalletScheme: Equatable, CustomStringConvertible {

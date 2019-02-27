@@ -54,12 +54,16 @@ class TransactionTableViewCell: UITableViewCell {
         case .connectBrowserExtension:
             tokenAmountLabel.text = LocalizedString("transactions.row.connect_extension",
                                                     comment: "Connect browser extension")
+        case .disconnectBrowserExtension:
+            tokenAmountLabel.text = LocalizedString("transactions.row.disconnect_extension",
+                                                    comment: "Connect browser extension")
         }
     }
 
     private func recipient(_ transaction: TransactionData) -> String {
         switch transaction.type {
-        case .incoming, .walletRecovery, .replaceRecoveryPhrase, .replaceBrowserExtension, .connectBrowserExtension:
+        case .incoming, .walletRecovery, .replaceRecoveryPhrase,
+             .replaceBrowserExtension, .connectBrowserExtension, .disconnectBrowserExtension:
             return transaction.sender
         case .outgoing: return transaction.recipient
         }
@@ -85,7 +89,8 @@ class TransactionTableViewCell: UITableViewCell {
         switch transaction.type {
         case .outgoing: return ColorName.darkSlateBlue.color
         case .incoming: return ColorName.greenTeal.color
-        case .walletRecovery, .replaceRecoveryPhrase, .replaceBrowserExtension, .connectBrowserExtension:
+        case .walletRecovery, .replaceRecoveryPhrase,
+             .replaceBrowserExtension, .connectBrowserExtension, .disconnectBrowserExtension:
             return ColorName.darkSlateBlue.color
         }
     }

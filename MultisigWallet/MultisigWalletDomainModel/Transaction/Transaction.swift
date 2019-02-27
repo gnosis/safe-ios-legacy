@@ -310,6 +310,7 @@ public enum TransactionType: Int {
     case replaceRecoveryPhrase
     case replaceBrowserExtension
     case connectBrowserExtension
+    case disconnectBrowserExtension
 
 }
 

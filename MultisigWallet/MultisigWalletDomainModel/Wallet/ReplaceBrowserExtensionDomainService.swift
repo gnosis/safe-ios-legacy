@@ -171,14 +171,14 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     func realTransactionData(with newAddress: String) -> Data? {
-        let extensionAddress = wallet!.owner(role: .browserExtension)!.address
+        let extensionAddress = requiredWallet.owner(role: .browserExtension)!.address
         guard let linkedList = remoteOwnersList(), linkedList.contains(extensionAddress) else { return nil }
         return contractProxy.swapOwner(prevOwner: linkedList.addressBefore(extensionAddress),
                                        old: extensionAddress,
                                        new: Address(newAddress))
     }
 
-    private func remoteOwnersList() -> OwnerLinkedList? {
+    func remoteOwnersList() -> OwnerLinkedList? {
         var linkedList = OwnerLinkedList()
         guard let remoteOwners = try? contractProxy.getOwners(), !remoteOwners.isEmpty else { return nil }
         remoteOwners.forEach { linkedList.add($0) }

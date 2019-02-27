@@ -73,8 +73,10 @@ final class MenuTableViewController: UITableViewController {
     private var showQRCode = false
     let replaceCommand = ReplaceBrowserExtensionCommand()
     let connectCommand = ConnectBrowserExtensionLaterCommand()
+    let disconnectCommand = DisconnectBrowserExtensionCommand()
+
     var securityCommands: [MenuCommand] {
-        return [replaceCommand, connectCommand]
+        return [replaceCommand, connectCommand, disconnectCommand]
     }
 
     static func create() -> MenuTableViewController {
@@ -203,10 +205,12 @@ final class MenuTableViewController: UITableViewController {
         case .security:
             let item = menuItem(at: indexPath)!
             switch item.name {
-            case ConnectBrowserExtensionLaterCommand().title:
+            case connectCommand.title:
                 delegate?.didSelectCommand(connectCommand)
-            case ReplaceBrowserExtensionCommand().title:
+            case replaceCommand.title:
                 delegate?.didSelectCommand(replaceCommand)
+            case disconnectCommand.title:
+                delegate?.didSelectCommand(disconnectCommand)
             case Strings.changeRecoveryPhrase:
                 delegate?.didSelectReplaceRecoveryPhrase()
             default: break

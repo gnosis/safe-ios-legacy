@@ -6,27 +6,12 @@ import XCTest
 @testable import MultisigWalletDomainModel
 import MultisigWalletImplementations
 
-class ConnectBrowserExtensionDomainServiceTests: XCTestCase {
+class ConnectBrowserExtensionDomainServiceTests: BaseBrowserExtensionModificationTestCase {
 
     let service = ConnectBrowserExtensionDomainService()
 
-    let walletRepo = InMemoryWalletRepository()
-    let portfolioRepo = InMemorySinglePortfolioRepository()
-    let encryptionService = MockEncryptionService()
-
-    lazy var proxy = TestableOwnerProxy(wallet.address!)
-
-    var wallet: Wallet {
-        return walletRepo.selectedWallet()!
-    }
-
     override func setUp() {
         super.setUp()
-        DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
-        DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
-        DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
-        encryptionService.addressFromStringResult = nil
-        provisionPortfolio()
         provisionWallet(owners: [.thisDevice, .paperWallet, .paperWalletDerived], threshold: 1)
         service.ownerContractProxy = proxy
     }
@@ -64,7 +49,24 @@ class ConnectBrowserExtensionDomainServiceTests: XCTestCase {
 
 }
 
-extension ConnectBrowserExtensionDomainServiceTests {
+class BaseBrowserExtensionModificationTestCase: XCTestCase {
+
+    let walletRepo = InMemoryWalletRepository()
+    let portfolioRepo = InMemorySinglePortfolioRepository()
+    let encryptionService = MockEncryptionService()
+    lazy var proxy = TestableOwnerProxy(wallet.address!)
+    var wallet: Wallet {
+        return walletRepo.selectedWallet()!
+    }
+
+    override func setUp() {
+        super.setUp()
+        DomainRegistry.put(service: walletRepo, for: WalletRepository.self)
+        DomainRegistry.put(service: portfolioRepo, for: SinglePortfolioRepository.self)
+        DomainRegistry.put(service: encryptionService, for: EncryptionDomainService.self)
+        encryptionService.addressFromStringResult = nil
+        provisionPortfolio()
+    }
 
     func provisionPortfolio() {
         let portfolio = Portfolio(id: portfolioRepo.nextID(), wallets: WalletIDList(), selectedWallet: nil)

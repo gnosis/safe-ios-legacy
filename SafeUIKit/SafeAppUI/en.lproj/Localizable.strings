@@ -34,6 +34,18 @@
 /* Title for the header */
 "connect_extension.review.title" = "Connect browser extension";
 
+/* Body text */
+"disconnect_extension.intro.body" = "Once this process is complete, you won't need to confirm transactions with browser extension.\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
+
+/* Header label */
+"disconnect_extension.intro.header" = "Disconnect browser extension";
+
+/* Detail for the header */
+"disconnect_extension.review.detail" = "The existing browser extension connection will be removed.";
+
+/* Title for the header */
+"disconnect_extension.review.title" = "Disconnect browser extension";
+
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
 
@@ -96,6 +108,9 @@
 
 /* Connect browser extension menu item. */
 "menu.action.connect_browser_extension" = "Connect Browser Extension";
+
+/* Disconnect browser extension menu item */
+"menu.action.disconnect_browser_extension" = "Disconnect Browser Extension";
 
 /* Feedback and FAQ menu item */
 "menu.action.feedback_and_faq" = "Feedback and FAQs";
@@ -534,10 +549,16 @@
 "transaction.continue" = "Continue";
 
 /* Detail for the header in review screen */
-"transaction.details.connect_extension.detail" = "transaction.details.connect_extension.detail";
+"transaction.details.connect_extension.detail" = "This transaction connects this Safe with the browser extension. Future transactions require confirmation from both devices.";
 
 /* Title for the header in review screen */
-"transaction.details.connect_extension.title" = "transaction.details.connect_extension.title";
+"transaction.details.connect_extension.title" = "Connect Browser Extension";
+
+/* Detail for the header in review screen */
+"transaction.details.disconnect_extension.detail" = "This transaction disconnects this Safe from the browser extension. Future transactions will not require confirmations.";
+
+/* Title for the header in review screen */
+"transaction.details.disconnect_extension.title" = "Disconnect Browser Extension";
 
 /* 'View on Etherscan' button name */
 "transaction.details.externalViewer" = "View on Etherscan.io";
@@ -582,7 +603,10 @@
 "transaction.details.type" = "Type";
 
 /* Connect browser extension */
-"transaction.details.type.connectBrowserExtension" = "transaction.details.type.connectBrowserExtension";
+"transaction.details.type.connectBrowserExtension" = "Connect browser extension";
+
+/* Disconnect browser extension */
+"transaction.details.type.disconnectBrowserExtension" = "Disconnect browser extension";
 
 /* 'Incoming' transaction type */
 "transaction.details.type.incoming" = "Incoming Transfer";
@@ -665,6 +689,9 @@
 
 /* Connect browser extension */
 "transactions.row.connect_extension" = "Connected\nBrowser Extension";
+
+/* Connect browser extension */
+"transactions.row.disconnect_extension" = "Disconnected\nBrowser Extension";
 
 /* (failed) suffix) */
 "transactions.row.failed" = "(failed)";

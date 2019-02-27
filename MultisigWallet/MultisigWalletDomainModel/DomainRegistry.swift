@@ -104,6 +104,10 @@ public class DomainRegistry: AbstractRegistry {
         return service(for: ConnectBrowserExtensionDomainService.self)
     }
 
+    public static var disconnectExtensionService: DisconnectBrowserExtensionDomainService {
+        return service(for: DisconnectBrowserExtensionDomainService.self)
+    }
+
     public static var communicationService: CommunicationDomainService {
         return service(for: CommunicationDomainService.self)
     }
