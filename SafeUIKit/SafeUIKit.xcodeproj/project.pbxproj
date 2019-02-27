@@ -20,6 +20,8 @@
 		0A0974DD20480D03005753DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974DA20480D03005753DF /* LaunchScreen.storyboard */; };
 		0A0974EA20480E11005753DF /* SafeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */; };
 		0A0974EC20480E45005753DF /* SafeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* SafeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A1940572226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940562226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift */; };
+		0A19405B2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19405A2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift */; };
 		0A290E1421BD1656005188EA /* ReviewRecoveryTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */; };
 		0A290E1621BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */; };
 		0A2972C9205A89C500CEC7D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2972C7205A89C500CEC7D4 /* Localizable.strings */; };
@@ -527,6 +529,8 @@
 		0A0974DB20480D03005753DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeUIKitDemoUITests.swift; sourceTree = "<group>"; };
 		0A0974EB20480E45005753DF /* SafeUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeUIKit.h; sourceTree = "<group>"; };
+		0A1940562226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionFlowCoordinator.swift; sourceTree = "<group>"; };
+		0A19405A2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionCommand.swift; sourceTree = "<group>"; };
 		0A290E1321BD1656005188EA /* ReviewRecoveryTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecoveryTransactionViewController.swift; sourceTree = "<group>"; };
 		0A290E1521BD1938005188EA /* ReviewRecoveryTransactionDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecoveryTransactionDemoViewController.swift; sourceTree = "<group>"; };
 		0A2972C8205A89C500CEC7D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = SafeUIKit/Base.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
@@ -934,6 +938,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A1940472226CF27005B7440 /* DisconnectBrowserExtension */ = {
+			isa = PBXGroup;
+			children = (
+				0A1940562226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift */,
+				0A19405A2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift */,
+			);
+			path = DisconnectBrowserExtension;
+			sourceTree = "<group>";
+		};
 		0A2FAA822201A92A00793B7B /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1174,6 +1187,7 @@
 			isa = PBXGroup;
 			children = (
 				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
+				0A1940472226CF27005B7440 /* DisconnectBrowserExtension */,
 				0AF5BB35222420A6006856E0 /* ConnectBrowserExtension */,
 				0A4EEA5F20D107A1005CDAC0 /* MenuTableViewController.swift */,
 				0A4EEA6C20D1112F005CDAC0 /* MenuTableViewControllerTests.swift */,
@@ -2652,6 +2666,7 @@
 				0A334E35209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift in Sources */,
 				0A3D14F4220B1D2800E340DB /* ReplaceBrowserExtensionCommand.swift in Sources */,
 				0A3BD90322254833007039B4 /* IntroContentView.swift in Sources */,
+				0A1940572226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift in Sources */,
 				0A334E46209C8E3800ABC6AE /* PasswordViewController.swift in Sources */,
 				0AE950CE20D29CAF0099B79D /* HorizontalSeparatorView.swift in Sources */,
 				0A8274E821A432DD00A73D32 /* TransactionsEmptyView.swift in Sources */,
@@ -2663,6 +2678,7 @@
 				0A3D14E6220B15B700E340DB /* ReplaceBrowserExtensionFlowCoordinator.swift in Sources */,
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
 				0AD5091F2110AABD008507CB /* FundsTransferTransactionViewModel.swift in Sources */,
+				0A19405B2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift in Sources */,
 				0A3BD90222254833007039B4 /* EthFeeCalculation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

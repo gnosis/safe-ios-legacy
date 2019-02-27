@@ -14,9 +14,9 @@ class ConnectBrowserExtensionFlowCoordinator: FlowCoordinator {
     override func setUp() {
         super.setUp()
         let vc = RBEIntroViewController.create()
-        vc.setContent(.connectExtension)
-        vc.delegate = self
         vc.starter = ApplicationServiceRegistry.connectExtensionService
+        vc.delegate = self
+        vc.setContent(.connectExtension)
         intro = vc
         push(vc)
     }

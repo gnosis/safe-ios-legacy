@@ -15,6 +15,7 @@ class MenuTableViewControllerTests: XCTestCase {
     let walletService = MockWalletApplicationService()
     let replaceExtensionService = MockReplaceExtensionApplicationService()
     let connectExtensionService = MockConnectExtensionApplicationService()
+    let disconnectExtensionService = MockDisconnectBrowserExtensionApplicationService()
 
     override func setUp() {
         super.setUp()
@@ -23,6 +24,8 @@ class MenuTableViewControllerTests: XCTestCase {
                                        for: ReplaceBrowserExtensionApplicationService.self)
         ApplicationServiceRegistry.put(service: connectExtensionService,
                                        for: ConnectBrowserExtensionApplicationService.self)
+        ApplicationServiceRegistry.put(service: disconnectExtensionService,
+                                       for: DisconnectBrowserExtensionApplicationService.self)
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         controller.delegate = delegate
         createWindow(controller)
@@ -134,5 +137,11 @@ final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate
     func didSelectReplaceRecoveryPhrase() {}
 
     func didSelectCommand(_ command: MenuCommand) {}
+
+}
+
+class MockDisconnectBrowserExtensionApplicationService: DisconnectBrowserExtensionApplicationService {
+
+    override var isAvailable: Bool { return false }
 
 }

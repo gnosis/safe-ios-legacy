@@ -15,6 +15,9 @@
 		0A19402A2226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940292226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift */; };
 		0A1940312226A9E2005B7440 /* TestableOwnerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19402F2226A9DA005B7440 /* TestableOwnerProxy.swift */; };
 		0A1940332226AC47005B7440 /* ConnectBrowserExtensionApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940322226AC47005B7440 /* ConnectBrowserExtensionApplicationServiceTests.swift */; };
+		0A1940352226C2DB005B7440 /* DisconnectBrowserExtensionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940342226C2DB005B7440 /* DisconnectBrowserExtensionDomainService.swift */; };
+		0A1940382226C2F3005B7440 /* DisconnectBrowserExtensionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940362226C2EF005B7440 /* DisconnectBrowserExtensionDomainServiceTests.swift */; };
+		0A1940422226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940412226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift */; };
 		0A1B2A90221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */; };
 		0A1B2A97221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */; };
 		0A1B2AA4221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2AA3221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */; };
@@ -429,6 +432,9 @@
 		0A1940292226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionDomainServiceTests.swift; sourceTree = "<group>"; };
 		0A19402F2226A9DA005B7440 /* TestableOwnerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableOwnerProxy.swift; sourceTree = "<group>"; };
 		0A1940322226AC47005B7440 /* ConnectBrowserExtensionApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionApplicationServiceTests.swift; sourceTree = "<group>"; };
+		0A1940342226C2DB005B7440 /* DisconnectBrowserExtensionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionDomainService.swift; sourceTree = "<group>"; };
+		0A1940362226C2EF005B7440 /* DisconnectBrowserExtensionDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionDomainServiceTests.swift; sourceTree = "<group>"; };
+		0A1940412226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionApplicationService.swift; sourceTree = "<group>"; };
 		0A1B2A8F221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServiceBaseTestCase.swift; sourceTree = "<group>"; };
 		0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServiceSigningTests.swift; sourceTree = "<group>"; };
 		0A1B2AA3221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceBrowserExtensionDomainServicePostProcessingTests.swift; sourceTree = "<group>"; };
@@ -851,6 +857,8 @@
 				0A2DBCBA220C3203008F286C /* ReplaceBrowserExtensionDomainService.swift */,
 				0A3BD9612225606D007039B4 /* ConnectBrowserExtensionDomainService.swift */,
 				0A1940292226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift */,
+				0A1940342226C2DB005B7440 /* DisconnectBrowserExtensionDomainService.swift */,
+				0A1940362226C2EF005B7440 /* DisconnectBrowserExtensionDomainServiceTests.swift */,
 				0A2DBCC1220C3721008F286C /* ReplaceBrowserExtensionDomainServiceTests.swift */,
 				0A1B2AA3221EA70600E92990 /* ReplaceBrowserExtensionDomainServicePostProcessingTests.swift */,
 				0A1B2A96221DA4F100E92990 /* ReplaceBrowserExtensionDomainServiceSigningTests.swift */,
@@ -1005,6 +1013,7 @@
 				0A40669220A5E1C2009BA7FC /* ApplicationServiceRegistry.swift */,
 				0A9E379420F4A4D10085E8D7 /* ApplicationServiceRegistryTests.swift */,
 				0A4AD4F52225A683004244FB /* ConnectBrowserExtensionApplicationService.swift */,
+				0A1940412226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift */,
 				0A1940322226AC47005B7440 /* ConnectBrowserExtensionApplicationServiceTests.swift */,
 				0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */,
 				0A9E379620F4A4D10085E8D7 /* EthereumApplicationServiceTests.swift */,
@@ -1584,6 +1593,7 @@
 				0A9E380F20F4A4F20085E8D7 /* Worker.swift in Sources */,
 				552C6006212B0CA200BF973A /* SynchronisationDomainService.swift in Sources */,
 				0AA5D4A120E12BDA006F46CD /* Transaction.swift in Sources */,
+				0A1940352226C2DB005B7440 /* DisconnectBrowserExtensionDomainService.swift in Sources */,
 				552C6030212C2AE800BF973A /* AccountUpdateDomainService.swift in Sources */,
 				555C949820E2A60F00A0621D /* SinglePortfolioRepository.swift in Sources */,
 				55E2FED1213D539F005F8074 /* MockAccountUpdateService.swift in Sources */,
@@ -1675,6 +1685,7 @@
 				0ACA9D02212ACD4000E39BB6 /* MockTransactionRelayService1.swift in Sources */,
 				0A8272FF2124447D00EB5C21 /* EventPublisherTests.swift in Sources */,
 				0A1B2A90221DA48600E92990 /* ReplaceBrowserExtensionDomainServiceBaseTestCase.swift in Sources */,
+				0A1940382226C2F3005B7440 /* DisconnectBrowserExtensionDomainServiceTests.swift in Sources */,
 				0A76BE5720AEF35C00D07770 /* DomainRegistryTests.swift in Sources */,
 				0ABCC0FC2177291D00E60E9F /* TransactionDomainServiceTests.swift in Sources */,
 				0A9E386120F4B46C0085E8D7 /* InMemorySinglePortfolioRepositoryTests.swift in Sources */,
@@ -1712,6 +1723,7 @@
 				0A54E7CB21305273006BAD93 /* WalletApplicationServiceError.swift in Sources */,
 				0A40668820A5E01D009BA7FC /* MockWalletApplicationService.swift in Sources */,
 				0A3BD968222564B1007039B4 /* ReplaceBrowserExtensionApplicationService.swift in Sources */,
+				0A1940422226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift in Sources */,
 				0A9E383320F4AC5F0085E8D7 /* MockEthereumApplicationService.swift in Sources */,
 				0A3BD92B22254FF7007039B4 /* RBEStarter.swift in Sources */,
 				0A40669320A5E1C2009BA7FC /* ApplicationServiceRegistry.swift in Sources */,

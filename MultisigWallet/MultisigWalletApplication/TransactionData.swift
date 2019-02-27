@@ -52,6 +52,7 @@ public struct TransactionData {
         case replaceRecoveryPhrase
         case replaceBrowserExtension
         case connectBrowserExtension
+        case disconnectBrowserExtension
     }
 
     public let id: String

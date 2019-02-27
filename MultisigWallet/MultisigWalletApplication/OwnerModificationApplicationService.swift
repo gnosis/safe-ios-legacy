@@ -16,11 +16,11 @@ open class OwnerModificationApplicationService: RBEStarter {
         return domainService.isAvailable
     }
 
-    public func create() -> RBETransactionID {
+    open func create() -> RBETransactionID {
         return domainService.createTransaction().id
     }
 
-    public func estimate(transaction: RBETransactionID) -> RBEEstimationResult {
+    open func estimate(transaction: RBETransactionID) -> RBEEstimationResult {
         let txID = TransactionID(transaction)
         domainService.addDummyData(to: txID)
         do {
@@ -42,7 +42,7 @@ open class OwnerModificationApplicationService: RBEStarter {
         }
     }
 
-    public func start(transaction: RBETransactionID) throws {
+    open func start(transaction: RBETransactionID) throws {
         let txID = TransactionID(transaction)
         do {
             try domainService.validate(transactionID: txID)

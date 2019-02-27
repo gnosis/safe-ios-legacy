@@ -18,4 +18,11 @@ class TestableOwnerProxy: SafeOwnerManagerContractProxy {
         return addOwnerResult
     }
 
+    var removeOwnerInput: (prevOwner: Address, owner: Address, newThreshold: Int)?
+    var removeOwnerResult = Data()
+    override func removeOwner(prevOwner: Address, owner: Address, newThreshold threshold: Int) -> Data {
+        removeOwnerInput = (prevOwner, owner, threshold)
+        return removeOwnerResult
+    }
+
 }

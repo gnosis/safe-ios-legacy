@@ -121,6 +121,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                      for: ReplaceBrowserExtensionDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: ConnectBrowserExtensionDomainService(),
                                                      for: ConnectBrowserExtensionDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: DisconnectBrowserExtensionDomainService(),
+                                                     for: DisconnectBrowserExtensionDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: CommunicationDomainService(),
                                                      for: CommunicationDomainService.self)
         let relay = EventRelay(publisher: MultisigWalletDomainModel.DomainRegistry.eventPublisher)
@@ -133,6 +135,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         MultisigWalletApplication.ApplicationServiceRegistry
             .put(service: ConnectBrowserExtensionApplicationService.create(),
                  for: ConnectBrowserExtensionApplicationService.self)
+        MultisigWalletApplication.ApplicationServiceRegistry
+            .put(service: DisconnectBrowserExtensionApplicationService.createDisconnectService(),
+                 for: DisconnectBrowserExtensionApplicationService.self)
 
         setUpMultisigDatabase()
     }
@@ -271,6 +276,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     private func cleanUp() {
         DispatchQueue.global().async {
             DomainRegistry.replaceExtensionService.cleanUpStaleTransactions()
+            DomainRegistry.connectExtensionService.cleanUpStaleTransactions()
+            DomainRegistry.disconnectExtensionService.cleanUpStaleTransactions()
         }
     }
 

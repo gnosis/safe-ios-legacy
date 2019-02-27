@@ -69,6 +69,7 @@ public class SynchronisationService: SynchronisationDomainService {
                 try DomainRegistry.transactionService.updatePendingTransactions()
                 try DomainRegistry.replaceExtensionService.postProcessTransactions()
                 try DomainRegistry.connectExtensionService.postProcessTransactions()
+                try DomainRegistry.disconnectExtensionService.postProcessTransactions()
             }.start()
             self.syncAccounts()
         }
