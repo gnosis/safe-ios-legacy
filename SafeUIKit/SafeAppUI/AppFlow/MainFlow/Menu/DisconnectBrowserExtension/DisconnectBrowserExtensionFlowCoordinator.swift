@@ -56,7 +56,6 @@ extension DisconnectBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewCont
         }
     }
 
-
     func recoveryPhraseInputViewControllerDidFinish() {
         let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
         vc.titleString = LocalizedString("disconnect_extension.review.title", comment: "Title for the header")
