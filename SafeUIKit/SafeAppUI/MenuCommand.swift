@@ -14,6 +14,10 @@ class MenuCommand {
         return false
     }
 
+    var hasDisclosure: Bool {
+        return true
+    }
+
     var childFlowCoordinator: FlowCoordinator!
 
     func run(mainFlowCoordinator: MainFlowCoordinator) {

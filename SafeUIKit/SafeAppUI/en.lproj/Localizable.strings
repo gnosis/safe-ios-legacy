@@ -13,6 +13,9 @@
 /* Error title */
 "alert.error.url_unavailable.title" = "Oops";
 
+/* Info */
+"alert.info.title" = "Information";
+
 /* Cancel */
 "app.unlock.cancel" = "Cancel";
 
@@ -123,6 +126,9 @@
 
 /* Rate App menu item */
 "menu.action.rate_app" = "Rate App";
+
+/* Resync browser extension menu item */
+"menu.action.resync_browser_extension" = "Resync With Browser Extension";
 
 /* Terms menu item */
 "menu.action.terms" = "Terms";
@@ -460,6 +466,9 @@
 
 /* New recovery phrase */
 "replace_recovery.new_phrase.title" = "New recovery phrase";
+
+/* Success */
+"resync.alert.success" = "Resync notification sent successfully";
 
 /* Safe Address label. */
 "safe_address.address" = "Address";
