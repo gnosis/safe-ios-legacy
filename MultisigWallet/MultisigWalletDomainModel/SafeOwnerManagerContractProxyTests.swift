@@ -117,4 +117,17 @@ class SafeOwnerManagerContractProxyTests: EthereumContractProxyBaseTests {
         XCTAssertEqual(args?.new.value.lowercased(), Address.testAccount3.value.lowercased())
     }
 
+    func test_decodeAddOwnerArguments() {
+        let selector = "addOwnerWithThreshold(address,uint256)"
+        XCTAssertNil(proxy.decodeSwapOwnerArguments(from: Data()))
+        XCTAssertNil(proxy.decodeSwapOwnerArguments(from: proxy.invocation("addOwner()")))
+        XCTAssertNil(proxy.decodeSwapOwnerArguments(from: proxy.invocation(selector)))
+        let data = proxy.invocation(selector,
+                                    proxy.encodeAddress(Address.testAccount1),
+                                    proxy.encodeUInt(1))
+        let args = proxy.decodeAddOwnerArguments(from: data)
+        XCTAssertEqual(args?.new.value.lowercased(), Address.testAccount1.value.lowercased())
+        XCTAssertEqual(args?.threshold, 1)
+    }
+
 }
