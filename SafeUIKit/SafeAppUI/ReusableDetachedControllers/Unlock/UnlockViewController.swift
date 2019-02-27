@@ -87,9 +87,8 @@ public final class UnlockViewController: UIViewController {
 
         startCountdownIfNeeded()
         subscribeForKeyboardUpdates()
-
-        Tracker.shared.track(view: .test)
     }
+
 
     private func subscribeForKeyboardUpdates() {
         NotificationCenter.default.addObserver(self,
@@ -152,6 +151,8 @@ public final class UnlockViewController: UIViewController {
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         auhtenticateWithBiometry()
+        Tracker.shared.setScreenName("Unlock", class: type(of: self))
+        Tracker.shared.track(view: .test)
     }
 
     @IBAction func loginWithBiometry(_ sender: Any) {

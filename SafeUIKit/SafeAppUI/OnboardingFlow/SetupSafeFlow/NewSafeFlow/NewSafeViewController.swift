@@ -89,6 +89,11 @@ class NewSafeViewController: UIViewController {
         configureSetupRecoveryPhraseButton()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Tracker.shared.setScreenName("Configure New Safe", class: type(of: self))
+    }
+
     private func configureThisDeviceButton() {
         mobileAppButton.setTitle(Strings.thisDevice, for: .normal)
         mobileAppButton.isEnabled = false
