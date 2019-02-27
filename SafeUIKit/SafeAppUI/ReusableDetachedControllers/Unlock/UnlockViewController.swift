@@ -5,6 +5,7 @@
 import UIKit
 import SafeUIKit
 import IdentityAccessApplication
+import Common
 
 class Authenticator {
 
@@ -86,6 +87,8 @@ public final class UnlockViewController: UIViewController {
 
         startCountdownIfNeeded()
         subscribeForKeyboardUpdates()
+
+        Tracker.shared.track(view: .test)
     }
 
     private func subscribeForKeyboardUpdates() {
