@@ -97,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                           logger: LogService.shared)
         MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(
-            service: HTTPTokenListService(url: appConfig.tokenListServiceURL, logger: LogService.shared),
+            service: HTTPTokenListService(url: appConfig.relayServiceURL, logger: LogService.shared),
             for: TokenListDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: PushTokensService(), for: PushTokensDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: AccountUpdateDomainService(),
