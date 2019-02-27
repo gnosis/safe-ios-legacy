@@ -62,11 +62,11 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     public func addDummyData(to transactionID: TransactionID) {
         let tx = transaction(transactionID)
-        tx.change(recipient: wallet!.address!).change(operation: .call).change(data: dummySwapData())
+        tx.change(recipient: wallet!.address!).change(operation: .call).change(data: dummyTransactionData())
         repository.save(tx)
     }
 
-    func dummySwapData() -> Data {
+    func dummyTransactionData() -> Data {
         var remoteList = OwnerLinkedList()
         if let owners = try? contractProxy.getOwners(), !owners.isEmpty {
             owners.forEach { remoteList.add($0) }
@@ -143,7 +143,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     }
 
-    private func transaction(_ id: TransactionID, file: StaticString = #file, line: UInt = #line) -> Transaction {
+    func transaction(_ id: TransactionID, file: StaticString = #file, line: UInt = #line) -> Transaction {
         guard let tx = repository.findByID(id) else {
             preconditionFailure("transaction not found \(file):\(line)")
         }
@@ -187,6 +187,12 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     // MARK: - Signing the Transaction
 
+    public func updateHash(transactionID: TransactionID) {
+        let tx = self.transaction(transactionID)
+        tx.change(hash: DomainRegistry.encryptionService.hash(of: tx))
+        repository.save(tx)
+    }
+
     open func sign(transactionID: TransactionID, with phrase: String) throws {
         guard let eoa = signingEOA(from: phrase) else {
             throw ReplaceBrowserExtensionDomainServiceError.recoveryPhraseInvalid
@@ -194,8 +200,8 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         guard try isContractOwners(eoa: eoa) else {
             throw ReplaceBrowserExtensionDomainServiceError.recoveryPhraseHasNoOwnership
         }
+        updateHash(transactionID: transactionID)
         let tx = self.transaction(transactionID)
-        tx.change(hash: DomainRegistry.encryptionService.hash(of: tx))
         tx.proceed()
         sign(tx: tx, with: eoa.primary)
         sign(tx: tx, with: eoa.derived)
@@ -227,6 +233,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     open func postProcess(transactionID: TransactionID) throws {
         guard let tx = repository.findByID(transactionID),
+            tx.type == transactionType,
             tx.status == .success || tx.status == .failed,
             let wallet = DomainRegistry.walletRepository.findByID(tx.walletID) else { return }
         guard let newOwner = newOwnerAddress(from: transactionID) else {
@@ -234,7 +241,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
             return
         }
         if tx.status == .success {
-            try replaceOldOwner(with: newOwner, in: wallet)
+            try processSuccess(with: newOwner, in: wallet)
             try? DomainRegistry.communicationService.notifyWalletCreated(walletID: wallet.id)
         } else {
             try DomainRegistry.communicationService.deletePair(walletID: tx.walletID, other: newOwner)
@@ -242,12 +249,24 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         unregisterPostProcessing(for: transactionID)
     }
 
+    func processSuccess(with newOwner: String, in wallet: Wallet) throws {
+        try replaceOldOwner(with: newOwner, in: wallet)
+    }
+
     private func replaceOldOwner(with newOwner: String, in wallet: Wallet) throws {
+        try removeOldOwner(from: wallet)
+        add(newOwner: newOwner, to: wallet)
+    }
+
+    func removeOldOwner(from wallet: Wallet) throws {
         guard let oldOwner = wallet.owner(role: .browserExtension) else { return }
         try DomainRegistry.communicationService.deletePair(walletID: wallet.id, other: oldOwner.address.value)
         wallet.removeOwner(role: oldOwner.role)
+    }
+
+    func add(newOwner: String, to wallet: Wallet) {
         let formattedAddress = DomainRegistry.encryptionService.address(from: newOwner) ?? Address(newOwner)
-        wallet.addOwner(Owner(address: formattedAddress, role: oldOwner.role))
+        wallet.addOwner(Owner(address: formattedAddress, role: .browserExtension))
         DomainRegistry.walletRepository.save(wallet)
     }
 
@@ -275,7 +294,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     open func cleanUpStaleTransactions() {
         let toDelete = DomainRegistry.transactionRepository.findAll().filter {
-            $0.type == .replaceBrowserExtension &&
+            $0.type == transactionType &&
             !ReplaceBrowserExtensionDomainService.doNotCleanUpStatuses.contains($0.status)
         }
         for tx in toDelete {

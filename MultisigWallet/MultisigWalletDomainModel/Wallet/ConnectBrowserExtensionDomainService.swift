@@ -7,13 +7,20 @@ import Foundation
 open class ConnectBrowserExtensionDomainService: ReplaceBrowserExtensionDomainService {
 
     open override var isAvailable: Bool {
-        return !super.isAvailable
+        guard let wallet = self.wallet else { return false }
+        return wallet.owner(role: .browserExtension) == nil
     }
 
     override var transactionType: TransactionType { return .connectBrowserExtension }
 
-    override func dummySwapData() -> Data {
+    override func dummyTransactionData() -> Data {
         return contractProxy.addOwner(requiredWallet.address!, newThreshold: 2)
+    }
+
+    open override func newOwnerAddress(from transactionID: TransactionID) -> String? {
+        let tx = self.transaction(transactionID)
+        guard let data = tx.data, let arguments = contractProxy.decodeAddOwnerArguments(from: data) else { return nil }
+        return arguments.new.value
     }
 
     override func validateOwners() throws {
@@ -23,6 +30,12 @@ open class ConnectBrowserExtensionDomainService: ReplaceBrowserExtensionDomainSe
 
     override func realTransactionData(with newAddress: String) -> Data? {
         return contractProxy.addOwner(Address(newAddress), newThreshold: 2)
+    }
+
+    override func processSuccess(with newOwner: String, in wallet: Wallet) throws {
+        add(newOwner: newOwner, to: wallet)
+        wallet.changeConfirmationCount(2)
+        DomainRegistry.walletRepository.save(wallet)
     }
 
 }

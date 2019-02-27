@@ -28,6 +28,12 @@
 /* Header label */
 "connect_extension.intro.header" = "Connect browser extension";
 
+/* Detail for the header */
+"connect_extension.review.detail" = "This transaction connects this Safe with the browser extension. Future transactions require confirmation from both devices.";
+
+/* Title for the header */
+"connect_extension.review.title" = "Connect browser extension";
+
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
 
@@ -658,7 +664,7 @@
 "transactions.group.pending_outgoing" = "Pending Outgoing";
 
 /* Connect browser extension */
-"transactions.row.connect_extension" = "transactions.row.connect_extension";
+"transactions.row.connect_extension" = "Connected\nBrowser Extension";
 
 /* (failed) suffix) */
 "transactions.row.failed" = "(failed)";
@@ -667,7 +673,7 @@
 "transactions.row.rejected" = "(rejected)";
 
 /* Browser extension changed */
-"transactions.row.replace_extension" = "New browser\nextension";
+"transactions.row.replace_extension" = "New Browser\nExtension";
 
 /* Recovery phrase changed */
 "transactions.row.replace_phrase" = "Replaced\nRecovery Phrase";

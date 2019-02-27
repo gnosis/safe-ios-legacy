@@ -64,7 +64,7 @@ extension ReplaceBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewControl
 
 
     func recoveryPhraseInputViewControllerDidFinish() {
-        let controller = ReplaceBrowserExtensionReviewTransactionViewController(transactionID: transactionID,
+        let controller = RBEReviewTransactionViewController(transactionID: transactionID,
                                                                                 delegate: self)
         push(controller)
     }

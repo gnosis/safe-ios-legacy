@@ -15,7 +15,7 @@ final class ConnectBrowserExtensionLaterCommand: MenuCommand {
     }
 
     override var isHidden: Bool {
-        return ApplicationServiceRegistry.connectExtensionService.isAvailable
+        return !ApplicationServiceRegistry.connectExtensionService.isAvailable
     }
 
     override func run(mainFlowCoordinator: MainFlowCoordinator) {

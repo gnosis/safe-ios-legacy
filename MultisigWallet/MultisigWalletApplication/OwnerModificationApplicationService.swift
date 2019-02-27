@@ -16,7 +16,6 @@ open class OwnerModificationApplicationService: RBEStarter {
         return domainService.isAvailable
     }
 
-
     public func create() -> RBETransactionID {
         return domainService.createTransaction().id
     }

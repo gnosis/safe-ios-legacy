@@ -18,8 +18,8 @@ class ConnectBrowserExtensionFlowCoordinator: FlowCoordinator {
         let vc = CBEIntroViewController.createConnectExtensionIntro()
         vc.delegate = self
         vc.starter = ApplicationServiceRegistry.connectExtensionService
-        push(vc)
         intro = vc
+        push(vc)
     }
 
 }
@@ -28,7 +28,7 @@ extension ConnectBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate
 
     func rbeIntroViewControllerDidStart() {
         transactionID = intro.transactionID
-        let vc = PairWithBrowserExtensionViewController.create(delegate: self)
+        let vc = PairWithBrowserExtensionViewController.createRBEConnectController(delegate: self)
         push(vc)
     }
 
@@ -43,7 +43,9 @@ extension ConnectBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewCo
     }
 
     func pairWithBrowserExtensionViewControllerDidFinish() {
-        let vc = FundsTransferReviewTransactionViewController(transactionID: transactionID, delegate: self)
+        let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
+        vc.titleString = LocalizedString("connect_extension.review.title", comment: "Title for the header")
+        vc.detailString = LocalizedString("connect_extension.review.detail", comment: "Detail for the header")
         push(vc)
     }
 
