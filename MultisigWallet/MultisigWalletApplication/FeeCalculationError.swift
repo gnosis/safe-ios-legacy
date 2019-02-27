@@ -14,9 +14,9 @@ public class FeeCalculationError: NSError {
         static let extensionNotFound = LocalizedString("fee_calculation.error.extension_not_found",
                                                        comment: "Browser extension is not connected.")
         static let extensionExists = LocalizedString("fee_calculation.error.extension_exists",
-                                                     comment: "Browser extension is not connected.")
-
+                                                     comment: "Browser extension is already connected.")
     }
+
     public enum Code: Int {
         case insufficientBalance
         case extensionNotFound

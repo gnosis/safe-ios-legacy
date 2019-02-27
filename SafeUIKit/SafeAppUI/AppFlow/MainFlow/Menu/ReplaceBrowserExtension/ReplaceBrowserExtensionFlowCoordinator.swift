@@ -9,7 +9,8 @@ class ReplaceBrowserExtensionFlowCoordinator: FlowCoordinator {
 
     weak var introVC: RBEIntroViewController?
     var transactionID: RBETransactionID!
-    fileprivate var applicationService: ReplaceBrowserExtensionApplicationService {
+
+    private var applicationService: ReplaceBrowserExtensionApplicationService {
         return ApplicationServiceRegistry.replaceExtensionService
     }
 

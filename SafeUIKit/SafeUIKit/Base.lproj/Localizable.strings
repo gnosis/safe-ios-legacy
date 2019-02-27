@@ -14,89 +14,89 @@
 "address_input.invalid_address" = "Address is invalid";
 
 /* OK */
-"alert.error.ok" = "alert.error.ok";
+"alert.error.ok" = "OK";
 
 /* Error */
-"alert.error.title" = "alert.error.title";
+"alert.error.title" = "Error";
 
 /* Checkmark is checked */
-"button.checked" = "button.checked";
+"button.checked" = "Checked";
 
 /* Checkmark is not checked */
-"button.unchecked" = "button.unchecked";
+"button.unchecked" = "Unchecked";
 
 /* Close button on camera */
-"camera.close" = "camera.close";
+"camera.close" = "Close";
 
 /* Cancel button title */
-"cancel" = "cancel";
+"cancel" = "Cancel";
 
 /* Awaiting confirmation... */
-"confirmaion_view.awaiting_confirmation" = "confirmaion_view.awaiting_confirmation";
+"confirmaion_view.awaiting_confirmation" = "Awaiting confirmation...";
 
 /* Explanation how to confirm. */
-"confirmation_view.confirmation_explanation" = "confirmation_view.confirmation_explanation";
+"confirmation_view.confirmation_explanation" = "Open browser extension to confirm this transaction.";
 
 /* Confirmed by browser extension. */
-"confirmation_view.confirmed" = "confirmation_view.confirmed";
+"confirmation_view.confirmed" = "Confirmed by browser extension.";
 
 /* Rejected by browser extension. */
-"confirmation_view.rejected" = "confirmation_view.rejected";
+"confirmation_view.rejected" = "Rejected by browser extension.";
 
 /* Transaction rejected by the browser extension. */
-"confirmation_view.rejection_explanation" = "confirmation_view.rejection_explanation";
+"confirmation_view.rejection_explanation" = "Transaction rejected by the browser extension.";
 
 /* Loading... */
 "loading_title_text" = "loading_title_text";
 
 /* Error status of a rule */
-"rule.error" = "rule.error";
+"rule.error" = "Error";
 
 /* Inactive status of a rule */
-"rule.inactive" = "rule.inactive";
+"rule.inactive" = "Inactive";
 
 /* Success status of a rule */
-"rule.success" = "rule.success";
+"rule.success" = "Success";
 
 /* Button name to allow camera access */
-"scanner.camera_access_required.allow" = "scanner.camera_access_required.allow";
+"scanner.camera_access_required.allow" = "Allow Camera";
 
 /* Message for alert if camera is not accessable. */
-"scanner.camera_access_required.message" = "scanner.camera_access_required.message";
+"scanner.camera_access_required.message" = "Camera access is required to make full use of Gnosis Safe.";
 
 /* Title for alert if camera is not accessable. */
-"scanner.camera_access_required.title" = "scanner.camera_access_required.title";
+"scanner.camera_access_required.title" = "Camera Access";
 
 /* Invalid code */
-"scanner.error.invalid_code" = "scanner.error.invalid_code";
+"scanner.error.invalid_code" = "Invalid QR code.";
 
 /* Amount placeholder for token input. */
-"token_input.amount" = "token_input.amount";
+"token_input.amount" = "Amount";
 
 /* Error to display if amount of fractional digits is exceded. */
-"token_input.exceded_amount_of_fractional_digits" = "token_input.exceded_amount_of_fractional_digits";
+"token_input.exceded_amount_of_fractional_digits" = "Exceded amount of fractional digits.";
 
 /* Error to display if entered value is not a number. */
-"token_input.value_is_not_a_number" = "token_input.value_is_not_a_number";
+"token_input.value_is_not_a_number" = "Value is not a number.";
 
 /* Error to display if entered value is too big. */
-"token_input.value_is_too_big" = "token_input.value_is_too_big";
+"token_input.value_is_too_big" = "Value is too big.";
 
 /* Balance after transfer */
-"transaction_fee.balance_after_transfer" = "transaction_fee.balance_after_transfer";
+"transaction_fee.balance_after_transfer" = "Balance after transfer";
 
 /* Current balance */
-"transaction_fee.current_balance" = "transaction_fee.current_balance";
+"transaction_fee.current_balance" = "Current balance";
 
 /* Displayed in parentheses */
-"transaction_fee.ether" = "transaction_fee.ether";
+"transaction_fee.ether" = "Ether";
 
 /* Warning about not enough funds */
-"transaction_fee.insufficient_funds" = "transaction_fee.insufficient_funds";
+"transaction_fee.insufficient_funds" = "Insufficient funds.\nPlease add funds to your Safe.";
 
 /* Displayed in parentheses */
-"transaction_fee.token" = "transaction_fee.token";
+"transaction_fee.token" = "token";
 
 /* Transaction fee */
-"transaction_fee.transaction_fee" = "transaction_fee.transaction_fee";
+"transaction_fee.transaction_fee" = "Transaction fee";
 
