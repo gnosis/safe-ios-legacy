@@ -140,7 +140,6 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     func validateOwners() throws {
         try assertNotNil(requiredWallet.owner(role: .browserExtension) ,
                          ReplaceBrowserExtensionDomainServiceError.browserExtensionNotConnected)
-
     }
 
     func transaction(_ id: TransactionID, file: StaticString = #file, line: UInt = #line) -> Transaction {
