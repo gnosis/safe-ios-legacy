@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import Common
 
 public protocol GuidelinesViewControllerDelegate: class {
     func didPressNext()
@@ -61,7 +60,7 @@ public class GuidelinesViewController: UIViewController {
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Tracker.shared.setScreenName("Guidelines", class: type(of: self))
+        trackScreen("Guidelines")
     }
 
     func update() {

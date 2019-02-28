@@ -91,7 +91,7 @@ class NewSafeViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Tracker.shared.setScreenName("Configure New Safe", class: type(of: self))
+        trackScreen("Configure New Safe")
     }
 
     private func configureThisDeviceButton() {

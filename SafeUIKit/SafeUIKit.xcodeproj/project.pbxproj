@@ -322,6 +322,7 @@
 		55C3C62A2175CC4000FA5B4F /* MockAVCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3C6282175CC2800FA5B4F /* MockAVCaptureDevice.swift */; };
 		55C428FA217B426D00BF8922 /* ScanBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C428F9217B426D00BF8922 /* ScanBarButtonItem.swift */; };
 		55C428FC217B428100BF8922 /* ScanBarButtonItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C428FB217B428100BF8922 /* ScanBarButtonItemTests.swift */; };
+		55CA308F2227DB0900E7AEA7 /* UIViewController+Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA308E2227DB0900E7AEA7 /* UIViewController+Tracking.swift */; };
 		55D0773720F5F9A900EBFAB9 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */; };
 		55D0773C20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0773B20F5F9F300EBFAB9 /* MainFlowCoordinatorTests.swift */; };
 		55D0EC5E216F6F70003D9A53 /* TokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EC5D216F6F70003D9A53 /* TokenInput.swift */; };
@@ -846,6 +847,7 @@
 		55C3C6282175CC2800FA5B4F /* MockAVCaptureDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAVCaptureDevice.swift; sourceTree = "<group>"; };
 		55C428F9217B426D00BF8922 /* ScanBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBarButtonItem.swift; sourceTree = "<group>"; };
 		55C428FB217B428100BF8922 /* ScanBarButtonItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBarButtonItemTests.swift; sourceTree = "<group>"; };
+		55CA308E2227DB0900E7AEA7 /* UIViewController+Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Tracking.swift"; sourceTree = "<group>"; };
 		55CDFE3D21A4745C00FDF2E8 /* TransactionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderCell.swift; sourceTree = "<group>"; };
 		55CDFE3F21A47E7C00FDF2E8 /* TransactionHeaderCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderCellTests.swift; sourceTree = "<group>"; };
 		55D0773620F5F9A900EBFAB9 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -1445,6 +1447,7 @@
 				0A59E90120AAE24A0090E89C /* TestFlowCoordinator.swift */,
 				0A3D14ED220B18E200E340DB /* FeatureFlagSettings.swift */,
 				0A3BD92022254C9E007039B4 /* SafeAppUIUnitTests-Info.plist */,
+				55CA308E2227DB0900E7AEA7 /* UIViewController+Tracking.swift */,
 			);
 			path = SafeAppUI;
 			sourceTree = "<group>";
@@ -2614,6 +2617,7 @@
 				0A3BD90722254833007039B4 /* RBEIntroViewControllerBaseState.swift in Sources */,
 				0A3BD90A22254833007039B4 /* RBEIntroViewControllerInvalidState.swift in Sources */,
 				0A3BD8F722254833007039B4 /* UINavigationController+BackSwizzling.m in Sources */,
+				55CA308F2227DB0900E7AEA7 /* UIViewController+Tracking.swift in Sources */,
 				0AE950C820D29C930099B79D /* TransactionParticipantView.swift in Sources */,
 				0A4EEA5120D02E9D005CDAC0 /* MainContentViewController.swift in Sources */,
 				55DEBC28214BD7AB0017CD4B /* SafeAddressViewController.swift in Sources */,

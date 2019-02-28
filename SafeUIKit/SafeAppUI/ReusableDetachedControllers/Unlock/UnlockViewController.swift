@@ -151,7 +151,7 @@ public final class UnlockViewController: UIViewController {
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         auhtenticateWithBiometry()
-        Tracker.shared.setScreenName("Unlock", class: type(of: self))
+        trackScreen("Unlock")
         Tracker.shared.track(view: .test)
     }
 
