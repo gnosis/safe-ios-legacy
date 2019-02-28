@@ -20,24 +20,24 @@ public protocol TransactionRepository {
     /// Searches a transaction by its identifier
     ///
     /// - Parameter transactionID: transaction or nil if it was not found
-    func findByID(_ transactionID: TransactionID) -> Transaction?
+    func find(id transactionID: TransactionID) -> Transaction?
 
     /// Searches a transaction by its hash and status
     ///
     /// - Parameter hash: hash of a transaction
     /// - Parameter status: status of a transaction
     /// - Returns: transaction found or nil otherwise
-    func findBy(hash: Data, status: TransactionStatus.Code) -> Transaction?
+    func find(hash: Data, status: TransactionStatus.Code) -> Transaction?
 
-    func findBy(hash: Data) -> Transaction?
+    func find(hash: Data) -> Transaction?
 
-    func findBy(type: TransactionType, wallet: WalletID) -> Transaction?
+    func find(type: TransactionType, wallet: WalletID) -> Transaction?
 
     /// Generates new transaction identifier
     ///
     /// - Returns: new transaction identifier
     func nextID() -> TransactionID
 
-    func findAll() -> [Transaction]
+    func all() -> [Transaction]
 
 }

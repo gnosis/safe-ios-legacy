@@ -8,15 +8,15 @@ import MultisigWalletDomainModel
 /// In-memory implementation of TransactionRepository, used for testing.
 open class InMemoryTransactionRepository: BaseInMemoryRepository<Transaction, TransactionID>, TransactionRepository {
 
-    public func findBy(type: TransactionType, wallet: WalletID) -> Transaction? {
+    public func find(type: TransactionType, wallet: WalletID) -> Transaction? {
         return nil
     }
 
-    public func findBy(hash: Data, status: TransactionStatus.Code) -> Transaction? {
+    public func find(hash: Data, status: TransactionStatus.Code) -> Transaction? {
         return items.first { $0.hash == hash && $0.status == status }
     }
 
-    public func findBy(hash: Data) -> Transaction? {
+    public func find(hash: Data) -> Transaction? {
         return items.first { $0.hash == hash }
     }
 

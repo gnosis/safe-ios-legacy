@@ -13,12 +13,12 @@ open class WalletSettingsApplicationService {
     public func createRecoveryPhraseTransaction() -> TransactionData {
         let transactionID = DomainRegistry.settingsService.createReplaceRecoveryPhraseTransaction()
         DomainRegistry.settingsService.estimateRecoveryPhraseTransaction(transactionID)
-        let tx = DomainRegistry.transactionRepository.findByID(transactionID)!
+        let tx = DomainRegistry.transactionRepository.find(id: transactionID)!
         return ApplicationServiceRegistry.recoveryService.transactionData(tx)
     }
 
     public func removeTransaction(_ id: String) {
-        if let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id)) {
+        if let tx = DomainRegistry.transactionRepository.find(id: TransactionID(id)) {
             DomainRegistry.transactionRepository.remove(tx)
         }
     }

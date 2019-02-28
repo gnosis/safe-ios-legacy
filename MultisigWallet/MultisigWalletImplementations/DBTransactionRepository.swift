@@ -168,31 +168,31 @@ LIMIT 1;
         try! db.execute(sql: SQL.delete, bindings: [transaction.id.id])
     }
 
-    public func findByID(_ transactionID: TransactionID) -> Transaction? {
+    public func find(id transactionID: TransactionID) -> Transaction? {
         return try! db.execute(sql: SQL.findByID,
                                bindings: [transactionID.id],
                                resultMap: transactionFromResultSet).first as? Transaction
     }
 
-    public func findBy(hash: Data, status: TransactionStatus.Code) -> Transaction? {
+    public func find(hash: Data, status: TransactionStatus.Code) -> Transaction? {
         return try! db.execute(sql: SQL.findByHashStatus,
                                bindings: [hash, status.rawValue],
                                resultMap: transactionFromResultSet).first as? Transaction
     }
 
-    public func findBy(hash: Data) -> Transaction? {
+    public func find(hash: Data) -> Transaction? {
         return try! db.execute(sql: SQL.findByHash,
                                bindings: [hash],
                                resultMap: transactionFromResultSet).first as? Transaction
     }
 
-    public func findBy(type: TransactionType, wallet: WalletID) -> Transaction? {
+    public func find(type: TransactionType, wallet: WalletID) -> Transaction? {
         return try! db.execute(sql: SQL.findByTypeAndWallet,
                                bindings: [type.rawValue, wallet.id],
                                resultMap: transactionFromResultSet).first as? Transaction
     }
 
-    public func findAll() -> [Transaction] {
+    public func all() -> [Transaction] {
         return try! db.execute(sql: SQL.findAll, resultMap: transactionFromResultSet).compactMap { $0 }
     }
 

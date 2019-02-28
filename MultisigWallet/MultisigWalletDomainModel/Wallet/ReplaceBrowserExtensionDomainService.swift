@@ -143,7 +143,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     func transaction(_ id: TransactionID, file: StaticString = #file, line: UInt = #line) -> Transaction {
-        guard let tx = repository.findByID(id) else {
+        guard let tx = repository.find(id: id) else {
             preconditionFailure("transaction not found \(file):\(line)")
         }
         return tx
@@ -231,10 +231,10 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     // MARK: - Post-processing
 
     open func postProcess(transactionID: TransactionID) throws {
-        guard let tx = repository.findByID(transactionID),
+        guard let tx = repository.find(id: transactionID),
             tx.type == transactionType,
             tx.status == .success || tx.status == .failed,
-            let wallet = DomainRegistry.walletRepository.findByID(tx.walletID) else { return }
+            let wallet = DomainRegistry.walletRepository.find(id: tx.walletID) else { return }
         guard let newOwner = newOwnerAddress(from: transactionID) else {
             unregisterPostProcessing(for: transactionID)
             return
@@ -292,7 +292,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     private static var doNotCleanUpStatuses = [TransactionStatus.Code.rejected, .success, .failed, .pending]
 
     open func cleanUpStaleTransactions() {
-        let toDelete = DomainRegistry.transactionRepository.findAll().filter {
+        let toDelete = DomainRegistry.transactionRepository.all().filter {
             $0.type == transactionType &&
             !ReplaceBrowserExtensionDomainService.doNotCleanUpStatuses.contains($0.status)
         }

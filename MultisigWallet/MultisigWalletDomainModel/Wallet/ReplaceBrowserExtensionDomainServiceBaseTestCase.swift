@@ -88,7 +88,7 @@ extension ReplaceBrowserExtensionDomainServiceBaseTestCase {
     }
 
     func transaction(from id: TransactionID) -> Transaction? {
-        return transactionRepo.findByID(id)
+        return transactionRepo.find(id: id)
     }
 
     func wallet(owners: OwnerList) -> Wallet {

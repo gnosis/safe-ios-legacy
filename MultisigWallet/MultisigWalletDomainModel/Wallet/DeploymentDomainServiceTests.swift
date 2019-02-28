@@ -91,7 +91,7 @@ class DeployingWalletTests: BaseDeploymentDomainServiceTests {
         let response = SafeCreationTransactionRequest.Response.testResponse
         relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), response)
         start()
-        wallet = walletRepository.findByID(wallet.id)!
+        wallet = walletRepository.find(id: wallet.id)!
         XCTAssertEqual(wallet.address, response.walletAddress)
         XCTAssertEqual(wallet.minimumDeploymentTransactionAmount, response.deploymentFee)
     }
@@ -381,7 +381,7 @@ extension BaseDeploymentDomainServiceTests {
     }
 
     func assertDeploymentCancelled(line: UInt = #line) {
-        wallet = walletRepository.findByID(wallet.id)!
+        wallet = walletRepository.find(id: wallet.id)!
         XCTAssertTrue(wallet.state === wallet.newDraftState, line: line)
     }
 

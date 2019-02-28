@@ -93,7 +93,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         givenReadyToUseWallet()
         let txID = service.createNewDraftTransaction()
         service.updateTransaction(txID, amount: 100, token: ethID.id, recipient: Address.testAccount1.value)
-        return transactionRepository.findByID(TransactionID(txID))!
+        return transactionRepository.find(id: TransactionID(txID))!
     }
 
     func prepareTransactionForSigning(basedOn message: TransactionDecisionMessage)

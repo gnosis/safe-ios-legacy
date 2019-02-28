@@ -24,7 +24,7 @@ class ConnectBrowserExtensionApplicationServiceTests: XCTestCase {
         tx.change(feeEstimate: TransactionFeeEstimate(gas: 10, dataGas: 10, operationalGas: 10, gasPrice: tx.fee!))
         txRepo.save(tx)
         try service.connect(transaction: tx.id.id, code: "code")
-        tx = txRepo.findByID(tx.id)!
+        tx = txRepo.find(id: tx.id)!
         XCTAssertNil(tx.fee)
         XCTAssertNil(tx.feeEstimate)
     }
