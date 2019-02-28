@@ -21,8 +21,8 @@ class EncryptionServiceTests: XCTestCase {
     }
 
     func test_extensionCodeWithValidJson() {
-        let json = JSON(extensionCode: QRCode.validCode1)
-        let code = ExtensionCode(json: json)!
+        let jsonData = JSON(extensionCode: QRCode.validCode1)
+        let code = try! JSONDecoder().decode(ExtensionCode.self, from: jsonData)
         XCTAssertEqual(code.expirationDate, "2018-05-09T14:18:55+00:00")
         XCTAssertEqual(code.v, 27)
         XCTAssertEqual(code.r,
@@ -32,8 +32,8 @@ class EncryptionServiceTests: XCTestCase {
     }
 
     func test_extensionCodeWithInvalidJson() {
-        let json = JSON(extensionCode: QRCode.invalidCode1)
-        let code = ExtensionCode(json: json)
+        let jsonData = JSON(extensionCode: QRCode.invalidCode1)
+        let code = try? JSONDecoder().decode(ExtensionCode.self, from: jsonData)
         XCTAssertNil(code)
     }
 
@@ -247,9 +247,8 @@ ef8553f949acc5f0cb8002523b7a4f8e02664b6637eddc74ad72bb8e38588309
 
 extension EncryptionServiceTests {
 
-    private func JSON(extensionCode: QRCode) -> Any {
-        let data = extensionCode.code.data(using: .utf8)!
-        return try! JSONSerialization.jsonObject(with: data)
+    private func JSON(extensionCode: QRCode) -> Data {
+        return extensionCode.code.data(using: .utf8)!
     }
 
 }
