@@ -197,21 +197,21 @@ public class DeploymentDomainService {
 
     private func balance(of address: Address) throws -> TokenInt {
         return try RetryWithIncreasingDelay(maxAttempts: config.balance.retryAttempts,
-                                            startDelay: config.balance.retryDelay) { _ in
+                                            startDelay: config.balance.retryDelay) {
                 try DomainRegistry.ethereumNodeService.eth_getBalance(account: address)
             }.start()
     }
 
     private func transactionHash(of wallet: Address) throws -> TransactionHash? {
         return try RetryWithIncreasingDelay(maxAttempts: config.deploymentStatus.retryAttempts,
-                                            startDelay: config.deploymentStatus.retryDelay) { _ in
+                                            startDelay: config.deploymentStatus.retryDelay) {
                 try DomainRegistry.transactionRelayService.safeCreationTransactionHash(address: wallet)
             }.start()
     }
 
     private func receipt(of hash: TransactionHash) throws -> TransactionReceipt? {
         return try RetryWithIncreasingDelay(maxAttempts: config.transactionStatus.retryAttempts,
-                                            startDelay: config.transactionStatus.retryDelay) { _ in
+                                            startDelay: config.transactionStatus.retryDelay) {
                 try DomainRegistry.ethereumNodeService.eth_getTransactionReceipt(transaction: hash)
             }.start()
     }

@@ -49,14 +49,14 @@ public class SynchronisationService: SynchronisationDomainService {
     }
 
     private func syncTokenList() {
-        try! RetryWithIncreasingDelay(maxAttempts: Int.max, startDelay: retryInterval) { [weak self] _ in
+        try! RetryWithIncreasingDelay(maxAttempts: Int.max, startDelay: retryInterval) { [weak self] in
             let tokenList = try DomainRegistry.tokenListService.items()
             self?.merger.mergeStoredTokenItems(with: tokenList)
         }.start()
     }
 
     private func syncAccounts() {
-        try! RetryWithIncreasingDelay(maxAttempts: Int.max, startDelay: retryInterval) { [weak self] _ in
+        try! RetryWithIncreasingDelay(maxAttempts: Int.max, startDelay: retryInterval) { [weak self] in
             try self?.accountService.updateAccountsBalances()
         }.start()
     }
@@ -65,7 +65,7 @@ public class SynchronisationService: SynchronisationDomainService {
     public func syncTransactions() {
         guard tokenSyncRepeater == nil || tokenSyncRepeater.stopped else { return }
         tokenSyncRepeater = Repeater(delay: tokenSyncInterval) { [unowned self] _ in
-            try? RetryWithIncreasingDelay(maxAttempts: self.tokenSyncMaxRetries, startDelay: self.retryInterval) { _ in
+            try? RetryWithIncreasingDelay(maxAttempts: self.tokenSyncMaxRetries, startDelay: self.retryInterval) {
                 try DomainRegistry.transactionService.updatePendingTransactions()
                 try DomainRegistry.replaceExtensionService.postProcessTransactions()
             }.start()

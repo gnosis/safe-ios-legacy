@@ -10,26 +10,29 @@ import Common
 /// When maximum attempts count is reached, while closure is still throwing, last thrown error is rethrown.
 final public class RetryWithIncreasingDelay<T> {
 
-    private let main: (Int) throws -> T
+    private let main: () throws -> T
     private let maxAttempts: Int
-    private let delay: TimeInterval
+    private var delay: TimeInterval
+    private let delayIncrement: TimeInterval
 
-    public init(maxAttempts: Int, startDelay: TimeInterval = 0, _ main: @escaping (Int) throws -> T) {
+    public init(maxAttempts: Int, startDelay: TimeInterval = 0, _ main: @escaping () throws -> T) {
         precondition(maxAttempts > 0)
         self.main = main
         self.maxAttempts = maxAttempts
         self.delay = startDelay
+        self.delayIncrement = startDelay
     }
 
     public func start() throws -> T {
         var error: Error!
-        for attempt in 0..<maxAttempts {
+        for _ in 0..<maxAttempts {
             do {
-                return try main(attempt)
+                return try main()
             } catch let e {
                 error = e
-                Common.Timer.wait(TimeInterval(attempt) * delay)
+                Common.Timer.wait(delay)
             }
+            delay += delayIncrement
         }
         throw error
     }
