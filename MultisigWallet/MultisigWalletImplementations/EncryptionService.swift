@@ -131,9 +131,9 @@ open class EncryptionService: EncryptionDomainService {
     }
 
     private func bintSignature(from signature: EthSignature) -> (r: BInt, s: BInt, v: BInt) {
-        return (BInt.init(signature.r, radix: 10)!,
-                BInt.init(signature.s, radix: 10)!,
-                BInt.init(signature.v))
+        return (BInt(signature.r, radix: 10)!,
+                BInt(signature.s, radix: 10)!,
+                BInt(signature.v))
     }
 
     private func data(_ value: String) -> Data {
@@ -184,9 +184,9 @@ open class EncryptionService: EncryptionDomainService {
     }
 
     public func data(from signature: EthSignature) -> Data {
-        let r = BInt.init(signature.r, radix: 10)!
-        let s = BInt.init(signature.s, radix: 10)!
-        let v = BInt.init(signature.v)
+        let r = BInt(signature.r, radix: 10)!
+        let s = BInt(signature.s, radix: 10)!
+        let v = BInt(signature.v)
         let data = signer.calculateSignature(r: r, s: s, v: v)
         return data
     }
