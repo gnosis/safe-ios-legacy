@@ -6,7 +6,7 @@ import Foundation
 
 public struct WalletIDList: Equatable {
 
-    var storage: [WalletID]
+    fileprivate var storage: [WalletID]
 
     public init() {
         self.init([])
