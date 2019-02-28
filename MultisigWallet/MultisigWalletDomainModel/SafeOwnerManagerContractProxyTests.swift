@@ -28,7 +28,7 @@ class SafeOwnerManagerContractProxyTests: EthereumContractProxyBaseTests {
     func test_whenFindingPrevOwner_thenReturnsCorrectOne() throws {
         let methodCall = proxy.method("getOwners()")
         let addresses = [Address.testAccount2, Address.testAccount3, Address.testAccount4]
-        for _ in (0..<4) {
+        for _ in 0..<4 {
             nodeService.expect_eth_call(to: Address.testAccount1,
                                         data: methodCall,
                                         result: proxy.encodeArrayAddress(addresses))
@@ -36,7 +36,7 @@ class SafeOwnerManagerContractProxyTests: EthereumContractProxyBaseTests {
         let expectedResults = [SafeOwnerManagerContractProxy.sentinelAddress,
                                Address.testAccount2,
                                Address.testAccount3]
-        for i in (0..<addresses.count) {
+        for i in addresses.indices {
             XCTAssertEqual(try proxy.previousOwner(to: addresses[i])?.value.lowercased(),
                            expectedResults[i].value.lowercased())
         }
