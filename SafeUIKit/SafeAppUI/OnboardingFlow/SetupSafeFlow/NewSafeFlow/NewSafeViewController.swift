@@ -91,7 +91,7 @@ class NewSafeViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackScreen("Configure New Safe")
+        trackEvent(OnboardingEvent.configure)
     }
 
     private func configureThisDeviceButton() {

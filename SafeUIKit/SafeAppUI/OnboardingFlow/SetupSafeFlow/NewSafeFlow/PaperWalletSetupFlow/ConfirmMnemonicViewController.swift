@@ -73,6 +73,11 @@ final class ConfirmMnemonicViewController: UIViewController {
         keyboardBehavior.start()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(OnboardingEvent.confirmRecovery)
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         guard keyboardBehavior != nil else { return }

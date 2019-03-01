@@ -57,6 +57,10 @@ public final class UnlockViewController: UIViewController {
         return vc
     }
 
+    enum UnlockEvent: String, Trackable {
+        case unlock
+    }
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         backgroundImageView.isDark = true
@@ -151,8 +155,7 @@ public final class UnlockViewController: UIViewController {
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         auhtenticateWithBiometry()
-        trackScreen("Unlock")
-        Tracker.shared.track(view: .test)
+        trackEvent(UnlockEvent.unlock)
     }
 
     @IBAction func loginWithBiometry(_ sender: Any) {

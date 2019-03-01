@@ -7,8 +7,8 @@ import Common
 
 extension UIViewController {
 
-    func trackScreen(_ name: String) {
-//        Tracker.shared.setScreenName(name, class: type(of: self))
+    func trackEvent(_ event: Trackable, parameters: [String: Any]? = nil) {
+        Tracker.shared.track(event: event, parameters: parameters)
     }
 
 }

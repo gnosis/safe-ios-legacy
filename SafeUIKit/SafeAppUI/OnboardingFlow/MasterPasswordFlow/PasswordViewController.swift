@@ -74,6 +74,15 @@ final class PasswordViewController: UIViewController {
         configureInput()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if isSetPasswordScreen {
+            trackEvent(OnboardingEvent.setPassword)
+        } else {
+            trackEvent(OnboardingEvent.confirmPassword)
+        }
+    }
+
     private func configureInput() {
         verifiableInput.delegate = self
         verifiableInput.isSecure = true

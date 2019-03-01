@@ -3,7 +3,10 @@
 //
 
 import Foundation
+import Common
 
-public enum TrackingView: String {
-    case test
+enum MainEvent: String, Trackable {
+
+    case assets = "asset-view"
+
 }

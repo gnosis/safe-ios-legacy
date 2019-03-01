@@ -103,6 +103,7 @@ class SafeCreationViewController: UIViewController {
 
     internal var state: State! {
         didSet {
+            state.didEnter()
             update()
         }
     }
@@ -154,6 +155,11 @@ class SafeCreationViewController: UIViewController {
         initStates()
         state = nilState
         deploy()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(OnboardingEvent.createSafe)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -350,6 +356,10 @@ extension SafeCreationViewController {
             let formatter = TokenNumberFormatter.eth
             return formatter.string(from: minimumAmount)
         }
+
+        func didEnter() {
+            // to override
+        }
     }
 
     class NilState: State {
@@ -383,6 +393,10 @@ extension SafeCreationViewController {
         override var statusText: String? { return Strings.Status.accountFunded }
         override var progress: Double { return 0.7 }
         override var showsSafeAddress: Bool { return true }
+
+        override func didEnter() {
+            Tracker.shared.track(event: OnboardingEvent.safeFeePaid)
+        }
     }
 
     class FinalizingDeploymentState: State {
