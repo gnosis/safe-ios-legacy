@@ -58,7 +58,7 @@ public final class UnlockViewController: UIViewController {
     }
 
     enum UnlockEvent: String, Trackable {
-        case unlock
+        case unlock = "Unlock"
     }
 
     override public func viewDidLoad() {

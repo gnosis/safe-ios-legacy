@@ -7,6 +7,6 @@ import Common
 
 enum MainEvent: String, Trackable {
 
-    case assets = "asset-view"
+    case assets = "AssetView"
 
 }

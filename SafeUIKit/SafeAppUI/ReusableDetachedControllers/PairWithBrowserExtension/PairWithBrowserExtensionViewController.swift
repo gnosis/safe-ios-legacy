@@ -90,6 +90,7 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
     }
 
     public var trackingView: Trackable?
+    public var scannerTrackingView: Trackable?
 
     public static func create(delegate: PairWithBrowserExtensionViewControllerDelegate?)
         -> PairWithBrowserExtensionViewController {
@@ -282,6 +283,9 @@ extension PairWithBrowserExtensionViewController: ScanBarButtonItemDelegate {
 
     public func scanBarButtonItemWantsToPresentController(_ controller: UIViewController) {
         present(controller, animated: true)
+        if let scannerTrackingView = scannerTrackingView {
+            trackEvent(scannerTrackingView)
+        }
     }
 
     public func scanBarButtonItemDidScanValidCode(_ code: String) {
