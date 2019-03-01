@@ -85,6 +85,14 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
         repository.save(tx)
     }
 
+    open func stepBackToDraft(_ transactionID: TransactionID) {
+        let tx = DomainRegistry.transactionRepository.findByID(transactionID)!
+        if tx.status == .signing {
+            tx.stepBack()
+            DomainRegistry.transactionRepository.save(tx)
+        }
+    }
+
     open func estimateNetworkFee(for transactionID: TransactionID) throws -> TokenAmount {
         let tx = transaction(transactionID)
         let request = estimationRequest(for: tx)
@@ -164,10 +172,8 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     open func update(transaction: TransactionID, newOwnerAddress: String) {
+        stepBackToDraft(transaction)
         let tx = self.transaction(transaction)
-        if tx.status == .signing {
-            tx.stepBack()
-        }
         tx.change(data: realTransactionData(with: newOwnerAddress))
         repository.save(tx)
     }

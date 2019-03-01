@@ -15,11 +15,7 @@ open class ReplaceBrowserExtensionApplicationService: OwnerModificationApplicati
 
     open func sign(transaction: RBETransactionID, withPhrase phrase: String) throws {
         let txID = TransactionID(transaction)
-        let tx = DomainRegistry.transactionRepository.findByID(txID)!
-        if tx.status == .signing {
-            tx.stepBack()
-            DomainRegistry.transactionRepository.save(tx)
-        }
+        domainService.stepBackToDraft(txID)
         _ = try domainService.estimateNetworkFee(for: txID)
         try domainService.sign(transactionID: txID, with: phrase)
     }
