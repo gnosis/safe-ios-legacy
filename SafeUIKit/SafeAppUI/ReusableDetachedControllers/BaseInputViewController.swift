@@ -63,8 +63,7 @@ class BaseInputViewController: UIViewController, EventSubscriber {
     @IBAction func next(_ sender: Any) {}
 
     func notify() {
-        DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else { return }
+        DispatchQueue.main.async {
             self.stopActivityIndicator()
             self.enableNextAction()
         }
