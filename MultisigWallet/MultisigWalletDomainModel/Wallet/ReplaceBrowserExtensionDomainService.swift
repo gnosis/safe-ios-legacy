@@ -165,6 +165,9 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     open func update(transaction: TransactionID, newOwnerAddress: String) {
         let tx = self.transaction(transaction)
+        if tx.status == .signing {
+            tx.stepBack()
+        }
         tx.change(data: realTransactionData(with: newOwnerAddress))
         repository.save(tx)
     }

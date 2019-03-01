@@ -95,10 +95,12 @@ public class ReviewTransactionViewController: UITableViewController {
 
     private func disableSubmit() {
         submitButtonItem.isEnabled = false
+        navigationItem.hidesBackButton = true
     }
 
     private func enableSubmit() {
         submitButtonItem.isEnabled = true
+        navigationItem.hidesBackButton = false
     }
 
     // MARK: - Table view data source

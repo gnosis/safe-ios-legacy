@@ -17,6 +17,8 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     @IBOutlet weak var phraseTextView: UITextView!
     var keyboardBehavior: KeyboardAvoidingBehavior!
     weak var delegate: RecoveryPhraseInputViewControllerDelegate?
+    var backButtonItem: UIBarButtonItem!
+    private var didCancel = false
 
     override var headerText: String {
         return LocalizedString("recovery.phrase.header", comment: "Recovery Phrase Input screen header")
@@ -47,6 +49,14 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         return controller
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backButtonItem = UIBarButtonItem(title: LocalizedString("navigation.back", comment: "Back"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(back))
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
@@ -57,6 +67,12 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         placeholderLabel.textColor = ColorName.darkSlateBlue.color.withAlphaComponent(0.7)
         view.setNeedsUpdateConstraints()
         update()
+    }
+
+    override func willMove(toParent parent: UIViewController?) {
+        guard let nav = parent as? UINavigationController,
+            nav.topViewController == self && nav.viewControllers.count > 1 else { return }
+        nav.viewControllers[nav.viewControllers.count - 2].navigationItem.backBarButtonItem = backButtonItem
     }
 
     private func textInsets() -> UIEdgeInsets {
@@ -82,6 +98,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardBehavior.start()
+        didCancel = false
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
@@ -93,6 +110,10 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         if let value = UIPasteboard.general.string {
             text = value
         }
+    }
+
+    @objc func back() {
+        didCancel = true
     }
 
     func update() {
@@ -115,6 +136,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     }
 
     public func handleSuccess() {
+        guard !didCancel else { return }
         DispatchQueue.main.async {
             self.stopActivityIndicator()
             self.enableNextAction()
@@ -123,6 +145,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     }
 
     public func handleError(_ error: Error) {
+        guard !didCancel else { return }
         DispatchQueue.main.async {
             self.stopActivityIndicator()
             self.enableNextAction()
