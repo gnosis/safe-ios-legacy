@@ -29,9 +29,7 @@ class RetryWithIncreasingDelayTests: XCTestCase {
     }
 
     func test_whenFinished_thenReturnsValue() throws {
-        let retry = RetryWithIncreasingDelay(maxAttempts: 1) { _ in
-            return true
-        }
+        let retry = RetryWithIncreasingDelay(maxAttempts: 1) { true }
         XCTAssertTrue(try retry.start())
     }
 
