@@ -15,8 +15,7 @@ import MultisigWalletImplementations
 import Database
 import Common
 import CommonImplementations
-import FirebaseCore
-import FirebaseMessaging
+import Firebase
 import UserNotifications
 
 @UIApplicationMain
@@ -67,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         configureMultisigWallet()
         configureEthereum()
         configureUI()
+        Tracker.shared.append(handler: FirebaseTrackingHandler())
     }
 
     private func configureIdentityAccess() {

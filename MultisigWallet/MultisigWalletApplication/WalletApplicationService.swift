@@ -203,7 +203,7 @@ public class WalletApplicationService: Assertable {
                 dataStr.range(of: "Exceeded expiration date") != nil {
                 throw WalletApplicationServiceError.exceededExpirationDate
             } else if let response = response as? HTTPURLResponse {
-                throw (400..<500).contains(response.statusCode) ?
+                throw 400..<500 ~= response.statusCode ?
                     WalletApplicationServiceError.clientError : WalletApplicationServiceError.serverError
             } else {
                 throw WalletApplicationServiceError.networkError
@@ -239,7 +239,7 @@ public class WalletApplicationService: Assertable {
 
     private func error(from response: URLResponse?) -> WalletApplicationServiceError {
         if let response = response as? HTTPURLResponse {
-            if (400..<500).contains(response.statusCode) {
+            if 400..<500 ~= response.statusCode {
                 return .clientError
             } else {
                 return .serverError
@@ -755,11 +755,11 @@ public class WalletApplicationService: Assertable {
             transaction
                 .change(recipient: erc20Transfer.recipient)
                 .change(amount: TokenAmount(amount: erc20Transfer.amount,
-                                            token: Token.init(code: "",
-                                                              name: "",
-                                                              decimals: 18,
-                                                              address: message.to,
-                                                              logoUrl: "")))
+                                            token: Token(code: "",
+                                                         name: "",
+                                                         decimals: 18,
+                                                         address: message.to,
+                                                         logoUrl: "")))
         }
     }
 

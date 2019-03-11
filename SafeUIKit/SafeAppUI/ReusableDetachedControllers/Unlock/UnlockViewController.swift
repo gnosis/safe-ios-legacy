@@ -5,6 +5,7 @@
 import UIKit
 import SafeUIKit
 import IdentityAccessApplication
+import Common
 
 class Authenticator {
 
@@ -56,6 +57,10 @@ public final class UnlockViewController: UIViewController {
         return vc
     }
 
+    enum UnlockEvent: String, Trackable {
+        case unlock = "Unlock"
+    }
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         backgroundImageView.isDark = true
@@ -87,6 +92,7 @@ public final class UnlockViewController: UIViewController {
         startCountdownIfNeeded()
         subscribeForKeyboardUpdates()
     }
+
 
     private func subscribeForKeyboardUpdates() {
         NotificationCenter.default.addObserver(self,
@@ -149,6 +155,7 @@ public final class UnlockViewController: UIViewController {
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         auhtenticateWithBiometry()
+        trackEvent(UnlockEvent.unlock)
     }
 
     @IBAction func loginWithBiometry(_ sender: Any) {

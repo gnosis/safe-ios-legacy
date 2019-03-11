@@ -9,7 +9,7 @@ import Common
 public class TokenID: BaseID {}
 
 /// Represents a token.
-public struct Token: Equatable {
+public struct Token {
 
     /// Token id is the same as token Address in blockchain
     public var id: TokenID {
@@ -53,12 +53,15 @@ public struct Token: Equatable {
 
 }
 
-// MARK: - Token to/from String serialization
-extension Token: CustomStringConvertible {
+extension Token: Equatable {}
 
-    private static let separator = "~~~"
+// MARK: - Token from a String
 
-    public init?(_ value: String) {
+public extension Token {
+
+    fileprivate static let separator = "~~~"
+
+    init?(_ value: String) {
         let components = value.components(separatedBy: Token.separator)
         guard components.count == 5 else { return nil }
         guard let decimals = Int(components[2]) else { return nil }
@@ -68,6 +71,12 @@ extension Token: CustomStringConvertible {
                   address: Address(components[3]),
                   logoUrl: components[4])
     }
+
+}
+
+// MARK: - Token conversion into a String
+
+extension Token: CustomStringConvertible {
 
     public var description: String {
         return [code, name, String(decimals), address.value, logoUrl].joined(separator: Token.separator)
@@ -79,7 +88,7 @@ extension Token: CustomStringConvertible {
 public typealias TokenInt = BigInt
 
 /// TokenAmount represents a specific amount in a token denomination.
-public struct TokenAmount: Equatable {
+public struct TokenAmount {
 
     public let amount: TokenInt
     public let token: Token
@@ -90,6 +99,8 @@ public struct TokenAmount: Equatable {
     }
 
 }
+
+extension TokenAmount: Equatable {}
 
 public extension TokenAmount {
 
@@ -103,20 +114,27 @@ public extension TokenAmount {
 
 }
 
-// MARK: - TokenAmount to/from String conversion.
-extension TokenAmount: CustomStringConvertible {
+// MARK: - TokenAmount from String conversion
+
+extension TokenAmount {
+
+    fileprivate static let separator = "==="
 
     public init?(_ value: String) {
-        let components = value.components(separatedBy: "===")
-        guard components.count == 2 else { return nil }
-        guard let amount = TokenInt(components.first!), let token = Token(components.last!) else {
+        let components = value.components(separatedBy: TokenAmount.separator)
+        guard let amount = TokenInt(components[0]), let token = Token(components[1]), components.count == 2 else {
             return nil
         }
         self.init(amount: amount, token: token)
     }
+}
+
+// MARK: - TokenAmount conversion into a String
+
+extension TokenAmount: CustomStringConvertible {
 
     public var description: String {
-        return "\(String(amount))===\(token)"
+        return [String(amount), token.description].joined(separator: TokenAmount.separator)
     }
 
 }

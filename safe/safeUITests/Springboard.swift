@@ -21,7 +21,7 @@ class Springboard {
         springboard.resolve()
 
         let safeIcons = springboard.icons.matching(identifier: "Safe")
-        for _ in (0..<safeIcons.count) {
+        for _ in 0..<safeIcons.count {
             let icon = safeIcons.element(boundBy: 0)
             if icon.exists {
                 let iconFrame = icon.frame

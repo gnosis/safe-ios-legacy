@@ -34,6 +34,11 @@ class SetupSafeOptionsViewController: UIViewController {
         recoverSafeButton.setTitle(Strings.restoreSafe, for: .normal)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(OnboardingEvent.newOrRecover)
+    }
+
     @IBAction func createNewSafe(_ sender: Any) {
         if !ApplicationServiceRegistry.walletService.hasSelectedWallet {
             ApplicationServiceRegistry.walletService.createNewDraftWallet()

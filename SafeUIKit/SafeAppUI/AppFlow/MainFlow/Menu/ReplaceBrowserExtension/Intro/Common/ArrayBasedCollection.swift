@@ -13,7 +13,7 @@ open class ArrayBasedCollection<ElementType>: MutableCollection, RangeReplaceabl
     // Collection / Mutable Collection
 
     private func isInBounds(index: Int) -> Bool {
-        return (0..<count).contains(index)
+        return indices ~= index
     }
 
     public var startIndex: Int {

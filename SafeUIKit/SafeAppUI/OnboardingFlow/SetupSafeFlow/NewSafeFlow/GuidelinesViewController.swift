@@ -58,6 +58,11 @@ public class GuidelinesViewController: UIViewController {
         update()
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(OnboardingEvent.guidelines)
+    }
+
     func update() {
         guard isViewLoaded else { return }
         navigationItem.title = titleText

@@ -164,7 +164,7 @@ open class EthereumApplicationService: Assertable {
 
     private func error(from response: URLResponse?) -> Error {
         if let response = response as? HTTPURLResponse {
-            if (400..<500).contains(response.statusCode) {
+            if 400..<500 ~= response.statusCode {
                 return .clientError
             } else {
                 return .serverError
