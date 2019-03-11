@@ -234,7 +234,7 @@
 "onboarding.start.description" = "Safely store Ether and ERC20\n tokens with 2-factor authentication.";
 
 /* Setup password button title */
-"onboarding.start.setup_password" = "Setup password";
+"onboarding.start.setup_password" = "Set up password";
 
 /* Agree */
 "onboarding.terms.agree" = "Agree";

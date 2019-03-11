@@ -264,6 +264,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         synchronise()
     }
 
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        coordinator.appEnteredBackground()
+    }
+
     private func synchronise() {
         DispatchQueue.global().async {
             MultisigWalletDomainModel.DomainRegistry.syncService.sync()
