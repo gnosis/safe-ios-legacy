@@ -22,7 +22,7 @@ final class StartViewController: UIViewController {
     private struct Strings {
         static let description = LocalizedString("onboarding.start.description", comment: "App slogan")
         static let setupPassword = LocalizedString("onboarding.start.setup_password",
-                                                   comment: "Setup password button title")
+                                                   comment: "Set up password button title")
     }
 
     static func create(delegate: StartViewControllerDelegate) -> StartViewController {
