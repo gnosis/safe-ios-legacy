@@ -562,7 +562,8 @@ public class WalletApplicationService: Assertable {
 
     public func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
         let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
-        guard tx.feeEstimate == nil else { return transactionData(id)! }
+        guard tx.feeEstimate == nil ||
+            tx.type == .connectBrowserExtension && tx.status == .draft else { return transactionData(id)! }
         let recipient = DomainRegistry.encryptionService.address(from: tx.ethTo.value)!
         let request = EstimateTransactionRequest(safe: tx.sender!,
                                                  to: recipient,

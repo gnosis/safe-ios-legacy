@@ -25,6 +25,7 @@ open class DisconnectBrowserExtensionDomainService: ReplaceBrowserExtensionDomai
     }
 
     public func update(transaction: TransactionID) {
+        stepBackToDraft(transaction)
         let tx = self.transaction(transaction)
         tx.change(data: realTransactionData())
         repository.save(tx)
