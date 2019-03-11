@@ -92,6 +92,11 @@ final class SaveMnemonicViewController: UIViewController {
         account = ethereumService.generateExternallyOwnedAccount()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(OnboardingEvent.recoveryPhrase)
+    }
+
     func willBeDismissed() {
         guard recoveryModeEnabled, let account = account else { return }
         DispatchQueue.global().async {

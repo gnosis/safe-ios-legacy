@@ -89,6 +89,9 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
         }
     }
 
+    public var trackingView: Trackable?
+    public var scannerTrackingView: Trackable?
+
     public static func create(delegate: PairWithBrowserExtensionViewControllerDelegate?)
         -> PairWithBrowserExtensionViewController {
             let controller = StoryboardScene.PairWithBrowserExtension
@@ -104,6 +107,13 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
         configureStepsLabels()
         configureSkipButton()
         updateTexts()
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let trackingView = trackingView {
+            trackEvent(trackingView)
+        }
     }
 
     public func showLoadingTitle() {
@@ -207,6 +217,7 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
         let address = scanBarButtonItem.scanValidatedConverter!(code)!
         do {
             try self.delegate?.pairWithBrowserExtensionViewController(self, didScanAddress: address, code: code)
+            trackEvent(OnboardingEvent.browserExtensionAdded)
             DispatchQueue.main.async {
                 self.delegate?.pairWithBrowserExtensionViewControllerDidFinish()
             }
@@ -272,6 +283,9 @@ extension PairWithBrowserExtensionViewController: ScanBarButtonItemDelegate {
 
     public func scanBarButtonItemWantsToPresentController(_ controller: UIViewController) {
         present(controller, animated: true)
+        if let scannerTrackingView = scannerTrackingView {
+            trackEvent(scannerTrackingView)
+        }
     }
 
     public func scanBarButtonItemDidScanValidCode(_ code: String) {
