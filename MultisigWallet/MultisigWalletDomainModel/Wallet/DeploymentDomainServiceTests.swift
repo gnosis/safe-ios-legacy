@@ -244,7 +244,8 @@ class CreationStartedTests: BaseDeploymentDomainServiceTests {
         givenDeployingWallet()
         nodeService.expect_eth_getTransactionReceipt(transaction: TransactionHash.test1, receipt: failedReceipt)
         start()
-        assertDeploymentCancelled()
+        wallet = DomainRegistry.walletRepository.selectedWallet()!
+        XCTAssertTrue(wallet.state === wallet.finalizingDeploymentState)
     }
 
 }
