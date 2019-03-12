@@ -5,6 +5,22 @@ Changelog
 The format is based on `Keep a Changelog`_ 
 and this project adheres to `Semantic Versioning`_.
 
+`1.1.0`_ - 2019-03-19
+======================
+Added
+-------
+- Manage safe browser extension
+  + Replace browser extension
+  + Connect browser extension
+  + Disconnect browser extension
+- Tracking
+  + Onboarding main actions tracking
+
+Changed
+-------
+- Fixed app freezing after unlocking a phone
+- Changed tokens endpoint
+
 `1.0.1`_ - 2019-01-23
 ======================
 Changed
@@ -250,6 +266,7 @@ Added
 - Setting master password
 - Unlocking app
 
+.. _1.1.0: https://github.com/gnosis/safe-ios/tree/1.1.0
 .. _1.0.1: https://github.com/gnosis/safe-ios/tree/1.0.1
 .. _1.0.0: https://github.com/gnosis/safe-ios/tree/1.0.0
 .. _0.10.0: https://github.com/gnosis/safe-ios/tree/0.10.0
