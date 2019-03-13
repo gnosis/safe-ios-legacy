@@ -99,10 +99,12 @@ public class RecoveryApplicationService {
         case .disconnectBrowserExtension:
             type = .disconnectBrowserExtension
         }
-        let amountTokenData = TokenData(token: tx.amount!.token,
-                                        balance: tx.amount!.amount)
-        let feeTokenData = TokenData(token: tx.feeEstimate!.gasPrice.token,
-                                     balance: -tx.feeEstimate!.total.amount)
+        let amount = tx.amount ?? TokenAmount(amount: 0, token: Token.Ether)
+        let amountTokenData = TokenData(token: amount.token, balance: amount.amount)
+        let zeroGasPrice = TokenAmount(amount: 0, token: Token.Ether)
+        let zeroFeeEstimate = TransactionFeeEstimate(gas: 0, dataGas: 0, operationalGas: 0, gasPrice: zeroGasPrice)
+        let feeEstimate = tx.feeEstimate ?? zeroFeeEstimate
+        let feeTokenData = TokenData(token: feeEstimate.gasPrice.token, balance: -feeEstimate.total.amount)
         return TransactionData(id: tx.id.id,
                                sender: tx.sender!.value,
                                recipient: tx.recipient!.value,
