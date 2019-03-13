@@ -13,6 +13,7 @@ Added
   + Replace browser extension
   + Connect browser extension
   + Disconnect browser extension
+  + Resync with browser extension
 - Tracking
   + Onboarding main actions tracking
 

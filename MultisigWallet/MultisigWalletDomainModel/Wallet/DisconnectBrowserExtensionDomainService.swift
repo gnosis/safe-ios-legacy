@@ -10,7 +10,7 @@ open class DisconnectBrowserExtensionDomainService: ReplaceBrowserExtensionDomai
 
     override func dummyTransactionData() -> Data {
         if let linkedList = remoteOwnersList(),
-            let toDelete = requiredWallet.owner(role: .browserExtension)?.address,
+            let toDelete = wallet?.owner(role: .browserExtension)?.address,
             linkedList.contains(toDelete) {
             let data = contractProxy.removeOwner(prevOwner: linkedList.addressBefore(toDelete),
                                                  owner: toDelete,
@@ -19,7 +19,7 @@ open class DisconnectBrowserExtensionDomainService: ReplaceBrowserExtensionDomai
         }
         var remoteList = OwnerLinkedList()
         remoteList.add(.zero)
-        return contractProxy.removeOwner(prevOwner: remoteList.addressBefore(.one),
+        return contractProxy.removeOwner(prevOwner: remoteList.addressBefore(.zero),
                                          owner: .zero,
                                          newThreshold: 1)
     }
@@ -32,8 +32,9 @@ open class DisconnectBrowserExtensionDomainService: ReplaceBrowserExtensionDomai
     }
 
     public func realTransactionData() -> Data? {
-        let extensionAddress = requiredWallet.owner(role: .browserExtension)!.address
-        guard let linkedList = remoteOwnersList(), linkedList.contains(extensionAddress) else { return nil }
+        guard let extensionAddress = wallet?.owner(role: .browserExtension)?.address,
+            let linkedList = remoteOwnersList(),
+            linkedList.contains(extensionAddress) else { return nil }
         return contractProxy.removeOwner(prevOwner: linkedList.addressBefore(extensionAddress),
                                          owner: extensionAddress,
                                          newThreshold: 1)

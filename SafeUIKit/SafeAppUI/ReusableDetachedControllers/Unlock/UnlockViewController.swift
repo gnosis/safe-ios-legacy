@@ -69,10 +69,10 @@ public final class UnlockViewController: UIViewController {
         verifiableInput.isSecure = true
         verifiableInput.style = .dimmed
 
-        let biometryIcon = authenticationService.isAuthenticationMethodSupported(.faceID) ?
-            Asset.UnlockScreen.faceIdIcon.image :
-            Asset.UnlockScreen.touchIdIcon.image
+        let isFaceID = authenticationService.isAuthenticationMethodSupported(.faceID)
+        let biometryIcon = isFaceID ? Asset.UnlockScreen.faceIdIcon.image : Asset.UnlockScreen.touchIdIcon.image
         loginWithBiometryButton.setImage(biometryIcon, for: .normal)
+        loginWithBiometryButton.tintColor = .white
         updateBiometryButtonVisibility()
 
         tryAgainLabel.textColor = ColorName.paleGreyThree.color

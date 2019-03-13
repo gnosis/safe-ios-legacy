@@ -104,6 +104,12 @@ final class MenuTableViewController: UITableViewController {
         generateData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        generateData()
+        tableView.reloadData()
+    }
+
     private func generateData() {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
         menuItems = [
