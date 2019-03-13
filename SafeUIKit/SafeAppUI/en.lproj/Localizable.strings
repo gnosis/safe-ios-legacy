@@ -351,7 +351,7 @@
 "recovery.address.error.invalid_contract" = "Invalid Safe address";
 
 /* Recovery address validation failed alert's message */
-"recovery.address.failed_alert.message" = "Failed to find the Safe: %@";
+"recovery.address.failed_alert.message" = "Failed to find the Safe";
 
 /* OK button title */
 "recovery.address.failed_alert.ok" = "Ok";
@@ -408,7 +408,7 @@
 "recovery.phrase.error." = "Recovery phrase does not match Safe's recovery phrase.";
 
 /* Error format for invalid recovery phrase */
-"recovery.phrase.error.format" = "Failed to use recovery phrase: %@";
+"recovery.phrase.error.format" = "Failed to use recovery phrase";
 
 /* Incorrect recovery phrase */
 "recovery.phrase.error.invalid_phrase" = "Recovery phrase is incorrect";
