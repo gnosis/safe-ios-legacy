@@ -37,8 +37,9 @@ class TokensTableViewControllerTests: SafeTestCase {
         XCTAssertEqual(thirdCell.tokenBalanceLabel.text, "--")
     }
 
-    func test_whenCreated_thenSyncs() {
-        createWindow(controller)
+    func test_whenUpdated_thenSyncs() {
+        controller.update()
+        delay(0.1)
         XCTAssertTrue(walletService.didSync)
     }
 

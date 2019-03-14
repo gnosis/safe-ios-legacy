@@ -143,7 +143,7 @@ private extension TokenListItemApplicationTests {
 
     func sync() {
         DispatchQueue.global().async {
-            self.syncService.sync()
+            self.syncService.syncOnce()
         }
         delay(0.25) // because of delays in sync job
     }
@@ -165,7 +165,7 @@ class MockSyncService: SynchronisationDomainService {
         expected_sync.append("sync()")
     }
 
-    func sync() {
+    func syncOnce() {
         actual_sync.append(#function)
     }
 
@@ -173,8 +173,7 @@ class MockSyncService: SynchronisationDomainService {
         return actual_sync == expected_sync
     }
 
-    func syncTransactions() {}
-
-    func stopSyncTransactions() {}
+    func startSyncLoop() {}
+    func stopSyncLoop() {}
 
 }

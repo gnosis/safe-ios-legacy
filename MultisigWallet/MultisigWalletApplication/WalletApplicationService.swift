@@ -311,7 +311,7 @@ public class WalletApplicationService: Assertable {
 
     public func syncBalances() {
         precondition(!Thread.isMainThread)
-        DomainRegistry.syncService.sync()
+        try? DomainRegistry.accountUpdateService.updateAccountsBalances()
     }
 
     public func tokenData(id: String) -> TokenData? {
