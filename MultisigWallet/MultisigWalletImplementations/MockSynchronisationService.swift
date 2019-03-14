@@ -11,20 +11,20 @@ public final class MockSynchronisationService: SynchronisationDomainService {
 
     public var didSync = false
 
-    public func sync() {
+    public func syncOnce() {
         Timer.wait(0.2)
         didSync = true
     }
 
     public var didStart = false
 
-    public func start() {
+    public func startSyncLoop() {
         didStart = true
     }
 
     public var didStop = false
 
-    public func stop() {
+    public func stopSyncLoop() {
         didStop = true
     }
 

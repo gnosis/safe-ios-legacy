@@ -260,7 +260,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
     func sync() {
         DispatchQueue.global.async {
-            DomainRegistry.syncService.sync()
+            DomainRegistry.syncService.syncOnce()
         }
     }
 
@@ -270,12 +270,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        DomainRegistry.syncService.start()
+        DomainRegistry.syncService.startSyncLoop()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         coordinator.appEnteredBackground()
-        DomainRegistry.syncService.stop()
+        DomainRegistry.syncService.stopSyncLoop()
     }
 
     private func cleanUp() {

@@ -32,7 +32,7 @@ public class SynchronisationService: SynchronisationDomainService {
 
     /// Synchronise token list and account balances with info from remote services.
     /// Should be called from a background thread.
-    public func sync() {
+    public func syncOnce() {
         precondition(!Thread.isMainThread)
         syncTokenList()
         let hasSyncInProgress = syncLoopRepeater != nil && syncLoopRepeater!.isRunning
@@ -91,7 +91,7 @@ public class SynchronisationService: SynchronisationDomainService {
     /// Starts synchronisation loop on a background thread. Every `syncInterval` seconds the loop executes
     /// and updates pending transactions, account balances, and post processing actions.
     /// If inbetween of these udpates the synchronisation is stopped, then all further actions are skipped.
-    public func start() {
+    public func startSyncLoop() {
         guard syncLoopRepeater == nil else { return }
         DispatchQueue.global.async {
             // repeat syncronization loop every `syncInterval`
@@ -109,7 +109,7 @@ public class SynchronisationService: SynchronisationDomainService {
     }
 
     /// Stops a synchronisation loop, if it is running in background.
-    public func stop() {
+    public func stopSyncLoop() {
         if let repeater = syncLoopRepeater {
             repeater.stop()
             syncLoopRepeater = nil

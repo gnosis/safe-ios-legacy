@@ -6,8 +6,8 @@ import Foundation
 
 public protocol SynchronisationDomainService {
 
-    func sync()
-    func start()
-    func stop()
+    func syncOnce()
+    func startSyncLoop()
+    func stopSyncLoop()
 
 }
