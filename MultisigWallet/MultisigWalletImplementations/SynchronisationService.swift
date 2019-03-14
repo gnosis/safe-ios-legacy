@@ -35,8 +35,7 @@ public class SynchronisationService: SynchronisationDomainService {
     public func sync() {
         precondition(!Thread.isMainThread)
         syncTokenList()
-        let hasSyncInProgress = syncLoopRepeater != nil &&
-            !syncLoopRepeater!.stopped && !syncLoopRepeater!.waiting
+        let hasSyncInProgress = syncLoopRepeater != nil && syncLoopRepeater!.isRunning
         if !hasSyncInProgress {
             syncAccounts()
         }
@@ -97,11 +96,11 @@ public class SynchronisationService: SynchronisationDomainService {
         DispatchQueue.global.async {
             // repeat syncronization loop every `syncInterval`
             self.syncLoopRepeater = Repeater(delay: self.syncInterval) { [unowned self] repeater in
-                if repeater.stopped { return }
+                if repeater.isStopped { return }
                 self.syncTransactions()
-                if repeater.stopped { return }
+                if repeater.isStopped { return }
                 self.syncAccounts()
-                if repeater.stopped { return }
+                if repeater.isStopped { return }
                 self.postProcessTransactions()
             }
             // blocks current thread until the repeater is not stopped.

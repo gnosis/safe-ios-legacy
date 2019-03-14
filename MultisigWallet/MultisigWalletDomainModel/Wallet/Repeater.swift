@@ -8,10 +8,17 @@ import Common
 /// Repeats a closure until stopped explicitly, delaying every repetition with a configured `delay` time interval.
 public class Repeater {
 
+    private enum State {
+        case stopped
+        case running
+        case waiting
+    }
+
     private let main: (Repeater) throws -> Void
     private let delay: TimeInterval
-    public private(set) var stopped: Bool = true
-    public private(set) var waiting: Bool = false
+    private var state: State = .stopped
+    public var isStopped: Bool { return state == .stopped }
+    public var isRunning: Bool { return state == .running }
 
     public init (delay: TimeInterval, _ main: @escaping (Repeater) throws -> Void) {
         self.main = main
@@ -19,21 +26,18 @@ public class Repeater {
     }
 
     public func start() throws {
-        guard stopped else { return }
-        stopped = false
-        waiting = false
-        while !stopped {
+        guard isStopped else { return }
+        repeat {
+            state = .running
             try main(self)
-            if stopped { return }
-            waiting = true
+            if isStopped { return }
+            state = .waiting
             Common.Timer.wait(delay)
-            waiting = false
-        }
+        } while !isStopped
     }
 
     public func stop() {
-        stopped = true
-        waiting = false
+        state = .stopped
     }
 
 }
