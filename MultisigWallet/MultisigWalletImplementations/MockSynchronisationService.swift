@@ -16,8 +16,16 @@ public final class MockSynchronisationService: SynchronisationDomainService {
         didSync = true
     }
 
-    public func syncTransactions() {}
+    public var didStart = false
 
-    public func stopSyncTransactions() {}
+    public func start() {
+        didStart = true
+    }
+
+    public var didStop = false
+
+    public func stop() {
+        didStop = true
+    }
 
 }

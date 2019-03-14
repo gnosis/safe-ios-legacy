@@ -173,8 +173,7 @@ class MockSyncService: SynchronisationDomainService {
         return actual_sync == expected_sync
     }
 
-    func syncTransactions() {}
-
-    func stopSyncTransactions() {}
+    func start() {}
+    func stop() {}
 
 }

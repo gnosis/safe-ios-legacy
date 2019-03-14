@@ -56,8 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
         createWindow()
         UIApplication.shared.applicationIconBadgeNumber = 0
-        synchronise()
         cleanUp()
+        sync()
         return true
     }
 
@@ -102,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         MultisigWalletDomainModel.DomainRegistry.put(service: PushTokensService(), for: PushTokensDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: AccountUpdateDomainService(),
                                                      for: AccountUpdateDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: SynchronisationService(retryInterval: 0.5),
+        MultisigWalletDomainModel.DomainRegistry.put(service: SynchronisationService(),
                                                      for: SynchronisationDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: System(), for: System.self)
@@ -258,23 +258,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         coordinator.setUp()
     }
 
+    func sync() {
+        DispatchQueue.global.async {
+            DomainRegistry.syncService.sync()
+        }
+    }
+
     func applicationWillEnterForeground(_ application: UIApplication) {
         coordinator.appEntersForeground()
         UIApplication.shared.applicationIconBadgeNumber = 0
-        synchronise()
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        DomainRegistry.syncService.start()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         coordinator.appEnteredBackground()
-    }
-
-    private func synchronise() {
-        DispatchQueue.global().async {
-            MultisigWalletDomainModel.DomainRegistry.syncService.sync()
-        }
-        DispatchQueue.global().async {
-            MultisigWalletDomainModel.DomainRegistry.syncService.syncTransactions()
-        }
+        DomainRegistry.syncService.stop()
     }
 
     private func cleanUp() {
