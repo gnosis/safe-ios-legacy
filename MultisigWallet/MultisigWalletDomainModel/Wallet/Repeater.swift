@@ -22,7 +22,7 @@ public class Repeater {
         guard stopped else { return }
         stopped = false
         waiting = false
-        while true {
+        while !stopped {
             try main(self)
             if stopped { return }
             waiting = true
