@@ -10,11 +10,14 @@ and this project adheres to `Semantic Versioning`_.
 Added
 -------
 - Manage safe browser extension
+
   + Replace browser extension
   + Connect browser extension
   + Disconnect browser extension
   + Resync with browser extension
+  
 - Tracking
+
   + Onboarding main actions tracking
 
 Changed
