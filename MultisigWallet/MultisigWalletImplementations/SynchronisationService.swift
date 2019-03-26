@@ -5,80 +5,115 @@
 import Foundation
 import UIKit
 import MultisigWalletDomainModel
+import MultisigWalletApplication
 
 public class SynchronisationService: SynchronisationDomainService {
 
-    private let retryInterval: TimeInterval
     private let merger: TokenListMerger
-    private let accountService: AccountUpdateDomainService
-    private let tokenSyncInterval: TimeInterval
-    private let tokenSyncMaxRetries: Int
-    private var tokenSyncRepeater: Repeater!
+    private let syncInterval: TimeInterval
+    private var syncLoopRepeater: Repeater?
 
-    public init(retryInterval: TimeInterval,
-                tokenSyncInterval: TimeInterval = 10,
-                tokenSyncMaxRetries: Int = 3,
-                merger: TokenListMerger = TokenListMerger(),
-                accountService: AccountUpdateDomainService = DomainRegistry.accountUpdateService) {
-        self.retryInterval = retryInterval
+    private var hasAccessToFilesystem: Bool {
+        #if targetEnvironment(simulator)
+            return true
+        #else
+            var status: Bool = false
+            DispatchQueue.main.sync {
+                status = UIApplication.shared.isProtectedDataAvailable
+            }
+            return status
+        #endif
+    }
+
+    public init(syncInterval: TimeInterval = 10, merger: TokenListMerger = TokenListMerger()) {
         self.merger = merger
-        self.accountService = accountService
-        self.tokenSyncInterval = tokenSyncInterval
-        self.tokenSyncMaxRetries = tokenSyncMaxRetries
-        subscribeForLockingEvents()
+        self.syncInterval = syncInterval
     }
 
-    private func subscribeForLockingEvents() {
-        let lockNotification = UIApplication.protectedDataWillBecomeUnavailableNotification
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didLock),
-                                               name: lockNotification,
-                                               object: nil)
-    }
-
-    @objc func didLock() {
-        stopSyncTransactions()
-    }
-
-    /// Synchronise stored data with info from services.
+    /// Synchronise token list and account balances with info from remote services.
     /// Should be called from a background thread.
-    public func sync() {
+    public func syncOnce() {
         precondition(!Thread.isMainThread)
         syncTokenList()
-        syncAccounts()
-    }
-
-    private func syncTokenList() {
-        try! RetryWithIncreasingDelay(maxAttempts: Int.max, startDelay: retryInterval) { [weak self] _ in
-            let tokenList = try DomainRegistry.tokenListService.items()
-            self?.merger.mergeStoredTokenItems(with: tokenList)
-        }.start()
-    }
-
-    private func syncAccounts() {
-        try! RetryWithIncreasingDelay(maxAttempts: Int.max, startDelay: retryInterval) { [weak self] _ in
-            try self?.accountService.updateAccountsBalances()
-        }.start()
-    }
-
-    /// Starts regular transaction status updates. To stop, use `stopSyncTransactions()`
-    public func syncTransactions() {
-        guard tokenSyncRepeater == nil || tokenSyncRepeater.stopped else { return }
-        tokenSyncRepeater = Repeater(delay: tokenSyncInterval) { [unowned self] _ in
-            try? RetryWithIncreasingDelay(maxAttempts: self.tokenSyncMaxRetries, startDelay: self.retryInterval) { _ in
-                try DomainRegistry.transactionService.updatePendingTransactions()
-                try DomainRegistry.replaceExtensionService.postProcessTransactions()
-                try DomainRegistry.connectExtensionService.postProcessTransactions()
-                try DomainRegistry.disconnectExtensionService.postProcessTransactions()
-            }.start()
-            self.syncAccounts()
+        let hasSyncInProgress = syncLoopRepeater != nil && syncLoopRepeater!.isRunning
+        if !hasSyncInProgress {
+            syncAccounts()
         }
-        try? tokenSyncRepeater.start()
     }
 
-    /// Will stop the transaction synchronization
-    public func stopSyncTransactions() {
-        tokenSyncRepeater?.stop()
+    /// Synchronizes token list from the server with the local data. Errors are logged but not thrown.
+    private func syncTokenList() {
+        guard hasAccessToFilesystem else { return }
+        do {
+            let tokenList = try DomainRegistry.tokenListService.items()
+            merger.mergeStoredTokenItems(with: tokenList)
+        } catch {
+            ApplicationServiceRegistry.logger.error("Failed to sync token list", error: error)
+        }
+    }
+
+    /// Synchronizes account balances for tokens that were enabled. Errors are logged but not thrown.
+    private func syncAccounts() {
+        guard hasAccessToFilesystem else { return }
+        do {
+            try DomainRegistry.accountUpdateService.updateAccountsBalances()
+        } catch {
+            ApplicationServiceRegistry.logger.error("Failed to sync account balances", error: error)
+        }
+    }
+
+    /// Synchronizes statuses of pending transactions. Errors are logged but not thrown.
+    private func syncTransactions() {
+        guard hasAccessToFilesystem else { return }
+        do {
+            try DomainRegistry.transactionService.updatePendingTransactions()
+        } catch {
+            ApplicationServiceRegistry.logger.error("Failed to sync pending transactions", error: error)
+        }
+    }
+
+    /// Watches for transactions to process and then executes appropriate actions. Errors are logged but not thrown.
+    private func postProcessTransactions() {
+        do {
+            guard hasAccessToFilesystem else { return }
+            try DomainRegistry.replaceExtensionService.postProcessTransactions()
+
+            guard hasAccessToFilesystem else { return }
+            try DomainRegistry.connectExtensionService.postProcessTransactions()
+
+            guard hasAccessToFilesystem else { return }
+            try DomainRegistry.disconnectExtensionService.postProcessTransactions()
+        } catch {
+            ApplicationServiceRegistry.logger.error("Failed to post process transactions", error: error)
+        }
+    }
+
+    /// Starts synchronisation loop on a background thread. Every `syncInterval` seconds the loop executes
+    /// and updates pending transactions, account balances, and post processing actions.
+    /// If inbetween of these udpates the synchronisation is stopped, then all further actions are skipped.
+    public func startSyncLoop() {
+        guard syncLoopRepeater == nil else { return }
+        DispatchQueue.global.async {
+            // repeat syncronization loop every `syncInterval`
+            self.syncLoopRepeater = Repeater(delay: self.syncInterval) { [unowned self] repeater in
+                if repeater.isStopped { return }
+                self.syncTransactions()
+                if repeater.isStopped { return }
+                self.syncAccounts()
+                if repeater.isStopped { return }
+                self.postProcessTransactions()
+            }
+            // blocks current thread until the repeater is not stopped.
+            try! self.syncLoopRepeater!.start()
+        }
+    }
+
+    /// Stops a synchronisation loop, if it is running in background.
+    public func stopSyncLoop() {
+        if let repeater = syncLoopRepeater {
+            repeater.stop()
+            syncLoopRepeater = nil
+        }
     }
 
 }

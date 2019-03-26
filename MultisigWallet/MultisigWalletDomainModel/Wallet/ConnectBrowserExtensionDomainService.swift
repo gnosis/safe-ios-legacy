@@ -14,7 +14,8 @@ open class ConnectBrowserExtensionDomainService: ReplaceBrowserExtensionDomainSe
     override var transactionType: TransactionType { return .connectBrowserExtension }
 
     override func dummyTransactionData() -> Data {
-        return contractProxy.addOwner(requiredWallet.address!, newThreshold: 2)
+        let dummyAddress: Address = wallet?.address ?? .two
+        return contractProxy.addOwner(dummyAddress, newThreshold: 2)
     }
 
     open override func newOwnerAddress(from transactionID: TransactionID) -> String? {
