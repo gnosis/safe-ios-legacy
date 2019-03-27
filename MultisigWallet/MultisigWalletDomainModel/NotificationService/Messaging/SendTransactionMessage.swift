@@ -26,40 +26,29 @@ public class SendTransactionMessage: Message {
     }
 
     public init?(userInfo: [AnyHashable: Any]) {
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: userInfo, options: []),
-            let json = try? JSONDecoder().decode(JSON.self, from: jsonData),
-            json.type == SendTransactionMessage.messageType else { return nil }
-        let hashData = Data(ethHex: json.hash)
-        let vOrNil = Int(json.v)
-        let safeOrNil = Address(rawValue: json.safe)
-        let toOrNil = Address(rawValue: json.to)
-        let valueOrNil = BigInt(json.value)
-        let data = Data(ethHex: json.data)
-        let operationOrNil = Int(json.operation)
-        let txGasOrNil = Int(json.txGas)
-        let dataGasOrNil = Int(json.dataGas)
-        let operationalGasOrNil = Int(json.operationalGas)
-        let gasPriceOrNil = BigInt(json.gasPrice)
-        let gasTokenOrNil = Address(rawValue: json.gasToken)
-        let nonceOrNil = Int(json.nonce)
-        guard let v = vOrNil,
-            let safe = safeOrNil,
-            let to = toOrNil,
-            let value = valueOrNil,
-            let operationValue = operationOrNil,
-            let operation = WalletOperation(rawValue: operationValue),
-            let txGas = txGasOrNil,
-            let dataGas = dataGasOrNil,
-            let operationalGas = operationalGasOrNil,
-            let gasPrice = gasPriceOrNil,
-            let gasToken = gasTokenOrNil,
-            let nonce = nonceOrNil else {
-                return nil
-        }
-        guard !hashData.isEmpty else { return nil }
-        guard ECDSASignatureBounds.isWithinBounds(r: json.r, s: json.s, v: v) else { return nil }
-        hash = hashData
-        signature = EthSignature(r: json.r, s: json.s, v: v)
+        guard let type = userInfo["type"] as? String, type == SendTransactionMessage.messageType,
+              let hashString = userInfo["hash"] as? String,
+              let hash = Optional(Data(ethHex: hashString)), !hash.isEmpty,
+              let rString = userInfo["r"] as? String,
+              let sString = userInfo["s"] as? String,
+              let vString = userInfo["v"] as? String, let v = Int(vString),
+              let safeString = userInfo["safe"] as? String, let safe = Address(rawValue: safeString),
+              let toString = userInfo["to"] as? String, let to = Address(rawValue: toString),
+              let valueString = userInfo["value"] as? String, let value = BigInt(valueString),
+              let dataString = userInfo["data"] as? String, let data = Optional(Data(ethHex: dataString)),
+              let operationString = userInfo["operation"] as? String, let operationInt = Int(operationString),
+              let operation = WalletOperation(rawValue: operationInt),
+              let txGasString = userInfo["txGas"] as? String, let txGas = Int(txGasString),
+              let dataGasString = userInfo["dataGas"] as? String, let dataGas = Int(dataGasString),
+              let operationalGasString = userInfo["operationalGas"] as? String,
+              let operationalGas = Int(operationalGasString),
+              let gasPriceString = userInfo["gasPrice"] as? String, let gasPrice = BigInt(gasPriceString),
+              let gasTokenString = userInfo["gasToken"] as? String, let gasToken = Address(rawValue: gasTokenString),
+              let nonceString = userInfo["nonce"] as? String, let nonce = Int(nonceString),
+              ECDSASignatureBounds.isWithinBounds(r: rString, s: sString, v: v)
+        else { return nil }
+        self.hash = hash
+        self.signature = EthSignature(r: rString, s: sString, v: v)
         self.safe = safe
         self.to = to
         self.value = value
@@ -72,25 +61,6 @@ public class SendTransactionMessage: Message {
         self.gasToken = gasToken
         self.nonce = nonce
         super.init(type: SendTransactionMessage.messageType)
-    }
-
-    private struct JSON: Decodable {
-        var type: String
-        var hash: String
-        var safe: String
-        var to: String
-        var value: String
-        var data: String
-        var operation: String
-        var txGas: String
-        var dataGas: String
-        var operationalGas: String
-        var gasPrice: String
-        var gasToken: String
-        var nonce: String
-        var r: String
-        var s: String
-        var v: String
     }
 
 }
