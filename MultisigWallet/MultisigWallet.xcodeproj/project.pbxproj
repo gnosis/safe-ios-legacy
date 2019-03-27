@@ -14,7 +14,6 @@
 		0A112191219C522B00EEDC27 /* TransactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A112190219C522B00EEDC27 /* TransactionStatus.swift */; };
 		0A19402A2226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940292226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift */; };
 		0A1940312226A9E2005B7440 /* TestableOwnerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19402F2226A9DA005B7440 /* TestableOwnerProxy.swift */; };
-		0A1940332226AC47005B7440 /* ConnectBrowserExtensionApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940322226AC47005B7440 /* ConnectBrowserExtensionApplicationServiceTests.swift */; };
 		0A1940352226C2DB005B7440 /* DisconnectBrowserExtensionDomainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940342226C2DB005B7440 /* DisconnectBrowserExtensionDomainService.swift */; };
 		0A1940382226C2F3005B7440 /* DisconnectBrowserExtensionDomainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940362226C2EF005B7440 /* DisconnectBrowserExtensionDomainServiceTests.swift */; };
 		0A1940422226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940412226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift */; };
@@ -431,7 +430,6 @@
 		0A112190219C522B00EEDC27 /* TransactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStatus.swift; sourceTree = "<group>"; };
 		0A1940292226A51A005B7440 /* ConnectBrowserExtensionDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionDomainServiceTests.swift; sourceTree = "<group>"; };
 		0A19402F2226A9DA005B7440 /* TestableOwnerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableOwnerProxy.swift; sourceTree = "<group>"; };
-		0A1940322226AC47005B7440 /* ConnectBrowserExtensionApplicationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBrowserExtensionApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0A1940342226C2DB005B7440 /* DisconnectBrowserExtensionDomainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionDomainService.swift; sourceTree = "<group>"; };
 		0A1940362226C2EF005B7440 /* DisconnectBrowserExtensionDomainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionDomainServiceTests.swift; sourceTree = "<group>"; };
 		0A1940412226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectBrowserExtensionApplicationService.swift; sourceTree = "<group>"; };
@@ -1014,7 +1012,6 @@
 				0A9E379420F4A4D10085E8D7 /* ApplicationServiceRegistryTests.swift */,
 				0A4AD4F52225A683004244FB /* ConnectBrowserExtensionApplicationService.swift */,
 				0A1940412226CB29005B7440 /* DisconnectBrowserExtensionApplicationService.swift */,
-				0A1940322226AC47005B7440 /* ConnectBrowserExtensionApplicationServiceTests.swift */,
 				0A9E379920F4A4D10085E8D7 /* EthereumApplicationService.swift */,
 				0A9E379620F4A4D10085E8D7 /* EthereumApplicationServiceTests.swift */,
 				0A9E379820F4A4D10085E8D7 /* EthereumApplicationTestCase.swift */,
@@ -1753,7 +1750,6 @@
 				0A8A2B9C20FCDC550003BB7E /* TestFixture.swift in Sources */,
 				0A9E383720F4AC670085E8D7 /* EthereumApplicationServiceTests.swift in Sources */,
 				0ACA9D39212C19C400E39BB6 /* EventRelayTests.swift in Sources */,
-				0A1940332226AC47005B7440 /* ConnectBrowserExtensionApplicationServiceTests.swift in Sources */,
 				0A77D0D0211AD974003582DD /* Fixtures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

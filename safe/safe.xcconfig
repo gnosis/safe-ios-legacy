@@ -1,3 +1,4 @@
 
-FIREBASE_FRAMEWORKS=-framework "FirebaseCore" -framework "FirebaseMessaging" -framework "Protobuf" -framework "FirebaseInstanceID"
-OTHER_LDFLAGS=$(inherited) -lsqlite3 -lsecp256k1 -lcrypto -ObjC ${FIREBASE_FRAMEWORKS} -framework "CryptoEthereumSwift" -framework "BigInt" -framework "BlockiesSwift" -framework "RSBarcodes" -framework "CryptoSwift" -framework "EthereumKit" -framework "Kingfisher" -framework "SipHash" -framework "DateTools"
+FIREBASE_MESSAGING_FRAMEWORKS=-framework "FirebaseMessaging" -framework "Protobuf"
+FIREBASE_ANALYTICS_FRAMEWORKS=-framework "FirebaseAnalytics" -framework "FIRAnalyticsConnector" -framework "FirebaseCoreDiagnostics" -framework "FirebaseCore" -framework "FirebaseInstanceID" -framework "GoogleAppMeasurement" -framework "GoogleUtilities" -framework "nanopb"
+OTHER_LDFLAGS=$(inherited) -lsqlite3 -lsecp256k1 -lcrypto -ObjC ${FIREBASE_MESSAGING_FRAMEWORKS} ${FIREBASE_ANALYTICS_FRAMEWORKS} -framework "CryptoEthereumSwift" -framework "BigInt" -framework "BlockiesSwift" -framework "RSBarcodes" -framework "CryptoSwift" -framework "EthereumKit" -framework "Kingfisher" -framework "SipHash" -framework "DateTools"

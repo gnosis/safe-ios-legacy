@@ -206,27 +206,6 @@
 			remoteGlobalIDString = 0A9670B120480C5700445AC2;
 			remoteInfo = SafeUIKit;
 		};
-		0A3D14D3220B155400E340DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A2FAA282201A5D800793B7B;
-			remoteInfo = ReplaceBrowserExtensionUI;
-		};
-		0A3D14D5220B155400E340DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A2FAA302201A5D900793B7B;
-			remoteInfo = ReplaceBrowserExtensionUITests;
-		};
-		0A3D14D7220B155400E340DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A160B4E20A07C2D00E064E1 /* SafeUIKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A2FAA672201A72700793B7B;
-			remoteInfo = UIStaging;
-		};
 		0AC33F182119CBE1009A5CFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0ABCA964207E560500E2C193 /* Library.xcodeproj */;
@@ -461,9 +440,6 @@
 				0A160B5E20A07C2D00E064E1 /* SafeUIKitTests.xctest */,
 				0A160B6020A07C2D00E064E1 /* SafeAppUI.framework */,
 				0A160B6220A07C2D00E064E1 /* SafeAppUIUnitTests.xctest */,
-				0A3D14D4220B155400E340DB /* ReplaceBrowserExtensionUI.framework */,
-				0A3D14D6220B155400E340DB /* ReplaceBrowserExtensionUITests.xctest */,
-				0A3D14D8220B155400E340DB /* UIStaging.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1001,27 +977,6 @@
 			fileType = wrapper.cfbundle;
 			path = IdentityAccessImplementationsResources.bundle;
 			remoteRef = 0A160B7F20A07C3F00E064E1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A3D14D4220B155400E340DB /* ReplaceBrowserExtensionUI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ReplaceBrowserExtensionUI.framework;
-			remoteRef = 0A3D14D3220B155400E340DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A3D14D6220B155400E340DB /* ReplaceBrowserExtensionUITests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ReplaceBrowserExtensionUITests.xctest;
-			remoteRef = 0A3D14D5220B155400E340DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A3D14D8220B155400E340DB /* UIStaging.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = UIStaging.app;
-			remoteRef = 0A3D14D7220B155400E340DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */ = {

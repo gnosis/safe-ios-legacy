@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/EthereumKit-Swift.h</key>
 		<data>
-		+J/WMzagUM1BVFfLHhuQzhjRsZ4=
+		PGxTyPCuL9h0HZ4WyWHYO3qBmIw=
 		</data>
 		<key>Headers/EthereumKit.h</key>
 		<data>
@@ -14,23 +14,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		T8ZSoHDq7gBcuD2OvTqnntmxyW4=
+		E9IwDjZHs/49WIQ6+JyGufR4WiA=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/i386.swiftdoc</key>
 		<data>
-		vqmjuKHsh8Eiz7k2BafaBpO7nLQ=
+		GpIg633T72q1spLsBAHQ44qTY7Q=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/i386.swiftmodule</key>
 		<data>
-		HCtfxpad4uLjst0qMWIthhzwJFo=
+		PBsEvXZfIrmex1o3nFqbtsBIuBc=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		dj/wyKpq407rkhWJygo9pNSr9ns=
+		826VDFCVKRcbfYm1BQrHr5RgrP0=
 		</data>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		OOiGU7L0VLiy1FrCoFa7ydNJTdI=
+		+WCtsueOIAP4AhrqDACnnN857Og=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -47,11 +47,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+J/WMzagUM1BVFfLHhuQzhjRsZ4=
+			PGxTyPCuL9h0HZ4WyWHYO3qBmIw=
 			</data>
 			<key>hash2</key>
 			<data>
-			swzBNzhXjRNq0O2ViniJqhhGowUNeF0RqUk4Yxd/1FA=
+			ZcFqOUT1rMJ61GsFPpudU6c3GZB3uUcldVZPxJSvMac=
 			</data>
 		</dict>
 		<key>Headers/EthereumKit.h</key>
@@ -69,44 +69,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			vqmjuKHsh8Eiz7k2BafaBpO7nLQ=
+			GpIg633T72q1spLsBAHQ44qTY7Q=
 			</data>
 			<key>hash2</key>
 			<data>
-			2GLWCBI7T/TDYvjxnBhMtJ8I3pSCjsPQJtBLofBa4PU=
+			VWa0om7Kry0tBlYsf6fiP2C4aYKH0U7v3IAXT5qjRFw=
 			</data>
 		</dict>
 		<key>Modules/EthereumKit.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			HCtfxpad4uLjst0qMWIthhzwJFo=
+			PBsEvXZfIrmex1o3nFqbtsBIuBc=
 			</data>
 			<key>hash2</key>
 			<data>
-			xkE+BCJIlUc1nbrLzfbv2ZODbrEi9CZHJtHul4U0+Yo=
+			Kg1/IRFpKjeTcZBq2IuJyTMSpghbVCpbgGkESMuAaj4=
 			</data>
 		</dict>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			dj/wyKpq407rkhWJygo9pNSr9ns=
+			826VDFCVKRcbfYm1BQrHr5RgrP0=
 			</data>
 			<key>hash2</key>
 			<data>
-			hUHeDanxKiyoOwmJdywv9XL6qFncPlk/pAZNrgU0P5A=
+			h76oM2YHC0rAWQ81xQxmUNhJZpbHsV8IkvjJBWGiQ0Y=
 			</data>
 		</dict>
 		<key>Modules/EthereumKit.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			OOiGU7L0VLiy1FrCoFa7ydNJTdI=
+			+WCtsueOIAP4AhrqDACnnN857Og=
 			</data>
 			<key>hash2</key>
 			<data>
-			UYYluqXiZyzT1P103sx9KQIvo+JN4B24rgGEZLbfHjs=
+			lxT/XO8hsJEpLAQEdGABKsCMQVYgqdMnmF4f2yToPfw=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -134,7 +134,7 @@
 	</dict>
 	<key>rules</key>
 	<dict>
-		<key>^</key>
+		<key>^.*</key>
 		<true/>
 		<key>^.*\.lproj/</key>
 		<dict>
@@ -165,24 +165,12 @@
 			<key>weight</key>
 			<real>11</real>
 		</dict>
-		<key>^</key>
-		<dict>
-			<key>weight</key>
-			<real>20</real>
-		</dict>
 		<key>^(.*/)?\.DS_Store$</key>
 		<dict>
 			<key>omit</key>
 			<true/>
 			<key>weight</key>
 			<real>2000</real>
-		</dict>
-		<key>^(Frameworks|SharedFrameworks|PlugIns|Plug-ins|XPCServices|Helpers|MacOS|Library/(Automator|Spotlight|LoginItems))/</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^.*</key>
 		<true/>
@@ -218,13 +206,6 @@
 			<true/>
 			<key>weight</key>
 			<real>20</real>
-		</dict>
-		<key>^[^/]+$</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^embedded\.provisionprofile$</key>
 		<dict>

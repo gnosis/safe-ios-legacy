@@ -64,6 +64,8 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
     var downloadExtensionEnabled = true
     var scanBarButtonItem: ScanBarButtonItem!
     private var activityIndicator: UIActivityIndicatorView!
+    var backButtonItem: UIBarButtonItem!
+    private var didCancel = false
 
     public var screenTitle: String? {
         didSet {
@@ -89,12 +91,23 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
         }
     }
 
+    public var trackingView: Trackable?
+    public var scannerTrackingView: Trackable?
+
     public static func create(delegate: PairWithBrowserExtensionViewControllerDelegate?)
         -> PairWithBrowserExtensionViewController {
             let controller = StoryboardScene.PairWithBrowserExtension
                 .pairWithBrowserExtensionViewController.instantiate()
             controller.delegate = delegate
             return controller
+    }
+
+    override public func awakeFromNib() {
+        super.awakeFromNib()
+        backButtonItem = UIBarButtonItem(title: LocalizedString("navigation.back", comment: "Back"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(back))
     }
 
     override public func viewDidLoad() {
@@ -104,6 +117,24 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
         configureStepsLabels()
         configureSkipButton()
         updateTexts()
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let trackingView = trackingView {
+            trackEvent(trackingView)
+        }
+    }
+
+    override public func willMove(toParent parent: UIViewController?) {
+        guard let nav = parent as? UINavigationController,
+            nav.topViewController == self && nav.viewControllers.count > 1 else { return }
+        nav.viewControllers[nav.viewControllers.count - 2].navigationItem.backBarButtonItem = backButtonItem
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        didCancel = false
     }
 
     public func showLoadingTitle() {
@@ -123,6 +154,10 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
 
     func updateSkipButton() {
         skipButton?.isHidden = hidesSkipButton
+    }
+
+    @objc func back() {
+        didCancel = true
     }
 
     func handleError(_ error: Error) {
@@ -207,10 +242,13 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
         let address = scanBarButtonItem.scanValidatedConverter!(code)!
         do {
             try self.delegate?.pairWithBrowserExtensionViewController(self, didScanAddress: address, code: code)
+            if self.didCancel { return }
+            trackEvent(OnboardingEvent.browserExtensionAdded)
             DispatchQueue.main.async {
                 self.delegate?.pairWithBrowserExtensionViewControllerDidFinish()
             }
         } catch let e {
+            if self.didCancel { return }
             DispatchQueue.main.async {
                 self.handleError(e)
             }
@@ -272,6 +310,9 @@ extension PairWithBrowserExtensionViewController: ScanBarButtonItemDelegate {
 
     public func scanBarButtonItemWantsToPresentController(_ controller: UIViewController) {
         present(controller, animated: true)
+        if let scannerTrackingView = scannerTrackingView {
+            trackEvent(scannerTrackingView)
+        }
     }
 
     public func scanBarButtonItemDidScanValidCode(_ code: String) {
@@ -279,7 +320,6 @@ extension PairWithBrowserExtensionViewController: ScanBarButtonItemDelegate {
         showLoadingTitle()
         DispatchQueue.global().async {
             self.processValidCode(code)
-
             DispatchQueue.main.async {
                 self.hideLoadingTitle()
                 self.enableButtons()

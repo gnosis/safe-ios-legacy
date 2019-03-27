@@ -16,7 +16,6 @@ class SynchronisationServiceTests: XCTestCase {
     let portfolioRepository = InMemorySinglePortfolioRepository()
     let walletRepository = InMemoryWalletRepository()
     let publisher = MockEventPublisher()
-    let retryInterval: TimeInterval = 0.5
 
     override func setUp() {
         super.setUp()
@@ -25,28 +24,19 @@ class SynchronisationServiceTests: XCTestCase {
         DomainRegistry.put(service: portfolioRepository, for: SinglePortfolioRepository.self)
         DomainRegistry.put(service: walletRepository, for: WalletRepository.self)
         DomainRegistry.put(service: publisher, for: EventPublisher.self)
-        syncService = SynchronisationService(retryInterval: retryInterval, accountService: accountService)
+        DomainRegistry.put(service: accountService, for: AccountUpdateDomainService.self)
+        syncService = SynchronisationService()
     }
 
     func test_whenSync_thenCallsTokenListService() {
         startSync()
-        delay(retryInterval)
-        assertTokenListSyncSuccess()
-    }
-
-    func test_whenFailsToGetTokensList_thenRetries() {
-        tokenListService.shouldThrow = true
-        startSync()
-        delay(retryInterval)
-        assertTokenListSyncInProgress()
-        tokenListService.shouldThrow = false
-        delay(retryInterval * 3)
+        delay(0.25)
         assertTokenListSyncSuccess()
     }
 
     func test_whenSync_thenCallsAccountUpdateDomainService() {
         startSync()
-        delay(retryInterval * 2)
+        delay(0.25)
         assertAccountSyncSuccess()
     }
 
@@ -59,17 +49,13 @@ private extension SynchronisationServiceTests {
         publisher.expectToPublish(AccountsBalancesUpdated.self)
         XCTAssertFalse(tokenListService.didReturnItems, line: line)
         DispatchQueue.global().async {
-            self.syncService.sync()
+            self.syncService.syncOnce()
         }
     }
 
     private func assertTokenListSyncSuccess(line: UInt = #line) {
         XCTAssertTrue(tokenListService.didReturnItems, "Service returned no items", line: line)
         XCTAssertTrue(publisher.verify(), "Publisher not verified", line: line)
-    }
-
-    private func assertTokenListSyncInProgress(line: UInt = #line) {
-        XCTAssertFalse(tokenListService.didReturnItems, line: line)
     }
 
     private func assertAccountSyncSuccess(line: UInt = #line) {
