@@ -103,10 +103,10 @@ public final class BiometricService: BiometricAuthenticationService {
                  .biometryNotAvailable,
                  .biometryNotEnrolled,
                  .biometryLockout,
+                 .notInteractive,
                  .appCancel:
                 return false
-            case .invalidContext,
-                 .notInteractive:
+            case .invalidContext:
                 return true
             default: // these are deprecated touchID* cases
                 return false

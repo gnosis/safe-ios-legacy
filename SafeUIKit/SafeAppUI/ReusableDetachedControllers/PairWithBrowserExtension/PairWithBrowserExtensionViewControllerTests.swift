@@ -32,9 +32,9 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
     }
 
     func test_whenScansValidCode_thenCallsTheDelegate() {
-        controller.scanBarButtonItemDidScanValidCode("valid_code")
         XCTAssertNil(testDelegate.pairedAddress)
         XCTAssertNil(testDelegate.pairedCode)
+        controller.scanBarButtonItemDidScanValidCode("valid_code")
         delay()
         XCTAssertNotNil(testDelegate.pairedAddress)
         XCTAssertNotNil(testDelegate.pairedCode)

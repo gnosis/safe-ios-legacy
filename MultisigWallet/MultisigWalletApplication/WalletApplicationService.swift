@@ -203,7 +203,7 @@ public class WalletApplicationService: Assertable {
                 dataStr.range(of: "Exceeded expiration date") != nil {
                 throw WalletApplicationServiceError.exceededExpirationDate
             } else if let response = response as? HTTPURLResponse {
-                throw (400..<500).contains(response.statusCode) ?
+                throw 400..<500 ~= response.statusCode ?
                     WalletApplicationServiceError.clientError : WalletApplicationServiceError.serverError
             } else {
                 throw WalletApplicationServiceError.networkError
@@ -239,7 +239,7 @@ public class WalletApplicationService: Assertable {
 
     private func error(from response: URLResponse?) -> WalletApplicationServiceError {
         if let response = response as? HTTPURLResponse {
-            if (400..<500).contains(response.statusCode) {
+            if 400..<500 ~= response.statusCode {
                 return .clientError
             } else {
                 return .serverError
@@ -311,7 +311,7 @@ public class WalletApplicationService: Assertable {
 
     public func syncBalances() {
         precondition(!Thread.isMainThread)
-        DomainRegistry.syncService.sync()
+        try? DomainRegistry.accountUpdateService.updateAccountsBalances()
     }
 
     public func tokenData(id: String) -> TokenData? {
@@ -489,7 +489,7 @@ public class WalletApplicationService: Assertable {
     }
 
     internal func transactionData(_ tx: Transaction) -> TransactionData {
-        if tx.type == .replaceBrowserExtension {
+        if tx.type == .replaceBrowserExtension || tx.type == .disconnectBrowserExtension {
             return ApplicationServiceRegistry.recoveryService.transactionData(tx)
         }
         let type: TransactionData.TransactionType
@@ -498,6 +498,8 @@ public class WalletApplicationService: Assertable {
         case .walletRecovery: type = .walletRecovery
         case .replaceRecoveryPhrase: type = .replaceRecoveryPhrase
         case .replaceBrowserExtension: type = .replaceBrowserExtension
+        case .connectBrowserExtension: type = .connectBrowserExtension
+        case .disconnectBrowserExtension: type = .disconnectBrowserExtension
         }
         let amountTokenData = tx.amount != nil ?
             TokenData(token: tx.amount!.token,
@@ -560,7 +562,8 @@ public class WalletApplicationService: Assertable {
 
     public func estimateTransactionIfNeeded(_ id: String) throws -> TransactionData {
         let tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
-        guard tx.feeEstimate == nil else { return transactionData(id)! }
+        guard tx.feeEstimate == nil ||
+            tx.type == .connectBrowserExtension && tx.status == .draft else { return transactionData(id)! }
         let recipient = DomainRegistry.encryptionService.address(from: tx.ethTo.value)!
         let request = EstimateTransactionRequest(safe: tx.sender!,
                                                  to: recipient,
@@ -604,7 +607,7 @@ public class WalletApplicationService: Assertable {
             _ = try requestTransactionConfirmationIfNeeded(id)
             tx = DomainRegistry.transactionRepository.findByID(TransactionID(id))!
         }
-        if tx.type == .replaceBrowserExtension {
+        if tx.type == .replaceBrowserExtension || tx.type == .disconnectBrowserExtension {
             try proceedTransaction(tx)
         } else {
             signTransaction(tx)
@@ -752,11 +755,11 @@ public class WalletApplicationService: Assertable {
             transaction
                 .change(recipient: erc20Transfer.recipient)
                 .change(amount: TokenAmount(amount: erc20Transfer.amount,
-                                            token: Token.init(code: "",
-                                                              name: "",
-                                                              decimals: 18,
-                                                              address: message.to,
-                                                              logoUrl: "")))
+                                            token: Token(code: "",
+                                                         name: "",
+                                                         decimals: 18,
+                                                         address: message.to,
+                                                         logoUrl: "")))
         }
     }
 

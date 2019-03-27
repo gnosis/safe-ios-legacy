@@ -15,7 +15,7 @@ class HTTPTokenListServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
         let config = try! AppConfig.loadFromBundle()!
-        tokenListService = HTTPTokenListService(url: config.tokenListServiceURL, logger: MockLogger())
+        tokenListService = HTTPTokenListService(url: config.relayServiceURL, logger: MockLogger())
     }
 
     func test_canGetTokenItemsFromService() throws {

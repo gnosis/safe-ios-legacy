@@ -128,7 +128,7 @@ public class DeploymentDomainService {
 
     private func synchronise() {
         DispatchQueue.global().async {
-            DomainRegistry.syncService.sync()
+            DomainRegistry.syncService.syncOnce()
         }
     }
 

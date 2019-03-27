@@ -27,7 +27,7 @@ final class ManageTokensTableViewController: UITableViewController {
 
     weak var delegate: ManageTokensTableViewControllerDelegate?
 
-    private var tokens = [TokenData]()
+    private(set) var tokens = [TokenData]()
 
     private enum Strings {
         static let title = LocalizedString("manage_tokens.title",
@@ -106,6 +106,7 @@ final class ManageTokensTableViewController: UITableViewController {
         var newTokens = tokens
         newTokens.rearrange(from: sourceIndexPath.row, to: destinationIndexPath.row)
         delegate?.rearrange(tokens: newTokens)
+        tokens = newTokens
     }
 
     override func tableView(_ tableView: UITableView,

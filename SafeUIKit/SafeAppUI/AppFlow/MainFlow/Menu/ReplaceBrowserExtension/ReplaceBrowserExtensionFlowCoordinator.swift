@@ -10,10 +10,14 @@ class ReplaceBrowserExtensionFlowCoordinator: FlowCoordinator {
     weak var introVC: RBEIntroViewController?
     var transactionID: RBETransactionID!
 
+    private var applicationService: ReplaceBrowserExtensionApplicationService {
+        return ApplicationServiceRegistry.replaceExtensionService
+    }
+
     override func setUp() {
         super.setUp()
         let intro = RBEIntroViewController.create()
-        intro.starter = ApplicationServiceRegistry.settingsService
+        intro.starter = applicationService
         intro.delegate = self
         push(intro)
         introVC = intro
@@ -36,7 +40,7 @@ extension ReplaceBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewCo
     func pairWithBrowserExtensionViewController(_ controller: PairWithBrowserExtensionViewController,
                                                 didScanAddress address: String,
                                                 code: String) throws {
-        try ApplicationServiceRegistry.settingsService.connect(transaction: transactionID, code: code)
+        try applicationService.connect(transaction: transactionID, code: code)
     }
 
     func pairWithBrowserExtensionViewControllerDidFinish() {
@@ -48,11 +52,10 @@ extension ReplaceBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewCo
 
 extension ReplaceBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewControllerDelegate {
 
-
     func recoveryPhraseInputViewController(_ controller: RecoveryPhraseInputViewController,
                                            didEnterPhrase phrase: String) {
         do {
-            try ApplicationServiceRegistry.settingsService.sign(transaction: transactionID, withPhrase: phrase)
+            try applicationService.sign(transaction: transactionID, withPhrase: phrase)
             controller.handleSuccess()
         } catch {
             controller.handleError(error)
@@ -61,8 +64,7 @@ extension ReplaceBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewControl
 
 
     func recoveryPhraseInputViewControllerDidFinish() {
-        let controller = ReplaceBrowserExtensionReviewTransactionViewController(transactionID: transactionID,
-                                                                                delegate: self)
+        let controller = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
         push(controller)
     }
 
@@ -75,7 +77,7 @@ extension ReplaceBrowserExtensionFlowCoordinator: ReviewTransactionViewControlle
     }
 
     func didFinishReview() {
-        ApplicationServiceRegistry.settingsService.startMonitoring(transaction: transactionID)
+        applicationService.startMonitoring(transaction: transactionID)
         exitFlow()
     }
 

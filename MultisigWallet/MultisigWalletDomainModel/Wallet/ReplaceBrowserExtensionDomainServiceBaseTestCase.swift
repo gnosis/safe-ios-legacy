@@ -47,14 +47,6 @@ class ReplaceBrowserExtensionDomainServiceBaseTestCase: XCTestCase {
 }
 
 
-class TestableOwnerProxy: SafeOwnerManagerContractProxy {
-
-    var getOwners_result = [Address]()
-
-    override func getOwners() throws -> [Address] {
-        return getOwners_result
-    }
-}
 
 extension ReplaceBrowserExtensionDomainServiceBaseTestCase {
 

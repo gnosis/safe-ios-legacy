@@ -18,6 +18,11 @@ class AppDelegateTests: XCTestCase {
     let appDelegate = AppDelegate()
     let mockSyncService = MockSynchronisationService()
 
+    override func setUp() {
+        super.setUp()
+        MultisigWalletDomainModel.DomainRegistry.put(service: mockSyncService, for: SynchronisationDomainService.self)
+    }
+
     func test_whenAppBecomesActive_thenCallsCoordinator() {
         let coordinator = MockCoordinator()
         appDelegate.coordinator = coordinator
@@ -26,11 +31,13 @@ class AppDelegateTests: XCTestCase {
     }
 
     func test_whenAppBecomesActive_thenSyncronises() {
-        MultisigWalletDomainModel.DomainRegistry.put(service: mockSyncService, for: SynchronisationDomainService.self)
-        XCTAssertFalse(mockSyncService.didSync)
-        appDelegate.applicationWillEnterForeground(UIApplication.shared)
-        delay(0.5)
-        XCTAssertTrue(mockSyncService.didSync)
+        appDelegate.applicationDidBecomeActive(UIApplication.shared)
+        XCTAssertTrue(mockSyncService.didStart)
+    }
+
+    func test_whenEnteringBackground_thenStopsSync() {
+        appDelegate.applicationDidEnterBackground(UIApplication.shared)
+        XCTAssertTrue(mockSyncService.didStop)
     }
 
     func test_bundleHasRequiredProperties() {

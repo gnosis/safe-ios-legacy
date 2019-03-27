@@ -59,6 +59,11 @@ public class TermsAndConditionsViewController: UIViewController {
         agreeButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium)
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(OnboardingEvent.terms)
+    }
+
     @IBAction func openTermsOfUse(_ sender: Any) {
         delegate?.wantsToOpenTermsOfUse()
     }

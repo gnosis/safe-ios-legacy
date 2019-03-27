@@ -81,4 +81,23 @@ open class AppFlowCoordinator: FlowCoordinator {
     open func receive(message: [AnyHashable: Any]) {
         mainFlowCoordinator.receive(message: message)
     }
+
+    // iOS: for unknown reason, when alert or activity controller was presented and we
+    // set the UIWindow's root to the root controller that presented that alert,
+    // then all the views (and controllers) under the presented alert are removed when the app
+    // enters foreground.
+    // Dismissing such alerts and controllers after minimizing the app helps.
+    open func appEnteredBackground() {
+        if let root = applicationRootViewController {
+            cleanNonFullScreenControllers(from: root)
+        }
+    }
+
+    func cleanNonFullScreenControllers(from parent: UIViewController) {
+        if parent.presentedViewController is UIAlertController ||
+            parent.presentedViewController is UIActivityViewController {
+            parent.presentedViewController?.dismiss(animated: false, completion: nil)
+        }
+    }
+
 }

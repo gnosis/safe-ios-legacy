@@ -15,8 +15,7 @@ import MultisigWalletImplementations
 import Database
 import Common
 import CommonImplementations
-import FirebaseCore
-import FirebaseMessaging
+import Firebase
 import UserNotifications
 
 @UIApplicationMain
@@ -57,8 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
 
         createWindow()
         UIApplication.shared.applicationIconBadgeNumber = 0
-        synchronise()
         cleanUp()
+        sync()
         return true
     }
 
@@ -67,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         configureMultisigWallet()
         configureEthereum()
         configureUI()
+        Tracker.shared.append(handler: FirebaseTrackingHandler())
     }
 
     private func configureIdentityAccess() {
@@ -92,18 +92,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                                  for: RecoveryApplicationService.self)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: WalletSettingsApplicationService(),
                                                                  for: WalletSettingsApplicationService.self)
-
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: LogService.shared, for: Logger.self)
         let notificationService = HTTPNotificationService(url: appConfig.notificationServiceURL,
                                                           logger: LogService.shared)
         MultisigWalletDomainModel.DomainRegistry.put(service: notificationService, for: NotificationDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(
-            service: HTTPTokenListService(url: appConfig.tokenListServiceURL, logger: LogService.shared),
+            service: HTTPTokenListService(url: appConfig.relayServiceURL, logger: LogService.shared),
             for: TokenListDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: PushTokensService(), for: PushTokensDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: AccountUpdateDomainService(),
                                                      for: AccountUpdateDomainService.self)
-        MultisigWalletDomainModel.DomainRegistry.put(service: SynchronisationService(retryInterval: 0.5),
+        MultisigWalletDomainModel.DomainRegistry.put(service: SynchronisationService(),
                                                      for: SynchronisationDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: EventPublisher(), for: EventPublisher.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: System(), for: System.self)
@@ -120,10 +119,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
                                                      for: WalletSettingsDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: ReplaceBrowserExtensionDomainService(),
                                                      for: ReplaceBrowserExtensionDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: ConnectBrowserExtensionDomainService(),
+                                                     for: ConnectBrowserExtensionDomainService.self)
+        MultisigWalletDomainModel.DomainRegistry.put(service: DisconnectBrowserExtensionDomainService(),
+                                                     for: DisconnectBrowserExtensionDomainService.self)
         MultisigWalletDomainModel.DomainRegistry.put(service: CommunicationDomainService(),
                                                      for: CommunicationDomainService.self)
         let relay = EventRelay(publisher: MultisigWalletDomainModel.DomainRegistry.eventPublisher)
         MultisigWalletApplication.ApplicationServiceRegistry.put(service: relay, for: EventRelay.self)
+
+        // temporal coupling with domain model's services
+        MultisigWalletApplication.ApplicationServiceRegistry
+            .put(service: ReplaceBrowserExtensionApplicationService.create(),
+                 for: ReplaceBrowserExtensionApplicationService.self)
+        MultisigWalletApplication.ApplicationServiceRegistry
+            .put(service: ConnectBrowserExtensionApplicationService.create(),
+                 for: ConnectBrowserExtensionApplicationService.self)
+        MultisigWalletApplication.ApplicationServiceRegistry
+            .put(service: DisconnectBrowserExtensionApplicationService.createDisconnectService(),
+                 for: DisconnectBrowserExtensionApplicationService.self)
 
         setUpMultisigDatabase()
     }
@@ -244,24 +258,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         coordinator.setUp()
     }
 
+    func sync() {
+        DispatchQueue.global.async {
+            DomainRegistry.syncService.syncOnce()
+        }
+    }
+
     func applicationWillEnterForeground(_ application: UIApplication) {
         coordinator.appEntersForeground()
         UIApplication.shared.applicationIconBadgeNumber = 0
-        synchronise()
     }
 
-    private func synchronise() {
-        DispatchQueue.global().async {
-            MultisigWalletDomainModel.DomainRegistry.syncService.sync()
-        }
-        DispatchQueue.global().async {
-            MultisigWalletDomainModel.DomainRegistry.syncService.syncTransactions()
-        }
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        DomainRegistry.syncService.startSyncLoop()
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        coordinator.appEnteredBackground()
+        DomainRegistry.syncService.stopSyncLoop()
     }
 
     private func cleanUp() {
         DispatchQueue.global().async {
             DomainRegistry.replaceExtensionService.cleanUpStaleTransactions()
+            DomainRegistry.connectExtensionService.cleanUpStaleTransactions()
+            DomainRegistry.disconnectExtensionService.cleanUpStaleTransactions()
         }
     }
 

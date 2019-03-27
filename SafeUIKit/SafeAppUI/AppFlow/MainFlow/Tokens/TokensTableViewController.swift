@@ -74,11 +74,15 @@ final class TokensTableViewController: UITableViewController {
 
         ApplicationServiceRegistry.walletService.subscribeOnTokensUpdates(subscriber: self)
 
-        update()
         notify()
     }
 
-    @objc private func update() {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(MainEvent.assets)
+    }
+
+    @objc func update() {
         DispatchQueue.global().async {
             ApplicationServiceRegistry.walletService.syncBalances()
         }

@@ -32,6 +32,7 @@ public class RBEIntroViewController: UIViewController {
     public var starter: RBEStarter?
     let formatter = TokenNumberFormatter()
 
+    @IBOutlet weak var contentView: IntroContentView!
     @IBOutlet weak var feeCalculationView: FeeCalculationView!
 
     struct Strings {
@@ -87,6 +88,14 @@ public class RBEIntroViewController: UIViewController {
         feeCalculation.currentBalance.set(value: formatter.string(from: data.currentBalance.balance!))
         feeCalculation.networkFee.set(value: formatter.string(from: data.networkFee.balance!))
         feeCalculation.balance.set(value: formatter.string(from: data.balance.balance!))
+    }
+
+    func setContent(_ content: IntroContentView.Content) {
+        if !isViewLoaded {
+            loadViewIfNeeded()
+        }
+        contentView.content = content
+        contentView.didLoad()
     }
 
     func startIndicateLoading() {

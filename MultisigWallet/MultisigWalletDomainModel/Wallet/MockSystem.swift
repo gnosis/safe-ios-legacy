@@ -14,7 +14,7 @@ class MockSystem: System {
         expected_exit.append(status)
     }
 
-    override func exit(_ status: Int32) {
+    override func exit(_ status: Int32, file: StaticString = #file, line: UInt = #line) {
         actual_exit.append(status)
     }
 

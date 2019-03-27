@@ -113,6 +113,12 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     }
 
     @discardableResult
+    public func stepBack() -> Transaction {
+        state.stepBack(self)
+        return self
+    }
+
+    @discardableResult
     public func reject() -> Transaction {
         state.reject(self)
         return self
@@ -309,6 +315,8 @@ public enum TransactionType: Int {
     case walletRecovery
     case replaceRecoveryPhrase
     case replaceBrowserExtension
+    case connectBrowserExtension
+    case disconnectBrowserExtension
 
 }
 

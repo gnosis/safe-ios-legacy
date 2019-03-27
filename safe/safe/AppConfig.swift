@@ -11,7 +11,6 @@ struct AppConfig: Codable {
     var nodeServiceConfig: NodeServiceConfig
     var relayServiceURL: URL
     var notificationServiceURL: URL
-    var tokenListServiceURL: URL
     var transactionWebURLFormat: String
     var chromeExtensionURL: URL
     var termsOfUseURL: URL
@@ -25,7 +24,6 @@ struct AppConfig: Codable {
         case nodeServiceConfig = "node_service"
         case relayServiceURL = "relay_service_url"
         case notificationServiceURL = "notification_service_url"
-        case tokenListServiceURL = "token_list_service_url"
         case transactionWebURLFormat = "transaction_web_url_format"
         case chromeExtensionURL = "chrome_extension_url"
         case termsOfUseURL = "terms_of_use_url"

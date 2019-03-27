@@ -201,9 +201,6 @@ public class FinalizingDeploymentState: WalletState {
     }
 
     override func cancel() {
-        wallet.state = wallet.newDraftState
-        wallet.reset()
-        DomainRegistry.walletRepository.save(wallet)
         DomainRegistry.eventPublisher.publish(WalletCreationFailed())
     }
 
