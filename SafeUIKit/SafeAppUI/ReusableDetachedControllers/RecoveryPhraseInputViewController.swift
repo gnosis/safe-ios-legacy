@@ -160,8 +160,8 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     }
 
     override func notify() {
-        DispatchQueue.main.async { [weak self] in
-            self?.handleSuccess()
+        DispatchQueue.main.async {
+            self.handleSuccess()
         }
     }
 
