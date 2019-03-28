@@ -8,6 +8,7 @@ import Kingfisher
 public class TextInput: UITextField {
 
     private let clearButton = UIButton(type: .custom)
+    private let successImageView = UIImageView()
     private let edgeViewPadding: CGFloat = 14
     public var textInputHeight: CGFloat = 50 {
         didSet {
@@ -78,6 +79,10 @@ public class TextInput: UITextField {
         if hideClearButton {
             rightView = nil
             rightViewMode = .never
+            if inputState == .success {
+                rightView = successImageView
+                rightViewMode = .always
+            }
         } else {
             rightView = clearButton
             rightViewMode = .whileEditing
@@ -103,7 +108,8 @@ public class TextInput: UITextField {
         heightConstraint.isActive = true
         font = UIFont.systemFont(ofSize: 17)
         configureBorder()
-        addCustomClearButton()
+        setupCustomClearButton()
+        setupCustomSuccessImage()
         updateAdjustableUI()
     }
 
@@ -113,11 +119,17 @@ public class TextInput: UITextField {
         clipsToBounds = true
     }
 
-    private func addCustomClearButton() {
+    private func setupCustomClearButton() {
         clearButton.accessibilityIdentifier = "Clear text"
-        clearButton.frame = CGRect(x: 0, y: 0, width: 14, height: 14)
+        clearButton.frame = CGRect(x: 0, y: 0, width: 26, height: 14)
         clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
-        updateRightView()
+        clearButton.setImage(Asset.TextInputs.clearIcon.image, for: .normal)
+    }
+
+    private func setupCustomSuccessImage() {
+        successImageView.frame = CGRect(x: 0, y: 0, width: 26, height: 14)
+        successImageView.image = Asset.TextInputs.successIcon.image
+        successImageView.contentMode = .scaleAspectFit
     }
 
     @objc private func clearText() {
@@ -129,7 +141,7 @@ public class TextInput: UITextField {
     private func updateAdjustableUI() {
         updateColors()
         updatePlaceholder()
-        updateButton()
+        updateRightView()
     }
 
     private func updateColors() {
@@ -138,6 +150,7 @@ public class TextInput: UITextField {
             backgroundColor = .white
             textColor = ColorName.battleshipGrey.color
             tintColor = ColorName.battleshipGrey.color
+            clearButton.tintColor = ColorName.blueyGrey.color
             switch inputState {
             case .normal, .success: layer.borderColor = ColorName.paleLilac.color.cgColor
             case .error: layer.borderColor = ColorName.tomato.color.cgColor
@@ -146,6 +159,7 @@ public class TextInput: UITextField {
             backgroundColor = ColorName.paleGreyThree.color
             textColor = ColorName.battleshipGrey.color
             tintColor = ColorName.battleshipGrey.color
+            clearButton.tintColor = ColorName.blueyGrey.color
             switch inputState {
             case .normal, .success: layer.borderColor = UIColor.white.cgColor
             case .error: layer.borderColor = ColorName.tomato.color.cgColor
@@ -154,6 +168,7 @@ public class TextInput: UITextField {
             backgroundColor = UIColor.white.withAlphaComponent(0.4)
             textColor = .white
             tintColor = ColorName.lightishBlue.color
+            clearButton.tintColor = .white
             switch inputState {
             case .normal, .success: layer.borderColor = UIColor.white.cgColor
             case .error: layer.borderColor = ColorName.tomato.color.cgColor
@@ -168,23 +183,6 @@ public class TextInput: UITextField {
     }
 
     private func placeholderColor() -> UIColor {
-        switch style {
-        case .white:
-            return ColorName.blueyGrey.color
-        case .gray:
-            return ColorName.blueyGrey.color
-        case .dimmed:
-            return .white
-        }
-    }
-
-    private func updateButton() {
-        let image = Asset.TextInputs.clearIcon.image
-        clearButton.setImage(image, for: .normal)
-        clearButton.tintColor = clearButtonTintColor()
-    }
-
-    private func clearButtonTintColor() -> UIColor {
         switch style {
         case .white:
             return ColorName.blueyGrey.color
