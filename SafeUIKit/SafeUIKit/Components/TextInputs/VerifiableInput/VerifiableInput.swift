@@ -158,6 +158,8 @@ open class VerifiableInput: UIView {
             $0.validate(text)
             hideRuleIfNeeded($0)
         }
+        let successOrNormal: TextInput.TextInputState = allRules.isEmpty ? .normal : .success
+        textInput.inputState = isValid ? successOrNormal : .error
     }
 
     @discardableResult
@@ -196,6 +198,7 @@ extension VerifiableInput: UITextFieldDelegate {
             $0.reset()
             hideRuleIfNeeded($0)
         }
+        textInput.inputState = .normal
     }
 
     private func hideRuleIfNeeded(_ rule: RuleLabel) {

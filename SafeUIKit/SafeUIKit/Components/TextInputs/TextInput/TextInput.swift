@@ -106,7 +106,7 @@ public class TextInput: UITextField {
     private func commonInit() {
         heightConstraint = heightAnchor.constraint(equalToConstant: textInputHeight)
         heightConstraint.isActive = true
-        font = UIFont.systemFont(ofSize: 17)
+        font = UIFont.systemFont(ofSize: 16)
         configureBorder()
         setupCustomClearButton()
         setupCustomSuccessImage()
@@ -114,8 +114,8 @@ public class TextInput: UITextField {
     }
 
     private func configureBorder() {
-        layer.borderWidth = 1
-        layer.cornerRadius = 6
+        layer.borderWidth = 2
+        layer.cornerRadius = 10
         clipsToBounds = true
     }
 
@@ -149,7 +149,7 @@ public class TextInput: UITextField {
         case .white:
             backgroundColor = .white
             textColor = ColorName.battleshipGrey.color
-            tintColor = ColorName.battleshipGrey.color
+            tintColor = ColorName.dodgerBlue.color
             clearButton.tintColor = ColorName.blueyGrey.color
             switch inputState {
             case .normal, .success: layer.borderColor = ColorName.paleLilac.color.cgColor
@@ -158,7 +158,7 @@ public class TextInput: UITextField {
         case .gray:
             backgroundColor = ColorName.paleGreyThree.color
             textColor = ColorName.battleshipGrey.color
-            tintColor = ColorName.battleshipGrey.color
+            tintColor = ColorName.dodgerBlue.color
             clearButton.tintColor = ColorName.blueyGrey.color
             switch inputState {
             case .normal, .success: layer.borderColor = UIColor.white.cgColor

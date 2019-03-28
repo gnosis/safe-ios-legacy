@@ -56,6 +56,7 @@ class VerifiableInputTests: XCTestCase {
         input.type("a")
         XCTAssertEqual(input.ruleLabel(at: 0).isHidden, true)
         XCTAssertEqual(input.ruleLabel(at: 1).isHidden, false)
+        XCTAssertEqual(input.textInput.inputState, .error)
     }
 
     func test_whenLastSymbolErased_thenAllRuleLabelsBecomeInactive() {
@@ -65,6 +66,7 @@ class VerifiableInputTests: XCTestCase {
         input.type("")
         XCTAssertEqual(input.ruleLabel(at: 0).status, .inactive)
         XCTAssertEqual(input.ruleLabel(at: 1).status, .inactive)
+        XCTAssertEqual(input.textInput.inputState, .normal)
     }
 
     func test_whenTextIsCleared_thenAllRuleLabelsAreSetInInactiveState() {
@@ -72,6 +74,7 @@ class VerifiableInputTests: XCTestCase {
         input.type("a")
         input.clear()
         XCTAssertEqual(input.ruleLabel(at: 0).status, .inactive)
+        XCTAssertEqual(input.textInput.inputState, .normal)
     }
 
     func test_whenNoRules_thenReturnKeyEnabled() {
@@ -83,7 +86,13 @@ class VerifiableInputTests: XCTestCase {
         input.addRule("test2") { _ in true }
         input.type("a")
         XCTAssertTrue(input.isReturnKeyEnabled)
+        XCTAssertEqual(input.textInput.inputState, .success)
     }
+
+    func test_whenNoRules_thenInputStateIsNormal() {
+        input.type("a")
+        XCTAssertEqual(input.textInput.inputState, .normal)
+    } 
 
     func test_whenReturnKeyPressed_thenCallsDelegate() {
         input.addRule("test1") { _ in true }

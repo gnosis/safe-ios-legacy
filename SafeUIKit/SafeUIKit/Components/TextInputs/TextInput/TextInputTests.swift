@@ -17,8 +17,8 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(textInput.leftImageURL, nil)
         XCTAssertEqual(textInput.font, UIFont.systemFont(ofSize: 17))
         XCTAssertEqual(textInput.layer.borderColor, ColorName.paleLilac.color.cgColor)
-        XCTAssertEqual(textInput.layer.cornerRadius, 6)
-        XCTAssertEqual(textInput.layer.borderWidth, 1)
+        XCTAssertEqual(textInput.layer.cornerRadius, 10)
+        XCTAssertEqual(textInput.layer.borderWidth, 2)
         XCTAssertNil(textInput.rightView)
         XCTAssertEqual(textInput.text, "")
     }

@@ -14,7 +14,7 @@
         <scene sceneID="Fc1-Ji-QYH">
             <objects>
                 <viewController storyboardIdentifier="VerifiableInputViewController" title="Verifiable Input" id="q7v-OS-MBb" customClass="VerifiableInputViewController" customModule="SafeUIKitDemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EuK-Oc-ufe" customClass="BackgroundImageView" customModule="SafeUIKit">
+                    <view key="view" contentMode="scaleToFill" id="EuK-Oc-ufe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
