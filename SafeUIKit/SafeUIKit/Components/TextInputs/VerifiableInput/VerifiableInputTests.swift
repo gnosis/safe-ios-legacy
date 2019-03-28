@@ -196,7 +196,7 @@ extension VerifiableInput {
     }
 
     func type(_ text: String) {
-        _ = textField(textInput, shouldChangeCharactersIn: NSRange(), replacementString: text)
+        self.text = text
     }
 
     func beginEditing() {

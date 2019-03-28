@@ -46,19 +46,19 @@ class TokenInputTests: XCTestCase {
 
     func test_whenEnteingTooBigNumber_thenProperErrorMessageIsDisplayed() {
         tokenInput.setUp(value: 0, decimals: TokenBounds.maxDigitsCount - 1)
-        tokenInput.canType("1")
+        tokenInput.endEditing("1")
         XCTAssertEqual(tokenInput.ruleLabel(by: "valueIsTooBig")!.status, .success)
-        tokenInput.canType("11")
+        tokenInput.endEditing("11")
         XCTAssertEqual(tokenInput.ruleLabel(by: "valueIsTooBig")!.status, .error)
     }
 
     func test_whenFractionalPartHasTooManyDigits_thenProperErrorMessageIsDisplayed() {
         tokenInput.setUp(value: 0, decimals: 3)
-        tokenInput.canType("1,001")
+        tokenInput.endEditing("1,001")
         XCTAssertEqual(tokenInput.ruleLabel(by: "excededAmountOfFractionalDigits")!.status, .success)
-        tokenInput.canType("1,00100")
+        tokenInput.endEditing("1,00100")
         XCTAssertEqual(tokenInput.ruleLabel(by: "excededAmountOfFractionalDigits")!.status, .success)
-        tokenInput.canType("1,0001")
+        tokenInput.endEditing("1,0001")
         XCTAssertEqual(tokenInput.ruleLabel(by: "excededAmountOfFractionalDigits")!.status, .error)
     }
 

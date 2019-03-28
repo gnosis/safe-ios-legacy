@@ -38,6 +38,7 @@ final class RuleLabel: UIView {
         self.label.text = text
         if !displayIcon {
             imageView.removeFromSuperview()
+            imageView = nil
         }
         self.rule = rule
         update()
