@@ -127,8 +127,9 @@ open class VerifiableInput: UIView {
 
     public func addRule(_ localizedDescription: String,
                         identifier: String? = nil,
+                        displayIcon: Bool = false,
                         validation: ((String) -> Bool)? = nil) {
-        let ruleLabel = RuleLabel(text: localizedDescription, rule: validation)
+        let ruleLabel = RuleLabel(text: localizedDescription, displayIcon: displayIcon, rule: validation)
         ruleLabel.accessibilityIdentifier = identifier
         hideRuleIfNeeded(ruleLabel)
         stackView.addArrangedSubview(ruleLabel)
@@ -149,6 +150,10 @@ open class VerifiableInput: UIView {
     }
 
     func validateRules(for text: String) {
+        guard !text.isEmpty else {
+            resetRules()
+            return
+        }
         allRules.forEach {
             $0.validate(text)
             hideRuleIfNeeded($0)
@@ -168,19 +173,6 @@ open class VerifiableInput: UIView {
 }
 
 extension VerifiableInput: UITextFieldDelegate {
-
-    public func textField(_ textField: UITextField,
-                          shouldChangeCharactersIn range: NSRange,
-                          replacementString string: String) -> Bool {
-        let oldText = (textField.text ?? "") as NSString
-        let newText = oldText.replacingCharacters(in: range, with: string)
-        guard !newText.isEmpty else {
-            resetRules()
-            return true
-        }
-        validateRules(for: newText)
-        return true
-    }
 
     public func textFieldShouldClear(_ textField: UITextField) -> Bool {
         resetRules()

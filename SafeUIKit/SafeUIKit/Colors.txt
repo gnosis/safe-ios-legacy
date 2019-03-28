@@ -7,3 +7,4 @@ tomato_15: #f0252527
 aqua_blue: #00b8e0
 tomato: #f02525
 paleLilac: #e5e5ea
+greenTeal: #09a862

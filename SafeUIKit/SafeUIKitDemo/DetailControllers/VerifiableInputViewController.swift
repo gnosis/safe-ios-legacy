@@ -21,10 +21,23 @@ class VerifiableInputViewController: UIViewController {
         verifiableInput.addRule("Empty Rule")
     }
 
+    @IBAction func addSuccessRule2(_ sender: Any) {
+        verifiableInput.addRule("Success Rule with Icon", displayIcon: true) { _ in true }
+    }
+
+    @IBAction func addFailingRule2(_ sender: Any) {
+        verifiableInput.addRule("Failing Rule with Icon", displayIcon: true) { _ in false }
+    }
+
+    @IBAction func addEmptyRule2(_ sender: Any) {
+        verifiableInput.addRule("Empty Rule with Icon", displayIcon: true)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         verifiableInput.accessibilityIdentifier = "testVerifiableInput"
         verifiableInput.style = .white
+        verifiableInput.textInput.hideClearButton = false
     }
 
 }

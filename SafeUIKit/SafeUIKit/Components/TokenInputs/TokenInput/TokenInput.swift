@@ -133,12 +133,9 @@ public final class TokenInput: VerifiableInput {
 
 public extension TokenInput {
 
-    override func textField(_ textField: UITextField,
-                            shouldChangeCharactersIn range: NSRange,
-                            replacementString string: String) -> Bool {
-        guard super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) else {
-            return false
-        }
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
         let updatedText = (textField.nonNilText as NSString).replacingCharacters(in: range, with: string)
         return updatedText.isEmpty || formatter.number(from: updatedText) != nil
     }
