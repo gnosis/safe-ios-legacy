@@ -24,7 +24,19 @@ public class TextInput: UITextField {
         case dimmed
     }
 
+    public enum TextInputState {
+        case normal
+        case error
+        case success
+    }
+
     public var style: Style = .white {
+        didSet {
+            updateAdjustableUI()
+        }
+    }
+
+    public var inputState: TextInputState = .normal {
         didSet {
             updateAdjustableUI()
         }
@@ -98,7 +110,6 @@ public class TextInput: UITextField {
     private func configureBorder() {
         layer.borderWidth = 1
         layer.cornerRadius = 6
-        layer.borderColor = UIColor.white.cgColor
         clipsToBounds = true
     }
 
@@ -116,25 +127,37 @@ public class TextInput: UITextField {
     }
 
     private func updateAdjustableUI() {
-        updateBackgroundAndText()
+        updateColors()
         updatePlaceholder()
         updateButton()
     }
 
-    private func updateBackgroundAndText() {
+    private func updateColors() {
         switch style {
         case .white:
             backgroundColor = .white
             textColor = ColorName.battleshipGrey.color
             tintColor = ColorName.battleshipGrey.color
+            switch inputState {
+            case .normal, .success: layer.borderColor = ColorName.paleLilac.color.cgColor
+            case .error: layer.borderColor = ColorName.tomato.color.cgColor
+            }
         case .gray:
             backgroundColor = ColorName.paleGreyThree.color
             textColor = ColorName.battleshipGrey.color
             tintColor = ColorName.battleshipGrey.color
+            switch inputState {
+            case .normal, .success: layer.borderColor = UIColor.white.cgColor
+            case .error: layer.borderColor = ColorName.tomato.color.cgColor
+            }
         case .dimmed:
             backgroundColor = UIColor.white.withAlphaComponent(0.4)
             textColor = .white
             tintColor = ColorName.lightishBlue.color
+            switch inputState {
+            case .normal, .success: layer.borderColor = UIColor.white.cgColor
+            case .error: layer.borderColor = ColorName.tomato.color.cgColor
+            }
         }
     }
 

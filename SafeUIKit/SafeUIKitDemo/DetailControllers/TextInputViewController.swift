@@ -55,4 +55,16 @@ class TextInputViewController: UIViewController {
         simpleTextInput.hideClearButton = !simpleTextInput.hideClearButton
     }
 
+    @IBAction func setNormalState(_ sender: Any) {
+        simpleTextInput.inputState = .normal
+    }
+
+    @IBAction func setErrorState(_ sender: Any) {
+        simpleTextInput.inputState = .error
+    }
+
+    @IBAction func setSuccessState(_ sender: Any) {
+        simpleTextInput.inputState = .success
+    }
+
 }

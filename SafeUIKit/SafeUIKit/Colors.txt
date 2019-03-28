@@ -6,3 +6,4 @@ pale_grey: #e4e8f1
 tomato_15: #f0252527
 aqua_blue: #00b8e0
 tomato: #f02525
+paleLilac: #e5e5ea
