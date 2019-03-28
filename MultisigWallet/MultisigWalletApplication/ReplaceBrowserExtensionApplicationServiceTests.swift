@@ -125,4 +125,7 @@ class MockReplaceBrowserExtensionDomainService: ReplaceBrowserExtensionDomainSer
         registerPostProcessingId = transactionID
     }
 
+
+    override func stepBackToDraft(_ transactionID: TransactionID) {}
+
 }

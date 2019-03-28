@@ -34,7 +34,9 @@ class ManageTokensTableViewControllerTests: XCTestCase {
     func test_whenRowsMoved_thenDelegateIsCalled() {
         moveRow(from: 0, to: 2)
         delay()
-        XCTAssertEqual(delegate.rearrange_input, [TokenData.gno2, TokenData.mgn, TokenData.gno, TokenData.rdn])
+        let expectedTokens = [TokenData.gno2, TokenData.mgn, TokenData.gno, TokenData.rdn]
+        XCTAssertEqual(delegate.rearrange_input, expectedTokens)
+        XCTAssertEqual(controller.tokens, expectedTokens)
     }
 
     func test_whenHidesToken_thenDeleateIsCalled() {

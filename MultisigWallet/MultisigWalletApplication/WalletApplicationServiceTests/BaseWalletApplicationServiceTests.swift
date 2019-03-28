@@ -43,7 +43,7 @@ class BaseWalletApplicationServiceTests: XCTestCase {
         eventRelay = MockEventRelay(publisher: eventPublisher)
 
         DomainRegistry.put(service: accountUpdateService, for: AccountUpdateDomainService.self)
-        syncService = SynchronisationService(retryInterval: 0.1)
+        syncService = SynchronisationService()
 
         DomainRegistry.put(service: transactionRepository, for: TransactionRepository.self)
         DomainRegistry.put(service: eoaRepo, for: ExternallyOwnedAccountRepository.self)

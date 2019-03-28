@@ -4,6 +4,7 @@
 
 import UIKit
 import SafeUIKit
+import Common
 
 protocol StartViewControllerDelegate: class {
     func didStart()
@@ -22,7 +23,7 @@ final class StartViewController: UIViewController {
     private struct Strings {
         static let description = LocalizedString("onboarding.start.description", comment: "App slogan")
         static let setupPassword = LocalizedString("onboarding.start.setup_password",
-                                                   comment: "Setup password button title")
+                                                   comment: "Set up password button title")
     }
 
     static func create(delegate: StartViewControllerDelegate) -> StartViewController {
@@ -36,6 +37,11 @@ final class StartViewController: UIViewController {
         backgroundImageView.isDark = true
         descriptionLabel.text = Strings.description
         setupPasswordButton.setTitle(Strings.setupPassword, for: .normal)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(OnboardingEvent.welcome)
     }
 
     override func viewWillAppear(_ animated: Bool) {

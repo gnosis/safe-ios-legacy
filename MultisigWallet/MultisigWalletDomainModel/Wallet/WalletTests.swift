@@ -106,12 +106,10 @@ class WalletTests: XCTestCase {
         wallet.state = wallet.deployingState
         wallet.changeAddress(Address.safeAddress)
         wallet.updateMinimumTransactionAmount(100)
-        wallet.state = wallet.finalizingDeploymentState
-        wallet.assignCreationTransaction(hash: TransactionHash.test1.value)
+        wallet.state = wallet.creationStartedState
         wallet.cancel()
         XCTAssertNil(wallet.address)
         XCTAssertNil(wallet.minimumDeploymentTransactionAmount)
-        XCTAssertNil(wallet.creationTransactionHash)
     }
 
 }

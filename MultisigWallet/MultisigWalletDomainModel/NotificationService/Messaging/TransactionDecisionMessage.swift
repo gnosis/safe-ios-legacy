@@ -32,22 +32,15 @@ public class TransactionDecisionMessage: Message {
     ///
     /// - Parameter userInfo: dictionary of message values
     public convenience init?(userInfo: [AnyHashable: Any]) {
-        guard let data = try? JSONSerialization.data(withJSONObject: userInfo, options: []),
-            let json = try? JSONDecoder().decode(JSON.self, from: data),
-            json.type == Swift.type(of: self).messageType else { return nil }
-        let hash = Data(ethHex: json.hash)
-        guard !hash.isEmpty else { return nil }
-        guard let v = Int(json.v) else { return nil }
-        guard ECDSASignatureBounds.isWithinBounds(r: json.r, s: json.s, v: v) else { return nil }
-        self.init(hash: hash, signature: EthSignature(r: json.r, s: json.s, v: v))
-    }
-
-    private struct JSON: Decodable {
-        var type: String
-        var hash: String
-        var r: String
-        var s: String
-        var v: String
+        guard let type = userInfo["type"] as? String, type == Swift.type(of: self).messageType,
+              let hashString = userInfo["hash"] as? String,
+              let hash = Optional(Data(ethHex: hashString)), !hash.isEmpty,
+              let r = userInfo["r"] as? String,
+              let s = userInfo["s"] as? String,
+              let vString = userInfo["v"] as? String, let v = Int(vString),
+              ECDSASignatureBounds.isWithinBounds(r: r, s: s, v: v)
+        else { return nil }
+        self.init(hash: hash, signature: EthSignature(r: r, s: s, v: v))
     }
 
 }

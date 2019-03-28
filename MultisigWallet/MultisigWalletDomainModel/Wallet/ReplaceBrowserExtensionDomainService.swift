@@ -62,27 +62,35 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
 
     public func addDummyData(to transactionID: TransactionID) {
         let tx = transaction(transactionID)
-        tx.change(recipient: wallet!.address!).change(operation: .call).change(data: dummyTransactionData())
+        tx.change(recipient: requiredWallet.address!)
+            .change(operation: .call)
+            .change(data: dummyTransactionData())
         repository.save(tx)
     }
 
     func dummyTransactionData() -> Data {
-        var remoteList = OwnerLinkedList()
-        if let owners = try? contractProxy.getOwners(), !owners.isEmpty {
-            owners.forEach { remoteList.add($0) }
-            let toSwap = owners.first!
-            let prev = remoteList.addressBefore(toSwap)
-            let data = contractProxy.swapOwner(prevOwner: prev, old: toSwap, new: requiredWallet.address!)
-            return data
+        if let linkedList = remoteOwnersList(), let toSwap = linkedList.firstAddress() {
+            return contractProxy.swapOwner(prevOwner: linkedList.addressBefore(toSwap),
+                                           old: toSwap,
+                                           new: requiredWallet.address!)
         }
+        var remoteList = OwnerLinkedList()
         remoteList.add(.zero)
-        return contractProxy.swapOwner(prevOwner: remoteList.addressBefore(.one), old: .zero, new: .zero)
+        return contractProxy.swapOwner(prevOwner: remoteList.addressBefore(.zero), old: .zero, new: .zero)
     }
 
     public func removeDummyData(from transactionID: TransactionID) {
         let tx = transaction(transactionID)
         tx.change(recipient: nil).change(operation: nil).change(data: nil)
         repository.save(tx)
+    }
+
+    open func stepBackToDraft(_ transactionID: TransactionID) {
+        let tx = DomainRegistry.transactionRepository.findByID(transactionID)!
+        if tx.status == .signing {
+            tx.stepBack()
+            DomainRegistry.transactionRepository.save(tx)
+        }
     }
 
     open func estimateNetworkFee(for transactionID: TransactionID) throws -> TokenAmount {
@@ -164,6 +172,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     open func update(transaction: TransactionID, newOwnerAddress: String) {
+        stepBackToDraft(transaction)
         let tx = self.transaction(transaction)
         tx.change(data: realTransactionData(with: newOwnerAddress))
         repository.save(tx)

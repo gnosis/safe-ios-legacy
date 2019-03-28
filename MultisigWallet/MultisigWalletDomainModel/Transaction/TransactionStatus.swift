@@ -68,6 +68,10 @@ public class TransactionStatus: Assertable {
         preconditionFailure("Illegal state transition: proceed transaction from \(code)")
     }
 
+    func stepBack(_ tx: Transaction) {
+        preconditionFailure("Illegal state transition: step back transaction from \(code)")
+    }
+
 }
 
 class DraftTransactionStatus: TransactionStatus {
@@ -107,6 +111,10 @@ class SigningTransactionStatus: TransactionStatus {
             .timestampUpdated(at: Date())
     }
 
+    override func stepBack(_ tx: Transaction) {
+        tx.change(status: .draft)
+    }
+
 }
 
 class PendingTransactionStatus: TransactionStatus {
@@ -122,6 +130,10 @@ class PendingTransactionStatus: TransactionStatus {
         tx.change(status: .failed)
             .timestampProcessed(at: Date())
             .timestampUpdated(at: Date())
+    }
+
+    override func stepBack(_ tx: Transaction) {
+        tx.change(status: .signing)
     }
 
 }
