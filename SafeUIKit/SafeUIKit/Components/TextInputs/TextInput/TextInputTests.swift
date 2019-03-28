@@ -19,7 +19,7 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(textInput.layer.borderColor, UIColor.white.cgColor)
         XCTAssertEqual(textInput.layer.cornerRadius, 6)
         XCTAssertEqual(textInput.layer.borderWidth, 1)
-        XCTAssertTrue(textInput.rightView is UIButton)
+        XCTAssertNil(textInput.rightView)
         XCTAssertEqual(textInput.text, "")
     }
 
@@ -44,6 +44,12 @@ class TextInputTests: XCTestCase {
         XCTAssertNil(textInput.attributedPlaceholder)
         textInput.placeholder = "placeholder"
         XCTAssertNotNil(textInput.attributedPlaceholder)
+    }
+
+    func test_whenShowsClearButton_thenItPresent() {
+        XCTAssertNil(textInput.rightView)
+        textInput.hideClearButton = false
+        XCTAssertTrue(textInput.rightView is UIButton)
     }
 
 }

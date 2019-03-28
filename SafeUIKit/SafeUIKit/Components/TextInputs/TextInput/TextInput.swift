@@ -56,6 +56,22 @@ public class TextInput: UITextField {
         }
     }
 
+    public var hideClearButton = true {
+        didSet {
+            updateRightView()
+        }
+    }
+
+    private func updateRightView() {
+        if hideClearButton {
+            rightView = nil
+            rightViewMode = .never
+        } else {
+            rightView = clearButton
+            rightViewMode = .whileEditing
+        }
+    }
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -90,8 +106,7 @@ public class TextInput: UITextField {
         clearButton.accessibilityIdentifier = "Clear text"
         clearButton.frame = CGRect(x: 0, y: 0, width: 14, height: 14)
         clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
-        rightView = clearButton
-        rightViewMode = .whileEditing
+        updateRightView()
     }
 
     @objc private func clearText() {

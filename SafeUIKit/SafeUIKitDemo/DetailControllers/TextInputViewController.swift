@@ -51,4 +51,8 @@ class TextInputViewController: UIViewController {
         simpleTextInput.resignFirstResponder()
     }
 
+    @IBAction func toggleClearButton(_ sender: Any) {
+        simpleTextInput.hideClearButton = !simpleTextInput.hideClearButton
+    }
+
 }
