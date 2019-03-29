@@ -10,7 +10,7 @@ public class TransactionDomainService {
 
     public func removeDraftTransaction(_ id: TransactionID) {
         let repository = DomainRegistry.transactionRepository
-        if let transaction = repository.findByID(id), transaction.status == .draft {
+        if let transaction = repository.find(id: id), transaction.status == .draft {
             repository.remove(transaction)
         }
     }
@@ -31,7 +31,7 @@ public class TransactionDomainService {
     }
 
     public func allTransactions() -> [Transaction] {
-        let all = DomainRegistry.transactionRepository.findAll()
+        let all = DomainRegistry.transactionRepository.all()
         return all
             .filter { tx in
                 tx.status != .draft &&
@@ -85,7 +85,7 @@ public class TransactionDomainService {
     }
 
     public func updatePendingTransactions() throws {
-        let transactions = DomainRegistry.transactionRepository.findAll().filter { $0.status == .pending }
+        let transactions = DomainRegistry.transactionRepository.all().filter { $0.status == .pending }
         var hasUpdates = false
         for tx in transactions {
             precondition(tx.transactionHash != nil, "Transaction must have a blockchain hash: \(tx)")

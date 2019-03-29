@@ -31,7 +31,7 @@ public class WalletSettingsDomainService {
 
     public func estimateRecoveryPhraseTransaction(_ id: TransactionID) {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        let tx = DomainRegistry.transactionRepository.findByID(id)!
+        let tx = DomainRegistry.transactionRepository.find(id: id)!
         if tx.data == nil {
             do {
                 var ownerList = OwnerLinkedList()
@@ -90,7 +90,7 @@ public class WalletSettingsDomainService {
     }
 
     public func isRecoveryPhraseTransactionReadyToStart(_ id: TransactionID) -> Bool {
-        let tx = DomainRegistry.transactionRepository.findByID(id)!
+        let tx = DomainRegistry.transactionRepository.find(id: id)!
         guard let balance = DomainRegistry.accountRepository.find(id: tx.accountID)?.balance else {
             return false
         }
@@ -102,7 +102,7 @@ public class WalletSettingsDomainService {
     public func updateRecoveryPhraseTransaction(_ id: TransactionID, with newPaperWallet: Address) {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
         let walletID = wallet.id
-        let tx = DomainRegistry.transactionRepository.findByID(id)!
+        let tx = DomainRegistry.transactionRepository.find(id: id)!
         let newPaperEOA = DomainRegistry.externallyOwnedAccountRepository.find(by: newPaperWallet)!
         let derivedEOA = DomainRegistry.encryptionService.deriveExternallyOwnedAccount(from: newPaperEOA, at: 1)
 
@@ -166,7 +166,7 @@ public class WalletSettingsDomainService {
             // FIXME: if crashes or closed before tx status finished, then wallets not updated!
 
             DomainRegistry.eventPublisher.subscribe(self) { [unowned self] (_: TransactionStatusUpdated) in
-                guard let tx = DomainRegistry.transactionRepository.findByID(id) else {
+                guard let tx = DomainRegistry.transactionRepository.find(id: id) else {
                     DomainRegistry.eventPublisher.unsubscribe(self)
                     return
                 }
@@ -174,7 +174,7 @@ public class WalletSettingsDomainService {
                 DomainRegistry.eventPublisher.unsubscribe(self)
 
                 if tx.status == .success {
-                    let wallet = DomainRegistry.walletRepository.findByID(walletID)!
+                    let wallet = DomainRegistry.walletRepository.find(id: walletID)!
                     wallet.addOwner(Owner(address: newOwner1, role: .paperWallet))
                     wallet.addOwner(Owner(address: newOwner2, role: .paperWalletDerived))
                 }

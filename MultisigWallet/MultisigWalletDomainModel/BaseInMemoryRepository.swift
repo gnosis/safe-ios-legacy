@@ -25,7 +25,7 @@ open class BaseInMemoryRepository<T: IdentifiableEntity<U>, U: Hashable> {
     ///
     /// - Parameter item: entity to remove
     open func remove(_ item: T) {
-        if let foundItem = findByID(item.id) {
+        if let foundItem = find(id: item.id) {
             items.remove(foundItem)
         }
     }
@@ -34,11 +34,11 @@ open class BaseInMemoryRepository<T: IdentifiableEntity<U>, U: Hashable> {
     ///
     /// - Parameter itemID: entity identifier
     /// - Returns: entity if found, nil otherwise.
-    open func findByID(_ itemID: U) -> T? {
+    open func find(id itemID: U) -> T? {
         return items.first { $0.id == itemID }
     }
 
-    open func findAll() -> [T] {
+    open func all() -> [T] {
         return Array(items)
     }
 

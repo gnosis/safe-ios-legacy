@@ -60,7 +60,7 @@ open class AccountUpdateDomainService {
     }
 
     private func balance(of accountID: AccountID) throws -> TokenInt? {
-        guard let wallet = DomainRegistry.walletRepository.findByID(accountID.walletID),
+        guard let wallet = DomainRegistry.walletRepository.find(id: accountID.walletID),
             let address = wallet.address else { return nil }
         if accountID.tokenID == Token.Ether.id {
             return try DomainRegistry.ethereumNodeService.eth_getBalance(account: address)

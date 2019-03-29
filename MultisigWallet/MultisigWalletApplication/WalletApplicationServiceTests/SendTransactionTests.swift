@@ -18,7 +18,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
 
         _ = service.handle(message: message)
 
-        let signedTransaction = DomainRegistry.transactionRepository.findByID(transaction.id)!
+        let signedTransaction = DomainRegistry.transactionRepository.find(id: transaction.id)!
         XCTAssertEqual(signedTransaction.signatures,
                        [Signature(data: signatureData, address: extensionAddress)])
         XCTAssertGreaterThan(signedTransaction.updatedDate, oldUpdateDate)
@@ -32,7 +32,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
 
         _ = service.handle(message: message)
 
-        let rejectedTransaction = DomainRegistry.transactionRepository.findByID(transaction.id)!
+        let rejectedTransaction = DomainRegistry.transactionRepository.find(id: transaction.id)!
         XCTAssertTrue(rejectedTransaction.signatures.isEmpty)
         XCTAssertEqual(rejectedTransaction.status, .rejected)
         XCTAssertGreaterThan(rejectedTransaction.updatedDate, oldUpdatedDate)
@@ -43,7 +43,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         givenReadyToUseWallet()
 
         let txID = service.createNewDraftTransaction()
-        let tx: Transaction! = transactionRepository.findByID(TransactionID(txID))
+        let tx: Transaction! = transactionRepository.find(id: TransactionID(txID))
         XCTAssertNotNil(tx)
         let wallet = walletRepository.selectedWallet()!
         XCTAssertEqual(tx.accountID, AccountID(tokenID: Token.Ether.id, walletID: wallet.id))
@@ -56,10 +56,10 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
     func test_whenUpdatingTransaction_thenUpdatesFields() {
         givenReadyToUseWallet()
         let txID = service.createNewDraftTransaction()
-        let beforeUpdateTx = transactionRepository.findByID(TransactionID(txID))!
+        let beforeUpdateTx = transactionRepository.find(id: TransactionID(txID))!
         let oldUpdateDate = beforeUpdateTx.updatedDate
         service.updateTransaction(txID, amount: 1_000, token: ethID.id, recipient: Address.testAccount1.value)
-        let tx = transactionRepository.findByID(TransactionID(txID))!
+        let tx = transactionRepository.find(id: TransactionID(txID))!
         XCTAssertEqual(tx.amount, .ether(1_000))
         XCTAssertEqual(tx.recipient, Address.testAccount1)
         XCTAssertGreaterThan(tx.updatedDate, oldUpdateDate!)
@@ -86,7 +86,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
     func test_whenTransactionDataIsThere_returnsIt() {
         givenReadyToUseWallet()
         let txID = service.createNewDraftTransaction()
-        let tx = transactionRepository.findByID(TransactionID(txID))!
+        let tx = transactionRepository.find(id: TransactionID(txID))!
         tx.change(recipient: Address.testAccount1)
             .change(amount: .ether(100))
             .change(fee: .ether(10))
@@ -135,7 +135,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         let tx = givenDraftTransaction()
         let oldDate = tx.updatedDate!
         _ = try service.estimateTransactionIfNeeded(tx.id.id)
-        let updatedTx = transactionRepository.findByID(tx.id)!
+        let updatedTx = transactionRepository.find(id: tx.id)!
         XCTAssertGreaterThan(updatedTx.updatedDate, oldDate)
     }
 
@@ -212,7 +212,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         _ = prepareTransactionForSigning(basedOn: message)
         let txID = service.handle(message: message)!
         _ = try service.submitTransaction(txID)
-        let tx = transactionRepository.findByID(TransactionID(txID))!
+        let tx = transactionRepository.find(id: TransactionID(txID))!
         XCTAssertTrue(tx.isSignedBy(Address.deviceAddress))
     }
 
@@ -220,11 +220,11 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         let message = TransactionConfirmedMessage(hash: Data(), signature: EthSignature(r: "1", s: "2", v: 28))
         _ = prepareTransactionForSigning(basedOn: message)
         let txID = service.handle(message: message)!
-        let oldTx = transactionRepository.findByID(TransactionID(txID))!
+        let oldTx = transactionRepository.find(id: TransactionID(txID))!
         let oldUpdatedDate = oldTx.updatedDate!
         XCTAssertNil(oldTx.submittedDate)
         _ = try service.submitTransaction(txID)
-        let tx = transactionRepository.findByID(TransactionID(txID))!
+        let tx = transactionRepository.find(id: TransactionID(txID))!
         XCTAssertGreaterThan(tx.updatedDate, oldUpdatedDate)
         XCTAssertNotNil(tx.submittedDate)
     }
@@ -256,7 +256,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
 
         _ = try service.submitTransaction(txID)
 
-        let tx = transactionRepository.findByID(TransactionID(txID))!
+        let tx = transactionRepository.find(id: TransactionID(txID))!
         XCTAssertEqual(tx.transactionHash, TransactionHash.test2)
         XCTAssertEqual(tx.status, .pending)
     }
@@ -272,7 +272,7 @@ class SendTransactionTests: BaseWalletApplicationServiceTests {
         relayService.submitTransaction_output = .init(transactionHash: TransactionHash.test2.value)
 
         _ = try service.submitTransaction(txID)
-        let tx = transactionRepository.findByID(TransactionID(txID))!
+        let tx = transactionRepository.find(id: TransactionID(txID))!
 
         XCTAssertEqual(notificationService.sentMessages,
                        ["to:\(service.ownerAddress(of: .browserExtension)!) " +
@@ -306,7 +306,7 @@ class SendTransactionMessageTests: BaseWalletApplicationServiceTests {
             XCTFail("Expected to save the transaction")
             return
         }
-        let tx = transactionRepository.findByID(TransactionID(txID))
+        let tx = transactionRepository.find(id: TransactionID(txID))
         XCTAssertNotNil(tx)
         XCTAssertEqual(tx?.signatures.count, 1)
         XCTAssertEqual(tx?.signatures.first?.data, encryptionService.dataFromSignature_output)
@@ -336,7 +336,7 @@ class SendTransactionMessageTests: BaseWalletApplicationServiceTests {
 
     func test_whenRecievesPendingTransaction_thenIgnores() {
         let txID = service.receive(message: Fixtures.sendTransactionAPNSPayload)!
-        let tx = transactionRepository.findByID(TransactionID(txID))!
+        let tx = transactionRepository.find(id: TransactionID(txID))!
         tx.set(hash: TransactionHash.test1)
         tx.proceed()
         transactionRepository.save(tx)
@@ -345,7 +345,7 @@ class SendTransactionMessageTests: BaseWalletApplicationServiceTests {
 
     func test_whenRecievesNonEthTokenTransfer_thenHasCorrectData() {
         let txID = service.receive(message: Fixtures.sendTransactionAPNSPayload_nonEth)!
-        let tx = transactionRepository.findByID(TransactionID(txID))!
+        let tx = transactionRepository.find(id: TransactionID(txID))!
         XCTAssertEqual(tx.ethTo, Address.testAccount2)
         XCTAssertEqual(tx.ethValue, 0)
         XCTAssertEqual(tx.recipient, Address(Address.testAccount3.value.lowercased()))

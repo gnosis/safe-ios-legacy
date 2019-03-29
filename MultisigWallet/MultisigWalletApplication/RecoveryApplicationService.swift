@@ -60,7 +60,7 @@ public class RecoveryApplicationService {
 
     public func recoveryTransaction() -> TransactionData? {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        guard let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id) else {
+        guard let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) else {
             return nil
         }
         return transactionData(tx)
