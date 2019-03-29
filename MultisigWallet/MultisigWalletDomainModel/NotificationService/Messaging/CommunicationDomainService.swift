@@ -9,7 +9,7 @@ public class CommunicationDomainService {
     public init() {}
 
     public func deletePair(walletID: WalletID, other address: String) throws {
-        let wallet = DomainRegistry.walletRepository.findByID(walletID)!
+        let wallet = DomainRegistry.walletRepository.find(id: walletID)!
         let deviceOwnerAddress = wallet.owner(role: .thisDevice)!.address
         let eoa = DomainRegistry.externallyOwnedAccountRepository.find(by: deviceOwnerAddress)!
         let signature = DomainRegistry.encryptionService.sign(message: "GNO" + address, privateKey: eoa.privateKey)
@@ -18,7 +18,7 @@ public class CommunicationDomainService {
     }
 
     public func notifyWalletCreated(walletID: WalletID) throws {
-        guard let wallet = DomainRegistry.walletRepository.findByID(walletID),
+        guard let wallet = DomainRegistry.walletRepository.find(id: walletID),
             let sender = wallet.address,
             let recipient = wallet.owner(role: .browserExtension)?.address,
             let owner = wallet.owner(role: .thisDevice)?.address,

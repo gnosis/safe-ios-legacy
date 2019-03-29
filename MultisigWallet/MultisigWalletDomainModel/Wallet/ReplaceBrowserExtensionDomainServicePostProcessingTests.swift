@@ -30,7 +30,7 @@ class ReplaceBrowserExtensionDomainServicePostProcessingTests: ReplaceBrowserExt
 
             try service.postProcess(transactionID: tx.id)
 
-            wallet = walletRepo.findByID(wallet.id)!
+            wallet = walletRepo.find(id: wallet.id)!
             XCTAssertEqual(wallet.owner(role: .browserExtension), oldOwner, "Status: \(status)")
         }
     }
@@ -137,13 +137,13 @@ class ReplaceBrowserExtensionDomainServicePostProcessingTests: ReplaceBrowserExt
                                       walletID: wallet.id,
                                       accountID: tx.accountID)
         transactionRepo.save(otherTypeTx)
-        let doNotCleanUpTransactions = transactionRepo.findAll().filter { doNotCleanUpStatuses.contains($0.status) } +
+        let doNotCleanUpTransactions = transactionRepo.all().filter { doNotCleanUpStatuses.contains($0.status) } +
             [otherTypeTx]
 
         service.cleanUpStaleTransactions()
 
         for tx in doNotCleanUpTransactions {
-            XCTAssertNotNil(transactionRepo.findByID(tx.id))
+            XCTAssertNotNil(transactionRepo.find(id: tx.id))
         }
     }
 

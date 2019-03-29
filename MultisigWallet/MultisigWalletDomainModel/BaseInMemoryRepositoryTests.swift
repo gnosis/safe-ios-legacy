@@ -15,13 +15,13 @@ class BaseInMemoryRepositoryTests: XCTestCase {
 
     func test_save_whenSaving_thenCanFindByID() {
         repository.save(item)
-        XCTAssertEqual(repository.findByID(item.id), item)
+        XCTAssertEqual(repository.find(id: item.id), item)
     }
 
     func test_remove_whenRemoved_thenCannotFindIt() {
         repository.save(item)
         repository.remove(item)
-        XCTAssertNil(repository.findByID(item.id))
+        XCTAssertNil(repository.find(id: item.id))
     }
 
 }
