@@ -17,7 +17,7 @@ public final class CommonCryptoEncryptionService: EncryptionService {
         _ = data.withUnsafeBytes {
             CC_SHA256($0, CC_LONG(data.count), &hashBuffer)
         }
-        let hash = Data( hashBuffer)
+        let hash = Data(hashBuffer)
         return hash.base64EncodedString()
     }
 
