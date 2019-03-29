@@ -77,6 +77,7 @@ public class FundsTransferTransactionViewController: UIViewController {
         tokenInput.setUp(value: 0, decimals: model.tokenData.decimals)
         tokenInput.usesEthDefaultImage = true
         tokenInput.imageURL = model.tokenData.logoURL
+        tokenInput.tokenCode = model.tokenData.code
         tokenInput.delegate = self
 
         transactionHeaderView.usesEthImageWhenImageURLIsNil = true

@@ -168,7 +168,7 @@ public class TextInput: UITextField {
             backgroundColor = .white
             textColor = ColorName.battleshipGrey.color
             tintColor = ColorName.dodgerBlue.color
-            clearButton.tintColor = ColorName.blueyGrey.color
+            clearButton.tintColor = ColorName.lightGreyBlue.color
             switch inputState {
             case .normal, .success: layer.borderColor = ColorName.paleLilac.color.cgColor
             case .error: layer.borderColor = ColorName.tomato.color.cgColor
@@ -177,7 +177,7 @@ public class TextInput: UITextField {
             backgroundColor = ColorName.paleGreyThree.color
             textColor = ColorName.battleshipGrey.color
             tintColor = ColorName.dodgerBlue.color
-            clearButton.tintColor = ColorName.blueyGrey.color
+            clearButton.tintColor = ColorName.lightGreyBlue.color
             switch inputState {
             case .normal, .success: layer.borderColor = UIColor.white.cgColor
             case .error: layer.borderColor = ColorName.tomato.color.cgColor
@@ -203,9 +203,9 @@ public class TextInput: UITextField {
     private func placeholderColor() -> UIColor {
         switch style {
         case .white:
-            return ColorName.blueyGrey.color
+            return ColorName.lightGreyBlue.color
         case .gray:
-            return ColorName.blueyGrey.color
+            return ColorName.lightGreyBlue.color
         case .dimmed:
             return .white
         }

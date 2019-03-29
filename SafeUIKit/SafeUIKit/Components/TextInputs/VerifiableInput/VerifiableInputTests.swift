@@ -23,7 +23,7 @@ class VerifiableInputTests: XCTestCase {
     }
 
     func test_whenInitiated_containsNoRules() {
-        XCTAssertEqual(input.ruleLabelCount, 0)
+        XCTAssertEqual(input.stackView.arrangedSubviews.count, 1)
     }
 
     func test_isSecure_whenModified_thenValueIsStored() {
@@ -185,7 +185,7 @@ class TestableVerifiableInput: VerifiableInput {
 extension VerifiableInput {
 
     var ruleLabelCount: Int {
-        return stackView.arrangedSubviews.count - 1
+        return stackView.arrangedSubviews.count - 2
     }
 
     var isReturnKeyEnabled: Bool {
@@ -193,7 +193,7 @@ extension VerifiableInput {
     }
 
     func ruleLabel(at index: Int) -> RuleLabel {
-        return stackView.arrangedSubviews[index + 1] as! RuleLabel
+        return stackView.arrangedSubviews[index + 2] as! RuleLabel
     }
 
     func ruleLabel(by indentifier: String) -> RuleLabel? {

@@ -36,7 +36,7 @@ class TransactionParticipantView: BaseCustomView {
 
         addressLabel = UILabel()
         addressLabel.font = UIFont.systemFont(ofSize: 13)
-        addressLabel.textColor = ColorName.blueyGrey.color
+        addressLabel.textColor = ColorName.lightGreyBlue.color
         addressLabel.lineBreakMode = .byTruncatingMiddle
 
         identiconView = IdenticonView()

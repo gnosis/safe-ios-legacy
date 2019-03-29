@@ -21,6 +21,7 @@ open class VerifiableInput: UIView {
     public private(set) var isActive: Bool = false
     private static let shakeAnimationKey = "shake"
     private let padding: CGFloat = 16
+    private let spacingViewHeight: CGFloat = 4
 
     private var allRules: [RuleLabel] {
         return stackView.arrangedSubviews.compactMap { $0 as? RuleLabel }
@@ -52,6 +53,11 @@ open class VerifiableInput: UIView {
             } else {
                 textInput.text = nil
             }
+        }
+    }
+    public var rigthView: UIView? {
+        didSet {
+            textInput.customRightView = rigthView
         }
     }
 
@@ -129,10 +135,18 @@ open class VerifiableInput: UIView {
                         identifier: String? = nil,
                         displayIcon: Bool = false,
                         validation: ((String) -> Bool)? = nil) {
+        addSpacingIfNeeded()
         let ruleLabel = RuleLabel(text: localizedDescription, displayIcon: displayIcon, rule: validation)
         ruleLabel.accessibilityIdentifier = identifier
         hideRuleIfNeeded(ruleLabel)
         stackView.addArrangedSubview(ruleLabel)
+    }
+
+    private func addSpacingIfNeeded() {
+        guard allRules.isEmpty else { return }
+        let spacingView = UIView()
+        spacingView.addConstraint(spacingView.heightAnchor.constraint(equalToConstant: spacingViewHeight))
+        stackView.addArrangedSubview(spacingView)
     }
 
     open override func becomeFirstResponder() -> Bool {

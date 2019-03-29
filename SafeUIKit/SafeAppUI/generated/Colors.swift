@@ -35,9 +35,6 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#65707e"></span>
   /// Alpha: 100% <br/> (0x65707eff)
   static let battleshipGrey = ColorName(rgbaValue: 0x65707eff)
-  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#a2a8ba"></span>
-  /// Alpha: 100% <br/> (0xa2a8baff)
-  static let blueyGrey = ColorName(rgbaValue: 0xa2a8baff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#c8ced4"></span>
   /// Alpha: 100% <br/> (0xc8ced4ff)
   static let borderGrey = ColorName(rgbaValue: 0xc8ced4ff)
@@ -53,6 +50,9 @@ struct ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#401d9c"></span>
   /// Alpha: 100% <br/> (0x401d9cff)
   static let indigoBlue = ColorName(rgbaValue: 0x401d9cff)
+  /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#a2a8ba"></span>
+  /// Alpha: 100% <br/> (0xa2a8baff)
+  static let lightGreyBlue = ColorName(rgbaValue: 0xa2a8baff)
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e4e8f1"></span>
   /// Alpha: 100% <br/> (0xe4e8f1ff)
   static let paleGrey = ColorName(rgbaValue: 0xe4e8f1ff)
