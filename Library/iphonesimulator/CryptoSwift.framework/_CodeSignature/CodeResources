@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/CryptoSwift-Swift.h</key>
 		<data>
-		8s1P+RHRBkdImc3Zazo1BkL29u8=
+		O59SqpirwCUWfbD0Wv+pc9qJnnw=
 		</data>
 		<key>Headers/CryptoSwift.h</key>
 		<data>
@@ -14,23 +14,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		0RjtfYp2qfWm2HkAvE6lFq1rYfo=
+		W2em/EU6wN+inOy/+12QJHaVutY=
 		</data>
 		<key>Modules/CryptoSwift.swiftmodule/i386.swiftdoc</key>
 		<data>
-		7k8JK+Ul3uIJRTW9+iSF3iGUbQw=
+		PviO1L0ckKEgCLVBinYEkFhNcjk=
 		</data>
 		<key>Modules/CryptoSwift.swiftmodule/i386.swiftmodule</key>
 		<data>
-		rGUXENUYcK83aP9o62rzn1BrtyM=
+		MJ5CglLnSAQ72CN4RUEW+sfhAK0=
 		</data>
 		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		UI9bzxaCacCVbSd/S7uzUrm7Uso=
+		c+bX6cfOHic3HQZGA4LxibnWv18=
 		</data>
 		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		FrtZZDektDprNfqkn4g/Ad+Dx4Q=
+		RsFeTdTVxogHePMJTYJ6kTMRhPI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,11 +43,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			8s1P+RHRBkdImc3Zazo1BkL29u8=
+			O59SqpirwCUWfbD0Wv+pc9qJnnw=
 			</data>
 			<key>hash2</key>
 			<data>
-			8HCMeL/VafKmxb75p3xk7Mj9TX8mOj8EQVr7fdvvfhQ=
+			Skm36TvMJB+Paxec7074env+2nu6/bITcD0Xy7I0tm8=
 			</data>
 		</dict>
 		<key>Headers/CryptoSwift.h</key>
@@ -65,44 +65,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			7k8JK+Ul3uIJRTW9+iSF3iGUbQw=
+			PviO1L0ckKEgCLVBinYEkFhNcjk=
 			</data>
 			<key>hash2</key>
 			<data>
-			cyGWX9mFaM4kAK76huYOanCTz8rWcOXc11FIUArm+h8=
+			GQM64gVTAuxp3A8Q8VQFaYaRqoHjkAwvcVoOLymwsXM=
 			</data>
 		</dict>
 		<key>Modules/CryptoSwift.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			rGUXENUYcK83aP9o62rzn1BrtyM=
+			MJ5CglLnSAQ72CN4RUEW+sfhAK0=
 			</data>
 			<key>hash2</key>
 			<data>
-			HCsWQBPo+ZBMh11RFh1UeB6TWOa/Kor6WQNKl3wVR/w=
+			BkdGCUHYyUPZwJVfjx8r6IhxFNdQEW95hIDvlwaQzus=
 			</data>
 		</dict>
 		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			UI9bzxaCacCVbSd/S7uzUrm7Uso=
+			c+bX6cfOHic3HQZGA4LxibnWv18=
 			</data>
 			<key>hash2</key>
 			<data>
-			jP4ugF7+mVY7JYEeqGPH/hR5gzaVAPWaIla5bZAhuIY=
+			Hc2EbJ1quXiHQ9Lt5BvytRm/rDT+xgY3v0KHsY8GxIg=
 			</data>
 		</dict>
 		<key>Modules/CryptoSwift.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			FrtZZDektDprNfqkn4g/Ad+Dx4Q=
+			RsFeTdTVxogHePMJTYJ6kTMRhPI=
 			</data>
 			<key>hash2</key>
 			<data>
-			hLWips/5iGCc3pimItYp8qtcfh0nWZc+aiZk/+sOO7w=
+			j3z30gNgqB4SUu8rEZhqFoI8QUZhAaoc+R0S3JltmHw=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -119,7 +119,7 @@
 	</dict>
 	<key>rules</key>
 	<dict>
-		<key>^</key>
+		<key>^.*</key>
 		<true/>
 		<key>^.*\.lproj/</key>
 		<dict>
@@ -150,24 +150,12 @@
 			<key>weight</key>
 			<real>11</real>
 		</dict>
-		<key>^</key>
-		<dict>
-			<key>weight</key>
-			<real>20</real>
-		</dict>
 		<key>^(.*/)?\.DS_Store$</key>
 		<dict>
 			<key>omit</key>
 			<true/>
 			<key>weight</key>
 			<real>2000</real>
-		</dict>
-		<key>^(Frameworks|SharedFrameworks|PlugIns|Plug-ins|XPCServices|Helpers|MacOS|Library/(Automator|Spotlight|LoginItems))/</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^.*</key>
 		<true/>
@@ -203,13 +191,6 @@
 			<true/>
 			<key>weight</key>
 			<real>20</real>
-		</dict>
-		<key>^[^/]+$</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^embedded\.provisionprofile$</key>
 		<dict>

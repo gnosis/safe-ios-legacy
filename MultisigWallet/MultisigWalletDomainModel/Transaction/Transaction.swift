@@ -245,7 +245,7 @@ public class Transaction: IdentifiableEntity<TransactionID> {
     @discardableResult
     public func remove(signature: Signature) -> Transaction {
         assertSignaturesEditable()
-        guard let index = signatures.index(of: signature) else { return self }
+        guard let index = signatures.firstIndex(of: signature) else { return self }
         signatures.remove(at: index)
         timestampUpdated(at: Date())
         return self
@@ -416,17 +416,17 @@ public extension Transaction {
         return amount != nil && amount!.token.id != Token.Ether.id
     }
 
-    public var ethTo: Address {
+    var ethTo: Address {
         let result = isERC20Transfer ? amount?.token.address : recipient
         return result ?? .zero
     }
 
-    public var ethValue: TokenInt {
+    var ethValue: TokenInt {
         let result = isERC20Transfer ? 0 : amount?.amount
         return result ?? 0
     }
 
-    public var ethData: String {
+    var ethData: String {
         return data == nil ? "" : "0x\(data!.toHexString())"
     }
 

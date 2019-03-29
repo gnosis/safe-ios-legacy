@@ -88,7 +88,7 @@ public class SegmentBar: UIControl {
 
     private func updateSelection() {
         removeSelectionMarker()
-        guard let selected = selectedItem, let selectedItemIndex = items.index(of: selected) else { return }
+        guard let selected = selectedItem, let selectedItemIndex = items.firstIndex(of: selected) else { return }
         buttons.forEach { configureDeselectedButton($0) }
         configureSelectedButton(at: selectedItemIndex)
         setNeedsUpdateConstraints()

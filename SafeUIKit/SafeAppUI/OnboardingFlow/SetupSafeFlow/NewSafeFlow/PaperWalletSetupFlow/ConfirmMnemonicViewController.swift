@@ -86,8 +86,8 @@ final class ConfirmMnemonicViewController: UIViewController {
 
     private func configureInputs(words: [String]) {
         (firstMnemonicWordToCheck, secondMnemonicWordToCheck) = twoRandomWords()
-        let firstWordIndex = String(words.index(of: firstMnemonicWordToCheck)! + 1)
-        let secondWordIndex = String(words.index(of: secondMnemonicWordToCheck)! + 1)
+        let firstWordIndex = String(words.firstIndex(of: firstMnemonicWordToCheck)! + 1)
+        let secondWordIndex = String(words.firstIndex(of: secondMnemonicWordToCheck)! + 1)
         firstWordTextInput.textInput.placeholder = String(format: Strings.wordNumberPlaceholder, firstWordIndex)
         firstWordTextInput.delegate = self
         firstWordTextInput.accessibilityIdentifier = "firstInput"

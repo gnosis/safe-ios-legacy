@@ -384,19 +384,19 @@
 		</dict>
 		<key>Headers/DateTools-Swift.h</key>
 		<data>
-		4jkxWqAYOrpyurTLHzyEWm9ICQ8=
+		nkX25LVXm4GxCkzKEakq0zlYBfM=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		447UwHeyT2pU07d+FY8vDmTDScY=
+		FZG7JW2v/Pcwv3xjzuU6cESsv+g=
 		</data>
 		<key>Modules/DateTools.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		mKJItfDZuD5HaUlGlIMvdJbGTT4=
+		ccZViY+lOxFEBSQbrR+vYkETh8g=
 		</data>
 		<key>Modules/DateTools.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		/EDUMeMvS4khK7YNQVwxwTr1bcw=
+		8nh//lbAS5DiEoiRMiGmmi4Ve54=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -787,21 +787,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OGqrgg7h0CSFghdUKawWxLOodsHTv1xGWxcK9Q5Pvao=
+			CKrbWtYNix6dcQhV9tQ6+M1h6dB4DIgWHjiQXQhOZj0=
 			</data>
 		</dict>
 		<key>Modules/DateTools.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			R7j3jIEa5g8HUBsyjLrqkG4iHCD9S7x/K+4L9jqKn74=
+			YprCyQBn0sg/aR658SHVDfIgO3TwK4npCV5w8kIqoO8=
 			</data>
 		</dict>
 		<key>Modules/DateTools.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			A22y732Jt9MjtDXXlgISdI1XD+4icCiTbGfWE66dxCM=
+			6bK3yuYvvZTGwvKU9K56wpCFkKiJ7+jYvZt4maE3TPE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

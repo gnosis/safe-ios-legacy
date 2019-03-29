@@ -25,7 +25,7 @@ public class EventRelay {
     }
 
     func unsubscribe(_ subject: EventSubscriber) {
-        if let index = subscribers.index(where: { $0.subscriber.ref === subject }) {
+        if let index = subscribers.firstIndex(where: { $0.subscriber.ref === subject }) {
             subscribers.remove(at: index)
         }
     }

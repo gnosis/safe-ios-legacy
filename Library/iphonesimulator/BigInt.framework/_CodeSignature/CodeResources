@@ -6,27 +6,27 @@
 	<dict>
 		<key>Headers/BigInt-Swift.h</key>
 		<data>
-		mDthvzF48t3tMmyz83oADIT7IaM=
+		W22s/bajqpP75iMPXNoigN0H7Nk=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		n75W6wgn/g59RCHuDVfJU2AE5hc=
+		toJrmaERwwxnl+oxTUCa9PazBsk=
 		</data>
 		<key>Modules/BigInt.swiftmodule/i386.swiftdoc</key>
 		<data>
-		zGO0EA1j0iVL+wGS6rtxMpwljoc=
+		1pF/K1L9mjhIo+4T1f89HGDTisU=
 		</data>
 		<key>Modules/BigInt.swiftmodule/i386.swiftmodule</key>
 		<data>
-		nU0RdLfzZlvcdGpLz/NxYFgFsds=
+		CriungCSbKXJSdu6noumpX0pshg=
 		</data>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		ALCMYrHvde5kMuG+fVDULbYvSt4=
+		SfCRVfv2zg96aXkbCZ9eD5xF+l8=
 		</data>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		lnuQY/cqDoa3QiS6cmHwu00mq7k=
+		V6kr47h3nOVjLDeq2VxpWNBcZ98=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -39,55 +39,55 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			mDthvzF48t3tMmyz83oADIT7IaM=
+			W22s/bajqpP75iMPXNoigN0H7Nk=
 			</data>
 			<key>hash2</key>
 			<data>
-			c9OSFIwcEp+OdI4z47pzk707q2sWQ4hV76jnZGyDq6M=
+			Entu/cZjTW1JqlKPTeZ25ojlaF4G+nK+kyxj+blZ8Fw=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zGO0EA1j0iVL+wGS6rtxMpwljoc=
+			1pF/K1L9mjhIo+4T1f89HGDTisU=
 			</data>
 			<key>hash2</key>
 			<data>
-			Hhs9X8W5+vD6d6BbhZm3HqtqFIm9fAlOiHsNCKxZxx0=
+			/ZBdUYCn6+P5WyWM3+0+P7K5Vzulk/Tv5PT1C7BtovY=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			nU0RdLfzZlvcdGpLz/NxYFgFsds=
+			CriungCSbKXJSdu6noumpX0pshg=
 			</data>
 			<key>hash2</key>
 			<data>
-			TgBTH4LbKG46xz8FkLRCfWcQtzcEbrpHUFJTpIXH7iY=
+			qz5RdDhsslYOFOq3mOj6QOdfdkyKT0ou7RdeQZxGO80=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ALCMYrHvde5kMuG+fVDULbYvSt4=
+			SfCRVfv2zg96aXkbCZ9eD5xF+l8=
 			</data>
 			<key>hash2</key>
 			<data>
-			P2ooHNGmWyfp/GnfV0JbfoHYw+pZ+GYkcDKE1DDuNqM=
+			WckrXOGUvAu9CGqd7+rWUcDqMgH7FSGNGaq3k4AAelA=
 			</data>
 		</dict>
 		<key>Modules/BigInt.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			lnuQY/cqDoa3QiS6cmHwu00mq7k=
+			V6kr47h3nOVjLDeq2VxpWNBcZ98=
 			</data>
 			<key>hash2</key>
 			<data>
-			sQ4HzT+oXl0qPtpL8CeFAh2mGWHknI/pQxwW0ITUm+g=
+			T3yuV0WgVKIJh28PehoaeGNN8Fo6+oqZn6SovvFel7s=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -104,7 +104,7 @@
 	</dict>
 	<key>rules</key>
 	<dict>
-		<key>^</key>
+		<key>^.*</key>
 		<true/>
 		<key>^.*\.lproj/</key>
 		<dict>
@@ -135,24 +135,12 @@
 			<key>weight</key>
 			<real>11</real>
 		</dict>
-		<key>^</key>
-		<dict>
-			<key>weight</key>
-			<real>20</real>
-		</dict>
 		<key>^(.*/)?\.DS_Store$</key>
 		<dict>
 			<key>omit</key>
 			<true/>
 			<key>weight</key>
 			<real>2000</real>
-		</dict>
-		<key>^(Frameworks|SharedFrameworks|PlugIns|Plug-ins|XPCServices|Helpers|MacOS|Library/(Automator|Spotlight|LoginItems))/</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^.*</key>
 		<true/>
@@ -188,13 +176,6 @@
 			<true/>
 			<key>weight</key>
 			<real>20</real>
-		</dict>
-		<key>^[^/]+$</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^embedded\.provisionprofile$</key>
 		<dict>

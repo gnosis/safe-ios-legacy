@@ -65,6 +65,8 @@ public final class BiometricService: BiometricAuthenticationService {
             ApplicationServiceRegistry.logger.error("Received unexpected biometry type: none",
                                                     error: BiometricServiceError.unexpectedBiometryType)
             return .none
+        @unknown default:
+            return .none
         }
     }
 
