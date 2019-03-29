@@ -5,6 +5,7 @@
 import Foundation
 import EthereumKit
 import BigInt
+import Common
 
 struct EstimateGasRequest: JSONRPCRequest {
 
@@ -17,15 +18,7 @@ struct EstimateGasRequest: JSONRPCRequest {
     }
 
     var parameters: Any? {
-        do {
-            // encoding-decoding because EthereumKit expects parameters as primitive types
-            // (array of arrays, dictionaries, numbers, strings or data)
-            let data = try JSONEncoder().encode(transaction)
-            let dict = try JSONSerialization.jsonObject(with: data, options: [])
-            return [dict]
-        } catch {
-            return []
-        }
+        return [try? OBJCJSONEncoder().encode(transaction)].compactMap { $0 }
     }
 
 }

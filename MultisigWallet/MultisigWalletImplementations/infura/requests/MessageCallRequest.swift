@@ -4,6 +4,7 @@
 
 import Foundation
 import EthereumKit
+import Common
 
 struct MessageCallRequest: JSONRPCRequest {
 
@@ -19,9 +20,8 @@ struct MessageCallRequest: JSONRPCRequest {
 
     var parameters: Any? {
         do {
-            let data = try JSONEncoder().encode(transaction)
-            let dict = try JSONSerialization.jsonObject(with: data, options: [])
-            return [dict, blockNumber.stringValue]
+            let json = try OBJCJSONEncoder().encode(transaction)
+            return [json, blockNumber.stringValue]
         } catch {
             return []
         }
