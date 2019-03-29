@@ -65,6 +65,7 @@ public final class TokenInput: VerifiableInput {
         textInput.delegate = self
         textInput.textInputHeight = textInputHeight
         textInput.style = .white
+        textInput.showSuccessIndicator = false
         maxLength = TokenBounds.maxDigitsCount
         showErrorsOnly = true
         addDefaultValidationsRules()
