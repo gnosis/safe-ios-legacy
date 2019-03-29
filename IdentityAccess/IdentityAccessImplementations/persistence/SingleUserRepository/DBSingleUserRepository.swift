@@ -46,22 +46,23 @@ CREATE TABLE IF NOT EXISTS tbl_user (
     }
 
     public func primaryUser() -> User? {
-        guard let result = ((try? db.execute(sql: SQL.findPrimaryUser, resultMap: userFromResultSet).first as? User) as User??) else {
+        guard let result = try? db.execute(sql: SQL.findPrimaryUser,
+                                           resultMap: userFromResultSet).first as User?? else {
             return nil
         }
         return result
     }
 
     public func user(encryptedPassword: String) -> User? {
-        guard let result = ((try? db.execute(sql: SQL.findUserByPassword,
+        guard let result = try? db.execute(sql: SQL.findUserByPassword,
                                            bindings: [encryptedPassword],
-                                           resultMap: userFromResultSet).first as? User) as User??) else { return nil }
+                                           resultMap: userFromResultSet).first as User?? else { return nil }
         return result
     }
 
     private func userFromResultSet(_ rs: ResultSet) throws -> User? {
         guard let id = rs.string(at: 0), let password = rs.string(at: 1) else {
-                return nil
+            return nil
         }
         let user = User(id: UserID(id), password: password)
         if let sessionID = rs.string(at: 2) {
