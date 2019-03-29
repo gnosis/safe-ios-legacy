@@ -86,7 +86,7 @@ open class ReplaceBrowserExtensionDomainService: Assertable {
     }
 
     open func stepBackToDraft(_ transactionID: TransactionID) {
-        let tx = DomainRegistry.transactionRepository.findByID(transactionID)!
+        let tx = DomainRegistry.transactionRepository.find(id: transactionID)!
         if tx.status == .signing {
             tx.stepBack()
             DomainRegistry.transactionRepository.save(tx)
