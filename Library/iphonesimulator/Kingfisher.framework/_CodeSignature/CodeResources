@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/Kingfisher-Swift.h</key>
 		<data>
-		LP7cuOceVyuUAZNkFEjYH/85RTk=
+		k12iP7DpSO2y6+T2pUnoJK9juDQ=
 		</data>
 		<key>Headers/Kingfisher.h</key>
 		<data>
@@ -14,23 +14,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		RhDonW3qL41YgFH+isDps+iSlVI=
+		Aiu1CeRdmGd95hiV5NT2Lw4gp9s=
 		</data>
 		<key>Modules/Kingfisher.swiftmodule/i386.swiftdoc</key>
 		<data>
-		LqlbEHGB/0lxMTpVNqvTVRKt7PQ=
+		P6gDCbc0bGGRS4Br3RT/nmUfrqs=
 		</data>
 		<key>Modules/Kingfisher.swiftmodule/i386.swiftmodule</key>
 		<data>
-		JQ/q3vnY8hbqlKrZyqm4b+xiUPQ=
+		rVHqB+QSX8dbIUEpKQ7gn9zcQT0=
 		</data>
 		<key>Modules/Kingfisher.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		+Xg0ieKXASFdkLBiPZqfJ2SW6CA=
+		jJWZeImR9m8BvxfmuzyZvqS2TUI=
 		</data>
 		<key>Modules/Kingfisher.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		KxzSwxdIv+E9r1QFp6I/0+Z3CMA=
+		n01vUnMChcrsO1VnDdDsUDwevpU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,11 +43,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			LP7cuOceVyuUAZNkFEjYH/85RTk=
+			k12iP7DpSO2y6+T2pUnoJK9juDQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			Cz2Q6niU01VfaWMeCgw9lS7m+DzUuh8ObiDk+j82di4=
+			YtpvoPPHpiQC87RXjR8nyvfi0UtenOfqDDbx/sXAAN4=
 			</data>
 		</dict>
 		<key>Headers/Kingfisher.h</key>
@@ -65,44 +65,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			LqlbEHGB/0lxMTpVNqvTVRKt7PQ=
+			P6gDCbc0bGGRS4Br3RT/nmUfrqs=
 			</data>
 			<key>hash2</key>
 			<data>
-			uaaA0tiu+ru71ryDEtryhZU7Gd7STVW/EkqAkD9V/Vg=
+			ZOsb20zO4DNS8jVsYFIO+VsKIMl37fmByCnekH/HOVQ=
 			</data>
 		</dict>
 		<key>Modules/Kingfisher.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			JQ/q3vnY8hbqlKrZyqm4b+xiUPQ=
+			rVHqB+QSX8dbIUEpKQ7gn9zcQT0=
 			</data>
 			<key>hash2</key>
 			<data>
-			79Kt4NUqcbAfD4KifHnG0QTBgeaXUhN0lo7ibAyYzSw=
+			R9wQ5xGLNEhebxhWsgLlMUAfaE+Ppp6JLthgXFqIoTQ=
 			</data>
 		</dict>
 		<key>Modules/Kingfisher.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			+Xg0ieKXASFdkLBiPZqfJ2SW6CA=
+			jJWZeImR9m8BvxfmuzyZvqS2TUI=
 			</data>
 			<key>hash2</key>
 			<data>
-			6gqqkYahgb0iI+/3t9+noHak6qvBJb2WqI7V88Ork3I=
+			kkdk2jzJ4RXrcnQH4LcNr1uvetg27zYWPNw2gl9KL8I=
 			</data>
 		</dict>
 		<key>Modules/Kingfisher.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			KxzSwxdIv+E9r1QFp6I/0+Z3CMA=
+			n01vUnMChcrsO1VnDdDsUDwevpU=
 			</data>
 			<key>hash2</key>
 			<data>
-			O1fMu4ROhO7PMVxIVc38rzdE0akfIE8BXGHafX0RCv0=
+			lzle+rLIktEk/l1fVK1zDB6tC6Fy+ZEvMGLeiAm8qi0=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -119,7 +119,7 @@
 	</dict>
 	<key>rules</key>
 	<dict>
-		<key>^</key>
+		<key>^.*</key>
 		<true/>
 		<key>^.*\.lproj/</key>
 		<dict>
@@ -150,24 +150,12 @@
 			<key>weight</key>
 			<real>11</real>
 		</dict>
-		<key>^</key>
-		<dict>
-			<key>weight</key>
-			<real>20</real>
-		</dict>
 		<key>^(.*/)?\.DS_Store$</key>
 		<dict>
 			<key>omit</key>
 			<true/>
 			<key>weight</key>
 			<real>2000</real>
-		</dict>
-		<key>^(Frameworks|SharedFrameworks|PlugIns|Plug-ins|XPCServices|Helpers|MacOS|Library/(Automator|Spotlight|LoginItems))/</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^.*</key>
 		<true/>
@@ -203,13 +191,6 @@
 			<true/>
 			<key>weight</key>
 			<real>20</real>
-		</dict>
-		<key>^[^/]+$</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^embedded\.provisionprofile$</key>
 		<dict>
