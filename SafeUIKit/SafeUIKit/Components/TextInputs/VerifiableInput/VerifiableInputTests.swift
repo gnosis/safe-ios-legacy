@@ -92,7 +92,7 @@ class VerifiableInputTests: XCTestCase {
     func test_whenNoRules_thenInputStateIsNormal() {
         input.type("a")
         XCTAssertEqual(input.textInput.inputState, .normal)
-    } 
+    }
 
     func test_whenReturnKeyPressed_thenCallsDelegate() {
         input.addRule("test1") { _ in true }

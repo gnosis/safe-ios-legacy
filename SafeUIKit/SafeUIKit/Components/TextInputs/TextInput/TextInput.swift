@@ -10,6 +10,7 @@ public class TextInput: UITextField {
     private let clearButton = UIButton(type: .custom)
     private let successImageView = UIImageView()
     private let edgeViewPadding: CGFloat = 14
+
     public var textInputHeight: CGFloat = 50 {
         didSet {
             heightConstraint.constant = textInputHeight
@@ -75,11 +76,28 @@ public class TextInput: UITextField {
         }
     }
 
+    public var showSuccessIndicator = true {
+        didSet {
+            updateRightView()
+        }
+    }
+
+    public var customRightView: UIView? {
+        didSet {
+            updateRightView()
+        }
+    }
+
     private func updateRightView() {
+        if let customRightView = customRightView {
+            rightView = customRightView
+            rightViewMode = .always
+            return
+        }
         if hideClearButton {
             rightView = nil
             rightViewMode = .never
-            if inputState == .success {
+            if inputState == .success && showSuccessIndicator {
                 rightView = successImageView
                 rightViewMode = .always
             }

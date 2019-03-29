@@ -36,7 +36,6 @@ public final class AddressInput: VerifiableInput {
             if newValue != nil {
                 let displayAddress = safeUserInput(newValue)
                 addressLabel.text = displayAddress
-                textInput.rightViewMode = .always
                 textInput.placeholder = nil
                 validateRules(for: displayAddress)
                 if isValid {
@@ -51,7 +50,6 @@ public final class AddressInput: VerifiableInput {
                 }
             } else {
                 addressLabel.address = nil
-                textInput.rightViewMode = .never
                 textInput.placeholder = self.placeholder
                 addressInputDelegate?.didClear()
             }
@@ -113,10 +111,11 @@ public final class AddressInput: VerifiableInput {
 
     private func configureTextInput() {
         textInput.heightConstraint.constant = inputHeight
-        textInput.rightViewMode = .never
         textInput.leftImage = Asset.AddressInput.addressIconTmp.image
+        textInput.style = .white
+        textInput.showSuccessIndicator = false
+        textInput.customRightView = dotsRightView()
         textInput.delegate = self
-        textInput.style = .gray
     }
 
     private func addAddressLabel() {
@@ -130,6 +129,13 @@ public final class AddressInput: VerifiableInput {
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.adjustsFontSizeToFitWidth = true
         addressLabel.minimumScaleFactor = 0.3
+    }
+
+    private func dotsRightView() -> UIView {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 14))
+        imageView.image = Asset.AddressInput.dots.image
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }
 
     private func pinAddressLabel() {

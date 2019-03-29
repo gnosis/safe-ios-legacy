@@ -15,7 +15,7 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(textInput.style, .white)
         XCTAssertEqual(textInput.leftImage, nil)
         XCTAssertEqual(textInput.leftImageURL, nil)
-        XCTAssertEqual(textInput.font, UIFont.systemFont(ofSize: 17))
+        XCTAssertEqual(textInput.font, UIFont.systemFont(ofSize: 16))
         XCTAssertEqual(textInput.layer.borderColor, ColorName.paleLilac.color.cgColor)
         XCTAssertEqual(textInput.layer.cornerRadius, 10)
         XCTAssertEqual(textInput.layer.borderWidth, 2)
@@ -61,6 +61,12 @@ class TextInputTests: XCTestCase {
         textInput.hideClearButton = false
         textInput.inputState = .success
         XCTAssertTrue(textInput.rightView is UIButton)
+    }
+
+    func test_whenDoesNotShowSuccessIndicator_thenItIsHidden() {
+        textInput.showSuccessIndicator = false
+        textInput.inputState = .success
+        XCTAssertNil(textInput.rightView)
     }
 
 }

@@ -64,7 +64,7 @@ public final class TokenInput: VerifiableInput {
         textInput.keyboardType = .decimalPad
         textInput.delegate = self
         textInput.textInputHeight = textInputHeight
-        textInput.style = .gray
+        textInput.style = .white
         maxLength = TokenBounds.maxDigitsCount
         showErrorsOnly = true
         addDefaultValidationsRules()
