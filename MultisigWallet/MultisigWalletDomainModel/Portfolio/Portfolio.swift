@@ -55,7 +55,7 @@ public class Portfolio: IdentifiableEntity<PortfolioID> {
     ///
     /// - Parameter wallet: wallet to remove.
     public func removeWallet(_ wallet: WalletID) {
-        let index = wallets.index(of: wallet)!
+        let index = wallets.firstIndex(of: wallet)!
         wallets.remove(at: index)
         if wallets.isEmpty {
             selectedWallet = nil

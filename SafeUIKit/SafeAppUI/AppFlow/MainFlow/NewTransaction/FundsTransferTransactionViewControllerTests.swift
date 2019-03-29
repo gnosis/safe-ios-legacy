@@ -39,7 +39,7 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         controller.loadViewIfNeeded()
         controller.tokenInput.text = "0.1"
         controller.addressInput.text = recipient
-        controller.proceedToSigning(controller.nextBarButton)
+        controller.proceedToSigning(controller.nextBarButton as Any)
 
         XCTAssertEqual(walletService.updateTransaction_input?.id, transactionID)
         XCTAssertEqual(delegate.didCreateDraftTransaction_input, transactionID)

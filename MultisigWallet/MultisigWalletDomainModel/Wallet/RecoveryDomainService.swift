@@ -483,16 +483,16 @@ class RecoveryTransactionBuilder {
 
             oldScheme = oldWalletScheme()
             newScheme = newWalletScheme()
-            print("Old scheme: ", oldScheme)
-            print("New scheme: ", newScheme)
+            print("Old scheme: ", oldScheme as Any)
+            print("New scheme: ", newScheme as Any)
 
             ownerList = ownerLinkedList()
 
             readonlyOwnerAddresses = readonlyAddresses()
-            print("Readonly owners: ", readonlyOwnerAddresses)
+            print("Readonly owners: ", readonlyOwnerAddresses as Any)
 
             modifiableOwners = mutableOwners()
-            print("Modifiable owners: ", modifiableOwners)
+            print("Modifiable owners: ", modifiableOwners as Any)
 
             try DomainRegistry.accountUpdateService.updateAccountsBalances()
         } catch let error {

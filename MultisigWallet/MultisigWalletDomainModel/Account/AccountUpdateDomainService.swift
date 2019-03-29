@@ -45,7 +45,7 @@ open class AccountUpdateDomainService {
         let allWalletAccountsIds = allSelectedWalletAccountsIds()
         let whitelistedIds = whitelisteItemsTokensIds()
         let whitelistedAccountsIds = allWalletAccountsIds.filter {
-            $0.tokenID == Token.Ether.id || whitelistedIds.index(of: $0.tokenID) != nil
+            $0.tokenID == Token.Ether.id || whitelistedIds.firstIndex(of: $0.tokenID) != nil
         }
         try updateAccountsBalances(whitelistedAccountsIds)
     }
