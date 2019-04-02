@@ -77,7 +77,6 @@ class UITestCase: XCTestCase {
 
     func givenDeploymentStarted() {
         let newSafeScreen = NewSafeScreen()
-        let pairWithBrowserScreen = PairWithBrowserExtensionScreen()
         let cameraScreen = CameraScreen()
 
         givenNewSafeSetup()
@@ -86,7 +85,6 @@ class UITestCase: XCTestCase {
         newSafeScreen.browserExtension.element.tap()
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
-        pairWithBrowserScreen.saveButton.tap()
         newSafeScreen.next.tap()
     }
 
@@ -123,18 +121,13 @@ class UITestCase: XCTestCase {
         case input, button
     }
 
-    func givenCameraOpened(with option: CameraOpenOption = .button) {
+    func givenCameraOpened() {
         let pairWithBrowserScreen = PairWithBrowserExtensionScreen()
 
         cameraPermissionExpectation = expectation(description: "Alert")
         cameraPermissionExpectation.assertForOverFulfill = false
         handleCameraPermsissionByAllowing()
-        switch option {
-        case .input:
-            pairWithBrowserScreen.qrCodeInput.tap()
-        case .button:
-            pairWithBrowserScreen.qrCodeButton.tap()
-        }
+        pairWithBrowserScreen.scanButton.tap()
         handleCameraAlerts()
     }
 

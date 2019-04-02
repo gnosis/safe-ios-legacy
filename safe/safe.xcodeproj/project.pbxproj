@@ -11,7 +11,6 @@
 		0A028EED21AEE3FE00431D25 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028EEC21AEE3FE00431D25 /* NotificationService.swift */; };
 		0A028EF121AEE3FE00431D25 /* remoteNotificationHandler.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0A028EEA21AEE3FE00431D25 /* remoteNotificationHandler.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0A028F0521AEE52100431D25 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A028F0721AEE52100431D25 /* Localizable.strings */; };
-		0A0660842099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */; };
 		0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */; };
 		0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* SafeUIKit.strings */; };
 		0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
@@ -42,7 +41,6 @@
 		0AA0C864207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */; };
 		0AA0C866207B756C0019E282 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C862207B756C0019E282 /* XCTest+Assert.swift */; };
 		0AA0C867207B756C0019E282 /* XCTest+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C862207B756C0019E282 /* XCTest+Assert.swift */; };
-		0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */; };
 		0AA27832205FC4E600EBB9D1 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27831205FC4E600EBB9D1 /* Application.swift */; };
 		0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27833205FC5A700EBB9D1 /* StartScreen.swift */; };
 		0AA27835205FC60100EBB9D1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
@@ -53,7 +51,6 @@
 		0AA27843205FCE2800EBB9D1 /* TestSupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27842205FCE2800EBB9D1 /* TestSupportTests.swift */; };
 		0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27847205FD97600EBB9D1 /* TestUtils.swift */; };
 		0AB743F620ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB743EA20ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift */; };
-		0ABA90DE20C567CE001AEAE4 /* PendingSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90DD20C567CE001AEAE4 /* PendingSafeScreenUITests.swift */; };
 		0ABA90EB20C56AB5001AEAE4 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90EA20C56AB5001AEAE4 /* MainScreen.swift */; };
 		0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		0AC33F1B2119CBE1009A5CFB /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -82,13 +79,11 @@
 		555D33FE2110BD810055D87C /* LocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D33FD2110BD810055D87C /* LocalizationStrings.swift */; };
 		558FD81520767F18004F070E /* NewSafeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81420767F18004F070E /* NewSafeScreen.swift */; };
 		55A7B2A320ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */; };
-		55A7B2D620ED22F90035EF38 /* SafeCreationIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7B2D520ED22F90035EF38 /* SafeCreationIntegrationTests.swift */; };
 		55CAA001209AF0A1009AE181 /* SaveMnemonicScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */; };
 		55CAA003209AF0FB009AE181 /* SaveMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA002209AF0FB009AE181 /* SaveMnemonicUITests.swift */; };
 		55CAA005209AF204009AE181 /* ConfirmMnemonicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */; };
 		55CAA007209AF267009AE181 /* ConfirmMnemonicScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA006209AF267009AE181 /* ConfirmMnemonicScreen.swift */; };
 		55D20B1F21197ECC00BDD62C /* SendTokenScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D20B1E21197ECC00BDD62C /* SendTokenScreen.swift */; };
-		55D20B3E21199D5C00BDD62C /* NewTransactionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D20B3D21199D5C00BDD62C /* NewTransactionUITests.swift */; };
 		55D3C08220F770170047004F /* PushTokensService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D3C08120F770170047004F /* PushTokensService.swift */; };
 		55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D97D7D20496E390004AEDD /* AppDelegateTests.swift */; };
 		55FB25C1212582EC00E81666 /* HTTPTokenListServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB25C0212582EC00E81666 /* HTTPTokenListServiceTests.swift */; };
@@ -306,7 +301,6 @@
 		0AA0C857207B74B10019E282 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0AA0C861207B756C0019E282 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		0AA0C862207B756C0019E282 /* XCTest+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Assert.swift"; sourceTree = "<group>"; };
-		0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeUITests.swift; sourceTree = "<group>"; };
 		0AA27831205FC4E600EBB9D1 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		0AA27833205FC5A700EBB9D1 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 		0AA27836205FC63800EBB9D1 /* SetPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordScreen.swift; sourceTree = "<group>"; };
@@ -650,7 +644,6 @@
 				55F8120220BD59CB00BD07E3 /* NewSafe */,
 				0ACA9C3A205FDA92005EC186 /* screens */,
 				0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */,
-				0AA2782F205FC27600EBB9D1 /* SmokeUITests.swift */,
 				0ACB1A412099EF2300EBE267 /* Springboard.swift */,
 				0ABA90EC20C57842001AEAE4 /* Supporting Files */,
 				0AA27847205FD97600EBB9D1 /* TestUtils.swift */,
@@ -1214,21 +1207,16 @@
 				0ACB1A422099EF2300EBE267 /* Springboard.swift in Sources */,
 				0AA27834205FC5A700EBB9D1 /* StartScreen.swift in Sources */,
 				0A4B004520977266006343EB /* SetupSafeOptionsScreen.swift in Sources */,
-				0A0660842099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift in Sources */,
 				0AA27839205FC68C00EBB9D1 /* ConfirmPasswordScreen.swift in Sources */,
 				0AA0C864207B756C0019E282 /* XCTestCase+Extensions.swift in Sources */,
-				0AA27830205FC27600EBB9D1 /* SmokeUITests.swift in Sources */,
 				0ACA9C39205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
 				0ACB1A402099EEFA00EBE267 /* UITestCase.swift in Sources */,
 				0AA0C867207B756C0019E282 /* XCTest+Assert.swift in Sources */,
 				0ACA9C41205FFEDF005EC186 /* SetPasswordScreenUITests.swift in Sources */,
-				55D20B3E21199D5C00BDD62C /* NewTransactionUITests.swift in Sources */,
 				0A99436C20A04C6700E36FD7 /* LocalizedString.swift in Sources */,
 				0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */,
 				0AA27837205FC63800EBB9D1 /* SetPasswordScreen.swift in Sources */,
 				0A009C0920C688B700380A07 /* PendingSafeScreen.swift in Sources */,
-				55A7B2D620ED22F90035EF38 /* SafeCreationIntegrationTests.swift in Sources */,
-				0ABA90DE20C567CE001AEAE4 /* PendingSafeScreenUITests.swift in Sources */,
 				0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */,
 				55CAA007209AF267009AE181 /* ConfirmMnemonicScreen.swift in Sources */,
 				0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */,
