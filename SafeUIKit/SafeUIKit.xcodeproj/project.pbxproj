@@ -353,6 +353,8 @@
 		55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F558208A298200889C9F /* QRCodeInputTests.swift */; };
 		55F30EE222534A9200689835 /* ChangePasswordCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EE122534A9200689835 /* ChangePasswordCommand.swift */; };
 		55F30EE422534B5700689835 /* ChangePasswordFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EE322534B5700689835 /* ChangePasswordFlowCoordinator.swift */; };
+		55F30EF72253549900689835 /* VerifyCurrentPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EF62253549900689835 /* VerifyCurrentPasswordViewController.swift */; };
+		55F30EF9225354C800689835 /* ChangePasswordFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EF8225354C800689835 /* ChangePasswordFlowCoordinatorTests.swift */; };
 		55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -885,6 +887,8 @@
 		55E9F558208A298200889C9F /* QRCodeInputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputTests.swift; sourceTree = "<group>"; };
 		55F30EE122534A9200689835 /* ChangePasswordCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordCommand.swift; sourceTree = "<group>"; };
 		55F30EE322534B5700689835 /* ChangePasswordFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordFlowCoordinator.swift; sourceTree = "<group>"; };
+		55F30EF62253549900689835 /* VerifyCurrentPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCurrentPasswordViewController.swift; sourceTree = "<group>"; };
+		55F30EF8225354C800689835 /* ChangePasswordFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenNumberFormatterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1921,6 +1925,8 @@
 			children = (
 				55F30EE122534A9200689835 /* ChangePasswordCommand.swift */,
 				55F30EE322534B5700689835 /* ChangePasswordFlowCoordinator.swift */,
+				55F30EF8225354C800689835 /* ChangePasswordFlowCoordinatorTests.swift */,
+				55F30EF62253549900689835 /* VerifyCurrentPasswordViewController.swift */,
 			);
 			path = ChangePassword;
 			sourceTree = "<group>";
@@ -2599,6 +2605,7 @@
 				5541586A21748C5200A3CEA4 /* AddressInputTests.swift in Sources */,
 				556C0B0F205C1DBF001F943D /* CABasicAnimationTests.swift in Sources */,
 				555EB6F2216CA5E900E06553 /* TextInputTests.swift in Sources */,
+				55F30EF9225354C800689835 /* ChangePasswordFlowCoordinatorTests.swift in Sources */,
 				5527A803208E26EC00AF3A50 /* ScannerViewControllerTests.swift in Sources */,
 				55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */,
 			);
@@ -2652,6 +2659,7 @@
 				0A3BD90822254833007039B4 /* RBEIntroViewControllerCancellingState.swift in Sources */,
 				0A4DF82F20CE9D5B0095C00D /* TransactionsTableViewController.swift in Sources */,
 				0A334DBD209C6D8700ABC6AE /* SetupSafeFlowCoordinator.swift in Sources */,
+				55F30EF72253549900689835 /* VerifyCurrentPasswordViewController.swift in Sources */,
 				0A334E4C209C8E3800ABC6AE /* CountdownLabel.swift in Sources */,
 				0A3BD8FA22254833007039B4 /* FeeCalculationAssetLine+TextStyle.swift in Sources */,
 				0A3BD90E22254833007039B4 /* RBEIntroViewControllerStartingState.swift in Sources */,
