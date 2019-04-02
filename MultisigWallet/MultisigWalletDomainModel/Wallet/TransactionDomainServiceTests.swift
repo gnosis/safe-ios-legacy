@@ -31,14 +31,14 @@ class TransactionDomainServiceTests: XCTestCase {
     func test_whenRemovingDraft_thenRemoves() {
         repo.save(tx)
         service.removeDraftTransaction(tx.id)
-        XCTAssertNil(repo.findByID(tx.id))
+        XCTAssertNil(repo.find(id: tx.id))
     }
 
     func test_whenStatusIsNotDraft_thenDoesNotRemovesTransaction() {
         tx.discard()
         repo.save(tx)
         service.removeDraftTransaction(tx.id)
-        XCTAssertNotNil(repo.findByID(tx.id))
+        XCTAssertNotNil(repo.find(id: tx.id))
     }
 
     func test_whenSameTimestamps_thenOrdersByStatus() {
@@ -124,7 +124,7 @@ class TransactionDomainServiceTests: XCTestCase {
     }
 
     private func removeAll() {
-        for t in repo.findAll() {
+        for t in repo.all() {
             repo.remove(t)
         }
     }
@@ -190,7 +190,7 @@ class TransactionDomainServiceTests: XCTestCase {
 
         XCTAssertTrue(eventPublisher.verify())
         nodeService.verify()
-        let tx = repo.findByID(stored[0].id)!
+        let tx = repo.find(id: stored[0].id)!
         XCTAssertNotNil(tx.processedDate)
     }
 
@@ -201,7 +201,7 @@ class TransactionDomainServiceTests: XCTestCase {
 
         try service.updatePendingTransactions()
 
-        let tx = repo.findByID(stored[0].id)!
+        let tx = repo.find(id: stored[0].id)!
         XCTAssertEqual(tx.status, .failed)
         XCTAssertNotNil(tx.processedDate)
     }

@@ -8,25 +8,25 @@ import XCTest
 public func XCTAssertExist(_ element: @autoclosure () throws -> XCUIElement,
                            file: StaticString = #file,
                            line: UInt = #line) {
-    XCTAssertPredicate(element, predicate: .exists, file: file, line: line)
+    XCTAssertPredicate(try element(), predicate: .exists, file: file, line: line)
 }
 
 public func XCTAssertNotExist(_ element: @autoclosure () throws -> XCUIElement,
                               file: StaticString = #file,
                               line: UInt = #line) {
-    XCTAssertPredicate(element, predicate: .doesNotExist, file: file, line: line)
+    XCTAssertPredicate(try element(), predicate: .doesNotExist, file: file, line: line)
 }
 
 public func XCTAssertHittable(_ element: @autoclosure () throws -> XCUIElement,
                               file: StaticString = #file,
                               line: UInt = #line) {
-    XCTAssertPredicate(element, predicate: .hittable, file: file, line: line)
+    XCTAssertPredicate(try element(), predicate: .hittable, file: file, line: line)
 }
 
 public func XCTAssertNotHittable(_ element: @autoclosure () throws -> XCUIElement,
                                  file: StaticString = #file,
                                  line: UInt = #line) {
-    XCTAssertPredicate(element, predicate: .notHittable, file: file, line: line)
+    XCTAssertPredicate(try element(), predicate: .notHittable, file: file, line: line)
 }
 
 func XCTAssertPredicate(_ closure: @autoclosure () throws -> XCUIElement,

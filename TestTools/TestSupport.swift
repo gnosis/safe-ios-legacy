@@ -17,7 +17,7 @@ protocol Resettable: class {
 final class StubEncryptionService: EncryptionService {
 
     override func ecdsaRandomS() -> BigUInt {
-        return BigUInt("1809251394333065553493296640760748560207343510400633813116524750123642650623")!
+        return BigUInt("1809251394333065553493296640760748560207343510400633813116524750123642650623")
     }
 
 }
@@ -74,7 +74,7 @@ final class TestSupport {
                         let delayParameters = parameters.filter { $0.range(of: "delay=") != nil }
                         if !delayParameters.isEmpty {
                             let delayParam = delayParameters.first!
-                            let delay = TimeInterval(delayParam.suffix(from: delayParam.index(of: "=")!).dropFirst())!
+                            let delay = TimeInterval(delayParam.suffix(from: delayParam.firstIndex(of: "=")!).dropFirst())!
                             transactionRelayService = MockTransactionRelayService(averageDelay: delay, maxDeviation: 0)
                         }
                         if parameters.contains("networkError") {
@@ -91,7 +91,7 @@ final class TestSupport {
                         let delayParameters = parameters.filter { $0.range(of: "delay=") != nil }
                         if !delayParameters.isEmpty {
                             let delayParam = delayParameters.first!
-                            delay = TimeInterval(delayParam.suffix(from: delayParam.index(of: "=")!).dropFirst())!
+                            delay = TimeInterval(delayParam.suffix(from: delayParam.firstIndex(of: "=")!).dropFirst())!
                             notificationService.delay = delay
                         }
                         if parameters.contains("networkError") {

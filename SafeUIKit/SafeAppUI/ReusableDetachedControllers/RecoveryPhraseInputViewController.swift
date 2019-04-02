@@ -92,6 +92,8 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
             insets.bottom = insets.top
             insets.top = tmp
             return insets
+        @unknown default:
+            return insets
         }
     }
 

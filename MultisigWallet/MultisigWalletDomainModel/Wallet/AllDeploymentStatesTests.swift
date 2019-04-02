@@ -34,7 +34,7 @@ class AllDeploymentStatesTests: BaseDeploymentDomainServiceTests {
 
         start()
 
-        wallet = walletRepository.findByID(wallet.id)!
+        wallet = walletRepository.find(id: wallet.id)!
         XCTAssertTrue(wallet.state === wallet.readyToUseState)
     }
 

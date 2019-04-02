@@ -73,6 +73,8 @@ class ScanQRCodeHandler {
             completion(false)
         case .notDetermined:
             askForCameraAccess(completion)
+        @unknown default:
+            completion(false)
         }
     }
 

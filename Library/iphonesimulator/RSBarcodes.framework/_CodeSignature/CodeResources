@@ -6,27 +6,27 @@
 	<dict>
 		<key>Headers/RSBarcodes-Swift.h</key>
 		<data>
-		DwnWjYvs95LqtSf0UC3P4+hdy7U=
+		YzJbcD/FHXnj9DUUjMtqZAUvJMY=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		ErOVGDovSmJw84J31LBtjOmI+/4=
+		jFCY+8uUjZg7vP5WyvwK997GR3g=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftdoc</key>
 		<data>
-		G+4Eiw477ZI8ogGs82dOxCAMKWs=
+		e7c6Vv8RH/3ILtAREP/qo6RcHX4=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftmodule</key>
 		<data>
-		njX3afoKmkkpnD9kZqs3F5xz1XY=
+		wlxUes9HwReCZFrL0yL5tllFlIA=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		nB/v+d9ZQtcu30VfpaBx+sJ3/gE=
+		l6Yk1qlw/28QXv5dOFYlSv4scCs=
 		</data>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		TAc990oZ3E5mRVtHgPMYkW1agqY=
+		fbgCjDC1y6eX1qZ3qaAUebQdE4g=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -39,55 +39,55 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			DwnWjYvs95LqtSf0UC3P4+hdy7U=
+			YzJbcD/FHXnj9DUUjMtqZAUvJMY=
 			</data>
 			<key>hash2</key>
 			<data>
-			3qaiNea1BoQfwV/L4r1oWBezUO2e5F2Qm4ckeX6HQe0=
+			AGNuoPVlML/cEq9oX4URQqbOPKsLCpVNDfGi1LvaIsc=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			G+4Eiw477ZI8ogGs82dOxCAMKWs=
+			e7c6Vv8RH/3ILtAREP/qo6RcHX4=
 			</data>
 			<key>hash2</key>
 			<data>
-			nsrPV7f+x+mr2/MAbsaKA/uW177lrIXAAhW1cBn7mBs=
+			wOnWmyqMmyBpvBszhx7ltMcJOpEmEqy5Sk4Z8Sqzirs=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			njX3afoKmkkpnD9kZqs3F5xz1XY=
+			wlxUes9HwReCZFrL0yL5tllFlIA=
 			</data>
 			<key>hash2</key>
 			<data>
-			T/wFMU5spo15BPJJBqj6QN8ASp9gzFCoxN7qgzVDwc8=
+			wVeyC3wB4FBEbZbYiJiaQfnIxwUjD+ce1VEicghjB08=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			nB/v+d9ZQtcu30VfpaBx+sJ3/gE=
+			l6Yk1qlw/28QXv5dOFYlSv4scCs=
 			</data>
 			<key>hash2</key>
 			<data>
-			iJ/12Wg8FK/ayIvf6wGl7Dp+QCjhi9Re8TQYJEe7T9s=
+			KK/U6FGqzmNcELdLuJp6jL1wlPy4KFFy8mgthsyNBeY=
 			</data>
 		</dict>
 		<key>Modules/RSBarcodes.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			TAc990oZ3E5mRVtHgPMYkW1agqY=
+			fbgCjDC1y6eX1qZ3qaAUebQdE4g=
 			</data>
 			<key>hash2</key>
 			<data>
-			ghK5ih/NdT3C8SQJwB1zS5pwVVnyTfTvrO2StBqMg3Y=
+			i3A6KH/tF1Q6/gTmPUgBY2qXtm4lhoAD2vVIBRlpFcs=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -104,7 +104,7 @@
 	</dict>
 	<key>rules</key>
 	<dict>
-		<key>^</key>
+		<key>^.*</key>
 		<true/>
 		<key>^.*\.lproj/</key>
 		<dict>
@@ -135,24 +135,12 @@
 			<key>weight</key>
 			<real>11</real>
 		</dict>
-		<key>^</key>
-		<dict>
-			<key>weight</key>
-			<real>20</real>
-		</dict>
 		<key>^(.*/)?\.DS_Store$</key>
 		<dict>
 			<key>omit</key>
 			<true/>
 			<key>weight</key>
 			<real>2000</real>
-		</dict>
-		<key>^(Frameworks|SharedFrameworks|PlugIns|Plug-ins|XPCServices|Helpers|MacOS|Library/(Automator|Spotlight|LoginItems))/</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^.*</key>
 		<true/>
@@ -188,13 +176,6 @@
 			<true/>
 			<key>weight</key>
 			<real>20</real>
-		</dict>
-		<key>^[^/]+$</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^embedded\.provisionprofile$</key>
 		<dict>

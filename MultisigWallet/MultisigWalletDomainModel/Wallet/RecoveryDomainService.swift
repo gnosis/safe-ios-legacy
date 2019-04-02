@@ -162,7 +162,7 @@ public class RecoveryDomainService: Assertable {
 
     public func createRecoveryTransaction() {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        if let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id) {
+        if let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) {
             DomainRegistry.transactionRepository.remove(tx)
         }
         RecoveryTransactionBuilder(multiSendContractAddress: config.multiSendContractAddress).main()
@@ -170,7 +170,7 @@ public class RecoveryDomainService: Assertable {
 
     public func isRecoveryTransactionReadyToSubmit() -> Bool {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        guard let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id) else {
+        guard let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) else {
             return false
         }
         guard let balance = DomainRegistry.accountRepository.find(id: tx.accountID)?.balance else {
@@ -183,7 +183,7 @@ public class RecoveryDomainService: Assertable {
 
     public func resume() {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id)!
+        let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id)!
 
         if !wallet.isReadyToUse && !wallet.isRecoveryInProgress && tx.status == .signing {
             submitRecoveryTransaction()
@@ -200,7 +200,7 @@ public class RecoveryDomainService: Assertable {
 
     private func submitRecoveryTransaction() {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id)!
+        let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id)!
 
         let txHash: TransactionHash
 
@@ -231,7 +231,7 @@ public class RecoveryDomainService: Assertable {
 
     private func subscribeForTransactionProcessing() {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id)!
+        let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id)!
 
         assert(wallet.isRecoveryInProgress && !wallet.isFinalizingRecovery && tx.status == .pending,
                "Invalid pending recovery state")
@@ -239,7 +239,7 @@ public class RecoveryDomainService: Assertable {
         guard tx.status == .pending else { return }
         DomainRegistry.eventPublisher.subscribe(self) { [weak self] (_: TransactionStatusUpdated) in
             guard let `self` = self else { return }
-            guard let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id) else {
+            guard let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) else {
                 DomainRegistry.eventPublisher.unsubscribe(self)
                 return
             }
@@ -264,7 +264,7 @@ public class RecoveryDomainService: Assertable {
 
     private func postProcessing() {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id)!
+        let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id)!
 
         assert(wallet.isFinalizingRecovery && tx.status == .success, "Invalid post-processing state")
 
@@ -307,7 +307,7 @@ public class RecoveryDomainService: Assertable {
 
     public func cancelRecovery() {
         let wallet = DomainRegistry.walletRepository.selectedWallet()!
-        if let tx = DomainRegistry.transactionRepository.findBy(type: .walletRecovery, wallet: wallet.id) {
+        if let tx = DomainRegistry.transactionRepository.find(type: .walletRecovery, wallet: wallet.id) {
             DomainRegistry.transactionRepository.remove(tx)
         }
         wallet.reset()
@@ -483,16 +483,16 @@ class RecoveryTransactionBuilder {
 
             oldScheme = oldWalletScheme()
             newScheme = newWalletScheme()
-            print("Old scheme: ", oldScheme)
-            print("New scheme: ", newScheme)
+            print("Old scheme: ", oldScheme as Any)
+            print("New scheme: ", newScheme as Any)
 
             ownerList = ownerLinkedList()
 
             readonlyOwnerAddresses = readonlyAddresses()
-            print("Readonly owners: ", readonlyOwnerAddresses)
+            print("Readonly owners: ", readonlyOwnerAddresses as Any)
 
             modifiableOwners = mutableOwners()
-            print("Modifiable owners: ", modifiableOwners)
+            print("Modifiable owners: ", modifiableOwners as Any)
 
             try DomainRegistry.accountUpdateService.updateAccountsBalances()
         } catch let error {

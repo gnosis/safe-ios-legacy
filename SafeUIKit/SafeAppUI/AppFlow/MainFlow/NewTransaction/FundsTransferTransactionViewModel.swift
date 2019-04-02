@@ -25,6 +25,7 @@ class FundsTransferTransactionViewModel {
     private(set) var resultingTokenData: TokenData!
 
     private(set) var canProceedToSigning: Bool
+
     let tokenFormatter: TokenNumberFormatter = .ERC20Token(decimals: 18)
     private let inputQueue: OperationQueue
     private let tokenID: BaseID!

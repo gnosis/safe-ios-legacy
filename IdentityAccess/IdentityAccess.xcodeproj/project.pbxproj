@@ -84,20 +84,6 @@
 			remoteGlobalIDString = 0A160B9220A07FE100E064E1;
 			remoteInfo = Database;
 		};
-		0A3D152B220B2BEC00E340DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A3D1501220B286B00E340DB;
-			remoteInfo = ReplaceBrowserExtensionFacade;
-		};
-		0A3D152D220B2BEC00E340DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A3D1518220B2A0A00E340DB;
-			remoteInfo = ReplaceBrowserExtensionFacadeResources;
-		};
 		0A537AAD207CEA0100921FB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
@@ -617,8 +603,6 @@
 				0A8E3BB420B41AB100F002F6 /* libCommonImplementations.a */,
 				0A8E3BB620B41AB100F002F6 /* CommonImplementationsTests.xctest */,
 				0A934D6B20B714F900F15616 /* CommonIntegration.app */,
-				0A3D152C220B2BEC00E340DB /* libReplaceBrowserExtensionFacade.a */,
-				0A3D152E220B2BEC00E340DB /* ReplaceBrowserExtensionFacadeResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -832,27 +816,27 @@
 					};
 					0A537A63207CE5BC00921FB9 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 					0A537AA6207CEA0100921FB9 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 					0A537ACC207CEDAE00921FB9 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 					0A537B2D207CF4B000921FB9 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 					0A537BE0207CFADE00921FB9 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 					0A537BFD207CFB9200921FB9 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -896,20 +880,6 @@
 			fileType = archive.ar;
 			path = libDatabase.a;
 			remoteRef = 0A160B9F20A0801A00E064E1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A3D152C220B2BEC00E340DB /* libReplaceBrowserExtensionFacade.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReplaceBrowserExtensionFacade.a;
-			remoteRef = 0A3D152B220B2BEC00E340DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A3D152E220B2BEC00E340DB /* ReplaceBrowserExtensionFacadeResources.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ReplaceBrowserExtensionFacadeResources.bundle;
-			remoteRef = 0A3D152D220B2BEC00E340DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0A8E3BB420B41AB100F002F6 /* libCommonImplementations.a */ = {
@@ -1370,7 +1340,7 @@
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessDomainModel/XcodeBuildSupport/IdentityAccessDomainModel-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = PreRelease;
 		};
@@ -1386,7 +1356,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessDomainModelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = PreRelease;
@@ -1406,7 +1376,7 @@
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessImplementations/XcodeBuildSupport/IdentityAccessImplementations-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = PreRelease;
 		};
@@ -1422,7 +1392,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessImplementationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = PreRelease;
 		};
@@ -1441,7 +1411,7 @@
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessApplication/XcodeBuildSupport/IdentityAccessApplication-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = PreRelease;
 		};
@@ -1457,7 +1427,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessApplicationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = PreRelease;
 		};
@@ -1598,7 +1568,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessDomainModel/XcodeBuildSupport/IdentityAccessDomainModel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = AdHoc;
 		};
@@ -1614,7 +1584,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessDomainModelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = AdHoc;
@@ -1635,7 +1605,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessImplementations/XcodeBuildSupport/IdentityAccessImplementations-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = AdHoc;
 		};
@@ -1651,7 +1621,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessImplementationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = AdHoc;
 		};
@@ -1671,7 +1641,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessApplication/XcodeBuildSupport/IdentityAccessApplication-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = AdHoc;
 		};
@@ -1687,7 +1657,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessApplicationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = AdHoc;
 		};
@@ -1707,7 +1677,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessDomainModel/XcodeBuildSupport/IdentityAccessDomainModel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1726,7 +1696,7 @@
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessDomainModel/XcodeBuildSupport/IdentityAccessDomainModel-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1742,7 +1712,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessDomainModelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1759,7 +1729,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessDomainModelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1780,7 +1750,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessImplementations/XcodeBuildSupport/IdentityAccessImplementations-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1799,7 +1769,7 @@
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessImplementations/XcodeBuildSupport/IdentityAccessImplementations-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1815,7 +1785,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessImplementationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1831,7 +1801,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessImplementationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1851,7 +1821,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessApplication/XcodeBuildSupport/IdentityAccessApplication-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1870,7 +1840,7 @@
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "IdentityAccessApplication/XcodeBuildSupport/IdentityAccessApplication-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1886,7 +1856,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessApplicationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1902,7 +1872,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.IdentityAccessApplicationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

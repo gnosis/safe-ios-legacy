@@ -45,7 +45,7 @@ open class AccountUpdateDomainService {
         let allWalletAccountsIds = allSelectedWalletAccountsIds()
         let whitelistedIds = whitelisteItemsTokensIds()
         let whitelistedAccountsIds = allWalletAccountsIds.filter {
-            $0.tokenID == Token.Ether.id || whitelistedIds.index(of: $0.tokenID) != nil
+            $0.tokenID == Token.Ether.id || whitelistedIds.firstIndex(of: $0.tokenID) != nil
         }
         try updateAccountsBalances(whitelistedAccountsIds)
     }
@@ -60,7 +60,7 @@ open class AccountUpdateDomainService {
     }
 
     private func balance(of accountID: AccountID) throws -> TokenInt? {
-        guard let wallet = DomainRegistry.walletRepository.findByID(accountID.walletID),
+        guard let wallet = DomainRegistry.walletRepository.find(id: accountID.walletID),
             let address = wallet.address else { return nil }
         if accountID.tokenID == Token.Ether.id {
             return try DomainRegistry.ethereumNodeService.eth_getBalance(account: address)

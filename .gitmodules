@@ -3,8 +3,8 @@
 	url = https://github.com/krzyzanowskim/CryptoSwift.git
 [submodule "EthereumKit"]
 	path = Dependencies/EthereumKit
-	#url = https://github.com/yuzushioh/EthereumKit.git
-        url = https://github.com/gnosis/EthereumKit.git
+	url = https://github.com/yuzushioh/EthereumKit.git
+        #url = https://github.com/gnosis/EthereumKit.git
 [submodule "RSBarcodes"]
 	path = Dependencies/RSBarcodes
 	url = https://github.com/yeahdongcn/RSBarcodes_Swift.git

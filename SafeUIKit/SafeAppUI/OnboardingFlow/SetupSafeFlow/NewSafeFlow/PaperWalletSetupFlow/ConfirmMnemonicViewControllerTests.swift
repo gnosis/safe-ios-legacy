@@ -86,8 +86,8 @@ class ConfirmMnemonicViewControllerTests: SafeTestCase {
 
     func test_viewDidLoad_setsCorrectWordsLabelText() {
         controller.viewDidLoad()
-        let firstWordIndex = words.index(of: controller.firstMnemonicWordToCheck)!
-        let secondWordIndex = words.index(of: controller.secondMnemonicWordToCheck)!
+        let firstWordIndex = words.firstIndex(of: controller.firstMnemonicWordToCheck)!
+        let secondWordIndex = words.firstIndex(of: controller.secondMnemonicWordToCheck)!
         XCTAssertEqual(controller.firstWordTextInput.textInput.placeholder, "Word #\(firstWordIndex + 1)")
         XCTAssertEqual(controller.secondWordTextInput.textInput.placeholder, "Word #\(secondWordIndex + 1)")
     }

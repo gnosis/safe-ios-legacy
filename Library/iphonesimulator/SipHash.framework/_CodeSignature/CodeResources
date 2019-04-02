@@ -6,27 +6,27 @@
 	<dict>
 		<key>Headers/SipHash-Swift.h</key>
 		<data>
-		k9G8wPuvI3XtwrYE9iDZgCxuiBg=
+		oflsfZzw3hQRqdOUzN2CNuqL5p0=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		WqL2zJV9NxLJ9Nw8gMzgJuqo2bQ=
+		X35MPeNPM/Vxysf6HKVonzKY8W8=
 		</data>
 		<key>Modules/SipHash.swiftmodule/i386.swiftdoc</key>
 		<data>
-		G0j/q9xUABlX4Qzt8Lr1PCPlEqE=
+		/qq6QnmzXu7JJsGCXDA4jqBdVPE=
 		</data>
 		<key>Modules/SipHash.swiftmodule/i386.swiftmodule</key>
 		<data>
-		ycPVVX9H1HMWvncra5cPm0AAStM=
+		Qo6pTnPstdpebFMdRFJx2iRJ2lE=
 		</data>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		ytdfeLgaKNhdPZ5SR8FY4AhBJ9M=
+		5MrQiNT+dm8csQjLfuBuc8NWeGU=
 		</data>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		PjNRqHLlbjz26EbQ4FEx+G36FXw=
+		KVIJ/I+y4IvHP4SnZkO8oIlMmjA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -39,55 +39,55 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			k9G8wPuvI3XtwrYE9iDZgCxuiBg=
+			oflsfZzw3hQRqdOUzN2CNuqL5p0=
 			</data>
 			<key>hash2</key>
 			<data>
-			pmBIKw1XR0/ENB6gR67hww/LlCpNZv+VYipxpJzsp4w=
+			gSY/C207ecolpqx00zrWZctPffU1qoHGBodlhnJmtjg=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			G0j/q9xUABlX4Qzt8Lr1PCPlEqE=
+			/qq6QnmzXu7JJsGCXDA4jqBdVPE=
 			</data>
 			<key>hash2</key>
 			<data>
-			GxXJ1ZgpC+tEOtMzhBfhUCmOA2rWlwrO1v+GNZx9r3c=
+			y+HWQwSlsv3ZxU5qcHllrZT8pPVIlsV2nDMa2zWkmnE=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ycPVVX9H1HMWvncra5cPm0AAStM=
+			Qo6pTnPstdpebFMdRFJx2iRJ2lE=
 			</data>
 			<key>hash2</key>
 			<data>
-			tNwW2zPgXnCpzQ4RqNYHZS2/PfY9Y09AqWgD4huONqs=
+			NgsfelOOvVAj8rveICbtN7+gyod0ECvHsrw+ApZqOhw=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ytdfeLgaKNhdPZ5SR8FY4AhBJ9M=
+			5MrQiNT+dm8csQjLfuBuc8NWeGU=
 			</data>
 			<key>hash2</key>
 			<data>
-			gYZ2UmiaseTIL0MSXYGZeTVUFv84zqcRWdnwKudzR2o=
+			5y0J2sVGut6oJJ3IQAZyfu2G0qg3BWuHO644MawDd/o=
 			</data>
 		</dict>
 		<key>Modules/SipHash.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			PjNRqHLlbjz26EbQ4FEx+G36FXw=
+			KVIJ/I+y4IvHP4SnZkO8oIlMmjA=
 			</data>
 			<key>hash2</key>
 			<data>
-			iXpIabYR/0HjEelg0QNSK3rBEax1B1a8KtpDBNiXYc8=
+			Gx7b3074yjIVjMVhomL+sKRn6mMbwNWvXJOeswG3aZ0=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -104,7 +104,7 @@
 	</dict>
 	<key>rules</key>
 	<dict>
-		<key>^</key>
+		<key>^.*</key>
 		<true/>
 		<key>^.*\.lproj/</key>
 		<dict>
@@ -135,24 +135,12 @@
 			<key>weight</key>
 			<real>11</real>
 		</dict>
-		<key>^</key>
-		<dict>
-			<key>weight</key>
-			<real>20</real>
-		</dict>
 		<key>^(.*/)?\.DS_Store$</key>
 		<dict>
 			<key>omit</key>
 			<true/>
 			<key>weight</key>
 			<real>2000</real>
-		</dict>
-		<key>^(Frameworks|SharedFrameworks|PlugIns|Plug-ins|XPCServices|Helpers|MacOS|Library/(Automator|Spotlight|LoginItems))/</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^.*</key>
 		<true/>
@@ -188,13 +176,6 @@
 			<true/>
 			<key>weight</key>
 			<real>20</real>
-		</dict>
-		<key>^[^/]+$</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^embedded\.provisionprofile$</key>
 		<dict>

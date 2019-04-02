@@ -33,21 +33,21 @@ class DBTransactionRepositoryTests: XCTestCase {
         let transaction = testTransaction()
 
         repo.save(transaction)
-        let saved = repo.findByID(transaction.id)
-        let byHash = repo.findBy(hash: transaction.hash!, status: transaction.status)
+        let saved = repo.find(id: transaction.id)
+        let byHash = repo.find(hash: transaction.hash!, status: transaction.status)
 
         assertEqual(saved, transaction)
         assertEqual(byHash, transaction)
 
         repo.remove(transaction)
-        XCTAssertNil(repo.findByID(transaction.id))
+        XCTAssertNil(repo.find(id: transaction.id))
     }
 
 
     func test_transactionWithPartialData() {
         let tx = txDraft().change(feeEstimate: nil)
         repo.save(tx)
-        let saved = repo.findByID(tx.id)
+        let saved = repo.find(id: tx.id)
         assertEqual(saved, tx)
     }
 
@@ -143,7 +143,7 @@ class DBTransactionRepositoryTests: XCTestCase {
         let txs = [txDraft, txSigning, txDiscarded, txPending, txRejected, txSuccess, txFailed]
         txs.forEach { repo.save($0) }
 
-        let found = repo.findAll()
+        let found = repo.all()
 
         XCTAssertEqual(found, txs)
     }

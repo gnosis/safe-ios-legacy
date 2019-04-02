@@ -86,7 +86,7 @@ open class SegmentBarController: UIViewController {
         }
         if let controller = selectedViewController {
             addChildContent(controller)
-            let index = viewControllers.index { $0 === controller }!
+            let index = viewControllers.firstIndex { $0 === controller }!
             segmentBar.selectedItem = segmentBar.items[index]
         } else {
             segmentBar.selectedItem = nil
@@ -110,7 +110,7 @@ open class SegmentBarController: UIViewController {
     }
 
     @objc private func didChangeSegment(bar: SegmentBar) {
-        if let selected = bar.selectedItem, let index = bar.items.index(of: selected) {
+        if let selected = bar.selectedItem, let index = bar.items.firstIndex(of: selected) {
             selectedViewController = viewControllers[index]
         } else {
             selectedViewController = nil

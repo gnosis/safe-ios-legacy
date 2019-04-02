@@ -22,7 +22,7 @@ class TransactionFeeViewViewController: UIViewController {
                                   transactionFee: etherData(fee1Fee),
                                   resultingBalance: etherData(fee1Balance - fee1Fee))
 
-        let fee2Balance = BigInt("12345678912345678912")!
+        let fee2Balance = BigInt("12345678912345678912")
         transactionFee2.configure(currentBalance: gnoData(fee2Balance),
                                   transactionFee: nil,
                                   resultingBalance: gnoData(fee2Balance - BigInt(123456789)))

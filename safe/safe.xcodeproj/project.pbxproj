@@ -827,10 +827,11 @@
 				TargetAttributes = {
 					0A028EE921AEE3FE00431D25 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					5540A4EA203C3054009C9BE3 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -840,7 +841,7 @@
 					};
 					5540A4FE203C3054009C9BE3 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 5540A4EA203C3054009C9BE3;
 					};
@@ -1321,7 +1322,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development io.gnosis.safe.dev.remoteNotificationHandler";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1348,7 +1349,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc io.gnosis.safe.adhoc.remoteNotificationHandler";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = AdHoc;
@@ -1375,7 +1376,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.gnosis.safe.remoteNotificationHandler";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1402,7 +1403,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.gnosis.safe.prerelease.remoteNotificationHandler";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = PreRelease;
@@ -1485,7 +1486,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.gnosis.safe.prerelease";
 				SAFE_ENABLED_LOGGERS = "${LOG_ADAPTERS}";
 				SAFE_LOG_LEVEL = "${LOG_LEVEL}";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1508,7 +1509,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.safeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/safe.app/safe";
 			};
@@ -1676,7 +1677,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match Development io.gnosis.safe.dev";
 				SAFE_ENABLED_LOGGERS = "${LOG_ADAPTERS}";
 				SAFE_LOG_LEVEL = "${LOG_LEVEL}";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1706,7 +1707,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.gnosis.safe";
 				SAFE_ENABLED_LOGGERS = "${LOG_ADAPTERS}";
 				SAFE_LOG_LEVEL = "${LOG_LEVEL}";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1729,7 +1730,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.safeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/safe.app/safe";
 			};
@@ -1752,7 +1753,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.safeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/safe.app/safe";
 			};
@@ -1893,7 +1894,7 @@
 				SAFE_ENABLED_LOGGERS = "${LOG_ADAPTERS}";
 				SAFE_LOG_LEVEL = "${LOG_LEVEL}";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = ADHOC;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1916,7 +1917,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.gnosis.safeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/safe.app/safe";
 			};

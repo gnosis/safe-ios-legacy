@@ -41,10 +41,10 @@ open class DisconnectBrowserExtensionDomainService: ReplaceBrowserExtensionDomai
     }
 
     open override func postProcess(transactionID: TransactionID) throws {
-        guard let tx = repository.findByID(transactionID),
+        guard let tx = repository.find(id: transactionID),
             tx.type == transactionType,
             tx.status == .success || tx.status == .failed,
-            let wallet = DomainRegistry.walletRepository.findByID(tx.walletID) else { return }
+            let wallet = DomainRegistry.walletRepository.find(id: tx.walletID) else { return }
         if tx.status == .success {
             try removeOldOwner(from: wallet)
             wallet.changeConfirmationCount(1)
