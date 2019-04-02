@@ -20,7 +20,9 @@ CREATE TABLE IF NOT EXISTS tbl_accounts (
         static let find = """
 SELECT id, balance
 FROM tbl_accounts
-WHERE id = ? LIMIT 1;
+WHERE id = ?
+ORDER BY rowid
+LIMIT 1;
 """
         static let all = "SELECT id, balance FROM tbl_accounts;"
     }
