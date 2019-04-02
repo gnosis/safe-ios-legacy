@@ -23,6 +23,7 @@ final class VerifyCurrentPasswordViewController: UIViewController {
     private var authenticationService: AuthenticationApplicationService {
         return ApplicationServiceRegistry.authenticationService
     }
+    private var clockService: Clock { return ApplicationServiceRegistry.clock }
 
     static func create(delegate: VerifyCurrentPasswordViewControllerDelegate) -> VerifyCurrentPasswordViewController {
         let vc = StoryboardScene.ChangePassword.verifyCurrentPasswordViewController.instantiate()
@@ -34,6 +35,9 @@ final class VerifyCurrentPasswordViewController: UIViewController {
         super.viewDidLoad()
         passwordInput.isSecure = true
         passwordInput.delegate = self
+        countdownStack.isHidden = true
+        countdownLabel.setup(time: authenticationService.blockedPeriodDuration,
+                             clock: clockService)
     }
 
     private func startCountdownIfNeeded() {
