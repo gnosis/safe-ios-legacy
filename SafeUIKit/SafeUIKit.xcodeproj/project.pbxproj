@@ -351,6 +351,8 @@
 		55E8B00D219ED3CF002930A1 /* TransactionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E8B00C219ED3CF002930A1 /* TransactionHeaderView.xib */; };
 		55E9F557208A293B00889C9F /* QRCodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */; };
 		55E9F559208A298200889C9F /* QRCodeInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F558208A298200889C9F /* QRCodeInputTests.swift */; };
+		55F30EE222534A9200689835 /* ChangePasswordCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EE122534A9200689835 /* ChangePasswordCommand.swift */; };
+		55F30EE422534B5700689835 /* ChangePasswordFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EE322534B5700689835 /* ChangePasswordFlowCoordinator.swift */; };
 		55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -881,6 +883,8 @@
 		55E8B00C219ED3CF002930A1 /* TransactionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionHeaderView.xib; sourceTree = "<group>"; };
 		55E9F556208A293B00889C9F /* QRCodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputViewController.swift; sourceTree = "<group>"; };
 		55E9F558208A298200889C9F /* QRCodeInputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeInputTests.swift; sourceTree = "<group>"; };
+		55F30EE122534A9200689835 /* ChangePasswordCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordCommand.swift; sourceTree = "<group>"; };
+		55F30EE322534B5700689835 /* ChangePasswordFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordFlowCoordinator.swift; sourceTree = "<group>"; };
 		55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenNumberFormatterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1204,6 +1208,7 @@
 		0A4EEA6B20D11109005CDAC0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				55F30ED222534A7200689835 /* ChangePassword */,
 				55DEBC14214AACDE0017CD4B /* AppVersionTableViewCell.swift */,
 				0A1940642226DE1E005B7440 /* ResyncBrowserExtension */,
 				0A1940472226CF27005B7440 /* DisconnectBrowserExtension */,
@@ -1909,6 +1914,15 @@
 				55E8B00C219ED3CF002930A1 /* TransactionHeaderView.xib */,
 			);
 			path = TransactionHeaderView;
+			sourceTree = "<group>";
+		};
+		55F30ED222534A7200689835 /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				55F30EE122534A9200689835 /* ChangePasswordCommand.swift */,
+				55F30EE322534B5700689835 /* ChangePasswordFlowCoordinator.swift */,
+			);
+			path = ChangePassword;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2653,6 +2667,7 @@
 				0A3BD8F822254833007039B4 /* FeeCalculationView.swift in Sources */,
 				0A334DC0209C6D8700ABC6AE /* SetupSafeOptionsViewController.swift in Sources */,
 				0A3BD90922254833007039B4 /* RBEIntroViewControllerErrorState.swift in Sources */,
+				55F30EE422534B5700689835 /* ChangePasswordFlowCoordinator.swift in Sources */,
 				550D1ED92133FD2E0035109A /* ManageTokensFlowCoordinator.swift in Sources */,
 				558D64EA2180B1A2008107E5 /* SafeCreationViewController.swift in Sources */,
 				554CACCF221F04B80086D303 /* FundsTransferReviewTransactionViewController.swift in Sources */,
@@ -2685,6 +2700,7 @@
 				0A3BD8FC22254833007039B4 /* FeeCalculationSpacingLine.swift in Sources */,
 				0A334E4E209C8E3800ABC6AE /* UnlockViewController.swift in Sources */,
 				0A3BD90C22254833007039B4 /* RBEIntroViewControllerReadyState.swift in Sources */,
+				55F30EE222534A9200689835 /* ChangePasswordCommand.swift in Sources */,
 				0ACCA8C0221C0D0100D37594 /* PairWithBrowserExtensionViewController+RBE.swift in Sources */,
 				0A334E3F209C8E3800ABC6AE /* StartViewController.swift in Sources */,
 				0A334E35209C8E3800ABC6AE /* ConfirmMnemonicViewController.swift in Sources */,

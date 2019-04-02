@@ -89,6 +89,13 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
     }
 
+    // MARK: - Commands
+
+    func test_whenSelectingChangePassword_thenCommandIsCalled() {
+        selectCell(row: 1, section: securitySection)
+        XCTAssertTrue(delegate.selectedCommand is ChangePasswordCommand)
+    }
+
 }
 
 extension MenuTableViewControllerTests {
@@ -136,7 +143,10 @@ final class MockMenuTableViewControllerDelegate: MenuTableViewControllerDelegate
 
     func didSelectReplaceRecoveryPhrase() {}
 
-    func didSelectCommand(_ command: MenuCommand) {}
+    var selectedCommand: MenuCommand?
+    func didSelectCommand(_ command: MenuCommand) {
+        selectedCommand = command
+    }
 
 }
 
