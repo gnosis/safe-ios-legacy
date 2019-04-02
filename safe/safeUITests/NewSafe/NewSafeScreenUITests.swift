@@ -6,23 +6,24 @@ import XCTest
 
 class NewSafeScreenUITests: UITestCase {
 
-    let screen = NewSafeScreen()
+    let newSafeScreen = NewSafeScreen()
 
     override func setUp() {
         super.setUp()
         givenNewSafeSetup()
+        
     }
 
     // NS-001
     func test_contents() {
-        XCTAssertTrue(screen.isDisplayed)
-        XCTAssertExist(screen.thisDevice.element)
-        XCTAssertFalse(screen.thisDevice.enabled)
-        XCTAssertTrue(screen.thisDevice.isChecked)
-        XCTAssertExist(screen.browserExtension.element)
-        XCTAssertFalse(screen.browserExtension.isChecked)
-        XCTAssertExist(screen.paperWallet.element)
-        XCTAssertFalse(screen.paperWallet.isChecked)
+        XCTAssertTrue(newSafeScreen.isDisplayed)
+        XCTAssertExist(newSafeScreen.thisDevice.element)
+        XCTAssertFalse(newSafeScreen.thisDevice.enabled)
+        XCTAssertTrue(newSafeScreen.thisDevice.isChecked)
+        XCTAssertExist(newSafeScreen.browserExtension.element)
+        XCTAssertFalse(newSafeScreen.browserExtension.isChecked)
+        XCTAssertExist(newSafeScreen.paperWallet.element)
+        XCTAssertFalse(newSafeScreen.paperWallet.isChecked)
     }
 
 }

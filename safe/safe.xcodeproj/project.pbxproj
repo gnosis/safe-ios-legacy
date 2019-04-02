@@ -28,6 +28,7 @@
 		0A537C1D207D01F300921FB9 /* libIdentityAccessImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A537C1C207D01F300921FB9 /* libIdentityAccessImplementations.a */; };
 		0A53AD3920595C2300D713AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A53AD3720595C2300D713AD /* Localizable.strings */; };
 		0A5DC58B209CA2E500BA7A06 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5DC58A209CA2E500BA7A06 /* libCommon.a */; };
+		0A814EEB225369C90099C45E /* NewSafeGuidelinesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A814EEA225369C90099C45E /* NewSafeGuidelinesScreen.swift */; };
 		0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A84BBDE21060F6100708DE5 /* AppConfig.swift */; };
 		0A84BBF42106168600708DE5 /* AppConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A84BBE82106168600708DE5 /* AppConfig.json */; };
 		0A8E3BE720B41D3F00F002F6 /* libCommonImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8E3BE620B41D3F00F002F6 /* libCommonImplementations.a */; };
@@ -290,6 +291,7 @@
 		0A53AD3820595C2300D713AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A53AD3A20595C2800D713AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A5DC58A209CA2E500BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A814EEA225369C90099C45E /* NewSafeGuidelinesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewSafeGuidelinesScreen.swift; path = safeUITests/screens/OnboardingFlow/NewSafeGuidelinesScreen.swift; sourceTree = SOURCE_ROOT; };
 		0A84BBDE21060F6100708DE5 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		0A84BBE82106168600708DE5 /* AppConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AppConfig.json; path = ../AppConfig.json; sourceTree = "<group>"; };
 		0A84BBF5210616C100708DE5 /* AppConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = AppConfig.xcconfig; path = ../AppConfig.xcconfig; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 				0ACA9C3B205FDAC5005EC186 /* MasterPasswordFlow */,
 				0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */,
 				0A009C0820C688B700380A07 /* PendingSafeScreen.swift */,
+				0A814EEA225369C90099C45E /* NewSafeGuidelinesScreen.swift */,
 			);
 			path = OnboardingFlow;
 			sourceTree = "<group>";
@@ -1229,6 +1232,7 @@
 				0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */,
 				55CAA007209AF267009AE181 /* ConfirmMnemonicScreen.swift in Sources */,
 				0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */,
+				0A814EEB225369C90099C45E /* NewSafeGuidelinesScreen.swift in Sources */,
 				55CAA001209AF0A1009AE181 /* SaveMnemonicScreen.swift in Sources */,
 				0ABA90EB20C56AB5001AEAE4 /* MainScreen.swift in Sources */,
 				558FD81520767F18004F070E /* NewSafeScreen.swift in Sources */,

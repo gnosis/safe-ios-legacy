@@ -13,6 +13,12 @@
 /* Error to display if address is invalid. */
 "address_input.invalid_address" = "Address is invalid";
 
+/* OK */
+"alert.error.ok" = "OK";
+
+/* Error */
+"alert.error.title" = "Error";
+
 /* Checkmark is checked */
 "button.checked" = "Checked";
 
@@ -40,6 +46,9 @@
 /* Transaction rejected by the browser extension. */
 "confirmation_view.rejection_explanation" = "Transaction rejected by the browser extension.";
 
+/* Loading... */
+"loading_title_text" = "Loading…";
+
 /* Error status of a rule */
 "rule.error" = "Error";
 
@@ -57,6 +66,9 @@
 
 /* Title for alert if camera is not accessable. */
 "scanner.camera_access_required.title" = "Camera Access";
+
+/* Invalid code */
+"scanner.error.invalid_code" = "Invalid QR code.";
 
 /* Amount placeholder for token input. */
 "token_input.amount" = "Amount";
@@ -78,6 +90,9 @@
 
 /* Displayed in parentheses */
 "transaction_fee.ether" = "Ether";
+
+/* Warning about not enough funds */
+"transaction_fee.insufficient_funds" = "Insufficient funds.\nPlease add funds to your Safe.";
 
 /* Displayed in parentheses */
 "transaction_fee.token" = "token";

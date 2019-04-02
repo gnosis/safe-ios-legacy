@@ -8,7 +8,7 @@ import CommonTestSupport
 class UITestCase: XCTestCase {
 
     let application = Application()
-    let password = "11111A"
+    let password = "qwe123qwe"
     private var cameraSuggestionHandler: NSObjectProtocol!
     private var cameraPermissionHandler: NSObjectProtocol!
     private var errorAlertHandler: NSObjectProtocol!
@@ -56,6 +56,8 @@ class UITestCase: XCTestCase {
         if withAppReset {
             setupOptions.newSafe.tap()
         }
+        let guidelinesScreen = NewSafeGuidelinesScreen()
+        guidelinesScreen.nextButton.tap()
     }
 
     func givenBrowserExtensionSetup(withAppReset: Bool = true) {
