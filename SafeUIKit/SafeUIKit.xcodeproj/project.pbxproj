@@ -355,6 +355,8 @@
 		55F30EE422534B5700689835 /* ChangePasswordFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EE322534B5700689835 /* ChangePasswordFlowCoordinator.swift */; };
 		55F30EF72253549900689835 /* VerifyCurrentPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EF62253549900689835 /* VerifyCurrentPasswordViewController.swift */; };
 		55F30EF9225354C800689835 /* ChangePasswordFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EF8225354C800689835 /* ChangePasswordFlowCoordinatorTests.swift */; };
+		55F30EFB22535A7E00689835 /* ChangePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55F30EFA22535A7E00689835 /* ChangePassword.storyboard */; };
+		55F30EFD2253688A00689835 /* VerifyCurrentPasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EFC2253688A00689835 /* VerifyCurrentPasswordViewControllerTests.swift */; };
 		55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -889,6 +891,8 @@
 		55F30EE322534B5700689835 /* ChangePasswordFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordFlowCoordinator.swift; sourceTree = "<group>"; };
 		55F30EF62253549900689835 /* VerifyCurrentPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCurrentPasswordViewController.swift; sourceTree = "<group>"; };
 		55F30EF8225354C800689835 /* ChangePasswordFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordFlowCoordinatorTests.swift; sourceTree = "<group>"; };
+		55F30EFA22535A7E00689835 /* ChangePassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangePassword.storyboard; sourceTree = "<group>"; };
+		55F30EFC2253688A00689835 /* VerifyCurrentPasswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCurrentPasswordViewControllerTests.swift; sourceTree = "<group>"; };
 		55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenNumberFormatterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1927,6 +1931,8 @@
 				55F30EE322534B5700689835 /* ChangePasswordFlowCoordinator.swift */,
 				55F30EF8225354C800689835 /* ChangePasswordFlowCoordinatorTests.swift */,
 				55F30EF62253549900689835 /* VerifyCurrentPasswordViewController.swift */,
+				55F30EFA22535A7E00689835 /* ChangePassword.storyboard */,
+				55F30EFC2253688A00689835 /* VerifyCurrentPasswordViewControllerTests.swift */,
 			);
 			path = ChangePassword;
 			sourceTree = "<group>";
@@ -2318,6 +2324,7 @@
 				0A6EF3CA21BA8D0600F1074E /* RecoverSafe.storyboard in Resources */,
 				0A3BD90622254833007039B4 /* RBEIntroViewController.xib in Resources */,
 				0A4DF82420CE6FE20095C00D /* Main.storyboard in Resources */,
+				55F30EFB22535A7E00689835 /* ChangePassword.storyboard in Resources */,
 				558682CC2192FA6E0060F1DE /* PairWithBrowserExtension.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2592,6 +2599,7 @@
 				55E8B00B219EC2B9002930A1 /* TransactionHeaderViewTests.swift in Sources */,
 				55E8B002219C4AF1002930A1 /* TransactionFeeViewTests.swift in Sources */,
 				55C428FC217B428100BF8922 /* ScanBarButtonItemTests.swift in Sources */,
+				55F30EFD2253688A00689835 /* VerifyCurrentPasswordViewControllerTests.swift in Sources */,
 				5539C13C21A55C8C006BF834 /* TransferViewCellTests.swift in Sources */,
 				0A54D42A206BFA810026AA0B /* RuleLabelTests.swift in Sources */,
 				55E8AFE5219B353C002930A1 /* TransferViewTests.swift in Sources */,

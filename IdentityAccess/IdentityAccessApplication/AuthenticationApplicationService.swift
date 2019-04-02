@@ -43,7 +43,7 @@ open class AuthenticationApplicationService {
         return gatekeeper.policy.maxFailedAttempts
     }
 
-    /// The time period during which password will not be requested if the app is running.
+    /// The time period during which password will not be requested if the app is running. Default value is 60 seconds.
     open var sessionDuration: TimeInterval {
         guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return 60 }
         return gatekeeper.policy.sessionDuration
