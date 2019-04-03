@@ -29,7 +29,7 @@ class SafeCreationIntegrationTests: UITestCase {
         givenCameraOpened()
         cameraScreen.scanExpiredCodeButton.tap()
         handleErrorAlert(with: expectation(description: "Alert handled"))
-//        pairWithBrowserExtensionScreen.saveButton.tap()
+        pairWithBrowserExtensionScreen.scanButton.tap()
         handleAlerts()
     }
 
