@@ -68,6 +68,7 @@ public class FundsTransferTransactionViewController: UIViewController {
         model = FundsTransferTransactionViewModel(tokenID: tokenID, onUpdate: updateFromViewModel)
 
         addressInput.addressInputDelegate = self
+        addressInput.textInput.accessibilityIdentifier = "transaction.address"
 
         tokenInput.addRule(Strings.notEnoughFunds, identifier: "notEnoughFunds") { [unowned self] in
             guard self.tokenInput.formatter.number(from: $0) != nil else { return true }
@@ -78,6 +79,7 @@ public class FundsTransferTransactionViewController: UIViewController {
         tokenInput.usesEthDefaultImage = true
         tokenInput.imageURL = model.tokenData.logoURL
         tokenInput.delegate = self
+        tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
 
         transactionHeaderView.usesEthImageWhenImageURLIsNil = true
         feeBalanceView.backgroundColor = .clear

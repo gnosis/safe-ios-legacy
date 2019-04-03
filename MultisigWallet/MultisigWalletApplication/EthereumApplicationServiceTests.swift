@@ -118,11 +118,6 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         XCTAssertEqual(encryptionService.sign_input?.privateKey, pk)
     }
 
-    func test_whenSignMessageForUnknownAddress_thenNoSignature() {
-        let signature = applicationService.sign(message: "Gnosis", by: Address.deviceAddress.value)
-        XCTAssertNil(signature)
-    }
-
     func test_whenGeneratesDerivedAccount_thenCallsEncryptionService() {
         let pk = PrivateKey(data: Data(repeating: 1, count: 32))
         let eoa = ExternallyOwnedAccount(
@@ -140,6 +135,17 @@ class EthereumApplicationServiceTests: EthereumApplicationTestCase {
         let account = applicationService.generateDerivedExternallyOwnedAccount(address: Address.deviceAddress.value)
         XCTAssertEqual(account, derived.applicationServiceData)
         XCTAssertEqual(eoaRepository.find(by: Address.testAccount1), derived)
+    }
+
+}
+
+class QuarantineEthereumApplicationServiceTests: EthereumApplicationTestCase {
+
+    let applicationService = EthereumApplicationService()
+
+    func test_whenSignMessageForUnknownAddress_thenNoSignature() {
+        let signature = applicationService.sign(message: "Gnosis", by: Address.deviceAddress.value)
+        XCTAssertNil(signature)
     }
 
 }

@@ -67,7 +67,6 @@ final class ConfirmMnemonicUITests: UITestCase {
         assertPaperWalletIsSet()
         Application().terminate()
         givenNewSafeSetup(withAppReset: false)
-        XCTAssertTrue(newSafeScreen.isDisplayed)
         XCTAssertTrue(newSafeScreen.paperWallet.isChecked)
         newSafeScreen.paperWallet.element.tap()
         XCTAssertEqual(mnemonic, saveMnemonicScreen.mnemonic.label)
