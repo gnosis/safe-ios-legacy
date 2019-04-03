@@ -79,11 +79,6 @@
                BlueprintName = "SafeUITests"
                ReferencedContainer = "container:safe/safe.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "SafeCreationIntegrationTests">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

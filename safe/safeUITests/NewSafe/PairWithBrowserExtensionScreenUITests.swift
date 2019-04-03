@@ -133,3 +133,33 @@ final class PairWithBrowserExtensionScreenErrorsUITests: PairWithBrowserExtensio
     }
 
 }
+
+class PairWithBrowserExtensionScreenExpiredCodeUITests: UITestCase {
+
+    private var errorAlertHandler: NSObjectProtocol!
+    private let cameraScreen = CameraScreen()
+    private let pairWithBrowserExtensionScreen = PairWithBrowserExtensionScreen()
+
+    override func setUp() {
+        super.setUp()
+        Springboard.deleteSafeApp()
+        givenBrowserExtensionSetup()
+    }
+
+    override func tearDown() {
+        if let handler = errorAlertHandler {
+            removeUIInterruptionMonitor(handler)
+        }
+        super.tearDown()
+    }
+
+    // NS-INT-102
+    func test_whenTryingToPairWithExpiredCode_thenShowsError() {
+        givenCameraOpened()
+        cameraScreen.scanExpiredCodeButton.tap()
+        handleErrorAlert(with: expectation(description: "Alert handled"))
+        pairWithBrowserExtensionScreen.scanButton.tap()
+        handleAlerts()
+    }
+
+}
