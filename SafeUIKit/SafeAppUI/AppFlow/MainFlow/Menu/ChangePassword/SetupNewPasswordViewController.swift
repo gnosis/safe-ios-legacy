@@ -14,11 +14,13 @@ final class SetupNewPasswordViewController: UIViewController {
 
     private weak var delegate: SetupNewPasswordViewControllerDelegate!
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var newPasswordInput: NewPasswordVerifiableInput!
     @IBOutlet weak var confirmNewPasswordInput: VerifiableInput!
 
-    let saveButton = UIBarButtonItem(title: Strings.save, style: .plain, target: self, action: #selector(save))
+    private let saveButton = UIBarButtonItem(title: Strings.save, style: .plain, target: self, action: #selector(save))
+    private var keyboardBehavior: KeyboardAvoidingBehavior!
 
     static func create(delegate: SetupNewPasswordViewControllerDelegate) -> SetupNewPasswordViewController {
         let vc = StoryboardScene.ChangePassword.setupNewPasswordViewController.instantiate()
@@ -44,9 +46,22 @@ final class SetupNewPasswordViewController: UIViewController {
         headerLabel.text = Strings.header
         configureNewPasswordInput()
         configureConfirmPasswordInput()
+        configureKeyboardBehavior()
         _ = newPasswordInput.becomeFirstResponder()
         navigationItem.rightBarButtonItem = saveButton
         saveButton.isEnabled = false
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard keyboardBehavior != nil else { return }
+        keyboardBehavior.start()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard keyboardBehavior != nil else { return }
+        keyboardBehavior.stop()
     }
 
     private func configureNewPasswordInput() {
@@ -61,6 +76,12 @@ final class SetupNewPasswordViewController: UIViewController {
         confirmNewPasswordInput.showErrorsOnly = true
         confirmNewPasswordInput.textInput.placeholder = Strings.confirmPasswordPlaceholder
         confirmNewPasswordInput.addRule(Strings.passwordDoesNotMatch) { $0 == self.newPasswordInput.text }
+    }
+
+    private func configureKeyboardBehavior() {
+        keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
+        keyboardBehavior.activeTextField = newPasswordInput.textInput
+        keyboardBehavior.useTextFieldSuperviewFrame = true
     }
 
     @objc private func save() {
