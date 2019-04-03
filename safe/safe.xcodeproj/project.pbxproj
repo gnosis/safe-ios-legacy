@@ -11,6 +11,7 @@
 		0A028EED21AEE3FE00431D25 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028EEC21AEE3FE00431D25 /* NotificationService.swift */; };
 		0A028EF121AEE3FE00431D25 /* remoteNotificationHandler.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0A028EEA21AEE3FE00431D25 /* remoteNotificationHandler.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0A028F0521AEE52100431D25 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A028F0721AEE52100431D25 /* Localizable.strings */; };
+		0A0513712254B0ED000A06CD /* PairWithBrowserExtensionScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */; };
 		0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */; };
 		0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* SafeUIKit.strings */; };
 		0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
@@ -1195,6 +1196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0513712254B0ED000A06CD /* PairWithBrowserExtensionScreenUITests.swift in Sources */,
 				55CAA005209AF204009AE181 /* ConfirmMnemonicUITests.swift in Sources */,
 				55D20B1F21197ECC00BDD62C /* SendTokenScreen.swift in Sources */,
 				0ACA9C47206018C3005EC186 /* SecureTextfieldScreen.swift in Sources */,
