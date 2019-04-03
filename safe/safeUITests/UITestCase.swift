@@ -52,8 +52,10 @@ class UITestCase: XCTestCase {
 
     func givenNewSafeSetup(withAppReset: Bool = true) {
         givenUnlockedAppSetup(withAppReset: withAppReset)
-        let setupOptions = SetupSafeOptionsScreen()
-        setupOptions.newSafe.tap()
+        let setupOptionsScreen = SetupSafeOptionsScreen()
+        if setupOptionsScreen.isDisplayed {
+            setupOptionsScreen.newSafe.tap()
+        }
         let guidelinesScreen = NewSafeGuidelinesScreen()
         guidelinesScreen.nextButton.tap()
     }
