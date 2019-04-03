@@ -15,9 +15,13 @@ final class StartScreen {
     var startButton: XCUIElement {
         return XCUIApplication().buttons[LocalizedString("onboarding.start.setup_password")]
     }
+    var agreeButton: XCUIElement {
+        return XCUIApplication().buttons[LocalizedString("onboarding.terms.agree")]
+    }
 
     func start() {
         startButton.tap()
+        agreeButton.tap()
     }
 
 }

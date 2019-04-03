@@ -1,6 +1,21 @@
 /* Title for Add Token screen. */
 "add_token.title" = "Add Token";
 
+/* OK */
+"alert.error.ok" = "OK";
+
+/* Error */
+"alert.error.title" = "Error";
+
+/* URL not available message */
+"alert.error.url_unavailable" = "Sorry, the link is unavailable.";
+
+/* Error title */
+"alert.error.url_unavailable.title" = "Oops";
+
+/* Info */
+"alert.info.title" = "Information";
+
 /* Cancel */
 "app.unlock.cancel" = "Cancel";
 
@@ -10,11 +25,50 @@
 /* Cancel */
 "cancel" = "cancel";
 
+/* Body text */
+"connect_extension.intro.body" = "For increased security, enable 2-factor authentication between your phone and computer.\nAll future transacations will need to be approved by both devices.";
+
+/* Header label */
+"connect_extension.intro.header" = "Connect browser extension";
+
+/* Detail for the header */
+"connect_extension.review.detail" = "This transaction connects this Safe with the browser extension. Future transactions require confirmation from both devices.";
+
+/* Title for the header */
+"connect_extension.review.title" = "Connect browser extension";
+
+/* Body text */
+"disconnect_extension.intro.body" = "Once this process is complete, you won't need to confirm transactions with browser extension.\nPlease have your Safe recovery phrase ready to confirm the disconnect.";
+
+/* Header label */
+"disconnect_extension.intro.header" = "Disconnect browser extension";
+
+/* Detail for the header */
+"disconnect_extension.review.detail" = "The existing browser extension connection will be removed.";
+
+/* Title for the header */
+"disconnect_extension.review.title" = "Disconnect browser extension";
+
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
 
+/* Balance */
+"fee_calculation.balance" = "Balance";
+
+/* Current balance */
+"fee_calculation.current_balance" = "Current balance";
+
+/* Network fee */
+"fee_calculation.fee" = "Network fee";
+
+/* [?] */
+"fee_calculation.fee.info" = "[?]";
+
+/* - ETH */
+"fee_calculation.value.loading_eth" = "- ETH";
+
 /* Application submitted invalid request. */
-"generic.error.client_error" = "Application submitted ivnalid request to the server. Try again later.";
+"generic.error.client_error" = "Application submitted invalid request to the server. Try again later.";
 
 /* Generic error message alert */
 "generic.error.message" = "Operation failed because of an error. Please try again.";
@@ -55,8 +109,11 @@
 /* Change recovery key menu item */
 "menu.action.change_recovery_phrase" = "Replace Recovery Phrase";
 
-/* Connect browser extension menu item */
+/* Connect browser extension menu item. */
 "menu.action.connect_browser_extension" = "Connect Browser Extension";
+
+/* Disconnect browser extension menu item */
+"menu.action.disconnect_browser_extension" = "Disconnect Browser Extension";
 
 /* Feedback and FAQ menu item */
 "menu.action.feedback_and_faq" = "Feedback and FAQs";
@@ -69,6 +126,9 @@
 
 /* Rate App menu item */
 "menu.action.rate_app" = "Rate App";
+
+/* Resync browser extension menu item */
+"menu.action.resync_browser_extension" = "Resync With Browser Extension";
 
 /* Terms menu item */
 "menu.action.terms" = "Terms";
@@ -93,6 +153,18 @@
 
 /* Back */
 "navigation.back" = "Back";
+
+/* Start */
+"navigation.start" = "Start";
+
+/* Explanatory message */
+"network_fee.alert.message" = "This is a network fee required by the blockchain to execute the transaction.";
+
+/* Ok */
+"network_fee.alert.ok" = "Close";
+
+/* Transaction fee */
+"network_fee.alert.title" = "Network Fee";
 
 /* Browser extension button */
 "new_safe.browser_extension" = "Browser extension";
@@ -233,7 +305,7 @@
 /* App slogan */
 "onboarding.start.description" = "Safely store Ether and ERC20\n tokens with 2-factor authentication.";
 
-/* Setup password button title */
+/* Set up password button title */
 "onboarding.start.setup_password" = "Set up password";
 
 /* Agree */
@@ -279,7 +351,7 @@
 "recovery.address.error.invalid_contract" = "Invalid Safe address";
 
 /* Recovery address validation failed alert's message */
-"recovery.address.failed_alert.message" = "Failed to find the Safe: %@";
+"recovery.address.failed_alert.message" = "Failed to find the Safe";
 
 /* OK button title */
 "recovery.address.failed_alert.ok" = "Ok";
@@ -299,6 +371,30 @@
 /* Header for connect browser extension screen */
 "recovery.browser_extension.header" = "Connect browser extension";
 
+/* Recovery transaction failed to change Safe confirmation count */
+"recovery.failure.failedToChangeConfirmationCount" = "Recovery transaction failed to change Safe confirmation count";
+
+/* Recovery transaction failed to change Safe owners */
+"recovery.failure.failedToChangeOwners" = "Recovery transaction failed to change Safe owners";
+
+/* Cannot recover because recovery transaction is invalid */
+"recovery.failure.failedToCreateValidTransaction" = "Cannot recover because recovery transaction is invalid";
+
+/* Cannot recover because recovery data is invalid */
+"recovery.failure.failedToCreateValidTransactionData" = "Cannot recover because recovery data is invalid";
+
+/* Failed to recover because of internal server error */
+"recovery.failure.internalServerError" = "Failed to recover because of internal server error";
+
+/* Cannot recover because number of Safe owners is not supported */
+"recovery.failure.unsupportedOwnerCount" = "Cannot recover because number of Safe owners is not supported";
+
+/* Cannot recover because this Safe configuration is not supported */
+"recovery.failure.unsupportedWalletConfiguration" = "Cannot recover because this Safe configuration is not supported";
+
+/* Cannot recover because couldn't find the Safe with this address */
+"recovery.failure.walletNotFound" = "Cannot recover because couldn't find the Safe with this address";
+
 /* Content paragraphs, separated by '\n' */
 "recovery.guidelines.content" = "Please have your Safe's address and recovery phrase ready.\nA recovery fee in ETH will be automatically deducted from the ETH balance of the recovered Safe.\nIf the Safe has insufficient funds, you will be asked to deposit the minimum amount of ETH required to cover the fee.";
 
@@ -312,7 +408,7 @@
 "recovery.phrase.error." = "Recovery phrase does not match Safe's recovery phrase.";
 
 /* Error format for invalid recovery phrase */
-"recovery.phrase.error.format" = "Failed to use recovery phrase: %@";
+"recovery.phrase.error.format" = "Failed to use recovery phrase";
 
 /* Incorrect recovery phrase */
 "recovery.phrase.error.invalid_phrase" = "Recovery phrase is incorrect";
@@ -336,7 +432,43 @@
 "recovery.start" = "Start";
 
 /* Recovery transaction failed alert's title */
-"recovery.transaction.failed_alert.title" = "recovery.transaction.failed_alert.title";
+"recovery.transaction.failed_alert.title" = "Error";
+
+/* Description */
+"replace_extension.connect.description" = "All transactions will need to be approved by both this device and the new Safe browser extension.";
+
+/* Scan QR Code */
+"replace_extension.connect.header" = "Scan QR code";
+
+/* Intro body text */
+"replace_extension.intro.body" = "Once this process is complete, you can only use the new browser extension to confirm transactions.\nPlease have your Safe recovery phrase ready to confirm the recovery.";
+
+/* Replace browser extension */
+"replace_extension.intro.header" = "Replace browser extension";
+
+/* Text between stars (*) will be emphasized */
+"replace_phrase.body" = "This will generate a new recovery phrase and invalidate your current one.";
+
+/* Cancel response button title */
+"replace_phrase.confirm.cancel" = "Cancel";
+
+/* Confirmation alert message */
+"replace_phrase.confirm.message" = "This process cannot be undone.";
+
+/* Confirmation alert title */
+"replace_phrase.confirm.title" = "Are you sure you want to change your recovery phrase?";
+
+/* Affirmative response button title */
+"replace_phrase.confirm.yes" = "Yes";
+
+/* Replace recovery phrase */
+"replace_phrase.header" = "Replace recovery phrase";
+
+/* New recovery phrase */
+"replace_recovery.new_phrase.title" = "New recovery phrase";
+
+/* Success */
+"resync.alert.success" = "Resync notification sent successfully";
 
 /* Safe Address label. */
 "safe_address.address" = "Address";
@@ -355,6 +487,15 @@
 
 /* Title for Address Details screen. */
 "safe_address.title" = "Safe Address";
+
+/* Explanatory message */
+"safe_creation.alert.message" = "This is a transaction fee required by the blockchain to execute the transaction.";
+
+/* Ok */
+"safe_creation.alert.ok" = "Close";
+
+/* Transaction fee */
+"safe_creation.alert.title" = "Safe opening fee";
 
 /* Cancel safe creation button. */
 "safe_creation.cancel" = "Cancel";
@@ -416,11 +557,35 @@
 /* Continue button title for New Transaction Screen */
 "transaction.continue" = "Continue";
 
+/* Detail for the header in review screen */
+"transaction.details.connect_extension.detail" = "This transaction connects this Safe with the browser extension. Future transactions require confirmation from both devices.";
+
+/* Title for the header in review screen */
+"transaction.details.connect_extension.title" = "Connect Browser Extension";
+
+/* Detail for the header in review screen */
+"transaction.details.disconnect_extension.detail" = "This transaction disconnects this Safe from the browser extension. Future transactions will not require confirmations.";
+
+/* Title for the header in review screen */
+"transaction.details.disconnect_extension.title" = "Disconnect Browser Extension";
+
 /* 'View on Etherscan' button name */
 "transaction.details.externalViewer" = "View on Etherscan.io";
 
 /* 'Fee' parameter name */
 "transaction.details.fee" = "Transaction fee";
+
+/* Detail for the header in review screen */
+"transaction.details.replace_extension.detail" = "The existing browser extension connection was replaced by the new browser extension.";
+
+/* Title for the header in review screen */
+"transaction.details.replace_extension.title" = "Replace browser extension";
+
+/* Detail for the header in review screen */
+"transaction.details.replace_recovery.detail" = "The old recovery phrase was replaced by a new one";
+
+/* Title for the header in review screen */
+"transaction.details.replace_recovery.title" = "Replace recovery phrase";
 
 /* 'Status' parameter name */
 "transaction.details.status" = "Status";
@@ -446,6 +611,12 @@
 /* 'Type' parameter name */
 "transaction.details.type" = "Type";
 
+/* Connect browser extension */
+"transaction.details.type.connectBrowserExtension" = "Connect browser extension";
+
+/* Disconnect browser extension */
+"transaction.details.type.disconnectBrowserExtension" = "Disconnect browser extension";
+
 /* 'Incoming' transaction type */
 "transaction.details.type.incoming" = "Incoming Transfer";
 
@@ -455,11 +626,35 @@
 /* Wallet recovery */
 "transaction.details.type.recovery" = "Safe Recovery";
 
+/* Replace browser extension */
+"transaction.details.type.replaceBrowserExtension" = "Replace browser extension";
+
+/* Replace recovery phrase */
+"transaction.details.type.replaceRecoveryPhrase" = "Replace recovery phrase";
+
+/* Detail for the header in review screen */
+"transaction.details.wallet_recovery.detail" = "The Safe was recovered";
+
+/* Title for the header in review screen */
+"transaction.details.wallet_recovery.title" = "Safe recovery";
+
 /* Not enough balance for transaction. */
 "transaction.error.notEnoughFunds" = "Insufficient funds for the amount.";
 
 /* Outgoing transafer */
 "transaction.outgoing_transfer" = "Outgoing transfer";
+
+/* Detail for header in review screen. */
+"transaction.replace_browser_extension.description" = "The existing browser extension connection will be replaced by the new browser extension.";
+
+/* Title for the header in review screen. */
+"transaction.replace_browser_extension.title" = "Replace browser extension";
+
+/* Detail for the header in review screen */
+"transaction.replace_recovery.detail" = "The existing recovery phrase will be replaced by a new recovery phrase.";
+
+/* Title for the header in review screen */
+"transaction.replace_recovery.title" = "Replace recovery phrase";
 
 /* Review transaction title */
 "transaction.review_title" = "Review";
@@ -483,6 +678,15 @@
 /* Title for transaction confirmation alert. */
 "transaction_confirmation_alert.title" = "Please open the Safe browser extension to confirm this transaction.";
 
+/* Explanatory message */
+"transaction_fee_alert.message" = "This is a transaction fee required by the blockchain to execute the transaction.";
+
+/* Ok */
+"transaction_fee_alert.ok" = "Close";
+
+/* Transaction fee */
+"transaction_fee_alert.title" = "Transaction fee";
+
 /* No transactions yet */
 "transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";
 
@@ -492,11 +696,26 @@
 /* Pending transactions group header */
 "transactions.group.pending_outgoing" = "Pending Outgoing";
 
+/* Connect browser extension */
+"transactions.row.connect_extension" = "Connected\nBrowser Extension";
+
+/* Connect browser extension */
+"transactions.row.disconnect_extension" = "Disconnected\nBrowser Extension";
+
 /* (failed) suffix) */
 "transactions.row.failed" = "(failed)";
 
 /* (rejected) suffix */
 "transactions.row.rejected" = "(rejected)";
+
+/* Browser extension changed */
+"transactions.row.replace_extension" = "New Browser\nExtension";
+
+/* Recovery phrase changed */
+"transactions.row.replace_phrase" = "Replaced\nRecovery Phrase";
+
+/* Wallet recovered */
+"transactions.row.wallet_recovery" = "Recovered Safe";
 
 /* Blockchain address is unknown for the wallet. */
 "wallet.error.address_missing" = "Failed to find safe address. Please try again later.";

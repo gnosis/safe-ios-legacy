@@ -11,17 +11,17 @@ final class SetPasswordScreen: SecureTextfieldScreen {
     struct Rules {
 
         let minimumLength = Rule(key: "onboarding.set_password.length")
-        let capitalLetter = Rule(key: "onboarding.set_password.capital")
-        let digit = Rule(key: "onboarding.set_password.digit")
+        let noTrippleChars = Rule(key: "onboarding.set_password.no_tripple_chars")
+        let letterAndDigit = Rule(key: "onboarding.set_password.letter_and_digit")
 
         var all: [Rule] {
-            return [minimumLength, capitalLetter, digit]
+            return [minimumLength, noTrippleChars, letterAndDigit]
         }
 
     }
 
     override var title: XCUIElement {
-        return XCUIApplication().staticTexts[LocalizedString("onboarding.set_password.header")]
+        return XCUIApplication().navigationBars[LocalizedString("onboarding.set_password.title")]
     }
 
     var rules = Rules()

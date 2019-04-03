@@ -68,6 +68,7 @@ public final class UnlockViewController: UIViewController {
         verifiableInput.delegate = self
         verifiableInput.isSecure = true
         verifiableInput.style = .dimmed
+        verifiableInput.accessibilityIdentifier = "unlock.password"
 
         let isFaceID = authenticationService.isAuthenticationMethodSupported(.faceID)
         let biometryIcon = isFaceID ? Asset.UnlockScreen.faceIdIcon.image : Asset.UnlockScreen.touchIdIcon.image

@@ -9,11 +9,11 @@ import CommonTestSupport
 final class NewSafeScreen {
 
     var isDisplayed: Bool { return title.exists }
-    var title: XCUIElement { return XCUIApplication().staticTexts[LocalizedString("new_safe.title")] }
-    var thisDevice: CheckButton { return CheckButton(LocalizedString("new_safe.this_device")) }
+    var title: XCUIElement { return XCUIApplication().navigationBars[LocalizedString("new_safe.title")] }
+    var thisDevice: CheckButton { return CheckButton(LocalizedString("new_safe.mobile_app")) }
     var browserExtension: CheckButton { return CheckButton(LocalizedString("new_safe.browser_extension")) }
-    var paperWallet: CheckButton { return CheckButton(LocalizedString("new_safe.paper_wallet")) }
-    var next: XCUIElement { return XCUIApplication().buttons[LocalizedString("new_safe.create")] }
+    var paperWallet: CheckButton { return CheckButton(LocalizedString("new_safe.recovery_phrase")) }
+    var next: XCUIElement { return XCUIApplication().buttons[LocalizedString("new_safe.next")] }
 
     struct CheckButton {
         let element: XCUIElement
