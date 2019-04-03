@@ -18,6 +18,8 @@ final class SetupNewPasswordViewController: UIViewController {
     @IBOutlet weak var newPasswordInput: NewPasswordVerifiableInput!
     @IBOutlet weak var confirmNewPasswordInput: VerifiableInput!
 
+    let saveButton = UIBarButtonItem(title: Strings.save, style: .plain, target: self, action: #selector(save))
+
     static func create(delegate: SetupNewPasswordViewControllerDelegate) -> SetupNewPasswordViewController {
         let vc = StoryboardScene.ChangePassword.setupNewPasswordViewController.instantiate()
         vc.delegate = delegate
@@ -43,8 +45,8 @@ final class SetupNewPasswordViewController: UIViewController {
         configureNewPasswordInput()
         configureConfirmPasswordInput()
         _ = newPasswordInput.becomeFirstResponder()
-        navigationItem.rightBarButtonItem =
-            UIBarButtonItem(title: Strings.save, style: .plain, target: self, action: #selector(save))
+        navigationItem.rightBarButtonItem = saveButton
+        saveButton.isEnabled = false
     }
 
     private func configureNewPasswordInput() {
@@ -62,8 +64,12 @@ final class SetupNewPasswordViewController: UIViewController {
     }
 
     @objc private func save() {
-        // FIXME
-        verifiableInputDidReturn(confirmNewPasswordInput)
+        guard canSave() else { return }
+        delegate.didEnterNewPassword(confirmNewPasswordInput.text!)
+    }
+
+    private func canSave() -> Bool {
+        return newPasswordInput.text == confirmNewPasswordInput.text && newPasswordInput.isValid
     }
 
 }
@@ -78,8 +84,8 @@ extension SetupNewPasswordViewController: VerifiableInputDelegate {
                 newPasswordInput.shake()
             }
         } else {
-            if confirmNewPasswordInput.isValid && confirmNewPasswordInput.text == newPasswordInput.text {
-                if newPasswordInput.isValid {
+            if confirmNewPasswordInput.isValid {
+                if canSave() {
                     delegate.didEnterNewPassword(confirmNewPasswordInput.text!)
                 } else {
                     newPasswordInput.shake()
@@ -91,12 +97,11 @@ extension SetupNewPasswordViewController: VerifiableInputDelegate {
     }
 
     func verifiableInputWillEnter(_ verifiableInput: VerifiableInput, newValue: String) {
-        if verifiableInput === newPasswordInput {
-            DispatchQueue.global().async {
-                Timer.wait(0.1)
-                DispatchQueue.main.async {
-                    self.confirmNewPasswordInput.revalidateText()
-                }
+        DispatchQueue.global().async {
+            Timer.wait(0.1)
+            DispatchQueue.main.async {
+                self.confirmNewPasswordInput.revalidateText()
+                self.saveButton.isEnabled = self.canSave()
             }
         }
     }
