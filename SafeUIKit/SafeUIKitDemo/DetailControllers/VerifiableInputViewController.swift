@@ -33,6 +33,10 @@ class VerifiableInputViewController: UIViewController {
         verifiableInput.addRule("Empty Rule with Icon", displayIcon: true)
     }
 
+    @IBAction func resign(_ sender: Any) {
+        verifiableInput.textInput.resignFirstResponder()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         verifiableInput.accessibilityIdentifier = "testVerifiableInput"
