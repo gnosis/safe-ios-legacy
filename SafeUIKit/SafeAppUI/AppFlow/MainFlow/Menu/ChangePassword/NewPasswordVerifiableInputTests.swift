@@ -4,7 +4,6 @@
 
 import XCTest
 @testable import SafeAppUI
-import SafeUIKit
 
 class NewPasswordVerifiableInputTests: XCTestCase {
 

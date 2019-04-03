@@ -172,8 +172,17 @@
 /* Transaction fee */
 "network_fee.alert.title" = "Network Fee";
 
+/* Placeholder text for confirm password field */
+"new_password.confirm.placeholder" = "Confirm new password";
+
+/* Confrimation password does not match error */
+"new_password.does_not_match" = "Sorry, the password doesn't match";
+
 /* Header for new password screen */
 "new_password.header" = "Enter new password";
+
+/* Placeholder text for new password field */
+"new_password.placeholder" = "Enter new password";
 
 /* Browser extension button */
 "new_safe.browser_extension" = "Browser extension";
@@ -564,7 +573,7 @@
 "safe_creation.waiting_for_safe_description" = "Your deposit is on its way.";
 
 /* Save button */
-"save" = "save";
+"save" = "Save";
 
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";

@@ -154,9 +154,9 @@ public final class TokenInput: VerifiableInput {
 
 public extension TokenInput {
 
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
+    override func textField(_ textField: UITextField,
+                            shouldChangeCharactersIn range: NSRange,
+                            replacementString string: String) -> Bool {
         let updatedText = (textField.nonNilText as NSString).replacingCharacters(in: range, with: string)
         return updatedText.isEmpty || formatter.number(from: updatedText) != nil
     }

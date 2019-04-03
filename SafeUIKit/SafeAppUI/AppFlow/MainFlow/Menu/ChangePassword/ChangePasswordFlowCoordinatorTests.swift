@@ -4,6 +4,7 @@
 
 import XCTest
 @testable import SafeAppUI
+import CommonTestSupport
 
 class ChangePasswordFlowCoordinatorTests: XCTestCase {
 
@@ -17,6 +18,12 @@ class ChangePasswordFlowCoordinatorTests: XCTestCase {
 
     func test_whenSetupCalled_thenShowsVerifyCurrentPasswordScreen() {
         XCTAssertTrue(flowCoordinator.navigationController.topViewController is VerifyCurrentPasswordViewController)
+    }
+
+    func test_whenCurrentPasswordIsVerified_thenSetupNewPasswordVCIsShown() {
+        flowCoordinator.didVerifyPassword()
+        delay()
+        XCTAssertTrue(flowCoordinator.navigationController.topViewController is SetupNewPasswordViewController)
     }
 
 }

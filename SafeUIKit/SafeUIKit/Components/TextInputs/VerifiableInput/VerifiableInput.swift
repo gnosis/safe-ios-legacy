@@ -8,6 +8,7 @@ import UIKit
     func verifiableInputDidReturn(_ verifiableInput: VerifiableInput)
     @objc optional func verifiableInputDidBeginEditing(_ verifiableInput: VerifiableInput)
     @objc optional func verifiableInputDidEndEditing(_ verifiableInput: VerifiableInput)
+    @objc optional func verifiableInputWillEnter(_ verifiableInput: VerifiableInput, newValue: String)
 }
 
 open class VerifiableInput: UIView {
@@ -61,7 +62,7 @@ open class VerifiableInput: UIView {
         }
     }
 
-    private func revalidateText() {
+    public func revalidateText() {
         let str = text
         text = str
     }
@@ -189,6 +190,14 @@ open class VerifiableInput: UIView {
 }
 
 extension VerifiableInput: UITextFieldDelegate {
+
+    public func textField(_ textField: UITextField,
+                          shouldChangeCharactersIn range: NSRange,
+                          replacementString string: String) -> Bool {
+        let updatedText = (textField.nonNilText as NSString).replacingCharacters(in: range, with: string)
+        delegate?.verifiableInputWillEnter?(self, newValue: updatedText)
+        return true
+    }
 
     public func textFieldShouldClear(_ textField: UITextField) -> Bool {
         resetRules()

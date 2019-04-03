@@ -16,6 +16,17 @@ final class ChangePasswordFlowCoordinator: FlowCoordinator {
 
 extension ChangePasswordFlowCoordinator: VerifyCurrentPasswordViewControllerDelegate {
 
-    func didVerifyPassword() {}
+    func didVerifyPassword() {
+        let vc = SetupNewPasswordViewController.create(delegate: self)
+        push(vc)
+    }
+
+}
+
+extension ChangePasswordFlowCoordinator: SetupNewPasswordViewControllerDelegate {
+
+    func didEnterNewPassword(_ password: String) {
+        exitFlow()
+    }
 
 }
