@@ -17,6 +17,7 @@
 		0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A0C873F209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C873D209752D500471885 /* IdentityAccessImplementationsResources.bundle */; };
 		0A0C874920976D3A00471885 /* NewSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0C874820976D3A00471885 /* NewSafeScreenUITests.swift */; };
+		0A0FD8A42254ED27008475E7 /* PendingSafeScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90DD20C567CE001AEAE4 /* PendingSafeScreenUITests.swift */; };
 		0A160B8520A07C6300E064E1 /* SafeAppUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B6020A07C2D00E064E1 /* SafeAppUI.framework */; };
 		0A160B8620A07C7300E064E1 /* SafeAppUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B6020A07C2D00E064E1 /* SafeAppUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A160B8820A07CC200E064E1 /* SafeUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160B5C20A07C2D00E064E1 /* SafeUIKit.framework */; };
@@ -553,6 +554,7 @@
 		0ACA9C3D205FDAE3005EC186 /* OnboardingFlow */ = {
 			isa = PBXGroup;
 			children = (
+				0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */,
 				0ACB1A432099F3F500EBE267 /* CameraScreen.swift */,
 				558FD81420767F18004F070E /* NewSafeScreen.swift */,
 				55CA9FFF209AF0A0009AE181 /* PaperWalletSetupFlow */,
@@ -644,7 +646,6 @@
 				55FBDAA720BD89380065AB29 /* MasterPasswordAndUnlock */,
 				55F8120220BD59CB00BD07E3 /* NewSafe */,
 				0ACA9C3A205FDA92005EC186 /* screens */,
-				0A4B004420977266006343EB /* SetupSafeOptionsScreen.swift */,
 				0ACB1A412099EF2300EBE267 /* Springboard.swift */,
 				0ABA90EC20C57842001AEAE4 /* Supporting Files */,
 				0AA27847205FD97600EBB9D1 /* TestUtils.swift */,
@@ -1218,6 +1219,7 @@
 				0A99436C20A04C6700E36FD7 /* LocalizedString.swift in Sources */,
 				0ACA9C3F205FFBF1005EC186 /* StartScreenUITests.swift in Sources */,
 				0AA27837205FC63800EBB9D1 /* SetPasswordScreen.swift in Sources */,
+				0A0FD8A42254ED27008475E7 /* PendingSafeScreenUITests.swift in Sources */,
 				0A009C0920C688B700380A07 /* PendingSafeScreen.swift in Sources */,
 				0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */,
 				55CAA007209AF267009AE181 /* ConfirmMnemonicScreen.swift in Sources */,
