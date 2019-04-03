@@ -363,7 +363,6 @@
 		55CAA004209AF204009AE181 /* ConfirmMnemonicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicUITests.swift; sourceTree = "<group>"; };
 		55CAA006209AF267009AE181 /* ConfirmMnemonicScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMnemonicScreen.swift; sourceTree = "<group>"; };
 		55D20B1E21197ECC00BDD62C /* SendTokenScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SendTokenScreen.swift; path = safeUITests/screens/AppFlow/SendTokenScreen.swift; sourceTree = SOURCE_ROOT; };
-		55D20B3D21199D5C00BDD62C /* NewTransactionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewTransactionUITests.swift; path = safeUITests/NewTransaction/NewTransactionUITests.swift; sourceTree = SOURCE_ROOT; };
 		55D3C08120F770170047004F /* PushTokensService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTokensService.swift; sourceTree = "<group>"; };
 		55D97D7D20496E390004AEDD /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		55F9817E20F4B4E300E3AF47 /* safe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safe.entitlements; sourceTree = "<group>"; };
@@ -639,7 +638,6 @@
 		5540A50D203C3054009C9BE3 /* SafeUITests */ = {
 			isa = PBXGroup;
 			children = (
-				55D20B3121199CB600BDD62C /* NewTransaction */,
 				55A7B2C920ED22A80035EF38 /* IntegrationTests */,
 				0AA27831205FC4E600EBB9D1 /* Application.swift */,
 				0A99436B20A04C6700E36FD7 /* LocalizedString.swift */,
@@ -681,14 +679,6 @@
 				55CAA006209AF267009AE181 /* ConfirmMnemonicScreen.swift */,
 			);
 			path = PaperWalletSetupFlow;
-			sourceTree = "<group>";
-		};
-		55D20B3121199CB600BDD62C /* NewTransaction */ = {
-			isa = PBXGroup;
-			children = (
-				55D20B3D21199D5C00BDD62C /* NewTransactionUITests.swift */,
-			);
-			path = NewTransaction;
 			sourceTree = "<group>";
 		};
 		55D6C2F72045C38D0026BC72 /* TestTools */ = {
