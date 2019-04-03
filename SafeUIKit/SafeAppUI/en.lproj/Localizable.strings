@@ -25,6 +25,12 @@
 /* Cancel */
 "cancel" = "cancel";
 
+/* Header for change password screen */
+"change_password.header" = "Enter current password";
+
+/* Title for change password screen */
+"change_password.title" = "Change Password";
+
 /* Body text */
 "connect_extension.intro.body" = "For increased security, enable 2-factor authentication between your phone and computer.\nAll future transacations will need to be approved by both devices.";
 
@@ -166,6 +172,9 @@
 /* Transaction fee */
 "network_fee.alert.title" = "Network Fee";
 
+/* Header for new password screen */
+"new_password.header" = "Enter new password";
+
 /* Browser extension button */
 "new_safe.browser_extension" = "Browser extension";
 
@@ -247,6 +256,9 @@
 
 /* Title for new safe screen */
 "new_safe.title" = "Configure";
+
+/* Next button */
+"next" = "Next";
 
 /* Passwords must match. */
 "onboarding.confirm_password.match" = "Passwords must match";
@@ -550,6 +562,9 @@
 
 /* Waiting for safe description for safe creation screen. */
 "safe_creation.waiting_for_safe_description" = "Your deposit is on its way.";
+
+/* Save button */
+"save" = "save";
 
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";

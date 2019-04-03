@@ -31,13 +31,25 @@ final class VerifyCurrentPasswordViewController: UIViewController {
         return vc
     }
 
+    enum Strings {
+        static let title = LocalizedString("change_password.title", comment: "Title for change password screen")
+        static let next = LocalizedString("next", comment: "Next button")
+        static let header = LocalizedString("change_password.header", comment: "Header for change password screen")
+        static let tryInText = LocalizedString("app.unlock.tryagain", comment: "Try again in")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Strings.title
+        headerLabel.text = Strings.header
         passwordInput.isSecure = true
         passwordInput.delegate = self
         countdownStack.isHidden = true
         countdownLabel.setup(time: authenticationService.blockedPeriodDuration,
                              clock: clockService)
+        tryAgainInLabel.text = Strings.tryInText
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(title: Strings.next, style: .plain, target: self, action: #selector(proceed))
     }
 
     private func startCountdownIfNeeded() {
@@ -53,6 +65,10 @@ final class VerifyCurrentPasswordViewController: UIViewController {
             self.countdownStack.isHidden = true
             _ = self.passwordInput.becomeFirstResponder()
         }
+    }
+
+    @objc private func proceed() {
+        verifiableInputDidReturn(passwordInput)
     }
 
 }

@@ -56,6 +56,8 @@ enum StoryboardScene {
   enum ChangePassword: StoryboardType {
     static let storyboardName = "ChangePassword"
 
+    static let setupNewPasswordViewController = SceneType<SafeAppUI.SetupNewPasswordViewController>(storyboard: ChangePassword.self, identifier: "SetupNewPasswordViewController")
+
     static let verifyCurrentPasswordViewController = SceneType<SafeAppUI.VerifyCurrentPasswordViewController>(storyboard: ChangePassword.self, identifier: "VerifyCurrentPasswordViewController")
   }
   enum Main: StoryboardType {

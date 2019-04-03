@@ -357,6 +357,8 @@
 		55F30EF9225354C800689835 /* ChangePasswordFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EF8225354C800689835 /* ChangePasswordFlowCoordinatorTests.swift */; };
 		55F30EFB22535A7E00689835 /* ChangePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55F30EFA22535A7E00689835 /* ChangePassword.storyboard */; };
 		55F30EFE2253A63B00689835 /* VerifyCurrentPasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EFC2253688A00689835 /* VerifyCurrentPasswordViewControllerTests.swift */; };
+		55F30F002254A56500689835 /* SetupNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30EFF2254A56500689835 /* SetupNewPasswordViewController.swift */; };
+		55F30F022254A59E00689835 /* SetupNewPasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30F012254A59E00689835 /* SetupNewPasswordViewControllerTests.swift */; };
 		55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -893,6 +895,8 @@
 		55F30EF8225354C800689835 /* ChangePasswordFlowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		55F30EFA22535A7E00689835 /* ChangePassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangePassword.storyboard; sourceTree = "<group>"; };
 		55F30EFC2253688A00689835 /* VerifyCurrentPasswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCurrentPasswordViewControllerTests.swift; sourceTree = "<group>"; };
+		55F30EFF2254A56500689835 /* SetupNewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupNewPasswordViewController.swift; sourceTree = "<group>"; };
+		55F30F012254A59E00689835 /* SetupNewPasswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupNewPasswordViewControllerTests.swift; sourceTree = "<group>"; };
 		55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenNumberFormatterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1933,6 +1937,8 @@
 				55F30EF62253549900689835 /* VerifyCurrentPasswordViewController.swift */,
 				55F30EFC2253688A00689835 /* VerifyCurrentPasswordViewControllerTests.swift */,
 				55F30EFA22535A7E00689835 /* ChangePassword.storyboard */,
+				55F30EFF2254A56500689835 /* SetupNewPasswordViewController.swift */,
+				55F30F012254A59E00689835 /* SetupNewPasswordViewControllerTests.swift */,
 			);
 			path = ChangePassword;
 			sourceTree = "<group>";
@@ -2734,6 +2740,7 @@
 				0A334E36209C8E3800ABC6AE /* SaveMnemonicViewController.swift in Sources */,
 				0AD5091F2110AABD008507CB /* FundsTransferTransactionViewModel.swift in Sources */,
 				0A19405B2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift in Sources */,
+				55F30F002254A56500689835 /* SetupNewPasswordViewController.swift in Sources */,
 				0A3BD90222254833007039B4 /* EthFeeCalculation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2760,6 +2767,7 @@
 				0A334E58209C8E6800ABC6AE /* SaveMnemonicViewControllerTests.swift in Sources */,
 				0A437F0C20D26F20007608F8 /* TransactionDetailsViewControllerTests.swift in Sources */,
 				0A3BD8EB22254822007039B4 /* RBEIntroViewControllerActionsTests.swift in Sources */,
+				55F30F022254A59E00689835 /* SetupNewPasswordViewControllerTests.swift in Sources */,
 				0A3BD8F022254822007039B4 /* RBEStarterMock.swift in Sources */,
 				0A72D438209C92A20082C0A3 /* TestExtensions.swift in Sources */,
 				5539C13521A48031006BF834 /* ReviewTransactionViewControllerTests.swift in Sources */,
