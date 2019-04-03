@@ -19,8 +19,9 @@ CREATE TABLE IF NOT EXISTS tbl_user (
 """
         static let insertUser = "INSERT OR REPLACE INTO tbl_user VALUES (?, ?, ?);"
         static let deleteUser = "DELETE FROM tbl_user WHERE user_id = ?;"
-        static let findPrimaryUser = "SELECT user_id, password, session_id FROM tbl_user LIMIT 1;"
-        static let findUserByPassword = "SELECT user_id, password, session_id FROM tbl_user WHERE password = ? LIMIT 1;"
+        static let findPrimaryUser = "SELECT user_id, password, session_id FROM tbl_user ORDER BY rowid LIMIT 1;"
+        static let findUserByPassword =
+            "SELECT user_id, password, session_id FROM tbl_user WHERE password = ? ORDER BY rowid LIMIT 1;"
     }
 
     private let db: Database
