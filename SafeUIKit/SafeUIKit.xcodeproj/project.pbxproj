@@ -20,6 +20,7 @@
 		0A0974DD20480D03005753DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0974DA20480D03005753DF /* LaunchScreen.storyboard */; };
 		0A0974EA20480E11005753DF /* SafeUIKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0974E920480E11005753DF /* SafeUIKitDemoUITests.swift */; };
 		0A0974EC20480E45005753DF /* SafeUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0974EB20480E45005753DF /* SafeUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A179C7D2256274A00C60138 /* MainTrackingEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA30A2222934DC00E7AEA7 /* MainTrackingEvents.swift */; };
 		0A1940572226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940562226CF46005B7440 /* DisconnectBrowserExtensionFlowCoordinator.swift */; };
 		0A19405B2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19405A2226D030005B7440 /* DisconnectBrowserExtensionCommand.swift */; };
 		0A1940742226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1940732226DE36005B7440 /* ResyncWithBrowserExtensionCommand.swift */; };
@@ -2520,6 +2521,7 @@
 				0AF9EBC521A6C4A700C028B3 /* ContainerCell.swift in Sources */,
 				0AD1D1E621A8710500941EA1 /* BaseCustomLabel.swift in Sources */,
 				552473612142A07300A77557 /* BaseCustomView.swift in Sources */,
+				0A179C7D2256274A00C60138 /* MainTrackingEvents.swift in Sources */,
 				5539C13A21A55C74006BF834 /* TransferViewCell.swift in Sources */,
 				5524730F213FDEB400A77557 /* BackgroundImageView.swift in Sources */,
 				0A395C9C21C0F8E500652A59 /* SettingsTransactionHeaderView.swift in Sources */,

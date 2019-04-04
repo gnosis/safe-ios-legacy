@@ -5,6 +5,7 @@
 import Foundation
 import Common
 
+/// Tracking events occuring during onboarding flows.
 enum OnboardingEvent: String, Trackable {
 
     case welcome = "Onboarding_Welcome"
@@ -18,7 +19,7 @@ enum OnboardingEvent: String, Trackable {
     case configure = "Onboarding_Configure"
     case addBrowserExtension = "Onboarding_2FA"
     case scanQR = "Onboarding_2FAScan"
-    case browserExtensionAdded = "Onboarding_2FASuccess"
+    case browserExtensionAdded = "Onboarding_2FAScanSuccess"
     case createSafe = "Onboarding_CreationFee"
     case safeFeePaid = "Onboarding_FeePaid"
 
