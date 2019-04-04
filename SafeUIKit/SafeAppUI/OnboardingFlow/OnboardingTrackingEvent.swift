@@ -20,13 +20,6 @@ enum OnboardingEvent: String, Trackable {
     case createSafe             = "Onboarding_CreationFee"
     case safeFeePaid            = "Onboarding_FeePaid"
 
-    // These events are not for use anymore.
-    case terms                  = "Onboarding_Terms"
-    case newOrRecover           = "Onboarding_CreateOrRestore"
-    case addBrowserExtension    = "Onboarding_2FA"
-    case scanQR                 = "Onboarding_2FAScan"
-    case browserExtensionAdded  = "Onboarding_2FAScanSuccess"
-
 }
 
 enum OnboardingTrackingEvent: String, ScreenTrackingEvent {
