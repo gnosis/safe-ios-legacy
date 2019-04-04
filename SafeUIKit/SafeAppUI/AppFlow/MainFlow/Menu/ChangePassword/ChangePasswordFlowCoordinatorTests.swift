@@ -5,8 +5,9 @@
 import XCTest
 @testable import SafeAppUI
 import CommonTestSupport
+import IdentityAccessApplication
 
-class ChangePasswordFlowCoordinatorTests: XCTestCase {
+class ChangePasswordFlowCoordinatorTests: SafeTestCase {
 
     var flowCoordinator: ChangePasswordFlowCoordinator!
 
@@ -24,6 +25,22 @@ class ChangePasswordFlowCoordinatorTests: XCTestCase {
         flowCoordinator.didVerifyPassword()
         delay()
         XCTAssertTrue(flowCoordinator.navigationController.topViewController is SetupNewPasswordViewController)
+    }
+
+    func test_whenNewPasswordIsEntered_thenUpdatesPassword() throws {
+        try authenticationService.registerUser(password: "Password")
+        let newPassword = "NewPassword"
+        flowCoordinator.didEnterNewPassword(newPassword)
+        XCTAssertEqual(authenticationService.updatedPassword, newPassword)
+    }
+
+    func test_whenUpdatePasswordThrows_thenAlertIsShown() {
+        authenticationService.shouldThrowDuringUpdatePassword = true
+        createWindow(flowCoordinator.navigationController)
+        flowCoordinator.didEnterNewPassword("NewPassword")
+        delay()
+        XCTAssertNotNil(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController)
+        XCTAssertTrue(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController is UIAlertController)
     }
 
 }

@@ -138,6 +138,14 @@ open class AuthenticationApplicationService {
         _ = try DomainRegistry.identityService.registerUser(password: password)
     }
 
+    /// Update primary user with password.
+    ///
+    /// - Parameter password: new password
+    /// - Throws: error if primary user is not found, or if the password is not valid
+    open func updatePrimaryUserPassword(with password: String) throws {
+        try DomainRegistry.identityService.updatePrimaryUserPassword(with: password)
+    }
+
     /// Changes authenticated session duration.
     ///
     /// - Parameter duration: New duration of the authenticated session.

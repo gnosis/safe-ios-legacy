@@ -362,6 +362,7 @@
 		55F30F052254B6B100689835 /* NewPasswordVerifiableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30F042254B6B100689835 /* NewPasswordVerifiableInput.swift */; };
 		55F30F092254DA2E00689835 /* NewPasswordVerifiableInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F30F082254DA2E00689835 /* NewPasswordVerifiableInputTests.swift */; };
 		55F9818720F4FD5500E3AF47 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */; };
+		55FEFE2D22562C7300E52F00 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEFE2C22562C7300E52F00 /* Authenticator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -902,6 +903,7 @@
 		55F30F042254B6B100689835 /* NewPasswordVerifiableInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordVerifiableInput.swift; sourceTree = "<group>"; };
 		55F30F082254DA2E00689835 /* NewPasswordVerifiableInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordVerifiableInputTests.swift; sourceTree = "<group>"; };
 		55F9818320F4FD5500E3AF47 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
+		55FEFE2C22562C7300E52F00 /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		B0D61C100E96E1A7B7874765 /* TokenNumberFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenNumberFormatterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1475,6 +1477,7 @@
 				0A3D14ED220B18E200E340DB /* FeatureFlagSettings.swift */,
 				0A3BD92022254C9E007039B4 /* SafeAppUIUnitTests-Info.plist */,
 				55CA308E2227DB0900E7AEA7 /* UIViewController+Tracking.swift */,
+				55FEFE2C22562C7300E52F00 /* Authenticator.swift */,
 			);
 			path = SafeAppUI;
 			sourceTree = "<group>";
@@ -2634,6 +2637,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A3D14F2220B1CE800E340DB /* MenuCommand.swift in Sources */,
+				55FEFE2D22562C7300E52F00 /* Authenticator.swift in Sources */,
 				0A3BD8FB22254833007039B4 /* FeeCalculationErrorLine.swift in Sources */,
 				55247303213E8D7600A77557 /* TokensHeaderView.swift in Sources */,
 				0AD998B020D3FEBD00E6F3CA /* FundsTransferTransactionViewController.swift in Sources */,

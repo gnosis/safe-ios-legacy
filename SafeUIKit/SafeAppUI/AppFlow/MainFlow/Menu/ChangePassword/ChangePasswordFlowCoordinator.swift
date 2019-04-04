@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import IdentityAccessApplication
 
 final class ChangePasswordFlowCoordinator: FlowCoordinator {
 
@@ -26,7 +27,12 @@ extension ChangePasswordFlowCoordinator: VerifyCurrentPasswordViewControllerDele
 extension ChangePasswordFlowCoordinator: SetupNewPasswordViewControllerDelegate {
 
     func didEnterNewPassword(_ password: String) {
-        exitFlow()
+        do {
+            try Authenticator.instance.updateUserPassword(with: password)
+            exitFlow()
+        } catch {
+            ErrorHandler.showFatalError(log: "Failed to update password", error: error)
+        }
     }
 
 }

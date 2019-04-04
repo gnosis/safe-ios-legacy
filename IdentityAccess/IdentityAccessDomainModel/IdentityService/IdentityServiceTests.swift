@@ -21,6 +21,8 @@ class IdentityServiceTests: DomainTestCase {
         XCTAssertNoThrow(try gatekeeperRepository.save(gatekeeper))
     }
 
+    // MARK: - Register user
+
     func test_registerUser_savesInRepository() throws {
         let user = try givenRegisteredUser()
         XCTAssertEqual(userRepository.primaryUser()?.id, user)
@@ -43,6 +45,55 @@ class IdentityServiceTests: DomainTestCase {
         let user = userRepository.primaryUser()
         XCTAssertEqual(user?.password, encryptionService.encrypted(password))
     }
+
+    func test_create_passwordNotEmpty() {
+        XCTAssertThrowsError(try createUser(password: "")) {
+            self.assertError($0, .emptyPassword)
+        }
+    }
+
+    func test_create_passwordNSymbols() {
+        let short = String(repeating: "1", count: 5)
+        let long = String(repeating: "qwe123qwe", count: 101)
+        XCTAssertThrowsError(try createUser(password: short)) {
+            self.assertError($0, .passwordTooShort)
+        }
+        XCTAssertNoThrow(try createUser(password: long))
+    }
+
+    func test_create_passwordCapitalLetter() {
+        XCTAssertThrowsError(try createUser(password: "123456")) {
+            self.assertError($0, .passwordMissingLetter)
+        }
+    }
+
+    func test_create_digit() {
+        XCTAssertThrowsError(try createUser(password: "abcabC")) {
+            self.assertError($0, .passwordMissingDigit)
+        }
+    }
+
+    func test_whenUpdatingPrimaryUserPassword_thenUpdatesIt() throws {
+        try givenRegisteredUser()
+        let newPassword = "MyPassword2"
+        try identityService.updatePrimaryUserPassword(with: newPassword)
+        XCTAssertEqual(userRepository.primaryUser()!.password, encryptionService.encrypted(newPassword))
+    }
+
+    func test_whenUpdatingPrimaryUserWithInvalidPassword_thenThrows() throws {
+        try givenRegisteredUser()
+        XCTAssertThrowsError(try identityService.updatePrimaryUserPassword(with: "abc")) {
+            self.assertError($0, .passwordTooShort)
+        }
+    }
+
+    func test_whenUpdatingPrimaryUserThatDoesNotExist_thenThrows() throws {
+        XCTAssertThrowsError(try identityService.updatePrimaryUserPassword(with: password)) {
+            self.assertUpdatePasswordError($0, .primaryUserNotFound)
+        }
+    }
+
+    // MARK: - Authenticate user
 
     func test_authenticateUser_whenEmptyPassword_thenInvalid() throws {
         let result = try authenticateWithWrongPassword("")
@@ -111,39 +162,14 @@ class IdentityServiceTests: DomainTestCase {
         XCTAssertNil(try authenticateWithBiometry())
     }
 
+    // MARK: - Gatekeeper
+
     func test_createGatekeeper_createsOne() throws {
         let gatekeeper = try identityService.createGatekeeper(sessionDuration: 3,
                                                               maxFailedAttempts: 3,
                                                               blockDuration: 3)
         XCTAssertEqual(gatekeeperRepository.gatekeeper(), gatekeeper)
         XCTAssertEqual(gatekeeperRepository.gatekeeper()?.policy, gatekeeper.policy)
-    }
-
-    func test_create_passwordNotEmpty() {
-        XCTAssertThrowsError(try createUser(password: "")) {
-            self.assertError($0, .emptyPassword)
-        }
-    }
-
-    func test_create_passwordNSymbols() {
-        let short = String(repeating: "1", count: 5)
-        let long = String(repeating: "qwe123qwe", count: 101)
-        XCTAssertThrowsError(try createUser(password: short)) {
-            self.assertError($0, .passwordTooShort)
-        }
-        XCTAssertNoThrow(try createUser(password: long))
-    }
-
-    func test_create_passwordCapitalLetter() {
-        XCTAssertThrowsError(try createUser(password: "123456")) {
-            self.assertError($0, .passwordMissingLetter)
-        }
-    }
-
-    func test_create_digit() {
-        XCTAssertThrowsError(try createUser(password: "abcabC")) {
-            self.assertError($0, .passwordMissingDigit)
-        }
     }
 
 }
@@ -156,6 +182,10 @@ extension IdentityServiceTests {
 
     private func assertError(_ error: Error, _ expected: IdentityService.RegistrationError) {
         XCTAssertEqual(error as? IdentityService.RegistrationError, expected)
+    }
+
+    private func assertUpdatePasswordError(_ error: Error, _ expected: IdentityService.UpdatePasswordError) {
+        XCTAssertEqual(error as? IdentityService.UpdatePasswordError, expected)
     }
 
     @discardableResult

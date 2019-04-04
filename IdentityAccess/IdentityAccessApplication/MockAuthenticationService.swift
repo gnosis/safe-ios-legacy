@@ -41,6 +41,15 @@ public class MockAuthenticationService: AuthenticationApplicationService {
         userRegistered = true
     }
 
+    public var updatedPassword: String?
+    public var shouldThrowDuringUpdatePassword = false
+    public override func updatePrimaryUserPassword(with password: String) throws {
+        if shouldThrowDuringUpdatePassword {
+            throw Error.error
+        }
+        updatedPassword = password
+    }
+
     public func invalidateAuthentication() {
         authenticationAllowed = false
         userAuthenticated = false
