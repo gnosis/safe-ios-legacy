@@ -44,6 +44,11 @@ final class SafeAddressViewController: UIViewController {
         safeAddressLabel.address = address
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(MainTrackingEvent.receiveFunds)
+    }
+
     @IBAction func shareAddress(_ sender: Any) {
         guard let address = ApplicationServiceRegistry.walletService.selectedWalletAddress else { return }
         let activityController = UIActivityViewController(activityItems: [address], applicationActivities: nil)

@@ -60,7 +60,7 @@ public class GuidelinesViewController: UIViewController {
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(OnboardingEvent.guidelines)
+        trackEvent(OnboardingTrackingEvent.recoveryIntro)
     }
 
     func update() {

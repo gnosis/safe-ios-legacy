@@ -77,9 +77,9 @@ final class PasswordViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if isSetPasswordScreen {
-            trackEvent(OnboardingEvent.setPassword)
+            trackEvent(OnboardingTrackingEvent.setPassword)
         } else {
-            trackEvent(OnboardingEvent.confirmPassword)
+            trackEvent(OnboardingTrackingEvent.confirmPassword)
         }
     }
 
