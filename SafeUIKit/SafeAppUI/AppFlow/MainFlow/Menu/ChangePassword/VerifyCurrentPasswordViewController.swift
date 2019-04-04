@@ -50,6 +50,7 @@ final class VerifyCurrentPasswordViewController: UIViewController {
         tryAgainInLabel.text = Strings.tryInText
         navigationItem.rightBarButtonItem =
             UIBarButtonItem(title: Strings.next, style: .plain, target: self, action: #selector(proceed))
+        startCountdownIfNeeded()
     }
 
     private func startCountdownIfNeeded() {

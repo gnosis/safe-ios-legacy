@@ -65,6 +65,7 @@ public final class UnlockViewController: UIViewController {
         cancelButton.isHidden = !showsCancelButton
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         cancelButton.setTitle(Strings.cancel, for: .normal)
+        cancelButton.setTitleColor(.white, for: .normal)
         cancelButton.accessibilityIdentifier = "cancel"
 
         startCountdownIfNeeded()
