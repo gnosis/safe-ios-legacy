@@ -243,12 +243,13 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
         do {
             try self.delegate?.pairWithBrowserExtensionViewController(self, didScanAddress: address, code: code)
             if self.didCancel { return }
-            trackEvent(OnboardingEvent.browserExtensionAdded)
+            trackEvent(OnboardingTrackingEvent.twoFAScanSuccess)
             DispatchQueue.main.async {
                 self.delegate?.pairWithBrowserExtensionViewControllerDidFinish()
             }
         } catch let e {
             if self.didCancel { return }
+            trackEvent(OnboardingTrackingEvent.twoFAScanError)
             DispatchQueue.main.async {
                 self.handleError(e)
             }

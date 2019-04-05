@@ -160,6 +160,7 @@ class SafeCreationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(OnboardingEvent.createSafe)
+        trackEvent(OnboardingTrackingEvent.creationFee)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -396,6 +397,7 @@ extension SafeCreationViewController {
 
         override func didEnter() {
             Tracker.shared.track(event: OnboardingEvent.safeFeePaid)
+            Tracker.shared.track(event: OnboardingTrackingEvent.feePaid)
         }
     }
 

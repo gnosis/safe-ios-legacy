@@ -44,7 +44,9 @@ final class ConfirmMnemonicUITests: UITestCase {
         saveMnemonicScreen.continueButton.tap()
         let newFirstWordNumber = confirmMnemonicScreen.firstWordNumber
         let newSecondWordNumber = confirmMnemonicScreen.secondWordNumber
-        XCTAssertFalse(firstWordNumber == newFirstWordNumber && secondWordNumber == newSecondWordNumber)
+        XCTAssertFalse(firstWordNumber == newFirstWordNumber && secondWordNumber == newSecondWordNumber,
+                       "first word: \(firstWordNumber), new: \(newFirstWordNumber); " +
+                       "second word: \(secondWordNumber), new: \(newSecondWordNumber)")
     }
 
     // NS-107, NS-108, NS-109

@@ -36,7 +36,7 @@ class SetupSafeOptionsViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(OnboardingEvent.newOrRecover)
+        trackEvent(OnboardingTrackingEvent.createOrRestore)
     }
 
     @IBAction func createNewSafe(_ sender: Any) {
