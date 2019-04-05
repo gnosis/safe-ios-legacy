@@ -9,9 +9,6 @@ struct SendTrackingEvent: Trackable {
 
     enum ScreenName: String {
         case input                  = "Send_Input"
-        case inputActionSheet       = "Send_InputActionSheet"
-        case inputError             = "Send_InputError"
-        case inputNetworkFee        = "Send_InputNetworkFee"
         case review                 = "Send_Review"
         case review2FARequired      = "Send_Review2FARequired"
         case review2FARejected      = "Send_Review2FARejected"
