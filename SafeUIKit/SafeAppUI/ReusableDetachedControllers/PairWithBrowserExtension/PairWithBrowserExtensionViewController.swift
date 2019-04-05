@@ -91,8 +91,8 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
         }
     }
 
-    public var trackingView: Trackable?
-    public var scannerTrackingView: Trackable?
+    public var screenTrackingEvent: Trackable?
+    public var scanTrackingEvent: Trackable?
 
     public static func create(delegate: PairWithBrowserExtensionViewControllerDelegate?)
         -> PairWithBrowserExtensionViewController {
@@ -121,8 +121,8 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let trackingView = trackingView {
-            trackEvent(trackingView)
+        if let event = screenTrackingEvent {
+            trackEvent(event)
         }
     }
 
@@ -249,7 +249,6 @@ public final class PairWithBrowserExtensionViewController: UIViewController {
             }
         } catch let e {
             if self.didCancel { return }
-            trackEvent(OnboardingTrackingEvent.twoFAScanError)
             DispatchQueue.main.async {
                 self.handleError(e)
             }
@@ -311,7 +310,7 @@ extension PairWithBrowserExtensionViewController: ScanBarButtonItemDelegate {
 
     public func scanBarButtonItemWantsToPresentController(_ controller: UIViewController) {
         present(controller, animated: true)
-        if let scannerTrackingView = scannerTrackingView {
+        if let scannerTrackingView = scanTrackingEvent {
             trackEvent(scannerTrackingView)
         }
     }

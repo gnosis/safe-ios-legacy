@@ -40,6 +40,27 @@ class PairWithBrowserExtensionViewControllerTests: SafeTestCase {
         XCTAssertNotNil(testDelegate.pairedCode)
     }
 
+    func test_trackingAppearance() {
+        controller.screenTrackingEvent = TestScreenTrackingEvent.view
+        XCTAssertTracksAppearance(in: controller, TestScreenTrackingEvent.view)
+    }
+
+    func test_whenScansValidCode_thenTracksSuccess() {
+        XCTAssertTracks { handler in
+            controller.scanBarButtonItemDidScanValidCode("valid_code")
+            delay()
+            XCTAssertEqual(handler.screenName(at: 0), OnboardingTrackingEvent.twoFAScanSuccess.rawValue)
+        }
+    }
+
+    func test_whenOpensCamera_thenTracksScan() {
+        controller.scanTrackingEvent = TestScreenTrackingEvent.view
+        XCTAssertTracks { handler in
+            controller.scanBarButtonItemWantsToPresentController(UIViewController())
+            XCTAssertEqual(handler.screenName(at: 0), TestScreenTrackingEvent.view.rawValue)
+        }
+    }
+
 }
 
 class TestPairWithBrowserExtensionViewControllerDelegate: PairWithBrowserExtensionViewControllerDelegate {

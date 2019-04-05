@@ -15,26 +15,66 @@ final class RecoverSafeFlowCoordinator: FlowCoordinator {
             return
         }
 
-        push(GuidelinesViewController.createRecoverSafeGuidelines(delegate: self))
+        push(introViewController())
         saveCheckpoint()
 
         if ApplicationServiceRegistry.recoveryService.isRecoveryInProgress() {
-            push(RecoveryInProgressViewController.create(delegate: self))
+            push(inProgressViewController())
         }
     }
 
     func showReview() {
-        let controller = ReviewRecoveryTransactionViewController.create(delegate: self)
-        let navigationVC = UINavigationController(rootViewController: controller)
-        presentModally(navigationVC)
+        presentModally(reviewNavigationController())
     }
 
+}
+
+/// Constructors of the screens participating in the flow
+extension RecoverSafeFlowCoordinator {
+
+    func introViewController() -> GuidelinesViewController {
+        let controller = GuidelinesViewController.createRecoverSafeGuidelines(delegate: self)
+        controller.screenTrackingEvent = RecoverSafeTrackingEvent.intro
+        return controller
+    }
+
+    func inProgressViewController() -> RecoveryInProgressViewController {
+        return RecoveryInProgressViewController.create(delegate: self)
+    }
+
+    func newPairController() -> PairWithBrowserExtensionViewController {
+        let controller = PairWithBrowserExtensionViewController.create(delegate: self)
+        controller.screenTitle = nil
+        controller.screenHeader = LocalizedString("recovery.browser_extension.header",
+                                                  comment: "Header for connect browser extension screen")
+        controller.descriptionText = LocalizedString("recovery.browser_extension.description",
+                                                     comment: "Description for connect browser extension screen")
+        controller.screenTrackingEvent = RecoverSafeTrackingEvent.twoFA
+        controller.scanTrackingEvent = RecoverSafeTrackingEvent.twoFAScan
+        return controller
+    }
+
+    func addressViewController() -> AddressInputViewController {
+        return AddressInputViewController.create(delegate: self)
+    }
+
+    func recoveryPhraseViewController() -> RecoveryPhraseInputViewController {
+        let controller = RecoveryPhraseInputViewController.create(delegate: self)
+        controller.screenTrackingEvent = RecoverSafeTrackingEvent.enterSeed
+        return controller
+    }
+
+    func reviewNavigationController() -> UINavigationController {
+        let controller = ReviewRecoveryTransactionViewController.create(delegate: self)
+        let navigationVC = UINavigationController(rootViewController: controller)
+        return navigationVC
+    }
 }
 
 extension RecoverSafeFlowCoordinator: GuidelinesViewControllerDelegate {
 
     func didPressNext() {
-        push(AddressInputViewController.create(delegate: self))
+        push(addressViewController())
     }
 
 }
@@ -42,7 +82,7 @@ extension RecoverSafeFlowCoordinator: GuidelinesViewControllerDelegate {
 extension RecoverSafeFlowCoordinator: AddressInputViewControllerDelegate {
 
     func addressInputViewControllerDidPressNext() {
-        push(RecoveryPhraseInputViewController.create(delegate: self))
+        push(recoveryPhraseViewController())
     }
 
 }
@@ -61,16 +101,6 @@ extension RecoverSafeFlowCoordinator: RecoveryPhraseInputViewControllerDelegate 
 
     func recoveryPhraseInputViewControllerDidFinish() {
         push(newPairController())
-    }
-
-    func newPairController() -> PairWithBrowserExtensionViewController {
-        let controller = PairWithBrowserExtensionViewController.create(delegate: self)
-        controller.screenTitle = nil
-        controller.screenHeader = LocalizedString("recovery.browser_extension.header",
-                                                  comment: "Header for connect browser extension screen")
-        controller.descriptionText = LocalizedString("recovery.browser_extension.description",
-                                                     comment: "Description for connect browser extension screen")
-        return controller
     }
 
 }
@@ -99,7 +129,7 @@ extension RecoverSafeFlowCoordinator: ReviewRecoveryTransactionViewControllerDel
 
     func reviewRecoveryTransactionViewControllerDidSubmit() {
         dismissModal { [unowned self] in
-            self.push(RecoveryInProgressViewController.create(delegate: self))
+            self.push(self.inProgressViewController())
         }
     }
 
@@ -122,9 +152,7 @@ extension RecoverSafeFlowCoordinator: RecoveryInProgressViewControllerDelegate {
     }
 
     func recoveryInProgressViewControllerWantsToOpenTransactionInExternalViewer(_ transactionID: String) {
-        let url = ApplicationServiceRegistry.walletService.transactionURL(transactionID)!
-        let controller = SFSafariViewController(url: url)
-        presentModally(controller)
+        SupportFlowCoordinator(from: self).openTransactionBrowser(transactionID)
     }
 
 }

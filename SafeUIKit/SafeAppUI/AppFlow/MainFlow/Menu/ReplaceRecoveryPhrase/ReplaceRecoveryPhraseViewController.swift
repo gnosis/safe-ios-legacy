@@ -68,6 +68,11 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
         start()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(ReplaceRecoveryPhraseTrackingEvent.intro)
+    }
+
     func update() {
         assert(Thread.isMainThread)
         guard isViewLoaded else { return }

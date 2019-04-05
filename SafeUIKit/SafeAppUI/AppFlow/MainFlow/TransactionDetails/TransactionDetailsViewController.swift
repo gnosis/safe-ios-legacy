@@ -115,16 +115,19 @@ public class TransactionDetailsViewController: UIViewController {
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let type: TransactionDetailType
-        switch transaction.type {
-        case .incoming, .outgoing: type = .send
-        case .replaceRecoveryPhrase: type = .replaceRecoveryPhrase
-        case .replaceBrowserExtension: type = .replaceBrowserExtension
-        case .connectBrowserExtension: type = .connectBrowserExtension
-        case .disconnectBrowserExtension: type = .disconnectBrowserExtension
-        case .walletRecovery: type = .recoverSafe
+        trackEvent(TransactionDetailTrackingEvent(type: trackingTrasnsactionType(from: transaction.type)))
+    }
+
+    func trackingTrasnsactionType(from type: TransactionData.TransactionType) -> TransactionDetailType {
+        switch type {
+        case .incoming, .outgoing: return .send
+        case .replaceRecoveryPhrase: return .replaceRecoveryPhrase
+        case .replaceBrowserExtension: return .replaceBrowserExtension
+        case .connectBrowserExtension: return .connectBrowserExtension
+        case .disconnectBrowserExtension: return .disconnectBrowserExtension
+        case .walletRecovery: return .recoverSafe
         }
-        trackEvent(TransactionDetailTrackingEvent(type: type))
+
     }
 
     private func reloadData() {

@@ -114,4 +114,3 @@ class MockSubscriber: EventSubscriber {
 }
 
 class MyEvent: DomainEvent {}
-

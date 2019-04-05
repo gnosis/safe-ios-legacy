@@ -13,12 +13,8 @@ class ConnectBrowserExtensionFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-        let vc = RBEIntroViewController.create()
-        vc.starter = ApplicationServiceRegistry.connectExtensionService
-        vc.delegate = self
-        vc.setContent(.connectExtension)
-        intro = vc
-        push(vc)
+        intro = introViewController()
+        push(intro)
     }
 
 }
@@ -32,13 +28,38 @@ extension IntroContentView.Content {
 
 }
 
+/// Screens factory methods
+extension ConnectBrowserExtensionFlowCoordinator {
+
+    func introViewController() -> RBEIntroViewController {
+        let vc = RBEIntroViewController.create()
+        vc.starter = ApplicationServiceRegistry.connectExtensionService
+        vc.delegate = self
+        vc.setContent(.connectExtension)
+        vc.screenTrackingEvent = ConnectBrowserExtensionTrackingEvent.intro
+        return vc
+    }
+
+    func pairViewController() -> PairWithBrowserExtensionViewController {
+        return PairWithBrowserExtensionViewController.createRBEConnectController(delegate: self)
+    }
+
+    func reviewViewController() -> RBEReviewTransactionViewController {
+        let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
+        vc.titleString = LocalizedString("connect_extension.review.title", comment: "Title for the header")
+        vc.detailString = LocalizedString("connect_extension.review.detail", comment: "Detail for the header")
+        vc.screenTrackingEvent = ConnectBrowserExtensionTrackingEvent.review
+        vc.successTrackingEvent = ConnectBrowserExtensionTrackingEvent.success
+        return vc
+    }
+
+}
 
 extension ConnectBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate {
 
     func rbeIntroViewControllerDidStart() {
         transactionID = intro.transactionID
-        let vc = PairWithBrowserExtensionViewController.createRBEConnectController(delegate: self)
-        push(vc)
+        push(pairViewController())
     }
 
 }
@@ -52,10 +73,7 @@ extension ConnectBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewCo
     }
 
     func pairWithBrowserExtensionViewControllerDidFinish() {
-        let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
-        vc.titleString = LocalizedString("connect_extension.review.title", comment: "Title for the header")
-        vc.detailString = LocalizedString("connect_extension.review.detail", comment: "Detail for the header")
-        push(vc)
+        push(reviewViewController())
     }
 
 }

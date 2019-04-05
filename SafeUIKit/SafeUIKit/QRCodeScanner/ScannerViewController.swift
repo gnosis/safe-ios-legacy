@@ -11,6 +11,10 @@ protocol ScannerDelegate: class {
     func didScan(_ code: String) throws -> Bool
 }
 
+enum ScannerTrackingEvent: String, ScreenTrackingEvent {
+    case error = "Onboarding_2FAScanError"
+}
+
 class ScannerViewController: UIViewController {
 
     enum Strings {
@@ -87,6 +91,7 @@ class ScannerViewController: UIViewController {
     }
 
     private func show(error: Error) {
+        Tracker.shared.track(event: ScannerTrackingEvent.error)
         let alert = UIAlertController(title: Strings.errorTitle,
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)

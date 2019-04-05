@@ -7,6 +7,27 @@ import SafeUIKit
 
 final class FundsTransferReviewTransactionViewController: ReviewTransactionViewController {
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackScreenEvent(hasBrowserExtension ? .review2FARequired : .review)
+    }
+
+    override func didConfirm() {
+        trackScreenEvent(.review2FAConfirmed)
+    }
+
+    override func didReject() {
+        trackScreenEvent(.review2FARejected)
+    }
+
+    override func didSubmit() {
+        trackScreenEvent(.success)
+    }
+
+    private func trackScreenEvent(_ type: SendTrackingEvent.ScreenName) {
+        trackEvent(SendTrackingEvent(type, token: tx.amountTokenData.address, tokenName: tx.amountTokenData.code))
+    }
+
     override func createCells() {
         let indexPath = IndexPathIterator()
         cells[indexPath.next()] = transferHeaderCell()

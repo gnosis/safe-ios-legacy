@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import Common
 import SafeUIKit
 import MultisigWalletApplication
 import MultisigWalletApplication
@@ -30,6 +31,9 @@ final class ConfirmMnemonicViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var firstWordTextInput: VerifiableInput!
     @IBOutlet weak var secondWordTextInput: VerifiableInput!
+
+    /// If not nil, then event will be tracked. Otherwise, onboarding events are automatically tracked.
+    var screenTrackingEvent: Trackable?
 
     private var activeInput: VerifiableInput?
 
@@ -75,8 +79,12 @@ final class ConfirmMnemonicViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(OnboardingEvent.confirmRecovery)
-        trackEvent(OnboardingTrackingEvent.enterSeed)
+        if let event = screenTrackingEvent {
+            trackEvent(event)
+        } else {
+            trackEvent(OnboardingEvent.confirmRecovery)
+            trackEvent(OnboardingTrackingEvent.enterSeed)
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {

@@ -55,6 +55,10 @@ class AddTokenTableViewControllerTests: XCTestCase {
         XCTAssertEqual(height, AddTokenHeaderView.height)
     }
 
+    func test_tracking() {
+        XCTAssertTracksAppearance(in: controller, MainTrackingEvent.addToken)
+    }
+
 }
 
 

@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import Common
 
 protocol RecoveryPhraseInputViewControllerDelegate: class {
 
@@ -32,6 +33,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
     var placeholder: String = LocalizedString("recovery.phrase.placeholder",
                                               comment: "Placeholder for the recovery phrase")
 
+    var screenTrackingEvent: Trackable?
     var text: String? {
         didSet {
             update()
@@ -67,6 +69,13 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
         placeholderLabel.textColor = ColorName.darkSlateBlue.color.withAlphaComponent(0.7)
         view.setNeedsUpdateConstraints()
         update()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let event = screenTrackingEvent {
+            trackEvent(event)
+        }
     }
 
     override func willMove(toParent parent: UIViewController?) {

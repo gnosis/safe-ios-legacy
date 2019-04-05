@@ -191,4 +191,18 @@ class MainFlowCoordinatorTests: SafeTestCase {
         return data
     }
 
+    func test_tracking() {
+        let vc = mainFlowCoordinator.saveMnemonicViewController()
+        vc.recoveryModeEnabled = true
+        ethereumService.prepareToGenerateExternallyOwnedAccount(address: "some", mnemonic: ["one", "two"])
+        vc.loadViewIfNeeded()
+
+        let enterPhraseEvent = vc.screenTrackingEvent as? ReplaceRecoveryPhraseTrackingEvent
+        XCTAssertEqual(enterPhraseEvent, .showSeed)
+
+        let confirmPhraseEvent = mainFlowCoordinator.confirmMnemonicViewController(vc).screenTrackingEvent
+            as? ReplaceRecoveryPhraseTrackingEvent
+        XCTAssertEqual(confirmPhraseEvent, .enterSeed)
+    }
+
 }

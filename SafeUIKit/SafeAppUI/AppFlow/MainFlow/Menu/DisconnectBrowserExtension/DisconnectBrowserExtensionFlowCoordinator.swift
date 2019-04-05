@@ -15,12 +15,8 @@ class DisconnectBrowserExtensionFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
-        let vc = RBEIntroViewController.create()
-        vc.starter = ApplicationServiceRegistry.disconnectExtensionService
-        vc.delegate = self
-        vc.setContent(.disconnectExtension)
-        introVC = vc
-        push(vc)
+        introVC = introViewController()
+        push(introVC)
     }
 
 }
@@ -34,12 +30,40 @@ extension IntroContentView.Content {
 
 }
 
+/// Screen constructors in the flow
+extension DisconnectBrowserExtensionFlowCoordinator {
+
+    func introViewController() -> RBEIntroViewController {
+        let vc = RBEIntroViewController.create()
+        vc.starter = ApplicationServiceRegistry.disconnectExtensionService
+        vc.delegate = self
+        vc.setContent(.disconnectExtension)
+        vc.screenTrackingEvent = DisconnectBrowserExtensionTrackingEvent.intro
+        return vc
+    }
+
+    func phraseInputViewController() -> RecoveryPhraseInputViewController {
+        let controller = RecoveryPhraseInputViewController.create(delegate: self)
+        controller.screenTrackingEvent = DisconnectBrowserExtensionTrackingEvent.enterSeed
+        return controller
+    }
+
+    func reviewViewController() -> RBEReviewTransactionViewController {
+        let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
+        vc.titleString = LocalizedString("disconnect_extension.review.title", comment: "Title for the header")
+        vc.detailString = LocalizedString("disconnect_extension.review.detail", comment: "Detail for the header")
+        vc.screenTrackingEvent = DisconnectBrowserExtensionTrackingEvent.review
+        vc.successTrackingEvent = DisconnectBrowserExtensionTrackingEvent.success
+        return vc
+    }
+
+}
+
 extension DisconnectBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate {
 
     func rbeIntroViewControllerDidStart() {
         self.transactionID = introVC!.transactionID
-        let controller = RecoveryPhraseInputViewController.create(delegate: self)
-        push(controller)
+        push(phraseInputViewController())
     }
 
 }
@@ -57,10 +81,7 @@ extension DisconnectBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewCont
     }
 
     func recoveryPhraseInputViewControllerDidFinish() {
-        let vc = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
-        vc.titleString = LocalizedString("disconnect_extension.review.title", comment: "Title for the header")
-        vc.detailString = LocalizedString("disconnect_extension.review.detail", comment: "Detail for the header")
-        push(vc)
+        push(reviewViewController())
     }
 
 }

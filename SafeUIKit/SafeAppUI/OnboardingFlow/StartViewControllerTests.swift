@@ -27,6 +27,10 @@ class StartViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.wasCalled)
     }
 
+    func test_tracking() {
+        XCTAssertTracksAppearance(in: vc, OnboardingTrackingEvent.welcome)
+    }
+
 }
 
 class MockStartViewControllerDelegate: StartViewControllerDelegate {

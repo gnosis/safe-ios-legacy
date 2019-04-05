@@ -66,6 +66,19 @@ class ConnectBrowserExtensionFlowCoordinatorTests: XCTestCase {
         XCTAssertTrue(fc.didExit)
     }
 
+    func test_tracking() {
+        mockWalletService.transactionData_output = TransactionData.tokenData(status: .readyToSubmit)
+
+        let introEvent = fc.introViewController().screenTrackingEvent as? ConnectBrowserExtensionTrackingEvent
+        XCTAssertEqual(introEvent, .intro)
+
+        let reviewScreenEvent = fc.reviewViewController().screenTrackingEvent as? ConnectBrowserExtensionTrackingEvent
+        XCTAssertEqual(reviewScreenEvent, .review)
+
+        let successEvent = fc.reviewViewController().successTrackingEvent as? ConnectBrowserExtensionTrackingEvent
+        XCTAssertEqual(successEvent, .success)
+    }
+
 }
 
 class MockConnectExtensionApplicationService: ConnectBrowserExtensionApplicationService {

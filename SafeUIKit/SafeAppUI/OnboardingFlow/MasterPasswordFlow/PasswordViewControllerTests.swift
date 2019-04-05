@@ -75,7 +75,6 @@ class PasswordViewControllerTests: SafeTestCase {
         XCTAssertFalse(authenticationService.isUserRegistered)
     }
 
-
     func test_whenRegistrationThrows_thenAlertIsShown() {
         authenticationService.prepareToThrowWhenRegisteringUser()
         prepareConfirmPasswordViewController()
@@ -84,6 +83,15 @@ class PasswordViewControllerTests: SafeTestCase {
         delay()
         XCTAssertNotNil(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController)
         XCTAssertTrue(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController is UIAlertController)
+    }
+
+    func test_whenSetPassword_thenTracks() {
+        XCTAssertTracksAppearance(in: vc, OnboardingTrackingEvent.setPassword)
+    }
+
+    func test_whenConfirmPassword_thenTracks() {
+        prepareConfirmPasswordViewController()
+        XCTAssertTracksAppearance(in: vc, OnboardingTrackingEvent.confirmPassword)
     }
 
 }

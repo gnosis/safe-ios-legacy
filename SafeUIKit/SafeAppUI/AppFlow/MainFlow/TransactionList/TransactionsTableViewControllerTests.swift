@@ -122,6 +122,10 @@ class TransactionsTableViewControllerTests: XCTestCase {
         XCTAssertTrue(service.verify())
     }
 
+    func test_tracking() {
+        XCTAssertTracksAppearance(in: controller, MainTrackingEvent.transactions)
+    }
+
 }
 
 extension TransactionGroupData {
