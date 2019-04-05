@@ -36,6 +36,8 @@ final class VerifyCurrentPasswordViewController: UIViewController {
         static let next = LocalizedString("next", comment: "Next button")
         static let header = LocalizedString("change_password.header", comment: "Header for change password screen")
         static let tryInText = LocalizedString("app.unlock.tryagain", comment: "Try again in")
+        static let currentPasswordPlaceholder = LocalizedString("change_password.current_password",
+                                                                comment: "Current password placeholder")
     }
 
     override func viewDidLoad() {
@@ -44,6 +46,8 @@ final class VerifyCurrentPasswordViewController: UIViewController {
         headerLabel.text = Strings.header
         passwordInput.isSecure = true
         passwordInput.delegate = self
+        passwordInput.textInput.placeholder = Strings.currentPasswordPlaceholder
+        _ = passwordInput.becomeFirstResponder()
         countdownStack.isHidden = true
         countdownLabel.setup(time: authenticationService.blockedPeriodDuration,
                              clock: clockService)
