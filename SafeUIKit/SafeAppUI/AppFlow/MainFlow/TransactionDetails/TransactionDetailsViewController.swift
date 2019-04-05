@@ -124,7 +124,7 @@ public class TransactionDetailsViewController: UIViewController {
         case .disconnectBrowserExtension: type = .disconnectBrowserExtension
         case .walletRecovery: type = .recoverSafe
         }
-        trackEvent(TransactionDetailTrackingEvent.transactionDetails(type))
+        trackEvent(TransactionDetailTrackingEvent(type: type))
     }
 
     private func reloadData() {

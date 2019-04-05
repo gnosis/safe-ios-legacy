@@ -159,6 +159,7 @@ class SafeCreationViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        trackEvent(OnboardingEvent.createSafe)
         trackEvent(OnboardingTrackingEvent.creationFee)
     }
 
@@ -395,6 +396,7 @@ extension SafeCreationViewController {
         override var showsSafeAddress: Bool { return true }
 
         override func didEnter() {
+            Tracker.shared.track(event: OnboardingEvent.safeFeePaid)
             Tracker.shared.track(event: OnboardingTrackingEvent.feePaid)
         }
     }

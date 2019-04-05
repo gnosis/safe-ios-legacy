@@ -75,6 +75,7 @@ final class ConfirmMnemonicViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        trackEvent(OnboardingEvent.confirmRecovery)
         trackEvent(OnboardingTrackingEvent.enterSeed)
     }
 

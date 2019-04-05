@@ -16,20 +16,18 @@ enum MainTrackingEvent: String, ScreenTrackingEvent {
 
 }
 
-enum TransactionDetailTrackingEvent: Trackable {
+struct TransactionDetailTrackingEvent: Trackable {
 
-    case transactionDetails(TransactionDetailType)
-
-    var rawValue: String { return "TransactionDetail" }
-
-    var name: String { return Tracker.screenViewEventName }
-
+    var type: TransactionDetailType
+    var eventName: String { return Tracker.screenViewEventName }
+    var rawValue: String { preconditionFailure("not used") }
     var parameters: [String: Any]? {
-        switch self {
-        case .transactionDetails(let type):
-            return [Tracker.screenNameEventParameterName: rawValue,
-                    "transaction_type": type.rawValue]
-        }
+        return [Tracker.screenNameEventParameterName: "TransactionDetail",
+                "transaction_type": type.rawValue]
+    }
+
+    public init(type: TransactionDetailType) {
+        self.type = type
     }
 
 }

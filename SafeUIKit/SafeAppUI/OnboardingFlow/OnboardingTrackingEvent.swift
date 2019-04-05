@@ -5,11 +5,9 @@
 import Foundation
 import Common
 
-/// Tracking events occuring during onboarding flows.
-@available(*, deprecated, message: "Please use OnboardingTrackingEvent instead")
+/// These events are still used for funnel testing. They will be removed.
 enum OnboardingEvent: String, Trackable {
 
-    // These events are still used for funnel testing. They will be removed.
     case welcome                = "Onboarding_Welcome"
     case setPassword            = "Onboarding_SetPassword"
     case confirmPassword        = "Onboarding_ConfirmPassword"
@@ -22,6 +20,7 @@ enum OnboardingEvent: String, Trackable {
 
 }
 
+/// Tracking events occuring during onboarding flows.
 enum OnboardingTrackingEvent: String, ScreenTrackingEvent {
 
     case welcome                = "Onboarding_Welcome"

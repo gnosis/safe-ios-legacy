@@ -94,6 +94,7 @@ final class SaveMnemonicViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        trackEvent(OnboardingEvent.recoveryPhrase)
         trackEvent(OnboardingTrackingEvent.showSeed)
     }
 
