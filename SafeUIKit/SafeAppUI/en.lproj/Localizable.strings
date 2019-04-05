@@ -25,6 +25,9 @@
 /* Cancel */
 "cancel" = "cancel";
 
+/* Current password placeholder */
+"change_password.current_password" = "Current password";
+
 /* Header for change password screen */
 "change_password.header" = "Enter current password";
 
