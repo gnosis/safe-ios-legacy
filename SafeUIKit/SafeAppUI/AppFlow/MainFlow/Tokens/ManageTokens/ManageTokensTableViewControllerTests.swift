@@ -45,6 +45,10 @@ class ManageTokensTableViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.didHide)
     }
 
+    func test_tracking() {
+        XCTAssertTracksAppearance(in: controller, MainTrackingEvent.manageTokens)
+    }
+
 }
 
 private extension ManageTokensTableViewControllerTests {

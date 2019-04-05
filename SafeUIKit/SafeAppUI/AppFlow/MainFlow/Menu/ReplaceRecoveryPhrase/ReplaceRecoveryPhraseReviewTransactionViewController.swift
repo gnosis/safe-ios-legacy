@@ -13,6 +13,15 @@ final class ReplaceRecoveryPhraseReviewTransactionViewController: ReviewTransact
                                             comment: "Detail for the header in review screen")
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(ReplaceRecoveryPhraseTrackingEvent.review)
+    }
+
+    override func didSubmit() {
+        trackEvent(ReplaceRecoveryPhraseTrackingEvent.success)
+    }
+
     override func createCells() {
         let indexPath = IndexPathIterator()
         cells[indexPath.next()] = replaceRecoveryPhraseHeaderCell()

@@ -76,6 +76,10 @@ class NewSafeViewControllerTests: SafeTestCase {
         XCTAssertTrue(delegate.nextSelected)
     }
 
+    func test_tracking() {
+        XCTAssertTracksAppearance(in: controller, OnboardingTrackingEvent.configure)
+    }
+
 }
 
 extension NewSafeViewControllerTests {

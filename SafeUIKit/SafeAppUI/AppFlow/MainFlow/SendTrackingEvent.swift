@@ -16,10 +16,13 @@ struct SendTrackingEvent: Trackable {
         case success                = "Send_Success"
     }
 
+    static let tokenParameterName = "token"
+    static let tokenNameParameterName = "token_name"
+
     var token: String
     var tokenName: String
     var screenName: ScreenName
-    var name: String { return Tracker.screenViewEventName }
+    var eventName: String { return Tracker.screenViewEventName }
     var rawValue: String { preconditionFailure("not used") }
 
     init(_ screenID: ScreenName, token: String, tokenName: String) {
@@ -30,8 +33,8 @@ struct SendTrackingEvent: Trackable {
 
     var parameters: [String: Any]? {
         return [Tracker.screenNameEventParameterName: screenName.rawValue,
-                "token": token,
-                "token_name": tokenName]
+                SendTrackingEvent.tokenParameterName: token,
+                SendTrackingEvent.tokenNameParameterName: tokenName]
     }
 
 }

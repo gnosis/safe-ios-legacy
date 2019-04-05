@@ -23,7 +23,7 @@ public class ReviewTransactionViewController: UITableViewController {
     /// Confirmation cell is always last if present
     internal let confirmationCell = TransactionConfirmationCell()
 
-    private var hasBrowserExtension: Bool {
+    var hasBrowserExtension: Bool {
         return ApplicationServiceRegistry.walletService.ownerAddress(of: .browserExtension) != nil
     }
 
@@ -144,11 +144,21 @@ public class ReviewTransactionViewController: UITableViewController {
             confirmationCell.transactionConfirmationView.status = .pending
         case .readyToSubmit:
             confirmationCell.transactionConfirmationView.status = .confirmed
+            didConfirm()
         case .rejected:
             confirmationCell.transactionConfirmationView.status = .rejected
+            didReject()
         default:
             confirmationCell.transactionConfirmationView.status = .undefined
         }
+    }
+
+    func didConfirm() {
+        // override in subclass
+    }
+
+    func didReject() {
+        // override in subclass
     }
 
     private func updateSubmitButton() {
@@ -206,11 +216,16 @@ public class ReviewTransactionViewController: UITableViewController {
         DispatchQueue.main.sync {
             switch self.tx.status {
             case .success, .pending, .failed, .discarded:
+                didSubmit()
                 self.delegate.didFinishReview()
             default:
                 self.updateConfirmationCell()
             }
         }
+    }
+
+    func didSubmit() {
+        // override in subclass
     }
 
     // MARK: - Submitting transaction

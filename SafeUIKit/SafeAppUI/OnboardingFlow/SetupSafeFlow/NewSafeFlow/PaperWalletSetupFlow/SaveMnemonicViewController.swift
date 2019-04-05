@@ -4,6 +4,7 @@
 
 import UIKit
 import SafeUIKit
+import Common
 import IdentityAccessApplication
 import MultisigWalletApplication
 import MultisigWalletApplication
@@ -48,6 +49,9 @@ final class SaveMnemonicViewController: UIViewController {
     @IBOutlet weak var copyButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var warningLabel: UILabel!
+
+    /// If nil, then onboarding tracking will be used. Otherwise, this event.
+    var screenTrackingEvent: Trackable?
 
     private(set) weak var delegate: SaveMnemonicDelegate?
     private var ethereumService: EthereumApplicationService {
@@ -94,8 +98,12 @@ final class SaveMnemonicViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(OnboardingEvent.recoveryPhrase)
-        trackEvent(OnboardingTrackingEvent.showSeed)
+        if let event = screenTrackingEvent {
+            trackEvent(event)
+        } else {
+            trackEvent(OnboardingEvent.recoveryPhrase)
+            trackEvent(OnboardingTrackingEvent.showSeed)
+        }
     }
 
     func willBeDismissed() {

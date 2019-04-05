@@ -6,7 +6,6 @@ import UIKit
 import MultisigWalletApplication
 import IdentityAccessApplication
 import Common
-import SafariServices
 
 final class MainFlowCoordinator: FlowCoordinator {
 
@@ -51,25 +50,6 @@ final class MainFlowCoordinator: FlowCoordinator {
         push(reviewVC)
     }
 
-    private func openInSafari(_ url: URL?) {
-        guard let url = url else {
-            showURLNotAvailable()
-            return
-        }
-        let safari = SFSafariViewController(url: url)
-        presentModally(safari)
-    }
-
-    // TODO: clean up the strings
-    private func showURLNotAvailable() {
-        let message = LocalizedString("alert.error.url_unavailable", comment: "URL not available message")
-        let title = LocalizedString("alert.error.url_unavailable.title", comment: "Error title")
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okTitle = LocalizedString("recovery.address.failed_alert.ok", comment: "OK button title")
-        let okAction = UIAlertAction(title: okTitle, style: .default)
-        controller.addAction(okAction)
-        presentModally(controller)
-    }
 }
 
 extension MainFlowCoordinator: MainViewControllerDelegate {
@@ -124,8 +104,7 @@ extension MainFlowCoordinator: TransactionsTableViewControllerDelegate {
 extension MainFlowCoordinator: TransactionDetailsViewControllerDelegate {
 
     func showTransactionInExternalApp(from controller: TransactionDetailsViewController) {
-        let transactionID = controller.transactionID!
-        openInSafari(ApplicationServiceRegistry.walletService.transactionURL(transactionID))
+        SupportFlowCoordinator(from: self).openTransactionBrowser(controller.transactionID!)
     }
 
 }
@@ -164,11 +143,11 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
     }
 
     func didSelectTermsOfUse() {
-        openInSafari(ApplicationServiceRegistry.walletService.configuration.termsOfUseURL)
+        SupportFlowCoordinator(from: self).openTermsOfUse()
     }
 
     func didSelectPrivacyPolicy() {
-        openInSafari(ApplicationServiceRegistry.walletService.configuration.privacyPolicyURL)
+        SupportFlowCoordinator(from: self).openPrivacyPolicy()
     }
 
     func didSelectConnectBrowserExtension() {
@@ -181,7 +160,7 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
 
     func didSelectReplaceRecoveryPhrase() {
         saveCheckpoint()
-        replaceRecoveryController = ReplaceRecoveryPhraseViewController.create(delegate: self)
+        replaceRecoveryController = mnemonicIntroViewController()
         push(replaceRecoveryController)
     }
 
@@ -191,10 +170,33 @@ extension MainFlowCoordinator: MenuTableViewControllerDelegate {
 
 }
 
+/// Replace phrase screens
+extension MainFlowCoordinator {
+
+    func mnemonicIntroViewController() -> ReplaceRecoveryPhraseViewController {
+        return ReplaceRecoveryPhraseViewController.create(delegate: self)
+    }
+
+    func saveMnemonicViewController() -> SaveMnemonicViewController {
+        let controller = SaveMnemonicViewController.create(delegate: self, isRecoveryMode: true)
+        controller.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.showSeed
+        return controller
+    }
+
+    func confirmMnemonicViewController(_ vc: SaveMnemonicViewController) -> ConfirmMnemonicViewController {
+        let controller = ConfirmMnemonicViewController.create(delegate: self,
+                                                              account: vc.account,
+                                                              isRecoveryMode: true)
+        controller.screenTrackingEvent = ReplaceRecoveryPhraseTrackingEvent.enterSeed
+        return controller
+    }
+
+}
+
 extension MainFlowCoordinator: ReplaceRecoveryPhraseViewControllerDelegate {
 
     func replaceRecoveryPhraseViewControllerDidStart() {
-        let controller = SaveMnemonicViewController.create(delegate: self, isRecoveryMode: true)
+        let controller = saveMnemonicViewController()
         push(controller) {
             controller.willBeDismissed()
         }
@@ -205,10 +207,7 @@ extension MainFlowCoordinator: ReplaceRecoveryPhraseViewControllerDelegate {
 extension MainFlowCoordinator: SaveMnemonicDelegate {
 
     func saveMnemonicViewControllerDidPressContinue(_ vc: SaveMnemonicViewController) {
-        let controller = ConfirmMnemonicViewController.create(delegate: self,
-                                                              account: vc.account,
-                                                              isRecoveryMode: true)
-        push(controller)
+        push(confirmMnemonicViewController(vc))
     }
 
 }

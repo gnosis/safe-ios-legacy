@@ -3,6 +3,8 @@
 //
 
 import Foundation
+import UIKit
+import Common
 
 public final class RBEReviewTransactionViewController: ReviewTransactionViewController {
 
@@ -10,8 +12,23 @@ public final class RBEReviewTransactionViewController: ReviewTransactionViewCont
                                       comment: "Title for the header in review screen.")
     var detailString = LocalizedString("transaction.replace_browser_extension.description",
                                        comment: "Detail for header in review screen.")
+    var screenTrackingEvent: Trackable?
+    var successTrackingEvent: Trackable?
 
     typealias SpacingCell = UITableViewCell
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let event = screenTrackingEvent {
+            trackEvent(event)
+        }
+    }
+
+    override func didSubmit() {
+        if let event = successTrackingEvent {
+            trackEvent(event)
+        }
+    }
 
     override func createCells() {
         let indexPath = IndexPathIterator()

@@ -27,6 +27,11 @@ class RBEIntroViewControllerActionsTests: RBEIntroViewControllerBaseTestCase {
         XCTAssertTrue(vc[keyPath: spyKeyPath], "Item's action was not invoked", file: file, line: line)
     }
 
+    func test_tracking() {
+        vc.screenTrackingEvent = TestScreenTrackingEvent.view
+        XCTAssertTracksAppearance(in: vc, TestScreenTrackingEvent.view)
+    }
+
 }
 
 extension UIApplication {

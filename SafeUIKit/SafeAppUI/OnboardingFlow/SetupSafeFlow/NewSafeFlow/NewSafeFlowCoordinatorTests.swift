@@ -153,6 +153,14 @@ class NewSafeFlowCoordinatorTests: SafeTestCase {
         assertShowingPendingVC(shouldShow: false)
     }
 
+    func test_tracking() {
+        let screenEvent = newSafeFlowCoordinator.newPairController().screenTrackingEvent as? OnboardingTrackingEvent
+        XCTAssertEqual(screenEvent, .twoFA)
+
+        let scanEvent = newSafeFlowCoordinator.newPairController().scanTrackingEvent as? OnboardingTrackingEvent
+        XCTAssertEqual(scanEvent, .twoFAScan)
+    }
+
 }
 
 private extension NewSafeFlowCoordinatorTests {

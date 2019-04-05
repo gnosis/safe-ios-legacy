@@ -21,7 +21,6 @@ class SetupSafeOptionsViewControllerTests: SafeTestCase {
     func test_canCreate() {
         XCTAssertNotNil(vc.headerLabel)
         XCTAssertNotNil(vc.newSafeButton)
-//        XCTAssertNotNil(vc.restoreSafeButton)
     }
 
     func test_whenNewSafeButtonPressed_thenDelegateCalled() {
@@ -43,6 +42,9 @@ class SetupSafeOptionsViewControllerTests: SafeTestCase {
         XCTAssertFalse(walletService.didCreateNewDraft)
     }
 
+    func test_tracking() {
+        XCTAssertTracksAppearance(in: vc, OnboardingTrackingEvent.createOrRestore)
+    }
 }
 
 final class MockSetupSafeOptionsDelegate: SetupSafeOptionsDelegate {

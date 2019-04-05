@@ -39,6 +39,11 @@ class AddressInputViewController: BaseInputViewController {
         addressInput.addressInputDelegate = self
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(RecoverSafeTrackingEvent.inputAddress)
+    }
+
     override func next(_ sender: Any) {
         delegate?.addressInputViewControllerDidPressNext()
     }

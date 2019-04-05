@@ -29,6 +29,10 @@ class SafeCreationViewControllerTests: SafeTestCase {
         XCTAssertTrue(controller.cancelButton.isEnabled)
     }
 
+    func test_tracking() {
+        XCTAssertTracksAppearance(in: controller, OnboardingTrackingEvent.creationFee)
+    }
+
     // TODO: re-enable
 //    func test_whenStateChanges_thenUpdatesControls() {
 //        class MyState: PendingSafeViewController.State {

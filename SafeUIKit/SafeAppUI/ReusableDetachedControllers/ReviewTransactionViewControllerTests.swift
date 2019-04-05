@@ -10,17 +10,7 @@ import Common
 import SafeUIKit
 import CommonTestSupport
 
-class ReviewTransactionViewControllerTests: XCTestCase {
-
-    let service = MockWalletApplicationService()
-    // swiftlint:disable:next weak_delegate
-    let delegate = MockReviewTransactionViewControllerDelegate()
-
-    override func setUp() {
-        super.setUp()
-        ApplicationServiceRegistry.put(service: service, for: WalletApplicationService.self)
-        ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
-    }
+class ReviewTransactionViewControllerTests: ReviewTransactionViewControllerBaseTestCase {
 
     // MARK: - Layout
 

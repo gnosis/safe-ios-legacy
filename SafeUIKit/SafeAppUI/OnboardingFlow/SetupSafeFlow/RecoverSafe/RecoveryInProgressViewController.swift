@@ -52,6 +52,7 @@ public class RecoveryInProgressViewController: UIViewController {
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        trackEvent(RecoverSafeTrackingEvent.feePaid)
         guard !isAnimatingProgress else { return }
         isAnimatingProgress = true
         UIView.animate(withDuration: 120,

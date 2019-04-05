@@ -42,6 +42,14 @@ class ScannerViewControllerTests: XCTestCase {
         XCTAssertEqual(delegate.receivedCodes, ["first"])
     }
 
+    func test_whenShowsError_thenTracksIt() {
+        XCTAssertTracks { handler in
+            delegate.shouldThrow = true
+            controller.barcodesHandler(multipleCodes)
+            XCTAssertEqual(handler.screenName(at: 0), ScannerTrackingEvent.error.rawValue)
+        }
+    }
+
     func test_whenStopsAndThenHandlerCalled_thenIgnoresHandling() {
         delegate.stopsAfterFirstScan = true
         controller.barcodesHandler(multipleCodes)
