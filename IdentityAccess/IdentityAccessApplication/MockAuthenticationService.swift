@@ -63,7 +63,11 @@ public class MockAuthenticationService: AuthenticationApplicationService {
         return isUserRegistered && userAuthenticated && !isAuthenticationBlocked
     }
 
+    public var shouldThrowDuringAuthentication = false
     public override func authenticateUser(_ request: AuthenticationRequest) throws -> AuthenticationResult {
+        if shouldThrowDuringAuthentication {
+            throw Error.error
+        }
         didRequestBiometricAuthentication = !request.method.isDisjoint(with: .biometry)
         didRequestPasswordAuthentication = request.method.contains(.password)
         userAuthenticated = authenticationAllowed && !authenticationBlocked

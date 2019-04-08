@@ -38,9 +38,7 @@ class ChangePasswordFlowCoordinatorTests: SafeTestCase {
         authenticationService.shouldThrowDuringUpdatePassword = true
         createWindow(flowCoordinator.navigationController)
         flowCoordinator.didEnterNewPassword("NewPassword")
-        delay()
-        XCTAssertNotNil(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController)
-        XCTAssertTrue(UIApplication.shared.keyWindow?.rootViewController?.presentedViewController is UIAlertController)
+        XCTAssertAlertShown()
     }
 
 }

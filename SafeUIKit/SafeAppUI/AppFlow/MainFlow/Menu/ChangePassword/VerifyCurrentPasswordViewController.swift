@@ -72,7 +72,7 @@ final class VerifyCurrentPasswordViewController: UIViewController {
         }
     }
 
-    @objc private func proceed() {
+    @objc func proceed() {
         verifiableInputDidReturn(passwordInput)
     }
 

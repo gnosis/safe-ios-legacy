@@ -8,19 +8,14 @@ import IdentityAccessApplication
 import IdentityAccessImplementations
 import CommonTestSupport
 
-class VerifyCurrentPasswordViewControllerTests: XCTestCase {
+class VerifyCurrentPasswordViewControllerTests: SafeTestCase {
 
     var vc: VerifyCurrentPasswordViewController!
-    let authenticationService = MockAuthenticationService()
-    let clock = MockClockService()
     // swiftlint:disable:next weak_delegate
     let verifyDelegate = MockVerifyCurrentPasswordViewControllerDelegate()
 
     override func setUp() {
         super.setUp()
-        IdentityAccessApplication.ApplicationServiceRegistry.put(service: authenticationService,
-                                                                 for: AuthenticationApplicationService.self)
-        IdentityAccessApplication.ApplicationServiceRegistry.put(service: clock, for: Clock.self)
         vc = VerifyCurrentPasswordViewController.create(delegate: verifyDelegate)
         vc.loadViewIfNeeded()
     }
@@ -43,11 +38,35 @@ class VerifyCurrentPasswordViewControllerTests: XCTestCase {
         XCTAssertTrue(verifyDelegate.didVerify)
     }
 
+    func test_whenProceeding_thenDelegareCalled() {
+        authenticationService.allowAuthentication()
+        vc.proceed()
+        XCTAssertTrue(verifyDelegate.didVerify)
+    }
+
     func test_whenAccountIsBlocked_thenShowsCountdown() throws {
         authenticationService.blockAuthentication()
         try authenticationService.configureBlockDuration(5)
         hitReturn()
         assertShowsCountdown()
+    }
+
+    func test_whenAuthenticatorThrows_thenErrorIsShown() {
+        authenticationService.shouldThrowDuringAuthentication = true
+        createWindow(vc)
+        hitReturn()
+        XCTAssertAlertShown()
+    }
+
+    func test_whenCountdownStops_thenPasswordEntryEnabled() {
+        authenticationService.blockAuthentication()
+        hitReturn()
+        XCTAssertFalse(vc.countdownStack.isHidden)
+        XCTAssertFalse(vc.passwordInput.isEnabled)
+        clock.countdownTickBlock!(0)
+        delay()
+        XCTAssertTrue(vc.countdownStack.isHidden)
+        XCTAssertTrue(vc.passwordInput.isEnabled)
     }
 
 }
