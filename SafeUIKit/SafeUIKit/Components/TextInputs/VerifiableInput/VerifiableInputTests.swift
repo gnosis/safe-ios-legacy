@@ -23,7 +23,7 @@ class VerifiableInputTests: XCTestCase {
     }
 
     func test_whenInitiated_containsNoRules() {
-        XCTAssertEqual(input.ruleLabelCount, 0)
+        XCTAssertEqual(input.stackView.arrangedSubviews.count, 1)
     }
 
     func test_isSecure_whenModified_thenValueIsStored() {
@@ -56,6 +56,7 @@ class VerifiableInputTests: XCTestCase {
         input.type("a")
         XCTAssertEqual(input.ruleLabel(at: 0).isHidden, true)
         XCTAssertEqual(input.ruleLabel(at: 1).isHidden, false)
+        XCTAssertEqual(input.textInput.inputState, .error)
     }
 
     func test_whenLastSymbolErased_thenAllRuleLabelsBecomeInactive() {
@@ -65,6 +66,7 @@ class VerifiableInputTests: XCTestCase {
         input.type("")
         XCTAssertEqual(input.ruleLabel(at: 0).status, .inactive)
         XCTAssertEqual(input.ruleLabel(at: 1).status, .inactive)
+        XCTAssertEqual(input.textInput.inputState, .normal)
     }
 
     func test_whenTextIsCleared_thenAllRuleLabelsAreSetInInactiveState() {
@@ -72,6 +74,7 @@ class VerifiableInputTests: XCTestCase {
         input.type("a")
         input.clear()
         XCTAssertEqual(input.ruleLabel(at: 0).status, .inactive)
+        XCTAssertEqual(input.textInput.inputState, .normal)
     }
 
     func test_whenNoRules_thenReturnKeyEnabled() {
@@ -83,6 +86,12 @@ class VerifiableInputTests: XCTestCase {
         input.addRule("test2") { _ in true }
         input.type("a")
         XCTAssertTrue(input.isReturnKeyEnabled)
+        XCTAssertEqual(input.textInput.inputState, .success)
+    }
+
+    func test_whenNoRules_thenInputStateIsNormal() {
+        input.type("a")
+        XCTAssertEqual(input.textInput.inputState, .normal)
     }
 
     func test_whenReturnKeyPressed_thenCallsDelegate() {
@@ -176,7 +185,7 @@ class TestableVerifiableInput: VerifiableInput {
 extension VerifiableInput {
 
     var ruleLabelCount: Int {
-        return stackView.arrangedSubviews.count - 1
+        return stackView.arrangedSubviews.count - 2
     }
 
     var isReturnKeyEnabled: Bool {
@@ -184,7 +193,7 @@ extension VerifiableInput {
     }
 
     func ruleLabel(at index: Int) -> RuleLabel {
-        return stackView.arrangedSubviews[index + 1] as! RuleLabel
+        return stackView.arrangedSubviews[index + 2] as! RuleLabel
     }
 
     func ruleLabel(by indentifier: String) -> RuleLabel? {
@@ -196,7 +205,7 @@ extension VerifiableInput {
     }
 
     func type(_ text: String) {
-        _ = textField(textInput, shouldChangeCharactersIn: NSRange(), replacementString: text)
+        self.text = text
     }
 
     func beginEditing() {

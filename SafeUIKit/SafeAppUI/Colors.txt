@@ -3,7 +3,7 @@ tomato: #f02525
 sky_blue: #5ac8fa
 indigo_blue: #401d9c
 green_teal: #09a862
-bluey_grey: #a2a8ba
+lightGreyBlue: #a2a8ba
 battleship_grey: #65707e
 dark_slate_blue: #21435a
 aqua_blue: #00b8e0

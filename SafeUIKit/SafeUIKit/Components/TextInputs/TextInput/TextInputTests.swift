@@ -15,11 +15,11 @@ class TextInputTests: XCTestCase {
         XCTAssertEqual(textInput.style, .white)
         XCTAssertEqual(textInput.leftImage, nil)
         XCTAssertEqual(textInput.leftImageURL, nil)
-        XCTAssertEqual(textInput.font, UIFont.systemFont(ofSize: 17))
-        XCTAssertEqual(textInput.layer.borderColor, UIColor.white.cgColor)
-        XCTAssertEqual(textInput.layer.cornerRadius, 6)
-        XCTAssertEqual(textInput.layer.borderWidth, 1)
-        XCTAssertTrue(textInput.rightView is UIButton)
+        XCTAssertEqual(textInput.font, UIFont.systemFont(ofSize: 16))
+        XCTAssertEqual(textInput.layer.borderColor, ColorName.paleLilac.color.cgColor)
+        XCTAssertEqual(textInput.layer.cornerRadius, 10)
+        XCTAssertEqual(textInput.layer.borderWidth, 2)
+        XCTAssertNil(textInput.rightView)
         XCTAssertEqual(textInput.text, "")
     }
 
@@ -44,6 +44,29 @@ class TextInputTests: XCTestCase {
         XCTAssertNil(textInput.attributedPlaceholder)
         textInput.placeholder = "placeholder"
         XCTAssertNotNil(textInput.attributedPlaceholder)
+    }
+
+    func test_whenShowsClearButton_thenItPresent() {
+        XCTAssertNil(textInput.rightView)
+        textInput.hideClearButton = false
+        XCTAssertTrue(textInput.rightView is UIButton)
+    }
+
+    func test_whenSuccessStateAndNoClearButton_thenShowsImageRightView() {
+        textInput.inputState = .success
+        XCTAssertTrue(textInput.rightView is UIImageView)
+    }
+
+    func test_whenSuccessStateAndThereClearButton_thenShowsButtonRightView() {
+        textInput.hideClearButton = false
+        textInput.inputState = .success
+        XCTAssertTrue(textInput.rightView is UIButton)
+    }
+
+    func test_whenDoesNotShowSuccessIndicator_thenItIsHidden() {
+        textInput.showSuccessIndicator = false
+        textInput.inputState = .success
+        XCTAssertNil(textInput.rightView)
     }
 
 }

@@ -53,6 +53,13 @@ extension UIViewController {
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 enum StoryboardScene {
+  enum ChangePassword: StoryboardType {
+    static let storyboardName = "ChangePassword"
+
+    static let setupNewPasswordViewController = SceneType<SafeAppUI.SetupNewPasswordViewController>(storyboard: ChangePassword.self, identifier: "SetupNewPasswordViewController")
+
+    static let verifyCurrentPasswordViewController = SceneType<SafeAppUI.VerifyCurrentPasswordViewController>(storyboard: ChangePassword.self, identifier: "VerifyCurrentPasswordViewController")
+  }
   enum Main: StoryboardType {
     static let storyboardName = "Main"
 

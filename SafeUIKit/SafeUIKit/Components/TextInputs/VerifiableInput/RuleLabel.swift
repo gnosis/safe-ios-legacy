@@ -33,9 +33,13 @@ final class RuleLabel: UIView {
         }
     }
 
-    convenience init(text: String, rule: ((String) -> Bool)? = nil) {
+    convenience init(text: String, displayIcon: Bool = true, rule: ((String) -> Bool)? = nil) {
         self.init(frame: .zero)
         self.label.text = text
+        if !displayIcon {
+            imageView.removeFromSuperview()
+            imageView = nil
+        }
         self.rule = rule
         update()
     }
@@ -53,6 +57,7 @@ final class RuleLabel: UIView {
         loadContentsFromNib()
         backgroundColor = .clear
         wrapperView.backgroundColor = .clear
+        label.textColor = ColorName.battleshipGrey.color
     }
 
     private func loadContentsFromNib() {
@@ -79,18 +84,32 @@ final class RuleLabel: UIView {
     }
 
     private func update() {
-        imageView.image = image(for: status)
-        label.accessibilityValue = [status.localizedDescription, label.text].compactMap { $0 }.joined(separator: " ")
+        updateImage()
+        updateLabel()
     }
 
-    private func image(for status: RuleStatus) -> UIImage {
+    private func updateImage() {
+        guard imageView != nil else { return }
         switch status {
         case .error:
-            return Asset.TextInputs.errorIcon.image
+            imageView.image = Asset.TextInputs.errorIcon.image
         case .inactive:
-            return Asset.TextInputs.defaultIcon.image
+            imageView.image = Asset.TextInputs.defaultIcon.image
         case .success:
-            return Asset.TextInputs.successIcon.image
+            imageView.image = Asset.TextInputs.successIcon.image
+        }
+    }
+
+    private func updateLabel() {
+        label.accessibilityValue = [status.localizedDescription, label.text].compactMap { $0 }.joined(separator: " ")
+        guard imageView != nil else { return }
+        switch status {
+        case .error:
+            label.textColor = ColorName.tomato.color
+        case .inactive:
+            label.textColor = ColorName.battleshipGrey.color
+        case .success:
+            label.textColor = ColorName.greenTeal.color
         }
     }
 

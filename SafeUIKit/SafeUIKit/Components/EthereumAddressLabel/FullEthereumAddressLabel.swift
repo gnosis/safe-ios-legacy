@@ -19,7 +19,7 @@ public class FullEthereumAddressLabel: BaseCustomLabel {
         formatter.truncationMode = .off
         formatter.headLength = 2
         formatter.tailLength = 4
-        formatter.bodyAttributes = [.foregroundColor: ColorName.blueyGrey.color]
+        formatter.bodyAttributes = [.foregroundColor: ColorName.lightGreyBlue.color]
         formatter.headAttributes = [.foregroundColor: UIColor.black]
         formatter.tailAttributes = formatter.headAttributes
         numberOfLines = 0

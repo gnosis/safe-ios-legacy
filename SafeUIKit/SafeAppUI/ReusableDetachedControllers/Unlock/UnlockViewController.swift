@@ -7,28 +7,6 @@ import SafeUIKit
 import IdentityAccessApplication
 import Common
 
-class Authenticator {
-
-    var user: String?
-
-    static let instance = Authenticator()
-
-    private init() {}
-
-    public func authenticate(_ request: AuthenticationRequest) throws -> AuthenticationResult {
-        let result = try ApplicationServiceRegistry.authenticationService.authenticateUser(request)
-        if case AuthenticationResult.success(userID: let userID) = result {
-            user = userID
-        }
-        return result
-    }
-
-    public func registerUser(password: String) throws {
-        try ApplicationServiceRegistry.authenticationService.registerUser(password: password)
-        _ = try authenticate(.password(password))
-    }
-}
-
 public final class UnlockViewController: UIViewController {
 
     @IBOutlet weak var tryAgainLabel: UILabel!
@@ -84,6 +62,7 @@ public final class UnlockViewController: UIViewController {
         cancelButton.isHidden = !showsCancelButton
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         cancelButton.setTitle(Strings.cancel, for: .normal)
+        cancelButton.setTitleColor(.white, for: .normal)
         cancelButton.accessibilityIdentifier = "cancel"
 
         startCountdownIfNeeded()

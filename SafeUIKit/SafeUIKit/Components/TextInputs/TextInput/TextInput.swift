@@ -8,7 +8,9 @@ import Kingfisher
 public class TextInput: UITextField {
 
     private let clearButton = UIButton(type: .custom)
+    private let successImageView = UIImageView()
     private let edgeViewPadding: CGFloat = 14
+
     public var textInputHeight: CGFloat = 50 {
         didSet {
             heightConstraint.constant = textInputHeight
@@ -24,7 +26,19 @@ public class TextInput: UITextField {
         case dimmed
     }
 
+    public enum TextInputState {
+        case normal
+        case error
+        case success
+    }
+
     public var style: Style = .white {
+        didSet {
+            updateAdjustableUI()
+        }
+    }
+
+    public var inputState: TextInputState = .normal {
         didSet {
             updateAdjustableUI()
         }
@@ -56,6 +70,41 @@ public class TextInput: UITextField {
         }
     }
 
+    public var hideClearButton = true {
+        didSet {
+            updateRightView()
+        }
+    }
+
+    public var showSuccessIndicator = true {
+        didSet {
+            updateRightView()
+        }
+    }
+
+    public var customRightView: UIView? {
+        didSet {
+            updateRightView()
+        }
+    }
+
+    private func updateRightView() {
+        if let customRightView = customRightView {
+            rightView = customRightView
+            rightViewMode = .always            
+        } else if hideClearButton {
+            rightView = nil
+            rightViewMode = .never
+            if inputState == .success && showSuccessIndicator {
+                rightView = successImageView
+                rightViewMode = .always
+            }
+        } else {
+            rightView = clearButton
+            rightViewMode = .whileEditing
+        }
+    }
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -73,25 +122,30 @@ public class TextInput: UITextField {
     private func commonInit() {
         heightConstraint = heightAnchor.constraint(equalToConstant: textInputHeight)
         heightConstraint.isActive = true
-        font = UIFont.systemFont(ofSize: 17)
+        font = UIFont.systemFont(ofSize: 16)
         configureBorder()
-        addCustomClearButton()
+        setupCustomClearButton()
+        setupCustomSuccessImage()
         updateAdjustableUI()
     }
 
     private func configureBorder() {
-        layer.borderWidth = 1
-        layer.cornerRadius = 6
-        layer.borderColor = UIColor.white.cgColor
+        layer.borderWidth = 2
+        layer.cornerRadius = 10
         clipsToBounds = true
     }
 
-    private func addCustomClearButton() {
+    private func setupCustomClearButton() {
         clearButton.accessibilityIdentifier = "Clear text"
-        clearButton.frame = CGRect(x: 0, y: 0, width: 14, height: 14)
+        clearButton.frame = CGRect(x: 0, y: 0, width: 26, height: 14)
         clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
-        rightView = clearButton
-        rightViewMode = .whileEditing
+        clearButton.setImage(Asset.TextInputs.clearIcon.image, for: .normal)
+    }
+
+    private func setupCustomSuccessImage() {
+        successImageView.frame = CGRect(x: 0, y: 0, width: 26, height: 14)
+        successImageView.image = Asset.TextInputs.successIcon.image
+        successImageView.contentMode = .scaleAspectFit
     }
 
     @objc private func clearText() {
@@ -101,25 +155,40 @@ public class TextInput: UITextField {
     }
 
     private func updateAdjustableUI() {
-        updateBackgroundAndText()
+        updateColors()
         updatePlaceholder()
-        updateButton()
+        updateRightView()
     }
 
-    private func updateBackgroundAndText() {
+    private func updateColors() {
         switch style {
         case .white:
             backgroundColor = .white
             textColor = ColorName.battleshipGrey.color
-            tintColor = ColorName.battleshipGrey.color
+            tintColor = ColorName.dodgerBlue.color
+            clearButton.tintColor = ColorName.lightGreyBlue.color
+            switch inputState {
+            case .normal, .success: layer.borderColor = ColorName.paleLilac.color.cgColor
+            case .error: layer.borderColor = ColorName.tomato.color.cgColor
+            }
         case .gray:
             backgroundColor = ColorName.paleGreyThree.color
             textColor = ColorName.battleshipGrey.color
-            tintColor = ColorName.battleshipGrey.color
+            tintColor = ColorName.dodgerBlue.color
+            clearButton.tintColor = ColorName.lightGreyBlue.color
+            switch inputState {
+            case .normal, .success: layer.borderColor = UIColor.white.cgColor
+            case .error: layer.borderColor = ColorName.tomato.color.cgColor
+            }
         case .dimmed:
             backgroundColor = UIColor.white.withAlphaComponent(0.4)
             textColor = .white
             tintColor = ColorName.lightishBlue.color
+            clearButton.tintColor = .white
+            switch inputState {
+            case .normal, .success: layer.borderColor = UIColor.white.cgColor
+            case .error: layer.borderColor = ColorName.tomato.color.cgColor
+            }
         }
     }
 
@@ -132,26 +201,9 @@ public class TextInput: UITextField {
     private func placeholderColor() -> UIColor {
         switch style {
         case .white:
-            return ColorName.blueyGrey.color
+            return ColorName.lightGreyBlue.color
         case .gray:
-            return ColorName.blueyGrey.color
-        case .dimmed:
-            return .white
-        }
-    }
-
-    private func updateButton() {
-        let image = Asset.TextInputs.clearIcon.image
-        clearButton.setImage(image, for: .normal)
-        clearButton.tintColor = clearButtonTintColor()
-    }
-
-    private func clearButtonTintColor() -> UIColor {
-        switch style {
-        case .white:
-            return ColorName.blueyGrey.color
-        case .gray:
-            return ColorName.blueyGrey.color
+            return ColorName.lightGreyBlue.color
         case .dimmed:
             return .white
         }

@@ -13,7 +13,7 @@ class TextInputViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         simpleTextInput.placeholder = "Simple Text Input"
-        simpleTextInput.style = .dimmed
+        simpleTextInput.style = .white
     }
 
     @IBAction func setIconForSimpleTextInput(_ sender: Any) {
@@ -49,6 +49,41 @@ class TextInputViewController: UIViewController {
 
     @IBAction func resignFirstResponder(_ sender: Any) {
         simpleTextInput.resignFirstResponder()
+    }
+
+    @IBAction func toggleClearButton(_ sender: Any) {
+        simpleTextInput.hideClearButton = !simpleTextInput.hideClearButton
+    }
+
+    @IBAction func setNormalState(_ sender: Any) {
+        simpleTextInput.inputState = .normal
+    }
+
+    @IBAction func setErrorState(_ sender: Any) {
+        simpleTextInput.inputState = .error
+    }
+
+    @IBAction func setSuccessState(_ sender: Any) {
+        simpleTextInput.inputState = .success
+    }
+
+    @IBAction func toggleSuccessIndicator(_ sender: Any) {
+        simpleTextInput.showSuccessIndicator = !simpleTextInput.showSuccessIndicator
+    }
+
+    @IBAction func toggleCustomRightView(_ sender: Any) {
+        if simpleTextInput.customRightView == nil {
+            simpleTextInput.customRightView = gnosisRightView()
+        } else {
+            simpleTextInput.customRightView = nil
+        }
+    }
+
+    private func gnosisRightView() -> UIView {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 14))
+        imageView.image = UIImage(named: "gnosis-icon")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }
 
 }

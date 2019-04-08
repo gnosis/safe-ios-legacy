@@ -72,13 +72,14 @@ final class MenuTableViewController: UITableViewController {
     }
 
     private var showQRCode = false
+    let changePasswordCommand = ChangePasswordCommand()
     let replaceCommand = ReplaceBrowserExtensionCommand()
     let connectCommand = ConnectBrowserExtensionLaterCommand()
     let disconnectCommand = DisconnectBrowserExtensionCommand()
     let resyncCommand = ResyncWithBrowserExtensionCommand()
 
     var securityCommands: [MenuCommand] {
-        return [resyncCommand, replaceCommand, connectCommand, disconnectCommand]
+        return [changePasswordCommand, resyncCommand, replaceCommand, connectCommand, disconnectCommand]
     }
 
     static func create() -> MenuTableViewController {
@@ -132,7 +133,6 @@ final class MenuTableViewController: UITableViewController {
             (section: .security,
              items:
                 [
-//                menuItem(Strings.changePassword),
                 menuItem(Strings.changeRecoveryPhrase)
                 ] +
                     securityCommands.filter { !$0.isHidden }.map {
@@ -221,6 +221,8 @@ final class MenuTableViewController: UITableViewController {
         case .security:
             let item = menuItem(at: indexPath)!
             switch item.name {
+            case changePasswordCommand.title:
+                delegate?.didSelectCommand(changePasswordCommand)
             case connectCommand.title:
                 delegate?.didSelectCommand(connectCommand)
             case replaceCommand.title:

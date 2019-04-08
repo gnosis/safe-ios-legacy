@@ -30,7 +30,7 @@ class TransactionTableViewCell: UITableViewCell {
         addressLabel.textColor = addressColor(transaction)
 
         transactionDateLabel.text = transaction.displayDate?.timeAgoSinceNow
-        transactionDateLabel.textColor = ColorName.blueyGrey.color
+        transactionDateLabel.textColor = ColorName.lightGreyBlue.color
 
         setDetailText(transaction: transaction)
         tokenAmountLabel.textColor = valueColor(transaction)

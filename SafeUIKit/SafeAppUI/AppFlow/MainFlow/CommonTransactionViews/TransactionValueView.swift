@@ -32,7 +32,7 @@ class TransactionValueView: BaseCustomView {
     var fiatLabel: UILabel!
 
     struct Colors {
-        static let fiat = ColorName.blueyGrey.color
+        static let fiat = ColorName.lightGreyBlue.color
     }
 
     override func commonInit() {

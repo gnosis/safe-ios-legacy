@@ -8,6 +8,7 @@ import UIKit
     func verifiableInputDidReturn(_ verifiableInput: VerifiableInput)
     @objc optional func verifiableInputDidBeginEditing(_ verifiableInput: VerifiableInput)
     @objc optional func verifiableInputDidEndEditing(_ verifiableInput: VerifiableInput)
+    @objc optional func verifiableInputWillEnter(_ verifiableInput: VerifiableInput, newValue: String)
 }
 
 open class VerifiableInput: UIView {
@@ -21,6 +22,7 @@ open class VerifiableInput: UIView {
     public private(set) var isActive: Bool = false
     private static let shakeAnimationKey = "shake"
     private let padding: CGFloat = 16
+    private let spacingViewHeight: CGFloat = 4
 
     private var allRules: [RuleLabel] {
         return stackView.arrangedSubviews.compactMap { $0 as? RuleLabel }
@@ -54,8 +56,13 @@ open class VerifiableInput: UIView {
             }
         }
     }
+    public var rigthView: UIView? {
+        didSet {
+            textInput.customRightView = rigthView
+        }
+    }
 
-    private func revalidateText() {
+    public func revalidateText() {
         let str = text
         text = str
     }
@@ -127,11 +134,20 @@ open class VerifiableInput: UIView {
 
     public func addRule(_ localizedDescription: String,
                         identifier: String? = nil,
+                        displayIcon: Bool = false,
                         validation: ((String) -> Bool)? = nil) {
-        let ruleLabel = RuleLabel(text: localizedDescription, rule: validation)
+        addSpacingIfNeeded()
+        let ruleLabel = RuleLabel(text: localizedDescription, displayIcon: displayIcon, rule: validation)
         ruleLabel.accessibilityIdentifier = identifier
         hideRuleIfNeeded(ruleLabel)
         stackView.addArrangedSubview(ruleLabel)
+    }
+
+    private func addSpacingIfNeeded() {
+        guard allRules.isEmpty else { return }
+        let spacingView = UIView()
+        spacingView.addConstraint(spacingView.heightAnchor.constraint(equalToConstant: spacingViewHeight))
+        stackView.addArrangedSubview(spacingView)
     }
 
     open override func becomeFirstResponder() -> Bool {
@@ -149,10 +165,16 @@ open class VerifiableInput: UIView {
     }
 
     func validateRules(for text: String) {
+        guard !text.isEmpty else {
+            resetRules()
+            return
+        }
         allRules.forEach {
             $0.validate(text)
             hideRuleIfNeeded($0)
         }
+        let successOrNormal: TextInput.TextInputState = allRules.isEmpty ? .normal : .success
+        textInput.inputState = isValid ? successOrNormal : .error
     }
 
     @discardableResult
@@ -172,13 +194,8 @@ extension VerifiableInput: UITextFieldDelegate {
     public func textField(_ textField: UITextField,
                           shouldChangeCharactersIn range: NSRange,
                           replacementString string: String) -> Bool {
-        let oldText = (textField.text ?? "") as NSString
-        let newText = oldText.replacingCharacters(in: range, with: string)
-        guard !newText.isEmpty else {
-            resetRules()
-            return true
-        }
-        validateRules(for: newText)
+        let updatedText = (textField.nonNilText as NSString).replacingCharacters(in: range, with: string)
+        delegate?.verifiableInputWillEnter?(self, newValue: updatedText)
         return true
     }
 
@@ -204,6 +221,7 @@ extension VerifiableInput: UITextFieldDelegate {
             $0.reset()
             hideRuleIfNeeded($0)
         }
+        textInput.inputState = .normal
     }
 
     private func hideRuleIfNeeded(_ rule: RuleLabel) {

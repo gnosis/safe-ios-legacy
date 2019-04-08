@@ -14,6 +14,7 @@ final class PasswordViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @available(*, deprecated, message: "Replace with NewPasswordVerifiableInput")
     @IBOutlet weak var verifiableInput: VerifiableInput!
     @IBOutlet weak var nextButton: UIBarButtonItem!
 

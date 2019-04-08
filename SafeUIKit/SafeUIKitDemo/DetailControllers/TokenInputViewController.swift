@@ -13,6 +13,7 @@ class TokenInputViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tokenInput.imageURL = URL(string: "https://raw.githubusercontent.com/rmeissner/crypto_resources/master/tokens/rinkeby/icons/0x979861dF79C7408553aAF20c01Cfb3f81CCf9341.png")
+        tokenInput.tokenCode = "GNO"
     }
 
     @IBAction func set18deciamlDigits(_ sender: Any) {

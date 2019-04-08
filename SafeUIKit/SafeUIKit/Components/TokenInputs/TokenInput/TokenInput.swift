@@ -44,6 +44,26 @@ public final class TokenInput: VerifiableInput {
         }
     }
 
+    public var tokenCode: String? {
+        didSet {
+            guard tokenCode != nil else {
+                rigthView = nil
+                return
+            }
+            rigthView = tokenCodeView()
+        }
+    }
+
+    private func tokenCodeView() -> UIView {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textAlignment = .right
+        label.textColor = ColorName.lightGreyBlue.color
+        label.text = tokenCode! + "   \u{200c}" // padding
+        label.sizeToFit()
+        return label
+    }
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -64,7 +84,8 @@ public final class TokenInput: VerifiableInput {
         textInput.keyboardType = .decimalPad
         textInput.delegate = self
         textInput.textInputHeight = textInputHeight
-        textInput.style = .gray
+        textInput.style = .white
+        textInput.showSuccessIndicator = false
         maxLength = TokenBounds.maxDigitsCount
         showErrorsOnly = true
         addDefaultValidationsRules()
@@ -136,9 +157,6 @@ public extension TokenInput {
     override func textField(_ textField: UITextField,
                             shouldChangeCharactersIn range: NSRange,
                             replacementString string: String) -> Bool {
-        guard super.textField(textField, shouldChangeCharactersIn: range, replacementString: string) else {
-            return false
-        }
         let updatedText = (textField.nonNilText as NSString).replacingCharacters(in: range, with: string)
         return updatedText.isEmpty || formatter.number(from: updatedText) != nil
     }

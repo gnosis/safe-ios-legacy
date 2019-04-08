@@ -103,7 +103,7 @@ class NewSafeViewController: UIViewController {
 
     private func configureConnectBorwserExtensionButton() {
         optionalTextLabel.text = Strings.optionalText
-        optionalTextLabel.textColor = ColorName.blueyGrey.color
+        optionalTextLabel.textColor = ColorName.lightGreyBlue.color
         browserExtensionButton.setTitle(Strings.browserExtension, for: .normal)
     }
 

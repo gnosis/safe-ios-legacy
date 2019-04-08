@@ -43,7 +43,7 @@ open class AuthenticationApplicationService {
         return gatekeeper.policy.maxFailedAttempts
     }
 
-    /// The time period during which password will not be requested if the app is running.
+    /// The time period during which password will not be requested if the app is running. Default value is 60 seconds.
     open var sessionDuration: TimeInterval {
         guard let gatekeeper = gatekeeperRepository.gatekeeper() else { return 60 }
         return gatekeeper.policy.sessionDuration
@@ -136,6 +136,14 @@ open class AuthenticationApplicationService {
     /// strength criteria, or if there was an internal issue.
     open func registerUser(password: String) throws {
         _ = try DomainRegistry.identityService.registerUser(password: password)
+    }
+
+    /// Update primary user with password.
+    ///
+    /// - Parameter password: new password
+    /// - Throws: error if primary user is not found, or if the password is not valid
+    open func updatePrimaryUserPassword(with password: String) throws {
+        try DomainRegistry.identityService.updatePrimaryUserPassword(with: password)
     }
 
     /// Changes authenticated session duration.

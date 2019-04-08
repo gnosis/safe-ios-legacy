@@ -41,6 +41,15 @@ public class MockAuthenticationService: AuthenticationApplicationService {
         userRegistered = true
     }
 
+    public var updatedPassword: String?
+    public var shouldThrowDuringUpdatePassword = false
+    public override func updatePrimaryUserPassword(with password: String) throws {
+        if shouldThrowDuringUpdatePassword {
+            throw Error.error
+        }
+        updatedPassword = password
+    }
+
     public func invalidateAuthentication() {
         authenticationAllowed = false
         userAuthenticated = false
@@ -54,7 +63,11 @@ public class MockAuthenticationService: AuthenticationApplicationService {
         return isUserRegistered && userAuthenticated && !isAuthenticationBlocked
     }
 
+    public var shouldThrowDuringAuthentication = false
     public override func authenticateUser(_ request: AuthenticationRequest) throws -> AuthenticationResult {
+        if shouldThrowDuringAuthentication {
+            throw Error.error
+        }
         didRequestBiometricAuthentication = !request.method.isDisjoint(with: .biometry)
         didRequestPasswordAuthentication = request.method.contains(.password)
         userAuthenticated = authenticationAllowed && !authenticationBlocked

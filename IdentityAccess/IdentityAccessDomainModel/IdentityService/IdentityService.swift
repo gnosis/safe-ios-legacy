@@ -26,6 +26,13 @@ public class IdentityService: Assertable {
         case passwordHasTrippleChar
     }
 
+    /// Error occurred during updating primary user password
+    ///
+    /// - primaryUserNotFound: primare user not found
+    public enum UpdatePasswordError: Error, Hashable {
+        case primaryUserNotFound
+    }
+
     /// Error occurred during notification
     ///
     /// - gatekeeperNotFound: No gatekeeper found. This is critical configuration error.
@@ -95,6 +102,18 @@ public class IdentityService: Assertable {
         try userRepository.save(user)
         try biometricService.activate()
         return user.id
+    }
+
+    /// Update primary user with new password.
+    ///
+    /// - Parameter password: new password
+    /// - Throws: error if primary user is not found
+    public func updatePrimaryUserPassword(with password: String) throws {
+        try assertNotNil(userRepository.primaryUser(), UpdatePasswordError.primaryUserNotFound)
+        try validatePlaintextPassword(password)
+        let encryptedPassword = encryptionService.encrypted(password)
+        let updatedUser = User(id: userRepository.primaryUser()!.id, password: encryptedPassword)
+        try userRepository.save(updatedUser)
     }
 
     private func validatePlaintextPassword(_ password: String) throws {

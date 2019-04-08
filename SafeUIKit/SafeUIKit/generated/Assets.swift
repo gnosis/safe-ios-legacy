@@ -46,6 +46,7 @@ struct ColorAsset {
 enum Asset {
   enum AddressInput {
     static let addressIconTmp = ImageAsset(name: "address-icon-tmp")
+    static let dots = ImageAsset(name: "dots")
   }
   static let backgroundDarkImage = ImageAsset(name: "background-dark-image")
   static let backgroundImage = ImageAsset(name: "background-image")
@@ -78,6 +79,7 @@ enum Asset {
   ]
   static let allImages: [ImageAsset] = [
     AddressInput.addressIconTmp,
+    AddressInput.dots,
     backgroundDarkImage,
     backgroundImage,
     BrowserExtension.awaiting,

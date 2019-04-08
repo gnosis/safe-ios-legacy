@@ -21,6 +21,11 @@ class RuleLabelTests: XCTestCase {
         XCTAssertEqual(RuleLabel.withText().label.text, RuleLabel.defaultText)
     }
 
+    func test_whenInitWithoutIcon_thenImageViewIsRemoved() {
+        let label = RuleLabel(text: "test", displayIcon: false)
+        XCTAssertNil(label.imageView)
+    }
+
     func test_whenRulePasses_thenStatusSuccess() {
         label = .alwaysTrue()
         validate()

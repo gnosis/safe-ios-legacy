@@ -103,8 +103,8 @@ public class SegmentBar: UIControl {
     }
 
     private func configureDeselectedButton(_ button: UIButton) {
-        button.setTitleColor(ColorName.blueyGrey.color, for: .normal)
-        button.tintColor = ColorName.blueyGrey.color
+        button.setTitleColor(ColorName.lightGreyBlue.color, for: .normal)
+        button.tintColor = ColorName.lightGreyBlue.color
     }
 
     private func addSelectionMarker(at index: Int) {

@@ -25,11 +25,15 @@ class MenuCommand {
         mainFlowCoordinator.enter(flow: childFlowCoordinator) { [unowned mainFlowCoordinator] in
             DispatchQueue.main.async {
                 mainFlowCoordinator.popToLastCheckpoint()
-                mainFlowCoordinator.pop()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(800)) {
-                    mainFlowCoordinator.showTransactionList()
-                }
+                self.didExitToMenu(mainFlowCoordinator: mainFlowCoordinator)
             }
+        }
+    }
+
+    func didExitToMenu(mainFlowCoordinator: MainFlowCoordinator) {
+        mainFlowCoordinator.pop()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(800)) {
+            mainFlowCoordinator.showTransactionList()
         }
     }
 
