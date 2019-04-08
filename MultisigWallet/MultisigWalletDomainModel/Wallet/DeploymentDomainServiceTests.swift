@@ -50,6 +50,12 @@ class BaseDeploymentDomainServiceTests: XCTestCase {
         delay()
     }
 
+    var walletAccount: Account {
+        let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
+        let account = DomainRegistry.accountRepository.find(id: accountID)!
+        return account
+    }
+
 }
 
 class DeploymentServiceEventSubscriptionTests: BaseDeploymentDomainServiceTests {
@@ -123,10 +129,68 @@ class DeployingWalletTests: BaseDeploymentDomainServiceTests {
     }
 
     func test_whenResumes_thenMovesToNextState() {
-        givenDraftWalletWithAllOwners()
+        givenFundedWallet(with: 50)
         relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), .testResponse)
         start()
         XCTAssertTrue(wallet.state === wallet.notEnoughFundsState)
+    }
+
+    func test_whenEmptyAccount_thenMovesToFirstDeposit() {
+        givenConfiguredWallet()
+        relayService.expect_createSafeCreationTransaction(.testRequest(wallet, encryptionService), .testResponse)
+        start()
+        XCTAssertTrue(wallet.state === wallet.waitingForFirstDepositState)
+    }
+
+}
+
+class FirstDepositTests: BaseDeploymentDomainServiceTests {
+
+    override func setUp() {
+        super.setUp()
+        setupDeploymentService(delay: 10)
+        eventPublisher.addFilter(StartedWaitingForFirstDeposit.self)
+        givenConfiguredWallet()
+    }
+
+    private func setupDeploymentService(delay: TimeInterval = 10) {
+        let configParams = DeploymentDomainServiceConfiguration.Parameters(repeatDelay: delay,
+                                                                           retryAttempts: 3,
+                                                                           retryDelay: delay)
+        let config = DeploymentDomainServiceConfiguration(balance: configParams,
+                                                          deploymentStatus: configParams,
+                                                          transactionStatus: configParams)
+        deploymentService = DeploymentDomainService(config)
+        deploymentService.responseValidator = MockSafeCreationResponseValidator()
+    }
+    // 0xF8D502f5f105E8e3881A94493F7A17ede855c8f2
+// choice pyramid material account inch mule page gloom grow theory easy critic
+    func test_whenEmptyBalance_thenDoesNothing() {
+        nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 0)
+        start()
+        nodeService.verify()
+        XCTAssertEqual(walletAccount.balance, 0)
+    }
+
+    func test_whenGetsFirstDepositNotEnough_thenSwitchesToOtherState() {
+        nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 50)
+        start()
+        nodeService.verify()
+        XCTAssertTrue(wallet.state === wallet.notEnoughFundsState)
+    }
+
+    func test_whenEnoughFunds_thenSwitchesToCreation() {
+        nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 100)
+        start()
+        nodeService.verify()
+        XCTAssertTrue(wallet.state === wallet.creationStartedState)
+    }
+
+    func test_whenObservingBalanceFails_thenCancels() {
+        setupDeploymentService(delay: 0)
+        nodeService.expect_eth_getBalance_throw(TestError.error)
+        start()
+        assertDeploymentCancelled()
     }
 
 }
@@ -135,21 +199,19 @@ class ConfiguredWalletTests: BaseDeploymentDomainServiceTests {
 
     override func setUp() {
         super.setUp()
-        eventPublisher.addFilter(WalletConfigured.self)
+        eventPublisher.addFilter(StartedWaitingForRemainingFeeAmount.self)
+        givenFundedWallet(with: 50)
     }
 
+
     func test_whenWalletConfigured_thenObservesBalance() {
-        givenConfiguredWallet()
         nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 100)
         start()
         nodeService.verify()
-        let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
-        let account = DomainRegistry.accountRepository.find(id: accountID)!
-        XCTAssertEqual(account.balance, 100)
+        XCTAssertEqual(walletAccount.balance, 100)
     }
 
     func test_whenNotEnoughFundsAtFirst_thenRepeatsUntilHasFunds() {
-        givenConfiguredWallet()
         nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 50)
         nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 100)
         start()
@@ -157,13 +219,11 @@ class ConfiguredWalletTests: BaseDeploymentDomainServiceTests {
     }
 
     func test_whenObservingBalanceFails_thenErrorPosted() {
-        givenConfiguredWallet()
         nodeService.expect_eth_getBalance_throw(TestError.error)
         assertThrows(TestError.error)
     }
 
     func test_whenObservingBalanceFails_thenCancels() {
-        givenConfiguredWallet()
         nodeService.expect_eth_getBalance_throw(TestError.error)
         start()
         assertDeploymentCancelled()
@@ -330,11 +390,10 @@ extension BaseDeploymentDomainServiceTests {
         wallet.proceed()
     }
 
-    func givenFundedWallet() {
+    func givenFundedWallet(with amount: TokenInt = 100) {
         givenConfiguredWallet()
-        let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
-        let account = DomainRegistry.accountRepository.find(id: accountID)!
-        account.update(newAmount: 100)
+        let account = walletAccount
+        account.update(newAmount: amount)
         DomainRegistry.accountRepository.save(account)
         wallet.proceed()
     }

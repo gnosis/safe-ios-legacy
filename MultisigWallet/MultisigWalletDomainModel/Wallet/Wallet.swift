@@ -20,6 +20,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
 
     public private(set) var newDraftState: WalletState!
     public private(set) var deployingState: WalletState!
+    public private(set) var waitingForFirstDepositState: WalletState!
     public private(set) var notEnoughFundsState: WalletState!
     public private(set) var creationStartedState: WalletState!
     public private(set) var finalizingDeploymentState: WalletState!
@@ -77,6 +78,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
         switch walletState {
         case .draft: return newDraftState
         case .deploying: return deployingState
+        case .waitingForFirstDeposit: return waitingForFirstDepositState
         case .notEnoughFunds: return notEnoughFundsState
         case .creationStarted: return creationStartedState
         case .finalizingDeployment: return finalizingDeploymentState
@@ -97,6 +99,7 @@ public class Wallet: IdentifiableEntity<WalletID> {
     private func initStates() {
         newDraftState = DraftState(wallet: self)
         deployingState = DeployingState(wallet: self)
+        waitingForFirstDepositState = WaitingForFirstDepositState(wallet: self)
         notEnoughFundsState = NotEnoughFundsState(wallet: self)
         creationStartedState = CreationStartedState(wallet: self)
         finalizingDeploymentState = FinalizingDeploymentState(wallet: self)

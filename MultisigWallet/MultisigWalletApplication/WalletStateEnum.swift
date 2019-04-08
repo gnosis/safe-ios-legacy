@@ -9,6 +9,7 @@ public enum WalletStateId {
 
     case draft
     case deploying
+    case waitingForFirstDeposit
     case notEnoughFunds
     case creationStarted
     case transactionHashIsKnown
@@ -19,6 +20,7 @@ public enum WalletStateId {
         switch state {
         case is DraftState: self = .draft
         case is DeployingState: self = .deploying
+        case is WaitingForFirstDepositState: self = .waitingForFirstDeposit
         case is NotEnoughFundsState: self = .notEnoughFunds
         case is CreationStartedState: self = .creationStarted
         case is FinalizingDeploymentState: self = .finalizingDeployment

@@ -110,6 +110,7 @@ class SafeCreationViewController: UIViewController {
 
     internal var nilState: State!
     internal var deployingState: State!
+    internal var waitingForFirstDepositState: State!
     internal var notEnoughFundsState: State!
     internal var creationStartedState: State!
     internal var transactionHashIsKnownState: State!
@@ -208,6 +209,7 @@ class SafeCreationViewController: UIViewController {
     private func initStates() {
         nilState = NilState()
         deployingState = DeployingState()
+        waitingForFirstDepositState = WaitingForFirstDepositState()
         notEnoughFundsState = NotEnoughFundsState()
         creationStartedState = CreationStartedState()
         transactionHashIsKnownState = TransactionHashIsKnownState()
@@ -319,6 +321,7 @@ extension SafeCreationViewController {
         switch walletState {
         case .deploying: return deployingState
         case .draft: return nilState
+        case .waitingForFirstDeposit: return waitingForFirstDepositState
         case .notEnoughFunds: return notEnoughFundsState
         case .creationStarted: return creationStartedState
         case .transactionHashIsKnown: return transactionHashIsKnownState
@@ -369,12 +372,22 @@ extension SafeCreationViewController {
     }
 
     // Usually not shown in UI because as soon as we know safe address
-    // from the service, the state is already NotEnoughFunds
+    // from the service, the state changing to waiting for first deposit
     class DeployingState: State {
         override var canCancel: Bool { return true }
         override var headerText: String? { return Strings.Header.firstDepositHeader }
         override var statusText: String? { return Strings.Status.generatingSafeAddress }
         override var progress: Double { return 0.1 }
+    }
+
+    class WaitingForFirstDepositState: State {
+        override var canCancel: Bool { return true }
+        override var canCopyAddress: Bool { return true }
+        override var headerText: String? { return Strings.Header.firstDepositHeader }
+        override var statusText: String? { return Strings.Status.awaitingDeposit }
+        override var progress: Double { return 0.2 }
+        override var showsSafeAddress: Bool { return true }
+        override var showsFeeExplanationButton: Bool { return true }
     }
 
     class NotEnoughFundsState: State {
