@@ -163,8 +163,7 @@ class FirstDepositTests: BaseDeploymentDomainServiceTests {
         deploymentService = DeploymentDomainService(config)
         deploymentService.responseValidator = MockSafeCreationResponseValidator()
     }
-    // 0xF8D502f5f105E8e3881A94493F7A17ede855c8f2
-// choice pyramid material account inch mule page gloom grow theory easy critic
+
     func test_whenEmptyBalance_thenDoesNothing() {
         nodeService.expect_eth_getBalance(account: Address.safeAddress, balance: 0)
         start()
