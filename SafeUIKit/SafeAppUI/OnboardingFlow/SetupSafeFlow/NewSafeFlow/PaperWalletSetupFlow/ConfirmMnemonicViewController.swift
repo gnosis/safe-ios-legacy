@@ -69,8 +69,7 @@ final class ConfirmMnemonicViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard keyboardBehavior != nil else { return }
-        keyboardBehavior.start()
+        keyboardBehavior?.start()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -79,9 +78,8 @@ final class ConfirmMnemonicViewController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        guard keyboardBehavior != nil else { return }
-        keyboardBehavior.stop()
+        super.viewWillDisappear(animated)        
+        keyboardBehavior?.stop()
     }
 
     private func configureInputs(words: [String]) {

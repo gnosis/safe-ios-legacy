@@ -22,6 +22,17 @@ final class SetupNewPasswordViewController: UIViewController {
     private let saveButton = UIBarButtonItem(title: Strings.save, style: .plain, target: self, action: #selector(save))
     private var keyboardBehavior: KeyboardAvoidingBehavior!
 
+    private var canSave: Bool {
+        return password.new == password.confirmed && newPasswordInput.isValid
+    }
+
+    // model for better communication between inputs
+    struct Password {
+        var new: String?
+        var confirmed: String?
+    }
+    private var password = Password()
+
     static func create(delegate: SetupNewPasswordViewControllerDelegate) -> SetupNewPasswordViewController {
         let vc = StoryboardScene.ChangePassword.setupNewPasswordViewController.instantiate()
         vc.delegate = delegate
@@ -54,14 +65,12 @@ final class SetupNewPasswordViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard keyboardBehavior != nil else { return }
-        keyboardBehavior.start()
+        keyboardBehavior?.start()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard keyboardBehavior != nil else { return }
-        keyboardBehavior.stop()
+        keyboardBehavior?.stop()
     }
 
     private func configureNewPasswordInput() {
@@ -75,7 +84,7 @@ final class SetupNewPasswordViewController: UIViewController {
         confirmNewPasswordInput.returnKeyType = .next
         confirmNewPasswordInput.showErrorsOnly = true
         confirmNewPasswordInput.textInput.placeholder = Strings.confirmPasswordPlaceholder
-        confirmNewPasswordInput.addRule(Strings.passwordDoesNotMatch) { $0 == self.newPasswordInput.text }
+        confirmNewPasswordInput.addRule(Strings.passwordDoesNotMatch) { $0 == self.password.new }
     }
 
     private func configureKeyboardBehavior() {
@@ -85,12 +94,8 @@ final class SetupNewPasswordViewController: UIViewController {
     }
 
     @objc private func save() {
-        guard canSave() else { return }
-        delegate.didEnterNewPassword(confirmNewPasswordInput.text!)
-    }
-
-    private func canSave() -> Bool {
-        return newPasswordInput.text == confirmNewPasswordInput.text && newPasswordInput.isValid
+        guard canSave else { return }
+        delegate.didEnterNewPassword(password.new!)
     }
 
 }
@@ -106,8 +111,8 @@ extension SetupNewPasswordViewController: VerifiableInputDelegate {
             }
         } else {
             if confirmNewPasswordInput.isValid {
-                if canSave() {
-                    delegate.didEnterNewPassword(confirmNewPasswordInput.text!)
+                if canSave {
+                    delegate.didEnterNewPassword(password.new!)
                 } else {
                     newPasswordInput.shake()
                 }
@@ -118,13 +123,13 @@ extension SetupNewPasswordViewController: VerifiableInputDelegate {
     }
 
     func verifiableInputWillEnter(_ verifiableInput: VerifiableInput, newValue: String) {
-        DispatchQueue.global().async {
-            Timer.wait(0.1)
-            DispatchQueue.main.async {
-                self.confirmNewPasswordInput.revalidateText()
-                self.saveButton.isEnabled = self.canSave()
-            }
+        if verifiableInput === newPasswordInput {
+            password.new = newValue
+            confirmNewPasswordInput.revalidateText()
+        } else {
+            password.confirmed = newValue
         }
+        saveButton.isEnabled = canSave
     }
 
 }

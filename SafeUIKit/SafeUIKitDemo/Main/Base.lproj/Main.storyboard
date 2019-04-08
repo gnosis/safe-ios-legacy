@@ -968,14 +968,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1N-qU-qng" customClass="AddressInput" customModule="SafeUIKit">
-                                <rect key="frame" x="20" y="84" width="335" height="50"/>
+                                <rect key="frame" x="0.0" y="84" width="375" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" placeholder="YES" id="cjD-hJ-ckg"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awm-Jv-niL" customClass="TokenInput" customModule="SafeUIKit">
-                                <rect key="frame" x="20" y="151" width="335" height="43"/>
+                                <rect key="frame" x="0.0" y="151" width="375" height="43"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" placeholder="YES" id="zOY-Fh-57a"/>
@@ -999,14 +999,14 @@
                         <constraints>
                             <constraint firstItem="awm-Jv-niL" firstAttribute="trailing" secondItem="m1N-qU-qng" secondAttribute="trailing" id="11G-3H-W53"/>
                             <constraint firstItem="Snj-OC-CIv" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QaQ-YE-QHs" secondAttribute="trailing" symbolic="YES" id="8hm-Nc-LqM"/>
-                            <constraint firstItem="9IB-ma-WBM" firstAttribute="leading" secondItem="m1N-qU-qng" secondAttribute="leading" id="8z6-rc-ZC0"/>
+                            <constraint firstItem="9IB-ma-WBM" firstAttribute="leading" secondItem="m1N-qU-qng" secondAttribute="leading" constant="20" id="8z6-rc-ZC0"/>
                             <constraint firstItem="awm-Jv-niL" firstAttribute="top" secondItem="m1N-qU-qng" secondAttribute="bottom" constant="17" id="Fqy-69-PcW"/>
                             <constraint firstItem="m1N-qU-qng" firstAttribute="top" secondItem="Snj-OC-CIv" secondAttribute="top" constant="20" id="O8R-2t-ndP"/>
                             <constraint firstItem="awm-Jv-niL" firstAttribute="leading" secondItem="m1N-qU-qng" secondAttribute="leading" id="PEE-Nc-WFU"/>
                             <constraint firstItem="9IB-ma-WBM" firstAttribute="top" secondItem="awm-Jv-niL" secondAttribute="bottom" constant="30" id="ZO9-2O-8Gi"/>
-                            <constraint firstItem="m1N-qU-qng" firstAttribute="leading" secondItem="Snj-OC-CIv" secondAttribute="leading" constant="20" id="hbf-zI-tBM"/>
-                            <constraint firstItem="Snj-OC-CIv" firstAttribute="trailing" secondItem="m1N-qU-qng" secondAttribute="trailing" constant="20" id="iMh-gS-HQO"/>
-                            <constraint firstItem="9IB-ma-WBM" firstAttribute="trailing" secondItem="m1N-qU-qng" secondAttribute="trailing" id="jkE-5a-cjP"/>
+                            <constraint firstItem="m1N-qU-qng" firstAttribute="leading" secondItem="Snj-OC-CIv" secondAttribute="leading" id="hbf-zI-tBM"/>
+                            <constraint firstItem="Snj-OC-CIv" firstAttribute="trailing" secondItem="m1N-qU-qng" secondAttribute="trailing" id="iMh-gS-HQO"/>
+                            <constraint firstItem="9IB-ma-WBM" firstAttribute="trailing" secondItem="m1N-qU-qng" secondAttribute="trailing" constant="-20" id="jkE-5a-cjP"/>
                             <constraint firstItem="QaQ-YE-QHs" firstAttribute="leading" secondItem="9IB-ma-WBM" secondAttribute="leading" id="mNZ-xD-HCh"/>
                             <constraint firstItem="QaQ-YE-QHs" firstAttribute="top" secondItem="9IB-ma-WBM" secondAttribute="bottom" constant="17" id="t4s-Uc-TEV"/>
                         </constraints>
