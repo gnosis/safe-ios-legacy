@@ -66,6 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Resettable {
         configureMultisigWallet()
         configureEthereum()
         configureUI()
+        #if DEBUG
+        Tracker.shared.append(handler: ConsoleTracker())
+        #endif
         Tracker.shared.append(handler: FirebaseTrackingHandler())
     }
 

@@ -113,6 +113,23 @@ public class TransactionDetailsViewController: UIViewController {
         reloadData()
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(TransactionDetailTrackingEvent(type: trackingTrasnsactionType(from: transaction.type)))
+    }
+
+    func trackingTrasnsactionType(from type: TransactionData.TransactionType) -> TransactionDetailType {
+        switch type {
+        case .incoming, .outgoing: return .send
+        case .replaceRecoveryPhrase: return .replaceRecoveryPhrase
+        case .replaceBrowserExtension: return .replaceBrowserExtension
+        case .connectBrowserExtension: return .connectBrowserExtension
+        case .disconnectBrowserExtension: return .disconnectBrowserExtension
+        case .walletRecovery: return .recoverSafe
+        }
+
+    }
+
     private func reloadData() {
         transaction = ApplicationServiceRegistry.walletService.transactionData(transactionID)
         configureTransferDetails()

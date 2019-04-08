@@ -26,7 +26,7 @@ class StartScreenUITests: XCTestCase {
     func test_start_navigatesToSetMasterPassword() {
         screen.start()
         let setPasswordScreen = SetPasswordScreen()
-        XCTAssertTrue(setPasswordScreen.isDisplayed)
+        waitUntil(setPasswordScreen.isDisplayed)
     }
 
 }

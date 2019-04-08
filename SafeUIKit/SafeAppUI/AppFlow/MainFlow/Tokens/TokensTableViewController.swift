@@ -79,7 +79,7 @@ final class TokensTableViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(MainEvent.assets)
+        trackEvent(MainTrackingEvent.assets)
     }
 
     @objc func update() {

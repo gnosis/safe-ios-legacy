@@ -7,9 +7,9 @@ import CommonTestSupport
 
 class PairWithBrowserExtensionScreenUITests: UITestCase {
 
-    let screen = PairWithBrowserExtensionScreen()
+    let pairWithExtensionScreen = PairWithBrowserExtensionScreen()
     let cameraScreen = CameraScreen()
-    let newSafe = NewSafeScreen()
+    let newSafeScreen = NewSafeScreen()
 
     enum CameraOpenOption {
         case input, button
@@ -32,16 +32,15 @@ final class PairWithBrowserExtensionScreenSuccessUITests: PairWithBrowserExtensi
 
     // NS-002
     func test_contents() {
-        XCTAssertExist(screen.qrCodeInput)
-        XCTAssertExist(screen.saveButton)
-        XCTAssertFalse(screen.saveButton.isEnabled)
+        XCTAssertExist(pairWithExtensionScreen.scanButton)
+        XCTAssertTrue(pairWithExtensionScreen.scanButton.isEnabled)
     }
 
     // NS-003
     func test_denyCameraAccess() {
         handleCameraPermissionByDenying()
         handleSuggestionAlertByCancelling(with: expectation(description: "Alerts handled"))
-        screen.qrCodeInput.tap()
+        pairWithExtensionScreen.scanButton.tap()
         handleAlerts()
     }
 
@@ -49,83 +48,52 @@ final class PairWithBrowserExtensionScreenSuccessUITests: PairWithBrowserExtensi
     func test_allowCameraAccess() {
         givenCameraOpened()
         closeCamera()
-        XCTAssertTrue(QRCodeInputIsEqual(to: ""))
     }
 
     // NS-006, NS-007
     func test_scanInvalidCode() {
-        givenCameraOpened(with: .input)
+        givenCameraOpened()
         cameraScreen.scanInvalidCodeButton.tap()
         XCTAssertTrue(cameraScreen.isDisplayed)
         closeCamera()
-        XCTAssertTrue(QRCodeInputIsEqual(to: ""))
     }
 
     // NS-008
-    func test_scanValidCodeButDoNotFinishSetup() {
+    func test_scanValidCode() {
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
-        XCTAssertFalse(QRCodeInputIsEqual(to: ""))
-        TestUtils.navigateBack()
-        XCTAssertFalse(newSafe.browserExtension.isChecked)
-        newSafe.browserExtension.element.tap()
-        XCTAssertTrue(QRCodeInputIsEqual(to: ""))
-    }
-
-    // NS-009
-    func test_scanTwoValidCodes() {
-        givenCameraOpened()
-        cameraScreen.scanTwoValidCodes.tap()
-        XCTAssertFalse(QRCodeInputIsEqual(to: ""))
-        XCTAssertTrue(screen.saveButton.isEnabled)
-        screen.saveButton.tap()
-        XCTAssertTrue(newSafe.browserExtension.isChecked)
+        XCTAssertTrue(newSafeScreen.browserExtension.isChecked)
     }
 
     // NS-010
     func test_rescanInvalidOnTopOfValid() {
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
-        screen.saveButton.tap()
-        newSafe.browserExtension.element.tap()
-        XCTAssertFalse(screen.updateButton.isEnabled)
-        let scannedValue = screen.qrCodeInput.value as! String
-        screen.qrCodeInput.tap()
+        newSafeScreen.browserExtension.element.tap()
+
+        pairWithExtensionScreen.scanButton.tap()
         cameraScreen.scanInvalidCodeButton.tap()
         cameraScreen.closeButton.tap()
-        XCTAssertTrue(QRCodeInputIsEqual(to: scannedValue))
         TestUtils.navigateBack()
-        XCTAssertTrue(newSafe.browserExtension.isChecked)
+        XCTAssertTrue(newSafeScreen.browserExtension.isChecked)
     }
 
     // NS-011
     func test_rescanValidCodeOnTopOfValidCode() {
-        let scannedValue = rescanValidCodeOnTopOfValidWithoutUpdate()
-        let newScannedValue = screen.qrCodeInput.value as! String
-        XCTAssertTrue(scannedValue != newScannedValue)
-        TestUtils.navigateBack()
-        newSafe.browserExtension.element.tap()
-        XCTAssertTrue(QRCodeInputIsEqual(to: scannedValue))
+        givenCameraOpened()
+        cameraScreen.scanValidCodeButton.tap()
+        newSafeScreen.browserExtension.element.tap()
+        pairWithExtensionScreen.scanButton.tap()
+        cameraScreen.scanValidCodeButton.tap()
     }
 
     // NS-012
     func test_browserExtension_whenAppRestarted_thenCodeSaved() {
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
-        let scannedValue = screen.qrCodeInput.value as! String
-        screen.saveButton.tap()
         Application().terminate()
-        givenBrowserExtensionSetup(withAppReset: false)
-        XCTAssertTrue(QRCodeInputIsEqual(to: scannedValue))
-    }
-
-    // NS-013
-    func test_whenUpdatingValidCodeOnANewValidCode_thenNewValidCodeReplacedOld() {
-        rescanValidCodeOnTopOfValidWithoutUpdate()
-        let newScannedValue = screen.qrCodeInput.value as! String
-        screen.updateButton.tap()
-        newSafe.browserExtension.element.tap()
-        XCTAssertTrue(QRCodeInputIsEqual(to: newScannedValue))
+        givenNewSafeSetup(withAppReset: false)
+        XCTAssertTrue(newSafeScreen.browserExtension.isChecked)
     }
 
 }
@@ -135,24 +103,6 @@ private extension PairWithBrowserExtensionScreenUITests {
     func closeCamera() {
         XCTAssertTrue(cameraScreen.isDisplayed)
         cameraScreen.closeButton.tap()
-        XCTAssertExist(screen.qrCodeInput)
-    }
-
-    func QRCodeInputIsEqual(to value: String) -> Bool {
-        return screen.qrCodeInput.value as? String == value
-    }
-
-    @discardableResult
-    func rescanValidCodeOnTopOfValidWithoutUpdate() -> String {
-        givenCameraOpened()
-        cameraScreen.scanValidCodeButton.tap()
-        let scannedValue = screen.qrCodeInput.value as! String
-        screen.saveButton.tap()
-        newSafe.browserExtension.element.tap()
-        screen.qrCodeInput.tap()
-        cameraScreen.scanValidCodeButton.tap()
-        XCTAssertFalse(QRCodeInputIsEqual(to: scannedValue))
-        return scannedValue
     }
 
 }
@@ -165,7 +115,6 @@ final class PairWithBrowserExtensionScreenErrorsUITests: PairWithBrowserExtensio
     func test_whenNetworkErrorInPairing_thenShowsAlert() {
         application.setMockNotificationService(delay: networkDelay, shouldThrow: .networkError)
         handleNotificationServiceError()
-        XCTAssertTrue(screen.saveButton.isEnabled)
     }
 
     // NS-ERR-002
@@ -179,11 +128,38 @@ final class PairWithBrowserExtensionScreenErrorsUITests: PairWithBrowserExtensio
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
         handleErrorAlert(with: expectation(description: "Alert handled"))
-        screen.saveButton.tap()
-        XCTAssertFalse(screen.saveButton.isEnabled)
         delay(networkDelay)
         handleAlerts()
     }
 
+}
+
+class PairWithBrowserExtensionScreenExpiredCodeUITests: UITestCase {
+
+    private var errorAlertHandler: NSObjectProtocol!
+    private let cameraScreen = CameraScreen()
+    private let pairWithBrowserExtensionScreen = PairWithBrowserExtensionScreen()
+
+    override func setUp() {
+        super.setUp()
+        Springboard.deleteSafeApp()
+        givenBrowserExtensionSetup()
+    }
+
+    override func tearDown() {
+        if let handler = errorAlertHandler {
+            removeUIInterruptionMonitor(handler)
+        }
+        super.tearDown()
+    }
+
+    // NS-INT-102
+    func test_whenTryingToPairWithExpiredCode_thenShowsError() {
+        givenCameraOpened()
+        cameraScreen.scanExpiredCodeButton.tap()
+        handleErrorAlert(with: expectation(description: "Alert handled"))
+        pairWithBrowserExtensionScreen.scanButton.tap()
+        handleAlerts()
+    }
 
 }

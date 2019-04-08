@@ -8,7 +8,7 @@ import CommonTestSupport
 class UITestCase: XCTestCase {
 
     let application = Application()
-    let password = "11111A"
+    let password = "qwe123qwe"
     private var cameraSuggestionHandler: NSObjectProtocol!
     private var cameraPermissionHandler: NSObjectProtocol!
     private var errorAlertHandler: NSObjectProtocol!
@@ -52,10 +52,12 @@ class UITestCase: XCTestCase {
 
     func givenNewSafeSetup(withAppReset: Bool = true) {
         givenUnlockedAppSetup(withAppReset: withAppReset)
-        let setupOptions = SetupSafeOptionsScreen()
-        if withAppReset {
-            setupOptions.newSafe.tap()
+        let setupOptionsScreen = SetupSafeOptionsScreen()
+        if setupOptionsScreen.isDisplayed {
+            setupOptionsScreen.newSafe.tap()
         }
+        let guidelinesScreen = NewSafeGuidelinesScreen()
+        guidelinesScreen.nextButton.tap()
     }
 
     func givenBrowserExtensionSetup(withAppReset: Bool = true) {
@@ -75,7 +77,6 @@ class UITestCase: XCTestCase {
 
     func givenDeploymentStarted() {
         let newSafeScreen = NewSafeScreen()
-        let pairWithBrowserScreen = PairWithBrowserExtensionScreen()
         let cameraScreen = CameraScreen()
 
         givenNewSafeSetup()
@@ -84,7 +85,6 @@ class UITestCase: XCTestCase {
         newSafeScreen.browserExtension.element.tap()
         givenCameraOpened()
         cameraScreen.scanValidCodeButton.tap()
-        pairWithBrowserScreen.saveButton.tap()
         newSafeScreen.next.tap()
     }
 
@@ -121,18 +121,13 @@ class UITestCase: XCTestCase {
         case input, button
     }
 
-    func givenCameraOpened(with option: CameraOpenOption = .button) {
+    func givenCameraOpened() {
         let pairWithBrowserScreen = PairWithBrowserExtensionScreen()
 
         cameraPermissionExpectation = expectation(description: "Alert")
         cameraPermissionExpectation.assertForOverFulfill = false
         handleCameraPermsissionByAllowing()
-        switch option {
-        case .input:
-            pairWithBrowserScreen.qrCodeInput.tap()
-        case .button:
-            pairWithBrowserScreen.qrCodeButton.tap()
-        }
+        pairWithBrowserScreen.scanButton.tap()
         handleCameraAlerts()
     }
 

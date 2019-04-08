@@ -7,7 +7,7 @@ import CommonTestSupport
 
 class UnlockScreenUITests: UITestCase {
 
-    let screen = UnlockScreen()
+    let unlockScreen = UnlockScreen()
     let securedScreen = SetupSafeOptionsScreen()
     let invalidPassword = "a"
     var blockTime: TimeInterval = 3
@@ -33,14 +33,16 @@ class UnlockScreenUITests: UITestCase {
         let sessionDuration: TimeInterval = 2
         application.setSessionDuration(seconds: sessionDuration)
         givenMasterPasswordIsSet()
+        delay(0.5) // screen transition animation
         application.minimize()
         delay(sessionDuration * 2)
         application.maximize()
-        guard screen.isDisplayed else {
+        delay(0.5) // open animation
+        guard unlockScreen.isDisplayed else {
             XCTFail("Expected to see Unlock screen")
             return
         }
-        screen.enterPassword(password)
+        unlockScreen.enterPassword(password)
         XCTAssertTrue(securedScreen.isDisplayed)
     }
 
@@ -54,11 +56,11 @@ class UnlockScreenUITests: UITestCase {
     func test_whenEntersWrongPasswordTooManyTimes_thenBlocksUnlocking() {
         blockTime = 5
         block(attempts: 2)
-        XCTAssertExist(screen.countdown)
+        XCTAssertExist(unlockScreen.countdown)
         delay(blockTime)
-        XCTAssertNotExist(screen.countdown)
-        screen.enterPassword(invalidPassword)
-        XCTAssertExist(screen.countdown)
+        XCTAssertNotExist(unlockScreen.countdown)
+        unlockScreen.enterPassword(invalidPassword)
+        XCTAssertExist(unlockScreen.countdown)
     }
 
     // MP-105
@@ -68,7 +70,7 @@ class UnlockScreenUITests: UITestCase {
         application.minimize()
         delay(1)
         application.maximize()
-        XCTAssertExist(screen.countdown)
+        XCTAssertExist(unlockScreen.countdown)
     }
 
     // MP-003
@@ -76,7 +78,7 @@ class UnlockScreenUITests: UITestCase {
         application.setPassword(password)
         application.setSessionDuration(seconds: 10)
         restart()
-        screen.enterPassword("")
+        unlockScreen.enterPassword("")
         delay()
         XCTAssertNotExist(XCUIApplication().staticTexts["Fatal error"])
     }
@@ -91,7 +93,7 @@ extension UnlockScreenUITests {
         application.setPassword(password)
         application.start()
         for _ in 0..<attempts {
-            screen.enterPassword(invalidPassword)
+            unlockScreen.enterPassword(invalidPassword)
         }
     }
 

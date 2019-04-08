@@ -61,7 +61,7 @@ public class TermsAndConditionsViewController: UIViewController {
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(OnboardingEvent.terms)
+        trackEvent(OnboardingTrackingEvent.terms)
     }
 
     @IBAction func openTermsOfUse(_ sender: Any) {

@@ -39,7 +39,6 @@ class MenuTableViewControllerTests: XCTestCase {
     func test_whenCreated_thenConfigured() {
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: safeSection), 2)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: portfolioSection), 1)
-//        XCTAssertEqual(controller.tableView.numberOfRows(inSection: securitySection), 1)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: supportSection), 3)
     }
 
@@ -89,11 +88,18 @@ class MenuTableViewControllerTests: XCTestCase {
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
     }
 
+
     // MARK: - Commands
 
     func test_whenSelectingChangePassword_thenCommandIsCalled() {
         selectCell(row: 1, section: securitySection)
         XCTAssertTrue(delegate.selectedCommand is ChangePasswordCommand)
+    }
+    
+    // MARK: - Tracking
+
+    func test_tracking() {
+        XCTAssertTracksAppearance(in: controller, MenuTrackingEvent.menu)
     }
 
 }
@@ -154,4 +160,27 @@ class MockDisconnectBrowserExtensionApplicationService: DisconnectBrowserExtensi
 
     override var isAvailable: Bool { return false }
 
+    override func sign(transaction: RBETransactionID, withPhrase phrase: String) throws {
+        // no-op
+    }
+
+    override func create() -> RBETransactionID {
+        return "Some"
+    }
+
+    override func estimate(transaction: RBETransactionID) -> RBEEstimationResult {
+        return RBEEstimationResult(feeCalculation: nil, error: nil)
+    }
+
+    override func start(transaction: RBETransactionID) throws {
+        // no-op
+    }
+
+    override func connect(transaction: RBETransactionID, code: String) throws {
+        // no-op
+    }
+
+    override func startMonitoring(transaction: RBETransactionID) {
+        // no-op
+    }
 }

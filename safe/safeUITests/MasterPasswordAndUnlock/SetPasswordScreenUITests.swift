@@ -8,8 +8,8 @@ class SetPasswordScreenUITests: XCTestCase {
 
     let application = Application()
     let screen = SetPasswordScreen()
-    let invalidPassword = "a"
-    let validPassword = "abcdeF1"
+    let invalidPassword = "aaa"
+    let validPassword = "abcdeF1abc"
 
     override func setUp() {
         super.setUp()

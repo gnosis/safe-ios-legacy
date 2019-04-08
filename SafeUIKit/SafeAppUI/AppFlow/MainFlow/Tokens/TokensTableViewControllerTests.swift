@@ -72,6 +72,10 @@ class TokensTableViewControllerTests: SafeTestCase {
         XCTAssertTrue(footer is TokensHeaderView)
     }
 
+    func test_tracking() {
+        XCTAssertTracksAppearance(in: controller, MainTrackingEvent.assets)
+    }
+
 }
 
 private extension TokensTableViewControllerTests {

@@ -18,6 +18,9 @@ test) bundle exec fastlane test scheme:safe
     ;;
 adhoc) bundle exec fastlane fabric
     ;;
+smoketest) bundle exec fastlane test scheme:allUITests
+    curl -s https://codecov.io/bash | bash -s -- -D . -c -t "${CODECOV_TOKEN}"
+    ;;
 *) echo "Invalid option"; exit 1;
     ;;
 esac

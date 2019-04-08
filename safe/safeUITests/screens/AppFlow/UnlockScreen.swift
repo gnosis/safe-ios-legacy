@@ -8,7 +8,7 @@ import CommonTestSupport
 
 final class UnlockScreen: SecureTextfieldScreen {
 
-    override var title: XCUIElement { return XCUIApplication().staticTexts[LocalizedString("app.unlock.header")] }
+    override var isDisplayed: Bool { return XCUIApplication().otherElements["unlock.password"].exists }
     var countdown: XCUIElement { return XCUIApplication().staticTexts["countdown"] }
 
 }

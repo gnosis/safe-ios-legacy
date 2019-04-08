@@ -68,8 +68,8 @@ extension NewSafeFlowCoordinator: NewSafeDelegate {
                                                   comment: "Header for add browser extension screen")
         controller.descriptionText = LocalizedString("new_safe.browser_extension.description",
                                                      comment: "Description for add browser extension screen")
-        controller.trackingView = OnboardingEvent.addBrowserExtension
-        controller.scannerTrackingView = OnboardingEvent.scanQR
+        controller.screenTrackingEvent = OnboardingTrackingEvent.twoFA
+        controller.scanTrackingEvent = OnboardingTrackingEvent.twoFAScan
         return controller
     }
 

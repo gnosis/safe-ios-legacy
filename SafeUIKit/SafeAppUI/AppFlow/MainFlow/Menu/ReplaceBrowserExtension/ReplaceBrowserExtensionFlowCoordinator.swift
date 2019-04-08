@@ -16,11 +16,41 @@ class ReplaceBrowserExtensionFlowCoordinator: FlowCoordinator {
 
     override func setUp() {
         super.setUp()
+        let vc = introViewController()
+        push(vc)
+        introVC = vc
+    }
+
+}
+
+/// Screens factory methods
+extension ReplaceBrowserExtensionFlowCoordinator {
+
+    func introViewController() -> RBEIntroViewController {
         let intro = RBEIntroViewController.create()
         intro.starter = applicationService
         intro.delegate = self
-        push(intro)
-        introVC = intro
+        intro.screenTrackingEvent = ReplaceBrowserExtensionTrackingEvent.intro
+        return intro
+    }
+
+    func pairViewController() -> PairWithBrowserExtensionViewController {
+        let controller = PairWithBrowserExtensionViewController.createRBEConnectController(delegate: self)
+        controller.screenTrackingEvent = ReplaceBrowserExtensionTrackingEvent.scan
+        return controller
+    }
+
+    func phraseInputViewController() -> RecoveryPhraseInputViewController {
+        let controller = RecoveryPhraseInputViewController.create(delegate: self)
+        controller.screenTrackingEvent = ReplaceBrowserExtensionTrackingEvent.enterSeed
+        return controller
+    }
+
+    func reviewViewController() -> RBEReviewTransactionViewController {
+        let controller = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
+        controller.screenTrackingEvent = ReplaceBrowserExtensionTrackingEvent.review
+        controller.successTrackingEvent = ReplaceBrowserExtensionTrackingEvent.success
+        return controller
     }
 
 }
@@ -29,8 +59,7 @@ extension ReplaceBrowserExtensionFlowCoordinator: RBEIntroViewControllerDelegate
 
     func rbeIntroViewControllerDidStart() {
         self.transactionID = introVC!.transactionID
-        let controller = PairWithBrowserExtensionViewController.createRBEConnectController(delegate: self)
-        push(controller)
+        push(pairViewController())
     }
 
 }
@@ -44,8 +73,7 @@ extension ReplaceBrowserExtensionFlowCoordinator: PairWithBrowserExtensionViewCo
     }
 
     func pairWithBrowserExtensionViewControllerDidFinish() {
-        let controller = RecoveryPhraseInputViewController.create(delegate: self)
-        push(controller)
+        push(phraseInputViewController())
     }
 
 }
@@ -64,8 +92,7 @@ extension ReplaceBrowserExtensionFlowCoordinator: RecoveryPhraseInputViewControl
 
 
     func recoveryPhraseInputViewControllerDidFinish() {
-        let controller = RBEReviewTransactionViewController(transactionID: transactionID, delegate: self)
-        push(controller)
+        push(reviewViewController())
     }
 
 }

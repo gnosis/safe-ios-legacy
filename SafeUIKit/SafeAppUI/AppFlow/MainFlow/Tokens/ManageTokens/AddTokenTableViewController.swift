@@ -59,6 +59,11 @@ class AddTokenTableViewController: UITableViewController {
         filteredTokens = tokens
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(MainTrackingEvent.addToken)
+    }
+
     private func configureNavigationItem() {
         title = Strings.title
         navigationItem.searchController = searchController

@@ -65,6 +65,11 @@ final class ManageTokensTableViewController: UITableViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(MainTrackingEvent.manageTokens)
+    }
+
     @objc internal func addToken() {
         delegate?.addToken()
     }

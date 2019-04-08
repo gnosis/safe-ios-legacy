@@ -68,6 +68,7 @@ public class FundsTransferTransactionViewController: UIViewController {
         model = FundsTransferTransactionViewModel(tokenID: tokenID, onUpdate: updateFromViewModel)
 
         addressInput.addressInputDelegate = self
+        addressInput.textInput.accessibilityIdentifier = "transaction.address"
 
         tokenInput.addRule(Strings.notEnoughFunds, identifier: "notEnoughFunds") { [unowned self] in
             guard self.tokenInput.formatter.number(from: $0) != nil else { return true }
@@ -79,6 +80,7 @@ public class FundsTransferTransactionViewController: UIViewController {
         tokenInput.imageURL = model.tokenData.logoURL
         tokenInput.tokenCode = model.tokenData.code
         tokenInput.delegate = self
+        tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
 
         transactionHeaderView.usesEthImageWhenImageURLIsNil = true
         feeBalanceView.backgroundColor = .clear
@@ -89,6 +91,11 @@ public class FundsTransferTransactionViewController: UIViewController {
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardBehavior.start()
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(SendTrackingEvent(.input, token: model.tokenData.address, tokenName: model.tokenData.code))
     }
 
     override public func viewWillDisappear(_ animated: Bool) {

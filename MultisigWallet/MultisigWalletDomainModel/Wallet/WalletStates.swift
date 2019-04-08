@@ -14,6 +14,7 @@ public class WalletState {
     public enum State: Int {
         case draft
         case deploying
+        case waitingForFirstDeposit
         case notEnoughFunds
         case creationStarted
         case finalizingDeployment
@@ -60,9 +61,10 @@ extension WalletState: CustomStringConvertible {
 }
 
 public class DeploymentStarted: DomainEvent {}
+public class StartedWaitingForFirstDeposit: DomainEvent {}
 public class DeploymentAborted: DomainEvent {}
 public class WalletTransactionHashIsKnown: DomainEvent {}
-public class WalletConfigured: DomainEvent {}
+public class StartedWaitingForRemainingFeeAmount: DomainEvent {}
 public class CreationStarted: DomainEvent {}
 public class DeploymentFunded: DomainEvent {}
 public class WalletCreated: DomainEvent {}
@@ -120,7 +122,37 @@ public class DeployingState: WalletState {
     }
 
     override func proceed() {
-        wallet.state = wallet.notEnoughFundsState
+        wallet.state = wallet.waitingForFirstDepositState
+        DomainRegistry.walletRepository.save(wallet)
+        wallet.state.resume()
+    }
+
+    override func cancel() {
+        wallet.state = wallet.newDraftState
+        wallet.reset()
+        DomainRegistry.walletRepository.save(wallet)
+        DomainRegistry.eventPublisher.publish(DeploymentAborted())
+    }
+
+}
+
+public class WaitingForFirstDepositState: WalletState {
+
+    override public var state: WalletState.State { return .waitingForFirstDeposit }
+
+    override var isCreationInProgress: Bool { return true }
+
+    override func resume() {
+        DomainRegistry.eventPublisher.publish(StartedWaitingForFirstDeposit())
+    }
+
+    override func proceed() {
+        guard let minimumBalance = wallet.minimumDeploymentTransactionAmount else {
+            preconditionFailure("Minimum balance must be set before waiting for first deposit")
+        }
+        let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
+        let balance = DomainRegistry.accountRepository.find(id: accountID)!.balance ?? 0
+        wallet.state = balance < minimumBalance ? wallet.notEnoughFundsState : wallet.creationStartedState
         DomainRegistry.walletRepository.save(wallet)
         wallet.state.resume()
     }
@@ -141,7 +173,7 @@ public class NotEnoughFundsState: WalletState {
     override var isCreationInProgress: Bool { return true }
 
     override func resume() {
-        DomainRegistry.eventPublisher.publish(WalletConfigured())
+        DomainRegistry.eventPublisher.publish(StartedWaitingForRemainingFeeAmount())
     }
 
     override func proceed() {

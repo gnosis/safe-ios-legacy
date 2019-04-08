@@ -42,6 +42,7 @@ final class StartViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackEvent(OnboardingEvent.welcome)
+        trackEvent(OnboardingTrackingEvent.welcome)
     }
 
     override func viewWillAppear(_ animated: Bool) {

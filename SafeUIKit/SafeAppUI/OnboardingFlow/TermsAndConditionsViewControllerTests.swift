@@ -7,8 +7,9 @@ import XCTest
 
 class TermsAndConditionsViewControllerTests: XCTestCase {
 
+    let controller = TermsAndConditionsViewController.create()
+
     func test_whenTappingButtons_thenCallsDelegate() {
-        let controller = TermsAndConditionsViewController.create()
         let delegate = TestTermsAndConditionsViewControllerDelegate()
         controller.delegate = delegate
         createWindow(controller)
@@ -18,6 +19,10 @@ class TermsAndConditionsViewControllerTests: XCTestCase {
         XCTAssertTrue(delegate.didOpenPrivacyPolicy, "privacy")
         XCTAssertTrue(delegate.didCallDisagree, "disagree")
         XCTAssertTrue(delegate.didCallAgree, "agree")
+    }
+
+    func test_tracking() {
+        XCTAssertTracksAppearance(in: controller, OnboardingTrackingEvent.terms)
     }
 
 }

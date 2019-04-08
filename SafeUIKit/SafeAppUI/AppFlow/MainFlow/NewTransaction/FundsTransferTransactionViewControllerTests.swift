@@ -56,6 +56,23 @@ class FundsTransferTransactionViewControllerTests: XCTestCase {
         XCTAssertTrue(walletService.verify())
     }
 
+    func test_tracking() {
+        XCTAssertTracks { handler in
+            controller.loadViewIfNeeded()
+            controller.viewDidAppear(false)
+
+            let screenName = SendTrackingEvent.ScreenName.input.rawValue
+            let tokenAddress = TokenData.Ether.address
+            let tokenName = TokenData.Ether.code
+            let eventName = Tracker.screenViewEventName
+
+            XCTAssertEqual(handler.events[0].name, eventName)
+            XCTAssertEqual(handler.parameter(at: 0, name: Tracker.screenNameEventParameterName), screenName)
+            XCTAssertEqual(handler.parameter(at: 0, name: SendTrackingEvent.tokenParameterName), tokenAddress)
+            XCTAssertEqual(handler.parameter(at: 0, name: SendTrackingEvent.tokenNameParameterName), tokenName)
+        }
+    }
+
 }
 
 class MockFundsTransferDelegate: FundsTransferTransactionViewControllerDelegate {

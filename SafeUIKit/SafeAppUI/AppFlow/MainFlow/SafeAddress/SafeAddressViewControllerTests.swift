@@ -11,15 +11,16 @@ class SafeAddressViewControllerTests: XCTestCase {
 
     let walletService = MockWalletApplicationService()
     let testAddress = "test_address"
+    var controller: SafeAddressViewController!
 
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: walletService, for: WalletApplicationService.self)
         walletService.assignAddress(testAddress)
+        controller = SafeAddressViewController.create()
     }
 
     func test_whenCreated_thenDisplaysCorrectData() {
-        let controller = SafeAddressViewController.create()
         createWindow(controller)
         controller.viewDidLoad()
         XCTAssertEqual(controller.safeAddressLabel.address, testAddress)
@@ -27,4 +28,7 @@ class SafeAddressViewControllerTests: XCTestCase {
         XCTAssertEqual(controller.identiconView.seed, testAddress)
     }
 
+    func test_tracking() {
+        XCTAssertTracksAppearance(in: controller, MainTrackingEvent.receiveFunds)
+    }
 }

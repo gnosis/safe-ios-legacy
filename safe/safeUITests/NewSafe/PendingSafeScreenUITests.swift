@@ -47,8 +47,10 @@ class PendingSafeScreenUITests: UITestCase {
         defer { removeUIInterruptionMonitor(monitor) }
         pendingScreen.cancel.tap()
         handleAlert(expectation)
-        waitUntil(newSafeScreen.isDisplayed)
+        TestUtils.navigateBack()
+        waitUntil(SetupSafeOptionsScreen().isDisplayed)
         restartTheApp()
+        NewSafeGuidelinesScreen().nextButton.tap()
         newSafeScreen.next.tap()
         waitUntil(mainScreen.isDisplayed, timeout: 30)
     }
@@ -77,7 +79,8 @@ class PendingSafeScreenUITests: UITestCase {
         defer { removeUIInterruptionMonitor(monitor) }
         pendingScreen.cancel.tap()
         handleAlert(expectation)
-        waitUntil(newSafeScreen.isDisplayed)
+        TestUtils.navigateBack()
+        waitUntil(SetupSafeOptionsScreen().isDisplayed)
     }
 
     // NS-206, NS-207, NS-208
@@ -86,7 +89,7 @@ class PendingSafeScreenUITests: UITestCase {
         XCTAssertFalse(pendingScreen.cancel.isEnabled)
         restartTheApp(serverResponseDelay: 5)
         XCTAssertFalse(pendingScreen.cancel.isEnabled)
-        XCTAssertTrue(pendingScreen.status.label == LocalizedString("pending_safe.status.account_funded"))
+        XCTAssertTrue(pendingScreen.status.label == LocalizedString("safe_creation.status.account_funded"))
         restartTheApp(serverResponseDelay: 0.1)
         waitUntil(mainScreen.isDisplayed, timeout: 30)
     }
@@ -109,27 +112,24 @@ extension PendingSafeScreenUITests {
         wait(for: [expectation], timeout: 1)
     }
 
-    private func waitUntilNotEnoughFundsStatus() {
-        waitUntilStatus(notEnoughFundsLabel())
+    private func waitUntilNotEnoughFundsStatus(line: UInt = #line) {
+        waitUntilStatus(notEnoughFundsLabel(), line: line)
     }
 
-    private func waitUntilAccountFundedStatus() {
-        waitUntilStatus(LocalizedString("pending_safe.status.account_funded"), timeout: 30)
+    private func waitUntilAccountFundedStatus(line: UInt = #line) {
+        waitUntilStatus(LocalizedString("safe_creation.status.account_funded"), timeout: 30, line: line)
     }
 
-    private func waitUntilStatus(_ label: String, timeout: TimeInterval = 10) {
-        waitUntil(pendingScreen.status.label == label, timeout: timeout)
+    private func waitUntilStatus(_ label: String, timeout: TimeInterval = 10, line: UInt = #line) {
+        waitUntil(pendingScreen.status.label == label, timeout: timeout, line: Int(line))
     }
 
-    private func waitUntilDeploymentAcceptedByBlockchainStatus() {
-        waitUntilStatus(LocalizedString("pending_safe.status.deployment_accepted"))
+    private func waitUntilDeploymentAcceptedByBlockchainStatus(line: UInt = #line) {
+        waitUntilStatus(LocalizedString("safe_creation.status.deployment_accepted"), line: line)
     }
 
     private func notEnoughFundsLabel() -> String {
-        let balanceEth = "0,00 ETH"
-        let requiredEth = "0.0000000000000001 ETH"
-        let status = String(format: LocalizedString("pending_safe.status.not_enough_funds"), balanceEth, requiredEth)
-        return status
+        return LocalizedString("safe_creation.status.awaiting_deposit")
     }
 
     private func addAbortAlertMonitor(cancellingAlert: Bool) -> (NSObjectProtocol, XCTestExpectation) {

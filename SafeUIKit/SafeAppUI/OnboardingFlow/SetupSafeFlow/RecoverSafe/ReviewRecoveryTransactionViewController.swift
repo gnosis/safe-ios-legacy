@@ -116,6 +116,11 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
         start()
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(RecoverSafeTrackingEvent.review)
+    }
+
     func reloadData() {
         let tx = ApplicationServiceRegistry.recoveryService.recoveryTransaction()
         DispatchQueue.main.async {

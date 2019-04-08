@@ -74,6 +74,17 @@ class TransactionDetailsViewControllerTests: XCTestCase {
         XCTAssertTrue(service.verify())
     }
 
+    func test_tracking() {
+        service.transactionData_output = TransactionData.pending
+        controller.loadViewIfNeeded()
+        XCTAssertTracks { handler in
+            controller.viewDidAppear(false)
+            XCTAssertEqual(handler.screenName(at: 0), TransactionDetailTrackingEvent(type: .send).rawValue)
+            XCTAssertEqual(handler.parameter(at: 0, name: TransactionDetailTrackingEvent.transactionTypeParameterName),
+                           TransactionDetailType.send.rawValue)
+        }
+    }
+
 }
 
 class TestClock: ClockService {

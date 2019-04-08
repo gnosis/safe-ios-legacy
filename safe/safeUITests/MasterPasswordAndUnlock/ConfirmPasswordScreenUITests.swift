@@ -9,8 +9,8 @@ class ConfirmPasswordScreenUITests: XCTestCase {
 
     let application = Application()
     let screen = ConfirmPasswordScreen()
-    let validPassword = "abcdeF1"
-    let invalidPassword = "a"
+    let actualValidPassword = "abcdeF1abc"
+    let notMatchingPassword = "a"
 
     override func setUp() {
         super.setUp()
@@ -52,21 +52,21 @@ class ConfirmPasswordScreenUITests: XCTestCase {
     // MP-007
     func test_whenEnteredDifferentPassword_thenRuleError() {
         givenConfirmPasswordScreen()
-        screen.enterPassword(invalidPassword)
+        screen.enterPassword(notMatchingPassword)
         XCTAssertEqual(screen.passwordMatchRule.state, .error)
     }
 
     // MP-007
     func test_whenEnteredMatchingPassword_thenRuleSuccess() {
         givenConfirmPasswordScreen()
-        screen.enterPassword(validPassword, hittingEnter: false)
+        screen.enterPassword(actualValidPassword, hittingEnter: false)
         XCTAssertEqual(screen.passwordMatchRule.state, .success)
     }
 
     // MP-007
     func test_whenEnteredMatchingPasswordAndHitEnter_thenSafeSetupOptionsScreenDisplayed() {
         givenConfirmPasswordScreen()
-        screen.enterPassword(validPassword)
+        screen.enterPassword(actualValidPassword)
         XCTAssertTrue(SetupSafeOptionsScreen().isDisplayed)
     }
 
@@ -77,7 +77,7 @@ extension ConfirmPasswordScreenUITests {
     private func givenConfirmPasswordScreen() {
         application.start()
         StartScreen().start()
-        SetPasswordScreen().enterPassword(validPassword)
+        SetPasswordScreen().enterPassword(actualValidPassword)
     }
 
 }

@@ -73,6 +73,30 @@ class ReplaceBrowserExtensionFlowCoordinatorTests: XCTestCase {
         XCTAssertTrue(mockApplicationService.didStartMonitoring)
     }
 
+    func test_tracking() {
+        let mockWalletService = MockWalletApplicationService()
+        ApplicationServiceRegistry.put(service: mockWalletService, for: WalletApplicationService.self)
+        mockWalletService.transactionData_output = TransactionData.tokenData(status: .readyToSubmit)
+
+        fc.transactionID = "tx"
+
+        let introEvent = fc.introViewController().screenTrackingEvent as? ReplaceBrowserExtensionTrackingEvent
+        XCTAssertEqual(introEvent, .intro)
+
+        let scanEvent = fc.pairViewController().screenTrackingEvent as? ReplaceBrowserExtensionTrackingEvent
+        XCTAssertEqual(scanEvent, .scan)
+
+        let phraseInputEvent = fc.phraseInputViewController().screenTrackingEvent
+            as? ReplaceBrowserExtensionTrackingEvent
+        XCTAssertEqual(phraseInputEvent, .enterSeed)
+
+        let reviewEvent = fc.reviewViewController().screenTrackingEvent as? ReplaceBrowserExtensionTrackingEvent
+        XCTAssertEqual(reviewEvent, .review)
+
+        let successEvent = fc.reviewViewController().successTrackingEvent as? ReplaceBrowserExtensionTrackingEvent
+        XCTAssertEqual(successEvent, .success)
+    }
+
 }
 
 class MockReplaceExtensionApplicationService: ReplaceBrowserExtensionApplicationService {

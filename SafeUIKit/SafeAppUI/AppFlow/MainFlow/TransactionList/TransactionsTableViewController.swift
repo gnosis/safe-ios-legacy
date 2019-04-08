@@ -53,6 +53,11 @@ public class TransactionsTableViewController: UITableViewController, EventSubscr
         tableView.backgroundView = model.isEmpty ? emptyView : nil
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackEvent(MainTrackingEvent.transactions)
+    }
+
     // MARK: - Table view data source
 
     override public func numberOfSections(in tableView: UITableView) -> Int {

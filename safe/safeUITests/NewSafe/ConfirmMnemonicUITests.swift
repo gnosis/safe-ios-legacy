@@ -10,7 +10,6 @@ final class ConfirmMnemonicUITests: UITestCase {
     let confirmMnemonicScreen = ConfirmMnemonicScreen()
     let saveMnemonicScreen = SaveMnemonicScreen()
     let newSafeScreen = NewSafeScreen()
-    let setupSafeOptionsScreen = SetupSafeOptionsScreen()
 
     override func setUp() {
         super.setUp()
@@ -20,13 +19,10 @@ final class ConfirmMnemonicUITests: UITestCase {
     // NS-104
     func test_contents() {
         XCTAssertTrue(confirmMnemonicScreen.isDisplayed)
-        XCTAssertExist(confirmMnemonicScreen.description)
         XCTAssertExist(confirmMnemonicScreen.firstInput)
         XCTAssertExist(confirmMnemonicScreen.secondInput)
         XCTAssertTrue(confirmMnemonicScreen.firstInput.hasFocus)
         XCTAssertFalse(confirmMnemonicScreen.secondInput.hasFocus)
-        XCTAssertExist(confirmMnemonicScreen.firstWordNumberLabel)
-        XCTAssertExist(confirmMnemonicScreen.secondWordNumberLabel)
     }
 
     // NS-105
@@ -44,34 +40,35 @@ final class ConfirmMnemonicUITests: UITestCase {
     func test_whenNavigatingBackAndForward_checkingWordsAreAlwaysDifferent() {
         let firstWordNumber = confirmMnemonicScreen.firstWordNumber
         let secondWordNumber = confirmMnemonicScreen.secondWordNumber
-        TestUtils.navigateBack()
+        confirmMnemonicScreen.backButton.tap()
         saveMnemonicScreen.continueButton.tap()
         let newFirstWordNumber = confirmMnemonicScreen.firstWordNumber
         let newSecondWordNumber = confirmMnemonicScreen.secondWordNumber
-        XCTAssertFalse(firstWordNumber == newFirstWordNumber && secondWordNumber == newSecondWordNumber)
+        XCTAssertFalse(firstWordNumber == newFirstWordNumber && secondWordNumber == newSecondWordNumber,
+                       "first word: \(firstWordNumber), new: \(newFirstWordNumber); " +
+                       "second word: \(secondWordNumber), new: \(newSecondWordNumber)")
     }
 
     // NS-107, NS-108, NS-109
     func test_whenPaperWalletRevalidated_thenItIsStillConfigured() {
-        TestUtils.navigateBack()
+        confirmMnemonicScreen.backButton.tap()
         confirmPaperWalletWithValidWords()
         assertPaperWalletIsSet()
         newSafeScreen.paperWallet.element.tap()
         saveMnemonicScreen.continueButton.tap()
         assertPaperWalletIsSet()
-        TestUtils.navigateBack()
-        setupSafeOptionsScreen.newSafe.tap()
+        saveMnemonicScreen.backButton.tap()
+        NewSafeGuidelinesScreen().nextButton.tap()
         assertPaperWalletIsSet()
     }
 
     // NS-107-01, NS-110
     func test_restartingAppInvalidatesConfiguredPaperWallet() {
-        TestUtils.navigateBack()
+        confirmMnemonicScreen.backButton.tap()
         let mnemonic = confirmPaperWalletWithValidWords(withConfirmButton: true)
         assertPaperWalletIsSet()
         Application().terminate()
         givenNewSafeSetup(withAppReset: false)
-        XCTAssertTrue(newSafeScreen.isDisplayed)
         XCTAssertTrue(newSafeScreen.paperWallet.isChecked)
         newSafeScreen.paperWallet.element.tap()
         XCTAssertEqual(mnemonic, saveMnemonicScreen.mnemonic.label)

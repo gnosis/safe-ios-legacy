@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import Common
 
 public protocol GuidelinesViewControllerDelegate: class {
     func didPressNext()
@@ -43,6 +44,8 @@ public class GuidelinesViewController: UIViewController {
     var headerStyle = HeaderStyle.contentHeader
     var bodyStyle = ListStyle.default
     public weak var delegate: GuidelinesViewControllerDelegate?
+    /// If not nil, then will be tracked, otherwise default onboarding events will be tracked.
+    var screenTrackingEvent: Trackable?
 
     public static func create(delegate: GuidelinesViewControllerDelegate? = nil) -> GuidelinesViewController {
         let controller = StoryboardScene.NewSafe.guidelinesViewController.instantiate()
@@ -60,7 +63,12 @@ public class GuidelinesViewController: UIViewController {
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackEvent(OnboardingEvent.guidelines)
+        if let event = screenTrackingEvent {
+            trackEvent(event)
+        } else {
+            trackEvent(OnboardingEvent.guidelines)
+            trackEvent(OnboardingTrackingEvent.recoveryIntro)
+        }
     }
 
     func update() {

@@ -133,6 +133,10 @@ class UnlockViewControllerTests: SafeTestCase {
         XCTAssertFalse(vc.cancelButton.isHidden)
     }
 
+    func test_tracking() {
+        XCTAssertTracksAppearance(in: vc, MainTrackingEvent.unlock)
+    }
+
 }
 
 extension UnlockViewControllerTests {

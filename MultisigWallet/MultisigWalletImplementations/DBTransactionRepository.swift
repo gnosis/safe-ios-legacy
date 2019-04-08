@@ -81,6 +81,7 @@ INSERT OR REPLACE INTO tbl_transactions VALUES (
 SELECT \(fieldList)
 FROM tbl_transactions
 WHERE id = ?
+ORDER BY rowid
 LIMIT 1;
 """
 
@@ -88,6 +89,7 @@ LIMIT 1;
 SELECT \(fieldList)
 FROM tbl_transactions
 WHERE hash = ? AND transaction_status = ?
+ORDER BY rowid
 LIMIT 1;
 """
         static let findByTypeAndWallet = """
@@ -96,7 +98,7 @@ LIMIT 1;
         WHERE transaction_type = ? AND wallet_id = ?
         LIMIT 1;
         """
-        static let findByHash = "SELECT \(fieldList) FROM tbl_transactions WHERE hash = ? LIMIT 1;"
+        static let findByHash = "SELECT \(fieldList) FROM tbl_transactions WHERE hash = ? ORDER BY rowid LIMIT 1;"
         static let findAll = "SELECT \(fieldList) FROM tbl_transactions;"
 
     }

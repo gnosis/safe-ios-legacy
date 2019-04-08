@@ -17,21 +17,21 @@ final class SaveMnemonicUITests: UITestCase {
     // NS-101
     func test_contents() {
         XCTAssertTrue(saveMnemonicScreen.isDisplayed)
-        XCTAssertEqual(saveMnemonicScreen.description.label, LocalizedString("new_safe.paper_wallet.description"))
+        XCTAssertEqual(saveMnemonicScreen.description.label, LocalizedString("new_safe.setup_recovery.description"))
         XCTAssertExist(saveMnemonicScreen.mnemonic)
         XCTAssertExist(saveMnemonicScreen.copyButton)
         XCTAssertExist(saveMnemonicScreen.continueButton)
     }
 
     // NS-102
-    // turned off because it is unstable in CI
-    func manual_test_copyMnemonic() {
+    func test_copyMnemonic() {
         let mnemonic = saveMnemonicScreen.mnemonic.label
         saveMnemonicScreen.copyButton.tap()
         saveMnemonicScreen.continueButton.tap()
         let confirmScreen = ConfirmMnemonicScreen()
         confirmScreen.firstInput.tap()
         XCUIApplication().menuItems["Paste"].tap()
+        delay(0.5) // paste animation
         let pastedValue = confirmScreen.firstInput.value as! String
         XCTAssertEqual(pastedValue, mnemonic)
     }

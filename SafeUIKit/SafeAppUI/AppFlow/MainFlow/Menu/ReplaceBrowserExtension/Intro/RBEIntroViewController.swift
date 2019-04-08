@@ -5,6 +5,7 @@
 import UIKit
 import SafeUIKit
 import MultisigWalletApplication
+import Common
 
 public protocol RBEIntroViewControllerDelegate: class {
     func rbeIntroViewControllerDidStart()
@@ -30,6 +31,7 @@ public class RBEIntroViewController: UIViewController {
     }
     public var transactionID: RBETransactionID?
     public var starter: RBEStarter?
+    public var screenTrackingEvent: Trackable?
     let formatter = TokenNumberFormatter()
 
     @IBOutlet weak var contentView: IntroContentView!
@@ -66,6 +68,13 @@ public class RBEIntroViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         transition(to: state)
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let event = screenTrackingEvent {
+            trackEvent(event)
+        }
     }
 
     public override func willMove(toParent parent: UIViewController?) {

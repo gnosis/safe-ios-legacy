@@ -18,14 +18,6 @@ class EventRelayTests: XCTestCase {
         relay = EventRelay(publisher: publisher)
     }
 
-    func test_api() {
-        relay.subscribe(subscriber, for: MyEvent.self)
-        subscriber.expect_notify()
-        publisher.publish(MyEvent())
-        delay()
-        subscriber.verify()
-    }
-
     func test_whenSubscriberDeallocated_thenNotNotified() {
         var callCount = 0
         var temp: BlockSubscriber? = BlockSubscriber {
@@ -63,6 +55,27 @@ class EventRelayTests: XCTestCase {
         relay.subscribe(subscriber, for: DomainEvent.self)
         relay.unsubscribe(subscriber)
         publisher.publish(MyEvent())
+        subscriber.verify()
+    }
+
+}
+
+class QuarantineEventRelayTests: XCTestCase {
+
+    var relay: EventRelay!
+    let subscriber = MockSubscriber()
+    let publisher = EventPublisher()
+
+    override func setUp() {
+        super.setUp()
+        relay = EventRelay(publisher: publisher)
+    }
+
+    func test_api() {
+        relay.subscribe(subscriber, for: MyEvent.self)
+        subscriber.expect_notify()
+        publisher.publish(MyEvent())
+        delay()
         subscriber.verify()
     }
 

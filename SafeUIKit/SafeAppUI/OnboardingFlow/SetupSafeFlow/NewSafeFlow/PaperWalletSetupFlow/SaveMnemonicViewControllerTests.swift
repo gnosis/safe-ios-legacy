@@ -65,6 +65,15 @@ class SaveMnemonicViewControllerTests: SafeTestCase {
         XCTAssertEqual(controller.account, expectedAccount)
     }
 
+    func test_whenScreenEventSet_thenTracksIt() {
+        controller.screenTrackingEvent = TestScreenTrackingEvent.view
+        XCTAssertTracksAppearance(in: controller, TestScreenTrackingEvent.view)
+    }
+
+    func test_whenScreenEventNotSet_thenTracksDefault() {
+        XCTAssertTracksAppearance(in: controller, OnboardingTrackingEvent.showSeed)
+    }
+
 }
 
 final class MockSaveMnemonicDelegate: SaveMnemonicDelegate {

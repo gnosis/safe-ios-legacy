@@ -8,9 +8,9 @@ import XCTest
 class PendingSafeScreen {
 
     var isDisplayed: Bool { return title.exists }
-    var title: XCUIElement { return XCUIApplication().staticTexts[LocalizedString("pending_safe.title")] }
+    var title: XCUIElement { return XCUIApplication().navigationBars[LocalizedString("safe_creation.title")] }
     var progressView: XCUIElement { return XCUIApplication().progressIndicators.element }
-    var status: XCUIElement { return XCUIApplication().staticTexts["pending_safe.status"] }
-    var cancel: XCUIElement { return XCUIApplication().buttons[LocalizedString("pending_safe.cancel")] }
+    var status: XCUIElement { return XCUIApplication().staticTexts["safe_creation.status"] }
+    var cancel: XCUIElement { return XCUIApplication().buttons[LocalizedString("safe_creation.cancel")] }
 
 }

@@ -35,10 +35,6 @@ public final class UnlockViewController: UIViewController {
         return vc
     }
 
-    enum UnlockEvent: String, Trackable {
-        case unlock = "Unlock"
-    }
-
     override public func viewDidLoad() {
         super.viewDidLoad()
         backgroundImageView.isDark = true
@@ -46,6 +42,7 @@ public final class UnlockViewController: UIViewController {
         verifiableInput.delegate = self
         verifiableInput.isSecure = true
         verifiableInput.style = .dimmed
+        verifiableInput.accessibilityIdentifier = "unlock.password"
 
         let isFaceID = authenticationService.isAuthenticationMethodSupported(.faceID)
         let biometryIcon = isFaceID ? Asset.UnlockScreen.faceIdIcon.image : Asset.UnlockScreen.touchIdIcon.image
@@ -134,7 +131,7 @@ public final class UnlockViewController: UIViewController {
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         auhtenticateWithBiometry()
-        trackEvent(UnlockEvent.unlock)
+        trackEvent(MainTrackingEvent.unlock)
     }
 
     @IBAction func loginWithBiometry(_ sender: Any) {

@@ -88,7 +88,8 @@ public class WalletApplicationService: Assertable {
         }
         ApplicationServiceRegistry.eventRelay.unsubscribe(subscriber)
         [DeploymentStarted.self,
-         WalletConfigured.self,
+         StartedWaitingForFirstDeposit.self,
+         StartedWaitingForRemainingFeeAmount.self,
          DeploymentFunded.self,
          CreationStarted.self,
          WalletTransactionHashIsKnown.self,
