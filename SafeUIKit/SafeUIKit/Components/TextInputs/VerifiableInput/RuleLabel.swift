@@ -102,15 +102,14 @@ final class RuleLabel: UIView {
 
     private func updateLabel() {
         label.accessibilityValue = [status.localizedDescription, label.text].compactMap { $0 }.joined(separator: " ")
-        if imageView == nil {
-            switch status {
-            case .error:
-                label.textColor = ColorName.tomato.color
-            case .inactive:
-                label.textColor = ColorName.battleshipGrey.color
-            case .success:
-                label.textColor = ColorName.greenTeal.color
-            }
+        guard imageView != nil else { return }
+        switch status {
+        case .error:
+            label.textColor = ColorName.tomato.color
+        case .inactive:
+            label.textColor = ColorName.battleshipGrey.color
+        case .success:
+            label.textColor = ColorName.greenTeal.color
         }
     }
 
