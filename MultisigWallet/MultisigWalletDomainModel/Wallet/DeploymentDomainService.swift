@@ -51,7 +51,8 @@ public class DeploymentDomainService {
     public func start() {
         DomainRegistry.eventPublisher.unsubscribe(self)
         DomainRegistry.eventPublisher.subscribe(self, deploymentStarted)
-        DomainRegistry.eventPublisher.subscribe(self, walletConfigured)
+        DomainRegistry.eventPublisher.subscribe(self, waitingForFirstDeposit)
+        DomainRegistry.eventPublisher.subscribe(self, waitingForRemainingAmount)
         DomainRegistry.eventPublisher.subscribe(self, walletFunded)
         DomainRegistry.eventPublisher.subscribe(self, creationStarted)
         DomainRegistry.eventPublisher.subscribe(self, walletCreated)
@@ -86,7 +87,22 @@ public class DeploymentDomainService {
         repeaters.stopAll()
     }
 
-    func walletConfigured(_ event: WalletConfigured) {
+    func waitingForFirstDeposit(_ event: StartedWaitingForFirstDeposit) {
+        handleError { wallet in
+            try waitForFirstDeposit(wallet)
+        }
+    }
+
+    private func waitForFirstDeposit(_ wallet: Wallet) throws {
+        try self.repeat(delay: config.balance.repeatDelay) { [unowned self] repeater in
+            let balance = try self.updateBalance(for: wallet)
+            guard balance > 0 else { return }
+            self.repeaters.stop(repeater)
+            wallet.proceed()
+        }
+    }
+
+    func waitingForRemainingAmount(_ event: StartedWaitingForRemainingFeeAmount) {
         handleError { wallet in
             try waitForFunding(wallet)
         }
@@ -94,15 +110,20 @@ public class DeploymentDomainService {
 
     private func waitForFunding(_ wallet: Wallet) throws {
         try self.repeat(delay: config.balance.repeatDelay) { [unowned self] repeater in
-            let balance = try self.balance(of: wallet.address!)
-            let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
-            let account = DomainRegistry.accountRepository.find(id: accountID)!
-            account.update(newAmount: balance)
-            DomainRegistry.accountRepository.save(account)
+            let balance = try self.updateBalance(for: wallet)
             guard balance >= wallet.minimumDeploymentTransactionAmount! else { return }
             self.repeaters.stop(repeater)
             wallet.proceed()
         }
+    }
+
+    private func updateBalance(for wallet: Wallet) throws -> TokenInt {
+        let balance = try self.balance(of: wallet.address!)
+        let accountID = AccountID(tokenID: Token.Ether.id, walletID: wallet.id)
+        let account = DomainRegistry.accountRepository.find(id: accountID)!
+        account.update(newAmount: balance)
+        DomainRegistry.accountRepository.save(account)
+        return balance
     }
 
     private func `repeat`(delay: TimeInterval, closure: @escaping (Repeater) throws -> Void) throws {

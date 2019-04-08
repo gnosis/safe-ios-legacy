@@ -14,7 +14,8 @@ class WalletApplicationServiceTests: BaseWalletApplicationServiceTests {
         eventRelay.expect_unsubscribe(subscriber)
 
         eventRelay.expect_subscribe(subscriber, for: DeploymentStarted.self)
-        eventRelay.expect_subscribe(subscriber, for: WalletConfigured.self)
+        eventRelay.expect_subscribe(subscriber, for: StartedWaitingForFirstDeposit.self)
+        eventRelay.expect_subscribe(subscriber, for: StartedWaitingForRemainingFeeAmount.self)
         eventRelay.expect_subscribe(subscriber, for: DeploymentFunded.self)
         eventRelay.expect_subscribe(subscriber, for: CreationStarted.self)
         eventRelay.expect_subscribe(subscriber, for: WalletTransactionHashIsKnown.self)
