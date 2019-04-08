@@ -10,7 +10,7 @@ protocol SetupNewPasswordViewControllerDelegate: class {
     func didEnterNewPassword(_ password: String)
 }
 
-final class SetupNewPasswordViewController: UIViewController {
+class SetupNewPasswordViewController: UIViewController {
 
     private weak var delegate: SetupNewPasswordViewControllerDelegate!
 
@@ -93,9 +93,13 @@ final class SetupNewPasswordViewController: UIViewController {
         keyboardBehavior.useTextFieldSuperviewFrame = true
     }
 
-    @objc private func save() {
+    @objc func save() {
         guard canSave else { return }
         delegate.didEnterNewPassword(password.new!)
+    }
+
+    func shakeInput(_ verifiableInput: VerifiableInput) {
+        verifiableInput.shake()
     }
 
 }
@@ -107,17 +111,17 @@ extension SetupNewPasswordViewController: VerifiableInputDelegate {
             if newPasswordInput.isValid {
                 _ = confirmNewPasswordInput.becomeFirstResponder()
             } else {
-                newPasswordInput.shake()
+                shakeInput(newPasswordInput)
             }
         } else {
             if confirmNewPasswordInput.isValid {
                 if canSave {
                     delegate.didEnterNewPassword(password.new!)
                 } else {
-                    newPasswordInput.shake()
+                    shakeInput(newPasswordInput)
                 }
             } else {
-                confirmNewPasswordInput.shake()
+                shakeInput(confirmNewPasswordInput)
             }
         }
     }
