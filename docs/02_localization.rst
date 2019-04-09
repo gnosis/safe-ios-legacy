@@ -24,3 +24,19 @@ For example::
 
         // ...
     }
+
+The "Localized.strings" file are updated automatically on every build, so after you introduced new
+keys, removed an old key from the source, or updated them, the previously existing keys will be replaced with new ones.
+
+.. important::
+    If you just want to change a key and keep the translation intact, do not hit the "Build" action in
+    Xcode because it will remove your old key with its translation completely. Instead, search and replace
+    all occurrences of the old key with the new one.
+
+After you changed or introduced new keys, build the project to update the ``Localizable.strings`` files in the project, and then pull translations from the translation system. We use https://lokalise.co/. 
+
+To pull the translations, run the ``translate`` lane from command line::
+
+    bundle exec fastlane translate
+
+Make sure you have the configuration keys in place by  providing appropriate ``.env.default`` configuration file variables ``LOKALISE_TOKEN`` and ``LOKALISE_PROJECT_ID``.
