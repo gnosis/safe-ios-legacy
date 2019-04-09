@@ -181,6 +181,11 @@ platform :ios do
     run_match("development", DEV_APP_ID, forced)
   end
 
+  desc "Downloads translations from Lokalise and updates all Localizable.strings files in the project"
+  lane :translate do
+    sh "cd .. && scripts/pull_translations.sh Common IdentityAccess MultisigWallet SafeUIKit TestTools safe"
+  end
+
   # Custom methods
 
   def set_bundle_id(id)

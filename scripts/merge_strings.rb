@@ -6,22 +6,7 @@
 # Then, it updateds comments in the localized file + adds new keys + removes keys not present in the generatedLocalizations file.
 # The script overrides localized strings file.
 
-class StringLoclaization 
-    attr_accessor :comment, :key, :value
-end
-
-# parses .strings file and returns array of StringLocalizations
-def localizations(file)
-    puts "Parsing file #{file}"
-    contents = File.read(file, encoding: 'UTF-8')
-    contents.scan(/\/\* (.*?) \*\/\n"(.*?)" = "(.*?)";/m).map { |comment, key, value|
-        localization = StringLoclaization.new
-        localization.comment = comment
-        localization.key = key
-        localization.value = value
-        localization
-    }
-end
+require_relative 'string_localization'
 
 generatedLocalizations = localizations(ARGV[0])
 existingLocalizations = localizations(ARGV[1])
@@ -64,11 +49,4 @@ while generatedLocalizationsIdx < generatedLocalizations.count
 end
 
 # output mergedLocalizations strings file, overwriting localized file.
-File.open(ARGV[1], 'w:UTF-8') { |f|
-    f.truncate(0)
-    mergedLocalizations.each do |localization|
-        f.puts "/* #{localization.comment} */"
-        f.puts "\"#{localization.key}\" = \"#{localization.value}\";"
-        f.puts ""
-    end
-}
+save(ARGV[1], mergedLocalizations)

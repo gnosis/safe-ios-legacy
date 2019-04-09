@@ -71,6 +71,11 @@ fastlane ios certificates
 Downloads provisioning profiles and certificates. Creates missing ones if passed 'force:true' option.
 
 If you pass 'force:true', then provide your FASTLANE_USER and FASTLANE_PASSWORD in environment variables.
+### ios translate
+```
+fastlane ios translate
+```
+Downloads translations from Lokalise and updates all Localizable.strings files in the project
 
 ----
 
