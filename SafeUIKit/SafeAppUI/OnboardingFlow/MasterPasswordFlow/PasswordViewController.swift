@@ -13,6 +13,7 @@ protocol PasswordViewControllerDelegate: class {
 final class PasswordViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var verifiableInput: VerifiableInput!
     @IBOutlet weak var nextButton: UIBarButtonItem!
@@ -26,10 +27,14 @@ final class PasswordViewController: UIViewController {
     }
 
     private enum Strings {
-        static let title = LocalizedString("onboarding.set_password.title",
-                                           comment: "Set password screen title.")
+        static let createTitle = LocalizedString("onboarding.set_password.title",
+                                                 comment: "Set password screen title.")
         static let confirmTitle = LocalizedString("onboarding.confirm_password.title",
                                                   comment: "Confirm password screen title.")
+        static let createHeader = LocalizedString("onboarding.set_password.header",
+                                                  comment: "Header for set password screen.")
+        static let confirmHeader = LocalizedString("onboarding.confirm_password.header",
+                                                   comment: "Header for set password screen.")
         static let description = LocalizedString("onboarding.set_password.description",
                                                  comment: "Set password screen description.")
         static let next = LocalizedString("onboarding.set_password.next",
@@ -57,10 +62,12 @@ final class PasswordViewController: UIViewController {
         super.viewDidLoad()
         configureKeyboardBehavior()
         if isSetPasswordScreen {
-            title = Strings.title
-            verifiableInput.configureForNewPassword()            
+            title = Strings.createTitle
+            headerLabel.text = Strings.createHeader
+            verifiableInput.configureForNewPassword()
         } else {
             title = Strings.confirmTitle
+            headerLabel.text = Strings.createHeader
             verifiableInput.configureForConfirmPassword(referencePassword: referencePassword)
         }
         verifiableInput.delegate = self

@@ -15,7 +15,7 @@ final class StartViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: BackgroundImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var setupPasswordButton: BigBorderedButton!
-    private weak var delegate: StartViewControllerDelegate?
+    private weak var delegate: StartViewControllerDelegate!
 
     private var preservedNavBarColor: UIColor!
     private var preservedTranslucent: Bool!
@@ -34,7 +34,6 @@ final class StartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        backgroundImageView.isDark = true
         descriptionLabel.text = Strings.description
         setupPasswordButton.setTitle(Strings.setupPassword, for: .normal)
     }
@@ -64,7 +63,7 @@ final class StartViewController: UIViewController {
     }
 
     @IBAction func setupPassword(_ sender: Any) {
-        delegate?.didStart()
+        delegate.didStart()
     }
 
 }

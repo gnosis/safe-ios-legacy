@@ -272,6 +272,9 @@
 /* Next button */
 "next" = "Next";
 
+/* Header for set password screen. */
+"onboarding.confirm_password.header" = "Confirm Password";
+
 /* Passwords must match. */
 "onboarding.confirm_password.match" = "Passwords must match";
 
@@ -301,6 +304,9 @@
 
 /* Set password screen description. */
 "onboarding.set_password.description" = "Your confidential password is used to unlock the Safe and confirm transactions.";
+
+/* Header for set password screen. */
+"onboarding.set_password.header" = "Create Password";
 
 /* Use a minimum of 8 characters. */
 "onboarding.set_password.length" = "Use a minimum of 8 characters";
