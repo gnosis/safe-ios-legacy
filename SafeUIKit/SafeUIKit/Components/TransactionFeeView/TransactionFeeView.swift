@@ -8,13 +8,13 @@ import Common
 public class TransactionFeeView: BaseCustomView {
 
     enum Strings {
-        static let currentBalance = LocalizedString("transaction_fee.current_balance", comment: "Current balance")
-        static let transactionFee = LocalizedString("transaction_fee", comment: "Transaction fee")
+        static let currentBalance = LocalizedString("safe_balance", comment: "Current balance")
+        static let transactionFee = LocalizedString("transaction_fee", comment: "Network fee")
         static let resultingBalance = LocalizedString("balance_after_transfer",
                                                       comment: "Balance after transfer")
-        static let ether = LocalizedString("transaction_fee.ether", comment: "Displayed in parentheses")
-        static let token = LocalizedString("transaction_fee.token", comment: "Displayed in parentheses")
-        static let noFunds = LocalizedString("transaction_fee.insufficient_funds",
+        static let ether = LocalizedString("ios_transaction_fee_ether", comment: "Displayed in parentheses")
+        static let token = LocalizedString("ios_transaction_fee_token", comment: "Displayed in parentheses")
+        static let noFunds = LocalizedString("exceeds_funds",
                                              comment: "Warning about not enough funds")
     }
 

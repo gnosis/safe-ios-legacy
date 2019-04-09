@@ -290,7 +290,7 @@ class SafeCreationViewController: UIViewController {
     // TODO: remove duplication
     @objc func showTransactionFeeInfo() {
         let alert = UIAlertController(title: LocalizedString("safe_creation.alert.title",
-                                                             comment: "Transaction fee"),
+                                                             comment: "Network fee"),
                                       message: LocalizedString("safe_creation.alert.message",
                                                                comment: "Explanatory message"),
                                       preferredStyle: .alert)

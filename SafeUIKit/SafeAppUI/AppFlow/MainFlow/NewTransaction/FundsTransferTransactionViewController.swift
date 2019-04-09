@@ -45,13 +45,10 @@ public class FundsTransferTransactionViewController: UIViewController {
 
     private enum Strings {
         static let titleFormatString = LocalizedString("send_title", comment: "Send")
-        static let `continue` = LocalizedString("review",
-                                                comment: "Continue button title for New Transaction Screen")
-        static let recipientAddressPlacholder = LocalizedString("recipients_address",
-                                                                comment: "Recipient's address placeholder")
-        static let amountPlaceholder = LocalizedString("amount", comment: "Amount placeholder")
+        static let `continue` = LocalizedString("review", comment: "Review button for Send screen")
+
         // errors
-        static let notEnoughFunds = LocalizedString("transaction.error.notEnoughFunds",
+        static let notEnoughFunds = LocalizedString("exceeds_funds",
                                                     comment: "Not enough balance for transaction.")
     }
 
@@ -69,7 +66,6 @@ public class FundsTransferTransactionViewController: UIViewController {
 
         addressInput.addressInputDelegate = self
         addressInput.textInput.accessibilityIdentifier = "transaction.address"
-        addressInput.placeholder = Strings.recipientAddressPlacholder
 
         tokenInput.addRule(Strings.notEnoughFunds, identifier: "notEnoughFunds") { [unowned self] in
             guard self.tokenInput.formatter.number(from: $0) != nil else { return true }
@@ -82,7 +78,6 @@ public class FundsTransferTransactionViewController: UIViewController {
         tokenInput.tokenCode = model.tokenData.code
         tokenInput.delegate = self
         tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
-        tokenInput.textInput.placeholder = Strings.amountPlaceholder
 
         transactionHeaderView.usesEthImageWhenImageURLIsNil = true
         feeBalanceView.backgroundColor = .clear
@@ -152,13 +147,11 @@ public class FundsTransferTransactionViewController: UIViewController {
 
     // TODO: remove duplication
     @objc func showTransactionFeeInfo() {
-        let alert = UIAlertController(title: LocalizedString("transaction_fee_alert.title",
-                                                             comment: "Transaction fee"),
-                                      message: LocalizedString("transaction_fee_alert.message",
+        let alert = UIAlertController(title: LocalizedString("transaction_fee", comment: "Network fee"),
+                                      message: LocalizedString("transaction_fee_explanation",
                                                                comment: "Explanatory message"),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("transaction_fee_alert.ok",
-                                                             comment: "Ok"), style: .default))
+        alert.addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"), style: .default))
         present(alert, animated: true, completion: nil)
     }
 

@@ -68,16 +68,16 @@ public final class AddressInput: VerifiableInput {
     }
 
     enum Strings {
-        static let addressPlaceholder =
-            LocalizedString("address_input.address_placeholder", comment: "Recipient's address in address input.")
+        static let addressPlaceholder = LocalizedString("recipients_address",
+                                                        comment: "Recipient's address in address input.")
         enum Rules {
-            static let invalidAddress =
-                LocalizedString("address_input.invalid_address", comment: "Error to display if address is invalid.")
+            static let invalidAddress = LocalizedString("address_invalid",
+                                                        comment: "Error to display if address is invalid.")
         }
         enum AlertActions {
-            static let paste = LocalizedString("address_input.alert.paste", comment: "Paste from clipboard alert item.")
-            static let scan = LocalizedString("address_input.alert.scan", comment: "Scan QR code alert item.")
-            static let cancel = LocalizedString("address_input.alert.cancel", comment: "Cancel alert item.")
+            static let paste = LocalizedString("paste_from_clipboard", comment: "Paste from clipboard alert item.")
+            static let scan = LocalizedString("scan_qr_code", comment: "Scan QR code alert item.")
+            static let cancel = LocalizedString("cancel", comment: "Cancel alert item.")
         }
     }
 

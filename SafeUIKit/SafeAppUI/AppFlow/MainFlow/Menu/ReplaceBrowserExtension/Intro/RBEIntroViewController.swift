@@ -170,7 +170,7 @@ public class RBEIntroViewController: UIViewController {
     // duplicated with showTransactionFeeInfo(0
     @objc public func showNetworkFeeInfo() {
         let alert = UIAlertController(title: LocalizedString("network_fee.alert.title",
-                                                             comment: "Transaction fee"),
+                                                             comment: "Network fee"),
                                       message: LocalizedString("network_fee.alert.message",
                                                                comment: "Explanatory message"),
                                       preferredStyle: .alert)

@@ -14,7 +14,7 @@ class FundsTransferReviewTransactionViewControllerTests: ReviewTransactionViewCo
         let headerCell = vc.cellForRow(0) as! TransactionHeaderCell
         XCTAssertEqual(headerCell.transactionHeaderView.assetCode, data.amountTokenData.code)
         XCTAssertEqual(headerCell.transactionHeaderView.assetInfo,
-                       LocalizedString("transaction.outgoing_transfer", comment: ""))
+                       LocalizedString("transaction_type_asset_transfer", comment: ""))
     }
 
     func test_whenLoaded_thenSetsTransferViewAccordingToTransactionData() {
