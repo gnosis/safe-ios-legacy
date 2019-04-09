@@ -300,6 +300,7 @@
 		5527A80B208E3A5C00AF3A50 /* libCommonTestSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */; };
 		552DF5B9225C9917008D8AC8 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */; };
 		552DF5CA225C9976008D8AC8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5C9225C9976008D8AC8 /* CardView.swift */; };
+		552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */; };
 		5539C13721A55AF2006BF834 /* TransactionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDFE3D21A4745C00FDF2E8 /* TransactionHeaderCell.swift */; };
 		5539C13821A55AF5006BF834 /* TransactionHeaderCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDFE3F21A47E7C00FDF2E8 /* TransactionHeaderCellTests.swift */; };
 		5539C13A21A55C74006BF834 /* TransferViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5539C13921A55C74006BF834 /* TransferViewCell.swift */; };
@@ -866,6 +867,7 @@
 		5527A80A208E3A5C00AF3A50 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		552DF5B8225C9917008D8AC8 /* CardViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		552DF5C9225C9976008D8AC8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerifiableInput+Rules.swift"; sourceTree = "<group>"; };
 		5539C13421A48031006BF834 /* ReviewTransactionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTransactionViewControllerTests.swift; sourceTree = "<group>"; };
 		5539C13921A55C74006BF834 /* TransferViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewCell.swift; sourceTree = "<group>"; };
 		5539C13B21A55C8C006BF834 /* TransferViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewCellTests.swift; sourceTree = "<group>"; };
@@ -1155,6 +1157,7 @@
 		0A334E10209C8E3800ABC6AE /* MasterPasswordFlow */ = {
 			isa = PBXGroup;
 			children = (
+				552DF5D3225CCA58008D8AC8 /* VerifiableInput+Rules.swift */,
 				0A334E12209C8E3800ABC6AE /* MasterPassword.storyboard */,
 				0A334E16209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift */,
 				0A334E15209C8E3800ABC6AE /* MasterPasswordFlowCoordinatorTests.swift */,
@@ -2811,6 +2814,7 @@
 				0A334E42209C8E3800ABC6AE /* MasterPasswordFlowCoordinator.swift in Sources */,
 				0A3BD90122254833007039B4 /* UIView+Pin.swift in Sources */,
 				550D1ED72133E66C0035109A /* ManageTokensTableViewController.swift in Sources */,
+				552DF5E2225CCA58008D8AC8 /* VerifiableInput+Rules.swift in Sources */,
 				0A5D467B20AD6DBE00AC287E /* AbortSafeCreationAlertController.swift in Sources */,
 				0A334E3B209C8E3800ABC6AE /* PairWithBrowserExtensionViewController.swift in Sources */,
 				0A3BD8FE22254833007039B4 /* FeeCalculationSection.swift in Sources */,

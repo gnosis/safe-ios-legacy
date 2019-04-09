@@ -24,9 +24,9 @@ class PasswordViewControllerTests: SafeTestCase {
         XCTAssertNotNil(vc.verifiableInput)
     }
 
-    func test_whenLoaded_thenTextInputIsSecureAndDimmed() {
+    func test_whenLoaded_thenTextInputIsSecureAndWhite() {
         XCTAssertTrue(vc.verifiableInput.isSecure)
-        XCTAssertEqual(vc.verifiableInput.style, .dimmed)
+        XCTAssertEqual(vc.verifiableInput.style, .white)
     }
 
     func test_whenPasswordIsSet_thenDelegateIsCalled() {

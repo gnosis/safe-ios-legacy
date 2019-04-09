@@ -14,11 +14,10 @@ final class PasswordViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @available(*, deprecated, message: "Replace with NewPasswordVerifiableInput")
     @IBOutlet weak var verifiableInput: VerifiableInput!
     @IBOutlet weak var nextButton: UIBarButtonItem!
 
-    private weak var delegate: PasswordViewControllerDelegate?
+    private weak var delegate: PasswordViewControllerDelegate!
     private var keyboardBehavior: KeyboardAvoidingBehavior!
 
     private var referencePassword: String!
@@ -33,19 +32,11 @@ final class PasswordViewController: UIViewController {
                                                   comment: "Confirm password screen title.")
         static let description = LocalizedString("onboarding.set_password.description",
                                                  comment: "Set password screen description.")
-        static let length = LocalizedString("onboarding.set_password.length",
-                                            comment: "Use a minimum of 8 characters.")
-        static let letterAndDigit = LocalizedString("onboarding.set_password.letter_and_digit",
-                                                    comment: "At least 1 digit and 1 letter.")
-        static let trippleChars = LocalizedString("onboarding.set_password.no_tripple_chars",
-                                                  comment: "No triple characters.")
-        static let matchPassword = LocalizedString("onboarding.confirm_password.match",
-                                                   comment: "Passwords must match.")
         static let next = LocalizedString("onboarding.set_password.next",
                                           comment: "Next button title")
     }
 
-    static func create(delegate: PasswordViewControllerDelegate?,
+    static func create(delegate: PasswordViewControllerDelegate,
                        referencePassword: String? = nil) -> PasswordViewController {
         let vc = StoryboardScene.MasterPassword.passwordViewController.instantiate()
         vc.delegate = delegate
@@ -64,15 +55,16 @@ final class PasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureKeyboardBehavior()
         if isSetPasswordScreen {
             title = Strings.title
-            addSetPasswordRules()
+            verifiableInput.configureForNewPassword()            
         } else {
             title = Strings.confirmTitle
-            addConfirmPasswordRules()
+            verifiableInput.configureForConfirmPassword(referencePassword: referencePassword)
         }
-        configureKeyboardBehavior()
-        configureInput()
+        verifiableInput.delegate = self
+        _ = verifiableInput.becomeFirstResponder()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -86,36 +78,10 @@ final class PasswordViewController: UIViewController {
         }
     }
 
-    private func configureInput() {
-        verifiableInput.delegate = self
-        verifiableInput.isSecure = true
-        verifiableInput.style = .dimmed
-        verifiableInput.returnKeyType = .next
-        _ = verifiableInput.becomeFirstResponder()
-    }
-
     private func configureKeyboardBehavior() {
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
         keyboardBehavior.activeTextField = verifiableInput.textInput
         keyboardBehavior.useTextFieldSuperviewFrame = true
-    }
-
-    private func addSetPasswordRules() {
-        verifiableInput.addRule(Strings.length) {
-            PasswordValidator.validateMinLength($0)
-        }
-        verifiableInput.addRule(Strings.letterAndDigit) {
-            PasswordValidator.validateAtLeastOneLetterAndOneDigit($0)
-        }
-        verifiableInput.addRule(Strings.trippleChars) {
-            PasswordValidator.validateNoTrippleChar($0)
-        }
-    }
-
-    private func addConfirmPasswordRules() {
-        verifiableInput.addRule(Strings.matchPassword) { [unowned self] input in
-            PasswordValidator.validate(input: input, equals: self.referencePassword)
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -134,7 +100,7 @@ extension PasswordViewController: VerifiableInputDelegate {
 
     func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
         if isSetPasswordScreen {
-            delegate?.didSetPassword(verifiableInput.text!)
+            delegate.didSetPassword(verifiableInput.text!)
         } else {
             handleConfirmPassword()
         }
@@ -144,9 +110,9 @@ extension PasswordViewController: VerifiableInputDelegate {
         let password = verifiableInput.text!
         do {
             try Authenticator.instance.registerUser(password: password)
-            self.delegate?.didConfirmPassword()
-        } catch let e {
-            ErrorHandler.showFatalError(log: "Failed to set master password", error: e)
+            self.delegate.didConfirmPassword()
+        } catch {
+            ErrorHandler.showFatalError(log: "Failed to set master password", error: error)
         }
     }
 

@@ -4,16 +4,8 @@
 
 import SafeUIKit
 
+// TODO: delete
 final class NewPasswordVerifiableInput: VerifiableInput {
-
-    enum Strings {
-        static let length = LocalizedString("onboarding.set_password.length",
-                                            comment: "Use a minimum of 8 characters.")
-        static let letterAndDigit = LocalizedString("onboarding.set_password.letter_and_digit",
-                                                    comment: "At least 1 digit and 1 letter.")
-        static let trippleChars = LocalizedString("onboarding.set_password.no_tripple_chars",
-                                                  comment: "No triple characters.")
-    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
