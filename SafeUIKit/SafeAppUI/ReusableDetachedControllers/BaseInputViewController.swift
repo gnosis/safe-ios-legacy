@@ -73,7 +73,7 @@ class BaseInputViewController: UIViewController, EventSubscriber {
 
 class InputFailedAlertController: SafeAlertController {
 
-    private struct Strings {
+    private enum Strings {
 
         static let title = LocalizedString("recovery.address.failed_alert.title",
                                            comment: "Recovery address validation failed alert's title")

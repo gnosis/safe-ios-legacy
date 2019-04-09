@@ -43,7 +43,7 @@ public class FundsTransferTransactionViewController: UIViewController {
         return controller
     }
 
-    fileprivate enum Strings {
+    private enum Strings {
         static let titleFormatString = LocalizedString("send_title", comment: "Send")
         static let `continue` = LocalizedString("review",
                                                 comment: "Continue button title for New Transaction Screen")

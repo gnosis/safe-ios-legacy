@@ -15,7 +15,7 @@ class SafeAlertController: UIAlertController {
 
 class AbortSafeCreationAlertController: SafeAlertController {
 
-    private struct Strings {
+    private enum Strings {
 
         static let title = LocalizedString("pending_safe.abort_alert.title",
                                            comment: "Title of abort safe creation alert")

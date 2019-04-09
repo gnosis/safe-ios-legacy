@@ -37,12 +37,10 @@ public class RBEIntroViewController: UIViewController {
     @IBOutlet weak var contentView: IntroContentView!
     @IBOutlet weak var feeCalculationView: FeeCalculationView!
 
-    struct Strings {
-        var start = LocalizedString("navigation.start", comment: "Start")
-        var back = LocalizedString("back", comment: "Back")
+    private enum Strings {
+        static let start = LocalizedString("navigation.start", comment: "Start")
+        static let back = LocalizedString("back", comment: "Back")
     }
-
-    var strings = Strings()
 
     public static func create() -> RBEIntroViewController {
         return RBEIntroViewController(nibName: "\(self)", bundle: Bundle(for: self))
@@ -59,8 +57,8 @@ public class RBEIntroViewController: UIViewController {
     }
 
     func commonInit() {
-        startButtonItem = UIBarButtonItem(title: strings.start, style: .done, target: self, action: #selector(start))
-        backButtonItem = UIBarButtonItem(title: strings.back, style: .plain, target: self, action: #selector(back))
+        startButtonItem = UIBarButtonItem(title: Strings.start, style: .done, target: self, action: #selector(start))
+        backButtonItem = UIBarButtonItem(title: Strings.back, style: .plain, target: self, action: #selector(back))
         retryButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(retry))
         formatter.displayedDecimals = 5
     }

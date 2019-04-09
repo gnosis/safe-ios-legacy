@@ -16,7 +16,7 @@ public protocol ReviewRecoveryTransactionViewControllerDelegate: class {
 
 public class ReviewRecoveryTransactionViewController: UIViewController {
 
-    struct Strings {
+    private enum Strings {
 
         static let title = LocalizedString("recovery.review.header",
                                            comment: "Header of the review transaction screen")
@@ -210,7 +210,7 @@ extension ReviewRecoveryTransactionViewController: EventSubscriber {
 
 class RecoveryFailedAlertController: SafeAlertController {
 
-    private struct Strings {
+    private enum Strings {
 
         static let title = LocalizedString("recovery.transaction.failed_alert.title",
                                            comment: "Recovery transaction failed alert's title")

@@ -16,7 +16,7 @@ protocol ReplaceRecoveryPhraseViewControllerDelegate: class {
 
 class ReplaceRecoveryPhraseViewController: UIViewController {
 
-    struct Strings {
+    private enum Strings {
         static let header = LocalizedString("replace_phrase.header", comment: "Replace recovery phrase")
         static let body = LocalizedString("replace_phrase.body", comment: "Text between stars (*) will be emphasized")
     }

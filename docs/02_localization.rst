@@ -7,7 +7,8 @@ To localize a string that is used in the UI, please use our project-specific wra
     LocalizedString("localization_key", comment: "Comment for the string's purpose")
 
 We have a convention of putting all of the localized strings together as a ``private enum Strings`` 
-that has static constants. 
+that has static constants. Of course, if access to the strings is needed from the unit tests, then
+the access modifier is ``internal``.
 
 For example::
 
