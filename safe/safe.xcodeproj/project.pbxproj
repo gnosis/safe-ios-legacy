@@ -69,6 +69,7 @@
 		0ACB1A422099EF2300EBE267 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A412099EF2300EBE267 /* Springboard.swift */; };
 		0ACB1A442099F3F500EBE267 /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB1A432099F3F500EBE267 /* CameraScreen.swift */; };
 		0AEF8A3D20A08262006A1265 /* libDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEF8A3C20A08262006A1265 /* libDatabase.a */; };
+		0AF4F513225CEDFE0051F68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF4F512225CEDFE0051F68B /* LaunchScreen.storyboard */; };
 		0AFEDEAF2073C79C002F5924 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */; };
 		0AFEDEB02073C79C002F5924 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFEDEAE2073C79C002F5924 /* Fabric.framework */; };
 		55247322213FF7A100A77557 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55247321213FF7A000A77557 /* Montserrat-SemiBold.ttf */; };
@@ -336,6 +337,7 @@
 		0ACB1A432099F3F500EBE267 /* CameraScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
 		0AEF8A3C20A08262006A1265 /* libDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF281D62074C23400D3843D /* libIdentityAccess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIdentityAccess.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AF4F512225CEDFE0051F68B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AFEDEAD2073C79C002F5924 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../lib/Crashlytics.framework; sourceTree = "<group>"; };
 		0AFEDEAE2073C79C002F5924 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../lib/Fabric.framework; sourceTree = "<group>"; };
 		0AFEDEB12073C7BC002F5924 /* SafeUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SafeUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -617,6 +619,7 @@
 				5540A4EE203C3054009C9BE3 /* AppDelegate.swift */,
 				0A1B2AC4221EFDDA00E92990 /* UIKitFileSystemGuard.swift */,
 				55D97D7D20496E390004AEDD /* AppDelegateTests.swift */,
+				0AF4F512225CEDFE0051F68B /* LaunchScreen.storyboard */,
 				5540A4F5203C3054009C9BE3 /* Assets.xcassets */,
 				5540A4FA203C3054009C9BE3 /* Info.plist */,
 				555D33FD2110BD810055D87C /* LocalizationStrings.swift */,
@@ -979,6 +982,7 @@
 				0A53AD3920595C2300D713AD /* Localizable.strings in Resources */,
 				55247322213FF7A100A77557 /* Montserrat-SemiBold.ttf in Resources */,
 				5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */,
+				0AF4F513225CEDFE0051F68B /* LaunchScreen.storyboard in Resources */,
 				0A0C873E209752D500471885 /* IdentityAccessImplementationsResources.bundle in Resources */,
 				0A84BBF42106168600708DE5 /* AppConfig.json in Resources */,
 			);
