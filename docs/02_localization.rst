@@ -25,10 +25,10 @@ For example::
         // ...
     }
 
-The "Localized.strings" file are updated automatically on every build, so after you introduced new
-keys, removed an old key from the source, or updated them, the previously existing keys will be replaced with new ones.
+The "Localized.strings" files are updated automatically on every build, so after you introduced new
+keys, or removed an old key from the source, or updated them, the previously existing keys will be replaced with new ones.
 
-.. important::
+.. note::
     If you just want to change a key and keep the translation intact, do not hit the "Build" action in
     Xcode because it will remove your old key with its translation completely. Instead, search and replace
     all occurrences of the old key with the new one.
