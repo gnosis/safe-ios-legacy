@@ -25,13 +25,13 @@ class TransactionFeeViewTests: XCTestCase {
         XCTAssertEqual(transactionFeeView.transactionFeeValueLabel?.text,
                        transactionFeeView.tokenFormatter.string(from: ethData.balance!))
         assertLabel(transactionFeeView.transactionFeeLabel,
-                    localizedKey: "transaction_fee.transaction_fee",
+                    localizedKey: "transaction_fee",
                     fontSize: transactionFeeView.fontSize)
 
         XCTAssertEqual(transactionFeeView.resultingBalanceValueLabel?.text,
                        transactionFeeView.tokenFormatter.string(from: ethData.balance!))
         assertLabel(transactionFeeView.resultingBalanceLabel,
-                    localizedKey: "transaction_fee.balance_after_transfer",
+                    localizedKey: "balance_after_transfer",
                     boldFontSize: transactionFeeView.fontSize)
     }
 
@@ -45,21 +45,21 @@ class TransactionFeeViewTests: XCTestCase {
                     font: UIFont.boldSystemFont(ofSize: transactionFeeView.fontSize))
 
         assertLabel(transactionFeeView.resultingBalanceLabel,
-                    localizedKey: "transaction_fee.balance_after_transfer",
+                    localizedKey: "balance_after_transfer",
                     boldFontSize: transactionFeeView.fontSize)
     }
 
     func test_whenCurrentBalanceIsNotSet_thenItIsNotDisplayed() {
         transactionFeeView.configure(currentBalance: nil, transactionFee: ethData, resultingBalance: ethData)
 
-        let feeStr = LocalizedString("transaction_fee.transaction_fee", comment: "")
+        let feeStr = LocalizedString("transaction_fee", comment: "")
         let etherStr = LocalizedString("transaction_fee.ether", comment: "")
         assertLabel(transactionFeeView.transactionFeeLabel,
                     text: "\(feeStr) (\(etherStr))",
                     font: UIFont.systemFont(ofSize: transactionFeeView.fontSize))
 
         assertLabel(transactionFeeView.resultingBalanceLabel,
-                    localizedKey: "transaction_fee.balance_after_transfer",
+                    localizedKey: "balance_after_transfer",
                     fontSize: transactionFeeView.fontSize)
     }
 

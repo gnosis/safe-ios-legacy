@@ -39,7 +39,7 @@ public class RBEIntroViewController: UIViewController {
 
     struct Strings {
         var start = LocalizedString("navigation.start", comment: "Start")
-        var back = LocalizedString("navigation.back", comment: "Back")
+        var back = LocalizedString("back", comment: "Back")
     }
 
     var strings = Strings()

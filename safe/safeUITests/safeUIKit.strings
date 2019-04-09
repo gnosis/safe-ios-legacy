@@ -98,5 +98,5 @@
 "transaction_fee.token" = "token";
 
 /* Transaction fee */
-"transaction_fee.transaction_fee" = "Transaction fee";
+"transaction_fee" = "Transaction fee";
 

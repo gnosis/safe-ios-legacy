@@ -44,17 +44,15 @@ public class FundsTransferTransactionViewController: UIViewController {
     }
 
     fileprivate enum Strings {
-        static let title = LocalizedString("transaction.title",
-                                           comment: "Send")
-        static let `continue` = LocalizedString("transaction.continue",
+        static let titleFormatString = LocalizedString("send_title", comment: "Send")
+        static let `continue` = LocalizedString("review",
                                                 comment: "Continue button title for New Transaction Screen")
+        static let recipientAddressPlacholder = LocalizedString("recipients_address",
+                                                                comment: "Recipient's address placeholder")
+        static let amountPlaceholder = LocalizedString("amount", comment: "Amount placeholder")
+        // errors
         static let notEnoughFunds = LocalizedString("transaction.error.notEnoughFunds",
                                                     comment: "Not enough balance for transaction.")
-    }
-
-    override public func awakeFromNib() {
-        super.awakeFromNib()
-        navigationItem.title = Strings.title
     }
 
     public override func viewDidLoad() {
@@ -67,8 +65,11 @@ public class FundsTransferTransactionViewController: UIViewController {
 
         model = FundsTransferTransactionViewModel(tokenID: tokenID, onUpdate: updateFromViewModel)
 
+        navigationItem.title = String(format: Strings.titleFormatString, model.tokenData.code)
+
         addressInput.addressInputDelegate = self
         addressInput.textInput.accessibilityIdentifier = "transaction.address"
+        addressInput.placeholder = Strings.recipientAddressPlacholder
 
         tokenInput.addRule(Strings.notEnoughFunds, identifier: "notEnoughFunds") { [unowned self] in
             guard self.tokenInput.formatter.number(from: $0) != nil else { return true }
@@ -81,6 +82,7 @@ public class FundsTransferTransactionViewController: UIViewController {
         tokenInput.tokenCode = model.tokenData.code
         tokenInput.delegate = self
         tokenInput.textInput.accessibilityIdentifier = "transaction.amount"
+        tokenInput.textInput.placeholder = Strings.amountPlaceholder
 
         transactionHeaderView.usesEthImageWhenImageURLIsNil = true
         feeBalanceView.backgroundColor = .clear

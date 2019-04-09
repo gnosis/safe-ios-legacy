@@ -9,8 +9,8 @@ public class TransactionFeeView: BaseCustomView {
 
     enum Strings {
         static let currentBalance = LocalizedString("transaction_fee.current_balance", comment: "Current balance")
-        static let transactionFee = LocalizedString("transaction_fee.transaction_fee", comment: "Transaction fee")
-        static let resultingBalance = LocalizedString("transaction_fee.balance_after_transfer",
+        static let transactionFee = LocalizedString("transaction_fee", comment: "Transaction fee")
+        static let resultingBalance = LocalizedString("balance_after_transfer",
                                                       comment: "Balance after transfer")
         static let ether = LocalizedString("transaction_fee.ether", comment: "Displayed in parentheses")
         static let token = LocalizedString("transaction_fee.token", comment: "Displayed in parentheses")

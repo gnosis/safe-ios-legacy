@@ -16,11 +16,17 @@
 /* Info */
 "alert.info.title" = "Information";
 
+/* Amount placeholder */
+"amount" = "Amount";
+
 /* Cancel */
 "app.unlock.cancel" = "Cancel";
 
 /* Try again in */
 "app.unlock.tryagain" = "Try again in";
+
+/* Back */
+"back" = "Back";
 
 /* Cancel */
 "cancel" = "cancel";
@@ -66,9 +72,6 @@
 
 /* Current balance */
 "fee_calculation.current_balance" = "Current balance";
-
-/* Network fee */
-"fee_calculation.fee" = "Network fee";
 
 /* [?] */
 "fee_calculation.fee.info" = "[?]";
@@ -159,9 +162,6 @@
 
 /* Title for menu screen. */
 "menu.title" = "Menu";
-
-/* Back */
-"navigation.back" = "Back";
 
 /* Start */
 "navigation.start" = "Start";
@@ -371,6 +371,9 @@
 /* Pending safe failed alert's title */
 "pending_safe.failed_alert.title" = "Error";
 
+/* Recipient's address placeholder */
+"recipients_address" = "Recipient’s address";
+
 /* Invalid contract address */
 "recovery.address.error.invalid_contract" = "Invalid Safe address";
 
@@ -494,6 +497,9 @@
 /* Success */
 "resync.alert.success" = "Resync notification sent successfully";
 
+/* Continue button title for New Transaction Screen */
+"review" = "Review";
+
 /* Safe Address label. */
 "safe_address.address" = "Address";
 
@@ -578,11 +584,11 @@
 /* Save button */
 "save" = "Save";
 
+/* Send */
+"send_title" = "Send %@";
+
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";
-
-/* Continue button title for New Transaction Screen */
-"transaction.continue" = "Continue";
 
 /* Detail for the header in review screen */
 "transaction.details.connect_extension.detail" = "This transaction connects this Safe with the browser extension. Future transactions require confirmation from both devices.";
@@ -690,9 +696,6 @@
    Submit transaction */
 "transaction.submit" = "Submit";
 
-/* Send */
-"transaction.title" = "Send";
-
 /* Cancel button. */
 "transaction_confirmation_alert.cancel" = "Cancel";
 
@@ -704,6 +707,9 @@
 
 /* Title for transaction confirmation alert. */
 "transaction_confirmation_alert.title" = "Please open the Safe browser extension to confirm this transaction.";
+
+/* Network fee */
+"transaction_fee" = "Network fee";
 
 /* Explanatory message */
 "transaction_fee_alert.message" = "This is a transaction fee required by the blockchain to execute the transaction.";
