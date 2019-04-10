@@ -19,7 +19,7 @@ class TransactionFeeViewTests: XCTestCase {
         XCTAssertEqual(transactionFeeView.currentBalanceValueLabel?.text,
                        transactionFeeView.tokenFormatter.string(from: ethData.balance!))
         assertLabel(transactionFeeView.currentBalanceLabel,
-                    localizedKey: "transaction_fee.current_balance",
+                    localizedKey: "safe_balance",
                     boldFontSize: transactionFeeView.fontSize)
 
         XCTAssertEqual(transactionFeeView.transactionFeeValueLabel?.text,
