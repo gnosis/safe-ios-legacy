@@ -16,7 +16,7 @@ source = localizations(ARGV[1])
 # create hash map of non-empty source localizations
 translations = Hash[source.select { |s| !s.value.empty? }.collect { |s| [s.key, s] } ]
 
-# for each key in destination, if translation, then update the value
+# for each key in destination, if translation exists, then update the value
 updated = destination.collect do |d|
     result = StringLoclaization.new
     result.comment = d.comment
