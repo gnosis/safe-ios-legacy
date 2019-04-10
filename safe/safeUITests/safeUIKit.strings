@@ -92,11 +92,11 @@
 "transaction_fee.ether" = "Ether";
 
 /* Warning about not enough funds */
-"transaction_fee.insufficient_funds" = "Insufficient funds.\nPlease add funds to your Safe.";
+"exceeds_funds" = "Insufficient funds.\nPlease add funds to your Safe.";
 
 /* Displayed in parentheses */
 "transaction_fee.token" = "token";
 
 /* Transaction fee */
-"transaction_fee.transaction_fee" = "Transaction fee";
+"transaction_fee" = "Network fee";
 

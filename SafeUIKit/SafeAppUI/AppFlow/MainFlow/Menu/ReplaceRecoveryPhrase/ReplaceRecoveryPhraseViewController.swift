@@ -16,7 +16,7 @@ protocol ReplaceRecoveryPhraseViewControllerDelegate: class {
 
 class ReplaceRecoveryPhraseViewController: UIViewController {
 
-    struct Strings {
+    private enum Strings {
         static let header = LocalizedString("replace_phrase.header", comment: "Replace recovery phrase")
         static let body = LocalizedString("replace_phrase.body", comment: "Text between stars (*) will be emphasized")
     }
@@ -155,14 +155,12 @@ class ReplaceRecoveryPhraseViewController: UIViewController {
 
     // TODO: remove duplication
     @objc func showTransactionFeeInfo() {
-        let alert = UIAlertController(title: LocalizedString("transaction_fee_alert.title",
-                                                             comment: "Transaction fee"),
-                                      message: LocalizedString("transaction_fee_alert.message",
+        let alert = UIAlertController(title: LocalizedString("transaction_fee", comment: "Network fee"),
+                                      message: LocalizedString("transaction_fee_explanation",
                                                                comment: "Explanatory message"),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("transaction_fee_alert.ok",
-                                                             comment: "Ok"), style: .default))
-        present(alert, animated: true)
+        alert.addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"), style: .default))
+        present(alert, animated: true, completion: nil)
     }
 
 }

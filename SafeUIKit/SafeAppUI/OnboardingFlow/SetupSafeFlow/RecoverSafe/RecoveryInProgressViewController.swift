@@ -16,7 +16,7 @@ public protocol RecoveryInProgressViewControllerDelegate: class {
 
 public class RecoveryInProgressViewController: UIViewController {
 
-    struct Strings {
+    private enum Strings {
 
         static let header = LocalizedString("recovery.progress.header", comment: "Header label for progress screen")
         static let progress = LocalizedString("recovery.progress.description", comment: "This can take a while...")

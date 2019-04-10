@@ -16,7 +16,7 @@ public protocol ReviewRecoveryTransactionViewControllerDelegate: class {
 
 public class ReviewRecoveryTransactionViewController: UIViewController {
 
-    struct Strings {
+    private enum Strings {
 
         static let title = LocalizedString("recovery.review.header",
                                            comment: "Header of the review transaction screen")
@@ -189,13 +189,11 @@ public class ReviewRecoveryTransactionViewController: UIViewController {
 
     // TODO: remove duplication
     @objc func showTransactionFeeInfo() {
-        let alert = UIAlertController(title: LocalizedString("transaction_fee_alert.title",
-                                                             comment: "Transaction fee"),
-                                      message: LocalizedString("transaction_fee_alert.message",
+        let alert = UIAlertController(title: LocalizedString("transaction_fee", comment: "Network fee"),
+                                      message: LocalizedString("transaction_fee_explanation",
                                                                comment: "Explanatory message"),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("transaction_fee_alert.ok",
-                                                             comment: "Ok"), style: .default))
+        alert.addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"), style: .default))
         present(alert, animated: true, completion: nil)
     }
 }
@@ -210,7 +208,7 @@ extension ReviewRecoveryTransactionViewController: EventSubscriber {
 
 class RecoveryFailedAlertController: SafeAlertController {
 
-    private struct Strings {
+    private enum Strings {
 
         static let title = LocalizedString("recovery.transaction.failed_alert.title",
                                            comment: "Recovery transaction failed alert's title")

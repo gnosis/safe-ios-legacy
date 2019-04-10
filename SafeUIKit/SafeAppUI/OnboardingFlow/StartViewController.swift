@@ -20,7 +20,7 @@ final class StartViewController: UIViewController {
     private var preservedNavBarColor: UIColor!
     private var preservedTranslucent: Bool!
 
-    private struct Strings {
+    private enum Strings {
         static let description = LocalizedString("onboarding.start.description", comment: "App slogan")
         static let setupPassword = LocalizedString("onboarding.start.setup_password",
                                                    comment: "Set up password button title")

@@ -32,7 +32,7 @@ public final class BiometricService: BiometricAuthenticationService {
     private let contextProvider: () -> LAContext
     private var context: LAContext
 
-    private struct Strings {
+    private enum Strings {
         static let activate = LocalizedString("biometry.activation.reason",
                                               comment: "Reason to activate Touch ID or Face ID.")
         static let unlock = LocalizedString("biometry.authentication.reason",

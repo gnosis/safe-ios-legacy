@@ -6,7 +6,7 @@ import Foundation
 
 public extension GuidelinesViewController {
 
-    fileprivate struct Strings {
+    private enum Strings {
         static let title = LocalizedString("recovery.guidelines.title", comment: "Recover safe")
         static let header = LocalizedString("recovery.guidelines.header", comment: "How this works")
         static let body = LocalizedString("recovery.guidelines.content",

@@ -43,18 +43,13 @@ public class FundsTransferTransactionViewController: UIViewController {
         return controller
     }
 
-    fileprivate enum Strings {
-        static let title = LocalizedString("transaction.title",
-                                           comment: "Send")
-        static let `continue` = LocalizedString("transaction.continue",
-                                                comment: "Continue button title for New Transaction Screen")
-        static let notEnoughFunds = LocalizedString("transaction.error.notEnoughFunds",
-                                                    comment: "Not enough balance for transaction.")
-    }
+    private enum Strings {
+        static let titleFormatString = LocalizedString("send_title", comment: "Send")
+        static let `continue` = LocalizedString("review", comment: "Review button for Send screen")
 
-    override public func awakeFromNib() {
-        super.awakeFromNib()
-        navigationItem.title = Strings.title
+        // errors
+        static let notEnoughFunds = LocalizedString("exceeds_funds",
+                                                    comment: "Not enough balance for transaction.")
     }
 
     public override func viewDidLoad() {
@@ -66,6 +61,8 @@ public class FundsTransferTransactionViewController: UIViewController {
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
 
         model = FundsTransferTransactionViewModel(tokenID: tokenID, onUpdate: updateFromViewModel)
+
+        navigationItem.title = String(format: Strings.titleFormatString, model.tokenData.code)
 
         addressInput.addressInputDelegate = self
         addressInput.textInput.accessibilityIdentifier = "transaction.address"
@@ -150,13 +147,11 @@ public class FundsTransferTransactionViewController: UIViewController {
 
     // TODO: remove duplication
     @objc func showTransactionFeeInfo() {
-        let alert = UIAlertController(title: LocalizedString("transaction_fee_alert.title",
-                                                             comment: "Transaction fee"),
-                                      message: LocalizedString("transaction_fee_alert.message",
+        let alert = UIAlertController(title: LocalizedString("transaction_fee", comment: "Network fee"),
+                                      message: LocalizedString("transaction_fee_explanation",
                                                                comment: "Explanatory message"),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("transaction_fee_alert.ok",
-                                                             comment: "Ok"), style: .default))
+        alert.addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"), style: .default))
         present(alert, animated: true, completion: nil)
     }
 

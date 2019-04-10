@@ -6,7 +6,7 @@ import Foundation
 
 class SafeCreationFailedAlertController: SafeAlertController {
 
-    private struct Strings {
+    private enum Strings {
 
         static let title = LocalizedString("pending_safe.failed_alert.title",
                                            comment: "Pending safe failed alert's title")

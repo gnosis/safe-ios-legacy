@@ -19,15 +19,14 @@ public class TransactionConfirmationView: BaseCustomView {
     }
 
     public enum Strings {
-        static let awaitingConfirmation = LocalizedString("confirmaion_view.awaiting_confirmation",
-                                                          comment: "Awaiting confirmation...")
-        static let confirmed = LocalizedString("confirmation_view.confirmed",
-                                               comment: "Confirmed by browser extension.")
-        static let rejected = LocalizedString("confirmation_view.rejected",
-                                              comment: "Rejected by browser extension.")
-        static let confirmationExplanation = LocalizedString("confirmation_view.confirmation_explanation",
+        static let awaitingConfirmation = LocalizedString("authentication_required", comment: "Authentication required")
+        static let confirmationExplanation = LocalizedString("authentication_explanation",
                                                              comment: "Explanation how to confirm.")
-        static let rejectionExplanation = LocalizedString("confirmation_view.rejection_explanation",
+        static let confirmed = LocalizedString("confirmed", comment: "Confirmed by browser extension.")
+        static let rejected = LocalizedString("rejected", comment: "Rejected by browser extension.")
+        static let approvedExplanation = LocalizedString("browser_extension_approved",
+                                                         comment: "Transaction approved by the browser extension")
+        static let rejectionExplanation = LocalizedString("rejected_by_extension",
                                                           comment: "Transaction rejected by the browser extension.")
     }
 

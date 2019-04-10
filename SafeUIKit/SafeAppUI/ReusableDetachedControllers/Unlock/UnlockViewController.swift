@@ -24,7 +24,7 @@ public final class UnlockViewController: UIViewController {
         return ApplicationServiceRegistry.authenticationService
     }
 
-    private struct Strings {
+    private enum Strings {
         static let tryAgain = LocalizedString("app.unlock.tryagain", comment: "Try again in")
         static let cancel = LocalizedString("app.unlock.cancel", comment: "Cancel")
     }

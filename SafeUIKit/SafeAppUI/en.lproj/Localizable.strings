@@ -22,8 +22,12 @@
 /* Try again in */
 "app.unlock.tryagain" = "Try again in";
 
-/* Cancel */
-"cancel" = "cancel";
+/* Back */
+"back" = "Back";
+
+/* Cancel
+   Cancel button. */
+"cancel" = "Cancel";
 
 /* Current password placeholder */
 "change_password.current_password" = "Current password";
@@ -33,6 +37,9 @@
 
 /* Title for change password screen */
 "change_password.title" = "Change Password";
+
+/* Close */
+"close" = "Close";
 
 /* Body text */
 "connect_extension.intro.body" = "For increased security, enable 2-factor authentication between your phone and computer.\nAll future transacations will need to be approved by both devices.";
@@ -58,6 +65,9 @@
 /* Title for the header */
 "disconnect_extension.review.title" = "Disconnect browser extension";
 
+/* Not enough balance for transaction. */
+"exceeds_funds" = "Insufficient funds to perform this action.";
+
 /* Browser extension code is expired. */
 "extension.error.expired" = "Browser extension code is expired. Please, try again.";
 
@@ -66,9 +76,6 @@
 
 /* Current balance */
 "fee_calculation.current_balance" = "Current balance";
-
-/* Network fee */
-"fee_calculation.fee" = "Network fee";
 
 /* [?] */
 "fee_calculation.fee.info" = "[?]";
@@ -160,9 +167,6 @@
 /* Title for menu screen. */
 "menu.title" = "Menu";
 
-/* Back */
-"navigation.back" = "Back";
-
 /* Start */
 "navigation.start" = "Start";
 
@@ -172,7 +176,7 @@
 /* Ok */
 "network_fee.alert.ok" = "Close";
 
-/* Transaction fee */
+/* Network fee */
 "network_fee.alert.title" = "Network Fee";
 
 /* Placeholder text for confirm password field */
@@ -350,6 +354,9 @@
 /* Terms of Use */
 "onboarding.terms.terms" = "Terms of Use";
 
+/* Title for transaction confirmation alert. */
+"open_browser_extension" = "Please open the Safe browser extension to confirm this transaction";
+
 /* Abort safe creation button title */
 "pending_safe.abort_alert.abort" = "Abort";
 
@@ -491,8 +498,18 @@
 /* New recovery phrase */
 "replace_recovery.new_phrase.title" = "New recovery phrase";
 
+/* Resend button. */
+"resend" = "Resend";
+
+/* Description for transaction confirmation alert. */
+"resend_to_refresh" = "Resend to refresh the connection.";
+
 /* Success */
 "resync.alert.success" = "Resync notification sent successfully";
+
+/* Review button for Send screen
+   Review transaction title */
+"review" = "Review";
 
 /* Safe Address label. */
 "safe_address.address" = "Address";
@@ -518,7 +535,7 @@
 /* Ok */
 "safe_creation.alert.ok" = "Close";
 
-/* Transaction fee */
+/* Network fee */
 "safe_creation.alert.title" = "Safe opening fee";
 
 /* Cancel safe creation button. */
@@ -578,11 +595,14 @@
 /* Save button */
 "save" = "Save";
 
+/* Send */
+"send_title" = "Send %@";
+
+/* Submit transaction */
+"submit" = "Submit";
+
 /* Label for Tokens header on main screen. */
 "tokens.label" = "Tokens";
-
-/* Continue button title for New Transaction Screen */
-"transaction.continue" = "Continue";
 
 /* Detail for the header in review screen */
 "transaction.details.connect_extension.detail" = "This transaction connects this Safe with the browser extension. Future transactions require confirmation from both devices.";
@@ -600,7 +620,7 @@
 "transaction.details.externalViewer" = "View on Etherscan.io";
 
 /* 'Fee' parameter name */
-"transaction.details.fee" = "Transaction fee";
+"transaction.details.fee" = "Network fee";
 
 /* Detail for the header in review screen */
 "transaction.details.replace_extension.detail" = "The existing browser extension connection was replaced by the new browser extension.";
@@ -665,12 +685,6 @@
 /* Title for the header in review screen */
 "transaction.details.wallet_recovery.title" = "Safe recovery";
 
-/* Not enough balance for transaction. */
-"transaction.error.notEnoughFunds" = "Insufficient funds for the amount.";
-
-/* Outgoing transafer */
-"transaction.outgoing_transfer" = "Outgoing transfer";
-
 /* Detail for header in review screen. */
 "transaction.replace_browser_extension.description" = "The existing browser extension connection will be replaced by the new browser extension.";
 
@@ -683,36 +697,17 @@
 /* Title for the header in review screen */
 "transaction.replace_recovery.title" = "Replace recovery phrase";
 
-/* Review transaction title */
-"transaction.review_title" = "Review";
-
-/* Submit
-   Submit transaction */
+/* Submit */
 "transaction.submit" = "Submit";
 
-/* Send */
-"transaction.title" = "Send";
-
-/* Cancel button. */
-"transaction_confirmation_alert.cancel" = "Cancel";
-
-/* Description for transaction confirmation alert. */
-"transaction_confirmation_alert.description" = "Resend to refresh the connection.";
-
-/* Resend button. */
-"transaction_confirmation_alert.resend" = "Resend";
-
-/* Title for transaction confirmation alert. */
-"transaction_confirmation_alert.title" = "Please open the Safe browser extension to confirm this transaction.";
+/* Network fee */
+"transaction_fee" = "Network fee";
 
 /* Explanatory message */
-"transaction_fee_alert.message" = "This is a transaction fee required by the blockchain to execute the transaction.";
+"transaction_fee_explanation" = "This is a network fee required by the blockchain to execute the transaction.";
 
-/* Ok */
-"transaction_fee_alert.ok" = "Close";
-
-/* Transaction fee */
-"transaction_fee_alert.title" = "Transaction fee";
+/* Outgoing transafer */
+"transaction_type_asset_transfer" = "Outgoing transfer";
 
 /* No transactions yet */
 "transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";
