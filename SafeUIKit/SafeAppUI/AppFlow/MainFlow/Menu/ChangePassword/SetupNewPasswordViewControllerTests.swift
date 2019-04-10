@@ -106,7 +106,7 @@ class TestableSetupNewPasswordViewController: SetupNewPasswordViewController {
 
     let _scrollView = UIScrollView()
     let _headerLabel = UILabel()
-    let _passwordInput = NewPasswordVerifiableInput()
+    let _passwordInput = VerifiableInput()
     let _confirmInput = VerifiableInput()
 
     init() {

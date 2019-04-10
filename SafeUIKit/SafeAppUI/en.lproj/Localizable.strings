@@ -278,9 +278,6 @@
 /* Passwords must match. */
 "onboarding.confirm_password.match" = "Passwords must match";
 
-/* Confirm password screen title. */
-"onboarding.confirm_password.title" = "Confirm Password";
-
 /* Error alert's title */
 "onboarding.error.title" = "Error";
 
@@ -319,9 +316,6 @@
 
 /* No triple characters. */
 "onboarding.set_password.no_tripple_chars" = "No triple characters";
-
-/* Set password screen title. */
-"onboarding.set_password.title" = "Create Password";
 
 /* Set up safe options screen title */
 "onboarding.setup_safe.info" = "Safe is secured.\nPassword setup complete.";

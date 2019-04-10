@@ -19,7 +19,7 @@ extension VerifiableInput {
     }
 
     func configureForNewPassword() {
-        configureAppearance()
+        configurePasswordAppearance()
         textInput.showSuccessIndicator = false
         self.addRule(Strings.length) {
             PasswordValidator.validateMinLength($0)
@@ -33,13 +33,14 @@ extension VerifiableInput {
     }
 
     func configureForConfirmPassword(referencePassword: String) {
-        configureAppearance()
+        configurePasswordAppearance()
+        showErrorsOnly = true
         addRule(Strings.matchPassword) {
             PasswordValidator.validate(input: $0, equals: referencePassword)
         }
     }
 
-    private func configureAppearance() {
+    func configurePasswordAppearance() {
         isSecure = true
         returnKeyType = .next
         style = .white

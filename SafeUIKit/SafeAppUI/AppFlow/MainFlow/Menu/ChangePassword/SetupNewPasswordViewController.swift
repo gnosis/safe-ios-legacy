@@ -16,7 +16,7 @@ class SetupNewPasswordViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var newPasswordInput: NewPasswordVerifiableInput!
+    @IBOutlet weak var newPasswordInput: VerifiableInput!
     @IBOutlet weak var confirmNewPasswordInput: VerifiableInput!
 
     private let saveButton = UIBarButtonItem(title: Strings.save, style: .plain, target: self, action: #selector(save))
@@ -76,12 +76,12 @@ class SetupNewPasswordViewController: UIViewController {
     private func configureNewPasswordInput() {
         newPasswordInput.delegate = self
         newPasswordInput.textInput.placeholder = Strings.newPasswordPlaceholder
+        newPasswordInput.configureForNewPassword()
     }
 
     private func configureConfirmPasswordInput() {
-        confirmNewPasswordInput.isSecure = true
         confirmNewPasswordInput.delegate = self
-        confirmNewPasswordInput.returnKeyType = .next
+        confirmNewPasswordInput.configurePasswordAppearance()
         confirmNewPasswordInput.showErrorsOnly = true
         confirmNewPasswordInput.textInput.placeholder = Strings.confirmPasswordPlaceholder
         confirmNewPasswordInput.addRule(Strings.passwordDoesNotMatch) { $0 == self.password.new }

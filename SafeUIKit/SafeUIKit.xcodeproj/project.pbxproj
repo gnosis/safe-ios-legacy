@@ -340,12 +340,10 @@
 		558FD80A20765C53004F070E /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD80920765C53004F070E /* CheckmarkButton.swift */; };
 		55980000225B73B3006D5792 /* ChangePasswordCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE8225B73B3006D5792 /* ChangePasswordCommand.swift */; };
 		55980001225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE9225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift */; };
-		55980002225B73B3006D5792 /* NewPasswordVerifiableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFEA225B73B3006D5792 /* NewPasswordVerifiableInput.swift */; };
 		55980003225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFEB225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift */; };
 		55980004225B73B3006D5792 /* ChangePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5598FFEC225B73B3006D5792 /* ChangePassword.storyboard */; };
 		55980006225B73BE006D5792 /* VerifyCurrentPasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE4225B73B3006D5792 /* VerifyCurrentPasswordViewControllerTests.swift */; };
 		55980007225B73C2006D5792 /* SetupNewPasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE5225B73B3006D5792 /* SetupNewPasswordViewControllerTests.swift */; };
-		55980008225B73C6006D5792 /* NewPasswordVerifiableInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE6225B73B3006D5792 /* NewPasswordVerifiableInputTests.swift */; };
 		55980009225B73E6006D5792 /* ChangePasswordFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFED225B73B3006D5792 /* ChangePasswordFlowCoordinatorTests.swift */; };
 		5598000B225B74A4006D5792 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598000A225B74A4006D5792 /* Authenticator.swift */; };
 		5598FFFF225B73B3006D5792 /* SetupNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598FFE7225B73B3006D5792 /* SetupNewPasswordViewController.swift */; };
@@ -903,11 +901,9 @@
 		5598000A225B74A4006D5792 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		5598FFE4225B73B3006D5792 /* VerifyCurrentPasswordViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyCurrentPasswordViewControllerTests.swift; sourceTree = "<group>"; };
 		5598FFE5225B73B3006D5792 /* SetupNewPasswordViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNewPasswordViewControllerTests.swift; sourceTree = "<group>"; };
-		5598FFE6225B73B3006D5792 /* NewPasswordVerifiableInputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPasswordVerifiableInputTests.swift; sourceTree = "<group>"; };
 		5598FFE7225B73B3006D5792 /* SetupNewPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupNewPasswordViewController.swift; sourceTree = "<group>"; };
 		5598FFE8225B73B3006D5792 /* ChangePasswordCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordCommand.swift; sourceTree = "<group>"; };
 		5598FFE9225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordFlowCoordinator.swift; sourceTree = "<group>"; };
-		5598FFEA225B73B3006D5792 /* NewPasswordVerifiableInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPasswordVerifiableInput.swift; sourceTree = "<group>"; };
 		5598FFEB225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyCurrentPasswordViewController.swift; sourceTree = "<group>"; };
 		5598FFEC225B73B3006D5792 /* ChangePassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChangePassword.storyboard; sourceTree = "<group>"; };
 		5598FFED225B73B3006D5792 /* ChangePasswordFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordFlowCoordinatorTests.swift; sourceTree = "<group>"; };
@@ -1914,8 +1910,6 @@
 				5598FFE8225B73B3006D5792 /* ChangePasswordCommand.swift */,
 				5598FFE9225B73B3006D5792 /* ChangePasswordFlowCoordinator.swift */,
 				5598FFED225B73B3006D5792 /* ChangePasswordFlowCoordinatorTests.swift */,
-				5598FFEA225B73B3006D5792 /* NewPasswordVerifiableInput.swift */,
-				5598FFE6225B73B3006D5792 /* NewPasswordVerifiableInputTests.swift */,
 				5598FFE7225B73B3006D5792 /* SetupNewPasswordViewController.swift */,
 				5598FFE5225B73B3006D5792 /* SetupNewPasswordViewControllerTests.swift */,
 				5598FFEB225B73B3006D5792 /* VerifyCurrentPasswordViewController.swift */,
@@ -2805,7 +2799,6 @@
 				0A334E48209C8E3800ABC6AE /* AppFlowCoordinator.swift in Sources */,
 				0A3D14EE220B18E200E340DB /* FeatureFlagSettings.swift in Sources */,
 				0A3BD90B22254833007039B4 /* RBEIntroViewControllerLoadingState.swift in Sources */,
-				55980002225B73B3006D5792 /* NewPasswordVerifiableInput.swift in Sources */,
 				0AF5BB39222421B5006856E0 /* ConnectBrowserExtensionFlowCoordinator.swift in Sources */,
 				0A334E2C209C8E3800ABC6AE /* NewSafeFlowCoordinator.swift in Sources */,
 				55CA30A12229349700E7AEA7 /* OnboardingTrackingEvent.swift in Sources */,
@@ -2916,7 +2909,6 @@
 				0A2D58A122577CB5001B8BF4 /* ReplaceRecoveryPhraseViewControllerTests.swift in Sources */,
 				0A3BD8EF22254822007039B4 /* RBEIntroViewControllerLoadingStateTests.swift in Sources */,
 				550D1EDF213426F00035109A /* AddTokenFooterViewTests.swift in Sources */,
-				55980008225B73C6006D5792 /* NewPasswordVerifiableInputTests.swift in Sources */,
 				0A60B50B2112FA6C0066821A /* KeyboardAvoidingBehaviorTests.swift in Sources */,
 				0A334DC7209C6DB600ABC6AE /* FlowCoordinatorTests.swift in Sources */,
 				0AD998A420D3E67D00E6F3CA /* HorizontalSeparatorViewTests.swift in Sources */,

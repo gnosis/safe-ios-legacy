@@ -18,6 +18,8 @@ final class PasswordViewController: UIViewController {
     @IBOutlet weak var verifiableInput: VerifiableInput!
     @IBOutlet weak var nextButton: UIBarButtonItem!
 
+    @IBOutlet weak var bottomSpaceFromDescriptionToCardViewConstraint: NSLayoutConstraint!
+
     private weak var delegate: PasswordViewControllerDelegate!
     private var keyboardBehavior: KeyboardAvoidingBehavior!
 
@@ -27,10 +29,6 @@ final class PasswordViewController: UIViewController {
     }
 
     private enum Strings {
-        static let createTitle = LocalizedString("onboarding.set_password.title",
-                                                 comment: "Set password screen title.")
-        static let confirmTitle = LocalizedString("onboarding.confirm_password.title",
-                                                  comment: "Confirm password screen title.")
         static let createHeader = LocalizedString("onboarding.set_password.header",
                                                   comment: "Header for set password screen.")
         static let confirmHeader = LocalizedString("onboarding.confirm_password.header",
@@ -62,13 +60,13 @@ final class PasswordViewController: UIViewController {
         super.viewDidLoad()
         configureKeyboardBehavior()
         if isSetPasswordScreen {
-            title = Strings.createTitle
             headerLabel.text = Strings.createHeader
             verifiableInput.configureForNewPassword()
+            bottomSpaceFromDescriptionToCardViewConstraint.constant = 190
         } else {
-            title = Strings.confirmTitle
-            headerLabel.text = Strings.createHeader
+            headerLabel.text = Strings.confirmHeader
             verifiableInput.configureForConfirmPassword(referencePassword: referencePassword)
+            bottomSpaceFromDescriptionToCardViewConstraint.constant = 130
         }
         verifiableInput.delegate = self
         _ = verifiableInput.becomeFirstResponder()
