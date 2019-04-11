@@ -28,7 +28,7 @@ final class MainFlowCoordinator: FlowCoordinator {
         super.setUp()
         let mainVC = MainViewController.create(delegate: self)
         mainVC.navigationItem.backBarButtonItem =
-            UIBarButtonItem(title: LocalizedString("navigation.back", comment: "Back"),
+            UIBarButtonItem(title: LocalizedString("back", comment: "Back"),
                             style: .plain,
                             target: nil,
                             action: nil)

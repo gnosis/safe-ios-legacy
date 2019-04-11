@@ -53,7 +53,7 @@ class RecoveryPhraseInputViewController: BaseInputViewController {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backButtonItem = UIBarButtonItem(title: LocalizedString("navigation.back", comment: "Back"),
+        backButtonItem = UIBarButtonItem(title: LocalizedString("back", comment: "Back"),
                                          style: .plain,
                                          target: self,
                                          action: #selector(back))

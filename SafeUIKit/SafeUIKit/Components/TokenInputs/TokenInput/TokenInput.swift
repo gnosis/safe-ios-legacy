@@ -19,15 +19,15 @@ public final class TokenInput: VerifiableInput {
     }
 
     enum Strings {
-        static let amount = LocalizedString("token_input.amount", comment: "Amount placeholder for token input.")
+        static let amount = LocalizedString("amount", comment: "Amount placeholder for token input.")
         enum Rules {
-            static let valueIsTooBig = LocalizedString("token_input.value_is_too_big",
+            static let valueIsTooBig = LocalizedString("ios_token_input_value_is_too_big",
                                                        comment: "Error to display if entered value is too big.")
             static let excededAmountOfFractionalDigits =
-                LocalizedString("token_input.exceded_amount_of_fractional_digits",
+                LocalizedString("ios_token_input_exceded_amount_of_fractional_digits",
                                 comment: "Error to display if amount of fractional digits is exceded.")
             static let valueIsNotANumber =
-                LocalizedString("token_input.value_is_not_a_number",
+                LocalizedString("ios_token_input_value_is_not_a_number",
                                 comment: "Error to display if entered value is not a number.")
         }
     }

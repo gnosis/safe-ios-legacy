@@ -24,7 +24,7 @@ public class TermsAndConditionsViewController: UIViewController {
 
     public weak var delegate: TermsAndConditionsViewControllerDelegate?
 
-    struct Strings {
+    private enum Strings {
         static let header = LocalizedString("onboarding.terms.header", comment: "Header label")
         static let body = LocalizedString("onboarding.terms.content",
                                           comment: "Content (bulleted list). Separate by new line characters '\n'")

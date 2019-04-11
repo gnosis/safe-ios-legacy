@@ -259,13 +259,11 @@ public class ReviewTransactionViewController: UITableViewController {
 
     // TODO: remove duplication
     @objc func showTransactionFeeInfo() {
-        let alert = UIAlertController(title: LocalizedString("transaction_fee_alert.title",
-                                                             comment: "Transaction fee"),
-                                      message: LocalizedString("transaction_fee_alert.message",
+        let alert = UIAlertController(title: LocalizedString("transaction_fee", comment: "Network fee"),
+                                      message: LocalizedString("transaction_fee_explanation",
                                                                comment: "Explanatory message"),
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: LocalizedString("transaction_fee_alert.ok",
-                                                             comment: "Ok"), style: .default))
+        alert.addAction(UIAlertAction(title: LocalizedString("close", comment: "Close"), style: .default))
         present(alert, animated: true, completion: nil)
     }
 
@@ -277,18 +275,18 @@ extension ReviewTransactionViewController {
 
     enum Strings {
 
-        static let outgoingTransfer = LocalizedString("transaction.outgoing_transfer", comment: "Outgoing transafer")
-        static let submit = LocalizedString("transaction.submit", comment: "Submit transaction")
-        static let title = LocalizedString("transaction.review_title", comment: "Review transaction title")
+        static let outgoingTransfer = LocalizedString("transaction_type_asset_transfer", comment: "Outgoing transafer")
+        static let submit = LocalizedString("submit", comment: "Submit transaction")
+        static let title = LocalizedString("review", comment: "Review transaction title")
 
         enum Alert {
-            static let title = LocalizedString("transaction_confirmation_alert.title",
+            static let title = LocalizedString("open_browser_extension",
                                                comment: "Title for transaction confirmation alert.")
-            static let description = LocalizedString("transaction_confirmation_alert.description",
+            static let description = LocalizedString("resend_to_refresh",
                                                      comment: "Description for transaction confirmation alert.")
-            static let resend = LocalizedString("transaction_confirmation_alert.resend",
+            static let resend = LocalizedString("resend",
                                                 comment: "Resend button.")
-            static let cancel = LocalizedString("transaction_confirmation_alert.cancel",
+            static let cancel = LocalizedString("cancel",
                                                 comment: "Cancel button.")
         }
 

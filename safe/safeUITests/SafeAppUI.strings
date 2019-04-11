@@ -573,7 +573,7 @@
 "transaction.details.externalViewer" = "View on Etherscan.io";
 
 /* 'Fee' parameter name */
-"transaction.details.fee" = "Transaction fee";
+"transaction.details.fee" = "Network fee";
 
 /* Detail for the header in review screen */
 "transaction.details.replace_extension.detail" = "The existing browser extension connection was replaced by the new browser extension.";
@@ -685,7 +685,7 @@
 "transaction_fee_alert.ok" = "Close";
 
 /* Transaction fee */
-"transaction_fee_alert.title" = "Transaction fee";
+"transaction_fee_alert.title" = "Network fee";
 
 /* No transactions yet */
 "transactions.empty.text" = "¯\\_(ツ)_/¯\nNo transactions yet";

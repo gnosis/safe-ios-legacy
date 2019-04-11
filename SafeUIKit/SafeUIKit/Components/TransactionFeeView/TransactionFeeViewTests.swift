@@ -19,47 +19,47 @@ class TransactionFeeViewTests: XCTestCase {
         XCTAssertEqual(transactionFeeView.currentBalanceValueLabel?.text,
                        transactionFeeView.tokenFormatter.string(from: ethData.balance!))
         assertLabel(transactionFeeView.currentBalanceLabel,
-                    localizedKey: "transaction_fee.current_balance",
+                    localizedKey: "safe_balance",
                     boldFontSize: transactionFeeView.fontSize)
 
         XCTAssertEqual(transactionFeeView.transactionFeeValueLabel?.text,
                        transactionFeeView.tokenFormatter.string(from: ethData.balance!))
         assertLabel(transactionFeeView.transactionFeeLabel,
-                    localizedKey: "transaction_fee.transaction_fee",
+                    localizedKey: "transaction_fee",
                     fontSize: transactionFeeView.fontSize)
 
         XCTAssertEqual(transactionFeeView.resultingBalanceValueLabel?.text,
                        transactionFeeView.tokenFormatter.string(from: ethData.balance!))
         assertLabel(transactionFeeView.resultingBalanceLabel,
-                    localizedKey: "transaction_fee.balance_after_transfer",
+                    localizedKey: "balance_after_transfer",
                     boldFontSize: transactionFeeView.fontSize)
     }
 
     func test_whenTransactionFeeIsNotSet_thenItIsNotDisplayed() {
         transactionFeeView.configure(currentBalance: tokenData, transactionFee: nil, resultingBalance: tokenData)
 
-        let balanceStr = LocalizedString("transaction_fee.current_balance", comment: "")
-        let tokenStr = LocalizedString("transaction_fee.token", comment: "")
+        let balanceStr = LocalizedString("safe_balance", comment: "")
+        let tokenStr = LocalizedString("ios_transaction_fee_token", comment: "")
         assertLabel(transactionFeeView.currentBalanceLabel,
                     text: "\(balanceStr) (\(tokenStr))",
                     font: UIFont.boldSystemFont(ofSize: transactionFeeView.fontSize))
 
         assertLabel(transactionFeeView.resultingBalanceLabel,
-                    localizedKey: "transaction_fee.balance_after_transfer",
+                    localizedKey: "balance_after_transfer",
                     boldFontSize: transactionFeeView.fontSize)
     }
 
     func test_whenCurrentBalanceIsNotSet_thenItIsNotDisplayed() {
         transactionFeeView.configure(currentBalance: nil, transactionFee: ethData, resultingBalance: ethData)
 
-        let feeStr = LocalizedString("transaction_fee.transaction_fee", comment: "")
-        let etherStr = LocalizedString("transaction_fee.ether", comment: "")
+        let feeStr = LocalizedString("transaction_fee", comment: "")
+        let etherStr = LocalizedString("ios_transaction_fee_ether", comment: "")
         assertLabel(transactionFeeView.transactionFeeLabel,
                     text: "\(feeStr) (\(etherStr))",
                     font: UIFont.systemFont(ofSize: transactionFeeView.fontSize))
 
         assertLabel(transactionFeeView.resultingBalanceLabel,
-                    localizedKey: "transaction_fee.balance_after_transfer",
+                    localizedKey: "balance_after_transfer",
                     fontSize: transactionFeeView.fontSize)
     }
 

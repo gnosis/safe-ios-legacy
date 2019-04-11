@@ -9,7 +9,7 @@ import MultisigWalletApplication
 public class ErrorHandler {
 
     // swiftlint:disable line_length
-    public struct Strings {
+    public enum Strings {
 
         public static let fatalErrorTitle = LocalizedString("onboarding.fatal.title", comment: "Fatal error alert's title")
         public static let errorTitle = LocalizedString("onboarding.error.title", comment: "Error alert's title")

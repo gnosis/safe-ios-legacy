@@ -19,7 +19,7 @@ internal class ClockService {
 
 public class TransactionDetailsViewController: UIViewController {
 
-    struct Strings {
+    internal enum Strings {
         static let type = LocalizedString("transaction.details.type", comment: "'Type' parameter name")
         static let submitted = LocalizedString("transaction.details.submitted",
                                                comment: "'Submitted' parameter name")
