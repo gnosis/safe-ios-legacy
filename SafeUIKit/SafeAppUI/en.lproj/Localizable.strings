@@ -276,11 +276,11 @@
 /* Next button */
 "next" = "Next";
 
+/* Header for set password screen. */
+"onboarding.confirm_password.header" = "Confirm Password";
+
 /* Passwords must match. */
 "onboarding.confirm_password.match" = "Passwords must match";
-
-/* Confirm password screen title. */
-"onboarding.confirm_password.title" = "Confirm Password";
 
 /* Error alert's title */
 "onboarding.error.title" = "Error";
@@ -306,6 +306,9 @@
 /* Set password screen description. */
 "onboarding.set_password.description" = "Your confidential password is used to unlock the Safe and confirm transactions.";
 
+/* Header for set password screen. */
+"onboarding.set_password.header" = "Create Password";
+
 /* Use a minimum of 8 characters. */
 "onboarding.set_password.length" = "Use a minimum of 8 characters";
 
@@ -317,9 +320,6 @@
 
 /* No triple characters. */
 "onboarding.set_password.no_tripple_chars" = "No triple characters";
-
-/* Set password screen title. */
-"onboarding.set_password.title" = "Create Password";
 
 /* Set up safe options screen title */
 "onboarding.setup_safe.info" = "Safe is secured.\nPassword setup complete.";

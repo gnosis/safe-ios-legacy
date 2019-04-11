@@ -31,11 +31,10 @@ class SetupNewPasswordViewControllerTests: XCTestCase {
 
     func test_whenNewPasswordInputDidReturn_thenConfirmPasswordFieldBecomesActive() {
         createWindow(vc)
-        XCTAssertTrue(vc.newPasswordInput.isActive)
-        XCTAssertFalse(vc.confirmNewPasswordInput.isActive)
+        XCTAssertTrue(vc.keyboardBehavior.activeTextField === vc.newPasswordInput.textInput)
         vc.newPasswordInput.text = validPassword
         vc.verifiableInputDidReturn(vc.newPasswordInput)
-        XCTAssertTrue(vc.confirmNewPasswordInput.isActive)
+        XCTAssertTrue(vc.keyboardBehavior.activeTextField === vc.confirmNewPasswordInput.textInput)
     }
 
     func test_whenConfirmPasswordReturns_thenCallsDelegate() {
@@ -106,7 +105,7 @@ class TestableSetupNewPasswordViewController: SetupNewPasswordViewController {
 
     let _scrollView = UIScrollView()
     let _headerLabel = UILabel()
-    let _passwordInput = NewPasswordVerifiableInput()
+    let _passwordInput = VerifiableInput()
     let _confirmInput = VerifiableInput()
 
     init() {

@@ -9,3 +9,4 @@ paleLilac: #e5e5ea
 greenTeal: #09a862
 dodgerBlue: #3a88ff
 lightGreyBlue: #a2a8ba
+lightBlueGrey58: #c6d2d9

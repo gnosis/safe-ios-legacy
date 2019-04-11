@@ -4,7 +4,7 @@
 
 import SafeUIKit
 
-final class NewPasswordVerifiableInput: VerifiableInput {
+extension VerifiableInput {
 
     enum Strings {
         static let length = LocalizedString("onboarding.set_password.length",
@@ -13,27 +13,15 @@ final class NewPasswordVerifiableInput: VerifiableInput {
                                                     comment: "At least 1 digit and 1 letter.")
         static let trippleChars = LocalizedString("onboarding.set_password.no_tripple_chars",
                                                   comment: "No triple characters.")
+
+        static let matchPassword = LocalizedString("onboarding.confirm_password.match",
+                                                   comment: "Passwords must match.")
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        commonInit()
-    }
-
-    private func commonInit() {
-        isSecure = true
-        returnKeyType = .next
+    func configureForNewPassword() {
+        configurePasswordAppearance()
         textInput.showSuccessIndicator = false
-        addRule(Strings.length) {
+        self.addRule(Strings.length) {
             PasswordValidator.validateMinLength($0)
         }
         addRule(Strings.letterAndDigit) {
@@ -42,6 +30,21 @@ final class NewPasswordVerifiableInput: VerifiableInput {
         addRule(Strings.trippleChars) {
             PasswordValidator.validateNoTrippleChar($0)
         }
+    }
+
+    func configureForConfirmPassword(referencePassword: String) {
+        configurePasswordAppearance()
+        showErrorsOnly = true
+        addRule(Strings.matchPassword) {
+            PasswordValidator.validate(input: $0, equals: referencePassword)
+        }
+    }
+
+    func configurePasswordAppearance() {
+        isSecure = true
+        returnKeyType = .next
+        style = .white
+        returnKeyType = .next
     }
 
 }

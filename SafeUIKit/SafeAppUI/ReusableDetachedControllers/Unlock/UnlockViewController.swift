@@ -37,7 +37,6 @@ public final class UnlockViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        backgroundImageView.isDark = true
 
         verifiableInput.delegate = self
         verifiableInput.isSecure = true

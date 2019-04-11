@@ -27,7 +27,6 @@ class SetupSafeOptionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        backgroundView.isDark = true
         headerLabel.text = Strings.header
         headerLabel.textColor = .white
         newSafeButton.setTitle(Strings.newSafe, for: .normal)

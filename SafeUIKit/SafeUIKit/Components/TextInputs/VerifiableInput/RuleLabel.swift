@@ -33,7 +33,7 @@ final class RuleLabel: UIView {
         }
     }
 
-    convenience init(text: String, displayIcon: Bool = true, rule: ((String) -> Bool)? = nil) {
+    convenience init(text: String, displayIcon: Bool = false, rule: ((String) -> Bool)? = nil) {
         self.init(frame: .zero)
         self.label.text = text
         if !displayIcon {
@@ -102,7 +102,7 @@ final class RuleLabel: UIView {
 
     private func updateLabel() {
         label.accessibilityValue = [status.localizedDescription, label.text].compactMap { $0 }.joined(separator: " ")
-        guard imageView != nil else { return }
+        guard imageView == nil else { return }
         switch status {
         case .error:
             label.textColor = ColorName.tomato.color
