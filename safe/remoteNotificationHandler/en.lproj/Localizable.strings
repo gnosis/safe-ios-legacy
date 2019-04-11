@@ -1,15 +1,18 @@
-/* Send Transaction Body */
-"notification.sendTransaction.body" = "Sign request";
+/* Body for confirmation */
+"ios_transaction_confirmed_message" = "You received a signature from browser extension.";
 
-/* Send Transaction Title */
-"notification.sendTransaction.title" = "You have been requested to sign a transaction";
+/* Title for confirmation */
+"ios_transaction_confirmed_title" = "Confirmed";
 
-/* Title for request from browser extension to sign a transaction. */
-"push.signature_request" = "Request to sign a transaction.";
+/* Body for rejection */
+"ios_transaction_rejected_message" = "Browser extension declined to sign your transaction.";
 
-/* Title for negative response from browser extension without signature. */
-"push.signature_response.negative" = "Browser extension declined to sign your transaction.";
+/* Title for rejection */
+"ios_transaction_rejected_title" = "Rejected";
 
-/* Title for positive response from browser extension with signature. */
-"push.signature_response.positive" = "You received a signature from browser extension.";
+/* Body for signing request */
+"sign_transaction_request_message" = "You have been requested to sign a transaction";
+
+/* Title for signing request */
+"sign_transaction_request_title" = "Sign request";
 
