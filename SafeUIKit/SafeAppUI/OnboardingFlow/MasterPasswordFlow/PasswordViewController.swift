@@ -69,7 +69,6 @@ final class PasswordViewController: UIViewController {
             bottomSpaceFromDescriptionToCardViewConstraint.constant = 130
         }
         verifiableInput.delegate = self
-        _ = verifiableInput.becomeFirstResponder()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -86,7 +85,7 @@ final class PasswordViewController: UIViewController {
     private func configureKeyboardBehavior() {
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
         keyboardBehavior.activeTextField = verifiableInput.textInput
-        keyboardBehavior.useTextFieldSuperviewFrame = true
+        keyboardBehavior.useViewsSuperviewFrame = true
     }
 
     override func viewWillAppear(_ animated: Bool) {

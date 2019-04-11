@@ -35,15 +35,13 @@ final class ConfirmMnemonicViewController: UIViewController {
     /// If not nil, then event will be tracked. Otherwise, onboarding events are automatically tracked.
     var screenTrackingEvent: Trackable?
 
-    private var activeInput: VerifiableInput?
-
     private(set) weak var delegate: ConfirmMnemonicDelegate?
     var words: [String] { return account.mnemonicWords }
     private(set) var account: ExternallyOwnedAccountData!
     private(set) var firstMnemonicWordToCheck = ""
     private(set) var secondMnemonicWordToCheck = ""
 
-    private var keyboardBehavior: KeyboardAvoidingBehavior!
+    private(set) var keyboardBehavior: KeyboardAvoidingBehavior!
 
     var screenTitle: String? {
         return recoveryModeEnabled ? nil : Strings.title
@@ -105,7 +103,6 @@ final class ConfirmMnemonicViewController: UIViewController {
         secondWordTextInput.accessibilityIdentifier = "secondInput"
         secondWordTextInput.textInput.style = .gray
         secondWordTextInput.trimsText = true
-         _ = firstWordTextInput.becomeFirstResponder()
     }
 
     private func configureTexts() {
@@ -118,7 +115,7 @@ final class ConfirmMnemonicViewController: UIViewController {
     private func configureKeyboardBehavior() {
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
         keyboardBehavior.activeTextField = firstWordTextInput.textInput
-        keyboardBehavior.useTextFieldSuperviewFrame = true
+        keyboardBehavior.useViewsSuperviewFrame = true
     }
 
     func twoRandomWords() -> (String, String) {
@@ -164,19 +161,11 @@ final class ConfirmMnemonicViewController: UIViewController {
 
 extension ConfirmMnemonicViewController: VerifiableInputDelegate {
 
-    func verifiableInputDidBeginEditing(_ verifiableInput: VerifiableInput) {
-        activeInput = verifiableInput
-    }
-
-    func verifiableInputDidEndEditing(_ verifiableInput: VerifiableInput) {
-        activeInput = nil
-    }
-
     func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
         if isValid() {
             confirmMnemonic()
         } else if verifiableInput == firstWordTextInput {
-            _ = secondWordTextInput.becomeFirstResponder()
+            keyboardBehavior.activeTextField = secondWordTextInput.textInput
         } else {
             shakeErrors()
         }

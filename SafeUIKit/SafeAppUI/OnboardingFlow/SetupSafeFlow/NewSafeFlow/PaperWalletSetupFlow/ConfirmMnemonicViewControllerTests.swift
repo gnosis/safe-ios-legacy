@@ -63,9 +63,8 @@ class ConfirmMnemonicViewControllerTests: SafeTestCase {
     }
 
     func test_viewDidLoad_setsFirstTextInputAsFirstResponder() {
-        createWindow(controller)
         controller.viewDidLoad()
-        XCTAssertTrue(controller.firstWordTextInput.isActive)
+        XCTAssertTrue(controller.keyboardBehavior.activeTextField === controller.firstWordTextInput.textInput)
     }
 
     func test_whenTextInputsHaveWrongWords_thenDelegateIsNotCalled() {
@@ -85,9 +84,8 @@ class ConfirmMnemonicViewControllerTests: SafeTestCase {
     }
 
     func test_textInputDidReturn_whenTriggeredByFirstInput_thenSetsSecondInputAsFirstResponder() {
-        createWindow(controller)
         controller.verifiableInputDidReturn(controller.firstWordTextInput)
-        XCTAssertTrue(controller.secondWordTextInput.isActive)
+        XCTAssertTrue(controller.keyboardBehavior.activeTextField === controller.secondWordTextInput.textInput)
     }
 
     func test_whenTextInputReturns_thenAddsOwner() {

@@ -19,8 +19,15 @@ class KeyboardAvoidingBehavior {
         get { return activeResponder as? UITextView }
         set { activeResponder = newValue }
     }
-    var activeResponder: UIView?
-    var useTextFieldSuperviewFrame = false
+
+    var activeResponder: UIView? {
+        didSet {
+            guard let activeResponder = activeResponder else { return }
+            activate(activeResponder)
+        }
+    }
+
+    var useViewsSuperviewFrame = false
 
     init(scrollView: UIScrollView, notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.scrollView = scrollView
@@ -69,15 +76,15 @@ class KeyboardAvoidingBehavior {
                 animated = !isSuppressing
             }
             // Otherwise, the scrolling interferes with default textfield behavior provided by iOS.
-            DispatchQueue.main.async {
-                self.scrollView.scrollRectToVisible(frame, animated: animated)
+            DispatchQueue.main.async { [weak self] in
+                self?.scrollView.scrollRectToVisible(frame, animated: animated)
             }
         }
     }
 
     private func responderFrame(in parent: UIView) -> CGRect? {
         guard let field = activeResponder else { return nil }
-        let frame = useTextFieldSuperviewFrame ?
+        let frame = useViewsSuperviewFrame ?
             parent.convert(field.superview!.bounds, from: field.superview!) :
             parent.convert(field.bounds, from: field)
         return frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: -10, right: 0))
@@ -88,11 +95,11 @@ class KeyboardAvoidingBehavior {
         scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
 
-    func activate(_ responder: UIView) {
+    private func activate(_ responder: UIView) {
         responder.becomeFirstResponder()
     }
 
-    func deactivate(_ responder: UIView) {
+    private func deactivate(_ responder: UIView) {
         responder.resignFirstResponder()
     }
 

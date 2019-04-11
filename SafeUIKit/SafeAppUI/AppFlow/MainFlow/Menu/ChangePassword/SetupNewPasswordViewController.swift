@@ -20,7 +20,7 @@ class SetupNewPasswordViewController: UIViewController {
     @IBOutlet weak var confirmNewPasswordInput: VerifiableInput!
 
     private let saveButton = UIBarButtonItem(title: Strings.save, style: .plain, target: self, action: #selector(save))
-    private var keyboardBehavior: KeyboardAvoidingBehavior!
+    private(set) var keyboardBehavior: KeyboardAvoidingBehavior!
 
     private var canSave: Bool {
         return password.new == password.confirmed && newPasswordInput.isValid
@@ -58,19 +58,18 @@ class SetupNewPasswordViewController: UIViewController {
         configureNewPasswordInput()
         configureConfirmPasswordInput()
         configureKeyboardBehavior()
-        _ = newPasswordInput.becomeFirstResponder()
         navigationItem.rightBarButtonItem = saveButton
         saveButton.isEnabled = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        keyboardBehavior?.start()
+        keyboardBehavior.start()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        keyboardBehavior?.stop()
+        keyboardBehavior.stop()
     }
 
     private func configureNewPasswordInput() {
@@ -90,7 +89,7 @@ class SetupNewPasswordViewController: UIViewController {
     private func configureKeyboardBehavior() {
         keyboardBehavior = KeyboardAvoidingBehavior(scrollView: scrollView)
         keyboardBehavior.activeTextField = newPasswordInput.textInput
-        keyboardBehavior.useTextFieldSuperviewFrame = true
+        keyboardBehavior.useViewsSuperviewFrame = true
     }
 
     @objc func save() {
@@ -109,7 +108,7 @@ extension SetupNewPasswordViewController: VerifiableInputDelegate {
     func verifiableInputDidReturn(_ verifiableInput: VerifiableInput) {
         if verifiableInput === newPasswordInput {
             if newPasswordInput.isValid {
-                _ = confirmNewPasswordInput.becomeFirstResponder()
+                keyboardBehavior.activeResponder = confirmNewPasswordInput.textInput
             } else {
                 shakeInput(newPasswordInput)
             }

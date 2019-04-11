@@ -18,7 +18,7 @@ class MasterPasswordFlowCoordinatorTests: XCTestCase {
     func test_startViewController() {
         let controller = flowCoordinator.navigationController.topViewController as! PasswordViewController
         controller.loadViewIfNeeded()
-        XCTAssertEqual(controller.title, XCLocalizedString("onboarding.set_password.title"))
+        XCTAssertEqual(controller.headerLabel.text, XCLocalizedString("onboarding.set_password.header"))
     }
 
     func test_whenDidSetPassword_thenConfirmPasswordIsShown() {
@@ -26,7 +26,7 @@ class MasterPasswordFlowCoordinatorTests: XCTestCase {
         delay()
         let controller = flowCoordinator.navigationController.topViewController as! PasswordViewController
         controller.loadViewIfNeeded()
-        XCTAssertEqual(controller.title, XCLocalizedString("onboarding.confirm_password.title"))
+        XCTAssertEqual(controller.headerLabel.text, XCLocalizedString("onboarding.confirm_password.header"))
     }
 
     func test_whenDidConfirmPassword_thenFlowCompletionIsCalled() {
