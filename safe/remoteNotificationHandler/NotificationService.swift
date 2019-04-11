@@ -15,11 +15,9 @@ class NotificationService: UNNotificationServiceExtension {
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
 
         if let content = bestAttemptContent {
-            if content.userInfo["type"] as? String == "sendTransaction" {
-                content.title = NSLocalizedString("notification.sendTransaction.title",
-                                                  comment: "Send Transaction Title")
-                content.body = NSLocalizedString("notification.sendTransaction.body",
-                                                 comment: "Send Transaction Body")
+            if let alert = PushLocalizationStrings.alertContent(from: content.userInfo) {
+                content.title = alert.title
+                content.body = alert.body
             }
             contentHandler(content)
         }

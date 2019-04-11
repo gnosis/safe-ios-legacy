@@ -47,15 +47,13 @@ device_fcm_token=args.token
 app_credentials = credentials.Certificate(firebase_private_key_file_path)
 default_app = firebase_admin.initialize_app(app_credentials)
 
-custom_push_notification_data={'type': 'sendTransaction'}
-
 message = messaging.Message(
     apns=messaging.APNSConfig(
         headers={'apns-priority': '10'}, # 10 - immediate send
         payload=messaging.APNSPayload(
             aps=messaging.Aps(
                 alert=messaging.ApsAlert(
-                    title_loc_key='push.signature_request',
+                    title_loc_key='sign_transaction_request_title',
                 ),
                 mutable_content=True,
                 badge=1,
@@ -63,7 +61,7 @@ message = messaging.Message(
             )
         )
     ),
-    data=custom_push_notification_data,
+    data={'type': 'sendTransaction'},
     token=device_fcm_token
 )
 

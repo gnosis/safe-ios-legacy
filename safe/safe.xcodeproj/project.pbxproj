@@ -54,6 +54,7 @@
 		0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27847205FD97600EBB9D1 /* TestUtils.swift */; };
 		0AB743F620ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB743EA20ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift */; };
 		0ABA90EB20C56AB5001AEAE4 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90EA20C56AB5001AEAE4 /* MainScreen.swift */; };
+		0AC14B12225F474A004C2649 /* LocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D33FD2110BD810055D87C /* LocalizationStrings.swift */; };
 		0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		0AC33F1B2119CBE1009A5CFB /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AC33F2A2119CE7C009A5CFB /* BlockchainIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC33F292119CE7C009A5CFB /* BlockchainIntegrationTest.swift */; };
@@ -1138,6 +1139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A028EED21AEE3FE00431D25 /* NotificationService.swift in Sources */,
+				0AC14B12225F474A004C2649 /* LocalizationStrings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
