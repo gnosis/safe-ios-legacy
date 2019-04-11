@@ -1,8 +1,8 @@
 /* Send Transaction Body */
-"notification.sendTransaction.body" = "Sign request";
+"notification.sendTransaction.body" = "You have been requested to sign a transaction";
 
 /* Send Transaction Title */
-"notification.sendTransaction.title" = "You have been requested to sign a transaction";
+"notification.sendTransaction.title" = "Sign request";
 
 /* Title for request from browser extension to sign a transaction. */
 "push.signature_request" = "Request to sign a transaction.";

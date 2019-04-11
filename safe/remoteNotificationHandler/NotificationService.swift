@@ -14,13 +14,14 @@ class NotificationService: UNNotificationServiceExtension {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
 
-        if let bestAttemptContent = bestAttemptContent,
-            bestAttemptContent.userInfo["type"] as? String == "sendTransaction" {
-            bestAttemptContent.title = NSLocalizedString("notification.sendTransaction.title",
-                                                         comment: "Send Transaction Title")
-            bestAttemptContent.body = NSLocalizedString("notification.sendTransaction.body",
-                                                        comment: "Send Transaction Body")
-            contentHandler(bestAttemptContent)
+        if let content = bestAttemptContent {
+            if content.userInfo["type"] as? String == "sendTransaction" {
+                content.title = NSLocalizedString("notification.sendTransaction.title",
+                                                  comment: "Send Transaction Title")
+                content.body = NSLocalizedString("notification.sendTransaction.body",
+                                                 comment: "Send Transaction Body")
+            }
+            contentHandler(content)
         }
     }
 
