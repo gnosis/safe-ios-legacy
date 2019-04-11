@@ -11,6 +11,7 @@
 		0A028EED21AEE3FE00431D25 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028EEC21AEE3FE00431D25 /* NotificationService.swift */; };
 		0A028EF121AEE3FE00431D25 /* remoteNotificationHandler.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0A028EEA21AEE3FE00431D25 /* remoteNotificationHandler.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0A028F0521AEE52100431D25 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A028F0721AEE52100431D25 /* Localizable.strings */; };
+		0A04A8C5225F505300305F79 /* PushLocalizationStringsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A04A8C4225F505300305F79 /* PushLocalizationStringsTests.swift */; };
 		0A0513712254B0ED000A06CD /* PairWithBrowserExtensionScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */; };
 		0A0660862099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */; };
 		0A0C86FE2097461700471885 /* SafeUIKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0C86FD2097461700471885 /* SafeUIKit.strings */; };
@@ -54,7 +55,7 @@
 		0AA27848205FD97600EBB9D1 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA27847205FD97600EBB9D1 /* TestUtils.swift */; };
 		0AB743F620ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB743EA20ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift */; };
 		0ABA90EB20C56AB5001AEAE4 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA90EA20C56AB5001AEAE4 /* MainScreen.swift */; };
-		0AC14B12225F474A004C2649 /* LocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D33FD2110BD810055D87C /* LocalizationStrings.swift */; };
+		0AC14B12225F474A004C2649 /* PushLocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */; };
 		0AC33F1A2119CBE1009A5CFB /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		0AC33F1B2119CBE1009A5CFB /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC33F192119CBE1009A5CFB /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AC33F2A2119CE7C009A5CFB /* BlockchainIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC33F292119CE7C009A5CFB /* BlockchainIntegrationTest.swift */; };
@@ -79,7 +80,7 @@
 		5540A4F6203C3054009C9BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5540A4F5203C3054009C9BE3 /* Assets.xcassets */; };
 		555C94F120E537E900A0621D /* HTTPNotificatonServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555C94EF20E533E000A0621D /* HTTPNotificatonServiceTests.swift */; };
 		555C94F320E53BEF00A0621D /* libMultisigWalletImplementations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 555C94F220E53BEF00A0621D /* libMultisigWalletImplementations.a */; };
-		555D33FE2110BD810055D87C /* LocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D33FD2110BD810055D87C /* LocalizationStrings.swift */; };
+		555D33FE2110BD810055D87C /* PushLocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */; };
 		558FD81520767F18004F070E /* NewSafeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD81420767F18004F070E /* NewSafeScreen.swift */; };
 		55A7B2A320ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */; };
 		55CAA001209AF0A1009AE181 /* SaveMnemonicScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */; };
@@ -268,6 +269,7 @@
 		0A028EEC21AEE3FE00431D25 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		0A028EEE21AEE3FE00431D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A028F0621AEE52100431D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A04A8C4225F505300305F79 /* PushLocalizationStringsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLocalizationStringsTests.swift; sourceTree = "<group>"; };
 		0A0660832099B10A0048FBD3 /* PairWithBrowserExtensionScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreenUITests.swift; sourceTree = "<group>"; };
 		0A0660852099B1190048FBD3 /* PairWithBrowserExtensionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithBrowserExtensionScreen.swift; sourceTree = "<group>"; };
 		0A0660872099B4870048FBD3 /* SafeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -354,7 +356,7 @@
 		5540A510203C3054009C9BE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		555C94EF20E533E000A0621D /* HTTPNotificatonServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPNotificatonServiceTests.swift; sourceTree = "<group>"; };
 		555C94F220E53BEF00A0621D /* libMultisigWalletImplementations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMultisigWalletImplementations.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		555D33FD2110BD810055D87C /* LocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationStrings.swift; sourceTree = "<group>"; };
+		555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLocalizationStrings.swift; sourceTree = "<group>"; };
 		558FD81420767F18004F070E /* NewSafeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSafeScreen.swift; sourceTree = "<group>"; };
 		55A7B29420ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnosisTransactionRelayServiceTests.swift; sourceTree = "<group>"; };
 		55CAA000209AF0A0009AE181 /* SaveMnemonicScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMnemonicScreen.swift; sourceTree = "<group>"; };
@@ -623,7 +625,8 @@
 				0AF4F512225CEDFE0051F68B /* LaunchScreen.storyboard */,
 				5540A4F5203C3054009C9BE3 /* Assets.xcassets */,
 				5540A4FA203C3054009C9BE3 /* Info.plist */,
-				555D33FD2110BD810055D87C /* LocalizationStrings.swift */,
+				555D33FD2110BD810055D87C /* PushLocalizationStrings.swift */,
+				0A04A8C4225F505300305F79 /* PushLocalizationStringsTests.swift */,
 				0A53AD3720595C2300D713AD /* Localizable.strings */,
 				5540A505203C3054009C9BE3 /* Tests-Info.plist */,
 				55F9817F20F4DD2300E3AF47 /* GoogleService-Info.plist */,
@@ -1139,7 +1142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A028EED21AEE3FE00431D25 /* NotificationService.swift in Sources */,
-				0AC14B12225F474A004C2649 /* LocalizationStrings.swift in Sources */,
+				0AC14B12225F474A004C2649 /* PushLocalizationStrings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1151,7 +1154,7 @@
 				5540A4EF203C3054009C9BE3 /* AppDelegate.swift in Sources */,
 				0A84BBDF21060F6100708DE5 /* AppConfig.swift in Sources */,
 				0AA27841205FCDFA00EBB9D1 /* TestSupport.swift in Sources */,
-				555D33FE2110BD810055D87C /* LocalizationStrings.swift in Sources */,
+				555D33FE2110BD810055D87C /* PushLocalizationStrings.swift in Sources */,
 				0ACA9C38205FDA75005EC186 /* ApplicationArguments.swift in Sources */,
 				55D3C08220F770170047004F /* PushTokensService.swift in Sources */,
 			);
@@ -1164,6 +1167,7 @@
 				555C94F120E537E900A0621D /* HTTPNotificatonServiceTests.swift in Sources */,
 				0AB743F620ED163100D8DFFC /* InfuraEthereumNodeServiceTests.swift in Sources */,
 				55A7B2A320ECD2D90035EF38 /* GnosisTransactionRelayServiceTests.swift in Sources */,
+				0A04A8C5225F505300305F79 /* PushLocalizationStringsTests.swift in Sources */,
 				55D97D7E20496E390004AEDD /* AppDelegateTests.swift in Sources */,
 				0AC33F2A2119CE7C009A5CFB /* BlockchainIntegrationTest.swift in Sources */,
 				0AA0C866207B756C0019E282 /* XCTest+Assert.swift in Sources */,
